@@ -220,12 +220,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [autoSalvageStep, setAutoSalvageStep] = useState<0 | 1 | 2>(0); // 0=preview, 1=confirm, 2=done
   // Skill bracket collapse state for recipe list
   const [collapsedBrackets, setCollapsedBrackets] = useState<Set<string>>(new Set());
+  // Track which recipes were newly learned (for NEW badge — clears on NPC modal close)
+  const [newlyLearned, setNewlyLearned] = useState<Set<string>>(new Set());
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
     setSelectedNpc(null); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]);
     setEnchantSlot("weapon"); setEnchantStat(null); setEnchantOptions(null); setEnchantCost(null); setEnchantResult(null);
-    setCraftProgress(null);
+    setCraftProgress(null); setNewlyLearned(new Set());
   }, []);
   const closeConfirmProf = useCallback(() => setConfirmProf(null), []);
   const closeConfirmAction = useCallback(() => setConfirmAction(null), []);
@@ -434,6 +436,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const data = await r.json();
       if (r.ok) {
         setCraftResult(`Learned: ${data.recipe} (${data.profession}) — ${data.goldSpent}g`);
+        setNewlyLearned(prev => new Set([...prev, recipeId]));
         fetchData();
         onRefresh?.();
       } else {
@@ -1253,7 +1256,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     boxShadow: `0 0 60px ${rc}30, 0 0 120px ${rc}15, inset 0 1px 0 rgba(255,255,255,0.05)`,
                   }}>
                     <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Masterwork Forged</p>
-                    <p className="text-lg font-bold mb-1" style={{ color: rc }}>{ci.name}</p>
+                    <p className="text-lg font-bold mb-1 item-drop-in" style={{ color: rc, filter: `drop-shadow(0 0 8px ${rc}60)` }}>{ci.name}</p>
                     <p className="text-xs uppercase tracking-wider mb-3 font-semibold" style={{ color: `${rc}aa` }}>
                       {RARITY_LABELS[ci.rarity] || ci.rarity} {ci.slot ? `\u00b7 ${ci.slot}` : ""}
                     </p>
@@ -1623,6 +1626,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
                                 {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}
                                 {recipe.name}
+                                {newlyLearned.has(recipe.id) && <span className="new-badge-pulse text-xs font-bold ml-1.5 px-1 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", fontSize: 10 }}>NEW</span>}
                               </p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
