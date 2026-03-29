@@ -7,6 +7,7 @@ const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const { now, INVENTORY_CAP, createPlayerLock } = require('../lib/helpers');
 const mailSendLock = createPlayerLock('mail-send');
+const mailCollectLock = createPlayerLock('mail-collect');
 const { requireAuth } = require('../lib/middleware');
 
 const MAIL_LIMIT = 50; // Max mails in inbox
@@ -159,6 +160,8 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
 
 router.post('/api/mail/:mailId/collect', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!mailCollectLock.acquire(uid)) return res.status(429).json({ error: 'Collect in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -198,12 +201,15 @@ router.post('/api/mail/:mailId/collect', requireAuth, (req, res) => {
     itemsCollected: collectedItems,
     message: `Collected${mail.gold ? ` ${mail.gold} gold` : ''}${collectedItems.length ? ` + ${collectedItems.length} items` : ''}`,
   });
+  } finally { mailCollectLock.release(uid); }
 });
 
 // ─── POST /api/mail/collect-all — Collect all uncollected mail attachments ────
 
 router.post('/api/mail/collect-all', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!mailCollectLock.acquire(uid)) return res.status(429).json({ error: 'Collect in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -244,6 +250,7 @@ router.post('/api/mail/collect-all', requireAuth, (req, res) => {
     itemsCollected: totalItemCount,
     message: `Collected ${uncollected.length} mails: ${totalGold > 0 ? `${totalGold} gold` : ''}${totalItemCount > 0 ? ` + ${totalItemCount} items` : ''}`,
   });
+  } finally { mailCollectLock.release(uid); }
 });
 
 // ─── POST /api/mail/:mailId/read — Mark mail as read ─────────────────────────
