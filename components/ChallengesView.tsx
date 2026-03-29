@@ -276,7 +276,7 @@ function SternenpfadView({
                   {speedBonusActive && (
                     <TipCustom title="Speed Bonus" icon="⚡" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
-                        ⚡ Speed Bonus
+                        ★ Speed Bonus
                       </span>
                     </TipCustom>
                   )}
@@ -837,7 +837,7 @@ export default function ChallengesView({
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2">⭐</p>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>★</p>
             <p className="text-sm font-bold mb-1 text-w25">No Star Path active</p>
             <p className="text-xs text-w15">{playerName ? "The Star Path resets every Monday. A new challenge awaits!" : "Log in to view the Star Path."}</p>
           </div>
