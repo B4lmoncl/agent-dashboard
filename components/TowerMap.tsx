@@ -40,7 +40,9 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
         <div className="sticky top-0 z-10 px-5 py-4 flex items-center justify-between" style={{ background: "linear-gradient(180deg, #0d0e12 60%, transparent)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
           <div>
             <p className="text-base font-bold tracking-wide" style={{ color: "#e8e8e8" }}>Quest Hall</p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Tower of Urithiru</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+              Level {playerLevel} · {FLOORS.filter(f => playerLevel >= (f.minLevel || 1)).length}/{FLOORS.length} Floors
+            </p>
           </div>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.06)" }}>
             <span className="text-xs font-mono">ESC</span>
@@ -184,6 +186,9 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
           <div className="flex justify-center pt-2">
             <div style={{ width: 120, height: 3, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)", borderRadius: 2 }} />
           </div>
+          <p className="text-center text-xs italic pt-1" style={{ color: "rgba(255,255,255,0.1)", fontSize: 10 }}>
+            Der Turm erinnert sich an jeden, der seine Hallen betritt.
+          </p>
         </div>
       </div>
     </div>
