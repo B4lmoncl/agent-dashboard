@@ -605,9 +605,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 )}
                 <div className="flex gap-1.5 flex-wrap">
                   {[
-                    { id: "instant_complete", label: "Instant", desc: `${companionName} completes a quest`, icon: "◆", needsQuest: true },
-                    { id: "double_reward", label: "2x Loot", desc: "Next quest doubled", icon: "✨", needsQuest: false },
-                    { id: "streak_extend", label: "+3 Streak", desc: "Extend streak", icon: "🔥", needsQuest: false },
+                    { id: "instant_complete", label: "Instant", desc: `${companionName} completes a quest`, icon: "/images/icons/ult-instant.png", needsQuest: true },
+                    { id: "double_reward", label: "2x Loot", desc: "Next quest doubled", icon: "/images/icons/ult-double.png", needsQuest: false },
+                    { id: "streak_extend", label: "+3 Streak", desc: "Extend streak", icon: "/images/icons/ult-streak.png", needsQuest: false },
                   ].map(ult => (
                     <button
                       key={ult.id}
@@ -626,7 +626,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         minWidth: 70,
                       }}
                     >
-                      <span style={{ fontSize: 14 }}>{ult.icon}</span>
+                      {ult.icon.startsWith("/") ? <img src={ult.icon} alt="" width={20} height={20} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 14 }}>{ult.icon}</span>}
                       <br />
                       {ultimateUsing === ult.id ? "..." : ult.label}
                     </button>

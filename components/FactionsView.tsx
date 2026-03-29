@@ -218,7 +218,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
               {/* Header */}
               <div className="p-4 pb-3">
                 <div className="flex items-center gap-3">
-                  {f.icon?.startsWith("/") ? <img src={f.icon} alt="" width={32} height={32} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl">{f.icon}</span>}
+                  {f.icon?.startsWith("/") ? (
+                    <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0" style={{ border: `1px solid ${f.accent}30`, boxShadow: `0 0 8px ${f.accent}10` }}>
+                      <img src={f.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+                    </div>
+                  ) : <span className="text-2xl">{f.icon}</span>}
                   <div className="flex-1 min-w-0">
                     <TipCustom title={f.name} icon={f.icon} accent={f.accent} body={<p>{f.description}</p>}>
                       <p className="text-sm font-bold" style={{ color: f.accent, cursor: "help" }}>{f.name}</p>

@@ -147,8 +147,8 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
 
       // Breathe effect: opacity AND glow width pulse together
       const pulse = 0.5 + 0.5 * Math.sin(time * 0.0008 * vein.speed + vein.phase);
-      const baseOpacity = vein.opacity * moonIntensity * (0.4 + 0.6 * pulse);
-      const glowScale = 0.7 + 0.3 * pulse; // glow width breathes 70%-100%
+      const baseOpacity = Math.min(0.45, vein.opacity * moonIntensity * (0.3 + 0.5 * pulse));
+      const glowScale = 0.6 + 0.25 * pulse; // glow width breathes 60%-85% (subtler)
 
       const drawPath = () => {
         ctx.beginPath();
@@ -158,19 +158,22 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
         }
       };
 
-      // Outer glow (wide, faint — breathes with pulse)
-      drawPath();
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.2})`;
-      ctx.lineWidth = vein.width * 8 * glowScale;
+      // Multi-pass glow (5 layers, each narrower + more opaque = soft fadeout)
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
-      ctx.stroke();
-
-      // Mid glow
-      drawPath();
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.5})`;
-      ctx.lineWidth = vein.width * 3 * glowScale;
-      ctx.stroke();
+      const glowPasses = [
+        { widthMult: 10, opacityMult: 0.03 },
+        { widthMult: 7,  opacityMult: 0.05 },
+        { widthMult: 5,  opacityMult: 0.08 },
+        { widthMult: 3,  opacityMult: 0.15 },
+        { widthMult: 1.8, opacityMult: 0.30 },
+      ];
+      for (const pass of glowPasses) {
+        drawPath();
+        ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * pass.opacityMult})`;
+        ctx.lineWidth = vein.width * pass.widthMult * glowScale;
+        ctx.stroke();
+      }
 
       // Core line (bright, thin — constant width for stability)
       drawPath();
@@ -251,7 +254,7 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ zIndex: 0, opacity: 0.6, borderRadius: "inherit" }}
+      style={{ zIndex: 0, opacity: 0.5 }}
     />
   );
 }

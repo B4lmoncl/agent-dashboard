@@ -376,40 +376,31 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {/* Accent bar */}
         <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${boss.accent}aa, transparent)` }} />
 
-        {/* Boss Header */}
-        <div className="p-5 pb-4">
-          <div className="flex items-center gap-4">
-            <div className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center" style={{
-              background: `radial-gradient(circle, ${boss.accent}18 0%, ${boss.accent}08 70%, transparent 100%)`,
-              border: `2px solid ${boss.accent}40`,
-              fontSize: 32,
-              imageRendering: "auto",
-              boxShadow: `0 0 20px ${boss.accent}15, inset 0 0 12px ${boss.accent}10`,
-            }}>
-              {boss.icon}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-base font-bold" style={{ color: boss.accent }}>{boss.name}</p>
-              <p className="text-xs italic" style={{ color: `${boss.accent}80` }}>{boss.title}</p>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>{boss.description}</p>
-            </div>
-            <div className="text-right flex-shrink-0">
+        {/* Boss Portrait — large, prominent */}
+        {boss.icon?.startsWith("/") && (
+          <div className="relative" style={{ height: 160, overflow: "hidden" }}>
+            <img src={boss.icon} alt={boss.name} className="w-full h-full object-cover" style={{ imageRendering: "auto", objectPosition: "center top" }} onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+            {/* Gradient overlay for readability */}
+            <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 30%, ${boss.accent}20 60%, #141418 100%)` }} />
+            {/* Timer overlay */}
+            <div className="absolute top-3 right-3">
               {boss.defeated ? (
-                <>
-                  <p className="text-sm font-bold" style={{ color: "#22c55e" }}>Defeated!</p>
-                  <p className="text-xs text-w20">{boss.defeatedAt ? new Date(boss.defeatedAt).toLocaleDateString() : ""}</p>
-                </>
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold" style={{ background: "rgba(34,197,94,0.9)", color: "#fff" }}>Defeated!</span>
               ) : (
-                <>
-                  <p className="text-sm font-mono font-bold" style={{
-                    color: isUrgent ? "#ef4444" : isWarning ? "#eab308" : boss.accent,
-                  }}>
-                    {daysRemaining(boss.expiresAt)}
-                  </p>
-                  <p className="text-xs text-w20">Time remaining</p>
-                </>
+                <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold" style={{ background: "rgba(0,0,0,0.7)", color: isUrgent ? "#ef4444" : isWarning ? "#eab308" : boss.accent, border: `1px solid ${isUrgent ? "rgba(239,68,68,0.4)" : `${boss.accent}40`}` }}>
+                  {daysRemaining(boss.expiresAt)}
+                </span>
               )}
             </div>
+          </div>
+        )}
+
+        {/* Boss Info */}
+        <div className="p-5 pb-4">
+          <div>
+            <p className="text-lg font-bold" style={{ color: boss.accent }}>{boss.name}</p>
+            <p className="text-xs italic" style={{ color: `${boss.accent}80` }}>{boss.title}</p>
+            <p className="text-xs mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>{boss.description}</p>
           </div>
         </div>
 

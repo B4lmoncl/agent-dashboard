@@ -105,7 +105,9 @@ function SternenpfadView({
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
           {challenge.icon && (
-            <img src={challenge.icon} alt="" width={32} height={32} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+            <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+              <img src={challenge.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+            </div>
           )}
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{challenge.name}</h3>
@@ -274,7 +276,7 @@ function SternenpfadView({
                   {speedBonusActive && (
                     <TipCustom title="Speed Bonus" icon="⚡" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
-                        ⚡ Speed Bonus
+                        ★ Speed Bonus
                       </span>
                     </TipCustom>
                   )}
@@ -411,7 +413,9 @@ function ExpeditionView({
       {/* Header */}
       <div className="flex items-start gap-3">
         {expedition.icon && (
-          <img src={expedition.icon} alt="" width={40} height={40} className="img-render-auto rounded-lg mt-0.5" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+          <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 mt-0.5" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+            <img src={expedition.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+          </div>
         )}
         <div className="flex-1">
           <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{expedition.name}</h3>
@@ -833,7 +837,7 @@ export default function ChallengesView({
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2">⭐</p>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>★</p>
             <p className="text-sm font-bold mb-1 text-w25">No Star Path active</p>
             <p className="text-xs text-w15">{playerName ? "The Star Path resets every Monday. A new challenge awaits!" : "Log in to view the Star Path."}</p>
           </div>

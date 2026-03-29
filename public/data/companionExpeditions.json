@@ -5,7 +5,7 @@
       "name": "Quick Forage",
       "description": "A short trip to gather nearby resources.",
       "durationHours": 4,
-      "icon": "🌿",
+      "icon": "/images/icons/exp-forest.png",
       "rewards": {
         "gold": [
           10,
@@ -29,7 +29,7 @@
       "name": "Deep Woods Patrol",
       "description": "Venture into the forests beyond the tower walls.",
       "durationHours": 8,
-      "icon": "🌲",
+      "icon": "/images/icons/exp-forest.png",
       "rewards": {
         "gold": [
           25,
@@ -57,7 +57,7 @@
       "name": "Mountain Pass Trek",
       "description": "A challenging journey through treacherous mountain passes.",
       "durationHours": 12,
-      "icon": "⛰️",
+      "icon": "/images/icons/exp-mountain.png",
       "rewards": {
         "gold": [
           50,
@@ -89,7 +89,7 @@
       "name": "Ancient Ruins Expedition",
       "description": "Explore forgotten ruins deep beneath the tower. Only the bravest companions dare.",
       "durationHours": 24,
-      "icon": "🏛️",
+      "icon": "/images/icons/exp-ruins.png",
       "rewards": {
         "gold": [
           100,
