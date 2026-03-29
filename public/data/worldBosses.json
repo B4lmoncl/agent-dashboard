@@ -32,7 +32,8 @@
         "name": "Wyrm Slayer",
         "color": "#ef4444",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/procrastination-wyrm.png"
     },
     {
       "id": "burnout-colossus",
@@ -52,7 +53,8 @@
         "name": "Colossus Breaker",
         "color": "#f97316",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/burnout-colossus.png"
     },
     {
       "id": "chaos-hydra",
@@ -72,7 +74,8 @@
         "name": "Hydra Vanquisher",
         "color": "#a855f7",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/chaos-hydra.png"
     },
     {
       "id": "doubt-phantom",
@@ -101,7 +104,8 @@
         "name": "Zweifelbezwinger",
         "color": "#6366f1",
         "glow": false
-      }
+      },
+      "portrait": "/images/bosses/doubt-phantom.png"
     },
     {
       "id": "entropy-weaver",
@@ -130,7 +134,8 @@
         "name": "Fadenbrecher",
         "color": "#ec4899",
         "glow": false
-      }
+      },
+      "portrait": "/images/bosses/entropy-weaver.png"
     },
     {
       "id": "stagnation-golem",
@@ -159,7 +164,8 @@
         "name": "Stillstandbrecher",
         "color": "#78716c",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/stagnation-golem.png"
     },
     {
       "id": "perfection-seraph",
@@ -188,7 +194,8 @@
         "name": "Der Unvollkommene",
         "color": "#fbbf24",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/perfection-seraph.png"
     },
     {
       "id": "isolation-leviathan",
@@ -217,7 +224,8 @@
         "name": "Brückenbauer",
         "color": "#1e3a5f",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/isolation-leviathan.png"
     },
     {
       "id": "apathy-sovereign",
@@ -246,7 +254,8 @@
         "name": "Der Erweckte",
         "color": "#4a1942",
         "glow": true
-      }
+      },
+      "portrait": "/images/bosses/apathy-sovereign.png"
     }
   ]
 }
