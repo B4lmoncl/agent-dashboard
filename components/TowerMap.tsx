@@ -148,7 +148,8 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         {floor.name}
                       </p>
                       {isActiveFloor && (
-                        <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${floor.color}18`, color: floor.color, fontSize: 10 }}>
+                        <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${floor.color}18`, color: floor.color, fontSize: 10 }}>
+                          <span className="w-1.5 h-1.5 rounded-full" style={{ background: floor.color, boxShadow: `0 0 6px ${floor.color}`, animation: "ambient-spark 2s ease-in-out infinite" }} />
                           HERE
                         </span>
                       )}
