@@ -10,7 +10,7 @@ import { Tip, TipCustom } from "@/components/GameTooltip";
 const CURRENCY_ICONS: Record<string, { label: string; color: string }> = {
   gold: { label: "Gold", color: "#f59e0b" },
   runensplitter: { label: "Runensplitter", color: "#a855f7" },
-  essenz: { label: "Essenz", color: "#3b82f6" },
+  essenz: { label: "Essenz", color: "#ef4444" },
   sternentaler: { label: "Sternentaler", color: "#fbbf24" },
   xp: { label: "XP", color: "#22c55e" },
 };
@@ -148,7 +148,7 @@ function SternenpfadView({
                   style={{
                     background: canClaim ? "rgba(251,191,36,0.08)" : "transparent",
                     cursor: canClaim && claimingMilestone === null ? "pointer" : claimed ? "default" : "not-allowed",
-                    animation: canClaim ? "pulse 2s infinite" : "none",
+                    animation: canClaim ? "pulse 4s infinite" : "none",
                   }}
                 >
                   <div
