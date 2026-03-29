@@ -311,7 +311,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}80` : "1px solid rgba(255,255,255,0.06)",
             boxShadow: equippedFrameId && frames.find(f => f.id === equippedFrameId)?.glow ? `0 0 12px ${frames.find(f => f.id === equippedFrameId)?.color}30` : "none",
           }}>
-            <img src={`/images/portraits/hero-${avatarStyle}.png`} alt="" className="w-12 h-12 rounded-lg object-cover" style={{
+            <img src={`/images/portraits/hero-${avatarStyle}.png`} alt="" className="w-12 h-12 rounded-lg object-cover" onError={e => { e.currentTarget.style.display = "none"; }} style={{
               imageRendering: "auto",
               border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}` : "2px solid rgba(255,255,255,0.1)",
             }} />
