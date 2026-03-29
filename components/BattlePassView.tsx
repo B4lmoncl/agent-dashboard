@@ -148,7 +148,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
       }}>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            <span className="text-3xl">{config.seasonIcon}</span>
+            {config.seasonIcon?.startsWith("/") ? <img src={config.seasonIcon} alt="" width={40} height={40} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-3xl">{config.seasonIcon}</span>}
             <div>
               <Tip k="battle_pass" heading>
                 <h2 className="text-lg font-bold" style={{ color: config.seasonAccent }}>{config.seasonName}</h2>

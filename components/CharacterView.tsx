@@ -2566,20 +2566,20 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             {!collectionLoading && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Could not load collection data.</p>}
             {collectionData && (() => {
               const sourceDisplayNames: Record<string, string> = {
-                "world_boss:procrastination-wyrm": "\ud83d\udc09 The Procrastination Wyrm",
-                "world_boss:burnout-colossus": "\ud83d\udd25 Burnout Colossus",
-                "world_boss:chaos-hydra": "\ud83d\udc32 Chaos Hydra",
-                "world_boss:doubt-phantom": "\ud83d\udc7b Doubt Phantom",
-                "world_boss:entropy-weaver": "\ud83d\udd78\ufe0f Entropy Weaver",
-                "world_boss:stagnation-golem": "\ud83d\uddff Stagnation Golem",
-                "world_boss:perfection-seraph": "\ud83d\udc7c Perfection Seraph",
-                "world_boss:isolation-leviathan": "\ud83c\udf0a Isolation Leviathan",
-                "world_boss:apathy-sovereign": "\ud83d\udc51 Apathy Sovereign",
-                "dungeon:sunken-archive": "\ud83d\udcda Sunken Archive (Normal)",
-                "dungeon:shattered-spire": "\u26a1 Shattered Spire (Hard)",
-                "dungeon:hollow-core": "\ud83d\udd73\ufe0f Hollow Core (Legendary)",
-                "gacha:astral-radiance": "\u2728 Astral Radiance Banner",
-                "gacha:wheel-of-stars": "\ud83c\udfb0 Wheel of Stars Banner",
+                "world_boss:procrastination-wyrm": "◆ The Procrastination Wyrm",
+                "world_boss:burnout-colossus": "◆ Burnout Colossus",
+                "world_boss:chaos-hydra": "◆ Chaos Hydra",
+                "world_boss:doubt-phantom": "◆ Doubt Phantom",
+                "world_boss:entropy-weaver": "◆ Entropy Weaver",
+                "world_boss:stagnation-golem": "◆ Stagnation Golem",
+                "world_boss:perfection-seraph": "◆ Perfection Seraph",
+                "world_boss:isolation-leviathan": "◆ Isolation Leviathan",
+                "world_boss:apathy-sovereign": "◆ Apathy Sovereign",
+                "dungeon:sunken-archive": "▣ Sunken Archive (Normal)",
+                "dungeon:shattered-spire": "▣ Shattered Spire (Hard)",
+                "dungeon:hollow-core": "▣ Hollow Core (Legendary)",
+                "gacha:astral-radiance": "★ Astral Radiance Banner",
+                "gacha:wheel-of-stars": "★ Wheel of Stars Banner",
               };
 
               const getSourceType = (source: string) => source.split(":")[0];

@@ -86,7 +86,8 @@ function timeLeft(ms: number): string {
 }
 
 const TIER_IDS = ["normal", "hard", "legendary"];
-const TYPE_ICONS: Record<string, string> = { personal: "🏠", learning: "📚", fitness: "💪", social: "👥", boss: "💀" };
+const TYPE_ICONS: Record<string, string> = { personal: "●", learning: "●", fitness: "●", social: "●", boss: "◆" };
+const TYPE_ICON_IMAGES: Record<string, string> = { personal: "/images/icons/cat-personal.png", learning: "/images/icons/cat-learning.png", fitness: "/images/icons/cat-fitness.png", social: "/images/icons/cat-social.png" };
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
@@ -339,7 +340,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   }}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">{TYPE_ICONS[q.type] || "⚔️"}</span>
+                        {TYPE_ICON_IMAGES[q.type] ? <img src={TYPE_ICON_IMAGES[q.type]} alt="" width={18} height={18} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-sm">{TYPE_ICONS[q.type] || "◆"}</span>}
                         <div>
                           <p className="text-xs font-bold" style={{ color: q.completed ? "#22c55e" : isCurrent ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>{q.name}</p>
                           <p className="text-xs text-w20">{q.type} · {q.difficulty}x difficulty</p>

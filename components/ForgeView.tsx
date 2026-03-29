@@ -775,11 +775,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
           <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider.</p>
           {moonlightActive && (
-            <TipCustom title="Mondlicht-Schmiede" accent="#818cf8" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>}>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-lg cursor-help" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.25)" }}>
-                Mondlicht aktiv
-              </span>
-            </TipCustom>
+            <div className="mt-2">
+              <TipCustom title="Mondlicht-Schmiede" accent="#60a5fa" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>}>
+                <span className="text-xs font-semibold px-3 py-1 rounded-lg cursor-help" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)", boxShadow: "0 0 8px rgba(96,165,250,0.15)" }}>
+                  ☽ Mondlicht aktiv
+                </span>
+              </TipCustom>
+            </div>
           )}
         </div>
         <div className="flex items-center gap-4 ml-auto text-sm">
@@ -880,6 +882,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* Location header */}
             <div className="px-4 pt-3 pb-1">
               <div className="flex items-center gap-2">
+                {prof.icon && <img src={prof.icon} alt="" width={18} height={18} className="img-render-auto flex-shrink-0" style={{ opacity: 0.6 }} onError={e => { e.currentTarget.style.display = "none"; }} />}
                 <Tip k={`prof_${prof.id}`} heading><span className="text-sm font-semibold uppercase tracking-widest" style={{ color: `${loc.color}70` }}>{loc.label}</span></Tip>
                 <span className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>{loc.desc}</span>
                 <div className="ml-auto flex items-center gap-1.5">
