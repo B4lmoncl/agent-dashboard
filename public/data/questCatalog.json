@@ -7833,6 +7833,1046 @@
         "xp": 35,
         "gold": 22
       }
+    },
+    {
+      "id": "s-empfehlungsschreiben",
+      "template": "board-quest",
+      "title": "Worte die tragen",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreibe eine LinkedIn-Empfehlung für jemanden.",
+        "flavor": "Worte die jemanden weiterbringen kosten dich nichts.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-mitbringsel",
+      "template": "board-quest",
+      "title": "Kleine Geste",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Bring jemandem unerwartet etwas mit.",
+        "flavor": "Die besten Geschenke sind die, die man nicht erwartet.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-neue-person",
+      "template": "board-quest",
+      "title": "Unbekannter Wanderer",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Lerne eine neue Person kennen. Stelle dich vor.",
+        "flavor": "Jeder Fremde ist eine Geschichte die du noch nicht gehört hast.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-zusammen-kochen2",
+      "template": "board-quest",
+      "title": "Vier Hände",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Koche zusammen mit jemandem — nicht nebeneinander, zusammen.",
+        "flavor": "Die Küche ist der ehrlichste Raum.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-handschrift-brief",
+      "template": "board-quest",
+      "title": "Tintenspur",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreibe einen Brief mit Stift und Papier.",
+        "flavor": "E-Mails werden gelöscht. Briefe werden aufbewahrt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-kultur-event",
+      "template": "board-quest",
+      "title": "Kulturwanderer",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Besuche Museum, Theater, Konzert oder Ausstellung.",
+        "flavor": "Kunst ist die Sprache die keine Übersetzung braucht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-fremdem-beistehen",
+      "template": "board-quest",
+      "title": "Unsichtbarer Held",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf einem Fremden bei etwas.",
+        "flavor": "Helden tragen nicht immer Rüstung. Manchmal tragen sie Einkaufstüten.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-date-zuhause",
+      "template": "board-quest",
+      "title": "Heimabend",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Date-Night zu Hause: Kochen, Kerzen, Handys weg.",
+        "flavor": "Romantik ist nicht teuer. Romantik ist aufmerksam.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-eltern-jugend-fragen",
+      "template": "board-quest",
+      "title": "Geschichtsbuch",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Frag Eltern nach einer Geschichte aus ihrer Jugend.",
+        "flavor": "Sammle die Geschichten jetzt — solange jemand sie kennt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-freund-stuetzen",
+      "template": "board-quest",
+      "title": "Fels im Sturm",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Unterstütze aktiv einen Freund in schwerer Zeit.",
+        "flavor": "Ein Leuchtturm leuchtet nicht für sich selbst.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "s-coworking-session",
+      "template": "board-quest",
+      "title": "Wissenspartner",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Lerne gemeinsam: Coworking oder Study Session.",
+        "flavor": "Allein lernst du schneller. Zusammen tiefer.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-morgen-date",
+      "template": "board-quest",
+      "title": "Morgentreff",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Frühstücke bewusst mit jemandem.",
+        "flavor": "Die erste Mahlzeit teilen ist intimer als Abendessen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-ehrliches-feedback",
+      "template": "board-quest",
+      "title": "Ehrlicher Spiegel",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Gib jemandem konstruktives Feedback — gewünscht.",
+        "flavor": "Ehrliches Feedback ist das wertvollste und seltenste Geschenk.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-nachbar-anbieten",
+      "template": "board-quest",
+      "title": "Turmhilfe",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Biete deinem Nachbarn Hilfe an.",
+        "flavor": "Die stärksten Gemeinschaften wachsen. Gieß sie.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-gruppenfoto",
+      "template": "board-quest",
+      "title": "Gruppenportrait",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Mache ein echtes Familien-/Gruppenfoto.",
+        "flavor": "Fotos frieren Momente ein die sonst verschwinden.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "f-calisthenics-session",
+      "template": "board-quest",
+      "title": "Körpergewicht-Meister",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "30 Min Calisthenics: nur Körpergewicht.",
+        "flavor": "Dein Körper ist das einzige Gym das nie schließt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "f-lange-wanderung",
+      "template": "board-quest",
+      "title": "Fernwanderer",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "2+ Stunden Wanderung in der Natur.",
+        "flavor": "Der Gipfel ist der Beweis. Der Weg ist die Lektion.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "f-tabata",
+      "template": "board-quest",
+      "title": "Intervall-Krieger",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Tabata: 20s all-out, 10s Pause, 8 Runden.",
+        "flavor": "4 Minuten die sich anfühlen wie 4 Stunden.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "f-balance-training",
+      "template": "board-quest",
+      "title": "Balanceakt",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "15 Min Balance Training: Einbeinstand, Tree Pose.",
+        "flavor": "Balance ist alles. Im Leben wie beim Stehen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-100m-sprints",
+      "template": "board-quest",
+      "title": "Blitzangriff",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "6× 100m Sprint mit 1 Min Pause.",
+        "flavor": "Schnell ist gut! Am schnellsten ist gefährlich!",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "f-kaelte-exposure",
+      "template": "board-quest",
+      "title": "Frostherz",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "3 Min kalte Dusche ODER Eisbad.",
+        "flavor": "Kälte fragt nicht ob du bereit bist.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "f-nuechtern-workout",
+      "template": "board-quest",
+      "title": "Dämmerungskämpfer",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Workout vor dem Frühstück — 20 Min nüchtern.",
+        "flavor": "Der Körper am Morgen ist eine Beschwerde. Beantworte sie.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 14
+      }
+    },
+    {
+      "id": "f-nur-treppen",
+      "template": "board-quest",
+      "title": "Stufenbezwinger",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Ganzer Tag nur Treppen, kein Aufzug.",
+        "flavor": "Aufzüge sind für Pakete.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-2min-plank",
+      "template": "board-quest",
+      "title": "Unbewegliche Festung",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Plank: 2 Minuten am Stück.",
+        "flavor": "Stillstehen war noch nie so anstrengend.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "f-abend-dehnung",
+      "template": "board-quest",
+      "title": "Abendentspannung",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "20 Min Dehnung vor dem Schlafengehen.",
+        "flavor": "Der Körper braucht Ruhe. Nach der Dehnung.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "f-neue-sportart",
+      "template": "board-quest",
+      "title": "Unbekanntes Terrain",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Probiere eine neue Sportart.",
+        "flavor": "Schlecht sein in etwas Neuem ist der erste Schritt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "f-selbstmassage",
+      "template": "board-quest",
+      "title": "Regeneration",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "20 Min Selbstmassage mit Faszienball.",
+        "flavor": "Du vernachlässigst dich nicht aus Zeitmangel.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "f-parkour",
+      "template": "board-quest",
+      "title": "Hindernisläufer",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Parkour Basics: Precision Jumps, Vaults, Balance.",
+        "flavor": "Die Stadt ist ein Spielplatz. Andere Regeln.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "f-50-kniebeugen",
+      "template": "board-quest",
+      "title": "Tiefgang",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "50 Squats am Stück. Saubere Form.",
+        "flavor": "Deine Beine tragen dich seit Jahren. Sag Danke.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "f-60min-gehen",
+      "template": "board-quest",
+      "title": "Die lange Runde",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "60 Min Spaziergang ohne Handy.",
+        "flavor": "Geh. Nicht weil du musst. Weil dein Körper es braucht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-vergangenes-ich",
+      "template": "board-quest",
+      "title": "Brief an mich",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Brief an dein Ich vor 5 Jahren.",
+        "flavor": "Die Vergangenheit kann man nicht ändern. Aber Danke sagen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-werte",
+      "template": "board-quest",
+      "title": "Grundwerte",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Definiere deine 5 wichtigsten Werte.",
+        "flavor": "Was weißt du wirklich? Nicht was du glaubst.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "p-loslassen",
+      "template": "board-quest",
+      "title": "Loslassen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Verkaufe oder verschenke etwas an das du emotional hängst.",
+        "flavor": "Besitz wiegt mehr als sein Gewicht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-social-media-pause",
+      "template": "board-quest",
+      "title": "Der stille Tag",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Kein Social Media für einen ganzen Tag.",
+        "flavor": "Social Media ist ein Raum voller Spiegel. Manchmal braucht man ein Fenster.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "p-vor-22-schlafen",
+      "template": "board-quest",
+      "title": "Frühe Rast",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Vor 22 Uhr ins Bett. Exakt.",
+        "flavor": "Schlaf ist Wartung. Ohne Wartung bricht alles zusammen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-nichtstun",
+      "template": "board-quest",
+      "title": "Der leere Tag",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Plane bewusst NICHTS. Keine Liste, keine Pflicht.",
+        "flavor": "Nichts tun ist eine Fähigkeit die die meisten verlernt haben.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-selbstlob-5",
+      "template": "board-quest",
+      "title": "Eigener Ruhm",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "5 Dinge die du an dir magst. Ohne Ironie.",
+        "flavor": "Die schwierigste Quest ist Selbstakzeptanz.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-angst-schritt",
+      "template": "board-quest",
+      "title": "Schattenspringer",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Tu etwas das dir Angst macht. Nicht gefährlich — unbequem.",
+        "flavor": "Mut ist Furcht plus ein Schritt vorwärts.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "p-3-dankbarkeiten",
+      "template": "board-quest",
+      "title": "Drei Lichter",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "3 Dinge für die du heute dankbar bist.",
+        "flavor": "Dankbarkeit ist keine Emotion. Sie ist eine Entscheidung.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-spiegel-kompliment",
+      "template": "board-quest",
+      "title": "Spiegelprobe",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Sag dir selbst im Spiegel etwas Nettes. Ernst.",
+        "flavor": "Der Spiegel zeigt was du siehst. Nicht was du bist.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "l-aws-lambda",
+      "template": "board-quest",
+      "title": "Serverloses Feuer",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "AWS Lambda verstehen: Function, Trigger, Cold Start.",
+        "flavor": "Server ohne Server. Die Zukunft ist verwirrend aber billig.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-cloudflare",
+      "template": "board-quest",
+      "title": "Schutznetz",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Cloudflare Setup: DNS, CDN, WAF, SSL.",
+        "flavor": "Ein Schutzschild für deine Website. Unsichtbar. Effektiv.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-postgresql-adv",
+      "template": "board-quest",
+      "title": "Datenbanktiefe",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "PostgreSQL Advanced: CTEs, Window Functions, Performance Tuning.",
+        "flavor": "SQL kann alles. Wenn du weißt wie man fragt.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-git-flow",
+      "template": "board-quest",
+      "title": "Branching-Strategie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Git Flow vs Trunk-Based Development verstehen und anwenden.",
+        "flavor": "Branches sind wie Paralleluniversen. Merge Conflicts sind der Beweis.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-oauth-jwt",
+      "template": "board-quest",
+      "title": "Schlüsselmeister",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "OAuth 2.0 und JWT Tokens verstehen: Flows, Scopes, Token Lifecycle.",
+        "flavor": "Authentifizierung ist die Frage 'Wer bist du?'. Autorisierung ist 'Was darfst du?'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-cors-explained",
+      "template": "board-quest",
+      "title": "Grenzübergang",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "CORS verstehen: Preflight, Headers, Same-Origin Policy.",
+        "flavor": "CORS Fehler: der zuverlässigste Weg einen Entwickler zum Weinen zu bringen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-http3",
+      "template": "board-quest",
+      "title": "Schnelles Protokoll",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "HTTP/2 vs HTTP/3 (QUIC): Unterschiede, Vorteile, Wann nutzen.",
+        "flavor": "Das Internet wird schneller. Die Theorie dahinter auch. Leider.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-ssh-keys",
+      "template": "board-quest",
+      "title": "Schlüsselbund",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "SSH Key Management: Generieren, Agent, Config, GitHub/GitLab.",
+        "flavor": "Passwörter sind für Anfänger. Keys sind für Profis. Und für Leute die Passwörter vergessen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-vim-basics",
+      "template": "board-quest",
+      "title": "Der unsterbliche Editor",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Vim Basics: Navigation, Modes, :wq und warum :q! dein bester Freund ist.",
+        "flavor": "Vim zu lernen ist wie Fahrradfahren. Wenn das Fahrrad auf Feuer wäre. In einem Vulkan.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "l-tmux",
+      "template": "board-quest",
+      "title": "Terminal-Multiplikator",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Tmux Setup: Sessions, Windows, Panes, Shortcuts.",
+        "flavor": "Ein Terminal ist nie genug. Zehn sind perfekt. Zwanzig sind... ambitioniert.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "f-schwimmrunden",
+      "template": "board-quest",
+      "title": "Bahnenziehen",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "30 Minuten Schwimmen — Bahnen, systematisch.",
+        "flavor": "Wasser hat keine Gnade. Aber auch keine Vorurteile.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "f-yoga-morgen",
+      "template": "board-quest",
+      "title": "Morgenfluss",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "20 Minuten Morgen-Yoga. Sonnengruß-Sequenz.",
+        "flavor": "Den Tag mit Bewegung beginnen statt mit dem Handy. Revolutionär.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-tanz-session",
+      "template": "board-quest",
+      "title": "Freier Tanz",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "15 Minuten frei tanzen. Musik an, Vorhänge zu, loslegen.",
+        "flavor": "Vivienne: 'Beweg dich als hätte niemand eine Kamera. Weil niemand eine hat.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-mentor-finden",
+      "template": "board-quest",
+      "title": "Lehrsuche",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Finde einen Mentor in einem Bereich der dir wichtig ist. Frag.",
+        "flavor": "Die besten Lehrer sind die, die man selbst findet.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "s-gemeinsam-wandern",
+      "template": "board-quest",
+      "title": "Pfadgefährten",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Geh mit jemandem wandern. Lange Gespräche, frische Luft.",
+        "flavor": "Die besten Gespräche passieren in Bewegung. Nicht am Schreibtisch.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-wohnung-dekorieren",
+      "template": "board-quest",
+      "title": "Nestbau",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Dekoriere einen Bereich deiner Wohnung neu — Bilder, Pflanzen, Licht.",
+        "flavor": "Dein Zuhause ist dein Spiegel. Was reflektiert es?",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-gratitude-jar",
+      "template": "board-quest",
+      "title": "Dankbarkeitsglas",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Starte ein Dankbarkeitsglas: Jeden Tag 1 Zettel mit etwas Gutem rein.",
+        "flavor": "Am Jahresende hast du 365 Gründe zu lächeln. Oder zumindest 365 Zettel.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-morgen-kalt-warm",
+      "template": "board-quest",
+      "title": "Wechseldusche",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Wechseldusche: 30s kalt, 30s warm, 3 Runden.",
+        "flavor": "Dein Kreislauf sagt Danke. Dein Verstand sagt andere Dinge.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "b-komplett-tag-offline",
+      "template": "board-quest",
+      "title": "Der freie Tag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Ein kompletter Tag offline: Kein Internet, kein TV, kein Handy.",
+        "flavor": "Die Welt existiert auch ohne WLAN. Überraschenderweise.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 55
+      }
+    },
+    {
+      "id": "b-30-tage-gewohnheit",
+      "template": "board-quest",
+      "title": "Die 30-Tage-Schmiede",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Starte eine neue 30-Tage-Gewohnheit. Heute ist Tag 1.",
+        "flavor": "30 Tage formen eine Gewohnheit. 30 Gewohnheiten formen ein Leben.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-lebensplan-5-jahre",
+      "template": "board-quest",
+      "title": "Der große Entwurf",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Schreibe deinen 5-Jahres-Plan. Detailliert. Ehrlich. Ambitioniert.",
+        "flavor": "Aeon: 'Dreißig Jahre sind ein Wimpernschlag. Für manche.' Nutze deine.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 80,
+        "gold": 60
+      }
+    },
+    {
+      "id": "b-keller-garage",
+      "template": "board-quest",
+      "title": "Die vergessene Kammer",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Keller, Garage oder Abstellraum komplett aufräumen und organisieren.",
+        "flavor": "Dort unten lebt Chaos. Heute stirbt es.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
+      }
+    },
+    {
+      "id": "b-testament-planen",
+      "template": "board-quest",
+      "title": "Das Vermächtnis",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Nachlassplanung starten: Testament, Vollmacht, Patientenverfügung.",
+        "flavor": "Nicht morbid. Verantwortungsvoll. Es gibt einen Unterschied.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-rechnung-verhandeln",
+      "template": "board-quest",
+      "title": "Der Preiskampf",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Verhandle eine wiederkehrende Rechnung: Handy, Versicherung, Internet.",
+        "flavor": "Unternehmen rechnen damit dass du nicht anrufst. Ruf an.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 45,
+        "gold": 30
+      }
+    },
+    {
+      "id": "b-neuer-job-bewerbung",
+      "template": "board-quest",
+      "title": "Aufbruch",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Schreibe eine Bewerbung für eine Position die dich reizt.",
+        "flavor": "Jede Reise beginnt mit einem Schritt. Oder einer Bewerbung. Beides ist mutig.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
     }
   ]
 }
