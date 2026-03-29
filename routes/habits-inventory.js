@@ -217,6 +217,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'random_gear': {
+      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full!'; break; }
       const { level: playerLvl } = getLevelInfo(u.xp || 0);
       const eligible = state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl && !g.shopHidden);
       const pool = eligible.length > 0 ? eligible : state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl);
@@ -232,6 +233,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'random_gear_epic': {
+      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full!'; break; }
       const { level: playerLvl2 } = getLevelInfo(u.xp || 0);
       const minRarityIdx = RARITY_ORDER.indexOf('epic');
       const eligible2 = state.FULL_GEAR_ITEMS.filter(g =>
