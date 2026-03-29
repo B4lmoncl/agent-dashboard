@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { LeaderboardEntry, Agent, User } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { getLbLevel } from "@/app/utils";
@@ -61,6 +61,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const classMap = new Map(classes.map(c => [c.id, c]));
   const agentIdSet = new Set(agents.map(a => a.id));
   const prevRankRef = useRef<number | null>(null);
+  const [seasonal, setSeasonal] = useState(false);
 
   // Build user lookup for player mode (to get extra fields not on LeaderboardEntry)
   const userMap = new Map(users.map(u => [u.id, u]));
@@ -75,7 +76,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
         name: u.name,
         avatar: u.avatar,
         color: u.color,
-        xp: u.xp ?? 0,
+        xp: seasonal ? ((u as unknown as Record<string, number>).seasonXp ?? 0) : (u.xp ?? 0),
         questsCompleted: u.questsCompleted ?? 0,
         classId: u.classId ?? null,
         forgeTemp: u.forgeTemp ?? 0,
@@ -172,10 +173,26 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
         })}
       </div>
 
-      {/* ── Ranking Note ── */}
-      <Tip k="leaderboard_rank"><p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
-        Ranked by XP · Ties broken by Quests Completed
-      </p></Tip>
+      {/* ── Ranking Note + Season Toggle ── */}
+      <div className="flex items-center justify-center gap-3">
+        <Tip k="leaderboard_rank"><p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+          Ranked by {seasonal ? "Season " : ""}XP · Ties broken by Quests
+        </p></Tip>
+        {mode === "players" && (
+          <button
+            onClick={() => setSeasonal(s => !s)}
+            className="text-xs px-2 py-1 rounded-lg font-semibold"
+            style={{
+              background: seasonal ? "rgba(251,191,36,0.12)" : "rgba(255,255,255,0.04)",
+              color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
+              border: `1px solid ${seasonal ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
+              cursor: "pointer",
+            }}
+          >
+            {seasonal ? "Season" : "All-Time"}
+          </button>
+        )}
+      </div>
 
       {/* ── Leaderboard Table ── */}
       <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>

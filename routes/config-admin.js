@@ -501,6 +501,8 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
 });
 
 router.get('/api/leaderboard', (req, res) => {
+  const seasonal = req.query.seasonal === 'true';
+  const xpField = seasonal ? 'seasonXp' : 'xp';
   const agentIds = new Set(Object.keys(state.store.agents));
 
   // Build agents-only ranked list
@@ -534,11 +536,12 @@ router.get('/api/leaderboard', (req, res) => {
         avatar: u.avatar,
         color: u.color,
         role: null,
-        xp: u.xp || 0,
+        xp: seasonal ? (u.seasonXp || 0) : (u.xp || 0),
         questsCompleted: u.questsCompleted || 0,
         level: levelInfo.level,
         levelTitle: levelInfo.title,
         isAgent: false,
+        seasonal,
       };
     })
     .sort((a, b) => b.xp - a.xp || b.questsCompleted - a.questsCompleted)
