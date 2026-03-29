@@ -1298,14 +1298,12 @@ export default function Dashboard() {
                 {/* Tower Map button */}
                 <button
                   onClick={() => setTowerMapOpen(true)}
-                  className="px-2 py-1.5 rounded-t-lg text-xs"
+                  className="px-2 py-1.5 rounded-t-lg text-xs flex-shrink-0"
                   style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.05)", borderBottom: "none" }}
                   title="Tower Map — Navigate all floors and rooms"
                 >
                   ◈
                 </button>
-              </div>
-              <div className="flex gap-1" style={{ background: "#0d0d0d", padding: "0 4px" }}>
                 {FLOORS.filter(f => !f.minLevel || (currentPlayerLevel ?? 1) >= f.minLevel).map(floor => {
                   const isActive = floor.id === activeFloor;
                   const hasNotif = !isActive && floorHasNotif(floor);
