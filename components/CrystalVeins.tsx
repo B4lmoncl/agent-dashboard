@@ -147,8 +147,8 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
 
       // Breathe effect: opacity AND glow width pulse together
       const pulse = 0.5 + 0.5 * Math.sin(time * 0.0008 * vein.speed + vein.phase);
-      const baseOpacity = vein.opacity * moonIntensity * (0.4 + 0.6 * pulse);
-      const glowScale = 0.7 + 0.3 * pulse; // glow width breathes 70%-100%
+      const baseOpacity = Math.min(0.45, vein.opacity * moonIntensity * (0.3 + 0.5 * pulse));
+      const glowScale = 0.6 + 0.25 * pulse; // glow width breathes 60%-85% (subtler)
 
       const drawPath = () => {
         ctx.beginPath();
@@ -158,18 +158,18 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
         }
       };
 
-      // Outer glow (wide, faint — breathes with pulse)
+      // Outer glow (wide, very faint — breathes with pulse)
       drawPath();
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.2})`;
-      ctx.lineWidth = vein.width * 8 * glowScale;
+      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.12})`;
+      ctx.lineWidth = vein.width * 6 * glowScale;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.stroke();
 
       // Mid glow
       drawPath();
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.5})`;
-      ctx.lineWidth = vein.width * 3 * glowScale;
+      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.35})`;
+      ctx.lineWidth = vein.width * 2.5 * glowScale;
       ctx.stroke();
 
       // Core line (bright, thin — constant width for stability)
