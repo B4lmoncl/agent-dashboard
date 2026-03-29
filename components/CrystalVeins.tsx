@@ -191,11 +191,15 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
 
     const parent = canvas.parentElement;
 
+    // Generate veins once based on a stable reference size (width-only seed).
+    // Only regenerate if width changes (e.g. window resize), NOT on height/content changes.
+    let generatedForWidth = 0;
+
     const resize = () => {
       if (!parent) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = parent.clientWidth;
-      const h = parent.scrollHeight; // full scrollable height, not just visible
+      const h = parent.scrollHeight;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
@@ -203,7 +207,13 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
       const ctx = canvas.getContext("2d");
       if (ctx) ctx.scale(dpr, dpr);
       sizeRef.current = { w, h };
-      veinsRef.current = generateVeinNetwork(w, h, Math.floor(w * 7 + h * 13));
+      // Only regenerate veins when width changes — keeps veins stable across view switches
+      if (w !== generatedForWidth) {
+        generatedForWidth = w;
+        // Use a large fixed height so veins cover any scroll depth
+        const refH = Math.max(h, 4000);
+        veinsRef.current = generateVeinNetwork(w, refH, Math.floor(w * 7919));
+      }
     };
 
     resize();
