@@ -187,6 +187,16 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </div>
           </div>
 
+          {/* Rest progress bar */}
+          {status.days && status.remainingMs != null && (
+            <div className="progress-bar-diablo">
+              <div className="progress-bar-diablo-fill" style={{
+                width: `${Math.max(0, 100 - ((status.remainingMs / (status.days * 86400000)) * 100))}%`,
+                background: "linear-gradient(90deg, #d9770688, #d97706, #fbbf24)",
+              }} />
+            </div>
+          )}
+
           {status.reason && (
             <p className="text-xs italic text-w40 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", borderLeft: "3px solid rgba(217,119,6,0.3)" }}>
               &ldquo;{status.reason}&rdquo;

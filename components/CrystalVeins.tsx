@@ -228,7 +228,7 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
       if (widthChanged) {
         generatedForWidth = w;
         const refH = Math.max(h, 4000);
-        veinsRef.current = generateVeinNetwork(w, refH, Math.floor(w * 7919 + seed * 13337));
+        veinsRef.current = generateVeinNetwork(w, refH, Math.floor(seed * 13337 + 42));
       }
     };
 

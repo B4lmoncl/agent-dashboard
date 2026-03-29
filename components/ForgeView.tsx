@@ -748,27 +748,33 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const chosenCount = professions.filter(p => p.chosen).length;
 
   return (
-    <div className={`space-y-4 tab-content-enter${moonlightActive ? " mondlicht-bg" : ""}`} style={{ position: "relative" }}>
+    <div className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
       {/* Ambient forge sparks */}
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
           width: 2, height: 2, borderRadius: "50%",
-          background: moonlightActive ? "#818cf8" : "#f59e0b",
-          boxShadow: `0 0 4px ${moonlightActive ? "#818cf880" : "#f59e0b80"}`,
+          background: moonlightActive ? "#60a5fa" : "#f59e0b",
+          boxShadow: `0 0 6px ${moonlightActive ? "#60a5fa80" : "#f59e0b80"}`,
           right: `${20 + i * 30}px`, top: `${8 + i * 12}px`,
           animation: `ambient-spark ${moonlightActive ? 1.5 + i * 0.5 : 2 + i * 0.7}s ease-in-out ${i * 0.8}s infinite`,
         }} />
       ))}
-      {/* Mondlicht-Schmiede particles — extra indigo particles when active */}
-      {moonlightActive && [0,1,2,3].map(i => (
-        <div key={`moon-${i}`} className="absolute pointer-events-none" style={{
-          width: 2, height: 3, borderRadius: 1,
-          background: "rgba(129,140,248,0.7)",
-          boxShadow: "0 0 6px rgba(129,140,248,0.5)",
-          left: `${10 + i * 22}%`, top: `${5 + (i % 2) * 15}px`,
-          animation: `crystal-particle-rise ${2 + i * 0.4}s ease-out ${i * 0.6}s infinite`,
-        }} />
-      ))}
+      {/* Mondlicht-Schmiede particles — floating blue motes across entire page */}
+      {moonlightActive && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+          {Array.from({ length: 12 }, (_, i) => (
+            <div key={`moon-${i}`} className="absolute rounded-full" style={{
+              width: 2 + (i % 3),
+              height: 2 + (i % 3),
+              left: `${5 + (i * 8.3) % 90}%`,
+              top: `${3 + (i * 13.7) % 85}%`,
+              background: i % 3 === 0 ? "rgba(96,165,250,0.8)" : i % 3 === 1 ? "rgba(129,140,248,0.7)" : "rgba(147,197,253,0.6)",
+              boxShadow: `0 0 ${4 + i % 3}px ${i % 3 === 0 ? "rgba(96,165,250,0.5)" : "rgba(129,140,248,0.4)"}`,
+              animation: `crystal-particle-rise ${3 + (i % 4) * 0.8}s ease-out ${i * 0.5}s infinite`,
+            }} />
+          ))}
+        </div>
+      )}
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
         <div>
@@ -1351,8 +1357,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               {moonlightActive && [0,1,2,3,4].map(i => (
                 <div key={`mstar-${i}`} className="absolute pointer-events-none" style={{
                   width: 2, height: 2, borderRadius: "50%",
-                  background: "rgba(196,181,253,0.5)",
-                  boxShadow: "0 0 4px rgba(196,181,253,0.4)",
+                  background: "rgba(96,165,250,0.6)",
+                  boxShadow: "0 0 6px rgba(96,165,250,0.5)",
                   left: `${10 + i * 20}%`, top: `${8 + (i % 3) * 12}px`,
                   animation: `ambient-spark ${2.5 + i * 0.6}s ease-in-out ${i * 0.5}s infinite`,
                 }} />

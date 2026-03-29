@@ -552,10 +552,10 @@ function BannerPullModal({
                   {pity.pityCounter}/{pity.hardPity || 75}
                 </span>
               </div>
-              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                <div className="h-full rounded-full transition-all" style={{
+              <div className="progress-bar-diablo" style={{ height: 5 }}>
+                <div className="progress-bar-diablo-fill" style={{
                   width: `${Math.min(100, (pity.pityCounter / (pity.hardPity || 75)) * 100)}%`,
-                  background: inSoftPity ? "linear-gradient(90deg, #f97316, #ef4444)" : "linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.25))",
+                  background: inSoftPity ? "linear-gradient(90deg, #f97316, #ef4444)" : "linear-gradient(90deg, rgba(167,139,250,0.4), rgba(167,139,250,0.7))",
                 }} />
               </div>
               {pullsTilLegendary <= 10 && <p className="text-xs mt-1 font-semibold" style={{ color: "#f97316" }}>{pullsTilLegendary} pulls until guaranteed Legendary</p>}
