@@ -177,6 +177,18 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   )}
                 </div>
 
+                {/* Room unlock progress bar */}
+                {!floorLocked && (() => {
+                  const unlocked = floor.rooms.filter(r => !r.minLevel || playerLevel >= r.minLevel).length;
+                  const total = floor.rooms.length;
+                  if (unlocked >= total) return null;
+                  return (
+                    <div className="relative mx-4 mb-1.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.04)" }}>
+                      <div style={{ height: "100%", width: `${(unlocked / total) * 100}%`, background: `${floor.color}50`, borderRadius: 2 }} />
+                    </div>
+                  );
+                })()}
+
                 {/* Rooms */}
                 <div className="relative flex flex-wrap gap-1.5 px-4 pb-3">
                   {floor.rooms.map(room => {
