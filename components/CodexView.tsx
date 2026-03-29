@@ -163,6 +163,49 @@ export default function CodexView() {
           </div>
         </div>
       )}
+      {/* ─── World Stats ─── */}
+      <WorldStats />
+    </div>
+  );
+}
+
+function WorldStats() {
+  const [stats, setStats] = useState<{ totalQuests: number; byType: Record<string, number>; totalPlayers: number; totalCampaigns: number; catalogTemplates: number } | null>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open || stats) return;
+    (async () => {
+      try {
+        const r = await fetch("/api/stats/content");
+        if (r.ok) setStats(await r.json());
+      } catch { /* ignore */ }
+    })();
+  }, [open, stats]);
+
+  return (
+    <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
+        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>World Statistics</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{open ? "▲" : "▼"}</span>
+      </button>
+      {open && stats && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3 tab-content-enter">
+          {[
+            { label: "Total Quests", value: stats.totalQuests, color: "#22c55e" },
+            { label: "Players", value: stats.totalPlayers, color: "#3b82f6" },
+            { label: "Campaigns", value: stats.totalCampaigns, color: "#a855f7" },
+            { label: "Quest Templates", value: stats.catalogTemplates, color: "#f59e0b" },
+            ...Object.entries(stats.byType).map(([type, count]) => ({ label: type, value: count, color: "rgba(255,255,255,0.4)" })),
+          ].map(s => (
+            <div key={s.label} className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <p className="text-xs text-w25 capitalize">{s.label}</p>
+              <p className="text-lg font-mono font-bold" style={{ color: s.color }}>{s.value}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {open && !stats && <p className="text-xs text-w20 mt-2">Loading...</p>}
     </div>
   );
 }
