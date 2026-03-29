@@ -851,7 +851,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           {item?.icon
             ? <img src={item.icon} alt={item.name} width={40} height={40} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             : iconSrc
-              ? <img src={iconSrc} alt={label} width={28} height={28} style={{ imageRendering: "auto", opacity: 0.2 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+              ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.25 }} onError={e => { e.currentTarget.style.display = "none"; }} />
               : <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{label.slice(0, 3)}</span>
           }
         </div>

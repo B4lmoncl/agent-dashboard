@@ -181,10 +181,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [buyingUpgrade, setBuyingUpgrade] = useState<string | null>(null);
   // Recipe search & filter state
   const [recipeSearch, setRecipeSearch] = useState("");
+  const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
   const [showHaveMatsOnly, setShowHaveMatsOnly] = useState(false);
   const [recipeSort, setRecipeSort] = useState<"default" | "skill" | "name" | "color">("default");
-  const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
   const [castCountdown, setCastCountdown] = useState<string | null>(null);
@@ -778,13 +778,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
         <div>
-          <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
-          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider.</p>
+          <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
+          <p className="text-xs italic mt-0.5" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{moonlightActive ? "Die Sterne sind ausgerichtet. Was im Mondlicht geschmiedet wird, trägt ein Stück Ewigkeit in sich." : "Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider."}</p>
           {moonlightActive && (
             <div className="mt-2">
               <TipCustom title="Mondlicht-Schmiede" accent="#60a5fa" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>}>
-                <span className="text-xs font-semibold px-3 py-1 rounded-lg cursor-help" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)", boxShadow: "0 0 8px rgba(96,165,250,0.15)" }}>
-                  ☽ Mondlicht aktiv
+                <span className="text-xs font-semibold px-3 py-1.5 rounded-lg cursor-help inline-flex items-center gap-2" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.35)", boxShadow: "0 0 12px rgba(96,165,250,0.2)" }}>
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa", animation: "ambient-spark 3s ease-in-out infinite" }} />
+                  Mondlicht-Schmiede aktiv
                 </span>
               </TipCustom>
             </div>
@@ -866,10 +867,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         return (
           <div key={cat.label} className="mb-4">
             <div className="flex items-center gap-3 mb-3 px-1">
-              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
-              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{cat.desc}</span>
-              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
+              <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, transparent, rgba(96,165,250,0.3), rgba(96,165,250,0.1))" : "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
+              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+              <span className="text-xs" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{cat.desc}</span>
+              <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, rgba(96,165,250,0.1), rgba(96,165,250,0.3), transparent)" : "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {catProfs.map(prof => {
@@ -884,7 +885,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const synergyChosen = synergy ? professions.find(p => p.id === synergy.partner && p.chosen) : null;
 
         return (
-          <div key={prof.id} className={`rounded-xl overflow-hidden npc-rank-glow ${locked ? "" : "npc-card-hover"}${moonlightActive && !locked ? " mondlicht-glow" : ""}`} data-rank={prof.rank || "Novice"} style={{ background: locked ? "rgba(255,255,255,0.02)" : `linear-gradient(135deg, ${prof.color}12 0%, #13141a 100%)`, border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${prof.color}25`}`, opacity: locked ? 0.5 : 1, boxShadow: locked ? "none" : rankGlow }}>
+          <div key={prof.id} className={`rounded-xl ${moonlightActive && !locked ? "" : "overflow-hidden"} npc-rank-glow ${locked ? "" : "npc-card-hover"}${moonlightActive && !locked ? " mondlicht-glow" : ""}`} data-rank={prof.rank || "Novice"} style={{ background: locked ? "rgba(255,255,255,0.02)" : `linear-gradient(135deg, ${prof.color}12 0%, #13141a 100%)`, border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${prof.color}25`}`, opacity: locked ? 0.5 : 1, boxShadow: locked ? "none" : rankGlow, position: "relative" }}>
             {/* Location header */}
             <div className="px-4 pt-3 pb-1">
               <div className="flex items-center gap-2">
@@ -906,7 +907,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* NPC card — clickable to open modal */}
             <button
-              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); } }}
+              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); setRecipeSlotFilter("all"); setRecipeSearch(""); } }}
               disabled={locked}
               title={locked ? `Requires Player Level ${prof.unlockCondition?.value || "?"}` : `Open ${prof.npcName}'s workshop`}
               className="w-full p-4 pt-2 text-left"
@@ -1590,6 +1591,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         }
                       }
                       if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
+                      // Slot filter
+                      /* slot filter handled by existing SLOT_KEYWORDS logic above */
                       if (showCraftableOnly) {
                         const isLearned = recipe.learned !== false;
                         const meetsLevel = recipe.canCraft;
