@@ -793,7 +793,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <img src="/images/icons/currency-essenz.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
             <span className="font-mono font-bold">{currencies.essenz ?? loggedInUser.currencies?.essenz ?? 0}</span>
           </span></Tip>
-          <button onClick={() => { setMatStorageOpen(true); setTimeout(() => document.getElementById("mat-storage-section")?.scrollIntoView({ behavior: "smooth" }), 100); }} className="text-xs px-2 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }} title="View material storage">
+          <button onClick={() => setMatStorageOpen(o => !o)} className="text-xs px-2 py-1 rounded" style={{ color: matStorageOpen ? "#22c55e" : "rgba(255,255,255,0.3)", border: `1px solid ${matStorageOpen ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}`, cursor: "pointer" }} title="Toggle material storage">
             Materials
           </button>
           {onNavigate && (
