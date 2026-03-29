@@ -17,6 +17,7 @@ const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, 
 const { requireAuth } = require('../lib/middleware');
 const { createPlayerLock } = require('../lib/helpers');
 const dungeonJoinLock = createPlayerLock('dungeon-join');
+const dungeonCreateLock = createPlayerLock('dungeon-create');
 
 // ─── Dungeon Templates ──────────────────────────────────────────────────────
 
@@ -307,6 +308,8 @@ router.post('/api/dungeons/cancel', requireAuth, (req, res) => {
 // POST /api/dungeons/create — create a dungeon run and invite friends
 router.post('/api/dungeons/create', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!dungeonCreateLock.acquire(uid)) return res.status(429).json({ error: 'Create in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -388,6 +391,7 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
     message: `Dungeon run created! Waiting for ${invited.join(', ')} to join.`,
     run: dungeonState.activeRuns[runId],
   });
+  } finally { dungeonCreateLock.release(uid); }
 });
 
 // POST /api/dungeons/:runId/join — accept dungeon invite
@@ -598,6 +602,23 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Apply currency/material rewards
   applyDungeonRewards(uid, rewards);
+
+  // Apply gem drop (if rolled)
+  if (rewards.gemTier) {
+    const gemsData = state.gemsData?.gems || [];
+    if (gemsData.length > 0) {
+      const gemType = gemsData[Math.floor(Math.random() * gemsData.length)];
+      const gemKey = `${gemType.id}_${rewards.gemTier}`;
+      if (!u.gems) u.gems = {};
+      u.gems[gemKey] = (u.gems[gemKey] || 0) + 1;
+      const tierDef = (gemType.tiers || []).find(t => t.tier === rewards.gemTier);
+      rewards.gemDrop = { key: gemKey, name: tierDef?.name || gemKey, type: gemType.id, tier: rewards.gemTier, color: gemType.color };
+    }
+    delete rewards.gemTier;
+  }
+
+  // Battle Pass XP for dungeon completion
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'quest_complete', { rarity: dungeon.tier === 'legendary' ? 'legendary' : dungeon.tier === 'hard' ? 'epic' : 'rare' }); } catch (e) { console.warn('[bp-xp] dungeon:', e.message); }
 
   // Set cooldown
   if (!dungeonState.cooldowns[uid]) dungeonState.cooldowns[uid] = {};
