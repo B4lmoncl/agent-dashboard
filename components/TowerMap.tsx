@@ -133,7 +133,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                 {/* Floor header — click to navigate to first available room */}
                 <div
                   className="relative flex items-center gap-3 px-4 py-2.5"
-                  style={{ cursor: floorLocked ? "default" : "pointer" }}
+                  style={{ cursor: floorLocked ? "default" : "pointer", paddingTop: 12, paddingBottom: 8 }}
                   onClick={() => {
                     if (floorLocked) return;
                     const firstRoom = floor.rooms.find(r => !r.minLevel || playerLevel >= r.minLevel);
@@ -151,7 +151,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-bold" style={{ color: floorLocked ? "rgba(255,255,255,0.25)" : isActiveFloor ? floor.color : "rgba(255,255,255,0.7)" }}>
+                      <p className="font-bold" style={{ fontSize: 14, color: floorLocked ? "rgba(255,255,255,0.25)" : isActiveFloor ? floor.color : "rgba(255,255,255,0.7)" }}>
                         {floor.name}
                       </p>
                       {isActiveFloor && (
@@ -207,7 +207,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                 })()}
 
                 {/* Rooms */}
-                <div className="relative flex flex-wrap gap-1.5 px-4 pb-3">
+                <div className="relative flex flex-wrap gap-2 px-4 pb-3.5">
                   {floor.rooms.map(room => {
                     const roomLocked = floorLocked || !!(room.minLevel && playerLevel < room.minLevel);
                     const isActive = activeRoom === room.key;
@@ -217,7 +217,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         onClick={() => { if (!roomLocked) { onNavigate(room.key); onClose(); } }}
                         disabled={roomLocked}
                         title={roomLocked ? `Requires Level ${room.minLevel || floor.minLevel}` : room.label}
-                        className="text-xs px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:brightness-125"
+                        className="text-xs px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 hover:brightness-125"
                         style={{
                           background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.035)",
                           color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.45)",
@@ -240,10 +240,10 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
 
                 {/* Floor connector — stairway visual */}
                 {fi < FLOORS.length - 1 && (
-                  <div className="flex items-center justify-center gap-1 py-0.5" style={{ opacity: 0.3 }}>
-                    <div style={{ width: 6, height: 1, background: "rgba(255,255,255,0.15)" }} />
-                    <div style={{ width: 4, height: 1, background: "rgba(255,255,255,0.1)", transform: "translateY(-1px)" }} />
-                    <div style={{ width: 6, height: 1, background: "rgba(255,255,255,0.15)" }} />
+                  <div className="flex items-center justify-center gap-1.5 py-0.5" style={{ opacity: 0.25 }}>
+                    <div style={{ width: 8, height: 1, background: "rgba(255,255,255,0.15)", borderRadius: 1 }} />
+                    <div style={{ width: 5, height: 1, background: "rgba(255,255,255,0.12)", transform: "translateY(-1px)", borderRadius: 1 }} />
+                    <div style={{ width: 8, height: 1, background: "rgba(255,255,255,0.15)", borderRadius: 1 }} />
                   </div>
                 )}
               </div>
