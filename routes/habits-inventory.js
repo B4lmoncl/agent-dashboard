@@ -184,16 +184,13 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'bond': {
+      if (!u.companion) return res.status(400).json({ error: 'No companion active — equip a companion first.' });
       const amt = effect.amount || 1;
-      if (u.companion) {
-        u.companion.bondXp = (u.companion.bondXp || 0) + amt;
-        u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
-        updatedValues.bondXp = u.companion.bondXp;
-        updatedValues.bondLevel = u.companion.bondLevel;
-        message = `+${amt} Bond XP! ${u.companion.name || 'Your Companion'} is happy!`;
-      } else {
-        message = `+${amt} Bond XP! (No companion active)`;
-      }
+      u.companion.bondXp = (u.companion.bondXp || 0) + amt;
+      u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+      updatedValues.bondXp = u.companion.bondXp;
+      updatedValues.bondLevel = u.companion.bondLevel;
+      message = `+${amt} Bond XP! ${u.companion.name || 'Your Companion'} is happy!`;
       break;
     }
     case 'streak_shield': {
