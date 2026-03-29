@@ -1378,12 +1378,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${selectedNpc.rankColor}15`, color: selectedNpc.rankColor, border: `1px solid ${selectedNpc.rankColor}30` }}>{selectedNpc.rank}</span>
                     )}
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; Skill {selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.skillCap || 300}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; {selectedNpc.rank || "Novice"}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <div className={`w-32 progress-bar-diablo${skillUpFlash ? " skill-bar-flash" : ""}`} style={{ height: 7 }}>
-                      <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
-                    </div>
-                    <span className="text-sm font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.maxSkill || 300}</span>
+                    <TipCustom title="Profession Skill" icon="◆" accent={selectedNpc.color} body={<>
+                      <p>Current Skill: <strong>{selectedNpc.skill || 0}</strong> / {selectedNpc.skillCap || 75} (Cap)</p>
+                      <p style={{ marginTop: 4, opacity: 0.6 }}>Maximum possible: {selectedNpc.maxSkill || 300}. Train higher ranks to raise your cap.</p>
+                      <p style={{ marginTop: 4, opacity: 0.6 }}>Skill-Up Colors: <span style={{ color: "#f97316" }}>Orange</span>=100%, <span style={{ color: "#eab308" }}>Yellow</span>=~75%, <span style={{ color: "#22c55e" }}>Green</span>=~25%, Gray=0%</p>
+                    </>}>
+                      <div className={`w-32 progress-bar-diablo${skillUpFlash ? " skill-bar-flash" : ""}`} style={{ height: 7, cursor: "help" }}>
+                        <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
+                      </div>
+                    </TipCustom>
+                    <span className="text-sm font-mono" style={{ color: selectedNpc.rankColor || "rgba(255,255,255,0.35)" }}>
+                      {selectedNpc.skill || selectedNpc.playerXp || 0}<span style={{ color: "rgba(255,255,255,0.2)" }}>/{selectedNpc.skillCap || 75}</span>
+                    </span>
                   </div>
                 </div>
               </div>
