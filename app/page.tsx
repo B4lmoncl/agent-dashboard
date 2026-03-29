@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } fro
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import CrystalVeins from "@/components/CrystalVeins";
 // Lazy-loaded views — only loaded when the tab is active (code splitting)
 const ForgeView = lazy(() => import("@/components/ForgeView"));
 const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
@@ -248,11 +249,11 @@ export default function Dashboard() {
   useModalBehavior(!!rewardCelebration, closeRewardCelebration);
 
   // ─── Time-based visual effects: moon phase, night mode, weekend aura ───
+  const moonIntensityRef = useRef(1);
   useEffect(() => {
     function getMoonPhase(): "new" | "waxing" | "full" | "waning" {
       const now = new Date();
       const year = now.getFullYear(); const month = now.getMonth() + 1; const day = now.getDate();
-      // Simplified moon phase calculation (synodic period ~29.53 days)
       const a = Math.floor((14 - month) / 12); const y = year + 4800 - a; const m = month + 12 * a - 3;
       const jd = day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
       const phase = ((jd - 2451550.1) / 29.530588853) % 1;
@@ -268,6 +269,10 @@ export default function Dashboard() {
       const dayOfWeek = new Date().getDay();
       const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
       const moon = getMoonPhase();
+      // Moon intensity: full=1.4, waxing/waning=1, new=0.5
+      moonIntensityRef.current = moon === "full" ? 1.4 : moon === "new" ? 0.5 : 1;
+      // Night: veins glow brighter (bioluminescent)
+      if (isNight) moonIntensityRef.current *= 1.3;
       document.body.classList.toggle("night-mode", isNight);
       document.body.classList.toggle("weekend-aura", isWeekend);
       document.body.classList.toggle("moon-full", moon === "full");
@@ -842,7 +847,7 @@ export default function Dashboard() {
     <DashboardProvider value={ctxValue}>
     <div className="min-h-screen text-primary" style={{ background: "transparent", position: "relative" }}>
       <GuildHallBackground />
-      <div className="crystal-vein-bg" />
+      <CrystalVeins floorColor={currentFloorColor} moonIntensity={moonIntensityRef.current} />
       <DashboardHeader
         dashView={dashView}
         setDashView={(v) => setDashView(v as typeof dashView)}

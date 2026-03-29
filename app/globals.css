@@ -916,26 +916,7 @@ button[disabled] {
 }
 .online-pulse { animation: online-pulse 2s ease-in-out infinite; }
 
-/* ─── Crystal Vein Network ─── */
-/* Animated crystal vein lines that pulse through the tower */
-@keyframes vein-flow {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 200%; }
-}
-.crystal-vein-bg {
-  position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
-  background: repeating-linear-gradient(
-    135deg,
-    transparent 0px, transparent 80px,
-    var(--floor-color, rgba(129,140,248,0.5)) 82px,
-    transparent 84px, transparent 200px,
-    var(--floor-color, rgba(129,140,248,0.3)) 201px,
-    transparent 203px
-  );
-  animation: vein-flow 30s linear infinite;
-  mask-image: radial-gradient(ellipse at 30% 70%, black 0%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at 30% 70%, black 0%, transparent 70%);
-}
+/* Crystal Vein Network — now rendered via Canvas component (CrystalVeins.tsx) */
 
 /* Crystal vein section header line */
 .heading-vein-line {
@@ -998,7 +979,6 @@ button[disabled] {
 body.night-mode {
   --bg-brightness: 0.85;
 }
-body.night-mode .crystal-vein-bg { opacity: 0.08; }
 body.night-mode .crystal-breathe {
   animation-duration: 3s; /* faster pulse at night = more alive */
 }
@@ -1010,9 +990,7 @@ body.weekend-aura::before {
 }
 
 /* ─── Moon Phase Glow (intensity class set via JS) ─── */
-body.moon-full .crystal-vein-bg { opacity: 0.07; filter: brightness(1.3) saturate(1.2); }
 body.moon-full .crystal-breathe { animation-duration: 3s; }
-body.moon-new .crystal-vein-bg { opacity: 0.02; }
 body.moon-new .crystal-breathe { animation-duration: 6s; }
 
 /* ─── Rift Timer Urgency ─── */
