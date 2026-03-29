@@ -185,6 +185,9 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         {room.iconSrc && <img src={room.iconSrc} alt="" width={14} height={14} style={{ imageRendering: "auto", opacity: roomLocked ? 0.3 : 0.7 }} onError={e => { e.currentTarget.style.display = "none"; }} />}
                         {isActive && !room.iconSrc && <span style={{ fontSize: 8 }}>◆</span>}
                         {room.label}
+                        {roomLocked && !floorLocked && room.minLevel && (
+                          <span style={{ fontSize: 9, opacity: 0.5, marginLeft: 2 }}>Lv{room.minLevel}</span>
+                        )}
                       </button>
                     );
                   })}
