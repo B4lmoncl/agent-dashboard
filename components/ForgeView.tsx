@@ -122,6 +122,13 @@ const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string
   juwelier: { label: "Edelsteinkammer", color: "#ec4899", desc: "Rings, amulets & gem cutting" },
 };
 
+// ─── WoW-style recipe type names per profession ────────────────────────────
+const RECIPE_TYPE_NAME: Record<string, string> = {
+  schmied: "Bauplan", schneider: "Muster", alchemist: "Rezeptur",
+  koch: "Rezept", verzauberer: "Formel", lederverarbeiter: "Vorlage",
+  waffenschmied: "Entwurf", juwelier: "Design",
+};
+
 // ─── Workshop tool tiers ─────────────────────────────────────────────────────
 const WORKSHOP_TIERS = [
   { id: "worn", name: "Worn Tools", tier: 0, xpBonus: 0, cost: 0, currency: "gold", desc: "No bonus", icon: "/images/icons/tools-worn.png" },
@@ -173,6 +180,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [recipeSearch, setRecipeSearch] = useState("");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
   const [showHaveMatsOnly, setShowHaveMatsOnly] = useState(false);
+  const [recipeSort, setRecipeSort] = useState<"default" | "skill" | "name" | "color">("default");
   const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
@@ -276,18 +284,26 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Reset craft count when switching NPC, tab, or slot
   useEffect(() => { setCraftCount(1); }, [selectedNpc, npcModalTab, selectedSlot]);
 
-  // WoW-style craft with cast bar (2s per craft)
-  const CRAFT_CAST_MS = 2000;
+  // WoW-style craft with cast bar — scales by recipe result rarity
+  const CAST_MS_BY_RARITY: Record<string, number> = { common: 3000, uncommon: 3500, rare: 4000, epic: 5000, legendary: 6000 };
+  const getCraftCastMs = (recipeId: string) => {
+    const recipe = recipes.find(r => r.id === recipeId);
+    const rarity = (recipe?.result as unknown as Record<string, unknown>)?.rarity as string || (recipe as unknown as Record<string, unknown>)?.rarity as string || "common";
+    return CAST_MS_BY_RARITY[rarity] || 3000;
+  };
   const craftTimerRef = useRef<number | null>(null);
+  const craftCastMsRef = useRef(3000);
 
   const startCraftCast = (recipeId: string, count = 1) => {
     if (crafting || craftProgress || !reviewApiKey) return;
+    const castMs = getCraftCastMs(recipeId);
+    craftCastMsRef.current = castMs;
     setCraftProgress({ recipeId, current: 0, total: count, startTime: Date.now() });
     // After cast time, execute the actual craft
     craftTimerRef.current = window.setTimeout(() => {
       setCraftProgress(null);
       handleCraft(recipeId, count);
-    }, CRAFT_CAST_MS);
+    }, castMs);
   };
 
   // Cancel cast on ESC
@@ -309,7 +325,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     let rafId: number;
     const tick = () => {
       const elapsed = Date.now() - craftProgress.startTime;
-      const remaining = Math.max(0, CRAFT_CAST_MS - elapsed) / 1000;
+      const remaining = Math.max(0, craftCastMsRef.current - elapsed) / 1000;
       setCastCountdown(remaining > 0.05 ? remaining.toFixed(1) : null);
       if (remaining > 0) rafId = requestAnimationFrame(tick);
     };
@@ -1396,6 +1412,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     </div>
                     <button onClick={() => setShowCraftableOnly(v => !v)} className="text-xs px-2 py-1.5 rounded-lg font-medium whitespace-nowrap" style={{ background: showCraftableOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: showCraftableOnly ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${showCraftableOnly ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title="Show only recipes you can craft right now">Craftable</button>
                     <button onClick={() => setShowHaveMatsOnly(v => !v)} className="text-xs px-2 py-1.5 rounded-lg font-medium whitespace-nowrap" style={{ background: showHaveMatsOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: showHaveMatsOnly ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${showHaveMatsOnly ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title="Show only recipes where you have all materials">Materials</button>
+                    <select
+                      value={recipeSort}
+                      onChange={e => setRecipeSort(e.target.value as typeof recipeSort)}
+                      className="text-xs px-1.5 py-1.5 rounded-lg input-dark"
+                      style={{ background: recipeSort !== "default" ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: recipeSort !== "default" ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${recipeSort !== "default" ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}
+                      title="Sort recipes"
+                    >
+                      <option value="default">Sort: Skill</option>
+                      <option value="name">Sort: A-Z</option>
+                      <option value="color">Sort: Color</option>
+                    </select>
                     <TipCustom title="Skill-Up Colors" icon="◆" accent={selectedNpc.color} body={<div className="space-y-1">{Object.entries(SKILL_UP_COLORS).map(([k, sc]) => <p key={k} style={{ color: sc.color }}>{sc.label}: {k === "orange" ? "100%" : k === "yellow" ? "~75%" : k === "green" ? "~25%" : "0%"} skill-up</p>)}</div>}>
                       <span className="flex items-center gap-0.5 cursor-help" style={{ color: "rgba(255,255,255,0.2)" }}>
                         {Object.values(SKILL_UP_COLORS).map((sc, i) => <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: sc.color }} />)}
@@ -1453,6 +1480,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       return true;
                     });
+                    // Apply sort
+                    const COLOR_ORDER: Record<string, number> = { orange: 0, yellow: 1, green: 2, gray: 3 };
+                    if (recipeSort === "name") filteredRecipes.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+                    else if (recipeSort === "color") filteredRecipes.sort((a, b) => (COLOR_ORDER[a.skillUpColor || "gray"] ?? 9) - (COLOR_ORDER[b.skillUpColor || "gray"] ?? 9));
+                    // default = by reqSkill (already in data order)
                     return SKILL_BRACKETS.map(bracket => {
                       const bracketRecipes = filteredRecipes.filter(r => {
                         const skill = r.reqSkill || 0;
@@ -1543,7 +1575,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
                                 </span>
                               )}
-                              <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>{recipe.name}</p>
+                              <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
+                                {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}
+                                {recipe.name}
+                              </p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
@@ -1650,7 +1685,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             return (
                               <span key={matId} className={`text-sm flex items-center gap-1${almostReady ? " mat-almost-ready" : ""}`} style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
                                 {!has && <span style={{ color: "#f44", fontSize: 12, lineHeight: 1 }}>●</span>}
-                                <img src={mat?.icon || ""} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
+                                {mat?.icon ? <img src={mat.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-2.5 h-2.5 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
                                 {owned}/{needed} {mat?.name || matId}
                               </span>
                             );
@@ -1769,7 +1804,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                               <div className="h-full rounded-full" style={{
                                 background: `linear-gradient(90deg, ${selectedNpc.color}80, ${selectedNpc.color})`,
-                                animation: `craft-cast-fill ${CRAFT_CAST_MS}ms linear forwards`,
+                                animation: `craft-cast-fill ${craftCastMsRef.current}ms linear forwards`,
                                 boxShadow: `0 0 8px ${selectedNpc.color}60, 0 0 2px ${selectedNpc.color}`,
                               }} />
                             </div>
