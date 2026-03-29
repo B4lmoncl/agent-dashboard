@@ -124,12 +124,12 @@ img {
 
 .gacha-card-epic {
   --glow-color: rgba(168, 85, 247, 0.6);
-  animation: premium-breathe-strong 2.5s ease-in-out infinite;
+  animation: premium-breathe-strong 4s ease-in-out infinite;
 }
 
 .gacha-card-legendary {
   --glow-color: rgba(249, 115, 22, 0.7);
-  animation: premium-breathe-strong 2s ease-in-out infinite;
+  animation: premium-breathe-strong 3.5s ease-in-out infinite;
 }
 
 @keyframes pulse-gold-dot {
@@ -383,16 +383,16 @@ button[disabled] {
 }
 /* Approve / complete button glow */
 .btn-approve:hover:not(:disabled) {
-  animation: btn-glow-green 1.2s ease infinite;
+  animation: btn-glow-green 3s ease infinite;
 }
 .btn-danger:hover:not(:disabled) {
-  animation: btn-glow-red 1.2s ease infinite;
+  animation: btn-glow-red 3s ease infinite;
 }
 .btn-primary:hover:not(:disabled) {
-  animation: btn-glow-blue 1.2s ease infinite;
+  animation: btn-glow-blue 3s ease infinite;
 }
 .btn-social:hover:not(:disabled) {
-  animation: btn-glow-pink 1.2s ease infinite;
+  animation: btn-glow-pink 3s ease infinite;
 }
 
 /* Quest pool refresh — ready-to-use green glow */
@@ -873,7 +873,7 @@ button[disabled] {
   0%, 100% { box-shadow: 0 0 4px var(--glow-color, rgba(255,255,255,0.05)), inset 0 0 4px var(--glow-color, rgba(255,255,255,0.02)); }
   50% { box-shadow: 0 0 12px var(--glow-color, rgba(255,255,255,0.12)), inset 0 0 8px var(--glow-color, rgba(255,255,255,0.06)); }
 }
-.crystal-breathe { animation: crystal-breathe 4s ease-in-out infinite; }
+.crystal-breathe { animation: crystal-breathe 6s ease-in-out infinite; }
 
 
 
