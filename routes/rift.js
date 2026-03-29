@@ -200,14 +200,23 @@ router.get('/api/rift', (req, res) => {
     };
   }
 
-  // Build tier info with unlock status
+  // Build tier info with unlock status + loot preview
   const tiers = {};
   for (const [id, tier] of Object.entries(RIFT_TIERS)) {
+    // Resolve rift-exclusive items for this tier as loot preview
+    const riftSource = id === 'mythic' ? 'rift:mythic' : `rift:${id}`;
+    const riftItems = (state.FULL_GEAR_ITEMS || []).filter(gi => gi.source === riftSource);
+    const lootPreview = riftItems.slice(0, 5).map(gi => ({
+      id: gi.id, name: gi.name, slot: gi.slot, rarity: gi.rarity,
+      desc: gi.desc || null, icon: gi.icon || null,
+      legendaryEffect: gi.legendaryEffect ? { type: gi.legendaryEffect.type, label: gi.legendaryEffect.label } : null,
+    }));
     tiers[id] = {
       ...tier,
       unlocked: lvl >= tier.minLevel,
       onCooldown: cooldowns[id]?.onCooldown || false,
       cooldownEndsAt: cooldowns[id]?.endsAt || null,
+      lootPreview,
     };
   }
 
