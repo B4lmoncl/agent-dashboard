@@ -5,8 +5,9 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, getLegendaryModifiers, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
+const gemLock = createPlayerLock('gem-action');
 
 // ─── Load gem definitions at boot ──────────────────────────────────────────
 let GEMS_DATA = { gems: [], socketsByRarity: {}, dropConfig: {} };
@@ -173,6 +174,8 @@ router.get('/api/gems/inventory/:playerId', requireAuth, (req, res) => {
 // ─── POST /api/gems/socket — Socket a gem into gear ─────────────────────────
 router.post('/api/gems/socket', requireAuth, (req, res) => {
   const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  if (!gemLock.acquire(userId)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[userId];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -233,11 +236,14 @@ router.post('/api/gems/socket', requireAuth, (req, res) => {
     },
   });
   console.log(`[gems] ${userId} socketed ${gKey} into ${item.name} (socket ${idx})`);
+  } finally { gemLock.release(userId); }
 });
 
 // ─── POST /api/gems/unsocket — Remove gem from gear (costs gold) ───────────
 router.post('/api/gems/unsocket', requireAuth, (req, res) => {
   const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  if (!gemLock.acquire(userId)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[userId];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -309,11 +315,14 @@ router.post('/api/gems/unsocket', requireAuth, (req, res) => {
     gemDestroyed: !gemPreserved,
     goldSpent: UNSOCKET_COST,
   });
+  } finally { gemLock.release(userId); }
 });
 
 // ─── POST /api/gems/upgrade — Combine 3 gems → 1 higher tier ──────────────
 router.post('/api/gems/upgrade', requireAuth, (req, res) => {
   const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  if (!gemLock.acquire(userId)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[userId];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -387,11 +396,14 @@ router.post('/api/gems/upgrade', requireAuth, (req, res) => {
     goldSpent: UPGRADE_COST,
     essenzSpent: essenzCost,
   });
+  } finally { gemLock.release(userId); }
 });
 
 // ─── POST /api/gems/unlock-socket — Unlock a new socket on equipped gear ────
 router.post('/api/gems/unlock-socket', requireAuth, (req, res) => {
   const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  if (!gemLock.acquire(userId)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[userId];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -472,11 +484,14 @@ router.post('/api/gems/unlock-socket', requireAuth, (req, res) => {
     essenzSpent: essenzCost,
   });
   console.log(`[gems] ${userId} unlocked socket on ${item.name} (now ${item.sockets.length}/${maxSockets})`);
+  } finally { gemLock.release(userId); }
 });
 
 // ─── POST /api/gems/polish — Upgrade 1 gem via gold (alternative to 3→1 combine)
 router.post('/api/gems/polish', requireAuth, (req, res) => {
   const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  if (!gemLock.acquire(userId)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[userId];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -546,6 +561,7 @@ router.post('/api/gems/polish', requireAuth, (req, res) => {
     essenzSpent: essenzCost,
   });
   console.log(`[gems] ${userId} polished ${gKey} → ${upgradedKey} (${goldCost}g + ${essenzCost} essenz)`);
+  } finally { gemLock.release(userId); }
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { state, saveUsers } = require("../lib/state");
+const { state, saveUsers, ensureUserCurrencies } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
 const { createPlayerLock } = require("../lib/helpers");
 const bpClaimLock = createPlayerLock('bp-claim');
@@ -275,6 +275,10 @@ router.post("/claim-all", requireAuth, (req, res) => {
         ensureUserCurrencies(user);
         user.currencies.stardust = (user.currencies.stardust ?? 0) + reward.amount;
         break;
+      case "mondstaub":
+        ensureUserCurrencies(user);
+        user.currencies.mondstaub = (user.currencies.mondstaub ?? 0) + reward.amount;
+        break;
       case "material":
         user.craftingMaterials = user.craftingMaterials || {};
         user.craftingMaterials[reward.materialId] = (user.craftingMaterials[reward.materialId] ?? 0) + reward.amount;
@@ -288,7 +292,7 @@ router.post("/claim-all", requireAuth, (req, res) => {
       case "frame":
         if (!user.unlockedFrames) user.unlockedFrames = [];
         if (!user.unlockedFrames.some(f => f.id === reward.frameId)) {
-          user.unlockedFrames.push({ id: reward.frameId, name: reward.frameName, glow: true, source: `${config.seasonName} — Level ${lvl}` });
+          user.unlockedFrames.push({ id: reward.frameId, name: reward.frameName, color: reward.frameColor || config.seasonAccent, glow: true, source: `${config.seasonName} — Level ${lvl}` });
         }
         break;
     }
