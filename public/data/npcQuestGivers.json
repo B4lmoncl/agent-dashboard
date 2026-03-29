@@ -1710,7 +1710,10 @@
             "description": "Zieh dich heute besonders gut an. Erste Eindrücke sind alles. Besonders wenn man keinen zweiten machen kann.",
             "lore": "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge.",
             "priority": "medium",
-            "rewards": { "xp": 20, "gold": 15 }
+            "rewards": {
+              "xp": 20,
+              "gold": 15
+            }
           },
           {
             "title": "Scharfes Auge",
@@ -1718,7 +1721,10 @@
             "description": "Beobachte heute bewusst Details die du sonst übersiehst. Schreib 5 Dinge auf die dir auffallen.",
             "lore": "Jeder sieht. Wenige beobachten. Und noch weniger ziehen die richtigen Schlüsse.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Das Rätsel der drei Schlüssel",
@@ -1726,7 +1732,10 @@
             "description": "Löse drei Rätsel oder Puzzles. Sudoku, Kreuzworträtsel, Programm-Bug — alles zählt.",
             "lore": "Rätsel sind wie Schlösser. Man braucht entweder den richtigen Schlüssel oder genug Dynamit.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Verbündete sammeln",
@@ -1734,7 +1743,10 @@
             "description": "Überzeug heute drei verschiedene Leute von etwas. Restaurantwahl, Filmabend, egal was.",
             "lore": "Die besten Detektive arbeiten nicht allein. Sie lassen nur alle glauben, sie würden es tun.",
             "priority": "high",
-            "rewards": { "xp": 30, "gold": 25 }
+            "rewards": {
+              "xp": 30,
+              "gold": 25
+            }
           },
           {
             "title": "Der letzte Vorhang",
@@ -1742,7 +1754,10 @@
             "description": "Schließ eine Sache ab die du angefangen aber nie beendet hast. Der elegante Herr duldet keine losen Enden.",
             "lore": "Jede Geschichte verdient ein Ende. Auch die mittelmäßigen.",
             "priority": "high",
-            "rewards": { "xp": 40, "gold": 30 }
+            "rewards": {
+              "xp": 40,
+              "gold": 30
+            }
           }
         ]
       ],
@@ -1797,7 +1812,10 @@
             "description": "Räum etwas auf das schon zu lange liegen geblieben ist. Wäsche, Papierkram, Downloads-Ordner.",
             "lore": "Wissen Sie wie lange das letzte überfällige Buch war? 340 Jahre.",
             "priority": "medium",
-            "rewards": { "xp": 20, "gold": 15 }
+            "rewards": {
+              "xp": 20,
+              "gold": 15
+            }
           },
           {
             "title": "Stille Lektüre",
@@ -1805,7 +1823,10 @@
             "description": "Lies 30 Minuten ohne Unterbrechung. Kein Handy, keine Musik, nur du und der Text.",
             "lore": "Die Bücher rascheln nachts. Nicht weil sie lebendig sind — sie wollen gelesen werden.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Katalogisierung",
@@ -1813,7 +1834,10 @@
             "description": "Organisiere einen Teil deines digitalen Lebens. Bookmarks, Dateien, Notizen — strukturiere es.",
             "lore": "Ohne System ist Wissen nur Lärm. Und Lärm ist in meiner Bibliothek tödlich.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Wissensaustausch",
@@ -1821,7 +1845,10 @@
             "description": "Teile etwas Interessantes das du gelesen/gelernt hast mit jemandem.",
             "lore": "Bücher die nicht geteilt werden, verstauben. Und verstaubte Bücher werden schwierig.",
             "priority": "medium",
-            "rewards": { "xp": 20, "gold": 15 }
+            "rewards": {
+              "xp": 20,
+              "gold": 15
+            }
           }
         ]
       ],
@@ -1865,7 +1892,10 @@
             "description": "Lerne etwas Neues über ein Thema das dich schon immer interessiert hat. Tiefer eintauchen als üblich.",
             "lore": "Die besten Seekarten zeigen was hinter dem Rand liegt.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Sturm im Wasserglas",
@@ -1873,7 +1903,10 @@
             "description": "Mach ein intensives 20-Minuten Workout. Schnell, hart, fertig.",
             "lore": "Auf See hat man zwanzig Minuten zwischen zwei Wellen — die muss man nutzen.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Proviant beschaffen",
@@ -1881,7 +1914,10 @@
             "description": "Kauf gesunde Lebensmittel ein und meal-prep für mindestens 3 Tage.",
             "lore": "Eine Crew ohne Proviant ist keine Crew — sie ist eine Versammlung zukünftiger Kannibalen.",
             "priority": "high",
-            "rewards": { "xp": 30, "gold": 25 }
+            "rewards": {
+              "xp": 30,
+              "gold": 25
+            }
           },
           {
             "title": "Die singende See",
@@ -1889,7 +1925,10 @@
             "description": "Hör ein komplett neues Album das du normalerweise nicht hören würdest.",
             "lore": "Das Meer singt in Frequenzen die die meisten nicht hören wollen.",
             "priority": "low",
-            "rewards": { "xp": 15, "gold": 10 }
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            }
           },
           {
             "title": "Anker lichten",
@@ -1897,7 +1936,10 @@
             "description": "Triff eine Entscheidung die du seit langem vor dir herschiebst. Einfach entscheiden.",
             "lore": "Der schwierigste Moment ist wenn man den Anker lichtet und weiß: kein Zurück.",
             "priority": "high",
-            "rewards": { "xp": 35, "gold": 30 }
+            "rewards": {
+              "xp": 35,
+              "gold": 30
+            }
           },
           {
             "title": "Neue Koordinaten",
@@ -1905,7 +1947,10 @@
             "description": "Plane etwas Neues mit jemandem. Trip, Projekt, Event — etwas das ihr noch nie gemacht habt.",
             "lore": "Die aufregendsten Reisen beginnen mit 'Ich hab da eine Idee.'",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           }
         ]
       ],
@@ -1927,6 +1972,402 @@
           "icon": "/images/icons/npc-flint-compass.png"
         }
       }
+    },
+    {
+      "id": "sable-nachtwind",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 25,
+      "cooldownHours": 96,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Du siehst aus wie jemand mit Geheimnissen. Gut. Ich handle mit Geheimnissen.",
+      "name": "Sable Nachtwind",
+      "emoji": null,
+      "title": "Die Schattenhändlerin",
+      "description": "Niemand weiß woher sie kommt. Alle wissen, dass man ihre Angebote nicht ablehnt.",
+      "stayDays": 2,
+      "cooldownDays": 21,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der stille Tausch",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Sable Nachtwind · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Vertrauen ist eine Währung. Und du bist gerade ins Minus gerutscht.",
+              "task": "Sable will einen Beweis deiner Diskretion. Erledige etwas Unangenehmes ohne darüber zu reden.",
+              "realWorldTask": "Erledige eine unangenehme Aufgabe die du aufschiebst — ohne dich zu beschweren",
+              "difficulty": "medium"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Schatten tragen",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Sable Nachtwind · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Die besten Deals passieren in der Stille. Die schlechtesten auch. Der Unterschied? Timing.",
+              "task": "Sable hat einen Auftrag. Details unnötig. Ergebnis: alles.",
+              "realWorldTask": "Plane und organisiere deinen nächsten Tag komplett durch — ohne Lücken",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "professor-quill",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 40,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 2,
+      "greeting": "Ah, ein neuer Geist! Wie erfrischend. Die letzten drei waren... enttäuschend.",
+      "name": "Professor Quill",
+      "emoji": null,
+      "title": "Der Zerstreute Gelehrte",
+      "description": "Vergisst ständig wo er seinen Hut hingelegt hat. Vergisst nie ein Faktum.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die vergessene Lektion",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Professor Quill · Kette 1/2 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Ich habe letzte Woche etwas Faszinierendes entdeckt. Oder war es letztes Jahr? Egal — es war faszinierend.",
+              "task": "Der Professor braucht Hilfe bei seiner Recherche. Lerne etwas Neues und berichte ihm.",
+              "realWorldTask": "Lerne 30 Minuten über ein Thema das dich schon immer interessiert hat",
+              "difficulty": "medium"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Quills Quizz",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Professor Quill · Kette 1/2 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Prüfungen sind unangenehm. Aber weniger unangenehm als Unwissenheit. Marginal.",
+              "task": "Teste dein Wissen. Der Professor stellt Fragen. Du versuchst, nicht zu versagen.",
+              "realWorldTask": "Mach ein Quiz oder einen Übungstest zu einem Thema das du lernst",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das verlorene Notizbuch",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Professor Quill · Kette 2/2 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Mein Notizbuch! Es war hier! Oder dort. Oder in einer anderen Dimension.",
+              "task": "Hilf dem Professor sein Notizbuch zu finden. Spoiler: Es ist in seiner Tasche.",
+              "realWorldTask": "Räume deinen Schreibtisch auf und organisiere deine Notizen",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Dokumentation des Chaos",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Professor Quill · Kette 2/2 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Ordnung ist eine Illusion. Aber eine sehr nützliche Illusion.",
+              "task": "Dokumentiere etwas das du gelernt hast. Der Professor verspricht es zu lesen. Irgendwann.",
+              "realWorldTask": "Schreib eine kurze Zusammenfassung oder Notiz zu etwas das du diese Woche gelernt hast",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "eiserne-mara",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 35,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Steh gerade. Schultern zurück. Gut. Jetzt lass uns arbeiten.",
+      "name": "Eiserne Mara",
+      "emoji": null,
+      "title": "Die Drill-Meisterin",
+      "description": "Ex-Brückenmannschaftsführerin. Hart aber fair. Meistens hart.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Maras Morgenappell",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Eiserne Mara · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Schweiß ist nur Fett das weint. Und heute soll es viel weinen.",
+              "task": "Mara verlangt eine Trainingseinheit. Keine Ausreden.",
+              "realWorldTask": "30 Minuten Workout deiner Wahl — kein halbes, ein ganzes",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Brücke tragen",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Eiserne Mara · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 40,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Die Brücke ist schwer. Das Leben auch. Der Unterschied: die Brücke beklagt sich nicht.",
+              "task": "Eine härtere Übung. Mara beobachtet. Mara urteilt. Mara nickt am Ende.",
+              "realWorldTask": "Ein intensives Workout: HIIT, schweres Krafttraining, oder ein langer Lauf (45min+)",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der nächste Schritt",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Eiserne Mara · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 50,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Du bist nicht bereit. Niemand ist bereit. Mach es trotzdem.",
+              "task": "Maras letzte Prüfung. Der wichtigste Schritt ist immer der nächste.",
+              "realWorldTask": "Setze dir ein neues Fitness-Ziel für die nächste Woche und starte heute damit",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "koch-giovanni",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Buongiorno! Die Küche ist leer? Inakzeptabel. Wir kochen.",
+      "name": "Giovanni Salzkruste",
+      "emoji": null,
+      "title": "Der Wanderkoch",
+      "description": "Reist von Turm zu Turm. Seine Pasta ist legendär. Sein Temperament auch.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Giovannis Grundlagen",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Giovanni · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Wer nicht kochen kann, kann nicht leben. Ich sage nicht, dass das stimmt. Ich sage, dass es stimmt.",
+              "task": "Giovanni braucht einen Sous-Chef. Du bist es. Ob du willst oder nicht.",
+              "realWorldTask": "Koche eine Mahlzeit von Grund auf — kein Fertiggericht, kein Lieferdienst",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das perfekte Gericht",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Giovanni · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Perfektion existiert nicht. Aber wir können verdammt nah rankommen. Probier mal.",
+              "task": "Giovanni will dass du ein neues Rezept ausprobierst. Kreativität zählt mehr als Können.",
+              "realWorldTask": "Probiere ein neues Rezept aus das du noch nie gekocht hast",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "meisterin-sera",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 15,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Dreihundert Jahre und du bist das Beste was der Turm zu bieten hat? Na gut. Arbeiten wir damit.",
+      "name": "Meisterin Sera",
+      "emoji": null,
+      "title": "Die Zeitlose",
+      "description": "Niemand weiß wie alt sie ist. Sie vergisst manchmal die Namen der Sterblichen. Nicht aus Respektlosigkeit — es sind einfach zu viele.",
+      "stayDays": 2,
+      "cooldownDays": 30,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Seras Maßstab",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Meisterin Sera · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Dreißig Jahre sind ein Wimpernschlag. Für manche.",
+              "task": "Sera stellt eine Frage. Die Antwort braucht Recherche, Nachdenken, und Demut.",
+              "realWorldTask": "Vertiefe dich 1 Stunde in ein komplexes Thema. Mach dir strukturierte Notizen.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Geschenk der Perspektive",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Meisterin Sera · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Ihr Sterblichen habt so wenig Zeit. Verschwendet sie nicht mit Dingen die in hundert Jahren niemanden interessieren.",
+              "task": "Sera will dass du über deine Prioritäten nachdenkst. Ernsthaft, diesmal.",
+              "realWorldTask": "Schreibe deine Top-3 Prioritäten für die nächsten 6 Monate auf. Dann streiche alles was nicht dazugehört.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "pip-zahnrad",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 2,
+      "greeting": "Oh! Ein Mensch! Perfektes Timing — ich brauche Hände die größer sind als meine!",
+      "name": "Pip Zahnrad",
+      "emoji": null,
+      "title": "Der Tüftler",
+      "description": "Klein, laut, begeistert. Baut Dinge die manchmal funktionieren. Meistens explodieren sie nur ein bisschen.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Pips Prototyp",
+            "type": "development",
+            "priority": "medium",
+            "lore": "Quest von Pip Zahnrad · Kette 1/2 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Es funktioniert! Also... es hat funktioniert. Für ungefähr drei Sekunden. Das zählt!",
+              "task": "Pip braucht Hilfe mit einem Projekt. Es wird chaotisch. Es wird Spaß machen.",
+              "realWorldTask": "Arbeite 45 Minuten an einem persönlichen Projekt oder Side-Hustle",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Iteration Sieben",
+            "type": "development",
+            "priority": "medium",
+            "lore": "Quest von Pip Zahnrad · Kette 1/2 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Die ersten sechs Versuche waren Lernerfahrungen. Dieser hier ist auch eine. Aber eine bessere!",
+              "task": "Verbesserung. Pip will dass du etwas optimierst das du bereits gebaut hast.",
+              "realWorldTask": "Überarbeite oder verbessere etwas an dem du bereits gearbeitet hast — Code, Text, Prozess",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das Gadget",
+            "type": "learning",
+            "priority": "low",
+            "lore": "Quest von Pip Zahnrad · Kette 2/2 · 1/1",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Jedes Tool hat einen Zweck! Und manchmal finde ich den Zweck sogar VOR dem Verkauf heraus!",
+              "task": "Pip hat ein neues Tool entdeckt und will dass du es testest.",
+              "realWorldTask": "Teste ein neues Tool, eine App oder ein Framework das du noch nie benutzt hast (30min)",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
     }
   ],
   "specialNpcs": {
