@@ -250,6 +250,8 @@ router.post('/api/shop/gear/buy', requireApiKey, (req, res) => {
   const { userId, gearId } = req.body;
   if (!userId || !gearId) return res.status(400).json({ error: 'userId and gearId are required' });
   const uid = userId.toLowerCase();
+  if (!shopBuyLock.acquire(uid)) return res.status(429).json({ error: 'Purchase in progress' });
+  try {
   // Self-check: only allow buying for own account (admins bypass)
   if (!req.auth?.isAdmin) {
     const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
@@ -269,12 +271,15 @@ router.post('/api/shop/gear/buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[gear] ${uid} upgraded to "${gear.name}" for ${gear.cost} gold`);
   res.json({ ok: true, gear, remainingGold: u.gold });
+  } finally { shopBuyLock.release(uid); }
 });
 
 // POST /api/shop/workshop/buy — buy a workshop upgrade (permanent bonuses)
 router.post('/api/shop/workshop/buy', requireApiKey, (req, res) => {
   const { upgradeId } = req.body;
   const uid = req.auth?.userId;
+  if (!shopBuyLock.acquire(uid)) return res.status(429).json({ error: 'Purchase in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   if (!upgradeId) return res.status(400).json({ error: 'upgradeId required' });
@@ -308,6 +313,7 @@ router.post('/api/shop/workshop/buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[workshop] ${uid} upgraded "${upgrade.name}" to tier ${currentTier + 1} for ${nextTierDef.cost} ${currency}`);
   res.json({ ok: true, upgrade: upgrade.name, tier: currentTier + 1, label: nextTierDef.label });
+  } finally { shopBuyLock.release(uid); }
 });
 
 // GET /api/shop/workshop — get workshop upgrade definitions + player progress
