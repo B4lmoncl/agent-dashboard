@@ -815,11 +815,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
 export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void; onRestartTutorial?: () => void }) {
   useModalBehavior(true, onClose);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
-  }, []);
+  // Scroll lock handled by useModalBehavior above
 
   return (
     <div

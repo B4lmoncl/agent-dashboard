@@ -104,11 +104,16 @@ export default function DashboardHeader({
     return () => document.removeEventListener("mousedown", handler);
   }, [settingsPopupOpen]);
 
-  // Scroll lock for settings modal
+  // Scroll lock for settings modal (ref-counted via useModalBehavior pattern)
   useEffect(() => {
     if (!settingsModalOpen) return;
+    const w = window as unknown as { _modalLockCount?: number };
+    w._modalLockCount = (w._modalLockCount || 0) + 1;
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      w._modalLockCount = Math.max(0, (w._modalLockCount || 1) - 1);
+      if (w._modalLockCount === 0) document.body.style.overflow = "";
+    };
   }, [settingsModalOpen]);
 
   const handleLogin = async () => {

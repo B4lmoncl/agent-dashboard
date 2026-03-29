@@ -63,14 +63,7 @@ export default function DashboardModals({
     return () => document.removeEventListener("keydown", h);
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
 
-  // Scroll lock for any open modal
-  useEffect(() => {
-    const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
-    if (!anyOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
+  // Scroll lock handled by useModalBehavior in page.tsx (lines 357-365)
 
   // Currency conversion state
   const [conversionOpen, setConversionOpen] = useState(false);

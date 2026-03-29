@@ -937,6 +937,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [collectionLoading, setCollectionLoading] = useState(false);
   const [collectionFilter, setCollectionFilter] = useState<string>("all");
 
+  // Scroll lock + ESC for title and collection modals
+  useModalBehavior(titlesOpen, useCallback(() => setTitlesOpen(false), []));
+  useModalBehavior(collectionOpen, useCallback(() => setCollectionOpen(false), []));
+
   useEffect(() => {
     if (!statTooltipOpen) return;
     const close = () => setStatTooltipOpen(null);
