@@ -896,6 +896,17 @@ router.post('/api/social/challenge', requireAuth, (req, res) => {
   const validTypes = ['quests_week', 'xp_week', 'streak_week'];
   if (!validTypes.includes(type)) return res.status(400).json({ error: 'Invalid challenge type' });
 
+  // Max 3 active/pending challenges per player
+  const activeCount = (u.challenges || []).filter(c => c.status === 'pending' || c.status === 'active').length;
+  if (activeCount >= 3) return res.status(400).json({ error: 'Too many active challenges (max 3)' });
+
+  // No duplicate challenge with same target
+  const existingWithTarget = (u.challenges || []).find(c =>
+    (c.targetId === (target.id || targetId).toLowerCase() || c.challengerId === (target.id || targetId).toLowerCase()) &&
+    (c.status === 'pending' || c.status === 'active')
+  );
+  if (existingWithTarget) return res.status(400).json({ error: 'Already have an active challenge with this player' });
+
   const challengeId = `challenge-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
   const challenge = {
     id: challengeId,
