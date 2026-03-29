@@ -12,7 +12,7 @@ const path = require('path');
 const _collectLocks = new Map();
 function acquireCollectLock(uid) { if (_collectLocks.has(uid)) return false; _collectLocks.set(uid, true); return true; }
 function releaseCollectLock(uid) { _collectLocks.delete(uid); }
-const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, logActivity } = require('../lib/state');
+const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir, logActivity } = require('../lib/state');
 const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { createPlayerLock } = require('../lib/helpers');
@@ -65,6 +65,7 @@ function loadDungeonState() {
 
 function saveDungeonState() {
   try {
+    ensureRuntimeDir();
     fs.writeFileSync(DUNGEON_STATE_FILE, JSON.stringify(dungeonState, null, 2));
   } catch (e) {
     console.error('[dungeons] Failed to save dungeon state:', e.message);

@@ -6,7 +6,7 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR } = require('../lib/state');
+const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir } = require('../lib/state');
 const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
 const wbClaimLock = createPlayerLock('wb-claim');
 const wbBoostLock = createPlayerLock('wb-boost');
@@ -44,6 +44,7 @@ function loadWorldBossState() {
 
 function saveWorldBossState() {
   try {
+    ensureRuntimeDir();
     fs.writeFileSync(BOSS_FILE, JSON.stringify(worldBossState, null, 2));
   } catch (e) {
     console.error('[world-boss] Failed to save state:', e.message);
