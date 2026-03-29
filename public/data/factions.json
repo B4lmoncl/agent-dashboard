@@ -3,83 +3,195 @@
     {
       "id": "glut",
       "name": "Zirkel der Glut",
-      "icon": "🔥",
+      "icon": "/images/icons/faction-glut.png",
       "accent": "#ef4444",
       "motto": "Durch Feuer geschmiedet, in Asche geläutert.",
       "description": "Die Feuer-Asketen des Turms. Meister der körperlichen Disziplin und unerschütterlichen Willenskraft. Ihre Rituale sind schweißtreibend, ihre Belohnungen hart verdient.",
-      "questTypes": ["fitness"],
+      "questTypes": [
+        "fitness"
+      ],
       "npcPatron": null,
       "symbol": "🜂",
       "rewards": {
-        "friendly": { "title": "Glutwandler", "titleRarity": "uncommon" },
-        "honored": { "recipe": "flask_of_embers", "recipeDesc": "Flask of Embers (+15% Forge Temp recovery)" },
-        "revered": { "frame": "glut_frame", "frameDesc": "Zirkel der Glut Frame" },
-        "exalted": { "title": "Flammenherz", "titleRarity": "epic", "shopDiscount": 10 },
-        "paragon": { "legendaryEffect": "glut_mastery", "effectDesc": "+5% XP for Fitness quests permanently", "title": "Aszendent der Glut", "titleRarity": "legendary" }
+        "friendly": {
+          "title": "Glutwandler",
+          "titleRarity": "uncommon"
+        },
+        "honored": {
+          "recipe": "flask_of_embers",
+          "recipeDesc": "Flask of Embers (+15% Forge Temp recovery)"
+        },
+        "revered": {
+          "frame": "glut_frame",
+          "frameDesc": "Zirkel der Glut Frame"
+        },
+        "exalted": {
+          "title": "Flammenherz",
+          "titleRarity": "epic",
+          "shopDiscount": 10
+        },
+        "paragon": {
+          "legendaryEffect": "glut_mastery",
+          "effectDesc": "+5% XP for Fitness quests permanently",
+          "title": "Aszendent der Glut",
+          "titleRarity": "legendary"
+        }
       }
     },
     {
       "id": "tinte",
       "name": "Zirkel der Tinte",
-      "icon": "📜",
+      "icon": "/images/icons/faction-tinte.png",
       "accent": "#3b82f6",
       "motto": "Wissen ist die schärfste Klinge.",
       "description": "Die Schriftgelehrten und Archivare. Jedes Wort, jede Lektion, jede Erkenntnis wird in ihren endlosen Kodizes festgehalten. Ihre Macht liegt im Verstehen.",
-      "questTypes": ["learning"],
+      "questTypes": [
+        "learning"
+      ],
       "npcPatron": null,
       "symbol": "🜄",
       "rewards": {
-        "friendly": { "title": "Tintenträger", "titleRarity": "uncommon" },
-        "honored": { "recipe": "scholars_ink", "recipeDesc": "Scholar's Ink (+10% bonus XP from Learning quests)" },
-        "revered": { "frame": "tinte_frame", "frameDesc": "Zirkel der Tinte Frame" },
-        "exalted": { "title": "Kodexhüter", "titleRarity": "epic", "shopDiscount": 10 },
-        "paragon": { "legendaryEffect": "tinte_mastery", "effectDesc": "+5% XP for Learning quests permanently", "title": "Chronist der Tinte", "titleRarity": "legendary" }
+        "friendly": {
+          "title": "Tintenträger",
+          "titleRarity": "uncommon"
+        },
+        "honored": {
+          "recipe": "scholars_ink",
+          "recipeDesc": "Scholar's Ink (+10% bonus XP from Learning quests)"
+        },
+        "revered": {
+          "frame": "tinte_frame",
+          "frameDesc": "Zirkel der Tinte Frame"
+        },
+        "exalted": {
+          "title": "Kodexhüter",
+          "titleRarity": "epic",
+          "shopDiscount": 10
+        },
+        "paragon": {
+          "legendaryEffect": "tinte_mastery",
+          "effectDesc": "+5% XP for Learning quests permanently",
+          "title": "Chronist der Tinte",
+          "titleRarity": "legendary"
+        }
       }
     },
     {
       "id": "amboss",
       "name": "Zirkel des Amboss",
-      "icon": "⚒️",
+      "icon": "/images/icons/faction-amboss.png",
       "accent": "#f59e0b",
       "motto": "Was die Hand formt, hält die Welt zusammen.",
       "description": "Die Schmiede-Mystiker, Meister aller Handwerke. Sie glauben, dass in jedem geschaffenen Gegenstand ein Fragment der Schöpfung wohnt. Ihre Werkstätten sind Tempel.",
-      "questTypes": ["development", "personal"],
+      "questTypes": [
+        "development",
+        "personal"
+      ],
       "npcPatron": null,
       "symbol": "🜁",
       "rewards": {
-        "friendly": { "title": "Ambosslehrling", "titleRarity": "uncommon" },
-        "honored": { "recipe": "artisans_whetstone", "recipeDesc": "Artisan's Whetstone (+1 profession XP per craft)" },
-        "revered": { "frame": "amboss_frame", "frameDesc": "Zirkel des Amboss Frame" },
-        "exalted": { "title": "Meisterschmied", "titleRarity": "epic", "shopDiscount": 10 },
-        "paragon": { "legendaryEffect": "amboss_mastery", "effectDesc": "+10% material drop chance permanently", "title": "Runenschmied des Amboss", "titleRarity": "legendary" }
+        "friendly": {
+          "title": "Ambosslehrling",
+          "titleRarity": "uncommon"
+        },
+        "honored": {
+          "recipe": "artisans_whetstone",
+          "recipeDesc": "Artisan's Whetstone (+1 profession XP per craft)"
+        },
+        "revered": {
+          "frame": "amboss_frame",
+          "frameDesc": "Zirkel des Amboss Frame"
+        },
+        "exalted": {
+          "title": "Meisterschmied",
+          "titleRarity": "epic",
+          "shopDiscount": 10
+        },
+        "paragon": {
+          "legendaryEffect": "amboss_mastery",
+          "effectDesc": "+10% material drop chance permanently",
+          "title": "Runenschmied des Amboss",
+          "titleRarity": "legendary"
+        }
       }
     },
     {
       "id": "echo",
       "name": "Zirkel des Echos",
-      "icon": "🌊",
+      "icon": "/images/icons/faction-echo.png",
       "accent": "#8b5cf6",
       "motto": "Jede Stimme hallt in der Ewigkeit wider.",
       "description": "Die Klangwirker und Brückenbauer. Sie glauben, dass Verbindungen zwischen Menschen die wahre Magie sind. Ihre Kraft liegt im Miteinander, im geteilten Wort, im Echo das zurückkehrt.",
-      "questTypes": ["social", "creative"],
+      "questTypes": [
+        "social",
+        "creative"
+      ],
       "npcPatron": null,
       "symbol": "🜃",
       "rewards": {
-        "friendly": { "title": "Echostimme", "titleRarity": "uncommon" },
-        "honored": { "recipe": "resonance_charm", "recipeDesc": "Resonance Charm (+5% Bond XP for companions)" },
-        "revered": { "frame": "echo_frame", "frameDesc": "Zirkel des Echos Frame" },
-        "exalted": { "title": "Klangweber", "titleRarity": "epic", "shopDiscount": 10 },
-        "paragon": { "legendaryEffect": "echo_mastery", "effectDesc": "+5% Gold for Social/Creative quests permanently", "title": "Harmonist des Echos", "titleRarity": "legendary" }
+        "friendly": {
+          "title": "Echostimme",
+          "titleRarity": "uncommon"
+        },
+        "honored": {
+          "recipe": "resonance_charm",
+          "recipeDesc": "Resonance Charm (+5% Bond XP for companions)"
+        },
+        "revered": {
+          "frame": "echo_frame",
+          "frameDesc": "Zirkel des Echos Frame"
+        },
+        "exalted": {
+          "title": "Klangweber",
+          "titleRarity": "epic",
+          "shopDiscount": 10
+        },
+        "paragon": {
+          "legendaryEffect": "echo_mastery",
+          "effectDesc": "+5% Gold for Social/Creative quests permanently",
+          "title": "Harmonist des Echos",
+          "titleRarity": "legendary"
+        }
       }
     }
   ],
   "standings": [
-    { "id": "neutral", "name": "Neutral", "minRep": 0, "color": "#6b7280" },
-    { "id": "friendly", "name": "Friendly", "minRep": 500, "color": "#22c55e" },
-    { "id": "honored", "name": "Honored", "minRep": 1500, "color": "#3b82f6" },
-    { "id": "revered", "name": "Revered", "minRep": 4000, "color": "#a855f7" },
-    { "id": "exalted", "name": "Exalted", "minRep": 8000, "color": "#f59e0b" },
-    { "id": "paragon", "name": "Paragon", "minRep": 15000, "color": "#ef4444" }
+    {
+      "id": "neutral",
+      "name": "Neutral",
+      "minRep": 0,
+      "color": "#6b7280"
+    },
+    {
+      "id": "friendly",
+      "name": "Friendly",
+      "minRep": 500,
+      "color": "#22c55e"
+    },
+    {
+      "id": "honored",
+      "name": "Honored",
+      "minRep": 1500,
+      "color": "#3b82f6"
+    },
+    {
+      "id": "revered",
+      "name": "Revered",
+      "minRep": 4000,
+      "color": "#a855f7"
+    },
+    {
+      "id": "exalted",
+      "name": "Exalted",
+      "minRep": 8000,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "paragon",
+      "name": "Paragon",
+      "minRep": 15000,
+      "color": "#ef4444"
+    }
   ],
   "repPerQuest": {
     "common": 5,
