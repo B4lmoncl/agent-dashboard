@@ -70,20 +70,20 @@
 
 ## 📋 PLANNED FEATURES (from 2026-03-29 audit)
 
-### Seasonal Leaderboards
+### ✅ Seasonal Leaderboards (DONE)
 - Needs `seasonXp` field on users (XP gained during current season only)
 - Backend: reset seasonXp on season change, filter leaderboard by season
 - Frontend: toggle "Season X" vs "All-Time" on LeaderboardView
 - Reference: Diablo 3 seasonal leaderboards
 
-### Spieler-Challenges
+### ✅ Spieler-Challenges (Backend DONE, Frontend pending)
 - Players challenge each other: "Who completes more quests this week?"
 - Backend: POST /api/challenges/create, accept, resolve
 - Frontend: Challenge toast notification, accept/decline UI, result display
 - Loser pays 100g to winner
 - Reference: WoW guild challenges
 
-### Companion-Galerie
+### ✅ Companion-Galerie (DONE)
 - Overview of all 6 virtual + 7 real companion types
 - Shows: artwork, lore text, personality, bond level progression
 - Accessible from CompanionsWidget or Codex
