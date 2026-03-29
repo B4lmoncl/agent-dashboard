@@ -479,6 +479,14 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   }
   u.dailyMilestonesClaimed[today].push(threshold);
 
+  // Perfect Day bonus: claiming the 750 milestone grants +50% XP on next quest
+  let perfectDayBonus = false;
+  if (threshold === 750) {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'xp_boost_50_perfect', questsRemaining: 1, activatedAt: now(), label: 'Perfect Day — +50% XP on next quest' });
+    perfectDayBonus = true;
+  }
+
   // Prune old daily milestone claims (keep last 7 days)
   const dates = Object.keys(u.dailyMilestonesClaimed).sort();
   while (dates.length > 7) {
@@ -489,7 +497,7 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'daily_mission_milestone', { points: threshold }); } catch (e) { console.warn('[bp-xp] daily_mission_milestone:', e.message); }
 
   saveUsers();
-  res.json({ success: true, reward, earned });
+  res.json({ success: true, reward, earned, perfectDayBonus });
 });
 
 router.get('/api/leaderboard', (req, res) => {
