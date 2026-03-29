@@ -1369,6 +1369,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </div>
                 </div>
               </div>
+              {/* WoW-style "Visit Trainer" warning when near skill cap */}
+              {selectedNpc.chosen && (selectedNpc.skill || 0) >= (selectedNpc.skillCap || 75) - 5 && (selectedNpc.skill || 0) < (selectedNpc.maxSkill || 300) && (
+                <div className="mt-2 rounded-lg px-3 py-2 flex items-center gap-2" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                  <span className="text-xs" style={{ color: "#fbbf24" }}>&#9888;</span>
+                  <p className="text-xs" style={{ color: "#fbbf24" }}>
+                    Dein Skill nähert sich dem Cap ({selectedNpc.skillCap || 75}). Gehe zum <strong onClick={() => setNpcModalTab("trainer" as typeof npcModalTab)} style={{ cursor: "pointer", textDecoration: "underline" }}>Trainer-Tab</strong> um deinen Rang zu erhöhen!
+                  </p>
+                </div>
+              )}
               {/* Speech bubble + drop profession */}
               <div className="mt-3 flex items-start gap-2">
                 <div className="flex-1 px-4 py-2.5 rounded-lg text-sm italic" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", borderLeft: `3px solid ${selectedNpc.color}40` }}>
