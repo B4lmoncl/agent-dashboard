@@ -357,6 +357,8 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
   if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
 
   const uid = req.auth?.userId;
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -405,6 +407,7 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
 
   const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
   res.json({ success: true, recipe: recipe.name, profession: profDef?.name || recipe.profession, goldSpent: goldNeeded });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
@@ -1121,6 +1124,8 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
 // ─── POST /api/professions/choose — explicitly enroll in a profession ────────
 router.post('/api/professions/choose', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { professionId } = req.body;
@@ -1156,11 +1161,14 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
     message: `${profDef.name} chosen! You can now craft at ${profDef.npcName}.`,
     chosenProfessions: u.chosenProfessions,
   });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── POST /api/professions/switch — drop a profession to choose another ─────
 router.post('/api/professions/switch', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { dropProfession } = req.body;
@@ -1193,6 +1201,7 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
     chosenProfessions: u.chosenProfessions,
     essenz: u.currencies.essenz,
   });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── Schmiedekunst + Enchanting moved to routes/schmiedekunst.js and routes/enchanting.js ───
@@ -1206,6 +1215,8 @@ const RANK_TRAINING_COSTS = [
 
 router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { professionId } = req.body;
@@ -1234,6 +1245,7 @@ router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
   saveUsers();
   console.log(`[crafting] ${uid} trained ${professionId} rank: ${nextRank.rank} for ${nextRank.cost}g`);
   res.json({ ok: true, rank: nextRank.rank, cost: nextRank.cost, newCap: nextRank.toCap, remainingGold: u.currencies.gold });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────
