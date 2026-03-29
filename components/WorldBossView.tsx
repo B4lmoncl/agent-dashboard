@@ -459,6 +459,41 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           </div>
         )}
 
+        {/* Mondstaub Boost — only when boss is alive */}
+        {!boss.defeated && reviewApiKey && (
+          <div className="px-5 pb-4">
+            <button
+              onClick={async () => {
+                setMessage(null);
+                try {
+                  const r = await fetch("/api/world-boss/boost", {
+                    method: "POST",
+                    headers: getAuthHeaders(),
+                  });
+                  const d = await r.json();
+                  if (r.ok) {
+                    setMessage({ text: d.message || "Boost activated!", type: "success" });
+                    fetchBoss();
+                  } else {
+                    setMessage({ text: d.error || "Boost failed", type: "error" });
+                  }
+                } catch { setMessage({ text: "Network error", type: "error" }); }
+                setTimeout(() => setMessage(null), 4000);
+              }}
+              title="Spend 50 Mondstaub for +25% boss damage on next 10 quests"
+              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
+              style={{
+                background: "rgba(192,132,252,0.1)",
+                color: "#c084fc",
+                border: "1px solid rgba(192,132,252,0.25)",
+                cursor: "pointer",
+              }}
+            >
+              Mondstaub Boost (+25% damage, 50 Mondstaub)
+            </button>
+          </div>
+        )}
+
         {/* Defeated — Claim Rewards */}
         {boss.defeated && canClaim && !claimResult && (
           <div className="px-5 pb-4">

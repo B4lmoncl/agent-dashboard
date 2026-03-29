@@ -49,6 +49,7 @@ interface ActiveRift {
   failedAt?: string;
   reachedStage?: number;
   mythicLevel?: number;
+  extended?: boolean;
   affixes?: { id: string; name: string; desc: string; color: string; effect: { type: string; value: number | string } }[];
 }
 
@@ -282,6 +283,36 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 </TipCustom>
               ))}
             </div>
+          )}
+
+          {/* Extend timer button (Mondstaub) */}
+          {!activeRift.completed && !activeRift.failed && !activeRift.extended && reviewApiKey && (
+            <button
+              onClick={async () => {
+                try {
+                  const r = await fetch("/api/rift/extend", {
+                    method: "POST",
+                    headers: getAuthHeaders(),
+                  });
+                  const d = await r.json();
+                  if (r.ok) {
+                    fetchRift();
+                  } else {
+                    alert(d.error || "Failed to extend");
+                  }
+                } catch { alert("Network error"); }
+              }}
+              title="Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"
+              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
+              style={{
+                background: "rgba(192,132,252,0.08)",
+                color: "#c084fc",
+                border: "1px solid rgba(192,132,252,0.2)",
+                cursor: "pointer",
+              }}
+            >
+              Extend Timer +6h (30 Mondstaub)
+            </button>
           )}
 
           {/* Quest chain visualization */}

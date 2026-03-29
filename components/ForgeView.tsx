@@ -1825,6 +1825,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 setEnchantResult(null);
                 setEnchantOptions(null);
                 try {
+                  // Preview first to show cost
+                  const pv = await fetch("/api/reroll/preview", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                    body: JSON.stringify({ slot: enchantSlot, statToLock: stat }),
+                  });
+                  const pvData = await pv.json();
+                  if (!pv.ok) {
+                    setEnchantResult(pvData.error || "Cannot enchant this stat");
+                    setEnchantLoading(false);
+                    return;
+                  }
+                  setEnchantCost(pvData.cost);
+                  // Now do the actual roll
                   const r = await fetch("/api/reroll/enchant", {
                     method: "POST",
                     headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
@@ -1833,7 +1847,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   const data = await r.json();
                   if (r.ok && data.options) {
                     setEnchantOptions(data.options);
-                    setEnchantCost(data.nextCost || data.cost);
+                    setEnchantCost(data.nextCost || data.cost || pvData.cost);
                     setEnchantStat(stat);
                     fetchData();
                     onRefresh?.();
@@ -2348,6 +2362,59 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       ))}
                     </div>
                   )}
+
+                  {/* ─── Reforge Stats (re-roll stats on any item with affixes) ── */}
+                  {(() => {
+                    const reforgeableItems = dismantleItems.filter(i => i.rarity && ["uncommon", "rare", "epic", "legendary"].includes(i.rarity) && !i.fixedStats);
+                    if (reforgeableItems.length === 0) return null;
+                    const REFORGE_COSTS: Record<string, number> = { common: 50, uncommon: 100, rare: 250, epic: 500, legendary: 1000 };
+                    return (
+                      <div className="mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                        <p className="text-sm font-semibold mb-1" style={{ color: "#818cf8" }}>Reforge Stats</p>
+                        <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+                          Re-roll all stats on an item from its affix pool. Identity and sockets stay.
+                        </p>
+                        <div className="grid gap-1.5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(56px, 1fr))" }}>
+                          {reforgeableItems.slice(0, 16).map(item => {
+                            const cost = REFORGE_COSTS[item.rarity || "common"] || 50;
+                            return (
+                              <button
+                                key={item.instanceId || item.id}
+                                onClick={() => {
+                                  setConfirmAction({
+                                    message: `Reforge "${item.name}" stats?\n\nAll stats will be re-rolled from the affix pool. Sockets and identity stay.\n\nCost: ${cost}g`,
+                                    onConfirm: async () => {
+                                      setConfirmAction(null);
+                                      try {
+                                        const r = await fetch("/api/schmiedekunst/reforge-stats", {
+                                          method: "POST",
+                                          headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey!) },
+                                          body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
+                                        });
+                                        const data = await r.json();
+                                        setDismantleResult({ message: data.message || data.error || "Something went wrong. Try again." });
+                                        setTimeout(() => setDismantleResult(null), 5000);
+                                        fetchData();
+                                        onRefresh?.();
+                                      } catch (err) { console.error('[forge] reforge-stats error:', err); setDismantleResult({ message: "Network error" }); }
+                                    },
+                                  });
+                                }}
+                                className="forge-btn relative flex items-center justify-center rounded-lg aspect-square"
+                                style={{ background: "rgba(129,140,248,0.06)", border: `1px solid rgba(129,140,248,0.25)` }}
+                                title={`${item.name} (${item.rarity}) — Reforge stats (${cost}g)`}
+                              >
+                                {item.icon
+                                  ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                                  : <span style={{ fontSize: 18, color: "#818cf8" }}>◆</span>
+                                }
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })()}
 
                   {/* ─── Reforge Legendary (D3 Ätherwürfel) ──────────────── */}
                   {(() => {

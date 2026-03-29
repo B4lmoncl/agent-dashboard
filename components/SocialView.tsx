@@ -1461,7 +1461,15 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
             return (
               <div key={mail.id}>
                 <button
-                  onClick={() => setSelectedMail(isSelected ? null : mail)}
+                  onClick={() => {
+                    if (isSelected) { setSelectedMail(null); return; }
+                    setSelectedMail(mail);
+                    if (!mail.read) {
+                      fetch(`/api/mail/${mail.id}/read`, { method: "POST", headers: getAuthHeaders(apiKey) })
+                        .then(() => { mail.read = true; fetchMail(); })
+                        .catch(() => {});
+                    }
+                  }}
                   className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg"
                   style={{
                     background: isSelected ? "rgba(168,85,247,0.08)" : "rgba(255,255,255,0.02)",
