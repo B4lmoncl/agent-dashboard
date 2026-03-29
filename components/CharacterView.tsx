@@ -276,14 +276,15 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   const handleSave = async () => {
     setSaving(true);
     try {
-      await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
         body: JSON.stringify({ relationshipStatus: status, partnerName: partner.trim() || null, avatarStyle }),
       });
+      if (!r.ok) { const d = await r.json().catch(() => ({})); console.error("[profile] Save failed:", d.error || r.status); return; }
       await onSaved();
       onClose();
-    } finally { setSaving(false); }
+    } catch { console.error("[profile] Network error"); } finally { setSaving(false); }
   };
 
   return (
@@ -1707,8 +1708,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {/* Stats tab */}
           {rightTab === "stats" && loading && <div className="space-y-2">{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 32 }}><div className="skeleton skeleton-text w-24" /></div>)}</div>}
           {rightTab === "stats" && !loading && charData && (() => {
-            const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
-            const base = charData.baseStats;
+            const { kraft = 0, ausdauer = 0, weisheit = 0, glueck = 0, fokus = 0, vitalitaet = 0, charisma = 0, tempo = 0 } = charData.stats || {};
+            const base = charData.baseStats || { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
             const statRows = [
               { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · Quest XP bonus (diminishing returns)" },
               { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Forge Decay reduction (diminishing)" },
