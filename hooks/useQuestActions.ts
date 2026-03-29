@@ -306,6 +306,14 @@ export function useQuestActions({
         if (data.levelUp) {
           pendingLevelUpRef.current = data.levelUp;
         }
+        // Toast for gem drops
+        if (data.gemDrop) {
+          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped!", rarity: "rare" });
+        }
+        // Toast for recipe discoveries
+        if (data.recipeDrop) {
+          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered!", rarity: "epic" });
+        }
         // Optimistically update NPC quest chain
         setActiveNpcs(prev => prev.map(npc => {
           if (!npc.questChain.some(q => q.questId === questId)) return npc;
