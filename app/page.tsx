@@ -170,6 +170,7 @@ export default function Dashboard() {
       setActiveFloor(floor.id);
     }
     setDashViewRaw(view);
+    setSearchFilter(""); // Clear quest search on tab switch
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (persists across renders via ref)

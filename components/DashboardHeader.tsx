@@ -413,6 +413,18 @@ export default function DashboardHeader({
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: apiLive ? "#22c55e" : "rgba(255,255,255,0.15)", animation: apiLive ? "pulse-online 2s ease-in-out infinite" : "none" }} />
             {apiLive ? "Online" : "Offline"}
           </div>
+          {/* Night mode / Mondlicht indicator */}
+          {(() => {
+            const h = parseInt(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin", hour: "numeric", hour12: false }), 10);
+            const isNight = h >= 22 || h < 6;
+            if (!isNight) return null;
+            return (
+              <div className="flex items-center gap-1 text-xs" style={{ color: "#818cf8" }} title="Mondlicht-Schmiede active (22:00-06:00 Berlin) — +20% minimum rolls on crafted gear">
+                <span style={{ fontSize: 10, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
+                <span style={{ opacity: 0.6 }}>Mondlicht</span>
+              </div>
+            );
+          })()}
           <div className="text-xs font-mono flex items-center gap-1.5 text-w25">
             <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: "rgba(255,102,51,0.5)" }} />
             Updated <span style={{ display: "inline-block", minWidth: "4rem" }}>{lastUpdatedStr}</span>

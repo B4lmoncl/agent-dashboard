@@ -740,10 +740,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
           width: 2, height: 2, borderRadius: "50%",
-          background: "#f59e0b",
-          boxShadow: "0 0 4px #f59e0b80",
+          background: moonlightActive ? "#818cf8" : "#f59e0b",
+          boxShadow: `0 0 4px ${moonlightActive ? "#818cf880" : "#f59e0b80"}`,
           right: `${20 + i * 30}px`, top: `${8 + i * 12}px`,
-          animation: `ambient-spark ${2 + i * 0.7}s ease-in-out ${i * 0.8}s infinite`,
+          animation: `ambient-spark ${moonlightActive ? 1.5 + i * 0.5 : 2 + i * 0.7}s ease-in-out ${i * 0.8}s infinite`,
+        }} />
+      ))}
+      {/* Mondlicht-Schmiede particles — extra indigo particles when active */}
+      {moonlightActive && [0,1,2,3].map(i => (
+        <div key={`moon-${i}`} className="absolute pointer-events-none" style={{
+          width: 2, height: 3, borderRadius: 1,
+          background: "rgba(129,140,248,0.7)",
+          boxShadow: "0 0 6px rgba(129,140,248,0.5)",
+          left: `${10 + i * 22}%`, top: `${5 + (i % 2) * 15}px`,
+          animation: `crystal-particle-rise ${2 + i * 0.4}s ease-out ${i * 0.6}s infinite`,
         }} />
       ))}
       {/* ─── Header with currencies + info ─────────────────────────────── */}
@@ -1495,7 +1505,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     if (recipeSort === "name") filteredRecipes.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
                     else if (recipeSort === "color") filteredRecipes.sort((a, b) => (COLOR_ORDER[a.skillUpColor || "gray"] ?? 9) - (COLOR_ORDER[b.skillUpColor || "gray"] ?? 9));
                     // default = by reqSkill (already in data order)
-                    return SKILL_BRACKETS.map(bracket => {
+                    const totalRecipes = recipes.filter(r => r.profession === selectedNpc.id && !(r as unknown as Record<string, unknown>).hidden).length;
+                    const isFiltered = recipeSearch || showCraftableOnly || showHaveMatsOnly || recipeSlotFilter !== "all";
+                    return <>{isFiltered && <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>Showing {filteredRecipes.length} of {totalRecipes} recipes</p>}{SKILL_BRACKETS.map(bracket => {
                       const bracketRecipes = filteredRecipes.filter(r => {
                         const skill = r.reqSkill || 0;
                         return skill >= bracket.min && skill < bracket.max;
@@ -1826,7 +1838,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   })}
                         </div>
                       );
-                    });
+                    })}</>;
                   })()}
                   {/* Empty state when filter shows no results */}
                   {showCraftableOnly && recipes.filter(r => r.profession === selectedNpc.id).filter(r => !(r as unknown as Record<string, unknown>).hidden && r.learned !== false && r.canCraft && (r.cooldownRemaining ?? 0) <= 0).length === 0 && (
