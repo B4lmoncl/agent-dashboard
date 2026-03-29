@@ -104,7 +104,7 @@ interface CollectResult {
   successChance: number;
   effectivePower: number;
   threshold: number;
-  rewards: { gold: number; essenz: number; runensplitter: number; sternentaler?: number; materialCount?: number; gearDropItem?: { name: string; rarity: string } };
+  rewards: { gold: number; essenz: number; runensplitter: number; sternentaler?: number; materialCount?: number; gearDropItem?: { name: string; rarity: string }; gemDrop?: { key: string; name: string; type: string; tier: number; color: string } };
   bonusAwarded: { title?: string; frame?: string } | null;
   uniqueDrop: { name: string; slot: string; id: string } | null;
   message: string;
@@ -282,8 +282,10 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           const loot = d.uniqueDrop
             ? { name: d.uniqueDrop.name, emoji: "◆", rarity: "legendary", rarityColor: "#ff8c00" }
             : rw.gearDropItem
-              ? { name: rw.gearDropItem.name, emoji: "⚔️", rarity: rw.gearDropItem.rarity || "rare" }
-              : undefined;
+              ? { name: rw.gearDropItem.name, emoji: "◆", rarity: rw.gearDropItem.rarity || "rare" }
+              : rw.gemDrop
+                ? { name: rw.gemDrop.name, emoji: "◆", rarity: "rare", rarityColor: rw.gemDrop.color || "#a855f7" }
+                : undefined;
           onRewardCelebration({
             type: "dungeon",
             title: d.success ? "Dungeon Cleared!" : "Dungeon Survived",
@@ -402,6 +404,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             {(collectResult.rewards.materialCount || 0) > 0 && (
               <span className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)" }}>
                 +{collectResult.rewards.materialCount} Materials
+              </span>
+            )}
+            {collectResult.rewards.gemDrop && (
+              <span className="text-xs px-2 py-1 rounded font-semibold" style={{ background: `${collectResult.rewards.gemDrop.color || '#a855f7'}12`, color: collectResult.rewards.gemDrop.color || '#a855f7' }}>
+                ◆ {collectResult.rewards.gemDrop.name} (T{collectResult.rewards.gemDrop.tier})
               </span>
             )}
             {collectResult.rewards.gearDropItem && (
