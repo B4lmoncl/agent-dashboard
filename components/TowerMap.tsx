@@ -47,8 +47,28 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
           </button>
         </div>
 
+        {/* Ambient crystal particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[0,1,2,3,4].map(i => (
+            <div key={`tp-${i}`} className="absolute rounded-full" style={{
+              width: 2, height: 2,
+              left: `${8 + i * 20}%`,
+              top: `${15 + (i * 23) % 65}%`,
+              background: i % 2 === 0 ? "rgba(129,140,248,0.5)" : "rgba(251,191,36,0.4)",
+              boxShadow: `0 0 4px ${i % 2 === 0 ? "rgba(129,140,248,0.3)" : "rgba(251,191,36,0.25)"}`,
+              animation: `ambient-spark ${3 + i * 0.8}s ease-in-out ${i * 0.6}s infinite`,
+              opacity: 0,
+            }} />
+          ))}
+        </div>
+
         {/* Tower cross-section — top to bottom */}
-        <div className="px-3 pb-4 space-y-0.5">
+        <div className="relative px-3 pb-4 space-y-0.5">
+          {/* Central crystal vein running through the tower */}
+          <div className="absolute left-6 top-12 bottom-8 w-px pointer-events-none" style={{
+            background: "linear-gradient(180deg, rgba(251,191,36,0.15), rgba(129,140,248,0.12), rgba(168,85,247,0.1), rgba(59,130,246,0.08), rgba(249,115,22,0.12))",
+            boxShadow: "0 0 4px rgba(129,140,248,0.1)",
+          }} />
           {/* Tower spire decoration */}
           <div className="flex justify-center pb-2">
             <div style={{
