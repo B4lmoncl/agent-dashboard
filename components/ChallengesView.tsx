@@ -355,7 +355,7 @@ function SternenpfadView({
                       opacity: claiming ? 0.5 : 1,
                       cursor: claiming ? "not-allowed" : "pointer",
                     }}
-                    title={claiming ? "Claiming reward..." : undefined}
+                    title={claiming ? "Claiming reward..." : `Claim Stage ${stage.stage} reward (${stage.earnedStars} stars earned)`}
                   >
                     {claiming ? "Claiming..." : `Claim Stage ${stage.stage}`}
                   </button>
@@ -431,12 +431,12 @@ function ExpeditionView({
           <span className="font-semibold text-w50">Guild Progress</span>
           <span className="font-bold" style={{ color: "#4ade80" }}>{expedition.progress} Quests</span>
         </div>
-        <div className="h-2.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+        <div className={`progress-bar-diablo${overallPct > 90 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="h-full rounded-full transition-all"
+            className="progress-bar-diablo-fill"
             style={{
               width: `${overallPct}%`,
-              background: "linear-gradient(90deg, #22c55e, #4ade80)",
+              background: "linear-gradient(90deg, #22c55e88, #22c55e, #4ade80)",
             }}
           />
         </div>
