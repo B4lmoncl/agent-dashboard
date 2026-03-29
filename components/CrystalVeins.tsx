@@ -158,14 +158,12 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
         }
       };
 
-      // Multi-pass glow (5 layers, each narrower + more opaque = soft fadeout)
+      // Multi-pass glow (3 layers — performance optimized)
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       const glowPasses = [
-        { widthMult: 10, opacityMult: 0.03 },
-        { widthMult: 7,  opacityMult: 0.05 },
-        { widthMult: 5,  opacityMult: 0.08 },
-        { widthMult: 3,  opacityMult: 0.15 },
+        { widthMult: 8,  opacityMult: 0.04 },
+        { widthMult: 4,  opacityMult: 0.12 },
         { widthMult: 1.8, opacityMult: 0.30 },
       ];
       for (const pass of glowPasses) {

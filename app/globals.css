@@ -895,16 +895,16 @@ button[disabled] {
 /* Rank glow — for top 3 leaderboard positions */
 @keyframes rank-glow {
   0%, 100% { box-shadow: 0 0 6px var(--rank-color, #fbbf24); }
-  50% { box-shadow: 0 0 16px var(--rank-color, #fbbf24), 0 0 24px var(--rank-color, rgba(251,191,36,0.3)); }
+  50% { box-shadow: 0 0 14px var(--rank-color, #fbbf24), 0 0 20px var(--rank-color, rgba(251,191,36,0.2)); }
 }
-.rank-glow { animation: rank-glow 3s ease-in-out infinite; }
+.rank-glow { animation: rank-glow 5s ease-in-out infinite; }
 
 /* Claimable pulse — for any button/card that can be claimed */
 @keyframes claimable-breathe {
   0%, 100% { box-shadow: 0 0 4px var(--claim-color, rgba(74,222,128,0.2)); transform: scale(1); }
   50% { box-shadow: 0 0 14px var(--claim-color, rgba(74,222,128,0.5)); transform: scale(1.02); }
 }
-.claimable-breathe { animation: claimable-breathe 2.5s ease-in-out infinite; position: relative; overflow: hidden; }
+.claimable-breathe { animation: claimable-breathe 4s ease-in-out infinite; position: relative; overflow: hidden; }
 .claimable-breathe::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
   background: radial-gradient(circle at center, var(--claim-color, rgba(74,222,128,0.3)) 0%, transparent 70%);
