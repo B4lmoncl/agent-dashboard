@@ -273,7 +273,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
               border: `1px solid ${selected ? "rgba(255,102,51,0.9)" : "rgba(255,255,255,0.15)"}`,
             }}
           >
-            {selected && <span style={{ color: "#fff", fontSize: "8px", lineHeight: 1 }}>✓</span>}
+            {selected && <span style={{ color: "#fff", fontSize: 12, lineHeight: 1 }}>✓</span>}
           </button>
         )}
         {!onToggle && isInProgress && (
@@ -439,7 +439,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
                 border: `1px solid ${selected ? "rgba(255,102,51,0.9)" : "rgba(255,255,255,0.15)"}`,
               }}
             >
-              {selected && <span style={{ color: "#fff", fontSize: "8px", lineHeight: 1 }}>✓</span>}
+              {selected && <span style={{ color: "#fff", fontSize: 12, lineHeight: 1 }}>✓</span>}
             </button>
           )}
           <div className="flex-1 min-w-0">

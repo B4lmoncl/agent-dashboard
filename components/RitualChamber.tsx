@@ -432,14 +432,14 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             if (!newRitualTitle.trim()) { setRitualNameError(true); return; }
             if (newRitualCommitment === "none") { setRitualCommitmentError(true); return; }
             if (!reviewApiKey || !playerName) return;
-            const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
-            const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
+            const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
+            const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
             await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
             closeRitualModal();
             fetchRituals(playerName).then(setRituals);
           };
-          const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
-          const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
+          const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
+          const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
           const pactMulti = newRitualBloodPact ? (BLOOD_PACT_MULTIPLIER[newRitualCommitment] || 3) : 1;
           const bonusGold = Math.round(tierData.bonusGold * diffData.bondScale);
           const bonusXp = Math.round(tierData.bonusXp * diffData.bondScale);

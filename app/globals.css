@@ -927,15 +927,7 @@ button[disabled] {
 
 /* Crystal Vein Network — now rendered via Canvas component (CrystalVeins.tsx) */
 
-/* Crystal vein section header line */
-.heading-vein-line {
-  position: relative;
-}
-.heading-vein-line::after {
-  content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--floor-color, rgba(129,140,248,0.3)), transparent);
-  animation: crystal-breathe 4s ease-in-out infinite;
-}
+/* Crystal vein section header line — applied via .gt-trigger.gt-heading::before */
 
 /* ─── Resonance Ripple (reward feedback) ─── */
 @keyframes resonance-ripple {
@@ -1015,7 +1007,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   0%, 100% { box-shadow: 0 0 6px var(--bond-color, rgba(244,114,182,0.2)); }
   50% { box-shadow: 0 0 16px var(--bond-color, rgba(244,114,182,0.5)), 0 0 24px var(--bond-color, rgba(244,114,182,0.15)); }
 }
-.bond-aura-weak { animation: bond-aura-pulse 4s ease-in-out infinite; --bond-color: rgba(244,114,182,0.15); }
+/* bond-aura-weak removed (unused — bond level 1-2 has no aura) */
 .bond-aura-medium { animation: bond-aura-pulse 3s ease-in-out infinite; --bond-color: rgba(244,114,182,0.3); }
 .bond-aura-strong { animation: bond-aura-pulse 2.5s ease-in-out infinite; --bond-color: rgba(244,114,182,0.5); }
 .bond-aura-legendary { animation: bond-aura-pulse 2s ease-in-out infinite; --bond-color: rgba(249,115,22,0.5); }
