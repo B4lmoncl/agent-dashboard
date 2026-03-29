@@ -3115,6 +3115,806 @@
         "flavor": "Ich bin kein Held. Ich bin ein Vater. Und das ist manchmal schwerer, manchmal leichter, aber immer wichtiger als jede Quest.",
         "difficulty": "starter"
       }
+    },
+    {
+      "id": "p-autopflege",
+      "template": "board-quest",
+      "title": "Wagenpflege",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Wasche dein Auto oder räume es innen auf.",
+        "flavor": "Dein Pferd hat vier Räder und eine fragwürdige Innenausstattung.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-versicherungscheck",
+      "template": "board-quest",
+      "title": "Schildüberprüfung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Überprüfe deine Versicherungen — stimmen die Konditionen noch?",
+        "flavor": "Grimvar versichert sein Werkzeug nicht. Er droht dem Schicksal.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 25
+      }
+    },
+    {
+      "id": "p-arzttermin",
+      "template": "board-quest",
+      "title": "Der Heiler ruft",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Mach einen Arzt- oder Zahnarzttermin den du aufschiebst.",
+        "flavor": "Der beste Zeitpunkt zum Arzt zu gehen war vor drei Monaten. Der zweitbeste ist jetzt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-passwoerter",
+      "template": "board-quest",
+      "title": "Runenwechsel",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Ändere 5 wichtige Passwörter zu sicheren Passwörtern.",
+        "flavor": "Schlosser Grim hat deine Sicherheit analysiert. Er hat geweint.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-notfallplan",
+      "template": "board-quest",
+      "title": "Sturmvorsorge",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Erstelle deinen Notfallplan: Fluchtwege, Erste-Hilfe-Kit, Notfallkontakte.",
+        "flavor": "Wer auf den Sturm vorbereitet ist, überlebt ihn. Genießen ist optional.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 25
+      }
+    },
+    {
+      "id": "p-dankesbrief",
+      "template": "board-quest",
+      "title": "Ungesagte Worte",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreibe einen ehrlichen Dankesbrief an jemanden. Per Hand.",
+        "flavor": "Ungesagte Dankbarkeit ist wie ungesungene Musik — sie existiert nur in deinem Kopf.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-fotos-ordnen",
+      "template": "board-quest",
+      "title": "Erinnerungsarchiv",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Sortiere Fotos auf deinem Handy — lösche Duplikate, erstelle Alben.",
+        "flavor": "Ada hat 47.000 Bücher sortiert. Deine 3.000 Fotos sollten machbar sein.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-zeittracking",
+      "template": "board-quest",
+      "title": "Zeitkristall",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Tracke jeden 30-Minuten-Block heute — was hast du wirklich gemacht?",
+        "flavor": "Uhrmacher Tick zittert schon vor der Antwort.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-morningpages",
+      "template": "board-quest",
+      "title": "Morgenseiten",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreibe direkt nach dem Aufwachen 3 Seiten Stream-of-Consciousness.",
+        "flavor": "Was auf der Seite steht, verlässt deinen Kopf. Dein Kopf hat dringend Platz nötig.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-abendreview",
+      "template": "board-quest",
+      "title": "Nachtrevision",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "10 Minuten Abendreview: Was lief gut? Was nicht? Was morgen anders?",
+        "flavor": "Die Sternenwächterin macht das seit tausend Jahren. Du fängst heute an.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-wochenplanung",
+      "template": "board-quest",
+      "title": "Strategiekammer",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Plane deine Woche: Top-3 Ziele, Zeitblöcke, was du NICHT machen willst.",
+        "flavor": "Kein Plan überlebt den Kontakt mit der Realität. Deshalb brauchst du drei.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-quartalsreview",
+      "template": "board-quest",
+      "title": "Die große Bilanz",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Quartals-Review: Was hast du in 3 Monaten erreicht? Was ändert sich?",
+        "flavor": "Geschichte wiederholt sich nicht. Aber sie reimt sich.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "p-visionboard",
+      "template": "board-quest",
+      "title": "Traumkarte",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Erstelle dein Vision Board — digital oder analog. Wo willst du hin?",
+        "flavor": "Kartografin Mappe zeichnet Karten von Orten die es noch nicht gibt. Du auch.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-skillaudit",
+      "template": "board-quest",
+      "title": "Fähigkeitsinventur",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Liste alle Fähigkeiten auf. Was fehlt? Was ist stark?",
+        "flavor": "Der Turm kennt die Stärken seiner Bewohner. Kennst du deine?",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-sideprojekt",
+      "template": "board-quest",
+      "title": "Das geheime Projekt",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "45 Minuten an einem Side Project das nur dir gehört.",
+        "flavor": "Es funktioniert! Für ungefähr drei Sekunden. Das zählt!",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "p-kreativhobby",
+      "template": "board-quest",
+      "title": "Der andere Pfad",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "30 Minuten kreatives Hobby: Malen, Musik, Schreiben — ohne Bildschirm.",
+        "flavor": "Jeder kann zeichnen. Die meisten haben nur vergessen dass sie es können.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-musikueben",
+      "template": "board-quest",
+      "title": "Klangschmiede",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "20 Minuten Instrument üben. Die Nachbarn werden sich melden.",
+        "flavor": "Die Stille zwischen den Noten — da lebt die Musik.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-neuesrezept",
+      "template": "board-quest",
+      "title": "Alchemie der Küche",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Koche ein Rezept das du noch nie ausprobiert hast.",
+        "flavor": "Perfektion existiert nicht. Aber wir können verdammt nah rankommen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-pflanzen",
+      "template": "board-quest",
+      "title": "Grüne Wache",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Kümmere dich um Pflanzen: Gießen, Umtopfen, Düngen.",
+        "flavor": "Pflanzen beurteilen dich nicht. Sie sterben einfach still wenn du sie vernachlässigst.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-bad-deepclean",
+      "template": "board-quest",
+      "title": "Bad-Exorzismus",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Deep Clean: Fliesen, Fugen, Spiegel, hinter der Toilette.",
+        "flavor": "Hinter dem Klo. Ja, DA. Du weißt genau wo.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-kueche-ordnen",
+      "template": "board-quest",
+      "title": "Küchenschlacht",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Organisiere die Küche: Abgelaufenes weg, Schubladen aufräumen.",
+        "flavor": "Eine chaotische Küche ist eine chaotische Seele. Meistens hat Bruna recht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-kuehlschrank",
+      "template": "board-quest",
+      "title": "Kältekammer-Audit",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Kühlschrank ausräumen, putzen, nur Gutes zurück.",
+        "flavor": "Was hinten lebt hat vermutlich einen eigenen Willen. Handschuhe empfohlen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-digitaldetox-apps",
+      "template": "board-quest",
+      "title": "App-Exorzismus",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Lösche 20+ Apps die du im letzten Monat nicht benutzt hast.",
+        "flavor": "Entferne alles was nicht dazugehört. Was übrig bleibt bist du.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-email-unsub",
+      "template": "board-quest",
+      "title": "Flüsterketten kappen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Melde dich von 10+ Newslettern ab die du nie liest.",
+        "flavor": "Zwölf ungelesene Nachrichten. Drei sind wichtig. Rate welche.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-social-cleanup",
+      "template": "board-quest",
+      "title": "Feed-Reinigung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Entfolge 20 Accounts die dir keine Freude bringen.",
+        "flavor": "Manchmal ist der mutigste Klick der Unfollow-Button.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-screentime",
+      "template": "board-quest",
+      "title": "Bildschirmfasten",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Bildschirmzeit heute unter 3 Stunden halten (außer Arbeit).",
+        "flavor": "Das Licht der Bildschirme ist warm und einladend. Wie ein Sumpf.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-schlafrhythmus",
+      "template": "board-quest",
+      "title": "Mondphasen-Training",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Pünktlich schlafen (vor 23 Uhr) und Wecker auf 7 Stunden.",
+        "flavor": "Schlaf ist keine Schwäche. Schlaf ist Wartung.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-morgenroutine-upgrade",
+      "template": "board-quest",
+      "title": "Routine-Schmiede",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Optimiere deine Morgenroutine: Was fehlt? Was ist überflüssig?",
+        "flavor": "Disziplin ist eine Gewohnheit. Gewohnheiten sind formbar. Wie Stahl.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-abendroutine",
+      "template": "board-quest",
+      "title": "Abendrituale",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Abendroutine: Handy weg ab 21 Uhr, Journaling, Morgen vorbereiten.",
+        "flavor": "Jedes Feuer beginnt mit einem Funken. Aber erst morgen. Heute wird geschlafen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-wochenmealplan",
+      "template": "board-quest",
+      "title": "Speiseplan-Strategie",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Plane Mahlzeiten für die Woche und erstelle eine Einkaufsliste.",
+        "flavor": "Kochen ohne Plan ist wie Kämpfen ohne Schwert. Möglich, aber blutig.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-budgetreview",
+      "template": "board-quest",
+      "title": "Goldbilanz",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Budget überprüfen: Wo geht dein Geld hin? Was einsparen?",
+        "flavor": "Wer sein Gold nicht kennt, hat keins.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-sparplan",
+      "template": "board-quest",
+      "title": "Goldreserve",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Automatischen Sparplan einrichten oder bestehenden überprüfen.",
+        "flavor": "Otto nickt zufrieden. Das Maximum an Emotion das er zeigt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-invest-research",
+      "template": "board-quest",
+      "title": "Gilden-Investition",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "30 Minuten über ETFs, Altersvorsorge oder Aktien recherchieren.",
+        "flavor": "Gold das nur rumliegt verliert an Wert. Wie ungenutztes Talent.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "p-abocheck",
+      "template": "board-quest",
+      "title": "Abo-Audit",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Alle Abos auflisten. Unnötige kündigen.",
+        "flavor": "Stille Geldabflüsse sind die gefährlichsten. Wie stille Wasser. Nur teurer.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-kleiderspende",
+      "template": "board-quest",
+      "title": "Geben und Nehmen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Kleidung aussortieren (6+ Monate ungetragen) und spenden.",
+        "flavor": "Spende die Sachen. Jemand anderes wird weniger unglücklich.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-buchordnung",
+      "template": "board-quest",
+      "title": "Bibliotheksarbeit",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Bücher ordnen: Behalten, Weggeben, als Nächstes lesen.",
+        "flavor": "Bücher die niemand liest sind trauriger als Bücher die niemand schreibt.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-tisch-setup",
+      "template": "board-quest",
+      "title": "Kommandozentrale",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Arbeitsplatz optimieren: Ergonomie, Kabel, Beleuchtung.",
+        "flavor": "Dein Schreibtisch sieht aus wie nach der Schlacht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-ersteHilfe",
+      "template": "board-quest",
+      "title": "Notfallbereitschaft",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Erste-Hilfe-Set checken: Pflaster, Verband, Medikamente.",
+        "flavor": "Sicherheit ist kein Zustand, sondern eine Gewohnheit.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-reifendruck",
+      "template": "board-quest",
+      "title": "Wagenwartung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Check: Reifendruck, Ölstand, Scheibenwischer.",
+        "flavor": "Dein Pferd braucht Pflege. Auch wenn es aus Stahl ist.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-dankbarkeitsbrief",
+      "template": "board-quest",
+      "title": "Unerschickter Brief",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Brief an jemanden den du vermisst oder dem du noch was sagen wolltest.",
+        "flavor": "Manche Worte wiegen schwerer als Gold.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-traumtagebuch",
+      "template": "board-quest",
+      "title": "Traumfänger",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Morgens direkt aufschreiben wovon du geträumt hast.",
+        "flavor": "Träume sind Nachrichten die du dir selbst schickst.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-meditation-morgen",
+      "template": "board-quest",
+      "title": "Stille Wacht",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "10 Minuten Morgenmeditation. Nur du und die Stille.",
+        "flavor": "Die Stille sagt nichts. Der Raum um sie sagt alles.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-handyfreie-stunde",
+      "template": "board-quest",
+      "title": "Der leere Turm",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Eine Stunde komplett ohne Smartphone.",
+        "flavor": "Die stärkste Droge passt in deine Hosentasche. Leg sie weg.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-naturbeobachtung",
+      "template": "board-quest",
+      "title": "Windlauschen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "20 Minuten draußen: Natur beobachten. Keine Fotos.",
+        "flavor": "Die Welt hat sich Mühe gegeben. Schau hin.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-sternengucken",
+      "template": "board-quest",
+      "title": "Sternenblick",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Abends den Nachthimmel 10 Minuten ansehen. Ohne Handy.",
+        "flavor": "Man braucht kein Teleskop. Nur Dunkelheit und den Willen nach oben zu schauen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-kaltwasser",
+      "template": "board-quest",
+      "title": "Eisbad des Erwachens",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Dusche auf kalt drehen. 30 Sekunden Minimum.",
+        "flavor": "Kaltes Wasser sagt dir genau wie wach du bist. Antwort: sehr.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-barfuss",
+      "template": "board-quest",
+      "title": "Erdverbindung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "10 Minuten barfuß auf Gras, Erde oder Sand.",
+        "flavor": "Die Erde unter deinen Füßen ist das Ehrlichste was du je fühlen wirst.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-geduld-uebung",
+      "template": "board-quest",
+      "title": "Geduldsschmiede",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Bewusst Geduld üben: Nicht hupen, nicht drängeln, nicht fluchen.",
+        "flavor": "Geduld ist aktives Nicht-Ausflippen. Eine Kunstform.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-nein-ueben",
+      "template": "board-quest",
+      "title": "Das Schild",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Heute zu einer Sache bewusst Nein sagen die du sonst aus Pflicht zusagst.",
+        "flavor": "Verteidigung ist das Versprechen dass du noch da sein wirst.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-dokumente-scan",
+      "template": "board-quest",
+      "title": "Urkundenarchiv",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Wichtige Dokumente scannen und digital sicher abspeichern.",
+        "flavor": "Papier brennt. Daten auch, aber langsamer. Und man kann sie kopieren.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
     }
   ]
 }
