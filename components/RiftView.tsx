@@ -367,7 +367,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 disabled={actionLoading}
                 className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
                 style={{ background: `linear-gradient(135deg, ${activeRift.tierColor}, ${activeRift.tierColor}cc)`, color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-                title={actionLoading ? "Action in progress..." : undefined}
+                title={actionLoading ? "Action in progress..." : `Mark stage ${activeRift.currentStage} as complete — earns XP, Gold, and potential loot`}
               >
                 {actionLoading ? "..." : `Complete Stage ${activeRift.currentStage}`}
               </button>
