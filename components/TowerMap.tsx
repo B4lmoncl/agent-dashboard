@@ -28,6 +28,15 @@ const FLOOR_BG: Record<string, string> = {
   haupthalle: "linear-gradient(135deg, #1a0f08 0%, #111318 100%)",
 };
 
+// Skulduggery-style floor flavor text
+const FLOOR_FLAVOR: Record<string, string> = {
+  turmspitze: "Where ambition meets the stars.",
+  breakaway: "Every hero needs a place to not be one.",
+  charakterturm: "Your story, your rules, your gear.",
+  gewerbeviertel: "The sound of hammers never stops here.",
+  haupthalle: "Adventure begins at the door.",
+};
+
 export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavigate, onClose, notifications = {} }: TowerMapProps) {
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
@@ -129,7 +138,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                       )}
                     </div>
                     <p style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>
-                      {floor.subtitle}
+                      {floorLocked ? floor.subtitle : (FLOOR_FLAVOR[floor.id] || floor.subtitle)}
                       {!floorLocked && (() => {
                         const unlockedRooms = floor.rooms.filter(r => !r.minLevel || playerLevel >= r.minLevel).length;
                         return unlockedRooms < floor.rooms.length ? (
