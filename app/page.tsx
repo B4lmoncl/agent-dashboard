@@ -1682,6 +1682,11 @@ export default function Dashboard() {
                                 <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                               )}
                             </TipCustom>
+                            {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+                                {Math.ceil((6 * 3600 * 1000 - (Date.now() - lastPoolRefresh.getTime())) / 3600000)}h
+                              </span>
+                            )}
                           </button>
                         )}
                       </div>
