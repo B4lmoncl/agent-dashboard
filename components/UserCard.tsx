@@ -106,7 +106,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
             }}
           >
             <img
-              src="/images/portraits/hero-male.png"
+              src={`/images/portraits/hero-${user.avatarStyle || "male"}.png`}
               alt={user.name}
               className="w-full h-full object-cover"
               style={{ imageRendering: "auto" }}

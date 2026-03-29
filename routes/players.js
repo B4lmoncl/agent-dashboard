@@ -27,7 +27,12 @@ router.patch('/api/player/:name/profile', requireAuth, requireSelf('name'), (req
   const uid = req.params.name.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
-  const { relationshipStatus, partnerName, classId } = req.body;
+  const { relationshipStatus, partnerName, classId, avatarStyle } = req.body;
+  // Avatar style (male/female portrait)
+  if (avatarStyle !== undefined) {
+    const validStyles = ['male', 'female'];
+    if (validStyles.includes(avatarStyle)) u.avatarStyle = avatarStyle;
+  }
   const validStatuses = ['single', 'relationship', 'married', 'complicated', 'other'];
   if (relationshipStatus !== undefined) {
     if (!validStatuses.includes(relationshipStatus)) return res.status(400).json({ error: 'Invalid status' });
@@ -597,6 +602,7 @@ router.get('/api/player/:name/profile-data', requireAuth, requireSelf('name'), (
     equippedFrame: u.equippedFrame || null,
     relationshipStatus: u.relationshipStatus || 'single',
     partnerName: u.partnerName || null,
+    avatarStyle: u.avatarStyle || 'male',
   });
 });
 

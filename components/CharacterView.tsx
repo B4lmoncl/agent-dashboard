@@ -238,10 +238,11 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   const [partner, setPartner] = useState(initialPartnerName);
   const [saving, setSaving] = useState(false);
 
-  // Frame selection
+  // Frame selection + avatar style
   const [frames, setFrames] = useState<{ id: string; name: string; color: string; glow?: boolean; source?: string }[]>([]);
   const [equippedFrameId, setEquippedFrameId] = useState<string | null>(null);
   const [frameLoading, setFrameLoading] = useState<string | null>(null);
+  const [avatarStyle, setAvatarStyle] = useState<"male" | "female">("male");
 
   useEffect(() => {
     (async () => {
@@ -251,6 +252,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           const d = await r.json();
           setFrames(d.unlockedFrames || []);
           setEquippedFrameId(d.equippedFrame?.id || null);
+          setAvatarStyle(d.avatarStyle || "male");
         }
       } catch { /* ignore */ }
     })();
@@ -277,7 +279,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
       await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
-        body: JSON.stringify({ relationshipStatus: status, partnerName: partner.trim() || null }),
+        body: JSON.stringify({ relationshipStatus: status, partnerName: partner.trim() || null, avatarStyle }),
       });
       await onSaved();
       onClose();
@@ -294,6 +296,28 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
         <div>
           <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>Profile Settings</h2>
           <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Relationship status, frames, and other settings</p>
+        </div>
+
+        {/* Avatar Style */}
+        <div>
+          <label className="text-xs font-semibold block mb-1.5" style={{ color: "rgba(255,255,255,0.5)" }}>Avatar</label>
+          <div className="flex gap-2">
+            {(["male", "female"] as const).map(style => (
+              <button
+                key={style}
+                onClick={() => setAvatarStyle(style)}
+                className="flex-1 rounded-lg p-2 flex flex-col items-center gap-1"
+                style={{
+                  background: avatarStyle === style ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
+                  border: `2px solid ${avatarStyle === style ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.07)"}`,
+                  cursor: "pointer",
+                }}
+              >
+                <img src={`/images/portraits/hero-${style}.png`} alt={style} className="w-12 h-12 rounded-lg object-cover" style={{ imageRendering: "auto" }} />
+                <span className="text-xs capitalize" style={{ color: avatarStyle === style ? "#a78bfa" : "rgba(255,255,255,0.4)" }}>{style === "male" ? "Male" : "Female"}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="space-y-2">

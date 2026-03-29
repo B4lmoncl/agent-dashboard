@@ -973,7 +973,7 @@ export default function Dashboard() {
               {/* Portrait */}
               <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character">
                 <img
-                  src="/images/portraits/hero-male.png"
+                  src={`/images/portraits/hero-${loggedInUser.avatarStyle || "male"}.png`}
                   alt={playerName}
                   className="w-28 h-28 rounded-xl object-cover img-render-auto"
                   style={{ border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
