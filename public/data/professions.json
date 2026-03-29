@@ -787,7 +787,7 @@
       },
       "xp": 5,
       "description": "Schmilzt Eisenerz zu einem Barren.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-stahlbarren",
@@ -806,7 +806,7 @@
       },
       "xp": 10,
       "description": "Härtet Eisen mit Kristall zu Stahl.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-kristallbarren",
@@ -825,7 +825,7 @@
       },
       "xp": 15,
       "description": "Verschmelzt Kristall und Eisen.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schmied-verstaerkterstahl",
@@ -844,7 +844,7 @@
       },
       "xp": 18,
       "description": "Dreifach kristallverstärkter Stahl.",
-      "trainerCost": 97
+      "trainerCost": 243
     },
     {
       "id": "recipe-schmied-drachenstahl",
@@ -863,7 +863,7 @@
       },
       "xp": 22,
       "description": "Drachenschuppen verleihen dem Stahl Feuerresistenz.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-schmied-drachenkern",
@@ -882,7 +882,7 @@
       },
       "xp": 25,
       "description": "Ein Kern aus reinem Drachenfeuer.",
-      "trainerCost": 250
+      "trainerCost": 625
     },
     {
       "id": "recipe-schmied-aetherlegierung",
@@ -901,7 +901,7 @@
       },
       "xp": 30,
       "description": "Aether und Drache verschmelzen.",
-      "trainerCost": 400
+      "trainerCost": 1000
     },
     {
       "id": "recipe-schmied-aetherbarren",
@@ -920,7 +920,7 @@
       },
       "xp": 35,
       "description": "Reiner Aether in Barrenform.",
-      "trainerCost": 600
+      "trainerCost": 1500
     },
     {
       "id": "recipe-schmied-seelenlegierung",
@@ -939,7 +939,7 @@
       },
       "xp": 40,
       "description": "Seele trifft Aether. Das Ergebnis flüstert.",
-      "trainerCost": 800
+      "trainerCost": 2000
     },
     {
       "id": "recipe-schmied-seelenstahl",
@@ -958,7 +958,7 @@
       },
       "xp": 45,
       "description": "Das edelste Metall der Gilde.",
-      "trainerCost": 1100
+      "trainerCost": 2750
     },
     {
       "id": "recipe-schmied-eiserne-brustplatte",
@@ -975,7 +975,7 @@
       },
       "xp": 6,
       "description": "Schmiedet: Eiserne Brustplatte.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-geschlossener-eisenhelm",
@@ -992,7 +992,7 @@
       },
       "xp": 7,
       "description": "Schmiedet: Geschlossener Eisenhelm.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-eiserne-sturmhaube",
@@ -1009,7 +1009,7 @@
       },
       "xp": 7,
       "description": "Schmiedet: Eiserne Sturmhaube.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-eiserne-panzerhaube",
@@ -1153,7 +1153,7 @@
       },
       "xp": 12,
       "description": "Schmiedet: Stählerner Drachenhelm.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schmied-staehlerne-marschtreters",
@@ -1190,7 +1190,7 @@
       },
       "xp": 15,
       "description": "Schmiedet: Stählerne Sturmhaube.",
-      "trainerCost": 78
+      "trainerCost": 195
     },
     {
       "id": "recipe-schmied-kristall-beinschienen",
@@ -1397,7 +1397,7 @@
       },
       "xp": 20,
       "description": "Schmiedet: Drachenstahl-Stiefel.",
-      "trainerCost": 160
+      "trainerCost": 400
     },
     {
       "id": "recipe-schmied-drachenschuppen-kronenhelm",
@@ -1449,7 +1449,7 @@
       },
       "xp": 22,
       "description": "Schmiedet: Drachenschuppen-Drachenhelm.",
-      "trainerCost": 200
+      "trainerCost": 500
     },
     {
       "id": "recipe-schmied-drachenstahl-brustplatte",
@@ -1467,7 +1467,7 @@
       },
       "xp": 23,
       "description": "Schmiedet: Drachenstahl-Brustplatte.",
-      "trainerCost": 220
+      "trainerCost": 550
     },
     {
       "id": "recipe-schmied-drachenschuppen-plattenpanzer",
@@ -1673,7 +1673,7 @@
       },
       "xp": 30,
       "description": "Schmiedet: Aether-Kettenhemd.",
-      "trainerCost": 440
+      "trainerCost": 1100
     },
     {
       "id": "recipe-schmied-seelen-kettenruestung",
@@ -1762,7 +1762,7 @@
       },
       "xp": 34,
       "description": "Schmiedet: Aether-Brustplatte.",
-      "trainerCost": 560
+      "trainerCost": 1400
     },
     {
       "id": "recipe-schmied-aetherkern-sturmkappe",
@@ -1799,7 +1799,7 @@
       },
       "xp": 36,
       "description": "Schmiedet: Seelen-Schulterwacht.",
-      "trainerCost": 600
+      "trainerCost": 1500
     },
     {
       "id": "recipe-schmied-seelen-wanderstiefel",
@@ -1933,7 +1933,7 @@
       },
       "xp": 8,
       "description": "Stellt her: Grober Schärfstein.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-rauer-schaerfstein",
@@ -1974,7 +1974,7 @@
       },
       "xp": 18,
       "description": "Stellt her: Schwerer Schärfstein.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-schmied-dichter-schaerfstein",
@@ -2015,7 +2015,7 @@
       },
       "xp": 35,
       "description": "Stellt her: Elementarer Schärfstein.",
-      "trainerCost": 600
+      "trainerCost": 1500
     },
     {
       "id": "recipe-schmied-leichter-gewichtstein",
@@ -2034,7 +2034,7 @@
       },
       "xp": 8,
       "description": "Stellt her: Leichter Gewichtstein.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-mittlerer-gewichtstein",
@@ -2053,7 +2053,7 @@
       },
       "xp": 15,
       "description": "Stellt her: Mittlerer Gewichtstein.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schmied-schwerer-gewichtstein",
@@ -2114,7 +2114,7 @@
       },
       "xp": 10,
       "description": "Stellt her: Eiserne Schilddornen.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-schmied-kristall-schilddornen",
@@ -2134,7 +2134,7 @@
       },
       "xp": 22,
       "description": "Stellt her: Kristall-Schilddornen.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-schmied-aether-schilddornen",
@@ -2216,7 +2216,7 @@
       },
       "xp": 40,
       "description": "Stellt her: Aether-Panzerverstärkung.",
-      "trainerCost": 800
+      "trainerCost": 2000
     },
     {
       "id": "recipe-schmied-eiserner-streakschild",
@@ -2234,7 +2234,7 @@
       },
       "xp": 18,
       "description": "Stellt her: Eiserner Streakschild.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-schmied-seelen-streakschild",
@@ -2309,7 +2309,7 @@
       },
       "xp": 10,
       "description": "Klinge schärfen I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-2",
@@ -2327,7 +2327,7 @@
       },
       "xp": 15,
       "description": "Klinge schärfen II.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-3",
@@ -2404,7 +2404,7 @@
       },
       "xp": 10,
       "description": "Rüstung verstärken I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-2",
@@ -2422,7 +2422,7 @@
       },
       "xp": 18,
       "description": "Rüstung verstärken II.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-3",
@@ -2441,7 +2441,7 @@
       },
       "xp": 25,
       "description": "Rüstung verstärken III.",
-      "trainerCost": 233
+      "trainerCost": 583
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-4",
@@ -2591,7 +2591,7 @@
       },
       "xp": 5,
       "description": "Verarbeitet Leinenstoff zu einem Ballen.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-wollballen",
@@ -2609,7 +2609,7 @@
       },
       "xp": 12,
       "description": "Dichter Wollballen — warm und vielseitig.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-schneider-seidenballen",
@@ -2627,7 +2627,7 @@
       },
       "xp": 20,
       "description": "Mondschein-Seide, zu einem Ballen verwoben.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-schneider-magiestoffballen",
@@ -2645,7 +2645,7 @@
       },
       "xp": 28,
       "description": "Magiestoff-Ballen. Leuchtet dezent. Nicht fallen lassen.",
-      "trainerCost": 317
+      "trainerCost": 793
     },
     {
       "id": "recipe-schneider-runenstoffballen",
@@ -2663,7 +2663,7 @@
       },
       "xp": 40,
       "description": "Runenstoff — jeder Faden eine Geschichte.",
-      "trainerCost": 760
+      "trainerCost": 1900
     },
     {
       "id": "recipe-schneider-sternenlichtfarbe",
@@ -2682,7 +2682,7 @@
       },
       "xp": 22,
       "description": "Farbe aus kondensiertem Sternenlicht.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-schneider-arkanerfaden",
@@ -2701,7 +2701,7 @@
       },
       "xp": 30,
       "description": "Ein Faden aus arkaner Energie.",
-      "trainerCost": 400
+      "trainerCost": 1000
     },
     {
       "id": "recipe-schneider-runenfaden",
@@ -2720,7 +2720,7 @@
       },
       "xp": 42,
       "description": "Runen weben sich in den Faden. Von allein.",
-      "trainerCost": 800
+      "trainerCost": 2000
     },
     {
       "id": "recipe-schneider-leinenkappe",
@@ -2737,7 +2737,7 @@
       },
       "xp": 6,
       "description": "Webt: Leinenkappe.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-leinenhut",
@@ -2754,7 +2754,7 @@
       },
       "xp": 7,
       "description": "Webt: Leinenhut.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-leinensandalen",
@@ -2771,7 +2771,7 @@
       },
       "xp": 8,
       "description": "Webt: Leinensandalen.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-leinenrobe",
@@ -2896,7 +2896,7 @@
       },
       "xp": 12,
       "description": "Webt: Wollstiefel.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schneider-wollsandalen",
@@ -2932,7 +2932,7 @@
       },
       "xp": 14,
       "description": "Webt: Wollgewand.",
-      "trainerCost": 66
+      "trainerCost": 165
     },
     {
       "id": "recipe-schneider-wollmantel",
@@ -2950,7 +2950,7 @@
       },
       "xp": 15,
       "description": "Webt: Wollmantel.",
-      "trainerCost": 74
+      "trainerCost": 185
     },
     {
       "id": "recipe-schneider-wollhut",
@@ -3121,7 +3121,7 @@
       },
       "xp": 20,
       "description": "Webt: Mondschein-Kutte.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-schneider-mondschein-tiara",
@@ -3159,7 +3159,7 @@
       },
       "xp": 21,
       "description": "Webt: Mondschein-Treter.",
-      "trainerCost": 170
+      "trainerCost": 425
     },
     {
       "id": "recipe-schneider-seidenschuhe",
@@ -3178,7 +3178,7 @@
       },
       "xp": 21,
       "description": "Webt: Seidenschuhe.",
-      "trainerCost": 180
+      "trainerCost": 450
     },
     {
       "id": "recipe-schneider-seidenmantel",
@@ -3216,7 +3216,7 @@
       },
       "xp": 24,
       "description": "Webt: Seidensandalen.",
-      "trainerCost": 240
+      "trainerCost": 600
     },
     {
       "id": "recipe-schneider-seidenschleier",
@@ -3648,7 +3648,7 @@
       },
       "xp": 8,
       "description": "Stellt her: Einfacher Zauberfaden.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-wollener-zauberfaden",
@@ -3689,7 +3689,7 @@
       },
       "xp": 20,
       "description": "Stellt her: Seidener Zauberfaden.",
-      "trainerCost": 123
+      "trainerCost": 308
     },
     {
       "id": "recipe-schneider-arkaner-zauberfaden",
@@ -3750,7 +3750,7 @@
       },
       "xp": 10,
       "description": "Stellt her: Einfacher Glücksfaden.",
-      "trainerCost": 27
+      "trainerCost": 68
     },
     {
       "id": "recipe-schneider-seidener-gluecksfaden",
@@ -3770,7 +3770,7 @@
       },
       "xp": 22,
       "description": "Stellt her: Seidener Glücksfaden.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-schneider-arkaner-gluecksfaden",
@@ -3811,7 +3811,7 @@
       },
       "xp": 14,
       "description": "Stellt her: Konzentrationsfaden.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schneider-seidener-fokusfaden",
@@ -3850,7 +3850,7 @@
       },
       "xp": 38,
       "description": "Stellt her: Arkaner Konzentrationsfaden.",
-      "trainerCost": 680
+      "trainerCost": 1700
     },
     {
       "id": "recipe-schneider-charisma-faden",
@@ -3870,7 +3870,7 @@
       },
       "xp": 18,
       "description": "Stellt her: Bezaubernder Faden.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-schneider-seidener-charismafaden",
@@ -3908,7 +3908,7 @@
       },
       "xp": 15,
       "description": "Stellt her: Leinener Streakschutz.",
-      "trainerCost": 57
+      "trainerCost": 143
     },
     {
       "id": "recipe-schneider-arkaner-streakschutz",
@@ -3944,7 +3944,7 @@
       },
       "xp": 18,
       "description": "Stellt her: Wärmender Stoff.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-schneider-arkaner-waermestoff",
@@ -4022,7 +4022,7 @@
       },
       "xp": 10,
       "description": "Stoff veredeln I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-stoff-veredeln-2",
@@ -4040,7 +4040,7 @@
       },
       "xp": 15,
       "description": "Stoff veredeln II.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-schneider-stoff-veredeln-3",
@@ -4058,7 +4058,7 @@
       },
       "xp": 22,
       "description": "Stoff veredeln III.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-schneider-stoff-veredeln-4",
@@ -4115,7 +4115,7 @@
       },
       "xp": 10,
       "description": "Fokus weben I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-schneider-fokus-weben-2",
@@ -4153,7 +4153,7 @@
       },
       "xp": 25,
       "description": "Fokus weben III.",
-      "trainerCost": 233
+      "trainerCost": 583
     },
     {
       "id": "recipe-schneider-fokus-weben-4",
@@ -4306,7 +4306,7 @@
       },
       "xp": 5,
       "description": "Verarbeitet: Geheiltes Leichtleder.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-geheiltes-mittleres-leder",
@@ -4324,7 +4324,7 @@
       },
       "xp": 12,
       "description": "Verarbeitet: Geheiltes Mittleres Leder.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-leder-gehaertetes-schwerleder",
@@ -4342,7 +4342,7 @@
       },
       "xp": 20,
       "description": "Verarbeitet: Gehärtetes Schwerleder.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-leder-bestien-lederballen",
@@ -4360,7 +4360,7 @@
       },
       "xp": 28,
       "description": "Verarbeitet: Bestien-Lederballen.",
-      "trainerCost": 317
+      "trainerCost": 793
     },
     {
       "id": "recipe-leder-urzeitleder-ballen",
@@ -4378,7 +4378,7 @@
       },
       "xp": 40,
       "description": "Verarbeitet: Urzeitleder-Ballen.",
-      "trainerCost": 760
+      "trainerCost": 1900
     },
     {
       "id": "recipe-leder-klauenoel",
@@ -4397,7 +4397,7 @@
       },
       "xp": 14,
       "description": "Verarbeitet: Klauenöl.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-leder-salzgerbung",
@@ -4416,7 +4416,7 @@
       },
       "xp": 25,
       "description": "Verarbeitet: Salzgerbung.",
-      "trainerCost": 233
+      "trainerCost": 583
     },
     {
       "id": "recipe-leder-uraltes-gerbmittel",
@@ -4435,7 +4435,7 @@
       },
       "xp": 38,
       "description": "Verarbeitet: Uraltes Gerbmittel.",
-      "trainerCost": 680
+      "trainerCost": 1700
     },
     {
       "id": "recipe-leder-leichtleder-stiefel",
@@ -4452,7 +4452,7 @@
       },
       "xp": 6,
       "description": "Gerbt: Leichtleder-Stiefel.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-leichtleder-kappe",
@@ -4469,7 +4469,7 @@
       },
       "xp": 6,
       "description": "Gerbt: Leichtleder-Kappe.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-leichtleder-sandalen",
@@ -4486,7 +4486,7 @@
       },
       "xp": 7,
       "description": "Gerbt: Leichtleder-Sandalen.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-leichtleder-tunika",
@@ -4612,7 +4612,7 @@
       },
       "xp": 12,
       "description": "Gerbt: Jagd-Jacke.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-leder-jaeger-kappe",
@@ -4686,7 +4686,7 @@
       },
       "xp": 15,
       "description": "Gerbt: Mittelleder-Kapuze.",
-      "trainerCost": 78
+      "trainerCost": 195
     },
     {
       "id": "recipe-leder-wildnis-weste",
@@ -4704,7 +4704,7 @@
       },
       "xp": 15,
       "description": "Gerbt: Wildnis-Weste.",
-      "trainerCost": 82
+      "trainerCost": 205
     },
     {
       "id": "recipe-leder-mittelleder-treter",
@@ -4722,7 +4722,7 @@
       },
       "xp": 16,
       "description": "Gerbt: Mittelleder-Treter.",
-      "trainerCost": 86
+      "trainerCost": 215
     },
     {
       "id": "recipe-leder-jagd-schuhe",
@@ -4836,7 +4836,7 @@
       },
       "xp": 22,
       "description": "Gerbt: Bestien-Jacke.",
-      "trainerCost": 200
+      "trainerCost": 500
     },
     {
       "id": "recipe-leder-schwerleder-ruestung",
@@ -4874,7 +4874,7 @@
       },
       "xp": 23,
       "description": "Gerbt: Schwerleder-Harnisch.",
-      "trainerCost": 230
+      "trainerCost": 575
     },
     {
       "id": "recipe-leder-schwerleder-helm",
@@ -5069,7 +5069,7 @@
       },
       "xp": 30,
       "description": "Gerbt: Bestien-Treter.",
-      "trainerCost": 440
+      "trainerCost": 1100
     },
     {
       "id": "recipe-leder-urzeit-kappe",
@@ -5364,7 +5364,7 @@
       },
       "xp": 8,
       "description": "Stellt her: Einfaches Leder-Kit.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-mittleres-lederkit",
@@ -5405,7 +5405,7 @@
       },
       "xp": 20,
       "description": "Stellt her: Schweres Leder-Kit.",
-      "trainerCost": 123
+      "trainerCost": 308
     },
     {
       "id": "recipe-leder-bestien-lederkit",
@@ -5425,7 +5425,7 @@
       },
       "xp": 28,
       "description": "Stellt her: Bestien-Leder-Kit.",
-      "trainerCost": 317
+      "trainerCost": 793
     },
     {
       "id": "recipe-leder-urzeit-lederkit",
@@ -5465,7 +5465,7 @@
       },
       "xp": 10,
       "description": "Stellt her: Einfacher Glücksflicken.",
-      "trainerCost": 27
+      "trainerCost": 68
     },
     {
       "id": "recipe-leder-schwerer-gluecksflicken",
@@ -5485,7 +5485,7 @@
       },
       "xp": 22,
       "description": "Stellt her: Schwerer Glücksflicken.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-leder-bestien-gluecksflicken",
@@ -5525,7 +5525,7 @@
       },
       "xp": 12,
       "description": "Stellt her: Leichter Köcher.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-leder-schwerer-koecher",
@@ -5544,7 +5544,7 @@
       },
       "xp": 22,
       "description": "Stellt her: Schwerer Köcher.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-leder-bestien-koecher",
@@ -5582,7 +5582,7 @@
       },
       "xp": 8,
       "description": "Stellt her: Kleiner Goldbeutel.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-mittlerer-goldbeutel",
@@ -5601,7 +5601,7 @@
       },
       "xp": 18,
       "description": "Stellt her: Mittlerer Goldbeutel.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-leder-grosser-goldbeutel",
@@ -5660,7 +5660,7 @@
       },
       "xp": 15,
       "description": "Stellt her: Leder-Streakschutz.",
-      "trainerCost": 57
+      "trainerCost": 143
     },
     {
       "id": "recipe-leder-bestien-streakschutz",
@@ -5715,7 +5715,7 @@
       },
       "xp": 35,
       "description": "Stellt her: Urzeit-Wärmefell.",
-      "trainerCost": 520
+      "trainerCost": 1300
     },
     {
       "id": "recipe-leder-verstaerken-1",
@@ -5733,7 +5733,7 @@
       },
       "xp": 10,
       "description": "Leder verstärken I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-verstaerken-2",
@@ -5769,7 +5769,7 @@
       },
       "xp": 22,
       "description": "Leder verstärken III.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-leder-verstaerken-4",
@@ -5787,7 +5787,7 @@
       },
       "xp": 30,
       "description": "Leder verstärken IV.",
-      "trainerCost": 400
+      "trainerCost": 1000
     },
     {
       "id": "recipe-leder-verstaerken-5",
@@ -5825,7 +5825,7 @@
       },
       "xp": 10,
       "description": "Tempo einarbeiten I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-leder-tempo-2",
@@ -5901,7 +5901,7 @@
       },
       "xp": 12,
       "description": "Glück einarbeiten I.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-leder-glueck-2",
@@ -5976,7 +5976,7 @@
       },
       "xp": 25,
       "description": "Kraft einarbeiten II.",
-      "trainerCost": 233
+      "trainerCost": 583
     },
     {
       "id": "recipe-leder-kraft-3",
@@ -5995,7 +5995,7 @@
       },
       "xp": 42,
       "description": "Kraft einarbeiten III.",
-      "trainerCost": 800
+      "trainerCost": 2000
     },
     {
       "id": "recipe-alch-schwacher-trank-der-kraft",
@@ -6014,7 +6014,7 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Trank der Kraft.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-schwacher-trank-der-weisheit",
@@ -6033,7 +6033,7 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Trank der Weisheit.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-schwacher-trank-des-gluecks",
@@ -6052,7 +6052,7 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Trank des Glücks.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-schwacher-trank-der-ausdauer",
@@ -6071,7 +6071,7 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Trank der Ausdauer.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-schwacher-elixier-der-eile",
@@ -6090,7 +6090,7 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Elixier der Eile.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-geringer-trank-der-kraft",
@@ -6110,7 +6110,7 @@
       },
       "xp": 10,
       "description": "Braut: Geringer Trank der Kraft.",
-      "trainerCost": 27
+      "trainerCost": 68
     },
     {
       "id": "recipe-alch-geringer-trank-der-weisheit",
@@ -6130,7 +6130,7 @@
       },
       "xp": 10,
       "description": "Braut: Geringer Trank der Weisheit.",
-      "trainerCost": 29
+      "trainerCost": 73
     },
     {
       "id": "recipe-alch-geringer-trank-des-gluecks",
@@ -6150,7 +6150,7 @@
       },
       "xp": 10,
       "description": "Braut: Geringer Trank des Glücks.",
-      "trainerCost": 31
+      "trainerCost": 78
     },
     {
       "id": "recipe-alch-geringer-trank-der-ausdauer",
@@ -6170,7 +6170,7 @@
       },
       "xp": 10,
       "description": "Braut: Geringer Trank der Ausdauer.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-alch-geringer-elixier-der-eile",
@@ -6190,7 +6190,7 @@
       },
       "xp": 10,
       "description": "Braut: Geringer Elixier der Eile.",
-      "trainerCost": 35
+      "trainerCost": 88
     },
     {
       "id": "recipe-alch-normaler-trank-der-kraft",
@@ -6231,7 +6231,7 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Trank der Weisheit.",
-      "trainerCost": 61
+      "trainerCost": 153
     },
     {
       "id": "recipe-alch-normaler-trank-des-gluecks",
@@ -6251,7 +6251,7 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Trank des Glücks.",
-      "trainerCost": 65
+      "trainerCost": 163
     },
     {
       "id": "recipe-alch-normaler-trank-der-ausdauer",
@@ -6271,7 +6271,7 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Trank der Ausdauer.",
-      "trainerCost": 69
+      "trainerCost": 173
     },
     {
       "id": "recipe-alch-normaler-elixier-der-eile",
@@ -6311,7 +6311,7 @@
       },
       "xp": 17,
       "description": "Ein Gebräu, das den Geist schärft wie eine frisch geschliffene Klinge — wer davon trinkt, sieht die Welt mit unangenehmer Deutlichkeit.",
-      "trainerCost": 82
+      "trainerCost": 205
     },
     {
       "id": "recipe-alch-tinktur-der-beharrlichkeit",
@@ -6331,7 +6331,7 @@
       },
       "xp": 17,
       "description": "Beharrlichkeit in flüssiger Form — schmeckt nach bitteren Kräutern und dem leisen Versprechen, dass morgen einfacher wird als heute.",
-      "trainerCost": 89
+      "trainerCost": 223
     },
     {
       "id": "recipe-alch-essenz-der-vitalitaet",
@@ -6816,7 +6816,7 @@
       },
       "xp": 15,
       "description": "Transmutation: Eisen → Kristall.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-alch-transmute-kristall-drache",
@@ -6834,7 +6834,7 @@
       },
       "xp": 22,
       "description": "Transmutation: Kristall → Drache.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-alch-transmute-drache-aether",
@@ -6892,7 +6892,7 @@
       },
       "xp": 12,
       "description": "Transmutation: Leinen → Wolle.",
-      "trainerCost": 40
+      "trainerCost": 100
     },
     {
       "id": "recipe-alch-transmute-wolle-seide",
@@ -6910,7 +6910,7 @@
       },
       "xp": 18,
       "description": "Transmutation: Wolle → Seide.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-alch-transmute-seide-magie",
@@ -6947,7 +6947,7 @@
       },
       "xp": 12,
       "description": "Transmutation: Leicht → Mittel Leder.",
-      "trainerCost": 40
+      "trainerCost": 100
     },
     {
       "id": "recipe-alch-transmute-mittel-schwer",
@@ -6965,7 +6965,7 @@
       },
       "xp": 18,
       "description": "Transmutation: Mittel → Schwer Leder.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-alch-transmute-schwer-dick",
@@ -7042,7 +7042,7 @@
       },
       "xp": 8,
       "description": "Braut: Schwaches Elixier des Fokus.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-schwaches-elixier-der-vitalitaet",
@@ -7059,7 +7059,7 @@
       },
       "xp": 8,
       "description": "Braut: Schwaches Elixier der Vitalität.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-schwaches-elixier-des-charisma",
@@ -7076,7 +7076,7 @@
       },
       "xp": 8,
       "description": "Braut: Schwaches Elixier des Charisma.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-elixier-des-fokus",
@@ -7110,7 +7110,7 @@
       },
       "xp": 14,
       "description": "Braut: Elixier der Vitalität.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-alch-elixier-des-charisma",
@@ -7199,7 +7199,7 @@
       },
       "xp": 28,
       "description": "Braut: Überragendes Elixier des Fokus.",
-      "trainerCost": 350
+      "trainerCost": 875
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-der-vitalitaet",
@@ -7216,7 +7216,7 @@
       },
       "xp": 28,
       "description": "Braut: Überragendes Elixier der Vitalität.",
-      "trainerCost": 366
+      "trainerCost": 915
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-des-charisma",
@@ -7250,7 +7250,7 @@
       },
       "xp": 40,
       "description": "Braut: Legendäres Elixier des Fokus.",
-      "trainerCost": 760
+      "trainerCost": 1900
     },
     {
       "id": "recipe-alch-legendaeres-elixier-der-vitalitaet",
@@ -7305,7 +7305,7 @@
       },
       "xp": 8,
       "description": "Braut: Schwaches Gegengift.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-alch-gegengift-2",
@@ -7365,7 +7365,7 @@
       },
       "xp": 12,
       "description": "Braut: Schwacher Schmiedekatalysator.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-alch-schmiedekatalysator-2",
@@ -7420,7 +7420,7 @@
       },
       "xp": 15,
       "description": "Braut: Alchemistischer Streakschutz.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-alch-streakschutz-2",
@@ -7480,7 +7480,7 @@
       },
       "xp": 25,
       "description": "Braut: Schattenöl.",
-      "trainerCost": 250
+      "trainerCost": 625
     },
     {
       "id": "recipe-alch-wildes-oel",
@@ -7539,7 +7539,7 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Stärke.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-weisheit",
@@ -7558,7 +7558,7 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Weisheit.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-gluecks",
@@ -7577,7 +7577,7 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit des Glücks.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-ausdauer",
@@ -7596,7 +7596,7 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Ausdauer.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-eile",
@@ -7615,7 +7615,7 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Eile.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-fokus",
@@ -7634,7 +7634,7 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit des Fokus.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-staerke",
@@ -7654,7 +7654,7 @@
       },
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Stärke.",
-      "trainerCost": 27
+      "trainerCost": 68
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-weisheit",
@@ -7674,7 +7674,7 @@
       },
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Weisheit.",
-      "trainerCost": 29
+      "trainerCost": 73
     },
     {
       "id": "recipe-koch-deftigemahlzeit-des-gluecks",
@@ -7694,7 +7694,7 @@
       },
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit des Glücks.",
-      "trainerCost": 31
+      "trainerCost": 78
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-ausdauer",
@@ -7714,7 +7714,7 @@
       },
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Ausdauer.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-eile",
@@ -7734,7 +7734,7 @@
       },
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Eile.",
-      "trainerCost": 35
+      "trainerCost": 88
     },
     {
       "id": "recipe-koch-deftigemahlzeit-des-fokus",
@@ -7754,7 +7754,7 @@
       },
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit des Fokus.",
-      "trainerCost": 37
+      "trainerCost": 93
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-staerke",
@@ -7774,7 +7774,7 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Stärke.",
-      "trainerCost": 70
+      "trainerCost": 175
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-weisheit",
@@ -7794,7 +7794,7 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Weisheit.",
-      "trainerCost": 74
+      "trainerCost": 185
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-gluecks",
@@ -7814,7 +7814,7 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit des Glücks.",
-      "trainerCost": 78
+      "trainerCost": 195
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-ausdauer",
@@ -7834,7 +7834,7 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Ausdauer.",
-      "trainerCost": 82
+      "trainerCost": 205
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-eile",
@@ -7854,7 +7854,7 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Eile.",
-      "trainerCost": 86
+      "trainerCost": 215
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-fokus",
@@ -7874,7 +7874,7 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit des Fokus.",
-      "trainerCost": 90
+      "trainerCost": 225
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-staerke",
@@ -8145,7 +8145,7 @@
       },
       "xp": 6,
       "description": "Braut: Kräutertee.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-feuerwurz-tee",
@@ -8186,7 +8186,7 @@
       },
       "xp": 20,
       "description": "Braut: Sternen-Tee.",
-      "trainerCost": 150
+      "trainerCost": 375
     },
     {
       "id": "recipe-koch-honigwein",
@@ -8206,7 +8206,7 @@
       },
       "xp": 8,
       "description": "Braut: Honigwein.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-gewuerzwein",
@@ -8226,7 +8226,7 @@
       },
       "xp": 16,
       "description": "Braut: Gewürzwein.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-koch-sternen-wein",
@@ -8246,7 +8246,7 @@
       },
       "xp": 28,
       "description": "Braut: Sternenwein.",
-      "trainerCost": 317
+      "trainerCost": 793
     },
     {
       "id": "recipe-koch-einfacher-met",
@@ -8286,7 +8286,7 @@
       },
       "xp": 20,
       "description": "Braut: Starker Met.",
-      "trainerCost": 123
+      "trainerCost": 308
     },
     {
       "id": "recipe-koch-drachenmet",
@@ -8512,7 +8512,7 @@
       },
       "xp": 5,
       "description": "Kocht: Studentenfutter.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-trockenobst",
@@ -8529,7 +8529,7 @@
       },
       "xp": 8,
       "description": "Kocht: Trockenobst.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-energieriegel",
@@ -8547,7 +8547,7 @@
       },
       "xp": 14,
       "description": "Kocht: Energieriegel.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-koch-reiseproviant",
@@ -8565,7 +8565,7 @@
       },
       "xp": 18,
       "description": "Kocht: Reiseproviant.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-koch-sternenfrucht-happen",
@@ -8583,7 +8583,7 @@
       },
       "xp": 25,
       "description": "Kocht: Sternenfrucht-Happen.",
-      "trainerCost": 250
+      "trainerCost": 625
     },
     {
       "id": "recipe-koch-streakschutz-keks",
@@ -8602,7 +8602,7 @@
       },
       "xp": 16,
       "description": "Kocht: Streakschutz-Keks.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-koch-meister-streakkeks",
@@ -8641,7 +8641,7 @@
       },
       "xp": 22,
       "description": "Kocht: Glückskeks.",
-      "trainerCost": 183
+      "trainerCost": 458
     },
     {
       "id": "recipe-koch-gewuerzmischung",
@@ -8659,7 +8659,7 @@
       },
       "xp": 8,
       "description": "Bereitet zu: Gewürzmischung.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-koch-kraeuterbutter",
@@ -8678,7 +8678,7 @@
       },
       "xp": 12,
       "description": "Bereitet zu: Kräuterbutter.",
-      "trainerCost": 40
+      "trainerCost": 100
     },
     {
       "id": "recipe-koch-scharfe-marinade",
@@ -8697,7 +8697,7 @@
       },
       "xp": 16,
       "description": "Bereitet zu: Scharfe Marinade.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-koch-sternen-essenz",
@@ -8716,7 +8716,7 @@
       },
       "xp": 24,
       "description": "Bereitet zu: Sternen-Essenz.",
-      "trainerCost": 233
+      "trainerCost": 583
     },
     {
       "id": "recipe-koch-phoenix-gewuerz",
@@ -8735,7 +8735,7 @@
       },
       "xp": 38,
       "description": "Bereitet zu: Phoenix-Gewürz.",
-      "trainerCost": 600
+      "trainerCost": 1500
     },
     {
       "id": "recipe-koch-mondstaub-salz",
@@ -8754,7 +8754,7 @@
       },
       "xp": 30,
       "description": "Bereitet zu: Mondstaub-Salz.",
-      "trainerCost": 383
+      "trainerCost": 958
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-kraft",
@@ -8773,7 +8773,7 @@
       },
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Kraft.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-weisheit",
@@ -8792,7 +8792,7 @@
       },
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Weisheit.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-ausdauer",
@@ -8811,7 +8811,7 @@
       },
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Ausdauer.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-verz-schwache-verzauberung-des-gluecks",
@@ -8830,7 +8830,7 @@
       },
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung des Glücks.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-verz-verzauberung-der-kraft",
@@ -8850,7 +8850,7 @@
       },
       "xp": 10,
       "description": "Verzaubert: Verzauberung der Kraft.",
-      "trainerCost": 27
+      "trainerCost": 68
     },
     {
       "id": "recipe-verz-verzauberung-der-weisheit",
@@ -8870,7 +8870,7 @@
       },
       "xp": 10,
       "description": "Verzaubert: Verzauberung der Weisheit.",
-      "trainerCost": 30
+      "trainerCost": 75
     },
     {
       "id": "recipe-verz-verzauberung-der-ausdauer",
@@ -8890,7 +8890,7 @@
       },
       "xp": 10,
       "description": "Verzaubert: Verzauberung der Ausdauer.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-verz-verzauberung-des-gluecks",
@@ -8910,7 +8910,7 @@
       },
       "xp": 10,
       "description": "Verzaubert: Verzauberung des Glücks.",
-      "trainerCost": 37
+      "trainerCost": 93
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-kraft",
@@ -8930,7 +8930,7 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Kraft.",
-      "trainerCost": 70
+      "trainerCost": 175
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-weisheit",
@@ -8950,7 +8950,7 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Weisheit.",
-      "trainerCost": 77
+      "trainerCost": 193
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-ausdauer",
@@ -8970,7 +8970,7 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Ausdauer.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-verz-starke-verzauberung-des-gluecks",
@@ -8990,7 +8990,7 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung des Glücks.",
-      "trainerCost": 90
+      "trainerCost": 225
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-der-kraft",
@@ -9261,7 +9261,7 @@
       },
       "xp": 18,
       "description": "Verzaubert permanent: +1 kraft auf Waffe.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-verz-perm-armor-1",
@@ -9280,7 +9280,7 @@
       },
       "xp": 18,
       "description": "Verzaubert permanent: +1 ausdauer auf Rüstung.",
-      "trainerCost": 90
+      "trainerCost": 225
     },
     {
       "id": "recipe-verz-perm-boots-1",
@@ -9338,7 +9338,7 @@
       },
       "xp": 18,
       "description": "Verzaubert permanent: +1 vitalitaet auf Schild.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-verz-perm-amulet-1",
@@ -9504,7 +9504,7 @@
       },
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Kraft.",
-      "trainerCost": 33
+      "trainerCost": 83
     },
     {
       "id": "recipe-verz-scroll-weisheit-3",
@@ -9524,7 +9524,7 @@
       },
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Weisheit.",
-      "trainerCost": 35
+      "trainerCost": 88
     },
     {
       "id": "recipe-verz-scroll-ausdauer-3",
@@ -9544,7 +9544,7 @@
       },
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Ausdauer.",
-      "trainerCost": 37
+      "trainerCost": 93
     },
     {
       "id": "recipe-verz-scroll-glueck-3",
@@ -9585,7 +9585,7 @@
       },
       "xp": 12,
       "description": "Schreibt: Schriftrolle des Fokus.",
-      "trainerCost": 41
+      "trainerCost": 103
     },
     {
       "id": "recipe-verz-scroll-tempo-3",
@@ -9625,7 +9625,7 @@
       },
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Kraft.",
-      "trainerCost": 233
+      "trainerCost": 583
     },
     {
       "id": "recipe-verz-scroll-weisheit-6",
@@ -9666,7 +9666,7 @@
       },
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Ausdauer.",
-      "trainerCost": 253
+      "trainerCost": 633
     },
     {
       "id": "recipe-verz-scroll-glueck-6",
@@ -9686,7 +9686,7 @@
       },
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle des Glücks.",
-      "trainerCost": 263
+      "trainerCost": 658
     },
     {
       "id": "recipe-verz-scroll-fokus-6",
@@ -9706,7 +9706,7 @@
       },
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle des Fokus.",
-      "trainerCost": 273
+      "trainerCost": 683
     },
     {
       "id": "recipe-verz-scroll-tempo-6",
@@ -9726,7 +9726,7 @@
       },
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Eile.",
-      "trainerCost": 283
+      "trainerCost": 708
     },
     {
       "id": "recipe-verz-schutzglyphe-1",
@@ -9745,7 +9745,7 @@
       },
       "xp": 8,
       "description": "Erschafft: Schutzglyphe I.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-verz-schutzglyphe-2",
@@ -9765,7 +9765,7 @@
       },
       "xp": 18,
       "description": "Erschafft: Schutzglyphe II.",
-      "trainerCost": 110
+      "trainerCost": 275
     },
     {
       "id": "recipe-verz-schutzglyphe-3",
@@ -9825,7 +9825,7 @@
       },
       "xp": 22,
       "description": "Erschafft: Glyphe der Eile II.",
-      "trainerCost": 183
+      "trainerCost": 458
     },
     {
       "id": "recipe-verz-tempoward-3",
@@ -9845,7 +9845,7 @@
       },
       "xp": 38,
       "description": "Erschafft: Glyphe der Eile III.",
-      "trainerCost": 680
+      "trainerCost": 1700
     },
     {
       "id": "recipe-verz-machtward-1",
@@ -9864,7 +9864,7 @@
       },
       "xp": 14,
       "description": "Erschafft: Glyphe der Macht I.",
-      "trainerCost": 57
+      "trainerCost": 143
     },
     {
       "id": "recipe-verz-machtward-2",
@@ -9883,7 +9883,7 @@
       },
       "xp": 28,
       "description": "Erschafft: Glyphe der Macht II.",
-      "trainerCost": 283
+      "trainerCost": 708
     },
     {
       "id": "recipe-verz-streakward",
@@ -9901,7 +9901,7 @@
       },
       "xp": 18,
       "description": "Erschafft: Arkaner Streakschutz.",
-      "trainerCost": 97
+      "trainerCost": 243
     },
     {
       "id": "recipe-verz-meister-streakward",
@@ -9919,7 +9919,7 @@
       },
       "xp": 38,
       "description": "Erschafft: Meister-Streakschutz.",
-      "trainerCost": 600
+      "trainerCost": 1500
     },
     {
       "id": "recipe-verz-brillantes-oel",
@@ -9960,7 +9960,7 @@
       },
       "xp": 14,
       "description": "Braut: Wildes Öl.",
-      "trainerCost": 47
+      "trainerCost": 118
     },
     {
       "id": "recipe-verz-gluecksoel",
@@ -9980,7 +9980,7 @@
       },
       "xp": 18,
       "description": "Braut: Glücksöl.",
-      "trainerCost": 83
+      "trainerCost": 208
     },
     {
       "id": "recipe-verz-grosses-brillantes-oel",
@@ -10042,7 +10042,7 @@
       },
       "xp": 32,
       "description": "Braut: Großes Glücksöl.",
-      "trainerCost": 440
+      "trainerCost": 1100
     },
     {
       "id": "recipe-verz-aetheroel",
@@ -10106,7 +10106,7 @@
       },
       "xp": 12,
       "description": "Schreibt eine handelbare Verzauberung auf Pergament.",
-      "trainerCost": 50
+      "trainerCost": 125
     },
     {
       "id": "recipe-verz-vellum-mittel",
@@ -10150,7 +10150,7 @@
       },
       "xp": 35,
       "description": "Schreibt eine mächtige handelbare Verzauberung auf Pergament.",
-      "trainerCost": 400
+      "trainerCost": 1000
     },
     {
       "id": "recipe-waffenschmied-eiserner-rundschild",
@@ -10167,7 +10167,7 @@
       },
       "xp": 5,
       "description": "Schmiedet: Eiserner Rundschild.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-eisernes-kurzschwert",
@@ -10184,7 +10184,7 @@
       },
       "xp": 5,
       "description": "Schmiedet: Eisernes Kurzschwert.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-eiserner-buckler",
@@ -10201,7 +10201,7 @@
       },
       "xp": 6,
       "description": "Schmiedet: Eiserner Buckler.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-einfacher-zauberstab",
@@ -10218,7 +10218,7 @@
       },
       "xp": 6,
       "description": "Schmiedet: Einfacher Zauberstab.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-eisenstab",
@@ -10235,7 +10235,7 @@
       },
       "xp": 6,
       "description": "Schmiedet: Eisenstab.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-eiserne-streitaxt",
@@ -10252,7 +10252,7 @@
       },
       "xp": 7,
       "description": "Schmiedet: Eiserne Streitaxt.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-rostiger-dolch",
@@ -10269,7 +10269,7 @@
       },
       "xp": 7,
       "description": "Schmiedet: Rostiger Dolch.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-grober-kriegshammer",
@@ -10286,7 +10286,7 @@
       },
       "xp": 8,
       "description": "Schmiedet: Grober Kriegshammer.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-waffenschmied-einfacher-fokus",
@@ -10582,7 +10582,7 @@
       },
       "xp": 13,
       "description": "Schmiedet: Stählernes Langschwert.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-waffenschmied-staehlerner-zauberstab",
@@ -10600,7 +10600,7 @@
       },
       "xp": 14,
       "description": "Schmiedet: Stählerner Zauberstab.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-waffenschmied-kristall-prunkschild",
@@ -10636,7 +10636,7 @@
       },
       "xp": 15,
       "description": "Schmiedet: Kristall-Kriegsbeil.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-waffenschmied-kristall-fokus",
@@ -10673,7 +10673,7 @@
       },
       "xp": 15,
       "description": "Schmiedet: Stählerner Turmschild.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-waffenschmied-staehlerner-schutzschild",
@@ -10691,7 +10691,7 @@
       },
       "xp": 16,
       "description": "Schmiedet: Stählerner Schutzschild.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-waffenschmied-staehlernes-foliant",
@@ -11013,7 +11013,7 @@
       },
       "xp": 20,
       "description": "Schmiedet: Drachenstahl-Breitschwert.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-hammer",
@@ -11031,7 +11031,7 @@
       },
       "xp": 21,
       "description": "Schmiedet: Drachenschuppen-Hammer.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-kriegsbeil",
@@ -11049,7 +11049,7 @@
       },
       "xp": 21,
       "description": "Schmiedet: Drachenzahn-Kriegsbeil.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-wappenschild",
@@ -11067,7 +11067,7 @@
       },
       "xp": 22,
       "description": "Schmiedet: Drachenstahl-Wappenschild.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-tartsche",
@@ -11085,7 +11085,7 @@
       },
       "xp": 22,
       "description": "Schmiedet: Drachenzahn-Tartsche.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-schattenklinge",
@@ -11103,7 +11103,7 @@
       },
       "xp": 23,
       "description": "Schmiedet: Drachenzahn-Schattenklinge.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-ritualstab",
@@ -11121,7 +11121,7 @@
       },
       "xp": 23,
       "description": "Schmiedet: Drachenstahl-Ritualstab.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-meisterschwert",
@@ -11460,7 +11460,7 @@
       },
       "xp": 28,
       "description": "Schmiedet: Seelen-Kodex.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-waffenschmied-seelen-fokuskristall",
@@ -11647,7 +11647,7 @@
       },
       "xp": 36,
       "description": "Schmiedet: Aetherkern-Zauberstab.",
-      "trainerCost": 800
+      "trainerCost": 2000
     },
     {
       "id": "recipe-waffenschmied-seelen-aegis",
@@ -12047,7 +12047,7 @@
         "templateId": "craft-schmied-kristall-waechterhelm"
       },
       "xp": 16,
-      "trainerCost": 109,
+      "trainerCost": 273,
       "description": "Stellt her: Kristall-Wächterhelm."
     },
     {
@@ -12101,7 +12101,7 @@
         "templateId": "craft-schmied-geschmiedete-schutzhaube"
       },
       "xp": 8,
-      "trainerCost": 44,
+      "trainerCost": 110,
       "description": "Stellt her: Geschmiedete Schutzhaube."
     },
     {
@@ -12137,7 +12137,7 @@
         "templateId": "craft-schmied-drachenstahl-plattenpanzer"
       },
       "xp": 24,
-      "trainerCost": 353,
+      "trainerCost": 883,
       "description": "Stellt her: Drachenstahl-Plattenpanzer."
     },
     {
@@ -12173,7 +12173,7 @@
         "templateId": "craft-schmied-eiserner-kettenpanzer"
       },
       "xp": 8,
-      "trainerCost": 24,
+      "trainerCost": 60,
       "description": "Stellt her: Eiserner Kettenpanzer."
     },
     {
@@ -12191,7 +12191,7 @@
         "templateId": "craft-schmied-kristall-kettenpanzer"
       },
       "xp": 16,
-      "trainerCost": 186,
+      "trainerCost": 465,
       "description": "Stellt her: Kristall-Kettenpanzer."
     },
     {
@@ -12228,7 +12228,7 @@
         "templateId": "craft-schmied-aetherkern-marschtritt"
       },
       "xp": 35,
-      "trainerCost": 995,
+      "trainerCost": 2488,
       "description": "Stellt her: Aetherkern-Marschtritt."
     },
     {
@@ -12264,7 +12264,7 @@
         "templateId": "craft-schmied-staehlerne-treter"
       },
       "xp": 16,
-      "trainerCost": 87,
+      "trainerCost": 218,
       "description": "Stellt her: Stählerne Treter."
     },
     {
@@ -12319,7 +12319,7 @@
         "templateId": "craft-schmied-eiserne-marschtreters"
       },
       "xp": 8,
-      "trainerCost": 25,
+      "trainerCost": 63,
       "description": "Stellt her: Eiserne Marschtreters."
     },
     {
@@ -12337,7 +12337,7 @@
         "templateId": "craft-schmied-kristall-marschtreters"
       },
       "xp": 16,
-      "trainerCost": 108,
+      "trainerCost": 270,
       "description": "Stellt her: Kristall-Marschtreters."
     },
     {
@@ -12372,7 +12372,7 @@
         "templateId": "craft-schneider-leinenschleier-des-gelehrten"
       },
       "xp": 8,
-      "trainerCost": 31,
+      "trainerCost": 78,
       "description": "Stellt her: Leinenschleier des Gelehrten."
     },
     {
@@ -12390,7 +12390,7 @@
         "templateId": "craft-schneider-wollkappe-des-forschers"
       },
       "xp": 16,
-      "trainerCost": 91,
+      "trainerCost": 228,
       "description": "Stellt her: Wollkappe des Forschers."
     },
     {
@@ -12444,7 +12444,7 @@
         "templateId": "craft-schneider-einfache-leinenkappe"
       },
       "xp": 8,
-      "trainerCost": 18,
+      "trainerCost": 45,
       "description": "Stellt her: Einfache Leinenkappe."
     },
     {
@@ -12480,7 +12480,7 @@
         "templateId": "craft-schneider-mondschein-gelehrtenkappe"
       },
       "xp": 24,
-      "trainerCost": 244,
+      "trainerCost": 610,
       "description": "Stellt her: Mondschein-Gelehrtenkappe."
     },
     {
@@ -12516,7 +12516,7 @@
         "templateId": "craft-schneider-leinengewand-des-wanderers"
       },
       "xp": 8,
-      "trainerCost": 16,
+      "trainerCost": 40,
       "description": "Stellt her: Leinengewand des Wanderers."
     },
     {
@@ -12534,7 +12534,7 @@
         "templateId": "craft-schneider-wollrobe-des-wanderers"
       },
       "xp": 16,
-      "trainerCost": 179,
+      "trainerCost": 448,
       "description": "Stellt her: Wollrobe des Wanderers."
     },
     {
@@ -12552,7 +12552,7 @@
         "templateId": "craft-schneider-seidenrobe-der-erleuchtung"
       },
       "xp": 24,
-      "trainerCost": 226,
+      "trainerCost": 565,
       "description": "Stellt her: Seidenrobe der Erleuchtung."
     },
     {
@@ -12587,7 +12587,7 @@
         "templateId": "craft-schneider-leinenpantoffeln-des-lesers"
       },
       "xp": 8,
-      "trainerCost": 47,
+      "trainerCost": 118,
       "description": "Stellt her: Leinenpantoffeln des Lesers."
     },
     {
@@ -12624,7 +12624,7 @@
         "templateId": "craft-schneider-seidenpantoffeln-des-meisters"
       },
       "xp": 24,
-      "trainerCost": 229,
+      "trainerCost": 573,
       "description": "Stellt her: Seidenpantoffeln des Meisters."
     },
     {
@@ -12660,7 +12660,7 @@
         "templateId": "craft-schneider-einfache-leinenschuhe"
       },
       "xp": 8,
-      "trainerCost": 22,
+      "trainerCost": 55,
       "description": "Stellt her: Einfache Leinenschuhe."
     },
     {
@@ -12715,7 +12715,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-jaegerkappe"
       },
       "xp": 8,
-      "trainerCost": 40,
+      "trainerCost": 100,
       "description": "Stellt her: Leichtleder-Jägerkappe."
     },
     {
@@ -12733,7 +12733,7 @@
         "templateId": "craft-lederverarbeiter-mittlere-leder-jaegerkappe"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Mittlere Leder-Jägerkappe."
     },
     {
@@ -12751,7 +12751,7 @@
         "templateId": "craft-lederverarbeiter-schwerleder-jaegerkrone"
       },
       "xp": 24,
-      "trainerCost": 266,
+      "trainerCost": 665,
       "description": "Stellt her: Schwerleder-Jägerkrone."
     },
     {
@@ -12786,7 +12786,7 @@
         "templateId": "craft-lederverarbeiter-einfache-lederkappe"
       },
       "xp": 8,
-      "trainerCost": 54,
+      "trainerCost": 135,
       "description": "Stellt her: Einfache Lederkappe."
     },
     {
@@ -12804,7 +12804,7 @@
         "templateId": "craft-lederverarbeiter-gehaertete-lederkappe"
       },
       "xp": 16,
-      "trainerCost": 88,
+      "trainerCost": 220,
       "description": "Stellt her: Gehärtete Lederkappe."
     },
     {
@@ -12858,7 +12858,7 @@
         "templateId": "craft-lederverarbeiter-einfacher-lederpanzer"
       },
       "xp": 8,
-      "trainerCost": 18,
+      "trainerCost": 45,
       "description": "Stellt her: Einfacher Lederpanzer."
     },
     {
@@ -12930,7 +12930,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-wams"
       },
       "xp": 8,
-      "trainerCost": 49,
+      "trainerCost": 123,
       "description": "Stellt her: Leichtleder-Wams."
     },
     {
@@ -12948,7 +12948,7 @@
         "templateId": "craft-lederverarbeiter-mittleres-leder-wams"
       },
       "xp": 16,
-      "trainerCost": 183,
+      "trainerCost": 458,
       "description": "Stellt her: Mittleres Leder-Wams."
     },
     {
@@ -13002,7 +13002,7 @@
         "templateId": "craft-lederverarbeiter-einfache-lederschuhe"
       },
       "xp": 8,
-      "trainerCost": 18,
+      "trainerCost": 45,
       "description": "Stellt her: Einfache Lederschuhe."
     },
     {
@@ -13020,7 +13020,7 @@
         "templateId": "craft-lederverarbeiter-gehaertete-lederschuhe"
       },
       "xp": 16,
-      "trainerCost": 113,
+      "trainerCost": 283,
       "description": "Stellt her: Gehärtete Lederschuhe."
     },
     {
@@ -13074,7 +13074,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-stiefel"
       },
       "xp": 8,
-      "trainerCost": 26,
+      "trainerCost": 65,
       "description": "Stellt her: Leichtleder-Stiefel."
     },
     {
@@ -13129,7 +13129,7 @@
       },
       "xp": 5,
       "description": "Fasst: Eiserner Ring.",
-      "trainerCost": 8
+      "trainerCost": 20
     },
     {
       "id": "recipe-juwelier-schlichter-kupferring",
@@ -13146,7 +13146,7 @@
       },
       "xp": 6,
       "description": "Fasst: Schlichter Kupferring.",
-      "trainerCost": 10
+      "trainerCost": 25
     },
     {
       "id": "recipe-juwelier-grober-siegelring",
@@ -13163,7 +13163,7 @@
       },
       "xp": 6,
       "description": "Fasst: Grober Siegelring.",
-      "trainerCost": 14
+      "trainerCost": 35
     },
     {
       "id": "recipe-juwelier-eisenband",
@@ -13180,7 +13180,7 @@
       },
       "xp": 7,
       "description": "Fasst: Eisenband.",
-      "trainerCost": 16
+      "trainerCost": 40
     },
     {
       "id": "recipe-juwelier-einfacher-steinring",
@@ -13197,7 +13197,7 @@
       },
       "xp": 7,
       "description": "Fasst: Einfacher Steinring.",
-      "trainerCost": 18
+      "trainerCost": 45
     },
     {
       "id": "recipe-juwelier-ring-des-lehrlings",
@@ -13214,7 +13214,7 @@
       },
       "xp": 8,
       "description": "Fasst: Ring des Lehrlings.",
-      "trainerCost": 22
+      "trainerCost": 55
     },
     {
       "id": "recipe-juwelier-kupferreif",
@@ -13361,7 +13361,7 @@
       },
       "xp": 12,
       "description": "Fasst: Kristallring.",
-      "trainerCost": 40
+      "trainerCost": 100
     },
     {
       "id": "recipe-juwelier-staehlerner-siegelring",
@@ -13379,7 +13379,7 @@
       },
       "xp": 13,
       "description": "Fasst: Stählerner Siegelring.",
-      "trainerCost": 48
+      "trainerCost": 120
     },
     {
       "id": "recipe-juwelier-kristallband",
@@ -13471,7 +13471,7 @@
       },
       "xp": 16,
       "description": "Fasst: Mondsteinring.",
-      "trainerCost": 88
+      "trainerCost": 220
     },
     {
       "id": "recipe-juwelier-ring-der-erkenntnis",
@@ -13735,7 +13735,7 @@
       },
       "xp": 23,
       "description": "Fasst: Mondschein-Siegelring.",
-      "trainerCost": 220
+      "trainerCost": 550
     },
     {
       "id": "recipe-juwelier-ring-der-sterne",
@@ -13981,7 +13981,7 @@
       },
       "xp": 28,
       "description": "Fasst: Aetherring.",
-      "trainerCost": 320
+      "trainerCost": 800
     },
     {
       "id": "recipe-juwelier-ring-der-leere",
@@ -14055,7 +14055,7 @@
       },
       "xp": 32,
       "description": "Fasst: Sternenring.",
-      "trainerCost": 496
+      "trainerCost": 1240
     },
     {
       "id": "recipe-juwelier-aetherkern-band",
@@ -14130,7 +14130,7 @@
       },
       "xp": 37,
       "description": "Fasst: Arkaner Siegelring.",
-      "trainerCost": 672
+      "trainerCost": 1680
     },
     {
       "id": "recipe-juwelier-seelen-gelehrtenring",
@@ -14376,7 +14376,7 @@
       },
       "xp": 13,
       "description": "Schleift: Gesplitterter Rubin.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-juwelier-gem-ruby-2",
@@ -14472,7 +14472,7 @@
       },
       "xp": 13,
       "description": "Schleift: Gesplitterter Saphir.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-juwelier-gem-sapphire-2",
@@ -14490,7 +14490,7 @@
       },
       "xp": 21,
       "description": "Schleift: Fehlerhafter Saphir.",
-      "trainerCost": 200
+      "trainerCost": 500
     },
     {
       "id": "recipe-juwelier-gem-sapphire-3",
@@ -14509,7 +14509,7 @@
       },
       "xp": 29,
       "description": "Schleift: Geschliffener Saphir.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-juwelier-gem-sapphire-4",
@@ -14567,7 +14567,7 @@
       },
       "xp": 13,
       "description": "Schleift: Gesplitterter Smaragd.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-juwelier-gem-emerald-2",
@@ -14605,7 +14605,7 @@
       },
       "xp": 29,
       "description": "Schleift: Geschliffener Smaragd.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-juwelier-gem-emerald-4",
@@ -14663,7 +14663,7 @@
       },
       "xp": 13,
       "description": "Schleift: Gesplitterter Topas.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-juwelier-gem-topaz-2",
@@ -14681,7 +14681,7 @@
       },
       "xp": 21,
       "description": "Schleift: Fehlerhafter Topas.",
-      "trainerCost": 200
+      "trainerCost": 500
     },
     {
       "id": "recipe-juwelier-gem-topaz-3",
@@ -14700,7 +14700,7 @@
       },
       "xp": 29,
       "description": "Schleift: Geschliffener Topas.",
-      "trainerCost": 300
+      "trainerCost": 750
     },
     {
       "id": "recipe-juwelier-gem-topaz-4",
@@ -14758,7 +14758,7 @@
       },
       "xp": 13,
       "description": "Schleift: Gesplitterter Amethyst.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-juwelier-gem-amethyst-2",
@@ -14776,7 +14776,7 @@
       },
       "xp": 21,
       "description": "Schleift: Fehlerhafter Amethyst.",
-      "trainerCost": 200
+      "trainerCost": 500
     },
     {
       "id": "recipe-juwelier-gem-amethyst-3",
@@ -14854,7 +14854,7 @@
       },
       "xp": 13,
       "description": "Schleift: Gesplitterter Diamant.",
-      "trainerCost": 100
+      "trainerCost": 250
     },
     {
       "id": "recipe-juwelier-gem-diamond-2",
@@ -14872,7 +14872,7 @@
       },
       "xp": 21,
       "description": "Schleift: Fehlerhafter Diamant.",
-      "trainerCost": 200
+      "trainerCost": 500
     },
     {
       "id": "recipe-juwelier-gem-diamond-3",
@@ -14963,7 +14963,7 @@
         "toTier": 3
       },
       "xp": 30,
-      "trainerCost": 300,
+      "trainerCost": 750,
       "description": "Verschmelzt 3 Gems der Stufe 2 zu einem Gem der Stufe 3."
     },
     {
@@ -15014,7 +15014,7 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "trainerCost": 15,
+      "trainerCost": 38,
       "description": "Stellt her: Einfaches Poliertuch."
     },
     {
@@ -15033,7 +15033,7 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Feines Poliertuch."
     },
     {
@@ -15072,7 +15072,7 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "trainerCost": 40,
+      "trainerCost": 100,
       "description": "Stellt her: Ring der Anmut."
     },
     {
@@ -15111,7 +15111,7 @@
         "amount": 1
       },
       "xp": 20,
-      "trainerCost": 120,
+      "trainerCost": 300,
       "description": "Stellt her: Juwelen-Streakschutz."
     },
     {
@@ -15147,7 +15147,7 @@
         "amount": 10
       },
       "xp": 14,
-      "trainerCost": 50,
+      "trainerCost": 125,
       "description": "Stellt her: Glühender Edelstein."
     },
     {
@@ -15164,7 +15164,7 @@
         "amount": 20
       },
       "xp": 35,
-      "trainerCost": 450,
+      "trainerCost": 1125,
       "description": "Stellt her: Aether-Edelstein."
     },
     {
@@ -15182,7 +15182,7 @@
         "amount": 1
       },
       "xp": 10,
-      "trainerCost": 30,
+      "trainerCost": 75,
       "description": "Ring segnen I."
     },
     {
@@ -15256,7 +15256,7 @@
         "amount": 2
       },
       "xp": 22,
-      "trainerCost": 180,
+      "trainerCost": 450,
       "description": "Amulett verzieren II."
     },
     {
@@ -15294,7 +15294,7 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "trainerCost": 12,
+      "trainerCost": 30,
       "description": "Eisernes Rüstungskit."
     },
     {
@@ -15314,7 +15314,7 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "trainerCost": 64,
+      "trainerCost": 160,
       "description": "Kristall-Rüstungskit."
     },
     {
@@ -15331,7 +15331,7 @@
         "amount": 5
       },
       "xp": 10,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Eiserner Temperbarren."
     },
     {
@@ -15349,7 +15349,7 @@
         "amount": 15
       },
       "xp": 22,
-      "trainerCost": 120,
+      "trainerCost": 300,
       "description": "Kristall-Temperbarren."
     },
     {
@@ -15367,7 +15367,7 @@
         "amount": 1
       },
       "xp": 12,
-      "trainerCost": 32,
+      "trainerCost": 80,
       "description": "Platte härten I."
     },
     {
@@ -15423,7 +15423,7 @@
         "amount": 1
       },
       "xp": 10,
-      "trainerCost": 24,
+      "trainerCost": 60,
       "description": "Rüstung tempern I."
     },
     {
@@ -15481,7 +15481,7 @@
         "amount": 1
       },
       "xp": 15,
-      "trainerCost": 48,
+      "trainerCost": 120,
       "description": "Fokus einarbeiten I."
     },
     {
@@ -15535,7 +15535,7 @@
         "templateId": "craft-schmied-eisern-kappe-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Eisern Kappe II."
     },
     {
@@ -15605,7 +15605,7 @@
         "templateId": "craft-schmied-eisern-mantel-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Eisern Mantel II."
     },
     {
@@ -15622,7 +15622,7 @@
         "templateId": "craft-schmied-staehlern-stiefel-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Stählern Stiefel II."
     },
     {
@@ -15639,7 +15639,7 @@
         "templateId": "craft-schmied-drachen-helm-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Drachen Helm II."
     },
     {
@@ -15674,7 +15674,7 @@
         "templateId": "craft-schmied-eisern-treter-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Eisern Treter II."
     },
     {
@@ -15708,7 +15708,7 @@
         "templateId": "craft-schmied-drachen-panzer-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Drachen Panzer II."
     },
     {
@@ -15743,7 +15743,7 @@
         "templateId": "craft-schmied-eisern-schleier-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Eisern Schleier III."
     },
     {
@@ -15794,7 +15794,7 @@
         "templateId": "craft-schmied-aether-kappe-iii"
       },
       "xp": 32,
-      "trainerCost": 600,
+      "trainerCost": 1500,
       "description": "Stellt her: Aether Kappe III."
     },
     {
@@ -15811,7 +15811,7 @@
         "templateId": "craft-schmied-eisern-robe-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Eisern Robe III."
     },
     {
@@ -15828,7 +15828,7 @@
         "templateId": "craft-schmied-staehlern-marschtritt-iii"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Stählern Marschtritt III."
     },
     {
@@ -15863,7 +15863,7 @@
         "templateId": "craft-schmied-aether-mantel-iii"
       },
       "xp": 32,
-      "trainerCost": 600,
+      "trainerCost": 1500,
       "description": "Stellt her: Aether Mantel III."
     },
     {
@@ -15880,7 +15880,7 @@
         "templateId": "craft-schmied-eisern-stiefel-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Eisern Stiefel III."
     },
     {
@@ -15897,7 +15897,7 @@
         "templateId": "craft-schneider-leinen-kappe-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leinen Kappe II."
     },
     {
@@ -15931,7 +15931,7 @@
         "templateId": "craft-schneider-seiden-marschtritt-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Seiden Marschtritt II."
     },
     {
@@ -15948,7 +15948,7 @@
         "templateId": "craft-schneider-arkan-haube-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
+      "trainerCost": 1500,
       "description": "Stellt her: Arkan Haube II."
     },
     {
@@ -15965,7 +15965,7 @@
         "templateId": "craft-schneider-leinen-mantel-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leinen Mantel II."
     },
     {
@@ -16036,7 +16036,7 @@
         "templateId": "craft-schneider-leinen-treter-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leinen Treter II."
     },
     {
@@ -16071,7 +16071,7 @@
         "templateId": "craft-schneider-seiden-panzer-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Seiden Panzer II."
     },
     {
@@ -16088,7 +16088,7 @@
         "templateId": "craft-schneider-arkan-schuhe-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
+      "trainerCost": 1500,
       "description": "Stellt her: Arkan Schuhe II."
     },
     {
@@ -16105,7 +16105,7 @@
         "templateId": "craft-schneider-leinen-schleier-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leinen Schleier III."
     },
     {
@@ -16122,7 +16122,7 @@
         "templateId": "craft-schneider-woll-wams-iii"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Woll Wams III."
     },
     {
@@ -16139,7 +16139,7 @@
         "templateId": "craft-schneider-seiden-sandalen-iii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Seiden Sandalen III."
     },
     {
@@ -16192,7 +16192,7 @@
         "templateId": "craft-schneider-woll-marschtritt-iii"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Woll Marschtritt III."
     },
     {
@@ -16261,7 +16261,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-kappe-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leichtleder Kappe II."
     },
     {
@@ -16278,7 +16278,7 @@
         "templateId": "craft-lederverarbeiter-mittelleder-robe-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Mittelleder Robe II."
     },
     {
@@ -16313,7 +16313,7 @@
         "templateId": "craft-lederverarbeiter-bestien-haube-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
+      "trainerCost": 1500,
       "description": "Stellt her: Bestien Haube II."
     },
     {
@@ -16330,7 +16330,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-mantel-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leichtleder Mantel II."
     },
     {
@@ -16400,7 +16400,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-treter-ii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leichtleder Treter II."
     },
     {
@@ -16417,7 +16417,7 @@
         "templateId": "craft-lederverarbeiter-mittelleder-visier-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
+      "trainerCost": 200,
       "description": "Stellt her: Mittelleder Visier II."
     },
     {
@@ -16503,7 +16503,7 @@
         "templateId": "craft-lederverarbeiter-schwerleder-sandalen-iii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Schwerleder Sandalen III."
     },
     {
@@ -16538,7 +16538,7 @@
         "templateId": "craft-lederverarbeiter-leichtleder-robe-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
+      "trainerCost": 50,
       "description": "Stellt her: Leichtleder Robe III."
     },
     {
@@ -16572,7 +16572,7 @@
         "templateId": "craft-lederverarbeiter-schwerleder-haube-iii"
       },
       "xp": 24,
-      "trainerCost": 250,
+      "trainerCost": 625,
       "description": "Stellt her: Schwerleder Haube III."
     },
     {
@@ -16589,7 +16589,7 @@
         "templateId": "craft-lederverarbeiter-bestien-mantel-iii"
       },
       "xp": 32,
-      "trainerCost": 600,
+      "trainerCost": 1500,
       "description": "Stellt her: Bestien Mantel III."
     },
     {
@@ -16843,7 +16843,7 @@
       "name": "Stahlbarren schmelzen",
       "profession": "schmied",
       "source": "trainer",
-      "trainerCost": 50,
+      "trainerCost": 125,
       "reqSkill": 60,
       "materials": {
         "eisenbarren": 2,
@@ -16862,7 +16862,7 @@
       "name": "Kristallbarren schmelzen",
       "profession": "schmied",
       "source": "trainer",
-      "trainerCost": 200,
+      "trainerCost": 500,
       "reqSkill": 130,
       "materials": {
         "kristallsplitter": 3,
@@ -16881,7 +16881,7 @@
       "name": "Verstärkten Stahl schmieden",
       "profession": "schmied",
       "source": "trainer",
-      "trainerCost": 500,
+      "trainerCost": 1250,
       "reqSkill": 200,
       "materials": {
         "stahlbarren": 3,
@@ -16918,7 +16918,7 @@
       "name": "Wollballen weben",
       "profession": "schneider",
       "source": "trainer",
-      "trainerCost": 50,
+      "trainerCost": 125,
       "reqSkill": 60,
       "materials": {
         "wollstoff": 3
@@ -16936,7 +16936,7 @@
       "name": "Seidenballen weben",
       "profession": "schneider",
       "source": "trainer",
-      "trainerCost": 200,
+      "trainerCost": 500,
       "reqSkill": 130,
       "materials": {
         "seidenstoff": 3
@@ -16973,7 +16973,7 @@
       "name": "Mittleres Leder gerben",
       "profession": "lederverarbeiter",
       "source": "trainer",
-      "trainerCost": 50,
+      "trainerCost": 125,
       "reqSkill": 60,
       "materials": {
         "mittleresleder": 3,
@@ -17011,7 +17011,7 @@
       "name": "Kräuterbutter herstellen",
       "profession": "koch",
       "source": "trainer",
-      "trainerCost": 50,
+      "trainerCost": 125,
       "reqSkill": 60,
       "materials": {
         "kraeuterbuendel": 2,
