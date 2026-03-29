@@ -81,13 +81,20 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
             boxShadow: "0 0 4px rgba(129,140,248,0.1)",
           }} />
           {/* Tower spire decoration */}
-          <div className="flex justify-center pb-2">
+          <div className="flex flex-col items-center pb-3">
             <div style={{
               width: 0, height: 0,
-              borderLeft: "30px solid transparent", borderRight: "30px solid transparent",
-              borderBottom: "16px solid rgba(251,191,36,0.12)",
-              filter: "drop-shadow(0 0 8px rgba(251,191,36,0.1))",
+              borderLeft: "20px solid transparent", borderRight: "20px solid transparent",
+              borderBottom: "12px solid rgba(251,191,36,0.2)",
+              filter: "drop-shadow(0 0 6px rgba(251,191,36,0.15))",
             }} />
+            <div style={{
+              width: 0, height: 0,
+              borderLeft: "35px solid transparent", borderRight: "35px solid transparent",
+              borderBottom: "10px solid rgba(251,191,36,0.1)",
+              marginTop: -2,
+            }} />
+            <div style={{ width: 60, height: 1, background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.2), transparent)", marginTop: 2 }} />
           </div>
 
           {FLOORS.map((floor, fi) => {
@@ -215,10 +222,11 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
           })}
 
           {/* Tower base decoration */}
-          <div className="flex justify-center pt-2">
-            <div style={{ width: 120, height: 3, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)", borderRadius: 2 }} />
+          <div className="flex flex-col items-center pt-2 space-y-1">
+            <div style={{ width: 140, height: 2, background: "linear-gradient(90deg, transparent, rgba(249,115,22,0.12), transparent)" }} />
+            <div style={{ width: 180, height: 3, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)", borderRadius: 2 }} />
           </div>
-          <p className="text-center text-xs italic pt-1" style={{ color: "rgba(255,255,255,0.1)", fontSize: 10 }}>
+          <p className="text-center text-xs italic pt-2 pb-1" style={{ color: "rgba(255,255,255,0.1)", fontSize: 10 }}>
             Der Turm erinnert sich an jeden, der seine Hallen betritt.
           </p>
         </div>
