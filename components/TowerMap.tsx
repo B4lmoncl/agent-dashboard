@@ -140,7 +140,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                 </div>
 
                 {/* Rooms */}
-                <div className="flex flex-wrap gap-1.5 px-4 pb-3">
+                <div className="relative flex flex-wrap gap-1.5 px-4 pb-3">
                   {floor.rooms.map(room => {
                     const roomLocked = floorLocked || !!(room.minLevel && playerLevel < room.minLevel);
                     const isActive = activeRoom === room.key;
@@ -150,7 +150,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         onClick={() => { if (!roomLocked) { onNavigate(room.key); onClose(); } }}
                         disabled={roomLocked}
                         title={roomLocked ? `Requires Level ${room.minLevel || floor.minLevel}` : room.label}
-                        className="text-xs px-2.5 py-1.5 rounded-lg transition-all"
+                        className="text-xs px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5"
                         style={{
                           background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.035)",
                           color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.45)",
@@ -160,7 +160,8 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                           boxShadow: isActive ? `0 0 8px ${floor.color}15` : "none",
                         }}
                       >
-                        {isActive && <span style={{ marginRight: 4, fontSize: 8 }}>◆</span>}
+                        {room.iconSrc && <img src={room.iconSrc} alt="" width={14} height={14} style={{ imageRendering: "auto", opacity: roomLocked ? 0.3 : 0.7 }} onError={e => { e.currentTarget.style.display = "none"; }} />}
+                        {isActive && !room.iconSrc && <span style={{ fontSize: 8 }}>◆</span>}
                         {room.label}
                       </button>
                     );
