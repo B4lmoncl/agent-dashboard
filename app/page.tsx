@@ -89,11 +89,15 @@ function getProfRank(level: number) {
   if (level >= 1) return PROF_RANKS[1];  // Apprentice
   return PROF_RANKS[0];                  // Novice
 }
-const PROF_META: Record<string, { name: string; icon: string; color: string }> = {
-  schmied: { name: "Blacksmith", icon: "/images/icons/prof-schmied.png", color: "#f59e0b" },
-  alchemist: { name: "Alchemist", icon: "/images/icons/prof-alchemist.png", color: "#22c55e" },
-  verzauberer: { name: "Enchanter", icon: "/images/icons/prof-verzauberer.png", color: "#a78bfa" },
-  koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
+const PROF_META: Record<string, { name: string; icon: string; npcPortrait: string; color: string }> = {
+  schmied: { name: "Blacksmith", icon: "/images/icons/prof-schmied.png", npcPortrait: "/images/npcs/grimvar-schmied.png", color: "#f59e0b" },
+  schneider: { name: "Tailor", icon: "/images/icons/prof-schneider.png", npcPortrait: "/images/npcs/selina-schneider.png", color: "#c084fc" },
+  lederverarbeiter: { name: "Leatherworker", icon: "/images/icons/prof-lederverarbeiter.png", npcPortrait: "/images/npcs/roderic-lederverarbeiter.png", color: "#b45309" },
+  waffenschmied: { name: "Weaponsmith", icon: "/images/icons/prof-waffenschmied.png", npcPortrait: "/images/npcs/varn-waffenschmied.png", color: "#dc2626" },
+  juwelier: { name: "Jeweler", icon: "/images/icons/prof-juwelier.png", npcPortrait: "/images/npcs/mirael-juwelier.png", color: "#ec4899" },
+  alchemist: { name: "Alchemist", icon: "/images/icons/prof-alchemist.png", npcPortrait: "/images/npcs/ysolde-alchemist.png", color: "#22c55e" },
+  koch: { name: "Cook", icon: "/images/icons/prof-koch.png", npcPortrait: "/images/npcs/bruna-koch.png", color: "#e87b35" },
+  verzauberer: { name: "Enchanter", icon: "/images/icons/prof-verzauberer.png", npcPortrait: "/images/npcs/eldric-verzauberer.png", color: "#a78bfa" },
 };
 const PLAYER_QUEST_TYPES: string[] = ["personal", "learning", "fitness", "social", "relationship-coop"];
 
@@ -1174,7 +1178,7 @@ export default function Dashboard() {
                         return (
                           <div key={pid} className="rounded-xl px-3 py-2.5" style={{ background: `${meta?.color ?? "#888"}08`, border: `1px solid ${meta?.color ?? "#888"}25` }}>
                             <div className="flex items-center gap-2.5">
-                              <img src={meta?.icon ?? ""} alt="" width={28} height={28} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                              <img src={meta?.npcPortrait ?? meta?.icon ?? ""} alt="" width={48} height={48} className="img-render-auto rounded-lg" style={{ border: `1px solid ${meta?.color ?? "#888"}30` }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-bold" style={{ color: meta?.color ?? "#888" }}>{meta?.name ?? pid}</span>
@@ -1227,8 +1231,8 @@ export default function Dashboard() {
                           return (
                             <div key={m.id} className="rounded-lg px-2.5 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
                               <div className="flex items-center gap-2">
-                                {m.icon ? <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement)?.style.removeProperty("display"); }} /> : null}
-                                <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: rarColor, display: m.icon ? "none" : "block" }} />
+                                {m.icon ? <img src={m.icon} alt="" width={36} height={36} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement)?.style.removeProperty("display"); }} /> : null}
+                                <span className="w-4 h-4 rounded-full flex-shrink-0" style={{ background: rarColor, display: m.icon ? "none" : "block" }} />
                                 <div className="flex-1 min-w-0">
                                   <span className="text-xs truncate block" style={{ color: rarColor }}>{m.name}</span>
                                 </div>
