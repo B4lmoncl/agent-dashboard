@@ -767,11 +767,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (catProfs.length === 0) return null;
         return (
           <div key={cat.label} className="mb-4">
-            <div className="flex items-center gap-2 mb-2 px-1">
-              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>{cat.label}</span>
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.1)" }}>{cat.desc}</span>
-              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+            <div className="flex items-center gap-3 mb-3 px-1">
+              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
+              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{cat.desc}</span>
+              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {catProfs.map(prof => {
@@ -2579,7 +2579,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       )}
       {/* ─── Confirm Profession Modal ─────────────────────────────────── */}
       {confirmProf && createPortal(
-        <div className="modal-backdrop" onClick={() => setConfirmProf(null)} style={{ zIndex: 150 }}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => setConfirmProf(null)}>
           <div
             className="rounded-2xl p-6 w-full max-w-md space-y-4"
             onClick={e => e.stopPropagation()}
