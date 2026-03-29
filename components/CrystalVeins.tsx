@@ -52,61 +52,64 @@ function generateVeinNetwork(w: number, h: number, seed: number): Vein[] {
   const veins: Vein[] = [];
 
   // Main veins: 3-5 large veins crossing the screen diagonally
-  const mainCount = 3 + Math.floor(rng() * 3);
+  // More main veins (5-8) with wider thickness range for variety
+  const mainCount = 5 + Math.floor(rng() * 4);
   for (let i = 0; i < mainCount; i++) {
-    // Start from edges
-    const edge = Math.floor(rng() * 4); // 0=left, 1=right, 2=top, 3=bottom
+    // Start from all edges, distributed
+    const edge = Math.floor(rng() * 4);
     let sx: number, sy: number, angle: number;
-    if (edge === 0) { sx = 0; sy = rng() * h; angle = -0.3 + rng() * 0.6; }
-    else if (edge === 1) { sx = w; sy = rng() * h; angle = Math.PI - 0.3 + rng() * 0.6; }
-    else if (edge === 2) { sx = rng() * w; sy = 0; angle = Math.PI / 2 - 0.3 + rng() * 0.6; }
-    else { sx = rng() * w; sy = h; angle = -Math.PI / 2 - 0.3 + rng() * 0.6; }
+    if (edge === 0) { sx = -5; sy = rng() * h; angle = -0.4 + rng() * 0.8; }
+    else if (edge === 1) { sx = w + 5; sy = rng() * h; angle = Math.PI - 0.4 + rng() * 0.8; }
+    else if (edge === 2) { sx = rng() * w; sy = -5; angle = Math.PI / 2 - 0.4 + rng() * 0.8; }
+    else { sx = rng() * w; sy = h + 5; angle = -Math.PI / 2 - 0.4 + rng() * 0.8; }
 
-    const length = Math.max(w, h) * (0.5 + rng() * 0.6);
-    const points = generateVein(sx, sy, angle, length, rng, 25 + rng() * 15);
+    const length = Math.max(w, h) * (0.4 + rng() * 0.7);
+    const points = generateVein(sx, sy, angle, length, rng, 18 + rng() * 14);
+
+    // Wide thickness variation: some veins thin (0.8), some thick (3.5)
+    const mainWidth = i < 2 ? 2.5 + rng() * 1.5 : 0.8 + rng() * 2;
 
     veins.push({
       points,
-      width: 1.5 + rng() * 1.5,
-      opacity: 0.15 + rng() * 0.15,
-      speed: 0.8 + rng() * 0.4,
+      width: mainWidth,
+      opacity: mainWidth > 2 ? 0.18 + rng() * 0.12 : 0.1 + rng() * 0.12,
+      speed: 0.6 + rng() * 0.6,
       phase: rng() * Math.PI * 2,
     });
 
-    // Branch veins from main vein points
-    const branchCount = 2 + Math.floor(rng() * 4);
+    // More branches (3-6) for denser network
+    const branchCount = 3 + Math.floor(rng() * 4);
     for (let b = 0; b < branchCount; b++) {
       const branchIdx = Math.floor(rng() * (points.length - 2)) + 1;
       const bp = points[branchIdx];
-      // Branch angle deviates from parent
       const parentAngle = Math.atan2(
         points[branchIdx + 1]?.y - bp.y || 0,
         points[branchIdx + 1]?.x - bp.x || 1,
       );
-      const branchAngle = parentAngle + (rng() > 0.5 ? 1 : -1) * (0.4 + rng() * 0.8);
-      const branchLen = length * (0.15 + rng() * 0.25);
-      const branchPoints = generateVein(bp.x, bp.y, branchAngle, branchLen, rng, 15 + rng() * 10);
+      const branchAngle = parentAngle + (rng() > 0.5 ? 1 : -1) * (0.3 + rng() * 1.0);
+      const branchLen = length * (0.12 + rng() * 0.3);
+      const branchPoints = generateVein(bp.x, bp.y, branchAngle, branchLen, rng, 12 + rng() * 10);
 
       veins.push({
         points: branchPoints,
-        width: 0.8 + rng() * 0.8,
-        opacity: 0.08 + rng() * 0.12,
-        speed: 1 + rng() * 0.5,
+        width: mainWidth * (0.3 + rng() * 0.4),
+        opacity: 0.06 + rng() * 0.1,
+        speed: 0.8 + rng() * 0.6,
         phase: rng() * Math.PI * 2,
       });
 
-      // Sub-branches (smaller tendrils)
-      if (rng() > 0.4 && branchPoints.length > 3) {
+      // More sub-branches (70% chance instead of 60%)
+      if (rng() > 0.3 && branchPoints.length > 3) {
         const subIdx = Math.floor(rng() * (branchPoints.length - 2)) + 1;
         const sp = branchPoints[subIdx];
-        const subAngle = branchAngle + (rng() - 0.5) * 1.2;
-        const subLen = branchLen * (0.2 + rng() * 0.3);
-        const subPoints = generateVein(sp.x, sp.y, subAngle, subLen, rng, 10 + rng() * 8);
+        const subAngle = branchAngle + (rng() - 0.5) * 1.4;
+        const subLen = branchLen * (0.15 + rng() * 0.35);
+        const subPoints = generateVein(sp.x, sp.y, subAngle, subLen, rng, 8 + rng() * 8);
         veins.push({
           points: subPoints,
-          width: 0.5 + rng() * 0.5,
-          opacity: 0.05 + rng() * 0.08,
-          speed: 1.2 + rng() * 0.6,
+          width: mainWidth * (0.15 + rng() * 0.2),
+          opacity: 0.04 + rng() * 0.06,
+          speed: 1 + rng() * 0.8,
           phase: rng() * Math.PI * 2,
         });
       }
@@ -220,12 +223,19 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     animRef.current = requestAnimationFrame(draw);
 
     // Observe parent size changes (content loading, view switches)
-    const ro = new ResizeObserver(resize);
+    const ro = new ResizeObserver(() => {
+      // Debounce resize to let DOM settle after view switches
+      requestAnimationFrame(resize);
+    });
     ro.observe(parent!);
+
+    // Also re-check after a short delay (catches view transitions where scrollHeight is initially 0)
+    const fallbackTimer = setTimeout(resize, 300);
 
     return () => {
       cancelAnimationFrame(animRef.current);
       ro.disconnect();
+      clearTimeout(fallbackTimer);
     };
   }, [draw]);
 
