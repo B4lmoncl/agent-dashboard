@@ -907,7 +907,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* NPC card — clickable to open modal */}
             <button
-              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); } }}
+              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); setRecipeSlotFilter("all"); setRecipeSearch(""); } }}
               disabled={locked}
               title={locked ? `Requires Player Level ${prof.unlockCondition?.value || "?"}` : `Open ${prof.npcName}'s workshop`}
               className="w-full p-4 pt-2 text-left"
