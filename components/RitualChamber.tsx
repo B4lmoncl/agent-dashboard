@@ -89,9 +89,12 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
     } catch { /* ignore */ }
   };
 
+  const [habitFlash, setHabitFlash] = useState<{ id: string; dir: "up" | "down" } | null>(null);
   const scoreHabit = async (habitId: string, direction: "up" | "down") => {
     if (!reviewApiKey || !playerName || habitScoring) return;
     setHabitScoring(habitId);
+    setHabitFlash({ id: habitId, dir: direction });
+    setTimeout(() => setHabitFlash(null), 800);
     try {
       const r = await fetch(`/api/habits/${habitId}/score`, {
         method: "POST",
@@ -400,7 +403,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold truncate" style={{ color: "rgba(255,255,255,0.6)" }}>{h.title}</p>
                       </div>
-                      <span className="text-sm font-mono font-bold" style={{ color, minWidth: 24, textAlign: "center" }}>{h.score}</span>
+                      <span className={`text-sm font-mono font-bold${habitFlash?.id === h.id ? (habitFlash.dir === "up" ? " stat-flash-up" : " stat-flash-down") : ""}`} style={{ color, minWidth: 24, textAlign: "center" }}>{h.score}</span>
                       <button
                         onClick={() => scoreHabit(h.id, "down")}
                         disabled={habitScoring === h.id}

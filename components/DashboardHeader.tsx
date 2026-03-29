@@ -47,6 +47,15 @@ export default function DashboardHeader({
   const settingsPopupRef = useRef<HTMLDivElement>(null);
   const [settingsPopupOpen, setSettingsPopupOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const loginRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!loginOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (loginRef.current && !loginRef.current.contains(e.target as Node)) setLoginOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [loginOpen]);
   const [playerNameInput, setPlayerNameInput] = useState("");
   const [reviewKeyInput, setReviewKeyInput] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -311,7 +320,7 @@ export default function DashboardHeader({
                   Login
                 </button>
                 {loginOpen && (
-                  <div className="absolute right-0 top-7 z-50 rounded-xl p-3 shadow-xl flex flex-col gap-2 bg-surface-alt" style={{ border: "1px solid rgba(139,92,246,0.3)", minWidth: "min(220px, calc(100vw - 2rem))" }}>
+                  <div ref={loginRef} className="absolute right-0 top-7 z-50 rounded-xl p-3 shadow-xl flex flex-col gap-2 bg-surface-alt" style={{ border: "1px solid rgba(139,92,246,0.3)", minWidth: "min(220px, calc(100vw - 2rem))" }}>
                     {!registerOpen ? (
                       <>
                         <input
