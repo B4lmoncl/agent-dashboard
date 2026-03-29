@@ -916,6 +916,138 @@ button[disabled] {
 }
 .online-pulse { animation: online-pulse 2s ease-in-out infinite; }
 
+/* ─── Crystal Vein Network ─── */
+/* Animated crystal vein lines that pulse through the tower */
+@keyframes vein-flow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+.crystal-vein-bg {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0px, transparent 80px,
+    var(--floor-color, rgba(129,140,248,0.5)) 82px,
+    transparent 84px, transparent 200px,
+    var(--floor-color, rgba(129,140,248,0.3)) 201px,
+    transparent 203px
+  );
+  animation: vein-flow 30s linear infinite;
+  mask-image: radial-gradient(ellipse at 30% 70%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 30% 70%, black 0%, transparent 70%);
+}
+
+/* Crystal vein section header line */
+.heading-vein-line {
+  position: relative;
+}
+.heading-vein-line::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--floor-color, rgba(129,140,248,0.3)), transparent);
+  animation: crystal-breathe 4s ease-in-out infinite;
+}
+
+/* ─── Resonance Ripple (reward feedback) ─── */
+@keyframes resonance-ripple {
+  0% { transform: scale(0.8); opacity: 0.6; box-shadow: 0 0 0 0 var(--ripple-color, rgba(129,140,248,0.4)); }
+  70% { transform: scale(1); opacity: 0; box-shadow: 0 0 0 20px var(--ripple-color, rgba(129,140,248,0)); }
+  100% { transform: scale(1); opacity: 0; box-shadow: 0 0 0 0 transparent; }
+}
+.resonance-ripple {
+  animation: resonance-ripple 0.6s ease-out forwards;
+}
+
+/* ─── Crystal Particle Float (for XP/Gold gain) ─── */
+@keyframes crystal-particle-rise {
+  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(-40px) scale(0.3) rotate(45deg); opacity: 0; }
+}
+
+/* ─── Floor Transition ─── */
+@keyframes floor-enter {
+  0% { opacity: 0; transform: translateY(8px); filter: brightness(1.3); }
+  100% { opacity: 1; transform: translateY(0); filter: brightness(1); }
+}
+.floor-transition-enter { animation: floor-enter 0.4s ease-out; }
+
+/* ─── Enhanced Card Hover (Wolcen/D3 depth) ─── */
+.card-hover-depth {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover-depth:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.4),
+    0 0 1px var(--glow-color, rgba(255,255,255,0.1)),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ─── Stat Change Flash ─── */
+@keyframes stat-flash-up {
+  0% { color: #22c55e; text-shadow: 0 0 8px rgba(34,197,94,0.5); }
+  100% { color: inherit; text-shadow: none; }
+}
+@keyframes stat-flash-down {
+  0% { color: #ef4444; text-shadow: 0 0 8px rgba(239,68,68,0.5); }
+  100% { color: inherit; text-shadow: none; }
+}
+.stat-flash-up { animation: stat-flash-up 0.8s ease-out; }
+.stat-flash-down { animation: stat-flash-down 0.8s ease-out; }
+
+/* ─── Night Mode (activated via JS class on body) ─── */
+body.night-mode {
+  --bg-brightness: 0.85;
+}
+body.night-mode .crystal-vein-bg { opacity: 0.08; }
+body.night-mode .crystal-breathe {
+  animation-duration: 3s; /* faster pulse at night = more alive */
+}
+
+/* ─── Weekend Aura ─── */
+body.weekend-aura::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(251,191,36,0.02) 0%, transparent 60%);
+}
+
+/* ─── Moon Phase Glow (intensity class set via JS) ─── */
+body.moon-full .crystal-vein-bg { opacity: 0.07; filter: brightness(1.3) saturate(1.2); }
+body.moon-full .crystal-breathe { animation-duration: 3s; }
+body.moon-new .crystal-vein-bg { opacity: 0.02; }
+body.moon-new .crystal-breathe { animation-duration: 6s; }
+
+/* ─── Rift Timer Urgency ─── */
+@keyframes rift-urgency-pulse {
+  0%, 100% { border-color: rgba(239,68,68,0.3); box-shadow: 0 0 8px rgba(239,68,68,0.15); }
+  50% { border-color: rgba(239,68,68,0.7); box-shadow: 0 0 20px rgba(239,68,68,0.35); }
+}
+.rift-urgent { animation: rift-urgency-pulse 1.5s ease-in-out infinite; }
+.rift-urgent .crystal-breathe { animation-duration: 1.5s; }
+
+/* ─── Companion Bond Aura ─── */
+@keyframes bond-aura-pulse {
+  0%, 100% { box-shadow: 0 0 6px var(--bond-color, rgba(244,114,182,0.2)); }
+  50% { box-shadow: 0 0 16px var(--bond-color, rgba(244,114,182,0.5)), 0 0 24px var(--bond-color, rgba(244,114,182,0.15)); }
+}
+.bond-aura-weak { animation: bond-aura-pulse 4s ease-in-out infinite; --bond-color: rgba(244,114,182,0.15); }
+.bond-aura-medium { animation: bond-aura-pulse 3s ease-in-out infinite; --bond-color: rgba(244,114,182,0.3); }
+.bond-aura-strong { animation: bond-aura-pulse 2.5s ease-in-out infinite; --bond-color: rgba(244,114,182,0.5); }
+.bond-aura-legendary { animation: bond-aura-pulse 2s ease-in-out infinite; --bond-color: rgba(249,115,22,0.5); }
+
+/* ─── Ambient Visual Sound Indicators ─── */
+@keyframes ambient-spark {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.6; transform: scale(1); }
+}
+@keyframes ambient-drip {
+  0%, 90%, 100% { opacity: 0; transform: translateY(0); }
+  92% { opacity: 0.4; transform: translateY(0); }
+  98% { opacity: 0.2; transform: translateY(8px); }
+}
+@keyframes ambient-wave {
+  0%, 100% { transform: scaleX(0.8); opacity: 0.2; }
+  50% { transform: scaleX(1.2); opacity: 0.5; }
+}
+
 /* Mondlicht background — aether veins glowing through the tower walls */
 @keyframes mondlicht-bg-pulse {
   0%, 100% { background-image: radial-gradient(ellipse at 30% 20%, rgba(129,140,248,0.03) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(99,102,241,0.02) 0%, transparent 50%); }

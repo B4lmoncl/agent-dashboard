@@ -247,6 +247,37 @@ export default function Dashboard() {
   }, []);
   useModalBehavior(!!rewardCelebration, closeRewardCelebration);
 
+  // ─── Time-based visual effects: moon phase, night mode, weekend aura ───
+  useEffect(() => {
+    function getMoonPhase(): "new" | "waxing" | "full" | "waning" {
+      const now = new Date();
+      const year = now.getFullYear(); const month = now.getMonth() + 1; const day = now.getDate();
+      // Simplified moon phase calculation (synodic period ~29.53 days)
+      const a = Math.floor((14 - month) / 12); const y = year + 4800 - a; const m = month + 12 * a - 3;
+      const jd = day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+      const phase = ((jd - 2451550.1) / 29.530588853) % 1;
+      const p = phase < 0 ? phase + 1 : phase;
+      if (p < 0.125 || p >= 0.875) return "new";
+      if (p < 0.375) return "waxing";
+      if (p < 0.625) return "full";
+      return "waning";
+    }
+    function update() {
+      const berlinHour = parseInt(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin", hour: "numeric", hour12: false }), 10);
+      const isNight = berlinHour >= 22 || berlinHour < 6;
+      const dayOfWeek = new Date().getDay();
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+      const moon = getMoonPhase();
+      document.body.classList.toggle("night-mode", isNight);
+      document.body.classList.toggle("weekend-aura", isWeekend);
+      document.body.classList.toggle("moon-full", moon === "full");
+      document.body.classList.toggle("moon-new", moon === "new");
+    }
+    update();
+    const interval = setInterval(update, 60000); // check every minute
+    return () => clearInterval(interval);
+  }, []);
+
   // ─── Universal level-up trigger: fires for ANY XP source (quests, sternenpfad, BP, rituals, etc.) ───
   // NOTE: loggedInUser is defined later (line ~714) so we use users + playerName directly here
   const prevLevelRef = useRef<number>(0);
@@ -811,6 +842,7 @@ export default function Dashboard() {
     <DashboardProvider value={ctxValue}>
     <div className="min-h-screen text-primary" style={{ background: "transparent", position: "relative" }}>
       <GuildHallBackground />
+      <div className="crystal-vein-bg" />
       <DashboardHeader
         dashView={dashView}
         setDashView={(v) => setDashView(v as typeof dashView)}

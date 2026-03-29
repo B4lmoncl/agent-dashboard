@@ -139,7 +139,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
-        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden quest-card-emboss"
+        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden quest-card-emboss card-hover-depth"
         style={{
           background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",
           border: `2px solid ${rarityColor}88`,

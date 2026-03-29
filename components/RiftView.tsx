@@ -252,8 +252,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       )}
 
       {/* Active Rift */}
-      {activeRift && !activeRift.failed && (
-        <div className="rounded-xl p-5 space-y-4" style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
+      {activeRift && !activeRift.failed && (() => {
+        const totalTime = new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime();
+        const remaining = new Date(activeRift.expiresAt).getTime() - Date.now();
+        const isUrgent = !activeRift.completed && remaining > 0 && remaining < totalTime * 0.25;
+        return true;
+      })() && (
+        <div className={`rounded-xl p-5 space-y-4${!activeRift.completed && (new Date(activeRift.expiresAt).getTime() - Date.now()) < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 && (new Date(activeRift.expiresAt).getTime() - Date.now()) > 0 ? " rift-urgent" : ""}`} style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-xl">{activeRift.tierIcon}</span>
