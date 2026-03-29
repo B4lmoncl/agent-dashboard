@@ -64,6 +64,10 @@
               "task": "Oma Ilse möchte ein altes Familienrezept weitergeben.",
               "realWorldTask": "Koche heute etwas von Grund auf — kein Fertiggericht!",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 20,
+              "gold": 12
             }
           },
           {
@@ -96,6 +100,10 @@
               "task": "Oma Ilse zeigt dir ihre Lieblingsblumen.",
               "realWorldTask": "Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 20,
+              "gold": 12
             }
           },
           {
@@ -109,6 +117,10 @@
               "task": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse.",
               "realWorldTask": "Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt",
               "difficulty": "hard"
+            },
+            "rewards": {
+              "xp": 26,
+              "gold": 16
             }
           }
         ]
@@ -231,6 +243,10 @@
               "task": "Karim plant seine nächste Reise.",
               "realWorldTask": "Plane etwas — eine Aufgabe, ein Projekt, einen Ausflug — und schreib es auf",
               "difficulty": "hard"
+            },
+            "rewards": {
+              "xp": 46,
+              "gold": 29
             }
           }
         ],
@@ -336,6 +352,10 @@
               "task": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.'",
               "realWorldTask": "Meditiere oder stretche 10 Minuten",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 48,
+              "gold": 30
             }
           },
           {
@@ -385,6 +405,10 @@
               "task": "Tanaka sagt: 'Kontrolle beginnt beim Atem.'",
               "realWorldTask": "Übe 10 Minuten Atemübungen oder Box-Breathing",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 48,
+              "gold": 30
             }
           },
           {
@@ -507,6 +531,10 @@
               "task": "Mirael braucht frische Zutaten.",
               "realWorldTask": "Geh 15 Minuten an die frische Luft — Wald, Park oder Garten",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 35,
+              "gold": 22
             }
           },
           {
@@ -520,6 +548,10 @@
               "task": "Mirael zeigt dir ein altes Rezept.",
               "realWorldTask": "Koche dir einen gesunden Tee oder Smoothie",
               "difficulty": "medium"
+            },
+            "rewards": {
+              "xp": 46,
+              "gold": 29
             }
           }
         ],
@@ -535,6 +567,10 @@
               "task": "Mirael flüstert: 'Der Mond heilt was das Licht nicht kann.'",
               "realWorldTask": "Meditiere heute Abend 15 Minuten im Dunkeln oder bei Kerzenlicht",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 35,
+              "gold": 22
             }
           },
           {
@@ -548,6 +584,10 @@
               "task": "'Manche Heilmittel verstecken sich.'",
               "realWorldTask": "Recherchiere 20 Minuten über Naturheilkunde oder Ernährung",
               "difficulty": "medium"
+            },
+            "rewards": {
+              "xp": 46,
+              "gold": 29
             }
           },
           {
@@ -561,6 +601,10 @@
               "task": "Mirael übergibt dir eine alte Praktik.",
               "realWorldTask": "Etabliere eine neue gesunde Gewohnheit für heute — Trinken, Schlafen, Bewegung",
               "difficulty": "hard"
+            },
+            "rewards": {
+              "xp": 56,
+              "gold": 35
             }
           }
         ],
@@ -576,6 +620,10 @@
               "task": "'Hör dem Wald zu', sagt Mirael.",
               "realWorldTask": "Verbring 20 Minuten draußen ohne Handy — einfach da sein",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 35,
+              "gold": 22
             }
           },
           {
@@ -646,6 +694,10 @@
               "task": "Finnegan sagt: 'Musik verbindet!'",
               "realWorldTask": "Schick einem Freund ein Lied das du magst",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 20,
+              "gold": 12
             }
           },
           {
@@ -659,6 +711,10 @@
               "task": "'Jeder hat eine Geschichte die erzählt werden will.'",
               "realWorldTask": "Schreib 10 Minuten — Tagebuch, kreativ, egal was",
               "difficulty": "medium"
+            },
+            "rewards": {
+              "xp": 26,
+              "gold": 16
             }
           },
           {
@@ -691,6 +747,10 @@
               "task": "Finnegan lehrt dich einen Akkord.",
               "realWorldTask": "Höre heute ein Album bewusst durch — kein Multitasking, nur Musik",
               "difficulty": "easy"
+            },
+            "rewards": {
+              "xp": 20,
+              "gold": 12
             }
           },
           {
@@ -723,6 +783,10 @@
               "task": "Finnegan sagt: 'Ein guter Barde hört zuerst zu.'",
               "realWorldTask": "Ruf heute jemanden an den du lange nicht gesprochen hast",
               "difficulty": "medium"
+            },
+            "rewards": {
+              "xp": 20,
+              "gold": 12
             }
           },
           {
@@ -753,6 +817,10 @@
               "task": "Finnegans größte Show beginnt!",
               "realWorldTask": "Teile heute etwas das du erschaffen hast — Code, Kunst, Kochen — mit jemandem",
               "difficulty": "epic"
+            },
+            "rewards": {
+              "xp": 32,
+              "gold": 19
             }
           }
         ]
