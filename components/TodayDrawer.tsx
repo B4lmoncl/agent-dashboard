@@ -210,7 +210,7 @@ function StreakFlame({ streak }: { streak: number }) {
 
   return (
     <div className="relative" style={{ width: 18, height: 24 }}>
-      <svg viewBox="0 0 18 24" width="18" height="24" style={{ animation: "today-flame-flicker 0.8s ease-in-out infinite" }}>
+      <svg viewBox="0 0 18 24" width="18" height="24" style={{ animation: "today-flame-flicker 1.8s ease-in-out infinite" }}>
         <defs>
           <linearGradient id="today-flame-grad" x1="0" y1="1" x2="0" y2="0">
             <stop offset="0%" stopColor={baseColor} stopOpacity="0.9" />
@@ -229,12 +229,12 @@ function StreakFlame({ streak }: { streak: number }) {
           cx="9" cy="20" rx="3" ry={4 + intensity * 2}
           fill={tipColor}
           opacity="0.5"
-          style={{ animation: "today-flame-core 0.6s ease-in-out infinite" }}
+          style={{ animation: "today-flame-core 1.2s ease-in-out infinite" }}
         />
       </svg>
       {isEpic && <div className="absolute inset-0 rounded-full" style={{
         background: `radial-gradient(circle, ${baseColor}30 0%, transparent 70%)`,
-        animation: "today-hero-breathe 2s ease-in-out infinite",
+        animation: "today-hero-breathe 4s ease-in-out infinite",
       }} />}
     </div>
   );
@@ -880,7 +880,7 @@ export default function TodayDrawer({
               background: forgeTemp > 0 ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)` : "rgba(255,255,255,0.02)",
               border: `1px solid ${forgeTemp > 0 ? `${forgeTempColor}25` : "rgba(255,255,255,0.04)"}`,
               boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15` : "inset 0 1px 0 rgba(255,255,255,0.04)",
-              animation: forgeTemp >= 80 ? "today-forge-pulse 2s ease-in-out infinite" : "none",
+              animation: forgeTemp >= 80 ? "today-forge-pulse 5s ease-in-out infinite" : "none",
               "--forge-color": forgeTempColor,
             } as React.CSSProperties}>
               <ForgeEmbers temp={forgeTemp} color={forgeTempColor} />

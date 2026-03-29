@@ -418,7 +418,8 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
         let scaled = amount;
         if (mythicLvl > 0) {
           const cappedLvl = Math.min(mythicLvl, 100);
-          if (currency === 'gold') scaled = amount + cappedLvl * 200;
+          // Cap Mythic+ gold bonus at M+10 (2000g max bonus)
+          if (currency === 'gold') scaled = amount + Math.min(cappedLvl * 200, 2000);
           else if (currency === 'essenz') scaled = amount + cappedLvl * 5;
           else scaled = amount;
         }
@@ -478,7 +479,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     completionBonus: allDone ? (() => {
       const base = RIFT_TIERS[rift.tier]?.completionBonus;
       if (!base || !rift.mythicLevel) return base;
-      return { ...base, gold: base.gold + rift.mythicLevel * 200, essenz: base.essenz + rift.mythicLevel * 5 };
+      return { ...base, gold: base.gold + Math.min(rift.mythicLevel * 200, 2000), essenz: base.essenz + rift.mythicLevel * 5 };
     })() : null,
     ...(rift.mythicLevel && { mythicLevel: rift.mythicLevel }),
     ...(allDone && (rift.tier === 'legendary' || rift.tier === 'mythic') && { seelensplitter: 1 }),
