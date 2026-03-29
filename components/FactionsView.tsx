@@ -293,22 +293,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
               {/* Daily Quests */}
               {(dailyQuests[f.id] || []).length > 0 && (
                 <div className="px-4 pb-3" style={{ borderTop: `1px solid ${f.accent}15` }}>
-                  <div className="flex items-center justify-between mt-2 mb-1.5">
-                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: `${f.accent}80` }}>Daily Quests</p>
-                    {(dailyQuests[f.id] || []).some(dq => dq.completed && !dq.claimed) && (
-                      <button
-                        onClick={async () => {
-                          for (const dq of (dailyQuests[f.id] || []).filter(d => d.completed && !d.claimed)) {
-                            await claimDaily(f.id, dq.id);
-                          }
-                        }}
-                        className="text-xs px-2 py-0.5 rounded font-semibold"
-                        style={{ background: `${f.accent}15`, color: f.accent, border: `1px solid ${f.accent}30`, cursor: "pointer" }}
-                      >
-                        Claim All
-                      </button>
-                    )}
-                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mt-2 mb-1.5" style={{ color: `${f.accent}80` }}>Daily Quests</p>
                   <div className="space-y-1">
                     {(dailyQuests[f.id] || []).map(dq => {
                       const done = dq.completed;
