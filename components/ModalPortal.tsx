@@ -25,12 +25,16 @@ export function useModalBehavior(isOpen: boolean, onClose: () => void) {
     return () => document.removeEventListener("keydown", handler);
   }, [isOpen, onClose]);
 
-  // Body scroll lock
+  // Body scroll lock (ref-counted to handle multiple concurrent modals)
   useEffect(() => {
     if (!isOpen) return;
-    const prev = document.body.style.overflow;
+    const w = window as unknown as { _modalLockCount?: number };
+    w._modalLockCount = (w._modalLockCount || 0) + 1;
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
+    return () => {
+      w._modalLockCount = Math.max(0, (w._modalLockCount || 1) - 1);
+      if (w._modalLockCount === 0) document.body.style.overflow = "";
+    };
   }, [isOpen]);
 }
 

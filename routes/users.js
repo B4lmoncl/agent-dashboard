@@ -123,10 +123,16 @@ router.post('/api/users/:id/register', requireAuth, (req, res) => {
   res.json({ ok: true, user: safeUser });
 });
 
-// POST /api/users/:id/award-xp — award XP to a user
+// POST /api/users/:id/award-xp — award XP to a user (self or admin only)
 router.post('/api/users/:id/award-xp', requireAuth, (req, res) => {
   const id = req.params.id.toLowerCase();
   if (!state.users[id]) return res.status(404).json({ error: 'User not found' });
+
+  // Only self-award or admin/master key
+  const requesterId = (req.auth?.userId || '').toLowerCase();
+  if (requesterId !== id && !req.auth?.isAdmin) {
+    return res.status(403).json({ error: 'Cannot award XP to other users' });
+  }
   const { amount = 10, reason } = req.body;
   const xpAmount = Math.max(0, Math.min(100000, parseInt(amount, 10) || 0));
   if (xpAmount <= 0) return res.status(400).json({ error: 'Amount must be positive' });

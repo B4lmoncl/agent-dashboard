@@ -351,10 +351,10 @@ router.get('/api/dashboard', (req, res) => {
       ];
       const earned = missions.filter(m => m.done).reduce((sum, m) => sum + m.points, 0);
       const milestones = [
-        { threshold: 100, reward: { gold: 25 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(100) },
-        { threshold: 300, reward: { gold: 50, essenz: 3 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(300) },
-        { threshold: 500, reward: { gold: 100, runensplitter: 2 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(500) },
-        { threshold: 750, reward: { gold: 150, sternentaler: 1 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(750) },
+        { threshold: 100, reward: { gold: 10 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(100) },
+        { threshold: 300, reward: { gold: 20, essenz: 3 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(300) },
+        { threshold: 500, reward: { gold: 35, runensplitter: 2 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(500) },
+        { threshold: 750, reward: { gold: 50, sternentaler: 1 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(750) },
       ];
       dailyMissions = { missions, earned, total: 750, milestones };
     }

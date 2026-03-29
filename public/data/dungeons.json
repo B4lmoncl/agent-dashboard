@@ -66,8 +66,8 @@
       "gearScoreThreshold": 250,
       "rewards": {
         "gold": [
-          500,
-          1200
+          250,
+          600
         ],
         "essenz": [
           10,
@@ -121,8 +121,8 @@
       "gearScoreThreshold": 500,
       "rewards": {
         "gold": [
-          1000,
-          3000
+          500,
+          1500
         ],
         "essenz": [
           20,

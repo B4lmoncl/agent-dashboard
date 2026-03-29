@@ -118,6 +118,8 @@ app.use(require('./routes/integrations'));
 app.use(require('./routes/game'));
 app.use(require('./routes/habits-inventory'));
 app.use(require('./routes/crafting'));
+app.use(require('./routes/schmiedekunst'));
+app.use(require('./routes/enchanting'));
 app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/expedition'));
 app.use(require('./routes/social'));

@@ -465,11 +465,11 @@ button[disabled] {
 }
 
 .blood-pact-active {
-  animation: blood-pact-pulse 1.5s ease infinite;
+  animation: blood-pact-pulse 3s ease infinite;
 }
 
 .blood-pact-active-indigo {
-  animation: blood-pact-pulse-indigo 1.5s ease infinite;
+  animation: blood-pact-pulse-indigo 3s ease infinite;
 }
 
 /* ─── Character Screen — Cherry Blossom Background ──────────────────────── */
