@@ -39,6 +39,8 @@ interface ClaimReward {
   name?: string;
   itemId?: string;
   slot?: string;
+  materialId?: string;
+  rarity?: string;
 }
 
 interface UniqueItemPreview {
@@ -136,6 +138,8 @@ function rewardLabel(r: ClaimReward): string {
     case "frame": return `Frame: ${r.name}`;
     case "unique-drop": return `${r.name} (${r.slot})`;
     case "legendary-drop": return `Legendary: ${r.itemId}`;
+    case "material": return `${r.amount || 1}x ${r.name || "Material"}`;
+    case "gear-drop": return `${r.name} (${r.slot || "Gear"})`;
     default: return r.type;
   }
 }
@@ -149,6 +153,8 @@ function rewardColor(r: ClaimReward): string {
     case "frame": return "#22d3ee";
     case "unique-drop":
     case "legendary-drop": return "#f97316";
+    case "material": return "#f59e0b";
+    case "gear-drop": return "#a855f7";
     default: return "#e8e8e8";
   }
 }
@@ -247,13 +253,13 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
             if (rw.type === "stardust" && rw.amount) currencies.push({ name: "Stardust", amount: rw.amount, color: "#818cf8" });
           }
           const goldReward = d.rewards.find((rw: ClaimReward) => rw.type === "gold");
-          const lootReward = d.rewards.find((rw: ClaimReward) => rw.type === "unique-drop" || rw.type === "legendary-drop");
+          const lootReward = d.rewards.find((rw: ClaimReward) => rw.type === "unique-drop" || rw.type === "legendary-drop" || rw.type === "gear-drop");
           onRewardCelebration({
             type: "world-boss",
             title: "World Boss Rewards!",
             xpEarned: 0,
             goldEarned: goldReward?.amount || 0,
-            loot: lootReward ? { name: lootReward.name || "Legendary Drop", emoji: "💀", rarity: "legendary", rarityColor: "#ff8c00" } : undefined,
+            loot: lootReward ? { name: lootReward.name || "Loot Drop", emoji: "◆", rarity: lootReward.rarity || "legendary", rarityColor: lootReward.type === "gear-drop" ? "#a855f7" : "#ff8c00" } : undefined,
             currencies: currencies.length > 0 ? currencies : undefined,
             flavor: d.rank ? `Rank #${d.rank} · ${d.contributionPercent}% contribution` : undefined,
           });
