@@ -57,7 +57,8 @@
         "type": "decay_reduction",
         "min": 3,
         "max": 8,
-        "label": "Wyrm's Resolve: -{value}% forge decay"
+        "label": "Wyrm's Resolve: -{value}% forge decay",
+        "value": 3
       },
       "source": "world_boss:procrastination-wyrm",
       "dropChance": 0.1,
@@ -121,7 +122,8 @@
         "type": "xp_bonus",
         "min": 3,
         "max": 8,
-        "label": "Colossus Heart: +{value}% XP"
+        "label": "Colossus Heart: +{value}% XP",
+        "value": 3
       },
       "source": "world_boss:burnout-colossus",
       "dropChance": 0.1,
@@ -185,7 +187,8 @@
         "type": "variety_bonus",
         "min": 3,
         "max": 8,
-        "label": "Hydra's Focus: +{value}% variety XP bonus"
+        "label": "Hydra's Focus: +{value}% variety XP bonus",
+        "value": 3
       },
       "source": "world_boss:chaos-hydra",
       "dropChance": 0.1,
@@ -249,7 +252,8 @@
         "type": "decay_reduction",
         "min": 1,
         "max": 3,
-        "label": "Preserved Knowledge: -{value}% forge decay"
+        "label": "Preserved Knowledge: -{value}% forge decay",
+        "value": 1
       },
       "source": "dungeon:sunken-archive",
       "dropChance": 0.08,
@@ -313,7 +317,8 @@
         "type": "xp_bonus",
         "min": 2,
         "max": 5,
-        "label": "Spire Charge: +{value}% XP"
+        "label": "Spire Charge: +{value}% XP",
+        "value": 2
       },
       "source": "dungeon:shattered-spire",
       "dropChance": 0.06,
@@ -377,7 +382,8 @@
         "type": "gold_bonus",
         "min": 5,
         "max": 10,
-        "label": "Void's Bargain: +{value}% Gold"
+        "label": "Void's Bargain: +{value}% Gold",
+        "value": 5
       },
       "source": "dungeon:hollow-core",
       "dropChance": 0.04,
@@ -504,7 +510,8 @@
         "type": "decay_reduction",
         "min": 2,
         "max": 5,
-        "label": "Entropieschild: -{value}% Forge-Decay"
+        "label": "Entropieschild: -{value}% Forge-Decay",
+        "value": 2
       },
       "source": "world_boss:entropy-weaver",
       "dropChance": 0.12,
@@ -568,7 +575,8 @@
         "type": "xp_bonus",
         "min": 3,
         "max": 8,
-        "label": "Unbewegliches Fundament: +{value}% Quest-XP"
+        "label": "Unbewegliches Fundament: +{value}% Quest-XP",
+        "value": 3
       },
       "source": "world_boss:stagnation-golem",
       "dropChance": 0.08,
@@ -632,7 +640,8 @@
         "type": "gold_bonus",
         "min": 3,
         "max": 8,
-        "label": "Blendender Glanz: +{value}% Gold"
+        "label": "Blendender Glanz: +{value}% Gold",
+        "value": 3
       },
       "source": "world_boss:perfection-seraph",
       "dropChance": 0.08,
@@ -696,7 +705,8 @@
         "type": "xp_bonus",
         "min": 5,
         "max": 12,
-        "label": "Leerenschnitt: +{value}% Quest-XP"
+        "label": "Leerenschnitt: +{value}% Quest-XP",
+        "value": 5
       },
       "source": "world_boss:isolation-leviathan",
       "dropChance": 0.05,
@@ -760,7 +770,8 @@
         "type": "drop_bonus",
         "min": 5,
         "max": 12,
-        "label": "Leere Krone: +{value}% Drop-Chance"
+        "label": "Leere Krone: +{value}% Drop-Chance",
+        "value": 5
       },
       "source": "world_boss:apathy-sovereign",
       "dropChance": 0.04,
@@ -824,7 +835,8 @@
         "type": "xp_bonus",
         "min": 4,
         "max": 10,
-        "label": "Sternenblick: +{value}% Quest-XP"
+        "label": "Sternenblick: +{value}% Quest-XP",
+        "value": 4
       },
       "source": "gacha:astral-radiance",
       "dropChance": 0.005,
@@ -888,7 +900,8 @@
         "type": "drop_bonus",
         "min": 5,
         "max": 10,
-        "label": "Schicksalsrad: +{value}% Drop-Chance"
+        "label": "Schicksalsrad: +{value}% Drop-Chance",
+        "value": 5
       },
       "source": "gacha:wheel-of-stars",
       "dropChance": 0.003,
@@ -1054,6 +1067,236 @@
         "label": "+5% Salvage Materials"
       },
       "source": "dungeon"
+    },
+    {
+      "id": "wb-wyrm-fang",
+      "name": "Wyrmzahn-Klinge",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 30,
+      "desc": "Geschärft an tausend aufgeschobenen Deadlines. Schneidet durch Ausreden wie durch Butter.",
+      "flavorText": "Der Wyrm hat drei Reihen Zähne. Hatte. Jetzt hat er zwei Reihen und du hast ein Schwert.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "kraft": 7,
+        "ausdauer": 5,
+        "tempo": 4
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "value": 4,
+        "label": "+4% Quest XP"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-wyrm-schuppen-stiefel",
+      "name": "Schuppenstiefel des Wyrms",
+      "slot": "boots",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 30,
+      "desc": "Aus den abgeworfenen Schuppen des Wyrms gefertigt. Überraschend bequem für etwas das Prokrastination verkörpert.",
+      "flavorText": "Schnelle Füße für jemanden der aufgehört hat zu zögern.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "glueck": 6,
+        "ausdauer": 5,
+        "tempo": 5
+      },
+      "legendaryEffect": {
+        "type": "every_nth_bonus",
+        "value": 5,
+        "label": "Every 5th quest: bonus rewards"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-colossus-helm",
+      "name": "Gluthaupt des Kolosses",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 32,
+      "desc": "Geschmiedet aus dem letzten Funken eines ausgebrannten Riesen. Schützt vor dem Feuer das von innen kommt.",
+      "flavorText": "Manche Flammen brennen sich selbst aus. Diese hier erinnert daran, das nicht zu tun.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "weisheit": 7,
+        "ausdauer": 6,
+        "fokus": 4
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "value": 5,
+        "label": "-5% Forge Decay"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-hydra-ruestung",
+      "name": "Hydra-Schuppenrüstung",
+      "slot": "armor",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 33,
+      "desc": "Für jeden abgeschlagenen Kopf wächst ein neuer. Diese Rüstung macht dasselbe mit deiner Motivation.",
+      "flavorText": "Neun Köpfe. Neun Meinungen. Null Konsens. Klingt bekannt?",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "ausdauer": 8,
+        "kraft": 5,
+        "vitalitaet": 4
+      },
+      "legendaryEffect": {
+        "type": "streak_protection",
+        "value": 6,
+        "label": "+6% Streak Protection"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-phantom-amulett",
+      "name": "Auge des Zweifels",
+      "slot": "amulet",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 28,
+      "desc": "Zeigt dir was du wirklich kannst. Nicht was der Zweifel behauptet.",
+      "flavorText": "Der Zweifel flüstert. Dieses Amulett schreit zurück.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "weisheit": 6,
+        "glueck": 5,
+        "charisma": 4
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "value": 4,
+        "label": "+4% Companion Bond XP"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-entropie-stab",
+      "name": "Stab der Entflechtung",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 30,
+      "desc": "Entflicht was der Entropy Weaver verwoben hat. Auch Kabel. Besonders Kabel.",
+      "flavorText": "Ordnung aus Chaos zu schaffen ist Magie. Kabel zu entwirren ist ein Wunder.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "weisheit": 8,
+        "fokus": 5,
+        "tempo": 3
+      },
+      "legendaryEffect": {
+        "type": "cooldown_reduction",
+        "value": 4,
+        "label": "-4% Craft Cooldown"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-golem-schild",
+      "name": "Stillstandsbrecher",
+      "slot": "shield",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 30,
+      "desc": "Geschmiedet aus dem Kern des Golems. Bewegt sich langsam. Aber er bewegt sich.",
+      "flavorText": "Fortschritt ist Fortschritt. Auch wenn er langsam ist. Besonders dann.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "ausdauer": 7,
+        "kraft": 5,
+        "vitalitaet": 4
+      },
+      "legendaryEffect": {
+        "type": "forge_temp_flat",
+        "value": 2,
+        "label": "+2 Forge Temperature per quest"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-seraph-ring",
+      "name": "Ring der Unvollkommenheit",
+      "slot": "ring",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 35,
+      "desc": "Der Seraph suchte Perfektion und wurde davon zerstört. Dieser Ring erinnert: gut genug IST genug.",
+      "flavorText": "Perfekt ist der Feind von fertig. Dieser Ring wählt fertig.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "glueck": 7,
+        "weisheit": 5,
+        "charisma": 4
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "value": 4,
+        "label": "+4% Gold"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-leviathan-panzer",
+      "name": "Panzer des Leviathans",
+      "slot": "armor",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 35,
+      "desc": "Aus den Tiefen der Einsamkeit geborgen. Wer ihn trägt, spürt die Verbindung zu allen die gekämpft haben.",
+      "flavorText": "Allein ist man schnell. Zusammen ist man... weniger allein. Das reicht manchmal.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "ausdauer": 7,
+        "kraft": 6,
+        "charisma": 4
+      },
+      "legendaryEffect": {
+        "type": "faction_rep_boost",
+        "value": 4,
+        "label": "+4% Faction Rep"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-apathie-klinge",
+      "name": "Klinge des Antriebs",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 35,
+      "desc": "Geschmiedet aus der zerbrochenen Krone der Apathie. Jeder Schlag ist ein Versprechen: Nie wieder gleichgültig.",
+      "flavorText": "Apathie ist leise. Diese Klinge nicht.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "kraft": 8,
+        "weisheit": 5,
+        "fokus": 4
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "value": 5,
+        "label": "+5% Quest XP"
+      },
+      "source": "world-boss"
     }
   ]
 }

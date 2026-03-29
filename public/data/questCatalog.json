@@ -10,6 +10,10 @@
         "description": "Steh auf, trink Wasser, streck dich. Kein Handy für die ersten 15 Minuten.",
         "flavor": "Die Halle ist am stillsten kurz vor Sonnenaufgang. Manche sagen, das ist der Moment in dem sie träumt.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -54,6 +58,10 @@
         "description": "2 Stunden ohne Social Media. Die Welt dreht sich trotzdem weiter, versprochen.",
         "flavor": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -68,8 +76,8 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
-        "gold": 12
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -82,6 +90,10 @@
         "description": "Vor 22:30 im Bett. Nicht am Handy. Einfach schlafen.",
         "flavor": "Die mächtigsten Zauber wirken im Schlaf. Das ist keine Metapher — die Bibliothek reorganisiert sich tatsächlich nachts. Du solltest das auch tun.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -94,6 +106,10 @@
         "description": "Koch dir etwas Richtiges. Kein Fertiggericht, kein Lieferdienst.",
         "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -108,7 +124,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -122,6 +138,10 @@
         "description": "Sag drei Menschen heute etwas Nettes. Ehrlich gemeint, nicht pflichtmäßig.",
         "flavor": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -168,7 +188,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -182,6 +202,10 @@
         "description": "Plan deinen morgigen Tag. Was willst du schaffen? Schreib es auf.",
         "flavor": "Ein Plan überlebt selten den ersten Kontakt mit dem Morgen. Aber ohne Plan überlebt man gar nichts. Meister Tanaka hat übrigens sieben Backup-Pläne. Für den Dienstag.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -210,6 +234,10 @@
         "description": "Schreib mindestens 200 Wörter über deinen Tag. Ungefiltert, ehrlich.",
         "flavor": "Lyra führt ihr Logbuch seit dreitausend Jahren. Sie sagt, die langweiligen Einträge sind im Nachhinein die wertvollsten. Die Abenteuer erinnert man ohnehin.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -238,6 +266,10 @@
         "description": "Sammle heute 10.000 Schritte. Zählt alles — Treppen, Spaziergänge, Herumlaufen.",
         "flavor": "Jeder Schritt ist ein Vers in deinem Lied. Finnegan behauptet, seine besten Balladen entstehen bei Schritt zwölftausend. Ab Schritt dreizehntausend wird es experimentell.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -252,7 +284,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -266,6 +298,10 @@
         "description": "15 Minuten Stretching oder Yoga. Dein Rücken wird es dir danken.",
         "flavor": "Sable Nachtwind bewegt sich wie Rauch durch enge Gassen. Auf die Frage nach ihrem Geheimnis sagte sie nur: \"Dehnen. Jeden Morgen. Und niemals erwischt werden.\"",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -278,6 +314,10 @@
         "description": "Ab ins Gym. Vollständiges Workout, mindestens 45 Minuten.",
         "flavor": "Stahl wird im Feuer gehärtet. Du auch. Rogar Amboss hat diese Worte über die Eingangstür seiner Schmiede gemeißelt. Und über die Ausgangstür. Für den Fall, dass man flüchten will.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -292,7 +332,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -306,6 +346,10 @@
         "description": "Absolviere eine echte Kletterherausforderung: 10 Stockwerke Treppen steigen ohne Pause, oder eine Kletterwand/Outdoor-Kletterroute bezwingen.",
         "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse, die den Aufzug nimmt seit die Keksdose im dritten Stock steht",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -318,6 +362,10 @@
         "description": "Kalt duschen. Mindestens 30 Sekunden. Schreien ist erlaubt.",
         "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -364,8 +412,8 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 25,
-        "gold": 12
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -378,6 +426,10 @@
         "description": "Trink heute mindestens 2 Liter Wasser. Kaffee zählt nicht.",
         "flavor": "Wasser ist flüssige Magie. Die meisten vergessen es einfach. Mirael hat einen Brunnen der ewige Jugend verspricht. Es ist nur Wasser. Aber es funktioniert.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -408,7 +460,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -422,6 +474,10 @@
         "description": "Dokumentiere etwas das du gelernt hast. Wiki, Notiz, Blog — Hauptsache aufgeschrieben.",
         "flavor": "Was nicht geschrieben steht, hat nie stattgefunden. — Lyras erstes Gesetz. Das zweite ist: Wer es aufschreibt, findet es auch wieder.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -452,7 +508,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -482,6 +538,10 @@
         "description": "Arbeite an einer Zertifizierung oder einem Online-Kurs. Mindestens 1 Modul.",
         "flavor": "Ein Siegel beweist nicht Wissen. Es beweist Ausdauer. Und dass man Formulare ausfüllen kann. Die Gilde ist da sehr gründlich.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -496,7 +556,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -526,6 +586,10 @@
         "description": "Lies einen langen Fachartikel statt nur Headlines zu scannen.",
         "flavor": "Die Wahrheit versteckt sich nie in der Überschrift. Alter Henrik liest drei Zeitungen am Tag. Alle von letzter Woche. Er sagt, erst mit Abstand erkennt man die Muster.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -540,7 +604,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -557,7 +621,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 20
+        "gold": 28
       }
     },
     {
@@ -570,6 +634,10 @@
         "description": "Ruf einen Freund an den du länger nicht gehört hast. Kein Chat, Anruf.",
         "flavor": "Freundschaften sind wie Feuer. Man muss sie füttern oder sie erlöschen. Finnegan hat das mal in einem Lied verarbeitet. Es waren sechs Strophen. Alle traurig. Dann hat er angerufen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -584,8 +652,8 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
-        "gold": 12
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -600,7 +668,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -614,6 +682,10 @@
         "description": "Schreib jemandem eine ehrliche Nachricht warum du froh bist dass es ihn gibt.",
         "flavor": "Manchmal braucht jemand nur einen einzigen Satz um den Tag zu überstehen. Lumi leuchtet heller wenn jemand lächelt. Das ist keine Metapher.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -626,6 +698,10 @@
         "description": "Geh mit jemandem spazieren. Reden, nicht scrollen.",
         "flavor": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -640,8 +716,8 @@
         "difficulty": "advanced"
       },
       "rewards": {
-        "xp": 30,
-        "gold": 18
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -656,7 +732,7 @@
         "difficulty": "starter"
       },
       "rewards": {
-        "xp": 20,
+        "xp": 12,
         "gold": 10
       }
     },
@@ -670,6 +746,10 @@
         "description": "Sprich mit jemandem Neuem. Auf der Arbeit, online, oder im echten Leben.",
         "flavor": "Jeder Fremde ist ein Buch das du noch nicht aufgeschlagen hast. Karim hat so sein halbes Imperium aufgebaut. Die andere Hälfte durch hartnäckiges Feilschen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -682,6 +762,10 @@
         "description": "4 Stunden Deep Work. Kein Social Media, keine Ablenkung. Fokus pur.",
         "flavor": "Die größten Schlachten werden in der Stille gewonnen. Stärke vor Schwäche. Reise vor Ziel. Und vier Stunden Fokus vor allem anderen.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -728,6 +812,10 @@
         "description": "Wage den geistigen Aufstieg: Arbeite dich in ein Thema ein, das deutlich über deinem aktuellen Wissensstand liegt. Lies einen Fachartikel, schau ein fortgeschrittenes Tutorial, oder löse ein Problem aus einem fremden Fachgebiet.",
         "flavor": "Der wahre Aufstieg findet nicht auf Treppen statt, sondern im Kopf. Jede neue Erkenntnis ist eine Stufe nach oben.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -742,6 +830,10 @@
         "description": "Öffne einen Wikipedia-Artikel zu einem Thema das dich null interessiert. Lies 20 Minuten. Folge den Links.",
         "flavor": "Wissen ist kein gerader Pfad. Es windet sich, verzweigt sich, und manchmal landest du bei etwas das dein Leben verändert.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -756,6 +848,10 @@
         "description": "Schreib jemandem den du lange nicht gehört hast. Kein Anlass nötig.",
         "flavor": "Die besten Wiedersehen haben keinen Grund.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -770,6 +866,10 @@
         "description": "2 Stunden ohne Social Media. Handy auf lautlos, Apps zu. Ja, wirklich.",
         "flavor": "Die lautesten Ablenkungen kommen aus den kleinsten Geräten.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -784,6 +884,10 @@
         "description": "Beende deine Dusche mit 30 Sekunden kaltem Wasser. Ja, es wird unangenehm.",
         "flavor": "Stahl wird im Feuer geformt. Oder im Eis. Kommt auf den Schmied an.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -798,6 +902,10 @@
         "description": "Lies ein Kapitel eines Sachbuchs. Nicht überfliegen — wirklich lesen.",
         "flavor": "Manche Wanderer rennen durch Bibliotheken. Die klugen setzen sich hin.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -812,6 +920,10 @@
         "description": "Geh 20 Minuten spazieren. Bonus: bei schlechtem Wetter.",
         "flavor": "Kein Wanderer wartet auf perfekte Bedingungen.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -826,6 +938,10 @@
         "description": "Räum eine Schublade, einen Ordner oder deinen Desktop auf. Komplett, nicht halbherzig.",
         "flavor": "Die Halle räumt sich nicht von selbst auf. Okay, manchmal schon. Aber dein Schreibtisch nicht.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -840,6 +956,10 @@
         "description": "Mach heute drei Leuten ein ehrliches Kompliment. Nicht oberflächlich — sag was du wirklich denkst.",
         "flavor": "Manche Worte wiegen mehr als Gold. Die Halle weiß das.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -854,6 +974,10 @@
         "description": "Schau einen Talk oder Vortrag (TED, Konferenz, YouTube) zu einem Thema außerhalb deines Fachgebiets.",
         "flavor": "Die besten Ideen kommen von dort, wo man nicht hinschaut.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -868,6 +992,10 @@
         "description": "100 Kniebeugen. Am Stück oder über den Tag verteilt — aber 100.",
         "flavor": "Hundert ist eine Zahl die klein klingt und groß brennt.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -882,6 +1010,10 @@
         "description": "Steh morgen 30 Minuten früher auf als üblich. Nutze die Zeit für dich — nicht für Arbeit.",
         "flavor": "Die Stunde vor dem Rest der Welt gehört den Wanderern.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -896,6 +1028,10 @@
         "description": "Führe ein Gespräch in dem du mehr zuhörst als redest. Frag nach, unterbrich nicht.",
         "flavor": "Die stärksten Helden sind oft die leisesten.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -910,6 +1046,10 @@
         "description": "Installiere ein Tool oder eine App die du noch nie benutzt hast. Arbeite 30 Minuten damit.",
         "flavor": "Jeder Handwerker schwört auf sein Lieblingswerkzeug. Aber erst muss man alle anderen ausprobiert haben.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -924,6 +1064,10 @@
         "description": "Halte eine Plank so lange du kannst. Dann nochmal. Und nochmal. 3 Runden.",
         "flavor": "Stillstand ist manchmal die härteste Bewegung.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -938,6 +1082,10 @@
         "description": "Tu heute eine Sache die du seit Wochen vor dir herschiebst. Du weißt welche.",
         "flavor": "Der Aetherstrom fließt nicht um Hindernisse herum. Er fließt durch sie hindurch.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -952,6 +1100,10 @@
         "description": "Schau eine Dokumentation über ein Thema das dich schon immer interessiert hat. Mindestens 45 Minuten.",
         "flavor": "Die Archive der Halle enthalten nicht nur Bücher. Manche Geschichten erzählen sich in Bildern.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -966,6 +1118,10 @@
         "description": "Koch etwas für jemand anderen. Kein Anlass, keine Erwartung. Einfach so.",
         "flavor": "In der Halle gibt es keinen Hunger. Aber das gemeinsame Essen bleibt trotzdem das Beste.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -980,6 +1136,10 @@
         "description": "Trainiere heute draußen. Park, Wald, Hinterhof — egal wo, Hauptsache nicht drinnen.",
         "flavor": "Wände sind Grenzen. Der Himmel nicht.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -994,6 +1154,10 @@
         "description": "Schreib einen Brief an dein zukünftiges Ich. Lies ihn in 6 Monaten.",
         "flavor": "Die Zeit ist der einzige Bote den man nicht bestechen kann.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1008,6 +1172,10 @@
         "description": "Nimm etwas das du theoretisch verstehst und bau es nach. Code, Handwerk, Rezept — egal was.",
         "flavor": "Wissen ohne Anwendung ist wie eine Klinge ohne Griff.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1022,6 +1190,10 @@
         "description": "Lauf 5 Kilometer. Tempo egal, Ankommen zählt.",
         "flavor": "Jeder Weg beginnt mit dem ersten Schritt. Aber der fünftausendste ist der, an den man sich erinnert.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1036,6 +1208,10 @@
         "description": "Sag jemandem etwas das du schon lange sagen wolltest. Etwas Ehrliches. Etwas das zählt.",
         "flavor": "Die schwersten Worte wiegen am wenigsten, sobald sie ausgesprochen sind.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1050,6 +1226,10 @@
         "description": "Sag heute zu etwas Nein das du normalerweise widerwillig mitmachen würdest.",
         "flavor": "Zwei Buchstaben. Endlose Kraft.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1064,6 +1244,10 @@
         "description": "Erklär jemandem ein Konzept das du gut verstehst. Ohne Fachbegriffe, so dass deine Oma es kapieren würde.",
         "flavor": "Wer lehrt, lernt zweimal. Das wussten schon die ersten Archivare der Halle.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1078,6 +1262,10 @@
         "description": "Geh ins Gym und absolviere ein volles Workout. Kein halbes Ding, kein 'nächstes Mal'.",
         "flavor": "Der Schmied arbeitet nicht wenn er Lust hat. Er arbeitet weil das Eisen heiß ist.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1092,6 +1280,10 @@
         "description": "Setz dich hin und geh deine Finanzen des letzten Monats durch. Wo geht dein Gold hin?",
         "flavor": "Selbst die reichsten Abenteurer scheitern, wenn sie nicht wissen wo ihre Münzen verschwinden.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1106,6 +1298,10 @@
         "description": "Starte ein kleines Nebenprojekt. Programmieren, basteln, schreiben — egal. Hauptsache anfangen.",
         "flavor": "Kein Turm wurde je von oben gebaut.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1120,6 +1316,10 @@
         "description": "Löse einen schwelenden Konflikt. Ruf an, triff dich, red darüber. Nicht ignorieren.",
         "flavor": "Manche Wunden heilen nur wenn man sie öffnet.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1134,6 +1334,10 @@
         "description": "Trainiere heute, egal wie du dich fühlst. 30 Minuten minimum. Keine Verhandlung.",
         "flavor": "Disziplin fragt nicht nach deiner Meinung.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1148,6 +1352,10 @@
         "description": "Nimm dir 2 Stunden für ein Thema das du immer oberflächlich abgehandelt hast. Geh in die Tiefe.",
         "flavor": "An der Oberfläche sieht alles gleich aus. Der Schatz liegt tiefer.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1162,6 +1370,10 @@
         "description": "Trainiere morgens bevor du irgendwas anderes machst. Aufstehen, Schuhe an, los.",
         "flavor": "Wenn die Sonne aufgeht und du schon schwitzt, hast du gewonnen.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1176,6 +1388,10 @@
         "description": "Bedank dich bei jemandem der dir mal geholfen hat und es wahrscheinlich vergessen hat.",
         "flavor": "Dankbarkeit altert nicht. Selbst Jahre später trifft sie ins Herz.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1190,6 +1406,10 @@
         "description": "Ändere heute eine Gewohnheit bewusst. Anderer Weg zur Arbeit, anderes Frühstück, anderer Rhythmus.",
         "flavor": "Gewohnheit ist der bequemste Kerker. Die Tür steht offen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1204,6 +1424,10 @@
         "description": "Mach ein Tutorial für eine Fähigkeit die du nicht hast. Kochen, Zeichnen, eine neue Sprache, ein Instrument.",
         "flavor": "Jeder Meister war mal ein Lehrling der sich lächerlich vorkam.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1218,6 +1442,10 @@
         "description": "Mach das härteste Workout das du kennst. Volle Intensität, keine Abkürzungen, Push bis zum Limit.",
         "flavor": "Die Schmiede hat kein Erbarmen. Aber was sie formt, hält.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1232,6 +1460,10 @@
         "description": "Finde 5 Dinge die du nicht brauchst und verschenke oder entsorge sie. Nicht nächste Woche — heute.",
         "flavor": "Leichtes Gepäck, weiter Weg.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1246,6 +1478,10 @@
         "description": "Hilf heute einem Fremden. Tür aufhalten reicht nicht — etwas das wirklich einen Unterschied macht.",
         "flavor": "Helden erkennt man nicht am Namen. Sondern daran, was sie tun wenn niemand zuschaut.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1260,6 +1496,10 @@
         "description": "Repariere etwas das kaputt ist, statt es wegzuwerfen. YouTube-Tutorial erlaubt.",
         "flavor": "Die Handwerker der Halle werfen nichts weg. Alles hat eine zweite Chance verdient.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1274,6 +1514,10 @@
         "description": "Starte eine 30-Tage-Challenge: Jeden Tag mindestens 20 Minuten Sport. Kein Ausfall, kein Aufschub.",
         "flavor": "Dreißig Tage. Das klingt nach wenig. Frag die, die es versucht haben.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1288,6 +1532,10 @@
         "description": "Eine Woche lang jeden Tag zur gleichen Zeit ins Bett und aufstehen. 7-8 Stunden. Keine Ausnahme.",
         "flavor": "Schlaf ist keine Schwäche. Schlaf ist die mächtigste Regeneration die es gibt. Sogar die Halle schläft manchmal.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1302,6 +1550,10 @@
         "description": "Nimm dir ein Thema in dem du gut bist und werde besser. Online-Kurs, Buch, Mentoring — investiere 5 Stunden diese Woche.",
         "flavor": "Der Unterschied zwischen gut und herausragend ist nicht Talent. Es ist Ausdauer.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1316,6 +1568,10 @@
         "description": "Organisiere ein Treffen mit Freunden. Du planst, du lädst ein, du machst den ersten Schritt.",
         "flavor": "Gilden gründen sich nicht von selbst. Irgendjemand muss den ersten Brief schreiben.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1330,6 +1586,10 @@
         "description": "Probiere eine Sportart die du noch nie gemacht hast. Klettern, Schwimmen, Kampfsport, Yoga — Hauptsache neu.",
         "flavor": "Komfort ist der Feind des Wachstums.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1344,6 +1604,10 @@
         "description": "Nimm dir eine Stunde und frag dich: Was läuft gut? Was nicht? Wo will ich in einem Jahr stehen? Schreib es auf.",
         "flavor": "Die Halle fragt nicht oft. Aber wenn sie fragt, erwartet sie eine ehrliche Antwort.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1358,6 +1622,10 @@
         "description": "Finde jemanden der besser ist als du in etwas. Frag ob du von ihm lernen kannst. Demut ist kein Bug.",
         "flavor": "Selbst die Sternenwächterin hat einmal gelernt. Von wem, sagt sie nicht.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1372,6 +1640,10 @@
         "description": "7 Tage in Folge trainieren. Abwechselnd Kraft und Ausdauer. Kein Ruhetag diese Woche.",
         "flavor": "Sieben Tage. Sieben Prüfungen. Am Ende weißt du wer du bist.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1386,6 +1658,10 @@
         "description": "Koch zusammen mit jemandem ein aufwendiges Gericht. Kein Fast Food, kein Lieferdienst. Gemeinsam schneiden, würzen, warten.",
         "flavor": "Die besten Feste in der Halle haben nie mit dem Essen angefangen. Sondern mit dem Kochen.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1398,6 +1674,10 @@
         "description": "Geh 20 Minuten spazieren. Kein Ziel, keine Musik, nur du und die Welt.",
         "flavor": "Die Wanderer der alten Zeit nannten es Schattengang — ein Marsch ohne Ankunft. Manche fanden sich dabei selbst.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1410,6 +1690,10 @@
         "description": "Schreib einen kurzen Brief an dein gestrigen Ich. Was hast du gelernt?",
         "flavor": "Die Chronisten der Halle sagen: Wer sein Gestern versteht, formt sein Morgen.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1422,6 +1706,10 @@
         "description": "Lösche 3 Apps die du seit Wochen nicht benutzt hast. Platz schaffen = Macht gewinnen.",
         "flavor": "Der Aetherstrom fließt besser wenn keine Blockaden im Weg sind. Gilt für Magie. Gilt für Handys.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1434,6 +1722,10 @@
         "description": "Schreib drei Dinge auf für die du heute dankbar bist. Keine Wiederholungen von gestern.",
         "flavor": "Dankbarkeit ist die stärkste Magie die keine Kosten hat.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1446,6 +1738,10 @@
         "description": "Steh 2 Minuten vor dem Spiegel und sag dir etwas Freundliches. Laut.",
         "flavor": "Die Helden der Chroniken hatten keine Selbstzweifel? Lüge. Sie hatten nur gelernt damit umzugehen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1458,6 +1754,10 @@
         "description": "30 Minuten vor dem Schlafengehen: Kein Bildschirm. Buch, Musik, oder Stille.",
         "flavor": "Die Halle schläft nie ganz. Aber sie flüstert leiser nach Mitternacht.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1470,6 +1770,10 @@
         "description": "Räum einen Ort auf der dich seit Tagen nervt. Schreibtisch, Schublade, Desktop.",
         "flavor": "Ordnung ist keine Tugend der Pedanten. Es ist Magie für Erschöpfte.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1482,6 +1786,10 @@
         "description": "Sag heute zu einer Sache Nein die du sonst aus Höflichkeit zugesagt hättest.",
         "flavor": "Nein ist ein vollständiger Satz. Helden die das lernen, überleben länger.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1494,6 +1802,10 @@
         "description": "2 Stunden fokussierte Arbeit. Kein Chat, keine Tabs, keine Ablenkung.",
         "flavor": "Die Meister der Halle nennen es Flow. Die Bibliothek nennt es Trance. Du nennst es Produktivität.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1506,6 +1818,10 @@
         "description": "Wenn deine innere Stimme heute gemein wird — unterbrich sie. Laut. Sag 'Stopp'.",
         "flavor": "Dein schlimmster Feind sitzt zwischen deinen Ohren. Zeit ihn rauszuwerfen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1518,6 +1834,10 @@
         "description": "Schreib eine Sache auf deine Bucket List. Dann google wie viel es kosten würde.",
         "flavor": "Träume ohne Recherche bleiben Träume. Wanderer planen ihre Routen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1530,6 +1850,10 @@
         "description": "Schreib deine größte aktuelle Angst auf. Dann: Was ist das schlimmste das passieren kann? Wie wahrscheinlich? Was würdest du dann tun?",
         "flavor": "Die Dunkelheit hat weniger Macht wenn man ihr ins Gesicht sieht.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1542,6 +1866,10 @@
         "description": "Einen ganzen Tag: Kein Social Media, kein Streaming, keine Snacks. Nur basics.",
         "flavor": "Der Aetherstrom kann süchtig machen. Selbst die Weisesten müssen ab und zu fasten.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1554,6 +1882,10 @@
         "description": "Schreib 3 Fehler auf die du diese Woche gemacht hast. Dann: Was hast du daraus gelernt?",
         "flavor": "Scheitern ist der Preis des Lernens. Wer nicht zahlt, wächst nicht.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1566,6 +1898,10 @@
         "description": "Schreib in einem Absatz: Was sollen Leute in 10 Jahren über dich sagen?",
         "flavor": "Die Sterne erinnern sich. Aber nicht automatisch. Du musst ihnen etwas geben das es wert ist.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1578,6 +1914,10 @@
         "description": "Such dir ein Wikipedia-Thema das dich interessiert. Lies 30 Minuten. Folge den Links.",
         "flavor": "Die Bibliothek hat unendliche Räume. Aber die besten Schätze findet wer einfach losgeht.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1590,6 +1930,10 @@
         "description": "Lern 5 neue Wörter in einer Sprache die du nicht sprichst. Duolingo, YouTube, egal.",
         "flavor": "Jede Sprache ist ein Fenster in eine andere Welt. Öffne eins.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1602,6 +1946,10 @@
         "description": "Such dir etwas Alltägliches (Kühlschrank, WLAN, Kaffee) und google wie es funktioniert. 20 Min.",
         "flavor": "Wissen beginnt mit Neugier. Und Neugier beginnt mit 'Warum?'",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1614,6 +1962,10 @@
         "description": "Folge einem Tutorial zu etwas das du noch nie gemacht hast. Code, Rezept, DIY.",
         "flavor": "Die Meister der Halle waren alle mal Lehrlinge. Der Unterschied? Sie haben angefangen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1626,6 +1978,10 @@
         "description": "Lies ein Kapitel aus einem Sachbuch. Kein Roman, keine Artikel. Ein richtiges Buch.",
         "flavor": "Die Bibliothek flüstert: Wer liest, lebt tausend Leben. Wer nicht liest, nur eins.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1638,6 +1994,10 @@
         "description": "Lern etwas Neues und erkläre es dann jemandem. Laut. Als ob die Person 10 Jahre alt wäre.",
         "flavor": "Wissen das du nicht weitergeben kannst, hast du nicht wirklich verstanden.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1650,6 +2010,10 @@
         "description": "Nimm einen Fehler den du gemacht hast (Code, Arbeit, Leben) und recherchiere warum das passiert ist.",
         "flavor": "Fehler sind Lehrer. Dumm ist nur wer nicht zuhört.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1662,6 +2026,10 @@
         "description": "Such dir ein Objekt in deiner Nähe. Recherchiere seine Geschichte. Wer hat es erfunden? Warum?",
         "flavor": "Alles hat eine Geschichte. Selbst die langweiligsten Dinge.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1674,6 +2042,10 @@
         "description": "Lies einen langen Artikel (2000+ Wörter) und miss deine Zeit. Dann fass ihn in 3 Sätzen zusammen.",
         "flavor": "Die Chronisten lesen schneller als das Auge folgen kann. Übung macht Meister.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1686,6 +2058,10 @@
         "description": "Wähle eine Fähigkeit die du lernen willst. Erstelle einen Lernplan: Was brauchst du? Wie lange? Welche Ressourcen?",
         "flavor": "Jeder Meister begann mit einem Plan. Oder einem Traum und viel Sturheit.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1698,6 +2074,10 @@
         "description": "Nimm etwas das du bewunderst (Code, Design, Text) und analysiere wie es gemacht wurde. Schritt für Schritt.",
         "flavor": "Die besten Lektionen verstecken sich in fremden Werken.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1710,6 +2090,10 @@
         "description": "Lies über Lerntechniken (Feynman, Spaced Repetition, Memory Palace). Probiere eine aus.",
         "flavor": "Lernen zu lernen ist die mächtigste Fähigkeit überhaupt. Die Halle lehrt sie nur den Mutigen.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1722,6 +2106,10 @@
         "description": "10 Minuten Dehnung. Nacken, Rücken, Beine. YouTube hilft.",
         "flavor": "Dein Körper ist deine Rüstung. Pflege sie.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1734,6 +2122,10 @@
         "description": "Heute nur Treppen. Kein Aufzug, keine Rolltreppe. Deine Beine werden fluchen.",
         "flavor": "Kleine Siege summieren sich. Frag die Helden der zweiten Ära.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1746,6 +2138,10 @@
         "description": "20 Push-Ups am Stück. Knie-Variante zählt auch.",
         "flavor": "Kraft kommt nicht über Nacht. Aber sie kommt.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1758,6 +2154,10 @@
         "description": "2 Liter Wasser heute. Kein Saft, kein Tee. Nur Wasser.",
         "flavor": "Der Aetherstrom fließt besser wenn der Körper nicht austrocknet.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1770,6 +2170,10 @@
         "description": "30 Minuten Workout. Gym, Hometraining, Joggen — Hauptsache Schweiß.",
         "flavor": "Die Schmiede formt nicht nur Stahl. Auch Helden.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1782,6 +2186,10 @@
         "description": "Dusch kalt. 2 Minuten minimum. Atmen nicht vergessen.",
         "flavor": "Die Krieger der Nordberge schwören drauf. Du wirst es hassen. Und dann lieben.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1794,6 +2202,10 @@
         "description": "Ein Tag ohne extra Zucker. Keine Süßigkeiten, keine Softdrinks, kein versteckter Zucker.",
         "flavor": "Zucker ist ein Fluch der wie ein Segen schmeckt.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1806,6 +2218,10 @@
         "description": "60 Minuten intensives Training. Kraft + Cardio. Alles geben.",
         "flavor": "Die Arena fordert Blut, Schweiß, und Tränen. Du bringst alle drei mit.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1818,6 +2234,10 @@
         "description": "Ruf jemanden an statt zu texten. 10 Minuten minimum.",
         "flavor": "Stimmen tragen mehr als Buchstaben. Das wussten schon die Barden.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1830,6 +2250,10 @@
         "description": "Frag jemanden: 'Kann ich dir bei etwas helfen?' Und meine es ernst.",
         "flavor": "Kein Held wandert allein. Und keiner sollte es müssen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1842,6 +2266,10 @@
         "description": "Wenn du jemandem etwas schuldig bist: Entschuldige dich. Heute. Richtig.",
         "flavor": "Stolz ist die schwerste Rüstung. Manchmal muss man sie ablegen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1854,6 +2282,10 @@
         "description": "Mach konkrete Pläne mit jemandem. Datum, Uhrzeit, Ort. Kein 'irgendwann mal'.",
         "flavor": "Irgendwann ist der Feind von Jetzt. Helden leben im Jetzt.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1866,6 +2298,10 @@
         "description": "Wenn es einen ungelösten Konflikt gibt: Sprich ihn an. Ruhig, klar, ohne Angriff.",
         "flavor": "Die größten Schlachten finden nicht auf dem Feld statt. Sondern im Gespräch danach.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1878,6 +2314,10 @@
         "description": "Heute läuft alles nach Plan. Morgenroutine, Training, Arbeit, Social, Abend. Kein Ausrutscher.",
         "flavor": "Perfektion ist nicht das Ziel. Aber einmal zu sehen wie sie aussieht... das ist Gold wert.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1890,6 +2330,10 @@
         "description": "4 Stunden am Stück an einem wichtigen Projekt. Kein Handy, kein Chat, keine Pausen außer Bio.",
         "flavor": "Die Meister der Halle nennen es Trance. Du wirst es Flow nennen. Die Chroniken nennen es Legende.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1902,6 +2346,10 @@
         "description": "Heute: Lerne etwas Neues, trainiere deinen Körper, tue etwas für jemand anderen. Alles drei.",
         "flavor": "Körper, Geist, Seele. Die drei Säulen der Helden. Heute baust du alle.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -1914,6 +2362,10 @@
         "description": "7 Tage Streak: Jeden Tag Training, Learning, Social. Kein Tag wird übersprungen.",
         "flavor": "Legenden werden nicht an einem Tag geschmiedet. Sondern an sieben. Und dann noch einmal.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1926,6 +2378,10 @@
         "description": "Wähle eine Gewohnheit. 30 Tage lang, jeden Tag. Dokumentiere deinen Progress.",
         "flavor": "Die Chronisten schreiben: Helden fallen nicht. Sie entscheiden sich einfach jeden Tag aufs Neue aufzustehen.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -1938,6 +2394,10 @@
         "description": "Organisiere deine digitalen Dateien. Benenne alles sinnvoll. Der Bibliothekar hasst Chaos.",
         "flavor": "Die Bibliothek hat Regeln. Erste Regel: Nenn den Bibliothekar nie einen Affen. Zweite Regel: ORDNUNG.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1950,6 +2410,10 @@
         "description": "Lies einen Artikel über etwas Philosophisches. Leben, Tod, Zeit. Die großen Fragen.",
         "flavor": "DER TOD SAGT: MENSCHEN DENKEN ZU WENIG ÜBER DIE WICHTIGEN DINGE NACH. DAS IST BEDAUERLICH.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1962,6 +2426,10 @@
         "description": "Überprüfe heute Abend alle Türen und Fenster. Sicherheit ist nicht paranoid, nur vorbereitet.",
         "flavor": "Die Wache sagt: Wer die Nacht fürchtet, hat sie nicht verstanden. Wer sie versteht, schläft trotzdem mit einem Auge offen.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -1974,6 +2442,10 @@
         "description": "Verkaufe etwas das du nicht mehr brauchst. Ehrlich verkaufen — kein Betrug, keine Übertreibung.",
         "flavor": "Cut-Me-Own-Throat Dibbler würde lügen. Du nicht. Das macht dich besser als die meisten Händler in Ankh-Morpork.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1986,6 +2458,10 @@
         "description": "Schreib auf: Wer bist du wirklich? Nicht dein Job, nicht deine Rolle. DU.",
         "flavor": "Dein gegebener Name ist was andere dich nennen. Dein wahrer Name ist wer du bist wenn niemand zuschaut.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -1998,6 +2474,10 @@
         "description": "Schau in den Spiegel. Nicht auf dein Aussehen — in deine Augen. Was siehst du?",
         "flavor": "Reflektionen lügen nicht. Sie zeigen nur was ist, nicht was du gerne wärst.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2010,6 +2490,10 @@
         "description": "Lerne etwas das dir hilft Probleme zu lösen. Einen Skill der überall funktioniert.",
         "flavor": "Ein Skelettschlüssel öffnet jede Tür. Manche Skills sind genauso. Finde einen.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2022,6 +2506,10 @@
         "description": "Heute gewinnst du. Aber wie? Plan deinen perfekten Tag — dann führ ihn aus. Mit Stil.",
         "flavor": "Der Moment des Sieges ist nicht nur das WAS. Es ist das WIE. Zeig der Welt deinen Killing Blow.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2034,6 +2522,10 @@
         "description": "Versuch heute etwas Schwieriges. Wenn's klappt — perfekt. Wenn nicht — wenigstens gewürfelt.",
         "flavor": "Manchmal rollt man eine 1. Manchmal eine 20. Wichtig ist dass man würfelt.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2046,6 +2538,10 @@
         "description": "Organisiere ein Gruppen-Ding. Spieleabend, Essen, Projekt. Hauptsache zusammen.",
         "flavor": "Eine Gruppe ist mehr als ihre Mitglieder. Wenn sie zusammenhält, ist sie unbesiegbar. Frag Vox Machina.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2058,6 +2554,10 @@
         "description": "Mach dir einen festen Termin für etwas das du liebst. Jeden Donnerstag. Oder Dienstag. Egal — Hauptsache ritual.",
         "flavor": "Die besten Dinge im Leben sind die auf die man sich die ganze Woche freut.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2070,6 +2570,10 @@
         "description": "Erzähl heute einen Dad Joke. Je schlechter, desto besser. Das Stöhnen ist der Applaus.",
         "flavor": "Die Macht des Dad Jokes liegt nicht im Lachen. Sie liegt im kollektiven Augenrollen.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2082,6 +2586,10 @@
         "description": "Tu heute etwas nicht für dich, sondern für 'die Kids'. Future-You zählt auch.",
         "flavor": "Manchmal tut man Dinge nicht weil sie Spaß machen. Sondern weil sie richtig sind. For the kids.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2094,6 +2602,10 @@
         "description": "Eine Woche lang: Jeden Tag ein kleiner Schritt zu einem großen Ziel. Dokumentiere die Reise.",
         "flavor": "Jede Heldenreise ist eine Odyssee. Manche dauern 20 Jahre. Deine dauert eine Woche. Schaffst du.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -2106,6 +2618,10 @@
         "description": "Hilf heute jemandem ohne Gegenleistung zu erwarten. Einfach weil's richtig ist.",
         "flavor": "Die Brückenläufer trugen einander. Nicht weil sie mussten. Weil keiner zurückbleibt.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2118,6 +2634,10 @@
         "description": "Schreib drei Dinge auf für die es sich zu leben lohnt. Nicht abstrakt — konkret.",
         "flavor": "Leben vor dem Tod. Stärke vor Schwäche. Reise vor Ziel. Die ersten Ideale sind die schwersten.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2130,6 +2650,10 @@
         "description": "Heute zählt nicht das Ergebnis. Nur dass du es versuchst. Egal wie's ausgeht.",
         "flavor": "Die Reise ist das Ziel. Klingt wie Kalenderspruch-Weisheit. Ist aber wahr.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2142,6 +2666,10 @@
         "description": "Trainiere heute als würdest du für den Kampf deines Lebens vorbereiten. Volle Intensität.",
         "flavor": "Die Radianten trainierten nicht für die Schlacht. Sie trainierten damit sie die Schlacht überleben.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2154,6 +2682,10 @@
         "description": "Wenn heute etwas wehtut (emotional, physisch) — akzeptier es. Nicht kämpfen, nicht verdrängen. Fühlen.",
         "flavor": "Der erste Schritt zur Heilung ist akzeptieren dass es wehtut. Frag jeden Windläufer.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2166,6 +2698,10 @@
         "description": "Erledige 3 Dinge von deiner 'irgendwann mal'-Liste. Heute ist irgendwann.",
         "flavor": "Prokrastination ist eine Kunst. Aber irgendwann muss auch Kunst fertig werden.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2178,6 +2714,10 @@
         "description": "Google etwas Zufälliges. Folge jedem Link der interessant klingt. 45 Minuten. Sieh wo du landest.",
         "flavor": "Die besten Entdeckungen macht man wenn man sich verirrt. Die Bibliothek weiß das.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2190,6 +2730,10 @@
         "description": "Mach heute etwas völlig anders als sonst. Andere Route zur Arbeit, anderes Frühstück, andere Musik.",
         "flavor": "Routine ist Komfort. Chaos ist Wachstum. Ein Tag Chaos schadet nicht.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2202,6 +2746,10 @@
         "description": "2 Minuten Power Pose. Arme hoch, Brust raus, als hättest du gerade einen Boss besiegt.",
         "flavor": "Körperhaltung beeinflusst Psyche. Die Helden der Chroniken wussten das. Jetzt weißt du's auch.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2214,6 +2762,10 @@
         "description": "Leere deine Inbox. Alle Mails: Antworten, archivieren, oder löschen. Keine 'markiert als ungelesen'-Tricks.",
         "flavor": "Inbox Zero ist ein Mythos. Aber manche Mythen werden wahr wenn man fest genug dran glaubt.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2226,6 +2778,10 @@
         "description": "Such dir eine bekannte Verschwörungstheorie. Recherchiere die Gegenargumente. 30 Minuten kritisches Denken.",
         "flavor": "Die Wahrheit ist da draußen. Aber meistens ist sie langweiliger als die Lüge.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2238,6 +2794,10 @@
         "description": "Gib heute einer fremden Person ein ehrliches Kompliment. Nicht creepy. Einfach nett.",
         "flavor": "Freundlichkeit kostet nichts. Aber sie kann jemandem den Tag retten.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2250,6 +2810,10 @@
         "description": "1 Stunde: Eine Aufgabe. Kein Multitasking, keine Tabs, kein Handy. Nur diese eine Sache.",
         "flavor": "Multitasking ist eine Lüge. Die Halle lehrt: Tu eine Sache richtig statt drei schlecht.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2262,6 +2826,10 @@
         "description": "Heute: Aufzüge und Rolltreppen sind Lava. Nur Treppen.",
         "flavor": "Jede Stufe ist eine Wiederholung. Jeder Stock ein Set. Das Gebäude ist dein Gym.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2274,6 +2842,10 @@
         "description": "Ein paar Stunden ohne Digital: Stift statt Tastatur, Buch statt Bildschirm, Gespräch statt Chat.",
         "flavor": "Die Welt existierte vor Pixel. Manchmal ist es gut sich daran zu erinnern.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2286,6 +2858,10 @@
         "description": "Erkläre ein Problem (Code, Arbeit, Leben) laut einem Gegenstand. Ernsthaft. Hilft wirklich.",
         "flavor": "Die Ente urteilt nicht. Die Ente hört nur zu. Manchmal ist das genug.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2298,6 +2874,10 @@
         "description": "Schreib jemandem mit dem du seit Monaten (oder Jahren) nicht gesprochen hast. Kein 'sorry für die lange Pause' — einfach 'Hey'.",
         "flavor": "Freundschaft verjährt nicht. Sie schläft nur manchmal.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2310,6 +2890,10 @@
         "description": "Wenn du heute eine Serie/Videos schaust: Nach jeder Folge 10 Min Pause. Steh auf, beweg dich, trink Wasser.",
         "flavor": "Autoplay ist der Feind. Der Pause-Button ist dein Freund.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2322,6 +2906,10 @@
         "description": "10 Burpees. Jetzt. Keine Diskussion.",
         "flavor": "Burpees sind die Währung der Buße. Bezahle deine Schuld an die Fitness-Götter.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2334,6 +2922,10 @@
         "description": "Steh auf und geh ans Fenster. 5 Minuten echtes Tageslicht auf dein Gesicht. Kein Handy.",
         "flavor": "Der Tag beginnt mit Licht. Die Halle weiß das. Dein Körper auch.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2346,6 +2938,10 @@
         "description": "Lies die Anleitung/Doku zu etwas das du schon lange benutzt. Vielleicht lernst du was Neues.",
         "flavor": "Read The Manual. Die drei Worte die 90% aller Probleme lösen würden.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2358,6 +2954,10 @@
         "description": "Alle 2 Stunden heute: 5 Minuten Dehnung. Nacken, Schultern, Rücken.",
         "flavor": "Dein Körper ist nicht für 8 Stunden Sitzen gemacht. Erinner ihn daran.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2370,6 +2970,10 @@
         "description": "Im nächsten Gespräch: Nur zuhören. Nicht unterbrechen, nicht Lösungen anbieten. Nur hören.",
         "flavor": "Die meisten Probleme brauchen keine Lösung. Nur jemanden der zuhört.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2382,6 +2986,10 @@
         "description": "Gruppiere ähnliche Aufgaben und erledige sie am Stück. Alle Mails, alle Anrufe, alle Admin-Sachen.",
         "flavor": "Context Switching kostet Energie. Die Halle lehrt Effizienz.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2394,6 +3002,10 @@
         "description": "Hör eine Episode eines Podcasts zu einem Thema das du nicht kennst. Neugierig bleiben.",
         "flavor": "Bildung kommt in vielen Formen. Manchmal mit Kopfhörern.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2406,6 +3018,10 @@
         "description": "20 Minuten Mobility-Training. YouTube hat tausend Videos. Such dir eins.",
         "flavor": "Beweglichkeit ist Freiheit. Frag jeden der sie verloren hat.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2418,6 +3034,10 @@
         "description": "Frag jemanden: 'Wie geht's dir wirklich?' Nicht als Floskel. Ernsthaft.",
         "flavor": "Die meisten Fragen wollen keine ehrliche Antwort. Diese hier schon.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2430,6 +3050,10 @@
         "description": "Abends: Was lief gut heute? Was nicht? Schreib 3 Sätze. Keine Wertung, nur Beobachtung.",
         "flavor": "Reflexion ist der Kompass der Wanderer. Ohne sie läuft man im Kreis.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2442,6 +3066,10 @@
         "description": "Lerne 3 neue Keyboard Shortcuts für ein Tool das du täglich nutzt. Und benutz sie.",
         "flavor": "Kleine Optimierungen summieren sich. Nach einem Jahr sind 10 Sekunden gespart 60 Stunden.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2454,6 +3082,10 @@
         "description": "Nächstes Telefonat: Beim Gehen führen. Rausgehen, laufen, reden.",
         "flavor": "Die besten Gespräche finden beim Gehen statt. Die alten Philosophen wussten das.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2466,6 +3098,10 @@
         "description": "Teile heute etwas das dir schwerfällt. Eine Sorge, eine Unsicherheit. Mit jemandem dem du vertraust.",
         "flavor": "Stärke zeigt sich nicht im Verbergen der Schwäche. Sondern im Mut sie zu zeigen.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2478,6 +3114,10 @@
         "description": "Lerne etwas Kleines richtig schnell. Zaubertrick, Origami, Beatbox. 1 Stunde volle Fokus.",
         "flavor": "Lernen muss nicht Monate dauern. Manchmal reicht ein Nachmittag.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2490,6 +3130,10 @@
         "description": "Ein kompletter Reset-Tag: Früh aufstehen, Training, Learning, Arbeit, Social, Reflexion. Alles richtig machen.",
         "flavor": "Manchmal braucht man einen Reset. Einen Tag der zeigt: So könnte es immer sein.",
         "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
       }
     },
     {
@@ -2502,6 +3146,10 @@
         "description": "Arbeite heute an etwas nur für dich. Keiner muss es sehen, keiner muss es wissen. Nur du.",
         "flavor": "Die besten Projekte beginnen im Geheimen. Manche bleiben es. Das ist okay.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2514,6 +3162,10 @@
         "description": "Cardio, aber anders: Tanzen, Treppe hoch-runter-rennen, Seilspringen, Schattenboxen. 15 Min.",
         "flavor": "Cardio muss nicht langweilig sein. Die Halle erlaubt Kreativität.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2526,6 +3178,10 @@
         "description": "Erledige die eine Aufgabe die du seit Tagen vor dir herschiebst. Du weißt welche.",
         "flavor": "Manche Helden kämpfen gegen Drachen. Andere gegen ihre eigene To-Do-Liste. Letztere sind die wahren Tapferen — denn der Drache kommt wenigstens zu dir.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2538,6 +3194,10 @@
         "description": "Zieh dich heute bewusst gut an. Auch wenn du nirgendwo hingehst.",
         "flavor": "Es gibt eine alte Weisheit unter den Duellisten von Aethermoor: Wer gut aussieht, kämpft besser. Und wer gut kämpft, sieht gut aus. Ein Teufelskreis im besten Sinne.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2550,6 +3210,10 @@
         "description": "Eine volle Stunde ohne Bildschirm. Lesen, spazieren, nachdenken — alles erlaubt außer Displays.",
         "flavor": "Im tiefsten Gewölbe der Bibliothek gibt es einen Raum ohne Licht. Nicht weil er dunkel ist, sondern weil das Licht dort beschlossen hat, eine Pause zu machen. Manchmal braucht selbst Licht Ruhe.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2562,6 +3226,10 @@
         "description": "Lösch drei Apps von deinem Handy die du seit Monaten nicht benutzt hast. Lass los.",
         "flavor": "Nicht alles was in deinem Inventar liegt verdient einen Platz. Manche Dinge tragen wir nur mit weil wir vergessen haben sie abzulegen. Die besten Wanderer reisen leicht.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2574,6 +3242,10 @@
         "description": "Lies das Buch/den Artikel/die Doku fertig die du angefangen hast. Keine neuen anfangen.",
         "flavor": "Die Bibliothekare von Aethermoor haben ein Sprichwort: Wer hundert Bücher anfängt und keines beendet, hat hundert Anfänge gelesen. Und keinen einzigen Schluss.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2586,6 +3258,10 @@
         "description": "Meditiere oder mach Atemübungen für mindestens 10 Minuten. Setz dich hin. Atme. Fertig.",
         "flavor": "Die geschicktesten Duellisten bewegen sich nicht schneller als andere. Sie bewegen sich ruhiger. Wer seinen Atem kontrolliert, kontrolliert den Kampf.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2598,6 +3274,10 @@
         "description": "Schreib jemandem eine Nachricht, bei dem du dich lange nicht gemeldet hast. Einfach Hallo sagen.",
         "flavor": "In den Archiven der Gilde verstauben Briefe die nie abgeschickt wurden. Jeder einzelne hätte eine Geschichte verändert. Schick deinen ab.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2610,6 +3290,10 @@
         "description": "Bereite alles für morgen vor bevor du ins Bett gehst. Klamotten, Tasche, Mittagessen.",
         "flavor": "Die besten Waffen werden in der Nacht geschmiedet, nicht am Morgen. Wer vorbereitet aufwacht, hat den Tag schon halb gewonnen bevor er begonnen hat.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2622,6 +3306,10 @@
         "description": "Schreib 15 Minuten lang auf was dir durch den Kopf geht. Kein Ziel, kein Thema. Einfach schreiben.",
         "flavor": "Manche Zauber brauchen keine Formel. Manchmal reicht es, die Gedanken fließen zu lassen und zu sehen wohin der Strom sie trägt.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2634,6 +3322,10 @@
         "description": "Nimm dir bewusst 30 Minuten für etwas das dir Freude macht. Kein Multitasking. Nur Genuss.",
         "flavor": "Der wichtigste Schritt eines Wanderers ist manchmal der, den er nicht macht. Rast ist keine Schwäche. Rast ist Strategie.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2646,6 +3338,10 @@
         "description": "Mach einen Backup deiner wichtigsten Dateien. Handy-Fotos, Dokumente, was auch immer. Heute.",
         "flavor": "Der Plan war perfekt. Dann hat jemand den Plan gelesen und der Plan hat beschlossen, sich umzubringen. Deshalb gibt es Plan B.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2658,6 +3354,10 @@
         "description": "Putz deinen Schreibtisch komplett. Alles runter, abwischen, nur das Nötigste wieder drauf.",
         "flavor": "Die Werkbank eines Schmieds verrät mehr über sein Können als seine Waffen. Chaos auf dem Tisch heißt Chaos im Kopf. Meistens.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2670,6 +3370,10 @@
         "description": "Gib jemandem etwas zurück das du dir geliehen hast. Buch, Werkzeug, Geld, Tupperware. Du weißt was.",
         "flavor": "In Aethermoor sagt man: Schulden sind wie Schatten. Je länger du sie ignorierst, desto länger werden sie. Und irgendwann werden sie lebendig.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2682,6 +3386,10 @@
         "description": "Lerne heute eine neue Tastenkombination oder ein Feature in einem Tool das du täglich nutzt.",
         "flavor": "Selbst die erfahrensten Magier entdecken neue Runen in Büchern die sie seit Jahren lesen. Die Magie war immer da. Man muss nur hinschauen.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2694,6 +3402,10 @@
         "description": "Sag heute drei Mal Nein zu Dingen die du eigentlich nicht willst aber normalerweise mitmachst.",
         "flavor": "Stärke vor Schwäche. Nicht die Stärke zuzuschlagen — die Stärke abzulehnen.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2706,6 +3418,10 @@
         "description": "3 Sätze Plank, je 45 Sekunden. Halt die Stellung.",
         "flavor": "Die Mauern von Aethermoor wurden nicht aus Stein gebaut sondern aus dem Willen derer die dahinter standen. Dein Core ist deine Mauer. Bau sie auf.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2718,6 +3434,10 @@
         "description": "Geh morgens 20 Minuten spazieren bevor du irgendwas anderes machst. Frische Luft first.",
         "flavor": "Die Stadtwache von Aethermoor beginnt jeden Tag mit einer Runde um die Mauern. Nicht weil es nötig ist. Sondern weil es den Kopf klärt bevor der Tag anfängt.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2730,6 +3450,10 @@
         "description": "100 Liegestütze heute. Über den Tag verteilt ist okay. Muss nicht am Stück sein.",
         "flavor": "Im Dojo von Meister Tanaka gibt es eine Regel: Bevor du eine neue Technik lernst, wiederholst du die alte hundert Mal. Perfektion kommt von Wiederholung.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2742,6 +3466,10 @@
         "description": "Nimm heute jede Treppe statt Aufzug/Rolltreppe. Ausnahmslos.",
         "flavor": "Der Turm der Sternenwächterin hat 777 Stufen. Es gibt keinen Aufzug. Wer sie erklimmt, sieht die Welt von oben. Wer den Aufzug sucht, sieht gar nichts.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2754,6 +3482,10 @@
         "description": "Mach ein komplettes Stretching oder Yoga-Programm. Mindestens 20 Minuten. Dein Körper dankt es dir.",
         "flavor": "Die geschmeidigsten Krieger überleben am längsten. Nicht die stärksten, nicht die schnellsten — die beweglichsten. Frag jeden Knochen der das Gegenteil behauptet.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2766,6 +3498,10 @@
         "description": "Volles Workout im Gym. Kein halbes, kein \"ich mach nur Arme\". Das volle Programm.",
         "flavor": "Dein Körper ist deine erste Rüstung. Und im Gegensatz zu der aus Stahl, musst du diese selbst schmieden. Jeden. Verdammten. Tag.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2778,6 +3514,10 @@
         "description": "Trink heute mindestens 2 Liter Wasser. Kein Kaffee, keine Softdrinks als Ersatz.",
         "flavor": "Der Aetherstrom fließt durch alles. Durch Stein, durch Stahl, durch dich. Aber nur wenn du ihn lässt. Und er mag Wasser lieber als Koffein.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2790,6 +3530,10 @@
         "description": "Beende deine Dusche mit 30 Sekunden kaltem Wasser. Nicht warm-kalt. KALT.",
         "flavor": "Die Prüfungen der Wanderer haben eine Gemeinsamkeit: Sie sind unangenehm. Und genau deshalb funktionieren sie.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2802,6 +3546,10 @@
         "description": "Mach dir ein gesundes, proteinreiches Frühstück. Selbst zubereitet. Kein Müsliriegel.",
         "flavor": "Kein Krieger geht mit leerem Magen in die Schlacht. Und nein, drei Tassen Kaffee sind kein Frühstück. Auch nicht vier.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2814,6 +3562,10 @@
         "description": "Geh 30 Minuten spazieren während du einen Podcast oder ein Hörbuch hörst. Wissen + Bewegung.",
         "flavor": "Die größten Philosophen von Aethermoor dachten nicht an Schreibtischen nach. Sie wanderten. Und irgendwo zwischen dem dritten und vierten Kilometer fanden sie die Antworten.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2826,6 +3578,10 @@
         "description": "Lerne fünf neue Fachbegriffe in einem Thema das dich interessiert. Schreib sie auf mit Erklärung.",
         "flavor": "Wer den wahren Namen einer Sache kennt, hat Macht über sie. Das gilt für Dämonen genau wie für Subnetting.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2838,6 +3594,10 @@
         "description": "Lies einen Artikel oder schau ein Video über ein Thema von dem du NICHTS verstehst. Komplett neues Gebiet.",
         "flavor": "Die Bibliothek beißt zurück. Buchstäblich. Handschuhe empfohlen. Aber wer durch die gefährlichen Regale kommt, findet Wissen das andere nie sehen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2850,6 +3610,10 @@
         "description": "Erkläre einem Freund oder Kollegen ein komplexes Thema so, dass er es versteht. Wenn du es nicht einfach erklären kannst, verstehst du es nicht.",
         "flavor": "Es gibt drei Dinge die alle weisen Wanderer fürchten: das Meer bei Sturm, eine mondlose Nacht, und den Moment wenn jemand fragt \"Kannst du das nochmal erklären?\"",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2862,6 +3626,10 @@
         "description": "Lerne ein neues Tool oder eine neue Technologie kennen. Tutorial durcharbeiten, nicht nur angucken.",
         "flavor": "Manche Metalle speichern Aether besser als andere. Investitur-Stahl ist das stärkste — weil es nicht nur hält, sondern wächst. Wie Wissen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2874,6 +3642,10 @@
         "description": "Lies die Dokumentation zu etwas das du regelmäßig benutzt. Die echte Doku, nicht Stack Overflow.",
         "flavor": "Die alten Runen sind nicht kryptisch weil sie geheim sind. Sie sind kryptisch weil niemand die Dokumentation liest. Sei besser als niemand.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2886,6 +3658,10 @@
         "description": "Starte einen Online-Kurs oder ein Tutorial das du schon ewig machen wolltest. Nur den ersten Abschnitt.",
         "flavor": "Jeder Meister war einmal ein Lehrling der beschlossen hat anzufangen. Nicht morgen. Nicht nächste Woche. Heute.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2898,6 +3674,10 @@
         "description": "Organisiere deine Notizen, Bookmarks oder Wissensdatenbank. Lösch Veraltetes, sortiere den Rest.",
         "flavor": "Die Archivare sind die unbesungenen Helden der Bibliothek. Ohne sie wäre alles Wissen der Welt nur ein sehr großer Papierhaufen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2910,6 +3690,10 @@
         "description": "Lerne etwas über ein Thema das dich einschüchtert. Finanzen, Steuern, Kochen, was auch immer du vermeidest.",
         "flavor": "Im dritten Untergeschoss der Bibliothek stehen Bücher die nicht gelesen werden wollen. Nicht weil sie gefährlich sind — sondern weil sie unbequeme Wahrheiten enthalten.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2922,6 +3706,10 @@
         "description": "Bau etwas. Ein kleines Projekt, ein Skript, eine Webseite, egal was. Von Null anfangen und fertigmachen.",
         "flavor": "Rogars Amboss singt am lautesten wenn neues Metall darauf liegt. Nicht reparieren, nicht verbessern — erschaffen. Heute bist du der Schmied.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2934,6 +3722,10 @@
         "description": "Erstell eine Mindmap oder ein Diagramm zu einem Thema das du gerade lernst. Visuell denken.",
         "flavor": "Die Sternenwächterin sagt, jedes Wissensnetz gleicht einem Sternbild. Man muss nur die Verbindungen ziehen. Manche leuchten erst dann.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2946,6 +3738,10 @@
         "description": "Schau dir ein Video oder lies einen Artikel über etwas komplett Nutzloses aber Faszinierendes. Schwarze Löcher, mittelalterliche Belagerungsmaschinen, was auch immer.",
         "flavor": "Die besten Entdeckungen passieren auf dem Weg zum Klo. Nicht weil der Ort besonders ist, sondern weil der Geist endlich wandern darf.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2958,6 +3754,10 @@
         "description": "Schreib drei Fehler auf die du in den letzten Wochen gemacht hast und was du daraus gelernt hast.",
         "flavor": "Die Chronik der Wanderer verzeichnet mehr Niederlagen als Siege. Nicht weil die Wanderer schlecht waren — sondern weil nur die Ehrlichen ihre Fehler aufschreiben.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -2970,6 +3770,10 @@
         "description": "Lerne 10 neue Wörter oder Sätze in einer Fremdsprache. Duolingo zählt.",
         "flavor": "Jede Sprache ist ein Schlüssel zu einer anderen Welt. Die Bibliothek hat Bücher in 3000 Sprachen. Die meisten davon beschimpfen den Leser — aber sehr höflich.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -2982,6 +3786,10 @@
         "description": "Nimm etwas auseinander (digital oder physisch) und versteh wie es funktioniert. Router, App, Kaffeemaschine.",
         "flavor": "Die besten Alchemisten beginnen nicht mit dem Brauen. Sie beginnen mit dem Zerlegen. Erst wer versteht was drin ist, kann verstehen was rauskommt.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -2994,6 +3802,10 @@
         "description": "Teile etwas Nützliches das du gelernt hast mit jemandem. Blog-Post, Chat-Nachricht, Notiz — Hauptsache du gibst Wissen weiter.",
         "flavor": "Wissen das man für sich behält ist nur halb so viel wert. Die Bibliothek wächst nicht durch Einzelne, sondern durch alle die ein Buch zurückstellen.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -3006,6 +3818,10 @@
         "description": "Erzähl jemandem eine Geschichte. Egal ob wahr oder erfunden. Hauptsache gut erzählt.",
         "flavor": "Finnegan hat mal eine Geschichte so gut erzählt, dass drei Leute geweint haben und einer seinen Job gekündigt hat. Er hat nie verraten ob sie wahr war. Das ist die Kunst.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -3018,6 +3834,10 @@
         "description": "Iss mit jemandem zusammen. Nicht nebeneinander am Handy — richtig zusammen.",
         "flavor": "Die Große Halle hat Platz für tausend Helden. Aber die beste Magie entsteht an kleinen Tischen mit wenigen Freunden und zu viel Essen.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -3030,6 +3850,10 @@
         "description": "Mach den ersten Schritt bei einem kleinen Konflikt oder Missverständnis. Auch wenn du denkst du hast Recht.",
         "flavor": "Nicht jede Schlacht muss gewonnen werden. Manche Siege bestehen darin, das Schwert einzustecken und die Hand auszustrecken.",
         "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
       }
     },
     {
@@ -3042,6 +3866,10 @@
         "description": "Frag jemanden nach einem Hobby oder Talent von dem du noch nichts wusstest.",
         "flavor": "Karim der Wanderhändler hat einmal drei Stunden mit einem Bauern geredet und erfahren, dass dieser die beste Sternennavigation der ganzen Küste beherrschte. Man weiß nie.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -3054,6 +3882,10 @@
         "description": "Hilf jemandem bei etwas ohne dass er darum gebeten hat. Einfach machen.",
         "flavor": "Kein Held wandert allein. Selbst die Sterne leuchten in Gruppen — nicht weil sie müssen, sondern weil es besser aussieht.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -3066,6 +3898,10 @@
         "description": "Gib jemandem ein echtes, aufrichtiges Kompliment. Kein \"schönes Shirt\" — etwas das du wirklich meinst.",
         "flavor": "Worte sind in Aethermoor keine Kleinigkeit. Ein ehrliches Wort zur richtigen Zeit hat schon Kriege beendet. Und mehrere angefangen. Aber meistens beendet.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -3078,6 +3914,10 @@
         "description": "Organisier einen Spieleabend, Filmabend oder einfach ein Treffen. Du musst einladen, nicht warten.",
         "flavor": "Die Taverne unter der Quest Hall ist immer geöffnet. Aber der beste Abend ist nicht der mit dem meisten Bier — sondern der mit den besten Leuten.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -3090,6 +3930,10 @@
         "description": "Sprich heute mit jemandem dem du normalerweise nicht ansprichst. Kollege, Nachbar, Kassierer.",
         "flavor": "Jeder Fremde ist ein NPC bis du mit ihm sprichst. Dann wird er manchmal zum wichtigsten Charakter der Geschichte.",
         "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
       }
     },
     {
@@ -3102,6 +3946,10 @@
         "description": "Schick einem Freund der weit weg wohnt eine persönliche Nachricht. Nicht \"Alles gut?\" sondern was Echtes.",
         "flavor": "Die Brieftauben der Gilde fliegen über tausend Meilen. Nicht weil sie müssen — sondern weil jemand am anderen Ende wartet.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -3114,6 +3962,10 @@
         "description": "Ruf einen Elternteil oder eine wichtige Bezugsperson an. Einfach reden. Frag wie es geht.",
         "flavor": "Ich bin kein Held. Ich bin ein Vater. Und das ist manchmal schwerer, manchmal leichter, aber immer wichtiger als jede Quest.",
         "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
       }
     },
     {
@@ -3641,7 +4493,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -4009,7 +4861,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -4057,7 +4909,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 20
+        "gold": 28
       }
     },
     {
@@ -4393,7 +5245,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -4617,7 +5469,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -4649,7 +5501,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -4873,7 +5725,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -5033,7 +5885,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -5145,7 +5997,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -5241,7 +6093,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -5289,7 +6141,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -5833,7 +6685,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -5945,7 +6797,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -6169,7 +7021,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -7831,7 +8683,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -8119,7 +8971,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -8151,7 +9003,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -8167,7 +9019,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -8279,7 +9131,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {
@@ -8375,7 +9227,7 @@
       },
       "rewards": {
         "xp": 35,
-        "gold": 22
+        "gold": 28
       }
     },
     {

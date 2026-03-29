@@ -21,9 +21,18 @@
       "icon": "🐉",
       "accent": "#ef4444",
       "tier": "legendary",
-      "uniqueDrops": ["wyrm-scale-shield"],
+      "uniqueDrops": [
+        "wyrm-scale-shield",
+        "wb-wyrm-fang",
+        "wb-wyrm-schuppen-stiefel"
+      ],
       "titleReward": "Wyrm Slayer",
-      "frameReward": { "id": "wyrm-slayer-frame", "name": "Wyrm Slayer", "color": "#ef4444", "glow": true }
+      "frameReward": {
+        "id": "wyrm-slayer-frame",
+        "name": "Wyrm Slayer",
+        "color": "#ef4444",
+        "glow": true
+      }
     },
     {
       "id": "burnout-colossus",
@@ -33,9 +42,17 @@
       "icon": "🗿",
       "accent": "#f97316",
       "tier": "legendary",
-      "uniqueDrops": ["colossus-ember-amulet"],
+      "uniqueDrops": [
+        "colossus-ember-amulet",
+        "wb-colossus-helm"
+      ],
       "titleReward": "Colossus Breaker",
-      "frameReward": { "id": "colossus-frame", "name": "Colossus Breaker", "color": "#f97316", "glow": true }
+      "frameReward": {
+        "id": "colossus-frame",
+        "name": "Colossus Breaker",
+        "color": "#f97316",
+        "glow": true
+      }
     },
     {
       "id": "chaos-hydra",
@@ -45,9 +62,17 @@
       "icon": "🐍",
       "accent": "#a855f7",
       "tier": "legendary",
-      "uniqueDrops": ["hydra-focus-helm"],
+      "uniqueDrops": [
+        "hydra-focus-helm",
+        "wb-hydra-ruestung"
+      ],
       "titleReward": "Hydra Vanquisher",
-      "frameReward": { "id": "hydra-frame", "name": "Hydra Vanquisher", "color": "#a855f7", "glow": true }
+      "frameReward": {
+        "id": "hydra-frame",
+        "name": "Hydra Vanquisher",
+        "color": "#a855f7",
+        "glow": true
+      }
     },
     {
       "id": "doubt-phantom",
@@ -60,10 +85,23 @@
       "tier": "champion",
       "hp": 15000,
       "enrageHours": 120,
-      "uniqueDrops": ["doubt-whisper-boots"],
-      "contributionThresholds": { "bronze": 50, "silver": 150, "gold": 400, "legendary": 800 },
+      "uniqueDrops": [
+        "doubt-whisper-boots",
+        "wb-phantom-amulett"
+      ],
+      "contributionThresholds": {
+        "bronze": 50,
+        "silver": 150,
+        "gold": 400,
+        "legendary": 800
+      },
       "titleReward": "Zweifelbezwinger",
-      "frameReward": { "id": "doubt-frame", "name": "Zweifelbezwinger", "color": "#6366f1", "glow": false }
+      "frameReward": {
+        "id": "doubt-frame",
+        "name": "Zweifelbezwinger",
+        "color": "#6366f1",
+        "glow": false
+      }
     },
     {
       "id": "entropy-weaver",
@@ -76,10 +114,23 @@
       "tier": "champion",
       "hp": 22000,
       "enrageHours": 144,
-      "uniqueDrops": ["entropy-web-armor"],
-      "contributionThresholds": { "bronze": 75, "silver": 200, "gold": 500, "legendary": 1000 },
+      "uniqueDrops": [
+        "entropy-web-armor",
+        "wb-entropie-stab"
+      ],
+      "contributionThresholds": {
+        "bronze": 75,
+        "silver": 200,
+        "gold": 500,
+        "legendary": 1000
+      },
       "titleReward": "Fadenbrecher",
-      "frameReward": { "id": "weaver-frame", "name": "Fadenbrecher", "color": "#ec4899", "glow": false }
+      "frameReward": {
+        "id": "weaver-frame",
+        "name": "Fadenbrecher",
+        "color": "#ec4899",
+        "glow": false
+      }
     },
     {
       "id": "stagnation-golem",
@@ -92,10 +143,23 @@
       "tier": "titan",
       "hp": 45000,
       "enrageHours": 144,
-      "uniqueDrops": ["stagnation-helm"],
-      "contributionThresholds": { "bronze": 100, "silver": 300, "gold": 750, "legendary": 1500 },
+      "uniqueDrops": [
+        "stagnation-helm",
+        "wb-golem-schild"
+      ],
+      "contributionThresholds": {
+        "bronze": 100,
+        "silver": 300,
+        "gold": 750,
+        "legendary": 1500
+      },
       "titleReward": "Stillstandbrecher",
-      "frameReward": { "id": "golem-frame", "name": "Stillstandbrecher", "color": "#78716c", "glow": true }
+      "frameReward": {
+        "id": "golem-frame",
+        "name": "Stillstandbrecher",
+        "color": "#78716c",
+        "glow": true
+      }
     },
     {
       "id": "perfection-seraph",
@@ -108,10 +172,23 @@
       "tier": "titan",
       "hp": 60000,
       "enrageHours": 120,
-      "uniqueDrops": ["perfection-wings"],
-      "contributionThresholds": { "bronze": 125, "silver": 375, "gold": 900, "legendary": 1800 },
+      "uniqueDrops": [
+        "perfection-wings",
+        "wb-seraph-ring"
+      ],
+      "contributionThresholds": {
+        "bronze": 125,
+        "silver": 375,
+        "gold": 900,
+        "legendary": 1800
+      },
       "titleReward": "Der Unvollkommene",
-      "frameReward": { "id": "seraph-frame", "name": "Der Unvollkommene", "color": "#fbbf24", "glow": true }
+      "frameReward": {
+        "id": "seraph-frame",
+        "name": "Der Unvollkommene",
+        "color": "#fbbf24",
+        "glow": true
+      }
     },
     {
       "id": "isolation-leviathan",
@@ -124,10 +201,23 @@
       "tier": "colossus",
       "hp": 100000,
       "enrageHours": 168,
-      "uniqueDrops": ["isolation-trident"],
-      "contributionThresholds": { "bronze": 200, "silver": 500, "gold": 1200, "legendary": 2500 },
+      "uniqueDrops": [
+        "isolation-trident",
+        "wb-leviathan-panzer"
+      ],
+      "contributionThresholds": {
+        "bronze": 200,
+        "silver": 500,
+        "gold": 1200,
+        "legendary": 2500
+      },
       "titleReward": "Brückenbauer",
-      "frameReward": { "id": "leviathan-frame", "name": "Brückenbauer", "color": "#1e3a5f", "glow": true }
+      "frameReward": {
+        "id": "leviathan-frame",
+        "name": "Brückenbauer",
+        "color": "#1e3a5f",
+        "glow": true
+      }
     },
     {
       "id": "apathy-sovereign",
@@ -140,10 +230,23 @@
       "tier": "colossus",
       "hp": 150000,
       "enrageHours": 168,
-      "uniqueDrops": ["apathy-crown"],
-      "contributionThresholds": { "bronze": 250, "silver": 650, "gold": 1500, "legendary": 3000 },
+      "uniqueDrops": [
+        "apathy-crown",
+        "wb-apathie-klinge"
+      ],
+      "contributionThresholds": {
+        "bronze": 250,
+        "silver": 650,
+        "gold": 1500,
+        "legendary": 3000
+      },
       "titleReward": "Der Erweckte",
-      "frameReward": { "id": "sovereign-frame", "name": "Der Erweckte", "color": "#4a1942", "glow": true }
+      "frameReward": {
+        "id": "sovereign-frame",
+        "name": "Der Erweckte",
+        "color": "#4a1942",
+        "glow": true
+      }
     }
   ]
 }

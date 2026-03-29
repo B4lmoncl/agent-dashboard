@@ -6789,7 +6789,7 @@
       "reqSkill": 295,
       "materials": {
         "phoenixfeder": 5,
-        "mondblome": 5,
+        "mondblume": 5,
         "runenstein": 3
       },
       "result": {
@@ -7448,7 +7448,7 @@
       "source": "drop",
       "reqSkill": 160,
       "materials": {
-        "mondblome": 3,
+        "mondblume": 3,
         "magiestaub": 2
       },
       "result": {
@@ -12726,7 +12726,7 @@
       "reqSkill": 103,
       "materials": {
         "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "geheiltesleichtleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12744,7 +12744,7 @@
       "reqSkill": 194,
       "materials": {
         "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "gehaertetesschwerleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12797,7 +12797,7 @@
       "reqSkill": 133,
       "materials": {
         "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "geheiltesleichtleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12815,7 +12815,7 @@
       "reqSkill": 187,
       "materials": {
         "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "gehaertetesschwerleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12869,7 +12869,7 @@
       "reqSkill": 125,
       "materials": {
         "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "geheiltesleichtleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12887,7 +12887,7 @@
       "reqSkill": 218,
       "materials": {
         "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "gehaertetesschwerleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12941,7 +12941,7 @@
       "reqSkill": 106,
       "materials": {
         "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "geheiltesleichtleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -12959,7 +12959,7 @@
       "reqSkill": 218,
       "materials": {
         "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "gehaertetesschwerleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -13013,7 +13013,7 @@
       "reqSkill": 89,
       "materials": {
         "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "geheiltesleichtleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -13031,7 +13031,7 @@
       "reqSkill": 215,
       "materials": {
         "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "gehaertetesschwerleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -13085,7 +13085,7 @@
       "reqSkill": 129,
       "materials": {
         "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "geheiltesleichtleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -13104,7 +13104,7 @@
       "reqSkill": 217,
       "materials": {
         "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "gehaertetesschwerleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14365,7 +14365,7 @@
       "name": "Gesplitterter Rubin",
       "profession": "juwelier",
       "source": "trainer",
-      "reqSkill": 0,
+      "reqSkill": 1,
       "materials": {
         "kristallsplitter": 1
       },
@@ -16702,7 +16702,7 @@
       "dropSource": "dungeon",
       "reqSkill": 230,
       "materials": {
-        "gehaertetesleder": 4,
+        "gehaertetesschwerleder": 4,
         "drachenschuppe": 2,
         "kristallsplitter": 1
       },
@@ -16723,7 +16723,7 @@
       "dropSource": "rift",
       "reqSkill": 270,
       "materials": {
-        "gehaertetesleder": 5,
+        "gehaertetesschwerleder": 5,
         "aetherkern": 2,
         "drachenkern": 1
       },
