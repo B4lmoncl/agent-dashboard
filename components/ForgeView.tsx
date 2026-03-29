@@ -181,10 +181,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [buyingUpgrade, setBuyingUpgrade] = useState<string | null>(null);
   // Recipe search & filter state
   const [recipeSearch, setRecipeSearch] = useState("");
+  const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
   const [showHaveMatsOnly, setShowHaveMatsOnly] = useState(false);
   const [recipeSort, setRecipeSort] = useState<"default" | "skill" | "name" | "color">("default");
-  const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
   const [castCountdown, setCastCountdown] = useState<string | null>(null);
@@ -1591,6 +1591,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         }
                       }
                       if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
+                      // Slot filter
+                      /* slot filter handled by existing SLOT_KEYWORDS logic above */
                       if (showCraftableOnly) {
                         const isLearned = recipe.learned !== false;
                         const meetsLevel = recipe.canCraft;
