@@ -50,7 +50,14 @@ const EFFECT_CATEGORIES = {
   variety_bonus: 'utility',
 };
 
-const EXTRACTION_COST = 500; // Essenz
+// Escalating extraction cost: base 500 essenz + 1000 gold, +250 essenz / +1000 gold per extraction
+function getExtractionCost(extractionCount) {
+  const n = extractionCount || 0;
+  return {
+    essenz: 500 + n * 250,
+    gold: 1000 + n * 1000,
+  };
+}
 
 function ensureCube(u) {
   if (!u.kanaisCube) {
@@ -93,10 +100,14 @@ router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'Item has no legendary effect to extract' });
   }
 
-  // Check essenz cost
+  // Check escalating extraction cost (essenz + gold)
   ensureUserCurrencies(u);
-  if ((u.currencies.essenz || 0) < EXTRACTION_COST) {
-    return res.status(400).json({ error: `Requires ${EXTRACTION_COST} Essenz (have ${u.currencies.essenz || 0})` });
+  const extractionCost = getExtractionCost(u.cubeExtractionCount || 0);
+  if ((u.currencies.essenz || 0) < extractionCost.essenz) {
+    return res.status(400).json({ error: `Requires ${extractionCost.essenz} Essenz (have ${u.currencies.essenz || 0})` });
+  }
+  if ((u.currencies.gold ?? u.gold ?? 0) < extractionCost.gold) {
+    return res.status(400).json({ error: `Requires ${extractionCost.gold} Gold (have ${u.currencies.gold ?? u.gold ?? 0})` });
   }
 
   const cube = ensureCube(u);
@@ -121,8 +132,11 @@ router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
     minValue = Math.max(1, Math.floor(item.legendaryEffect.value * 0.6));
   }
 
-  // Deduct cost
-  u.currencies.essenz -= EXTRACTION_COST;
+  // Deduct cost (essenz + gold) and track extraction count
+  u.currencies.essenz -= extractionCost.essenz;
+  u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) - extractionCost.gold;
+  u.gold = u.currencies.gold;
+  u.cubeExtractionCount = (u.cubeExtractionCount || 0) + 1;
 
   // Destroy item
   u.inventory.splice(idx, 1);

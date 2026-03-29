@@ -23,6 +23,30 @@ function applyShopEffect(u, item) {
     return `+${amount} Essenz received!`;
   }
 
+  // Instant forge temp boost (self-care rewards)
+  if (type === 'instant_forge_temp') {
+    u.forgeTemp = Math.min(100, (u.forgeTemp ?? 0) + amount);
+    return `+${amount} Forge Temperature!`;
+  }
+
+  // Instant streak shield (self-care rewards)
+  if (type === 'instant_streak_shield') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'streak_shield', questsRemaining: item.effect.questsRemaining || 1, activatedAt: now() });
+    return 'Streak Shield activated!';
+  }
+
+  // Combined forge temp + streak shield (premium self-care rewards)
+  if (type === 'instant_forge_temp_and_streak_shield') {
+    const { forgeTemp, streakShields } = item.effect;
+    u.forgeTemp = Math.min(100, (u.forgeTemp ?? 0) + (forgeTemp || 0));
+    u.activeBuffs = u.activeBuffs || [];
+    for (let i = 0; i < (streakShields || 0); i++) {
+      u.activeBuffs.push({ type: 'streak_shield', questsRemaining: 1, activatedAt: now() });
+    }
+    return `+${forgeTemp} Forge Temperature + ${streakShields} Streak Shield!`;
+  }
+
   // Buff-based effects
   u.activeBuffs = u.activeBuffs || [];
   u.activeBuffs.push({ type, questsRemaining, activatedAt: now() });

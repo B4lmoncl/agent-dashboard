@@ -331,6 +331,10 @@ router.post('/api/gems/upgrade', requireAuth, (req, res) => {
   const UPGRADE_COST = GEMS_DATA.dropConfig?.upgradeCost?.gold || 100;
   const GEMS_REQUIRED = GEMS_DATA.dropConfig?.upgradeCost?.gemsRequired || 3;
 
+  // Essenz cost scales by tier: T1→2: 25, T2→3: 50, T3→4: 100, T4→5: 200
+  const ESSENZ_BY_TIER = { 1: 25, 2: 50, 3: 100, 4: 200 };
+  const essenzCost = ESSENZ_BY_TIER[parsed.tier] || 50;
+
   // Check player has enough gems
   u.gems = u.gems || {};
   const owned = u.gems[gKey] || 0;
@@ -346,9 +350,15 @@ router.post('/api/gems/upgrade', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Not enough gold — need ${UPGRADE_COST}, have ${u.currencies.gold || 0}` });
   }
 
-  // Deduct gold
+  // Check essenz
+  if ((u.currencies.essenz || 0) < essenzCost) {
+    return res.status(400).json({ error: `Not enough Essenz — need ${essenzCost}, have ${u.currencies.essenz || 0}` });
+  }
+
+  // Deduct gold + essenz
   u.currencies.gold -= UPGRADE_COST;
   u.gold = u.currencies.gold;
+  u.currencies.essenz -= essenzCost;
 
   // Remove source gems, add upgraded gem
   u.gems[gKey] = owned - GEMS_REQUIRED;
@@ -375,6 +385,7 @@ router.post('/api/gems/upgrade', requireAuth, (req, res) => {
       statBonus: toTier?.statBonus,
     },
     goldSpent: UPGRADE_COST,
+    essenzSpent: essenzCost,
   });
 });
 
@@ -489,16 +500,23 @@ router.post('/api/gems/polish', requireAuth, (req, res) => {
 
   // Gold cost: 500 × currentTier
   const goldCost = 500 * parsed.tier;
+  // Essenz cost: half of gold cost
+  const essenzCost = Math.floor(goldCost / 2);
 
   ensureUserCurrencies(u);
   const userGold = u.currencies?.gold ?? 0;
+  const userEssenz = u.currencies?.essenz ?? 0;
   if (userGold < goldCost) {
     return res.status(400).json({ error: `Not enough gold — need ${goldCost}, have ${userGold}` });
   }
+  if (userEssenz < essenzCost) {
+    return res.status(400).json({ error: `Not enough Essenz — need ${essenzCost}, have ${userEssenz}` });
+  }
 
-  // Deduct gold
+  // Deduct gold + essenz
   u.currencies.gold -= goldCost;
   u.gold = u.currencies.gold;
+  u.currencies.essenz -= essenzCost;
 
   // Remove 1 of current gem, add 1 of next tier
   u.gems[gKey] = owned - 1;
@@ -525,8 +543,9 @@ router.post('/api/gems/polish', requireAuth, (req, res) => {
       statBonus: toTier?.statBonus,
     },
     goldSpent: goldCost,
+    essenzSpent: essenzCost,
   });
-  console.log(`[gems] ${userId} polished ${gKey} → ${upgradedKey} (${goldCost}g)`);
+  console.log(`[gems] ${userId} polished ${gKey} → ${upgradedKey} (${goldCost}g + ${essenzCost} essenz)`);
 });
 
 module.exports = router;
