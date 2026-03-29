@@ -867,10 +867,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         return (
           <div key={cat.label} className="mb-4">
             <div className="flex items-center gap-3 mb-3 px-1">
-              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
-              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{cat.desc}</span>
-              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
+              <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, transparent, rgba(96,165,250,0.3), rgba(96,165,250,0.1))" : "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
+              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+              <span className="text-xs" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{cat.desc}</span>
+              <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, rgba(96,165,250,0.1), rgba(96,165,250,0.3), transparent)" : "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {catProfs.map(prof => {
