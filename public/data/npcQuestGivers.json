@@ -4958,6 +4958,677 @@
           }
         ]
       ]
+    },
+    {
+      "id": "braumeister-bjorn",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ein Bier? Nein? Dann arbeiten wir. Danach Bier.",
+      "name": "Braumeister Björn",
+      "emoji": null,
+      "title": "Der Hopfenphilosoph",
+      "description": "Braut Bier und Weisheiten. Beides braucht Geduld. Beides schmeckt besser mit der Zeit.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Björns Braukunst",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Björn · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Geduld ist die Hauptzutat. In allem. Außer bei Deadlines.",
+              "task": "Björn braucht Hilfe beim Brauen. Oder beim Trinken. Meist beides.",
+              "realWorldTask": "Nimm dir 30 Minuten für etwas das Geduld erfordert — langsam kochen, Handarbeit, oder einfach warten ohne Handy",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "postmeisterin-clara",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Drei Briefe. Zwei überfällig. Einer peinlich. Wähle weise.",
+      "name": "Postmeisterin Clara",
+      "emoji": null,
+      "title": "Die Nachrichtenwächterin",
+      "description": "Sortiert Post seit 40 Jahren. Hat noch nie einen Brief geöffnet. Professionelle Neugierresistenz.",
+      "stayDays": 2,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Claras Mahnungen",
+            "type": "social",
+            "priority": "low",
+            "lore": "Quest von Clara · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Ungesendete Nachrichten sind wie unausgesprochene Gefühle. Beide machen Magengeschwüre.",
+              "task": "Clara hat Post für dich. Antworten ist Pflicht.",
+              "realWorldTask": "Beantworte 3 Nachrichten die du schuldig bist — E-Mails, Texte, Briefe",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "gaertner-thorn",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 40,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jeder Garten braucht Pflege. Auch der in deinem Kopf.",
+      "name": "Gärtner Thorn",
+      "emoji": null,
+      "title": "Der Wurzelmeister",
+      "description": "Gräbt. Immer. Überall. Die Pflanzen wachsen. Niemand weiß warum — er auch nicht.",
+      "stayDays": 3,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Thorns Unkraut",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Thorn · 1/1 · 1/1",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Unkraut ist hartnäckig. Schlechte Gewohnheiten auch. Beide muss man an der Wurzel packen.",
+              "task": "Thorn jätet Unkraut. Heute jätest du.",
+              "realWorldTask": "Identifiziere eine schlechte Gewohnheit und ersetze sie heute bewusst durch eine bessere",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "bote-swift",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Keine Zeit! Muss weiter! Hier — nimm das — mach das — tschüss!",
+      "name": "Bote Swift",
+      "emoji": null,
+      "title": "Der Windläufer",
+      "description": "Schnellster Bote des Turms. Hat noch nie eine vollständige Konversation geführt.",
+      "stayDays": 1,
+      "cooldownDays": 7,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Swifts Sprint",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Swift · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Schnell ist gut! Schneller ist besser! Am schnellsten ist... wahrscheinlich gefährlich!",
+              "task": "Swift will dass du dich bewegst. Sofort. Jetzt. LOS.",
+              "realWorldTask": "10 Minuten HIIT oder Sprint-Intervalle — 30 Sek schnell, 30 Sek Pause, repeat",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "waescherin-agnes",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 40,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Schmutzige Wäsche? Schmutzige Geheimnisse? Ich wasche beides. Diskret.",
+      "name": "Wäscherin Agnes",
+      "emoji": null,
+      "title": "Die Reinliche",
+      "description": "Wäscht Wäsche und Reputationen. Beides braucht heißes Wasser.",
+      "stayDays": 2,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Agnes' Waschtag",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Agnes · 1/1 · 1/1",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Saubere Kleidung ist keine Option. Es ist Zivilisation.",
+              "task": "Agnes duldet keine Schmutzwäsche. Weder echte noch metaphorische.",
+              "realWorldTask": "Wäsche waschen, zusammenlegen UND wegräumen. Ja, auch wegräumen. Der schwierigste Teil.",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schmied-vulkan",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Feuer formt Stahl. Herausforderung formt Charakter. Beides tut weh. Beides lohnt sich.",
+      "name": "Schmied Vulkan",
+      "emoji": null,
+      "title": "Der Flammenträger",
+      "description": "Schmiedet nicht nur Metall, sondern auch Willenskraft. Grimvar respektiert ihn. Das sagt alles.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Vulkans Esse",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Vulkan · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Der Amboss fragt nicht ob du bereit bist. Er wartet einfach bis du zuschlagen.",
+              "task": "Vulkan fordert Kraft. Nicht die physische — die andere. Die die zählt.",
+              "realWorldTask": "Krafttraining: 3 Sätze Liegestützen, Squats, und Planks — bis zum Muskelversagen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Gehärteter Stahl",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Vulkan · 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Stahl der nie im Feuer war, bricht beim ersten Schlag. Bist du Stahl oder Glas?",
+              "task": "Vulkan testet deine Belastbarkeit. Nicht physisch — mental.",
+              "realWorldTask": "Tu etwas Unbequemes das dich langfristig stärker macht: schwieriges Gespräch, Bewerbung, Grenze setzen",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "sterndeuterin-nova",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Dein Horoskop ist irrelevant. Deine Entscheidungen nicht. Lass uns über Letzteres reden.",
+      "name": "Sterndeuterin Nova",
+      "emoji": null,
+      "title": "Die Anti-Astrologin",
+      "description": "Kennt jedes Sternbild. Glaubt an keins. Sagt Zukunft vorher basierend auf Verhalten, nicht Planeten.",
+      "stayDays": 2,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Novas Vorhersage",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Nova · 1/1 · 1/1",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Die beste Vorhersage für morgen ist was du heute tust. Keine Sterne nötig.",
+              "task": "Nova sagt dir was passiert wenn du so weitermachst wie bisher. Keine Sterne. Nur Logik.",
+              "realWorldTask": "Projiziere: Wenn du die nächsten 90 Tage genau so weitermachst wie jetzt — wo stehst du dann? Schreib es auf.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "sammler-magpie",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ooh! Glänzend! Ist das deins? War das deins? Es ist meins jetzt. Nein, Spaß. Vielleicht.",
+      "name": "Sammler Magpie",
+      "emoji": null,
+      "title": "Der Kuriositätenjäger",
+      "description": "Sammelt alles was glänzt, klingt oder interessant riecht. Sein Rucksack widerspricht der Physik.",
+      "stayDays": 3,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Magpies Fundgrube",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Magpie · 1/1 · 1/1",
+            "rewards": {
+              "xp": 18,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Manche nennen es Chaos. Ich nenne es eine Sammlung ohne Index.",
+              "task": "Magpie will dass du dein eigenes Chaos ordnest.",
+              "realWorldTask": "Räume eine Schublade, einen Schrank oder einen digitalen Ordner komplett aus und organisiere ihn neu",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "botanikerin-fern",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Pflanzen lehren uns alles was wir wissen müssen. Wir hören nur zu schlecht hin.",
+      "name": "Botanikerin Fern",
+      "emoji": null,
+      "title": "Die Grüne Weisheit",
+      "description": "Studiert Pflanzen seit 30 Jahren. Die Pflanzen haben sie zurückstudiert. Es herrscht gegenseitiger Respekt.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ferns Lektion",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Fern · 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Bäume wachsen langsam und leben Jahrhunderte. Menschen wachsen schnell und vergessen es sofort. Sei mehr Baum.",
+              "task": "Fern lehrt Geduld durch Beobachtung.",
+              "realWorldTask": "Geh raus und beobachte die Natur 20 Minuten — beschreibe 5 Dinge die dir zum ersten Mal auffallen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Wurzeln",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Fern · 1/1 · 2/2",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Ein Baum ohne Wurzeln fällt beim ersten Wind. Was sind deine Wurzeln?",
+              "task": "Fern stellt die tiefere Frage.",
+              "realWorldTask": "Reflektiere: Was gibt dir Halt? Wer sind die Menschen die dich tragen? Melde dich bei einem davon.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "erfinder-tesla",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Meine neueste Erfindung funktioniert! Größtenteils. Der Teil der nicht funktioniert ist... aufregend.",
+      "name": "Erfinder Tesla",
+      "emoji": null,
+      "title": "Der Visionär",
+      "description": "Hat 47 Patente. 45 davon funktionieren. Die anderen zwei sind 'konzeptionell herausfordernd'.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Teslas Prototyp",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Tesla · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Innovation ist nicht 'etwas Neues machen'. Es ist 'etwas Bestehendes besser verstehen'. Dann mach es trotzdem neu.",
+              "task": "Tesla hat eine Idee. Du bist der Prototyp.",
+              "realWorldTask": "Lerne ein neues Tool oder eine Technologie und bau damit etwas Kleines in 1 Stunde",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Version 2.0",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Tesla · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Version 1 war Forschung. Version 2 ist Absicht. Großer Unterschied.",
+              "task": "Tesla will Iteration. Nicht neu anfangen — verbessern.",
+              "realWorldTask": "Nimm was du gestern gebaut hast und verbessere es. Dokumentiere was du geändert hast und warum.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "richterin-justina",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 14,
+      "cooldownHours": 144,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Gerechtigkeit ist blind. Ich bin es nicht. Das ist effizienter.",
+      "name": "Richterin Justina",
+      "emoji": null,
+      "title": "Die Waagschale",
+      "description": "Urteilt fair. Urteilt hart. Urteilt immer. Auch beim Frühstück.",
+      "stayDays": 2,
+      "cooldownDays": 22,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Justinas Urteil",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Justina · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Sei ehrlich zu dir selbst. Wenn du es nicht bist — wer dann?",
+              "task": "Justina will Rechenschaft. Von dir. Über dich.",
+              "realWorldTask": "Mache eine ehrliche Selbstbewertung: Was läuft gut? Was nicht? Was lügst du dir vor?",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Urteil",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Justina · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Erkenntnis ohne Konsequenz ist Feigheit. Zieh Konsequenzen.",
+              "task": "Justina duldet keine Ausreden. Nur Taten.",
+              "realWorldTask": "Ändere EINE Sache die du bei der Selbstbewertung gefunden hast. Nicht planen — ändern. Heute.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "leuchtturmwaerter-sol",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich habe dreitausend Nächte das Licht am Brennen gehalten. Manche Dinge lernt man nur in der Dunkelheit.",
+      "name": "Leuchtturmwärter Sol",
+      "emoji": null,
+      "title": "Der Lichtbewahrer",
+      "description": "Wacht allein. Seit Jahren. Nicht einsam — er hat die Sterne. Und eine sehr meinungsstarke Möwe.",
+      "stayDays": 2,
+      "cooldownDays": 28,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Sols Wache",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Sol · 1/1 · 1/3",
+            "rewards": {
+              "xp": 42,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Die Dunkelheit ist nicht der Feind. Die Dunkelheit zeigt dir wo das Licht fehlt.",
+              "task": "Sol lehrt Ausdauer. Die stille Art.",
+              "realWorldTask": "Mache etwas allein das du normalerweise vermeidest — allein essen gehen, allein spazieren, allein ins Kino",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Signal",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Sol · 1/1 · 2/3",
+            "rewards": {
+              "xp": 50,
+              "gold": 32
+            },
+            "vars": {
+              "quote": "Ein Leuchtturm leuchtet nicht für sich selbst. Er leuchtet für andere. Was ist dein Licht?",
+              "task": "Sol zeigt dass Alleinsein und Einsamsein verschiedene Dinge sind.",
+              "realWorldTask": "Hilf jemandem der gerade eine schwere Zeit hat — aktiv, nicht nur 'Meld dich wenn du was brauchst'",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Morgengrauen",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Sol · 1/1 · 3/3",
+            "rewards": {
+              "xp": 58,
+              "gold": 38
+            },
+            "vars": {
+              "quote": "Die längste Nacht endet. Immer. Aber jemand muss das Licht am Brennen halten bis es soweit ist.",
+              "task": "Sols letzte Lektion: Durchhalten. Nicht weil es leicht ist.",
+              "realWorldTask": "Steh bei Sonnenaufgang auf. Sieh zu wie es hell wird. Dann leg los mit dem wichtigsten Tag dieser Woche.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "puppenmacherin-elara",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 7,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jeder Mensch ist eine Marionette. Der Unterschied ist ob du deine eigenen Fäden hältst.",
+      "name": "Puppenmacherin Elara",
+      "emoji": null,
+      "title": "Die Fadenzieherin",
+      "description": "Baut Puppen die lebensechter sind als manche Menschen. Unheimlich. Aber die Puppen sind freundlich. Meistens.",
+      "stayDays": 2,
+      "cooldownDays": 30,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Elaras Fäden",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Elara · 1/1 · 1/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Wer zieht deine Fäden? Gewohnheit? Angst? Erwartung? Finde es heraus.",
+              "task": "Elara zeigt dir deine unsichtbaren Fäden.",
+              "realWorldTask": "Identifiziere 3 Gewohnheiten oder Verhaltensweisen die du tust weil du 'musst' — nicht weil du willst. Hinterfrage jede.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die eigenen Fäden",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Elara · 1/1 · 2/2",
+            "rewards": {
+              "xp": 60,
+              "gold": 40
+            },
+            "vars": {
+              "quote": "Einen Faden durchschneiden ist leicht. Sich danach nicht fallen lassen — das ist die Kunst.",
+              "task": "Elara gibt dir die Schere. Was du damit machst ist deine Entscheidung.",
+              "realWorldTask": "Ändere oder beende eine Sache in deinem Leben die du nur aus Gewohnheit oder Pflichtgefühl machst — nicht mehr",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "wanderer-nobody",
+      "portrait": null,
+      "rarity": "legendary",
+      "spawnWeight": 2,
+      "cooldownHours": 720,
+      "departureDurationHours": 36,
+      "maxChainsPerVisit": 1,
+      "greeting": "Mein Name? Unwichtig. Dein Name? Auch. Was wir TUN — das zählt.",
+      "name": "Der Namenlose",
+      "emoji": null,
+      "title": "Der Wanderer ohne Geschichte",
+      "description": "Niemand weiß woher er kommt. Niemand weiß wohin er geht. Er hinterlässt keine Spuren. Nur veränderte Menschen.",
+      "stayDays": 1,
+      "cooldownDays": 50,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die erste Wahrheit",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest des Namenlosen · 1/1 · 1/3",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Du trägst mehr als du zeigst. Leg etwas ab.",
+              "task": "Der Namenlose sagt drei Worte. Sie treffen.",
+              "realWorldTask": "Schreibe die eine Sache auf die dich am meisten belastet. Sag sie laut. Dann entscheide was du damit tust.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Weg",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest des Namenlosen · 1/1 · 2/3",
+            "rewards": {
+              "xp": 65,
+              "gold": 42
+            },
+            "vars": {
+              "quote": "Geh. Nicht weil du musst. Nicht weil du willst. Weil dein Körper es braucht und dein Kopf es verdient.",
+              "task": "Der Namenlose geht. Du gehst mit. Schweigend.",
+              "realWorldTask": "60 Minuten gehen. Kein Ziel. Kein Podcast. Kein Telefon. Nur du und der Weg.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Geschenk",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest des Namenlosen · 1/1 · 3/3",
+            "rewards": {
+              "xp": 80,
+              "gold": 55
+            },
+            "vars": {
+              "quote": "Das wertvollste was du jemandem geben kannst ist deine Zeit. Nicht dein Geld. Nicht deinen Rat. Deine Zeit.",
+              "task": "Der Namenlose verschwindet wie er kam. Aber seine letzte Aufgabe bleibt.",
+              "realWorldTask": "Schenke jemandem 2 Stunden deiner ungeteilten Aufmerksamkeit. Kein Handy. Kein Nebenbei. Nur für diese Person da sein.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
     }
   ],
   "specialNpcs": {
