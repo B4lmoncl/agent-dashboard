@@ -685,10 +685,16 @@ router.get('/api/tavern/status', (req, res) => {
     rest.autoExpired = true;
     u.tavernHistory = u.tavernHistory || [];
     u.tavernHistory.push({ startedAt: rest.startedAt, endedAt: rest.endedAt, days: rest.days, reason: rest.reason });
+    // Grant Welcome Back buff on auto-expire too
+    u.activeBuffs = u.activeBuffs || [];
+    if (!u.activeBuffs.some(b => b.type === 'xp_boost_25_return' && (b.questsRemaining || 0) > 0)) {
+      u.activeBuffs.push({ type: 'xp_boost_25_return', questsRemaining: 50, activatedAt: now(), label: 'Welcome Back — +25% XP' });
+    }
     saveUsers();
     return res.json({
       resting: false,
       justExpired: true,
+      welcomeBackBuff: true,
       canRest: false,
       cooldownEndsAt: new Date(expiresAt.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
       history: (u.tavernHistory || []).slice(-5),
@@ -764,9 +770,18 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
   u.streakDays = u.tavernRest.streakFrozenAt ?? u.streakDays;
   u.forgeTemp = u.tavernRest.forgeFrozenAt ?? u.forgeTemp;
 
+  // Grant "Welcome Back" XP buff — 25% bonus for 7 days
+  u.activeBuffs = u.activeBuffs || [];
+  u.activeBuffs.push({
+    type: 'xp_boost_25_return',
+    questsRemaining: 50, // ~7 days worth of quests
+    activatedAt: now(),
+    label: 'Welcome Back — +25% XP',
+  });
+
   saveUsers();
-  console.log(`[tavern] ${uid} left the Hearth early`);
-  res.json({ ok: true, message: 'Welcome back, adventurer! Your streak and forge temp have been restored.' });
+  console.log(`[tavern] ${uid} left the Hearth early, granted Welcome Back buff`);
+  res.json({ ok: true, message: 'Welcome back, adventurer! Your streak and forge temp have been restored. You feel refreshed — +25% XP for your next 50 quests!' });
 });
 
 // ─── Companion Expeditions ──────────────────────────────────────────────────
