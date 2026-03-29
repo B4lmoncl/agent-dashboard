@@ -265,3 +265,155 @@ Fehlend:
 - `/images/icons/npc-flint-compass.png` — Captain Flint NPC Reward Item Icon (32×32px)
 - `/images/icons/npc-lumi-lantern.png` — Lumi NPC Reward Item Icon (32×32px)
 
+
+---
+
+## Vollständige Einzelliste: Fehlende Item-Bilder
+
+### Item Detail Images (128×128px PNG, transparenter BG)
+**Wo:** Item Action Popup Detailansicht (~280px breit), Crafted Item Celebration Overlay
+**Stil:** Größere Version des Item Icons, Tier-Farbgebung
+
+#### Tier 1 (Adventurer, braune/erdige Töne)
+- `/images/items/detail/t1-amulet.png`
+- `/images/items/detail/t1-armor.png`
+- `/images/items/detail/t1-axe.png`
+- `/images/items/detail/t1-boots.png`
+- `/images/items/detail/t1-buckler.png`
+- `/images/items/detail/t1-charm.png`
+- `/images/items/detail/t1-dagger.png`
+- `/images/items/detail/t1-helm.png`
+- `/images/items/detail/t1-hood.png`
+- `/images/items/detail/t1-sandals.png`
+- `/images/items/detail/t1-shield.png`
+- `/images/items/detail/t1-staff.png`
+- `/images/items/detail/t1-sword.png`
+- `/images/items/detail/t1-tunic.png`
+
+#### Tier 2 (Veteran, graue/stählerne Töne)
+- `/images/items/detail/t2-amulet.png`
+- `/images/items/detail/t2-armor.png`
+- `/images/items/detail/t2-boots.png`
+- `/images/items/detail/t2-brigandine.png`
+- `/images/items/detail/t2-circlet.png`
+- `/images/items/detail/t2-hammer.png`
+- `/images/items/detail/t2-helm.png`
+- `/images/items/detail/t2-katana.png`
+- `/images/items/detail/t2-pendant.png`
+- `/images/items/detail/t2-shield.png`
+- `/images/items/detail/t2-strider.png`
+- `/images/items/detail/t2-sword.png`
+- `/images/items/detail/t2-tower.png`
+
+#### Tier 3 (Master, goldene/magische Töne)
+- `/images/items/detail/t3-amulet.png`
+- `/images/items/detail/t3-armor.png`
+- `/images/items/detail/t3-barrier.png`
+- `/images/items/detail/t3-boots.png`
+- `/images/items/detail/t3-crown.png`
+- `/images/items/detail/t3-eye.png`
+- `/images/items/detail/t3-helm.png`
+- `/images/items/detail/t3-lance.png`
+- `/images/items/detail/t3-plate.png`
+- `/images/items/detail/t3-shadow.png`
+- `/images/items/detail/t3-shield.png`
+- `/images/items/detail/t3-sword.png`
+- `/images/items/detail/t3-wand.png`
+
+#### Tier 4 (Legendary, lila/orange leuchtende Töne)
+- `/images/items/detail/t4-aegis.png`
+- `/images/items/detail/t4-armor.png`
+- `/images/items/detail/t4-boots.png`
+- `/images/items/detail/t4-crown.png`
+- `/images/items/detail/t4-dawn.png`
+- `/images/items/detail/t4-excalibur.png`
+- `/images/items/detail/t4-heart.png`
+- `/images/items/detail/t4-oracle.png`
+- `/images/items/detail/t4-phoenix.png`
+- `/images/items/detail/t4-void.png`
+
+### Item Grid Icons (48×48px PNG, transparenter BG)
+**Wo:** Inventory Grid (48×48px), Equipment Slots, Trade UI, Dismantle Grid
+**Stil:** Kleinere Version des Detail-Bildes, muss auf dunklem BG erkennbar sein
+
+- `/images/items/icons/t1-hood.png`
+- `/images/items/icons/t2-amulet.png`
+- `/images/items/icons/t2-armor.png`
+- `/images/items/icons/t2-boots.png`
+- `/images/items/icons/t2-brigandine.png`
+- `/images/items/icons/t2-circlet.png`
+- `/images/items/icons/t2-hammer.png`
+- `/images/items/icons/t2-helm.png`
+- `/images/items/icons/t2-katana.png`
+- `/images/items/icons/t2-pendant.png`
+- `/images/items/icons/t2-shield.png`
+- `/images/items/icons/t2-strider.png`
+- `/images/items/icons/t2-sword.png`
+- `/images/items/icons/t2-tower.png`
+- `/images/items/icons/t3-amulet.png`
+- `/images/items/icons/t3-armor.png`
+- `/images/items/icons/t3-barrier.png`
+- `/images/items/icons/t3-boots.png`
+- `/images/items/icons/t3-crown.png`
+- `/images/items/icons/t3-eye.png`
+- `/images/items/icons/t3-helm.png`
+- `/images/items/icons/t3-lance.png`
+- `/images/items/icons/t3-plate.png`
+- `/images/items/icons/t3-shadow.png`
+- `/images/items/icons/t3-shield.png`
+- `/images/items/icons/t3-sword.png`
+- `/images/items/icons/t3-wand.png`
+- `/images/items/icons/t4-aegis.png`
+- `/images/items/icons/t4-armor.png`
+- `/images/items/icons/t4-boots.png`
+- `/images/items/icons/t4-crown.png`
+- `/images/items/icons/t4-dawn.png`
+- `/images/items/icons/t4-excalibur.png`
+- `/images/items/icons/t4-heart.png`
+- `/images/items/icons/t4-oracle.png`
+- `/images/items/icons/t4-phoenix.png`
+- `/images/items/icons/t4-void.png`
+
+### Expedition Location Icons (32×32px PNG)
+**Wo:** Companion Expedition Auswahl (CompanionsWidget, 32×32px), Expedition Ergebnis
+**Stil:** Kleine Landschafts-/Ort-Icons, atmosphärisch
+
+- `/images/icons/exp-cave.png` — Höhle (dunkel, Stalaktiten)
+- `/images/icons/exp-coast.png` — Küste (Wellen, Sand)
+- `/images/icons/exp-desert.png` — Wüste (Dünen, Sonne)
+- `/images/icons/exp-forest.png` — Wald (Bäume, grün)
+- `/images/icons/exp-mountain.png` — Berge (Gipfel, Schnee)
+- `/images/icons/exp-ruins.png` — Ruinen (Steine, alt)
+- `/images/icons/exp-swamp.png` — Sumpf (Nebel, Wasser)
+- `/images/icons/exp-temple.png` — Tempel (Säulen, mystisch)
+
+### Weekly Challenge Type Icons (32×32px PNG)
+**Wo:** ChallengesView Sternenpfad Header (32×32px), Weekly Modifier Badge
+**Stil:** Abstrakte Symbole für Quest-Typen
+
+- `/images/icons/wc-allrounder.png` — Vielseitigkeit (Stern oder Diamant)
+- `/images/icons/wc-code.png` — Development (Klammern oder Terminal)
+- `/images/icons/wc-companion.png` — Companion-Woche (Herz oder Pfote)
+- `/images/icons/wc-fitness.png` — Fitness-Woche (Hantel oder Faust)
+- `/images/icons/wc-generic.png` — Standard/Fallback (Stern)
+- `/images/icons/wc-learning.png` — Lern-Woche (Buch oder Schriftrolle)
+- `/images/icons/wc-social.png` — Social-Woche (Personen oder Handschlag)
+- `/images/icons/wc-speedrun.png` — Speed-Bonus (Blitz oder Uhr)
+- `/images/icons/wc-streak.png` — Streak-Woche (Flamme)
+
+### Workshop Upgrade Icons (40×40px PNG)
+**Wo:** Artisan's Quarter Workshop Upgrades Section (40×40px), Shop Workshop Tab
+**Stil:** Werkzeug/Bonus-Item, leuchtet bei höheren Tiers
+
+- `/images/icons/workshop-gold-tools.png` — Gold-Forged Tools (+Gold Bonus)
+- `/images/icons/workshop-loot-amulet.png` — Loot Chance Amulet (+Drop%)
+- `/images/icons/workshop-material-magnet.png` — Material Magnet (+Material%)
+- `/images/icons/workshop-streak-charm.png` — Streak Shield Charm (Auto-Save)
+
+### Ritual Portraits (256×384px Hochformat PNG)
+**Wo:** Ritual Chamber linke Spalte (195px breit, volle Höhe), Vow Shrine Header
+**Stil:** Atmosphärisch, größer als Standard-NPCs, mit Glow/Schatten
+
+- `/images/portraits/npc-seraine.png` — Seraine Ashwell (Ritual-Meisterin, warm, feurig)
+- `/images/portraits/npc-vael.png` — Vael (Vow-Meister, ernst, dunkel)
+
