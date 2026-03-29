@@ -1763,21 +1763,19 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             })()}
                             {needsLearn ? (() => {
                               const playerGold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                              const canAfford = playerGold >= (recipe.trainerCost ?? 0);
                               return (
                               <button
-                                onClick={() => handleLearnRecipe(recipe.id)}
-                                disabled={crafting || !canAfford || !selectedNpc.chosen}
-                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold"
+                                onClick={() => setNpcModalTab("trainer" as typeof npcModalTab)}
+                                className="forge-btn text-xs px-3 py-1.5 rounded-lg"
                                 style={{
-                                  background: !selectedNpc.chosen ? "rgba(255,255,255,0.03)" : canAfford ? `${selectedNpc.color}15` : "rgba(255,255,255,0.03)",
-                                  color: !selectedNpc.chosen ? "rgba(255,255,255,0.2)" : canAfford ? "#facc15" : "rgba(255,255,255,0.2)",
-                                  border: !selectedNpc.chosen ? "1px solid rgba(255,255,255,0.06)" : canAfford ? "1px solid rgba(250,204,21,0.3)" : "1px solid rgba(255,255,255,0.06)",
-                                  cursor: canAfford && !crafting && selectedNpc.chosen ? "pointer" : "not-allowed",
+                                  background: "rgba(251,191,36,0.08)",
+                                  color: "#fbbf24",
+                                  border: "1px solid rgba(251,191,36,0.2)",
+                                  cursor: "pointer",
                                 }}
-                                title={!selectedNpc.chosen ? "Choose this profession first" : !canAfford ? `Need ${(recipe.trainerCost ?? 0) - playerGold} more gold` : `Learn from ${selectedNpc.npcName} for ${recipe.trainerCost}g`}
+                                title={`Learn this recipe in the Trainer tab (${recipe.trainerCost}g)`}
                               >
-                                {!selectedNpc.chosen ? "Choose First" : crafting ? "..." : `Learn (${recipe.trainerCost}g)`}
+                                Trainer →
                               </button>
                               );
                             })() : (
