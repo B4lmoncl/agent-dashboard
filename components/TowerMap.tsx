@@ -82,20 +82,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
 
         {/* Tower cross-section — top to bottom */}
         <div className="relative px-3 pb-4 space-y-1">
-          {/* Central crystal vein running through the tower */}
-          <div className="absolute left-7 top-14 bottom-10 pointer-events-none" style={{ width: 2 }}>
-            <div className="w-full h-full" style={{
-              background: "linear-gradient(180deg, rgba(251,191,36,0.18), rgba(129,140,248,0.15), rgba(168,85,247,0.12), rgba(59,130,246,0.1), rgba(249,115,22,0.15))",
-              borderRadius: 1,
-            }} />
-            {/* Pulsing glow overlay */}
-            <div className="absolute inset-0 crystal-breathe" style={{
-              width: 6, left: -2,
-              background: "linear-gradient(180deg, rgba(251,191,36,0.06), rgba(129,140,248,0.05), rgba(168,85,247,0.04), rgba(249,115,22,0.05))",
-              filter: "blur(3px)",
-              ["--glow-color" as string]: "rgba(129,140,248,0.12)",
-            }} />
-          </div>
+          {/* Crystal vein removed — was the unexplained line on the left */}
           {/* Tower spire decoration */}
           <div className="flex flex-col items-center pb-3">
             <div style={{
@@ -123,7 +110,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
               <div key={floor.id} className="rounded-xl overflow-hidden relative group" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }} onMouseEnter={e => { if (!floorLocked) (e.currentTarget as HTMLElement).style.borderColor = `${floor.color}35`; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"; }}>
                 {/* Background banner image */}
                 {!floorLocked && floor.banner && (
-                  <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: isActiveFloor ? 0.07 : 0.03, filter: "blur(1px)" }} />
+                  <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: isActiveFloor ? 0.18 : 0.08 }} />
                 )}
                 {/* Floor accent bar + crystal vein branch */}
                 {!floorLocked && (
@@ -163,13 +150,13 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         {floor.name}
                       </p>
                       {isActiveFloor && (
-                        <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${floor.color}18`, color: floor.color, fontSize: 10 }}>
+                        <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${floor.color}18`, color: floor.color, fontSize: 12 }}>
                           <span className="w-1.5 h-1.5 rounded-full" style={{ background: floor.color, boxShadow: `0 0 6px ${floor.color}`, animation: "ambient-spark 2s ease-in-out infinite" }} />
                           HERE
                         </span>
                       )}
                     </div>
-                    <p style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>
+                    <p style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>
                       {floorLocked ? floor.subtitle : (FLOOR_FLAVOR[floor.id] || floor.subtitle)}
                       {!floorLocked && (() => {
                         const unlockedRooms = floor.rooms.filter(r => !r.minLevel || playerLevel >= r.minLevel).length;
@@ -187,7 +174,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         background: (notif.color || floor.color) + "25",
                         color: notif.color || floor.color,
                         border: `1px solid ${(notif.color || floor.color)}40`,
-                        fontSize: 10,
+                        fontSize: 12,
                         minWidth: 20,
                       }}>
                         {notif.count > 9 ? "9+" : notif.count}
@@ -236,10 +223,10 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         }}
                       >
                         {room.iconSrc && <img src={room.iconSrc} alt="" width={14} height={14} style={{ imageRendering: "auto", opacity: roomLocked ? 0.3 : 0.7 }} onError={e => { e.currentTarget.style.display = "none"; }} />}
-                        {isActive && !room.iconSrc && <span style={{ fontSize: 8 }}>◆</span>}
+                        {isActive && !room.iconSrc && <span style={{ fontSize: 12 }}>◆</span>}
                         {room.label}
                         {roomLocked && !floorLocked && room.minLevel && (
-                          <span style={{ fontSize: 9, opacity: 0.5, marginLeft: 2 }}>Lv{room.minLevel}</span>
+                          <span style={{ fontSize: 12, opacity: 0.5, marginLeft: 2 }}>Lv{room.minLevel}</span>
                         )}
                       </button>
                     );
@@ -263,7 +250,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
             <div style={{ width: 140, height: 2, background: "linear-gradient(90deg, transparent, rgba(249,115,22,0.12), transparent)" }} />
             <div style={{ width: 180, height: 3, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)", borderRadius: 2 }} />
           </div>
-          <p className="text-center text-xs italic pt-2 pb-1" style={{ color: "rgba(255,255,255,0.1)", fontSize: 10 }}>
+          <p className="text-center text-xs italic pt-2 pb-1" style={{ color: "rgba(255,255,255,0.1)", fontSize: 12 }}>
             Der Turm erinnert sich an jeden, der seine Hallen betritt.
           </p>
         </div>
