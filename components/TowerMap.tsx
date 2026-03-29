@@ -95,8 +95,12 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                 {/* Floor header */}
                 <div className="flex items-center gap-3 px-4 py-2.5">
                   {/* Floor icon */}
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${floor.color}10`, border: `1px solid ${floor.color}20` }}>
-                    <span style={{ color: floor.color, fontSize: 16 }}>{floor.icon}</span>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{
+                    background: isActiveFloor ? `${floor.color}18` : `${floor.color}08`,
+                    border: `1px solid ${isActiveFloor ? `${floor.color}40` : `${floor.color}15`}`,
+                    boxShadow: isActiveFloor ? `0 0 12px ${floor.color}20` : "none",
+                  }}>
+                    <span style={{ color: floor.color, fontSize: 18, filter: isActiveFloor ? `drop-shadow(0 0 4px ${floor.color}60)` : "none" }}>{floor.icon}</span>
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -159,9 +163,13 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   })}
                 </div>
 
-                {/* Floor connector */}
-                {fi < FLOORS.length - 1 && !isActiveFloor && (
-                  <div style={{ height: 1, background: "rgba(255,255,255,0.02)" }} />
+                {/* Floor connector — stairway visual */}
+                {fi < FLOORS.length - 1 && (
+                  <div className="flex items-center justify-center gap-1 py-0.5" style={{ opacity: 0.3 }}>
+                    <div style={{ width: 6, height: 1, background: "rgba(255,255,255,0.15)" }} />
+                    <div style={{ width: 4, height: 1, background: "rgba(255,255,255,0.1)", transform: "translateY(-1px)" }} />
+                    <div style={{ width: 6, height: 1, background: "rgba(255,255,255,0.15)" }} />
+                  </div>
                 )}
               </div>
             );
