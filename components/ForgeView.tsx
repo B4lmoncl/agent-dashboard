@@ -1037,7 +1037,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
             />
             {/* Material grid */}
-            <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))" }}>
+            <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
               {materialDefs
                 .filter(m => {
                   const count = materials[m.id] || 0;
@@ -1060,9 +1060,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
                     >
                       {m.icon ? (
-                        <img src={m.icon} alt={m.name} width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
+                        <img src={m.icon} alt={m.name} width={36} height={36} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
                       ) : (
-                        <span className="flex-shrink-0" style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 14 }}>{"\u25C6"}</span>
+                        <span className="flex-shrink-0" style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 16 }}>{"\u25C6"}</span>
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold truncate" style={{ color: rc }}>{m.name}</p>
@@ -1825,7 +1825,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             return (
                               <span key={matId} className={`text-sm flex items-center gap-1${almostReady ? " mat-almost-ready" : ""}`} style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
                                 {!has && <span style={{ color: "#f44", fontSize: 12, lineHeight: 1 }}>●</span>}
-                                {mat?.icon ? <img src={mat.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-2.5 h-2.5 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
+                                {mat?.icon ? <img src={mat.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-3 h-3 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
                                 {owned}/{needed} {mat?.name || matId}
                               </span>
                             );
