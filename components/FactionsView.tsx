@@ -355,15 +355,18 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     return (
                       <TipCustom key={s.id} title={s.name} icon={isClaimed ? "✓" : "◆"} accent={s.color} body={<p>{s.minRep} Rep{rewardDesc ? ` — ${rewardDesc}` : ""}{isClaimed ? " (Claimed)" : isReached ? " (Ready!)" : ""}</p>}>
                         <div
-                          className="flex-1 text-center py-1 rounded text-xs cursor-help"
+                          className="flex-1 text-center py-1.5 rounded-lg cursor-help"
                           style={{
-                            background: isReached ? `${s.color}15` : "rgba(255,255,255,0.02)",
-                            color: isReached ? s.color : "rgba(255,255,255,0.15)",
-                            border: isCurrent ? `1px solid ${s.color}50` : "1px solid transparent",
+                            background: isClaimed ? `${s.color}20` : isReached ? `${s.color}12` : "rgba(255,255,255,0.02)",
+                            color: isReached ? s.color : "rgba(255,255,255,0.12)",
+                            border: `1px solid ${isCurrent ? `${s.color}50` : isReached ? `${s.color}20` : "rgba(255,255,255,0.04)"}`,
                             fontWeight: isCurrent ? 700 : 400,
+                            fontSize: 10,
+                            boxShadow: isClaimed ? `0 0 6px ${s.color}15` : "none",
                           }}
                         >
-                          {isClaimed ? "✓" : isReached ? "●" : "○"}
+                          <span style={{ display: "block", fontSize: 12 }}>{isClaimed ? "✓" : isReached ? "●" : "○"}</span>
+                          <span style={{ opacity: 0.7 }}>{s.name.split(" ").pop()}</span>
                         </div>
                       </TipCustom>
                     );
