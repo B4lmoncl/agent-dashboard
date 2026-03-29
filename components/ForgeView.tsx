@@ -419,7 +419,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) setCraftPreview({ recipeId, data });
-    } catch { /* ignore */ }
+      else setCraftResult(data.error || "Preview failed");
+    } catch { setCraftResult("Network error"); }
     setPreviewLoading(null);
   };
 
