@@ -41,7 +41,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
       <div
-        className="w-full max-w-sm sm:max-w-md rounded-2xl overflow-hidden tab-content-enter"
+        className="w-full max-w-md sm:max-w-lg rounded-2xl overflow-hidden tab-content-enter"
         style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 25px 100px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
       >
@@ -83,17 +83,17 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
         {/* Tower cross-section — top to bottom */}
         <div className="relative px-3 pb-4 space-y-1">
           {/* Central crystal vein running through the tower */}
-          <div className="absolute left-6 top-12 bottom-8 pointer-events-none" style={{ width: 1 }}>
+          <div className="absolute left-7 top-14 bottom-10 pointer-events-none" style={{ width: 2 }}>
             <div className="w-full h-full" style={{
-              background: "linear-gradient(180deg, rgba(251,191,36,0.15), rgba(129,140,248,0.12), rgba(168,85,247,0.1), rgba(59,130,246,0.08), rgba(249,115,22,0.12))",
-              boxShadow: "0 0 4px rgba(129,140,248,0.1)",
+              background: "linear-gradient(180deg, rgba(251,191,36,0.18), rgba(129,140,248,0.15), rgba(168,85,247,0.12), rgba(59,130,246,0.1), rgba(249,115,22,0.15))",
+              borderRadius: 1,
             }} />
             {/* Pulsing glow overlay */}
             <div className="absolute inset-0 crystal-breathe" style={{
-              width: 3, left: -1,
-              background: "linear-gradient(180deg, rgba(251,191,36,0.08), rgba(129,140,248,0.06), rgba(168,85,247,0.05), rgba(249,115,22,0.06))",
-              filter: "blur(2px)",
-              ["--glow-color" as string]: "rgba(129,140,248,0.15)",
+              width: 6, left: -2,
+              background: "linear-gradient(180deg, rgba(251,191,36,0.06), rgba(129,140,248,0.05), rgba(168,85,247,0.04), rgba(249,115,22,0.05))",
+              filter: "blur(3px)",
+              ["--glow-color" as string]: "rgba(129,140,248,0.12)",
             }} />
           </div>
           {/* Tower spire decoration */}
@@ -125,9 +125,17 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                 {!floorLocked && floor.banner && (
                   <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: isActiveFloor ? 0.07 : 0.03, filter: "blur(1px)" }} />
                 )}
-                {/* Floor accent bar */}
+                {/* Floor accent bar + crystal vein branch */}
                 {!floorLocked && (
-                  <div className="relative" style={{ height: isActiveFloor ? 2 : 1, background: `linear-gradient(90deg, transparent, ${floor.color}${isActiveFloor ? "80" : "30"}, transparent)` }} />
+                  <div className="relative">
+                    <div style={{ height: isActiveFloor ? 2 : 1, background: `linear-gradient(90deg, transparent, ${floor.color}${isActiveFloor ? "80" : "30"}, transparent)` }} />
+                    {/* Tiny crystal vein branch from left edge */}
+                    <div className="absolute pointer-events-none" style={{
+                      left: 0, top: -6, width: 20, height: 12,
+                      background: `linear-gradient(90deg, ${floor.color}15, transparent)`,
+                      filter: "blur(3px)",
+                    }} />
+                  </div>
                 )}
 
                 {/* Floor header — click to navigate to first available room */}
@@ -238,12 +246,12 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   })}
                 </div>
 
-                {/* Floor connector — stairway visual */}
+                {/* Floor separator — horizontal divider with crystal node */}
                 {fi < FLOORS.length - 1 && (
-                  <div className="flex items-center justify-center gap-1.5 py-0.5" style={{ opacity: 0.25 }}>
-                    <div style={{ width: 8, height: 1, background: "rgba(255,255,255,0.15)", borderRadius: 1 }} />
-                    <div style={{ width: 5, height: 1, background: "rgba(255,255,255,0.12)", transform: "translateY(-1px)", borderRadius: 1 }} />
-                    <div style={{ width: 8, height: 1, background: "rgba(255,255,255,0.15)", borderRadius: 1 }} />
+                  <div className="flex items-center gap-2 py-1 px-4">
+                    <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, transparent, ${floor.color}20, rgba(255,255,255,0.06))` }} />
+                    <div style={{ width: 4, height: 4, borderRadius: "50%", background: `${floor.color}30`, boxShadow: `0 0 4px ${floor.color}15` }} />
+                    <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, rgba(255,255,255,0.06), ${FLOORS[fi + 1]?.color || "#fff"}20, transparent)` }} />
                   </div>
                 )}
               </div>
