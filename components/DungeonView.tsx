@@ -679,7 +679,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                 ...(!locked ? { ["--glow-color" as string]: `${d.accent}25` } : {}),
               }}>
                 <div className="text-center">
-                  <span className="text-2xl">{d.icon}</span>
+                  {d.icon?.startsWith("/") ? (
+                    <div className="w-14 h-14 mx-auto rounded-xl overflow-hidden" style={{ border: `1px solid ${d.accent}30`, boxShadow: `0 0 12px ${d.accent}12` }}>
+                      <img src={d.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+                    </div>
+                  ) : <span className="text-2xl">{d.icon}</span>}
                   <p className="text-sm font-bold mt-1" style={{ color: d.accent }}>{d.name}</p>
                   <p className="text-xs text-w25 mt-0.5 px-2">{d.description}</p>
                   {locked && <p className="text-xs text-w20 mt-1">Requires Lv.{d.minLevel}</p>}
