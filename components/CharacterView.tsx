@@ -267,7 +267,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
       if (r.ok) {
         setEquippedFrameId(frameId);
       }
-    } catch { /* ignore */ }
+    } catch { /* network error — frame stays unchanged */ }
     setFrameLoading(null);
   };
 

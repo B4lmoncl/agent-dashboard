@@ -100,6 +100,10 @@ export default function DashboardModals({
       if (r.ok) {
         setConvResult({ text: `Converted ${d.spent} ${convFrom} → ${d.received} ${convTo}`, type: "success" });
         setConvAmount("");
+        // Update displayed currencies from backend response
+        if (d.currencies && loggedInUser?.currencies) {
+          Object.assign(loggedInUser.currencies, d.currencies);
+        }
       } else {
         setConvResult({ text: d.error || "Conversion failed", type: "error" });
       }
@@ -116,7 +120,8 @@ export default function DashboardModals({
     if (validTo.length > 0 && !validTo.find(p => p.to === convTo)) {
       setConvTo(validTo[0].to);
     }
-  }, [convFrom]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [convFrom]); // convTo intentionally excluded — we WANT to reset it when convFrom changes
 
   const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
     gold: { view: "questBoard", label: "Quest Board" },
