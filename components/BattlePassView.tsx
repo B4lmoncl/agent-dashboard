@@ -243,12 +243,14 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
               className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
               style={{
                 background: isMilestone
-                  ? isReached ? `${config.seasonAccent}0a` : "rgba(255,255,255,0.02)"
+                  ? isReached ? `linear-gradient(135deg, ${config.seasonAccent}10 0%, rgba(17,19,24,0.95) 100%)` : "rgba(255,255,255,0.02)"
                   : isReached ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
                 border: isMilestone
-                  ? `1px solid ${isReached ? `${config.seasonAccent}30` : "rgba(255,255,255,0.06)"}`
+                  ? `1px solid ${isReached ? `${config.seasonAccent}35` : "rgba(255,255,255,0.06)"}`
                   : "1px solid transparent",
+                borderLeft: isMilestone && isReached ? `3px solid ${config.seasonAccent}60` : undefined,
                 opacity: isReached ? 1 : 0.4,
+                boxShadow: isMilestone && canClaim ? `0 0 12px ${config.seasonAccent}10` : "none",
               }}
             >
               {/* Level number */}
