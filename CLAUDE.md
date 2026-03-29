@@ -440,6 +440,68 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 | `public/data/dungeons.json` | Dungeon templates (3 tiers), rewards, gear score thresholds |
 | `public/data/companionExpeditions.json` | Companion expedition templates (4 tiers, 4-24h) |
 
+## Pixellab Asset Generation Rules
+
+All pixel art assets are generated via the Pixellab API v2 (`https://api.pixellab.ai/v2`). API key: stored in session, not in repo.
+
+### API & Endpoint
+
+- **Docs:** `https://api.pixellab.ai/v2/llms.txt` (REST) / `https://api.pixellab.ai/mcp/docs` (MCP)
+- **Primary endpoint:** `POST /generate-with-style-v2` — generates pixel art matching a style reference image
+- **Style reference:** Always use `public/images/icons/gacha-heiltrank.png` (128×128) for item/icon consistency
+- **NPC style reference:** Use `public/images/npcs/rogar-amboss.png` (128×128) for NPC portrait consistency
+- **Background removal:** Always pass `"no_background": true` — Pixellab handles this natively, no post-processing needed
+- **Jobs are async:** All generation endpoints return a `background_job_id`, poll via `GET /background-jobs/{id}`
+
+### Concurrency & Timing (CRITICAL)
+
+- **Tier:** Pixel Architect — supports up to 20 concurrent jobs
+- **Job duration:** 2–5 minutes per generation. **NEVER poll before 3 minutes.**
+- **Polling interval:** Every 15 seconds after initial 3-minute wait
+- **Batch strategy:** Submit up to 10 jobs at once, wait 3 min, then poll all. Scale up to 15–20 once confirmed stable.
+- **Rate limit (429):** Means too many concurrent jobs OR polling too aggressively. The "failed" status from premature polling still consumes generation tokens.
+- **Token waste prevention:** A failed job = wasted tokens. Always wait long enough. When in doubt, wait longer.
+
+### Image Sizes (established standards from existing assets)
+
+| Asset Type | Size | Style Reference |
+|---|---|---|
+| NPC Portraits | 128×128px | `rogar-amboss.png` |
+| Item/Gear Icons | 128×128px | `gacha-heiltrank.png` |
+| Achievement Icons | 128×128px | `gacha-heiltrank.png` |
+| Shop/Material/Misc Icons | 128×128px | `gacha-heiltrank.png` |
+| Profession Icons | 128×128px | `gacha-heiltrank.png` |
+| World Boss Portraits | 256×256px | `rogar-amboss.png` |
+| Floor Banners | 792×200px | No style ref (use `generate-image-v2`) |
+| Companion Portraits | 256×256px | Existing companion style |
+
+**Rule: Generate at native resolution. Never downscale pixel art with Lanczos/bilinear — it destroys the pixel grid. If smaller display size needed, CSS handles it.**
+
+### Prompt Guidelines
+
+- Always end prompts with `fantasy RPG icon` or `fantasy RPG character portrait, dark background`
+- Be specific about materials, colors, and mood — vague prompts produce generic results
+- For items: describe the single object, centered, no scene context
+- For NPCs: describe personality, clothing, key props, expression
+- For bosses: describe creature form, material composition, atmosphere, cosmic/horror tone per Aethermoor lore
+- Reference the Creative Bible (LYRA-PLAYBOOK.md) for tone: Aethermoor, Urithiru, Stormlight Archive aesthetic
+
+### Workflow Checklist (before generating)
+
+1. **Check if asset already exists** — `ls public/images/icons/{name}.png` or equivalent. Never regenerate existing assets.
+2. **Verify exact filename** from ASSET_BACKLOG.md or the JSON that references it
+3. **Confirm size** matches the established standard (see table above)
+4. **Ask the user** if anything is unclear — do NOT guess
+5. **Submit batch** (up to 10), wait 3 min, poll
+6. **Verify output** — check file exists and dimensions are correct
+7. **Commit & push** only confirmed-good assets
+
+### Asset Tracking
+
+- `ASSET_BACKLOG.md` — Master list of all missing assets with paths, sizes, and context
+- `LYRA-PLAYBOOK.md` § "Fehlende Assets" — Older list, may be outdated vs ASSET_BACKLOG.md
+- After generating assets, the backlog should be updated (but verify first what's actually still missing)
+
 ## Documentation
 
 - `CLAUDE.md` — THIS FILE. Primary reference. Read first. Tech stack, code rules, UI design guidelines, game systems.
