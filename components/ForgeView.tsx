@@ -848,9 +848,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* ─── NPC Grid (categorized) — materials shown per NPC card ────── */}
       {[
-        { label: "Rüstungsberufe", desc: "Helm, Rüstung, Stiefel", ids: ["schmied","schneider","lederverarbeiter"] },
-        { label: "Waffen & Schmuck", desc: "Waffen, Schilde, Ringe, Amulette", ids: ["waffenschmied","juwelier"] },
-        { label: "Verbrauchsgüter", desc: "Tränke, Mahlzeiten, Verzauberungen", ids: ["alchemist","koch","verzauberer"] },
+        { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"] },
+        { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
+        { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"] },
       ].map(cat => {
         const catProfs = professions.filter(p => cat.ids.includes(p.id));
         if (catProfs.length === 0) return null;
@@ -886,7 +886,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const craftableCount = recipes.filter(r => r.profession === prof.id && r.canCraft && r.learned && (r.cooldownRemaining ?? 0) <= 0).length;
                     return <>
                       {craftableCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded font-mono font-bold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)" }}>{craftableCount}</span>}
-                      <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Aktiv</span>
+                      <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Active</span>
                     </>;
                   })()}
                   {!isChosen && !prof.canChoose && !locked && <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(255,68,68,0.1)", color: "#f44" }}>{chosenCount}/{maxProfSlots}</span>}
@@ -1465,17 +1465,31 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Browse recipes below to see what this profession offers.</p>
                   </div>
                 )}
-                {/* Recipe discovery counter */}
+                {/* Recipe discovery counter + WoW-style color breakdown */}
                 {(() => {
                   const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
                   const discovered = profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden).length;
                   const total = totalRecipesByProf[selectedNpc.id] || profRecipes.length;
+                  const learned = profRecipes.filter(r => r.learned !== false && !(r as unknown as Record<string, unknown>).hidden);
+                  const colorCounts = { orange: 0, yellow: 0, green: 0, gray: 0 };
+                  for (const r of learned) { colorCounts[(r.skillUpColor as keyof typeof colorCounts) || "gray"]++; }
                   return (
-                    <div className="px-5 pt-3 flex items-center justify-between">
-                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
-                        {discovered}/{total} recipes discovered
-                      </span>
-                      {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                    <div className="px-5 pt-3 space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                          {discovered}/{total} recipes discovered
+                        </span>
+                        {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                      </div>
+                      {selectedNpc.chosen && learned.length > 0 && (
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill-up:</span>
+                          {colorCounts.orange > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#f97316" }}>{colorCounts.orange}</span>}
+                          {colorCounts.yellow > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#eab308" }}>{colorCounts.yellow}</span>}
+                          {colorCounts.green > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#22c55e" }}>{colorCounts.green}</span>}
+                          {colorCounts.gray > 0 && <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>{colorCounts.gray}</span>}
+                        </div>
+                      )}
                     </div>
                   );
                 })()}
@@ -2666,9 +2680,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               const lockedSlot = firstSelected?.slot || null;
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
-                    Combine 3 Epic gear pieces from the same slot + 500 Gold to create a Legendary item.
-                  </p>
+                  <div className="rounded-lg p-3" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.12)" }}>
+                    <p className="text-xs font-bold mb-1" style={{ color: "#22c55e" }}>Ysoldes Transmutation</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      Combine 3 Epic gear pieces from the <strong className="text-w60">same equipment slot</strong> + 500 Gold → 1 random Legendary item for that slot. The 3 Epics are destroyed in the process. Choose wisely.
+                    </p>
+                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                      Tip: Mondlicht-Schmiede (22:00-06:00) gives +20% better minimum rolls on the result.
+                    </p>
+                  </div>
 
                   {transmuteResult && (
                     <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", color: "#22c55e" }}>
