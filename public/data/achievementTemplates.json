@@ -17,7 +17,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "apprentice",
@@ -35,7 +36,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "knight",
@@ -53,7 +55,8 @@
       "rarity": "rare",
       "category": "milestone",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "legend",
@@ -71,7 +74,8 @@
       "rarity": "epic",
       "category": "milestone",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "week_warrior",
@@ -89,7 +93,8 @@
       "rarity": "common",
       "category": "streak",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "monthly_champ",
@@ -107,7 +112,8 @@
       "rarity": "epic",
       "category": "streak",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "lightning",
@@ -125,7 +131,8 @@
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Complete undefined quests in a single day."
     },
     {
       "id": "all_trades",
@@ -143,7 +150,8 @@
       "rarity": "rare",
       "category": "variety",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: completed_types undefined."
     },
     {
       "id": "boss_slayer",
@@ -161,7 +169,8 @@
       "rarity": "rare",
       "category": "boss",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "ember_sprite",
@@ -180,7 +189,8 @@
       "rarity": "rare",
       "category": "companion",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "lore_owl",
@@ -199,7 +209,8 @@
       "rarity": "uncommon",
       "category": "companion",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "gear_golem",
@@ -217,7 +228,8 @@
       "rarity": "rare",
       "category": "companion",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: xp_threshold undefined."
     },
     {
       "id": "challenge_coder",
@@ -235,7 +247,8 @@
       "rarity": "rare",
       "category": "challenge",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: challenge_completed undefined."
     },
     {
       "id": "challenge_learner",
@@ -253,7 +266,8 @@
       "rarity": "rare",
       "category": "challenge",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: challenge_completed undefined."
     },
     {
       "id": "night_owl",
@@ -272,7 +286,8 @@
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: time_of_day undefined."
     },
     {
       "id": "speed_runner",
@@ -290,7 +305,8 @@
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: completion_time undefined."
     },
     {
       "id": "social_butterfly",
@@ -309,7 +325,8 @@
       "rarity": "uncommon",
       "category": "variety",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "scholar",
@@ -328,7 +345,8 @@
       "rarity": "rare",
       "category": "variety",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "gym_rat",
@@ -347,7 +365,8 @@
       "rarity": "rare",
       "category": "variety",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "chain_master",
@@ -365,7 +384,8 @@
       "rarity": "rare",
       "category": "milestone",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: chain_completed undefined."
     },
     {
       "id": "campaign_victor",
@@ -383,7 +403,8 @@
       "rarity": "epic",
       "category": "milestone",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: campaign_completed undefined."
     },
     {
       "id": "npc_whisperer",
@@ -400,7 +421,8 @@
       "rarity": "rare",
       "category": "milestone",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: all_agents_online undefined."
     },
     {
       "id": "forge_novice",
@@ -419,7 +441,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "arena_first",
@@ -438,7 +461,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "scholar_first",
@@ -457,7 +481,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "ten_quests",
@@ -475,7 +500,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "fifty_quests",
@@ -493,7 +519,8 @@
       "rarity": "rare",
       "category": "milestone",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "coop_hero",
@@ -511,7 +538,8 @@
       "rarity": "uncommon",
       "category": "milestone",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: coop_completed undefined."
     },
     {
       "id": "early_bird",
@@ -530,7 +558,8 @@
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: early_completions undefined."
     },
     {
       "id": "forbidden_code",
@@ -548,7 +577,8 @@
       "rarity": "uncommon",
       "category": "hidden",
       "hidden": true,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: day_of_week undefined."
     },
     {
       "id": "easter_egg",
@@ -565,7 +595,8 @@
       "rarity": "rare",
       "category": "hidden",
       "hidden": true,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: secret_found undefined."
     },
     {
       "id": "perfectionist",
@@ -583,7 +614,8 @@
       "rarity": "epic",
       "category": "hidden",
       "hidden": true,
-      "points": 50
+      "points": 50,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "no_rest",
@@ -601,7 +633,8 @@
       "rarity": "epic",
       "category": "hidden",
       "hidden": true,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "one_ring",
@@ -619,7 +652,8 @@
       "rarity": "legendary",
       "category": "hidden",
       "hidden": true,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "centurion",
@@ -637,7 +671,8 @@
       "rarity": "epic",
       "category": "milestone",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "master",
@@ -655,7 +690,8 @@
       "rarity": "legendary",
       "category": "milestone",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Complete undefined quests."
     },
     {
       "id": "hermit",
@@ -674,7 +710,8 @@
       "rarity": "rare",
       "category": "variety",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "boss_hunter",
@@ -692,7 +729,8 @@
       "rarity": "epic",
       "category": "boss",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "boss_legend",
@@ -710,7 +748,8 @@
       "rarity": "legendary",
       "category": "boss",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "two_week_warrior",
@@ -728,7 +767,8 @@
       "rarity": "uncommon",
       "category": "streak",
       "hidden": false,
-      "points": 10
+      "points": 10,
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "quarter_year",
@@ -746,7 +786,8 @@
       "rarity": "legendary",
       "category": "streak",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "gold_hoarder",
@@ -764,7 +805,8 @@
       "rarity": "rare",
       "category": "milestone",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "dragon_hoard",
@@ -782,7 +824,8 @@
       "rarity": "legendary",
       "category": "milestone",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "initiate",
@@ -800,7 +843,8 @@
       "rarity": "common",
       "category": "milestone",
       "hidden": false,
-      "points": 5
+      "points": 5,
+      "desc": "Achieve: xp_threshold undefined."
     },
     {
       "id": "adept",
@@ -818,7 +862,8 @@
       "rarity": "rare",
       "category": "milestone",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: xp_threshold undefined."
     },
     {
       "id": "master_rank",
@@ -836,7 +881,8 @@
       "rarity": "epic",
       "category": "milestone",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: xp_threshold undefined."
     },
     {
       "id": "grandmaster",
@@ -854,7 +900,8 @@
       "rarity": "legendary",
       "category": "milestone",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: xp_threshold undefined."
     },
     {
       "id": "chain_veteran",
@@ -872,7 +919,8 @@
       "rarity": "epic",
       "category": "milestone",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: chain_completed undefined."
     },
     {
       "id": "marathon_runner",
@@ -890,7 +938,8 @@
       "rarity": "rare",
       "category": "speed",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Complete undefined quests in a single day."
     },
     {
       "id": "social_king",
@@ -909,7 +958,8 @@
       "rarity": "epic",
       "category": "variety",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "fitness_fanatic",
@@ -928,7 +978,8 @@
       "rarity": "legendary",
       "category": "variety",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "knowledge_seeker",
@@ -947,7 +998,8 @@
       "rarity": "legendary",
       "category": "variety",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "dev_legend",
@@ -966,7 +1018,8 @@
       "rarity": "legendary",
       "category": "variety",
       "hidden": false,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: quest_type_count undefined."
     },
     {
       "id": "weekend_warrior",
@@ -984,7 +1037,8 @@
       "rarity": "rare",
       "category": "speed",
       "hidden": false,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: weekend_completions undefined."
     },
     {
       "id": "coop_legend",
@@ -1002,7 +1056,8 @@
       "rarity": "epic",
       "category": "milestone",
       "hidden": false,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: coop_completed undefined."
     },
     {
       "id": "hidden_midnight",
@@ -1022,7 +1077,8 @@
       "rarity": "rare",
       "category": "hidden",
       "hidden": true,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: night_completions undefined."
     },
     {
       "id": "hidden_skulduggery",
@@ -1040,7 +1096,8 @@
       "rarity": "rare",
       "category": "hidden",
       "hidden": true,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: easter_egg undefined."
     },
     {
       "id": "hidden_stormlight",
@@ -1058,7 +1115,8 @@
       "rarity": "epic",
       "category": "hidden",
       "hidden": true,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: easter_egg undefined."
     },
     {
       "id": "hidden_critical_role",
@@ -1076,7 +1134,8 @@
       "rarity": "rare",
       "category": "hidden",
       "hidden": true,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: easter_egg undefined."
     },
     {
       "id": "hidden_dndads",
@@ -1094,7 +1153,8 @@
       "rarity": "rare",
       "category": "hidden",
       "hidden": true,
-      "points": 25
+      "points": 25,
+      "desc": "Achieve: easter_egg undefined."
     },
     {
       "id": "hidden_perfectionist",
@@ -1111,7 +1171,8 @@
       "rarity": "epic",
       "category": "hidden",
       "hidden": true,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: completed_all_types undefined."
     },
     {
       "id": "hidden_npc_collector",
@@ -1128,7 +1189,8 @@
       "rarity": "legendary",
       "category": "hidden",
       "hidden": true,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: all_npcs_unlocked undefined."
     },
     {
       "id": "hidden_gacha_addict",
@@ -1146,7 +1208,8 @@
       "rarity": "epic",
       "category": "hidden",
       "hidden": true,
-      "points": 50
+      "points": 50,
+      "desc": "Achieve: gacha_pulls undefined."
     },
     {
       "id": "hidden_full_inventory",
@@ -1164,7 +1227,8 @@
       "rarity": "rare",
       "category": "hidden",
       "hidden": true,
-      "points": 25
+      "points": 25,
+      "desc": "Have undefined items in inventory."
     },
     {
       "id": "hidden_legendary_pull",
@@ -1182,7 +1246,8 @@
       "rarity": "legendary",
       "category": "hidden",
       "hidden": true,
-      "points": 100
+      "points": 100,
+      "desc": "Achieve: gacha_rarity_pull undefined."
     },
     {
       "id": "chain_quest_bronze",
@@ -1202,7 +1267,8 @@
       "points": 5,
       "chainId": "quest_runner",
       "chainTier": 1,
-      "chainNext": "chain_quest_silver"
+      "chainNext": "chain_quest_silver",
+      "desc": "Complete undefined quests."
     },
     {
       "id": "chain_quest_silver",
@@ -1223,7 +1289,8 @@
       "chainId": "quest_runner",
       "chainTier": 2,
       "chainPrev": "chain_quest_bronze",
-      "chainNext": "chain_quest_gold"
+      "chainNext": "chain_quest_gold",
+      "desc": "Complete undefined quests."
     },
     {
       "id": "chain_quest_gold",
@@ -1244,7 +1311,8 @@
       "chainId": "quest_runner",
       "chainTier": 3,
       "chainPrev": "chain_quest_silver",
-      "chainNext": "chain_quest_legend"
+      "chainNext": "chain_quest_legend",
+      "desc": "Complete undefined quests."
     },
     {
       "id": "chain_quest_legend",
@@ -1264,7 +1332,8 @@
       "points": 100,
       "chainId": "quest_runner",
       "chainTier": 4,
-      "chainPrev": "chain_quest_gold"
+      "chainPrev": "chain_quest_gold",
+      "desc": "Complete undefined quests."
     },
     {
       "id": "chain_streak_bronze",
@@ -1284,7 +1353,8 @@
       "points": 5,
       "chainId": "streak_keeper",
       "chainTier": 1,
-      "chainNext": "chain_streak_silver"
+      "chainNext": "chain_streak_silver",
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "chain_streak_silver",
@@ -1305,7 +1375,8 @@
       "chainId": "streak_keeper",
       "chainTier": 2,
       "chainPrev": "chain_streak_bronze",
-      "chainNext": "chain_streak_gold"
+      "chainNext": "chain_streak_gold",
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "chain_streak_gold",
@@ -1326,7 +1397,8 @@
       "chainId": "streak_keeper",
       "chainTier": 3,
       "chainPrev": "chain_streak_silver",
-      "chainNext": "chain_streak_legend"
+      "chainNext": "chain_streak_legend",
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "chain_streak_legend",
@@ -1346,7 +1418,8 @@
       "points": 100,
       "chainId": "streak_keeper",
       "chainTier": 4,
-      "chainPrev": "chain_streak_gold"
+      "chainPrev": "chain_streak_gold",
+      "desc": "Achieve: streak_days undefined."
     },
     {
       "id": "chain_gold_bronze",
@@ -1365,7 +1438,8 @@
       "points": 5,
       "chainId": "gold_hoarder",
       "chainTier": 1,
-      "chainNext": "chain_gold_silver"
+      "chainNext": "chain_gold_silver",
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "chain_gold_silver",
@@ -1385,7 +1459,8 @@
       "chainId": "gold_hoarder",
       "chainTier": 2,
       "chainPrev": "chain_gold_bronze",
-      "chainNext": "chain_gold_gold"
+      "chainNext": "chain_gold_gold",
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "chain_gold_gold",
@@ -1405,7 +1480,8 @@
       "chainId": "gold_hoarder",
       "chainTier": 3,
       "chainPrev": "chain_gold_silver",
-      "chainNext": "chain_gold_legend"
+      "chainNext": "chain_gold_legend",
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "chain_gold_legend",
@@ -1424,7 +1500,8 @@
       "points": 100,
       "chainId": "gold_hoarder",
       "chainTier": 4,
-      "chainPrev": "chain_gold_gold"
+      "chainPrev": "chain_gold_gold",
+      "desc": "Achieve: gold_threshold undefined."
     },
     {
       "id": "chain_boss_bronze",
@@ -1444,7 +1521,8 @@
       "points": 5,
       "chainId": "boss_slayer",
       "chainTier": 1,
-      "chainNext": "chain_boss_silver"
+      "chainNext": "chain_boss_silver",
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "chain_boss_silver",
@@ -1465,7 +1543,8 @@
       "chainId": "boss_slayer",
       "chainTier": 2,
       "chainPrev": "chain_boss_bronze",
-      "chainNext": "chain_boss_gold"
+      "chainNext": "chain_boss_gold",
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "chain_boss_gold",
@@ -1486,7 +1565,8 @@
       "chainId": "boss_slayer",
       "chainTier": 3,
       "chainPrev": "chain_boss_silver",
-      "chainNext": "chain_boss_legend"
+      "chainNext": "chain_boss_legend",
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "chain_boss_legend",
@@ -1506,7 +1586,8 @@
       "points": 100,
       "chainId": "boss_slayer",
       "chainTier": 4,
-      "chainPrev": "chain_boss_gold"
+      "chainPrev": "chain_boss_gold",
+      "desc": "Achieve: boss_defeated undefined."
     },
     {
       "id": "chain_craft_bronze",
@@ -1526,7 +1607,8 @@
       "points": 5,
       "chainId": "crafter",
       "chainTier": 1,
-      "chainNext": "chain_craft_silver"
+      "chainNext": "chain_craft_silver",
+      "desc": "Reach skill undefined in any profession."
     },
     {
       "id": "chain_craft_silver",
@@ -1547,7 +1629,8 @@
       "chainId": "crafter",
       "chainTier": 2,
       "chainPrev": "chain_craft_bronze",
-      "chainNext": "chain_craft_gold"
+      "chainNext": "chain_craft_gold",
+      "desc": "Reach skill undefined in any profession."
     },
     {
       "id": "chain_craft_gold",
@@ -1568,7 +1651,8 @@
       "chainId": "crafter",
       "chainTier": 3,
       "chainPrev": "chain_craft_silver",
-      "chainNext": "chain_craft_legend"
+      "chainNext": "chain_craft_legend",
+      "desc": "Reach skill undefined in any profession."
     },
     {
       "id": "chain_craft_legend",
@@ -1588,7 +1672,8 @@
       "points": 100,
       "chainId": "crafter",
       "chainTier": 4,
-      "chainPrev": "chain_craft_gold"
+      "chainPrev": "chain_craft_gold",
+      "desc": "Reach skill undefined in any profession."
     },
     {
       "id": "dual_profession",
@@ -1913,6 +1998,396 @@
       "condition": {
         "type": "quests_completed",
         "value": 1000
+      }
+    },
+    {
+      "id": "streak_90",
+      "name": "Quartalsfeuer",
+      "icon": "/images/icons/ach-streak-90.png",
+      "desc": "Maintain a 90-day streak.",
+      "category": "streak",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "streak",
+        "value": 90
+      }
+    },
+    {
+      "id": "streak_180",
+      "name": "Halbjahrsflamme",
+      "icon": "/images/icons/ach-streak-180.png",
+      "desc": "Maintain a 180-day streak.",
+      "category": "streak",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "streak",
+        "value": 180
+      }
+    },
+    {
+      "id": "streak_365",
+      "name": "Ewiges Feuer",
+      "icon": "/images/icons/ach-streak-365.png",
+      "desc": "Maintain a 365-day streak. A full year.",
+      "category": "streak",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "streak",
+        "value": 365
+      }
+    },
+    {
+      "id": "quest_200",
+      "name": "Zweihundertschaft",
+      "icon": "/images/icons/ach-200.png",
+      "desc": "Complete 200 quests.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "quests_completed",
+        "value": 200
+      }
+    },
+    {
+      "id": "quest_300",
+      "name": "Dreihunderter",
+      "icon": "/images/icons/ach-300.png",
+      "desc": "Complete 300 quests.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "quests_completed",
+        "value": 300
+      }
+    },
+    {
+      "id": "level_20",
+      "name": "Veteranenrang",
+      "icon": "/images/icons/ach-lv20.png",
+      "desc": "Reach level 20.",
+      "category": "milestone",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "level",
+        "value": 20
+      }
+    },
+    {
+      "id": "level_30",
+      "name": "Meisterrang",
+      "icon": "/images/icons/ach-lv30.png",
+      "desc": "Reach level 30.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "level",
+        "value": 30
+      }
+    },
+    {
+      "id": "level_40",
+      "name": "Legendenrang",
+      "icon": "/images/icons/ach-lv40.png",
+      "desc": "Reach level 40.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "level",
+        "value": 40
+      }
+    },
+    {
+      "id": "level_50",
+      "name": "Ascending",
+      "icon": "/images/icons/ach-lv50.png",
+      "desc": "Reach level 50. The pinnacle.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "level",
+        "value": 50
+      }
+    },
+    {
+      "id": "gold_5000",
+      "name": "Wohlhabend",
+      "icon": "/images/icons/ach-gold-5k.png",
+      "desc": "Accumulate 5,000 gold.",
+      "category": "milestone",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "gold",
+        "value": 5000
+      }
+    },
+    {
+      "id": "gold_25000",
+      "name": "Gildenbank",
+      "icon": "/images/icons/ach-gold-25k.png",
+      "desc": "Accumulate 25,000 gold.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "gold",
+        "value": 25000
+      }
+    },
+    {
+      "id": "craft_100",
+      "name": "Handwerksmeister",
+      "icon": "/images/icons/ach-craft-100.png",
+      "desc": "Craft 100 items across all professions.",
+      "category": "milestone",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "crafts_completed",
+        "value": 100
+      }
+    },
+    {
+      "id": "craft_500",
+      "name": "Gildenlieferant",
+      "icon": "/images/icons/ach-craft-500.png",
+      "desc": "Craft 500 items.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "crafts_completed",
+        "value": 500
+      }
+    },
+    {
+      "id": "all_professions",
+      "name": "Alleskönner",
+      "icon": "/images/icons/ach-all-prof.png",
+      "desc": "Reach skill 50+ in all 8 professions.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "all_professions_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "friends_10",
+      "name": "Gesellig",
+      "icon": "/images/icons/ach-friends-10.png",
+      "desc": "Add 10 friends.",
+      "category": "milestone",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "friends_count",
+        "value": 10
+      }
+    },
+    {
+      "id": "trades_10",
+      "name": "Handelspartner",
+      "icon": "/images/icons/ach-trades-10.png",
+      "desc": "Complete 10 trades.",
+      "category": "milestone",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "trades_completed",
+        "value": 10
+      }
+    },
+    {
+      "id": "mail_50",
+      "name": "Korrespondent",
+      "icon": "/images/icons/ach-mail-50.png",
+      "desc": "Send 50 mails.",
+      "category": "milestone",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "mails_sent",
+        "value": 50
+      }
+    },
+    {
+      "id": "hidden_night_crafter",
+      "name": "Nachtarbeiter",
+      "icon": "/images/icons/ach-night-crafter.png",
+      "desc": "Craft 50 items during Mondlicht-Schmiede hours.",
+      "category": "hidden",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "moonlight_crafts",
+        "value": 50
+      }
+    },
+    {
+      "id": "hidden_all_bosses",
+      "name": "Bestienkenner",
+      "icon": "/images/icons/ach-all-bosses.png",
+      "desc": "Contribute to defeating all 9 World Bosses.",
+      "category": "hidden",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "unique_bosses_defeated",
+        "value": 9
+      }
+    },
+    {
+      "id": "hidden_full_gems",
+      "name": "Juwelenkrone",
+      "icon": "/images/icons/ach-full-gems.png",
+      "desc": "Socket all slots on all equipped gear with Royal gems.",
+      "category": "hidden",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "all_royal_gems",
+        "value": 1
+      }
+    },
+    {
+      "id": "hidden_100_rituals",
+      "name": "Ritualmeister",
+      "icon": "/images/icons/ach-100-rituals.png",
+      "desc": "Complete 100 ritual check-ins.",
+      "category": "hidden",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "rituals_completed",
+        "value": 100
+      }
+    },
+    {
+      "id": "hidden_mythic10",
+      "name": "Mythic+10",
+      "icon": "/images/icons/ach-mythic10.png",
+      "desc": "Reach Mythic+10 in the Endless Rift.",
+      "category": "hidden",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "mythic_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "hidden_no_miss_week",
+      "name": "Perfekte Woche",
+      "icon": "/images/icons/ach-perfect-week.png",
+      "desc": "Complete every daily mission for 7 consecutive days.",
+      "category": "hidden",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "perfect_weeks",
+        "value": 1
+      }
+    },
+    {
+      "id": "hidden_collector",
+      "name": "Sammler",
+      "icon": "/images/icons/ach-collector.png",
+      "desc": "Own 100 items in inventory simultaneously.",
+      "category": "hidden",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "inventory_count",
+        "value": 100
+      }
+    },
+    {
+      "id": "hidden_paragon",
+      "name": "Paragon der Halle",
+      "icon": "/images/icons/ach-paragon.png",
+      "desc": "Reach Paragon standing with any faction.",
+      "category": "hidden",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "faction_standing",
+        "value": 15000
+      }
+    },
+    {
+      "id": "variety_all_types_10",
+      "name": "Universalist",
+      "icon": "/images/icons/ach-universalist.png",
+      "desc": "Complete 10+ quests of every type.",
+      "category": "variety",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "quest_type_min_each",
+        "value": 10
+      }
+    },
+    {
+      "id": "variety_5_npcs",
+      "name": "NPC-Kenner",
+      "icon": "/images/icons/ach-5-npcs.png",
+      "desc": "Complete quest chains from 5 different NPCs.",
+      "category": "variety",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "unique_npcs_completed",
+        "value": 5
+      }
+    },
+    {
+      "id": "variety_20_npcs",
+      "name": "Turm-Bekanntschaft",
+      "icon": "/images/icons/ach-20-npcs.png",
+      "desc": "Complete quest chains from 20 different NPCs.",
+      "category": "variety",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "unique_npcs_completed",
+        "value": 20
+      }
+    },
+    {
+      "id": "speed_3_quests_day",
+      "name": "Dreifachschlag",
+      "icon": "/images/icons/ach-3-day.png",
+      "desc": "Complete 3 quests in a single day.",
+      "category": "speed",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "quests_today",
+        "value": 3
+      }
+    },
+    {
+      "id": "speed_10_quests_day",
+      "name": "Unaufhaltsam",
+      "icon": "/images/icons/ach-10-day.png",
+      "desc": "Complete 10 quests in a single day.",
+      "category": "speed",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "quests_today",
+        "value": 10
       }
     }
   ],

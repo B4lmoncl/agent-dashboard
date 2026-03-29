@@ -1801,6 +1801,10 @@
             "rewards": {
               "xp": 20,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
+              "realWorldTask": "Der gestohlene Auftritt"
             }
           },
           {
@@ -1812,6 +1816,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
+              "realWorldTask": "Scharfes Auge"
             }
           },
           {
@@ -1823,6 +1831,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
+              "realWorldTask": "Das Rätsel der drei Schlüssel"
             }
           },
           {
@@ -1834,6 +1846,10 @@
             "rewards": {
               "xp": 30,
               "gold": 25
+            },
+            "vars": {
+              "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
+              "realWorldTask": "Verbündete sammeln"
             }
           },
           {
@@ -1845,6 +1861,10 @@
             "rewards": {
               "xp": 40,
               "gold": 30
+            },
+            "vars": {
+              "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
+              "realWorldTask": "Der letzte Vorhang"
             }
           }
         ]
@@ -1906,6 +1926,10 @@
             "rewards": {
               "xp": 20,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "realWorldTask": "Überfällige Rückgabe"
             }
           },
           {
@@ -1917,6 +1941,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "realWorldTask": "Stille Lektüre"
             }
           },
           {
@@ -1928,6 +1956,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "realWorldTask": "Katalogisierung"
             }
           },
           {
@@ -1939,6 +1971,10 @@
             "rewards": {
               "xp": 20,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "realWorldTask": "Wissensaustausch"
             }
           }
         ]
@@ -1989,6 +2025,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+              "realWorldTask": "Seekarten studieren"
             }
           },
           {
@@ -2000,6 +2040,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+              "realWorldTask": "Sturm im Wasserglas"
             }
           },
           {
@@ -2011,6 +2055,10 @@
             "rewards": {
               "xp": 30,
               "gold": 25
+            },
+            "vars": {
+              "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+              "realWorldTask": "Proviant beschaffen"
             }
           },
           {
@@ -2022,6 +2070,10 @@
             "rewards": {
               "xp": 15,
               "gold": 10
+            },
+            "vars": {
+              "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+              "realWorldTask": "Die singende See"
             }
           },
           {
@@ -2033,6 +2085,10 @@
             "rewards": {
               "xp": 35,
               "gold": 30
+            },
+            "vars": {
+              "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+              "realWorldTask": "Anker lichten"
             }
           },
           {
@@ -2044,6 +2100,10 @@
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+              "realWorldTask": "Neue Koordinaten"
             }
           }
         ]
