@@ -76,10 +76,19 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
         {/* Tower cross-section — top to bottom */}
         <div className="relative px-3 pb-4 space-y-0.5">
           {/* Central crystal vein running through the tower */}
-          <div className="absolute left-6 top-12 bottom-8 w-px pointer-events-none" style={{
-            background: "linear-gradient(180deg, rgba(251,191,36,0.15), rgba(129,140,248,0.12), rgba(168,85,247,0.1), rgba(59,130,246,0.08), rgba(249,115,22,0.12))",
-            boxShadow: "0 0 4px rgba(129,140,248,0.1)",
-          }} />
+          <div className="absolute left-6 top-12 bottom-8 pointer-events-none" style={{ width: 1 }}>
+            <div className="w-full h-full" style={{
+              background: "linear-gradient(180deg, rgba(251,191,36,0.15), rgba(129,140,248,0.12), rgba(168,85,247,0.1), rgba(59,130,246,0.08), rgba(249,115,22,0.12))",
+              boxShadow: "0 0 4px rgba(129,140,248,0.1)",
+            }} />
+            {/* Pulsing glow overlay */}
+            <div className="absolute inset-0 crystal-breathe" style={{
+              width: 3, left: -1,
+              background: "linear-gradient(180deg, rgba(251,191,36,0.08), rgba(129,140,248,0.06), rgba(168,85,247,0.05), rgba(249,115,22,0.06))",
+              filter: "blur(2px)",
+              ["--glow-color" as string]: "rgba(129,140,248,0.15)",
+            }} />
+          </div>
           {/* Tower spire decoration */}
           <div className="flex flex-col items-center pb-3">
             <div style={{
