@@ -7033,6 +7033,806 @@
         "xp": 75,
         "gold": 55
       }
+    },
+    {
+      "id": "p-minimalismus-tag",
+      "template": "board-quest",
+      "title": "Weniger ist Alles",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Wirf oder spende heute 10 Dinge die du nicht mehr brauchst.",
+        "flavor": "Jeder Gegenstand den du besitzt, besitzt auch ein Stück von dir.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-fruehstueck-ritual",
+      "template": "board-quest",
+      "title": "Morgenfest",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Bereite ein richtiges Frühstück zu — kein Kaffee-im-Stehen.",
+        "flavor": "Die erste Mahlzeit bestimmt den Tag. Grimvar frühstückt Stahl. Du nicht.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-wochenbett-machen",
+      "template": "board-quest",
+      "title": "Erste Bastion",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Mach dein Bett. Jeden Morgen diese Woche. Direkt nach dem Aufstehen.",
+        "flavor": "Die kleinste Ordnung schafft die größte Klarheit. Oder zumindest ein ordentliches Schlafzimmer.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 10,
+        "gold": 6
+      }
+    },
+    {
+      "id": "p-kontakte-ausmisten",
+      "template": "board-quest",
+      "title": "Adressbuch-Reinigung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Lösche Kontakte die du nicht mehr kennst oder brauchst aus deinem Handy.",
+        "flavor": "Menschen die du vor 7 Jahren auf einer Party getroffen hast brauchen keinen Platz in deinem Handy.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-wlan-passwort",
+      "template": "board-quest",
+      "title": "Netzwerk-Erneuerung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Ändere dein WLAN-Passwort zu etwas Sicherem.",
+        "flavor": "Dein WLAN heißt 'FBI_Surveillance_Van_3'? Kreativ. Aber das Passwort ist trotzdem '12345'.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 10,
+        "gold": 6
+      }
+    },
+    {
+      "id": "p-browser-cleanup",
+      "template": "board-quest",
+      "title": "Lesezeichen-Exorzismus",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Räume deine Browser-Bookmarks auf: Sortieren, tote Links löschen, Ordner erstellen.",
+        "flavor": "437 Bookmarks. Du hast 3 davon in den letzten 2 Jahren benutzt.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-photo-backup",
+      "template": "board-quest",
+      "title": "Erinnerungssicherung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Sichere alle Fotos deines Handys — Cloud, Festplatte, oder beides.",
+        "flavor": "Fotos auf einem verlorenen Handy sind verlorene Erinnerungen. Backup ist Liebe.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-medikamente-check",
+      "template": "board-quest",
+      "title": "Apothekerbesuch",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Überprüfe deine Hausapotheke: Abgelaufenes entsorgen, Nachbestellen.",
+        "flavor": "Yara: 'Der beste Zeitpunkt sich vorzubereiten ist bevor du es brauchst.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-saisonwechsel",
+      "template": "board-quest",
+      "title": "Jahreszeitenwende",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Saisonaler Kleidungswechsel: Sommerkleidung rein/raus je nach Jahreszeit.",
+        "flavor": "Die Jahreszeiten wechseln. Dein Kleiderschrank sollte mitziehen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-geschenkliste",
+      "template": "board-quest",
+      "title": "Geschenkplaner",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Erstelle eine Geschenkliste für die nächsten Geburtstage/Feiertage.",
+        "flavor": "Panik-Shopping am 24. Dezember ist keine Tradition. Es ist ein Versagen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-entschuldigung",
+      "template": "board-quest",
+      "title": "Schuld ablegen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Entschuldige dich bei jemandem dem du Unrecht getan hast. Echt, nicht per Emoji.",
+        "flavor": "Raven: 'Den Geist vertreiben heißt nicht vergessen. Es heißt aufhören davon kontrolliert zu werden.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "p-grenze-setzen",
+      "template": "board-quest",
+      "title": "Die Mauer",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Setze eine klare Grenze bei jemandem der sie regelmäßig überschreitet.",
+        "flavor": "Erin: 'Grenzen sind keine Mauern. Grenzen sind Türen die DU kontrollierst.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "p-urlaub-planen",
+      "template": "board-quest",
+      "title": "Horizontplanung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Plane deinen nächsten Urlaub: Ziel, Daten, Budget, Aktivitäten.",
+        "flavor": "Urlaub der nicht geplant wird, wird nie gemacht. Das ist Statistik, nicht Pessimismus.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-morgen-ohne-handy",
+      "template": "board-quest",
+      "title": "Der stille Morgen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Erste Stunde nach dem Aufwachen kein Handy. Nicht einmal Uhrzeit checken.",
+        "flavor": "Die erste Stunde gehört dir. Nicht dem Algorithmus.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-tagebuch-30min",
+      "template": "board-quest",
+      "title": "Tintenfluss",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "30 Minuten freies Schreiben — über alles was dir in den Kopf kommt.",
+        "flavor": "Schreiben ist der billigste Therapeut. Und der ehrlichste.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "p-altes-hobby",
+      "template": "board-quest",
+      "title": "Vergessene Flamme",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Mache etwas das du als Kind geliebt hast und seit Jahren nicht mehr getan hast.",
+        "flavor": "Das Kind in dir wartet. Es hat Geduld. Aber nicht ewig.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-spaziergang-regen",
+      "template": "board-quest",
+      "title": "Regentanz",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Geh bei Regen spazieren. Absichtlich. Mit oder ohne Schirm.",
+        "flavor": "Regen ist nur Wasser das keine Angst hat zu fallen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-sonnenaufgang",
+      "template": "board-quest",
+      "title": "Morgenglut",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Steh vor Sonnenaufgang auf und sieh ihn dir an. Den ganzen.",
+        "flavor": "Sol: 'Dreitausend Nächte das Licht am Brennen gehalten. Jeder Sonnenaufgang war es wert.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-neue-route",
+      "template": "board-quest",
+      "title": "Pfadwechsel",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Nimm heute einen komplett anderen Weg zur Arbeit oder zum Einkaufen.",
+        "flavor": "Compass: 'Routine ist der sicherste Weg. Aber nicht der interessanteste.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-zimmer-umstellen",
+      "template": "board-quest",
+      "title": "Neuordnung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Stelle Möbel in einem Zimmer um. Neue Perspektive, gleicher Raum.",
+        "flavor": "Manchmal braucht man keinen neuen Raum. Nur einen neuen Blickwinkel.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "l-sdwan-concepts",
+      "template": "board-quest",
+      "title": "Verbundene Netze",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "SD-WAN Konzepte verstehen: Overlay, Underlay, Policy-based routing.",
+        "flavor": "Netzwerke verbinden. SD-WAN verbindet Netzwerke. Es ist Verbindung den ganzen Weg runter.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-mpls-basics",
+      "template": "board-quest",
+      "title": "Labelkunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "MPLS Grundlagen: Labels, LSP, VPN Types.",
+        "flavor": "Pakete bekommen Etiketten. Dann werden sie sortiert. Wie Post. Nur zuverlässiger.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-bgp-routing",
+      "template": "board-quest",
+      "title": "Das große Routing",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "BGP Grundlagen: AS Numbers, Peering, Route Advertisement.",
+        "flavor": "BGP hält das Internet zusammen. Buchstäblich. Kein Druck.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "l-vpn-setup",
+      "template": "board-quest",
+      "title": "Tunnelbauer",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "VPN Setup: IPSec oder WireGuard konfigurieren und testen.",
+        "flavor": "Ein Tunnel durch das Internet. Unsichtbar. Sicher. Meistens.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-vlan-config",
+      "template": "board-quest",
+      "title": "Netzwerk-Teilung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "VLAN Konfiguration: Tagged, Untagged, Trunk Ports.",
+        "flavor": "Ein Netzwerk in viele teilen. Oder viele in eins. Hängt von der Perspektive ab.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-terraform",
+      "template": "board-quest",
+      "title": "Infrastruktur-Alchemie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Terraform Basics: HCL Syntax, Provider, State Management.",
+        "flavor": "Infrastructure as Code. Weil manuelles Klicken nicht skaliert. Und nicht reproduzierbar ist.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-nginx-config",
+      "template": "board-quest",
+      "title": "Torwächter-Konfiguration",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Nginx konfigurieren: Reverse Proxy, SSL Termination, Load Balancing.",
+        "flavor": "Nginx steht zwischen dem Internet und deinem Server. Wie Kurt. Nur effektiver.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-mongodb",
+      "template": "board-quest",
+      "title": "Dokumentenarchiv",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "MongoDB Grundlagen: CRUD, Aggregation Pipeline, Indexing.",
+        "flavor": "Dokumente ohne Schema. Wie ein Archiv ohne Regeln. Befreiend. Und terrifying.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-kafka",
+      "template": "board-quest",
+      "title": "Nachrichtenstrom",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Apache Kafka Grundlagen: Topics, Producers, Consumers, Partitions.",
+        "flavor": "Millionen Nachrichten pro Sekunde. Keine geht verloren. Außer deine Slack-Messages.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-elasticsearch",
+      "template": "board-quest",
+      "title": "Suchalchemie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Elasticsearch: Index erstellen, Queries, Aggregationen.",
+        "flavor": "Alles durchsuchen. Sofort. Selbst Dinge die du vergessen hast zu speichern.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-rabbitmq",
+      "template": "board-quest",
+      "title": "Kaninchenloch",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "RabbitMQ Grundlagen: Queues, Exchanges, Bindings.",
+        "flavor": "Nachrichten in Warteschlangen. Wie eine Post die nie schließt. Und nie schläft.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-azure-fundamentals",
+      "template": "board-quest",
+      "title": "Blaue Wolken",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Azure Fundamentals: Resource Groups, App Service, Functions.",
+        "flavor": "Microsofts Cloud. Groß. Blau. Manchmal verwirrend. Wie der Ozean.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-security-headers",
+      "template": "board-quest",
+      "title": "Schutzrunen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Security Headers verstehen und implementieren: CSP, HSTS, X-Frame-Options.",
+        "flavor": "Unsichtbare Schilder für deine Website. Die besten Verteidigungen sind die unsichtbaren.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-pentest-basics",
+      "template": "board-quest",
+      "title": "Einbruch auf Einladung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Penetration Testing Basics: Nmap, Burp Suite, OWASP ZAP.",
+        "flavor": "Echo: 'Information ist die wahre Währung.' Manchmal muss man sie sich holen.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 42,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-log-analyse",
+      "template": "board-quest",
+      "title": "Spurenlesen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Log-Analyse üben: Fehler finden, Patterns erkennen, Korrelationen.",
+        "flavor": "Logs erzählen Geschichten. Meistens Horrorgeschichten. Aber lehrreiche.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-agile-methoden",
+      "template": "board-quest",
+      "title": "Schnelle Runden",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Agile Methodologie auffrischen: Scrum, Kanban, Sprint Planning.",
+        "flavor": "Agile ist nicht schnell. Agile ist adaptiv. Der Unterschied kostet Firmen Millionen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-zeitschaetzung",
+      "template": "board-quest",
+      "title": "Zeitorakel",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne bessere Zeitschätzungen: Cone of Uncertainty, Planning Poker.",
+        "flavor": "Entwickler schätzen Aufwand wie Meteorologen das Wetter. Nur ungenauer.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-seo-basics",
+      "template": "board-quest",
+      "title": "Sichtbarkeitsmagie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "SEO Grundlagen: Keywords, Meta Tags, Site Speed, Mobile First.",
+        "flavor": "Google sehen und gesehen werden. Die moderne Version von 'Kleid dich für den Job den du willst'.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-ab-testing",
+      "template": "board-quest",
+      "title": "Doppelversuch",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "A/B Testing Grundlagen: Hypothese, Experiment Design, Signifikanz.",
+        "flavor": "Zwei Versionen. Eine gewinnt. Die andere lehrt dich warum.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-ux-principles",
+      "template": "board-quest",
+      "title": "Nutzersicht",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "UX Prinzipien lernen: Nielsen's Heuristics, User Flows, Wireframing.",
+        "flavor": "Gutes Design ist unsichtbar. Schlechtes Design ist... der Rest des Internets.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-color-theory",
+      "template": "board-quest",
+      "title": "Farbenlehre",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Farblehre Grundlagen: Komplementärfarben, Kontraste, Accessibility.",
+        "flavor": "Claude: 'Ich sehe Farben wo andere Grau sehen.' Lerne seine Sprache.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-typography",
+      "template": "board-quest",
+      "title": "Buchstabenkunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Typografie Grundlagen: Serif vs Sans, Hierarchie, Lesbarkeit.",
+        "flavor": "Comic Sans ist keine Schriftart. Es ist ein Verbrechen. Lerne den Unterschied.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-responsive-design",
+      "template": "board-quest",
+      "title": "Formwandler",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Responsive Design vertiefen: Breakpoints, Fluid Grids, Mobile-First.",
+        "flavor": "Eine Website die auf 47 verschiedenen Geräten funktioniert. Das ist keine Magie. Das ist CSS.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-svg-erstellen",
+      "template": "board-quest",
+      "title": "Vektorkünstler",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "SVG Grundlagen: Path, Viewbox, Animationen.",
+        "flavor": "Bilder die nicht pixeln. Egal wie groß. Wie Träume. Nur technischer.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-wirtschaft-basics",
+      "template": "board-quest",
+      "title": "Marktbeobachter",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Wirtschaft Grundlagen: Inflation, Zinsen, Angebot/Nachfrage.",
+        "flavor": "Die Wirtschaft ist ein Wetter das jeder vorhersagt und niemand versteht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-psychologie",
+      "template": "board-quest",
+      "title": "Gedankenleser",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Psychologie-Grundlagen: Kognitive Bias, Motivation, Decision Making.",
+        "flavor": "Dein Gehirn belügt dich. Systematisch. Lerne seine Tricks.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-philosophie-intro",
+      "template": "board-quest",
+      "title": "Erste Fragen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Philosophie Intro: Stoizismus, Existenzialismus, oder Ethik — 30 Minuten.",
+        "flavor": "Helen: 'Die unbeantwortete Frage ist wertvoller als die bequeme Antwort.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-geschichte-event",
+      "template": "board-quest",
+      "title": "Zeitfenster",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne über ein historisches Ereignis das die Welt verändert hat.",
+        "flavor": "Chronos: 'Geschichte wiederholt sich nicht. Aber sie reimt sich.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-neue-sprache-30",
+      "template": "board-quest",
+      "title": "Sprachreise",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne 30 neue Wörter in einer Fremdsprache.",
+        "flavor": "30 Wörter sind der Unterschied zwischen Tourist und Überlebender.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "l-comptia-prep",
+      "template": "board-quest",
+      "title": "Zertifikats-Weg",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "CompTIA Exam Prep: 45 Minuten Practice Questions.",
+        "flavor": "Zertifizierungen sind Beweise. Wissen ohne Beweis ist... Glauben.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
     }
   ]
 }
