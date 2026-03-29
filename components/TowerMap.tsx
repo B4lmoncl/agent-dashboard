@@ -188,14 +188,14 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         onClick={() => { if (!roomLocked) { onNavigate(room.key); onClose(); } }}
                         disabled={roomLocked}
                         title={roomLocked ? `Requires Level ${room.minLevel || floor.minLevel}` : room.label}
-                        className="text-xs px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5"
+                        className="text-xs px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:brightness-125"
                         style={{
                           background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.035)",
                           color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.45)",
                           border: `1px solid ${isActive ? `${floor.color}50` : "rgba(255,255,255,0.04)"}`,
                           cursor: roomLocked ? "not-allowed" : "pointer",
                           fontWeight: isActive ? 700 : 400,
-                          boxShadow: isActive ? `0 0 8px ${floor.color}15` : "none",
+                          boxShadow: isActive ? `0 0 10px ${floor.color}20, inset 0 1px 0 rgba(255,255,255,0.05)` : "none",
                         }}
                       >
                         {room.iconSrc && <img src={room.iconSrc} alt="" width={14} height={14} style={{ imageRendering: "auto", opacity: roomLocked ? 0.3 : 0.7 }} onError={e => { e.currentTarget.style.display = "none"; }} />}
