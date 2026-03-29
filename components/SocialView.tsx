@@ -285,7 +285,12 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
           <p className="text-xs text-w20 text-center py-6">No friends yet. Send a request above!</p>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-            {friends.map(f => (
+            {[...friends].sort((a, b) => {
+              const order: Record<string, number> = { online: 0, idle: 1, offline: 2 };
+              const aStatus = a.onlineStatus || (a.isOnline ? "online" : "offline");
+              const bStatus = b.onlineStatus || (b.isOnline ? "online" : "offline");
+              return (order[aStatus] ?? 2) - (order[bStatus] ?? 2);
+            }).map(f => (
               <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (

@@ -270,7 +270,7 @@ export default function DashboardHeader({
                     padding: 0,
                   }}
                 >
-                  <img src="/images/portraits/hero-male.png" alt={playerName} style={{ width: "100%", height: "100%", objectFit: "cover", imageRendering: "auto" }} onError={e => { const t = e.currentTarget as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; (t.nextElementSibling as HTMLElement).style.display = "flex"; }} />
+                  <img src={`/images/portraits/hero-${loggedInUser?.avatarStyle || "male"}.png`} alt={playerName} style={{ width: "100%", height: "100%", objectFit: "cover", imageRendering: "auto" }} onError={e => { const t = e.currentTarget as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; (t.nextElementSibling as HTMLElement).style.display = "flex"; }} />
                   <div style={{ display: "none", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff", fontSize: 13, fontWeight: "bold" }}>{playerName.slice(0, 1).toUpperCase()}</div>
                 </button>
                 {settingsPopupOpen && (
@@ -489,6 +489,74 @@ export default function DashboardHeader({
               ) : (
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No email set. Use the migration prompt to add one.</p>
               )}
+            </div>
+
+            {/* ─── Profile Section ─── */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Profile</p>
+              <div className="space-y-3">
+                {/* Avatar Style */}
+                <div>
+                  <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Avatar</p>
+                  <div className="flex gap-2">
+                    {(["male", "female"] as const).map(style => (
+                      <button
+                        key={style}
+                        onClick={async () => {
+                          try {
+                            await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
+                              method: "PATCH",
+                              headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                              body: JSON.stringify({ avatarStyle: style }),
+                            });
+                            refresh();
+                            setSettingsMsg("Avatar updated!");
+                            setTimeout(() => setSettingsMsg(""), 3000);
+                          } catch { setSettingsMsg("Network error"); }
+                        }}
+                        className="flex-1 rounded-lg p-2 flex flex-col items-center gap-1"
+                        style={{
+                          background: (loggedInUser?.avatarStyle || "male") === style ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
+                          border: `2px solid ${(loggedInUser?.avatarStyle || "male") === style ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.07)"}`,
+                          cursor: "pointer",
+                        }}
+                      >
+                        <img src={`/images/portraits/hero-${style}.png`} alt={style} className="w-10 h-10 rounded-lg object-cover" style={{ imageRendering: "auto" }} />
+                        <span className="text-xs capitalize" style={{ color: (loggedInUser?.avatarStyle || "male") === style ? "#a78bfa" : "rgba(255,255,255,0.3)" }}>{style === "male" ? "Male" : "Female"}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Relationship Status */}
+                <div>
+                  <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Relationship</p>
+                  <div className="flex gap-1 flex-wrap">
+                    {["single", "relationship", "married", "complicated"].map(s => (
+                      <button
+                        key={s}
+                        onClick={async () => {
+                          try {
+                            await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
+                              method: "PATCH",
+                              headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                              body: JSON.stringify({ relationshipStatus: s }),
+                            });
+                            refresh();
+                          } catch {}
+                        }}
+                        className="text-xs px-2 py-1 rounded"
+                        style={{
+                          background: (loggedInUser?.relationshipStatus || "single") === s ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
+                          color: (loggedInUser?.relationshipStatus || "single") === s ? "#a78bfa" : "rgba(255,255,255,0.3)",
+                          border: `1px solid ${(loggedInUser?.relationshipStatus || "single") === s ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.06)"}`,
+                          cursor: "pointer",
+                        }}
+                      >{s === "relationship" ? "In a relationship" : s === "complicated" ? "It's complicated" : s.charAt(0).toUpperCase() + s.slice(1)}</button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Change Password Section */}

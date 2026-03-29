@@ -238,10 +238,11 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   const [partner, setPartner] = useState(initialPartnerName);
   const [saving, setSaving] = useState(false);
 
-  // Frame selection
+  // Frame selection + avatar style
   const [frames, setFrames] = useState<{ id: string; name: string; color: string; glow?: boolean; source?: string }[]>([]);
   const [equippedFrameId, setEquippedFrameId] = useState<string | null>(null);
   const [frameLoading, setFrameLoading] = useState<string | null>(null);
+  const [avatarStyle, setAvatarStyle] = useState<"male" | "female">("male");
 
   useEffect(() => {
     (async () => {
@@ -251,6 +252,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           const d = await r.json();
           setFrames(d.unlockedFrames || []);
           setEquippedFrameId(d.equippedFrame?.id || null);
+          setAvatarStyle(d.avatarStyle || "male");
         }
       } catch { /* ignore */ }
     })();
@@ -277,7 +279,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
       await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
-        body: JSON.stringify({ relationshipStatus: status, partnerName: partner.trim() || null }),
+        body: JSON.stringify({ relationshipStatus: status, partnerName: partner.trim() || null, avatarStyle }),
       });
       await onSaved();
       onClose();
@@ -292,52 +294,51 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
         onClick={e => e.stopPropagation()}
       >
         <div>
-          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>Profile Settings</h2>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Relationship status, frames, and other settings</p>
+          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>Frames & Cosmetics</h2>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Cosmetic frames for your player card. Avatar & profile settings are in the header menu.</p>
         </div>
-
-        <div className="space-y-2">
-          <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Relationship Status</label>
-          {[
-            { value: "single",       label: "Single" },
-            { value: "relationship", label: "In a relationship" },
-            { value: "married",      label: "Married" },
-            { value: "complicated",  label: "It's complicated" },
-            { value: "other",        label: "Other" },
-          ].map(opt => (
-            <button
-              key={opt.value}
-              onClick={() => setStatus(opt.value)}
-              className="w-full text-left px-3 py-2 rounded-lg text-sm"
-              style={{
-                background: status === opt.value ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
-                border: `1px solid ${status === opt.value ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.07)"}`,
-                color: status === opt.value ? "#a78bfa" : "rgba(255,255,255,0.55)",
-              }}
-            >{opt.label}</button>
-          ))}
-        </div>
-
-        {status !== "single" && (
-          <div>
-            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Partner&apos;s Name</label>
-            <input
-              value={partner}
-              onChange={e => setPartner(e.target.value)}
-              placeholder="e.g. Alex, Maria..."
-              className="w-full text-xs px-3 py-2 rounded-lg"
-              style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#f0f0f0", outline: "none", borderRadius: 8 }}
-            />
-          </div>
-        )}
 
         {/* Frame Selection */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
-          <label className="text-xs font-semibold block mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
+          <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
+          <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.2)" }}>
+            Frames add a colored border and glow effect to your player card visible to everyone. Earn frames from faction reputation (Revered), the Season Pass, World Boss #1, Dungeon first-clears, and the Currency Shops.
+          </p>
+
+          {/* Preview: how current frame looks */}
+          <div className="rounded-lg p-3 mb-3 flex items-center gap-3" style={{
+            background: "rgba(255,255,255,0.02)",
+            border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}80` : "1px solid rgba(255,255,255,0.06)",
+            boxShadow: equippedFrameId && frames.find(f => f.id === equippedFrameId)?.glow ? `0 0 12px ${frames.find(f => f.id === equippedFrameId)?.color}30` : "none",
+          }}>
+            <img src={`/images/portraits/hero-${avatarStyle}.png`} alt="" className="w-12 h-12 rounded-lg object-cover" style={{
+              imageRendering: "auto",
+              border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}` : "2px solid rgba(255,255,255,0.1)",
+            }} />
+            <div>
+              <p className="text-xs font-semibold" style={{ color: equippedFrameId ? frames.find(f => f.id === equippedFrameId)?.color : "rgba(255,255,255,0.4)" }}>
+                {equippedFrameId ? frames.find(f => f.id === equippedFrameId)?.name || "Frame" : "No Frame"}
+              </p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                {equippedFrameId ? "Your player card glows with this color" : "Your player card has no special border"}
+              </p>
+            </div>
+          </div>
+
           {frames.length === 0 ? (
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No frames unlocked yet. Earn frames from factions, achievements, and shops.</p>
+            <div className="rounded-lg p-4 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No frames unlocked yet.</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }}>Earn frames from:</p>
+              <div className="flex flex-wrap gap-1 mt-2 justify-center">
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Factions (Revered)</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Season Pass</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>World Boss #1</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Dungeon First-Clear</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Currency Shops</span>
+              </div>
+            </div>
           ) : (
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {/* Remove frame option */}
               <button
                 onClick={() => equippedFrameId && equipFrame(null)}
@@ -352,7 +353,8 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                 }}
               >
                 <span className="w-4 h-4 rounded-full" style={{ border: "2px solid rgba(255,255,255,0.15)" }} />
-                <span>{frameLoading === "__remove" ? "..." : "No Frame"}</span>
+                <span className="flex-1">{frameLoading === "__remove" ? "..." : "No Frame"}</span>
+                {!equippedFrameId && <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Active</span>}
               </button>
               {frames.map(f => {
                 const isActive = equippedFrameId === f.id;
@@ -361,25 +363,30 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                     key={f.id}
                     onClick={() => !isActive && equipFrame(f.id)}
                     disabled={isActive || frameLoading === f.id}
-                    title={isActive ? "Currently equipped" : f.source || `Equip ${f.name}`}
-                    className="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center gap-2"
+                    title={isActive ? "Currently equipped" : `Equip ${f.name}`}
+                    className="w-full text-left px-3 py-2.5 rounded-lg text-xs flex items-center gap-2.5"
                     style={{
-                      background: isActive ? `${f.color}15` : "rgba(255,255,255,0.03)",
+                      background: isActive ? `${f.color}12` : "rgba(255,255,255,0.03)",
                       border: `1px solid ${isActive ? `${f.color}50` : "rgba(255,255,255,0.07)"}`,
-                      color: isActive ? f.color : "rgba(255,255,255,0.55)",
                       cursor: isActive || frameLoading === f.id ? "not-allowed" : "pointer",
                     }}
                   >
+                    {/* Color preview circle with glow */}
                     <span
-                      className="w-4 h-4 rounded-full flex-shrink-0"
+                      className="w-5 h-5 rounded-full flex-shrink-0"
                       style={{
                         background: `${f.color}30`,
                         border: `2px solid ${f.color}`,
-                        boxShadow: f.glow ? `0 0 6px ${f.color}60` : "none",
+                        boxShadow: f.glow ? `0 0 8px ${f.color}60` : "none",
                       }}
                     />
-                    <span className="flex-1">{f.name}</span>
-                    {isActive && <span style={{ color: f.color }}>Equipped</span>}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold" style={{ color: isActive ? f.color : "rgba(255,255,255,0.6)" }}>{f.name}</p>
+                      <p style={{ color: "rgba(255,255,255,0.2)", fontSize: 11 }}>
+                        {f.source || (f.glow ? "Glowing border + card effect" : "Colored border")}
+                      </p>
+                    </div>
+                    {isActive && <span className="text-xs font-semibold" style={{ color: f.color }}>Equipped</span>}
                     {frameLoading === f.id && <span style={{ color: "rgba(255,255,255,0.3)" }}>...</span>}
                   </button>
                 );
@@ -388,20 +395,11 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           )}
         </div>
 
-        <div className="flex gap-2">
-          <button
-            onClick={onClose}
-            className="flex-1 py-2 rounded-xl text-xs"
-            style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}
-          >Cancel</button>
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            title={saving ? "Saving…" : undefined}
-            className="flex-1 py-2 rounded-xl text-xs font-semibold"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", cursor: saving ? "not-allowed" : "pointer" }}
-          >{saving ? "…" : "Save"}</button>
-        </div>
+        <button
+          onClick={onClose}
+          className="w-full py-2 rounded-xl text-xs font-semibold"
+          style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+        >Close</button>
       </div>
     </div>
   );
@@ -2408,9 +2406,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           <button
             onClick={() => setProfileSettingsOpen(true)}
             className="text-xs px-1.5 py-0.5 rounded-lg ml-2"
-            title="Profile Settings"
+            title="Frames & Cosmetics"
             style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
-          >...</button>
+          >Frames</button>
         </div>
         {charData && <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{charData.title}</p>}
       </div>

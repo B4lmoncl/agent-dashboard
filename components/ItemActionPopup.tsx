@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { CharacterData } from "@/app/types";
 import { RARITY_COLORS, STAT_LABELS } from "@/app/constants";
+import { Tip } from "@/components/GameTooltip";
 
 type InventoryItem = CharacterData["inventory"][number];
 
@@ -131,12 +132,15 @@ export default function ItemActionPopup({
         {/* Stats */}
         {hasStats && (
           <div className="space-y-0.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-            {Object.entries(item.stats).map(([stat, val]) => (
-              <div key={stat} className="flex items-center justify-between text-xs">
-                <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
-                <span className="font-mono font-semibold" style={{ color: "#4ade80" }}>+{val as number}</span>
-              </div>
-            ))}
+            {Object.entries(item.stats).map(([stat, val]) => {
+              const statKey = stat.toLowerCase().replace("ä", "ae").replace("ü", "ue");
+              return (
+                <div key={stat} className="flex items-center justify-between text-xs">
+                  <Tip k={statKey}><span style={{ color: "rgba(255,255,255,0.55)", cursor: "help" }}>{STAT_LABELS[stat] || stat}</span></Tip>
+                  <span className="font-mono font-semibold" style={{ color: "#4ade80" }}>+{val as number}</span>
+                </div>
+              );
+            })}
           </div>
         )}
 

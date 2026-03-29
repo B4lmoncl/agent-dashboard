@@ -461,6 +461,21 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     </div>
                   </div>
                 )}
+                {/* Rift-exclusive loot preview */}
+                {((tier as unknown as { lootPreview?: { id: string; name: string; slot: string; rarity: string; desc?: string; legendaryEffect?: { type: string; label?: string } }[] }).lootPreview || []).length > 0 && (
+                  <div className="space-y-1">
+                    <p className="text-xs text-w20">Exclusive Drops:</p>
+                    {((tier as unknown as { lootPreview: { id: string; name: string; slot: string; rarity: string; desc?: string; legendaryEffect?: { type: string; label?: string } }[] }).lootPreview || []).slice(0, 3).map(item => (
+                      <TipCustom key={item.id} title={item.name} accent={tier.color} body={<>{item.desc && <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}{item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}</>}>
+                        <div className="flex items-center gap-1.5 text-xs cursor-help" style={{ color: "rgba(255,255,255,0.35)" }}>
+                          <span style={{ color: tier.color }}>◆</span>
+                          <span>{item.name}</span>
+                          <span className="text-w15 ml-auto capitalize">{item.slot}</span>
+                        </div>
+                      </TipCustom>
+                    ))}
+                  </div>
+                )}
                 {onCd && tier.cooldownEndsAt && (
                   <p className="text-xs text-center" style={{ color: "#ef4444" }}>
                     Cooldown: {timeLeft(new Date(tier.cooldownEndsAt).getTime() - Date.now())} remaining

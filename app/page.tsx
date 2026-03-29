@@ -883,8 +883,8 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, overflow: "hidden", "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
-        <CrystalVeins floorColor={currentFloorColor} moonIntensity={moonIntensityRef.current} />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
+        <CrystalVeins floorColor={currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -973,7 +973,7 @@ export default function Dashboard() {
               {/* Portrait */}
               <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character">
                 <img
-                  src="/images/portraits/hero-male.png"
+                  src={`/images/portraits/hero-${loggedInUser.avatarStyle || "male"}.png`}
                   alt={playerName}
                   className="w-28 h-28 rounded-xl object-cover img-render-auto"
                   style={{ border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
@@ -1201,20 +1201,31 @@ export default function Dashboard() {
                     <p className="text-xs text-w30 mb-4">No professions chosen yet. Visit the Artisan&apos;s Quarter!</p>
                   )}
 
-                  {/* Materials Inventory */}
+                  {/* Materials Inventory — filtered to chosen professions */}
                   <div className="mb-2">
                     <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
-                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Earned from quest completions (scaled by rarity) and dismantling gear.</p>
+                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>
+                      {chosen.length > 0 ? "Materials for your chosen professions." : "Choose a profession to see relevant materials."}
+                    </p>
                     {matDefs.length > 0 ? (
                       <div className="space-y-1">
-                        {matDefs.map(m => {
+                        {matDefs.filter(m => {
+                          // If no professions chosen, show only materials the player actually has
+                          if (chosen.length === 0) return (mats[m.id] ?? 0) > 0;
+                          // Otherwise filter to materials relevant to chosen professions
+                          const profData = professionsData.professions as { id: string; gatheringAffinity?: string[] }[];
+                          const relevantMats = new Set(chosen.flatMap((pid: string) => profData.find(p => p.id === pid)?.gatheringAffinity || []));
+                          // Always show universal materials (seelensplitter, aetherkern) + relevant ones + ones player owns
+                          return relevantMats.has(m.id) || (mats[m.id] ?? 0) > 0;
+                        }).map(m => {
                           const count = mats[m.id] ?? 0;
                           const rarColor = MAT_RARITY_COLORS[m.rarity] ?? "#9ca3af";
                           const source = MAT_SOURCES[m.rarity] ?? "Quest drops";
                           return (
                             <div key={m.id} className="rounded-lg px-2.5 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
                               <div className="flex items-center gap-2">
-                                <img src={m.icon || undefined} alt="" width={18} height={18} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                                {m.icon ? <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement)?.style.removeProperty("display"); }} /> : null}
+                                <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: rarColor, display: m.icon ? "none" : "block" }} />
                                 <div className="flex-1 min-w-0">
                                   <span className="text-xs truncate block" style={{ color: rarColor }}>{m.name}</span>
                                 </div>

@@ -67,3 +67,32 @@
 - [ ] page.tsx monolith (~2150 lines) — extract into feature modules
 - [ ] No write-queue/claim-lock for concurrent saves (single-process mitigates)
 - [ ] Missing JSON Schema validation for template files
+
+## 📋 PLANNED FEATURES (from 2026-03-29 audit)
+
+### Seasonal Leaderboards
+- Needs `seasonXp` field on users (XP gained during current season only)
+- Backend: reset seasonXp on season change, filter leaderboard by season
+- Frontend: toggle "Season X" vs "All-Time" on LeaderboardView
+- Reference: Diablo 3 seasonal leaderboards
+
+### Spieler-Challenges
+- Players challenge each other: "Who completes more quests this week?"
+- Backend: POST /api/challenges/create, accept, resolve
+- Frontend: Challenge toast notification, accept/decline UI, result display
+- Loser pays 100g to winner
+- Reference: WoW guild challenges
+
+### Companion-Galerie
+- Overview of all 6 virtual + 7 real companion types
+- Shows: artwork, lore text, personality, bond level progression
+- Accessible from CompanionsWidget or Codex
+- Frontend-only (data already in companions.json)
+- Reference: HSR companion gallery
+
+### Tower Map Visualization
+- 2D cross-section of all 5 tower floors with rooms as clickable nodes
+- "You are here" marker on current room
+- Locked rooms grayed out with level requirement
+- Replaces/supplements current floor navigation
+- Reference: Urithiru tower (Stormlight Archive)

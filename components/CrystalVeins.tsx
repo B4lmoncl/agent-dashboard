@@ -124,7 +124,7 @@ function hexToRgb(hex: string): [number, number, number] {
   return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
 }
 
-export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1 }: { floorColor?: string; moonIntensity?: number }) {
+export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1, seed = 0 }: { floorColor?: string; moonIntensity?: number; seed?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const veinsRef = useRef<Vein[]>([]);
   const animRef = useRef<number>(0);
@@ -136,6 +136,7 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const { w, h } = sizeRef.current;
+    if (w === 0 || h === 0) { animRef.current = requestAnimationFrame(draw); return; }
 
     ctx.clearRect(0, 0, w, h);
 
@@ -144,43 +145,39 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     for (const vein of veinsRef.current) {
       if (vein.points.length < 2) continue;
 
-      // Pulsing opacity
-      const pulse = 0.5 + 0.5 * Math.sin(time * 0.001 * vein.speed + vein.phase);
-      const baseOpacity = vein.opacity * moonIntensity * (0.6 + 0.4 * pulse);
+      // Breathe effect: opacity AND glow width pulse together
+      const pulse = 0.5 + 0.5 * Math.sin(time * 0.0008 * vein.speed + vein.phase);
+      const baseOpacity = vein.opacity * moonIntensity * (0.4 + 0.6 * pulse);
+      const glowScale = 0.7 + 0.3 * pulse; // glow width breathes 70%-100%
 
-      // Draw glow layer (wider, more transparent)
-      ctx.beginPath();
-      ctx.moveTo(vein.points[0].x, vein.points[0].y);
-      for (let i = 1; i < vein.points.length; i++) {
-        ctx.lineTo(vein.points[i].x, vein.points[i].y);
-      }
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.3})`;
-      ctx.lineWidth = vein.width * 6;
+      const drawPath = () => {
+        ctx.beginPath();
+        ctx.moveTo(vein.points[0].x, vein.points[0].y);
+        for (let i = 1; i < vein.points.length; i++) {
+          ctx.lineTo(vein.points[i].x, vein.points[i].y);
+        }
+      };
+
+      // Outer glow (wide, faint — breathes with pulse)
+      drawPath();
+      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.2})`;
+      ctx.lineWidth = vein.width * 8 * glowScale;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.stroke();
 
-      // Draw mid glow
-      ctx.beginPath();
-      ctx.moveTo(vein.points[0].x, vein.points[0].y);
-      for (let i = 1; i < vein.points.length; i++) {
-        ctx.lineTo(vein.points[i].x, vein.points[i].y);
-      }
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.6})`;
-      ctx.lineWidth = vein.width * 2.5;
+      // Mid glow
+      drawPath();
+      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.5})`;
+      ctx.lineWidth = vein.width * 3 * glowScale;
       ctx.stroke();
 
-      // Draw core line (bright, thin)
-      ctx.beginPath();
-      ctx.moveTo(vein.points[0].x, vein.points[0].y);
-      for (let i = 1; i < vein.points.length; i++) {
-        ctx.lineTo(vein.points[i].x, vein.points[i].y);
-      }
-      // Core is brighter — mix toward white
-      const coreR = Math.min(255, r + 80);
-      const coreG = Math.min(255, g + 80);
-      const coreB = Math.min(255, b + 80);
-      ctx.strokeStyle = `rgba(${coreR},${coreG},${coreB},${baseOpacity})`;
+      // Core line (bright, thin — constant width for stability)
+      drawPath();
+      const coreR = Math.min(255, r + 100);
+      const coreG = Math.min(255, g + 100);
+      const coreB = Math.min(255, b + 100);
+      ctx.strokeStyle = `rgba(${coreR},${coreG},${coreB},${baseOpacity * 1.2})`;
       ctx.lineWidth = vein.width;
       ctx.stroke();
     }
@@ -198,24 +195,35 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     // Only regenerate if width changes (e.g. window resize), NOT on height/content changes.
     let generatedForWidth = 0;
 
+    let lastCanvasH = 0;
+
     const resize = () => {
       if (!parent) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = parent.clientWidth;
       const h = parent.scrollHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      const ctx = canvas.getContext("2d");
-      if (ctx) ctx.scale(dpr, dpr);
-      sizeRef.current = { w, h };
-      // Only regenerate veins when width changes — keeps veins stable across view switches
-      if (w !== generatedForWidth) {
+
+      // Only resize canvas if width changed OR height grew significantly (>20%)
+      // This prevents flicker from minor scrollHeight changes
+      const heightChanged = h > lastCanvasH * 1.2 || lastCanvasH === 0;
+      const widthChanged = w !== generatedForWidth;
+
+      if (widthChanged || heightChanged) {
+        const stableH = Math.max(h, 4000);
+        canvas.width = w * dpr;
+        canvas.height = stableH * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${stableH}px`;
+        const ctx = canvas.getContext("2d");
+        if (ctx) ctx.scale(dpr, dpr);
+        sizeRef.current = { w, h: stableH };
+        lastCanvasH = stableH;
+      }
+
+      if (widthChanged) {
         generatedForWidth = w;
-        // Use a large fixed height so veins cover any scroll depth
         const refH = Math.max(h, 4000);
-        veinsRef.current = generateVeinNetwork(w, refH, Math.floor(w * 7919));
+        veinsRef.current = generateVeinNetwork(w, refH, Math.floor(w * 7919 + seed * 13337));
       }
     };
 

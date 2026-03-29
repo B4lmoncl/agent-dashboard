@@ -246,6 +246,26 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           );
         })}
       </div>
+
+      {/* Rank-up proximity alert */}
+      {playerName && (() => {
+        const myEntry = merged.find(e => e.id?.toLowerCase() === playerName.toLowerCase() || e.name?.toLowerCase() === playerName.toLowerCase());
+        if (!myEntry || myEntry.rank <= 1) return null;
+        const above = merged.find(e => e.rank === myEntry.rank - 1);
+        if (!above) return null;
+        const xpDiff = above.xp - myEntry.xp;
+        if (xpDiff > 200) return null; // Only show if close (<200 XP)
+        return (
+          <div className="rounded-lg px-4 py-2.5 mt-2 text-center tab-content-enter" style={{ background: "rgba(250,204,21,0.06)", border: "1px solid rgba(250,204,21,0.15)" }}>
+            <p className="text-xs font-semibold" style={{ color: "#fbbf24" }}>
+              {xpDiff} XP until Rank {myEntry.rank - 1}
+            </p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+              Pass {above.name} to climb the leaderboard
+            </p>
+          </div>
+        );
+      })()}
     </div>
   );
 }

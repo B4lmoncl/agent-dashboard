@@ -157,6 +157,8 @@ export interface User {
     xp: { forge: number; kraft?: number; gear: number; companions: number; bond: number; hoarding: number; hoardingCount: number; hoardingPct: number; legendary?: number; total: number };
     gold: { forge: number; weisheit?: number; streak: number; legendary?: number; total: number };
   };
+  // Avatar style (male/female portrait)
+  avatarStyle?: "male" | "female";
   // Equipment (populated from backend)
   equipment?: Record<string, unknown>;
   // Achievement points & cosmetic frames

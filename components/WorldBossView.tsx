@@ -430,17 +430,25 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           </div>
           <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
             <div
-              className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}`}
+              className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}${hpPercent < 0.25 && !boss.defeated ? " rift-urgent" : ""}`}
               style={{
                 width: `${Math.max(hpPercent * 100, boss.defeated ? 0 : 0.5)}%`,
                 background: boss.defeated
                   ? "linear-gradient(90deg, #22c55e88, #22c55e)"
                   : `linear-gradient(90deg, ${hpColor}88, ${hpColor})`,
                 boxShadow: `0 0 8px ${boss.defeated ? "#22c55e" : hpColor}50`,
+                animationDuration: hpPercent < 0.25 ? "1s" : "3s",
               }}
             />
           </div>
           <div className="flex items-center justify-between mt-1">
+            {/* Boss phase indicator */}
+            {!boss.defeated && (
+              <span className="text-xs font-semibold" style={{ color: hpColor, opacity: 0.7 }}>
+                {hpPercent > 0.66 ? "Phase 1" : hpPercent > 0.33 ? "Phase 2: Weakened" : "Phase 3: Enraged"}
+              </span>
+            )}
+            {boss.defeated && <span className="text-xs font-semibold" style={{ color: "#22c55e" }}>Defeated</span>}
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
               {boss.contributorCount} contributor{boss.contributorCount !== 1 ? "s" : ""}
             </span>
