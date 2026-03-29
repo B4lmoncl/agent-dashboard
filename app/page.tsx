@@ -532,7 +532,7 @@ export default function Dashboard() {
     selectedIds, setSelectedIds,
     bulkLoading,
     reviewComments, setReviewComments,
-    poolRefreshing,
+    poolRefreshing, loadingAction,
     shopUserId, setShopUserId,
     handleApprove, handleReject, handleChangePriority,
     toggleSelect, handleBulkUpdate,
@@ -1882,7 +1882,8 @@ export default function Dashboard() {
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
-                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined} />
+                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
+                                        loadingAction={loadingAction} />
                                 )}
                               </div>
                             )}
@@ -1914,7 +1915,8 @@ export default function Dashboard() {
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
-                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined} /></div>
+                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
+                                        loadingAction={loadingAction} /></div>
                                 )}
                               </div>
                             )}

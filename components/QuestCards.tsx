@@ -94,7 +94,7 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
   );
 });
 
-export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName, playerLevel, gridMode, onDetails, isFavorite, onToggleFavorite }: {
+export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName, playerLevel, gridMode, onDetails, isFavorite, onToggleFavorite, loadingAction }: {
   quest: Quest;
   selected?: boolean;
   onToggle?: (id: string) => void;
@@ -109,9 +109,11 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   onDetails?: (quest: Quest) => void;
   isFavorite?: boolean;
   onToggleFavorite?: (id: string) => void;
+  loadingAction?: { questId: string; action: string } | null;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [starAnimating, setStarAnimating] = useState(false);
+  const isLoading = loadingAction?.questId === quest.id;
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
@@ -384,13 +386,13 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
             </div>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
-                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0 }} title="Claim quest">!</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onClaim(quest.id); }} disabled={isLoading} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }} title={isLoading ? "Action in progress..." : "Claim quest"}>{isLoading ? "..." : "!"}</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>Unclaim</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Unclaim"}</button>
               )}
               {!isCoop && onComplete && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); onComplete(quest.id, quest.title); }} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}>✓ Done</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
               )}
               {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
                 <button onClick={e => { e.stopPropagation(); onCoopClaim(quest.id); }} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>Join</button>

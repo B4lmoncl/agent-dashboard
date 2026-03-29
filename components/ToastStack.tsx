@@ -12,7 +12,7 @@ export type ToastItem =
   | { type: "purchase"; id: string; message: string }
   | { type: "item"; id: string; itemName: string; message: string; icon?: string; rarity: string }
   | { type: "companionBond"; id: string; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
-  | { type: "error"; id: string; message: string };
+  | { type: "error"; id: string; message: string; onRetry?: () => void };
 
 export type ToastInput =
   | { type: "flavor"; message: string; icon: string; sub?: string }
@@ -21,7 +21,7 @@ export type ToastInput =
   | { type: "purchase"; message: string }
   | { type: "item"; itemName: string; message: string; icon?: string; rarity: string }
   | { type: "companionBond"; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
-  | { type: "error"; message: string };
+  | { type: "error"; message: string; onRetry?: () => void };
 
 const TOAST_DURATION: Record<ToastItem["type"], number> = {
   flavor: 4000,
@@ -215,7 +215,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
   );
 }
 
-function ErrorToastContent({ message, onClose }: { message: string; onClose: () => void }) {
+function ErrorToastContent({ message, onClose, onRetry }: { message: string; onClose: () => void; onRetry?: () => void }) {
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
@@ -223,6 +223,11 @@ function ErrorToastContent({ message, onClose }: { message: string; onClose: () 
     >
       <span className="text-lg flex-shrink-0" style={{ color: "#ef4444" }}>!</span>
       <p className="text-sm font-medium flex-1" style={{ color: "#fca5a5" }}>{message}</p>
+      {onRetry && (
+        <button onClick={() => { onRetry(); onClose(); }} className="text-xs px-2 py-1 rounded font-semibold flex-shrink-0" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}>
+          Retry
+        </button>
+      )}
       <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
     </div>
   );
@@ -266,7 +271,7 @@ function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: T
       {toast.type === "purchase" && <PurchaseToastContent message={toast.message} onClose={handleClose} />}
       {toast.type === "item" && <ItemToastContent toast={toast} onClose={handleClose} />}
       {toast.type === "companionBond" && <CompanionBondToastContent toast={toast} onClose={handleClose} />}
-      {toast.type === "error" && <ErrorToastContent message={toast.message} onClose={handleClose} />}
+      {toast.type === "error" && <ErrorToastContent message={toast.message} onClose={handleClose} onRetry={toast.onRetry} />}
     </div>
   );
 }
