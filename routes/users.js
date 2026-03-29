@@ -298,7 +298,8 @@ router.post('/api/auth/set-password', authLimiter, async (req, res) => {
     if (!user) return res.status(401).json({ error: 'User not found' });
 
     const { password } = req.body;
-    if (!password || password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    const pwCheck = validatePassword(password);
+    if (!pwCheck.valid) return res.status(400).json({ error: pwCheck.error });
 
     const bcrypt = require('bcryptjs');
     user.passwordHash = await bcrypt.hash(password, 10);
@@ -316,6 +317,10 @@ router.post('/api/register', authLimiter, async (req, res) => {
   try {
   const { name, password, email, age, goals, pronouns, classId, companion, relationshipStatus, partnerName } = req.body;
   if (!name || !String(name).trim()) return res.status(400).json({ error: 'Name is required' });
+  const trimmedName = String(name).trim();
+  if (trimmedName.length > 32) return res.status(400).json({ error: 'Name too long (max 32 characters)' });
+  if (trimmedName.length < 2) return res.status(400).json({ error: 'Name too short (min 2 characters)' });
+  if (!/^[a-zA-Z0-9_\-\s]+$/.test(trimmedName)) return res.status(400).json({ error: 'Name can only contain letters, numbers, spaces, hyphens, and underscores' });
   if (!password) return res.status(400).json({ error: 'Password is required' });
   const pwCheck = validatePassword(password);
   if (!pwCheck.valid) return res.status(400).json({ error: pwCheck.error });
@@ -323,7 +328,6 @@ router.post('/api/register', authLimiter, async (req, res) => {
   const emailCheck = validateEmailFormat(email);
   if (!emailCheck.valid) return res.status(400).json({ error: emailCheck.error });
   const trimmedEmail = String(email).trim().toLowerCase();
-  const trimmedName = String(name).trim();
   const nameLower = trimmedName.toLowerCase();
   // Check if name already taken
   const existing = state.usersByName.get(nameLower);
