@@ -4285,7 +4285,7 @@
       }
     },
     {
-      "id": "f-kalte-dusche",
+      "id": "f-kalte-dusche-2",
       "template": "board-quest",
       "title": "Frostprüfung",
       "type": "fitness",
@@ -4317,7 +4317,7 @@
       }
     },
     {
-      "id": "f-no-sugar",
+      "id": "f-no-sugar-2",
       "template": "board-quest",
       "title": "Bittere Wahrheit",
       "type": "fitness",
@@ -4509,7 +4509,7 @@
       }
     },
     {
-      "id": "f-outdoor-training",
+      "id": "f-outdoor-training-2",
       "template": "board-quest",
       "title": "Unter freiem Himmel",
       "type": "fitness",
@@ -4589,7 +4589,7 @@
       }
     },
     {
-      "id": "f-radfahren",
+      "id": "f-radfahren-2",
       "template": "board-quest",
       "title": "Windreiter",
       "type": "fitness",
@@ -5405,7 +5405,7 @@
       }
     },
     {
-      "id": "l-flashcards",
+      "id": "l-flashcards-2",
       "template": "board-quest",
       "title": "Kartenkunst",
       "type": "learning",
@@ -5533,7 +5533,7 @@
       }
     },
     {
-      "id": "s-spieleabend",
+      "id": "s-spieleabend-2",
       "template": "board-quest",
       "title": "Würfelschicksal",
       "type": "social",
@@ -6173,7 +6173,7 @@
       }
     },
     {
-      "id": "s-kochen-fuer-andere",
+      "id": "s-kochen-fuer-andere-2",
       "template": "board-quest",
       "title": "Gastfreundschaft",
       "type": "social",
@@ -6285,7 +6285,7 @@
       }
     },
     {
-      "id": "s-danke-sagen",
+      "id": "s-danke-sagen-2",
       "template": "board-quest",
       "title": "Schuld begleichen",
       "type": "social",
