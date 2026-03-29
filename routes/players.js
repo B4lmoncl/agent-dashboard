@@ -3,7 +3,9 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, NPC_META, saveUsers, savePlayerProgress } = require('../lib/state');
-const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore } = require('../lib/helpers');
+const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore, createPlayerLock } = require('../lib/helpers');
+const companionUltimateLock = createPlayerLock('companion-ultimate');
+const companionExpeditionLock = createPlayerLock('companion-expedition');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 
 // ─── Companion Expeditions data ─────────────────────────────────────────────
@@ -246,6 +248,8 @@ router.post('/api/player/:name/companion/pet', requireAuth, requireSelf('name'),
 // POST /api/player/:name/companion/ultimate — activate companion ultimate ability
 router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!companionUltimateLock.acquire(uid)) return res.status(429).json({ error: 'Ultimate in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   if (!u.companion) return res.status(404).json({ error: 'No companion' });
@@ -352,6 +356,7 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
     abilityUsed: ability.id,
     cooldownEndsAt: new Date(Date.now() + cooldownDays * 24 * 60 * 60 * 1000).toISOString(),
   });
+  } finally { companionUltimateLock.release(uid); }
 });
 
 // GET /api/cv-export — export skills/certs from completed learning quests
@@ -845,6 +850,8 @@ router.get('/api/player/:name/companion/expeditions', requireAuth, requireSelf('
 // POST /api/player/:name/companion/expedition/send — send companion on expedition
 router.post('/api/player/:name/companion/expedition/send', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!companionExpeditionLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   if (!u.companion) return res.status(400).json({ error: 'No companion' });
@@ -896,11 +903,14 @@ router.post('/api/player/:name/companion/expedition/send', requireAuth, requireS
     },
     message: `${u.companion.name || 'Your companion'} set off on "${expDef.name}"! Returns in ${expDef.durationHours}h.`,
   });
+  } finally { companionExpeditionLock.release(uid); }
 });
 
 // POST /api/player/:name/companion/expedition/collect — collect completed expedition rewards
 router.post('/api/player/:name/companion/expedition/collect', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!companionExpeditionLock.acquire(uid)) return res.status(429).json({ error: 'Collect in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   if (!u.companion) return res.status(400).json({ error: 'No companion' });
@@ -1014,6 +1024,7 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
     rewards: collected,
     message: `${companionName} returned from "${expDef.name}" with loot!`,
   });
+  } finally { companionExpeditionLock.release(uid); }
 });
 
 module.exports = router;
