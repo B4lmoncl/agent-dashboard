@@ -88,7 +88,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
             const hasNotification = notif && notif.count > 0;
 
             return (
-              <div key={floor.id} className="rounded-xl overflow-hidden relative" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }}>
+              <div key={floor.id} className="rounded-xl overflow-hidden relative group" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }} onMouseEnter={e => { if (!floorLocked) (e.currentTarget as HTMLElement).style.borderColor = `${floor.color}35`; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"; }}>
                 {/* Background banner image (active floor only) */}
                 {isActiveFloor && floor.banner && (
                   <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: 0.06, filter: "blur(1px)" }} />
@@ -98,8 +98,16 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   <div className="relative" style={{ height: 2, background: `linear-gradient(90deg, transparent, ${floor.color}80, transparent)` }} />
                 )}
 
-                {/* Floor header */}
-                <div className="relative flex items-center gap-3 px-4 py-2.5">
+                {/* Floor header — click to navigate to first available room */}
+                <div
+                  className="relative flex items-center gap-3 px-4 py-2.5"
+                  style={{ cursor: floorLocked ? "default" : "pointer" }}
+                  onClick={() => {
+                    if (floorLocked) return;
+                    const firstRoom = floor.rooms.find(r => !r.minLevel || playerLevel >= r.minLevel);
+                    if (firstRoom) { onNavigate(firstRoom.key); onClose(); }
+                  }}
+                >
                   {/* Floor icon */}
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{
                     background: isActiveFloor ? `${floor.color}18` : `${floor.color}08`,
