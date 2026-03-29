@@ -114,9 +114,9 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
 
             return (
               <div key={floor.id} className="rounded-xl overflow-hidden relative group" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }} onMouseEnter={e => { if (!floorLocked) (e.currentTarget as HTMLElement).style.borderColor = `${floor.color}35`; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"; }}>
-                {/* Background banner image (active floor only) */}
-                {isActiveFloor && floor.banner && (
-                  <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: 0.06, filter: "blur(1px)" }} />
+                {/* Background banner image */}
+                {!floorLocked && floor.banner && (
+                  <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: isActiveFloor ? 0.07 : 0.03, filter: "blur(1px)" }} />
                 )}
                 {/* Floor accent bar */}
                 {isActiveFloor && (
