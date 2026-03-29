@@ -4715,6 +4715,806 @@
         "xp": 12,
         "gold": 8
       }
+    },
+    {
+      "id": "l-docker-basics",
+      "template": "board-quest",
+      "title": "Containerzauber",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne Docker Grundlagen: Image bauen, Container starten, Dockerfile schreiben.",
+        "flavor": "Alles in eine Box packen und hoffen dass es woanders auch funktioniert. IT in einer Nussschale.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-docker-compose",
+      "template": "board-quest",
+      "title": "Orchestrierung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Docker Compose: Multi-Container Setup definieren und starten.",
+        "flavor": "Wenn ein Container nicht reicht, nimm zwanzig. Problem gelöst. Neue Probleme auch.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-kubernetes-intro",
+      "template": "board-quest",
+      "title": "Flottenkommando",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Kubernetes Grundlagen: Pods, Deployments, Services verstehen.",
+        "flavor": "Container managen die Container managen. Es ist Container den ganzen Weg runter.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 42,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-cicd",
+      "template": "board-quest",
+      "title": "Die Pipeline",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "CI/CD Pipeline verstehen oder einrichten: GitHub Actions, GitLab CI, oder Jenkins.",
+        "flavor": "Automatisierung ist der Traum jedes faulen Genies. Sei ein faules Genie.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-git-advanced",
+      "template": "board-quest",
+      "title": "Zeitmagie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Git Advanced: Rebase, Cherry-Pick, Bisect, Stash üben.",
+        "flavor": "Git ist Zeitreise für Code. Mit allen Paradoxen die dazugehören.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-regex",
+      "template": "board-quest",
+      "title": "Mustersuche",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "30 Minuten Regex üben — regex101.com oder ein Tutorial.",
+        "flavor": "Reguläre Ausdrücke: Die Sprache die aussieht wie eine Katze auf der Tastatur gelaufen ist.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-sql-joins",
+      "template": "board-quest",
+      "title": "Tabellenverknüpfung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "SQL Joins verstehen: INNER, LEFT, RIGHT, FULL OUTER.",
+        "flavor": "Zwei Tabellen treffen sich in einer Bar. Der JOIN entscheidet wer bleiben darf.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-api-design",
+      "template": "board-quest",
+      "title": "Schnittstellenkunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "REST API Design Prinzipien lernen: Endpoints, HTTP Methods, Status Codes.",
+        "flavor": "Eine gute API ist wie ein guter Kellner — bringt was du bestellst ohne zu fragen warum.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-linux-commands",
+      "template": "board-quest",
+      "title": "Terminal-Macht",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "20 Linux-Befehle lernen oder auffrischen: grep, awk, sed, find, chmod.",
+        "flavor": "Das Terminal ist mächtiger als jede GUI. Und hässlicher. Das ist der Trade-off.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-bash-scripting",
+      "template": "board-quest",
+      "title": "Skriptmagie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Ein nützliches Bash-Skript schreiben das eine wiederkehrende Aufgabe automatisiert.",
+        "flavor": "Pip Zahnrad: 'Automatisierung ist kontrollierte Faulheit. Die beste Art von Faulheit.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "l-netzwerk-subnetting",
+      "template": "board-quest",
+      "title": "Netzwerkarchitektur",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Subnetting üben: CIDR-Notation, Netzmasken, IP-Bereiche berechnen.",
+        "flavor": "Netzwerke teilen ist wie Pizza teilen. Nur dass niemand die falsche Scheibe essen darf.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-dns",
+      "template": "board-quest",
+      "title": "Namensmagie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "DNS verstehen: Records, Propagation, Troubleshooting.",
+        "flavor": "DNS ist das Telefonbuch des Internets. Wenn es kaputt ist, ist alles kaputt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-tls-ssl",
+      "template": "board-quest",
+      "title": "Verschlüsselungskunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "TLS/SSL verstehen: Handshake, Zertifikate, HTTPS.",
+        "flavor": "Verschlüsselung ist wie Flüstern in einem lauten Raum. Nur mathematisch.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-fortinet",
+      "template": "board-quest",
+      "title": "Festungsmauern",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Fortinet Firewall Grundlagen: Policies, NAT, VPN.",
+        "flavor": "Eine Firewall ist die letzte Verteidigung. Und die erste. Und alles dazwischen.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-cisco-cli",
+      "template": "board-quest",
+      "title": "Switchsprache",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Cisco CLI üben: show commands, interface config, routing basics.",
+        "flavor": "Cisco IOS: Die Sprache die klingt wie Englisch aussieht aber definitiv keins ist.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-ansible",
+      "template": "board-quest",
+      "title": "Automatenbauer",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Ansible Playbook schreiben: Server konfigurieren ohne jeden einzeln anzufassen.",
+        "flavor": "Hundert Server gleichzeitig konfigurieren. Was könnte schiefgehen. Vieles.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-aws-ec2",
+      "template": "board-quest",
+      "title": "Wolkentürme",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "AWS EC2 verstehen: Instances, Security Groups, EBS.",
+        "flavor": "Die Cloud ist nur jemand anders Computer. Aber ein verdammt großer.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-redis",
+      "template": "board-quest",
+      "title": "Blitzgedächtnis",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Redis Grundlagen: Key-Value Store, Caching, TTL.",
+        "flavor": "Daten im RAM halten ist wie Notizen im Kurzzeitgedächtnis. Schnell, aber vergesslich.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-clean-code",
+      "template": "board-quest",
+      "title": "Saubere Klinge",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Clean Code Prinzipien auffrischen: Naming, Functions, SOLID.",
+        "flavor": "Code lesen ist schwerer als Code schreiben. Schreib Code den DU in 6 Monaten verstehst.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-design-patterns",
+      "template": "board-quest",
+      "title": "Baumeister-Muster",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "3 Design Patterns verstehen: Factory, Observer, Strategy.",
+        "flavor": "Patterns sind die Rezepte der Architektur. Nur dass man sie nie genau befolgt.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "l-testing-tdd",
+      "template": "board-quest",
+      "title": "Prüfmeister",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "TDD üben: Test zuerst schreiben, dann den Code der ihn besteht.",
+        "flavor": "Erst die Prüfung schreiben, dann lernen. Klingt verkehrt. Funktioniert.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-debugging",
+      "template": "board-quest",
+      "title": "Käferjagd",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Debugging-Techniken üben: Breakpoints, Logging, Rubber Duck.",
+        "flavor": "Mit einer Gummi-Ente reden um Bugs zu finden. Klingt verrückt. Funktioniert.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-algo-practice",
+      "template": "board-quest",
+      "title": "Algorithmenschmiede",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "1 Algorithmus-Problem lösen: LeetCode, HackerRank, oder Codewars.",
+        "flavor": "Das Problem ist einfach. Die Lösung auch. Den Weg dazwischen zu finden ist die Kunst.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-system-design",
+      "template": "board-quest",
+      "title": "Architektentraum",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "System Design Übung: Wie würdest du Twitter/Netflix/Uber bauen?",
+        "flavor": "Architektin Iris: 'Bevor du baust, planst du. Bevor du planst, denkst du.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "l-technical-writing",
+      "template": "board-quest",
+      "title": "Wissensschmiede",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Schreibe eine technische Dokumentation zu etwas das du gebaut hast.",
+        "flavor": "Schreiberin Mei: 'Schreiben ist Denken auf Papier. Oder auf einem Bildschirm.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-public-speaking",
+      "template": "board-quest",
+      "title": "Die Stimme",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Übe eine 5-Minuten Präsentation vor dem Spiegel.",
+        "flavor": "Diplomat Aurelius: 'Die mächtigste Waffe ist Stille. Die zweitmächtigste ein gutes Gedächtnis.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-negotiation",
+      "template": "board-quest",
+      "title": "Verhandlungskunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne eine Verhandlungstechnik: BATNA, Anchoring, oder Active Listening.",
+        "flavor": "Schmuggler Dante: 'Der beste Deal ist einer bei dem beide Seiten denken sie hätten gewonnen.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "l-blogpost",
+      "template": "board-quest",
+      "title": "Tintenfluss",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Schreibe einen Blog-Post oder Artikel zu einem Thema das du kennst.",
+        "flavor": "Wissen das du behältst stirbt mit dir. Wissen das du teilst lebt weiter.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-tutorial-erstellen",
+      "template": "board-quest",
+      "title": "Lehrmeisterwerk",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Erstelle ein Tutorial (Text oder Video) zu etwas das du gut kannst.",
+        "flavor": "Professor Quill: 'Prüfungen sind unangenehm. Aber weniger als Unwissenheit.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-figma-basics",
+      "template": "board-quest",
+      "title": "Pixel und Punkte",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Figma Grundlagen: 30 Minuten Tutorial, einen einfachen Screen designen.",
+        "flavor": "Design ist nicht wie es aussieht. Design ist wie es funktioniert. Das aussehen kommt danach.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-accessibility",
+      "template": "board-quest",
+      "title": "Universeller Zugang",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Web Accessibility Grundlagen: WCAG, Screen Reader, Kontraste.",
+        "flavor": "Eine Website für alle zu bauen ist keine Nettigkeit. Es ist Pflicht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-css-grid",
+      "template": "board-quest",
+      "title": "Rasterzauber",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "CSS Grid Mastery: Complex Layout bauen mit Grid Areas und Repeat.",
+        "flavor": "CSS Grid ist Magie. display:grid und alles ordnet sich. Theoretisch.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-python-data",
+      "template": "board-quest",
+      "title": "Datenalchemie",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Python Datenanalyse: Pandas, Matplotlib — ein Datensatz visualisieren.",
+        "flavor": "Alchemistin Faye: 'Scheitern ist keine Option. Es ist eine Voraussetzung.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "l-ml-intro",
+      "template": "board-quest",
+      "title": "Maschinengeist",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Machine Learning Intro: Linear Regression, Decision Trees verstehen.",
+        "flavor": "Maschinen lernen. Ob sie auch vergessen können, weiß niemand. Beunruhigend.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "l-owasp-top10",
+      "template": "board-quest",
+      "title": "Die zehn Sünden",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "OWASP Top 10 durchgehen: Die häufigsten Web-Security-Lücken verstehen.",
+        "flavor": "Agent Echo: 'Information ist die wahre Währung. Schütze sie wie Gold.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-typescript-deep",
+      "template": "board-quest",
+      "title": "Typenmeister",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "TypeScript Deep Dive: Generics, Utility Types, Conditional Types.",
+        "flavor": "Typen sind wie Regeln: lästig bis man sie braucht. Dann lebensrettend.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "l-graphql",
+      "template": "board-quest",
+      "title": "Datenquelle",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "GraphQL Grundlagen: Queries, Mutations, Schema Design.",
+        "flavor": "Frag genau was du brauchst. Bekomm genau was du fragst. Revolutionär einfach.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-websockets",
+      "template": "board-quest",
+      "title": "Lebende Verbindung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "WebSocket Grundlagen: Bidirektionale Kommunikation verstehen und implementieren.",
+        "flavor": "Eine Verbindung die NIE aufhört zu reden. Wie manche Leute. Nur nützlicher.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-prometheus",
+      "template": "board-quest",
+      "title": "Wächterauge",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Prometheus + Grafana Setup: Metriken sammeln und visualisieren.",
+        "flavor": "Man sieht nur was man misst. Und wenn man misst, sieht man manchmal Dinge die man nicht sehen wollte.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-incident-response",
+      "template": "board-quest",
+      "title": "Krisenmanagement",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Incident Response Basics: Was tun wenn alles brennt?",
+        "flavor": "Wenn alles brennt ist der Plan wichtiger als das Löschwasser. Beides wäre ideal.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-video-editing",
+      "template": "board-quest",
+      "title": "Schnittkunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "30 Minuten Video-Editing Grundlagen lernen: Cuts, Transitions, Audio.",
+        "flavor": "Ein guter Schnitt ist unsichtbar. Wie die beste Magie.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-photography",
+      "template": "board-quest",
+      "title": "Lichtfänger",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Fotografie-Grundlagen: Composition, Rule of Thirds, Belichtung.",
+        "flavor": "Ein Foto ist gefrorene Zeit. Frier etwas Schönes ein.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-sprache-lernen",
+      "template": "board-quest",
+      "title": "Neue Zungen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "20 Minuten Sprache lernen: Duolingo, Anki, oder Tandem.",
+        "flavor": "Jede neue Sprache ist ein neues Fenster zur Welt. Oder zumindest zum Speisekarte.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-flashcards",
+      "template": "board-quest",
+      "title": "Kartenkunst",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Erstelle 20 Anki/Flashcards zu einem Thema das du lernst.",
+        "flavor": "Wiederholung ist die Mutter des Wissens. Und Flashcards sind die Hebamme.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "l-podcast-lernen",
+      "template": "board-quest",
+      "title": "Ohrenweisheit",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Höre einen Bildungspodcast (30min+) und mache Notizen.",
+        "flavor": "Lernen beim Gehen. Die zweitbeste Erfindung nach Lernen beim Schlafen. Was leider nicht funktioniert.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "l-tedtalk",
+      "template": "board-quest",
+      "title": "Ideenfunke",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Sieh dir einen TED Talk an und schreibe 3 Key Takeaways auf.",
+        "flavor": "18 Minuten können alles verändern. Oder zumindest den Nachmittag.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "l-opensource-contrib",
+      "template": "board-quest",
+      "title": "Gemeinwerk",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Contribute zu einem Open Source Projekt: Bug Report, PR, oder Docs.",
+        "flavor": "Code für die Menschheit schreiben. Klingt größer als es ist. Ist es trotzdem.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 28
+      }
+    },
+    {
+      "id": "l-cli-tool",
+      "template": "board-quest",
+      "title": "Werkzeugbau",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Baue ein kleines CLI-Tool das ein Problem löst das du hast.",
+        "flavor": "Erfinder Tesla: 'Innovation ist etwas Bestehendes besser verstehen. Dann neu machen.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-refactor",
+      "template": "board-quest",
+      "title": "Codeschmiede",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Refactore alten Code: Bessere Namen, kürzere Funktionen, weniger Komplexität.",
+        "flavor": "Alten Code verbessern ist wie eine alte Ruine restaurieren. Edel. Und schmerzhaft.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 16
+      }
+    },
+    {
+      "id": "l-statistik",
+      "template": "board-quest",
+      "title": "Zahlenweisheit",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Statistik-Grundlagen auffrischen: Mittelwert, Median, Standardabweichung.",
+        "flavor": "Im Durchschnitt ertrinkt man in einem See der durchschnittlich 50cm tief ist.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
     }
   ]
 }
