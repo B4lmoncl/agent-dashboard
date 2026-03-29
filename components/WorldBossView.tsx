@@ -379,11 +379,12 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {/* Boss Header */}
         <div className="p-5 pb-4">
           <div className="flex items-center gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center" style={{
-              background: `${boss.accent}12`,
-              border: `1px solid ${boss.accent}30`,
-              fontSize: 28,
+            <div className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center" style={{
+              background: `radial-gradient(circle, ${boss.accent}18 0%, ${boss.accent}08 70%, transparent 100%)`,
+              border: `2px solid ${boss.accent}40`,
+              fontSize: 32,
               imageRendering: "auto",
+              boxShadow: `0 0 20px ${boss.accent}15, inset 0 0 12px ${boss.accent}10`,
             }}>
               {boss.icon}
             </div>
@@ -434,15 +435,15 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               }} />
             ))}
           </div>
-          <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
+          <div className="rounded-full overflow-hidden" style={{ height: 12, background: "rgba(255,255,255,0.06)", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.4)" }}>
             <div
               className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}${hpPercent < 0.25 && !boss.defeated ? " rift-urgent" : ""}`}
               style={{
                 width: `${Math.max(hpPercent * 100, boss.defeated ? 0 : 0.5)}%`,
                 background: boss.defeated
                   ? "linear-gradient(90deg, #22c55e88, #22c55e)"
-                  : `linear-gradient(90deg, ${hpColor}88, ${hpColor})`,
-                boxShadow: `0 0 8px ${boss.defeated ? "#22c55e" : hpColor}50`,
+                  : `linear-gradient(90deg, ${hpColor}66, ${hpColor}, ${hpColor}cc)`,
+                boxShadow: `0 0 12px ${boss.defeated ? "#22c55e" : hpColor}60, inset 0 1px 0 rgba(255,255,255,0.15)`,
                 animationDuration: hpPercent < 0.25 ? "1s" : "3s",
               }}
             />
