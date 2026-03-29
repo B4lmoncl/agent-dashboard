@@ -3,7 +3,16 @@
 import { useState, memo } from "react";
 import type { Quest } from "@/app/types";
 import { timeAgo, getQuestRarity } from "@/app/utils";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
+
+// Faction rep indicator — shows which faction gains rep from this quest type
+const QUEST_TYPE_FACTION: Record<string, { name: string; icon: string; color: string }> = {
+  fitness: { name: "Zirkel der Glut", icon: "🜂", color: "#ef4444" },
+  learning: { name: "Zirkel der Tinte", icon: "🜄", color: "#3b82f6" },
+  development: { name: "Zirkel des Amboss", icon: "🜁", color: "#f59e0b" },
+  personal: { name: "Zirkel des Amboss", icon: "🜁", color: "#f59e0b" },
+  social: { name: "Zirkel des Echos", icon: "🜃", color: "#ec4899" },
+};
 import { typeConfig } from "@/app/config";
 import {
   CategoryBadge, ProductBadge, HumanInputBadge, TypeBadge,
@@ -218,6 +227,11 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
             {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
             <Tip k="xp"><span className="font-mono" style={{ fontSize: "0.75rem", color: "rgba(179,157,219,0.75)" }}>{quest.rewards?.xp || 0} XP</span></Tip>
             <Tip k="gold"><span className="font-mono" style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.75)" }}><img src="/images/icons/currency-gold.png" alt="" style={{width:14,height:14,display:"inline",verticalAlign:"middle",marginRight:2}} onError={e => { e.currentTarget.style.display = "none"; }} /> {quest.rewards?.gold || "~"}</span></Tip>
+            {QUEST_TYPE_FACTION[quest.type ?? ""] && (
+              <TipCustom title={QUEST_TYPE_FACTION[quest.type ?? ""].name} icon={QUEST_TYPE_FACTION[quest.type ?? ""].icon} accent={QUEST_TYPE_FACTION[quest.type ?? ""].color} body={<p className="text-xs">Completing this quest grants reputation with {QUEST_TYPE_FACTION[quest.type ?? ""].name}.</p>}>
+                <span className="cursor-help" style={{ fontSize: 12, color: QUEST_TYPE_FACTION[quest.type ?? ""].color, opacity: 0.6 }}>{QUEST_TYPE_FACTION[quest.type ?? ""].icon}</span>
+              </TipCustom>
+            )}
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, letterSpacing: "0.06em" }}>{rarity}</span>
