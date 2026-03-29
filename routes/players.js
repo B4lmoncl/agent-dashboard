@@ -588,7 +588,7 @@ router.get('/api/player/:name/public-profile', (req, res) => {
 });
 
 // GET /api/player/:name/profile-data — get profile settings data (frames, etc.)
-router.get('/api/player/:name/profile-data', requireAuth, (req, res) => {
+router.get('/api/player/:name/profile-data', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
   const u = state.usersByName.get(uid);
   if (!u) return res.status(404).json({ error: 'User not found' });

@@ -301,10 +301,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     if (removeIdx !== -1) u.inventory.splice(removeIdx, 1);
   }
 
-  // Create legendary (inventory cap check — net -2 so unlikely, but defensive)
-  if (u.inventory.length >= (INVENTORY_CAP || 200)) {
-    return res.status(400).json({ error: `Inventory full (${u.inventory.length}/${INVENTORY_CAP || 200})` });
-  }
+  // Create legendary (net -2 items: removed 3, adding 1 — cap can't be hit)
   const template = legendaryPool[Math.floor(Math.random() * legendaryPool.length)];
   const legendary = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
   u.inventory.push(legendary);
