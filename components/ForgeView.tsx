@@ -1000,7 +1000,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <div className="px-4 pb-3 flex flex-wrap gap-2">
                 {relevantMats.slice(0, 6).map(m => (
                   <span key={m.id} className="text-xs flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90`, border: "1px solid rgba(255,255,255,0.04)" }}>
-                    <img src={m.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
+                    <img src={m.icon} alt="" width={32} height={32} style={{ imageRendering: "auto" }} onError={hideOnError} />
                     x{materials[m.id]}
                   </span>
                 ))}
@@ -1064,7 +1064,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
                     >
                       {m.icon ? (
-                        <img src={m.icon} alt={m.name} width={44} height={44} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
+                        <img src={m.icon} alt={m.name} width={48} height={48} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
                       ) : (
                         <span className="flex-shrink-0" style={{ width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 18 }}>{"\u25C6"}</span>
                       )}
@@ -1813,7 +1813,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             return (
                               <span key={matId} className={`text-sm flex items-center gap-1${almostReady ? " mat-almost-ready" : ""}`} style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
                                 {!has && <span style={{ color: "#f44", fontSize: 12, lineHeight: 1 }}>●</span>}
-                                {mat?.icon ? <img src={mat.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-3 h-3 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
+                                {mat?.icon ? <img src={mat.icon} alt="" width={28} height={28} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-3.5 h-3.5 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
                                 {owned}/{needed} {mat?.name || matId}
                               </span>
                             );
