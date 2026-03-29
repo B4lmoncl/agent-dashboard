@@ -166,7 +166,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
 
                   {/* Notification dot */}
                   {hasNotification && !floorLocked && (
-                    <div className="relative flex-shrink-0">
+                    <div className="relative flex-shrink-0 claimable-breathe" style={{ ["--claim-color" as string]: `${(notif.color || floor.color)}30` }}>
                       <span className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold" style={{
                         background: (notif.color || floor.color) + "25",
                         color: notif.color || floor.color,
