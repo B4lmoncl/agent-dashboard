@@ -6299,6 +6299,740 @@
         "xp": 12,
         "gold": 8
       }
+    },
+    {
+      "id": "b-24h-no-phone",
+      "template": "board-quest",
+      "title": "Der große Entzug",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "24 Stunden ohne Smartphone. Komplett. Kein 'nur kurz checken'.",
+        "flavor": "Die stärkste Droge passt in deine Hosentasche. Leg sie weg. Für einen ganzen Tag.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-produktivitaets-sprint",
+      "template": "board-quest",
+      "title": "Vollgas-Tag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Ein ganzer Tag maximale Produktivität: 8+ Stunden fokussierte Arbeit, keine Ablenkung.",
+        "flavor": "Valka: 'Disziplin ist nicht Motivation. Disziplin ist tun was getan werden muss.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-woche-fitness",
+      "template": "board-quest",
+      "title": "Woche der Stärke",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Starte eine Fitness-Challenge: 7 Tage, jeden Tag mindestens 30 Minuten Training.",
+        "flavor": "Mara: 'Du bist nicht bereit. Niemand ist bereit. Mach es trotzdem.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 55
+      }
+    },
+    {
+      "id": "b-deepclean-komplett",
+      "template": "board-quest",
+      "title": "Der große Kehraus",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Komplettes Home Deep Clean: Jedes Zimmer, jede Ecke, jede Schublade.",
+        "flavor": "Helga Saubermann nickt zufrieden. Das passiert selten. Genieße den Moment.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
+      }
+    },
+    {
+      "id": "b-finanzaudit",
+      "template": "board-quest",
+      "title": "Die goldene Bilanz",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Vollständiges Finanz-Audit: Alle Konten, Versicherungen, Abos, Sparpläne durchgehen.",
+        "flavor": "Otto: 'Wer sein Gold nicht kennt, hat keins.' Heute lernst du deins kennen.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-karrieretag",
+      "template": "board-quest",
+      "title": "Karriereschmiede",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Ein ganzer Tag für Karriere: LinkedIn, Portfolio, Bewerbungen, Networking.",
+        "flavor": "Deine Karriere ist ein Schwert. Heute wird geschärft.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-beziehungstag",
+      "template": "board-quest",
+      "title": "Herztag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Ein ganzer Tag nur für deine wichtigste Beziehung. Handy weg, präsent sein.",
+        "flavor": "Aurelius: 'Brücken zu bauen ist teuer. Aber billiger als Mauern.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-projekt-meilenstein",
+      "template": "board-quest",
+      "title": "Durchbruch",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Erreiche einen echten Meilenstein in deinem wichtigsten Projekt.",
+        "flavor": "Ignis: 'Jeder hat ein Meisterwerk in sich. Die meisten sterben bevor sie es finden.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 55
+      }
+    },
+    {
+      "id": "b-zertifizierungstag",
+      "template": "board-quest",
+      "title": "Prüfungstag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Ganzer Tag Exam-Prep: Practice Tests, Schwächen identifizieren, Lücken füllen.",
+        "flavor": "Professor Quill: 'Prüfungen sind unangenehm. Aber weniger als Unwissenheit.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-portfolio-rewrite",
+      "template": "board-quest",
+      "title": "Die Neuschmiedung",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Portfolio komplett überarbeiten: Beste Projekte, Case Studies, frischer Look.",
+        "flavor": "Zeig was du kannst. Nicht was du sagen kannst.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-5am-challenge",
+      "template": "board-quest",
+      "title": "Vor der Dämmerung",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "5 Uhr aufstehen. Die erste Stunde nur für dich: Bewegung, Lesen, Planen.",
+        "flavor": "Die Welt ist anders um 5 Uhr. Stiller. Klarer. Kälter. Aber klarer.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 55,
+        "gold": 38
+      }
+    },
+    {
+      "id": "b-bad-habit-cold-turkey",
+      "template": "board-quest",
+      "title": "Kalter Entzug",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Höre HEUTE auf mit einer schlechten Gewohnheit. Kalt. Ohne Übergang.",
+        "flavor": "Der Riss zwischen 'aufhören wollen' und 'aufhören' beträgt genau einen Atemzug.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
+      }
+    },
+    {
+      "id": "b-workshop-leiten",
+      "template": "board-quest",
+      "title": "Lehrmeister",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Halte einen Workshop oder eine Schulung — live, für echte Menschen.",
+        "flavor": "Lehren ist die höchste Form des Lernens. Und die nervigste.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 55
+      }
+    },
+    {
+      "id": "b-10k-lauf",
+      "template": "board-quest",
+      "title": "Die Distanz",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "10 Kilometer laufen. Am Stück. Ohne Gehen.",
+        "flavor": "Kaya: 'Oben ist es still. Nicht weil es leise ist — weil du aufhörst zu reden.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-100-pushups",
+      "template": "board-quest",
+      "title": "Centurion",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "100 Liegestützen. Über den Tag verteilt oder am Stück — du entscheidest.",
+        "flavor": "Hundert ist eine Zahl. Hundert Liegestützen sind eine Aussage.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-mealprep-komplett",
+      "template": "board-quest",
+      "title": "Die große Vorratskammer",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Meal Prep für die komplette Woche: 5-7 Tage, alle Mahlzeiten.",
+        "flavor": "Umami: 'Kochen ohne Plan ist wie Kämpfen ohne Schwert.' Heute kämpfst du mit Plan.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-digital-minimalism",
+      "template": "board-quest",
+      "title": "Der leere Bildschirm",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Digitaler Minimalismus-Tag: Nur essentielle Apps, keine Feeds, kein Doom-Scrolling.",
+        "flavor": "Steinmetz Granite: 'Was übrig bleibt wenn du alles Unnötige entfernst — das bist du.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 48,
+        "gold": 32
+      }
+    },
+    {
+      "id": "b-garderobe-komplett",
+      "template": "board-quest",
+      "title": "Die große Ausmusterung",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Komplettes Wardrobe-Audit: Alles raus, anprobieren, entscheiden, sortieren.",
+        "flavor": "Lin: 'Mode ist vergänglich. Stil ist ewig. Dein Kleiderschrank ist... eine Herausforderung.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 45,
+        "gold": 30
+      }
+    },
+    {
+      "id": "b-notgroschen",
+      "template": "board-quest",
+      "title": "Der Sicherheitsanker",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Emergency Fund aufbauen: Zielgröße berechnen und mit dem Sparen anfangen.",
+        "flavor": "Der Anker hält das Schiff wenn der Sturm kommt. Bau deinen Anker.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 48,
+        "gold": 32
+      }
+    },
+    {
+      "id": "b-invest-portfolio",
+      "template": "board-quest",
+      "title": "Die Goldmine",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Investment-Portfolio überprüfen oder aufsetzen: ETFs, Sparplan, Diversifizierung.",
+        "flavor": "Gold das arbeitet während du schläfst. Das ist entweder Alchemie oder ein ETF.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
+      }
+    },
+    {
+      "id": "b-sidehustle-start",
+      "template": "board-quest",
+      "title": "Der zweite Pfad",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Side Hustle starten: Erste konkrete Schritte, nicht nur planen.",
+        "flavor": "Pip: 'Die ersten sechs Versuche waren Lernerfahrungen. Dieser hier ist auch eine.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-blog-launch",
+      "template": "board-quest",
+      "title": "Erste Worte",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Blog starten: Setup, erster Post, veröffentlichen.",
+        "flavor": "Mei: 'Der erste Entwurf ist immer Müll. Das ist keine Kritik. Das ist ein Naturgesetz.' Veröffentliche trotzdem.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 48,
+        "gold": 32
+      }
+    },
+    {
+      "id": "b-video-publish",
+      "template": "board-quest",
+      "title": "Erster Auftritt",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "YouTube Video oder Reel aufnehmen und veröffentlichen.",
+        "flavor": "Die Kamera urteilt nicht. Das Internet schon. Aber du wirst es überleben.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-home-organisation",
+      "template": "board-quest",
+      "title": "Die Neuordnung",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Komplette Wohnung organisieren: Jeder Raum, jedes System, alles an seinen Platz.",
+        "flavor": "Hans Holzfuß: 'Alles geht kaputt. Ordnung verhindert dass es gleichzeitig passiert.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-gesundheitscheck",
+      "template": "board-quest",
+      "title": "Vollständige Inspektion",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Annual Health Check: Arzt, Zahnarzt, Augenarzt — alles in einer Woche.",
+        "flavor": "Kaspar: 'Du bist nicht krank. Du bist optimierungsfähig.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
+      }
+    },
+    {
+      "id": "b-passwort-manager",
+      "template": "board-quest",
+      "title": "Festungsausbau",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Password Manager einrichten, ALLE Passwörter migrieren, 2FA überall.",
+        "flavor": "Grim: 'Dein Passwort ist 12345? Ich habe Schlösser gesehen die sich geschämt hätten.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-steuern",
+      "template": "board-quest",
+      "title": "Die Abrechnung",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Steuererklärung vorbereiten oder einreichen.",
+        "flavor": "Der einzige Boss den jeder fürchtet und niemand besiegen kann. Nur überleben.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-verhandeln",
+      "template": "board-quest",
+      "title": "Die Verhandlung",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Verhandle etwas Wichtiges: Gehalt, Vertrag, Miete, Konditionen.",
+        "flavor": "Dante: 'Vertrauen ist teuer. Aber weniger teuer als Unwissenheit.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 55
+      }
+    },
+    {
+      "id": "b-gehaltserhoehung",
+      "template": "board-quest",
+      "title": "Der Goldene Schlag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Frag nach einer Gehaltserhöhung. Mit Vorbereitung, Daten und Mut.",
+        "flavor": "Athena: 'Der beste Zug ist der, den dein Gegner nicht erwartet. Dein Gegner bist meistens du selbst.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 80,
+        "gold": 60
+      }
+    },
+    {
+      "id": "b-online-kurs",
+      "template": "board-quest",
+      "title": "Der Wissensberg",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Einen Online-Kurs komplett abschließen — nicht nur anfangen.",
+        "flavor": "Jeder hat 47 angefangene Kurse. Beende EINEN.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-practice-exam",
+      "template": "board-quest",
+      "title": "Generalprobe",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Einen vollständigen Practice Exam unter realistischen Bedingungen ablegen.",
+        "flavor": "Stella: 'Die beste Vorhersage für die Prüfung ist die Übungsprüfung.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-mentoring-tag",
+      "template": "board-quest",
+      "title": "Meistertag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Einen ganzen Tag lang jemanden mentoren — nicht nebenbei, dediziert.",
+        "flavor": "Grau: 'Der beste Rat kommt von Leuten die die gleichen Fehler gemacht haben. Nur halt früher.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 60,
+        "gold": 42
+      }
+    },
+    {
+      "id": "b-team-meeting-leiten",
+      "template": "board-quest",
+      "title": "Anführerprobe",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Leite ein Team-Meeting oder eine Retrospektive — von Anfang bis Ende.",
+        "flavor": "Führung ist nicht laut reden. Führung ist richtig zuhören. Und DANN laut reden.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 48,
+        "gold": 32
+      }
+    },
+    {
+      "id": "b-praesentation-halten",
+      "template": "board-quest",
+      "title": "Das Podium",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Halte eine vollständige Präsentation vor Publikum — live, nicht geübt.",
+        "flavor": "Die Bühne ist der einzige Ort wo Stille lauter ist als Worte.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 70,
+        "gold": 50
+      }
+    },
+    {
+      "id": "b-bewerbung",
+      "template": "board-quest",
+      "title": "Neuer Horizont",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Bewirb dich auf einen neuen Job. Auch wenn du dir nicht sicher bist.",
+        "flavor": "Der Namenlose: 'Was wir TUN zählt. Nicht was wir planen.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "b-bridge-four-1",
+      "template": "board-quest",
+      "title": "Brücke Vier: Erwachen",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Das Team erwacht. Finde 1 Person die mit dir trainiert. Zusammen seid ihr stärker.",
+        "flavor": "Manche Lasten trägt man nicht allein. Nicht weil man schwach ist — weil man klug ist.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 45,
+        "gold": 30
+      },
+      "nextQuestTemplate": {
+        "title": "Brücke Vier: Aufstieg",
+        "type": "boss",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "b-bridge-four-2",
+      "template": "board-quest",
+      "title": "Brücke Vier: Aufstieg",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Gemeinsam stärker. Trainiert zusammen — diesmal härter. Pusht euch gegenseitig.",
+        "flavor": "Der wichtigste Schritt ist immer der nächste. Besonders wenn jemand neben dir geht.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      },
+      "nextQuestTemplate": {
+        "title": "Brücke Vier: Der Eid",
+        "type": "boss",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "b-bridge-four-3",
+      "template": "board-quest",
+      "title": "Brücke Vier: Der Eid",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Schwört einen Pakt: Regelmäßiges Training zusammen. Haltet euch accountable.",
+        "flavor": "Leben vor Tod. Stärke vor Schwäche. Reise vor Ziel. Und Training vor Ausreden.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 65,
+        "gold": 45
+      }
+    },
+    {
+      "id": "l-three-silences-1",
+      "template": "board-quest",
+      "title": "Die erste Stille",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "10 Minuten absolute Stille. Kein Handy, keine Musik. Die Stille der stillen Dinge.",
+        "flavor": "Es gab eine Stille aus drei Teilen. Der erste war die Stille der stillen Dinge.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      },
+      "nextQuestTemplate": {
+        "title": "Die zweite Stille",
+        "type": "learning",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "l-three-silences-2",
+      "template": "board-quest",
+      "title": "Die zweite Stille",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "30 Minuten Meditation oder Achtsamkeitsübung. Die Stille des Abwesenden.",
+        "flavor": "Der zweite Teil war die Stille eines Menschen der auf ein Wort wartet das nie kommen wird.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 18
+      },
+      "nextQuestTemplate": {
+        "title": "Die dritte Stille",
+        "type": "learning",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "l-three-silences-3",
+      "template": "board-quest",
+      "title": "Die dritte Stille",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "1 Stunde allein in der Natur. Kein Ziel, kein Plan. Die Stille des Verstehens.",
+        "flavor": "Der dritte Teil war die größte Stille. Die Stille eines Mannes der auf den Weg zurückblickt und versteht.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 42,
+        "gold": 28
+      }
+    },
+    {
+      "id": "b-dead-men-1",
+      "template": "board-quest",
+      "title": "Dead Men: Zusammenkunft",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Stelle ein Team zusammen: 3-4 Leute die zusammen eine Challenge durchziehen.",
+        "flavor": "Es gibt Gruppen die sich selbst einen Namen geben. Die besten Namen sind die, die andere einem geben.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 42,
+        "gold": 28
+      },
+      "nextQuestTemplate": {
+        "title": "Dead Men: Die Mission",
+        "type": "boss",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "b-dead-men-2",
+      "template": "board-quest",
+      "title": "Dead Men: Die Mission",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Euer Team nimmt sich ein gemeinsames Projekt vor — das keiner allein schaffen würde.",
+        "flavor": "Einzeln sind wir beeindruckend. Zusammen sind wir... auch beeindruckend. Nur lauter.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 55,
+        "gold": 38
+      },
+      "nextQuestTemplate": {
+        "title": "Dead Men: Das Erbe",
+        "type": "boss",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "b-dead-men-3",
+      "template": "board-quest",
+      "title": "Dead Men: Das Vermächtnis",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Schließt das Projekt ab und feiert zusammen. Was ihr gebaut habt bleibt.",
+        "flavor": "Helden sterben. Was sie bauen, lebt weiter. Das ist keine Tragödie — das ist das Versprechen.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 55
+      }
     }
   ]
 }
