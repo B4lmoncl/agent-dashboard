@@ -167,6 +167,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
   const [profCelebration, setProfCelebration] = useState<ProfessionDef | null>(null);
+  const [workshopCelebration, setWorkshopCelebration] = useState<{ name: string; label: string; icon: string; value: number } | null>(null);
   const [guideOpen, setGuideOpen] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
@@ -993,10 +994,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             )}
 
             {relevantMats.length > 0 && !locked && (
-              <div className="px-4 pb-3 flex flex-wrap gap-1.5">
+              <div className="px-4 pb-3 flex flex-wrap gap-2">
                 {relevantMats.slice(0, 6).map(m => (
-                  <span key={m.id} className="text-xs flex items-center gap-1 px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90` }}>
-                    <img src={m.icon} alt="" width={12} height={12} style={{ imageRendering: "auto" }} onError={hideOnError} />
+                  <span key={m.id} className="text-xs flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90`, border: "1px solid rgba(255,255,255,0.04)" }}>
+                    <img src={m.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
                     x{materials[m.id]}
                   </span>
                 ))}
@@ -1060,9 +1061,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
                     >
                       {m.icon ? (
-                        <img src={m.icon} alt={m.name} width={36} height={36} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
+                        <img src={m.icon} alt={m.name} width={44} height={44} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
                       ) : (
-                        <span className="flex-shrink-0" style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 16 }}>{"\u25C6"}</span>
+                        <span className="flex-shrink-0" style={{ width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 18 }}>{"\u25C6"}</span>
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold truncate" style={{ color: rc }}>{m.name}</p>
@@ -1156,16 +1157,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             });
                             if (r.ok) {
                               onRefresh?.(); fetchData();
-                              setCraftedItemCelebration({
-                                name: gear.name,
-                                rarity: "epic",
-                                slot: null,
-                                stats: {},
-                                sockets: null,
-                                legendaryEffect: null,
-                                setId: null,
-                              });
-                              setTimeout(() => setCraftedItemCelebration(null), 4000);
+                              setWorkshopCelebration({ name: gear.name, label: gear.desc || "Workshop Tool Upgraded", icon: gear.icon, value: gear.xpBonus || 0 });
+                              setTimeout(() => setWorkshopCelebration(null), 4000);
                             }
                             else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Purchase failed"); }
                           } catch (err) { console.error('[forge] buy_tool error:', err); setCraftResult("Network error"); }
@@ -1235,16 +1228,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           });
                           if (r.ok) {
                             onRefresh?.(); fetchData();
-                            setCraftedItemCelebration({
-                              name: `${up.name} — ${next.label || "Upgraded"}`,
-                              rarity: "epic",
-                              slot: null,
-                              stats: {},
-                              sockets: null,
-                              legendaryEffect: null,
-                              setId: null,
-                            });
-                            setTimeout(() => setCraftedItemCelebration(null), 4000);
+                            setCraftResult(`${up.name} upgraded to ${next.label || "next tier"}!`);
+                            // Show standalone celebration overlay (works outside NPC modal)
+                            setWorkshopCelebration({ name: up.name, label: next.label || "Upgraded", icon: up.icon, value: next.value });
+                            setTimeout(() => setWorkshopCelebration(null), 4000);
                           }
                           else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Upgrade failed"); }
                         } catch (err) { console.error('[forge] buy_upgrade error:', err); setCraftResult("Network error"); }
@@ -2864,6 +2851,25 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <button onClick={() => setConfirmAction(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
               <button onClick={confirmAction.onConfirm} className="flex-1 text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}>Confirm</button>
             </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* ─── Workshop Upgrade Celebration ──────────────────────────────────── */}
+      {workshopCelebration && createPortal(
+        <div className="fixed inset-0 z-[160] flex items-center justify-center pointer-events-none" style={{ background: "rgba(0,0,0,0.4)" }}>
+          <div className="reward-burst-enter pointer-events-auto px-8 py-6 rounded-2xl text-center max-w-xs" style={{
+            background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(11,13,17,0.95))",
+            border: "2px solid rgba(168,85,247,0.5)",
+            boxShadow: "0 0 60px rgba(168,85,247,0.2), 0 0 120px rgba(168,85,247,0.1)",
+          }} onClick={() => setWorkshopCelebration(null)}>
+            <img src={workshopCelebration.icon} alt="" width={64} height={64} className="mx-auto mb-3 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+            <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(168,85,247,0.6)" }}>Workshop Upgraded</p>
+            <p className="text-lg font-bold" style={{ color: "#a78bfa" }}>{workshopCelebration.name}</p>
+            <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{workshopCelebration.label}</p>
+            <p className="text-2xl font-bold font-mono mt-2" style={{ color: "#22c55e" }}>+{workshopCelebration.value}%</p>
+            <p className="text-xs mt-3" style={{ color: "rgba(255,255,255,0.2)" }}>Click to dismiss</p>
           </div>
         </div>,
         document.body
