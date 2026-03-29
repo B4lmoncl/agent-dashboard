@@ -294,66 +294,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
         onClick={e => e.stopPropagation()}
       >
         <div>
-          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>Profile Settings</h2>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Relationship status, frames, and other settings</p>
+          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>Frames & Cosmetics</h2>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Cosmetic frames for your player card. Avatar & profile settings are in the header menu.</p>
         </div>
-
-        {/* Avatar Style */}
-        <div>
-          <label className="text-xs font-semibold block mb-1.5" style={{ color: "rgba(255,255,255,0.5)" }}>Avatar</label>
-          <div className="flex gap-2">
-            {(["male", "female"] as const).map(style => (
-              <button
-                key={style}
-                onClick={() => setAvatarStyle(style)}
-                className="flex-1 rounded-lg p-2 flex flex-col items-center gap-1"
-                style={{
-                  background: avatarStyle === style ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
-                  border: `2px solid ${avatarStyle === style ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.07)"}`,
-                  cursor: "pointer",
-                }}
-              >
-                <img src={`/images/portraits/hero-${style}.png`} alt={style} className="w-12 h-12 rounded-lg object-cover" style={{ imageRendering: "auto" }} />
-                <span className="text-xs capitalize" style={{ color: avatarStyle === style ? "#a78bfa" : "rgba(255,255,255,0.4)" }}>{style === "male" ? "Male" : "Female"}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Relationship Status</label>
-          {[
-            { value: "single",       label: "Single" },
-            { value: "relationship", label: "In a relationship" },
-            { value: "married",      label: "Married" },
-            { value: "complicated",  label: "It's complicated" },
-            { value: "other",        label: "Other" },
-          ].map(opt => (
-            <button
-              key={opt.value}
-              onClick={() => setStatus(opt.value)}
-              className="w-full text-left px-3 py-2 rounded-lg text-sm"
-              style={{
-                background: status === opt.value ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
-                border: `1px solid ${status === opt.value ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.07)"}`,
-                color: status === opt.value ? "#a78bfa" : "rgba(255,255,255,0.55)",
-              }}
-            >{opt.label}</button>
-          ))}
-        </div>
-
-        {status !== "single" && (
-          <div>
-            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Partner&apos;s Name</label>
-            <input
-              value={partner}
-              onChange={e => setPartner(e.target.value)}
-              placeholder="e.g. Alex, Maria..."
-              className="w-full text-xs px-3 py-2 rounded-lg"
-              style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#f0f0f0", outline: "none", borderRadius: 8 }}
-            />
-          </div>
-        )}
 
         {/* Frame Selection */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
@@ -412,20 +355,11 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           )}
         </div>
 
-        <div className="flex gap-2">
-          <button
-            onClick={onClose}
-            className="flex-1 py-2 rounded-xl text-xs"
-            style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}
-          >Cancel</button>
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            title={saving ? "Saving…" : undefined}
-            className="flex-1 py-2 rounded-xl text-xs font-semibold"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", cursor: saving ? "not-allowed" : "pointer" }}
-          >{saving ? "…" : "Save"}</button>
-        </div>
+        <button
+          onClick={onClose}
+          className="w-full py-2 rounded-xl text-xs font-semibold"
+          style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+        >Close</button>
       </div>
     </div>
   );
@@ -2432,9 +2366,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           <button
             onClick={() => setProfileSettingsOpen(true)}
             className="text-xs px-1.5 py-0.5 rounded-lg ml-2"
-            title="Profile Settings"
+            title="Frames & Cosmetics"
             style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
-          >...</button>
+          >Frames</button>
         </div>
         {charData && <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{charData.title}</p>}
       </div>
