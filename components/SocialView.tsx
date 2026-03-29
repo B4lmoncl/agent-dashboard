@@ -69,7 +69,7 @@ const EVENT_ICONS: Record<string, string> = {
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
 
-type SocialTab = "friends" | "messages" | "trades" | "activity" | "mail";
+type SocialTab = "friends" | "messages" | "trades" | "activity" | "mail" | "challenges";
 
 // ─── Friends Tab ────────────────────────────────────────────────────────────
 
@@ -1581,6 +1581,181 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
   );
 }
 
+// ─── Challenges Tab ─────────────────────────────────────────────────────────
+
+interface PlayerChallenge {
+  id: string;
+  challengerId: string;
+  challengerName: string;
+  targetId: string;
+  targetName: string;
+  type: string;
+  wager: number;
+  duration: string;
+  status: string;
+  createdAt: string;
+  startedAt: string | null;
+  expiresAt: string | null;
+  challengerScore: number;
+  targetScore: number;
+  winner: string | null;
+}
+
+const CHALLENGE_TYPE_LABELS: Record<string, string> = {
+  quests_week: "Most Quests This Week",
+  xp_week: "Most XP This Week",
+  streak_week: "Longest Streak This Week",
+};
+
+function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+  const [challenges, setChallenges] = useState<PlayerChallenge[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [actionMsg, setActionMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const r = await fetch("/api/social/challenges", { headers: getAuthHeaders(apiKey) });
+        if (r.ok) { const d = await r.json(); setChallenges(d.challenges || []); }
+      } catch { /* ignore */ }
+      setLoading(false);
+    })();
+  }, [apiKey]);
+
+  const acceptChallenge = async (challengeId: string) => {
+    try {
+      const r = await fetch(`/api/social/challenge/${challengeId}/accept`, {
+        method: "POST",
+        headers: getAuthHeaders(apiKey),
+      });
+      const d = await r.json();
+      if (r.ok) {
+        setActionMsg("Challenge accepted!");
+        setChallenges(prev => prev.map(c => c.id === challengeId ? { ...c, status: "active", startedAt: new Date().toISOString(), expiresAt: d.challenge?.expiresAt || null } : c));
+      } else {
+        setActionMsg(d.error || "Failed to accept");
+      }
+      setTimeout(() => setActionMsg(null), 3000);
+    } catch { setActionMsg("Network error"); }
+  };
+
+  if (loading) return <div className="skeleton-card h-32" />;
+
+  const pending = challenges.filter(c => c.status === "pending");
+  const active = challenges.filter(c => c.status === "active");
+  const completed = challenges.filter(c => c.status === "completed").slice(0, 5);
+  const uid = playerName.toLowerCase();
+
+  return (
+    <div className="space-y-4">
+      {actionMsg && (
+        <div className="text-xs px-3 py-2 rounded-lg tab-content-enter" style={{ background: "rgba(34,197,94,0.08)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)" }}>
+          {actionMsg}
+        </div>
+      )}
+
+      {/* Pending challenges (incoming) */}
+      {pending.filter(c => c.targetId === uid).length > 0 && (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Incoming Challenges</p>
+          <div className="space-y-2">
+            {pending.filter(c => c.targetId === uid).map(c => (
+              <div key={c.id} className="rounded-lg p-3" style={{ background: "rgba(251,191,36,0.05)", border: "1px solid rgba(251,191,36,0.15)" }}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-bold" style={{ color: "#fbbf24" }}>{c.challengerName} challenges you!</p>
+                    <p className="text-xs text-w30 mt-0.5">{CHALLENGE_TYPE_LABELS[c.type] || c.type} · {c.wager}g wager</p>
+                  </div>
+                  <button
+                    onClick={() => acceptChallenge(c.id)}
+                    className="btn-interactive text-xs font-bold px-3 py-1.5 rounded-lg"
+                    style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}
+                  >
+                    Accept
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Pending (outgoing) */}
+      {pending.filter(c => c.challengerId === uid).length > 0 && (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Sent Challenges</p>
+          <div className="space-y-2">
+            {pending.filter(c => c.challengerId === uid).map(c => (
+              <div key={c.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs text-w40">Waiting for <span className="font-semibold text-w60">{c.targetName}</span> to accept</p>
+                <p className="text-xs text-w20 mt-0.5">{CHALLENGE_TYPE_LABELS[c.type] || c.type} · {c.wager}g wager</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Active challenges */}
+      {active.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Active Challenges</p>
+          <div className="space-y-2">
+            {active.map(c => {
+              const isChallenger = c.challengerId === uid;
+              const opponentName = isChallenger ? c.targetName : c.challengerName;
+              const myScore = isChallenger ? c.challengerScore : c.targetScore;
+              const theirScore = isChallenger ? c.targetScore : c.challengerScore;
+              const timeLeft = c.expiresAt ? Math.max(0, Math.ceil((new Date(c.expiresAt).getTime() - Date.now()) / (1000 * 60 * 60 * 24))) : 0;
+              return (
+                <div key={c.id} className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-bold" style={{ color: "#a855f7" }}>vs {opponentName}</p>
+                    <span className="text-xs text-w20">{timeLeft}d left</span>
+                  </div>
+                  <p className="text-xs text-w30">{CHALLENGE_TYPE_LABELS[c.type] || c.type} · {c.wager}g wager</p>
+                  <div className="flex items-center gap-4 mt-2">
+                    <span className="text-xs font-mono font-bold" style={{ color: myScore >= theirScore ? "#22c55e" : "#ef4444" }}>You: {myScore}</span>
+                    <span className="text-xs text-w20">vs</span>
+                    <span className="text-xs font-mono font-bold text-w40">{opponentName}: {theirScore}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Completed */}
+      {completed.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Recent Results</p>
+          <div className="space-y-1">
+            {completed.map(c => {
+              const won = c.winner === uid;
+              const opponentName = c.challengerId === uid ? c.targetName : c.challengerName;
+              return (
+                <div key={c.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <span className="text-xs font-bold" style={{ color: won ? "#22c55e" : "#ef4444" }}>{won ? "W" : "L"}</span>
+                  <span className="text-xs text-w40">vs {opponentName}</span>
+                  <span className="text-xs text-w20 ml-auto">{c.wager}g</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Empty state */}
+      {challenges.length === 0 && (
+        <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <p className="text-sm font-bold text-w25 mb-1">No Challenges</p>
+          <p className="text-xs text-w15">Challenge friends from their profile card in the Friends tab.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Main SocialView ────────────────────────────────────────────────────────
 
 export default function SocialView({ onNavigate, onNavigateToAchievement, onRewardCelebration }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void; onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
@@ -1610,7 +1785,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
-        {(["friends", "messages", "trades", "mail", "activity"] as SocialTab[]).map(tab => {
+        {(["friends", "messages", "trades", "mail", "challenges", "activity"] as SocialTab[]).map(tab => {
           const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
           return (
             <Tip key={tab} k={tipKey}>
@@ -1636,6 +1811,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
         {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "challenges" && <ChallengesTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
 
       {/* Player Profile Modal */}
