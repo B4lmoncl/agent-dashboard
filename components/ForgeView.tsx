@@ -735,7 +735,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const chosenCount = professions.filter(p => p.chosen).length;
 
   return (
-    <div className={`space-y-4 tab-content-enter${moonlightActive ? " mondlicht-bg" : ""}`}>
+    <div className={`space-y-4 tab-content-enter${moonlightActive ? " mondlicht-bg" : ""}`} style={{ position: "relative" }}>
+      {/* Ambient forge sparks */}
+      {[0,1,2].map(i => (
+        <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
+          width: 2, height: 2, borderRadius: "50%",
+          background: "#f59e0b",
+          boxShadow: "0 0 4px #f59e0b80",
+          right: `${20 + i * 30}px`, top: `${8 + i * 12}px`,
+          animation: `ambient-spark ${2 + i * 0.7}s ease-in-out ${i * 0.8}s infinite`,
+        }} />
+      ))}
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
         <div>

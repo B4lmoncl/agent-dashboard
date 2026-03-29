@@ -907,7 +907,16 @@ button[disabled] {
   0%, 100% { box-shadow: 0 0 4px var(--claim-color, rgba(74,222,128,0.2)); transform: scale(1); }
   50% { box-shadow: 0 0 14px var(--claim-color, rgba(74,222,128,0.5)); transform: scale(1.02); }
 }
-.claimable-breathe { animation: claimable-breathe 2.5s ease-in-out infinite; }
+.claimable-breathe { animation: claimable-breathe 2.5s ease-in-out infinite; position: relative; overflow: hidden; }
+.claimable-breathe::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(circle at center, var(--claim-color, rgba(74,222,128,0.3)) 0%, transparent 70%);
+  opacity: 0; transform: scale(0.5);
+  transition: none;
+}
+.claimable-breathe:active::after {
+  animation: resonance-ripple 0.5s ease-out forwards;
+}
 
 /* Online status pulse */
 @keyframes online-pulse {
@@ -1074,6 +1083,13 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   position: relative;
   cursor: inherit;
   display: inline;
+}
+
+/* Persistent crystal vein line under section headings */
+.gt-trigger.gt-heading::before {
+  content: ""; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--floor-color, rgba(129,140,248,0.25)), transparent);
+  opacity: 0.6;
 }
 
 /* Loading bar — golden line fills under trigger during hover delay (headings only) */
