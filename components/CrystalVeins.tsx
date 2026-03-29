@@ -158,19 +158,22 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
         }
       };
 
-      // Outer glow (wide, very faint — breathes with pulse)
-      drawPath();
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.12})`;
-      ctx.lineWidth = vein.width * 6 * glowScale;
+      // Multi-pass glow (5 layers, each narrower + more opaque = soft fadeout)
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
-      ctx.stroke();
-
-      // Mid glow
-      drawPath();
-      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.35})`;
-      ctx.lineWidth = vein.width * 2.5 * glowScale;
-      ctx.stroke();
+      const glowPasses = [
+        { widthMult: 10, opacityMult: 0.03 },
+        { widthMult: 7,  opacityMult: 0.05 },
+        { widthMult: 5,  opacityMult: 0.08 },
+        { widthMult: 3,  opacityMult: 0.15 },
+        { widthMult: 1.8, opacityMult: 0.30 },
+      ];
+      for (const pass of glowPasses) {
+        drawPath();
+        ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * pass.opacityMult})`;
+        ctx.lineWidth = vein.width * pass.widthMult * glowScale;
+        ctx.stroke();
+      }
 
       // Core line (bright, thin — constant width for stability)
       drawPath();
