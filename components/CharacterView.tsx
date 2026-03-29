@@ -2498,7 +2498,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-lg">📖</span>
+                <span className="text-lg" style={{ color: "#60a5fa" }}>◆</span>
                 <div>
                   <p className="text-sm font-bold" style={{ color: "#60a5fa" }}>Collection Log</p>
                   {collectionData && (
