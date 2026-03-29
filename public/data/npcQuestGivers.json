@@ -338,7 +338,7 @@
       "title": "Wandernder Kampfkunst-Meister",
       "description": "Ein alter Meister der seine Weisheit mit würdigen Schülern teilt.",
       "stayDays": 3,
-      "cooldownDays": 18,
+      "cooldownDays": 25,
       "questChains": [
         [
           {
@@ -680,7 +680,7 @@
       "title": "Wandernder Geschichtenerzähler",
       "description": "Ein charismatischer Barde der überall Freunde findet.",
       "stayDays": 3,
-      "cooldownDays": 16,
+      "cooldownDays": 12,
       "questChains": [
         [
           {
@@ -1000,7 +1000,9 @@
           "icon": "/images/icons/npc-tomas-rosary.png",
           "reqLevel": 15
         }
-      }
+      },
+      "stayDays": 2,
+      "cooldownDays": 18
     },
     {
       "id": "zara-funkenwind",
@@ -1191,7 +1193,9 @@
           "icon": "/images/icons/npc-zara-flask.png",
           "reqLevel": 22
         }
-      }
+      },
+      "stayDays": 2,
+      "cooldownDays": 25
     },
     {
       "id": "alter-henrik",
@@ -1348,7 +1352,9 @@
           "icon": "/images/icons/npc-henrik-staff.png",
           "reqLevel": 15
         }
-      }
+      },
+      "stayDays": 2,
+      "cooldownDays": 18
     },
     {
       "id": "lumi",
@@ -1574,7 +1580,9 @@
           "icon": "/images/icons/npc-lumi-lantern.png",
           "reqLevel": 30
         }
-      }
+      },
+      "stayDays": 1,
+      "cooldownDays": 45
     },
     {
       "id": "rogar-amboss",
@@ -1765,7 +1773,9 @@
           "icon": "/images/icons/npc-rogar-hammer.png",
           "reqLevel": 22
         }
-      }
+      },
+      "stayDays": 2,
+      "cooldownDays": 25
     },
     {
       "id": "skelett-gentleman",
@@ -1868,7 +1878,9 @@
         "type": "charisma_boost",
         "description": "+5% Quest XP für Social Quests",
         "value": 0.05
-      }
+      },
+      "stayDays": 1,
+      "cooldownDays": 45
     },
     {
       "id": "archivarin-vex",
@@ -1949,7 +1961,9 @@
           "icon": "/images/icons/npc-vex-glasses.png",
           "reqLevel": 15
         }
-      }
+      },
+      "stayDays": 2,
+      "cooldownDays": 18
     },
     {
       "id": "captain-flint",
@@ -2052,7 +2066,9 @@
           "icon": "/images/icons/npc-flint-compass.png",
           "reqLevel": 22
         }
-      }
+      },
+      "stayDays": 2,
+      "cooldownDays": 25
     },
     {
       "id": "sable-nachtwind",

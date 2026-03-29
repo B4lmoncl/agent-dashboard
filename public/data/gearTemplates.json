@@ -13830,7 +13830,8 @@
         }
       },
       "flavorText": "Die Schatten flüstern dem Träger zu. Meistens nützliche Dinge.",
-      "binding": "boe"
+      "binding": "boe",
+      "desc": "Schattenjäger-Kappe. Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-schattenjaeger-stiefel",
@@ -13889,7 +13890,8 @@
         }
       },
       "flavorText": "Kein Geräusch. Kein Abdruck. Keine Entschuldigung.",
-      "binding": "boe"
+      "binding": "boe",
+      "desc": "Schattenjäger-Treter. Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-schattenjaeger-klinge",
@@ -13947,7 +13949,8 @@
         }
       },
       "flavorText": "Scharf genug für Schatten. Das sagt alles.",
-      "binding": "boe"
+      "binding": "boe",
+      "desc": "Schattenjäger-Klinge. Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-flammenherz-panzer",
@@ -14006,7 +14009,8 @@
         }
       },
       "flavorText": "Das Feuer prüft. Wer besteht, wird stärker. Wer nicht, wird wärmer.",
-      "binding": "boe"
+      "binding": "boe",
+      "desc": "Flammenherz-Brustplatte. Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-flammenherz-schild",
@@ -14064,7 +14068,8 @@
         }
       },
       "flavorText": "Ein Schild das brennt, aber nicht verbrennt. Wie Überzeugung.",
-      "binding": "boe"
+      "binding": "boe",
+      "desc": "Flammenherz-Bollwerk. Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-flammenherz-ring",
@@ -14122,7 +14127,8 @@
         }
       },
       "flavorText": "Das Siegel der Klinge. Wer es trägt, hat das Feuer bestanden.",
-      "binding": "boe"
+      "binding": "boe",
+      "desc": "Flammenherz-Siegelring. Ein episches Stück Ausrüstung."
     },
     {
       "id": "craft-schmied-abgrundstahl-brustplatte",
