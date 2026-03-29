@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } fro
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import CrystalVeins from "@/components/CrystalVeins";
 // Lazy-loaded views — only loaded when the tab is active (code splitting)
 const ForgeView = lazy(() => import("@/components/ForgeView"));
 const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
@@ -169,6 +170,7 @@ export default function Dashboard() {
       setActiveFloor(floor.id);
     }
     setDashViewRaw(view);
+    setSearchFilter(""); // Clear quest search on tab switch
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (persists across renders via ref)
@@ -246,6 +248,41 @@ export default function Dashboard() {
     }
   }, []);
   useModalBehavior(!!rewardCelebration, closeRewardCelebration);
+
+  // ─── Time-based visual effects: moon phase, night mode, weekend aura ───
+  const moonIntensityRef = useRef(1);
+  useEffect(() => {
+    function getMoonPhase(): "new" | "waxing" | "full" | "waning" {
+      const now = new Date();
+      const year = now.getFullYear(); const month = now.getMonth() + 1; const day = now.getDate();
+      const a = Math.floor((14 - month) / 12); const y = year + 4800 - a; const m = month + 12 * a - 3;
+      const jd = day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+      const phase = ((jd - 2451550.1) / 29.530588853) % 1;
+      const p = phase < 0 ? phase + 1 : phase;
+      if (p < 0.125 || p >= 0.875) return "new";
+      if (p < 0.375) return "waxing";
+      if (p < 0.625) return "full";
+      return "waning";
+    }
+    function update() {
+      const berlinHour = parseInt(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin", hour: "numeric", hour12: false }), 10);
+      const isNight = berlinHour >= 22 || berlinHour < 6;
+      const dayOfWeek = new Date().getDay();
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+      const moon = getMoonPhase();
+      // Moon intensity: full=1.4, waxing/waning=1, new=0.5
+      moonIntensityRef.current = moon === "full" ? 1.4 : moon === "new" ? 0.5 : 1;
+      // Night: veins glow brighter (bioluminescent)
+      if (isNight) moonIntensityRef.current *= 1.3;
+      document.body.classList.toggle("night-mode", isNight);
+      document.body.classList.toggle("weekend-aura", isWeekend);
+      document.body.classList.toggle("moon-full", moon === "full");
+      document.body.classList.toggle("moon-new", moon === "new");
+    }
+    update();
+    const interval = setInterval(update, 60000); // check every minute
+    return () => clearInterval(interval);
+  }, []);
 
   // ─── Universal level-up trigger: fires for ANY XP source (quests, sternenpfad, BP, rituals, etc.) ───
   // NOTE: loggedInUser is defined later (line ~714) so we use users + playerName directly here
@@ -495,7 +532,7 @@ export default function Dashboard() {
     selectedIds, setSelectedIds,
     bulkLoading,
     reviewComments, setReviewComments,
-    poolRefreshing,
+    poolRefreshing, loadingAction,
     shopUserId, setShopUserId,
     handleApprove, handleReject, handleChangePriority,
     toggleSelect, handleBulkUpdate,
@@ -843,7 +880,8 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, overflow: "hidden", "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
+        <CrystalVeins floorColor={currentFloorColor} moonIntensity={moonIntensityRef.current} />
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -1468,6 +1506,7 @@ export default function Dashboard() {
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
             onNavigate={(v) => setDashView(v as typeof dashView)}
+            onRewardCelebration={setRewardCelebration}
           /></Suspense></ErrorBoundary>
         )}
 
@@ -1643,6 +1682,11 @@ export default function Dashboard() {
                                 <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                               )}
                             </TipCustom>
+                            {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+                                {Math.ceil((6 * 3600 * 1000 - (Date.now() - lastPoolRefresh.getTime())) / 3600000)}h
+                              </span>
+                            )}
                           </button>
                         )}
                       </div>
@@ -1838,7 +1882,8 @@ export default function Dashboard() {
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
-                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined} />
+                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
+                                        loadingAction={loadingAction} />
                                 )}
                               </div>
                             )}
@@ -1870,7 +1915,8 @@ export default function Dashboard() {
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
-                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined} /></div>
+                                        isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
+                                        loadingAction={loadingAction} /></div>
                                 )}
                               </div>
                             )}

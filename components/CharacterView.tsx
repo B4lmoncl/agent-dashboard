@@ -238,6 +238,39 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   const [partner, setPartner] = useState(initialPartnerName);
   const [saving, setSaving] = useState(false);
 
+  // Frame selection
+  const [frames, setFrames] = useState<{ id: string; name: string; color: string; glow?: boolean; source?: string }[]>([]);
+  const [equippedFrameId, setEquippedFrameId] = useState<string | null>(null);
+  const [frameLoading, setFrameLoading] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/profile-data`, { headers: getAuthHeaders(apiKey) });
+        if (r.ok) {
+          const d = await r.json();
+          setFrames(d.unlockedFrames || []);
+          setEquippedFrameId(d.equippedFrame?.id || null);
+        }
+      } catch { /* ignore */ }
+    })();
+  }, [playerName, apiKey]);
+
+  const equipFrame = async (frameId: string | null) => {
+    setFrameLoading(frameId || "__remove");
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/frame`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+        body: JSON.stringify({ frameId }),
+      });
+      if (r.ok) {
+        setEquippedFrameId(frameId);
+      }
+    } catch { /* ignore */ }
+    setFrameLoading(null);
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
@@ -255,12 +288,12 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={onClose}>
       <div
         className="w-full max-w-sm rounded-2xl p-6 space-y-5"
-        style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)" }}
+        style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)", maxHeight: "85vh", overflowY: "auto", scrollbarWidth: "thin" as unknown as undefined }}
         onClick={e => e.stopPropagation()}
       >
         <div>
-          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>⚙ Profile Settings</h2>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Relationship status and other settings</p>
+          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>Profile Settings</h2>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Relationship status, frames, and other settings</p>
         </div>
 
         <div className="space-y-2">
@@ -287,7 +320,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
 
         {status !== "single" && (
           <div>
-            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Partner's Name</label>
+            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Partner&apos;s Name</label>
             <input
               value={partner}
               onChange={e => setPartner(e.target.value)}
@@ -297,6 +330,63 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             />
           </div>
         )}
+
+        {/* Frame Selection */}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
+          <label className="text-xs font-semibold block mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
+          {frames.length === 0 ? (
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No frames unlocked yet. Earn frames from factions, achievements, and shops.</p>
+          ) : (
+            <div className="space-y-1">
+              {/* Remove frame option */}
+              <button
+                onClick={() => equippedFrameId && equipFrame(null)}
+                disabled={!equippedFrameId || frameLoading === "__remove"}
+                title={!equippedFrameId ? "No frame equipped" : "Remove current frame"}
+                className="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center gap-2"
+                style={{
+                  background: !equippedFrameId ? "rgba(167,139,250,0.08)" : "rgba(255,255,255,0.03)",
+                  border: `1px solid ${!equippedFrameId ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.07)"}`,
+                  color: !equippedFrameId ? "#a78bfa" : "rgba(255,255,255,0.4)",
+                  cursor: !equippedFrameId || frameLoading === "__remove" ? "not-allowed" : "pointer",
+                }}
+              >
+                <span className="w-4 h-4 rounded-full" style={{ border: "2px solid rgba(255,255,255,0.15)" }} />
+                <span>{frameLoading === "__remove" ? "..." : "No Frame"}</span>
+              </button>
+              {frames.map(f => {
+                const isActive = equippedFrameId === f.id;
+                return (
+                  <button
+                    key={f.id}
+                    onClick={() => !isActive && equipFrame(f.id)}
+                    disabled={isActive || frameLoading === f.id}
+                    title={isActive ? "Currently equipped" : f.source || `Equip ${f.name}`}
+                    className="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center gap-2"
+                    style={{
+                      background: isActive ? `${f.color}15` : "rgba(255,255,255,0.03)",
+                      border: `1px solid ${isActive ? `${f.color}50` : "rgba(255,255,255,0.07)"}`,
+                      color: isActive ? f.color : "rgba(255,255,255,0.55)",
+                      cursor: isActive || frameLoading === f.id ? "not-allowed" : "pointer",
+                    }}
+                  >
+                    <span
+                      className="w-4 h-4 rounded-full flex-shrink-0"
+                      style={{
+                        background: `${f.color}30`,
+                        border: `2px solid ${f.color}`,
+                        boxShadow: f.glow ? `0 0 6px ${f.color}60` : "none",
+                      }}
+                    />
+                    <span className="flex-1">{f.name}</span>
+                    {isActive && <span style={{ color: f.color }}>Equipped</span>}
+                    {frameLoading === f.id && <span style={{ color: "rgba(255,255,255,0.3)" }}>...</span>}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
         <div className="flex gap-2">
           <button
@@ -2149,17 +2239,28 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <span className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{gem.name}</span>
                             <span className="text-xs text-w20">T{gem.tier}</span>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5">
                             <span className="text-xs font-mono" style={{ color: GEM_COLORS[gem.type] || "#9ca3af" }}>x{count}</span>
-                            {count >= 3 && (
+                            {count >= 3 && gem.tier < 5 && (
                               <button
                                 onClick={() => doGemAction("upgrade", { gemKey })}
                                 disabled={!!gemAction}
-                                title={gemAction ? "Action in progress…" : "Combine 3 gems of the same type and tier → 1 gem of the next tier (Chipped→Flawed→Perfect→Flawless→Royal)"}
+                                title={gemAction ? "Action in progress…" : `Combine 3 × T${gem.tier} → 1 × T${gem.tier + 1} (costs 100g + Essenz)`}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
-                                Upgrade
+                                3{"\u2192"}1
+                              </button>
+                            )}
+                            {gem.tier < 5 && (
+                              <button
+                                onClick={() => doGemAction("polish", { gemKey })}
+                                disabled={!!gemAction}
+                                title={gemAction ? "Action in progress…" : `Polish 1 × T${gem.tier} → T${gem.tier + 1} (costs ${500 * gem.tier}g + ${Math.floor(500 * gem.tier / 2)} Essenz)`}
+                                className="text-xs px-1.5 py-0.5 rounded"
+                                style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
+                              >
+                                Polish
                               </button>
                             )}
                           </div>
@@ -2224,6 +2325,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             </div>
                           ))}
                         </div>
+                        {/* Unlock Socket button */}
+                        <button
+                          onClick={() => doGemAction("unlock-socket", { inventoryItemId: instanceId })}
+                          disabled={!!gemAction}
+                          title={gemAction ? "Action in progress…" : `Add a new socket (1,000g + 5 Essenz)`}
+                          className="text-xs px-2 py-1 rounded mt-1.5 w-full"
+                          style={{ background: "rgba(34,197,94,0.08)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
+                        >
+                          + Unlock Socket
+                        </button>
                       </div>
                     ))}
                   </>

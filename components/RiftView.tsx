@@ -49,6 +49,7 @@ interface ActiveRift {
   failedAt?: string;
   reachedStage?: number;
   mythicLevel?: number;
+  extended?: boolean;
   affixes?: { id: string; name: string; desc: string; color: string; effect: { type: string; value: number | string } }[];
 }
 
@@ -251,8 +252,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       )}
 
       {/* Active Rift */}
-      {activeRift && !activeRift.failed && (
-        <div className="rounded-xl p-5 space-y-4" style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
+      {activeRift && !activeRift.failed && (() => {
+        const totalTime = new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime();
+        const remaining = new Date(activeRift.expiresAt).getTime() - Date.now();
+        const isUrgent = !activeRift.completed && remaining > 0 && remaining < totalTime * 0.25;
+        return true;
+      })() && (
+        <div className={`rounded-xl p-5 space-y-4${!activeRift.completed && (new Date(activeRift.expiresAt).getTime() - Date.now()) < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 && (new Date(activeRift.expiresAt).getTime() - Date.now()) > 0 ? " rift-urgent" : ""}`} style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-xl">{activeRift.tierIcon}</span>
@@ -284,6 +290,36 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             </div>
           )}
 
+          {/* Extend timer button (Mondstaub) */}
+          {!activeRift.completed && !activeRift.failed && !activeRift.extended && reviewApiKey && (
+            <button
+              onClick={async () => {
+                try {
+                  const r = await fetch("/api/rift/extend", {
+                    method: "POST",
+                    headers: getAuthHeaders(),
+                  });
+                  const d = await r.json();
+                  if (r.ok) {
+                    fetchRift();
+                  } else {
+                    alert(d.error || "Failed to extend");
+                  }
+                } catch { alert("Network error"); }
+              }}
+              title="Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"
+              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
+              style={{
+                background: "rgba(192,132,252,0.08)",
+                color: "#c084fc",
+                border: "1px solid rgba(192,132,252,0.2)",
+                cursor: "pointer",
+              }}
+            >
+              Extend Timer +6h (30 Mondstaub)
+            </button>
+          )}
+
           {/* Quest chain visualization */}
           <div className="relative" style={{ paddingLeft: 20 }}>
             <div className="absolute" style={{ left: 8, top: 8, bottom: 8, width: 2, background: `linear-gradient(180deg, ${activeRift.tierColor}40, rgba(255,255,255,0.06))` }} />
@@ -292,10 +328,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               const isLocked = !q.completed && i > activeRift.currentStage - 1;
               return (
                 <div key={i} className="relative flex items-center gap-3 mb-3" style={{ opacity: isLocked ? 0.4 : 1 }}>
-                  <div className="w-4 h-4 rounded-full flex items-center justify-center z-10 flex-shrink-0" style={{
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center z-10 flex-shrink-0${q.completed ? " resonance-ripple" : ""}`} style={{
                     background: q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.08)",
                     border: `2px solid ${q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.1)"}`,
-                    boxShadow: isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
+                    boxShadow: q.completed ? "0 0 8px rgba(34,197,94,0.4)" : isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
+                    ["--ripple-color" as string]: "rgba(34,197,94,0.4)",
                   }}>
                     {q.completed && <span style={{ color: "#000", fontSize: 12, fontWeight: 800, lineHeight: 1 }}>✓</span>}
                   </div>

@@ -126,8 +126,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
     if (!reviewApiKey || !playerName || vowCreating) return;
     setVowCreating(true);
     try {
-      const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
-      const diff = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty)!;
+      const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment) ?? COMMITMENT_TIERS_VOW[0];
+      const diff = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty) ?? DIFFICULTY_TIERS_VOW[1];
       await fetch("/api/rituals", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },

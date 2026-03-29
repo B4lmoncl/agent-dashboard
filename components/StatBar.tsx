@@ -1,3 +1,5 @@
+import { useRef, useEffect, useState } from "react";
+
 interface StatBarProps {
   label: string;
   value: string | number;
@@ -11,6 +13,20 @@ interface StatBarProps {
 }
 
 export default function StatBar({ label, value, value2, value2Color, sub, accent = "rgba(255,255,255,0.8)", subColor, onClick, inline }: StatBarProps) {
+  // Detect value changes for flash animation
+  const prevValueRef = useRef<string | number>(value);
+  const [flashClass, setFlashClass] = useState("");
+  useEffect(() => {
+    if (prevValueRef.current === value) return;
+    const prev = typeof prevValueRef.current === "number" ? prevValueRef.current : parseInt(String(prevValueRef.current).replace(/\D/g, ""), 10) || 0;
+    const curr = typeof value === "number" ? value : parseInt(String(value).replace(/\D/g, ""), 10) || 0;
+    if (curr > prev && prev > 0) setFlashClass("stat-flash-up");
+    else if (curr < prev && prev > 0) setFlashClass("stat-flash-down");
+    prevValueRef.current = value;
+    const t = setTimeout(() => setFlashClass(""), 800);
+    return () => clearTimeout(t);
+  }, [value]);
+
   return (
     <div
       className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative h-full stat-card-depth crystal-breathe"
@@ -21,7 +37,7 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
         <>
           <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
           <div className="flex items-baseline gap-2">
-            <span className="text-base font-bold" style={{ color: accent }}>{value}</span>
+            <span className={`text-base font-bold${flashClass ? ` ${flashClass}` : ""}`} style={{ color: accent }}>{value}</span>
             {value2 && (
               <>
                 {value2.startsWith("◆") ? (
@@ -48,7 +64,7 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
             <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
           </div>
           <div className="flex items-baseline gap-2">
-            <p className="text-2xl font-bold" style={{ color: accent }}>{value}</p>
+            <p className={`text-2xl font-bold${flashClass ? ` ${flashClass}` : ""}`} style={{ color: accent }}>{value}</p>
             {value2 && (
               <>
                 {value2.startsWith("◆") ? (

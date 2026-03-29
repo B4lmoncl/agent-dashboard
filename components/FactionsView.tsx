@@ -27,6 +27,18 @@ interface FactionReward {
   effectDesc?: string;
 }
 
+interface FactionDaily {
+  id: string;
+  name: string;
+  desc: string;
+  req: { type: string; questType?: string; count: number };
+  repReward: number;
+  goldReward: number;
+  progress: number;
+  completed: boolean;
+  claimed: boolean;
+}
+
 interface Faction {
   id: string;
   name: string;
@@ -54,8 +66,10 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
   const { playerName } = useDashboard();
   const [factions, setFactions] = useState<Faction[]>([]);
   const [standings, setStandings] = useState<FactionStanding[]>([]);
+  const [dailyQuests, setDailyQuests] = useState<Record<string, FactionDaily[]>>({});
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState<string | null>(null);
+  const [claimingDaily, setClaimingDaily] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const fetchFactions = useCallback(async () => {
@@ -65,12 +79,44 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         const data = await r.json();
         setFactions(data.factions || []);
         setStandings(data.standings || []);
+        setDailyQuests(data.dailyQuests || {});
       }
     } catch { /* ignore */ }
     setLoading(false);
   }, []);
 
   useEffect(() => { fetchFactions(); }, [fetchFactions]);
+
+  const claimDaily = async (factionId: string, dailyId: string) => {
+    setClaimingDaily(dailyId);
+    try {
+      const r = await fetch(`/api/factions/${factionId}/claim-daily/${dailyId}`, {
+        method: "POST",
+        headers: getAuthHeaders(),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        fetchFactions();
+        if (onRewardCelebration) {
+          const faction = factions.find(f => f.id === factionId);
+          onRewardCelebration({
+            type: "faction",
+            title: `${faction?.name || "Faction"} Daily`,
+            xpEarned: 0,
+            goldEarned: data.goldGained || 0,
+            flavor: `+${data.repGained || 0} Rep`,
+          });
+        }
+      } else {
+        setMessage({ text: data.error || "Failed to claim", type: "error" });
+        setTimeout(() => setMessage(null), 3000);
+      }
+    } catch {
+      setMessage({ text: "Network error", type: "error" });
+      setTimeout(() => setMessage(null), 3000);
+    }
+    setClaimingDaily(null);
+  };
 
   const claimReward = async (factionId: string) => {
     setClaiming(factionId);
@@ -239,6 +285,59 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   </TipCustom>
                 )}
               </div>
+
+              {/* Daily Quests */}
+              {(dailyQuests[f.id] || []).length > 0 && (
+                <div className="px-4 pb-3" style={{ borderTop: `1px solid ${f.accent}15` }}>
+                  <p className="text-xs font-semibold uppercase tracking-wider mt-2 mb-1.5" style={{ color: `${f.accent}80` }}>Daily Quests</p>
+                  <div className="space-y-1">
+                    {(dailyQuests[f.id] || []).map(dq => {
+                      const done = dq.completed;
+                      const claimed = dq.claimed;
+                      return (
+                        <div
+                          key={dq.id}
+                          className="flex items-center gap-2 px-2 py-1.5 rounded"
+                          style={{
+                            background: claimed ? `${f.accent}08` : done ? `${f.accent}12` : "rgba(255,255,255,0.02)",
+                            border: `1px solid ${done && !claimed ? `${f.accent}35` : "rgba(255,255,255,0.05)"}`,
+                          }}
+                        >
+                          <span className="text-xs flex-shrink-0" style={{ color: claimed ? "rgba(255,255,255,0.2)" : done ? "#22c55e" : "rgba(255,255,255,0.25)", width: 14, textAlign: "center" }}>
+                            {claimed ? "✓" : done ? "●" : `${dq.progress}/${dq.req.count}`}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold truncate" style={{ color: claimed ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.6)", textDecoration: claimed ? "line-through" : "none" }}>{dq.name}</p>
+                            <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.2)" }}>{dq.desc}</p>
+                          </div>
+                          <div className="flex items-center gap-1.5 flex-shrink-0">
+                            <span className="text-xs font-mono" style={{ color: `${f.accent}88` }}>+{dq.repReward}</span>
+                            <span className="text-xs font-mono" style={{ color: "#f59e0b88" }}>+{dq.goldReward}g</span>
+                            {done && !claimed && (
+                              <button
+                                onClick={() => claimDaily(f.id, dq.id)}
+                                disabled={claimingDaily === dq.id}
+                                title="Claim daily quest reward"
+                                className="text-xs px-2 py-0.5 rounded font-bold claimable-breathe"
+                                style={{
+                                  background: `${f.accent}20`,
+                                  color: f.accent,
+                                  border: `1px solid ${f.accent}50`,
+                                  cursor: claimingDaily === dq.id ? "not-allowed" : "pointer",
+                                  opacity: claimingDaily === dq.id ? 0.5 : 1,
+                                  ["--claim-color" as string]: `${f.accent}40`,
+                                }}
+                              >
+                                {claimingDaily === dq.id ? "..." : "Claim"}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Standing rewards roadmap */}
               <div className="px-4 pb-3" style={{ borderTop: `1px solid ${f.accent}15` }}>

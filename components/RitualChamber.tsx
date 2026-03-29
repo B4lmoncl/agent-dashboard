@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { ModalPortal, useModalBehavior } from "@/components/ModalPortal";
 import { fetchRituals } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -59,6 +59,62 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [extendRitualId, setExtendRitualId] = useState<string | null>(null);
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
   const [recommitRitualId, setRecommitRitualId] = useState<string | null>(null);
+
+  // ─── Habit System ─────────────────────────────────────────────────────────
+  interface Habit { id: string; title: string; positive: boolean; negative: boolean; color: string; score: number; playerId: string; createdAt: string; }
+  const [habits, setHabits] = useState<Habit[]>([]);
+  const [habitsOpen, setHabitsOpen] = useState(false);
+  const [newHabitTitle, setNewHabitTitle] = useState("");
+  const [habitScoring, setHabitScoring] = useState<string | null>(null);
+
+  const fetchHabits = useCallback(async () => {
+    if (!playerName) return;
+    try {
+      const r = await fetch(`/api/habits?player=${encodeURIComponent(playerName)}`);
+      if (r.ok) setHabits(await r.json());
+    } catch { /* ignore */ }
+  }, [playerName]);
+
+  useEffect(() => { fetchHabits(); }, [fetchHabits]);
+
+  const createHabit = async () => {
+    if (!newHabitTitle.trim() || !reviewApiKey || !playerName) return;
+    try {
+      const r = await fetch("/api/habits", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ title: newHabitTitle.trim(), positive: true, negative: true, playerId: playerName }),
+      });
+      if (r.ok) { setNewHabitTitle(""); fetchHabits(); }
+    } catch { /* ignore */ }
+  };
+
+  const [habitFlash, setHabitFlash] = useState<{ id: string; dir: "up" | "down" } | null>(null);
+  const scoreHabit = async (habitId: string, direction: "up" | "down") => {
+    if (!reviewApiKey || !playerName || habitScoring) return;
+    setHabitScoring(habitId);
+    setHabitFlash({ id: habitId, dir: direction });
+    setTimeout(() => setHabitFlash(null), 800);
+    try {
+      const r = await fetch(`/api/habits/${habitId}/score`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ direction, playerId: playerName }),
+      });
+      if (r.ok) fetchHabits();
+    } catch { /* ignore */ }
+    setHabitScoring(null);
+  };
+
+  const deleteHabit = async (habitId: string) => {
+    if (!reviewApiKey) return;
+    try {
+      await fetch(`/api/habits/${habitId}`, { method: "DELETE", headers: getAuthHeaders(reviewApiKey) });
+      fetchHabits();
+    } catch { /* ignore */ }
+  };
+
+  const HABIT_COLORS: Record<string, string> = { red: "#ef4444", orange: "#f97316", gray: "#6b7280", yellow: "#eab308", green: "#22c55e", blue: "#3b82f6" };
 
   const closeRitualModal = useCallback(() => {
     setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false); setNewRitualDifficulty("medium");
@@ -283,6 +339,92 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             {playerRituals.slice(2).map(renderRitualCard)}
           </div>
         )}
+        {/* ─── Habits Section ─── */}
+        {playerName && reviewApiKey && (
+          <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <button
+              onClick={() => setHabitsOpen(!habitsOpen)}
+              className="flex items-center justify-between w-full mb-3"
+              style={{ cursor: "pointer" }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Habits</span>
+                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{habits.length}</span>
+              </div>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{habitsOpen ? "▲" : "▼"}</span>
+            </button>
+
+            {habitsOpen && (
+              <div className="space-y-2 tab-content-enter">
+                {/* Create habit */}
+                <div className="flex gap-2">
+                  <input
+                    value={newHabitTitle}
+                    onChange={e => setNewHabitTitle(e.target.value)}
+                    onKeyDown={e => e.key === "Enter" && createHabit()}
+                    placeholder="New habit..."
+                    className="flex-1 text-xs px-3 py-1.5 rounded-lg input-dark"
+                  />
+                  <button
+                    onClick={createHabit}
+                    disabled={!newHabitTitle.trim()}
+                    title={!newHabitTitle.trim() ? "Enter a habit name" : "Create habit"}
+                    className="text-xs px-3 py-1.5 rounded-lg font-semibold"
+                    style={{
+                      background: newHabitTitle.trim() ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.04)",
+                      color: newHabitTitle.trim() ? "#22c55e" : "rgba(255,255,255,0.2)",
+                      border: `1px solid ${newHabitTitle.trim() ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}`,
+                      cursor: newHabitTitle.trim() ? "pointer" : "not-allowed",
+                    }}
+                  >
+                    + Add
+                  </button>
+                </div>
+
+                {/* Habit list */}
+                {habits.length === 0 && (
+                  <p className="text-xs text-w20 text-center py-2">No habits yet. Habits track recurring behaviors with + / - scoring.</p>
+                )}
+                {habits.map(h => {
+                  const color = HABIT_COLORS[h.color] || HABIT_COLORS.gray;
+                  return (
+                    <div
+                      key={h.id}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg"
+                      style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${color}25` }}
+                    >
+                      <button
+                        onClick={() => scoreHabit(h.id, "up")}
+                        disabled={habitScoring === h.id}
+                        title="+1 (good)"
+                        className="text-xs w-7 h-7 rounded flex items-center justify-center font-bold"
+                        style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)", cursor: habitScoring === h.id ? "not-allowed" : "pointer" }}
+                      >+</button>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold truncate" style={{ color: "rgba(255,255,255,0.6)" }}>{h.title}</p>
+                      </div>
+                      <span className={`text-sm font-mono font-bold${habitFlash?.id === h.id ? (habitFlash.dir === "up" ? " stat-flash-up" : " stat-flash-down") : ""}`} style={{ color, minWidth: 24, textAlign: "center" }}>{h.score}</span>
+                      <button
+                        onClick={() => scoreHabit(h.id, "down")}
+                        disabled={habitScoring === h.id}
+                        title="-1 (bad)"
+                        className="text-xs w-7 h-7 rounded flex items-center justify-center font-bold"
+                        style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: habitScoring === h.id ? "not-allowed" : "pointer" }}
+                      >-</button>
+                      <button
+                        onClick={() => deleteHabit(h.id)}
+                        title="Delete habit"
+                        className="text-xs w-7 h-7 rounded flex items-center justify-center"
+                        style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+                      >x</button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Create Ritual Modal — simplified, no portrait */}
         {createRitualOpen && (() => {
           const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setRitualNameError(false); setRitualCommitmentError(false); setNewRitualCommitment("none"); setNewRitualBloodPact(false); setNewRitualDifficulty("medium"); };
@@ -290,14 +432,14 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             if (!newRitualTitle.trim()) { setRitualNameError(true); return; }
             if (newRitualCommitment === "none") { setRitualCommitmentError(true); return; }
             if (!reviewApiKey || !playerName) return;
-            const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
-            const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
+            const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
+            const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
             await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
             closeRitualModal();
             fetchRituals(playerName).then(setRituals);
           };
-          const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
-          const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
+          const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
+          const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
           const pactMulti = newRitualBloodPact ? (BLOOD_PACT_MULTIPLIER[newRitualCommitment] || 3) : 1;
           const bonusGold = Math.round(tierData.bonusGold * diffData.bondScale);
           const bonusXp = Math.round(tierData.bonusXp * diffData.bondScale);

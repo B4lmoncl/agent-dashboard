@@ -16819,6 +16819,211 @@
       "description": "Fasst: Riss-Signet. Passt an jeden Finger. Entscheidet aber selbst, an welchen.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "smelt_eisenbarren",
+      "name": "Eisenbarren schmelzen",
+      "profession": "schmied",
+      "source": "trainer",
+      "trainerCost": 0,
+      "reqSkill": 1,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "eisenbarren",
+        "outputAmount": 1
+      },
+      "xp": 8,
+      "description": "Schmelze Eisenerz zu einem Eisenbarren."
+    },
+    {
+      "id": "smelt_stahlbarren",
+      "name": "Stahlbarren schmelzen",
+      "profession": "schmied",
+      "source": "trainer",
+      "trainerCost": 50,
+      "reqSkill": 60,
+      "materials": {
+        "eisenbarren": 2,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "stahlbarren",
+        "outputAmount": 1
+      },
+      "xp": 12,
+      "description": "Veredelt Eisenbarren mit Magiestaub zu Stahl."
+    },
+    {
+      "id": "smelt_kristallbarren",
+      "name": "Kristallbarren schmelzen",
+      "profession": "schmied",
+      "source": "trainer",
+      "trainerCost": 200,
+      "reqSkill": 130,
+      "materials": {
+        "kristallsplitter": 3,
+        "stahlbarren": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "kristallbarren",
+        "outputAmount": 1
+      },
+      "xp": 18,
+      "description": "Kristallsplitter und Stahl verschmelzen zu reinem Kristall."
+    },
+    {
+      "id": "smelt_verstaerkterstahl",
+      "name": "Verstärkten Stahl schmieden",
+      "profession": "schmied",
+      "source": "trainer",
+      "trainerCost": 500,
+      "reqSkill": 200,
+      "materials": {
+        "stahlbarren": 3,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "verstaerkterstahl",
+        "outputAmount": 1
+      },
+      "xp": 25,
+      "description": "Stahl, gehärtet in Drachenschuppen."
+    },
+    {
+      "id": "bolt_leinenballen",
+      "name": "Leinenballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "trainerCost": 0,
+      "reqSkill": 1,
+      "materials": {
+        "leinenstoff": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "leinenballen",
+        "outputAmount": 1
+      },
+      "xp": 8,
+      "description": "Webt Leinenstoff zu einem brauchbaren Ballen."
+    },
+    {
+      "id": "bolt_wollballen",
+      "name": "Wollballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "trainerCost": 50,
+      "reqSkill": 60,
+      "materials": {
+        "wollstoff": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "wollballen",
+        "outputAmount": 1
+      },
+      "xp": 12,
+      "description": "Webt Wolle zu einem stabilen Ballen."
+    },
+    {
+      "id": "bolt_seidenballen",
+      "name": "Seidenballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "trainerCost": 200,
+      "reqSkill": 130,
+      "materials": {
+        "seidenstoff": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "seidenballen",
+        "outputAmount": 1
+      },
+      "xp": 18,
+      "description": "Feinste Seide, verdichtet zu einem wertvollen Ballen."
+    },
+    {
+      "id": "cure_leichtleder",
+      "name": "Leichtleder gerben",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "trainerCost": 0,
+      "reqSkill": 1,
+      "materials": {
+        "leichtesleder": 3,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "geheiltesleichtleder",
+        "outputAmount": 1
+      },
+      "xp": 8,
+      "description": "Gerbt rohes Leichtleder zu verarbeitetem Material."
+    },
+    {
+      "id": "cure_mittleresleder",
+      "name": "Mittleres Leder gerben",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "trainerCost": 50,
+      "reqSkill": 60,
+      "materials": {
+        "mittleresleder": 3,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "geheiltesmittleresleder",
+        "outputAmount": 1
+      },
+      "xp": 12,
+      "description": "Gerbt mittleres Leder zu einem geschmeidigen Material."
+    },
+    {
+      "id": "prepare_gewuerzmischung",
+      "name": "Gewürzmischung herstellen",
+      "profession": "koch",
+      "source": "trainer",
+      "trainerCost": 0,
+      "reqSkill": 1,
+      "materials": {
+        "wildfleisch": 1,
+        "feuerwurz": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "gewuerzmischung",
+        "outputAmount": 2
+      },
+      "xp": 8,
+      "description": "Grundlegende Gewürze für die Küche der Halle."
+    },
+    {
+      "id": "prepare_kraeuterbutter",
+      "name": "Kräuterbutter herstellen",
+      "profession": "koch",
+      "source": "trainer",
+      "trainerCost": 50,
+      "reqSkill": 60,
+      "materials": {
+        "kraeuterbuendel": 2,
+        "gewuerzmischung": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "outputMaterial": "kraeuterbutter",
+        "outputAmount": 1
+      },
+      "xp": 12,
+      "description": "Verfeinert jedes Gericht. Ein Grundpfeiler der Gilde."
     }
   ]
 }

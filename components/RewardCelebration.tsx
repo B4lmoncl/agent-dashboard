@@ -296,6 +296,19 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
           }} />
         </div>
 
+        {/* Crystal splinter particles rising */}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={`crystal-${i}`} className="absolute pointer-events-none" style={{
+            width: 3, height: 8, borderRadius: 1,
+            background: `linear-gradient(180deg, rgba(${accentRgb},0.9), rgba(${accentRgb},0.2))`,
+            bottom: "30%",
+            left: `${25 + i * 12}%`,
+            animation: `crystal-particle-rise ${1.2 + i * 0.2}s ease-out ${0.1 + i * 0.15}s infinite`,
+            boxShadow: `0 0 4px rgba(${accentRgb},0.5)`,
+            transform: `rotate(${-10 + i * 5}deg)`,
+          }} />
+        ))}
+
         {/* Icon */}
         <div
           className="text-4xl mb-3 reward-icon-bounce"

@@ -119,7 +119,7 @@ export default function ItemActionPopup({
         ) : null}
 
         {/* Description */}
-        {item.desc && (
+        {typeof item.desc === "string" && item.desc && (
           <p className="text-xs leading-relaxed break-words overflow-hidden" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
         )}
 
@@ -139,6 +139,30 @@ export default function ItemActionPopup({
             ))}
           </div>
         )}
+
+        {/* Socket status */}
+        {(() => {
+          const sockets = (item as unknown as Record<string, unknown>).sockets;
+          if (!sockets || !Array.isArray(sockets)) return null;
+          const arr = sockets as (string | null)[];
+          const filled = arr.filter(Boolean).length;
+          return (
+            <div className="flex items-center gap-1.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Sockets</span>
+              <div className="flex gap-1 ml-auto">
+                {arr.map((s, i) => (
+                  <span key={i} className="w-3 h-3 rounded-full" style={{
+                    background: s ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.06)",
+                    border: `1.5px solid ${s ? "rgba(168,85,247,0.7)" : "rgba(255,255,255,0.15)"}`,
+                  }} title={s || "Empty socket"} />
+                ))}
+              </div>
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                {filled}/{arr.length}
+              </span>
+            </div>
+          );
+        })()}
 
         {/* Passive badge */}
         {itemType === "passive" && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -165,6 +165,8 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   const [historyOpen, setHistoryOpen] = useState(false);
   const [bossHistory, setBossHistory] = useState<HistoryEntry[]>([]);
   const [now, setNow] = useState(() => Date.now());
+  const [damageBurst, setDamageBurst] = useState(false);
+  const prevHpRef = useRef<number | null>(null);
 
   const fetchBoss = useCallback(async () => {
     try {
@@ -181,6 +183,17 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   }, [playerName]);
 
   useEffect(() => { fetchBoss(); }, [fetchBoss]);
+
+  // Detect HP changes for damage burst effect
+  useEffect(() => {
+    if (!data || !("boss" in data) || !data.boss) return;
+    const currentHp = data.boss.currentHp;
+    if (prevHpRef.current !== null && currentHp < prevHpRef.current) {
+      setDamageBurst(true);
+      setTimeout(() => setDamageBurst(false), 600);
+    }
+    prevHpRef.current = currentHp;
+  }, [data]);
 
   // Fetch boss history when section is opened
   const fetchHistory = useCallback(async () => {
@@ -403,6 +416,18 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               {formatNumber(boss.currentHp)} / {formatNumber(boss.maxHp)}
             </span>
           </div>
+          {/* Damage burst particles (outside overflow-hidden bar) */}
+          <div className="relative" style={{ height: 0 }}>
+            {damageBurst && Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="absolute pointer-events-none" style={{
+                width: 3, height: 6, borderRadius: 1,
+                background: `linear-gradient(180deg, ${hpColor}, transparent)`,
+                bottom: 4, left: `${15 + i * 13}%`,
+                animation: `crystal-particle-rise 0.6s ease-out ${i * 0.05}s forwards`,
+                boxShadow: `0 0 4px ${hpColor}80`,
+              }} />
+            ))}
+          </div>
           <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
             <div
               className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}`}
@@ -456,6 +481,41 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                 View Collection →
               </button>
             )}
+          </div>
+        )}
+
+        {/* Mondstaub Boost — only when boss is alive */}
+        {!boss.defeated && reviewApiKey && (
+          <div className="px-5 pb-4">
+            <button
+              onClick={async () => {
+                setMessage(null);
+                try {
+                  const r = await fetch("/api/world-boss/boost", {
+                    method: "POST",
+                    headers: getAuthHeaders(),
+                  });
+                  const d = await r.json();
+                  if (r.ok) {
+                    setMessage({ text: d.message || "Boost activated!", type: "success" });
+                    fetchBoss();
+                  } else {
+                    setMessage({ text: d.error || "Boost failed", type: "error" });
+                  }
+                } catch { setMessage({ text: "Network error", type: "error" }); }
+                setTimeout(() => setMessage(null), 4000);
+              }}
+              title="Spend 50 Mondstaub for +25% boss damage on next 10 quests"
+              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
+              style={{
+                background: "rgba(192,132,252,0.1)",
+                color: "#c084fc",
+                border: "1px solid rgba(192,132,252,0.25)",
+                cursor: "pointer",
+              }}
+            >
+              Mondstaub Boost (+25% damage, 50 Mondstaub)
+            </button>
           </div>
         )}
 

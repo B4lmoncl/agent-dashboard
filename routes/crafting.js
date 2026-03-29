@@ -17,6 +17,21 @@ const MOONLIGHT_BONUS = 0.20; // +20% minimum roll boost
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring'];
 const SECONDARY_PROFESSIONS = ['koch', 'verzauberer']; // Don't count against the 2 primary-slot limit
+
+// ─── Faction ID mapping (old lore names → current system IDs) ─────────────
+const FACTION_ID_MAP = {
+  orden_der_klinge: 'glut', zirkel_der_sterne: 'tinte',
+  pakt_der_wildnis: 'echo', bund_der_schatten: 'amboss',
+  glut: 'glut', tinte: 'tinte', amboss: 'amboss', echo: 'echo',
+};
+const FACTION_REP_REQUIRED = 500; // Friendly standing minimum for faction recipes
+
+function playerMeetsFactionRep(user, recipeFactionId) {
+  if (!recipeFactionId) return true;
+  const fid = FACTION_ID_MAP[recipeFactionId] || recipeFactionId;
+  const rep = user?.factions?.[fid]?.rep ?? 0;
+  return rep >= FACTION_REP_REQUIRED;
+}
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
@@ -165,9 +180,10 @@ function isRecipeDiscovered(recipe, profProgress, user) {
   if (recipe.source === 'trainer' && recipe.trainerCost > 0) {
     return (user?.learnedRecipes || []).includes(recipe.id);
   }
-  // Faction-source recipes: must be in player's learnedRecipes (unlocked via faction rep)
+  // Faction-source recipes: must be learned AND player must have faction rep
   if (recipe.source === 'faction') {
-    return (user?.learnedRecipes || []).includes(recipe.id);
+    const known = (user?.learnedRecipes || []).includes(recipe.id) || (user?.unlockedRecipes || []).includes(recipe.id);
+    return known && playerMeetsFactionRep(user, recipe.factionId);
   }
   // Legacy/free trainer recipes: use old discovery gate system
   if (!recipe.discovery) return true;
@@ -294,11 +310,13 @@ router.get('/api/professions', (req, res) => {
       }
       const reqSkill = r.reqSkill || reqProfLevelToSkill(r.reqProfLevel);
       const playerSkill = u ? getProfSkill(u, r.profession).skill : 0;
+      const factionRepMet = r.source === 'faction' ? playerMeetsFactionRep(u, r.factionId) : true;
       return {
         ...r,
         reqSkill,
         learned,
-        canCraft: learned && playerSkill >= reqSkill,
+        canCraft: learned && playerSkill >= reqSkill && factionRepMet,
+        factionRepMet,
         skillUpColor: getSkillUpColor(playerSkill, reqSkill),
         skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
         cooldownRemaining,

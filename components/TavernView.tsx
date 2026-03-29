@@ -148,7 +148,18 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
       ))}
       {/* Header */}
       <div className="text-center space-y-2">
-        <p className="text-3xl">🔥</p>
+        <div className="relative inline-block">
+          <p className="text-3xl">🔥</p>
+          {/* Heat wave lines */}
+          {[0,1,2].map(i => (
+            <div key={`wave-${i}`} className="absolute pointer-events-none" style={{
+              width: 12 + i * 4, height: 1, borderRadius: 1,
+              background: `rgba(217,119,6,${0.15 - i * 0.03})`,
+              top: `${-4 - i * 6}px`, left: "50%", transform: "translateX(-50%)",
+              animation: `ambient-wave ${2.5 + i * 0.5}s ease-in-out ${i * 0.4}s infinite`,
+            }} />
+          ))}
+        </div>
         <Tip k="hearth" heading><h2 className="text-lg font-bold" style={{ color: "#d97706", cursor: "help" }}>The Hearth</h2></Tip>
         <p className="text-xs text-w35" style={{ maxWidth: "min(400px, 100%)", margin: "0 auto" }}>
           A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
