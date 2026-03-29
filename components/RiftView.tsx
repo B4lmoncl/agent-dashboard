@@ -328,10 +328,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               const isLocked = !q.completed && i > activeRift.currentStage - 1;
               return (
                 <div key={i} className="relative flex items-center gap-3 mb-3" style={{ opacity: isLocked ? 0.4 : 1 }}>
-                  <div className="w-4 h-4 rounded-full flex items-center justify-center z-10 flex-shrink-0" style={{
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center z-10 flex-shrink-0${q.completed ? " resonance-ripple" : ""}`} style={{
                     background: q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.08)",
                     border: `2px solid ${q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.1)"}`,
-                    boxShadow: isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
+                    boxShadow: q.completed ? "0 0 8px rgba(34,197,94,0.4)" : isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
+                    ["--ripple-color" as string]: "rgba(34,197,94,0.4)",
                   }}>
                     {q.completed && <span style={{ color: "#000", fontSize: 12, fontWeight: 800, lineHeight: 1 }}>✓</span>}
                   </div>
