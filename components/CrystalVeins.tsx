@@ -251,7 +251,7 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ zIndex: 0, opacity: 0.6, borderRadius: "inherit" }}
+      style={{ zIndex: 0, opacity: 0.5 }}
     />
   );
 }

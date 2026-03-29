@@ -862,13 +862,10 @@ button[disabled] {
   pointer-events: none;
 }
 
-@keyframes mondlicht-breathe {
-  0%, 100% { box-shadow: inset 0 0 12px rgba(129,140,248,0.06), 0 0 8px rgba(129,140,248,0.04); }
-  50% { box-shadow: inset 0 0 20px rgba(129,140,248,0.12), 0 0 16px rgba(129,140,248,0.08); }
-}
+/* Mondlicht glow — static border accent (no animation = no lag) */
 .mondlicht-glow {
-  animation: mondlicht-breathe 4s ease-in-out infinite;
-  border-color: rgba(129,140,248,0.2) !important;
+  border-color: rgba(129,140,248,0.3) !important;
+  box-shadow: 0 0 8px rgba(129,140,248,0.1), inset 0 0 6px rgba(129,140,248,0.04);
 }
 
 /* Crystal vein breathing — generic ambient glow for cards and bars */
