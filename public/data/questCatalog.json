@@ -5515,6 +5515,790 @@
         "xp": 25,
         "gold": 15
       }
+    },
+    {
+      "id": "s-familienessen",
+      "template": "board-quest",
+      "title": "Die Tafelrunde",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Organisiere ein Familienessen — koche selbst oder geht zusammen essen.",
+        "flavor": "Wirt Gus: 'Ein Tisch für sechs ist eine Geschichte.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-spieleabend",
+      "template": "board-quest",
+      "title": "Würfelschicksal",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Organisiere einen Spieleabend — Brett, Karten, oder digital.",
+        "flavor": "Nora: 'Spiele verbinden Menschen. Außer Monopoly. Monopoly zerstört Familien.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-filmabend",
+      "template": "board-quest",
+      "title": "Leinwandzauber",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Filmabend organisieren — gemeinsam auswählen, Snacks vorbereiten.",
+        "flavor": "Popcorn ist die diplomatischste Lösung für jede Filmauswahl-Debatte.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-roadtrip-planen",
+      "template": "board-quest",
+      "title": "Horizonterweiterer",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Plane einen Roadtrip oder Ausflug für das nächste Wochenende.",
+        "flavor": "Navigatorin Compass: 'Der Weg ist das Ziel. Besonders wenn man sich verfährt.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-ueberraschung",
+      "template": "board-quest",
+      "title": "Geheime Freude",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Überrasche deinen Partner oder eine nahestehende Person mit etwas Nette.",
+        "flavor": "Die besten Geschenke sind die, die man nicht erwarten kann. Weil sie keiner erwartet.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-liebesbrief",
+      "template": "board-quest",
+      "title": "Geschriebenes Feuer",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreibe einen Liebesbrief. Per Hand. Ja, wirklich.",
+        "flavor": "Worte auf Papier wiegen schwerer als auf dem Bildschirm. Buchstäblich. Und metaphorisch.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-eltern-anruf",
+      "template": "board-quest",
+      "title": "Wurzeln gießen",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Ruf deine Eltern (oder Elternfiguren) an. Mindestens 15 Minuten.",
+        "flavor": "Mutter Erde: 'Du hast vergessen mich anzurufen. Drei Wochen. Ich hab gezählt.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-geschwister",
+      "template": "board-quest",
+      "title": "Blutsbande",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Melde dich bei einem Geschwister oder Cousin. Echtes Gespräch, kein Emoji.",
+        "flavor": "Familie ist wie ein Sicherheitsnetz. Auch wenn es manchmal kitzelt.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-altes-wiedersehen",
+      "template": "board-quest",
+      "title": "Vergessene Pfade",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Plane ein Wiedersehen mit einem alten Freund den du lange nicht gesehen hast.",
+        "flavor": "Antiquar Simon: 'Die besten Geschichten sind die, die man teilt. Auch die peinlichen.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-nachbar-kennenlernen",
+      "template": "board-quest",
+      "title": "Turmgespräch",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Sprich mit einem Nachbarn den du kaum kennst. Name lernen. Kurzes Gespräch.",
+        "flavor": "Die Wand zwischen euch ist dünn. Das Schweigen ist dicker.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-kollegen-kaffee",
+      "template": "board-quest",
+      "title": "Gildentreff",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Lade einen Kollegen zum Kaffee oder Mittagessen ein — abseits der Arbeit.",
+        "flavor": "Netzwerkerin Luna: 'Die interessantesten Gespräche passieren nicht im Meeting-Room.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-mentor-treffen",
+      "template": "board-quest",
+      "title": "Weisheitsquelle",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Triff dich mit einem Mentor oder einer erfahreneren Person in deinem Feld.",
+        "flavor": "Mentor Grau: 'Der beste Rat kommt von Leuten die die gleichen Fehler gemacht haben.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-mentee",
+      "template": "board-quest",
+      "title": "Weitergeben",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf jemandem Jüngerem oder weniger Erfahrenem — erkläre, zeige, teile.",
+        "flavor": "Wissen das man behält stirbt mit einem. Wissen das man teilt lebt weiter.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-ehrenamt",
+      "template": "board-quest",
+      "title": "Uneigennütziger Dienst",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Melde dich für eine ehrenamtliche Tätigkeit an oder mach mit.",
+        "flavor": "Laternenanzünder Pip: 'Du musst nicht die Sonne sein. Eine Kerze reicht.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-community-event",
+      "template": "board-quest",
+      "title": "Zusammenkunft",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Besuche ein Community-Event: Meetup, Stammtisch, lokale Veranstaltung.",
+        "flavor": "Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-spende",
+      "template": "board-quest",
+      "title": "Goldener Strom",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Spende etwas — Geld, Zeit, oder Dinge an eine Organisation die du unterstützt.",
+        "flavor": "Gold das fließt, nährt. Gold das steht, verrottet. Philosophisch. Und buchstäblich, bei Zahlmeister Otto.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-skill-lehren",
+      "template": "board-quest",
+      "title": "Meisterlehre",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Lehre jemandem eine Fähigkeit die du hast — persönlich, nicht per YouTube-Link.",
+        "flavor": "Professor Quill: 'Prüfungen sind unangenehm. Aber weniger als Unwissenheit. Marginal.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 28,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-praesentation",
+      "template": "board-quest",
+      "title": "Rednerpult",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Halte eine kurze Präsentation — im Meeting, vor Freunden, oder geübt.",
+        "flavor": "Aurelius: 'Die mächtigste Waffe ist Stille. Die zweitmächtigste ist ein gutes Gedächtnis.'",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "s-linkedin-update",
+      "template": "board-quest",
+      "title": "Schaufenster polieren",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "LinkedIn Profil aktualisieren: Foto, Headline, Projekte, Skills.",
+        "flavor": "Dein digitaler Lebenslauf ist das erste was Fremde sehen. Und beurteilen. In 3 Sekunden.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-portfolio",
+      "template": "board-quest",
+      "title": "Werkschau",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Portfolio aktualisieren oder erstellen: Beste Projekte, Case Studies.",
+        "flavor": "Zeig was du kannst. Nicht was du sagen KANNST. Der Unterschied ist messbar.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "s-konferenz-recherche",
+      "template": "board-quest",
+      "title": "Fernspäher",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Recherchiere eine Konferenz oder ein Event in deinem Feld und melde dich an.",
+        "flavor": "Astronomin Stella: 'Die besten Entdeckungen passieren wenn du deinen Turm verlässt.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-code-review",
+      "template": "board-quest",
+      "title": "Klingenprüfung",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Mach einen Code Review für jemand anderen — konstruktiv, hilfreich.",
+        "flavor": "Eine zweite Meinung ist kein Angriff. Es ist ein Geschenk. Meistens.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-team-lunch",
+      "template": "board-quest",
+      "title": "Tischgemeinschaft",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Organisiere ein Team-Lunch — bestellen, kochen, oder rausgehen.",
+        "flavor": "Am Tisch passiert alles Wichtige. Und das meiste davon hat mit Essen zu tun.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-geburtstag-ueberraschung",
+      "template": "board-quest",
+      "title": "Überraschungsangriff",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Plane eine Geburtstagsüberraschung für jemanden in deinem Leben.",
+        "flavor": "Geburtstage vergessen ist menschlich. Geburtstage zu planen ist göttlich.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-danke-chef",
+      "template": "board-quest",
+      "title": "Anerkennung",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Sage deinem Chef, Lehrer oder Mentor ehrlich Danke für etwas Konkretes.",
+        "flavor": "Dankbarkeit aussprechen kostet nichts. Und ist unbezahlbar. Paradox.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-networking-email",
+      "template": "board-quest",
+      "title": "Brückenpost",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreibe eine Networking-Mail an jemanden den du bewunderst oder von dem du lernen willst.",
+        "flavor": "Die meisten Türen öffnen sich wenn man klopft. Das Klopfen ist der schwere Teil.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-zusammenarbeit",
+      "template": "board-quest",
+      "title": "Doppelklinge",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Starte eine Zusammenarbeit: Pair Programming, Co-Writing, gemeinsames Projekt.",
+        "flavor": "Allein schneller. Zusammen weiter. Die Mathematik ist eindeutig.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "s-opensource-community",
+      "template": "board-quest",
+      "title": "Gildenarbeit",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Engagiere dich in einer Online-Community: Forum, Discord, Subreddit.",
+        "flavor": "Das Internet ist voll von Fremden. Manche davon werden Freunde. Der Rest bleibt... interessant.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-lokalen-laden",
+      "template": "board-quest",
+      "title": "Nachbarschaftsheld",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Unterstütze ein lokales Geschäft: Dort einkaufen, Review schreiben, weiterempfehlen.",
+        "flavor": "Jeder Laden hat eine Geschichte. Manche erzählt man besser mit dem Geldbeutel.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-buch-empfehlung",
+      "template": "board-quest",
+      "title": "Wissensgabe",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Empfiehl jemandem ein Buch das dein Denken verändert hat.",
+        "flavor": "Ein gutes Buch teilen ist wie eine Fackel weitergeben. Das Licht wird nicht weniger.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-playlist-freund",
+      "template": "board-quest",
+      "title": "Klanggabe",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Erstelle eine persönliche Playlist für einen Freund — 10 Songs die zu ihm/ihr passen.",
+        "flavor": "Aria: 'Jeder hat ein Lied. Finde das Lied eines anderen.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-care-package",
+      "template": "board-quest",
+      "title": "Trostpaket",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schicke jemandem ein Care-Package: Snacks, Brief, kleine Aufmerksamkeit.",
+        "flavor": "Pakete sind materielle Umarmungen. Für die Distanz dazwischen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-hunde-gassi",
+      "template": "board-quest",
+      "title": "Nachbarschaftspfoten",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Geh mit dem Hund eines Nachbarn Gassi. Oder begleite jemanden bei einem Spaziergang.",
+        "flavor": "Tierpfleger Finn: 'Hunde verstehen Freundlichkeit. Besser als die meisten Menschen.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-techsupport-eltern",
+      "template": "board-quest",
+      "title": "Generationenbrücke",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf deinen Eltern/Großeltern mit Technik: Handy einrichten, App erklären.",
+        "flavor": "Der WLAN-Router deiner Eltern hat Geschichten gesehen die kein Mensch erzählen sollte.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-resume-review",
+      "template": "board-quest",
+      "title": "Wegweiser",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf jemandem seinen Lebenslauf zu verbessern — Feedback, Korrekturen, Tipps.",
+        "flavor": "Einen Lebenslauf zu korrigieren ist intimer als es klingt. Handle entsprechend.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-interview-prep",
+      "template": "board-quest",
+      "title": "Übungskampf",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Übe ein Vorstellungsgespräch mit jemandem — als Interviewer oder Interviewee.",
+        "flavor": "Valka: 'Kein Plan überlebt den Kontakt mit der Realität.' Das gilt auch für Interviews.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-lerngruppe",
+      "template": "board-quest",
+      "title": "Zirkel des Wissens",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Organisiere eine Lerngruppe — auch nur zu zweit zählt.",
+        "flavor": "Die Zirkel der Tinte wussten: Wissen wächst wenn man es teilt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 22,
+        "gold": 14
+      }
+    },
+    {
+      "id": "s-accountability",
+      "template": "board-quest",
+      "title": "Eidgenosse",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Finde einen Accountability Partner — jemand mit dem du regelmäßig Ziele abgleichst.",
+        "flavor": "Seraine Ashwell: 'Jedes Feuer braucht einen Funken. Manchmal ist der Funke ein Mensch.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-kompliment-challenge",
+      "template": "board-quest",
+      "title": "Goldene Worte",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "5 ehrliche Komplimente heute — an 5 verschiedene Menschen.",
+        "flavor": "Gaukler Jest: 'Ein ehrliches Kompliment ist die günstigste Art die Welt zu verbessern.'",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-vergebung",
+      "template": "board-quest",
+      "title": "Alte Wunden",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Führe ein Gespräch über etwas das zwischen dir und jemandem steht. Vergib oder bitte um Vergebung.",
+        "flavor": "Puppenspieler Marco: 'Einen Faden durchschneiden ist leicht. Sich danach nicht fallen lassen ist Kunst.'",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 55,
+        "gold": 38
+      }
+    },
+    {
+      "id": "s-moving-help",
+      "template": "board-quest",
+      "title": "Lastenträger",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf jemandem beim Umzug, Aufräumen, oder einem großen Projekt.",
+        "flavor": "Freundschaft misst man nicht in Worten. Sondern in geschleppten Kartons.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 22
+      }
+    },
+    {
+      "id": "s-kochen-fuer-andere",
+      "template": "board-quest",
+      "title": "Gastfreundschaft",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Bekoche jemanden — Partner, Freunde, Nachbarn. Das Essen ist das Geschenk.",
+        "flavor": "Giovanni: 'Wer nicht für andere kocht, kocht nur für sich. Und das ist traurig.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-brief-an-zukunft",
+      "template": "board-quest",
+      "title": "Zeitkapsel",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreibe einen Brief an dein zukünftiges Ich (in 1 Jahr). Versiegeln und wegpacken.",
+        "flavor": "Chronist Aeon: 'Die Zeit ist kein Fluss. Sie ist ein Kreis. Du wirst diesen Brief brauchen.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-challenge-zusammen",
+      "template": "board-quest",
+      "title": "Doppelte Stärke",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Starte eine Challenge mit einem Freund: 30 Tage X zusammen durchziehen.",
+        "flavor": "Allein ist es ein Vorsatz. Zusammen ist es ein Schwur.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 38,
+        "gold": 25
+      }
+    },
+    {
+      "id": "s-alte-freundschaft",
+      "template": "board-quest",
+      "title": "Vergessene Flamme",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Melde dich bei einem Freund den du 6+ Monate nicht kontaktiert hast. Richtig. Nicht nur 'Hey'.",
+        "flavor": "Freundschaften sind wie Feuer. Finnegan hat das mal in einem Lied verarbeitet. Sechs Strophen. Alle traurig.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-zufallsfreundlichkeit",
+      "template": "board-quest",
+      "title": "Random Act",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Tue etwas Nettes für einen Fremden: Tür aufhalten, Kaffee zahlen, Lächeln.",
+        "flavor": "Die kleinsten Gesten haben die größte Reichweite. Wie Steine in einem stillen See.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-gemeinsam-sport",
+      "template": "board-quest",
+      "title": "Trainingspartner",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Sport mit jemandem zusammen machen — Joggen, Gym, Wandern, irgendwas.",
+        "flavor": "Eiserne Mara: 'Der nächste Schritt ist leichter wenn jemand neben dir geht.'",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-date-planen",
+      "template": "board-quest",
+      "title": "Herzenssache",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Plane ein richtiges Date — nicht Netflix, nicht 'mal sehen', ein geplantes Date.",
+        "flavor": "Planung ist das Kompliment das man der Zukunft macht.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-danke-sagen",
+      "template": "board-quest",
+      "title": "Schuld begleichen",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Sage jemandem der dir geholfen hat aufrichtig und konkret Danke.",
+        "flavor": "Dankbarkeit ist die Währung die nie an Wert verliert.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 12,
+        "gold": 8
+      }
     }
   ]
 }
