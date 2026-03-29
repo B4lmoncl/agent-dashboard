@@ -171,6 +171,11 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   const ritual = state.rituals.find(r => r.id === req.params.id);
   if (!ritual) return res.status(404).json({ error: 'Ritual not found' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  // Verify playerId matches authenticated user (prevents XP injection to other players)
+  const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  if (!req.auth?.isAdmin && playerId.toLowerCase() !== authId) {
+    return res.status(403).json({ error: 'You can only complete your own rituals' });
+  }
 
   // Block completions on broken rituals — must recommit first
   if (ritual.status === 'broken') return res.status(400).json({ error: 'Ritual is broken. Recommit first.' });
@@ -352,6 +357,10 @@ router.post('/api/rituals/:id/violate', requireApiKey, (req, res) => {
   const ritual = state.rituals.find(r => r.id === req.params.id);
   if (!ritual) return res.status(404).json({ error: 'Ritual not found' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  if (!req.auth?.isAdmin && playerId.toLowerCase() !== authId) {
+    return res.status(403).json({ error: 'You can only violate your own rituals' });
+  }
 
   // Track longest streak before resetting
   if (!ritual.longestStreak || ritual.streak > ritual.longestStreak) {

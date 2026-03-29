@@ -2819,6 +2819,13 @@ export default function Dashboard() {
         playerLevel={currentPlayerLevel ?? 1}
         onNavigate={(room) => setDashView(room as typeof dashView)}
         onClose={() => setTowerMapOpen(false)}
+        notifications={{
+          haupthalle: { count: (navNotifs.worldboss || 0) + (dailyMissions?.milestones?.filter(m => !m.claimed && dailyMissions.earned >= m.threshold).length || 0) },
+          gewerbeviertel: { count: navNotifs.bazaar || 0 },
+          charakterturm: { count: navNotifs.character || 0 },
+          breakaway: { count: navNotifs.social || 0 },
+          turmspitze: { count: 0 },
+        }}
       />
     )}
     </DashboardProvider>

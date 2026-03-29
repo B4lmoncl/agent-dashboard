@@ -10,8 +10,9 @@ const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus, getStatBreakdown,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
   getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment, getGearScore,
-  getTodayBerlin,
+  getTodayBerlin, createPlayerLock, INVENTORY_CAP,
 } = require('../lib/helpers');
+const inventoryLock = createPlayerLock('inventory');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
@@ -63,7 +64,7 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
   else if (s <= 8) habit.color = 'green';
   else habit.color = 'blue';
   let lootDrop = null;
-  const uid = (playerId || '').toLowerCase();
+  const uid = authId; // Use authenticated user ID, not body param (prevents XP injection)
   const u = state.users[uid];
   if (u && direction === 'up') {
     // Daily gate: XP + loot only on first completion per habit per day
@@ -113,6 +114,8 @@ router.get('/api/player/:name/inventory', (req, res) => {
 
 router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -181,16 +184,13 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'bond': {
+      if (!u.companion) return res.status(400).json({ error: 'No companion active — equip a companion first.' });
       const amt = effect.amount || 1;
-      if (u.companion) {
-        u.companion.bondXp = (u.companion.bondXp || 0) + amt;
-        u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
-        updatedValues.bondXp = u.companion.bondXp;
-        updatedValues.bondLevel = u.companion.bondLevel;
-        message = `+${amt} Bond XP! ${u.companion.name || 'Your Companion'} is happy!`;
-      } else {
-        message = `+${amt} Bond XP! (No companion active)`;
-      }
+      u.companion.bondXp = (u.companion.bondXp || 0) + amt;
+      u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+      updatedValues.bondXp = u.companion.bondXp;
+      updatedValues.bondLevel = u.companion.bondLevel;
+      message = `+${amt} Bond XP! ${u.companion.name || 'Your Companion'} is happy!`;
       break;
     }
     case 'streak_shield': {
@@ -214,6 +214,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'random_gear': {
+      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full!'; break; }
       const { level: playerLvl } = getLevelInfo(u.xp || 0);
       const eligible = state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl && !g.shopHidden);
       const pool = eligible.length > 0 ? eligible : state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl);
@@ -229,6 +230,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'random_gear_epic': {
+      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full!'; break; }
       const { level: playerLvl2 } = getLevelInfo(u.xp || 0);
       const minRarityIdx = RARITY_ORDER.indexOf('epic');
       const eligible2 = state.FULL_GEAR_ITEMS.filter(g =>
@@ -510,6 +512,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   }
 
   res.json({ ok: true, effect: effect || null, message, updatedValues });
+  } finally { inventoryLock.release(uid); }
 });
 
 // ─── Reorder inventory ────────────────────────────────────────────────────
@@ -554,6 +557,8 @@ router.post('/api/player/:name/inventory/lock/:itemId', requireAuth, requireSelf
 
 router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -565,6 +570,7 @@ router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireS
   saveUsers();
 
   res.json({ ok: true, discarded });
+  } finally { inventoryLock.release(uid); }
 });
 
 router.get('/api/shop/equipment', (req, res) => {
@@ -596,6 +602,8 @@ router.get('/api/gear-templates', (req, res) => {
 
 router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   if (!u.equipment) u.equipment = {};
@@ -709,6 +717,7 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   const legendaryEffects = getLegendaryEffects(uid);
   saveUsers();
   res.json({ ok: true, equipment: u.equipment, stats, legendaryEffects, gold: u.gold || 0, fromInventory: true });
+  } finally { inventoryLock.release(uid); }
 });
 
 router.get('/api/player/:name/stats', (req, res) => {
@@ -998,6 +1007,8 @@ router.get('/api/player/:name/character', (req, res) => {
 
 router.post('/api/player/:name/unequip/:slot', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   const slot = req.params.slot;
@@ -1031,6 +1042,7 @@ router.post('/api/player/:name/unequip/:slot', requireAuth, requireSelf('name'),
   const stats = getUserStats(uid);
   const legendaryEffects = getLegendaryEffects(uid);
   res.json({ ok: true, equipment: u.equipment, stats, legendaryEffects });
+  } finally { inventoryLock.release(uid); }
 });
 
 module.exports = router;

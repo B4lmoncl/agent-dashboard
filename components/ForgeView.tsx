@@ -166,6 +166,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
+  const [profCelebration, setProfCelebration] = useState<ProfessionDef | null>(null);
+  const [guideOpen, setGuideOpen] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
   const [craftCount, setCraftCount] = useState(1);
@@ -419,7 +421,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) setCraftPreview({ recipeId, data });
-    } catch { /* ignore */ }
+      else setCraftResult(data.error || "Preview failed");
+    } catch { setCraftResult("Network error"); }
     setPreviewLoading(null);
   };
 
@@ -676,7 +679,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) {
-        setCraftResult(data.message || "Profession chosen!");
+        const chosenProf = professions.find(p => p.id === profId);
+        if (chosenProf) setProfCelebration(chosenProf);
+        else setCraftResult(data.message || "Profession chosen!");
         fetchData();
         onRefresh?.();
       } else {
@@ -804,6 +809,43 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         </div>
       </div>
 
+      {/* ─── Profession Guide (expandable) ─────────────────────────────── */}
+      <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <button onClick={() => setGuideOpen(g => !g)} className="w-full flex items-center justify-between px-4 py-2.5 text-left" style={{ cursor: "pointer" }}>
+          <span className="text-xs font-semibold uppercase tracking-wider text-w30">
+            {chosenCount === 0 ? "Wie funktionieren Berufe?" : "Berufe-Handbuch"}
+          </span>
+          <span className="text-xs text-w20">{guideOpen ? "▲" : "▼"}</span>
+        </button>
+        {(guideOpen || chosenCount === 0) && (
+          <div className="px-4 pb-4 space-y-3 tab-content-enter" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
+              <div className="rounded-lg p-3" style={{ background: "rgba(249,115,22,0.04)", border: "1px solid rgba(249,115,22,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Beruf wählen</p>
+                <p className="text-xs text-w40">Klicke auf einen NPC um seinen Beruf zu lernen. Du kannst <strong className="text-w60">2 Hauptberufe</strong> (Rüstung/Waffen/Schmuck) gleichzeitig haben. Kochkunst und Verzauberung sind Nebenberufe und belegen keinen Slot.</p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#fbbf24" }}>Rezepte lernen</p>
+                <p className="text-xs text-w40">Kaufe Rezepte beim Meister für Gold. Seltene Rezepte droppen aus Quests (<span style={{ color: "#3b82f6" }}>Blau</span>) oder erfordern Fraktionsruf (<span style={{ color: "#a855f7" }}>Lila</span>). Unbekannte Rezepte erscheinen als <span className="text-w20">???</span>.</p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#22c55e" }}>Skill-System (0-300)</p>
+                <p className="text-xs text-w40">Jedes Craft hat eine Skill-Up Chance: <span style={{ color: "#f97316" }}>Orange</span> = 100%, <span style={{ color: "#eab308" }}>Gelb</span> = ~75%, <span style={{ color: "#22c55e" }}>Grün</span> = ~25%, <span className="text-w20">Grau</span> = 0%. Skill-Cap wird durch <strong className="text-w60">Rangtraining</strong> beim Meister erhöht.</p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#a855f7" }}>Ränge & Materialien</p>
+                <p className="text-xs text-w40">4 Ränge: <span style={{ color: "#22c55e" }}>Apprentice</span> → <span style={{ color: "#3b82f6" }}>Journeyman</span> → <span style={{ color: "#a855f7" }}>Expert</span> → <span style={{ color: "#f59e0b" }}>Artisan</span>. Materialien droppen automatisch aus Quests basierend auf deinem Beruf.</p>
+              </div>
+            </div>
+            {chosenCount === 0 && (
+              <p className="text-xs text-center pt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                Wähle unten einen Meister aus um deinen ersten Beruf zu erlernen.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* ─── NPC Grid (categorized) — materials shown per NPC card ────── */}
       {[
         { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"] },
@@ -911,6 +953,24 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   Gathering: {prof.gatheringAffinity.map(id => materialDefs.find(m => m.id === id)?.name || id).join(", ")}
                 </p>
               )}
+              {/* Quick output summary — what this profession creates */}
+              {!locked && !isChosen && (() => {
+                const outputs: Record<string, string> = {
+                  schmied: "Helme, Rüstungen, Stiefel",
+                  schneider: "Stoffrüstung (Helm, Körper, Stiefel)",
+                  lederverarbeiter: "Lederrüstung (Helm, Körper, Stiefel)",
+                  waffenschmied: "Waffen, Schilde",
+                  juwelier: "Ringe, Amulette, geschliffene Edelsteine",
+                  alchemist: "Tränke, Elixiere, Flasks",
+                  koch: "Mahlzeiten, Streak-Schutz, Buffs",
+                  verzauberer: "Verzauberungen, Vellums, Infusionen",
+                };
+                return outputs[prof.id] ? (
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+                    Stellt her: {outputs[prof.id]}
+                  </p>
+                ) : null;
+              })()}
               {locked && (
                 <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
                   Requires Player Level {prof.unlockCondition?.value || "?"}
@@ -1308,8 +1368,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 }} />
               ))}
               <div className="flex items-center gap-4 relative">
-                <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 16px ${selectedNpc.color}20` }}>
-                  <img src={selectedNpc.npcPortrait} alt="" width={80} height={80} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+                <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 20px ${selectedNpc.color}25` }}>
+                  <img src={selectedNpc.npcPortrait} alt="" width={96} height={96} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -1318,15 +1378,32 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${selectedNpc.rankColor}15`, color: selectedNpc.rankColor, border: `1px solid ${selectedNpc.rankColor}30` }}>{selectedNpc.rank}</span>
                     )}
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; Skill {selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.skillCap || 300}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; {selectedNpc.rank || "Novice"}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <div className={`w-32 progress-bar-diablo${skillUpFlash ? " skill-bar-flash" : ""}`} style={{ height: 7 }}>
-                      <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
-                    </div>
-                    <span className="text-sm font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.maxSkill || 300}</span>
+                    <TipCustom title="Profession Skill" icon="◆" accent={selectedNpc.color} body={<>
+                      <p>Current Skill: <strong>{selectedNpc.skill || 0}</strong> / {selectedNpc.skillCap || 75} (Cap)</p>
+                      <p style={{ marginTop: 4, opacity: 0.6 }}>Maximum possible: {selectedNpc.maxSkill || 300}. Train higher ranks to raise your cap.</p>
+                      <p style={{ marginTop: 4, opacity: 0.6 }}>Skill-Up Colors: <span style={{ color: "#f97316" }}>Orange</span>=100%, <span style={{ color: "#eab308" }}>Yellow</span>=~75%, <span style={{ color: "#22c55e" }}>Green</span>=~25%, Gray=0%</p>
+                    </>}>
+                      <div className={`w-32 progress-bar-diablo${skillUpFlash ? " skill-bar-flash" : ""}`} style={{ height: 7, cursor: "help" }}>
+                        <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
+                      </div>
+                    </TipCustom>
+                    <span className="text-sm font-mono" style={{ color: selectedNpc.rankColor || "rgba(255,255,255,0.35)" }}>
+                      {selectedNpc.skill || selectedNpc.playerXp || 0}<span style={{ color: "rgba(255,255,255,0.2)" }}>/{selectedNpc.skillCap || 75}</span>
+                    </span>
                   </div>
                 </div>
               </div>
+              {/* WoW-style "Visit Trainer" warning when near skill cap */}
+              {selectedNpc.chosen && (selectedNpc.skill || 0) >= (selectedNpc.skillCap || 75) - 5 && (selectedNpc.skill || 0) < (selectedNpc.maxSkill || 300) && (
+                <div className="mt-2 rounded-lg px-3 py-2 flex items-center gap-2" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                  <span className="text-xs" style={{ color: "#fbbf24" }}>&#9888;</span>
+                  <p className="text-xs" style={{ color: "#fbbf24" }}>
+                    Dein Skill nähert sich dem Cap ({selectedNpc.skillCap || 75}). Gehe zum <strong onClick={() => setNpcModalTab("trainer" as typeof npcModalTab)} style={{ cursor: "pointer", textDecoration: "underline" }}>Trainer-Tab</strong> um deinen Rang zu erhöhen!
+                  </p>
+                </div>
+              )}
               {/* Speech bubble + drop profession */}
               <div className="mt-3 flex items-start gap-2">
                 <div className="flex-1 px-4 py-2.5 rounded-lg text-sm italic" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", borderLeft: `3px solid ${selectedNpc.color}40` }}>
@@ -1396,17 +1473,31 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Browse recipes below to see what this profession offers.</p>
                   </div>
                 )}
-                {/* Recipe discovery counter */}
+                {/* Recipe discovery counter + WoW-style color breakdown */}
                 {(() => {
                   const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
                   const discovered = profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden).length;
                   const total = totalRecipesByProf[selectedNpc.id] || profRecipes.length;
+                  const learned = profRecipes.filter(r => r.learned !== false && !(r as unknown as Record<string, unknown>).hidden);
+                  const colorCounts = { orange: 0, yellow: 0, green: 0, gray: 0 };
+                  for (const r of learned) { colorCounts[(r.skillUpColor as keyof typeof colorCounts) || "gray"]++; }
                   return (
-                    <div className="px-5 pt-3 flex items-center justify-between">
-                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
-                        {discovered}/{total} recipes discovered
-                      </span>
-                      {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                    <div className="px-5 pt-3 space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                          {discovered}/{total} recipes discovered
+                        </span>
+                        {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                      </div>
+                      {selectedNpc.chosen && learned.length > 0 && (
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill-up:</span>
+                          {colorCounts.orange > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#f97316" }}>{colorCounts.orange}</span>}
+                          {colorCounts.yellow > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#eab308" }}>{colorCounts.yellow}</span>}
+                          {colorCounts.green > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#22c55e" }}>{colorCounts.green}</span>}
+                          {colorCounts.gray > 0 && <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>{colorCounts.gray}</span>}
+                        </div>
+                      )}
                     </div>
                   );
                 })()}
@@ -1955,12 +2046,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  {/* Intro */}
-                  <div>
-                    <p className="text-sm font-bold" style={{ color: "#a855f7" }}>Stat Enchanting</p>
-                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      Pick one stat to reroll. Once chosen, that stat is locked — only it can be rerolled on this item. Cost escalates with each reroll.
+                  {/* Intro — D3 Mystic style explanation */}
+                  <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.12)" }}>
+                    <p className="text-xs font-bold mb-1" style={{ color: "#a855f7" }}>Eldrics Verzauberung — Stat Reroll</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      Wähle einen Stat auf deinem ausgerüsteten Item. Eldric zeigt dir zwei neue Optionen — du wählst, ob du den alten Wert behältst oder einen neuen nimmst.
                     </p>
+                    <div className="mt-2 space-y-0.5">
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>◆ Einmal gewählt, ist der Stat <strong className="text-w50">permanent gesperrt</strong> — nur er kann rerolled werden</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>◆ Kosten steigen mit jedem Reroll (Gold + Essenz)</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>◆ Alle anderen Stats bleiben unberührt</p>
+                    </div>
                   </div>
 
                   {/* Slot selector */}
@@ -2174,6 +2270,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               </div>
             )}
             {(npcModalTab as string) === "trainer" && selectedNpc.chosen && (() => {
+              // Trainer tab explanation
+              const trainerIntro = (
+                <div className="px-5 pt-3 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    Kaufe Rezepte bei {selectedNpc.npcName}. Rezepte sind nach Rang sortiert — du brauchst das nötige Skill-Level und Gold.
+                    Trainiere deinen Rang um höhere Rezepte freizuschalten.
+                  </p>
+                </div>
+              );
               const trainerRecipes = recipes
                 .filter(r => r.profession === selectedNpc.id && r.source === "trainer" && (r.trainerCost ?? 0) > 0)
                 .sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));
@@ -2201,7 +2306,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               const canTrainRank = nextRank && meetsRankLevel && meetsRankSkill && canAffordRank;
 
               return (
-                <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="tab-content-enter space-y-4">
+                  {trainerIntro}
+                  <div className="px-5 pb-4 space-y-4">
                   {/* ─── Train Rank Banner ──────────────────────────── */}
                   {nearCap && nextRank && (
                     <div className="rounded-lg p-4" style={{
@@ -2327,6 +2434,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   {trainerRecipes.length === 0 && (
                     <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No trainer recipes for this profession.</p>
                   )}
+                  </div>
                 </div>
               );
             })()}
@@ -2353,9 +2461,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               }
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  {/* Schmiedekunst explanation */}
+                  <div className="rounded-lg p-3 space-y-1" style={{ background: "rgba(255,140,0,0.03)", border: "1px solid rgba(255,140,0,0.1)" }}>
+                    <p className="text-xs font-bold" style={{ color: "#ff8c00" }}>Schmiedekunst — Grimvars Spezialgebiet</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ◆ <strong className="text-w50">Zerlegen</strong>: Rüstung in Essenz + Materialien auflösen. Höhere Seltenheit = mehr Essenz.
+                    </p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ◆ <strong className="text-w50">Transmutation</strong>: 3 epische Items desselben Slots + 500g = 1 legendäres Item.
+                    </p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ◆ <strong className="text-w50">Reforge</strong>: Stats eines Items komplett neu würfeln (Gold + Materialien).
+                    </p>
+                  </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      Dismantle gear into <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materials</strong>.
+                      Zerlegen: Gear → <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materialien</strong>
                     </p>
                     <button
                       onClick={() => { setAutoSalvageOpen(true); setAutoSalvageRarity("common"); fetchSalvagePreview("common"); }}
@@ -2567,9 +2688,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               const lockedSlot = firstSelected?.slot || null;
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
-                    Combine 3 Epic gear pieces from the same slot + 500 Gold to create a Legendary item.
-                  </p>
+                  <div className="rounded-lg p-3" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.12)" }}>
+                    <p className="text-xs font-bold mb-1" style={{ color: "#22c55e" }}>Ysoldes Transmutation</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      Combine 3 Epic gear pieces from the <strong className="text-w60">same equipment slot</strong> + 500 Gold → 1 random Legendary item for that slot. The 3 Epics are destroyed in the process. Choose wisely.
+                    </p>
+                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                      Tip: Mondlicht-Schmiede (22:00-06:00) gives +20% better minimum rolls on the result.
+                    </p>
+                  </div>
 
                   {transmuteResult && (
                     <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", color: "#22c55e" }}>
@@ -2736,6 +2863,88 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <div className="flex gap-2">
               <button onClick={() => setConfirmAction(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
               <button onClick={confirmAction.onConfirm} className="flex-1 text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}>Confirm</button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
+      {profCelebration && createPortal(
+        <div className="fixed inset-0 z-[160] flex items-center justify-center modal-backdrop" onClick={() => setProfCelebration(null)}>
+          <div className="w-full max-w-md rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
+            {/* Accent bar */}
+            <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
+            <div className="p-6 space-y-5">
+              {/* Header — NPC portrait + congratulations */}
+              <div className="flex items-center gap-4">
+                {profCelebration.npcPortrait && (
+                  <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${profCelebration.color}60`, boxShadow: `0 0 20px ${profCelebration.color}20` }}>
+                    <img src={profCelebration.npcPortrait} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+                  </div>
+                )}
+                <div>
+                  <p className="text-xs uppercase tracking-widest font-semibold" style={{ color: `${profCelebration.color}80` }}>Neuer Beruf erlernt!</p>
+                  <p className="text-xl font-bold mt-1" style={{ color: profCelebration.color }}>{profCelebration.name}</p>
+                  <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>Meister: {profCelebration.npcName}</p>
+                </div>
+              </div>
+
+              {/* NPC greeting — flavor */}
+              <div className="rounded-lg px-4 py-3" style={{ background: `${profCelebration.color}08`, borderLeft: `3px solid ${profCelebration.color}40` }}>
+                <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.5)" }}>&ldquo;{profCelebration.npcGreeting}&rdquo;</p>
+              </div>
+
+              {/* What this profession creates — profession-specific */}
+              <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Was du jetzt herstellen kannst</p>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {profCelebration.id === "schmied" && "Plattenrüstung: Helme, Brustpanzer und Stiefel aus Metall. Schwere Rüstung mit hoher Ausdauer. Außerdem: Reforge, Salvage und Transmutation im Schmiedekunst-Tab."}
+                  {profCelebration.id === "schneider" && "Stoffrüstung: Helme, Roben und Schuhe aus Stoff. Leichte Rüstung mit hoher Weisheit und Fokus."}
+                  {profCelebration.id === "lederverarbeiter" && "Lederrüstung: Helme, Wämser und Stiefel aus Leder. Mittlere Rüstung mit Ausdauer und Glück."}
+                  {profCelebration.id === "waffenschmied" && "Waffen und Schilde: Schwerter, Äxte, Dolche, Keulen und Schilde für jeden Kampfstil."}
+                  {profCelebration.id === "juwelier" && "Schmuck: Ringe und Amulette mit konzentrierten Stats. Außerdem: Edelsteine schleifen und zusammenführen."}
+                  {profCelebration.id === "alchemist" && "Tränke und Elixiere: Temporäre Buffs für XP, Gold, Glück und mehr. Außerdem: Material-Transmutationen."}
+                  {profCelebration.id === "koch" && "Mahlzeiten und Snacks: Streak-Schutz, Forge-Temperatur-Boosts und der legendäre Champion's Feast."}
+                  {profCelebration.id === "verzauberer" && "Verzauberungen: Permanente und temporäre Enchants für ausgerüstete Items. Außerdem: Stat-Rerolling im Enchanting-Tab."}
+                </p>
+              </div>
+
+              {/* How it works — WoW Classic style guide */}
+              <div className="space-y-2">
+                <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>So funktioniert dein Beruf</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#fbbf24" }}>1. Rezepte lernen</p>
+                    <p className="text-xs text-w30 mt-0.5">Kaufe beim Meister im Trainer-Tab oder finde seltene Drops.</p>
+                  </div>
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>2. Materialien sammeln</p>
+                    <p className="text-xs text-w30 mt-0.5">Droppen automatisch aus Quests basierend auf deinem Beruf.</p>
+                  </div>
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#f97316" }}>3. Craften &amp; Skillen</p>
+                    <p className="text-xs text-w30 mt-0.5">Jedes Craft gibt Skill-XP. <span style={{ color: "#f97316" }}>Orange</span>=100%, <span style={{ color: "#eab308" }}>Gelb</span>=75%, <span style={{ color: "#22c55e" }}>Grün</span>=25%.</p>
+                  </div>
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#a855f7" }}>4. Ränge aufsteigen</p>
+                    <p className="text-xs text-w30 mt-0.5">Trainiere beim Meister um das Skill-Cap zu erhöhen (bis 300).</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pro tips */}
+              <div className="rounded-lg px-3 py-2" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}>
+                <p className="text-xs" style={{ color: "#fbbf24" }}>Tipp: Dein erster Craft des Tages gibt <strong>doppeltes Skill-XP</strong>. Nachts (22-06 Uhr) sind die Mindest-Rolls auf gecrafteten Items +20% besser.</p>
+              </div>
+
+              <button
+                onClick={() => setProfCelebration(null)}
+                className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
+                style={{ background: `${profCelebration.color}20`, color: profCelebration.color, border: `1px solid ${profCelebration.color}40`, cursor: "pointer" }}
+              >
+                Auf zum ersten Craft!
+              </button>
             </div>
           </div>
         </div>,

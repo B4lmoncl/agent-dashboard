@@ -223,8 +223,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 gridTemplateColumns: "32px 1fr 60px 60px 60px",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
                 background: isMe ? (rankImproved ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.06)") : isTop ? `${color}08` : "transparent",
-                borderLeft: isMe ? `2px solid ${rankImproved ? "rgba(34,197,94,0.5)" : "rgba(167,139,250,0.3)"}` : "2px solid transparent",
-                boxShadow: rankImproved ? "inset 0 0 16px rgba(34,197,94,0.06)" : "none",
+                borderLeft: isMe ? `2px solid ${rankImproved ? "rgba(34,197,94,0.5)" : "rgba(167,139,250,0.3)"}` : isTop ? `2px solid ${color}30` : "2px solid transparent",
+                boxShadow: rankImproved ? "inset 0 0 16px rgba(34,197,94,0.06)" : isTop ? `inset 0 0 20px ${color}06` : "none",
               }}
             >
               <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>
@@ -233,8 +233,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               </span>
               <div className="flex items-center gap-2 min-w-0">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0"
-                  style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, color: "#fff" }}
+                  className={`${isTop ? "w-10 h-10" : "w-8 h-8"} rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0`}
+                  style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, color: "#fff", boxShadow: isTop ? `0 0 8px ${color}30` : "none" }}
                 >
                   {entry.avatar ?? meta.avatar}
                 </div>

@@ -48,15 +48,30 @@ function applyShopEffect(u, item) {
     return `+${forgeTemp} Forge Temperature + ${streakShields} Streak Shield!`;
   }
 
+  // Rift time extension — directly extend active rift timer
+  if (type === 'rift_time_extension') {
+    if (!u.activeRift || !u.activeRift.active) return 'No active rift to extend.';
+    if (u.activeRift.extended) return 'Rift timer already extended this run.';
+    const hours = item.effect.hours || 6;
+    const tier = u.activeRift.tier;
+    const baseTL = u.activeRift.timeLimitHours || { normal: 72, hard: 48, legendary: 36, mythic: 30 }[tier] || 48;
+    u.activeRift.timeLimitHours = baseTL + hours;
+    u.activeRift.extended = true;
+    return `Rift timer extended by ${hours} hours!`;
+  }
+
   // Buff-based effects
   u.activeBuffs = u.activeBuffs || [];
   u.activeBuffs.push({ type, questsRemaining, activatedAt: now() });
   const buffNames = {
     xp_boost_10: `+10% XP for ${questsRemaining} quests`,
+    xp_boost_15: `+15% XP for ${questsRemaining} quests`,
     gold_boost_10: `+10% Gold for ${questsRemaining} quests`,
+    gold_boost_15: `+15% Gold for ${questsRemaining} quests`,
     luck_boost_20: `Increased loot chance for ${questsRemaining} quests`,
     streak_shield: 'Streak Shield activated!',
     material_double: `Double material drops for ${questsRemaining} quests`,
+    world_boss_damage_boost: `+${item.effect.value || 25}% boss damage for ${questsRemaining} quests`,
   };
   return buffNames[type] || 'Effect activated!';
 }
