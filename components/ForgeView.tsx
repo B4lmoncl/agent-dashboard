@@ -953,6 +953,24 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   Gathering: {prof.gatheringAffinity.map(id => materialDefs.find(m => m.id === id)?.name || id).join(", ")}
                 </p>
               )}
+              {/* Quick output summary — what this profession creates */}
+              {!locked && !isChosen && (() => {
+                const outputs: Record<string, string> = {
+                  schmied: "Helme, Rüstungen, Stiefel",
+                  schneider: "Stoffrüstung (Helm, Körper, Stiefel)",
+                  lederverarbeiter: "Lederrüstung (Helm, Körper, Stiefel)",
+                  waffenschmied: "Waffen, Schilde",
+                  juwelier: "Ringe, Amulette, geschliffene Edelsteine",
+                  alchemist: "Tränke, Elixiere, Flasks",
+                  koch: "Mahlzeiten, Streak-Schutz, Buffs",
+                  verzauberer: "Verzauberungen, Vellums, Infusionen",
+                };
+                return outputs[prof.id] ? (
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+                    Stellt her: {outputs[prof.id]}
+                  </p>
+                ) : null;
+              })()}
               {locked && (
                 <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
                   Requires Player Level {prof.unlockCondition?.value || "?"}
@@ -2826,38 +2844,78 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
       {profCelebration && createPortal(
         <div className="fixed inset-0 z-[160] flex items-center justify-center modal-backdrop" onClick={() => setProfCelebration(null)}>
-          <div className="w-full max-w-sm rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}10 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 60px ${profCelebration.color}15` }} onClick={e => e.stopPropagation()}>
+          <div className="w-full max-w-md rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
             {/* Accent bar */}
             <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
-            <div className="p-6 text-center space-y-4">
-              {/* NPC portrait */}
-              {profCelebration.npcPortrait && (
-                <div className="w-16 h-16 mx-auto rounded-xl overflow-hidden" style={{ border: `2px solid ${profCelebration.color}60` }}>
-                  <img src={profCelebration.npcPortrait} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+            <div className="p-6 space-y-5">
+              {/* Header — NPC portrait + congratulations */}
+              <div className="flex items-center gap-4">
+                {profCelebration.npcPortrait && (
+                  <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${profCelebration.color}60`, boxShadow: `0 0 20px ${profCelebration.color}20` }}>
+                    <img src={profCelebration.npcPortrait} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+                  </div>
+                )}
+                <div>
+                  <p className="text-xs uppercase tracking-widest font-semibold" style={{ color: `${profCelebration.color}80` }}>Neuer Beruf erlernt!</p>
+                  <p className="text-xl font-bold mt-1" style={{ color: profCelebration.color }}>{profCelebration.name}</p>
+                  <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>Meister: {profCelebration.npcName}</p>
                 </div>
-              )}
-              <div>
-                <p className="text-lg font-bold" style={{ color: profCelebration.color }}>{profCelebration.npcName || profCelebration.name}</p>
-                <p className="text-xs text-w30 mt-1">hat dich als Lehrling akzeptiert!</p>
               </div>
+
+              {/* NPC greeting — flavor */}
+              <div className="rounded-lg px-4 py-3" style={{ background: `${profCelebration.color}08`, borderLeft: `3px solid ${profCelebration.color}40` }}>
+                <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.5)" }}>&ldquo;{profCelebration.npcGreeting}&rdquo;</p>
+              </div>
+
+              {/* What this profession creates — profession-specific */}
               <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <p className="text-sm font-bold mb-2" style={{ color: "#e8e8e8" }}>Dein neuer Beruf: {profCelebration.name}</p>
-                <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{profCelebration.description || ""}</p>
-                <div className="space-y-1.5 text-left">
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Lerne Rezepte bei deinem Meister (Gold-Kosten)</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Crafte Items um Skill zu gewinnen (0-300)</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Skill-Up Farben: <span style={{ color: "#f97316" }}>Orange</span> = sicher, <span style={{ color: "#eab308" }}>Gelb</span> = wahrscheinlich, <span style={{ color: "#22c55e" }}>Grün</span> = selten, <span style={{ color: "#6b7280" }}>Grau</span> = kein XP</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Trainiere Ränge beim Meister um dein Skill-Cap zu erhöhen</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Seltene Rezepte droppen aus Quests oder von Fraktionen</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Erster Craft des Tages gibt doppeltes Skill-XP!</p>
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Was du jetzt herstellen kannst</p>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {profCelebration.id === "schmied" && "Plattenrüstung: Helme, Brustpanzer und Stiefel aus Metall. Schwere Rüstung mit hoher Ausdauer. Außerdem: Reforge, Salvage und Transmutation im Schmiedekunst-Tab."}
+                  {profCelebration.id === "schneider" && "Stoffrüstung: Helme, Roben und Schuhe aus Stoff. Leichte Rüstung mit hoher Weisheit und Fokus."}
+                  {profCelebration.id === "lederverarbeiter" && "Lederrüstung: Helme, Wämser und Stiefel aus Leder. Mittlere Rüstung mit Ausdauer und Glück."}
+                  {profCelebration.id === "waffenschmied" && "Waffen und Schilde: Schwerter, Äxte, Dolche, Keulen und Schilde für jeden Kampfstil."}
+                  {profCelebration.id === "juwelier" && "Schmuck: Ringe und Amulette mit konzentrierten Stats. Außerdem: Edelsteine schleifen und zusammenführen."}
+                  {profCelebration.id === "alchemist" && "Tränke und Elixiere: Temporäre Buffs für XP, Gold, Glück und mehr. Außerdem: Material-Transmutationen."}
+                  {profCelebration.id === "koch" && "Mahlzeiten und Snacks: Streak-Schutz, Forge-Temperatur-Boosts und der legendäre Champion's Feast."}
+                  {profCelebration.id === "verzauberer" && "Verzauberungen: Permanente und temporäre Enchants für ausgerüstete Items. Außerdem: Stat-Rerolling im Enchanting-Tab."}
+                </p>
+              </div>
+
+              {/* How it works — WoW Classic style guide */}
+              <div className="space-y-2">
+                <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>So funktioniert dein Beruf</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#fbbf24" }}>1. Rezepte lernen</p>
+                    <p className="text-xs text-w30 mt-0.5">Kaufe beim Meister im Trainer-Tab oder finde seltene Drops.</p>
+                  </div>
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>2. Materialien sammeln</p>
+                    <p className="text-xs text-w30 mt-0.5">Droppen automatisch aus Quests basierend auf deinem Beruf.</p>
+                  </div>
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#f97316" }}>3. Craften &amp; Skillen</p>
+                    <p className="text-xs text-w30 mt-0.5">Jedes Craft gibt Skill-XP. <span style={{ color: "#f97316" }}>Orange</span>=100%, <span style={{ color: "#eab308" }}>Gelb</span>=75%, <span style={{ color: "#22c55e" }}>Grün</span>=25%.</p>
+                  </div>
+                  <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#a855f7" }}>4. Ränge aufsteigen</p>
+                    <p className="text-xs text-w30 mt-0.5">Trainiere beim Meister um das Skill-Cap zu erhöhen (bis 300).</p>
+                  </div>
                 </div>
               </div>
+
+              {/* Pro tips */}
+              <div className="rounded-lg px-3 py-2" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}>
+                <p className="text-xs" style={{ color: "#fbbf24" }}>Tipp: Dein erster Craft des Tages gibt <strong>doppeltes Skill-XP</strong>. Nachts (22-06 Uhr) sind die Mindest-Rolls auf gecrafteten Items +20% besser.</p>
+              </div>
+
               <button
                 onClick={() => setProfCelebration(null)}
                 className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
                 style={{ background: `${profCelebration.color}20`, color: profCelebration.color, border: `1px solid ${profCelebration.color}40`, cursor: "pointer" }}
               >
-                Los geht&apos;s!
+                Auf zum ersten Craft!
               </button>
             </div>
           </div>
