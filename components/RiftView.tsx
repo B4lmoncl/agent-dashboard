@@ -252,12 +252,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       )}
 
       {/* Active Rift */}
-      {activeRift && !activeRift.failed && (() => {
-        const totalTime = new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime();
-        const remaining = new Date(activeRift.expiresAt).getTime() - Date.now();
-        const isUrgent = !activeRift.completed && remaining > 0 && remaining < totalTime * 0.25;
-        return true;
-      })() && (
+      {activeRift && !activeRift.failed && (
         <div className={`rounded-xl p-5 space-y-4${!activeRift.completed && (new Date(activeRift.expiresAt).getTime() - Date.now()) < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 && (new Date(activeRift.expiresAt).getTime() - Date.now()) > 0 ? " rift-urgent" : ""}`} style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -301,11 +296,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   });
                   const d = await r.json();
                   if (r.ok) {
+                    setMessage({ text: d.message || "Timer extended!", type: "success" });
                     fetchRift();
                   } else {
-                    alert(d.error || "Failed to extend");
+                    setMessage({ text: d.error || "Failed to extend", type: "error" });
                   }
-                } catch { alert("Network error"); }
+                } catch { setMessage({ text: "Network error", type: "error" }); }
+                setTimeout(() => setMessage(null), 4000);
               }}
               title="Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"
               className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
