@@ -423,7 +423,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 ...(!locked ? { ["--glow-color" as string]: `${tier.color}30` } : {}),
               }}>
                 <div className="text-center">
-                  {tier.icon?.startsWith("/") ? <img src={tier.icon} alt="" width={32} height={32} className="img-render-auto mx-auto" /> : <span className="text-2xl">{tier.icon}</span>}
+                  {tier.icon?.startsWith("/") ? (
+                    <div className="w-16 h-16 mx-auto rounded-xl overflow-hidden mb-1" style={{ border: `1px solid ${tier.color}30`, boxShadow: `0 0 12px ${tier.color}15` }}>
+                      <img src={tier.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+                    </div>
+                  ) : <span className="text-2xl">{tier.icon}</span>}
                   <TipCustom
                     title={tier.name}
                     icon={tier.icon}
