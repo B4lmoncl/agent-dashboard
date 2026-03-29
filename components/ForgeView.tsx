@@ -2407,9 +2407,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               }
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  {/* Schmiedekunst explanation */}
+                  <div className="rounded-lg p-3 space-y-1" style={{ background: "rgba(255,140,0,0.03)", border: "1px solid rgba(255,140,0,0.1)" }}>
+                    <p className="text-xs font-bold" style={{ color: "#ff8c00" }}>Schmiedekunst — Grimvars Spezialgebiet</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ◆ <strong className="text-w50">Zerlegen</strong>: Rüstung in Essenz + Materialien auflösen. Höhere Seltenheit = mehr Essenz.
+                    </p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ◆ <strong className="text-w50">Transmutation</strong>: 3 epische Items desselben Slots + 500g = 1 legendäres Item.
+                    </p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ◆ <strong className="text-w50">Reforge</strong>: Stats eines Items komplett neu würfeln (Gold + Materialien).
+                    </p>
+                  </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      Dismantle gear into <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materials</strong>.
+                      Zerlegen: Gear → <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materialien</strong>
                     </p>
                     <button
                       onClick={() => { setAutoSalvageOpen(true); setAutoSalvageRarity("common"); fetchSalvagePreview("common"); }}
