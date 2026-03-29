@@ -189,10 +189,13 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const parent = canvas.parentElement;
+
     const resize = () => {
+      if (!parent) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = window.innerWidth;
-      const h = window.innerHeight;
+      const w = parent.clientWidth;
+      const h = parent.scrollHeight; // full scrollable height, not just visible
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
@@ -200,25 +203,27 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
       const ctx = canvas.getContext("2d");
       if (ctx) ctx.scale(dpr, dpr);
       sizeRef.current = { w, h };
-      // Regenerate veins on resize with deterministic seed from viewport
       veinsRef.current = generateVeinNetwork(w, h, Math.floor(w * 7 + h * 13));
     };
 
     resize();
     animRef.current = requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
+
+    // Observe parent size changes (content loading, view switches)
+    const ro = new ResizeObserver(resize);
+    ro.observe(parent!);
 
     return () => {
       cancelAnimationFrame(animRef.current);
-      window.removeEventListener("resize", resize);
+      ro.disconnect();
     };
   }, [draw]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 1, opacity: 0.6 }}
+      className="absolute inset-0 pointer-events-none"
+      style={{ zIndex: 0, opacity: 0.6, borderRadius: "inherit" }}
     />
   );
 }
