@@ -1368,8 +1368,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 }} />
               ))}
               <div className="flex items-center gap-4 relative">
-                <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 16px ${selectedNpc.color}20` }}>
-                  <img src={selectedNpc.npcPortrait} alt="" width={80} height={80} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+                <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 20px ${selectedNpc.color}25` }}>
+                  <img src={selectedNpc.npcPortrait} alt="" width={96} height={96} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
