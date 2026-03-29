@@ -2216,6 +2216,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               </div>
             )}
             {(npcModalTab as string) === "trainer" && selectedNpc.chosen && (() => {
+              // Trainer tab explanation
+              const trainerIntro = (
+                <div className="px-5 pt-3 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    Kaufe Rezepte bei {selectedNpc.npcName}. Rezepte sind nach Rang sortiert — du brauchst das nötige Skill-Level und Gold.
+                    Trainiere deinen Rang um höhere Rezepte freizuschalten.
+                  </p>
+                </div>
+              );
               const trainerRecipes = recipes
                 .filter(r => r.profession === selectedNpc.id && r.source === "trainer" && (r.trainerCost ?? 0) > 0)
                 .sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));
@@ -2243,7 +2252,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               const canTrainRank = nextRank && meetsRankLevel && meetsRankSkill && canAffordRank;
 
               return (
-                <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="tab-content-enter space-y-4">
+                  {trainerIntro}
+                  <div className="px-5 pb-4 space-y-4">
                   {/* ─── Train Rank Banner ──────────────────────────── */}
                   {nearCap && nextRank && (
                     <div className="rounded-lg p-4" style={{
@@ -2369,6 +2380,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   {trainerRecipes.length === 0 && (
                     <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No trainer recipes for this profession.</p>
                   )}
+                  </div>
                 </div>
               );
             })()}
