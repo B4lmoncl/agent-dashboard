@@ -100,7 +100,9 @@ export default function DashboardModals({
       if (r.ok) {
         setConvResult({ text: `Converted ${d.spent} ${convFrom} → ${d.received} ${convTo}`, type: "success" });
         setConvAmount("");
-        // Update displayed currencies from backend response
+        // Sync displayed balances from backend response (mutation is intentional —
+        // loggedInUser.currencies is the live object from state.users, and we
+        // update it to reflect the conversion immediately without full refresh)
         if (d.currencies && loggedInUser?.currencies) {
           Object.assign(loggedInUser.currencies, d.currencies);
         }
