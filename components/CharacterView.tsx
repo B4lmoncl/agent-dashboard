@@ -300,11 +300,45 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
 
         {/* Frame Selection */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
-          <label className="text-xs font-semibold block mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
+          <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
+          <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.2)" }}>
+            Frames add a colored border and glow effect to your player card visible to everyone. Earn frames from faction reputation (Revered), the Season Pass, World Boss #1, Dungeon first-clears, and the Currency Shops.
+          </p>
+
+          {/* Preview: how current frame looks */}
+          <div className="rounded-lg p-3 mb-3 flex items-center gap-3" style={{
+            background: "rgba(255,255,255,0.02)",
+            border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}80` : "1px solid rgba(255,255,255,0.06)",
+            boxShadow: equippedFrameId && frames.find(f => f.id === equippedFrameId)?.glow ? `0 0 12px ${frames.find(f => f.id === equippedFrameId)?.color}30` : "none",
+          }}>
+            <img src={`/images/portraits/hero-${avatarStyle}.png`} alt="" className="w-12 h-12 rounded-lg object-cover" style={{
+              imageRendering: "auto",
+              border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}` : "2px solid rgba(255,255,255,0.1)",
+            }} />
+            <div>
+              <p className="text-xs font-semibold" style={{ color: equippedFrameId ? frames.find(f => f.id === equippedFrameId)?.color : "rgba(255,255,255,0.4)" }}>
+                {equippedFrameId ? frames.find(f => f.id === equippedFrameId)?.name || "Frame" : "No Frame"}
+              </p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                {equippedFrameId ? "Your player card glows with this color" : "Your player card has no special border"}
+              </p>
+            </div>
+          </div>
+
           {frames.length === 0 ? (
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No frames unlocked yet. Earn frames from factions, achievements, and shops.</p>
+            <div className="rounded-lg p-4 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No frames unlocked yet.</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }}>Earn frames from:</p>
+              <div className="flex flex-wrap gap-1 mt-2 justify-center">
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Factions (Revered)</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Season Pass</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>World Boss #1</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Dungeon First-Clear</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Currency Shops</span>
+              </div>
+            </div>
           ) : (
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {/* Remove frame option */}
               <button
                 onClick={() => equippedFrameId && equipFrame(null)}
@@ -319,7 +353,8 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                 }}
               >
                 <span className="w-4 h-4 rounded-full" style={{ border: "2px solid rgba(255,255,255,0.15)" }} />
-                <span>{frameLoading === "__remove" ? "..." : "No Frame"}</span>
+                <span className="flex-1">{frameLoading === "__remove" ? "..." : "No Frame"}</span>
+                {!equippedFrameId && <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Active</span>}
               </button>
               {frames.map(f => {
                 const isActive = equippedFrameId === f.id;
@@ -328,25 +363,30 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                     key={f.id}
                     onClick={() => !isActive && equipFrame(f.id)}
                     disabled={isActive || frameLoading === f.id}
-                    title={isActive ? "Currently equipped" : f.source || `Equip ${f.name}`}
-                    className="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center gap-2"
+                    title={isActive ? "Currently equipped" : `Equip ${f.name}`}
+                    className="w-full text-left px-3 py-2.5 rounded-lg text-xs flex items-center gap-2.5"
                     style={{
-                      background: isActive ? `${f.color}15` : "rgba(255,255,255,0.03)",
+                      background: isActive ? `${f.color}12` : "rgba(255,255,255,0.03)",
                       border: `1px solid ${isActive ? `${f.color}50` : "rgba(255,255,255,0.07)"}`,
-                      color: isActive ? f.color : "rgba(255,255,255,0.55)",
                       cursor: isActive || frameLoading === f.id ? "not-allowed" : "pointer",
                     }}
                   >
+                    {/* Color preview circle with glow */}
                     <span
-                      className="w-4 h-4 rounded-full flex-shrink-0"
+                      className="w-5 h-5 rounded-full flex-shrink-0"
                       style={{
                         background: `${f.color}30`,
                         border: `2px solid ${f.color}`,
-                        boxShadow: f.glow ? `0 0 6px ${f.color}60` : "none",
+                        boxShadow: f.glow ? `0 0 8px ${f.color}60` : "none",
                       }}
                     />
-                    <span className="flex-1">{f.name}</span>
-                    {isActive && <span style={{ color: f.color }}>Equipped</span>}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold" style={{ color: isActive ? f.color : "rgba(255,255,255,0.6)" }}>{f.name}</p>
+                      <p style={{ color: "rgba(255,255,255,0.2)", fontSize: 11 }}>
+                        {f.source || (f.glow ? "Glowing border + card effect" : "Colored border")}
+                      </p>
+                    </div>
+                    {isActive && <span className="text-xs font-semibold" style={{ color: f.color }}>Equipped</span>}
                     {frameLoading === f.id && <span style={{ color: "rgba(255,255,255,0.3)" }}>...</span>}
                   </button>
                 );
