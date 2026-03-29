@@ -217,6 +217,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const closeNpcModal = useCallback(() => {
     setSelectedNpc(null); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]);
     setEnchantSlot("weapon"); setEnchantStat(null); setEnchantOptions(null); setEnchantCost(null); setEnchantResult(null);
+    setCraftProgress(null);
   }, []);
   const closeConfirmProf = useCallback(() => setConfirmProf(null), []);
   const closeConfirmAction = useCallback(() => setConfirmAction(null), []);
@@ -1825,20 +1826,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 setEnchantResult(null);
                 setEnchantOptions(null);
                 try {
-                  // Preview first to show cost
-                  const pv = await fetch("/api/reroll/preview", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-                    body: JSON.stringify({ slot: enchantSlot, statToLock: stat }),
-                  });
-                  const pvData = await pv.json();
-                  if (!pv.ok) {
-                    setEnchantResult(pvData.error || "Cannot enchant this stat");
-                    setEnchantLoading(false);
-                    return;
-                  }
-                  setEnchantCost(pvData.cost);
-                  // Now do the actual roll
                   const r = await fetch("/api/reroll/enchant", {
                     method: "POST",
                     headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
@@ -1847,7 +1834,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   const data = await r.json();
                   if (r.ok && data.options) {
                     setEnchantOptions(data.options);
-                    setEnchantCost(data.nextCost || data.cost || pvData.cost);
+                    setEnchantCost(data.nextCost || data.cost);
                     setEnchantStat(stat);
                     fetchData();
                     onRefresh?.();
@@ -2365,7 +2352,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
                   {/* ─── Reforge Stats (re-roll stats on any item with affixes) ── */}
                   {(() => {
-                    const reforgeableItems = dismantleItems.filter(i => i.rarity && ["uncommon", "rare", "epic", "legendary"].includes(i.rarity) && !i.fixedStats);
+                    const reforgeableItems = dismantleItems.filter(i => i.rarity && ["uncommon", "rare", "epic", "legendary"].includes(i.rarity) && !i.fixedStats && !i.locked);
                     if (reforgeableItems.length === 0) return null;
                     const REFORGE_COSTS: Record<string, number> = { common: 50, uncommon: 100, rare: 250, epic: 500, legendary: 1000 };
                     return (

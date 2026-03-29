@@ -4,9 +4,11 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
-const { createGearInstance, getLegendaryModifiers, rollAffixStats, INVENTORY_CAP } = require('../lib/helpers');
+const { createGearInstance, getLegendaryModifiers, rollAffixStats, INVENTORY_CAP, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { isMoonlightActive, MOONLIGHT_BONUS, RARITY_ORDER, getEquippedIds } = require('./crafting');
+
+const schmiedeLock = createPlayerLock('schmiedekunst');
 
 // ─── Schmiedekunst (Kanai's Cube) ────────────────────────────────────────────
 // Dismantle items into Essenz, transmute 3 epics of same slot → 1 legendary
@@ -198,7 +200,7 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
     for (const mat of (getDismantleMaterials(uid, rarity))) {
       if (Math.random() < mat.chance) {
         let amount = 1;
-        if (salvageBonusMult > 0) amount += Math.round(salvageBonusMult);
+        if (salvageBonusMult > 0) amount += Math.round(amount * salvageBonusMult);
         u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + amount;
         allMats[mat.id] = (allMats[mat.id] || 0) + amount;
       }
@@ -299,7 +301,10 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     if (removeIdx !== -1) u.inventory.splice(removeIdx, 1);
   }
 
-  // Create legendary
+  // Create legendary (inventory cap check — net -2 so unlikely, but defensive)
+  if (u.inventory.length >= (INVENTORY_CAP || 200)) {
+    return res.status(400).json({ error: `Inventory full (${u.inventory.length}/${INVENTORY_CAP || 200})` });
+  }
   const template = legendaryPool[Math.floor(Math.random() * legendaryPool.length)];
   const legendary = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
   u.inventory.push(legendary);
@@ -319,6 +324,8 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 // Same item identity, completely re-randomized stats
 router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!schmiedeLock.acquire(uid)) return res.status(429).json({ error: 'Reforge in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { inventoryItemId } = req.body;
@@ -382,6 +389,7 @@ router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
     goldSpent: goldCost,
     gold: u.currencies?.gold ?? u.gold ?? 0,
   });
+  } finally { schmiedeLock.release(uid); }
 });
 
 // ─── General Gear Reforge (Gold Sink) — all rarities, gold-only ─────────────
@@ -389,6 +397,8 @@ const REFORGE_GOLD_BY_RARITY = { common: 50, uncommon: 150, rare: 500, epic: 150
 
 router.post('/api/schmiedekunst/reforge-stats', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!schmiedeLock.acquire(uid)) return res.status(429).json({ error: 'Reforge in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { inventoryItemId } = req.body;
@@ -402,6 +412,11 @@ router.post('/api/schmiedekunst/reforge-stats', requireAuth, (req, res) => {
   // Cannot reforge equipped items
   if (getEquippedIds(u).has(inventoryItemId)) {
     return res.status(400).json({ error: 'Unequip the item first' });
+  }
+
+  // Cannot reforge locked items
+  if (item.locked) {
+    return res.status(400).json({ error: 'Unlock the item first' });
   }
 
   // Must have a template to re-roll from
@@ -450,6 +465,7 @@ router.post('/api/schmiedekunst/reforge-stats', requireAuth, (req, res) => {
     goldSpent: goldCost,
     gold: u.currencies?.gold ?? u.gold ?? 0,
   });
+  } finally { schmiedeLock.release(uid); }
 });
 
 module.exports = router;
