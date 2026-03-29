@@ -492,6 +492,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     xpEarned,
     goldEarned,
     loot,
+    riftGearDrop: riftGearDrop || undefined,
     riftCompleted: allDone,
     completionBonus: allDone ? (() => {
       const base = RIFT_TIERS[rift.tier]?.completionBonus;

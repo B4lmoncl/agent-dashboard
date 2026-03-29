@@ -175,7 +175,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             title: d.riftCompleted ? "Rift Complete!" : "Stage Complete!",
             xpEarned: d.xpEarned || 0,
             goldEarned: d.goldEarned || 0,
-            loot: d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare" } : undefined,
+            loot: d.riftGearDrop ? { name: d.riftGearDrop.name, emoji: "◆", rarity: d.riftGearDrop.rarity || "epic" } : d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare" } : undefined,
           });
         }
         fetchRift(); onRefresh?.();
