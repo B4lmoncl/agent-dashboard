@@ -587,6 +587,19 @@ router.get('/api/player/:name/public-profile', (req, res) => {
   });
 });
 
+// GET /api/player/:name/profile-data — get profile settings data (frames, etc.)
+router.get('/api/player/:name/profile-data', requireAuth, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.usersByName.get(uid);
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  res.json({
+    unlockedFrames: u.unlockedFrames || [],
+    equippedFrame: u.equippedFrame || null,
+    relationshipStatus: u.relationshipStatus || 'single',
+    partnerName: u.partnerName || null,
+  });
+});
+
 // GET /api/npcs — list all NPC profiles
 router.get('/api/npcs', (req, res) => {
   res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));

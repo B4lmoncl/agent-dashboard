@@ -1468,6 +1468,7 @@ export default function Dashboard() {
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
             onNavigate={(v) => setDashView(v as typeof dashView)}
+            onRewardCelebration={setRewardCelebration}
           /></Suspense></ErrorBoundary>
         )}
 

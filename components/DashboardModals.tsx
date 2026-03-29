@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import type { User } from "@/app/types";
 import { ModalPortal } from "@/components/ModalPortal";
 import { Tip } from "@/components/GameTooltip";
+import { getAuthHeaders } from "@/lib/auth-client";
 
 interface DashboardModalsProps {
   loggedInUser: User | null;
@@ -70,6 +71,59 @@ export default function DashboardModals({
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = prev; };
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
+
+  // Currency conversion state
+  const [conversionOpen, setConversionOpen] = useState(false);
+  const [convFrom, setConvFrom] = useState("gold");
+  const [convTo, setConvTo] = useState("runensplitter");
+  const [convAmount, setConvAmount] = useState("");
+  const [convConverting, setConvConverting] = useState(false);
+  const [convResult, setConvResult] = useState<{ text: string; type: "success" | "error" } | null>(null);
+
+  const ALLOWED_PAIRS = [
+    { from: "gold", to: "runensplitter", rate: 0.1 },
+    { from: "stardust", to: "runensplitter", rate: 2 },
+    { from: "runensplitter", to: "gold", rate: 0.15 },
+    { from: "gold", to: "gildentaler", rate: 3 },
+    { from: "gildentaler", to: "gold", rate: 0.25 },
+  ];
+  const TAX_RATE = 0.20;
+
+  const currentPair = ALLOWED_PAIRS.find(p => p.from === convFrom && p.to === convTo);
+  const convAmtNum = Math.max(0, Math.floor(Number(convAmount) || 0));
+  const convReceived = currentPair && convAmtNum > 0 ? Math.floor(convAmtNum * currentPair.rate * (1 - TAX_RATE)) : 0;
+  const convBalance = loggedInUser?.currencies?.[convFrom as keyof typeof loggedInUser.currencies] ?? 0;
+
+  const handleConvert = useCallback(async () => {
+    if (!loggedInUser || convConverting || convAmtNum <= 0 || !currentPair || convAmtNum > (convBalance as number)) return;
+    setConvConverting(true);
+    try {
+      const r = await fetch(`/api/currency/${loggedInUser.id}/convert`, {
+        method: "POST",
+        headers: { ...getAuthHeaders(), "Content-Type": "application/json" },
+        body: JSON.stringify({ from: convFrom, to: convTo, amount: convAmtNum }),
+      });
+      const d = await r.json();
+      if (r.ok) {
+        setConvResult({ text: `Converted ${d.spent} ${convFrom} → ${d.received} ${convTo}`, type: "success" });
+        setConvAmount("");
+      } else {
+        setConvResult({ text: d.error || "Conversion failed", type: "error" });
+      }
+    } catch {
+      setConvResult({ text: "Network error", type: "error" });
+    }
+    setConvConverting(false);
+    setTimeout(() => setConvResult(null), 3000);
+  }, [loggedInUser, convConverting, convAmtNum, currentPair, convBalance, convFrom, convTo]);
+
+  // When convFrom changes, auto-pick a valid "to"
+  useEffect(() => {
+    const validTo = ALLOWED_PAIRS.filter(p => p.from === convFrom);
+    if (validTo.length > 0 && !validTo.find(p => p.to === convTo)) {
+      setConvTo(validTo[0].to);
+    }
+  }, [convFrom]);
 
   const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
     gold: { view: "questBoard", label: "Quest Board" },
@@ -146,6 +200,110 @@ export default function DashboardModals({
                       )}
                     </div>
                   ))}
+                </div>
+
+                {/* Currency Conversion */}
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12, marginTop: 8 }}>
+                  <button
+                    onClick={() => setConversionOpen(!conversionOpen)}
+                    className="w-full text-xs font-semibold py-1.5 rounded-lg"
+                    style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                  >
+                    {conversionOpen ? "Hide" : "Convert Currencies"} {conversionOpen ? "▲" : "▼"}
+                  </button>
+
+                  {conversionOpen && (
+                    <div className="mt-2 rounded-xl p-3 space-y-2 tab-content-enter" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                      <p className="text-xs text-w30">20% tax on all conversions</p>
+
+                      {/* From / To selectors */}
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1">
+                          <p className="text-xs text-w25 mb-0.5">From</p>
+                          <select
+                            value={convFrom}
+                            onChange={e => setConvFrom(e.target.value)}
+                            className="w-full text-xs px-2 py-1.5 rounded input-dark"
+                            style={{ cursor: "pointer" }}
+                          >
+                            {[...new Set(ALLOWED_PAIRS.map(p => p.from))].map(f => (
+                              <option key={f} value={f}>{f}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <span className="text-xs text-w20 mt-4">{"\u2192"}</span>
+                        <div className="flex-1">
+                          <p className="text-xs text-w25 mb-0.5">To</p>
+                          <select
+                            value={convTo}
+                            onChange={e => setConvTo(e.target.value)}
+                            className="w-full text-xs px-2 py-1.5 rounded input-dark"
+                            style={{ cursor: "pointer" }}
+                          >
+                            {ALLOWED_PAIRS.filter(p => p.from === convFrom).map(p => (
+                              <option key={p.to} value={p.to}>{p.to}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Amount */}
+                      <div>
+                        <div className="flex items-center justify-between mb-0.5">
+                          <p className="text-xs text-w25">Amount</p>
+                          <p className="text-xs font-mono text-w25">Balance: {(convBalance as number).toLocaleString()}</p>
+                        </div>
+                        <input
+                          type="number"
+                          min={1}
+                          max={convBalance as number}
+                          value={convAmount}
+                          onChange={e => setConvAmount(e.target.value)}
+                          placeholder="0"
+                          className="w-full text-xs px-2 py-1.5 rounded input-dark font-mono"
+                        />
+                      </div>
+
+                      {/* Preview */}
+                      {convAmtNum > 0 && currentPair && (
+                        <div className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
+                          <span className="text-xs text-w40">You receive</span>
+                          <span className="text-xs font-mono font-bold" style={{ color: convReceived > 0 ? "#22c55e" : "#ef4444" }}>
+                            {convReceived > 0 ? convReceived.toLocaleString() : "0 (too small)"} {convTo}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Result message */}
+                      {convResult && (
+                        <p className="text-xs font-semibold" style={{ color: convResult.type === "success" ? "#22c55e" : "#ef4444" }}>
+                          {convResult.text}
+                        </p>
+                      )}
+
+                      {/* Convert button */}
+                      <button
+                        onClick={handleConvert}
+                        disabled={convConverting || convAmtNum <= 0 || convReceived <= 0 || convAmtNum > (convBalance as number)}
+                        title={
+                          convAmtNum <= 0 ? "Enter an amount" :
+                          convAmtNum > (convBalance as number) ? `Not enough ${convFrom}` :
+                          convReceived <= 0 ? "Amount too small after tax" :
+                          `Convert ${convAmtNum} ${convFrom} → ${convReceived} ${convTo}`
+                        }
+                        className="w-full text-xs font-bold py-2 rounded-lg"
+                        style={{
+                          background: convAmtNum > 0 && convReceived > 0 && convAmtNum <= (convBalance as number) ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.04)",
+                          color: convAmtNum > 0 && convReceived > 0 && convAmtNum <= (convBalance as number) ? "#22c55e" : "rgba(255,255,255,0.2)",
+                          border: `1px solid ${convAmtNum > 0 && convReceived > 0 ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}`,
+                          cursor: convConverting || convAmtNum <= 0 || convReceived <= 0 || convAmtNum > (convBalance as number) ? "not-allowed" : "pointer",
+                          opacity: convConverting ? 0.5 : 1,
+                        }}
+                      >
+                        {convConverting ? "Converting..." : "Convert"}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
