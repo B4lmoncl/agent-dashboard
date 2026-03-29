@@ -167,6 +167,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
   const [profCelebration, setProfCelebration] = useState<ProfessionDef | null>(null);
+  const [guideOpen, setGuideOpen] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
   const [craftCount, setCraftCount] = useState(1);
@@ -806,6 +807,43 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             </button>
           )}
         </div>
+      </div>
+
+      {/* ─── Profession Guide (expandable) ─────────────────────────────── */}
+      <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <button onClick={() => setGuideOpen(g => !g)} className="w-full flex items-center justify-between px-4 py-2.5 text-left" style={{ cursor: "pointer" }}>
+          <span className="text-xs font-semibold uppercase tracking-wider text-w30">
+            {chosenCount === 0 ? "Wie funktionieren Berufe?" : "Berufe-Handbuch"}
+          </span>
+          <span className="text-xs text-w20">{guideOpen ? "▲" : "▼"}</span>
+        </button>
+        {(guideOpen || chosenCount === 0) && (
+          <div className="px-4 pb-4 space-y-3 tab-content-enter" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
+              <div className="rounded-lg p-3" style={{ background: "rgba(249,115,22,0.04)", border: "1px solid rgba(249,115,22,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Beruf wählen</p>
+                <p className="text-xs text-w40">Klicke auf einen NPC um seinen Beruf zu lernen. Du kannst <strong className="text-w60">2 Hauptberufe</strong> (Rüstung/Waffen/Schmuck) gleichzeitig haben. Kochkunst und Verzauberung sind Nebenberufe und belegen keinen Slot.</p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#fbbf24" }}>Rezepte lernen</p>
+                <p className="text-xs text-w40">Kaufe Rezepte beim Meister für Gold. Seltene Rezepte droppen aus Quests (<span style={{ color: "#3b82f6" }}>Blau</span>) oder erfordern Fraktionsruf (<span style={{ color: "#a855f7" }}>Lila</span>). Unbekannte Rezepte erscheinen als <span className="text-w20">???</span>.</p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#22c55e" }}>Skill-System (0-300)</p>
+                <p className="text-xs text-w40">Jedes Craft hat eine Skill-Up Chance: <span style={{ color: "#f97316" }}>Orange</span> = 100%, <span style={{ color: "#eab308" }}>Gelb</span> = ~75%, <span style={{ color: "#22c55e" }}>Grün</span> = ~25%, <span className="text-w20">Grau</span> = 0%. Skill-Cap wird durch <strong className="text-w60">Rangtraining</strong> beim Meister erhöht.</p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.12)" }}>
+                <p className="text-xs font-bold mb-1" style={{ color: "#a855f7" }}>Ränge & Materialien</p>
+                <p className="text-xs text-w40">4 Ränge: <span style={{ color: "#22c55e" }}>Apprentice</span> → <span style={{ color: "#3b82f6" }}>Journeyman</span> → <span style={{ color: "#a855f7" }}>Expert</span> → <span style={{ color: "#f59e0b" }}>Artisan</span>. Materialien droppen automatisch aus Quests basierend auf deinem Beruf.</p>
+              </div>
+            </div>
+            {chosenCount === 0 && (
+              <p className="text-xs text-center pt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                Wähle unten einen Meister aus um deinen ersten Beruf zu erlernen.
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* ─── NPC Grid (categorized) — materials shown per NPC card ────── */}
