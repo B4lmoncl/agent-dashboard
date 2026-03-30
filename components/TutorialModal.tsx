@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getBalance } from "@/lib/balance-cache";
 import { useModalBehavior } from "./ModalPortal";
 
 // ─── GuideSection (section card with optional icon) ─────────────────────────
@@ -672,12 +673,16 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Forge-Temperatur" icon="🔥" accent="rgba(249,115,22,0.3)">
                 Aktivitätsmeter (0-100%) — beeinflusst XP und Gold:
                 <div className="mt-2 space-y-0.5 text-xs">
-                  <div className="flex justify-between"><Stat color="#e0f0ff">100% White-hot</Stat><span>×1.25 XP · ×1.25 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#f97316">80%+ Blazing</Stat><span>×1.15 XP · ×1.15 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#ea580c">60%+ Burning</Stat><span>×1.10 XP · ×1.08 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#b45309">40%+ Warming</Stat><span>×1.0 XP</span></div>
-                  <div className="flex justify-between"><Stat color="#78716c">20%+ Smoldering</Stat><Stat color="#ef4444">×0.85 XP</Stat></div>
-                  <div className="flex justify-between"><Stat color="#4b5563">&lt;20% Cold</Stat><Stat color="#ef4444">×0.6 XP</Stat></div>
+                  {getBalance().forgeTemp.tiers.map((t, i) => {
+                    const tierColors = ["#e0f0ff", "#f97316", "#ea580c", "#b45309", "#78716c", "#4b5563"];
+                    const isNeg = t.xp < 1;
+                    return (
+                      <div key={i} className="flex justify-between">
+                        <Stat color={tierColors[i] || "#888"}>{t.min}%{i === 0 ? "" : "+"} {t.label}</Stat>
+                        {isNeg ? <Stat color="#ef4444">×{t.xp} XP</Stat> : <span>×{t.xp} XP{t.gold !== 1 ? ` · ×${t.gold} Gold` : ""}</span>}
+                      </div>
+                    );
+                  })}
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Verfall: 2%/h (Ausdauer verlangsamt). Jede Quest: +10 Temp.</p>
               </GuideSection>

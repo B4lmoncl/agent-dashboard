@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
+import { getBalance } from "@/lib/balance-cache";
 import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -39,10 +40,10 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>Drop Rates</h4>
             <div className="space-y-1">
               {[
-                { label: "Legendary", rate: "0.8%", color: "#f97316" },
-                { label: "Epic", rate: "3%", color: "#a855f7" },
-                { label: "Rare", rate: "25%", color: "#3b82f6" },
-                { label: "Uncommon", rate: "40%", color: "#22c55e" },
+                { label: "Legendary", rate: `${(getBalance().gacha.legendaryRate * 100).toFixed(1)}%`, color: "#f97316" },
+                { label: "Epic", rate: `${(getBalance().gacha.epicRate * 100).toFixed(0)}%`, color: "#a855f7" },
+                { label: "Rare", rate: `${(getBalance().gacha.rareRate * 100).toFixed(0)}%`, color: "#3b82f6" },
+                { label: "Uncommon", rate: `${(getBalance().gacha.uncommonRate * 100).toFixed(0)}%`, color: "#22c55e" },
                 { label: "Common", rate: "13.2%", color: "#9ca3af" },
               ].map(r => (
                 <div key={r.label} className="flex items-center gap-2">
@@ -58,9 +59,9 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <Tip k="pity" heading><h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#a855f7", cursor: "help" }}>Pity System</h4></Tip>
             <p>Every pull without a Legendary increases your <span style={{ color: "#f97316" }}>pity counter</span>. The Wheel remembers your devotion.</p>
             <ul className="mt-2 space-y-1 list-disc list-inside">
-              <li><span style={{ color: "#f97316" }}>Soft Pity</span> begins at <strong>55 pulls</strong> — your Legendary drop rate increases significantly with each subsequent pull.</li>
+              <li><span style={{ color: "#f97316" }}>Soft Pity</span> begins at <strong>{getBalance().gacha.softPity} pulls</strong> — your Legendary drop rate increases significantly with each subsequent pull.</li>
               <li><span style={{ color: "#ef4444" }}>Hard Pity</span> at <strong>75 pulls</strong> — you are <em>guaranteed</em> a Legendary item.</li>
-              <li><span style={{ color: "#a855f7" }}>Epic Pity</span> guarantees an Epic every <strong>10 pulls</strong>.</li>
+              <li><span style={{ color: "#a855f7" }}>Epic Pity</span> guarantees an Epic every <strong>{getBalance().gacha.epicPity} pulls</strong>.</li>
             </ul>
           </div>
 
@@ -516,13 +517,13 @@ function BannerPullModal({
             <TipCustom title="Pity System" icon="◆" accent="#fbbf24" body={<>
               {pity ? (<>
                 <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>{pity.pityCounter}/{pity.hardPity || 75}</span></div>
-                <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{pity.epicPityCounter}/10</span></div>
+                <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{pity.epicPityCounter}/{getBalance().gacha.epicPity}</span></div>
                 <p>{(pity.hardPity || 75) - pity.pityCounter} pulls until guaranteed Legendary{pity.pityCounter >= (pity.softPityStart || 55) ? <span style={{ color: "#f97316" }}> — Soft Pity active!</span> : null}{pity.guaranteed5050 ? <span style={{ color: "#22c55e" }}> — Next = Featured!</span> : null}</p>
               </>) : <p>Pull to start tracking pity</p>}
-              <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary rate</span><span>0.8%</span></div>
-              <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>3%</span></div>
-              <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare rate</span><span>25%</span></div>
-              <p className="gt-source">Soft pity at pull 55, hard pity at 75 guarantees legendary.</p>
+              <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary rate</span><span>{(getBalance().gacha.legendaryRate * 100).toFixed(1)}%</span></div>
+              <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>{(getBalance().gacha.epicRate * 100).toFixed(0)}%</span></div>
+              <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare rate</span><span>{(getBalance().gacha.rareRate * 100).toFixed(0)}%</span></div>
+              <p className="gt-source">Soft pity at pull {getBalance().gacha.softPity}, hard pity at {getBalance().gacha.hardPity} guarantees legendary.</p>
             </>}>
               <div className="text-right" style={{ cursor: "help" }}>
                 <p className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Your Balance</p>
