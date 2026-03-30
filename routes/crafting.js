@@ -348,7 +348,8 @@ router.get('/api/professions', (req, res) => {
       };
     }
   }
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive() });
+  const favoriteRecipes = u?.favoriteRecipes || [];
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
@@ -1249,6 +1250,25 @@ router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
 });
 
 // ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────
+
+// ─── POST /api/professions/favorite — toggle recipe favorite ────────────────
+router.post('/api/professions/favorite', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { recipeId } = req.body;
+  if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
+  u.favoriteRecipes = u.favoriteRecipes || [];
+  const idx = u.favoriteRecipes.indexOf(recipeId);
+  if (idx === -1) {
+    if (u.favoriteRecipes.length >= 20) return res.status(400).json({ error: 'Max 20 favorite recipes' });
+    u.favoriteRecipes.push(recipeId);
+  } else {
+    u.favoriteRecipes.splice(idx, 1);
+  }
+  saveUsers();
+  res.json({ ok: true, favoriteRecipes: u.favoriteRecipes });
+});
 
 // ─── Exports (shared with schmiedekunst.js and enchanting.js) ─────────────
 module.exports = router;

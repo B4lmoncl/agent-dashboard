@@ -171,6 +171,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [guideOpen, setGuideOpen] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
+  const [favoriteRecipes, setFavoriteRecipes] = useState<Set<string>>(new Set());
   const [craftCount, setCraftCount] = useState(1);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [craftedItemCelebration, setCraftedItemCelebration] = useState<any>(null);
@@ -259,6 +260,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.moonlightActive !== undefined) setMoonlightActive(data.moonlightActive);
+        if (data.favoriteRecipes) setFavoriteRecipes(new Set(data.favoriteRecipes));
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
         if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
@@ -337,6 +339,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
   }, [craftProgress]);
+
+  const toggleFavoriteRecipe = async (recipeId: string) => {
+    try {
+      const r = await fetch("/api/professions/favorite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ recipeId }),
+      });
+      if (r.ok) {
+        const data = await r.json();
+        setFavoriteRecipes(new Set(data.favoriteRecipes || []));
+      }
+    } catch { /* ignore */ }
+  };
 
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
@@ -1627,7 +1643,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       const bracketRecipes = filteredRecipes.filter(r => {
                         const skill = r.reqSkill || 0;
                         return skill >= bracket.min && skill < bracket.max;
-                      }).sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));
+                      }).sort((a, b) => {
+                        const aFav = favoriteRecipes.has(a.id) ? 0 : 1;
+                        const bFav = favoriteRecipes.has(b.id) ? 0 : 1;
+                        if (aFav !== bFav) return aFav - bFav;
+                        return (a.reqSkill || 0) - (b.reqSkill || 0);
+                      });
                       if (bracketRecipes.length === 0) return null;
                       // Determine default collapse: brackets below player's current bracket are collapsed,
                       // the player's bracket and above are expanded. We use a lazy init pattern —
@@ -1712,6 +1733,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 <span className="flex-shrink-0" style={{ fontSize: 12, color: !meetsLevel || onCooldown ? "rgba(255,255,255,0.15)" : canAfford ? "#22c55e" : "#f59e0b" }} title={!meetsLevel ? "Skill too low" : onCooldown ? "On cooldown" : canAfford ? "Ready to craft" : "Missing materials"}>
                                   {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
                                 </span>
+                              )}
+                              {isLearned && (
+                                <button
+                                  onClick={e => { e.stopPropagation(); toggleFavoriteRecipe(recipe.id); }}
+                                  className="flex-shrink-0"
+                                  style={{ fontSize: 12, color: favoriteRecipes.has(recipe.id) ? "#fbbf24" : "rgba(255,255,255,0.1)", cursor: "pointer", background: "none", border: "none", padding: 0, lineHeight: 1 }}
+                                  title={favoriteRecipes.has(recipe.id) ? "Remove from favorites" : "Add to favorites"}
+                                >★</button>
                               )}
                               <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
                                 {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}
