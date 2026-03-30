@@ -32,10 +32,8 @@ export function useQuestActions({
   setChainOffer,
   setRewardCelebration,
   pendingLevelUpRef,
-  setRituals,
   addToast,
   setApiErrorWithAutoClose,
-  lastPoolRefresh,
   setLastPoolRefresh,
 }: UseQuestActionsParams) {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -390,7 +388,7 @@ export function useQuestActions({
     } finally {
       setPoolRefreshing(false);
     }
-  }, [playerName, reviewApiKey, poolRefreshing, refresh, setApiErrorWithAutoClose, addToast]);
+  }, [playerName, reviewApiKey, poolRefreshing, refresh, setApiErrorWithAutoClose, addToast, setLastPoolRefresh]);
 
   const handleShopBuy = useCallback(async (userId: string, itemId: string) => {
     if (!reviewApiKey || !userId) return;
@@ -420,7 +418,7 @@ export function useQuestActions({
     } catch {
       addToast({ type: "error", message: "Network error — purchase failed" });
     }
-  }, [reviewApiKey, refresh, addToast]);
+  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
 
   const handleGearBuy = useCallback(async (userId: string, gearId: string) => {
     if (!reviewApiKey || !userId) return;
@@ -450,7 +448,7 @@ export function useQuestActions({
     } catch {
       addToast({ type: "error", message: "Network error — gear purchase failed" });
     }
-  }, [reviewApiKey, refresh, addToast]);
+  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
 
   return {
     // State
