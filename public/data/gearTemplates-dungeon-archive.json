@@ -11,7 +11,7 @@
       "setId": "adventurer",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "kraft": 2
@@ -30,7 +30,7 @@
       "setId": "adventurer",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 3
@@ -49,7 +49,7 @@
       "setId": "archivars-garnitur",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "weisheit": 2
@@ -68,7 +68,7 @@
       "setId": "archivars-garnitur",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "ausdauer": 3
@@ -87,7 +87,7 @@
       "setId": "archivars-garnitur",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 3,
@@ -107,7 +107,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "glueck": 2,
@@ -127,7 +127,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 2,
@@ -147,7 +147,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "kraft": 1,
@@ -167,7 +167,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 2,
@@ -187,7 +187,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "weisheit": 1,
@@ -207,7 +207,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "ausdauer": 3
@@ -226,7 +226,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 2
@@ -245,7 +245,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "glueck": 2,
@@ -265,7 +265,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 4,
@@ -285,7 +285,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "kraft": 1,
@@ -305,7 +305,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -369,7 +369,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -433,7 +433,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "ausdauer": 4
@@ -452,7 +452,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "charisma": 3,
@@ -472,7 +472,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "glueck": 4,
@@ -492,7 +492,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -556,7 +556,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -620,7 +620,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -684,7 +684,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -748,7 +748,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "source": "dungeon:sunken-archive",
       "fixedStats": {
         "ausdauer": 3
@@ -767,7 +767,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -831,7 +831,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -895,7 +895,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -959,7 +959,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -1023,7 +1023,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {

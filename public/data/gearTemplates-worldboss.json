@@ -11,7 +11,7 @@
       "setId": "drachentoeter-arsenal",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "world_boss:procrastination-wyrm",
       "fixedStats": {
         "kraft": 5
@@ -30,7 +30,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -94,7 +94,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:procrastination-wyrm",
       "fixedStats": {
         "weisheit": 7,
@@ -114,7 +114,7 @@
       "setId": "drachentoeter-arsenal",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -178,7 +178,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -242,7 +242,7 @@
       "setId": "drachentoeter-arsenal",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -306,7 +306,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -370,7 +370,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -440,7 +440,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -510,7 +510,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -574,7 +574,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:burnout-colossus",
       "fixedStats": {
         "ausdauer": 7,
@@ -594,7 +594,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -658,7 +658,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -722,7 +722,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -786,7 +786,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -850,7 +850,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -914,7 +914,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -984,7 +984,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -1054,7 +1054,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1118,7 +1118,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1182,7 +1182,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1246,7 +1246,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1310,7 +1310,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1374,7 +1374,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1438,7 +1438,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1502,7 +1502,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1572,7 +1572,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:chaos-hydra",
       "affixes": {
         "primary": {
@@ -1642,7 +1642,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "world_boss:doubt-phantom",
       "fixedStats": {
         "kraft": 3
@@ -1661,7 +1661,7 @@
       "setId": "veteran",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:doubt-phantom",
       "fixedStats": {
         "ausdauer": 4
@@ -1680,7 +1680,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:doubt-phantom",
       "affixes": {
         "primary": {
@@ -1744,7 +1744,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "source": "world_boss:doubt-phantom",
       "affixes": {
         "primary": {
@@ -1808,7 +1808,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:doubt-phantom",
       "affixes": {
         "primary": {
@@ -1872,7 +1872,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:doubt-phantom",
       "fixedStats": {
         "glueck": 4,
@@ -1892,7 +1892,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:doubt-phantom",
       "affixes": {
         "primary": {
@@ -1956,7 +1956,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "world_boss:doubt-phantom",
       "affixes": {
         "primary": {
@@ -2026,7 +2026,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "source": "world_boss:entropy-weaver",
       "fixedStats": {
         "kraft": 3
@@ -2045,7 +2045,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:entropy-weaver",
       "fixedStats": {
         "ausdauer": 3,
@@ -2065,7 +2065,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:entropy-weaver",
       "affixes": {
         "primary": {
@@ -2129,7 +2129,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "source": "world_boss:entropy-weaver",
       "fixedStats": {
         "ausdauer": 3,
@@ -2149,7 +2149,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:entropy-weaver",
       "affixes": {
         "primary": {
@@ -2213,7 +2213,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:entropy-weaver",
       "affixes": {
         "primary": {
@@ -2277,7 +2277,7 @@
       "setId": "master",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:entropy-weaver",
       "affixes": {
         "primary": {
@@ -2341,7 +2341,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "world_boss:entropy-weaver",
       "affixes": {
         "primary": {
@@ -2411,7 +2411,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2475,7 +2475,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2539,7 +2539,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2603,7 +2603,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2667,7 +2667,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2731,7 +2731,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2795,7 +2795,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2859,7 +2859,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2929,7 +2929,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:stagnation-golem",
       "affixes": {
         "primary": {
@@ -2999,7 +2999,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3063,7 +3063,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3127,7 +3127,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3191,7 +3191,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3255,7 +3255,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3319,7 +3319,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3383,7 +3383,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3447,7 +3447,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3517,7 +3517,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -3587,7 +3587,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -3651,7 +3651,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -3715,7 +3715,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -3779,7 +3779,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -3843,7 +3843,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -3907,7 +3907,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -3971,7 +3971,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -4041,7 +4041,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -4111,7 +4111,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "source": "world_boss:isolation-leviathan",
       "affixes": {
         "primary": {
@@ -4181,7 +4181,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4245,7 +4245,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:apathy-sovereign",
       "fixedStats": {
         "ausdauer": 5,
@@ -4265,7 +4265,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:apathy-sovereign",
       "fixedStats": {
         "weisheit": 4,
@@ -4285,7 +4285,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4349,7 +4349,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4413,7 +4413,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-ring.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4477,7 +4477,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4541,7 +4541,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4611,7 +4611,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-shield.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
@@ -4681,7 +4681,7 @@
       "setId": "legendary",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "source": "world_boss:apathy-sovereign",
       "affixes": {
         "primary": {
