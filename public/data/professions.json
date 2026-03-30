@@ -890,6 +890,38 @@
       "desc": "Das Beste vom Besten. Der Preis ist der Beweis.",
       "source": "vendor",
       "price": 45
+    },
+    {
+      "id": "arkaner-staub",
+      "name": "Arkaner Staub",
+      "rarity": "common",
+      "icon": "/images/icons/mat-arkaner-staub.png",
+      "source": "disenchant",
+      "desc": "Feiner magischer Staub. Kribbelt beim Anfassen. Eldric sagt das sei normal. Eldric lügt."
+    },
+    {
+      "id": "magische-essenz",
+      "name": "Magische Essenz",
+      "rarity": "uncommon",
+      "icon": "/images/icons/mat-magische-essenz.png",
+      "source": "disenchant",
+      "desc": "Konzentrierte Magie in flüssiger Form. Leuchtet im Dunkeln. Schmeckt nach Bedauern."
+    },
+    {
+      "id": "schimmersplitter",
+      "name": "Schimmersplitter",
+      "rarity": "rare",
+      "icon": "/images/icons/mat-schimmersplitter.png",
+      "source": "disenchant",
+      "desc": "Ein Bruchstück reiner Verzauberung. Der letzte Besitzer des Items wäre nicht begeistert."
+    },
+    {
+      "id": "nexuskristall",
+      "name": "Nexuskristall",
+      "rarity": "epic",
+      "icon": "/images/icons/mat-nexuskristall.png",
+      "source": "disenchant",
+      "desc": "Kristallisierte legendäre Macht. Selten, wertvoll, und der Grund warum Verzauberer so gierig auf Epics schauen."
     }
   ],
   "skillUpColors": {
@@ -1238,7 +1270,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -1280,7 +1312,7 @@
       "materials": {
         "magiestaub": 2,
         "aetherkern": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10010,11 +10042,8 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
-      "vendorReagents": [
-        "verzauberungstinte"
-      ],
       "result": {
         "type": "material",
         "materialId": "runenessenz",
@@ -10033,7 +10062,7 @@
       "reqSkill": 1,
       "materials": {
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10053,7 +10082,7 @@
       "reqSkill": 6,
       "materials": {
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10073,7 +10102,7 @@
       "reqSkill": 11,
       "materials": {
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10093,7 +10122,7 @@
       "reqSkill": 16,
       "materials": {
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10114,7 +10143,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10135,7 +10164,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10156,7 +10185,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10177,7 +10206,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10198,7 +10227,7 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -10219,7 +10248,7 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -10240,7 +10269,8 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10261,7 +10291,8 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10282,7 +10313,8 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 1,
-        "aethertinte": 1
+        "magische-essenz": 2,
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10304,7 +10336,8 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 1,
-        "aethertinte": 1
+        "magische-essenz": 2,
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10326,7 +10359,8 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 1,
-        "aethertinte": 1
+        "magische-essenz": 2,
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10348,7 +10382,8 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 1,
-        "aethertinte": 1
+        "magische-essenz": 2,
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -10370,7 +10405,8 @@
       "materials": {
         "kristallsplitter": 2,
         "aetherkern": 1,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -10392,7 +10428,8 @@
       "materials": {
         "kristallsplitter": 2,
         "aetherkern": 1,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -10414,7 +10451,8 @@
       "materials": {
         "kristallsplitter": 2,
         "aetherkern": 1,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -10436,7 +10474,8 @@
       "materials": {
         "kristallsplitter": 2,
         "aetherkern": 1,
-        "aethertinte": 1
+        "schimmersplitter": 2,
+        "magische-essenz": 1
       },
       "result": {
         "type": "buff",
@@ -10458,7 +10497,8 @@
       "materials": {
         "aetherkern": 2,
         "seelensplitter": 1,
-        "aethertinte": 2
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -10480,7 +10520,8 @@
       "materials": {
         "aetherkern": 2,
         "seelensplitter": 1,
-        "aethertinte": 2
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -10502,7 +10543,8 @@
       "materials": {
         "aetherkern": 2,
         "seelensplitter": 1,
-        "aethertinte": 2
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -10524,7 +10566,8 @@
       "materials": {
         "aetherkern": 2,
         "seelensplitter": 1,
-        "aethertinte": 2
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -10546,7 +10589,8 @@
       "materials": {
         "runenstein": 3,
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10566,7 +10610,8 @@
       "materials": {
         "runenstein": 3,
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10586,7 +10631,8 @@
       "materials": {
         "runenstein": 3,
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10607,7 +10653,8 @@
       "materials": {
         "runenstein": 3,
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10627,7 +10674,8 @@
       "materials": {
         "runenstein": 3,
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10647,7 +10695,8 @@
       "materials": {
         "runenstein": 3,
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10669,7 +10718,8 @@
         "aetherkern": 1,
         "runenstein": 4,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10691,7 +10741,8 @@
         "aetherkern": 1,
         "runenstein": 4,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "gear_enhance",
@@ -10713,7 +10764,8 @@
         "aetherkern": 1,
         "runenstein": 4,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "schimmersplitter": 2,
+        "magische-essenz": 1
       },
       "result": {
         "type": "gear_enhance",
@@ -10735,7 +10787,8 @@
         "aetherkern": 1,
         "runenstein": 4,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "schimmersplitter": 2,
+        "magische-essenz": 1
       },
       "result": {
         "type": "gear_enhance",
@@ -10757,7 +10810,8 @@
         "aetherkern": 1,
         "runenstein": 4,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "schimmersplitter": 2,
+        "magische-essenz": 1
       },
       "result": {
         "type": "gear_enhance",
@@ -10779,7 +10833,8 @@
         "aetherkern": 1,
         "runenstein": 4,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "gear_enhance",
@@ -10800,7 +10855,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10821,7 +10876,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10842,7 +10897,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10863,7 +10918,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -10885,7 +10940,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -10906,7 +10961,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -10927,7 +10982,7 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -10948,7 +11003,7 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -10970,7 +11025,7 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -10991,7 +11046,7 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11012,7 +11067,7 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11033,7 +11088,7 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11053,7 +11108,7 @@
       "reqSkill": 30,
       "materials": {
         "magiestaub": 3,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -11074,7 +11129,8 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 3,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -11095,7 +11151,8 @@
       "materials": {
         "aetherkern": 1,
         "runenstein": 3,
-        "aethertinte": 1
+        "schimmersplitter": 2,
+        "magische-essenz": 1
       },
       "result": {
         "type": "buff",
@@ -11116,7 +11173,7 @@
       "reqSkill": 60,
       "materials": {
         "magiestaub": 4,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -11137,7 +11194,8 @@
       "materials": {
         "runenstein": 3,
         "kristallsplitter": 1,
-        "aethertinte": 1
+        "magische-essenz": 2,
+        "arkaner-staub": 1
       },
       "result": {
         "type": "buff",
@@ -11158,7 +11216,8 @@
       "materials": {
         "aetherkern": 2,
         "runenstein": 2,
-        "aethertinte": 1
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -11179,7 +11238,7 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -11199,7 +11258,7 @@
       "materials": {
         "kristallsplitter": 3,
         "runenstein": 2,
-        "aethertinte": 1
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11219,7 +11278,8 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 3,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "streak_shield",
@@ -11238,7 +11298,8 @@
       "materials": {
         "aetherkern": 1,
         "seelensplitter": 1,
-        "aethertinte": 1
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "streak_shield",
@@ -11257,7 +11318,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -11279,7 +11340,7 @@
       "materials": {
         "magiestaub": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 3
       },
       "result": {
         "type": "buff",
@@ -11300,7 +11361,8 @@
       "materials": {
         "runenstein": 2,
         "magiestaub": 2,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "buff",
@@ -11321,7 +11383,8 @@
       "materials": {
         "kristallsplitter": 2,
         "runenstein": 2,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11343,7 +11406,8 @@
       "materials": {
         "kristallsplitter": 2,
         "runenstein": 2,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11365,7 +11429,8 @@
       "materials": {
         "aetherkern": 1,
         "runenstein": 3,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "buff",
@@ -11386,7 +11451,8 @@
       "materials": {
         "aetherkern": 2,
         "seelensplitter": 1,
-        "aethertinte": 1
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -11407,7 +11473,8 @@
       "materials": {
         "seelensplitter": 2,
         "aetherkern": 2,
-        "aethertinte": 2
+        "nexuskristall": 1,
+        "schimmersplitter": 1
       },
       "result": {
         "type": "buff",
@@ -11430,7 +11497,7 @@
       "materials": {
         "magiestaub": 3,
         "kristallsplitter": 1,
-        "verzauberungstinte": 1
+        "arkaner-staub": 2
       },
       "result": {
         "type": "vellum",
@@ -11453,7 +11520,8 @@
       "materials": {
         "kristallsplitter": 3,
         "runenstein": 1,
-        "verzauberungstinte": 1
+        "magische-essenz": 1,
+        "arkaner-staub": 2
       },
       "result": {
         "type": "vellum",
@@ -11476,7 +11544,8 @@
       "materials": {
         "runenstein": 2,
         "aetherkern": 1,
-        "aethertinte": 1
+        "schimmersplitter": 1,
+        "magische-essenz": 2
       },
       "result": {
         "type": "vellum",
