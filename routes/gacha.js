@@ -150,6 +150,11 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
       rolledStats = rolled.stats;
       if (rolled.legendaryEffect) rolledLegendaryEffect = rolled.legendaryEffect;
     }
+    // Special handling: NPC visit guarantee (doesn't go into inventory)
+    if (item.effect === 'npc_visit' && item.npcId) {
+      u.guaranteedNpcVisit = item.npcId;
+      // Don't push to inventory — it's an instant effect
+    } else {
     // Add to inventory
     u.inventory.push({
       id: `gacha-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
@@ -167,6 +172,7 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
       obtainedAt: new Date().toISOString(),
       source: 'gacha',
     });
+    } // end else (non-npc_visit items)
   }
 
   // Record in history

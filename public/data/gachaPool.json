@@ -638,6 +638,42 @@
       "effect": "small_heal",
       "desc": "Ein einfacher Heiltrank. Schmeckt nach Kräutern und Hoffnung.",
       "icon": "/images/icons/gacha-heiltrank.png"
+    },
+    {
+      "id": "npc-visit-lumi",
+      "name": "Lumis Einladung",
+      "rarity": "legendary",
+      "type": "consumable",
+      "emoji": null,
+      "icon": "/images/npcs/lumi.png",
+      "effect": "npc_visit",
+      "npcId": "lumi",
+      "desc": "Eine schimmernde Einladung. Lumi wird als nächstes den Turm besuchen. Man munkelt, die Einladung hat sich selbst geschrieben.",
+      "stats": {}
+    },
+    {
+      "id": "npc-visit-skelett",
+      "name": "Visitenkarte des Eleganten Herrn",
+      "rarity": "epic",
+      "type": "consumable",
+      "emoji": null,
+      "icon": "/images/npcs/skelett-gentleman.png",
+      "effect": "npc_visit",
+      "npcId": "skelett-gentleman",
+      "desc": "Eine makellose Visitenkarte aus Knochenweiß. Der Text ändert sich jedes Mal, wenn man hinschaut, aber die Adresse bleibt gleich: \"Überall, wo es interessant ist.\"",
+      "stats": {}
+    },
+    {
+      "id": "npc-visit-tod",
+      "name": "Höfliche Ankündigung",
+      "rarity": "legendary",
+      "type": "consumable",
+      "emoji": null,
+      "icon": "/images/npcs/tod-der-hoefliche.png",
+      "effect": "npc_visit",
+      "npcId": "tod-der-hoefliche",
+      "desc": "Ein Brief in tadellosem Schwarz. Der Absender hat sich die Mühe gemacht, persönlich NICHT zu unterschreiben. Auf der Rückseite steht: \"Keine Eile.\"",
+      "stats": {}
     }
   ],
   "featuredPool": [],

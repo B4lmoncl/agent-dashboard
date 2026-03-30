@@ -753,6 +753,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const [counterGold, setCounterGold] = useState(0);
   const [counterMsg, setCounterMsg] = useState("");
   const [counterItems, setCounterItems] = useState<string[]>([]);
+  const [counterMaterials, setCounterMaterials] = useState<Record<string, number>>({});
 
   // Item sort
   const [tradeSort, setTradeSort] = useState<TradeSortKey>("rarity");
@@ -843,7 +844,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         method: "POST",
         headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" },
         body: JSON.stringify({
-          offer: { gold: counterGold, items: counterItems },
+          offer: { gold: counterGold, items: counterItems, materials: Object.keys(counterMaterials).length > 0 ? counterMaterials : undefined },
           message: counterMsg.trim(),
         }),
       });
@@ -931,6 +932,39 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
                   <TradeItemGrid items={tradeableItems} selectedIds={counterItems} onToggle={id => toggleTradeItem(id, "counter")} sortKey={tradeSort} onSortChange={setTradeSort} />
                 </div>
               )}
+              {/* Counter-offer materials */}
+              {(() => {
+                const mats = loggedInUser?.craftingMaterials || {};
+                const matEntries = Object.entries(mats).filter(([, count]) => (count as number) > 0);
+                if (matEntries.length === 0) return null;
+                return (
+                  <div className="mb-2">
+                    <label className="text-xs text-w25 block mb-1">Materials</label>
+                    <div className="flex flex-wrap gap-1">
+                      {matEntries.slice(0, 12).map(([id, count]) => {
+                        const offered = counterMaterials[id] || 0;
+                        return (
+                          <button key={id} onClick={() => setCounterMaterials(prev => {
+                            const next = { ...prev };
+                            if (!next[id]) next[id] = 1;
+                            else if (next[id] >= (count as number)) delete next[id];
+                            else next[id]++;
+                            return next;
+                          })} className="text-xs px-1.5 py-0.5 rounded" style={{
+                            background: offered > 0 ? "rgba(251,191,36,0.1)" : "rgba(255,255,255,0.04)",
+                            color: offered > 0 ? "#fbbf24" : "rgba(255,255,255,0.35)",
+                            border: `1px solid ${offered > 0 ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
+                            cursor: "pointer",
+                          }} title={`${count} available`}>
+                            {id.replace(/-/g, " ")} {offered > 0 ? `×${offered}` : ""}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })()}
+
               <label className="text-xs text-w25 block mb-1">Message</label>
               <input
                 value={counterMsg}
