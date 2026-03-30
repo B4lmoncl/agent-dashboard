@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import { createPortal } from "react-dom";
-import { getBalance } from "@/lib/balance-cache";
+import { getBalance, onBalanceLoaded } from "@/lib/balance-cache";
 
 // ─── Tooltip System ──────────────────────────────────────────────────────────
 // Hover with 0.8s delay → tooltip appears. Nested keywords inside tooltips
@@ -1460,6 +1460,8 @@ function getRegistry(): Record<string, TooltipEntry> {
 }
 // Allow cache invalidation when balance data loads
 export function invalidateTooltipCache() { _registryCache = null; }
+// Auto-invalidate when balance data arrives from API
+onBalanceLoaded(invalidateTooltipCache);
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────
 

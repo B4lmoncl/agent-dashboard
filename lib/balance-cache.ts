@@ -66,6 +66,9 @@ const DEFAULTS: BalanceConfig = {
   starBonus: { twoStar: 0.15, threeStar: 0.33 },
 };
 
+const _onLoadCallbacks: (() => void)[] = [];
+export function onBalanceLoaded(cb: () => void) { _onLoadCallbacks.push(cb); }
+
 export function getBalance(): BalanceConfig {
   return _cache || DEFAULTS;
 }
@@ -77,6 +80,8 @@ export async function loadBalance(): Promise<BalanceConfig> {
       const data = await r.json();
       if (data.balance) {
         _cache = data.balance as BalanceConfig;
+        // Notify listeners that balance data changed
+        for (const cb of _onLoadCallbacks) cb();
         return _cache!;
       }
     }
