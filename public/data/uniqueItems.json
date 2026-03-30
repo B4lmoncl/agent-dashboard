@@ -960,8 +960,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Die Klinge existiert gleichzeitig in drei Realitäten. Das macht das Aufhängen schwierig und das Kämpfen... interessant.",
-      "flavorText": "Der Rift hat sie nicht erschaffen. Er hat sie nur freigegeben.",
+      "desc": "Die Klinge existiert gleichzeitig in drei Realitäten. In einer davon bist du bereits tot. In einer anderen hast du gewonnen. In der dritten fragst du dich, warum das Schwert summt.",
+      "flavorText": "Grimvar weigert sich, sie zu schärfen. Er sagt, sie schneidet bereits Dinge, die noch gar nicht in ihrer Nähe waren. Das sei 'beunruhigend, selbst für ihn'.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "fixedStats": true,
       "stats": {
@@ -983,8 +983,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 32,
-      "desc": "Am absoluten Nullpunkt des Rifts gefunden. Die Temperatur um sie schwankt. Socken empfohlen. Doppelte Socken.",
-      "flavorText": "Wer den Boden des Abgrunds erreicht, findet keine Wahrheit. Nur sehr kalte Schuhe.",
+      "desc": "Am absoluten Nullpunkt des Rifts gefunden, neben einem erfrorenen Abenteurer der noch immer lächelte. Ob aus Wahnsinn oder Erleichterung, ist unklar. Die Stiefel rochen nach Bedauern und Minze.",
+      "flavorText": "Socken empfohlen. Doppelte Socken. Dreifache Socken. Der vorherige Besitzer trug keine und man hat ihn an der Decke gefunden. Zusammenhang unbestätigt.",
       "icon": "/images/icons/equip-boots.png",
       "fixedStats": true,
       "stats": {

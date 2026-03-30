@@ -1338,7 +1338,7 @@
     {
       "id": "chain_streak_bronze",
       "name": "Streak Keeper: Bronze",
-      "description": "7-Tage Streak",
+      "description": "7 Tage. Eine Woche. Du hattest keine andere Wahl, du hast angefangen.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1359,7 +1359,7 @@
     {
       "id": "chain_streak_silver",
       "name": "Streak Keeper: Silver",
-      "description": "30-Tage Streak",
+      "description": "30 Tage. Der Streak kontrolliert jetzt deinen Tagesablauf. Du kontrollierst gar nichts mehr.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1381,7 +1381,7 @@
     {
       "id": "chain_streak_gold",
       "name": "Streak Keeper: Gold",
-      "description": "90-Tage Streak",
+      "description": "90 Tage. Drei Monate. Du hast die Grippe durchgespielt, den Urlaub und zwei existenzielle Krisen.",
       "icon": null,
       "condition": {
         "type": "streak_days",
