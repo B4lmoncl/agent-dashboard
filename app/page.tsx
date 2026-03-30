@@ -1116,6 +1116,20 @@ export default function Dashboard() {
                     />
                   </div>
                 </div>
+                {/* Active Buffs Indicator */}
+                {(() => {
+                  const buffs = (loggedInUser?.activeBuffs || []).filter((b: { questsRemaining?: number; expiresAt?: string }) => (b.questsRemaining ?? 0) > 0 || (b.expiresAt && new Date(b.expiresAt).getTime() > Date.now()));
+                  if (buffs.length === 0) return null;
+                  const BUFF_COLORS: Record<string, string> = { xp_boost_10: "#a855f7", xp_boost_15: "#a855f7", xp_boost_25: "#c084fc", gold_boost_10: "#fbbf24", gold_boost_15: "#fbbf24", luck_boost_20: "#22c55e", streak_shield: "#3b82f6", material_double: "#f97316", warding_8: "#60a5fa" };
+                  return (
+                    <div className="flex items-center gap-1 mt-0.5" title={`${buffs.length} active buff${buffs.length !== 1 ? "s" : ""}`}>
+                      {buffs.slice(0, 6).map((b: { type: string }, i: number) => (
+                        <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: BUFF_COLORS[b.type] || "#818cf8", boxShadow: `0 0 3px ${BUFF_COLORS[b.type] || "#818cf8"}` }} />
+                      ))}
+                      {buffs.length > 6 && <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>+{buffs.length - 6}</span>}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>
