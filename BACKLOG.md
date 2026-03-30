@@ -97,7 +97,11 @@
 24. Coop-Rituals with invitation system
 25. User-Generated Quests (suggest system exists, full UGC pending)
 26. ~~Room-to-Room navigation~~ → ✅ TowerMap with floor rooms
-27. ~~Core Lore establishment~~ → ✅ Codex with 95 entries, LYRA-PLAYBOOK lore bible
+27. ~~Core Lore establishment~~ → ✅ Codex with 107 entries, LYRA-PLAYBOOK lore bible
+28. ~~Passive Talent Tree~~ → ✅ Schicksalsbaum (26 nodes, 3 rings, exclusion groups, build archetypes)
+29. ~~Adventure Tome~~ → ✅ Abenteuerbuch (per-floor completionist tracker with milestone rewards)
+30. ~~Activity Log gaps~~ → ✅ 6 new event types (world boss, dungeon, rift, expedition, streak milestone)
+31. ~~CSS Micro-Interactions~~ → ✅ card-hover-lift, progress-shimmer, btn-press, scrollbar-rpg, legendary-ambient
 
 ## 🔧 TECH DEBT
 
