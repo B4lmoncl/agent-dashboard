@@ -57,6 +57,7 @@ interface Recipe {
   skillUpColor?: string;
   cooldownRemaining?: number;
   result?: { type?: string; templateId?: string };
+  vendorReagents?: Record<string, number>;
 }
 
 interface MaterialDef {
@@ -65,6 +66,15 @@ interface MaterialDef {
   icon: string;
   rarity: string;
   desc: string;
+}
+
+interface VendorReagentDef {
+  id: string;
+  name: string;
+  desc: string;
+  price: number;
+  professions: string[];
+  icon?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -152,6 +162,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
+  const [vendorReagentDefs, setVendorReagentDefs] = useState<VendorReagentDef[]>([]);
   const [currencies, setCurrencies] = useState<Record<string, number>>({});
   const [maxProfSlots, setMaxProfSlots] = useState(2);
   const [selectedNpc, setSelectedNpc] = useState<ProfessionDef | null>(null);
@@ -247,6 +258,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const loggedIn = playerName && reviewApiKey;
 
+  /** Compute total vendor reagent gold cost for a recipe (× count). */
+  const getVendorReagentCost = useCallback((recipe: Recipe, count: number = 1): number => {
+    if (!recipe.vendorReagents) return 0;
+    let cost = 0;
+    for (const [rid, qty] of Object.entries(recipe.vendorReagents)) {
+      const def = vendorReagentDefs.find(r => r.id === rid);
+      if (def) cost += def.price * (qty as number);
+    }
+    return cost * count;
+  }, [vendorReagentDefs]);
+
   const fetchData = useCallback(async () => {
     if (!playerName) return;
     try {
@@ -257,6 +279,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         setRecipes(data.recipes || []);
         setMaterials(data.materials || {});
         setMaterialDefs(data.materialDefs || []);
+        if (data.vendorReagents) setVendorReagentDefs(data.vendorReagents);
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.moonlightActive !== undefined) setMoonlightActive(data.moonlightActive);
