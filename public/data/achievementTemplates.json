@@ -787,7 +787,7 @@
       "category": "streak",
       "hidden": false,
       "points": 100,
-      "desc": "Maintain a 90-day streak."
+      "desc": "90 Tage Streak. Ein Vierteljahr. Die Jahreszeiten wechseln, du nicht."
     },
     {
       "id": "gold_hoarder",
@@ -806,7 +806,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Accumulate 500 gold."
+      "desc": "500 Gold. Genug für ein anständiges Abendessen oder fünf fragwürdige Tränke."
     },
     {
       "id": "dragon_hoard",
@@ -825,7 +825,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Accumulate 5000 gold."
+      "desc": "5000 Gold. Du schläfst auf Münzen wie ein kleiner, zufriedener Drache."
     },
     {
       "id": "initiate",
@@ -844,7 +844,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Earn 100 total XP."
+      "desc": "100 XP. Du hast angefangen zu existieren. Die Halle nimmt das zur Kenntnis."
     },
     {
       "id": "adept",
@@ -863,7 +863,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Earn 500 total XP."
+      "desc": "500 XP. Du weißt inzwischen, was du tust. Zumindest sieht es so aus."
     },
     {
       "id": "master_rank",
@@ -882,7 +882,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Earn 1500 total XP."
+      "desc": "1500 XP. Meister. Ein Titel, der mehr verspricht, als er hält."
     },
     {
       "id": "grandmaster",
@@ -901,7 +901,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Earn 5000 total XP."
+      "desc": "5000 XP. Die anderen Meister schauen nervös, wenn du den Raum betrittst."
     },
     {
       "id": "chain_veteran",
@@ -920,7 +920,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 5 quest chains."
+      "desc": "5 Quest-Ketten. Du magst Aufgaben, die andere Aufgaben gebären."
     },
     {
       "id": "marathon_runner",
@@ -939,7 +939,7 @@
       "category": "speed",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 quests in a single day."
+      "desc": "10 Quests an einem Tag. Kein Marathon, ein Hilfeschrei in Aufgabenform."
     },
     {
       "id": "social_king",
@@ -959,7 +959,7 @@
       "category": "variety",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 25 social quests."
+      "desc": "25 Social-Quests. Extrovertierte nennen dich 'Naturtalent', Introvertierte 'erschöpfend'."
     },
     {
       "id": "fitness_fanatic",
@@ -979,7 +979,7 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 50 fitness quests."
+      "desc": "50 Fitness-Quests. Dein Körper hat aufgehört zu fragen und angefangen zu gehorchen."
     },
     {
       "id": "knowledge_seeker",
@@ -999,7 +999,7 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 50 learning quests."
+      "desc": "50 Lern-Quests. Du sammelst Wissen wie andere Leute Staub."
     },
     {
       "id": "dev_legend",
@@ -1019,7 +1019,7 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 50 development quests."
+      "desc": "50 Dev-Quests. 50 Dinge gebaut. Mindestens 12 tun, was sie sollen."
     },
     {
       "id": "weekend_warrior",
@@ -1038,7 +1038,7 @@
       "category": "speed",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 quests on weekends"
+      "desc": "10 Quests am Wochenende. Andere Leute gehen brunchen. Du grindest."
     },
     {
       "id": "coop_legend",
@@ -1057,7 +1057,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 10 co-op quests."
+      "desc": "10 Co-op Quests. Du arbeitest gut im Team. Das Team ist anderer Meinung."
     },
     {
       "id": "hidden_midnight",
@@ -1078,7 +1078,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Complete 10 quests after midnight"
+      "desc": "10 Quests nach Mitternacht. Schlaf ist eine Ressource und du farmst sie nicht."
     },
     {
       "id": "hidden_skulduggery",
@@ -1097,7 +1097,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "You found something familiar..."
+      "desc": "Etwas Vertrautes. Ein Skelett im Anzug hätte es schneller gefunden."
     },
     {
       "id": "hidden_stormlight",
@@ -1116,7 +1116,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Life before death. Strength before weakness."
+      "desc": "Leben vor dem Tod. Stärke vor Schwäche. Frühstück vor allem anderen."
     },
     {
       "id": "hidden_critical_role",
@@ -1135,7 +1135,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Is it Thursday yet?"
+      "desc": "Ist schon Donnerstag? Du fragst das an einem Dienstag."
     },
     {
       "id": "hidden_dndads",
@@ -1154,7 +1154,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "For real facts."
+      "desc": "Echte Fakten. Die beste Art, wenn man die Alternative bedenkt."
     },
     {
       "id": "hidden_perfectionist",
@@ -1172,7 +1172,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Complete quests of  different types."
+      "desc": "Jeden Quest-Typ mindestens einmal. Nicht perfektionistisch, nur verzweifelt."
     },
     {
       "id": "hidden_npc_collector",
@@ -1190,7 +1190,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Unlock all NPC quest givers."
+      "desc": "Alle NPCs freigeschaltet. Du kennst jeden im Turm. Die meisten wünschten, das wäre anders."
     },
     {
       "id": "hidden_gacha_addict",
@@ -1209,7 +1209,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Perform 50 gacha pulls."
+      "desc": "50 Gacha-Pulls. Keine Sucht, eine Investitionsstrategie. Eine schlechte."
     },
     {
       "id": "hidden_full_inventory",
@@ -1228,7 +1228,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Have 50 items in inventory."
+      "desc": "50 Items im Inventar. Du wirfst nichts weg. Du 'archivierst'."
     },
     {
       "id": "hidden_legendary_pull",
@@ -1247,7 +1247,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Pull a legendary from the gacha."
+      "desc": "Ein Legendary aus der Gacha. Das Universum hat gelächelt. Es wird nicht wieder passieren."
     },
     {
       "id": "chain_quest_bronze",
@@ -1268,7 +1268,7 @@
       "chainId": "quest_runner",
       "chainTier": 1,
       "chainNext": "chain_quest_silver",
-      "desc": "Complete 25 quests."
+      "desc": "25 Quests. Bronze. Die Farbe von 'guter Anfang' und 'dritte Wahl'."
     },
     {
       "id": "chain_quest_silver",
@@ -1290,7 +1290,7 @@
       "chainTier": 2,
       "chainPrev": "chain_quest_bronze",
       "chainNext": "chain_quest_gold",
-      "desc": "Complete 100 quests."
+      "desc": "100 Quests. Silber. Weil Gold zu optimistisch wäre."
     },
     {
       "id": "chain_quest_gold",
@@ -1312,7 +1312,7 @@
       "chainTier": 3,
       "chainPrev": "chain_quest_silver",
       "chainNext": "chain_quest_legend",
-      "desc": "Complete 300 quests."
+      "desc": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg."
     },
     {
       "id": "chain_quest_legend",
@@ -1333,7 +1333,7 @@
       "chainId": "quest_runner",
       "chainTier": 4,
       "chainPrev": "chain_quest_gold",
-      "desc": "Complete 1000 quests."
+      "desc": "1000 Quests. Legendär. Nicht weil es beeindruckend ist, sondern weil niemand es glaubt."
     },
     {
       "id": "chain_streak_bronze",
@@ -1354,7 +1354,7 @@
       "chainId": "streak_keeper",
       "chainTier": 1,
       "chainNext": "chain_streak_silver",
-      "desc": "Maintain a 7-day streak."
+      "desc": "7 Tage. Eine Woche. Du hattest keine andere Wahl, du hast angefangen."
     },
     {
       "id": "chain_streak_silver",
@@ -1376,7 +1376,7 @@
       "chainTier": 2,
       "chainPrev": "chain_streak_bronze",
       "chainNext": "chain_streak_gold",
-      "desc": "Maintain a 30-day streak."
+      "desc": "30 Tage. Der Streak kontrolliert deinen Tagesablauf. Du kontrollierst nichts."
     },
     {
       "id": "chain_streak_gold",
@@ -1398,7 +1398,7 @@
       "chainTier": 3,
       "chainPrev": "chain_streak_silver",
       "chainNext": "chain_streak_legend",
-      "desc": "Maintain a 90-day streak."
+      "desc": "90 Tage. Grippe, Urlaub, zwei existenzielle Krisen durchgespielt."
     },
     {
       "id": "chain_streak_legend",
@@ -1419,7 +1419,7 @@
       "chainId": "streak_keeper",
       "chainTier": 4,
       "chainPrev": "chain_streak_gold",
-      "desc": "Maintain a 365-day streak."
+      "desc": "365 Tage. Die Erde hat die Sonne einmal umkreist und du warst jeden Tag hier."
     },
     {
       "id": "chain_gold_bronze",
@@ -1439,7 +1439,7 @@
       "chainId": "gold_hoarder",
       "chainTier": 1,
       "chainNext": "chain_gold_silver",
-      "desc": "Accumulate 500 gold."
+      "desc": "500 Gold. Der erste Schritt zum Horten. Die Perspektive bestimmt den Rest."
     },
     {
       "id": "chain_gold_silver",
@@ -1460,7 +1460,7 @@
       "chainTier": 2,
       "chainPrev": "chain_gold_bronze",
       "chainNext": "chain_gold_gold",
-      "desc": "Accumulate 5000 gold."
+      "desc": "5000 Gold. Du könntest dir etwas Schönes kaufen. Wirst du nicht."
     },
     {
       "id": "chain_gold_gold",
@@ -2056,7 +2056,7 @@
       "id": "quest_300",
       "name": "Dreihunderter",
       "icon": "/images/icons/ach-300.png",
-      "desc": "Complete 300 quests.",
+      "desc": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2381,7 +2381,7 @@
       "id": "speed_10_quests_day",
       "name": "Unaufhaltsam",
       "icon": "/images/icons/ach-10-day.png",
-      "desc": "Complete 10 quests in a single day.",
+      "desc": "10 Quests an einem Tag. Kein Marathon, ein Hilfeschrei in Aufgabenform.",
       "category": "speed",
       "rarity": "epic",
       "points": 50,

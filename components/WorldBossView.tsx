@@ -602,6 +602,18 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               <p className="text-xs text-w20">Rank</p>
             </div>
           </div>
+          {/* Contribution progress bar vs top contributor */}
+          {leaderboard.length > 0 && leaderboard[0].damage > 0 && (
+            <div className="mt-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-w20">vs Top Contributor</span>
+                <span className="text-xs font-mono text-w30">{Math.min(100, Math.round((playerContribution.damage / leaderboard[0].damage) * 100))}%</span>
+              </div>
+              <div style={{ width: "100%", height: 6, background: "rgba(255,255,255,0.05)", borderRadius: 3 }}>
+                <div style={{ width: `${Math.min(100, (playerContribution.damage / leaderboard[0].damage) * 100)}%`, height: "100%", background: "#22c55e", borderRadius: 3, transition: "width 0.3s" }} />
+              </div>
+            </div>
+          )}
         </div>
       )}
 

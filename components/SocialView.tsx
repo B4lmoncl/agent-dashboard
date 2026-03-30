@@ -86,6 +86,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const [processingReqId, setProcessingReqId] = useState<string | null>(null);
 
   const fetchFriends = useCallback(async () => {
     try {
@@ -161,6 +162,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   };
 
   const handleRequest = async (reqId: string, action: "accept" | "decline") => {
+    setProcessingReqId(reqId);
     try {
       await fetch(`/api/social/friend-request/${reqId}/${action}`, {
         method: "POST",
@@ -168,6 +170,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       });
       fetchFriends();
     } catch (e) { console.error('[social]', e); }
+    setProcessingReqId(null);
   };
 
   const [confirmRemove, setConfirmRemove] = useState<string | null>(null);
@@ -256,8 +259,8 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                   <span className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{req.fromName}</span>
                 </div>
                 <div className="flex gap-1.5">
-                  <button onClick={() => handleRequest(req.id, "accept")} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e" }}>Accept</button>
-                  <button onClick={() => handleRequest(req.id, "decline")} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444" }}>Decline</button>
+                  <button onClick={() => handleRequest(req.id, "accept")} disabled={processingReqId === req.id} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", opacity: processingReqId === req.id ? 0.5 : 1, cursor: processingReqId === req.id ? "not-allowed" : "pointer" }} title={processingReqId === req.id ? "Processing..." : "Accept friend request"}>{processingReqId === req.id ? "..." : "Accept"}</button>
+                  <button onClick={() => handleRequest(req.id, "decline")} disabled={processingReqId === req.id} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", opacity: processingReqId === req.id ? 0.5 : 1, cursor: processingReqId === req.id ? "not-allowed" : "pointer" }} title={processingReqId === req.id ? "Processing..." : "Decline friend request"}>{processingReqId === req.id ? "..." : "Decline"}</button>
                 </div>
               </div>
             ))}
@@ -449,7 +452,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
                   }}
                 >
                   <p className="text-xs" style={{ color: "#e8e8e8" }}>{msg.text}</p>
-                  <p className="text-xs text-w15 mt-0.5 text-right">
+                  <p className="text-xs text-w15 mt-0.5 text-right" title={new Date(msg.createdAt).toLocaleString("de-DE")}>
                     {timeAgo(msg.createdAt)}
                     {isMine && <ReadCheck read={msg.read} />}
                   </p>
