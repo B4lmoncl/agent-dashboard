@@ -585,27 +585,39 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
         {/* Stats with comparison */}
         {hasStats && (
           <div className="space-y-0.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-            {[...allStatKeys].map(stat => {
-              const val = (item.stats?.[stat] as number) || 0;
-              const eqVal = (eqStats[stat] as number) || 0;
-              const diff = val - eqVal;
-              const showDiff = equippedItem && equippedItem.id !== item.id;
-              return (
-                <div key={stat} className="flex items-center justify-between text-xs">
-                  <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="font-mono font-semibold" style={{ color: val > 0 ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
-                      {val > 0 ? `+${val}` : val}
-                    </span>
-                    {showDiff && (
-                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : diff < 0 ? "#ef4444" : "rgba(255,255,255,0.2)", fontSize: 12 }}>
-                        {diff > 0 ? `▲${diff}` : diff < 0 ? `▼${Math.abs(diff)}` : "="}
+            {(() => {
+              const itemAny = item as Record<string, unknown>;
+              const affixes = (itemAny.affixes && typeof itemAny.affixes === "object") ? itemAny.affixes as { primary?: { pool: { stat: string; min: number; max: number }[] }; minor?: { pool: { stat: string; min: number; max: number }[] } } : null;
+              const rangeMap: Record<string, { min: number; max: number }> = {};
+              if (affixes) {
+                for (const p of [...(affixes.primary?.pool || []), ...(affixes.minor?.pool || [])]) {
+                  rangeMap[p.stat] = { min: p.min, max: p.max };
+                }
+              }
+              return [...allStatKeys].map(stat => {
+                const val = (item.stats?.[stat] as number) || 0;
+                const eqVal = (eqStats[stat] as number) || 0;
+                const diff = val - eqVal;
+                const showDiff = equippedItem && equippedItem.id !== item.id;
+                const range = rangeMap[stat];
+                return (
+                  <div key={stat} className="flex items-center justify-between text-xs">
+                    <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="font-mono font-semibold" style={{ color: val > 0 ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
+                        {val > 0 ? `+${val}` : val}
                       </span>
-                    )}
-                  </span>
-                </div>
-              );
-            })}
+                      {range && <span className="font-mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>[{range.min}-{range.max}]</span>}
+                      {showDiff && (
+                        <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : diff < 0 ? "#ef4444" : "rgba(255,255,255,0.2)", fontSize: 12 }}>
+                          {diff > 0 ? `▲${diff}` : diff < 0 ? `▼${Math.abs(diff)}` : "="}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                );
+              });
+            })()}
           </div>
         )}
 
@@ -634,6 +646,19 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
               <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
                 <div className="h-full rounded-full" style={{ width: `${quality}%`, background: qColor }} />
               </div>
+            </div>
+          );
+        })()}
+
+        {/* Salvage Preview */}
+        {(() => {
+          const ESSENZ_BY_RARITY: Record<string, number> = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
+          const essenz = ESSENZ_BY_RARITY[item.rarity] || 2;
+          return (
+            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                Salvage: +{essenz} Essenz {item.rarity !== "common" ? "+ chance for materials" : ""}
+              </p>
             </div>
           );
         })()}
@@ -693,7 +718,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
 
 const RARITY_SORT_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
 
-type InvFilter = "all" | "equipment" | "consumable" | "passive";
+type InvFilter = "all" | "equipment" | "consumable" | "passive" | "materials";
 type InvSort = "none" | "rarity" | "name" | "level";
 
 const INV_FILTERS: { key: InvFilter; label: string }[] = [
@@ -701,6 +726,7 @@ const INV_FILTERS: { key: InvFilter; label: string }[] = [
   { key: "equipment", label: "Gear" },
   { key: "consumable", label: "Items" },
   { key: "passive", label: "Passive" },
+  { key: "materials", label: "Materials" },
 ];
 
 const INV_SORTS: { key: InvSort; label: string }[] = [
@@ -779,7 +805,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
           width: 56,
           height: 56,
           background: isDropTarget ? "rgba(167,139,250,0.2)" : rarityBg,
-          border: `1px solid ${isDropTarget ? "rgba(167,139,250,0.5)" : rarityBorder}`,
+          border: `${item.rarity === "legendary" || (item as Record<string, unknown>).isUnique ? 2 : item.rarity === "epic" ? 2 : 1}px solid ${isDropTarget ? "rgba(167,139,250,0.5)" : rarityBorder}`,
           borderRadius: 3,
           cursor: "grab",
           display: "flex",
@@ -841,8 +867,8 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     return (
       <>
         <div
-          className="flex items-center justify-center rounded-lg"
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default" }}
+          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse" : ""}`}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
@@ -855,6 +881,12 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
               : <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{label.slice(0, 3)}</span>
           }
         </div>
+        {item && (
+          <p className="text-center truncate mt-0.5" style={{ fontSize: 12, width: 56, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
+        )}
+        {!item && (
+          <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.1)", lineHeight: 1.2 }}>{label}</p>
+        )}
         {hovered && item && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
       </>
     );
@@ -1256,7 +1288,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 paddingLeft: 26,
               }}
             />
-            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.25)", pointerEvents: "none" }}>🔍</span>
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.25)", pointerEvents: "none" }}>◇</span>
             {invSearch && (
               <button
                 onClick={() => setInvSearch("")}
@@ -1287,6 +1319,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             )}
           </div>
 
+          {/* Inventory count */}
+          {charData && (
+            <p className="text-xs text-right mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+              {charData.inventory.length} / 100 slots
+            </p>
+          )}
+
           {/* Filter Tabs */}
           <div className="flex gap-1 mb-2">
             {INV_FILTERS.map(f => (
@@ -1309,12 +1348,69 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
           {!loading && charData && (() => {
-            const equippedIds = new Set(
-              Object.values(charData.equipment).filter(Boolean).map(v =>
-                typeof v === 'object' && v !== null ? ((v as GearInstance).instanceId || (v as GearInstance).templateId) : v
-              )
+            const equippedIds = new Set<string>();
+            for (const v of Object.values(charData.equipment)) {
+              if (!v) continue;
+              if (typeof v === 'object' && v !== null) {
+                const gi = v as GearInstance;
+                if (gi.instanceId) equippedIds.add(gi.instanceId);
+                if (gi.templateId) equippedIds.add(gi.templateId);
+              } else if (typeof v === 'string') {
+                equippedIds.add(v);
+              }
+            }
+            // ─── Materials Tab ─────────────────────────────────────────
+            if (invFilter === "materials") {
+              const mats = charData.craftingMaterials || {};
+              const matDefs = charData.materialDefs || [];
+              const matEntries = Object.entries(mats).filter(([, count]) => count > 0);
+              const searchQ = invSearch.trim().toLowerCase();
+              const filtered = searchQ
+                ? matEntries.filter(([id]) => {
+                    const def = matDefs.find(d => d.id === id);
+                    return (def?.name || id).toLowerCase().includes(searchQ);
+                  })
+                : matEntries;
+              const sorted = [...filtered].sort((a, b) => {
+                const da = matDefs.find(d => d.id === a[0]);
+                const db = matDefs.find(d => d.id === b[0]);
+                const ra = RARITY_SORT_ORDER[da?.rarity || "common"] ?? 9;
+                const rb = RARITY_SORT_ORDER[db?.rarity || "common"] ?? 9;
+                return ra - rb || (da?.name || a[0]).localeCompare(db?.name || b[0]);
+              });
+              return (
+                <div className="space-y-2">
+                  <p className="text-xs text-w25">{sorted.length} material{sorted.length !== 1 ? "s" : ""} in storage</p>
+                  {sorted.length === 0 ? (
+                    <p className="text-xs text-center py-8 text-w15">No materials yet. Complete quests to gather materials based on your professions.</p>
+                  ) : (
+                    <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))" }}>
+                      {sorted.map(([id, count]) => {
+                        const def = matDefs.find(d => d.id === id);
+                        const rarityColor = RARITY_COLORS[def?.rarity || "common"] || "#9ca3af";
+                        return (
+                          <div key={id} className="flex items-center gap-2 rounded-lg px-2.5 py-2" style={{ background: "rgba(255,255,255,0.025)", border: `1px solid ${rarityColor}20` }}>
+                            {def?.icon ? (
+                              <img src={def.icon} alt="" width={28} height={28} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                            ) : (
+                              <span className="text-sm flex-shrink-0" style={{ color: rarityColor }}>◆</span>
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold truncate" style={{ color: rarityColor }}>{def?.name || id}</p>
+                              <p className="text-xs font-mono font-bold" style={{ color: "rgba(255,255,255,0.6)" }}>×{count}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            let unequipped = charData.inventory.filter(i =>
+              !equippedIds.has(i.id) && !equippedIds.has(i.templateId || "") && !equippedIds.has((i as unknown as Record<string, string>).instanceId || "")
             );
-            let unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
 
             // Search
             if (invSearch.trim()) {
@@ -1513,7 +1609,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {rightTab === "equipment" && (
             <div>
               {/* Paper Doll Grid */}
-              <div className="relative mx-auto" style={{ width: 240, height: 320 }}>
+              <div className="relative mx-auto" style={{ width: 240, height: 250 }}>
                 {/* Legendary equipment shimmer particles */}
                 {(() => {
                   const hasLegendary = charData && Object.values(charData.equipment).some(v => {
@@ -1550,17 +1646,17 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
                   const item = gi
                     ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
-                    : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
+                    : equippedItemId ? { id: String(equippedItemId), name: String(equippedItemId), slot, rarity: "common", stats: {}, tier: 0, minLevel: 0 } : null;
                   const rc = item ? (RARITY_COLORS[item.rarity] || "#9ca3af") : "rgba(255,255,255,0.08)";
                   // Slot positions on the paper doll
                   const positions: Record<string, { top: number; left: number }> = {
                     helm:   { top: 0,   left: 88 },
-                    amulet: { top: 60,  left: 170 },
-                    weapon: { top: 110, left: 0 },
-                    armor:  { top: 110, left: 88 },
-                    shield: { top: 110, left: 176 },
-                    ring:   { top: 200, left: 0 },
-                    boots:  { top: 250, left: 88 },
+                    amulet: { top: 0,   left: 176 },
+                    weapon: { top: 80,  left: 0 },
+                    armor:  { top: 80,  left: 88 },
+                    shield: { top: 80,  left: 176 },
+                    ring:   { top: 160, left: 0 },
+                    boots:  { top: 160, left: 88 },
                   };
                   const pos = positions[slot] || { top: 0, left: 0 };
                   // Gem socket dots
@@ -1593,31 +1689,6 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   );
                 })}
               </div>
-
-              {/* Detailed list fallback below paper doll */}
-              <div className="space-y-1.5 mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
-                const eqRaw = charData?.equipment[slot];
-                const isInstance = eqRaw && typeof eqRaw === 'object';
-                const gi = isInstance ? eqRaw as GearInstance : null;
-                const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
-                const item = gi
-                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
-                  : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
-                return (
-                  <GearSlotRow
-                    key={slot}
-                    slot={slot}
-                    iconSrc={iconSrc}
-                    label={label}
-                    item={item}
-                    onUnequip={handleUnequip}
-                    unequipping={unequipping}
-                  />
-                );
-              })}
-              </div>
-
 
               {/* Passive Items */}
               {charData && (() => {
@@ -1711,10 +1782,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft = 0, ausdauer = 0, weisheit = 0, glueck = 0, fokus = 0, vitalitaet = 0, charisma = 0, tempo = 0 } = charData.stats || {};
             const base = charData.baseStats || { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · Quest XP bonus (diminishing returns)" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Forge Decay reduction (diminishing)" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · Gold bonus (diminishing returns)" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Drop Chance bonus (diminishing returns)" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest XP per point" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay per point (floor 10%)" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.4% Gold per point" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.3% Drop Chance per point" },
             ];
             const minorStatRows = [
               { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus XP per point (max +50)" },

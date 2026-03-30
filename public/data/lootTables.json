@@ -1,41 +1,376 @@
 {
   "common": [
-    { "id": "gold-small", "templateId": "gold-small", "name": "Beutel mit Münzen", "emoji": null, "minLevel": 1, "effect": { "type": "gold", "amount": 15 } },
-    { "id": "xp-small", "templateId": "xp-small", "name": "Erfahrungskristall", "emoji": null, "minLevel": 1, "effect": { "type": "xp", "amount": 10 } },
-    { "id": "companion-snack", "templateId": "companion-snack", "name": "Companion-Leckerli", "emoji": null, "minLevel": 1, "effect": { "type": "bond", "amount": 1 } },
-    { "id": "repair-kit-s", "templateId": "repair-kit-s", "name": "Kleines Reparaturkit", "emoji": null, "minLevel": 1, "effect": { "type": "forge_temp", "amount": 5 } },
-    { "id": "bandage", "templateId": "bandage", "name": "Verband", "emoji": null, "minLevel": 1, "effect": { "type": "forge_temp", "amount": 3 } },
-    { "id": "apple", "templateId": "apple", "name": "Frischer Apfel", "emoji": null, "minLevel": 1, "effect": { "type": "xp", "amount": 5 } }
+    {
+      "id": "gold-small",
+      "templateId": "gold-small",
+      "name": "Beutel mit Münzen",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "gold",
+        "amount": 15
+      },
+      "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "xp-small",
+      "templateId": "xp-small",
+      "name": "Erfahrungskristall",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "xp",
+        "amount": 10
+      },
+      "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "companion-snack",
+      "templateId": "companion-snack",
+      "name": "Companion-Leckerli",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "bond",
+        "amount": 1
+      },
+      "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "repair-kit-s",
+      "templateId": "repair-kit-s",
+      "name": "Kleines Reparaturkit",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "forge_temp",
+        "amount": 5
+      },
+      "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "bandage",
+      "templateId": "bandage",
+      "name": "Verband",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "forge_temp",
+        "amount": 3
+      },
+      "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "apple",
+      "templateId": "apple",
+      "name": "Frischer Apfel",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "xp",
+        "amount": 5
+      },
+      "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "random-gear-common",
+      "name": "Alte Truhe",
+      "icon": "/images/icons/loot-common.png",
+      "effect": {
+        "type": "random_gear",
+        "amount": 1
+      },
+      "minLevel": 1
+    }
   ],
   "uncommon": [
-    { "id": "gold-medium", "templateId": "gold-medium", "name": "Truhe mit Gold", "emoji": null, "minLevel": 1, "effect": { "type": "gold", "amount": 50 } },
-    { "id": "xp-scroll", "templateId": "xp-scroll", "name": "Schriftrolle der Erfahrung", "emoji": null, "minLevel": 1, "effect": { "type": "xp_boost", "amount": 25, "duration": "3_tasks" } },
-    { "id": "companion-toy", "templateId": "companion-toy", "name": "Companion-Spielzeug", "emoji": null, "minLevel": 1, "effect": { "type": "bond", "amount": 3 } },
-    { "id": "streak-shield", "templateId": "streak-shield", "name": "Streak-Schutzschild", "emoji": null, "minLevel": 1, "effect": { "type": "streak_shield", "amount": 1 } },
-    { "id": "lucky-coin", "templateId": "lucky-coin", "name": "Glücksmünze", "emoji": null, "minLevel": 1, "effect": { "type": "gold", "amount": 75 } },
-    { "id": "training-manual", "templateId": "training-manual", "name": "Trainingshandbuch", "emoji": null, "minLevel": 5, "effect": { "type": "xp_boost", "amount": 15, "duration": "5_tasks" } }
+    {
+      "id": "gold-medium",
+      "templateId": "gold-medium",
+      "name": "Truhe mit Gold",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "gold",
+        "amount": 50
+      },
+      "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "xp-scroll",
+      "templateId": "xp-scroll",
+      "name": "Schriftrolle der Erfahrung",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "xp_boost",
+        "amount": 25,
+        "duration": "3_tasks"
+      },
+      "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "companion-toy",
+      "templateId": "companion-toy",
+      "name": "Companion-Spielzeug",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "bond",
+        "amount": 3
+      },
+      "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "streak-shield",
+      "templateId": "streak-shield",
+      "name": "Streak-Schutzschild",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "lucky-coin",
+      "templateId": "lucky-coin",
+      "name": "Glücksmünze",
+      "emoji": null,
+      "minLevel": 1,
+      "effect": {
+        "type": "gold",
+        "amount": 75
+      },
+      "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "training-manual",
+      "templateId": "training-manual",
+      "name": "Trainingshandbuch",
+      "emoji": null,
+      "minLevel": 5,
+      "effect": {
+        "type": "xp_boost",
+        "amount": 15,
+        "duration": "5_tasks"
+      },
+      "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "random-gear-uncommon",
+      "name": "Verschlossene Truhe",
+      "icon": "/images/icons/loot-uncommon.png",
+      "effect": {
+        "type": "random_gear",
+        "amount": 1
+      },
+      "minLevel": 3
+    }
   ],
   "rare": [
-    { "id": "gold-large", "templateId": "gold-large", "name": "Schatzkiste", "emoji": null, "minLevel": 9, "effect": { "type": "gold", "amount": 150 } },
-    { "id": "gear-random", "templateId": "gear-random", "name": "Mysteriöse Ausrüstung", "emoji": null, "minLevel": 9, "effect": { "type": "random_gear" } },
-    { "id": "companion-egg", "templateId": "companion-egg", "name": "Mysteriöses Ei", "emoji": null, "minLevel": 9, "effect": { "type": "companion_egg" } },
-    { "id": "streak-shield-x3", "templateId": "streak-shield-x3", "name": "Legendäres Streak-Schild", "emoji": null, "minLevel": 9, "effect": { "type": "streak_shield", "amount": 3 } },
-    { "id": "sakura-petal", "templateId": "sakura-petal", "name": "Ewige Kirschblüte", "emoji": null, "minLevel": 9, "effect": { "type": "cosmetic", "cosmetic": "sakura_aura" } },
-    { "id": "forge-ember", "templateId": "forge-ember", "name": "Schmiedeglut", "emoji": null, "minLevel": 9, "effect": { "type": "forge_temp", "amount": 30 } }
+    {
+      "id": "gold-large",
+      "templateId": "gold-large",
+      "name": "Schatzkiste",
+      "emoji": null,
+      "minLevel": 9,
+      "effect": {
+        "type": "gold",
+        "amount": 150
+      },
+      "icon": "/images/icons/loot-rare.png"
+    },
+    {
+      "id": "gear-random",
+      "templateId": "gear-random",
+      "name": "Mysteriöse Ausrüstung",
+      "emoji": null,
+      "minLevel": 9,
+      "effect": {
+        "type": "random_gear"
+      },
+      "icon": "/images/icons/loot-rare.png"
+    },
+    {
+      "id": "companion-egg",
+      "templateId": "companion-egg",
+      "name": "Mysteriöses Ei",
+      "emoji": null,
+      "minLevel": 9,
+      "effect": {
+        "type": "companion_egg"
+      },
+      "icon": "/images/icons/loot-rare.png"
+    },
+    {
+      "id": "streak-shield-x3",
+      "templateId": "streak-shield-x3",
+      "name": "Legendäres Streak-Schild",
+      "emoji": null,
+      "minLevel": 9,
+      "effect": {
+        "type": "streak_shield",
+        "amount": 3
+      },
+      "icon": "/images/icons/loot-rare.png"
+    },
+    {
+      "id": "sakura-petal",
+      "templateId": "sakura-petal",
+      "name": "Ewige Kirschblüte",
+      "emoji": null,
+      "minLevel": 9,
+      "effect": {
+        "type": "cosmetic",
+        "cosmetic": "sakura_aura"
+      },
+      "icon": "/images/icons/loot-rare.png"
+    },
+    {
+      "id": "forge-ember",
+      "templateId": "forge-ember",
+      "name": "Schmiedeglut",
+      "emoji": null,
+      "minLevel": 9,
+      "effect": {
+        "type": "forge_temp",
+        "amount": 30
+      },
+      "icon": "/images/icons/loot-rare.png"
+    }
   ],
   "epic": [
-    { "id": "gold-huge", "templateId": "gold-huge", "name": "Drachenhort", "emoji": null, "minLevel": 17, "effect": { "type": "gold", "amount": 500 } },
-    { "id": "gear-upgrade", "templateId": "gear-upgrade", "name": "Schmiedehammer der Meister", "emoji": null, "minLevel": 17, "effect": { "type": "gear_next_tier" } },
-    { "id": "second-chance", "templateId": "second-chance", "name": "Stein der zweiten Chance", "emoji": null, "minLevel": 17, "effect": { "type": "undo_missed_ritual" } },
-    { "id": "xp-mega", "templateId": "xp-mega", "name": "Arkaner Fokuskristall", "emoji": null, "minLevel": 17, "effect": { "type": "xp_boost", "amount": 50, "duration": "24h" } },
-    { "id": "dragon-scale", "templateId": "dragon-scale", "name": "Drachenschuppe", "emoji": null, "minLevel": 17, "effect": { "type": "random_gear_epic" } },
-    { "id": "time-crystal", "templateId": "time-crystal", "name": "Zeitkristall", "emoji": null, "minLevel": 17, "effect": { "type": "streak_shield", "amount": 2 } }
+    {
+      "id": "gold-huge",
+      "templateId": "gold-huge",
+      "name": "Drachenhort",
+      "emoji": null,
+      "minLevel": 17,
+      "effect": {
+        "type": "gold",
+        "amount": 500
+      },
+      "icon": "/images/icons/loot-epic.png"
+    },
+    {
+      "id": "gear-upgrade",
+      "templateId": "gear-upgrade",
+      "name": "Schmiedehammer der Meister",
+      "emoji": null,
+      "minLevel": 17,
+      "effect": {
+        "type": "gear_next_tier"
+      },
+      "icon": "/images/icons/loot-epic.png"
+    },
+    {
+      "id": "second-chance",
+      "templateId": "second-chance",
+      "name": "Stein der zweiten Chance",
+      "emoji": null,
+      "minLevel": 17,
+      "effect": {
+        "type": "undo_missed_ritual"
+      },
+      "icon": "/images/icons/loot-epic.png"
+    },
+    {
+      "id": "xp-mega",
+      "templateId": "xp-mega",
+      "name": "Arkaner Fokuskristall",
+      "emoji": null,
+      "minLevel": 17,
+      "effect": {
+        "type": "xp_boost",
+        "amount": 50,
+        "duration": "24h"
+      },
+      "icon": "/images/icons/loot-epic.png"
+    },
+    {
+      "id": "dragon-scale",
+      "templateId": "dragon-scale",
+      "name": "Drachenschuppe",
+      "emoji": null,
+      "minLevel": 17,
+      "effect": {
+        "type": "random_gear_epic"
+      },
+      "icon": "/images/icons/loot-epic.png"
+    },
+    {
+      "id": "time-crystal",
+      "templateId": "time-crystal",
+      "name": "Zeitkristall",
+      "emoji": null,
+      "minLevel": 17,
+      "effect": {
+        "type": "streak_shield",
+        "amount": 2
+      },
+      "icon": "/images/icons/loot-epic.png"
+    }
   ],
   "legendary": [
-    { "id": "named-weapon", "templateId": "named-weapon", "name": "Klinge des Frühaufstehers", "emoji": null, "minLevel": 25, "effect": { "type": "named_gear" } },
-    { "id": "guild-blessing", "templateId": "guild-blessing", "name": "Segen der Gilde", "emoji": null, "minLevel": 25, "effect": { "type": "team_buff", "amount": 25, "duration": "24h" } },
-    { "id": "legendary-title", "templateId": "legendary-title", "name": "Titel: Glückskind", "emoji": null, "minLevel": 25, "effect": { "type": "title", "title": "Glückskind" } },
-    { "id": "world-key", "templateId": "world-key", "name": "Schlüssel der Welten", "emoji": null, "minLevel": 25, "effect": { "type": "unlock_secret_quest" } },
-    { "id": "phoenix-feather", "templateId": "phoenix-feather", "name": "Phoenixfeder", "emoji": null, "minLevel": 25, "effect": { "type": "revive" } }
+    {
+      "id": "named-weapon",
+      "templateId": "named-weapon",
+      "name": "Klinge des Frühaufstehers",
+      "emoji": null,
+      "minLevel": 25,
+      "effect": {
+        "type": "named_gear"
+      },
+      "icon": "/images/icons/loot-legendary.png"
+    },
+    {
+      "id": "guild-blessing",
+      "templateId": "guild-blessing",
+      "name": "Segen der Gilde",
+      "emoji": null,
+      "minLevel": 25,
+      "effect": {
+        "type": "team_buff",
+        "amount": 25,
+        "duration": "24h"
+      },
+      "icon": "/images/icons/loot-legendary.png"
+    },
+    {
+      "id": "legendary-title",
+      "templateId": "legendary-title",
+      "name": "Titel: Glückskind",
+      "emoji": null,
+      "minLevel": 25,
+      "effect": {
+        "type": "title",
+        "title": "Glückskind"
+      },
+      "icon": "/images/icons/loot-legendary.png"
+    },
+    {
+      "id": "world-key",
+      "templateId": "world-key",
+      "name": "Schlüssel der Welten",
+      "emoji": null,
+      "minLevel": 25,
+      "effect": {
+        "type": "unlock_secret_quest"
+      },
+      "icon": "/images/icons/loot-legendary.png"
+    },
+    {
+      "id": "phoenix-feather",
+      "templateId": "phoenix-feather",
+      "name": "Phoenixfeder",
+      "emoji": null,
+      "minLevel": 25,
+      "effect": {
+        "type": "revive"
+      },
+      "icon": "/images/icons/loot-legendary.png"
+    }
   ]
 }

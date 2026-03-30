@@ -8,24 +8,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [3, 3],
+          "count": [
+            3,
+            3
+          ],
           "pool": [
-            { "stat": "kraft", "min": 8, "max": 20 },
-            { "stat": "weisheit", "min": 8, "max": 20 },
-            { "stat": "ausdauer", "min": 8, "max": 20 }
+            {
+              "stat": "kraft",
+              "min": 8,
+              "max": 20
+            },
+            {
+              "stat": "weisheit",
+              "min": 8,
+              "max": 20
+            },
+            {
+              "stat": "ausdauer",
+              "min": 8,
+              "max": 20
+            }
           ]
         },
         "minor": {
-          "count": [2, 2],
+          "count": [
+            2,
+            2
+          ],
           "pool": [
-            { "stat": "fokus", "min": 3, "max": 8 },
-            { "stat": "tempo", "min": 3, "max": 8 }
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 8
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 8
+            }
           ]
         }
       },
       "effect": "xp_boost_10",
       "desc": "Eine Klinge, geschmiedet im reinsten Aetherstrom. Ihr Glühen pulsiert im Takt des Schicksals.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "slot": "weapon"
     },
     {
       "id": "mantel-sternenwaechter",
@@ -35,24 +62,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [3, 3],
+          "count": [
+            3,
+            3
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 8, "max": 20 },
-            { "stat": "kraft", "min": 8, "max": 20 },
-            { "stat": "weisheit", "min": 8, "max": 20 }
+            {
+              "stat": "ausdauer",
+              "min": 8,
+              "max": 20
+            },
+            {
+              "stat": "kraft",
+              "min": 8,
+              "max": 20
+            },
+            {
+              "stat": "weisheit",
+              "min": 8,
+              "max": 20
+            }
           ]
         },
         "minor": {
-          "count": [2, 2],
+          "count": [
+            2,
+            2
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 3, "max": 8 },
-            { "stat": "tempo", "min": 3, "max": 8 }
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 8
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 8
+            }
           ]
         }
       },
       "effect": "xp_boost_10",
       "desc": "Gewoben aus dem Licht sterbender Sterne. Wer ihn trägt, spürt die Wärme vergangener Zeitalter.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png"
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "slot": "armor"
     },
     {
       "id": "phoenixfeder",
@@ -73,24 +127,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 5, "max": 12 },
-            { "stat": "kraft", "min": 5, "max": 12 },
-            { "stat": "weisheit", "min": 5, "max": 12 }
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 12
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 12
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 12
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 2, "max": 5 },
-            { "stat": "tempo", "min": 2, "max": 5 }
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 5
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Geschmiedet im Herzen eines erloschenen Vulkans. Unbeugsam wie der Wille seines Trägers.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "slot": "shield"
     },
     {
       "id": "stab-erkenntnis",
@@ -100,24 +181,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "kraft", "min": 5, "max": 12 },
-            { "stat": "weisheit", "min": 5, "max": 12 },
-            { "stat": "ausdauer", "min": 5, "max": 12 }
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 12
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 12
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 12
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "fokus", "min": 2, "max": 5 },
-            { "stat": "tempo", "min": 2, "max": 5 }
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 5
+            }
           ]
         }
       },
       "effect": "xp_boost_5",
       "desc": "Ein Stab aus uraltem Weltenholz. Sein Kristall flüstert vergessenes Wissen.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png"
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "slot": "weapon"
     },
     {
       "id": "goldene-schriftrolle",
@@ -149,24 +257,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [2, 2],
+          "count": [
+            2,
+            2
+          ],
           "pool": [
-            { "stat": "kraft", "min": 4, "max": 9 },
-            { "stat": "weisheit", "min": 4, "max": 9 },
-            { "stat": "ausdauer", "min": 4, "max": 9 }
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 9
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 9
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 9
+            }
           ]
         },
         "minor": {
-          "count": [1, 1],
+          "count": [
+            1,
+            1
+          ],
           "pool": [
-            { "stat": "fokus", "min": 2, "max": 4 },
-            { "stat": "tempo", "min": 2, "max": 4 }
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Die Standardwaffe eines erfahrenen Abenteurers. Zuverlässig und scharf.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png"
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "slot": "weapon"
     },
     {
       "id": "wanderermantel",
@@ -176,24 +311,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [2, 2],
+          "count": [
+            2,
+            2
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 4, "max": 9 },
-            { "stat": "kraft", "min": 4, "max": 9 },
-            { "stat": "weisheit", "min": 4, "max": 9 }
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 9
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 9
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 9
+            }
           ]
         },
         "minor": {
-          "count": [1, 1],
+          "count": [
+            1,
+            1
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 2, "max": 4 },
-            { "stat": "tempo", "min": 2, "max": 4 }
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Ein wettergegerbter Mantel, der schon tausend Meilen gesehen hat.",
-      "icon": "/images/icons/gacha-wanderermantel.png"
+      "icon": "/images/icons/gacha-wanderermantel.png",
+      "slot": "armor"
     },
     {
       "id": "gluecksklee",
@@ -236,24 +398,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "kraft", "min": 2, "max": 5 },
-            { "stat": "weisheit", "min": 2, "max": 5 },
-            { "stat": "ausdauer", "min": 2, "max": 5 }
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
           ]
         },
         "minor": {
-          "count": [0, 1],
+          "count": [
+            0,
+            1
+          ],
           "pool": [
-            { "stat": "fokus", "min": 1, "max": 2 },
-            { "stat": "tempo", "min": 1, "max": 2 }
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Ein solides Schwert aus gehärtetem Eisen. Nichts Besonderes, aber zuverlässig.",
-      "icon": "/images/icons/gacha-eisenschwert.png"
+      "icon": "/images/icons/gacha-eisenschwert.png",
+      "slot": "weapon"
     },
     {
       "id": "lederschultern",
@@ -263,24 +452,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 2, "max": 5 },
-            { "stat": "kraft", "min": 2, "max": 5 },
-            { "stat": "weisheit", "min": 2, "max": 5 }
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
           ]
         },
         "minor": {
-          "count": [0, 1],
+          "count": [
+            0,
+            1
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 1, "max": 2 },
-            { "stat": "tempo", "min": 1, "max": 2 }
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Robuste Lederschultern, die so manchen Hieb abgefangen haben.",
-      "icon": "/images/icons/gacha-lederschultern.png"
+      "icon": "/images/icons/gacha-lederschultern.png",
+      "slot": "armor"
     },
     {
       "id": "kleine-erinnerungssplitter",
@@ -312,24 +528,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [1, 1],
+          "count": [
+            1,
+            1
+          ],
           "pool": [
-            { "stat": "kraft", "min": 1, "max": 3 },
-            { "stat": "weisheit", "min": 1, "max": 3 },
-            { "stat": "ausdauer", "min": 1, "max": 3 }
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
           ]
         },
         "minor": {
-          "count": [0, 0],
+          "count": [
+            0,
+            0
+          ],
           "pool": [
-            { "stat": "fokus", "min": 1, "max": 1 },
-            { "stat": "tempo", "min": 1, "max": 1 }
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 1
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 1
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Ein alter, rostiger Dolch. Besser als nichts.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png"
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "slot": "weapon"
     },
     {
       "id": "flickenumhang",
@@ -339,24 +582,51 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [1, 1],
+          "count": [
+            1,
+            1
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 1, "max": 3 },
-            { "stat": "kraft", "min": 1, "max": 3 },
-            { "stat": "weisheit", "min": 1, "max": 3 }
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
           ]
         },
         "minor": {
-          "count": [0, 0],
+          "count": [
+            0,
+            0
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 1, "max": 1 },
-            { "stat": "tempo", "min": 1, "max": 1 }
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 1
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 1
+            }
           ]
         }
       },
       "effect": null,
       "desc": "Ein mehrfach geflickter Umhang. Er hält immerhin den Wind ab.",
-      "icon": "/images/icons/gacha-flickenumhang.png"
+      "icon": "/images/icons/gacha-flickenumhang.png",
+      "slot": "armor"
     },
     {
       "id": "heiltrank",
@@ -368,11 +638,53 @@
       "effect": "small_heal",
       "desc": "Ein einfacher Heiltrank. Schmeckt nach Kräutern und Hoffnung.",
       "icon": "/images/icons/gacha-heiltrank.png"
+    },
+    {
+      "id": "npc-visit-lumi",
+      "name": "Lumis Einladung",
+      "rarity": "legendary",
+      "type": "consumable",
+      "emoji": null,
+      "icon": "/images/npcs/lumi.png",
+      "effect": "npc_visit",
+      "npcId": "lumi",
+      "desc": "Eine schimmernde Einladung. Lumi wird als nächstes den Turm besuchen. Man munkelt, die Einladung hat sich selbst geschrieben.",
+      "stats": {}
+    },
+    {
+      "id": "npc-visit-skelett",
+      "name": "Visitenkarte des Eleganten Herrn",
+      "rarity": "epic",
+      "type": "consumable",
+      "emoji": null,
+      "icon": "/images/npcs/skelett-gentleman.png",
+      "effect": "npc_visit",
+      "npcId": "skelett-gentleman",
+      "desc": "Eine makellose Visitenkarte aus Knochenweiß. Der Text ändert sich jedes Mal, wenn man hinschaut, aber die Adresse bleibt gleich: \"Überall, wo es interessant ist.\"",
+      "stats": {}
+    },
+    {
+      "id": "npc-visit-tod",
+      "name": "Höfliche Ankündigung",
+      "rarity": "legendary",
+      "type": "consumable",
+      "emoji": null,
+      "icon": "/images/npcs/tod-der-hoefliche.png",
+      "effect": "npc_visit",
+      "npcId": "tod-der-hoefliche",
+      "desc": "Ein Brief in tadellosem Schwarz. Der Absender hat sich die Mühe gemacht, persönlich NICHT zu unterschreiben. Auf der Rückseite steht: \"Keine Eile.\"",
+      "stats": {}
     }
   ],
   "featuredPool": [],
   "uniqueDrops": {
-    "wheel-of-stars": { "itemId": "wheel-of-fate-shield", "chance": 0.003 },
-    "astral-radiance": { "itemId": "astral-veil", "chance": 0.005 }
+    "wheel-of-stars": {
+      "itemId": "wheel-of-fate-shield",
+      "chance": 0.003
+    },
+    "astral-radiance": {
+      "itemId": "astral-veil",
+      "chance": 0.005
+    }
   }
 }

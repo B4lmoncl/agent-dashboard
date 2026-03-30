@@ -45,7 +45,9 @@ function loadWorldBossState() {
 function saveWorldBossState() {
   try {
     ensureRuntimeDir();
-    fs.writeFileSync(BOSS_FILE, JSON.stringify(worldBossState, null, 2));
+    const tmp = BOSS_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(worldBossState, null, 2));
+    fs.renameSync(tmp, BOSS_FILE);
   } catch (e) {
     console.error('[world-boss] Failed to save state:', e.message);
   }
@@ -170,6 +172,9 @@ function dealBossDamage(userId, questRarity) {
   }
   boss.contributions[userId].damage += dmg;
   boss.contributions[userId].quests += 1;
+  // Track for achievements
+  const wbUser = state.users[userId];
+  if (wbUser) wbUser._worldBossContributions = (wbUser._worldBossContributions || 0) + 1;
 
   // Apply damage
   boss.currentHp = Math.max(0, boss.currentHp - dmg);
@@ -383,6 +388,9 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'Rewards already claimed' });
   }
   boss.rewardsClaimed.push(uid);
+  // Track unique bosses killed for achievements
+  if (!user._bossKillIds) user._bossKillIds = [];
+  if (!user._bossKillIds.includes(boss.bossId)) user._bossKillIds.push(boss.bossId);
 
   const template = getBossTemplate(boss.bossId);
   const leaderboard = getContributionLeaderboard(boss, 999);
@@ -400,6 +408,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   awardCurrency(uid, 'essenz', baseEssenz);
   rewards.push({ type: 'gold', amount: baseGold });
   rewards.push({ type: 'essenz', amount: baseEssenz });
+  if (rank <= 3) user._worldBossTop3 = (user._worldBossTop3 || 0) + 1;
 
   // ── Top 3: Unique title ──
   if (rank <= 3 && template?.titleReward) {
@@ -454,7 +463,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
           trackUniqueInCollection(uid, dropId);
           if (!user.collectionLogDates) user.collectionLogDates = {};
           user.collectionLogDates[dropId] = new Date().toISOString();
-          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, slot: uniqueTemplate.slot });
+          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, slot: uniqueTemplate.slot, icon: uniqueTemplate.icon || null });
         }
       } else {
         // Fallback: unique template not found, use legacy behavior
@@ -490,7 +499,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
       const instance = rollSuffix(createGearInstance(template));
       if (!user.inventory) user.inventory = [];
       user.inventory.push(instance);
-      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot });
+      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null });
     }
   }
 
@@ -505,6 +514,9 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     awardCurrency(uid, 'stardust', bonusStardust);
     rewards.push({ type: 'stardust', amount: bonusStardust });
   }
+
+  // Check achievements after world boss rewards
+  try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
 
   // Battle Pass XP for world boss kill
   try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(user, 'quest_complete', { rarity: 'legendary' }); } catch (e) { console.warn('[bp-xp] world-boss:', e.message); }

@@ -66,7 +66,9 @@ function loadDungeonState() {
 function saveDungeonState() {
   try {
     ensureRuntimeDir();
-    fs.writeFileSync(DUNGEON_STATE_FILE, JSON.stringify(dungeonState, null, 2));
+    const tmp = DUNGEON_STATE_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(dungeonState, null, 2));
+    fs.renameSync(tmp, DUNGEON_STATE_FILE);
   } catch (e) {
     console.error('[dungeons] Failed to save dungeon state:', e.message);
   }
@@ -314,6 +316,9 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
+  // Block during tavern rest
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot enter dungeons while resting in The Hearth.' });
+
   const { dungeonId, invitePlayers } = req.body;
   if (!dungeonId || typeof dungeonId !== 'string') return res.status(400).json({ error: 'dungeonId required' });
 
@@ -504,6 +509,9 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Mark collected BEFORE success determination to prevent duplicate collection
   run.collected.push(uid);
+  u._dungeonCompletions = (u._dungeonCompletions || 0) + 1;
+  if (!u._dungeonTiersCleared) u._dungeonTiersCleared = [];
+  if (!u._dungeonTiersCleared.includes(run.dungeonId)) u._dungeonTiersCleared.push(run.dungeonId);
 
   // ── Determine run success ONCE (first collector calculates, subsequent reuse) ──
   const participantCount = run.participants.length;
@@ -556,7 +564,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       const instance = rollSuffix(createGearInstance(template));
       if (!u.inventory) u.inventory = [];
       u.inventory.push(instance);
-      rewards.gearDropItem = { name: instance.name, rarity: instance.rarity, slot: instance.slot, instanceId: instance.instanceId };
+      rewards.gearDropItem = { name: instance.name, rarity: instance.rarity, slot: instance.slot, instanceId: instance.instanceId, icon: instance.icon || null };
     } else {
       // Fallback: generic loot pool (for dungeons without specific items)
       for (let attempt = 0; attempt < 5; attempt++) {
@@ -569,7 +577,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       }
       if (gearItem) {
         addLootToInventory(uid, gearItem);
-        rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot };
+        rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot, icon: gearItem.icon || null };
       }
     }
     delete rewards.gearDrop;
@@ -594,7 +602,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
           trackUniqueInCollection(uid, uniqueTemplate.id);
           if (!u.collectionLogDates) u.collectionLogDates = {};
           u.collectionLogDates[uniqueTemplate.id] = now();
-          uniqueDrop = { name: uniqueTemplate.name, slot: uniqueTemplate.slot, id: uniqueTemplate.id };
+          uniqueDrop = { name: uniqueTemplate.name, slot: uniqueTemplate.slot, id: uniqueTemplate.id, icon: uniqueTemplate.icon || null };
           break; // Max 1 unique per run
         }
       }
@@ -651,6 +659,9 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       }
     }
   }
+
+  // Check achievements after dungeon collection
+  try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
 
   // Log activity for social feed
   logActivity(uid, 'quest_complete', {

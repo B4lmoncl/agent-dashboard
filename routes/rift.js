@@ -281,6 +281,9 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
+  // Block during tavern rest
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot enter rifts while resting in The Hearth.' });
+
   const { tier: tierId, mythicLevel: rawMythicLevel } = req.body;
   if (!tierId || !RIFT_TIERS[tierId]) return res.status(400).json({ error: 'Invalid rift tier' });
 
@@ -364,6 +367,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot complete rift stages while resting.' });
 
   const rift = getRiftStatus(u);
   if (!rift?.active) return res.status(400).json({ error: 'No active rift' });
@@ -413,7 +417,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     const instance = rollSuffix(createGearInstance(template));
     if (!u.inventory) u.inventory = [];
     u.inventory.push(instance);
-    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot };
+    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null };
   }
 
   // Check if rift is fully completed
@@ -421,6 +425,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   if (allDone) {
     rift.completed = true;
     rift.completedAt = now();
+    u._riftCompletions = (u._riftCompletions || 0) + 1;
 
     // Award completion bonus currencies (raw — these are bonus on top of quest rewards)
     const tier = RIFT_TIERS[rift.tier];

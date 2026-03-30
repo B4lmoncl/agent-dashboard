@@ -957,12 +957,8 @@ router.get('/api/player/:name/character', (req, res) => {
     }
     return null;
   }).filter(Boolean);
-  for (const item of equippedItems) {
-    if (!inventoryItems.find(i => i.id === item.id)) {
-      const icon = item.icon || gachaIconMap[item.id] || gachaIconMap[item.name] || undefined;
-      inventoryItems.push({ id: item.id, slot: item.slot, name: item.name, icon, tier: item.tier, minLevel: item.minLevel, stats: item.stats || {}, rarity: item.rarity || 'common', desc: item.desc || undefined, type: item.type || item.slot || undefined });
-    }
-  }
+  // Note: equipped items are NOT added to inventory — they're displayed separately
+  // in the Paper Doll equipment slots. Adding them to inventory caused duplicates.
   const companion = u.companion ? {
     type: u.companion.type,
     name: u.companion.name,
@@ -1002,6 +998,8 @@ router.get('/api/player/:name/character', (req, res) => {
     equippedTitle: u.equippedTitle || null,
     earnedTitleCount: (u.earnedTitles || []).length,
     statBreakdown: getStatBreakdown(uid),
+    craftingMaterials: u.craftingMaterials || {},
+    materialDefs: state.professionsData?.materials || [],
   });
 });
 

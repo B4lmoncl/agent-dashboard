@@ -280,9 +280,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           if (rw.runensplitter) currencies.push({ name: "Runensplitter", amount: rw.runensplitter, color: "#a78bfa" });
           if (rw.sternentaler) currencies.push({ name: "Sternentaler", amount: rw.sternentaler, color: "#fbbf24" });
           const loot = d.uniqueDrop
-            ? { name: d.uniqueDrop.name, emoji: "◆", rarity: "legendary", rarityColor: "#ff8c00" }
+            ? { name: d.uniqueDrop.name, emoji: "◆", rarity: "legendary", rarityColor: "#ff8c00", icon: d.uniqueDrop.icon }
             : rw.gearDropItem
-              ? { name: rw.gearDropItem.name, emoji: "◆", rarity: rw.gearDropItem.rarity || "rare" }
+              ? { name: rw.gearDropItem.name, emoji: "◆", rarity: rw.gearDropItem.rarity || "rare", icon: rw.gearDropItem.icon }
               : rw.gemDrop
                 ? { name: rw.gemDrop.name, emoji: "◆", rarity: "rare", rarityColor: rw.gemDrop.color || "#a855f7" }
                 : undefined;

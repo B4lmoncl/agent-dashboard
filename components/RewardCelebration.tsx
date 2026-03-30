@@ -12,7 +12,7 @@ export interface RewardCelebrationData {
   title: string;
   xpEarned: number;
   goldEarned: number;
-  loot?: { name: string; emoji: string; rarity: string; rarityColor?: string } | null;
+  loot?: { name: string; emoji: string; rarity: string; rarityColor?: string; icon?: string } | null;
   bondXp?: number;
   streak?: number;
   /** Companion-specific accent (hex color) */
@@ -380,7 +380,11 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 background: "rgba(255,215,0,0.08)",
                 border: "1px solid rgba(255,215,0,0.25)",
               }}>
-                <span className="text-sm mr-1">{data.loot.emoji}</span>
+                {data.loot.icon ? (
+                  <img src={data.loot.icon} alt="" width={24} height={24} className="mr-1.5" style={{ imageRendering: "auto", verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                ) : (
+                  <span className="text-sm mr-1">{data.loot.emoji}</span>
+                )}
                 <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
                 {onNavigate && (
                   <button

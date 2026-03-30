@@ -747,11 +747,13 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const [newTradeGold, setNewTradeGold] = useState(0);
   const [newTradeMsg, setNewTradeMsg] = useState("");
   const [newTradeItems, setNewTradeItems] = useState<string[]>([]);
+  const [newTradeMaterials, setNewTradeMaterials] = useState<Record<string, number>>({});
 
   // Counter-offer form
   const [counterGold, setCounterGold] = useState(0);
   const [counterMsg, setCounterMsg] = useState("");
   const [counterItems, setCounterItems] = useState<string[]>([]);
+  const [counterMaterials, setCounterMaterials] = useState<Record<string, number>>({});
 
   // Item sort
   const [tradeSort, setTradeSort] = useState<TradeSortKey>("rarity");
@@ -793,7 +795,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" },
         body: JSON.stringify({
           to: newTradeTarget.trim(),
-          offer: { gold: newTradeGold, items: newTradeItems },
+          offer: { gold: newTradeGold, items: newTradeItems, materials: Object.keys(newTradeMaterials).length > 0 ? newTradeMaterials : undefined },
           message: newTradeMsg.trim(),
         }),
       });
@@ -842,7 +844,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         method: "POST",
         headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" },
         body: JSON.stringify({
-          offer: { gold: counterGold, items: counterItems },
+          offer: { gold: counterGold, items: counterItems, materials: Object.keys(counterMaterials).length > 0 ? counterMaterials : undefined },
           message: counterMsg.trim(),
         }),
       });
@@ -930,6 +932,39 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
                   <TradeItemGrid items={tradeableItems} selectedIds={counterItems} onToggle={id => toggleTradeItem(id, "counter")} sortKey={tradeSort} onSortChange={setTradeSort} />
                 </div>
               )}
+              {/* Counter-offer materials */}
+              {(() => {
+                const mats = loggedInUser?.craftingMaterials || {};
+                const matEntries = Object.entries(mats).filter(([, count]) => (count as number) > 0);
+                if (matEntries.length === 0) return null;
+                return (
+                  <div className="mb-2">
+                    <label className="text-xs text-w25 block mb-1">Materials</label>
+                    <div className="flex flex-wrap gap-1">
+                      {matEntries.slice(0, 12).map(([id, count]) => {
+                        const offered = counterMaterials[id] || 0;
+                        return (
+                          <button key={id} onClick={() => setCounterMaterials(prev => {
+                            const next = { ...prev };
+                            if (!next[id]) next[id] = 1;
+                            else if (next[id] >= (count as number)) delete next[id];
+                            else next[id]++;
+                            return next;
+                          })} className="text-xs px-1.5 py-0.5 rounded" style={{
+                            background: offered > 0 ? "rgba(251,191,36,0.1)" : "rgba(255,255,255,0.04)",
+                            color: offered > 0 ? "#fbbf24" : "rgba(255,255,255,0.35)",
+                            border: `1px solid ${offered > 0 ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
+                            cursor: "pointer",
+                          }} title={`${count} available`}>
+                            {id.replace(/-/g, " ")} {offered > 0 ? `×${offered}` : ""}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })()}
+
               <label className="text-xs text-w25 block mb-1">Message</label>
               <input
                 value={counterMsg}
@@ -1067,6 +1102,47 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
               className="input-dark w-full text-xs px-3 py-2 rounded-lg"
             />
           </div>
+          {/* Materials offer */}
+          {(() => {
+            const mats = loggedInUser?.craftingMaterials || {};
+            const matEntries = Object.entries(mats).filter(([, count]) => (count as number) > 0);
+            if (matEntries.length === 0) return null;
+            return (
+              <div>
+                <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
+                <div className="flex flex-wrap gap-1">
+                  {matEntries.slice(0, 12).map(([id, count]) => {
+                    const offered = newTradeMaterials[id] || 0;
+                    return (
+                      <button
+                        key={id}
+                        onClick={() => {
+                          setNewTradeMaterials(prev => {
+                            const next = { ...prev };
+                            if (!next[id]) next[id] = 1;
+                            else if (next[id] >= (count as number)) delete next[id];
+                            else next[id]++;
+                            return next;
+                          });
+                        }}
+                        className="text-xs px-2 py-1 rounded"
+                        style={{
+                          background: offered > 0 ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
+                          color: offered > 0 ? "#a78bfa" : "rgba(255,255,255,0.4)",
+                          border: `1px solid ${offered > 0 ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
+                          cursor: "pointer",
+                        }}
+                        title={`Click to add/increase. ${count} available.`}
+                      >
+                        {id.replace(/-/g, " ")} {offered > 0 ? `×${offered}` : ""}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
+
           {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
           <div className="flex gap-2">
             <button
@@ -1078,7 +1154,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
             >
               Send Proposal
             </button>
-            <button onClick={() => { setShowNewTrade(false); setError(null); setNewTradeItems([]); }} className="btn-interactive text-xs px-4 py-2 rounded-lg text-w30">Cancel</button>
+            <button onClick={() => { setShowNewTrade(false); setError(null); setNewTradeItems([]); setNewTradeMaterials({}); }} className="btn-interactive text-xs px-4 py-2 rounded-lg text-w30">Cancel</button>
           </div>
         </div>
       )}
@@ -1784,20 +1860,24 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
       </div>
 
       {/* Tab navigation */}
-      <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
+      <div className="inline-flex rounded-lg p-0.5 flex-wrap" style={{ background: "#111" }}>
         {(["friends", "messages", "trades", "mail", "challenges", "activity"] as SocialTab[]).map(tab => {
           const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
+          const unreadDot = false; // Per-tab unread counts require lifting state — deferred
           return (
             <Tip key={tab} k={tipKey}>
               <button
                 onClick={() => setActiveTab(tab)}
-                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize"
+                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize relative"
                 style={{
                   background: activeTab === tab ? "#252525" : "transparent",
                   color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
                 }}
               >
                 {tab === "activity" ? "Feed" : tab}
+                {unreadDot && activeTab !== tab && (
+                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: "#a855f7", boxShadow: "0 0 4px rgba(168,85,247,0.5)" }} />
+                )}
               </button>
             </Tip>
           );

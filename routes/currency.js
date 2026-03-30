@@ -51,7 +51,7 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
   if (!(currency in u.currencies)) {
     return res.status(400).json({ error: `Unknown currency: ${currency}` });
   }
-  const amt = Math.abs(Math.floor(amount));
+  const amt = Math.min(1000000, Math.abs(Math.floor(amount)));
   if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
 
   if (action === 'spend') {
@@ -98,7 +98,7 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
     return res.status(400).json({ error: `Conversion from ${from} to ${to} is not allowed` });
   }
 
-  const amt = Math.abs(Math.floor(amount));
+  const amt = Math.min(1000000, Math.abs(Math.floor(amount)));
   if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
   if (u.currencies[from] < amt) {
     return res.status(400).json({ error: `Not enough ${from}. Have ${u.currencies[from]}, need ${amt}` });
@@ -113,6 +113,7 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   u.currencies[from] -= amt;
   u.currencies[to] += received;
 
+  u._currencyConversions = (u._currencyConversions || 0) + 1;
   saveUsers();
   console.log(`[currency] ${uid} converted ${amt} ${from} → ${received} ${to} (tax ${Math.round(taxRate * 100)}%)`);
   res.json({ ok: true, spent: amt, received, from, to, taxRate, currencies: u.currencies });

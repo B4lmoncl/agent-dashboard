@@ -66,6 +66,7 @@ import {
 } from "@/app/config";
 import type { Floor } from "@/app/config";
 import { getAuthHeaders, setAccessToken } from "@/lib/auth-client";
+import { loadBalance } from "@/lib/balance-cache";
 import { useQuestActions } from "@/hooks/useQuestActions";
 import professionsData from "@/public/data/professions.json";
 
@@ -618,6 +619,21 @@ export default function Dashboard() {
 
   // Toast auto-dismiss is handled by ToastStack
 
+  // Weekly Reset Notification (Monday check)
+  useEffect(() => {
+    const now = new Date();
+    if (now.getDay() === 1) { // Monday
+      const weekKey = `wr-${now.getFullYear()}-${Math.ceil((now.getTime() - new Date(now.getFullYear(), 0, 1).getTime()) / 604800000)}`;
+      try {
+        if (!localStorage.getItem(weekKey)) {
+          localStorage.setItem(weekKey, "1");
+          setTimeout(() => addToast({ type: "flavor", message: "Weekly Reset — Challenges, Expedition & Faction Bonus refreshed!", icon: "◆", sub: "New week, new opportunities" }), 2000);
+        }
+      } catch { /* private browsing */ }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     refresh();
     const interval = setInterval(refresh, 30_000);
@@ -630,8 +646,9 @@ export default function Dashboard() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerName]);
 
-  // Fetch class list once on mount
+  // Fetch class list + balance config once on mount
   useEffect(() => {
+    loadBalance(); // Pre-load balance constants for tooltips
     fetch("/api/classes")
       .then(r => r.ok ? r.json() : [])
       .then(setClassesList)
@@ -1116,6 +1133,26 @@ export default function Dashboard() {
                     />
                   </div>
                 </div>
+                {/* Active Buffs Indicator */}
+                {(() => {
+                  const buffs = (loggedInUser?.activeBuffs || []).filter((b: { questsRemaining?: number; expiresAt?: string }) => (b.questsRemaining ?? 0) > 0 || (b.expiresAt && new Date(b.expiresAt).getTime() > Date.now()));
+                  if (buffs.length === 0) return null;
+                  const BUFF_COLORS: Record<string, string> = { xp_boost_10: "#a855f7", xp_boost_15: "#a855f7", xp_boost_25: "#c084fc", gold_boost_10: "#fbbf24", gold_boost_15: "#fbbf24", luck_boost_20: "#22c55e", streak_shield: "#3b82f6", material_double: "#f97316", warding_8: "#60a5fa" };
+                  return (
+                    <div className="flex items-center gap-1 mt-0.5" title={`${buffs.length} active buff${buffs.length !== 1 ? "s" : ""}`}>
+                      {buffs.slice(0, 6).map((b: { type: string }, i: number) => (
+                        <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: BUFF_COLORS[b.type] || "#818cf8", boxShadow: `0 0 3px ${BUFF_COLORS[b.type] || "#818cf8"}` }} />
+                      ))}
+                      {buffs.length > 6 && <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>+{buffs.length - 6}</span>}
+                    </div>
+                  );
+                })()}
+                {/* Tavern Rest Indicator */}
+                {loggedInUser?.tavernRest?.active && (
+                  <div className="mt-1 text-xs px-2 py-0.5 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706", border: "1px solid rgba(217,119,6,0.25)" }} title="Resting — quests and rituals are paused">
+                    Resting
+                  </div>
+                )}
               </div>
             </div>
           </div>

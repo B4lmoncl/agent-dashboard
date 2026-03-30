@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { getBalance } from "@/lib/balance-cache";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
@@ -321,7 +322,7 @@ function SternenpfadView({
                 {/* Reward tiers by star rating */}
                 <div className="space-y-1">
                   {[1, 2, 3].map(stars => {
-                    const multiplier = stars === 3 ? 1.33 : stars === 2 ? 1.15 : 1;
+                    const multiplier = stars === 3 ? (1 + getBalance().starBonus.threeStar) : stars === 2 ? (1 + getBalance().starBonus.twoStar) : 1;
                     const isCurrentTier = stage.earnedStars === stars;
                     return (
                       <div key={stars} className="flex items-center gap-2 text-xs px-2 py-1 rounded" style={{

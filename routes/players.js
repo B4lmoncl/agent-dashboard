@@ -246,6 +246,52 @@ router.post('/api/player/:name/companion/pet', requireAuth, requireSelf('name'),
   });
 });
 
+// POST /api/player/:name/companion/swap — change companion type, retain bond XP/level
+router.post('/api/player/:name/companion/swap', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  if (!u.companion) return res.status(400).json({ error: 'No companion to swap' });
+
+  // Block swap during active expedition
+  if (u.companionExpedition && !u.companionExpedition.collected) {
+    const done = Date.now() >= new Date(u.companionExpedition.completesAt).getTime();
+    if (!done) return res.status(400).json({ error: 'Your companion is on an expedition. Wait for them to return!' });
+  }
+
+  const { type, name, emoji, isReal, species } = req.body;
+  if (!type) return res.status(400).json({ error: 'New companion type required' });
+
+  const VALID_VIRTUAL = ['dragon', 'owl', 'phoenix', 'wolf', 'fox', 'bear'];
+  const VALID_REAL = ['cat', 'dog', 'hamster', 'bird', 'fish', 'rabbit', 'other'];
+  if (!VALID_VIRTUAL.includes(type) && !VALID_REAL.includes(type)) {
+    return res.status(400).json({ error: 'Invalid companion type' });
+  }
+
+  // Retain bond XP and level — only change appearance/type
+  const prevType = u.companion.type;
+  const prevName = u.companion.name;
+  u.companion.type = type;
+  u.companion.name = name || u.companion.name;
+  u.companion.emoji = emoji || u.companion.emoji;
+  u.companion.isReal = isReal !== undefined ? isReal : VALID_REAL.includes(type);
+  u.companion.species = species || type;
+  // Bond XP and level are preserved — no reset
+
+  // Cooldown: 7 days between swaps
+  const lastSwap = u.companion.lastSwapAt ? new Date(u.companion.lastSwapAt).getTime() : 0;
+  const SWAP_COOLDOWN_MS = 7 * 24 * 3600000;
+  if (Date.now() - lastSwap < SWAP_COOLDOWN_MS) {
+    const daysLeft = Math.ceil((SWAP_COOLDOWN_MS - (Date.now() - lastSwap)) / 86400000);
+    return res.status(429).json({ error: `Companion swap on cooldown. ${daysLeft} day${daysLeft !== 1 ? "s" : ""} remaining.` });
+  }
+  u.companion.lastSwapAt = now();
+
+  saveUsers();
+  console.log(`[companion] ${uid} swapped companion: ${prevType}/${prevName} → ${type}/${u.companion.name} (bond preserved: Lv${u.companion.bondLevel})`);
+  res.json({ ok: true, companion: u.companion, message: `Companion changed to ${u.companion.name}! Bond Level ${u.companion.bondLevel} preserved.` });
+});
+
 // POST /api/player/:name/companion/ultimate — activate companion ultimate ability
 router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
@@ -940,6 +986,7 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
 
   // Mark collected FIRST to prevent double-collect race condition
   expedition.collected = true;
+  u._expeditionCompletions = (u._expeditionCompletions || 0) + 1;
   expedition.lastCollectedAt = now();
 
   const bondLevel = u.companion.bondLevel || getBondLevel(u.companion.bondXp || 0).level;

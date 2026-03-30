@@ -171,6 +171,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [guideOpen, setGuideOpen] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
+  const [favoriteRecipes, setFavoriteRecipes] = useState<Set<string>>(new Set());
   const [craftCount, setCraftCount] = useState(1);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [craftedItemCelebration, setCraftedItemCelebration] = useState<any>(null);
@@ -259,6 +260,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.moonlightActive !== undefined) setMoonlightActive(data.moonlightActive);
+        if (data.favoriteRecipes) setFavoriteRecipes(new Set(data.favoriteRecipes));
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
         if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
@@ -338,6 +340,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     return () => cancelAnimationFrame(rafId);
   }, [craftProgress]);
 
+  const toggleFavoriteRecipe = async (recipeId: string) => {
+    try {
+      const r = await fetch("/api/professions/favorite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ recipeId }),
+      });
+      if (r.ok) {
+        const data = await r.json();
+        setFavoriteRecipes(new Set(data.favoriteRecipes || []));
+      }
+    } catch { /* ignore */ }
+  };
+
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
     const prevSkill = selectedNpc?.skill || selectedNpc?.playerXp || 0;
@@ -357,10 +373,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         else if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 300}]`;
-        // Batch craft: sequential tick animation
+        // Batch craft: sequential tick animation with progress indicator
         if (count > 1 && (data.craftCount || count) > 1) {
           const total = data.craftCount || count;
-          setCraftResult(`Crafting 1/${total}...`);
+          setCraftResult(`◆ Crafting 1/${total}...`);
           let tick = 1;
           const interval = setInterval(() => {
             tick++;
@@ -368,7 +384,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               clearInterval(interval);
               setCraftResult(msg);
             } else {
-              setCraftResult(`Crafting ${tick}/${total}...`);
+              const bar = "█".repeat(tick) + "░".repeat(total - tick);
+              setCraftResult(`◆ Crafting ${tick}/${total} ${bar}`);
             }
           }, 200);
         } else {
@@ -915,7 +932,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             >
               <div className="flex items-center gap-3 mb-2">
                 {/* NPC portrait — border evolves with rank */}
-                <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0" style={{ background: `${prof.color}12`, border: `2px solid ${prof.rankColor || prof.color}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}` }}>
+                <div className={`w-14 h-14 rounded-lg overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
                   <img src={prof.npcPortrait} alt={prof.npcName} width={56} height={56} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -925,6 +942,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${prof.rankColor}15`, color: prof.rankColor, border: `1px solid ${prof.rankColor}30` }}>
                         {prof.rank}
                       </span>
+                    )}
+                    {prof.masteryActive && (
+                      <TipCustom title="Mastery Active" icon="★" accent="#fbbf24" body={<p>Skill 225+ — {prof.masteryBonus?.type === "potion_duration" ? "Extended potion duration" : prof.masteryBonus?.type === "enchant_power" ? "Enhanced enchant power" : prof.masteryBonus?.type === "gear_stat_boost" ? "Boosted gear stats" : prof.masteryBonus?.type === "meal_duration" ? "Extended meal duration" : "Mastery bonus active"}!</p>}>
+                        <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", cursor: "help" }}>Mastery</span>
+                      </TipCustom>
                     )}
                   </div>
                   <p className="text-sm line-clamp-2 overflow-hidden" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}
@@ -1365,7 +1387,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 }} />
               ))}
               <div className="flex items-center gap-4 relative">
-                <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 20px ${selectedNpc.color}25` }}>
+                <div className={`w-24 h-24 rounded-xl overflow-hidden flex-shrink-0${selectedNpc.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ border: `2px solid ${selectedNpc.masteryActive ? "#fbbf24" : selectedNpc.color}60`, boxShadow: selectedNpc.masteryActive ? `0 0 24px rgba(251,191,36,0.3), 0 0 8px ${selectedNpc.color}25` : `0 0 20px ${selectedNpc.color}25` }}>
                   <img src={selectedNpc.npcPortrait} alt="" width={96} height={96} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
@@ -1627,7 +1649,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       const bracketRecipes = filteredRecipes.filter(r => {
                         const skill = r.reqSkill || 0;
                         return skill >= bracket.min && skill < bracket.max;
-                      }).sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));
+                      }).sort((a, b) => {
+                        const aFav = favoriteRecipes.has(a.id) ? 0 : 1;
+                        const bFav = favoriteRecipes.has(b.id) ? 0 : 1;
+                        if (aFav !== bFav) return aFav - bFav;
+                        return (a.reqSkill || 0) - (b.reqSkill || 0);
+                      });
                       if (bracketRecipes.length === 0) return null;
                       // Determine default collapse: brackets below player's current bracket are collapsed,
                       // the player's bracket and above are expanded. We use a lazy init pattern —
@@ -1712,6 +1739,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 <span className="flex-shrink-0" style={{ fontSize: 12, color: !meetsLevel || onCooldown ? "rgba(255,255,255,0.15)" : canAfford ? "#22c55e" : "#f59e0b" }} title={!meetsLevel ? "Skill too low" : onCooldown ? "On cooldown" : canAfford ? "Ready to craft" : "Missing materials"}>
                                   {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
                                 </span>
+                              )}
+                              {isLearned && (
+                                <button
+                                  onClick={e => { e.stopPropagation(); toggleFavoriteRecipe(recipe.id); }}
+                                  className="flex-shrink-0"
+                                  style={{ fontSize: 12, color: favoriteRecipes.has(recipe.id) ? "#fbbf24" : "rgba(255,255,255,0.1)", cursor: "pointer", background: "none", border: "none", padding: 0, lineHeight: 1 }}
+                                  title={favoriteRecipes.has(recipe.id) ? "Remove from favorites" : "Add to favorites"}
+                                >★</button>
                               )}
                               <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
                                 {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}

@@ -45,7 +45,8 @@ interface RitualChamberProps {
 }
 
 export default function RitualChamber({ rituals, setRituals, setRewardCelebration }: RitualChamberProps) {
-  const { playerName, reviewApiKey, refresh } = useDashboard();
+  const { playerName, reviewApiKey, refresh, loggedInUser } = useDashboard();
+  const isResting = !!loggedInUser?.tavernRest?.active;
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
   const [ritualNameError, setRitualNameError] = useState(false);
@@ -298,6 +299,11 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   return (
     <>
       <div data-feedback-id="ritual-chamber" className="section-ritual tab-content-enter">
+        {isResting && (
+          <div className="mb-3 px-3 py-2 rounded-lg text-xs" style={{ background: "rgba(217,119,6,0.08)", color: "#d97706", border: "1px solid rgba(217,119,6,0.2)" }}>
+            Resting in The Hearth — ritual completions are paused until rest ends.
+          </div>
+        )}
         {/* ── Top flex row: Portrait left, content right ── */}
         <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
           {/* Portrait column with speech bubble */}

@@ -180,6 +180,7 @@ export interface User {
   tavernRest?: { active: boolean; frozenAt: string; forgeFrozenAt: number; unfreezeAt: string; reason?: string } | null;
   companionExpedition?: { tier: string; startedAt: string; dueAt: string } | null;
   activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number }[];
+  _restedXpPool?: number;
 }
 
 export interface CampaignQuest {
@@ -489,6 +490,8 @@ export interface CharacterData {
   statBreakdown?: Record<string, { source: string; value: number; type: string }[]>;
   relationshipStatus?: string;
   partnerName?: string | null;
+  craftingMaterials?: Record<string, number>;
+  materialDefs?: { id: string; name: string; icon?: string; rarity?: string; desc?: string }[];
 }
 
 // ─── Challenge System Types ──────────────────────────────────────────────────

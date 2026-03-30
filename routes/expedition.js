@@ -55,7 +55,9 @@ function saveExpeditionState() {
     _saveTimer = null;
     try {
       ensureRuntimeDir();
-      fs.writeFileSync(EXPEDITION_FILE, JSON.stringify(state.expedition, null, 2));
+      const tmp = EXPEDITION_FILE + '.tmp';
+      fs.writeFileSync(tmp, JSON.stringify(state.expedition, null, 2));
+      fs.renameSync(tmp, EXPEDITION_FILE);
     } catch (e) {
       console.warn('[expedition] Failed to save state:', e.message);
     }

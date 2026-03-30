@@ -862,6 +862,24 @@ button[disabled] {
   pointer-events: none;
 }
 
+/* Empty equipment slot pulse — subtle hint to equip gear */
+.empty-slot-pulse {
+  animation: empty-slot-breathe 4s ease-in-out infinite;
+}
+@keyframes empty-slot-breathe {
+  0%, 100% { border-color: rgba(255,255,255,0.08); }
+  50% { border-color: rgba(255,255,255,0.18); }
+}
+
+/* Profession Mastery portrait glow — golden breathe at Skill 225+ */
+.mastery-portrait-glow {
+  animation: mastery-breathe 3s ease-in-out infinite;
+}
+@keyframes mastery-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(251,191,36,0.15), inset 0 0 4px rgba(251,191,36,0.05); }
+  50% { box-shadow: 0 0 16px rgba(251,191,36,0.3), inset 0 0 8px rgba(251,191,36,0.1); }
+}
+
 /* Mondlicht glow — vivid blue with pulsing outer glow (GPU-friendly opacity animation) */
 @keyframes mondlicht-card-pulse {
   0%, 100% { opacity: 0.3; }

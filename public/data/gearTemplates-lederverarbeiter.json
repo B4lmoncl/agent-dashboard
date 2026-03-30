@@ -11,7 +11,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Leichtleder. Riecht nach Abenteuer und leicht nach Ziege.",
       "fixedStats": {
         "glueck": 2
@@ -29,7 +29,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Der Gerber hat gelächelt, als er es fertig hatte. Das ist entweder gut oder beunruhigend.",
       "fixedStats": {
         "glueck": 1
@@ -47,7 +47,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Leichtleder. Riecht nach Abenteuer und leicht nach Ziege.",
       "fixedStats": {
         "glueck": 1,
@@ -66,7 +66,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Schützt vor Kratzern. Nicht vor Kritik.",
       "fixedStats": {
         "ausdauer": 3,
@@ -85,7 +85,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Einfach, aber ehrlich. Wie die meisten Anfänge.",
       "fixedStats": {
         "ausdauer": 1
@@ -103,7 +103,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "flavorText": "Schützt vor Kratzern. Nicht vor Kritik.",
       "fixedStats": {
         "ausdauer": 1,
@@ -122,7 +122,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Einfach, aber ehrlich. Wie die meisten Anfänge.",
       "affixes": {
         "primary": {
@@ -180,7 +180,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Schützt vor Kratzern. Nicht vor Kritik.",
       "affixes": {
         "primary": {
@@ -238,7 +238,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Einfach, aber ehrlich. Wie die meisten Anfänge.",
       "affixes": {
         "primary": {
@@ -296,7 +296,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
       "fixedStats": {
         "glueck": 2,
@@ -315,7 +315,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
       "fixedStats": {
         "glueck": 2,
@@ -334,7 +334,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
       "fixedStats": {
         "glueck": 4
@@ -352,7 +352,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
       "fixedStats": {
         "glueck": 4,
@@ -371,7 +371,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
       "fixedStats": {
         "ausdauer": 4
@@ -389,7 +389,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
       "fixedStats": {
         "ausdauer": 4,
@@ -408,7 +408,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
       "fixedStats": {
         "ausdauer": 3
@@ -426,7 +426,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
       "fixedStats": {
         "ausdauer": 4,
@@ -445,7 +445,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
       "affixes": {
         "primary": {
@@ -503,7 +503,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
       "affixes": {
         "primary": {
@@ -561,7 +561,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
       "affixes": {
         "primary": {
@@ -619,7 +619,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
       "affixes": {
         "primary": {
@@ -677,7 +677,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
       "fixedStats": {
         "glueck": 5,
@@ -696,7 +696,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
       "fixedStats": {
         "glueck": 3,
@@ -715,7 +715,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
       "fixedStats": {
         "glueck": 3,
@@ -734,7 +734,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
       "fixedStats": {
         "glueck": 4
@@ -752,7 +752,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
       "fixedStats": {
         "ausdauer": 3,
@@ -771,7 +771,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
       "fixedStats": {
         "ausdauer": 5,
@@ -790,7 +790,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
       "affixes": {
         "primary": {
@@ -848,7 +848,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
       "affixes": {
         "primary": {
@@ -906,7 +906,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
       "affixes": {
         "primary": {
@@ -964,7 +964,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
       "affixes": {
         "primary": {
@@ -1022,7 +1022,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
       "affixes": {
         "primary": {
@@ -1080,7 +1080,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
       "affixes": {
         "primary": {
@@ -1138,7 +1138,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
       "fixedStats": {
         "glueck": 5
@@ -1156,7 +1156,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
       "fixedStats": {
         "glueck": 4,
@@ -1175,7 +1175,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
       "fixedStats": {
         "glueck": 7
@@ -1193,7 +1193,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
       "fixedStats": {
         "glueck": 5,
@@ -1212,7 +1212,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
       "fixedStats": {
         "glueck": 7,
@@ -1231,7 +1231,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
       "affixes": {
         "primary": {
@@ -1289,7 +1289,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
       "affixes": {
         "primary": {
@@ -1347,7 +1347,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
       "affixes": {
         "primary": {
@@ -1405,7 +1405,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
       "affixes": {
         "primary": {
@@ -1463,7 +1463,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
       "affixes": {
         "primary": {
@@ -1521,7 +1521,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
       "affixes": {
         "primary": {
@@ -1585,7 +1585,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
       "affixes": {
         "primary": {
@@ -1649,7 +1649,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
       "affixes": {
         "primary": {
@@ -1713,7 +1713,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
       "affixes": {
         "primary": {
@@ -1777,7 +1777,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
       "affixes": {
         "primary": {
@@ -1840,7 +1840,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 3,
@@ -1859,7 +1859,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 4
@@ -1877,7 +1877,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -1930,7 +1930,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -1983,7 +1983,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 3
@@ -2001,7 +2001,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2054,7 +2054,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5,
@@ -2073,7 +2073,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 7,
@@ -2092,7 +2092,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2145,7 +2145,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 2,
@@ -2164,7 +2164,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 3
@@ -2182,7 +2182,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -2235,7 +2235,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 2,
@@ -2254,7 +2254,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2307,7 +2307,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2360,7 +2360,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -2413,7 +2413,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 2
@@ -2431,7 +2431,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 3
@@ -2449,7 +2449,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5,
@@ -2468,7 +2468,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -2521,7 +2521,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 1,
@@ -2540,7 +2540,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 3,
@@ -2559,7 +2559,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5,
@@ -2578,7 +2578,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2631,7 +2631,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2684,7 +2684,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 3,
@@ -2703,7 +2703,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 5,
@@ -2722,7 +2722,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2775,7 +2775,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 2,
@@ -2794,7 +2794,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5,
@@ -2813,7 +2813,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 4,
@@ -2832,7 +2832,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 1,
@@ -2851,7 +2851,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 2
@@ -2869,7 +2869,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5,
@@ -2888,7 +2888,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5
@@ -2906,7 +2906,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 1
@@ -2924,7 +2924,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 2
@@ -2942,7 +2942,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 4,
@@ -2961,7 +2961,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 7,
@@ -2980,7 +2980,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 2
@@ -2998,7 +2998,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 4,
@@ -3017,7 +3017,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 5
@@ -3035,7 +3035,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 6
@@ -3053,7 +3053,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 3,
@@ -3072,7 +3072,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 3,
@@ -3091,7 +3091,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 3
@@ -3109,7 +3109,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 4
@@ -3127,7 +3127,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 1
@@ -3145,7 +3145,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "rare",
       "fixedStats": {
         "glueck": 3,
@@ -3164,7 +3164,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 5,
@@ -3183,7 +3183,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "uncommon",
       "fixedStats": {
         "glueck": 5,
@@ -3202,7 +3202,7 @@
       "armorType": "leather",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "glueck": 2

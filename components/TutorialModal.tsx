@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getBalance } from "@/lib/balance-cache";
 import { useModalBehavior } from "./ModalPortal";
 
 // ─── GuideSection (section card with optional icon) ─────────────────────────
@@ -383,7 +384,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Drop Rates" icon="◆">
                 <div className="mt-2 space-y-0.5">
-                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","3%","#a855f7"],["rare","Rare","25%","#3b82f6"],["uncommon","Uncommon","45%","#22c55e"],["common","Common","~26%","#9ca3af"]] as const).map(([,name,rate,color]) => (
+                  {(() => { const g = getBalance().gacha; return [["legendary","Legendary",`${(g.legendaryRate*100).toFixed(1)}%`,"#f97316"],["epic","Epic",`${(g.epicRate*100).toFixed(0)}%`,"#a855f7"],["rare","Rare",`${(g.rareRate*100).toFixed(0)}%`,"#3b82f6"],["uncommon","Uncommon",`${(g.uncommonRate*100).toFixed(0)}%`,"#22c55e"],["common","Common",`~${((1-g.legendaryRate-g.epicRate-g.rareRate-g.uncommonRate)*100).toFixed(0)}%`,"#9ca3af"]] as [string,string,string,string][]; })().map(([,name,rate,color]) => (
                     <div key={name} className="flex items-center gap-2">
                       <div className="h-1.5 rounded-full" style={{ background: color, width: name === "Legendary" ? "8%" : name === "Epic" ? "26%" : name === "Rare" ? "70%" : name === "Uncommon" ? "80%" : "22%", minWidth: 6 }} />
                       <span className="flex-shrink-0 w-20" style={{ color, fontWeight: 600 }}>{name}</span>
@@ -672,12 +673,16 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Forge-Temperatur" icon="🔥" accent="rgba(249,115,22,0.3)">
                 Aktivitätsmeter (0-100%) — beeinflusst XP und Gold:
                 <div className="mt-2 space-y-0.5 text-xs">
-                  <div className="flex justify-between"><Stat color="#e0f0ff">100% White-hot</Stat><span>×1.5 XP · ×1.5 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#f97316">80%+ Blazing</Stat><span>×1.25 XP · ×1.3 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#ea580c">60%+ Burning</Stat><span>×1.15 XP · ×1.15 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#b45309">40%+ Warming</Stat><span>×1.0 XP</span></div>
-                  <div className="flex justify-between"><Stat color="#78716c">20%+ Smoldering</Stat><Stat color="#ef4444">×0.8 XP</Stat></div>
-                  <div className="flex justify-between"><Stat color="#4b5563">&lt;20% Cold</Stat><Stat color="#ef4444">×0.5 XP</Stat></div>
+                  {getBalance().forgeTemp.tiers.map((t, i) => {
+                    const tierColors = ["#e0f0ff", "#f97316", "#ea580c", "#b45309", "#78716c", "#4b5563"];
+                    const isNeg = t.xp < 1;
+                    return (
+                      <div key={i} className="flex justify-between">
+                        <Stat color={tierColors[i] || "#888"}>{t.min}%{i === 0 ? "" : "+"} {t.label}</Stat>
+                        {isNeg ? <Stat color="#ef4444">×{t.xp} XP</Stat> : <span>×{t.xp} XP{t.gold !== 1 ? ` · ×${t.gold} Gold` : ""}</span>}
+                      </div>
+                    );
+                  })}
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Verfall: 2%/h (Ausdauer verlangsamt). Jede Quest: +10 Temp.</p>
               </GuideSection>

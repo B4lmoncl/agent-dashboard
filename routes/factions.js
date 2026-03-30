@@ -215,6 +215,7 @@ router.post("/:factionId/claim-daily/:dailyId", requireAuth, (req, res) => {
   // Award rep + gold
   ensureUserFactions(user);
   user.factions[factionId].rep = (user.factions[factionId].rep || 0) + template.repReward;
+  user._factionDailiesComplete = (user._factionDailiesComplete || 0) + 1;
   ensureUserCurrencies(user);
   user.currencies.gold = (user.currencies.gold || 0) + template.goldReward;
   if (user.gold !== undefined) user.gold = user.currencies.gold;

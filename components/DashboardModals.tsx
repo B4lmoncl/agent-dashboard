@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { getBalance } from "@/lib/balance-cache";
 import type { User } from "@/app/types";
 import { ModalPortal } from "@/components/ModalPortal";
 import { Tip } from "@/components/GameTooltip";
@@ -331,7 +332,7 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.xp.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100).toFixed(1)}% (0.5% per Kraft point)` : "No Kraft bonus" },
+                    { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100).toFixed(1)}% (${(getBalance().stats.kraft?.effect || 0.005) * 100}% per Kraft point)` : "No Kraft bonus" },
                     { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8", desc: loggedInUser.modifiers.xp.gear > 1 ? `+${Math.round((loggedInUser.modifiers.xp.gear - 1) * 100)}% from Tools` : "No Gear bonus" },
                     { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% per Companion)` : "No Companions summoned" },
                     { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% per Bond Level)` : "Bond Level 1" },
@@ -356,7 +357,7 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (0.5% per Weisheit point)` : "No Weisheit bonus" },
+                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (${(getBalance().stats.weisheit?.effect || 0.004) * 100}% per Weisheit point)` : "No Weisheit bonus" },
                     { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} days (+1.5% per day, max ×1.45)` },
                     ...(loggedInUser.modifiers.gold.legendary && loggedInUser.modifiers.gold.legendary !== 1 ? [{ label: "Legendary", val: loggedInUser.modifiers.gold.legendary, color: "#f97316", desc: `+${Math.round((loggedInUser.modifiers.gold.legendary - 1) * 100)}% from Legendary Gear` }] : []),
                   ].map(r => (

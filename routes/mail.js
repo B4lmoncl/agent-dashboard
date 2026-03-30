@@ -146,6 +146,9 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
   recipientMailbox.push(mail);
   saveUsers();
 
+  // Track for achievements
+  u._mailsSent = (u._mailsSent || 0) + 1;
+
   res.json({
     ok: true,
     message: `Mail sent to ${recipient.name || recipientId}`,

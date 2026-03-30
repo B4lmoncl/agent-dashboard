@@ -9,7 +9,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eine schlichte Eisenkappe. Schützt den Kopf, nicht die Frisur.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -28,7 +28,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eine robuste Sturmhaube mit Nasenschutz. Verhindert Nasenbrüche zuverlässig.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -48,7 +48,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Ein vollständig geschlossener Helm. Gute Sicht ist überbewertet.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -67,7 +67,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Eine schwere Panzerhaube mit Wangenplatten. Für ernsthafte Auseinandersetzungen.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -126,7 +126,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eine einfache Brustplatte. Schützt die wichtigsten Organe. Meistens.",
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -146,7 +146,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Ein solider Brustpanzer mit Schulterplatten. Beeindruckend, wenn man aufrecht steht.",
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -166,7 +166,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Ein gehärteter Plattenpanzer. Das Beste, was ein Lehrling zustande bringt.",
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -220,7 +220,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Schwere Stiefel aus Eisenplatten. Leise Auftritte sind damit ausgeschlossen.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -240,7 +240,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Verstärkte Beinschienen mit Knöchelschutz. Tritte gegen Tischbeine sind nun schmerzfrei.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -260,7 +260,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Schwere, gehärtete Stiefel. Man steht fest im Leben — und auf dem Schlachtfeld.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -314,7 +314,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Ein geschlossener Helm mit Kristallvisier.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -334,7 +334,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eine Sturmhaube aus gehärtetem Stahl.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -354,7 +354,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Spangen aus kristallverstärktem Stahl schützen die Schläfen.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -374,7 +374,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Geschmiedet in der Form eines Drachenschädels.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -433,7 +433,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Kettenringe durchsetzt mit kristallinen Splittern.",
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -453,7 +453,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eine klassische Kettenbrünne aus feinstem Stahl.",
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -473,7 +473,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Überlappende Kristallschuppen auf Stahlträger genietet.",
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -493,7 +493,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Vollplatte aus stählernen Segmenten. Schwer, aber undurchdringlich.",
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -552,7 +552,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Eine zeremonielle Rüstung mit kristallinen Verzierungen, die mehr aushält als erwartet.",
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -616,7 +616,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Schwere Stiefel mit kristallverstärkten Sohlen.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -636,7 +636,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Verstärkte Stiefel für lange Märsche in schwerem Gelände.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -656,7 +656,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Beinschienen mit eingearbeiteten Kristallfragmenten.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -676,7 +676,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stiefel für den Sturmangriff — federnd trotz des Gewichts.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -735,7 +735,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Ein Helm aus Drachenstahl. Schützt den Kopf und die Hoffnung.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -755,7 +755,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Verziert mit Zähnen, die einst Berge zerbissen.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -775,7 +775,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Halb Helm, halb Krone. Für den, der beides braucht.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -795,7 +795,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Warm wie ein Drachenatem, hart wie sein Zorn.",
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -815,7 +815,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Jedes Glied aus Drachenzahn-Legierung — leicht und zäh.",
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -835,7 +835,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Vollständig mit Schuppen verkleidet. Ein wandelnder Drache.",
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -855,7 +855,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Schwere Stiefel, die jeden Schritt zur Aussage machen.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -875,7 +875,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Schuppenbesetzt vom Knöchel bis zum Knie.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -895,7 +895,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Das Visier schließt lautlos. Was dahinter liegt, ist Entschlossenheit.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -954,7 +954,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Geformt wie ein Drachenkopf. Einschüchternd und zweckmäßig.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1018,7 +1018,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Volle Deckung. Voller Stahl. Volle Zuversicht.",
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1077,7 +1077,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Für den, der nicht nur überleben, sondern herrschen will.",
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1141,7 +1141,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Verstärkt mit Drachenzahn-Nieten. Jeder Tritt hinterlässt einen Eindruck.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1200,7 +1200,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Volle Schuppenpanzerung bis zum Knöchel. Unaufhaltsam.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1264,7 +1264,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Der Helm summt leise, als atme der Aether selbst darin.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1284,7 +1284,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Unter den Platten schimmert bläuliches Licht — der Aether hält zusammen, was Stahl allein nicht könnte.",
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1304,7 +1304,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jeder Schritt hinterlässt für einen Moment ein schwaches Leuchten auf dem Boden.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1324,7 +1324,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Die Kappe vibriert bei Gewitter. Manche sagen, sie ruft den Sturm.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1344,7 +1344,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jedes Kettenglied wurde einzeln in Aether getaucht. Zweihundert Stunden Arbeit.",
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1364,7 +1364,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Für den langen Marsch. Der Aether trägt, wo die Beine versagen.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1384,7 +1384,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Ein Meisterwerk der Schmiedekunst. Der Aether verstärkt jeden Niet.",
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "armorType": "heavy",
       "fixedStats": {
@@ -1404,7 +1404,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Keine Krone der Macht — eine Krone der Erinnerung.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1464,7 +1464,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Jede Platte enthält einen Funken dessen, der sie schmiedete.",
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1524,7 +1524,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Diese Stiefel kennen den Weg. Man muss ihnen nur vertrauen.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1584,7 +1584,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ein Helm, der den Geist schärft, während er den Schädel schützt.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1644,7 +1644,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Kettenglieder aus Seelenmetall. Leichter als Stahl, härter als Diamant.",
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1704,7 +1704,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Nur ein Meisterschmied kann diese Krone vollenden. Der letzte Hammerschlag kostet mehr als Gold.",
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1769,7 +1769,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Der ultimative Schutz. In jeder Platte steckt ein Versprechen.",
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1834,7 +1834,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Stiefel für die letzte Reise — und jede danach.",
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "shopHidden": true,
       "armorType": "heavy",
       "affixes": {
@@ -1900,7 +1900,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 2,
@@ -1919,7 +1919,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 2
@@ -1937,7 +1937,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -1990,7 +1990,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 5,
@@ -2009,7 +2009,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2062,7 +2062,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 2,
@@ -2081,7 +2081,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 3,
@@ -2100,7 +2100,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -2153,7 +2153,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 1,
@@ -2172,7 +2172,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-armor.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 4,
@@ -2191,7 +2191,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-lederschultern.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 4,
@@ -2210,7 +2210,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -2263,7 +2263,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 1
@@ -2281,7 +2281,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 2,
@@ -2300,7 +2300,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 4,
@@ -2319,7 +2319,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 6
@@ -2337,7 +2337,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 1,
@@ -2356,7 +2356,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 3,
@@ -2375,7 +2375,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 5,
@@ -2394,7 +2394,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2447,7 +2447,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 3
@@ -2465,7 +2465,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 4
@@ -2483,7 +2483,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 6,
@@ -2502,7 +2502,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 2,
@@ -2521,7 +2521,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 2,
@@ -2540,7 +2540,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "rare",
       "affixes": {
         "primary": {
@@ -2593,7 +2593,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-amulet.png",
       "rarity": "epic",
       "affixes": {
         "primary": {
@@ -2646,7 +2646,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 3,
@@ -2665,7 +2665,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 4,
@@ -2684,7 +2684,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "rare",
       "fixedStats": {
         "ausdauer": 4,
@@ -2703,7 +2703,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 4
@@ -2721,7 +2721,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 1
@@ -2739,7 +2739,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 2,
@@ -2758,7 +2758,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 3
@@ -2776,7 +2776,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "rarity": "rare",
       "fixedStats": {
         "ausdauer": 5
@@ -2794,7 +2794,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 1,
@@ -2813,7 +2813,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 2,
@@ -2832,7 +2832,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 4,
@@ -2851,7 +2851,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "rare",
       "fixedStats": {
         "ausdauer": 5
@@ -2869,7 +2869,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "fixedStats": {
         "ausdauer": 3,
@@ -2888,7 +2888,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 4,
@@ -2907,7 +2907,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 3,
@@ -2926,7 +2926,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "rare",
       "fixedStats": {
         "ausdauer": 4,
@@ -2945,7 +2945,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 2,
@@ -2964,7 +2964,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 2,
@@ -2983,7 +2983,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-helm.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 4,
@@ -3002,7 +3002,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "rarity": "common",
       "fixedStats": {
         "ausdauer": 7,
@@ -3021,7 +3021,7 @@
       "armorType": "heavy",
       "shopHidden": true,
       "price": 0,
-      "icon": null,
+      "icon": "/images/icons/equip-boots.png",
       "rarity": "uncommon",
       "fixedStats": {
         "ausdauer": 1
