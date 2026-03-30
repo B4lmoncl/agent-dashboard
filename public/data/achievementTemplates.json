@@ -1252,7 +1252,7 @@
     {
       "id": "chain_quest_bronze",
       "name": "Quest Runner: Bronze",
-      "description": "25 Quests abgeschlossen",
+      "description": "25 Quests. Bronze. Die Farbe von 'guter Anfang' und 'dritte Wahl'.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1273,7 +1273,7 @@
     {
       "id": "chain_quest_silver",
       "name": "Quest Runner: Silver",
-      "description": "100 Quests abgeschlossen",
+      "description": "100 Quests. Silber. Weil Gold zu optimistisch wäre.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1295,7 +1295,7 @@
     {
       "id": "chain_quest_gold",
       "name": "Quest Runner: Gold",
-      "description": "300 Quests abgeschlossen",
+      "description": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1317,7 +1317,7 @@
     {
       "id": "chain_quest_legend",
       "name": "Quest Runner: Legendary",
-      "description": "1000 Quests abgeschlossen",
+      "description": "1000 Quests. Legendär. Nicht weil es beeindruckend ist, sondern weil niemand es glaubt.",
       "icon": null,
       "condition": {
         "type": "quests_completed",

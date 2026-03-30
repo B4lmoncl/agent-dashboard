@@ -915,8 +915,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 30,
-      "desc": "Die rechte Klaue des Prokrastinations-Wyrms, umgeschmiedet zu einer Waffe. Grimvar brauchte drei Tage. Der Wyrm brauchte drei Äonen, um sie zu züchten.",
-      "flavorText": "Manche Waffen haben eine Geschichte. Diese hier hat eine Entschuldigung.",
+      "desc": "Die rechte Klaue des Prokrastinations-Wyrms, umgeschmiedet zu einer Waffe. Grimvar wollte sie eigentlich gestern fertig haben. Dann vorgestern. Die Ironie war allen Beteiligten schmerzhaft bewusst.",
+      "flavorText": "Auf dem Griff steht 'Fang endlich an'. Es ist die passiv-aggressivste Waffe im gesamten Turm.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "fixedStats": true,
       "stats": {
@@ -937,8 +937,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Gewoben aus den Fäden des Entropy Weavers. Jeder Faden war einmal ein aufgegebener Plan.",
-      "flavorText": "Sie flüstert vergessene Deadlines. Charmant, auf eine verstörende Art.",
+      "desc": "Gewoben aus den Fäden des Entropy Weavers. Jeder Faden war einmal ein aufgegebener Plan. Die Kette hat mehr gescheiterte Projekte gesehen als ein Venture-Capital-Investor.",
+      "flavorText": "Sie flüstert vergessene Deadlines. Montag, 14:00, Quartalsreview. Du bist nicht hingegangen. Die Kette vergisst nicht. Die Kette vergibt nicht.",
       "icon": "/images/icons/equip-amulet.png",
       "fixedStats": true,
       "stats": {
