@@ -285,6 +285,21 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
       </>
     ),
   },
+  rested_xp: {
+    title: "Rested XP",
+    icon: "/images/icons/reward-xp.png",
+    accent: "#3b82f6",
+    body: (
+      <>
+        <p>Like WoW Classic Rested XP. Accumulates while offline and doubles your XP earned until depleted.</p>
+        <div className="gt-stat-row"><span>Accumulation</span><span>5% of level XP per 8h offline</span></div>
+        <div className="gt-stat-row"><span>Cap</span><span>150% of current level XP</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>+100% XP (doubled) until pool empty</span></div>
+        <div className="gt-stat-row"><span>Shown as</span><span>Blue zone in XP bar</span></div>
+        <p className="gt-source">Take a break — your adventures will be more rewarding when you return.</p>
+      </>
+    ),
+  },
   daily_diminishing: {
     title: "Daily Quest Limit",
     icon: "/images/icons/ui-quest-scroll.png",
