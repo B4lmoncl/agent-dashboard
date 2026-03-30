@@ -1183,9 +1183,9 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
 
   // Remove profession
   u.chosenProfessions = u.chosenProfessions.filter(p => p !== dropProfession);
-  // Reset profession XP
+  // Reset profession progress (WoW Classic: dropping = lose everything)
   if (u.professions?.[dropProfession]) {
-    u.professions[dropProfession] = { level: 0, xp: 0, lastCraftAt: null };
+    u.professions[dropProfession] = { level: 0, skill: 0, xp: 0, lastCraftAt: null, trainedRanks: ['Apprentice'], recipeCooldowns: {} };
   }
   // Remove all learned recipes for this profession (WoW-style: dropping = lose everything)
   if (u.learnedRecipes?.length) {
