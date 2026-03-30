@@ -619,6 +619,21 @@ export default function Dashboard() {
 
   // Toast auto-dismiss is handled by ToastStack
 
+  // Weekly Reset Notification (Monday check)
+  useEffect(() => {
+    const now = new Date();
+    if (now.getDay() === 1) { // Monday
+      const weekKey = `wr-${now.getFullYear()}-${Math.ceil((now.getTime() - new Date(now.getFullYear(), 0, 1).getTime()) / 604800000)}`;
+      try {
+        if (!localStorage.getItem(weekKey)) {
+          localStorage.setItem(weekKey, "1");
+          setTimeout(() => addToast({ type: "flavor", message: "Weekly Reset — Challenges, Expedition & Faction Bonus refreshed!", icon: "◆", sub: "New week, new opportunities" }), 2000);
+        }
+      } catch { /* private browsing */ }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     refresh();
     const interval = setInterval(refresh, 30_000);
