@@ -69,9 +69,9 @@ const SVG_SIZE = 640;
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function TalentTreeView({
-  onCelebration,
+  onRewardCelebration,
 }: {
-  onCelebration?: (d: RewardCelebrationData) => void;
+  onRewardCelebration?: (d: RewardCelebrationData) => void;
 }) {
   const { addToast } = useDashboard();
   const [data, setData] = useState<TalentData | null>(null);
