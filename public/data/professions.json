@@ -15323,7 +15323,7 @@
       "cooldownMinutes": 0,
       "description": "Aus rau wird rund. Der Rest ist Geduld und Schleifpulver.",
       "trainerCost": 40,
-      "desc": ""
+      "desc": "Aus rau wird rund. Selindra sagt, der Stein habe sich bedankt. Er hat nicht. Aber sie glaubt es."
     },
     {
       "id": "recipe-juwelier-eiserner-ring",
@@ -15342,7 +15342,7 @@
       "xp": 5,
       "description": "Fasst: Eiserner Ring.",
       "trainerCost": 20,
-      "desc": ""
+      "desc": "Der erste Ring. Einfach, eisern, und der Anfang von Selindras täglichem Gespräch mit Steinen."
     },
     {
       "id": "recipe-juwelier-schlichter-kupferring",
@@ -15361,7 +15361,7 @@
       "xp": 6,
       "description": "Fasst: Schlichter Kupferring.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Kupferring. Schlicht im Design. Laut in Selindras Meinung darüber."
     },
     {
       "id": "recipe-juwelier-grober-siegelring",
@@ -15380,7 +15380,7 @@
       "xp": 6,
       "description": "Fasst: Grober Siegelring.",
       "trainerCost": 35,
-      "desc": ""
+      "desc": "Siegelring für Leute die ein Siegel wollen aber keines haben. Selindra graviert was du willst. Fast."
     },
     {
       "id": "recipe-juwelier-eisenband",
@@ -15399,7 +15399,7 @@
       "xp": 7,
       "description": "Fasst: Eisenband.",
       "trainerCost": 40,
-      "desc": ""
+      "desc": "Eisenband am Finger. Klingt unbequem. Ist es. Selindra nennt es Charakter."
     },
     {
       "id": "recipe-juwelier-einfacher-steinring",
@@ -15418,7 +15418,7 @@
       "xp": 7,
       "description": "Fasst: Einfacher Steinring.",
       "trainerCost": 45,
-      "desc": ""
+      "desc": "Ring mit einem Stein. Der Stein hat keine Meinung. Selindra hat genug für beide."
     },
     {
       "id": "recipe-juwelier-ring-des-lehrlings",
@@ -15437,7 +15437,7 @@
       "xp": 8,
       "description": "Fasst: Ring des Lehrlings.",
       "trainerCost": 55,
-      "desc": ""
+      "desc": "Ring eines Lehrlings. Selindra hat ihn benotet. Mit einem Seufzer. Das ist gut."
     },
     {
       "id": "recipe-juwelier-kupferreif",
@@ -15457,7 +15457,7 @@
       "description": "Fasst: Kupferreif.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Reif aus Kupfer. Glänzt bei Sonnenuntergang. Oxidiert bei Regen. Beides hat Ästhetik."
     },
     {
       "id": "recipe-juwelier-eisenring-des-wanderers",
@@ -15477,7 +15477,7 @@
       "description": "Fasst: Eisenring des Wanderers.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ring für Wanderer. Selindra sagt, er finde seinen Weg. Ringe finden keine Wege. Aber der hier versucht es."
     },
     {
       "id": "recipe-juwelier-kupferkette",
@@ -15497,7 +15497,7 @@
       "description": "Fasst: Kupferkette.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Kette aus Kupfer. Selindra hat jeden Ring einzeln geformt. Und mit jedem einzeln gesprochen."
     },
     {
       "id": "recipe-juwelier-eisernes-medaillon",
@@ -15517,7 +15517,7 @@
       "description": "Fasst: Eisernes Medaillon.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Medaillon aus Eisen. Schwer am Hals. Leicht im Preis. Selindra nennt das faire Physik."
     },
     {
       "id": "recipe-juwelier-schlichter-anhaenger",
@@ -15538,7 +15538,7 @@
       "description": "Fasst: Schlichter Anhänger.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Anhänger ohne Schnörkel. Selindra sagt, Einfachheit sei die höchste Form der Eleganz. Bei diesem Preis."
     },
     {
       "id": "recipe-juwelier-steinamulett",
@@ -15559,7 +15559,7 @@
       "description": "Fasst: Steinamulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Amulett mit einem Stein der laut Selindra 'summt'. Alle anderen hören Stille."
     },
     {
       "id": "recipe-juwelier-einfache-kette",
@@ -15580,7 +15580,7 @@
       "description": "Fasst: Einfache Kette.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Einfache Kette. Jedes Glied eine Entscheidung. Selindra hat keine davon bereut. Sagt sie."
     },
     {
       "id": "recipe-juwelier-kristallring",
@@ -15600,7 +15600,7 @@
       "xp": 12,
       "description": "Fasst: Kristallring.",
       "trainerCost": 100,
-      "desc": ""
+      "desc": "Kristall am Finger. Funkelt. Selindra sagt, der Kristall wähle seinen Träger. Marketing."
     },
     {
       "id": "recipe-juwelier-staehlerner-siegelring",
@@ -15620,7 +15620,7 @@
       "xp": 13,
       "description": "Fasst: Stählerner Siegelring.",
       "trainerCost": 120,
-      "desc": ""
+      "desc": "Stählerner Siegelring. Schwerer als der eiserne. Wichtiger als der kupferne. Teurer als beide."
     },
     {
       "id": "recipe-juwelier-kristallband",
@@ -15640,7 +15640,7 @@
       "xp": 13,
       "description": "Fasst: Kristallband.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Kristallband. Selindra hat es bei Mondlicht gefertigt. Nicht aus Romantik — aus Beleuchtungsmangel."
     },
     {
       "id": "recipe-juwelier-ring-des-forschers",
@@ -15661,7 +15661,7 @@
       "description": "Fasst: Ring des Forschers.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ring für Forscher. Selindra sagt, er helfe beim Nachdenken. Er hilft beim Angeben."
     },
     {
       "id": "recipe-juwelier-staehlerner-reif",
@@ -15682,7 +15682,7 @@
       "description": "Fasst: Stählerner Reif.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stählerner Reif. Passt perfekt. Weil Selindra jeden Finger vermisst. Millimetergenau."
     },
     {
       "id": "recipe-juwelier-kristall-siegelring",
@@ -15702,7 +15702,7 @@
       "xp": 15,
       "description": "Fasst: Kristall-Siegelring.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Kristall-Siegelring. Das Siegel ändert sich je nach Lichteinfangs. Oder Selindras Laune."
     },
     {
       "id": "recipe-juwelier-mondsteinring",
@@ -15722,7 +15722,7 @@
       "xp": 16,
       "description": "Fasst: Mondsteinring.",
       "trainerCost": 220,
-      "desc": ""
+      "desc": "Mondstein am Finger. Leuchtet nachts. Nicht hell genug zum Lesen. Hell genug um aufzufallen."
     },
     {
       "id": "recipe-juwelier-ring-der-erkenntnis",
@@ -15743,7 +15743,7 @@
       "description": "Fasst: Ring der Erkenntnis.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ring der Erkenntnis. Man erkennt danach Dinge. Meistens die eigenen Fehler. Selindra hat gewarnt."
     },
     {
       "id": "recipe-juwelier-staehlerner-gelehrtenring",
@@ -15764,7 +15764,7 @@
       "description": "Fasst: Stählerner Gelehrtenring.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Gelehrtenring. Für Gelehrte. Oder Leute die gelehrt aussehen wollen. Selindra urteilt nicht. Laut."
     },
     {
       "id": "recipe-juwelier-kristallreif-des-wanderers",
@@ -15785,7 +15785,7 @@
       "description": "Fasst: Kristallreif des Wanderers.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Kristallreif der beim Wandern leuchtet. Der Weg ist heller. Die Rechnung auch."
     },
     {
       "id": "recipe-juwelier-kristallkette",
@@ -15806,7 +15806,7 @@
       "description": "Fasst: Kristallkette.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Kristallkette. Jedes Glied ein geschliffener Kristall. Selindra hat bei jedem geblinzelt. Vor Staub."
     },
     {
       "id": "recipe-juwelier-staehlernes-medaillon",
@@ -15827,7 +15827,7 @@
       "description": "Fasst: Stählernes Medaillon.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stählernes Medaillon. Schwer genug um eine Meinung zu haben. Leicht genug um getragen zu werden."
     },
     {
       "id": "recipe-juwelier-mondstein-anhaenger",
@@ -15848,7 +15848,7 @@
       "description": "Fasst: Mondstein-Anhänger.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Mondstein-Anhänger. Leuchtet bei Nacht. Selindra sagt, der Mond sei eifersüchtig."
     },
     {
       "id": "recipe-juwelier-kristall-amulett",
@@ -15869,7 +15869,7 @@
       "description": "Fasst: Kristall-Amulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Kristallamulett. Selindra hat den Kristall geschliffen bis er geweint hat. Kristalle weinen nicht. Aber dieser fast."
     },
     {
       "id": "recipe-juwelier-staehlerne-kette",
@@ -15890,7 +15890,7 @@
       "description": "Fasst: Stählerne Kette.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Stählerne Kette. Selindra hat sie Glied für Glied geformt. Jedes Glied ist ein kleines Versprechen."
     },
     {
       "id": "recipe-juwelier-kristall-medaillon",
@@ -15911,7 +15911,7 @@
       "description": "Fasst: Kristall-Medaillon.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Kristallmedaillon. Innen ist Platz für ein Bild. Oder einen Edelstein. Oder Selindras Visitenkarte."
     },
     {
       "id": "recipe-juwelier-saphirring",
@@ -15931,7 +15931,7 @@
       "xp": 20,
       "description": "Fasst: Saphirring.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Saphir am Finger. Blau wie der Himmel. Teuer wie der Himmel nicht ist."
     },
     {
       "id": "recipe-juwelier-drachenauge-ring",
@@ -15952,7 +15952,7 @@
       "description": "Fasst: Drachenauge-Ring.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ring mit einem Stein der wie ein Drachenauge aussieht. Der Drache hat kein Patent angemeldet. Noch nicht."
     },
     {
       "id": "recipe-juwelier-ring-des-meisters",
@@ -15973,7 +15973,7 @@
       "description": "Fasst: Ring des Meisters.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Meisterring. Selindra hat drei Wochen geschliffen. Der Stein hat drei Wochen gesummt. Angeblich."
     },
     {
       "id": "recipe-juwelier-smaragdband",
@@ -15994,7 +15994,7 @@
       "description": "Fasst: Smaragdband.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Smaragdband. Grün wie Neid. Und genauso begehrt."
     },
     {
       "id": "recipe-juwelier-mondschein-siegelring",
@@ -16014,7 +16014,7 @@
       "xp": 23,
       "description": "Fasst: Mondschein-Siegelring.",
       "trainerCost": 550,
-      "desc": ""
+      "desc": "Siegelring der im Mondschein leuchtet. Das Siegel zeigt einen Stern. Oder einen Fleck. Hängt vom Mondlicht ab."
     },
     {
       "id": "recipe-juwelier-ring-der-sterne",
@@ -16035,7 +16035,7 @@
       "description": "Fasst: Ring der Sterne.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ring der Sterne. Selindra sagt die Sterne darin sind echt. Astronomen widersprechen. Selindra auch."
     },
     {
       "id": "recipe-juwelier-drachenschuppen-reif",
@@ -16056,7 +16056,7 @@
       "description": "Fasst: Drachenschuppen-Reif.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Drachenschuppen-Reif. Die Schuppe war nicht freiwillig. Der Drache war nicht einverstanden. Der Reif ist trotzdem schön."
     },
     {
       "id": "recipe-juwelier-saphir-gelehrtenring",
@@ -16077,7 +16077,7 @@
       "description": "Fasst: Saphir-Gelehrtenring.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Saphir-Gelehrtenring. Für Gelehrte die ihren Saphir zeigen wollen. Und ihre Gelehrsamkeit. In dieser Reihenfolge."
     },
     {
       "id": "recipe-juwelier-ring-des-weisen",
@@ -16098,7 +16098,7 @@
       "description": "Fasst: Ring des Weisen.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ring des Weisen. Selindra sagt, Weisheit funkle nicht. Dieser Ring beweist das Gegenteil."
     },
     {
       "id": "recipe-juwelier-smaragdreif",
@@ -16119,7 +16119,7 @@
       "description": "Fasst: Smaragdreif.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Smaragdreif. Grüner als Hoffnung. Und stabiler."
     },
     {
       "id": "recipe-juwelier-saphir-kette",
@@ -16140,7 +16140,7 @@
       "description": "Fasst: Saphir-Kette.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Saphirkette. Selindra hat sie bei Kerzenlicht gefädelt. Der Saphir hat bei Kerzenlicht gesungen. Schlecht."
     },
     {
       "id": "recipe-juwelier-drachenzahn-medaillon",
@@ -16161,7 +16161,7 @@
       "description": "Fasst: Drachenzahn-Medaillon.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Medaillon mit Drachenzahn. Selindra sagt der Zahn bringe Glück. Dem Drachen hat er keins gebracht."
     },
     {
       "id": "recipe-juwelier-smaragd-anhaenger",
@@ -16182,7 +16182,7 @@
       "description": "Fasst: Smaragd-Anhänger.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Smaragd-Anhänger. Grün, wertvoll, und der Grund warum Selindra morgens aufsteht."
     },
     {
       "id": "recipe-juwelier-mondschein-amulett",
@@ -16203,7 +16203,7 @@
       "description": "Fasst: Mondschein-Amulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Mondscheinalmulett. Leuchtet in allen Phasen. Selindra hat Mondphasen studiert. Für das Amulett. Nicht aus Interesse."
     },
     {
       "id": "recipe-juwelier-drachenschuppen-kette",
@@ -16224,7 +16224,7 @@
       "description": "Fasst: Drachenschuppen-Kette.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Kette aus Drachenschuppen. Jede Schuppe ein Drama. Jedes Drama ein Kettenglied."
     },
     {
       "id": "recipe-juwelier-saphir-medaillon",
@@ -16245,7 +16245,7 @@
       "description": "Fasst: Saphir-Medaillon.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Saphirmedaillon. Blau innen, blau außen. Selindra sagt, es sei konsistent. Wie sie selbst."
     },
     {
       "id": "recipe-juwelier-smaragd-amulett",
@@ -16266,7 +16266,7 @@
       "description": "Fasst: Smaragd-Amulett.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Smaragdamulett. Selindras Lieblingsstein in Selindras Lieblingsform. Zufall? Nein."
     },
     {
       "id": "recipe-juwelier-aetherring",
@@ -16286,7 +16286,7 @@
       "xp": 28,
       "description": "Fasst: Aetherring.",
       "trainerCost": 800,
-      "desc": ""
+      "desc": "Aetherring. Existiert zu achtzig Prozent. Die fehlenden zwanzig sind der interessante Teil."
     },
     {
       "id": "recipe-juwelier-ring-der-leere",
@@ -16307,7 +16307,7 @@
       "description": "Fasst: Ring der Leere.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Ring der Leere. Innen ist nichts. Außen auch nicht viel. Trotzdem teuer."
     },
     {
       "id": "recipe-juwelier-seelen-siegelring",
@@ -16327,7 +16327,7 @@
       "xp": 30,
       "description": "Fasst: Seelen-Siegelring.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Seelen-Siegelring. Das Siegel ist persönlich. Sehr persönlich. Selindra weiß nicht was es zeigt. Willst du?"
     },
     {
       "id": "recipe-juwelier-runenring",
