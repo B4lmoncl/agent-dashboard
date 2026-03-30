@@ -2459,6 +2459,246 @@
       },
       "chainPrev": "codex-lorekeeper",
       "hidden": true
+    },
+    {
+      "id": "talent_first",
+      "name": "Erste Entscheidung",
+      "description": "Ersten Talentpunkt investiert. Ab jetzt gibt es kein Zurück. Naja, doch — für 500 Gold.",
+      "icon": "/images/icons/nav-talents.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "talent_points_spent",
+        "count": 1
+      }
+    },
+    {
+      "id": "talent_10",
+      "name": "Gewachsene Wurzeln",
+      "description": "10 Talentpunkte vergeben. Dein Baum hat Form angenommen. Der Baum hat Meinungen. Die meisten negativ.",
+      "icon": "/images/icons/nav-talents.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "talent_points_spent",
+        "count": 10
+      }
+    },
+    {
+      "id": "talent_respec",
+      "name": "Identitätskrise",
+      "description": "Alle Talente zurückgesetzt. 500 Gold für eine neue Persönlichkeit. Billiger als Therapie.",
+      "icon": "/images/icons/nav-talents.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "talent_respec",
+        "count": 1
+      }
+    },
+    {
+      "id": "tome_first_milestone",
+      "name": "Erste Seite",
+      "description": "Ersten Meilenstein im Abenteuerbuch erreicht. Das Buch nickt anerkennend. Fast unmerklich.",
+      "icon": "/images/icons/nav-tome.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "tome_milestone_claimed",
+        "count": 1
+      }
+    },
+    {
+      "id": "tome_50_percent",
+      "name": "Halbzeit",
+      "description": "50% Gesamtfortschritt im Abenteuerbuch. Der Turm ist halb beeindruckt. Die andere Hälfte wartet.",
+      "icon": "/images/icons/nav-tome.png",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "tome_total_percent",
+        "count": 50
+      }
+    },
+    {
+      "id": "tome_floor_100",
+      "name": "Perfektionist",
+      "description": "Ein Stockwerk auf 100% abgeschlossen. Du bist gründlicher als die Putzkolonne.",
+      "icon": "/images/icons/nav-tome.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "tome_floor_complete",
+        "count": 1
+      }
+    },
+    {
+      "id": "enchant_first",
+      "name": "Erste Verzauberung",
+      "description": "Erstes Stat-Reroll durchgeführt. Eldric hat genickt. Das passiert selten.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "enchantments_done",
+        "count": 1
+      }
+    },
+    {
+      "id": "enchant_10",
+      "name": "Stammkunde",
+      "description": "10 Rerolls bei Eldric. Er kennt deinen Namen. Er wünscht, er täte es nicht.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "enchantments_done",
+        "count": 10
+      }
+    },
+    {
+      "id": "kanai_first",
+      "name": "Erste Extraktion",
+      "description": "Ersten Legendary-Effekt extrahiert. Das Item ist weg. Der Effekt bleibt. Ob das ein guter Tausch war, zeigt die Zeit.",
+      "icon": "/images/icons/equip-weapon.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "kanai_extractions",
+        "count": 1
+      }
+    },
+    {
+      "id": "kanai_full",
+      "name": "Vollständiger Würfel",
+      "description": "Alle 3 Ätherwürfel-Slots belegt. Du trägst jetzt drei zerstörte Gegenstände als Erinnerung mit dir. Romantisch.",
+      "icon": "/images/icons/equip-weapon.png",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "kanai_slots_filled",
+        "count": 3
+      }
+    },
+    {
+      "id": "mail_first",
+      "name": "Erste Post",
+      "description": "Erste Mail verschickt. 5 Gold Porto. Der Postbote dankt.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "mails_sent",
+        "count": 1
+      }
+    },
+    {
+      "id": "mail_10",
+      "name": "Brieffreundschaft",
+      "description": "10 Mails verschickt. Du und der Postbote seid jetzt per Du.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "mails_sent",
+        "count": 10
+      }
+    },
+    {
+      "id": "expedition_first",
+      "name": "Erste Expedition",
+      "description": "Ersten Companion auf Expedition geschickt. Er ist zurückgekommen. Das ist nicht selbstverständlich.",
+      "icon": "/images/icons/nav-wanderer.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "expedition_completions",
+        "count": 1
+      }
+    },
+    {
+      "id": "expedition_10",
+      "name": "Reiseleiter",
+      "description": "10 Expeditionen abgeschlossen. Dein Companion kennt jeden Busch persönlich.",
+      "icon": "/images/icons/nav-wanderer.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "expedition_completions",
+        "count": 10
+      }
+    },
+    {
+      "id": "expedition_ancient",
+      "name": "Antike Ruinen",
+      "description": "Ancient-Ruins-Expedition abgeschlossen. 24 Stunden. Dein Companion riecht nach Geschichte und leichtem Bedauern.",
+      "icon": "/images/icons/nav-wanderer.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "expedition_tier_ancient",
+        "count": 1
+      }
+    },
+    {
+      "id": "craft_skill_100",
+      "name": "Gesellenstück",
+      "description": "Profession-Skill 100 erreicht. Du bist jetzt offiziell besser als der Durchschnitt. Der Durchschnitt lag bei 3.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "profession_skill",
+        "count": 100
+      }
+    },
+    {
+      "id": "craft_skill_200",
+      "name": "Meisterhand",
+      "description": "Profession-Skill 200. Grimvar hat anerkennend gebrummt. Für Grimvar-Verhältnisse war das ein Kompliment.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "profession_skill",
+        "count": 200
+      }
+    },
+    {
+      "id": "craft_skill_300",
+      "name": "Großmeister",
+      "description": "Skill 300. Maximum. Du bist jetzt der Grund, warum andere aufhören. Herzlichen Glückwunsch. Irgendwie.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "profession_skill",
+        "count": 300
+      }
+    },
+    {
+      "id": "social_5_friends",
+      "name": "Gesellig",
+      "description": "5 Freunde im Turm. Statistisch gesehen vertraust du drei davon. Der Turm vertraut keinem.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "friends_count",
+        "count": 5
+      }
+    },
+    {
+      "id": "trade_materials",
+      "name": "Materialhandel",
+      "description": "Ersten Trade mit Materialien abgeschlossen. Jemand hat etwas was du brauchst. Du hast etwas was er braucht. Kapitalismus in seiner reinsten Form.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "trades_completed",
+        "count": 1
+      }
     }
   ],
   "pointMilestones": [
