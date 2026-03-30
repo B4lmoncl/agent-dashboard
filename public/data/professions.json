@@ -1280,7 +1280,7 @@
       },
       "xp": 15,
       "description": "Verzaubert: +2 Weisheit für 3 Quests.",
-      "desc": ""
+      "desc": "Tinte für Gelehrte. Eldric schreibt damit Runen. Die Runen schreiben manchmal zurück."
     },
     {
       "id": "artisans_whetstone",
@@ -1324,7 +1324,7 @@
       },
       "xp": 15,
       "description": "Verzaubert: +2 Fokus für 3 Quests.",
-      "desc": ""
+      "desc": "Amulett das resoniert. Mit was, weiß Eldric nicht. Er rechnet noch."
     },
     {
       "id": "recipe-schmied-eisenbarren",
@@ -10481,7 +10481,7 @@
       "cooldownMinutes": 0,
       "description": "Magie verdichten. Kribbelt. Das ist normal. Meistens.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Magie verdichten ohne zu explodieren. Eldrics Spezialität. Die Betonung liegt auf 'ohne'."
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-kraft",
@@ -10502,7 +10502,7 @@
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Kraft.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schwache Kraftverzauberung. Der erste Strich den ein Lehrling zieht. Eldric seufzt dabei. Aus Gewohnheit."
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-weisheit",
@@ -10523,7 +10523,7 @@
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Weisheit.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schwache Weisheit. Reicht um zu wissen dass man mehr braucht."
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-ausdauer",
@@ -10544,7 +10544,7 @@
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Ausdauer.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schwache Ausdauer. Hält eine Stunde. Wie Eldrics Geduld mit Anfängern."
     },
     {
       "id": "recipe-verz-schwache-verzauberung-des-gluecks",
@@ -10565,7 +10565,7 @@
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung des Glücks.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schwaches Glück. Besser als kein Glück. Schlechter als echtes Glück."
     },
     {
       "id": "recipe-verz-verzauberung-der-kraft",
@@ -10587,7 +10587,7 @@
       "xp": 10,
       "description": "Verzaubert: Verzauberung der Kraft.",
       "trainerCost": 68,
-      "desc": ""
+      "desc": "Kraftverzauberung. Die Rune leuchtet rot. Eldric sagt rot sei Stärke. Grimvar sagt rot sei Gefahr."
     },
     {
       "id": "recipe-verz-verzauberung-der-weisheit",
@@ -10609,7 +10609,7 @@
       "xp": 10,
       "description": "Verzaubert: Verzauberung der Weisheit.",
       "trainerCost": 75,
-      "desc": ""
+      "desc": "Weisheitsverzauberung. Man denkt klarer. Oder glaubt es. Eldric sieht keinen Unterschied."
     },
     {
       "id": "recipe-verz-verzauberung-der-ausdauer",
@@ -10631,7 +10631,7 @@
       "xp": 10,
       "description": "Verzaubert: Verzauberung der Ausdauer.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Ausdauerverzauberung. Eldric hat sie an sich selbst getestet. Er hat drei Stunden gerechnet. Ohne Pause."
     },
     {
       "id": "recipe-verz-verzauberung-des-gluecks",
@@ -10653,7 +10653,7 @@
       "xp": 10,
       "description": "Verzaubert: Verzauberung des Glücks.",
       "trainerCost": 93,
-      "desc": ""
+      "desc": "Glücksverzauberung. Die Rune flimmert grün. Oder gelb. Hängt vom Glück ab."
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-kraft",
@@ -10675,7 +10675,7 @@
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Kraft.",
       "trainerCost": 175,
-      "desc": ""
+      "desc": "Starke Kraft. Die Rune brennt sich ins Metall. Eldric sagt das sei normal. Normal für ihn."
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-weisheit",
@@ -10697,7 +10697,7 @@
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Weisheit.",
       "trainerCost": 193,
-      "desc": ""
+      "desc": "Starke Weisheit. Man versteht Dinge die man vorher ignoriert hat. Nicht immer ein Vorteil."
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-ausdauer",
@@ -10720,7 +10720,7 @@
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Ausdauer.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Starke Ausdauer. Die Rune pulsiert. Der Gegenstand atmet. Eldric findet das faszinierend. Alle anderen beunruhigend."
     },
     {
       "id": "recipe-verz-starke-verzauberung-des-gluecks",
@@ -10743,7 +10743,7 @@
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung des Glücks.",
       "trainerCost": 225,
-      "desc": ""
+      "desc": "Starkes Glück. Die Rune lächelt. Runen lächeln nicht. Diese schon."
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-der-kraft",
@@ -10767,7 +10767,7 @@
       "description": "Verzaubert: Mächtige Verzauberung der Kraft.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Mächtige Kraft. Eldric flüstert bei der Anwendung. Der Aetherstrom antwortet. Leise."
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-der-weisheit",
@@ -10791,7 +10791,7 @@
       "description": "Verzaubert: Mächtige Verzauberung der Weisheit.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Mächtige Weisheit. Nach der Verzauberung versteht der Gegenstand mehr als sein Träger. Paradox."
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-der-ausdauer",
@@ -10815,7 +10815,7 @@
       "description": "Verzaubert: Mächtige Verzauberung der Ausdauer.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Mächtige Ausdauer. Eldric hat dabei eine Gleichung gelöst die er seit Jahren verfolgt. Die Rune hat geholfen."
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-des-gluecks",
@@ -10839,7 +10839,7 @@
       "description": "Verzaubert: Mächtige Verzauberung des Glücks.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Mächtiges Glück. Die Rune singt. Nicht gut. Aber enthusiastisch."
     },
     {
       "id": "recipe-verz-ueberlegene-verzauberung-der-kraft",
@@ -10863,7 +10863,7 @@
       "description": "Verzaubert: Überlegene Verzauberung der Kraft.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Überlegene Kraft. Eldric braucht dafür drei Stunden Konzentration. Und drei Tassen Tee."
     },
     {
       "id": "recipe-verz-ueberlegene-verzauberung-der-weisheit",
@@ -10887,7 +10887,7 @@
       "description": "Verzaubert: Überlegene Verzauberung der Weisheit.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Überlegene Weisheit. Die Rune weiß Dinge. Eldric fragt sie manchmal um Rat."
     },
     {
       "id": "recipe-verz-ueberlegene-verzauberung-der-ausdauer",
@@ -10911,7 +10911,7 @@
       "description": "Verzaubert: Überlegene Verzauberung der Ausdauer.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Überlegene Ausdauer. Der Gegenstand wird unermüdlich. Wie Eldric. Und genauso unangenehm in Gesellschaft."
     },
     {
       "id": "recipe-verz-ueberlegene-verzauberung-des-gluecks",
@@ -10935,7 +10935,7 @@
       "description": "Verzaubert: Überlegene Verzauberung des Glücks.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Überlegenes Glück. Die Rune strahlt. Eldric auch. Zum ersten Mal diese Woche."
     },
     {
       "id": "recipe-verz-legendaere-verzauberung-der-kraft",
@@ -10959,7 +10959,7 @@
       "description": "Verzaubert: Legendäre Verzauberung der Kraft.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Legendäre Kraft. Eldrics stärkste Rune. Er zittert dabei. Nicht vor Angst. Vor Ehrfurcht."
     },
     {
       "id": "recipe-verz-legendaere-verzauberung-der-weisheit",
@@ -10983,7 +10983,7 @@
       "description": "Verzaubert: Legendäre Verzauberung der Weisheit.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Legendäre Weisheit. Man versteht danach das Universum. Für drei Sekunden. Dann vergisst man es wieder."
     },
     {
       "id": "recipe-verz-legendaere-verzauberung-der-ausdauer",
@@ -11007,7 +11007,7 @@
       "description": "Verzaubert: Legendäre Verzauberung der Ausdauer.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Legendäre Ausdauer. Eldric sagt, der Gegenstand sei jetzt unsterblich. Er meint es metaphorisch. Hoffentlich."
     },
     {
       "id": "recipe-verz-legendaere-verzauberung-des-gluecks",
@@ -11031,7 +11031,7 @@
       "description": "Verzaubert: Legendäre Verzauberung des Glücks.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Legendäres Glück. Die mächtigste Glücksrune die Eldric kennt. Er hat sie an seinem eigenen Ring. Seit dem geht es ihm gut."
     },
     {
       "id": "recipe-verz-perm-weapon-1",
@@ -11053,7 +11053,7 @@
       "xp": 18,
       "description": "Verzaubert permanent: +1 kraft auf Waffe.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Permanente Waffenverzauberung. Bleibt für immer. Wie ein Tattoo. Nur nützlicher."
     },
     {
       "id": "recipe-verz-perm-armor-1",
@@ -11075,7 +11075,7 @@
       "xp": 18,
       "description": "Verzaubert permanent: +1 ausdauer auf Rüstung.",
       "trainerCost": 225,
-      "desc": ""
+      "desc": "Permanente Rüstungsverzauberung. Die Rüstung dankt dir. Leise. Metallisch."
     },
     {
       "id": "recipe-verz-perm-boots-1",
@@ -11098,7 +11098,7 @@
       "description": "Verzaubert permanent: +1 tempo auf Stiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Permanente Stiefelverzauberung. Die Stiefel werden besser. Der Boden nervöser."
     },
     {
       "id": "recipe-verz-perm-helm-1",
@@ -11120,7 +11120,7 @@
       "xp": 18,
       "description": "Verzaubert permanent: +1 weisheit auf Helm.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Permanente Helmverzauberung. Schützt den Kopf. Und was drin ist. Falls etwas drin ist."
     },
     {
       "id": "recipe-verz-perm-shield-1",
@@ -11142,7 +11142,7 @@
       "xp": 18,
       "description": "Verzaubert permanent: +1 vitalitaet auf Schild.",
       "trainerCost": 275,
-      "desc": ""
+      "desc": "Permanente Schildverzauberung. Das Schild wird stärker. Und ein bisschen arrogant."
     },
     {
       "id": "recipe-verz-perm-amulet-1",
@@ -11165,7 +11165,7 @@
       "description": "Verzaubert permanent: +1 glueck auf Amulett.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Permanente Amulettverzauberung. Das Amulett leuchtet. Für immer. Auch beim Schlafen."
     },
     {
       "id": "recipe-verz-perm-weapon-2",
@@ -11189,7 +11189,7 @@
       "description": "Verzaubert permanent: +2 kraft auf Waffe.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Große Waffenverzauberung. Stärker als die normale. Teurer als die normale. Eldric sieht da keinen Zusammenhang."
     },
     {
       "id": "recipe-verz-perm-armor-2",
@@ -11213,7 +11213,7 @@
       "description": "Verzaubert permanent: +2 ausdauer auf Rüstung.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Große Rüstungsverzauberung. Die Runen sind jetzt sichtbar. Und lesbar. Für den der Runen liest."
     },
     {
       "id": "recipe-verz-perm-boots-2",
@@ -11237,7 +11237,7 @@
       "description": "Verzaubert permanent: +2 tempo auf Stiefel.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Große Stiefelverzauberung. Die Stiefel schweben jetzt. Einen Millimeter. Selindra bemerkt es. Sonst niemand."
     },
     {
       "id": "recipe-verz-perm-helm-2",
@@ -11261,7 +11261,7 @@
       "description": "Verzaubert permanent: +2 weisheit auf Helm.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Große Helmverzauberung. Der Helm denkt mit. Nicht immer richtig. Aber immer laut."
     },
     {
       "id": "recipe-verz-perm-shield-2",
@@ -11285,7 +11285,7 @@
       "description": "Verzaubert permanent: +2 vitalitaet auf Schild.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Große Schildverzauberung. Das Schild blockiert jetzt auch Beleidigungen. Metaphorisch."
     },
     {
       "id": "recipe-verz-perm-amulet-2",
@@ -11309,7 +11309,7 @@
       "description": "Verzaubert permanent: +2 glueck auf Amulett.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Große Amulettverzauberung. Das Amulett vibriert bei Gefahr. Und bei Aufregung. Es kann nicht unterscheiden."
     },
     {
       "id": "recipe-verz-scroll-kraft-3",
@@ -11331,7 +11331,7 @@
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Kraft.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Kraftschriftrolle. Magie auf Papier. Eldric nennt es elegant. Ysolde nennt es Verschwendung von gutem Pergament."
     },
     {
       "id": "recipe-verz-scroll-weisheit-3",
@@ -11353,7 +11353,7 @@
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Weisheit.",
       "trainerCost": 88,
-      "desc": ""
+      "desc": "Weisheitsschriftrolle. Man liest sie und wird klüger. Dann vergisst man sie gelesen zu haben."
     },
     {
       "id": "recipe-verz-scroll-ausdauer-3",
@@ -11375,7 +11375,7 @@
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Ausdauer.",
       "trainerCost": 93,
-      "desc": ""
+      "desc": "Ausdauerschriftrolle. Gibt Energie. Auf Papier. Eldric versteht das. Physiker nicht."
     },
     {
       "id": "recipe-verz-scroll-glueck-3",
@@ -11398,7 +11398,7 @@
       "description": "Schreibt: Schriftrolle des Glücks.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Glücksschriftrolle. Man öffnet sie und hofft. Das Hoffen ist Pflicht. Das Glück optional."
     },
     {
       "id": "recipe-verz-scroll-fokus-3",
@@ -11420,7 +11420,7 @@
       "xp": 12,
       "description": "Schreibt: Schriftrolle des Fokus.",
       "trainerCost": 103,
-      "desc": ""
+      "desc": "Fokusschriftrolle. Schärft den Geist für fünf Quests. Danach ist der Geist müde. Wie nach Mathematik."
     },
     {
       "id": "recipe-verz-scroll-tempo-3",
@@ -11442,7 +11442,7 @@
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Eile.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Eileschriftrolle. Beschleunigt alles. Auch die Fehler."
     },
     {
       "id": "recipe-verz-scroll-kraft-6",
@@ -11464,7 +11464,7 @@
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Kraft.",
       "trainerCost": 583,
-      "desc": ""
+      "desc": "Große Kraftschriftrolle. Mehr Kraft, größeres Pergament. Eldric hat die Tinte nicht gespart."
     },
     {
       "id": "recipe-verz-scroll-weisheit-6",
@@ -11487,7 +11487,7 @@
       "description": "Schreibt: Große Schriftrolle der Weisheit.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Große Weisheitsschriftrolle. Weisheit in Großformat. Für große Probleme."
     },
     {
       "id": "recipe-verz-scroll-ausdauer-6",
@@ -11509,7 +11509,7 @@
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Ausdauer.",
       "trainerCost": 633,
-      "desc": ""
+      "desc": "Große Ausdauerschriftrolle. Hält so lange dass man vergisst wann man sie benutzt hat."
     },
     {
       "id": "recipe-verz-scroll-glueck-6",
@@ -11531,7 +11531,7 @@
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle des Glücks.",
       "trainerCost": 658,
-      "desc": ""
+      "desc": "Große Glücksschriftrolle. Größeres Pergament, größeres Glück. Eldric schwört darauf. Buchstäblich."
     },
     {
       "id": "recipe-verz-scroll-fokus-6",
@@ -11553,7 +11553,7 @@
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle des Fokus.",
       "trainerCost": 683,
-      "desc": ""
+      "desc": "Große Fokusschriftrolle. Fokus in XXL. Man starrt danach auf Dinge. Absichtlich."
     },
     {
       "id": "recipe-verz-scroll-tempo-6",
@@ -11575,7 +11575,7 @@
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Eile.",
       "trainerCost": 708,
-      "desc": ""
+      "desc": "Große Eileschriftrolle. So schnell dass man das Pergament kaum öffnen kann."
     },
     {
       "id": "recipe-verz-schutzglyphe-1",
@@ -11596,7 +11596,7 @@
       "xp": 8,
       "description": "Erschafft: Schutzglyphe I.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schutzglyphe. Ein Zeichen das schützt. Eldric sagt, es sei ein Versprechen. In Tinte."
     },
     {
       "id": "recipe-verz-schutzglyphe-2",
@@ -11619,7 +11619,7 @@
       "xp": 18,
       "description": "Erschafft: Schutzglyphe II.",
       "trainerCost": 275,
-      "desc": ""
+      "desc": "Stärkere Schutzglyphe. Das Versprechen wird lauter."
     },
     {
       "id": "recipe-verz-schutzglyphe-3",
@@ -11643,7 +11643,7 @@
       "description": "Erschafft: Schutzglyphe III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Stärkste Schutzglyphe. Das Versprechen ist jetzt ein Schwur. In leuchtender Tinte."
     },
     {
       "id": "recipe-verz-tempoward-1",
@@ -11664,7 +11664,7 @@
       "xp": 12,
       "description": "Erschafft: Glyphe der Eile I.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Glyphe der Eile. Macht schneller. Eldric war einmal zu schnell. Er hat den Dienstag übersprungen."
     },
     {
       "id": "recipe-verz-tempoward-2",
@@ -11687,7 +11687,7 @@
       "xp": 22,
       "description": "Erschafft: Glyphe der Eile II.",
       "trainerCost": 458,
-      "desc": ""
+      "desc": "Stärkere Eileglyphe. Noch schneller. Eldric hat aufgehört zu zählen wie viele Tage er verpasse."
     },
     {
       "id": "recipe-verz-tempoward-3",
@@ -11710,7 +11710,7 @@
       "xp": 38,
       "description": "Erschafft: Glyphe der Eile III.",
       "trainerCost": 1700,
-      "desc": ""
+      "desc": "Stärkste Eileglyphe. So schnell dass die Zeit Beschwerden einreicht."
     },
     {
       "id": "recipe-verz-machtward-1",
@@ -11731,7 +11731,7 @@
       "xp": 14,
       "description": "Erschafft: Glyphe der Macht I.",
       "trainerCost": 143,
-      "desc": ""
+      "desc": "Glyphe der Macht. Verstärkt alles was sie berührt. Eldric berührt sie ungern. Zur Vorsicht."
     },
     {
       "id": "recipe-verz-machtward-2",
@@ -11752,7 +11752,7 @@
       "xp": 28,
       "description": "Erschafft: Glyphe der Macht II.",
       "trainerCost": 708,
-      "desc": ""
+      "desc": "Stärkere Machtglyphe. Die Glyphe hat jetzt eine Aura. Und eine Einstellung."
     },
     {
       "id": "recipe-verz-streakward",
@@ -11773,7 +11773,7 @@
       "xp": 18,
       "description": "Erschafft: Arkaner Streakschutz.",
       "trainerCost": 243,
-      "desc": ""
+      "desc": "Arkaner Streakschutz. Eldric hat die Rune für Disziplin entworfen. Er ist selbst nicht diszipliniert. Ironie."
     },
     {
       "id": "recipe-verz-meister-streakward",
@@ -11794,7 +11794,7 @@
       "xp": 38,
       "description": "Erschafft: Meister-Streakschutz.",
       "trainerCost": 1500,
-      "desc": ""
+      "desc": "Meister-Streakschutz. Die stärkste Schutzrune die Eldric kennt. Gegen verpasste Tage. Nicht gegen Drachen."
     },
     {
       "id": "recipe-verz-brillantes-oel",
@@ -11817,7 +11817,7 @@
       "description": "Braut: Brillantes Öl.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Brillantes Öl. Eldric schüttelt es vorsichtig. Es leuchtet. Wie seine Augen dabei."
     },
     {
       "id": "recipe-verz-wildes-oel",
@@ -11839,7 +11839,7 @@
       "xp": 14,
       "description": "Braut: Wildes Öl.",
       "trainerCost": 118,
-      "desc": ""
+      "desc": "Wildes Öl. Unberechenbar. Wie Eldric vor dem Kaffee."
     },
     {
       "id": "recipe-verz-gluecksoel",
@@ -11862,7 +11862,7 @@
       "xp": 18,
       "description": "Braut: Glücksöl.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Glücksöl. Eldric hat es an sich getestet. Er hat einen Kupfermünze gefunden. Beweis genug."
     },
     {
       "id": "recipe-verz-grosses-brillantes-oel",
@@ -11886,7 +11886,7 @@
       "description": "Braut: Großes Brillantes Öl.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Großes Brillantes Öl. Leuchtet heller. Kostet mehr. Die Beziehung ist linear."
     },
     {
       "id": "recipe-verz-grosses-wildes-oel",
@@ -11910,7 +11910,7 @@
       "description": "Braut: Großes Wildes Öl.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Großes Wildes Öl. Noch unberechenbarer. Eldric empfiehlt Handschuhe. Und Abstand."
     },
     {
       "id": "recipe-verz-grosses-gluecksoel",
@@ -11933,7 +11933,7 @@
       "xp": 32,
       "description": "Braut: Großes Glücksöl.",
       "trainerCost": 1100,
-      "desc": ""
+      "desc": "Großes Glücksöl. Eldric hat damit seinen Stuhl eingerieben. Er ist seitdem nicht mehr hingefallen."
     },
     {
       "id": "recipe-verz-aetheroel",
@@ -11956,7 +11956,7 @@
       "description": "Braut: Ätheröl.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Ätheröl. Existiert in zwei Aggregatzuständen gleichzeitig. Eldric findet das beruhigend."
     },
     {
       "id": "recipe-verz-seelenoel",
@@ -11981,7 +11981,7 @@
       "description": "Braut: Seelenöl.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Seelenöl. Eldrics ultimatives Werk. Es riecht nach Nostalgie. Und ein bisschen nach Tinte."
     },
     {
       "id": "recipe-verz-vellum-schwach",
@@ -12005,7 +12005,7 @@
       "xp": 12,
       "description": "Schreibt eine handelbare Verzauberung auf Pergament.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Pergament das Verzauberungen speichert. Wie ein USB-Stick. Nur magischer. Und teurer."
     },
     {
       "id": "recipe-verz-vellum-mittel",
@@ -12030,7 +12030,7 @@
       "xp": 22,
       "description": "Schreibt eine stärkere handelbare Verzauberung auf Pergament.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Mittleres Pergament. Speichert stärkere Verzauberungen. Und stärkere Meinungen."
     },
     {
       "id": "recipe-verz-vellum-stark",
@@ -12055,7 +12055,7 @@
       "xp": 35,
       "description": "Schreibt eine mächtige handelbare Verzauberung auf Pergament.",
       "trainerCost": 1000,
-      "desc": ""
+      "desc": "Starkes Pergament. Speichert alles was Eldric darauf schreibt. Auch die Fehler."
     },
     {
       "id": "recipe-waffenschmied-eiserner-rundschild",
@@ -17394,7 +17394,7 @@
       "xp": 40,
       "description": "Verschmelzt 3 Gems der Stufe 3 zu einem Gem der Stufe 4.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Dritte Stufe der Verschmelzung. Die Steine haben aufgehört sich zu wehren. Resignation."
     },
     {
       "id": "recipe-juwelier-gem-merge-4",
@@ -17413,7 +17413,7 @@
       "xp": 50,
       "description": "Verschmelzt 3 Gems der Stufe 4 zu einem Gem der Stufe 5.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Vierte Verschmelzung. Selindra hat den Stein nicht mehr gefragt. Sie hat kommandiert."
     },
     {
       "id": "recipe-juwelier-poliertuch-1",
@@ -17434,7 +17434,7 @@
       "xp": 8,
       "trainerCost": 38,
       "description": "Stellt her: Einfaches Poliertuch.",
-      "desc": ""
+      "desc": "Poliertuch. Einfach, effektiv, und der Grund warum Selindras Hände immer glänzen."
     },
     {
       "id": "recipe-juwelier-poliertuch-2",
@@ -17455,7 +17455,7 @@
       "xp": 18,
       "trainerCost": 200,
       "description": "Stellt her: Feines Poliertuch.",
-      "desc": ""
+      "desc": "Feines Poliertuch. Für Steine die mehr verdienen als Baumwolle."
     },
     {
       "id": "recipe-juwelier-poliertuch-3",
@@ -17477,7 +17477,7 @@
       "xp": 32,
       "description": "Stellt her: Arkanes Poliertuch.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Arkanes Poliertuch. Poliert und verzaubert gleichzeitig. Multitasking in Stoffform."
     },
     {
       "id": "recipe-juwelier-charisma-ring-buff-1",
@@ -17498,7 +17498,7 @@
       "xp": 12,
       "trainerCost": 100,
       "description": "Stellt her: Ring der Anmut.",
-      "desc": ""
+      "desc": "Ring der Anmut. Macht anmutiger. Oder zumindest weniger ungeschickt."
     },
     {
       "id": "recipe-juwelier-charisma-ring-buff-2",
@@ -17521,7 +17521,7 @@
       "description": "Stellt her: Ring der Majestät.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Ring der Majestät. Selindra sagt, der Träger strahle. Wie eine Glühbirne. Mit mehr Charisma."
     },
     {
       "id": "recipe-juwelier-streakschutz",
@@ -17541,7 +17541,7 @@
       "xp": 20,
       "trainerCost": 300,
       "description": "Stellt her: Juwelen-Streakschutz.",
-      "desc": ""
+      "desc": "Juwelen-Streakschutz. Ein Edelstein der Gewohnheiten schützt. Selindra versteht Streaks nicht. Aber Steine schon."
     },
     {
       "id": "recipe-juwelier-meister-streakschutz",
@@ -17562,7 +17562,7 @@
       "description": "Stellt her: Meister-Juwelen-Streakschutz.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Meister-Streakschutz. Der stärkste Schutz den ein Stein bieten kann. Gegen alles außer Dienstage."
     },
     {
       "id": "recipe-juwelier-forge-temp-1",
@@ -17581,7 +17581,7 @@
       "xp": 14,
       "trainerCost": 125,
       "description": "Stellt her: Glühender Edelstein.",
-      "desc": ""
+      "desc": "Glühender Edelstein. Heizt die Schmiede auf. Grimvar nickt. Selindra strahlt. Alle zufrieden."
     },
     {
       "id": "recipe-juwelier-forge-temp-2",
@@ -17600,7 +17600,7 @@
       "xp": 35,
       "trainerCost": 1125,
       "description": "Stellt her: Aether-Edelstein.",
-      "desc": ""
+      "desc": "Aether-Edelstein. Heizt stärker als der Glühende. Die Schmiede hat jetzt Klimasorgen."
     },
     {
       "id": "recipe-juwelier-ring-segnen-1",
@@ -17620,7 +17620,7 @@
       "xp": 10,
       "trainerCost": 75,
       "description": "Ring segnen I.",
-      "desc": ""
+      "desc": "Ring segnen. Selindra betet dabei. An wen, sagt sie nicht. Vermutlich an den Stein."
     },
     {
       "id": "recipe-juwelier-ring-segnen-2",
@@ -17641,7 +17641,7 @@
       "description": "Ring segnen II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stärkere Segnung. Selindra betet lauter. Der Stein antwortet. Leiser."
     },
     {
       "id": "recipe-juwelier-ring-segnen-3",
@@ -17661,7 +17661,7 @@
       "xp": 30,
       "description": "Ring segnen III.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Stärkste Segnung. Selindra und der Stein haben eine Vereinbarung getroffen. Niemand kennt die Details."
     },
     {
       "id": "recipe-juwelier-amulett-segnen-1",
@@ -17682,7 +17682,7 @@
       "description": "Amulett verzieren I.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Amulett verzieren. Selindra hängt Gefühle an Metall. Sie nennt es Handwerk."
     },
     {
       "id": "recipe-juwelier-amulett-segnen-2",
@@ -17702,7 +17702,7 @@
       "xp": 22,
       "trainerCost": 450,
       "description": "Amulett verzieren II.",
-      "desc": ""
+      "desc": "Stärkere Verzierung. Das Amulett wird persönlicher. Und teurer. Wie Therapie."
     },
     {
       "id": "recipe-juwelier-amulett-segnen-3",
@@ -17723,7 +17723,7 @@
       "description": "Amulett verzieren III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Stärkste Verzierung. Selindra hat drei Nächte daran gearbeitet. Das Amulett hat drei Nächte geschwiegen. Danach funkelte es."
     },
     {
       "id": "recipe-schmied-eisernes-ruestungskit",
@@ -19416,7 +19416,7 @@
       "description": "Fasst: Abgrund-Amulett. Leuchtet ständig. Im Dunkeln, im Hellen, beim Schlafen. Der Juwelier trinkt seitdem mehr.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Geschmückt mit Steinen aus dem Riss. Die Steine erinnern sich an Orte die nicht existieren sollten."
     },
     {
       "id": "recipe-juwelier-riss-signet",
@@ -19439,7 +19439,7 @@
       "description": "Fasst: Riss-Signet. Passt an jeden Finger. Entscheidet aber selbst, an welchen.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Ring mit einem Fragment des Risses. Das Fragment vibriert bei Vollmond. Und bei Halbmond. Und dienstags."
     },
     {
       "id": "smelt_eisenbarren",
@@ -19727,7 +19727,7 @@
         "runenstein": 1
       },
       "xp": 20,
-      "desc": "",
+      "desc": "Fokus-Infusion. Eldric fokussiert sich. Der Gegenstand auch. Beide brauchen danach eine Pause.",
       "source": "trainer",
       "trainerCost": 120,
       "cooldownMinutes": 0
