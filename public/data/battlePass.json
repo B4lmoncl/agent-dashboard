@@ -951,6 +951,237 @@
           "milestone": true
         }
       ]
+    },
+    {
+      "season": 5,
+      "name": "Season 5 — Abenteuerbuch",
+      "theme": "Der Turm offenbart seine Geheimnisse. Vergessene Stockwerke, verschlossene Türen, verborgene Kammern — wer sucht, der findet. Wer findet, der versteht. Wer versteht, der wünscht sich manchmal, er hätte nicht gefragt.",
+      "icon": "/images/icons/nav-tome.png",
+      "accent": "#22c55e",
+      "rewards": [
+        {
+          "level": 1,
+          "type": "gold",
+          "amount": 75
+        },
+        {
+          "level": 2,
+          "type": "essenz",
+          "amount": 9
+        },
+        {
+          "level": 3,
+          "type": "gold",
+          "amount": 100
+        },
+        {
+          "level": 4,
+          "type": "material",
+          "materialId": "kraeuterbuendel",
+          "amount": 4
+        },
+        {
+          "level": 5,
+          "type": "runensplitter",
+          "amount": 9,
+          "milestone": true
+        },
+        {
+          "level": 6,
+          "type": "gold",
+          "amount": 140
+        },
+        {
+          "level": 7,
+          "type": "essenz",
+          "amount": 12
+        },
+        {
+          "level": 8,
+          "type": "material",
+          "materialId": "eisenerz",
+          "amount": 4
+        },
+        {
+          "level": 9,
+          "type": "gold",
+          "amount": 140
+        },
+        {
+          "level": 10,
+          "type": "title",
+          "titleId": "bp_s5_10",
+          "titleName": "Kartograph",
+          "titleRarity": "uncommon",
+          "milestone": true
+        },
+        {
+          "level": 11,
+          "type": "gold",
+          "amount": 165
+        },
+        {
+          "level": 12,
+          "type": "essenz",
+          "amount": 14
+        },
+        {
+          "level": 13,
+          "type": "material",
+          "materialId": "kristallsplitter",
+          "amount": 2
+        },
+        {
+          "level": 14,
+          "type": "gold",
+          "amount": 165
+        },
+        {
+          "level": 15,
+          "type": "runensplitter",
+          "amount": 12,
+          "milestone": true
+        },
+        {
+          "level": 16,
+          "type": "gold",
+          "amount": 190
+        },
+        {
+          "level": 17,
+          "type": "essenz",
+          "amount": 16
+        },
+        {
+          "level": 18,
+          "type": "material",
+          "materialId": "mondblume",
+          "amount": 3
+        },
+        {
+          "level": 19,
+          "type": "gold",
+          "amount": 190
+        },
+        {
+          "level": 20,
+          "type": "frame",
+          "frameId": "bp_s5_frame",
+          "frameName": "Abenteuerbuch Frame",
+          "frameColor": "#22c55e",
+          "milestone": true
+        },
+        {
+          "level": 21,
+          "type": "gold",
+          "amount": 215
+        },
+        {
+          "level": 22,
+          "type": "essenz",
+          "amount": 19
+        },
+        {
+          "level": 23,
+          "type": "sternentaler",
+          "amount": 7
+        },
+        {
+          "level": 24,
+          "type": "material",
+          "materialId": "seelensplitter",
+          "amount": 2
+        },
+        {
+          "level": 25,
+          "type": "title",
+          "titleId": "bp_s5_25",
+          "titleName": "Entdecker der Tiefe",
+          "titleRarity": "rare",
+          "milestone": true
+        },
+        {
+          "level": 26,
+          "type": "gold",
+          "amount": 240
+        },
+        {
+          "level": 27,
+          "type": "essenz",
+          "amount": 22
+        },
+        {
+          "level": 28,
+          "type": "runensplitter",
+          "amount": 14
+        },
+        {
+          "level": 29,
+          "type": "gold",
+          "amount": 240
+        },
+        {
+          "level": 30,
+          "type": "stardust",
+          "amount": 9,
+          "milestone": true
+        },
+        {
+          "level": 31,
+          "type": "gold",
+          "amount": 300
+        },
+        {
+          "level": 32,
+          "type": "essenz",
+          "amount": 28
+        },
+        {
+          "level": 33,
+          "type": "sternentaler",
+          "amount": 9
+        },
+        {
+          "level": 34,
+          "type": "material",
+          "materialId": "aetherkern",
+          "amount": 2
+        },
+        {
+          "level": 35,
+          "type": "runensplitter",
+          "amount": 22,
+          "milestone": true
+        },
+        {
+          "level": 36,
+          "type": "gold",
+          "amount": 380
+        },
+        {
+          "level": 37,
+          "type": "essenz",
+          "amount": 32
+        },
+        {
+          "level": 38,
+          "type": "gold",
+          "amount": 380
+        },
+        {
+          "level": 39,
+          "type": "mondstaub",
+          "amount": 3
+        },
+        {
+          "level": 40,
+          "type": "title",
+          "titleId": "bp_s5_40",
+          "titleName": "Chronist von Aethermoor",
+          "titleRarity": "legendary",
+          "milestone": true
+        }
+      ]
     }
   ]
 }

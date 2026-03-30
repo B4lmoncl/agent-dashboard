@@ -259,6 +259,190 @@
         "glow": true
       },
       "portrait": "/images/bosses/apathy-sovereign.png"
+    },
+    {
+      "id": "aufschub-kraken",
+      "name": "Der Aufschub-Kraken",
+      "title": "Verschlinger der Zeitpläne",
+      "description": "Ein gewaltiger Krake aus der Tiefe des Turms, dessen Tentakel sich um Terminkalender, To-Do-Listen und gute Vorsätze wickeln. Er hat acht Arme, von denen jeder einzelne gerade etwas anderes macht als das, was er sollte. Tentakel drei scrollt durch den Aetherstrom. Tentakel sieben hat eine Tasse Tee angefangen und vergessen. Die anderen sechs 'fangen gleich an'. Grimvar hat ihm einmal einen Zeitplan geschrieben. Der Krake hat ihn gefressen. Dann hat er den Zeitplan für das Fressen des Zeitplans aufgeschoben.",
+      "lore": "Der Aufschub-Kraken lebt in einem Becken im untersten Stockwerk des Turms, das er selbst nie fertig eingerichtet hat. Die Einweihungsfeier ist seit dreihundert Jahren 'für nächste Woche' geplant. Sein gefährlichster Angriff besteht darin, dass er einem sanft auf die Schulter tippt und flüstert: 'Das hat doch noch Zeit.' Drei von fünf Helden geben ihm Recht. Die anderen zwei sind bereits in Tentakel vier eingewickelt, der sie wiegt wie ein Baby, während Tentakel fünf ihnen eine Decke bringt. Bruna hat ihm einmal Suppe gekocht. Er wollte sie morgen essen. Die Suppe wartet noch.",
+      "icon": "/images/bosses/aufschub-kraken.png",
+      "accent": "#0ea5e9",
+      "tier": "titan",
+      "hp": 50000,
+      "enrageHours": 144,
+      "uniqueDrops": [
+        "wb-kraken-tentakelring",
+        "wb-kraken-zeitstiefel",
+        "wb-kraken-tintenhelm"
+      ],
+      "contributionThresholds": {
+        "bronze": 100,
+        "silver": 300,
+        "gold": 750,
+        "legendary": 1500
+      },
+      "titleReward": "Fristenbändiger",
+      "frameReward": {
+        "id": "kraken-frame",
+        "name": "Fristenbändiger",
+        "color": "#0ea5e9",
+        "glow": true
+      },
+      "portrait": "/images/bosses/aufschub-kraken.png"
+    },
+    {
+      "id": "routine-sphinx",
+      "name": "Die Routine-Sphinx",
+      "title": "Hüterin der täglichen Prüfung",
+      "description": "Eine Sphinx aus poliertem Obsidian, die am Eingang zur Taverne sitzt und jedem Helden eine Frage stellt. Die Fragen klingen einfach: 'Hast du heute Wasser getrunken?' 'Wann warst du zuletzt draußen?' 'Hast du die Sache erledigt, von der du weißt, welche ich meine?' Die meisten Helden scheitern. Nicht weil die Fragen schwer sind, sondern weil die ehrliche Antwort wehtut. Eldric hat einmal versucht, sie zu verzaubern. Sie hat ihn gefragt, ob er heute Frühstück gegessen hat. Er hat geschwiegen. Sie auch.",
+      "lore": "Die Routine-Sphinx wurde nicht gebaut. Sie kristallisierte sich aus den gebrochenen Versprechen von tausend Helden, die alle sagten: 'Ab morgen mache ich das jeden Tag.' Sie stellt keine unfairen Fragen. Das ist das Problem. Ihre Rätsel haben alle dieselbe Antwort: Konstanz. Wer dreißig Tage lang jede Frage ehrlich beantwortet, darf passieren. Bisher hat das niemand geschafft. Lyra kommt am nächsten — sie hat einmal achtundzwanzig Tage durchgehalten, bevor die Sphinx fragte: 'Hast du dich heute ausgeruht?' und Lyra, die seit vier Tagen nicht geschlafen hatte, zugeben musste, dass Ironie manchmal Tentakel hat.",
+      "icon": "/images/bosses/routine-sphinx.png",
+      "accent": "#eab308",
+      "tier": "champion",
+      "hp": 18000,
+      "enrageHours": 120,
+      "uniqueDrops": [
+        "wb-sphinx-weisheitshelm",
+        "wb-sphinx-raetselamulett"
+      ],
+      "contributionThresholds": {
+        "bronze": 50,
+        "silver": 150,
+        "gold": 400,
+        "legendary": 800
+      },
+      "titleReward": "Rätselmeister",
+      "frameReward": {
+        "id": "sphinx-frame",
+        "name": "Rätselmeister",
+        "color": "#eab308",
+        "glow": false
+      },
+      "portrait": "/images/bosses/routine-sphinx.png"
+    },
+    {
+      "id": "vergleichs-spiegel",
+      "name": "Der Vergleichs-Spiegel",
+      "title": "Reflektion des Ungenügens",
+      "description": "Ein mannshoher Spiegel mit einem Rahmen aus schwarzem Silber, der nicht zeigt, was ist, sondern was alle anderen besser machen. Man schaut hinein und sieht den Kollegen, der drei Levels vor einem ist. Den Freund mit dem besseren Gear Score. Den Nachbarn, dessen Streaks nie brechen. Der Spiegel lügt nicht, was ihn deutlich gefährlicher macht als die meisten Bosse, die wenigstens die Höflichkeit haben, mit Feuer zu spucken. Ysolde hat einmal hineingeschaut und den Spiegel gefragt, ob er auch positive Vergleiche zeige. Er zeigte ihr jemanden, der bessere Fragen stellt.",
+      "lore": "Der Spiegel hing einmal im Turm der Sternenwächterin, bevor sie ihn in den Keller verbannte, weil er 'nicht hilfreich' sei, was die diplomatischste Umschreibung für 'psychologische Kriegsführung als Möbelstück' ist, die je formuliert wurde. Er hat keinen physischen Angriff. Er muss nicht angreifen. Er zeigt dir einfach jemanden, der genau das, woran du arbeitest, schon fertig hat, und zwar mühelos, was natürlich nie stimmt, aber das erklärt man mal einem Spiegel. Grimvar hat ihn einmal mit dem Hammer bearbeitet. Der Spiegel zeigte ihm einen Schmied mit einem größeren Hammer. Grimvar hat seitdem zwei Hämmer.",
+      "icon": "/images/bosses/vergleichs-spiegel.png",
+      "accent": "#94a3b8",
+      "tier": "champion",
+      "hp": 20000,
+      "enrageHours": 120,
+      "uniqueDrops": [
+        "wb-spiegel-schild",
+        "wb-spiegel-ring"
+      ],
+      "contributionThresholds": {
+        "bronze": 75,
+        "silver": 200,
+        "gold": 500,
+        "legendary": 1000
+      },
+      "titleReward": "Spiegelbrecher",
+      "frameReward": {
+        "id": "spiegel-frame",
+        "name": "Spiegelbrecher",
+        "color": "#94a3b8",
+        "glow": false
+      },
+      "portrait": "/images/bosses/vergleichs-spiegel.png"
+    },
+    {
+      "id": "imposter-phantom",
+      "name": "Das Imposter-Phantom",
+      "title": "Schatten der falschen Krone",
+      "description": "Ein Geist, der aussieht wie man selbst, nur durchsichtiger und mit einem Ausdruck permanenter Enttäuschung. Er erscheint nach jedem Erfolg und flüstert: 'Das war Glück.' Nach jedem Level-Up: 'Die anderen haben es verdient, du nicht.' Nach jedem Lob: 'Wenn die wüssten.' Er hat 35.000 HP, von denen er selbst überzeugt ist, dass er sie nicht verdient hat und nur wegen eines Bugs so viele bekommen hat.",
+      "lore": "Das Imposter-Phantom entstand, als ein Held zum ersten Mal befördert wurde und dachte: 'Die haben sich vertan.' Seitdem heftet es sich an jeden, der etwas erreicht, und erklärt geduldig, warum der Erfolg eigentlich gar keiner war. Es ist das einzige Wesen in Aethermoor, das sich selbst für einen Betrug hält, was es entweder zum ehrlichsten oder zum verwirrtesten Monster im Turm macht. Lyra hat einmal versucht, mit ihm zu reden. Es sagte: 'Du bist gar keine echte Gildenleiterin.' Lyra sagte: 'Ich weiß.' Das Phantom war so verwirrt, dass es drei Tage lang verschwand. Dann kam es zurück und sagte: 'Das zählt nicht.'",
+      "icon": "/images/bosses/imposter-phantom.png",
+      "accent": "#7c3aed",
+      "tier": "titan",
+      "hp": 35000,
+      "enrageHours": 144,
+      "uniqueDrops": [
+        "wb-imposter-maske",
+        "wb-imposter-umhang",
+        "wb-imposter-stiefel"
+      ],
+      "contributionThresholds": {
+        "bronze": 100,
+        "silver": 300,
+        "gold": 750,
+        "legendary": 1500
+      },
+      "titleReward": "Der Echte",
+      "frameReward": {
+        "id": "imposter-frame",
+        "name": "Der Echte",
+        "color": "#7c3aed",
+        "glow": true
+      },
+      "portrait": "/images/bosses/imposter-phantom.png"
+    },
+    {
+      "id": "komfortzone",
+      "name": "Die Komfortzone",
+      "title": "Die Warme Umarmung des Stillstands",
+      "description": "Kein Ungeheuer im klassischen Sinne. Eher ein riesiges, flauschiges, unglaublich gemütliches Wesen, das wie eine Kreuzung aus Bär, Decke und Sonntagmorgen aussieht. Es greift nicht an. Es umarmt. Und dann lässt es nicht mehr los. Sein HP-Pool von 80.000 ist irreführend, weil die meisten Helden gar nicht kämpfen wollen. Bruna sagt, es rieche nach frisch gebackenem Brot und Kindheitserinnerungen. Grimvar sagt, genau das mache es so gefährlich. Dann hat er es gestreichelt. Einmal. Er redet nicht darüber.",
+      "lore": "Die Komfortzone existiert seit dem ersten Tag, an dem jemand sagte: 'Es ist gut genug so, wie es ist.' Sie lebt in einem Raum, der exakt die richtige Temperatur hat, mit exakt dem richtigen Licht und exakt der richtigen Hintergrundmusik. Wer den Raum betritt, will ihn nie wieder verlassen. Das ist ihr Angriff. Sie tut nichts Böses. Sie tut nur nichts Neues. Und nach einer Weile tut man selbst auch nichts Neues, und dann sitzt man da, eingewickelt in warme Zufriedenheit, während draußen die Quests warten und die Levels rufen und die Welt sich weiterdreht. Die Sternenwächterin sagt, sie sei das gefährlichste Wesen im Turm. Nicht weil sie stark ist, sondern weil sie sich so gut anfühlt.",
+      "icon": "/images/bosses/komfortzone.png",
+      "accent": "#fb923c",
+      "tier": "colossus",
+      "hp": 80000,
+      "enrageHours": 168,
+      "uniqueDrops": [
+        "wb-komfort-ruestung",
+        "wb-komfort-amulett",
+        "wb-komfort-stiefel"
+      ],
+      "contributionThresholds": {
+        "bronze": 200,
+        "silver": 500,
+        "gold": 1200,
+        "legendary": 2500
+      },
+      "titleReward": "Grenzüberschreiter",
+      "frameReward": {
+        "id": "komfort-frame",
+        "name": "Grenzüberschreiter",
+        "color": "#fb923c",
+        "glow": true
+      },
+      "portrait": "/images/bosses/komfortzone.png"
+    },
+    {
+      "id": "deadline-drache",
+      "name": "Der Deadline-Drache",
+      "title": "Feueratem der letzten Stunde",
+      "description": "Ein Drache, dessen Flammen nicht konstant brennen, sondern exponentiell heißer werden, je näher eine Frist rückt. Bei sieben Tagen Restzeit ist sein Feuer lauwarm, fast angenehm. Bei drei Tagen wird es unangenehm. Bei einem Tag schmilzt Stahl. Bei einer Stunde — nun, dann ist es zu spät für Stahl und für so ziemlich alles andere. Er ist der einzige Boss in Aethermoor mit einem eingebauten Countdown, was ihn zum natürlichen Feind aller macht, die 'unter Druck am besten arbeiten'. Spoiler: Tun sie nicht.",
+      "lore": "Der Deadline-Drache schlüpfte aus einem Stapel überfälliger Berichte, was biologisch fragwürdig, aber symbolisch absolut stimmig ist. Er nistet auf dem höchsten Turm des Kolosseums und brütet dort auf einem Haufen verpasster Termine. Sein Feuer hat eine Besonderheit: Es verbrennt nur Dinge, die man hätte früher erledigen können. Alles andere bleibt unversehrt, was erklärt, warum nach jedem Angriff nur Asche und Schuldgefühle übrig bleiben. Eldric hat einmal versucht, den Drachen mit einer Verzauberung der Zeitverlangsamung aufzuhalten. Der Drache hat gelacht. Dann hat er die Deadline für die Verzauberung um einen Tag vorverlegt. Aus Prinzip.",
+      "icon": "/images/bosses/deadline-drache.png",
+      "accent": "#dc2626",
+      "tier": "colossus",
+      "hp": 120000,
+      "enrageHours": 144,
+      "uniqueDrops": [
+        "wb-drache-klinge",
+        "wb-drache-helm",
+        "wb-drache-flammenring"
+      ],
+      "contributionThresholds": {
+        "bronze": 200,
+        "silver": 500,
+        "gold": 1200,
+        "legendary": 2500
+      },
+      "titleReward": "Fristgerecht",
+      "frameReward": {
+        "id": "drache-frame",
+        "name": "Fristgerecht",
+        "color": "#dc2626",
+        "glow": true
+      },
+      "portrait": "/images/bosses/deadline-drache.png"
     }
   ]
 }
