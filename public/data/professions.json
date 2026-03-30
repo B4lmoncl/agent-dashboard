@@ -508,13 +508,6 @@
       "desc": "Ein Faden aus reiner Arkaner Energie. Hält besser als jede Naht."
     },
     {
-      "id": "runenfaden",
-      "name": "Runenfaden",
-      "icon": null,
-      "rarity": "legendary",
-      "desc": "Ein Faden der Runen in den Stoff webt. Was er schreibt, kann niemand lesen — aber alle spüren es."
-    },
-    {
       "id": "geheiltesleichtleder",
       "name": "Geheiltes Leichtleder",
       "icon": null,
