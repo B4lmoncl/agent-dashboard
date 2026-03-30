@@ -1117,6 +1117,46 @@
       }
     },
     {
+      "id": "npc-selina-weberin",
+      "category": "npcs",
+      "title": "Selina die Weberin",
+      "text": "Selina spricht mit Fäden. Nicht metaphorisch — sie führt tatsächlich Gespräche mit Leinenstoff, und der Stoff antwortet, indem er sich in die richtige Form faltet. Zumindest behauptet sie das. Die anderen Handwerker haben aufgehört, nachzufragen, nachdem ein Wollknäuel einmal quer durch die Werkstatt gerollt ist, ohne dass jemand es berührt hat. Vor dem Turm war Selina Schneiderin in einer Stadt, deren Namen sie vergessen hat, was verdächtig klingt, bis man erfährt, dass die Stadt tatsächlich nicht mehr existiert. Nicht weil etwas Schlimmes passiert ist — die Einwohner haben einfach kollektiv vergessen, wo sie war. Selina war die Letzte, die ging. Sie nahm drei Nähnadeln und einen Webstuhl mit, der doppelt so groß war wie die Tür. Auf die Frage, wie sie ihn rausbekommen hat, sagt sie: 'Ich habe die Tür überredet.' Niemand fragt weiter.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "npc-roderic-gerber",
+      "category": "npcs",
+      "title": "Roderic der Gerber",
+      "text": "Roderic riecht nach Leder. Immer. Auch nach drei Bädern, einem Zauberspruch und einer besonders aggressiven Seife, die Ysolde speziell für ihn gebraut hat. Der Geruch ist Teil seiner Persönlichkeit geworden, wie ein besonders hartnäckiger Mitbewohner, den man irgendwann einfach akzeptiert. Er kam vor sieben Jahren zum Turm, nachdem er in einem Wald ein Stück Leder gefunden hatte, das ihn drei Tage lang durch die Wildnis geführt hat. Das Leder wollte zum Turm. Roderic wollte nach Hause. Das Leder hat gewonnen. Seitdem gerbt er mit einer Hingabe, die an Besessenheit grenzt, und einer Technik, die er 'Verhandlung' nennt. 'Man zwingt das Leder nicht', erklärt er. 'Man überzeugt es, weich zu sein.' Grimvar hat das einmal gehört und ist wortlos gegangen. Er kam drei Stunden später zurück und hat Roderic einen Hammer geschenkt. Für Notfälle.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "npc-varn-klingenmeister",
+      "category": "npcs",
+      "title": "Varn der Klingenmeister",
+      "text": "Varn testet jede Waffe, die er schmiedet. Persönlich. An einer Steinwand, die er 'den Kritiker' nennt. Wenn die Klinge den Stein spaltet, ist sie fertig. Wenn nicht, schmilzt er sie ein und fängt von vorne an. Die Wand hat siebenundvierzig Narben. Varn hat achtundvierzig — die eine extra stammt von dem Versuch, eine Streitaxt an einem Sonntag zu testen, als seine Konzentration nicht bei der Sache war, sondern bei Brunas Zwiebelsuppe drei Stockwerke tiefer. Vor dem Turm war Varn Soldat, dann Deserteur, dann Schmied, dann kurz wieder Soldat weil er sich im Gebäude geirrt hatte, und dann endgültig Schmied. Er redet über Klingen wie andere Leute über ihre Kinder reden: mit Stolz, mit Sorge, und mit der stillen Gewissheit, dass sie eines Tages jemanden verletzen werden. Auf die Frage, was der Unterschied zwischen ihm und Grimvar sei, sagte er: 'Grimvar macht Dinge, die schützen. Ich mache Dinge, die das Schützen notwendig machen.'",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "npc-selindra-edelsteinkennerin",
+      "category": "npcs",
+      "title": "Selindra die Edelsteinkennerin",
+      "text": "Selindra hört Edelsteine singen. Das klingt poetisch, bis man realisiert, dass die meisten Edelsteine furchtbar singen. 'Der Rubin summt in Moll', sagt sie. 'Der Saphir bevorzugt Dur. Der Diamant singt gar nicht, er urteilt.' Sie kam zum Turm, weil ein Amethyst sie gebeten hat. Nicht auf mysteriöse, schicksalhafte Weise — er hat buchstäblich ihren Namen gerufen, während sie in einem Laden stand und Radieschen kaufte. Sie hat die Radieschen bezahlt, den Amethyst eingesteckt und ist losgegangen. Die Radieschen hat sie nie gegessen. Der Amethyst sitzt jetzt in einem Ring im dritten Stock und weigert sich, mit anderen Edelsteinen zu kommunizieren, was Selindra als 'Persönlichkeit' bezeichnet und alle anderen als 'Problem'. Ihre Werkstatt ist leiser als jeder andere Raum im Turm, nicht weil sie Ruhe braucht, sondern weil die Edelsteine sonst mitsingen und das klingt, Zitat Grimvar, 'wie ein Chor der seine eigene Beerdigung probt'.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
       "id": "erholungs-pool",
       "category": "systems",
       "title": "Der Erholungs-Pool",
