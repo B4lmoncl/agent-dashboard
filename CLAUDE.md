@@ -78,7 +78,7 @@ app/                  # Next.js app directory
   globals.css         # Tailwind + CSS utilities + animations (~1165 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (49 files, ~23k lines)
+components/           # React UI components (51 files, ~24k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -111,7 +111,7 @@ lib/                  # Backend business logic (8 files, ~3950 lines)
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (24 files, ~11400 lines)
+routes/               # Express API routes (26 files, ~12000 lines)
   quests.js           # Quest CRUD, claim, complete (~855 lines)
   habits-inventory.js # Rituals, gear, inventory, effects (~880 lines)
   config-admin.js     # Game config, leaderboard, /api/dashboard batch (~607 lines)
