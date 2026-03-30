@@ -62,7 +62,12 @@ function applyShopEffect(u, item) {
 
   // Buff-based effects
   u.activeBuffs = u.activeBuffs || [];
-  u.activeBuffs.push({ type, questsRemaining, activatedAt: now() });
+  const buffEntry = { type, questsRemaining, activatedAt: now() };
+  // Preserve extra effect fields (value, xpPercent, goldPercent, etc.) so consumers can read them
+  if (item.effect.value != null) buffEntry.value = item.effect.value;
+  if (item.effect.xpPercent != null) buffEntry.xpPercent = item.effect.xpPercent;
+  if (item.effect.goldPercent != null) buffEntry.goldPercent = item.effect.goldPercent;
+  u.activeBuffs.push(buffEntry);
   const buffNames = {
     xp_boost_10: `+10% XP for ${questsRemaining} quests`,
     xp_boost_15: `+15% XP for ${questsRemaining} quests`,
@@ -530,6 +535,8 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
   const { userId, challengeId } = req.body;
   if (!userId || !challengeId) return res.status(400).json({ error: 'userId and challengeId required' });
   const uid = userId.toLowerCase();
+  if (!shopBuyLock.acquire(uid)) return res.status(429).json({ error: 'Request in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const challenge = FORGE_CHALLENGES.find(c => c.id === challengeId);
@@ -574,6 +581,7 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
   saveQuests();
   console.log(`[challenge] ${uid} joined "${challenge.name}"`);
   res.json({ ok: true, challenge: challenge.name, questsCreated: created.length });
+  } finally { shopBuyLock.release(uid); }
 });
 
 module.exports = router;

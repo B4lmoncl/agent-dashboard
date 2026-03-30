@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP } = require('../lib/helpers');
+const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP, getTodayBerlin } = require('../lib/helpers');
 
 // ─── Mondlicht-Schmiede: +20% better minimum rolls during night hours (22:00-06:00 Berlin) ───
 function isMoonlightActive() {
@@ -213,7 +213,7 @@ function isRecipeVisible(recipe, profProgress, user) {
 
 // ─── Helper: check if player gets daily crafting bonus ───────────────────────
 function getDailyBonusInfo(u) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getTodayBerlin();
   const lastCraftDate = u?.lastCraftDate || null;
   const hasCraftedToday = lastCraftDate === today;
   return { dailyBonusAvailable: !hasCraftedToday, lastCraftDate };
@@ -500,10 +500,12 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
   // Slot-requiring recipes can't batch (they target specific gear)
   const isSlotRecipe = SLOT_RECIPES.includes(recipeId);
+  // Gear crafting can't batch (each item is individually rolled + inventory cap)
+  const isGearCraft = recipe.result?.type === 'craft_gear';
   // Block batch crafting on gray recipes (0 XP — prevents wasting materials)
   const recipeReqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
   const isGrayRecipe = getSkillUpColor(profProgress.skill, recipeReqSkill) === 'gray';
-  const effectiveCount = isSlotRecipe ? 1 : (isGrayRecipe ? Math.min(count, 1) : count);
+  const effectiveCount = (isSlotRecipe || isGearCraft) ? 1 : (isGrayRecipe ? Math.min(count, 1) : count);
 
   // Validate slot-requiring recipes have a targetSlot and valid gear
   if (isSlotRecipe) {
@@ -598,7 +600,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     const isTransmuteRecipe = recipe.result?.type === 'material' && recipe.id.includes('transmute');
     if (isTransmuteRecipe) u._lastTransmuteAt = now();
   }
-  u.lastCraftDate = new Date().toISOString().slice(0, 10);
+  u.lastCraftDate = getTodayBerlin();
   const newSkill = u.professions[recipe.profession].skill;
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
