@@ -30,6 +30,7 @@ export interface BalanceConfig {
     epicPity: number;
   };
   setBonuses: { partial: number; full: number };
+  dailyDiminishing?: { tiers: { maxQuests: number; multiplier: number; label: string }[] };
   starBonus: { twoStar: number; threeStar: number };
 }
 

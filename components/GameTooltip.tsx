@@ -285,6 +285,28 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
       </>
     ),
   },
+  daily_diminishing: {
+    title: "Daily Quest Limit",
+    icon: "/images/icons/ui-quest-scroll.png",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Quest rewards diminish throughout the day to encourage steady daily play. The first quests each day are the most valuable.</p>
+        {B.dailyDiminishing?.tiers?.map((t: { maxQuests: number; multiplier: number; label: string }, i: number) => (
+          <div key={i} className="gt-stat-row" style={t.multiplier < 1 ? { color: "#f59e0b" } : undefined}>
+            <span>{t.maxQuests === Infinity ? "21+" : `${i === 0 ? 1 : (B.dailyDiminishing?.tiers?.[i - 1]?.maxQuests ?? 0) + 1}-${t.maxQuests}`} quests</span>
+            <span>{Math.round(t.multiplier * 100)}% rewards</span>
+          </div>
+        )) || <>
+          <div className="gt-stat-row"><span>1-5 quests</span><span>100% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>6-10 quests</span><span>75% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>11-20 quests</span><span>50% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>21+ quests</span><span>25% rewards</span></div>
+        </>}
+        <p className="gt-source">Resets daily at midnight. Material drops are not affected.</p>
+      </>
+    ),
+  },
   set_bonus: {
     title: "Set Bonuses",
     icon: "🔷",
