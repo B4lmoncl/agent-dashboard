@@ -223,6 +223,16 @@ function getDailyBonusInfo(u) {
 router.get('/api/professions', (req, res) => {
   const playerName = (req.query.player || '').toLowerCase();
   const u = playerName ? state.usersByName.get(playerName) : null;
+  // Auto-migrate: chosen professions with skill 0 → skill 1
+  if (u && u.chosenProfessions?.length && u.professions) {
+    for (const pid of u.chosenProfessions) {
+      if (u.professions[pid] && (u.professions[pid].skill || 0) < 1) {
+        u.professions[pid].skill = 1;
+        u.professions[pid].xp = 1;
+        u.professions[pid].level = 1;
+      }
+    }
+  }
   const professions = PROFESSIONS_DATA.professions.map(p => {
     const playerLevel = u ? getLevelInfo(u.xp || 0).level : 0;
     const unlocked = u ? (p.unlockCondition?.type === 'level' ? playerLevel >= p.unlockCondition.value : true) : false;
@@ -1161,7 +1171,16 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
 
   u.chosenProfessions.push(professionId);
   u.professions = u.professions || {};
-  if (!u.professions[professionId]) u.professions[professionId] = { skill: 1, xp: 1, lastCraftAt: null, trainedRanks: ['Apprentice'] };
+  if (!u.professions[professionId]) {
+    u.professions[professionId] = { skill: 1, xp: 1, level: 1, lastCraftAt: null, trainedRanks: ['Apprentice'], recipeCooldowns: {} };
+  } else {
+    // Migration: ensure existing 0-skill entries get bumped to 1
+    if ((u.professions[professionId].skill || 0) < 1) {
+      u.professions[professionId].skill = 1;
+      u.professions[professionId].xp = 1;
+      u.professions[professionId].level = 1;
+    }
+  }
   saveUsers();
 
   res.json({

@@ -438,7 +438,12 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   >
                     <p className="text-sm font-bold mt-1 cursor-help" style={{ color: tier.color }}>{tier.name}</p>
                   </TipCustom>
-                  {locked && <p className="text-xs text-w20">Requires Lv.{tier.minLevel}</p>}
+                  {locked && (
+                    <div className="mt-1 flex items-center justify-center gap-1.5">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Requires Lv.{tier.minLevel}</p>
+                    </div>
+                  )}
                 </div>
                 <div className="space-y-1 text-xs text-w35">
                   <TipCustom title="Rift Stages" icon="◆" accent={tier.color} body={<p>Complete {tier.questCount} quests sequentially with escalating difficulty (1× to {1 + (tier.questCount - 1) * 0.5}×). Each stage grants full XP, Gold, and loot rewards.</p>}>
@@ -497,9 +502,9 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     border: `1px solid ${canEnter ? `${tier.color}40` : "rgba(255,255,255,0.06)"}`,
                     cursor: canEnter ? "pointer" : "not-allowed",
                   }}
-                  title={locked ? `Requires higher level to unlock this tier` : onCd ? "On cooldown — wait for it to expire" : "Enter the Rift"}
+                  title={locked ? `Requires Level ${tier.minLevel} to unlock` : onCd ? "On cooldown — wait for it to expire" : "Enter the Rift"}
                 >
-                  {locked ? "Locked" : onCd ? "On Cooldown" : actionLoading ? "..." : "Enter Rift"}
+                  {locked ? <span className="flex items-center justify-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Locked</span> : onCd ? "On Cooldown" : actionLoading ? "..." : "Enter Rift"}
                 </button>
               </div>
             );

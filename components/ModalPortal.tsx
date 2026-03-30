@@ -13,17 +13,38 @@ export function ModalPortal({ children }: { children: ReactNode }) {
  * Hook for consistent modal behavior:
  * - ESC to close
  * - Body scroll lock while open
+ * - Focus trapping (Tab/Shift+Tab cycle within modal)
  */
-export function useModalBehavior(isOpen: boolean, onClose: () => void) {
-  // ESC key handler
+export function useModalBehavior(isOpen: boolean, onClose: () => void, containerRef?: React.RefObject<HTMLElement | null>) {
+  // ESC key handler + focus trap
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { e.stopPropagation(); onClose(); }
+      if (e.key === "Escape") { e.stopPropagation(); onClose(); return; }
+      // Focus trap: cycle Tab within modal container
+      if (e.key === "Tab" && containerRef?.current) {
+        const focusable = containerRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first || !containerRef.current.contains(document.activeElement)) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last || !containerRef.current.contains(document.activeElement)) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, containerRef]);
 
   // Body scroll lock (ref-counted to handle multiple concurrent modals)
   useEffect(() => {

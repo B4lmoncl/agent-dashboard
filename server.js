@@ -132,6 +132,8 @@ app.use(require('./routes/dungeons'));
 app.use(require('./routes/kanais-cube'));
 app.use(require('./routes/mail'));
 app.use(require('./routes/codex'));
+app.use(require('./routes/talent-tree'));
+app.use(require('./routes/adventure-tome'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────

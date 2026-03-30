@@ -6,7 +6,7 @@
  * Fail cooldown: 3/5/7 days. Rewards scale with progress.
  */
 const router = require('express').Router();
-const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
+const { state, saveUsers, ensureUserCurrencies, logActivity } = require('../lib/state');
 const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser, createPlayerLock } = require('../lib/helpers');
 const riftStageLock = createPlayerLock('rift-stage');
 const riftEnterLock = createPlayerLock('rift-enter');
@@ -477,6 +477,16 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
       ...(mythicLvl > 0 && { mythicLevel: mythicLvl }),
     });
     if (u.riftHistory.length > 20) u.riftHistory = u.riftHistory.slice(-20);
+
+    // Log rift completion to activity feed
+    const riftLabel = mythicLvl > 0 ? `Mythic+${mythicLvl}` : rift.tier.charAt(0).toUpperCase() + rift.tier.slice(1);
+    logActivity(uid, 'rift_complete', {
+      tier: rift.tier,
+      stages: rift.quests.length,
+      ...(mythicLvl > 0 && { mythicLevel: mythicLvl }),
+      rarity: rift.tier === 'legendary' || mythicLvl > 0 ? 'legendary' : rift.tier === 'hard' ? 'epic' : 'rare',
+      label: riftLabel,
+    });
   }
 
   // Read temp fields from onQuestCompletedByUser before cleanup

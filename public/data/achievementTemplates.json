@@ -4,7 +4,7 @@
     {
       "id": "first_quest",
       "name": "First Quest",
-      "description": "Complete your first quest",
+      "description": "Erste Quest. Der Anfang einer langen Reihe fragwürdiger Entscheidungen.",
       "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
@@ -18,12 +18,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 quest."
+      "desc": "Erste Quest. Der Anfang einer langen Reihe fragwürdiger Entscheidungen."
     },
     {
       "id": "apprentice",
       "name": "Apprentice",
-      "description": "Complete 10 quests",
+      "description": "10 Quests. Die ersten drei waren aufregend, die nächsten fünf Routine, die letzten zwei 'na gut, bin eh schon hier'.",
       "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "quests_completed",
@@ -37,12 +37,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 10 quests."
+      "desc": "10 Quests. Die ersten drei waren aufregend, die nächsten fünf Routine, die letzten zwei 'na gut, bin eh schon hier'."
     },
     {
       "id": "knight",
       "name": "Knight",
-      "description": "Complete 50 quests",
+      "description": "50 Quests. Irgendwann hört man auf zu zählen und fängt an zu funktionieren.",
       "icon": "/images/icons/ach-knight.png",
       "condition": {
         "type": "quests_completed",
@@ -56,12 +56,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 50 quests."
+      "desc": "50 Quests. Irgendwann hört man auf zu zählen und fängt an zu funktionieren."
     },
     {
       "id": "legend",
       "name": "Legend",
-      "description": "Complete 100 quests",
+      "description": "100 Quests. Das ist keine Leistung mehr, das ist ein Lebensstil.",
       "icon": "/images/icons/ach-legend.png",
       "condition": {
         "type": "quests_completed",
@@ -75,12 +75,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 100 quests."
+      "desc": "100 Quests. Das ist keine Leistung mehr, das ist ein Lebensstil."
     },
     {
       "id": "week_warrior",
       "name": "Week Warrior",
-      "description": "7-day quest streak",
+      "description": "7 Tage am Stück. Noch nennt man das Disziplin. Bald nennt man es Gewohnheit. Dann Problem.",
       "icon": "/images/icons/ach-week-warrior.png",
       "condition": {
         "type": "streak_days",
@@ -94,12 +94,12 @@
       "category": "streak",
       "hidden": false,
       "points": 5,
-      "desc": "Maintain a 7-day streak."
+      "desc": "7 Tage am Stück. Noch nennt man das Disziplin. Bald nennt man es Gewohnheit."
     },
     {
       "id": "monthly_champ",
       "name": "Monthly Champion",
-      "description": "30-day quest streak",
+      "description": "30 Tage Streak. Ein ganzer Monat. Deine Freunde machen sich langsam Sorgen.",
       "icon": "/images/icons/ach-monthly-champ.png",
       "condition": {
         "type": "streak_days",
@@ -113,12 +113,12 @@
       "category": "streak",
       "hidden": false,
       "points": 50,
-      "desc": "Maintain a 30-day streak."
+      "desc": "30 Tage Streak. Ein ganzer Monat. Deine Freunde machen sich langsam Sorgen."
     },
     {
       "id": "lightning",
       "name": "Lightning Hands",
-      "description": "Complete 3 quests in one day",
+      "description": "3 Quests an einem Tag. Entweder hochmotiviert oder der Kalender war leer. Beides verdächtig.",
       "icon": "/images/icons/ach-lightning.png",
       "condition": {
         "type": "quests_today",
@@ -132,12 +132,12 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 3 quests in a single day."
+      "desc": "3 Quests an einem Tag. Entweder hochmotiviert oder der Kalender war leer."
     },
     {
       "id": "all_trades",
       "name": "Jack of All Trades",
-      "description": "Complete all quest types",
+      "description": "Alle Quest-Typen durch. Nicht weil du vielseitig bist, sondern weil dir die normalen ausgegangen sind.",
       "icon": "/images/icons/ach-all-trades.png",
       "condition": {
         "type": "completed_types",
@@ -151,12 +151,12 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete quests of 5 different types."
+      "desc": "Alle 5 Quest-Typen durch. Nicht vielseitig, nur verzweifelt."
     },
     {
       "id": "boss_slayer",
       "name": "Boss Slayer",
-      "description": "Defeat your first Boss Battle",
+      "description": "Erster Weltboss besiegt. 'Besiegt' ist großzügig formuliert. Du warst dabei. Das zählt.",
       "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
@@ -170,12 +170,12 @@
       "category": "boss",
       "hidden": false,
       "points": 25,
-      "desc": "Defeat 1 world boss."
+      "desc": "Erster Weltboss. 'Besiegt' ist großzügig. Du warst dabei."
     },
     {
       "id": "ember_sprite",
       "name": "Ember Sprite",
-      "description": "Complete 10 development quests",
+      "description": "10 Dev-Quests. Der Code kompiliert. Meistens. Das Sprite ist zufrieden. Meistens.",
       "icon": "/images/icons/ach-ember-sprite.png",
       "condition": {
         "type": "quest_type_count",
@@ -190,12 +190,12 @@
       "category": "companion",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 development quests."
+      "desc": "10 Dev-Quests. Der Code kompiliert. Meistens."
     },
     {
       "id": "lore_owl",
       "name": "Lore Owl",
-      "description": "Complete 5 learning quests",
+      "description": "5 Lern-Quests. Du weißt jetzt mehr als vorher. Ob das hilft, steht auf einem anderen Blatt.",
       "icon": "/images/icons/ach-lore-owl.png",
       "condition": {
         "type": "quest_type_count",
@@ -210,12 +210,12 @@
       "category": "companion",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 5 learning quests."
+      "desc": "5 Lern-Quests. Du weißt jetzt mehr als vorher. Ob das hilft, steht auf einem anderen Blatt."
     },
     {
       "id": "gear_golem",
       "name": "Gear Golem",
-      "description": "Reach Knight level (300 XP)",
+      "description": "300 XP. Der Golem nickt anerkennend. Er nickt bei allem anerkennend. Er ist ein Golem.",
       "icon": "/images/icons/ach-gear-golem.png",
       "condition": {
         "type": "xp_threshold",
@@ -229,12 +229,12 @@
       "category": "companion",
       "hidden": false,
       "points": 25,
-      "desc": "Earn 300 total XP."
+      "desc": "300 XP. Der Golem nickt anerkennend. Er nickt bei allem. Er ist ein Golem."
     },
     {
       "id": "challenge_coder",
       "name": "Code Sprinter",
-      "description": "Complete the 30-Day Code Sprint",
+      "description": "30 Tage Code Sprint. Tag 1: Euphorie. Tag 15: Kaffee. Tag 29: Leere. Tag 30: Huh, geschafft.",
       "icon": "/images/icons/ach-code-sprinter.png",
       "condition": {
         "type": "challenge_completed",
@@ -248,12 +248,12 @@
       "category": "challenge",
       "hidden": false,
       "points": 25,
-      "desc": "Complete the 30-Day Code Sprint"
+      "desc": "30 Tage Code Sprint. Tag 1: Euphorie. Tag 15: Kaffee. Tag 29: Leere. Tag 30: geschafft."
     },
     {
       "id": "challenge_learner",
       "name": "Marathon Learner",
-      "description": "Complete the Learning Marathon",
+      "description": "Lern-Marathon geschafft. Du hast jetzt Wissen, das du in keinem Bewerbungsgespräch erwähnen wirst.",
       "icon": "/images/icons/ach-marathon-learner.png",
       "condition": {
         "type": "challenge_completed",
@@ -267,12 +267,12 @@
       "category": "challenge",
       "hidden": false,
       "points": 25,
-      "desc": "Complete the Learning Marathon"
+      "desc": "Lern-Marathon geschafft. Wissen, das du in keinem Bewerbungsgespräch erwähnen wirst."
     },
     {
       "id": "night_owl",
       "name": "Night Owl",
-      "description": "Complete a quest between 23:00 and 05:00",
+      "description": "Quest zwischen 23 und 5 Uhr. Schlafrhythmus ist ein Konzept, kein Gesetz.",
       "icon": "/images/icons/ach-night-owl.png",
       "condition": {
         "type": "time_of_day",
@@ -287,12 +287,12 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete a quest between 23:00 and 05:00"
+      "desc": "Quest zwischen 23 und 5 Uhr. Schlafrhythmus ist ein Konzept, kein Gesetz."
     },
     {
       "id": "speed_runner",
       "name": "Speed Runner",
-      "description": "Complete a quest within 1 hour of claiming it",
+      "description": "Quest in unter einer Stunde. Entweder beeindruckend schnell oder beunruhigend einfach.",
       "icon": "/images/icons/ach-speed-runner.png",
       "condition": {
         "type": "completion_time",
@@ -306,12 +306,12 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete a quest within 1 hour of claiming it"
+      "desc": "Quest in unter einer Stunde. Entweder beeindruckend schnell oder beunruhigend einfach."
     },
     {
       "id": "social_butterfly",
       "name": "Social Butterfly",
-      "description": "Complete 5 social quests",
+      "description": "5 Social-Quests. Du hast mit Menschen interagiert. Freiwillig. Fünfmal.",
       "icon": "/images/icons/ach-social-butterfly.png",
       "condition": {
         "type": "quest_type_count",
@@ -326,12 +326,12 @@
       "category": "variety",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 5 social quests."
+      "desc": "5 Social-Quests. Du hast mit Menschen interagiert. Freiwillig. Fünfmal."
     },
     {
       "id": "scholar",
       "name": "Scholar",
-      "description": "Complete 10 learning quests",
+      "description": "10 Lern-Quests. Dein Gehirn hat jetzt einen eigenen Bibliotheksausweis.",
       "icon": "/images/icons/ach-scholar.png",
       "condition": {
         "type": "quest_type_count",
@@ -346,12 +346,12 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 learning quests."
+      "desc": "10 Lern-Quests. Dein Gehirn hat jetzt einen eigenen Bibliotheksausweis."
     },
     {
       "id": "gym_rat",
       "name": "Gym Rat",
-      "description": "Complete 10 fitness quests",
+      "description": "10 Fitness-Quests. Dein Körper ist verwirrt, aber kooperativ.",
       "icon": "/images/icons/ach-gym-rat.png",
       "condition": {
         "type": "quest_type_count",
@@ -366,12 +366,12 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 fitness quests."
+      "desc": "10 Fitness-Quests. Dein Körper ist verwirrt, aber kooperativ."
     },
     {
       "id": "chain_master",
       "name": "Chain Master",
-      "description": "Complete a full quest chain",
+      "description": "Erste Quest-Kette abgeschlossen. Hat sich angefühlt wie eine Aufgabe, die drei andere Aufgaben in einem Trenchcoat waren.",
       "icon": "/images/icons/ach-chain-master.png",
       "condition": {
         "type": "chain_completed",
@@ -385,12 +385,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 1 quest chain."
+      "desc": "Erste Quest-Kette. Drei Aufgaben in einem Trenchcoat."
     },
     {
       "id": "campaign_victor",
       "name": "Campaign Victor",
-      "description": "Complete a campaign",
+      "description": "Kampagne abgeschlossen. Du hast das Ende der Geschichte erreicht. Die Geschichte war davon genauso überrascht wie du.",
       "icon": "/images/icons/ach-campaign-victor.png",
       "condition": {
         "type": "campaign_completed",
@@ -404,12 +404,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 1 campaign."
+      "desc": "Kampagne abgeschlossen. Die Geschichte war genauso überrascht wie du."
     },
     {
       "id": "npc_whisperer",
       "name": "NPC Whisperer",
-      "description": "Have all agents online at the same time",
+      "description": "Alle Agenten gleichzeitig online. Ein seltenes astronomisches Ereignis, vergleichbar mit einer Sonnenfinsternis.",
       "icon": "/images/icons/ach-npc-whisperer.png",
       "condition": {
         "type": "all_agents_online"
@@ -422,12 +422,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Have all agents online."
+      "desc": "Alle Agenten gleichzeitig online. Ein seltenes astronomisches Ereignis."
     },
     {
       "id": "forge_novice",
       "name": "Forge Novice",
-      "description": "Complete your first development quest",
+      "description": "Erste Dev-Quest. Du hast etwas gebaut. Ob es funktioniert, ist eine philosophische Frage.",
       "icon": "/images/icons/ach-forge-novice.png",
       "condition": {
         "type": "quest_type_count",
@@ -442,12 +442,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 development quests."
+      "desc": "Erste Dev-Quest. Du hast etwas gebaut. Ob es funktioniert, ist philosophisch."
     },
     {
       "id": "arena_first",
       "name": "Arena Debut",
-      "description": "Complete your first fitness quest",
+      "description": "Erste Fitness-Quest. Dein Körper wollte eine Erklärung. Du hast keine gegeben.",
       "icon": "/images/icons/ach-arena-debut.png",
       "condition": {
         "type": "quest_type_count",
@@ -462,12 +462,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 fitness quests."
+      "desc": "Erste Fitness-Quest. Dein Körper wollte eine Erklärung. Du hast keine gegeben."
     },
     {
       "id": "scholar_first",
       "name": "First Scroll",
-      "description": "Complete your first learning quest",
+      "description": "Erste Lern-Quest. Du hast eine Schriftrolle geöffnet. Die Schriftrolle war enttäuscht.",
       "icon": "/images/icons/ach-first-scroll.png",
       "condition": {
         "type": "quest_type_count",
@@ -482,12 +482,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 learning quests."
+      "desc": "Erste Lern-Quest. Die Schriftrolle war enttäuscht, aber du hast sie trotzdem geöffnet."
     },
     {
       "id": "ten_quests",
       "name": "Ten Quest Mark",
-      "description": "Complete 25 quests total",
+      "description": "25 Quests. Du bist jetzt offiziell zu weit gegangen, um umzukehren.",
       "icon": "/images/icons/ach-ten-quests.png",
       "condition": {
         "type": "quests_completed",
@@ -501,12 +501,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 25 quests."
+      "desc": "25 Quests. Offiziell zu weit gegangen, um umzukehren."
     },
     {
       "id": "fifty_quests",
       "name": "Half Century",
-      "description": "Complete 75 quests total",
+      "description": "75 Quests. Drei Viertel der Hundert. Die letzten 25 werden sich wie 75 anfühlen.",
       "icon": "/images/icons/ach-fifty-quests.png",
       "condition": {
         "type": "quests_completed",
@@ -520,12 +520,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 75 quests."
+      "desc": "75 Quests. Drei Viertel der Hundert. Die letzten 25 fühlen sich wie 75 an."
     },
     {
       "id": "coop_hero",
       "name": "Co-op Hero",
-      "description": "Complete a co-op quest",
+      "description": "Erste Co-op Quest. Du hast mit jemandem zusammengearbeitet. Beide haben überlebt. Erstaunlich.",
       "icon": "/images/icons/ach-coop-hero.png",
       "condition": {
         "type": "coop_completed",
@@ -539,12 +539,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 1 co-op quest."
+      "desc": "Erste Co-op Quest. Beide haben überlebt. Erstaunlich."
     },
     {
       "id": "early_bird",
       "name": "Early Bird",
-      "description": "Complete 3 quests before 08:00",
+      "description": "3 Quests vor 8 Uhr morgens. Die Sonne ist kaum aufgegangen und du hast schon Probleme gelöst, die sie nicht kennt.",
       "icon": "/images/icons/ach-early-bird.png",
       "condition": {
         "type": "early_completions",
@@ -559,12 +559,12 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 3 quests before 08:00"
+      "desc": "3 Quests vor 8 Uhr morgens. Die Sonne ist kaum auf und du löst schon Probleme."
     },
     {
       "id": "forbidden_code",
       "name": "The Forbidden Code",
-      "description": "Complete a quest on a Sunday",
+      "description": "Eine Quest am Sonntag. Gott ruhte am siebten Tag. Du offensichtlich nicht.",
       "icon": "/images/icons/ach-forbidden-code.png",
       "condition": {
         "type": "day_of_week",
@@ -578,12 +578,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 10,
-      "desc": "Complete a quest on a Sunday"
+      "desc": "Eine Quest am Sonntag. Gott ruhte am siebten Tag. Du offensichtlich nicht."
     },
     {
       "id": "easter_egg",
       "name": "Easter Egg Hunter",
-      "description": "Found something secret...",
+      "description": "Du hast etwas gefunden, das versteckt war. Manche Dinge sind aus gutem Grund versteckt.",
       "icon": "/images/icons/achievement-easter-egg.png",
       "condition": {
         "type": "secret_found"
@@ -596,12 +596,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Found something secret..."
+      "desc": "Etwas Verstecktes gefunden. Manche Dinge sind aus gutem Grund versteckt."
     },
     {
       "id": "perfectionist",
       "name": "Perfectionist",
-      "description": "Complete 150 quests",
+      "description": "150 Quests. Perfektion ist keine Eigenschaft, sondern eine Störung. Herzlichen Glückwunsch zur Diagnose.",
       "icon": "/images/icons/achievement-perfectionist.png",
       "condition": {
         "type": "quests_completed",
@@ -615,12 +615,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Complete 150 quests."
+      "desc": "150 Quests. Perfektion ist keine Eigenschaft, sondern eine Diagnose."
     },
     {
       "id": "no_rest",
       "name": "No Rest for the Wicked",
-      "description": "Maintain a 60-day streak",
+      "description": "60 Tage Streak. Zwei Monate. Du hast vergessen, wie Wochenenden sich anfühlen.",
       "icon": "/images/icons/achievement-no-rest.png",
       "condition": {
         "type": "streak_days",
@@ -634,12 +634,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Maintain a 60-day streak."
+      "desc": "60 Tage Streak. Zwei Monate. Du hast vergessen, wie Wochenenden sich anfühlen."
     },
     {
       "id": "one_ring",
       "name": "The One Ring",
-      "description": "Earn 1000 gold total",
+      "description": "1000 Gold. Genug für einen Neuanfang oder einen sehr teuren Fehler.",
       "icon": "/images/icons/achievement-one-ring.png",
       "condition": {
         "type": "gold_threshold",
@@ -653,12 +653,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Accumulate 1000 gold."
+      "desc": "1000 Gold. Genug für einen Neuanfang oder einen sehr teuren Fehler."
     },
     {
       "id": "centurion",
       "name": "Centurion",
-      "description": "Complete 200 quests",
+      "description": "200 Quests. Eine Zahl, die Respekt verdient. Oder professionelle Hilfe. Die Grenze ist fließend.",
       "icon": "?",
       "condition": {
         "type": "quests_completed",
@@ -672,12 +672,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 200 quests."
+      "desc": "200 Quests. Respekt oder professionelle Hilfe. Die Grenze ist fließend."
     },
     {
       "id": "master",
       "name": "Quest Master",
-      "description": "Complete 500 quests",
+      "description": "500 Quests. Die Halle kennt deinen Namen. Die Halle hat Angst vor deinem Namen.",
       "icon": "?",
       "condition": {
         "type": "quests_completed",
@@ -691,12 +691,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 500 quests."
+      "desc": "500 Quests. Die Halle kennt deinen Namen. Die Halle hat Angst vor deinem Namen."
     },
     {
       "id": "hermit",
       "name": "The Hermit",
-      "description": "Complete 25 personal quests",
+      "description": "25 persönliche Quests. Du hast 25 Mal etwas für dich getan und es als Arbeit deklariert. Clever.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -711,12 +711,12 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 25 personal quests."
+      "desc": "25 persönliche Quests. Etwas für dich getan und es als Arbeit deklariert. Clever."
     },
     {
       "id": "boss_hunter",
       "name": "Boss Hunter",
-      "description": "Complete 5 boss battles",
+      "description": "5 Weltbosse. Du bist jetzt der Typ, der bei jedem Boss-Fight auftaucht. Die Bosse erkennen dich.",
       "icon": "?",
       "condition": {
         "type": "boss_defeated",
@@ -730,12 +730,12 @@
       "category": "boss",
       "hidden": false,
       "points": 50,
-      "desc": "Defeat 5 world bosses."
+      "desc": "5 Weltbosse. Du tauchst bei jedem Boss-Fight auf. Die Bosse erkennen dich."
     },
     {
       "id": "boss_legend",
       "name": "Boss Legend",
-      "description": "Complete 20 boss battles",
+      "description": "20 Weltbosse erlegt. An diesem Punkt hast du ein berufliches Verhältnis zum Monstertöten.",
       "icon": "?",
       "condition": {
         "type": "boss_defeated",
@@ -749,12 +749,12 @@
       "category": "boss",
       "hidden": false,
       "points": 100,
-      "desc": "Defeat 20 world bosses."
+      "desc": "20 Weltbosse. Ein berufliches Verhältnis zum Monstertöten."
     },
     {
       "id": "two_week_warrior",
       "name": "Fortnight Fighter",
-      "description": "Maintain a 14-day streak",
+      "description": "14 Tage. Zwei Wochen. Lang genug für eine Gewohnheit, kurz genug für Ausreden.",
       "icon": "?",
       "condition": {
         "type": "streak_days",
@@ -768,12 +768,12 @@
       "category": "streak",
       "hidden": false,
       "points": 10,
-      "desc": "Maintain a 14-day streak."
+      "desc": "14 Tage. Lang genug für eine Gewohnheit, kurz genug für Ausreden."
     },
     {
       "id": "quarter_year",
       "name": "Seasonal Champion",
-      "description": "Maintain a 90-day streak",
+      "description": "90 Tage Streak. Ein Vierteljahr. Die Jahreszeiten wechseln, du nicht.",
       "icon": "?",
       "condition": {
         "type": "streak_days",
@@ -787,12 +787,12 @@
       "category": "streak",
       "hidden": false,
       "points": 100,
-      "desc": "Maintain a 90-day streak."
+      "desc": "90 Tage Streak. Ein Vierteljahr. Die Jahreszeiten wechseln, du nicht."
     },
     {
       "id": "gold_hoarder",
       "name": "Gold Hoarder",
-      "description": "Earn 500 gold total",
+      "description": "500 Gold. Genug für ein anständiges Abendessen oder fünf fragwürdige Tränke.",
       "icon": "?",
       "condition": {
         "type": "gold_threshold",
@@ -806,12 +806,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Accumulate 500 gold."
+      "desc": "500 Gold. Genug für ein anständiges Abendessen oder fünf fragwürdige Tränke."
     },
     {
       "id": "dragon_hoard",
       "name": "Dragon's Hoard",
-      "description": "Earn 5000 gold total",
+      "description": "5000 Gold. Du schläfst auf einem Haufen Münzen wie ein kleiner, zufriedener Drache.",
       "icon": "?",
       "condition": {
         "type": "gold_threshold",
@@ -825,12 +825,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Accumulate 5000 gold."
+      "desc": "5000 Gold. Du schläfst auf Münzen wie ein kleiner, zufriedener Drache."
     },
     {
       "id": "initiate",
       "name": "Initiate",
-      "description": "Earn 100 XP total",
+      "description": "100 XP. Du hast angefangen zu existieren. Die Halle nimmt das zur Kenntnis.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -844,12 +844,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Earn 100 total XP."
+      "desc": "100 XP. Du hast angefangen zu existieren. Die Halle nimmt das zur Kenntnis."
     },
     {
       "id": "adept",
       "name": "Adept",
-      "description": "Earn 500 XP total",
+      "description": "500 XP. Du weißt inzwischen, was du tust. Zumindest sieht es so aus.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -863,12 +863,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Earn 500 total XP."
+      "desc": "500 XP. Du weißt inzwischen, was du tust. Zumindest sieht es so aus."
     },
     {
       "id": "master_rank",
       "name": "Master",
-      "description": "Earn 1,500 XP total",
+      "description": "1500 XP. Meister. Ein Titel, der mehr verspricht, als er hält, aber das gilt für die meisten Titel.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -882,12 +882,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Earn 1500 total XP."
+      "desc": "1500 XP. Meister. Ein Titel, der mehr verspricht, als er hält."
     },
     {
       "id": "grandmaster",
       "name": "Grandmaster",
-      "description": "Earn 5,000 XP total",
+      "description": "5000 XP. Großmeister. Die anderen Meister schauen nervös, wenn du den Raum betrittst.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -901,12 +901,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Earn 5000 total XP."
+      "desc": "5000 XP. Die anderen Meister schauen nervös, wenn du den Raum betrittst."
     },
     {
       "id": "chain_veteran",
       "name": "Chain Veteran",
-      "description": "Complete 5 quest chains",
+      "description": "5 Quest-Ketten. Du magst Aufgaben, die andere Aufgaben gebären. Das sagt viel über dich aus.",
       "icon": "?",
       "condition": {
         "type": "chain_completed",
@@ -920,12 +920,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 5 quest chains."
+      "desc": "5 Quest-Ketten. Du magst Aufgaben, die andere Aufgaben gebären."
     },
     {
       "id": "marathon_runner",
       "name": "Marathon Runner",
-      "description": "Complete 10 quests in one day",
+      "description": "10 Quests an einem Tag. Das ist kein Marathon, das ist ein Hilfeschrei in Aufgabenform.",
       "icon": "?",
       "condition": {
         "type": "quests_today",
@@ -939,12 +939,12 @@
       "category": "speed",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 quests in a single day."
+      "desc": "10 Quests an einem Tag. Kein Marathon, ein Hilfeschrei in Aufgabenform."
     },
     {
       "id": "social_king",
       "name": "Social Monarch",
-      "description": "Complete 25 social quests",
+      "description": "25 Social-Quests. Du bist jetzt das, was Extrovertierte einen 'Naturtalent' nennen und Introvertierte 'erschöpfend'.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -959,12 +959,12 @@
       "category": "variety",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 25 social quests."
+      "desc": "25 Social-Quests. Extrovertierte nennen dich 'Naturtalent', Introvertierte 'erschöpfend'."
     },
     {
       "id": "fitness_fanatic",
       "name": "Fitness Fanatic",
-      "description": "Complete 50 fitness quests",
+      "description": "50 Fitness-Quests. Dein Körper hat aufgehört zu fragen und angefangen zu gehorchen.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -979,12 +979,12 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 50 fitness quests."
+      "desc": "50 Fitness-Quests. Dein Körper hat aufgehört zu fragen und angefangen zu gehorchen."
     },
     {
       "id": "knowledge_seeker",
       "name": "Knowledge Seeker",
-      "description": "Complete 50 learning quests",
+      "description": "50 Lern-Quests. Du sammelst Wissen wie andere Leute Staub. Und genau so nützlich.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -999,12 +999,12 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 50 learning quests."
+      "desc": "50 Lern-Quests. Du sammelst Wissen wie andere Leute Staub."
     },
     {
       "id": "dev_legend",
       "name": "Dev Legend",
-      "description": "Complete 50 development quests",
+      "description": "50 Dev-Quests. Du hast 50 Dinge gebaut. Mindestens 12 davon tun, was sie sollen.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -1019,12 +1019,12 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 50 development quests."
+      "desc": "50 Dev-Quests. 50 Dinge gebaut. Mindestens 12 tun, was sie sollen."
     },
     {
       "id": "weekend_warrior",
       "name": "Weekend Warrior",
-      "description": "Complete 10 quests on weekends",
+      "description": "10 Quests am Wochenende. Andere Leute gehen brunch. Du grindest.",
       "icon": "?",
       "condition": {
         "type": "weekend_completions",
@@ -1038,12 +1038,12 @@
       "category": "speed",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 quests on weekends"
+      "desc": "10 Quests am Wochenende. Andere Leute gehen brunchen. Du grindest."
     },
     {
       "id": "coop_legend",
       "name": "Co-op Legend",
-      "description": "Complete 10 co-op quests",
+      "description": "10 Co-op Quests. Du arbeitest gut im Team. Das Team ist anderer Meinung, aber das ist irrelevant.",
       "icon": "?",
       "condition": {
         "type": "coop_completed",
@@ -1057,12 +1057,12 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 10 co-op quests."
+      "desc": "10 Co-op Quests. Du arbeitest gut im Team. Das Team ist anderer Meinung."
     },
     {
       "id": "hidden_midnight",
       "name": "Midnight Oil",
-      "description": "Complete 10 quests after midnight",
+      "description": "10 Quests nach Mitternacht. Schlaf ist eine Ressource und du hast beschlossen, sie nicht zu farmen.",
       "icon": "?",
       "condition": {
         "type": "night_completions",
@@ -1078,12 +1078,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Complete 10 quests after midnight"
+      "desc": "10 Quests nach Mitternacht. Schlaf ist eine Ressource und du farmst sie nicht."
     },
     {
       "id": "hidden_skulduggery",
       "name": "Pleasant Surprise",
-      "description": "You found something familiar...",
+      "description": "Etwas Vertrautes. Ein Skelett in einem gut sitzenden Anzug hätte das auch gefunden. Eventuell schneller.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1097,12 +1097,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "You found something familiar..."
+      "desc": "Etwas Vertrautes. Ein Skelett im Anzug hätte es schneller gefunden."
     },
     {
       "id": "hidden_stormlight",
       "name": "Journey Before Destination",
-      "description": "Life before death. Strength before weakness.",
+      "description": "Leben vor dem Tod. Stärke vor Schwäche. Reise vor dem Ziel. Frühstück vor allem anderen.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1116,12 +1116,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Life before death. Strength before weakness."
+      "desc": "Leben vor dem Tod. Stärke vor Schwäche. Frühstück vor allem anderen."
     },
     {
       "id": "hidden_critical_role",
       "name": "Bidet",
-      "description": "Is it Thursday yet?",
+      "description": "Ist schon Donnerstag? Du fragst das an einem Dienstag. Das sagt alles.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1135,12 +1135,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Is it Thursday yet?"
+      "desc": "Ist schon Donnerstag? Du fragst das an einem Dienstag."
     },
     {
       "id": "hidden_dndads",
       "name": "Daddy Magic",
-      "description": "For real facts.",
+      "description": "Echte Fakten. Die beste Art von Fakten, wenn man die Alternative bedenkt.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1154,12 +1154,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "For real facts."
+      "desc": "Echte Fakten. Die beste Art, wenn man die Alternative bedenkt."
     },
     {
       "id": "hidden_perfectionist",
       "name": "No Quest Left Behind",
-      "description": "Complete every available quest type at least once",
+      "description": "Jeden Quest-Typ mindestens einmal. Nicht weil du perfektionistisch bist, sondern weil dir sonst nichts übrig blieb.",
       "icon": "?",
       "condition": {
         "type": "completed_all_types"
@@ -1172,12 +1172,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Complete quests of  different types."
+      "desc": "Jeden Quest-Typ mindestens einmal. Nicht perfektionistisch, nur verzweifelt."
     },
     {
       "id": "hidden_npc_collector",
       "name": "NPC Collector",
-      "description": "Unlock all NPCs",
+      "description": "Alle NPCs freigeschaltet. Du kennst jetzt jeden im Turm. Die meisten wünschten, das wäre anders.",
       "icon": "?",
       "condition": {
         "type": "all_npcs_unlocked"
@@ -1190,12 +1190,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Unlock all NPC quest givers."
+      "desc": "Alle NPCs freigeschaltet. Du kennst jeden im Turm. Die meisten wünschten, das wäre anders."
     },
     {
       "id": "hidden_gacha_addict",
       "name": "Gacha Addict",
-      "description": "Pull from the gacha 50 times",
+      "description": "50 Gacha-Pulls. Das ist keine Sucht. Das ist eine Investitionsstrategie. Eine schlechte.",
       "icon": "?",
       "condition": {
         "type": "gacha_pulls",
@@ -1209,12 +1209,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Perform 50 gacha pulls."
+      "desc": "50 Gacha-Pulls. Keine Sucht, eine Investitionsstrategie. Eine schlechte."
     },
     {
       "id": "hidden_full_inventory",
       "name": "Hoarder's Dream",
-      "description": "Have 50 items in your inventory",
+      "description": "50 Items im Inventar. Du wirfst nichts weg. Du 'archivierst'. So nennst du das.",
       "icon": "?",
       "condition": {
         "type": "inventory_count",
@@ -1228,12 +1228,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Have 50 items in inventory."
+      "desc": "50 Items im Inventar. Du wirfst nichts weg. Du 'archivierst'."
     },
     {
       "id": "hidden_legendary_pull",
       "name": "Legendary Luck",
-      "description": "Pull a legendary item from the gacha",
+      "description": "Ein Legendary aus der Gacha. Das Universum hat dir zugelächelt. Es wird nicht wieder passieren.",
       "icon": "?",
       "condition": {
         "type": "gacha_rarity_pull",
@@ -1247,12 +1247,12 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Pull a legendary from the gacha."
+      "desc": "Ein Legendary aus der Gacha. Das Universum hat gelächelt. Es wird nicht wieder passieren."
     },
     {
       "id": "chain_quest_bronze",
       "name": "Quest Runner: Bronze",
-      "description": "25 Quests abgeschlossen",
+      "description": "25 Quests. Bronze. Die Farbe von 'guter Anfang' und 'dritte Wahl'.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1268,12 +1268,12 @@
       "chainId": "quest_runner",
       "chainTier": 1,
       "chainNext": "chain_quest_silver",
-      "desc": "Complete 25 quests."
+      "desc": "25 Quests. Bronze. Die Farbe von 'guter Anfang' und 'dritte Wahl'."
     },
     {
       "id": "chain_quest_silver",
       "name": "Quest Runner: Silver",
-      "description": "100 Quests abgeschlossen",
+      "description": "100 Quests. Silber. Weil Gold zu optimistisch wäre.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1290,12 +1290,12 @@
       "chainTier": 2,
       "chainPrev": "chain_quest_bronze",
       "chainNext": "chain_quest_gold",
-      "desc": "Complete 100 quests."
+      "desc": "100 Quests. Silber. Weil Gold zu optimistisch wäre."
     },
     {
       "id": "chain_quest_gold",
       "name": "Quest Runner: Gold",
-      "description": "300 Quests abgeschlossen",
+      "description": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1312,12 +1312,12 @@
       "chainTier": 3,
       "chainPrev": "chain_quest_silver",
       "chainNext": "chain_quest_legend",
-      "desc": "Complete 300 quests."
+      "desc": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg."
     },
     {
       "id": "chain_quest_legend",
       "name": "Quest Runner: Legendary",
-      "description": "1000 Quests abgeschlossen",
+      "description": "1000 Quests. Legendär. Nicht weil es beeindruckend ist, sondern weil niemand es glaubt.",
       "icon": null,
       "condition": {
         "type": "quests_completed",
@@ -1333,12 +1333,12 @@
       "chainId": "quest_runner",
       "chainTier": 4,
       "chainPrev": "chain_quest_gold",
-      "desc": "Complete 1000 quests."
+      "desc": "1000 Quests. Legendär. Nicht weil es beeindruckend ist, sondern weil niemand es glaubt."
     },
     {
       "id": "chain_streak_bronze",
       "name": "Streak Keeper: Bronze",
-      "description": "7-Tage Streak",
+      "description": "7 Tage. Eine Woche. Du hattest keine andere Wahl, du hast angefangen.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1354,12 +1354,12 @@
       "chainId": "streak_keeper",
       "chainTier": 1,
       "chainNext": "chain_streak_silver",
-      "desc": "Maintain a 7-day streak."
+      "desc": "7 Tage. Eine Woche. Du hattest keine andere Wahl, du hast angefangen."
     },
     {
       "id": "chain_streak_silver",
       "name": "Streak Keeper: Silver",
-      "description": "30-Tage Streak",
+      "description": "30 Tage. Der Streak kontrolliert jetzt deinen Tagesablauf. Du kontrollierst gar nichts mehr.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1376,12 +1376,12 @@
       "chainTier": 2,
       "chainPrev": "chain_streak_bronze",
       "chainNext": "chain_streak_gold",
-      "desc": "Maintain a 30-day streak."
+      "desc": "30 Tage. Der Streak kontrolliert deinen Tagesablauf. Du kontrollierst nichts."
     },
     {
       "id": "chain_streak_gold",
       "name": "Streak Keeper: Gold",
-      "description": "90-Tage Streak",
+      "description": "90 Tage. Drei Monate. Du hast die Grippe durchgespielt, den Urlaub und zwei existenzielle Krisen.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1398,12 +1398,12 @@
       "chainTier": 3,
       "chainPrev": "chain_streak_silver",
       "chainNext": "chain_streak_legend",
-      "desc": "Maintain a 90-day streak."
+      "desc": "90 Tage. Grippe, Urlaub, zwei existenzielle Krisen durchgespielt."
     },
     {
       "id": "chain_streak_legend",
       "name": "Streak Keeper: Legendary",
-      "description": "365-Tage Streak",
+      "description": "365 Tage. Ein ganzes Jahr. Die Erde hat die Sonne einmal umkreist und du warst jeden Tag hier.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1419,12 +1419,12 @@
       "chainId": "streak_keeper",
       "chainTier": 4,
       "chainPrev": "chain_streak_gold",
-      "desc": "Maintain a 365-day streak."
+      "desc": "365 Tage. Die Erde hat die Sonne einmal umkreist und du warst jeden Tag hier."
     },
     {
       "id": "chain_gold_bronze",
       "name": "Gold Hoarder: Bronze",
-      "description": "500 Gold gesammelt",
+      "description": "500 Gold. Der erste Schritt zum Reichtum. Oder zum Horten. Hängt von der Perspektive ab.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1439,12 +1439,12 @@
       "chainId": "gold_hoarder",
       "chainTier": 1,
       "chainNext": "chain_gold_silver",
-      "desc": "Accumulate 500 gold."
+      "desc": "500 Gold. Der erste Schritt zum Horten. Die Perspektive bestimmt den Rest."
     },
     {
       "id": "chain_gold_silver",
       "name": "Gold Hoarder: Silver",
-      "description": "5.000 Gold",
+      "description": "5000 Gold. Du könntest dir etwas Schönes kaufen. Wirst du aber nicht. Du sparst lieber.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1460,12 +1460,12 @@
       "chainTier": 2,
       "chainPrev": "chain_gold_bronze",
       "chainNext": "chain_gold_gold",
-      "desc": "Accumulate 5000 gold."
+      "desc": "5000 Gold. Du könntest dir etwas Schönes kaufen. Wirst du nicht."
     },
     {
       "id": "chain_gold_gold",
       "name": "Gold Hoarder: Gold",
-      "description": "25.000 Gold",
+      "description": "25.000 Gold. Du bist reich. Du fühlst dich nicht reich. Das ist das Zeichen, dass es funktioniert.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1481,12 +1481,12 @@
       "chainTier": 3,
       "chainPrev": "chain_gold_silver",
       "chainNext": "chain_gold_legend",
-      "desc": "Accumulate 25000 gold."
+      "desc": "25.000 Gold. Reich, aber es fühlt sich nicht so an. Das ist das Zeichen."
     },
     {
       "id": "chain_gold_legend",
       "name": "Gold Hoarder: Legendary",
-      "description": "100.000 Gold",
+      "description": "100.000 Gold. Du besitzt mehr als manche Kleinstaaten. Ausgeben wirst du es trotzdem nicht.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1501,12 +1501,12 @@
       "chainId": "gold_hoarder",
       "chainTier": 4,
       "chainPrev": "chain_gold_gold",
-      "desc": "Accumulate 100000 gold."
+      "desc": "100.000 Gold. Mehr als manche Kleinstaaten. Ausgeben wirst du es trotzdem nicht."
     },
     {
       "id": "chain_boss_bronze",
       "name": "Boss Slayer: Bronze",
-      "description": "1 World Boss besiegt",
+      "description": "Ein Weltboss. Du warst technisch gesehen beteiligt. Dein Beitrag wird großzügig als 'anwesend' protokolliert.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1522,12 +1522,12 @@
       "chainId": "boss_slayer",
       "chainTier": 1,
       "chainNext": "chain_boss_silver",
-      "desc": "Defeat 1 world boss."
+      "desc": "Ein Weltboss. Technisch gesehen beteiligt. Protokolliert als 'anwesend'."
     },
     {
       "id": "chain_boss_silver",
       "name": "Boss Slayer: Silver",
-      "description": "5 World Bosses besiegt",
+      "description": "5 Weltbosse. Du hast ein Muster entwickelt: Auftauchen, Schaden machen, Beute einsammeln, verschwinden.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1544,12 +1544,12 @@
       "chainTier": 2,
       "chainPrev": "chain_boss_bronze",
       "chainNext": "chain_boss_gold",
-      "desc": "Defeat 5 world bosses."
+      "desc": "5 Weltbosse. Auftauchen, Schaden, Beute, verschwinden. Ein Muster."
     },
     {
       "id": "chain_boss_gold",
       "name": "Boss Slayer: Gold",
-      "description": "15 World Bosses besiegt",
+      "description": "15 Weltbosse. Die Bosse haben inzwischen eine Selbsthilfegruppe gegründet. Wegen dir.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1566,12 +1566,12 @@
       "chainTier": 3,
       "chainPrev": "chain_boss_silver",
       "chainNext": "chain_boss_legend",
-      "desc": "Defeat 15 world bosses."
+      "desc": "15 Weltbosse. Die haben inzwischen eine Selbsthilfegruppe. Wegen dir."
     },
     {
       "id": "chain_boss_legend",
       "name": "Boss Slayer: Legendary",
-      "description": "50 World Bosses besiegt",
+      "description": "50 Weltbosse. Du bist der Grund, warum Bosse einen Gewerkschaftsvertreter haben.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1587,12 +1587,12 @@
       "chainId": "boss_slayer",
       "chainTier": 4,
       "chainPrev": "chain_boss_gold",
-      "desc": "Defeat 50 world bosses."
+      "desc": "50 Weltbosse. Der Grund, warum Bosse einen Gewerkschaftsvertreter haben."
     },
     {
       "id": "chain_craft_bronze",
       "name": "Master Crafter: Bronze",
-      "description": "Profession Skill 50",
+      "description": "Skill 50. Du kannst jetzt Dinge herstellen, die nicht sofort auseinanderfallen. Niedrige Latte, aber immerhin.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1608,12 +1608,12 @@
       "chainId": "crafter",
       "chainTier": 1,
       "chainNext": "chain_craft_silver",
-      "desc": "Profession Skill 50"
+      "desc": "Skill 50. Dinge, die nicht sofort auseinanderfallen. Niedrige Latte, aber immerhin."
     },
     {
       "id": "chain_craft_silver",
       "name": "Master Crafter: Silver",
-      "description": "Profession Skill 150",
+      "description": "Skill 150. Halbzeit. Die NPCs lassen dich jetzt an die guten Werkzeuge.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1630,12 +1630,12 @@
       "chainTier": 2,
       "chainPrev": "chain_craft_bronze",
       "chainNext": "chain_craft_gold",
-      "desc": "Profession Skill 150"
+      "desc": "Skill 150. Halbzeit. Die NPCs lassen dich an die guten Werkzeuge."
     },
     {
       "id": "chain_craft_gold",
       "name": "Master Crafter: Gold",
-      "description": "Profession Skill 250",
+      "description": "Skill 250. Du riechst permanent nach Kohle, Kräutern oder beidem. Dein Companion hält Abstand.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1652,12 +1652,12 @@
       "chainTier": 3,
       "chainPrev": "chain_craft_silver",
       "chainNext": "chain_craft_legend",
-      "desc": "Profession Skill 250"
+      "desc": "Skill 250. Du riechst nach Kohle und Kräutern. Dein Companion hält Abstand."
     },
     {
       "id": "chain_craft_legend",
       "name": "Master Crafter: Legendary",
-      "description": "Profession Skill 300",
+      "description": "Skill 300. Maximum. Du hast dein Handwerk gemeistert. Grimvar weint leise vor Stolz. Oder Rauch. Schwer zu sagen.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1673,13 +1673,13 @@
       "chainId": "crafter",
       "chainTier": 4,
       "chainPrev": "chain_craft_gold",
-      "desc": "Profession Skill 300"
+      "desc": "Skill 300. Maximum. Grimvar weint vor Stolz. Oder Rauch. Schwer zu sagen."
     },
     {
       "id": "dual_profession",
       "name": "Doppelmeister",
       "icon": "/images/icons/ach-dual-prof.png",
-      "desc": "Reach Skill 150+ in two primary professions simultaneously.",
+      "desc": "Zwei Professionen auf 150+. Du konntest dich nicht entscheiden und hast einfach beides gemacht.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -1692,7 +1692,7 @@
       "id": "artisan_rank",
       "name": "Grand Artisan",
       "icon": "/images/icons/ach-artisan.png",
-      "desc": "Reach Artisan rank (Skill 300) in any profession.",
+      "desc": "Skill 300. Artisan. Die NPCs nennen dich 'Meister' und meinen es. Das erste Mal.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -1705,7 +1705,7 @@
       "id": "recipe_collector",
       "name": "Rezeptsammler",
       "icon": "/images/icons/ach-recipes.png",
-      "desc": "Learn 100 recipes across all professions.",
+      "desc": "100 Rezepte gelernt. Du könntest ein Kochbuch schreiben. Eins, das explodiert.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -1718,7 +1718,7 @@
       "id": "moonlight_crafter",
       "name": "Mondlichtschmied",
       "icon": "/images/icons/ach-moonlight.png",
-      "desc": "Craft 10 items during Mondlicht-Schmiede hours (22:00-06:00).",
+      "desc": "10 Items in der Mondlicht-Schmiede. Nachts schmieden, weil der Amboss dann ruhiger klingt. Oder du.",
       "category": "hidden",
       "rarity": "rare",
       "points": 25,
@@ -1731,7 +1731,7 @@
       "id": "faction_friendly",
       "name": "Erster Freund",
       "icon": "/images/icons/ach-faction.png",
-      "desc": "Reach Friendly standing with any faction.",
+      "desc": "Eine Fraktion findet dich nett. 'Nett' ist das Minimum. Aber du nimmst, was du kriegst.",
       "category": "milestone",
       "rarity": "uncommon",
       "points": 10,
@@ -1744,7 +1744,7 @@
       "id": "faction_exalted",
       "name": "Verehrt",
       "icon": "/images/icons/ach-faction-exalted.png",
-      "desc": "Reach Exalted standing with any faction.",
+      "desc": "Verehrt bei einer Fraktion. Sie würden dir ihre Kinder anvertrauen. Bitte lehne ab.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -1757,7 +1757,7 @@
       "id": "faction_all_friendly",
       "name": "Diplomat der Halle",
       "icon": "/images/icons/ach-diplomat.png",
-      "desc": "Reach Friendly standing with all four factions.",
+      "desc": "Alle vier Fraktionen finden dich nett. Das erfordert die politische Finesse eines Brotaufstrichs.",
       "category": "milestone",
       "rarity": "rare",
       "points": 25,
@@ -1770,7 +1770,7 @@
       "id": "daily_faction_sweep",
       "name": "Tagwerk",
       "icon": "/images/icons/ach-daily-sweep.png",
-      "desc": "Complete all faction daily quests in a single day.",
+      "desc": "Alle Fraktions-Dailies an einem Tag. Dein Terminkalender weint leise.",
       "category": "hidden",
       "rarity": "rare",
       "points": 25,
@@ -1783,7 +1783,7 @@
       "id": "rift_first_clear",
       "name": "Rissbrecher",
       "icon": "/images/icons/ach-rift.png",
-      "desc": "Complete your first Rift run.",
+      "desc": "Erster Riss überlebt. 'Überlebt' ist das operative Wort.",
       "category": "milestone",
       "rarity": "uncommon",
       "points": 10,
@@ -1796,7 +1796,7 @@
       "id": "rift_legendary",
       "name": "Legendenbrecher",
       "icon": "/images/icons/ach-rift-legend.png",
-      "desc": "Complete a Legendary Rift.",
+      "desc": "Legendärer Riss geschafft. Der Riss hat zurückgestarrt. Du hast zuerst weggeschaut.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -1809,7 +1809,7 @@
       "id": "mythic_plus_5",
       "name": "Mythisch+5",
       "icon": "/images/icons/ach-mythic.png",
-      "desc": "Reach Mythic+5 in the Endless Rift.",
+      "desc": "Mythic+5. Jenseits von Legendär. Hier gibt es keine Schilder mehr, nur Reue.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -1822,7 +1822,7 @@
       "id": "dungeon_first",
       "name": "Tiefenläufer",
       "icon": "/images/icons/ach-dungeon.png",
-      "desc": "Complete your first dungeon run with friends.",
+      "desc": "Erster Dungeon mit Freunden. Ihr seid zusammen reingegangen. Dass ihr zusammen rauskommt, war nicht garantiert.",
       "category": "milestone",
       "rarity": "uncommon",
       "points": 10,
@@ -1835,7 +1835,7 @@
       "id": "dungeon_all_tiers",
       "name": "Unterweltkenner",
       "icon": "/images/icons/ach-dungeon-all.png",
-      "desc": "Complete all three dungeon tiers.",
+      "desc": "Alle drei Dungeon-Stufen durch. Du kennst die Unterwelt besser als deine Nachbarschaft.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -1848,7 +1848,7 @@
       "id": "wb_contributor",
       "name": "Kolosseumsbesucher",
       "icon": "/images/icons/ach-wb.png",
-      "desc": "Contribute to defeating a World Boss.",
+      "desc": "Beim Weltboss mitgemacht. 'Mitgemacht' deckt alles ab von 'heroisch gekämpft' bis 'daneben gestanden'.",
       "category": "milestone",
       "rarity": "uncommon",
       "points": 10,
@@ -1861,7 +1861,7 @@
       "id": "wb_top_contributor",
       "name": "Kolosseumschampion",
       "icon": "/images/icons/ach-wb-champ.png",
-      "desc": "Finish in the top 3 contributors for a World Boss.",
+      "desc": "Top 3 beim Weltboss. Du warst tatsächlich nützlich. Das überrascht alle, dich eingeschlossen.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -1874,7 +1874,7 @@
       "id": "bond_soulmate",
       "name": "Seelenverwandte",
       "icon": "/images/icons/ach-bond.png",
-      "desc": "Reach Bond Level 5 (Soulmate) with your companion.",
+      "desc": "Bond 5. Seelenverwandte. Dein Companion folgt dir jetzt nicht aus Pflicht, sondern aus freiem Willen. Beunruhigend.",
       "category": "companion",
       "rarity": "epic",
       "points": 50,
@@ -1887,7 +1887,7 @@
       "id": "bond_legendary",
       "name": "Legendäre Bindung",
       "icon": "/images/icons/ach-bond-legend.png",
-      "desc": "Reach Bond Level 10 with your companion.",
+      "desc": "Bond 10. Dein Companion beendet deine Sätze. Du findest das normal. Alle anderen nicht.",
       "category": "companion",
       "rarity": "legendary",
       "points": 100,
@@ -1900,7 +1900,7 @@
       "id": "expedition_collector",
       "name": "Schatzjäger",
       "icon": "/images/icons/ach-expedition.png",
-      "desc": "Complete 20 companion expeditions.",
+      "desc": "20 Companion-Expeditionen. Du schickst dein Tier regelmäßig in die Wildnis. Es kommt immer zurück. Erstaunlich.",
       "category": "companion",
       "rarity": "rare",
       "points": 25,
@@ -1913,7 +1913,7 @@
       "id": "bp_level_40",
       "name": "Saisonmeister",
       "icon": "/images/icons/ach-bp.png",
-      "desc": "Reach level 40 in the Season Pass.",
+      "desc": "Season Pass Level 40. Du hast die gesamte Belohnungsleiste leergefegt wie ein Buffet um 11:45.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -1926,7 +1926,7 @@
       "id": "gem_royal",
       "name": "Kronjuwel",
       "icon": "/images/icons/ach-gem.png",
-      "desc": "Upgrade a gem to Royal tier (Tier 5).",
+      "desc": "Royal-Edelstein. Tier 5. Du hast einen Stein poliert, bis er mehr wert war als deine Ausrüstung.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -1939,7 +1939,7 @@
       "id": "gacha_pity",
       "name": "Beharrlichkeit",
       "icon": "/images/icons/ach-gacha.png",
-      "desc": "Hit hard pity on a gacha banner.",
+      "desc": "Hard Pity erreicht. 75 Pulls. Das Spiel hatte Mitleid. Buchstäblich.",
       "category": "hidden",
       "rarity": "rare",
       "points": 25,
@@ -1952,7 +1952,7 @@
       "id": "gold_converter",
       "name": "Geldwechsler",
       "icon": "/images/icons/ach-convert.png",
-      "desc": "Convert currencies 10 times.",
+      "desc": "10 Währungstausche. Du bist jetzt der Typ am Marktplatz, der immer wechseln will.",
       "category": "hidden",
       "rarity": "uncommon",
       "points": 10,
@@ -1965,7 +1965,7 @@
       "id": "quest_variety_all",
       "name": "Renaissance-Wanderer",
       "icon": "/images/icons/ach-variety.png",
-      "desc": "Complete at least one quest of every type (personal, fitness, learning, social, boss).",
+      "desc": "Jeden Quest-Typ einmal. Personal, Fitness, Lernen, Social, Boss. Du bist der Renaissance-Mensch, den niemand bestellt hat.",
       "category": "variety",
       "rarity": "rare",
       "points": 25,
@@ -1978,7 +1978,7 @@
       "id": "quest_500",
       "name": "Halbzeitpause",
       "icon": "/images/icons/ach-500.png",
-      "desc": "Complete 500 quests.",
+      "desc": "500 Quests. Halbzeit. Falls du vorhast aufzuhören, ist jetzt der denkbar schlechteste Zeitpunkt.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -1991,7 +1991,7 @@
       "id": "quest_1000",
       "name": "Tausendkämpfer",
       "icon": "/images/icons/ach-1000.png",
-      "desc": "Complete 1,000 quests. The Hall remembers every single one.",
+      "desc": "1000 Quests. Die Halle erinnert sich an jede einzelne. Du erinnerst dich an vielleicht zwölf.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -2004,7 +2004,7 @@
       "id": "streak_90",
       "name": "Quartalsfeuer",
       "icon": "/images/icons/ach-streak-90.png",
-      "desc": "Maintain a 90-day streak.",
+      "desc": "90 Tage. Ein Quartal. Dein Arbeitgeber wäre beeindruckt, wenn er wüsste, wovon.",
       "category": "streak",
       "rarity": "epic",
       "points": 50,
@@ -2017,7 +2017,7 @@
       "id": "streak_180",
       "name": "Halbjahrsflamme",
       "icon": "/images/icons/ach-streak-180.png",
-      "desc": "Maintain a 180-day streak.",
+      "desc": "180 Tage. Ein halbes Jahr. Die Flamme brennt weiter. Du weißt nicht mehr, wie man sie löscht.",
       "category": "streak",
       "rarity": "legendary",
       "points": 100,
@@ -2030,7 +2030,7 @@
       "id": "streak_365",
       "name": "Ewiges Feuer",
       "icon": "/images/icons/ach-streak-365.png",
-      "desc": "Maintain a 365-day streak. A full year.",
+      "desc": "365 Tage. Ein volles Jahr. Vier Jahreszeiten, null verpasste Tage. Du bist nicht mehr der Spieler. Du bist das Spiel.",
       "category": "streak",
       "rarity": "legendary",
       "points": 100,
@@ -2043,7 +2043,7 @@
       "id": "quest_200",
       "name": "Zweihundertschaft",
       "icon": "/images/icons/ach-200.png",
-      "desc": "Complete 200 quests.",
+      "desc": "200 Quests. Zweihundert. Die Zahl klingt rund. Dein Schlafrhythmus nicht.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2056,7 +2056,7 @@
       "id": "quest_300",
       "name": "Dreihunderter",
       "icon": "/images/icons/ach-300.png",
-      "desc": "Complete 300 quests.",
+      "desc": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2069,7 +2069,7 @@
       "id": "level_20",
       "name": "Veteranenrang",
       "icon": "/images/icons/ach-lv20.png",
-      "desc": "Reach level 20.",
+      "desc": "Level 20. Du bist jetzt das, was man in Rollenspielen 'mid-game' nennt. Im echten Leben heißt das 'Montag'.",
       "category": "milestone",
       "rarity": "rare",
       "points": 25,
@@ -2082,7 +2082,7 @@
       "id": "level_30",
       "name": "Meisterrang",
       "icon": "/images/icons/ach-lv30.png",
-      "desc": "Reach level 30.",
+      "desc": "Level 30. Prestige-Ränge. Ab hier werden die Titel länger und die Belohnungen fragwürdiger.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2095,7 +2095,7 @@
       "id": "level_40",
       "name": "Legendenrang",
       "icon": "/images/icons/ach-lv40.png",
-      "desc": "Reach level 40.",
+      "desc": "Level 40. Zehn Level bis zum Maximum. Die letzten zehn fühlen sich an wie die ersten dreißig.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -2108,7 +2108,7 @@
       "id": "level_50",
       "name": "Ascending",
       "icon": "/images/icons/ach-lv50.png",
-      "desc": "Reach level 50. The pinnacle.",
+      "desc": "Level 50. Das Maximum. Ganz oben. Von hier aus geht es nur noch seitwärts.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -2121,7 +2121,7 @@
       "id": "gold_5000",
       "name": "Wohlhabend",
       "icon": "/images/icons/ach-gold-5k.png",
-      "desc": "Accumulate 5,000 gold.",
+      "desc": "5000 Gold. Wohlhabend. Du leistest dir trotzdem nichts, weil 'man ja nie weiß'.",
       "category": "milestone",
       "rarity": "rare",
       "points": 25,
@@ -2134,7 +2134,7 @@
       "id": "gold_25000",
       "name": "Gildenbank",
       "icon": "/images/icons/ach-gold-25k.png",
-      "desc": "Accumulate 25,000 gold.",
+      "desc": "25.000 Gold. Die Gildenbank. Du bist die Gildenbank. Auszahlungen nur nach Terminvereinbarung.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2147,7 +2147,7 @@
       "id": "craft_100",
       "name": "Handwerksmeister",
       "icon": "/images/icons/ach-craft-100.png",
-      "desc": "Craft 100 items across all professions.",
+      "desc": "100 Items hergestellt. Deine Hände riechen permanent nach Amboss. Oder Kräutern. Oder Versagen.",
       "category": "milestone",
       "rarity": "rare",
       "points": 25,
@@ -2160,7 +2160,7 @@
       "id": "craft_500",
       "name": "Gildenlieferant",
       "icon": "/images/icons/ach-craft-500.png",
-      "desc": "Craft 500 items.",
+      "desc": "500 Items gecraftet. Du bist jetzt weniger Abenteurer und mehr Fabrik.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2173,7 +2173,7 @@
       "id": "all_professions",
       "name": "Alleskönner",
       "icon": "/images/icons/ach-all-prof.png",
-      "desc": "Reach skill 50+ in all 8 professions.",
+      "desc": "Skill 50+ in allen 8 Professionen. Du kannst alles ein bisschen. Nichts davon richtig gut.",
       "category": "milestone",
       "rarity": "legendary",
       "points": 100,
@@ -2186,7 +2186,7 @@
       "id": "friends_10",
       "name": "Gesellig",
       "icon": "/images/icons/ach-friends-10.png",
-      "desc": "Add 10 friends.",
+      "desc": "10 Freunde. Oder wie man in Quest Hall sagt: 10 Leute, die dein Profil einmal angeklickt haben.",
       "category": "milestone",
       "rarity": "uncommon",
       "points": 10,
@@ -2199,7 +2199,7 @@
       "id": "trades_10",
       "name": "Handelspartner",
       "icon": "/images/icons/ach-trades-10.png",
-      "desc": "Complete 10 trades.",
+      "desc": "10 Trades abgeschlossen. Du nennst es Handel. Deine Handelspartner nennen es 'na gut, einverstanden'.",
       "category": "milestone",
       "rarity": "uncommon",
       "points": 10,
@@ -2212,7 +2212,7 @@
       "id": "mail_50",
       "name": "Korrespondent",
       "icon": "/images/icons/ach-mail-50.png",
-      "desc": "Send 50 mails.",
+      "desc": "50 Nachrichten gesendet. Du schreibst mehr Briefe als ein Adeliger im 18. Jahrhundert.",
       "category": "milestone",
       "rarity": "rare",
       "points": 25,
@@ -2225,7 +2225,7 @@
       "id": "hidden_night_crafter",
       "name": "Nachtarbeiter",
       "icon": "/images/icons/ach-night-crafter.png",
-      "desc": "Craft 50 items during Mondlicht-Schmiede hours.",
+      "desc": "50 Items bei Mondlicht geschmiedet. Du und der Amboss, allein in der Nacht. Romantisch, auf eine industrielle Art.",
       "category": "hidden",
       "rarity": "epic",
       "points": 50,
@@ -2238,7 +2238,7 @@
       "id": "hidden_all_bosses",
       "name": "Bestienkenner",
       "icon": "/images/icons/ach-all-bosses.png",
-      "desc": "Contribute to defeating all 9 World Bosses.",
+      "desc": "Alle 9 Weltbosse gesehen. Du sammelst Bosse wie andere Leute Briefmarken. Weniger klebrig, genau so obsessiv.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
@@ -2251,7 +2251,7 @@
       "id": "hidden_full_gems",
       "name": "Juwelenkrone",
       "icon": "/images/icons/ach-full-gems.png",
-      "desc": "Socket all slots on all equipped gear with Royal gems.",
+      "desc": "Royal-Edelsteine in jedem Slot. Du glitzerst jetzt. Feinde sehen dich von drei Stockwerken entfernt.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
@@ -2264,7 +2264,7 @@
       "id": "hidden_100_rituals",
       "name": "Ritualmeister",
       "icon": "/images/icons/ach-100-rituals.png",
-      "desc": "Complete 100 ritual check-ins.",
+      "desc": "100 Ritual-Check-ins. Du hast ein Ritual 100 Mal gemacht. Es ist jetzt weniger Ritual und mehr Muskelgedächtnis.",
       "category": "hidden",
       "rarity": "epic",
       "points": 50,
@@ -2277,7 +2277,7 @@
       "id": "hidden_mythic10",
       "name": "Mythic+10",
       "icon": "/images/icons/ach-mythic10.png",
-      "desc": "Reach Mythic+10 in the Endless Rift.",
+      "desc": "Mythic+10. Die Realität biegt sich. Du auch. Aber du biegst dich schneller zurück.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
@@ -2290,7 +2290,7 @@
       "id": "hidden_no_miss_week",
       "name": "Perfekte Woche",
       "icon": "/images/icons/ach-perfect-week.png",
-      "desc": "Complete every daily mission for 7 consecutive days.",
+      "desc": "Perfekte Woche. Jeden Tag alle Dailies. Sieben Tage ohne einen einzigen Fehler. Verdächtig.",
       "category": "hidden",
       "rarity": "epic",
       "points": 50,
@@ -2303,7 +2303,7 @@
       "id": "hidden_collector",
       "name": "Sammler",
       "icon": "/images/icons/ach-collector.png",
-      "desc": "Own 100 items in inventory simultaneously.",
+      "desc": "100 Items gleichzeitig. Du brauchst kein Inventar, du brauchst einen Lagerraum.",
       "category": "hidden",
       "rarity": "rare",
       "points": 25,
@@ -2316,7 +2316,7 @@
       "id": "hidden_paragon",
       "name": "Paragon der Halle",
       "icon": "/images/icons/ach-paragon.png",
-      "desc": "Reach Paragon standing with any faction.",
+      "desc": "Paragon bei einer Fraktion. Jenseits von Verehrt. Sie haben deinen Geburtstag im Kalender.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
@@ -2381,7 +2381,7 @@
       "id": "speed_10_quests_day",
       "name": "Unaufhaltsam",
       "icon": "/images/icons/ach-10-day.png",
-      "desc": "Complete 10 quests in a single day.",
+      "desc": "10 Quests an einem Tag. Kein Marathon, ein Hilfeschrei in Aufgabenform.",
       "category": "speed",
       "rarity": "epic",
       "points": 50,

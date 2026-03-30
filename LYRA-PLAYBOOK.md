@@ -41,12 +41,187 @@ Der Humor in Quest Hall ist NICHT "lustige Einzeiler" — er ist **Charakter-Hum
 
 **Das Prinzip:** Humor kommt aus der GAP zwischen dem, was ein Gegenstand/System BEHAUPTET zu sein, und dem, was er WIRKLICH ist. Nie aus dem Kontext gerissene Witze. Immer aus der Welt heraus.
 
+**Die 10 Gebote des Quest-Hall-Humors:**
+
+1. **Katastrophen sind Terminprobleme.** Tod ist "eine Unannehmlichkeit". Zerstörung ist "bedauerlich". Ein Dungeon voller Monster ist "unaufgeräumt". Je schlimmer die Situation, desto beiläufiger der Ton.
+
+2. **Spezifisch schlägt poetisch.** Nicht "die Schmiede glüht vor Kraft" sondern "die Schmiede hat drei Feuermelder und keiner funktioniert seit Donnerstag". Absurde Präzision ist lustiger als vage Atmosphäre.
+
+3. **Jeder Flavor-Text braucht eine Landung.** Der letzte Satz muss sitzen. Kein ausklingendes Murmeln. Entweder eine trockene Pointe, eine absurde Feststellung, oder ein Satz der den ganzen vorherigen Kontext untergräbt.
+
+4. **Trauma ist Smalltalk.** "Jeder wird heutzutage gefoltert. Du gehörst erst zum Team, wenn du gefoltert wurdest." Nicht Trauma vermeiden — Trauma mit einer Selbstverständlichkeit behandeln, die gleichzeitig lustig und beunruhigend ist.
+
+5. **Inkompetenz mit vollem Selbstbewusstsein.** (Scapegrace-Prinzip) NPCs, Kreaturen und Systeme die grandios versagen und es als Strategie verkaufen. "Ich verwandle Mord in eine Kunstform. Wenn ich töte, male ich eigentlich ein großes Bild, mit Blut und... Unordnung."
+
+6. **Die Lücke ist die Pointe.** Humor entsteht aus dem ABSTAND zwischen Erwartung und Lieferung. "Was würde das Töten der Ältesten bewirken?" — "Panik? Angst? Drei freie Parkplätze im Heiligtum?" Die dritte Option ist immer die lustige.
+
+7. **Banter statt Narration.** Text soll klingen wie zwei kluge Leute die sich unterhalten, nicht wie ein Erzähler der eine Rede hält. Kurze Sätze. Gegensätze. Antworten auf Fragen die niemand gestellt hat.
+
+8. **Gegenstände haben Persönlichkeit.** Items sind nicht "mächtig" — sie sind "der Grund warum der letzte Besitzer jetzt auf einem Berggipfel lebt und mit niemandem mehr spricht". Jedes Item hat eine implizite Geschichte die schiefgegangen ist.
+
+9. **Systeme sind bürokratisch absurd.** Game-Mechaniken werden beschrieben als hätte ein Beamter sie erfunden und ein Held sie überlebt. "Der Blutpakt wurde von jemandem entworfen, der das Konzept 'Konsequenzen' persönlich nahm. Sehr persönlich."
+
+10. **Niemals motivieren.** Quest Hall motiviert NICHT. Quest Hall stellt fest. "Disziplin ist eine Superkraft" → VERBOTEN. "Disziplin ist das, was übrig bleibt, wenn die Motivation den Raum verlassen hat. Sie hat nicht mal Tschüss gesagt." → RICHTIG.
+
+**Referenz-Zitate (Skulduggery Pleasant, zum Channeln):**
+- "Natürlich will ich dich töten. Ich will die meisten Leute töten. Aber wo wäre ich dann? Auf einem Feld voller Leichen, mit niemandem zum Reden."
+- "Ich verhafte dich wegen Mord, Verschwörung zum Mord und, ich weiß nicht, möglicherweise Vermüllung."
+- "Das letzte Geschenk das du mir gemacht hast war ein Stock." — "Er hatte eine Schleife."
+- "Wenn du mich in fünf Minuten nicht siehst, bin ich wahrscheinlich einen sehr tapferen und heldenhaften Tod gestorben."
+- "Nur ein Vollidiot bringt ein Schwert zu einem Schusswechsel."
+- "Wir fliehen nicht. Wir rücken in die entgegengesetzte Richtung vor."
+
 **Anti-Pattern:**
 - KEIN Herr-der-Ringe-Pathos (zu pompös) — "Der Riss drückt dagegen. Der Schild hält. Noch." ist KEIN Skulduggery-Humor, das ist Pathos
-- KEIN Marvel-Quip-Humor (zu oberflächlich)
+- KEIN Marvel-Quip-Humor (zu oberflächlich, zu gewollt cool)
 - KEINE direkten Zitate (paraphrasieren/channeln)
 - NIEMALS spoilern (Easter Eggs soll der User selbst finden)
 - KEINE rein atmosphärischen Texte ohne Humor-Element — jeder Flavor-Text braucht mindestens einen trockenen Unterton
+- KEINE Motivationsposter-Sprache ("Konstanz ist eine Superkraft", "Disziplin ist ein Geschenk", "Die Magie liegt in der Kette")
+- KEINE vagen poetischen Metaphern ohne Pointe ("Das Schwert fällt nicht, weil du stolperst" — und dann?)
+- KEIN Humor der die vierte Wand bricht (keine "Spieler"/"User"-Referenzen, Humor kommt aus der WELT)
+
+---
+
+### 0.1 Vorher/Nachher — Ausführliche Beispiele pro Content-Typ
+
+Dieser Abschnitt zeigt für JEDE Art von Flavor-Text konkret, was FALSCH ist und wie die RICHTIGE Version klingt. **Pflichtlektüre.**
+
+#### Item-Beschreibungen (gearTemplates.json `desc`)
+
+**FALSCH (poetisch, motivational, kein Humor):**
+> "Ein Schwert, geschmiedet in den tiefsten Feuern der Schmiede. Seine Klinge singt im Mondlicht."
+
+**FALSCH (Marvel-Quip, zu oberflächlich):**
+> "Das Schwert ist scharf. Sehr scharf. Aua-scharf."
+
+**RICHTIG (Skulduggery-Stil: Erfahrungsbericht + absurdes Detail + Landung):**
+> "Solide Verarbeitung. Der vorherige Besitzer hat sie freiwillig abgegeben, was entweder für die Waffe spricht oder gegen seinen Lebenswillen. Die Klinge hat einen leichten Drall nach links, den der Schmied als 'Persönlichkeit' bezeichnet."
+
+**RICHTIG (Valkyrie-Pragmatismus: nüchtern, praktisch, trockene Pointe):**
+> "Hält, was sie verspricht. Der Katalog sagt 'unzerstörbar'. Die Fußnote sagt 'im Rahmen des Zumutbaren'. Die Fußnote ist verdächtig klein gedruckt."
+
+**RICHTIG (Scapegrace-Energie: inkompetente Herkunft):**
+> "Wurde von einem Lehrling geschmiedet, der den Beruf am nächsten Tag gewechselt hat. Ironischerweise sein bestes Werk. Er verkauft jetzt Käse und ist deutlich glücklicher."
+
+**Weitere gute Item-Beispiele:**
+> "Drei Helden haben diesen Helm getragen. Zwei davon sind in Rente. Der dritte hat ihn freiwillig zurückgegeben, was bei Legendaries selten vorkommt und Fragen aufwirft."
+
+> "Der Schmied hat sich geweigert, sie ein zweites Mal anzufassen. Das ist entweder ein schlechtes Zeichen oder exzellente Werbung."
+
+> "Ausgezeichnete Traktion auf instabiler Realität. Auch gut auf nassem Kopfsteinpflaster, falls das relevanter sein sollte."
+
+> "Im Inventar des letzten Besitzers gefunden. Der letzte Besitzer wurde im Inventar von jemand anderem gefunden. Kein Zusammenhang. Wahrscheinlich."
+
+#### NPC-Greetings (npcQuestGivers.json `greeting`)
+
+**FALSCH (zu nett, zu generisch):**
+> "Willkommen, Held! Ich habe eine Aufgabe für dich."
+
+**FALSCH (zu poetisch):**
+> "Die Sterne haben mir dein Kommen verkündet. Tritt ein."
+
+**RICHTIG (Skulduggery-trocken: spezifisch, persönlich, leicht genervt):**
+> "Ah, du. Ich hatte gehofft auf jemanden mit mehr Erfahrung, aber die Warteschlange ist leer und mein Problem wartet nicht. Komm rein."
+
+**RICHTIG (Scapegrace-Energie: überschätzt sich komplett):**
+> "Du stehst vor dem gefährlichsten Händler östlich des Turms. Westlich auch. Ich hatte einen Konkurrenten, aber der hat aufgegeben. Aus Furcht, nehme ich an. Oder aus Insolvenz. Beides ehrenhaft."
+
+**RICHTIG (Valkyrie: pragmatisch, keine Zeremonien):**
+> "Drei Leute vor dir haben abgelehnt. Einer hat geweint. Das ist entweder ein Hinweis auf die Schwierigkeit der Quest oder auf die Bezahlung. Interessiert?"
+
+**Weitere NPC-Beispiele:**
+> "Meine Tränke heilen. Meistens. Manchmal explodieren sie. Ich sehe beides als Erfolg — das eine heilt den Körper, das andere die Langeweile."
+
+> "Ich spreche selten. Mein Hammer spricht für mich. Laut und mit Nachdruck. Wenn du das als Drohung verstehst, hast du den Hammer verstanden."
+
+> "Jeder Faden erzählt eine Geschichte. Die meisten Geschichten enden mit 'und dann hat es gejuckt'. Stoff ist tückischer als die Leute denken."
+
+#### Codex-Einträge (codex.json `text`)
+
+**FALSCH (Motivationsposter):**
+> "Ein Ritual ist eine Vereinbarung mit dir selbst. Die Magie liegt in der Kette. Ein Glied ist nichts. Hundert Glieder sind unzerstörbar."
+
+**FALSCH (reines Worldbuilding ohne Humor):**
+> "Der Turm wurde vor tausend Jahren erbaut. Seine Mauern tragen die Geschichte der Helden die ihn betraten."
+
+**RICHTIG (bürokratisch absurd + spezifische Details + Landung):**
+> "Ein Ritual ist theoretisch eine Vereinbarung mit dir selbst. In der Praxis ist es eine Vereinbarung mit einem System, das jeden Morgen fragt 'Und? Hast du es getan?' und schweigend urteilt, wenn du nein sagst. Die Streak-Flamme beurteilt dich nicht. Sie stellt nur fest. Öffentlich."
+
+**RICHTIG (Katastrophe als Terminproblem):**
+> "Der Riss öffnete sich ohne Vorwarnung, mitten im Hauptsaal, während der Gildenmeister eine sehr langweilige Rede hielt. Im Nachhinein betrachtet war der Riss das Beste an dem Abend."
+
+**RICHTIG (Inkompetente Kreatur mit Tiefe):**
+> "Der Prokrastinations-Wyrm kommt nicht. Das ist sein Trick. Er wartet, bis du wartest. Und dann wartet ihr beide, bis es zu spät ist. Er ist nicht gefährlich weil er angreift — er ist gefährlich weil er dir einredet, dass morgen auch noch ein Tag ist."
+
+**Weitere Codex-Beispiele (alle RICHTIG):**
+> "Sechs Edelsteintypen, fünf Qualitätsstufen, und eine unbegrenzte Anzahl an Möglichkeiten sich zu vertun. Die Juweliere empfehlen, vorher nachzudenken. Die meisten Helden empfehlen, hinterher zu fluchen."
+
+> "Fünf Gold Porto. Nicht weil die Lieferung teuer ist — sondern weil der Postbote zu viel weiß und man ihn bei Laune halten muss."
+
+> "Das Rad dreht sich. Runensplitter fließen hinein, Schicksal fließt heraus. Manche nennen es Glücksspiel. Die Betreiber nennen es 'kontrollierte Wahrscheinlichkeitsmanipulation'. Das klingt besser auf dem Antrag."
+
+#### Talent-Tree-Flavors (talentTree.json `flavor`)
+
+**FALSCH (motivational, poetisch):**
+> "Schwung ist keine Physik. Schwung ist eine Entscheidung."
+> "Das Schwert fällt nicht, weil du einmal stolperst."
+
+**RICHTIG (trocken, spezifisch, mit Landung):**
+> "Dein Streak ist jetzt widerstandsfähiger. Nicht unzerstörbar. Verwechsle das nicht."
+> "Du bist gescheitert, aber die Schmiede hat es nicht gemerkt. Einmal am Tag kannst du so tun, als wäre nichts passiert."
+> "10% mehr Materialien. Nicht weil du Glück hast, sondern weil der Boden hier einfach schlampig ist."
+
+**Für Tradeoff-Talente (besonders wichtig — die Konsequenz IST der Witz):**
+> "Gold ist überbewertet. Das sagte zumindest der letzte Held, der das hier genommen hat. Er starb arm, aber gebildet." (Blutzoll: Gold opfern für XP)
+> "Die Schmiede brennt heißer als vorgesehen. Der Sicherheitsbeauftragte hat gekündigt." (Gierige Flamme: Overcap mit Risiko)
+> "Sockelte Gems geben mehr Stats. Entfernen zerstört sie. Das nennt man in Fachkreisen 'Commitment'." (Resonanzkristall)
+
+#### Kreatur-/Boss-Beschreibungen (worldBosses.json, Codex)
+
+**FALSCH (generisches Fantasy-Monster):**
+> "Ein gewaltiger Koloss aus Stein und Feuer, geboren aus der Verzweiflung der Welt."
+
+**RICHTIG (das Monster als gescheiterter Charakter mit spezifischer Backstory):**
+> "Er war einmal ein Held. Der beste sogar. Nie aufgehört, nie pausiert, nie 'nein' gesagt. Und jetzt steht er da, hohl und riesig, eine Warnung in Granitform. Die Taverne wurde erfunden, um Leute wie ihn zu verhindern. Sie kam zu spät."
+
+**RICHTIG (inkompetentes Monster, Scapegrace-Energie):**
+> "Die Chaos-Hydra hat sieben Köpfe. Jeder Kopf ist ein neues Projekt, eine neue Idee, ein neues 'das mache ich auch noch'. Die Hydra wird nicht besiegt indem man kämpft — sondern indem man sie dazu bringt, sich auf eine Sache zu konzentrieren. Niemand hat das je geschafft."
+
+**RICHTIG (existenzielle Bedrohung als Alltagsproblem):**
+> "Das Zweifel-Phantom flüstert. Leise, aber ausdauernd. 'Bist du sicher?' 'Reicht das?' Es hat keine Substanz — es existiert nur solange du zuhörst. Der Trick ist, laut genug zu singen. Es hasst das."
+
+#### Achievement-Beschreibungen (achievementTemplates.json `description`)
+
+**FALSCH:**
+> "Schließe 10 Quests ab."
+
+**RICHTIG:**
+> "10 Quests abgeschlossen. Die ersten drei waren aufregend, die nächsten fünf waren Routine, und die letzten zwei waren 'na gut, jetzt bin ich eh schon hier'."
+
+**RICHTIG:**
+> "Ersten Dungeon überlebt. 'Überlebt' ist hier das operative Wort. 'Gemeistert' wäre eine Übertreibung."
+
+#### Profession-Greetings (ForgeView.tsx, professions.json)
+
+**FALSCH:**
+> "Willkommen in meiner Werkstatt! Ich lehre dich die Kunst der Schmiedekunst."
+
+**RICHTIG:**
+> "Du willst schmieden. Gut. Regel eins: Verbrenn dich nicht. Regel zwei: Du wirst dich verbrennen. Regel drei: Sag nicht, ich hätte dich nicht gewarnt."
+
+**RICHTIG (Alchemist):**
+> "Meine Tränke haben eine Erfolgsquote von neunzig Prozent. Die restlichen zehn Prozent sind... lehrreich. Für alle Anwesenden."
+
+#### Zusammenfassung: Der Humor-Dreischritt
+
+Jeder Quest-Hall-Text folgt diesem Muster:
+
+1. **Setup:** Eine sachliche Feststellung oder Beschreibung. Klingt seriös. *"Ein Ritual ist eine Vereinbarung mit dir selbst."*
+2. **Drehung:** Ein Detail das die Erwartung unterläuft. Entweder absurd spezifisch, beiläufig düster, oder bürokratisch. *"In der Praxis ist es ein System, das jeden Morgen schweigend urteilt."*
+3. **Landung:** Der letzte Satz sitzt. Kurz. Trocken. Lässt den Leser mit einem Schmunzeln zurück. *"Die Streak-Flamme beurteilt dich nicht. Sie stellt nur fest. Öffentlich."*
+
+**Setup → Drehung → Landung.** Immer. Ausnahmslos. Wenn ein Text keine Landung hat, ist er nicht fertig.
 
 ---
 

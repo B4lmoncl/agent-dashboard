@@ -868,24 +868,24 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
       <>
         <div
           className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse" : ""}`}
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: `2px solid ${item ? borderColor : "rgba(255,255,255,0.15)"}`, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
-          title={item ? item.name : `${label} — Empty`}
+          title={item ? item.name : `Klicke auf ein Item im Inventar um es auszurüsten`}
         >
           {item?.icon
             ? <img src={item.icon} alt={item.name} width={40} height={40} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             : iconSrc
-              ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.25 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{label.slice(0, 3)}</span>
+              ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.4 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{label.slice(0, 3)}</span>
           }
         </div>
         {item && (
           <p className="text-center truncate mt-0.5" style={{ fontSize: 12, width: 56, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
         )}
         {!item && (
-          <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.1)", lineHeight: 1.2 }}>{label}</p>
+          <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.2)", lineHeight: 1.2 }}>{label}</p>
         )}
         {hovered && item && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
       </>
@@ -1382,7 +1382,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div className="space-y-2">
                   <p className="text-xs text-w25">{sorted.length} material{sorted.length !== 1 ? "s" : ""} in storage</p>
                   {sorted.length === 0 ? (
-                    <p className="text-xs text-center py-8 text-w15">No materials yet. Complete quests to gather materials based on your professions.</p>
+                    <p className="text-xs text-center py-8 text-w15">{searchQ ? "Keine Materialien gefunden" : "No materials yet. Complete quests to gather materials based on your professions."}</p>
                   ) : (
                     <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))" }}>
                       {sorted.map(([id, count]) => {
@@ -1434,6 +1434,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               unequipped = [...unequipped].sort((a, b) => a.name.localeCompare(b.name));
             } else if (invSort === "level") {
               unequipped = [...unequipped].sort((a, b) => (b.minLevel || 0) - (a.minLevel || 0));
+            }
+
+            // Empty state when search/filter yields no results
+            if (unequipped.length === 0 && (invSearch.trim() || invFilter !== "all")) {
+              return <p className="text-xs text-w20 text-center py-6">Keine Items gefunden</p>;
             }
 
             // Build position-based grid (only in "Standard" sort mode)

@@ -1070,8 +1070,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
             />
             {/* Material grid */}
-            <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
-              {materialDefs
+            {(() => {
+              const filtered = materialDefs
                 .filter(m => {
                   const count = materials[m.id] || 0;
                   if (matSearch) return m.name.toLowerCase().includes(matSearch.toLowerCase()) || m.id.toLowerCase().includes(matSearch.toLowerCase());
@@ -1081,30 +1081,37 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   const ra = ["common", "uncommon", "rare", "epic", "legendary"].indexOf(a.rarity);
                   const rb = ["common", "uncommon", "rare", "epic", "legendary"].indexOf(b.rarity);
                   return ra - rb || a.name.localeCompare(b.name);
-                })
-                .map(m => {
-                  const count = materials[m.id] || 0;
-                  const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
-                  return (
-                    <div
-                      key={m.id}
-                      className="flex items-center gap-2 rounded-lg px-2.5 py-2"
-                      title={m.desc}
-                      style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
-                    >
-                      {m.icon ? (
-                        <img src={m.icon} alt={m.name} width={48} height={48} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
-                      ) : (
-                        <span className="flex-shrink-0" style={{ width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 18 }}>{"\u25C6"}</span>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold truncate" style={{ color: rc }}>{m.name}</p>
-                        <p className="text-xs font-mono" style={{ color: count > 0 ? "#e8e8e8" : "rgba(255,255,255,0.2)" }}>{count}</p>
+                });
+              if (filtered.length === 0 && matSearch) {
+                return <p className="text-xs text-w20 text-center py-6">Keine Materialien gefunden</p>;
+              }
+              return (
+                <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
+                  {filtered.map(m => {
+                    const count = materials[m.id] || 0;
+                    const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
+                    return (
+                      <div
+                        key={m.id}
+                        className="flex items-center gap-2 rounded-lg px-2.5 py-2"
+                        title={m.desc}
+                        style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
+                      >
+                        {m.icon ? (
+                          <img src={m.icon} alt={m.name} width={48} height={48} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
+                        ) : (
+                          <span className="flex-shrink-0" style={{ width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 18 }}>{"\u25C6"}</span>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-semibold truncate" style={{ color: rc }}>{m.name}</p>
+                          <p className="text-xs font-mono" style={{ color: count > 0 ? "#e8e8e8" : "rgba(255,255,255,0.2)" }}>{count}</p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-            </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
             {materialDefs.length === 0 && (
               <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No materials data loaded.</p>
             )}
@@ -2922,8 +2929,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
       {profCelebration && createPortal(
-        <div className="fixed inset-0 z-[160] flex items-center justify-center modal-backdrop" onClick={() => setProfCelebration(null)}>
-          <div className="w-full max-w-md rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-[160] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} onClick={() => setProfCelebration(null)}>
+          <div className="w-full max-w-md mx-4 rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
             {/* Accent bar */}
             <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
             <div className="p-6 space-y-5">

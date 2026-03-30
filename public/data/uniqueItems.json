@@ -7,8 +7,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Geschmiedet aus den Schuppen des Prokrastinations-Wyrms. Wer sie trägt, zögert nie.",
-      "flavorText": "Jede Aufgabe die du aufschiebst, nährt den Wyrm. Diese Schuppe erinnert daran.",
+      "desc": "Geschmiedet aus den Schuppen des Prokrastinations-Wyrms. Der letzte Träger hat sie testamentarisch dem Turm vermacht. Mit der Bemerkung: 'Bitte nicht zurückgeben. Bitte.'",
+      "flavorText": "Die Schuppen zittern, wenn man Aufgaben aufschiebt. Die vorherigen drei Besitzer fanden das 'motivierend'. Zwei davon leben noch.",
       "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
@@ -72,8 +72,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Ein Splitter lebendiger Flamme aus dem Herzen des Burnout-Kolosses.",
-      "flavorText": "Ruhe ist keine Schwäche. Sie ist der Brennstoff für größeres Feuer.",
+      "desc": "Ein Splitter lebendiger Flamme aus dem Herzen des Burnout-Kolosses. Brennt permanent bei exakt der Temperatur, die unangenehm, aber nicht gefährlich ist. Wie ein schlechtes Gewissen.",
+      "flavorText": "Die Inschrift auf der Rückseite lautet: 'Mach mal Pause.' Darunter, in einer anderen Handschrift: 'NEIN.' Und darunter, in einer dritten: 'Bitte.'",
       "icon": "/images/icons/equip-amulet.png",
       "affixes": {
         "primary": {
@@ -137,8 +137,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Getragen von jenen, die die vielen Stimmen der Chaos-Hydra zum Schweigen brachten.",
-      "flavorText": "Fokus ist die Klinge die durch Chaos schneidet.",
+      "desc": "Getragen von jenen, die die vielen Stimmen der Chaos-Hydra zum Schweigen brachten. Die Krone flüstert gelegentlich. Aber nur eine Sache auf einmal, was bereits ein enormer Fortschritt ist.",
+      "flavorText": "Neun Köpfe schrien neun verschiedene Dinge. Jetzt schreien sie nichts mehr. Die Krone erinnert sich trotzdem an alle neun.",
       "icon": "/images/icons/equip-helm.png",
       "affixes": {
         "primary": {
@@ -202,8 +202,8 @@
       "rarity": "legendary",
       "tier": 2,
       "reqLevel": 15,
-      "desc": "Gebunden in wassergetränktes Leder, summt dieses Folianten-Rüstungsstück mit bewahrtem Wissen.",
-      "flavorText": "Das Archiv erinnert sich an das, was die Welt vergessen hat.",
+      "desc": "Wurde in einer verschlossenen Truhe gefunden, in einer verschlossenen Kammer, in einem versunkenen Archiv. Jemand wollte wirklich sichergehen. Das ist nie ein gutes Zeichen.",
+      "flavorText": "Das Buch auf der Vorderseite ist lesbar. Es enthält eine detaillierte Anleitung, wie man es nie hätte öffnen sollen.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
@@ -267,8 +267,8 @@
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 25,
-      "desc": "Eine Klinge aus den Trümmern des kollabierten Turms. Knistert noch immer vor Restenergie.",
-      "flavorText": "Was zerbrochen war, kann immer noch tief schneiden.",
+      "desc": "Eine Klinge aus den Trümmern des kollabierten Turms. Sie knistert vor Restenergie und gelegentlicher Selbstüberschätzung. Der Turm fiel. Das Schwert fand das nicht relevant.",
+      "flavorText": "Auf der Klinge steht 'Unzerbrechlich'. Auf den Trümmern des Turms, aus dem sie stammt, übrigens auch.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
@@ -332,8 +332,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "Ein dunkler Steinanhänger der Licht zu absorbieren scheint. Am tiefsten Punkt des Turms gefunden.",
-      "flavorText": "Blicke in die Leere und sie blickt zurück.",
+      "desc": "Ein dunkler Steinanhänger, der Licht absorbiert, Hoffnung dämpft und bei Partys für unangenehme Stille sorgt. Neben ihm lag ein Zettel: 'Es tut mir leid' in drei Sprachen.",
+      "flavorText": "Die Leere blickt zurück. Sie ist nicht beeindruckt. Aber sie zahlt gut, also nimm den Deal.",
       "icon": "/images/icons/equip-amulet.png",
       "affixes": {
         "primary": {
@@ -397,8 +397,8 @@
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 20,
-      "desc": "Stiefel gewoben aus den Schatten des Doubt Phantom. Wer sie trägt, hört das Flüstern — und ignoriert es.",
-      "flavorText": "Der Zweifel ging mit dir. Jetzt gehst du schneller.",
+      "desc": "Stiefel gewoben aus den Schatten des Doubt Phantom. Sie flüstern 'Du schaffst das nicht' bei jedem Schritt. Nach einer Woche wird es weißes Rauschen. Nach zwei Wochen vermisst man es, wenn man sie auszieht.",
+      "flavorText": "Vier vorherige Besitzer. Einer wurde verrückt, einer wurde erleuchtet, zwei konnten den Unterschied nicht feststellen.",
       "icon": "/images/icons/equip-boots.png",
       "affixes": {
         "primary": {
@@ -460,8 +460,8 @@
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 20,
-      "desc": "Rüstung aus dem kristallisierten Netz des Entropy Weaver. Jeder Faden hält eine zerbrochene Gewohnheit zusammen.",
-      "flavorText": "Was zerfällt, kann neu verwoben werden.",
+      "desc": "Rüstung aus dem kristallisierten Netz des Entropy Weaver. Jeder Faden war mal ein guter Vorsatz. Die meisten sind von Januar. Keiner hat Februar überlebt.",
+      "flavorText": "Das Netz hält alles zusammen. Fragt man es, woraus es besteht, sagt es 'Enttäuschung und Koffein'. Es lügt nicht.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
@@ -525,8 +525,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Ein Helm aus dem steinernen Herz des Stagnation Golem. Schwer, aber unerschütterlich.",
-      "flavorText": "Stillstand ist eine Wahl. Nicht deine.",
+      "desc": "Ein Helm aus dem steinernen Herz des Stagnation Golem. Wiegt so viel wie drei gescheiterte Neujahrsvorsätze. Bewegt sich nur, wenn du dich bewegst. Das ist entweder tiefsinnig oder ein Designfehler.",
+      "flavorText": "Der Golem stand 400 Jahre auf derselben Stelle. Nicht weil er musste. Sondern weil ihm niemand gesagt hat, dass er auch gehen könnte.",
       "icon": "/images/icons/equip-helm.png",
       "affixes": {
         "primary": {
@@ -590,8 +590,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Eine blendende Feder des Perfection Seraph. Sie erinnert dich daran, dass 'gut genug' manchmal perfekt ist.",
-      "flavorText": "Perfektion ist ein Gefängnis. Exzellenz ist ein Pfad.",
+      "desc": "Eine blendende Feder des Perfection Seraph. Der Seraph hat 200 Jahre an seiner 'perfekten Form' gearbeitet. Dann ist er explodiert. Die Feder ist alles was übrig ist. Nimm sie als Warnung.",
+      "flavorText": "Die Inschrift lautet 'Für den Würdigen'. Darunter, in kleinerer Schrift: 'Oder den Pragmatischen. Wer zuerst kommt.'",
       "icon": "/images/icons/equip-amulet.png",
       "affixes": {
         "primary": {
@@ -655,8 +655,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 45,
-      "desc": "Die Waffe des Isolation Leviathan. Sie durchschneidet nicht Fleisch, sondern die Mauern die man um sich baut.",
-      "flavorText": "Allein bist du nichts. Zusammen — unaufhaltbar.",
+      "desc": "Die Waffe des Isolation Leviathan. Lag 3000 Jahre auf dem Meeresgrund, weil der Leviathan sie verlegt hat und zu stolz war, jemanden um Hilfe zu bitten. Das erklärt einiges.",
+      "flavorText": "Der Dreizack hat drei Zinken. Eine für Stolz, eine für Sturheit, eine für den Moment wo man einsieht dass man Hilfe braucht. Die dritte ist die schärfste.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
@@ -720,8 +720,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 45,
-      "desc": "Die Krone des Apathy Sovereign — eines gefallenen Helden, der aufgehört hat zu kämpfen. Wer sie trägt, schwört nie aufzuhören.",
-      "flavorText": "Der Thron steht leer. Du nicht.",
+      "desc": "Die Krone des Apathy Sovereign. Er hat aufgehört zu kämpfen, aufgehört zu essen, aufgehört seine Post zu öffnen. Die Krone lag neben einem Stapel unbeantworteter Briefe und einer Notiz: 'Morgen. Bestimmt.'",
+      "flavorText": "Der Thron steht leer. Der König ging irgendwann einfach weg. Nicht dramatisch. Er ist einfach... nicht mehr wiedergekommen. Die Krone wartet noch.",
       "icon": "/images/icons/equip-helm.png",
       "affixes": {
         "primary": {
@@ -785,8 +785,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "Ein Rüstungsfragment aus geronnenem Sternenlicht. Lyra sagt, sie habe es verloren. Lyra lügt manchmal.",
-      "flavorText": "Die Sterne sehen alles. Dieser Schleier lässt dich zurückblicken.",
+      "desc": "Ein Rüstungsfragment aus geronnenem Sternenlicht. Lyra sagt, sie habe es verloren. Lyra sagt viel wenn der Tag lang ist. Der Schleier sagt gar nichts, was ihn zum verlässlicheren der beiden macht.",
+      "flavorText": "Wurde aus dem Gacha gezogen. Die statistische Wahrscheinlichkeit lag bei 0,5%. Jemand hat entweder sehr viel Glück oder sehr wenig Geld übrig.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
@@ -850,8 +850,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "Ein Schild geschmiedet aus dem Mechanismus der Schicksalskammer. Es dreht sich, immer. Und was es abwehrt, kommt verdreht zurück.",
-      "flavorText": "Das Schicksal lässt sich nicht aufhalten. Aber umlenken.",
+      "desc": "Ein Schild geschmiedet aus dem Mechanismus der Schicksalskammer. Es dreht sich permanent. Man kann es nicht an die Wand hängen. Man kann es nicht hinlegen. Es hat drei Tische ruiniert und eine Freundschaft.",
+      "flavorText": "Das Schicksal hat einen Sinn für Humor. Das Schild auch. Beide lachen auf deine Kosten.",
       "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
@@ -915,8 +915,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 30,
-      "desc": "Die rechte Klaue des Prokrastinations-Wyrms, umgeschmiedet zu einer Waffe. Grimvar brauchte drei Tage. Der Wyrm brauchte drei Äonen, um sie zu züchten.",
-      "flavorText": "Manche Waffen haben eine Geschichte. Diese hier hat eine Entschuldigung.",
+      "desc": "Die rechte Klaue des Prokrastinations-Wyrms, umgeschmiedet zu einer Waffe. Grimvar wollte sie eigentlich gestern fertig haben. Dann vorgestern. Die Ironie war allen Beteiligten schmerzhaft bewusst.",
+      "flavorText": "Auf dem Griff steht 'Fang endlich an'. Es ist die passiv-aggressivste Waffe im gesamten Turm.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "fixedStats": true,
       "stats": {
@@ -937,8 +937,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Gewoben aus den Fäden des Entropy Weavers. Jeder Faden war einmal ein aufgegebener Plan.",
-      "flavorText": "Sie flüstert vergessene Deadlines. Charmant, auf eine verstörende Art.",
+      "desc": "Gewoben aus den Fäden des Entropy Weavers. Jeder Faden war einmal ein aufgegebener Plan. Die Kette hat mehr gescheiterte Projekte gesehen als ein Venture-Capital-Investor.",
+      "flavorText": "Sie flüstert vergessene Deadlines. Montag, 14:00, Quartalsreview. Du bist nicht hingegangen. Die Kette vergisst nicht. Die Kette vergibt nicht.",
       "icon": "/images/icons/equip-amulet.png",
       "fixedStats": true,
       "stats": {
@@ -960,8 +960,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Die Klinge existiert gleichzeitig in drei Realitäten. Das macht das Aufhängen schwierig und das Kämpfen... interessant.",
-      "flavorText": "Der Rift hat sie nicht erschaffen. Er hat sie nur freigegeben.",
+      "desc": "Die Klinge existiert gleichzeitig in drei Realitäten. In einer davon bist du bereits tot. In einer anderen hast du gewonnen. In der dritten fragst du dich, warum das Schwert summt.",
+      "flavorText": "Grimvar weigert sich, sie zu schärfen. Er sagt, sie schneidet bereits Dinge, die noch gar nicht in ihrer Nähe waren. Das sei 'beunruhigend, selbst für ihn'.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "fixedStats": true,
       "stats": {
@@ -983,8 +983,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 32,
-      "desc": "Am absoluten Nullpunkt des Rifts gefunden. Die Temperatur um sie schwankt. Socken empfohlen. Doppelte Socken.",
-      "flavorText": "Wer den Boden des Abgrunds erreicht, findet keine Wahrheit. Nur sehr kalte Schuhe.",
+      "desc": "Am absoluten Nullpunkt des Rifts gefunden, neben einem erfrorenen Abenteurer der noch immer lächelte. Ob aus Wahnsinn oder Erleichterung, ist unklar. Die Stiefel rochen nach Bedauern und Minze.",
+      "flavorText": "Socken empfohlen. Doppelte Socken. Dreifache Socken. Der vorherige Besitzer trug keine und man hat ihn an der Decke gefunden. Zusammenhang unbestätigt.",
       "icon": "/images/icons/equip-boots.png",
       "fixedStats": true,
       "stats": {
@@ -1006,8 +1006,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 38,
-      "desc": "Zeigt Dinge die noch nicht passiert sind. Meistens Deadlines. Gelegentlich Mittagessen.",
-      "flavorText": "Prophezeiung ist überbewertet. Terminkalender sind nützlicher.",
+      "desc": "Zeigt Dinge die noch nicht passiert sind. Meistens Deadlines. Gelegentlich den eigenen Tod. Einmal zeigte er Dienstagabend-Eintopf. Niemand weiß warum, aber alle hatten danach Angst vor Dienstag.",
+      "flavorText": "Der Helm hat eine Rückgabequote von 100%. Jeder gibt ihn zurück. Die meisten rennen dabei.",
       "icon": "/images/icons/equip-helm.png",
       "fixedStats": true,
       "stats": {
@@ -1029,8 +1029,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 28,
-      "desc": "Ein Schild aus den versiegelten Regalen des Sunken Archive. Die Bücher darauf sind lesbar. Sie handeln von Buchhaltung. Entmutigend effektiv.",
-      "flavorText": "Nichts hält Feinde so fern wie eine detaillierte Steuererklärung.",
+      "desc": "Ein Schild aus den versiegelten Regalen des Sunken Archive. Die Bücher darauf handeln von Buchhaltung, Steuerrecht und Erbschaftsregelungen. Feinde fliehen bei Sichtkontakt. Verbündete auch.",
+      "flavorText": "Der Bibliothekar, der es versiegelt hat, hinterließ eine Notiz: 'Falls jemand das hier findet — es tut mir leid. Für alles.'",
       "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "fixedStats": true,
       "stats": {
@@ -1052,8 +1052,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 33,
-      "desc": "Zusammengesetzt aus den Trümmern des Shattered Spire. Jedes Fragment erinnert sich an seinen Fall. Die Rüstung knirscht bei Regen. Und bei Sonnenschein. Und bei Stille.",
-      "flavorText": "Manche Rüstungen schützen den Körper. Diese schützt die Erinnerung.",
+      "desc": "Zusammengesetzt aus den Trümmern des Shattered Spire. Die Rüstung knirscht bei Regen, bei Sonnenschein und bei Stille. Sie hat Meinungen. Meistens negative. Grimvar nennt sie 'die Schwiegermutter'.",
+      "flavorText": "Jedes Fragment erinnert sich an seinen Fall und erzählt davon. Ständig. Drei Besitzer haben sie zurückgegeben mit der Begründung: 'Sie lässt mich nicht schlafen.'",
       "icon": "/images/icons/equip-armor.png",
       "fixedStats": true,
       "stats": {
@@ -1075,8 +1075,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 30,
-      "desc": "Geschärft an tausend aufgeschobenen Deadlines. Schneidet durch Ausreden wie durch Butter.",
-      "flavorText": "Der Wyrm hat drei Reihen Zähne. Hatte. Jetzt hat er zwei Reihen und du hast ein Schwert.",
+      "desc": "Geschärft an tausend aufgeschobenen Deadlines. Der Wyrm will den Zahn zurück. Er hat Briefe geschrieben. Sehr höfliche Briefe. Dann weniger höfliche. Wir ignorieren sie alle.",
+      "flavorText": "Der Wyrm hat drei Reihen Zähne. Hatte. Jetzt hat er zwei Reihen, einen Groll und deinen Namen auf einer Liste, die du nicht sehen willst.",
       "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "fixedStats": true,
       "stats": {
@@ -1098,8 +1098,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 30,
-      "desc": "Aus den abgeworfenen Schuppen des Wyrms gefertigt. Überraschend bequem für etwas das Prokrastination verkörpert.",
-      "flavorText": "Schnelle Füße für jemanden der aufgehört hat zu zögern.",
+      "desc": "Aus den abgeworfenen Schuppen des Wyrms gefertigt. Überraschend bequem. Verdächtig bequem. Die Art von bequem, bei der man sich fragt, ob sie einen langsam vergiften.",
+      "flavorText": "Die Stiefel machen schneller. Das Problem: der Wyrm hat die Schuppen freiwillig abgeworfen. Frage dich, warum ein Wesen der Prokrastination etwas freiwillig tut.",
       "icon": "/images/icons/equip-boots.png",
       "fixedStats": true,
       "stats": {
@@ -1121,8 +1121,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 32,
-      "desc": "Geschmiedet aus dem letzten Funken eines ausgebrannten Riesen. Schützt vor dem Feuer das von innen kommt.",
-      "flavorText": "Manche Flammen brennen sich selbst aus. Diese hier erinnert daran, das nicht zu tun.",
+      "desc": "Geschmiedet aus dem letzten Funken eines ausgebrannten Riesen. Der Koloss hat buchstäblich gebrannt, bis nichts mehr übrig war. Seine letzten Worte waren 'Ich schaff das noch'. Er hat es nicht geschafft.",
+      "flavorText": "Der Helm wird warm wenn du zu lange arbeitest. Erst angenehm warm. Dann warnend warm. Dann 'warum riecht es nach verbrannten Haaren'-warm.",
       "icon": "/images/icons/equip-helm.png",
       "fixedStats": true,
       "stats": {
@@ -1144,8 +1144,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 33,
-      "desc": "Für jeden abgeschlagenen Kopf wächst ein neuer. Diese Rüstung macht dasselbe mit deiner Motivation.",
-      "flavorText": "Neun Köpfe. Neun Meinungen. Null Konsens. Klingt bekannt?",
+      "desc": "Für jeden abgeschlagenen Kopf wächst ein neuer. Die Rüstung hat dieses Prinzip verinnerlicht und repariert sich selbst. Leider immer leicht anders als vorher. Wie ein Praktikant, der die Datenbank 'repariert'.",
+      "flavorText": "Neun Köpfe. Neun Meinungen. Null Konsens. Eine Hydra ist im Grunde ein Meeting das beißen kann.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "fixedStats": true,
       "stats": {
@@ -1167,8 +1167,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 28,
-      "desc": "Zeigt dir was du wirklich kannst. Nicht was der Zweifel behauptet.",
-      "flavorText": "Der Zweifel flüstert. Dieses Amulett schreit zurück.",
+      "desc": "Das Auge blinzelt. Es sollte nicht blinzeln. Es ist ein Edelstein. Grimvar hat drei Gutachten eingeholt und alle sagen dasselbe: 'Das ist beunruhigend. Behalten Sie es trotzdem.'",
+      "flavorText": "Der Zweifel flüstert. Das Amulett schreit zurück. Die Nachbarn beschweren sich. Alle haben irgendwie recht.",
       "icon": "/images/icons/equip-amulet.png",
       "fixedStats": true,
       "stats": {
@@ -1190,8 +1190,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 30,
-      "desc": "Entflicht was der Entropy Weaver verwoben hat. Auch Kabel. Besonders Kabel.",
-      "flavorText": "Ordnung aus Chaos zu schaffen ist Magie. Kabel zu entwirren ist ein Wunder.",
+      "desc": "Entflicht was der Entropy Weaver verwoben hat. Auch Kabel. Besonders Kabel. Der Stab hat eine Selbsthilfegruppe für traumatisierte Kopfhörerkabel gegründet. Teilnahme ist verpflichtend.",
+      "flavorText": "Die Entropie hat eine einstweilige Verfügung gegen den Stab erwirkt. Der Stab ignoriert sie. Die Entropie ist nicht überrascht.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "fixedStats": true,
       "stats": {
@@ -1213,8 +1213,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 30,
-      "desc": "Geschmiedet aus dem Kern des Golems. Bewegt sich langsam. Aber er bewegt sich.",
-      "flavorText": "Fortschritt ist Fortschritt. Auch wenn er langsam ist. Besonders dann.",
+      "desc": "Geschmiedet aus dem Kern des Golems. Das Schild bewegt sich langsam. Sehr langsam. So langsam, dass man gelegentlich prüfen muss, ob man es tatsächlich hochgehoben hat oder ob es noch auf dem Boden liegt.",
+      "flavorText": "Grimvar nennt es sein 'Meisterwerk der Trägheit'. Er meint es als Kompliment. Wahrscheinlich.",
       "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "fixedStats": true,
       "stats": {
@@ -1236,8 +1236,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Der Seraph suchte Perfektion und wurde davon zerstört. Dieser Ring erinnert: gut genug IST genug.",
-      "flavorText": "Perfekt ist der Feind von fertig. Dieser Ring wählt fertig.",
+      "desc": "Der Seraph hat 200 Jahre an diesem Ring gearbeitet. Dann hat er ihn angesehen, 'Nein, die Symmetrie stimmt nicht' gesagt und von vorne angefangen. Siebzehn Mal. Dann ist er explodiert. Der Ring ist okay.",
+      "flavorText": "Auf der Innenseite steht 'v18 FINAL final WIRKLICH final'. Die Gravur ist leicht schief. Der Seraph rotiert im Grab.",
       "icon": "/images/icons/equip-ring.png",
       "fixedStats": true,
       "stats": {
@@ -1259,8 +1259,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Aus den Tiefen der Einsamkeit geborgen. Wer ihn trägt, spürt die Verbindung zu allen die gekämpft haben.",
-      "flavorText": "Allein ist man schnell. Zusammen ist man... weniger allein. Das reicht manchmal.",
+      "desc": "Geborgen aus den Tiefen, in denen der Leviathan 600 Jahre allein lebte. Nicht weil er musste. Sondern weil er jedem, der ihn besuchen wollte, gesagt hat 'Ich bin beschäftigt'. War er nicht.",
+      "flavorText": "Der Panzer riecht nach Meer und Reue. Zwei Gerüche, die erstaunlich ähnlich sind, wenn man genau hinhört. Riechen. Was auch immer.",
       "icon": "/images/icons/equip-armor.png",
       "fixedStats": true,
       "stats": {
@@ -1282,8 +1282,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Geschmiedet aus der zerbrochenen Krone der Apathie. Jeder Schlag ist ein Versprechen: Nie wieder gleichgültig.",
-      "flavorText": "Apathie ist leise. Diese Klinge nicht.",
+      "desc": "Geschmiedet aus der zerbrochenen Krone der Apathie. Die Klinge summt, wenn man zu lange still sitzt. Sie summt lauter, wenn man sie ignoriert. Sie hat die Geduld eines Rauchmelders mit niedrigem Batteriestand.",
+      "flavorText": "Grimvar hat sie geschmiedet und gesagt: 'Sie ist fertig.' Dann hat die Klinge gesummt. 'Fast fertig', korrigierte er. Sie summt immer noch.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "fixedStats": true,
       "stats": {

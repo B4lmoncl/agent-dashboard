@@ -65,6 +65,8 @@ function ReadCheck({ read }: { read: boolean }) {
 const EVENT_ICONS: Record<string, string> = {
   quest_complete: "◆", level_up: "▲", achievement: "★",
   gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "🔥",
+  world_boss_spawn: "⚔", world_boss_defeat: "⚔", dungeon_complete: "▼",
+  rift_complete: "◈", expedition_complete: "↗",
 };
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
@@ -84,6 +86,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const [processingReqId, setProcessingReqId] = useState<string | null>(null);
 
   const fetchFriends = useCallback(async () => {
     try {
@@ -159,6 +162,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   };
 
   const handleRequest = async (reqId: string, action: "accept" | "decline") => {
+    setProcessingReqId(reqId);
     try {
       await fetch(`/api/social/friend-request/${reqId}/${action}`, {
         method: "POST",
@@ -166,6 +170,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       });
       fetchFriends();
     } catch (e) { console.error('[social]', e); }
+    setProcessingReqId(null);
   };
 
   const [confirmRemove, setConfirmRemove] = useState<string | null>(null);
@@ -254,8 +259,8 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                   <span className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{req.fromName}</span>
                 </div>
                 <div className="flex gap-1.5">
-                  <button onClick={() => handleRequest(req.id, "accept")} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e" }}>Accept</button>
-                  <button onClick={() => handleRequest(req.id, "decline")} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444" }}>Decline</button>
+                  <button onClick={() => handleRequest(req.id, "accept")} disabled={processingReqId === req.id} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", opacity: processingReqId === req.id ? 0.5 : 1, cursor: processingReqId === req.id ? "not-allowed" : "pointer" }} title={processingReqId === req.id ? "Processing..." : "Accept friend request"}>{processingReqId === req.id ? "..." : "Accept"}</button>
+                  <button onClick={() => handleRequest(req.id, "decline")} disabled={processingReqId === req.id} className="btn-interactive text-xs px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", opacity: processingReqId === req.id ? 0.5 : 1, cursor: processingReqId === req.id ? "not-allowed" : "pointer" }} title={processingReqId === req.id ? "Processing..." : "Decline friend request"}>{processingReqId === req.id ? "..." : "Decline"}</button>
                 </div>
               </div>
             ))}
@@ -447,7 +452,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
                   }}
                 >
                   <p className="text-xs" style={{ color: "#e8e8e8" }}>{msg.text}</p>
-                  <p className="text-xs text-w15 mt-0.5 text-right">
+                  <p className="text-xs text-w15 mt-0.5 text-right" title={new Date(msg.createdAt).toLocaleString("de-DE")}>
                     {timeAgo(msg.createdAt)}
                     {isMine && <ReadCheck read={msg.read} />}
                   </p>
@@ -1246,6 +1251,10 @@ const EVENT_NAV: Record<string, { view: string; tooltip: string }> = {
   achievement: { view: "honors", tooltip: "View Honors" },
   gacha_pull: { view: "gacha", tooltip: "View Vault of Fate" },
   rare_drop: { view: "character", tooltip: "View Character" },
+  world_boss_spawn: { view: "worldBoss", tooltip: "View World Boss" },
+  world_boss_defeat: { view: "worldBoss", tooltip: "View World Boss" },
+  dungeon_complete: { view: "dungeons", tooltip: "View Dungeons" },
+  rift_complete: { view: "rift", tooltip: "View The Rift" },
   streak_milestone: { view: "rituals", tooltip: "View Rituals" },
 };
 
@@ -1323,7 +1332,22 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             descriptionNode = <>completed a trade{d.summary && <> — <span className="text-w30">{d.summary}</span></>}</>;
             break;
           case "streak_milestone":
-            descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak</>;
+            descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak{d.label ? <> — <span className="text-w30">{d.label}</span></> : ""}</>;
+            break;
+          case "world_boss_spawn":
+            descriptionNode = <><span className="font-semibold" style={{ color: "#ff4444" }}>{d.boss || "A World Boss"}</span> has appeared!</>;
+            break;
+          case "world_boss_defeat":
+            descriptionNode = <>helped defeat <span className="font-semibold" style={{ color: "#ff4444" }}>{d.boss || "a World Boss"}</span>{d.contributors ? <> with <span className="text-w40">{d.contributors}</span> others</> : ""}</>;
+            break;
+          case "dungeon_complete":
+            descriptionNode = <>{String(d.success) === "true" ? "conquered" : "survived"} <span className="font-semibold" style={{ color: rarityColor }}>{d.dungeon || "a dungeon"}</span>{d.tier ? <> <span className="text-w30">({d.tier})</span></> : ""}</>;
+            break;
+          case "rift_complete":
+            descriptionNode = <>cleared <span className="font-semibold" style={{ color: rarityColor }}>{d.label || `${d.tier || "a"} Rift`}</span>{d.stages ? <> — <span className="text-w30">{d.stages} stages</span></> : ""}</>;
+            break;
+          case "expedition_complete":
+            descriptionNode = <><span className="text-w40">{d.companion || "Companion"}</span> returned from <span className="font-semibold" style={{ color: "#22c55e" }}>{d.expedition || "an expedition"}</span></>;
             break;
           default:
             descriptionNode = <>{(event.type as string).replace(/_/g, " ")}</>;

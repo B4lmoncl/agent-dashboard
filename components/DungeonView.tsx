@@ -827,9 +827,14 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
             {/* Friends list */}
             <div>
-              <p className="text-xs font-semibold text-w40 mb-2">Select Friends ({selectedFriends.length}/{maxInvites})</p>
+              <p className="text-xs font-semibold text-w40 mb-1">Select Friends ({selectedFriends.length}/{maxInvites})</p>
+              <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.2)" }}>Need at least {selectedDungeonData.minPlayers - 1} friend{selectedDungeonData.minPlayers - 1 !== 1 ? "s" : ""} to start the dungeon</p>
               {friendsLoading ? (
-                <div className="text-xs text-w20 py-4 text-center">Loading friends...</div>
+                <div className="space-y-1.5 py-2">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="skeleton-pulse rounded-lg" style={{ height: 42, background: "rgba(255,255,255,0.03)" }} />
+                  ))}
+                </div>
               ) : friends.length === 0 ? (
                 <div className="text-xs text-w20 py-4 text-center">No friends found. Add friends in The Breakaway first.</div>
               ) : (
@@ -845,8 +850,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                         title={disabled ? "Maximum invites reached" : selected ? "Remove from party" : "Add to party"}
                         className="btn-interactive w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left"
                         style={{
-                          background: selected ? `${selectedDungeonData.accent}12` : "rgba(255,255,255,0.02)",
-                          border: `1px solid ${selected ? `${selectedDungeonData.accent}40` : "rgba(255,255,255,0.06)"}`,
+                          background: selected ? "rgba(34,197,94,0.08)" : "rgba(255,255,255,0.02)",
+                          border: `1px solid ${selected ? "rgba(34,197,94,0.35)" : "rgba(255,255,255,0.06)"}`,
+                          boxShadow: selected ? "0 0 8px rgba(34,197,94,0.1)" : "none",
                           opacity: disabled ? 0.4 : 1,
                           cursor: disabled ? "not-allowed" : "pointer",
                         }}
@@ -859,12 +865,12 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                           {f.avatar || f.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="flex-1">
-                          <p className="text-xs font-semibold" style={{ color: selected ? selectedDungeonData.accent : "rgba(255,255,255,0.6)" }}>{f.name}</p>
+                          <p className="text-xs font-semibold" style={{ color: selected ? "#22c55e" : "rgba(255,255,255,0.6)" }}>{f.name}</p>
                           <p className="text-xs text-w20">Lv.{f.level} {f.isOnline ? "Online" : ""}</p>
                         </div>
                         <div className="w-4 h-4 rounded border flex items-center justify-center" style={{
-                          background: selected ? selectedDungeonData.accent : "transparent",
-                          borderColor: selected ? selectedDungeonData.accent : "rgba(255,255,255,0.15)",
+                          background: selected ? "#22c55e" : "transparent",
+                          borderColor: selected ? "#22c55e" : "rgba(255,255,255,0.15)",
                         }}>
                           {selected && <span style={{ color: "#000", fontSize: 12, fontWeight: 800 }}>&#10003;</span>}
                         </div>

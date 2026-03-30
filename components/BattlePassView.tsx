@@ -149,7 +149,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
       }}>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            {config.seasonIcon?.startsWith("/") ? <img src={config.seasonIcon} alt="" width={40} height={40} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-3xl">{config.seasonIcon}</span>}
+            {config.seasonIcon?.startsWith("/") ? <img src={config.seasonIcon} alt="" width={96} height={96} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-3xl">{config.seasonIcon}</span>}
             <div>
               <Tip k="battle_pass" heading>
                 <h2 className="text-lg font-bold" style={{ color: config.seasonAccent }}>{config.seasonName}</h2>
@@ -217,6 +217,29 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           </button>
         )}
       </div>
+
+      {/* Season end warning */}
+      {daysLeft <= 7 && daysLeft > 0 && (
+        <div className="rounded-lg px-4 py-3 flex items-center gap-3 tab-content-enter" style={{
+          background: "rgba(239,68,68,0.08)",
+          border: "1px solid rgba(239,68,68,0.25)",
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div>
+            <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Season ends in {daysLeft} day{daysLeft !== 1 ? "s" : ""}!</p>
+            <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Unclaimed rewards will be lost. Claim them before the season resets.</p>
+          </div>
+        </div>
+      )}
+      {daysLeft === 0 && (
+        <div className="rounded-lg px-4 py-3 flex items-center gap-3 tab-content-enter" style={{
+          background: "rgba(239,68,68,0.12)",
+          border: "1px solid rgba(239,68,68,0.35)",
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Season ends today! Claim all remaining rewards now.</p>
+        </div>
+      )}
 
       {/* Messages */}
       {message && (
