@@ -959,7 +959,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   u._craftsCompleted = (u._craftsCompleted || 0) + effectiveCount;
   if (isMoonlightActive()) u._moonlightCrafts = (u._moonlightCrafts || 0) + effectiveCount;
   // Check achievements after crafting (profession skill, crafts_completed, moonlight_crafts)
-  try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); } catch { /* optional */ }
+  try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
 
   // Battle Pass XP
   try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'crafting'); } catch (e) { console.warn('[bp-xp] crafting:', e.message); }

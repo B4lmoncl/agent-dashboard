@@ -300,7 +300,7 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
     saveGachaState();
 
     // Check achievements after gacha pull
-    try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); } catch { /* optional */ }
+    try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
 
     // Activity feed for epic+ pulls
     if (['epic', 'legendary'].includes(result.item.rarity)) {
