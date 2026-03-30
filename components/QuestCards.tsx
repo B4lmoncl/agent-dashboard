@@ -65,7 +65,6 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
             )}
           </div>
         </div>
-        <PriorityBadge priority={quest.priority} />
         <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
           {quest.completedAt ? timeAgo(quest.completedAt) : "—"}
         </span>
