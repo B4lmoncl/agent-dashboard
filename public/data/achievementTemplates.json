@@ -18,7 +18,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 quest."
+      "desc": "Erste Quest. Der Anfang einer langen Reihe fragwürdiger Entscheidungen."
     },
     {
       "id": "apprentice",
@@ -37,7 +37,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 10 quests."
+      "desc": "10 Quests. Die ersten drei waren aufregend, die nächsten fünf Routine, die letzten zwei 'na gut, bin eh schon hier'."
     },
     {
       "id": "knight",
@@ -56,7 +56,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 50 quests."
+      "desc": "50 Quests. Irgendwann hört man auf zu zählen und fängt an zu funktionieren."
     },
     {
       "id": "legend",
@@ -75,7 +75,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 100 quests."
+      "desc": "100 Quests. Das ist keine Leistung mehr, das ist ein Lebensstil."
     },
     {
       "id": "week_warrior",
@@ -94,7 +94,7 @@
       "category": "streak",
       "hidden": false,
       "points": 5,
-      "desc": "Maintain a 7-day streak."
+      "desc": "7 Tage am Stück. Noch nennt man das Disziplin. Bald nennt man es Gewohnheit."
     },
     {
       "id": "monthly_champ",
@@ -113,7 +113,7 @@
       "category": "streak",
       "hidden": false,
       "points": 50,
-      "desc": "Maintain a 30-day streak."
+      "desc": "30 Tage Streak. Ein ganzer Monat. Deine Freunde machen sich langsam Sorgen."
     },
     {
       "id": "lightning",
@@ -132,7 +132,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 3 quests in a single day."
+      "desc": "3 Quests an einem Tag. Entweder hochmotiviert oder der Kalender war leer."
     },
     {
       "id": "all_trades",
@@ -151,7 +151,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete quests of 5 different types."
+      "desc": "Alle 5 Quest-Typen durch. Nicht vielseitig, nur verzweifelt."
     },
     {
       "id": "boss_slayer",
@@ -170,7 +170,7 @@
       "category": "boss",
       "hidden": false,
       "points": 25,
-      "desc": "Defeat 1 world boss."
+      "desc": "Erster Weltboss. 'Besiegt' ist großzügig. Du warst dabei."
     },
     {
       "id": "ember_sprite",
@@ -190,7 +190,7 @@
       "category": "companion",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 development quests."
+      "desc": "10 Dev-Quests. Der Code kompiliert. Meistens."
     },
     {
       "id": "lore_owl",
@@ -210,7 +210,7 @@
       "category": "companion",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 5 learning quests."
+      "desc": "5 Lern-Quests. Du weißt jetzt mehr als vorher. Ob das hilft, steht auf einem anderen Blatt."
     },
     {
       "id": "gear_golem",
@@ -229,7 +229,7 @@
       "category": "companion",
       "hidden": false,
       "points": 25,
-      "desc": "Earn 300 total XP."
+      "desc": "300 XP. Der Golem nickt anerkennend. Er nickt bei allem. Er ist ein Golem."
     },
     {
       "id": "challenge_coder",
@@ -248,7 +248,7 @@
       "category": "challenge",
       "hidden": false,
       "points": 25,
-      "desc": "Complete the 30-Day Code Sprint"
+      "desc": "30 Tage Code Sprint. Tag 1: Euphorie. Tag 15: Kaffee. Tag 29: Leere. Tag 30: geschafft."
     },
     {
       "id": "challenge_learner",
@@ -267,7 +267,7 @@
       "category": "challenge",
       "hidden": false,
       "points": 25,
-      "desc": "Complete the Learning Marathon"
+      "desc": "Lern-Marathon geschafft. Wissen, das du in keinem Bewerbungsgespräch erwähnen wirst."
     },
     {
       "id": "night_owl",
@@ -287,7 +287,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete a quest between 23:00 and 05:00"
+      "desc": "Quest zwischen 23 und 5 Uhr. Schlafrhythmus ist ein Konzept, kein Gesetz."
     },
     {
       "id": "speed_runner",
@@ -306,7 +306,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete a quest within 1 hour of claiming it"
+      "desc": "Quest in unter einer Stunde. Entweder beeindruckend schnell oder beunruhigend einfach."
     },
     {
       "id": "social_butterfly",
@@ -326,7 +326,7 @@
       "category": "variety",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 5 social quests."
+      "desc": "5 Social-Quests. Du hast mit Menschen interagiert. Freiwillig. Fünfmal."
     },
     {
       "id": "scholar",
@@ -346,7 +346,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 learning quests."
+      "desc": "10 Lern-Quests. Dein Gehirn hat jetzt einen eigenen Bibliotheksausweis."
     },
     {
       "id": "gym_rat",
@@ -366,7 +366,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 10 fitness quests."
+      "desc": "10 Fitness-Quests. Dein Körper ist verwirrt, aber kooperativ."
     },
     {
       "id": "chain_master",
@@ -385,7 +385,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 1 quest chain."
+      "desc": "Erste Quest-Kette. Drei Aufgaben in einem Trenchcoat."
     },
     {
       "id": "campaign_victor",
@@ -404,7 +404,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 1 campaign."
+      "desc": "Kampagne abgeschlossen. Die Geschichte war genauso überrascht wie du."
     },
     {
       "id": "npc_whisperer",
@@ -422,7 +422,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Have all agents online."
+      "desc": "Alle Agenten gleichzeitig online. Ein seltenes astronomisches Ereignis."
     },
     {
       "id": "forge_novice",
@@ -442,7 +442,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 development quests."
+      "desc": "Erste Dev-Quest. Du hast etwas gebaut. Ob es funktioniert, ist philosophisch."
     },
     {
       "id": "arena_first",
@@ -462,7 +462,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 fitness quests."
+      "desc": "Erste Fitness-Quest. Dein Körper wollte eine Erklärung. Du hast keine gegeben."
     },
     {
       "id": "scholar_first",
@@ -482,7 +482,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 1 learning quests."
+      "desc": "Erste Lern-Quest. Die Schriftrolle war enttäuscht, aber du hast sie trotzdem geöffnet."
     },
     {
       "id": "ten_quests",
@@ -501,7 +501,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete 25 quests."
+      "desc": "25 Quests. Offiziell zu weit gegangen, um umzukehren."
     },
     {
       "id": "fifty_quests",
@@ -520,7 +520,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 75 quests."
+      "desc": "75 Quests. Drei Viertel der Hundert. Die letzten 25 fühlen sich wie 75 an."
     },
     {
       "id": "coop_hero",
@@ -539,7 +539,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 1 co-op quest."
+      "desc": "Erste Co-op Quest. Beide haben überlebt. Erstaunlich."
     },
     {
       "id": "early_bird",
@@ -559,7 +559,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete 3 quests before 08:00"
+      "desc": "3 Quests vor 8 Uhr morgens. Die Sonne ist kaum auf und du löst schon Probleme."
     },
     {
       "id": "forbidden_code",
@@ -578,7 +578,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 10,
-      "desc": "Complete a quest on a Sunday"
+      "desc": "Eine Quest am Sonntag. Gott ruhte am siebten Tag. Du offensichtlich nicht."
     },
     {
       "id": "easter_egg",
@@ -596,7 +596,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Found something secret..."
+      "desc": "Etwas Verstecktes gefunden. Manche Dinge sind aus gutem Grund versteckt."
     },
     {
       "id": "perfectionist",
@@ -615,7 +615,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Complete 150 quests."
+      "desc": "150 Quests. Perfektion ist keine Eigenschaft, sondern eine Diagnose."
     },
     {
       "id": "no_rest",
@@ -634,7 +634,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Maintain a 60-day streak."
+      "desc": "60 Tage Streak. Zwei Monate. Du hast vergessen, wie Wochenenden sich anfühlen."
     },
     {
       "id": "one_ring",
@@ -1506,7 +1506,7 @@
     {
       "id": "chain_boss_bronze",
       "name": "Boss Slayer: Bronze",
-      "description": "1 World Boss besiegt",
+      "description": "Ein Weltboss. Du warst technisch gesehen beteiligt. Dein Beitrag wird großzügig als 'anwesend' protokolliert.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1527,7 +1527,7 @@
     {
       "id": "chain_boss_silver",
       "name": "Boss Slayer: Silver",
-      "description": "5 World Bosses besiegt",
+      "description": "5 Weltbosse. Du hast ein Muster entwickelt: Auftauchen, Schaden machen, Beute einsammeln, verschwinden.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1549,7 +1549,7 @@
     {
       "id": "chain_boss_gold",
       "name": "Boss Slayer: Gold",
-      "description": "15 World Bosses besiegt",
+      "description": "15 Weltbosse. Die Bosse haben inzwischen eine Selbsthilfegruppe gegründet. Wegen dir.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1571,7 +1571,7 @@
     {
       "id": "chain_boss_legend",
       "name": "Boss Slayer: Legendary",
-      "description": "50 World Bosses besiegt",
+      "description": "50 Weltbosse. Du bist der Grund, warum Bosse einen Gewerkschaftsvertreter haben.",
       "icon": null,
       "condition": {
         "type": "boss_defeated",
@@ -1592,7 +1592,7 @@
     {
       "id": "chain_craft_bronze",
       "name": "Master Crafter: Bronze",
-      "description": "Profession Skill 50",
+      "description": "Skill 50. Du kannst jetzt Dinge herstellen, die nicht sofort auseinanderfallen. Niedrige Latte, aber immerhin.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1613,7 +1613,7 @@
     {
       "id": "chain_craft_silver",
       "name": "Master Crafter: Silver",
-      "description": "Profession Skill 150",
+      "description": "Skill 150. Halbzeit. Die NPCs lassen dich jetzt an die guten Werkzeuge.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1635,7 +1635,7 @@
     {
       "id": "chain_craft_gold",
       "name": "Master Crafter: Gold",
-      "description": "Profession Skill 250",
+      "description": "Skill 250. Du riechst permanent nach Kohle, Kräutern oder beidem. Dein Companion hält Abstand.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
@@ -1657,7 +1657,7 @@
     {
       "id": "chain_craft_legend",
       "name": "Master Crafter: Legendary",
-      "description": "Profession Skill 300",
+      "description": "Skill 300. Maximum. Du hast dein Handwerk gemeistert. Grimvar weint leise vor Stolz. Oder Rauch. Schwer zu sagen.",
       "icon": null,
       "condition": {
         "type": "profession_skill",
