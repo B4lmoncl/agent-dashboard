@@ -145,6 +145,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -193,6 +198,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
               "min": 1,
               "max": 3
             }
@@ -290,6 +300,11 @@
               "stat": "glueck",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -384,6 +399,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
               "min": 1,
               "max": 3
             }
@@ -483,6 +503,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -579,6 +604,11 @@
               "stat": "weisheit",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -673,6 +703,11 @@
             },
             {
               "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
               "min": 1,
               "max": 3
             }
@@ -836,6 +871,11 @@
               "stat": "ausdauer",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -884,6 +924,11 @@
             },
             {
               "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
               "min": 2,
               "max": 5
             }
@@ -1213,6 +1258,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -3447,6 +3497,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -3501,6 +3556,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -3553,6 +3613,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
               "min": 1,
               "max": 3
             }
@@ -3610,6 +3675,11 @@
               "stat": "weisheit",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -3663,6 +3733,11 @@
             },
             {
               "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
               "min": 1,
               "max": 3
             }
@@ -3769,6 +3844,11 @@
               "stat": "ausdauer",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -3821,6 +3901,11 @@
             },
             {
               "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
               "min": 1,
               "max": 3
             }
@@ -3878,6 +3963,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -3932,6 +4022,11 @@
               "stat": "ausdauer",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -3984,6 +4079,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -4040,6 +4140,11 @@
               "stat": "kraft",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -4094,6 +4199,11 @@
               "stat": "kraft",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -4146,6 +4256,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -4203,6 +4318,11 @@
               "stat": "kraft",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -4256,6 +4376,11 @@
             },
             {
               "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
               "min": 2,
               "max": 5
             }
@@ -4313,6 +4438,11 @@
               "stat": "weisheit",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -4366,6 +4496,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -4422,6 +4557,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -4474,6 +4614,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -4531,6 +4676,11 @@
               "stat": "kraft",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -4584,6 +4734,11 @@
             },
             {
               "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
               "min": 2,
               "max": 5
             }
@@ -4688,6 +4843,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
               "min": 3,
               "max": 6
             }
@@ -4803,6 +4963,11 @@
               "stat": "kraft",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -4914,6 +5079,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -5031,6 +5201,11 @@
               "stat": "weisheit",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -5146,6 +5321,11 @@
               "stat": "glueck",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -5257,6 +5437,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -5523,6 +5708,11 @@
               "stat": "ausdauer",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -5760,6 +5950,11 @@
               "stat": "kraft",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -5815,6 +6010,11 @@
               "stat": "ausdauer",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -5867,6 +6067,11 @@
             },
             {
               "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
               "min": 5,
               "max": 8
             }
@@ -6360,6 +6565,11 @@
               "stat": "glueck",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -6474,6 +6684,11 @@
               "stat": "weisheit",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -6527,6 +6742,11 @@
             },
             {
               "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
               "min": 5,
               "max": 8
             }
@@ -6643,6 +6863,11 @@
               "stat": "glueck",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -6696,6 +6921,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
               "min": 2,
               "max": 5
             }
@@ -6752,6 +6982,11 @@
               "stat": "weisheit",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -6804,6 +7039,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -6861,6 +7101,11 @@
               "stat": "weisheit",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -6916,6 +7161,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -6968,6 +7218,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -7382,6 +7637,11 @@
               "stat": "glueck",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -7436,6 +7696,11 @@
               "stat": "weisheit",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -7488,6 +7753,11 @@
             },
             {
               "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
               "min": 3,
               "max": 6
             }
@@ -7545,6 +7815,11 @@
               "stat": "weisheit",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -7600,6 +7875,11 @@
               "stat": "weisheit",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -7652,6 +7932,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -8691,6 +8976,11 @@
               "stat": "glueck",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -8743,6 +9033,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -8800,6 +9095,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -8853,6 +9153,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -9088,6 +9393,11 @@
               "stat": "weisheit",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -9140,6 +9450,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
               "min": 5,
               "max": 8
             }
@@ -9818,6 +10133,11 @@
               "stat": "ausdauer",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -9872,6 +10192,11 @@
               "stat": "kraft",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -9924,6 +10249,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
               "min": 3,
               "max": 6
             }
@@ -9981,6 +10311,11 @@
               "stat": "kraft",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -10155,6 +10490,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -10209,6 +10549,11 @@
               "stat": "ausdauer",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -10261,6 +10606,11 @@
             },
             {
               "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -10318,6 +10668,11 @@
               "stat": "ausdauer",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -10492,6 +10847,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -10546,6 +10906,11 @@
               "stat": "kraft",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -10598,6 +10963,11 @@
             },
             {
               "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
               "min": 3,
               "max": 6
             }
@@ -10655,6 +11025,11 @@
               "stat": "kraft",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -10829,6 +11204,11 @@
               "stat": "weisheit",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -10883,6 +11263,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -10935,6 +11320,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -10992,6 +11382,11 @@
               "stat": "ausdauer",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -11166,6 +11561,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -11220,6 +11620,11 @@
               "stat": "weisheit",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -11273,6 +11678,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -11329,6 +11739,11 @@
               "stat": "ausdauer",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -11384,6 +11799,11 @@
               "stat": "kraft",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -11438,6 +11858,11 @@
               "stat": "ausdauer",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -11671,6 +12096,11 @@
               "stat": "weisheit",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -11726,6 +12156,11 @@
               "stat": "kraft",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -11899,6 +12334,11 @@
               "stat": "glueck",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -11954,6 +12394,11 @@
               "stat": "weisheit",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -12008,6 +12453,11 @@
               "stat": "glueck",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -12060,6 +12510,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
               "min": 1,
               "max": 3
             }
@@ -12117,6 +12572,11 @@
               "stat": "kraft",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -12169,6 +12629,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
               "min": 1,
               "max": 3
             }
@@ -12226,6 +12691,11 @@
               "stat": "weisheit",
               "min": 2,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
@@ -12278,6 +12748,11 @@
             },
             {
               "stat": "glueck",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
               "min": 2,
               "max": 5
             }
@@ -12335,6 +12810,11 @@
               "stat": "glueck",
               "min": 3,
               "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -12387,6 +12867,11 @@
             },
             {
               "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
               "min": 3,
               "max": 6
             }
@@ -12444,6 +12929,11 @@
               "stat": "kraft",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -12498,6 +12988,11 @@
               "stat": "weisheit",
               "min": 3,
               "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -13505,6 +14000,11 @@
               "stat": "glueck",
               "min": 5,
               "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
             }
           ]
         },
@@ -13618,6 +14118,11 @@
             },
             {
               "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
               "min": 5,
               "max": 8
             }
@@ -13791,6 +14296,11 @@
             },
             {
               "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
               "min": 5,
               "max": 8
             }
@@ -15307,6 +15817,11 @@
               "stat": "ausdauer",
               "min": 1,
               "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -15416,6 +15931,11 @@
               "stat": "glueck",
               "min": 2,
               "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
             }
           ]
         },
