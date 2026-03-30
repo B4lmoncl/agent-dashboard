@@ -146,7 +146,7 @@ router.post('/api/feedback', (req, res) => {
     id: `fb-${Date.now()}`,
     elementPath: elementPath || 'unknown',
     type: type === 'bug' ? 'bug' : 'feedback',
-    text: text.trim().slice(0, 2000),
+    text: text.trim().slice(0, 2000).replace(/</g, '&lt;').replace(/>/g, '&gt;'),
     userId: userId || 'anonymous',
     timestamp: timestamp || new Date().toISOString(),
     resolved: false,
