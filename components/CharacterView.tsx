@@ -1256,7 +1256,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 paddingLeft: 26,
               }}
             />
-            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.25)", pointerEvents: "none" }}>🔍</span>
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.25)", pointerEvents: "none" }}>◇</span>
             {invSearch && (
               <button
                 onClick={() => setInvSearch("")}
