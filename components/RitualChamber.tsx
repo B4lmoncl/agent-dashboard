@@ -631,6 +631,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.35)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
+                      title={canExtend ? "Extend ritual duration" : "Select a longer tier to extend"}
                       onClick={async () => {
                         if (!canExtend || !selectedTier) return;
                         try {
