@@ -555,8 +555,11 @@ router.post('/api/world-boss/spawn', requireMasterKey, (req, res) => {
   const current = getActiveBoss();
   if (current) {
     current.expired = true;
-    const { contributions, ...archiveSafe } = current;
-    worldBossState.history.push(archiveSafe);
+    const archived = { ...current, contributorCount: Object.keys(current.contributions).length };
+    delete archived.contributions;
+    delete archived.rewardsClaimed;
+    worldBossState.history.push(archived);
+    if (worldBossState.history.length > 50) worldBossState.history = worldBossState.history.slice(-50);
     worldBossState.activeBoss = null;
   }
 
