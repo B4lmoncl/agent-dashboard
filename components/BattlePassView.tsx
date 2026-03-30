@@ -209,7 +209,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
               } catch { setMessage({ type: "error", text: "Network error" }); }
               setClaimingAll(false);
             }}
-            className="text-xs px-3 py-1.5 rounded-lg font-semibold mt-2"
+            className="text-xs px-3 py-1.5 rounded-lg font-semibold mt-2 btn-press"
             style={{ background: claimingAll ? "rgba(255,255,255,0.03)" : "rgba(34,197,94,0.1)", color: claimingAll ? "rgba(255,255,255,0.2)" : "#22c55e", border: `1px solid ${claimingAll ? "rgba(255,255,255,0.06)" : "rgba(34,197,94,0.25)"}`, cursor: claimingAll ? "not-allowed" : "pointer" }}
             title={claimingAll ? "Claiming..." : `Claim all ${unclaimedCount} unclaimed rewards`}
           >
