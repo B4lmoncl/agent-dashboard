@@ -66,6 +66,7 @@ import {
 } from "@/app/config";
 import type { Floor } from "@/app/config";
 import { getAuthHeaders, setAccessToken } from "@/lib/auth-client";
+import { loadBalance } from "@/lib/balance-cache";
 import { useQuestActions } from "@/hooks/useQuestActions";
 import professionsData from "@/public/data/professions.json";
 
@@ -630,8 +631,9 @@ export default function Dashboard() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerName]);
 
-  // Fetch class list once on mount
+  // Fetch class list + balance config once on mount
   useEffect(() => {
+    loadBalance(); // Pre-load balance constants for tooltips
     fetch("/api/classes")
       .then(r => r.ok ? r.json() : [])
       .then(setClassesList)
