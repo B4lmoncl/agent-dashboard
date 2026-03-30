@@ -173,7 +173,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
-  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
+  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "reagents" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
+  const [reagentBuyCount, setReagentBuyCount] = useState<Record<string, number>>({});
+  const [buyingReagent, setBuyingReagent] = useState<string | null>(null);
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
@@ -1476,6 +1478,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {(() => {
               const tabs: { key: typeof npcModalTab; label: string; color: string }[] = [
                 { key: "recipes", label: "Recipes", color: selectedNpc.color },
+                { key: "reagents", label: "Reagents", color: "#f59e0b" },
                 { key: "trainer", label: "Trainer", color: "#fbbf24" },
               ];
               if (selectedNpc.id === "schmied") {
@@ -2325,6 +2328,81 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       {enchantResult}
                     </div>
                   )}
+                </div>
+              );
+            })()}
+
+            {/* ─── Tab: Reagents (Buy vendor reagents from trainer) ────────── */}
+            {(npcModalTab as string) === "reagents" && (() => {
+              if (!selectedNpc.chosen) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-sm text-w30">Wähle diesen Beruf zuerst um Reagents zu kaufen.</p></div>;
+              const profReagents = vendorReagentDefs.filter(r => r.professions?.includes(selectedNpc.id));
+              if (profReagents.length === 0) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-xs text-w25">Keine Reagents für diesen Beruf verfügbar.</p></div>;
+              const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+              return (
+                <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-w30">Vendor Reagents — {selectedNpc.npcName}</p>
+                    <p className="text-xs font-mono" style={{ color: "#fbbf24" }}>{Math.floor(gold).toLocaleString()}g</p>
+                  </div>
+                  <p className="text-xs text-w20 mb-3">Kaufe Verbrauchsmaterialien die du zum Craften brauchst. Werden wie normale Materialien im Inventar gelagert.</p>
+                  <div className="space-y-2">
+                    {profReagents.map(reagent => {
+                      const count = reagentBuyCount[reagent.id] || 1;
+                      const totalCost = reagent.price * count;
+                      const canAfford = gold >= totalCost;
+                      const owned = materials[reagent.id] || 0;
+                      return (
+                        <div key={reagent.id} className="flex items-center gap-3 rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <div className="w-8 h-8 rounded flex-shrink-0 flex items-center justify-center" style={{ background: "rgba(255,255,255,0.05)" }}>
+                            {reagent.icon ? <img src={reagent.icon} alt="" className="w-6 h-6 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs text-w20">◆</span>}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-w60">{reagent.name}</p>
+                            <p className="text-xs text-w20">{reagent.desc}</p>
+                            <p className="text-xs mt-0.5" style={{ color: "#fbbf24" }}>{reagent.price}g pro Stück · Du hast: <span className="font-mono">{owned}</span></p>
+                          </div>
+                          <div className="flex items-center gap-1.5 flex-shrink-0">
+                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, (prev[reagent.id] || 1) - 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>−</button>
+                            <input type="number" min={1} max={100} value={count} onChange={e => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, Math.min(100, parseInt(e.target.value) || 1)) }))} className="w-12 text-center text-xs font-mono rounded py-1 input-dark" style={{ border: "1px solid rgba(255,255,255,0.1)" }} />
+                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.min(100, (prev[reagent.id] || 1) + 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>+</button>
+                          </div>
+                          <button
+                            onClick={async () => {
+                              if (buyingReagent || !canAfford) return;
+                              setBuyingReagent(reagent.id);
+                              try {
+                                const r = await fetch("/api/professions/buy-reagent", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                  body: JSON.stringify({ reagentId: reagent.id, count }),
+                                });
+                                const data = await r.json();
+                                if (r.ok) {
+                                  setCurrencies(prev => ({ ...prev, gold: (prev.gold || 0) - totalCost }));
+                                  setMaterials(prev => ({ ...prev, [reagent.id]: (prev[reagent.id] || 0) + count }));
+                                } else {
+                                  setCraftResult(data.error || "Kauf fehlgeschlagen");
+                                }
+                              } catch { setCraftResult("Netzwerkfehler"); }
+                              setBuyingReagent(null);
+                            }}
+                            disabled={!canAfford || !!buyingReagent}
+                            className="btn-press text-xs px-3 py-2 rounded-lg font-semibold flex-shrink-0"
+                            style={{
+                              background: canAfford ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
+                              color: canAfford ? "#fbbf24" : "rgba(255,255,255,0.2)",
+                              border: `1px solid ${canAfford ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
+                              cursor: canAfford && !buyingReagent ? "pointer" : "not-allowed",
+                              opacity: buyingReagent === reagent.id ? 0.5 : 1,
+                            }}
+                            title={!canAfford ? `Nicht genug Gold (brauchst ${totalCost}g)` : `${count}× ${reagent.name} für ${totalCost}g kaufen`}
+                          >
+                            {buyingReagent === reagent.id ? "..." : `${totalCost}g`}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })()}
