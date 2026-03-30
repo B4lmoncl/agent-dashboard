@@ -109,6 +109,7 @@
 - [x] Atomic writes for all critical state files (users, quests, social, world-boss, dungeons, expedition, appState, npcState)
 - [x] Concurrency locks on all mutation endpoints (createPlayerLock pattern)
 - [x] All tooltip formulas verified against backend (Forge Temp, stats, streak, hoarding, gacha)
+- [ ] **REMOVE PRIORITY SYSTEM** — Quest priority (Low/Med/High) soll entfernt werden. Quests verwenden nur noch Rarity. ~139 Stellen in 30 Dateien. Großer Refactor.
 - [ ] page.tsx monolith (~2350 lines) — extract into feature modules
 - [x] Frontend tooltips consume /api/config balance data via getBalance() (GameTooltip, GachaView, TutorialModal, DashboardModals, ChallengesView)
 - [ ] Missing JSON Schema validation for template files
