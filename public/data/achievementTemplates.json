@@ -2316,7 +2316,7 @@
       "id": "hidden_paragon",
       "name": "Paragon der Halle",
       "icon": "/images/icons/ach-paragon.png",
-      "desc": "Reach Paragon standing with any faction.",
+      "desc": "Paragon bei einer Fraktion. Jenseits von Verehrt. Sie haben deinen Geburtstag im Kalender.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
