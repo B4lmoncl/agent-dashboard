@@ -9101,7 +9101,7 @@
       "cooldownMinutes": 0,
       "description": "Zwei Stücke Fleisch, ein Messer, null Unfälle. Meistens.",
       "trainerCost": 10,
-      "desc": ""
+      "desc": "Zwei Stücke Fleisch, ein Messer, null Unfälle. Heute. Bruna führt Buch."
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-staerke",
@@ -9122,7 +9122,7 @@
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Stärke.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Macht stärker. Oder zumindest satter. Bruna sagt, beides sei dasselbe."
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-weisheit",
@@ -9143,7 +9143,7 @@
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Weisheit.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Essen das klüger macht. Die Zutaten sind geheim. Das Geheimnis ist Knoblauch."
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-gluecks",
@@ -9164,7 +9164,7 @@
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit des Glücks.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Glücksmahlzeit. Die Farbe ist verdächtig. Der Geschmack beruhigend. Nicht umgekehrt."
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-ausdauer",
@@ -9185,7 +9185,7 @@
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Ausdauer.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Hält lange satt. Und länger wach. Bruna empfiehlt es nicht vor dem Schlafen."
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-eile",
@@ -9206,7 +9206,7 @@
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Eile.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schnelles Essen für schnelle Leute. Bruna hat es in drei Minuten gekocht. Es wirkt sechs."
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-fokus",
@@ -9227,7 +9227,7 @@
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit des Fokus.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Fokus-Mahlzeit. Man isst konzentrierter danach. Bruna isst immer konzentriert. Es ist ihr Grundzustand."
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-staerke",
@@ -9249,7 +9249,7 @@
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Stärke.",
       "trainerCost": 68,
-      "desc": ""
+      "desc": "Deftig und stark. Wie Bruna. Und wie ihr Eintopf. Und wie ihre Meinung über Salat."
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-weisheit",
@@ -9271,7 +9271,7 @@
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Weisheit.",
       "trainerCost": 73,
-      "desc": ""
+      "desc": "Deftige Weisheit. Klingt wie ein Widerspruch. Schmeckt wie Wahrheit."
     },
     {
       "id": "recipe-koch-deftigemahlzeit-des-gluecks",
@@ -9293,7 +9293,7 @@
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit des Glücks.",
       "trainerCost": 78,
-      "desc": ""
+      "desc": "Deftig und glücklich. Bruna sagt, Glück beginne im Magen. Sie hat empirische Belege."
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-ausdauer",
@@ -9315,7 +9315,7 @@
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Ausdauer.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Deftige Ausdauer. Man hat drei Stunden keinen Hunger. Und drei Stunden Energie. Und drei Stunden Sodbrennen."
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-eile",
@@ -9337,7 +9337,7 @@
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit der Eile.",
       "trainerCost": 88,
-      "desc": ""
+      "desc": "Schnelle deftige Mahlzeit. Ein Paradox das Bruna gelöst hat. Mit Butter."
     },
     {
       "id": "recipe-koch-deftigemahlzeit-des-fokus",
@@ -9359,7 +9359,7 @@
       "xp": 10,
       "description": "Kocht: DeftigeMahlzeit des Fokus.",
       "trainerCost": 93,
-      "desc": ""
+      "desc": "Deftiger Fokus. Man starrt danach auf Dinge. Absichtlich. Meistens."
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-staerke",
@@ -9381,7 +9381,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Stärke.",
       "trainerCost": 175,
-      "desc": ""
+      "desc": "Feines Essen das stärkt. Bruna hat es drei Mal probiert bevor sie zufrieden war. Drei Portionen."
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-weisheit",
@@ -9403,7 +9403,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Weisheit.",
       "trainerCost": 185,
-      "desc": ""
+      "desc": "Feine Weisheitsmahlzeit. Die Portion ist kleiner. Die Wirkung größer. Wie bei den meisten feinen Dingen."
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-gluecks",
@@ -9425,7 +9425,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit des Glücks.",
       "trainerCost": 195,
-      "desc": ""
+      "desc": "Feines Glück auf dem Teller. Bruna hat beim Anrichten gelächelt. Das passiert selten."
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-ausdauer",
@@ -9447,7 +9447,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Ausdauer.",
       "trainerCost": 205,
-      "desc": ""
+      "desc": "Feine Ausdauer. Hält länger als die deftige. Schmeckt besser als die einfache. Kostet mehr als beide."
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-eile",
@@ -9469,7 +9469,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Eile.",
       "trainerCost": 215,
-      "desc": ""
+      "desc": "Feines Eilessen. Wird schnell serviert. Wirkt schnell. Verschwindet schnell. Wie die meisten Freuden."
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-fokus",
@@ -9491,7 +9491,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit des Fokus.",
       "trainerCost": 225,
-      "desc": ""
+      "desc": "Feiner Fokus. Die Mahlzeit verlangt Aufmerksamkeit. Sie verdient sie auch."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-staerke",
@@ -9514,7 +9514,7 @@
       "description": "Kocht: ErleseneMahlzeit der Stärke.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Erlesen und stark. Die Zutaten flüstern dem Koch Respekt zu. Bruna flüstert zurück."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-weisheit",
@@ -9537,7 +9537,7 @@
       "description": "Kocht: ErleseneMahlzeit der Weisheit.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Erlesene Weisheit. Die Mahlzeit hat mehr gelesen als die meisten Lehrlinge."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-des-gluecks",
@@ -9560,7 +9560,7 @@
       "description": "Kocht: ErleseneMahlzeit des Glücks.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Erlesenes Glück. Bruna hat drei Tage dafür gekocht. Das Glück hat gewartet."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-ausdauer",
@@ -9583,7 +9583,7 @@
       "description": "Kocht: ErleseneMahlzeit der Ausdauer.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Erlesene Ausdauer. Man kann danach einen Marathon laufen. Oder sitzen. Beides mit Überzeugung."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-eile",
@@ -9606,7 +9606,7 @@
       "description": "Kocht: ErleseneMahlzeit der Eile.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Erlesene Eile. Widerspricht sich. Bruna auch. Meistens gleichzeitig."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-des-fokus",
@@ -9629,7 +9629,7 @@
       "description": "Kocht: ErleseneMahlzeit des Fokus.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Erlesener Fokus. Die Mahlzeit fokussiert den Geist. Und den Blick auf die nächste Mahlzeit."
     },
     {
       "id": "recipe-koch-meister-mahlzeit-der-staerke",
@@ -9652,7 +9652,7 @@
       "description": "Kocht: Meister-Mahlzeit der Stärke.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Brunas Meisterwerk: Kraft. Der Teller vibriert. Nicht metaphorisch."
     },
     {
       "id": "recipe-koch-meister-mahlzeit-der-weisheit",
@@ -9675,7 +9675,7 @@
       "description": "Kocht: Meister-Mahlzeit der Weisheit.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Meisterhafte Weisheit auf dem Teller. Man isst und versteht. Was genau, variiert."
     },
     {
       "id": "recipe-koch-meister-mahlzeit-des-gluecks",
@@ -9698,7 +9698,7 @@
       "description": "Kocht: Meister-Mahlzeit des Glücks.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Meisterliches Glück. Der Teller leuchtet. Bruna sagt, das sei die Soße. Soße leuchtet nicht. Normalerweise."
     },
     {
       "id": "recipe-koch-meister-mahlzeit-der-ausdauer",
@@ -9721,7 +9721,7 @@
       "description": "Kocht: Meister-Mahlzeit der Ausdauer.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Meisterhafte Ausdauer. Hält einen ganzen Tag. Bruna sagt, es seien die Gewürze. Es ist die Liebe. Und die Gewürze."
     },
     {
       "id": "recipe-koch-meister-mahlzeit-der-eile",
@@ -9744,7 +9744,7 @@
       "description": "Kocht: Meister-Mahlzeit der Eile.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Meisterhafte Eile. Das schnellste Essen das Bruna je gemacht hat. In vier Stunden. Ironie."
     },
     {
       "id": "recipe-koch-meister-mahlzeit-des-fokus",
@@ -9767,7 +9767,7 @@
       "description": "Kocht: Meister-Mahlzeit des Fokus.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Meisterfokus. Man sieht nach dem Essen schärfer. Auch Dinge die man nicht sehen wollte."
     },
     {
       "id": "recipe-koch-kraeutertee",
@@ -9788,7 +9788,7 @@
       "xp": 6,
       "description": "Braut: Kräutertee.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Tee. Einfach. Beruhigend. Bruna trinkt ihn wenn Grimvar zu laut hämmert."
     },
     {
       "id": "recipe-koch-feuerwurz-tee",
@@ -9811,7 +9811,7 @@
       "description": "Braut: Feuerwurz-Tee.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Feuerwurz-Tee. Wärmt von innen. Und von außen. Und gelegentlich die Tischplatte."
     },
     {
       "id": "recipe-koch-sternen-tee",
@@ -9833,7 +9833,7 @@
       "xp": 20,
       "description": "Braut: Sternen-Tee.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Sternentee. Bruna sagt, er schmecke nach Kosmos. Er schmeckt nach Minze. Beides ist gut."
     },
     {
       "id": "recipe-koch-honigwein",
@@ -9855,7 +9855,7 @@
       "xp": 8,
       "description": "Braut: Honigwein.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Honigwein. Süß, warm, und der Grund warum die Taverne voll ist."
     },
     {
       "id": "recipe-koch-gewuerzwein",
@@ -9877,7 +9877,7 @@
       "xp": 16,
       "description": "Braut: Gewürzwein.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Gewürzwein. Wärmt Körper und Meinungen. Nicht immer in der richtigen Reihenfolge."
     },
     {
       "id": "recipe-koch-sternen-wein",
@@ -9899,7 +9899,7 @@
       "xp": 28,
       "description": "Braut: Sternenwein.",
       "trainerCost": 793,
-      "desc": ""
+      "desc": "Sternenwein. Brunas Stolz. Funkelt im Glas. Und auf der Rechnung."
     },
     {
       "id": "recipe-koch-einfacher-met",
@@ -9921,7 +9921,7 @@
       "xp": 10,
       "description": "Braut: Einfacher Met.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Einfacher Met. Für einfache Abende. Die selten einfach enden."
     },
     {
       "id": "recipe-koch-starker-met",
@@ -9943,7 +9943,7 @@
       "xp": 20,
       "description": "Braut: Starker Met.",
       "trainerCost": 308,
-      "desc": ""
+      "desc": "Starker Met. Für Abende die man vergessen möchte. Der Met hilft dabei."
     },
     {
       "id": "recipe-koch-drachenmet",
@@ -9966,7 +9966,7 @@
       "description": "Braut: Drachenmet.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Drachenmet. Brennt beim Trinken. Und danach. Und am nächsten Morgen. Bruna empfiehlt Wasser."
     },
     {
       "id": "recipe-koch-beruhigender-tee",
@@ -9989,7 +9989,7 @@
       "description": "Braut: Beruhigender Tee.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Beruhigender Tee. Streakschutz in Tassenform. Bruna sagt, Ruhe sei die beste Medizin. Nach ihrem Essen."
     },
     {
       "id": "recipe-koch-mondblumen-tee",
@@ -10012,7 +10012,7 @@
       "description": "Braut: Mondblumen-Tee.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mondblumentee. Leuchtet im Dunkeln. Schmeckt nach Mondlicht und Hoffnung. Hauptsächlich Hoffnung."
     },
     {
       "id": "recipe-koch-lebenselixier",
@@ -10034,7 +10034,7 @@
       "xp": 40,
       "description": "Braut: Lebenselixier.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Lebenselixier aus der Küche. Ysolde ist eifersüchtig. Bruna ist zufrieden."
     },
     {
       "id": "recipe-koch-einfaches-festmahl",
@@ -10057,7 +10057,7 @@
       },
       "xp": 28,
       "description": "Kocht: Einfaches Festmahl. Für die ganze Gilde.",
-      "desc": ""
+      "desc": "Festmahl für die Gilde. Einfach in der Zubereitung. Komplex im Ergebnis."
     },
     {
       "id": "recipe-koch-festmahl-der-gilde",
@@ -10080,7 +10080,7 @@
       },
       "xp": 32,
       "description": "Kocht: Festmahl der Gilde. Für die ganze Gilde.",
-      "desc": ""
+      "desc": "Gildenfestmahl. Alle essen zusammen. Die XP steigen. Die Stimmung auch."
     },
     {
       "id": "recipe-koch-grosses-festmahl",
@@ -10103,7 +10103,7 @@
       },
       "xp": 38,
       "description": "Kocht: Großes Festmahl. Für die ganze Gilde.",
-      "desc": ""
+      "desc": "Großes Festmahl. Der Tisch biegt sich. Die Gilde freut sich. Bruna räumt auf."
     },
     {
       "id": "recipe-koch-meisterfestmahl",
@@ -10126,7 +10126,7 @@
       },
       "xp": 42,
       "description": "Kocht: Meisterfestmahl. Für die ganze Gilde.",
-      "desc": ""
+      "desc": "Meisterfestmahl. Bruna hat drei Tage gekocht. Niemand hat drei Tage gegessen. Aber sie haben es versucht."
     },
     {
       "id": "recipe-koch-legendaeres-bankett",
@@ -10149,7 +10149,7 @@
       },
       "xp": 48,
       "description": "Kocht: Legendäres Bankett. Für die ganze Gilde.",
-      "desc": ""
+      "desc": "Legendäres Bankett. Die Gilde redet noch Jahre davon. Bruna redet nicht darüber. Sie kocht bereits das nächste."
     },
     {
       "id": "recipe-koch-sternenmahl",
@@ -10172,7 +10172,7 @@
       },
       "xp": 50,
       "description": "Kocht: Sternenmahl. Für die ganze Gilde.",
-      "desc": ""
+      "desc": "Sternenmahl. Brunas Opus. Das Essen das den Turm zum Schweigen bringt. Für drei Sekunden. Dann loben alle."
     },
     {
       "id": "recipe-koch-studentenfutter",
@@ -10191,7 +10191,7 @@
       "xp": 5,
       "description": "Kocht: Studentenfutter.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Studentenfutter. Für Studenten. Und alle anderen die vergessen haben richtig zu essen."
     },
     {
       "id": "recipe-koch-trockenobst",
@@ -10210,7 +10210,7 @@
       "xp": 8,
       "description": "Kocht: Trockenobst.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Trockenes Obst. Bruna sagt, es sei gesund. Sie sagt auch, es schmecke gut. Eins davon stimmt."
     },
     {
       "id": "recipe-koch-energieriegel",
@@ -10230,7 +10230,7 @@
       "xp": 14,
       "description": "Kocht: Energieriegel.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Energieriegel. Hart wie Grimvars Meinung. Und genauso nachhaltig."
     },
     {
       "id": "recipe-koch-reiseproviant",
@@ -10250,7 +10250,7 @@
       "xp": 18,
       "description": "Kocht: Reiseproviant.",
       "trainerCost": 275,
-      "desc": ""
+      "desc": "Reiseproviant. Hält eine Woche. Oder einen Tag wenn du hungrig bist."
     },
     {
       "id": "recipe-koch-sternenfrucht-happen",
@@ -10270,7 +10270,7 @@
       "xp": 25,
       "description": "Kocht: Sternenfrucht-Happen.",
       "trainerCost": 625,
-      "desc": ""
+      "desc": "Sternenfrucht-Happen. Süß, selten, und der Grund warum Bruna morgens lächelt."
     },
     {
       "id": "recipe-koch-streakschutz-keks",
@@ -10291,7 +10291,7 @@
       "xp": 16,
       "description": "Kocht: Streakschutz-Keks.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Keks der die Streak schützt. Bruna hat Magie reingebacken. Oder Zucker. Selber Effekt."
     },
     {
       "id": "recipe-koch-meister-streakkeks",
@@ -10313,7 +10313,7 @@
       "description": "Kocht: Meister-Streakkeks.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Meister-Streakkeks. Schützt die Streak mit der Kraft von dreitausend Kalorien."
     },
     {
       "id": "recipe-koch-luck-cookie",
@@ -10334,7 +10334,7 @@
       "xp": 22,
       "description": "Kocht: Glückskeks.",
       "trainerCost": 458,
-      "desc": ""
+      "desc": "Glückskeks. Innen steht eine Nachricht. Meistens 'Kauf noch einen'."
     },
     {
       "id": "recipe-koch-gewuerzmischung",
@@ -10354,7 +10354,7 @@
       "xp": 8,
       "description": "Bereitet zu: Gewürzmischung.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Brunas Grundgewürz. Das Geheimnis ist die Mischung. Und Salz. Und noch mehr Salz."
     },
     {
       "id": "recipe-koch-kraeuterbutter",
@@ -10375,7 +10375,7 @@
       "xp": 12,
       "description": "Bereitet zu: Kräuterbutter.",
       "trainerCost": 100,
-      "desc": ""
+      "desc": "Kräuterbutter. Macht alles besser. Alles. Bruna hat es an Metall getestet. Hat funktioniert."
     },
     {
       "id": "recipe-koch-scharfe-marinade",
@@ -10396,7 +10396,7 @@
       "xp": 16,
       "description": "Bereitet zu: Scharfe Marinade.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Scharfe Marinade. Mariniert alles. Einschließlich des Magens. Bruna empfiehlt Vorsicht. Und Milch."
     },
     {
       "id": "recipe-koch-sternen-essenz",
@@ -10417,7 +10417,7 @@
       "xp": 24,
       "description": "Bereitet zu: Sternen-Essenz.",
       "trainerCost": 583,
-      "desc": ""
+      "desc": "Sternenessenz in der Küche. Ysolde ist beleidigt dass Bruna bessere Essenzen macht. Ohne Labor."
     },
     {
       "id": "recipe-koch-phoenix-gewuerz",
@@ -10438,7 +10438,7 @@
       "xp": 38,
       "description": "Bereitet zu: Phoenix-Gewürz.",
       "trainerCost": 1500,
-      "desc": ""
+      "desc": "Phoenixgewürz. Brennt zweimal. Bruna grinst. Sie hat gewarnt."
     },
     {
       "id": "recipe-koch-mondstaub-salz",
@@ -10459,7 +10459,7 @@
       "xp": 30,
       "description": "Bereitet zu: Mondstaub-Salz.",
       "trainerCost": 958,
-      "desc": ""
+      "desc": "Mondstaub und Salz. Zwei Dinge die separat langweilig sind. Zusammen: magisch."
     },
     {
       "id": "process-runenessenz",
@@ -19645,7 +19645,7 @@
       },
       "xp": 8,
       "description": "Grundlegende Gewürze für die Küche der Halle.",
-      "desc": ""
+      "desc": "Gewürze mischen. Der erste Schritt. Und der wichtigste. Und der den alle überspringen wollen."
     },
     {
       "id": "prepare_kraeuterbutter",
@@ -19666,7 +19666,7 @@
       },
       "xp": 12,
       "description": "Verfeinert jedes Gericht. Ein Grundpfeiler der Gilde.",
-      "desc": ""
+      "desc": "Kräuter in Butter. Simpler geht es nicht. Besser auch nicht. Brunas Philosophie in Butterform."
     },
     {
       "id": "recipe-koch-gap-130",
@@ -19685,7 +19685,7 @@
         "feuerwurz": 1
       },
       "xp": 18,
-      "desc": "",
+      "desc": "Eintopf der die Schmiede aufheizt. Bruna sagt, das sei die Liebe. Grimvar sagt, das seien die Gewürze.",
       "source": "trainer",
       "trainerCost": 80,
       "cooldownMinutes": 0
@@ -19706,7 +19706,7 @@
         "mondblume": 1
       },
       "xp": 20,
-      "desc": "",
+      "desc": "Bouillon die den Geist schärft. Und den Magen beruhigt. Selten beides gleichzeitig.",
       "source": "trainer",
       "trainerCost": 100,
       "cooldownMinutes": 0
