@@ -5370,7 +5370,7 @@
       "xp": 5,
       "description": "Verarbeitet: Geheiltes Leichtleder.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Leichtleder das geheilt wurde. Nicht das Leder war krank — es war nur rau. Roderic besteht auf dem Wort."
     },
     {
       "id": "recipe-leder-geheiltes-mittleres-leder",
@@ -5390,7 +5390,7 @@
       "xp": 12,
       "description": "Verarbeitet: Geheiltes Mittleres Leder.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Mittleres Leder, behandelt mit Geduld und einem Öl das Roderic 'Verhandlungsmittel' nennt."
     },
     {
       "id": "recipe-leder-gehaertetes-schwerleder",
@@ -5410,7 +5410,7 @@
       "xp": 20,
       "description": "Verarbeitet: Gehärtetes Schwerleder.",
       "trainerCost": 275,
-      "desc": ""
+      "desc": "Schwerleder das aufgehört hat nachzugeben. Wie Roderic nach dem dritten Kaffee."
     },
     {
       "id": "recipe-leder-bestien-lederballen",
@@ -5430,7 +5430,7 @@
       "xp": 28,
       "description": "Verarbeitet: Bestien-Lederballen.",
       "trainerCost": 793,
-      "desc": ""
+      "desc": "Bestien-Leder. Von Bestien. Roderic will nicht darüber reden woher genau."
     },
     {
       "id": "recipe-leder-urzeitleder-ballen",
@@ -5450,7 +5450,7 @@
       "xp": 40,
       "description": "Verarbeitet: Urzeitleder-Ballen.",
       "trainerCost": 1900,
-      "desc": ""
+      "desc": "Leder so alt wie die Erde. Roderic sagt es riecht nach Geschichte. Es riecht nach Leder."
     },
     {
       "id": "recipe-leder-klauenoel",
@@ -5471,7 +5471,7 @@
       "xp": 14,
       "description": "Verarbeitet: Klauenöl.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Öl aus Klauen. Klingt unappetitlich. Ist es. Aber es funktioniert besser als alles andere."
     },
     {
       "id": "recipe-leder-salzgerbung",
@@ -5492,7 +5492,7 @@
       "xp": 25,
       "description": "Verarbeitet: Salzgerbung.",
       "trainerCost": 583,
-      "desc": ""
+      "desc": "Salz und Leder. Die älteste Beziehung der Handwerkskunst. Toxischer als die meisten."
     },
     {
       "id": "recipe-leder-uraltes-gerbmittel",
@@ -5513,7 +5513,7 @@
       "xp": 38,
       "description": "Verarbeitet: Uraltes Gerbmittel.",
       "trainerCost": 1700,
-      "desc": ""
+      "desc": "Gerbmittel nach einem Rezept das älter ist als Roderic. Und Roderic ist alt."
     },
     {
       "id": "process-gehaertetes",
@@ -5537,7 +5537,7 @@
       "cooldownMinutes": 0,
       "description": "Salz, Öl, und Geduld. Das Leder wird es dir danken. Irgendwann.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Leder das gehärtet wird. Der Prozess braucht Zeit, Salz, und die Bereitschaft schlecht zu riechen."
     },
     {
       "id": "process-verstaerktes",
@@ -5562,7 +5562,7 @@
       "cooldownMinutes": 0,
       "description": "Drei Schichten. Der Gerber nennt es Überzeugungsarbeit.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Drei Schichten Leder. Roderic presst sie zusammen und nennt es Teamwork."
     },
     {
       "id": "recipe-leder-leichtleder-stiefel",
@@ -5581,7 +5581,7 @@
       "xp": 6,
       "description": "Gerbt: Leichtleder-Stiefel.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Die ersten Stiefel die jeder Lederverarbeiter macht. Roderic hat seine aufgehoben. Als Drohung."
     },
     {
       "id": "recipe-leder-leichtleder-kappe",
@@ -5600,7 +5600,7 @@
       "xp": 6,
       "description": "Gerbt: Leichtleder-Kappe.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Kappe aus Leichtleder. Schützt den Kopf vor Sonne und vor Roderics Blick. Beides wichtig."
     },
     {
       "id": "recipe-leder-leichtleder-sandalen",
@@ -5619,7 +5619,7 @@
       "xp": 7,
       "description": "Gerbt: Leichtleder-Sandalen.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Sandalen aus Leder. Offener als Roderics Persönlichkeit. Was nicht schwer ist."
     },
     {
       "id": "recipe-leder-leichtleder-tunika",
@@ -5639,7 +5639,7 @@
       "description": "Gerbt: Leichtleder-Tunika.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Tunika die riecht wie Roderics Werkstatt. Also nach Leder, Öl, und stiller Entschlossenheit."
     },
     {
       "id": "recipe-leder-leichtleder-haube",
@@ -5659,7 +5659,7 @@
       "description": "Gerbt: Leichtleder-Haube.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Haube aus Leichtleder. Wärmt den Kopf. Roderic sagt, das sei der wichtigste Körperteil. Zumindest seines."
     },
     {
       "id": "recipe-leder-leichtleder-jacke",
@@ -5679,7 +5679,7 @@
       "description": "Gerbt: Leichtleder-Jacke.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Jacke die passt wie angegossen. Weil sie angegossen ist. Roderic gießt Leder nicht. Aber fast."
     },
     {
       "id": "recipe-leder-leichtleder-treter",
@@ -5699,7 +5699,7 @@
       "description": "Gerbt: Leichtleder-Treter.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Treter aus Leder. Leise genug um unbemerkt zu bleiben. Laut genug für Roderics Ansprüche."
     },
     {
       "id": "recipe-leder-leichtleder-stirnband",
@@ -5719,7 +5719,7 @@
       "description": "Gerbt: Leichtleder-Stirnband.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Stirnband aus Leder. Hält die Haare zurück und die Stirn warm. Beides unterschätzt."
     },
     {
       "id": "recipe-leder-leichtleder-wams",
@@ -5739,7 +5739,7 @@
       "description": "Gerbt: Leichtleder-Wams.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Wams aus Leichtleder. Roderic hat es 'angemessen' genannt. Für Roderic ist das ein Liebesgeständnis."
     },
     {
       "id": "recipe-leder-jagd-jacke",
@@ -5759,7 +5759,7 @@
       "xp": 12,
       "description": "Gerbt: Jagd-Jacke.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Jacke für die Jagd. Oder für Leute die so aussehen wollen als gingen sie jagen."
     },
     {
       "id": "recipe-leder-jaeger-kappe",
@@ -5780,7 +5780,7 @@
       "description": "Gerbt: Jäger-Kappe.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Jägerkappe. Die Ohrenklappen sind optional. Roderics Meinung dazu nicht."
     },
     {
       "id": "recipe-leder-jagd-maske",
@@ -5801,7 +5801,7 @@
       "description": "Gerbt: Jagd-Maske.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Maske für Jäger. Verbirgt das Gesicht. Und die Tatsache dass du zu spät aufgestanden bist."
     },
     {
       "id": "recipe-leder-jaeger-stiefel",
@@ -5821,7 +5821,7 @@
       "description": "Gerbt: Jäger-Stiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stiefel die leise durch den Wald tragen. Und laut über den Marktplatz. Kompromisse."
     },
     {
       "id": "recipe-leder-mittelleder-kapuze",
@@ -5841,7 +5841,7 @@
       "xp": 15,
       "description": "Gerbt: Mittelleder-Kapuze.",
       "trainerCost": 195,
-      "desc": ""
+      "desc": "Kapuze aus mittlerem Leder. Geheimnisvoll aussehen ohne Geld für Seide ausgeben zu müssen."
     },
     {
       "id": "recipe-leder-wildnis-weste",
@@ -5861,7 +5861,7 @@
       "xp": 15,
       "description": "Gerbt: Wildnis-Weste.",
       "trainerCost": 205,
-      "desc": ""
+      "desc": "Weste für die Wildnis. Oder für Leute die in der Taverne wild aussehen wollen."
     },
     {
       "id": "recipe-leder-mittelleder-treter",
@@ -5882,7 +5882,7 @@
       "xp": 16,
       "description": "Gerbt: Mittelleder-Treter.",
       "trainerCost": 215,
-      "desc": ""
+      "desc": "Treter aus mittlerem Leder. Roderic hat sie getestet. Auf einem Marsch. Durch seinen Laden."
     },
     {
       "id": "recipe-leder-jagd-schuhe",
@@ -5904,7 +5904,7 @@
       "description": "Gerbt: Jagd-Schuhe.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Jagdschuhe. Leise im Wald. Laut auf Kopfsteinpflaster. Roderic zuckt mit den Schultern."
     },
     {
       "id": "recipe-leder-wildnis-haube",
@@ -5924,7 +5924,7 @@
       "description": "Gerbt: Wildnis-Haube.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Haube für die Wildnis. Die Wildnis hat keine Meinung dazu. Roderic hat genug für beide."
     },
     {
       "id": "recipe-leder-mittelleder-harnisch",
@@ -5944,7 +5944,7 @@
       "description": "Gerbt: Mittelleder-Harnisch.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Harnisch der schützt ohne zu erdrücken. Roderics Definition von Komfort."
     },
     {
       "id": "recipe-leder-jaeger-wams",
@@ -5964,7 +5964,7 @@
       "description": "Gerbt: Jäger-Wams.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Wams eines Jägers. Roderic hat es nach einem echten Jäger modelliert. Der Jäger war nicht einverstanden."
     },
     {
       "id": "recipe-leder-wildnis-stiefel",
@@ -5986,7 +5986,7 @@
       "description": "Gerbt: Wildnis-Stiefel.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Stiefel für Wildnis und Wetter. Roderic sagt, gutes Leder fürchtet weder Regen noch Meinungen."
     },
     {
       "id": "recipe-leder-bestien-jacke",
@@ -6007,7 +6007,7 @@
       "xp": 22,
       "description": "Gerbt: Bestien-Jacke.",
       "trainerCost": 500,
-      "desc": ""
+      "desc": "Jacke aus Bestienleder. Die Bestie lebt nicht mehr. Die Jacke schon."
     },
     {
       "id": "recipe-leder-schwerleder-ruestung",
@@ -6029,7 +6029,7 @@
       "description": "Gerbt: Schwerleder-Rüstung.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Schwere Lederrüstung. Klingt wie ein Widerspruch. Fühlt sich an wie Sicherheit."
     },
     {
       "id": "recipe-leder-schwerleder-harnisch",
@@ -6049,7 +6049,7 @@
       "xp": 23,
       "description": "Gerbt: Schwerleder-Harnisch.",
       "trainerCost": 575,
-      "desc": ""
+      "desc": "Harnisch aus schwerem Leder. Roderic hat draufgehauen. Er hat sich entschuldigt. Beim Harnisch."
     },
     {
       "id": "recipe-leder-schwerleder-helm",
@@ -6070,7 +6070,7 @@
       "description": "Gerbt: Schwerleder-Helm.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Lederhelm. Leichter als Metall. Leiser als Metall. Weniger metallig als Metall."
     },
     {
       "id": "recipe-leder-bestien-kapuze",
@@ -6091,7 +6091,7 @@
       "description": "Gerbt: Bestien-Kapuze.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Kapuze aus Bestienleder. Die Kapuze erinnert sich an die Bestie. Die Bestie nicht mehr."
     },
     {
       "id": "recipe-leder-schwerleder-tritte",
@@ -6114,7 +6114,7 @@
       "description": "Gerbt: Schwerleder-Tritte.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Tritte aus schwerem Leder. Der Name klingt aggressiv. Das Leder auch."
     },
     {
       "id": "recipe-leder-schwerleder-stiefel",
@@ -6137,7 +6137,7 @@
       "description": "Gerbt: Schwerleder-Stiefel.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Schwere Lederstiefel. Man hört dich kommen. Das ist keine Schwäche — das ist eine Warnung."
     },
     {
       "id": "recipe-leder-schwerleder-maske",
@@ -6158,7 +6158,7 @@
       "description": "Gerbt: Schwerleder-Maske.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Maske aus schwerem Leder. Verbirgt mehr als nur ein Gesicht. Verbirgt auch die Absicht."
     },
     {
       "id": "recipe-leder-bestien-schuhe",
@@ -6181,7 +6181,7 @@
       "description": "Gerbt: Bestien-Schuhe.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Bestienschuhe. Die Bestie trug keine Schuhe. Jetzt trägst du welche aus ihr. Ironie."
     },
     {
       "id": "recipe-leder-bestien-wams",
@@ -6203,7 +6203,7 @@
       "description": "Gerbt: Bestien-Wams.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Bestienwams. Roderic sagt, die Bestie hätte es gutgeheißen. Roderic ist Optimist."
     },
     {
       "id": "recipe-leder-bestien-treter",
@@ -6226,7 +6226,7 @@
       "description": "Gerbt: Bestien-Treter.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Bestientreter. Leise im Dschungel. Das Dschungel hat keinen. Aber für den Fall."
     },
     {
       "id": "recipe-leder-bestien-kappe",
@@ -6248,7 +6248,7 @@
       "description": "Gerbt: Bestien-Kappe.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Bestienkappe. Hat die Augen der Bestie im Design. Roderic findet das respektvoll. Die Bestie ist tot."
     },
     {
       "id": "recipe-leder-bestien-treter-fxf",
@@ -6270,7 +6270,7 @@
       "xp": 30,
       "description": "Gerbt: Bestien-Treter.",
       "trainerCost": 1100,
-      "desc": ""
+      "desc": "Weitere Bestientreter. Roderic macht zwei Versionen von allem. Falls eine nicht reicht."
     },
     {
       "id": "recipe-leder-urzeit-kappe",
@@ -6290,7 +6290,7 @@
       "xp": 30,
       "description": "Gerbt: Urzeit-Kappe.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Urzeitkappe. Das Leder erinnert sich an Zeiten bevor es Lehrlinge gab. Bessere Zeiten, sagt Roderic."
     },
     {
       "id": "recipe-leder-seelenjaeger-stiefel",
@@ -6313,7 +6313,7 @@
       "description": "Gerbt: Seelenjäger-Stiefel.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Stiefel für Seelenjäger. Was ein Seelenjäger ist, will Roderic nicht erklären. 'Frag nicht' reicht als Antwort."
     },
     {
       "id": "recipe-leder-urzeit-tritte",
@@ -6336,7 +6336,7 @@
       "description": "Gerbt: Urzeit-Tritte.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Urzeittritte. Das Leder knirscht beim Gehen. Wie alte Knochen. Roderic findet das beruhigend."
     },
     {
       "id": "recipe-leder-urzeit-helm",
@@ -6356,7 +6356,7 @@
       "xp": 33,
       "description": "Gerbt: Urzeit-Helm.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Urzeithelm. Sieht aus als hätte ihn ein Höhlenmensch getragen. War auch so gedacht."
     },
     {
       "id": "recipe-leder-urzeit-harnisch",
@@ -6378,7 +6378,7 @@
       "description": "Gerbt: Urzeit-Harnisch.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Urzeitharnisch. Schwer wie Geschichte und ungefähr genauso alt."
     },
     {
       "id": "recipe-leder-seelenjaeger-haube",
@@ -6398,7 +6398,7 @@
       "xp": 36,
       "description": "Gerbt: Seelenjäger-Haube.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Seelenjägerhaube. Verbirgt das Gesicht und flüstert dem Träger Dinge zu. Roderic sagt das sei der Wind."
     },
     {
       "id": "recipe-leder-seelenjaeger-wams",
