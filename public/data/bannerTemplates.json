@@ -47,7 +47,7 @@
     "costSingle": 10,
     "cost10": 90,
     "featuredItems": [],
-    "active": true,
+    "active": false,
     "icon": "/images/icons/ui-ritual-rune.png",
     "lore": "Die Waffenkammer des Turms öffnet ihre Pforten. Hier ruhen Klingen, Äxte und Stäbe, geschmiedet in vergessenen Äonen. Grimvar schwört, dass jede Waffe eine Geschichte erzählt — man muss nur zuhören. Oder zuschlagen.",
     "slotWeights": {
@@ -75,7 +75,7 @@
     "costSingle": 10,
     "cost10": 90,
     "featuredItems": [],
-    "active": true,
+    "active": false,
     "icon": "/images/icons/ui-ritual-rune.png",
     "lore": "Hinter schweren Eichentüren lagern die Rüstungen der alten Wächter. Helme, die Drachen trotzten. Stiefel, die tausend Meilen liefen. Brustpanzer, die vergessen haben, was Angst bedeutet. Grimvar sagt, die beste Rüstung sei Disziplin. Dann zeigt er auf die zweitbeste.",
     "slotWeights": {
@@ -103,7 +103,7 @@
     "costSingle": 10,
     "cost10": 90,
     "featuredItems": [],
-    "active": true,
+    "active": false,
     "icon": "/images/icons/currency-stardust.png",
     "lore": "Das Rad der Jahreszeiten dreht sich, und mit ihm ändern sich die Gaben des Aethers. Dieses Banner trägt den Atem der aktuellen Saison — wer jetzt zieht, findet Artefakte, die morgen vielleicht schon im Nebel verschwunden sind. Ysolde nennt es Schicksal. Lyra nennt es Marketing.",
     "dropRates": {
