@@ -113,6 +113,7 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   u.currencies[from] -= amt;
   u.currencies[to] += received;
 
+  u._currencyConversions = (u._currencyConversions || 0) + 1;
   saveUsers();
   console.log(`[currency] ${uid} converted ${amt} ${from} → ${received} ${to} (tax ${Math.round(taxRate * 100)}%)`);
   res.json({ ok: true, spent: amt, received, from, to, taxRate, currencies: u.currencies });

@@ -408,6 +408,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   awardCurrency(uid, 'essenz', baseEssenz);
   rewards.push({ type: 'gold', amount: baseGold });
   rewards.push({ type: 'essenz', amount: baseEssenz });
+  if (rank <= 3) user._worldBossTop3 = (user._worldBossTop3 || 0) + 1;
 
   // ── Top 3: Unique title ──
   if (rank <= 3 && template?.titleReward) {
