@@ -8,44 +8,42 @@ import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 interface TalentEffect {
   type: string;
-  value: number;
-  description: string;
-  tradeoff?: boolean;
+  value?: number;
+  valuePerRank?: number[];
+  chancePerRank?: number[];
+  [key: string]: unknown;
 }
 
 interface TalentNode {
   id: string;
-  name: string;
   ring: "inner" | "middle" | "outer";
-  path: "blade" | "stars" | "fortune";
-  position: { ring: number; segment: number; slot: number };
-  cost: number;
-  requires: string[];
-  effect: TalentEffect;
-  icon: string | null;
-  flavor: string;
-}
-
-interface TalentPath {
-  id: string;
   name: string;
-  description: string;
-  color: string;
-  stat: string;
+  icon: string;
+  desc: string;
+  flavor: string;
+  maxRank: number;
+  reqPoints: number;
+  requires: string[];
+  excludes: string[];
+  effect: TalentEffect;
 }
 
 interface TalentMeta {
-  unlockLevel: number;
-  pointsPerLevel: number;
   maxPoints: number;
-  rings: number;
+  pointsPerLevel: number;
+  firstPointLevel: number;
+  respecCost: { gold: number; essenz: number };
+  rings: Record<string, { label: string; desc: string; reqPoints: number; nodeCount: number }>;
+  [key: string]: unknown;
 }
 
 interface TalentData {
   meta: TalentMeta;
-  paths: Record<string, TalentPath>;
   nodes: TalentNode[];
-  allocated: Record<string, { allocatedAt: string; effect: TalentEffect }>;
+  connections: { from: string; to: string; type: string }[];
+  choiceGroups: { id: string; label: string; desc: string; nodes: string[]; maxPicks: number }[];
+  buildArchetypes: { id: string; name: string; desc: string; suggestedNodes: string[] }[];
+  allocated: Record<string, { rank: number; allocatedAt: string; effect: TalentEffect }>;
   totalSpent: number;
   availablePoints: number;
   bonusPoints: number;
@@ -53,11 +51,11 @@ interface TalentData {
   unlocked: boolean;
 }
 
-// ─── Path colors ────────────────────────────────────────────────────────────
-const PATH_COLORS: Record<string, string> = {
-  blade: "#ff4444",
-  stars: "#3b82f6",
-  fortune: "#22c55e",
+// ─── Ring colors ────────────────────────────────────────────────────────────
+const RING_COLORS: Record<string, string> = {
+  inner: "#60a5fa",
+  middle: "#a855f7",
+  outer: "#f97316",
 };
 
 // ─── Ring radii for SVG layout ──────────────────────────────────────────────
@@ -203,12 +201,19 @@ export default function TalentTreeView({
   const nodeStates = useMemo(() => {
     if (!data) return new Map<string, "allocated" | "available" | "locked">();
     const map = new Map<string, "allocated" | "available" | "locked">();
+    const totalAllocated = Object.values(data.allocated).reduce((s, a) => s + (a.rank || 1), 0);
     for (const n of data.nodes) {
-      if (data.allocated[n.id]) {
+      const currentRank = data.allocated[n.id]?.rank || 0;
+      if (currentRank >= n.maxRank) {
         map.set(n.id, "allocated");
+      } else if (currentRank > 0 && currentRank < n.maxRank) {
+        // Partially allocated multi-rank — show as available for next rank
+        map.set(n.id, data.availablePoints >= 1 ? "available" : "locked");
       } else if (
-        data.availablePoints >= n.cost &&
-        (!n.requires.length || n.requires.every(r => !!data.allocated[r]))
+        data.availablePoints >= 1 &&
+        totalAllocated >= n.reqPoints &&
+        (!n.requires.length || n.requires.every(r => !!data.allocated[r])) &&
+        (!n.excludes.length || !n.excludes.some(ex => !!data.allocated[ex]))
       ) {
         map.set(n.id, "available");
       } else {
@@ -242,7 +247,7 @@ export default function TalentTreeView({
     return (
       <div className="tab-content-enter flex flex-col items-center justify-center py-20 gap-4">
         <div className="text-4xl opacity-20">◇</div>
-        <p className="text-sm text-w30">Talent-Baum wird bei Level {data.meta.unlockLevel} freigeschaltet</p>
+        <p className="text-sm text-w30">Talent-Baum wird bei Level {data.meta.firstPointLevel} freigeschaltet</p>
         <p className="text-xs text-w20">Dein Level: {data.playerLevel}</p>
       </div>
     );
@@ -276,12 +281,12 @@ export default function TalentTreeView({
         </div>
       </div>
 
-      {/* Path legend */}
+      {/* Ring legend */}
       <div className="flex gap-4 mb-4">
-        {Object.values(data.paths).map(p => (
-          <div key={p.id} className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: p.color }} />
-            <span className="text-xs text-w40">{p.name}</span>
+        {Object.entries(data.meta.rings || {}).map(([key, ring]) => (
+          <div key={key} className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: RING_COLORS[key] }} />
+            <span className="text-xs text-w40">{ring.label} ({ring.nodeCount})</span>
           </div>
         ))}
       </div>
@@ -321,7 +326,7 @@ export default function TalentTreeView({
                     key={`${n.id}-${reqId}`}
                     x1={reqPos.x} y1={reqPos.y}
                     x2={pos.x} y2={pos.y}
-                    stroke={isActive ? PATH_COLORS[n.path] : isAvailable ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
+                    stroke={isActive ? RING_COLORS[n.ring] : isAvailable ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
                     strokeWidth={isActive ? 2 : 1}
                     opacity={isActive ? 0.8 : 0.5}
                   />
@@ -335,8 +340,8 @@ export default function TalentTreeView({
               if (!pos) return null;
               const state = nodeStates.get(n.id) || "locked";
               const isSelected = selectedNode === n.id;
-              const pathColor = PATH_COLORS[n.path];
-              const isTradeoff = n.effect.tradeoff;
+              const pathColor = RING_COLORS[n.ring];
+              const isTradeoff = n.excludes && n.excludes.length > 0;
               const radius = n.ring === "outer" ? 16 : n.ring === "middle" ? 13 : 11;
 
               let fill = "rgba(255,255,255,0.03)";
@@ -405,7 +410,7 @@ export default function TalentTreeView({
                     />
                   )}
                   {/* Cost indicator for outer ring */}
-                  {n.cost > 1 && (
+                  {n.maxRank > 1 && (
                     <text
                       x={pos.x} y={pos.y + 1}
                       textAnchor="middle"
@@ -414,7 +419,7 @@ export default function TalentTreeView({
                       fontSize={9}
                       fontWeight="bold"
                     >
-                      {n.cost}
+                      {data.allocated[n.id]?.rank || 0}/{n.maxRank}
                     </text>
                   )}
                 </g>
@@ -438,30 +443,30 @@ export default function TalentTreeView({
               className="rounded-xl p-4"
               style={{
                 background: "rgba(255,255,255,0.03)",
-                border: `1px solid ${PATH_COLORS[selected.path]}22`,
+                border: `1px solid ${RING_COLORS[selected.ring]}22`,
               }}
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="text-sm font-bold" style={{ color: PATH_COLORS[selected.path] }}>
+                  <h3 className="text-sm font-bold" style={{ color: RING_COLORS[selected.ring] }}>
                     {selected.name}
                   </h3>
                   <p className="text-xs text-w25 mt-0.5">
-                    {data.paths[selected.path]?.name} · {selected.ring === "inner" ? "Innerer Ring" : selected.ring === "middle" ? "Mittlerer Ring" : "Äußerer Ring"}
+                    {(data.meta.rings as Record<string, { label: string }>)?.[selected.ring]?.label || selected.ring} · {selected.ring === "inner" ? "Innerer Ring" : selected.ring === "middle" ? "Mittlerer Ring" : "Äußerer Ring"}
                   </p>
                 </div>
                 <div className="text-xs px-2 py-0.5 rounded font-mono"
                   style={{ background: "rgba(255,255,255,0.05)", color: "#fbbf24" }}>
-                  {selected.cost} {selected.cost === 1 ? "Punkt" : "Punkte"}
+                  {selected.maxRank > 1 ? `Rang ${data.allocated[selected.id]?.rank || 0}/${selected.maxRank}` : "1 Punkt"}
                 </div>
               </div>
 
               {/* Effect */}
               <div className="rounded-lg p-3 mb-3" style={{ background: "rgba(0,0,0,0.3)" }}>
                 <p className="text-xs text-w60" style={{ lineHeight: "1.5" }}>
-                  {selected.effect.description}
+                  {selected.desc}
                 </p>
-                {selected.effect.tradeoff && (
+                {selected.excludes && selected.excludes.length > 0 && (
                   <div className="flex items-center gap-1.5 mt-2">
                     <span className="text-xs px-1.5 py-0.5 rounded font-bold"
                       style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
@@ -505,9 +510,9 @@ export default function TalentTreeView({
                     disabled={allocating}
                     className="text-xs px-4 py-2 rounded-lg font-semibold"
                     style={{
-                      background: `${PATH_COLORS[selected.path]}22`,
-                      color: PATH_COLORS[selected.path],
-                      border: `1px solid ${PATH_COLORS[selected.path]}44`,
+                      background: `${RING_COLORS[selected.ring]}22`,
+                      color: RING_COLORS[selected.ring],
+                      border: `1px solid ${RING_COLORS[selected.ring]}44`,
                       cursor: allocating ? "not-allowed" : "pointer",
                       opacity: allocating ? 0.5 : 1,
                     }}
@@ -533,7 +538,7 @@ export default function TalentTreeView({
                 )}
                 {nodeStates.get(selected.id) === "locked" && (
                   <div className="text-xs text-w20 py-2">
-                    {data.availablePoints < selected.cost
+                    {data.availablePoints < 1
                       ? "Nicht genug Talentpunkte"
                       : "Voraussetzungen nicht erfüllt"}
                   </div>
@@ -575,9 +580,9 @@ export default function TalentTreeView({
                     onClick={() => setSelectedNode(n.id)}
                     className="text-xs px-2 py-1 rounded"
                     style={{
-                      background: `${PATH_COLORS[n.path]}15`,
-                      color: PATH_COLORS[n.path],
-                      border: `1px solid ${PATH_COLORS[n.path]}30`,
+                      background: `${RING_COLORS[n.ring]}15`,
+                      color: RING_COLORS[n.ring],
+                      border: `1px solid ${RING_COLORS[n.ring]}30`,
                       cursor: "pointer",
                     }}
                   >
