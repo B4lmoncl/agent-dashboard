@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { TipCustom } from "@/components/GameTooltip";
 
@@ -162,8 +163,8 @@ export default function CodexView() {
         })}
       </div>
 
-      {/* Entry detail modal */}
-      {selectedEntry && (
+      {/* Entry detail modal — portaled to body for correct viewport centering */}
+      {selectedEntry && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(4px)" }}
@@ -195,7 +196,8 @@ export default function CodexView() {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Undiscovered entries */}

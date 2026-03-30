@@ -6,7 +6,7 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir } = require('../lib/state');
+const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir, logActivity } = require('../lib/state');
 const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
 const wbClaimLock = createPlayerLock('wb-claim');
 const wbBoostLock = createPlayerLock('wb-boost');
@@ -131,6 +131,10 @@ function spawnBoss(bossId) {
   worldBossState.lastSpawnCheck = now.toISOString();
   saveWorldBossState();
   console.log(`[world-boss] Spawned "${template.name}" with ${maxHp} HP (expires ${expiresAt.toISOString()})`);
+
+  // Log world boss spawn as system event (visible to all players in activity feed)
+  logActivity('system', 'world_boss_spawn', { boss: template.name, tier: template.tier, maxHp });
+
   return boss;
 }
 
@@ -184,6 +188,14 @@ function dealBossDamage(userId, questRarity) {
     boss.defeated = true;
     boss.defeatedAt = new Date().toISOString();
     console.log(`[world-boss] "${boss.bossId}" defeated! ${Object.keys(boss.contributions).length} contributors.`);
+
+    // Log world boss defeat for all contributors in activity feed
+    const template = getBossTemplate(boss.bossId);
+    const bossName = template?.name || boss.bossId;
+    const contributorCount = Object.keys(boss.contributions).length;
+    for (const contributorId of Object.keys(boss.contributions)) {
+      logActivity(contributorId, 'world_boss_defeat', { boss: bossName, contributors: contributorCount });
+    }
   }
 
   saveWorldBossState();

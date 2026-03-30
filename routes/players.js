@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, NPC_META, saveUsers, savePlayerProgress } = require('../lib/state');
+const { state, NPC_META, saveUsers, savePlayerProgress, logActivity } = require('../lib/state');
 const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore, createPlayerLock } = require('../lib/helpers');
 const companionUltimateLock = createPlayerLock('companion-ultimate');
 const companionExpeditionLock = createPlayerLock('companion-expedition');
@@ -1070,6 +1070,14 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
   saveUsers();
   const companionName = u.companion.name || 'Your companion';
   console.log(`[companion-expedition] ${uid} collected rewards from "${expDef.name}"`);
+
+  // Log companion expedition completion to activity feed
+  logActivity(uid, 'expedition_complete', {
+    expedition: expDef.name,
+    companion: companionName,
+    tier: expDef.tier || expDef.id,
+    gold: collected.gold || 0,
+  });
 
   res.json({
     ok: true,

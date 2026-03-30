@@ -65,6 +65,8 @@ function ReadCheck({ read }: { read: boolean }) {
 const EVENT_ICONS: Record<string, string> = {
   quest_complete: "◆", level_up: "▲", achievement: "★",
   gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "🔥",
+  world_boss_spawn: "⚔", world_boss_defeat: "⚔", dungeon_complete: "▼",
+  rift_complete: "◈", expedition_complete: "↗",
 };
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
@@ -1246,6 +1248,10 @@ const EVENT_NAV: Record<string, { view: string; tooltip: string }> = {
   achievement: { view: "honors", tooltip: "View Honors" },
   gacha_pull: { view: "gacha", tooltip: "View Vault of Fate" },
   rare_drop: { view: "character", tooltip: "View Character" },
+  world_boss_spawn: { view: "worldBoss", tooltip: "View World Boss" },
+  world_boss_defeat: { view: "worldBoss", tooltip: "View World Boss" },
+  dungeon_complete: { view: "dungeons", tooltip: "View Dungeons" },
+  rift_complete: { view: "rift", tooltip: "View The Rift" },
   streak_milestone: { view: "rituals", tooltip: "View Rituals" },
 };
 
@@ -1323,7 +1329,22 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             descriptionNode = <>completed a trade{d.summary && <> — <span className="text-w30">{d.summary}</span></>}</>;
             break;
           case "streak_milestone":
-            descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak</>;
+            descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak{d.label ? <> — <span className="text-w30">{d.label}</span></> : ""}</>;
+            break;
+          case "world_boss_spawn":
+            descriptionNode = <><span className="font-semibold" style={{ color: "#ff4444" }}>{d.boss || "A World Boss"}</span> has appeared!</>;
+            break;
+          case "world_boss_defeat":
+            descriptionNode = <>helped defeat <span className="font-semibold" style={{ color: "#ff4444" }}>{d.boss || "a World Boss"}</span>{d.contributors ? <> with <span className="text-w40">{d.contributors}</span> others</> : ""}</>;
+            break;
+          case "dungeon_complete":
+            descriptionNode = <>{String(d.success) === "true" ? "conquered" : "survived"} <span className="font-semibold" style={{ color: rarityColor }}>{d.dungeon || "a dungeon"}</span>{d.tier ? <> <span className="text-w30">({d.tier})</span></> : ""}</>;
+            break;
+          case "rift_complete":
+            descriptionNode = <>cleared <span className="font-semibold" style={{ color: rarityColor }}>{d.label || `${d.tier || "a"} Rift`}</span>{d.stages ? <> — <span className="text-w30">{d.stages} stages</span></> : ""}</>;
+            break;
+          case "expedition_complete":
+            descriptionNode = <><span className="text-w40">{d.companion || "Companion"}</span> returned from <span className="font-semibold" style={{ color: "#22c55e" }}>{d.expedition || "an expedition"}</span></>;
             break;
           default:
             descriptionNode = <>{(event.type as string).replace(/_/g, " ")}</>;

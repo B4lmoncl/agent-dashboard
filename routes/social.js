@@ -929,7 +929,7 @@ router.get('/api/social/:playerId/activity-feed', requireAuth, requireSelf('play
   const log = state.socialData.activityLog || [];
 
   const feed = log
-    .filter(e => friendIds.has(e.player))
+    .filter(e => friendIds.has(e.player) || e.player === 'system')
     .slice(0, limit)
     .map(e => {
       const user = state.users[e.player];

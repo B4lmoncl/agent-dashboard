@@ -664,8 +664,10 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
 
   // Log activity for social feed
-  logActivity(uid, 'quest_complete', {
-    questTitle: `${dungeon.name} (Dungeon)`,
+  logActivity(uid, 'dungeon_complete', {
+    dungeon: dungeon.name,
+    tier: dungeon.tier,
+    success: isSuccess,
     rarity: dungeon.tier === 'legendary' ? 'legendary' : dungeon.tier === 'hard' ? 'epic' : 'rare',
   });
 
