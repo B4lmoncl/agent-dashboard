@@ -367,6 +367,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot complete rift stages while resting.' });
 
   const rift = getRiftStatus(u);
   if (!rift?.active) return res.status(400).json({ error: 'No active rift' });
