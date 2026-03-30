@@ -205,7 +205,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           return (
             <div
               key={f.id}
-              className="rounded-xl overflow-hidden crystal-breathe"
+              className="rounded-xl overflow-hidden crystal-breathe card-hover-lift"
               style={{
                 background: `linear-gradient(135deg, ${f.accent}08 0%, rgba(14,14,18,0.95) 100%)`,
                 border: `1px solid ${f.accent}30`,
@@ -274,7 +274,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 </div>
                 <div className={`progress-bar-diablo${f.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className={`progress-bar-diablo-fill${f.progress > 0.8 ? " bar-pulse" : ""}`}
+                    className={`progress-bar-diablo-fill progress-shimmer${f.progress > 0.8 ? " bar-pulse" : ""}`}
                     style={{
                       width: `${Math.round(f.progress * 100)}%`,
                       background: `linear-gradient(90deg, ${f.accent}88, ${f.accent}, ${f.accent}cc)`,

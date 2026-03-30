@@ -965,6 +965,96 @@
         "type": "profession_skill",
         "value": 100
       }
+    },
+    {
+      "id": "schicksalsbaum",
+      "category": "systems",
+      "title": "Der Schicksalsbaum",
+      "text": "Ab Level 5 wächst im Inneren Heiligtum ein Baum, der deine Entscheidungen in Rinde ritzt. Drei Ringe, sechsundzwanzig Knoten, fünfundzwanzig Punkte die nie für alles reichen. Der Baum hat kein Mitleid. Er hat auch keine Blätter. Er hat Meinungen. Manche Knoten schließen sich gegenseitig aus — der Baum nennt das 'Charakter'. Zurücksetzen kostet 500 Gold und 50 Essenz, was angemessen ist für jemanden der seine Persönlichkeit komplett ändern will.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 5
+      }
+    },
+    {
+      "id": "abenteuerbuch",
+      "category": "systems",
+      "title": "Das Abenteuerbuch",
+      "text": "Ein Buch, das dich beurteilt. Pro Stockwerk eine Seite, pro Seite eine Prozentzahl, pro Prozentzahl eine leise Enttäuschung. 25%, 50%, 75%, 100% — bei jedem Meilenstein gibt es Belohnungen und das subtile Gefühl, dass der Turm dich für die fehlenden Prozent verurteilt. Wer alle fünf Stockwerke auf 100% bringt, erhält einen Titel und einen Frame. Und den Drang, sofort mit dem nächsten Charakter anzufangen.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 5
+      }
+    },
+    {
+      "id": "diminishing-returns",
+      "category": "systems",
+      "title": "Die Ermüdung",
+      "text": "Die ersten fünf Quests am Tag bringen volle Belohnungen. Die nächsten fünf bringen 75%. Danach 50%. Ab der einundzwanzigsten Quest bringt jede nur noch 25% und einen besorgten Blick vom System. Das nennt sich 'Diminishing Returns' und wurde eingeführt, nachdem ein Held einmal achtundvierzig Quests an einem Tag abgeschlossen hat. Er hat dabei exzellente Fortschritte gemacht und danach drei Wochen nicht mehr eingeloggt. Die Taverne hat seitdem einen neuen Stammgast.",
+      "unlockedBy": {
+        "type": "quests_completed",
+        "value": 20
+      }
+    },
+    {
+      "id": "vergleichsdaemon",
+      "category": "creatures",
+      "title": "Der Vergleichsdämon",
+      "text": "Er sitzt auf deiner Schulter und zeigt dir das Leaderboard. Immer. Auch wenn du nicht fragst. Besonders wenn du nicht fragst. 'Schau mal, der hat dreißig Level mehr als du.' 'Und bessere Ausrüstung.' 'Und mehr Freunde.' Der Dämon lügt nicht. Das ist das Schlimmste an ihm. Die Taverne ist der einzige Ort, an dem er die Klappe hält — vermutlich weil die Taverne keinen Empfang hat.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 15
+      }
+    },
+    {
+      "id": "multitask-golem",
+      "category": "creatures",
+      "title": "Der Multitask-Golem",
+      "text": "Er hat achtzehn Arme und erledigt mit keinem davon etwas zu Ende. Angefangene Projekte türmen sich in seinem Inneren wie geologische Schichten: unten die Ambitionen von 2019, in der Mitte ein halbfertiger Roman, oben eine Yogamatte die er einmal benutzt hat. Der Golem ist technisch gesehen unsterblich. Nicht weil er mächtig ist — sondern weil er nie irgendwo lange genug bleibt um besiegt zu werden. Sein Schwachpunkt: zwing ihn, eine Sache zu Ende zu machen. Er kollabiert vor Schreck.",
+      "unlockedBy": {
+        "type": "quests_completed",
+        "value": 50
+      }
+    },
+    {
+      "id": "perfektionismus-phoenix",
+      "category": "creatures",
+      "title": "Der Perfektionismus-Phönix",
+      "text": "Er verbrennt sich selbst. Immer wieder. Nicht weil er muss — sondern weil das Ergebnis noch nicht perfekt genug war. Die Asche des dreihundertsiebten Versuchs ist laut Analyse identisch mit der des ersten. Der Phönix sieht das anders. 'Diesmal', sagt er jedes Mal und zündet sich wieder an, 'diesmal wird es richtig.' Die anderen Bosse haben aufgehört zuzusehen. Nicht aus Desinteresse, sondern aus Erschöpfung.",
+      "unlockedBy": {
+        "type": "crafts_completed",
+        "value": 25
+      }
+    },
+    {
+      "id": "erster-beruf",
+      "category": "history",
+      "title": "Die Ersten Berufe",
+      "text": "Vor den acht Meistern gab es einen. Einen Typen mit einem Hammer und zu viel Selbstvertrauen. Er schmiedete den ersten Gegenstand im Turm: einen Löffel. Der Löffel war furchtbar. Aber er existierte, und das war der Punkt. Seitdem gibt es acht Berufe, dreihundert Skill-Level, achthundert Rezepte und die stille Übereinkunft, dass niemand nach dem Löffel fragt. Er steht übrigens immer noch irgendwo im Keller. Der Löffel, nicht der Typ. Der Typ wurde Meister. Ironie hat keinen Ruhetag.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 1
+      }
+    },
+    {
+      "id": "entdeckung-der-edelsteine",
+      "category": "history",
+      "title": "Die Entdeckung der Edelsteine",
+      "text": "Jemand fand einen glitzernden Stein und steckte ihn in ein Schwert. Nicht aus Wissenschaft — aus Neugier. Das Schwert wurde stärker. Der Stein wurde leiser. Seitdem werden sechs Edelsteintypen in fünf Qualitätsstufen gezüchtet, geschliffen und in Sockel gepresst, die dafür nie vorgesehen waren. Die Juweliere warnen davor, Edelsteine wieder zu entfernen. Nicht aus technischen Gründen — aus emotionalen. 'Der Stein hat sich eingewöhnt', sagt Meister Aldric. 'Er wird enttäuscht sein.' Niemand weiß ob er das ernst meint. Niemand fragt.",
+      "unlockedBy": {
+        "type": "gem_tier",
+        "value": 2
+      }
+    },
+    {
+      "id": "bindungskriege",
+      "category": "history",
+      "title": "Die Bindungskriege",
+      "text": "Es gab eine Zeit, in der man alles handeln konnte. Legendäre Waffen, epische Rüstungen, den letzten Bissen vom Champions-Festmahl. Dann fand jemand heraus, dass er ein einziges Schwert an siebenunddreißig verschiedene Helden verkaufen konnte, indem er es zwischendurch kurz in den Briefkasten legte. Die Bindungskriege dauerten drei Tage. Am Ende stand das Seelenbindungssystem: Soulbound bei Benutzung, Account-bound bei Looten, und die allgemeine Erkenntnis, dass Vertrauen ein endlicher Rohstoff ist.",
+      "unlockedBy": {
+        "type": "trades_completed",
+        "value": 3
+      }
     }
   ]
 }

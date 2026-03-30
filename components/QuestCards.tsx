@@ -150,7 +150,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
-        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden quest-card-emboss card-hover-depth"
+        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden quest-card-emboss card-hover-depth card-hover-lift"
         title={`${quest.title}${quest.npcName ? ` — from ${quest.npcName}` : ""}${quest.checklist ? ` (${quest.checklist.filter(c => c.done).length}/${quest.checklist.length} steps)` : ""}${QUEST_TYPE_FACTION[quest.type ?? ""] ? ` · +Rep ${QUEST_TYPE_FACTION[quest.type ?? ""].name}` : ""}`}
         style={{
           background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",

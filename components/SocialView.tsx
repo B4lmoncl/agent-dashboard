@@ -296,7 +296,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
               const bStatus = b.onlineStatus || (b.isOnline ? "online" : "offline");
               return (order[aStatus] ?? 2) - (order[bStatus] ?? 2);
             }).map(f => (
-              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
+              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
@@ -439,7 +439,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         </div>
 
         {/* Messages */}
-        <div ref={messagesContainerRef} className="space-y-2 max-h-[360px] overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
+        <div ref={messagesContainerRef} className="space-y-2 max-h-[360px] overflow-y-auto pr-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
           {messages.map(msg => {
             const isMine = msg.from.toLowerCase() === playerName.toLowerCase();
             return (

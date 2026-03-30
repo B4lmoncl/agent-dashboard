@@ -867,8 +867,8 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     return (
       <>
         <div
-          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse" : ""}`}
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: `2px solid ${item ? borderColor : "rgba(255,255,255,0.15)"}`, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
+          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse empty-slot-dashed" : item.rarity === "legendary" ? " legendary-ambient" : item.rarity === "epic" ? " epic-ambient" : ""}`}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
@@ -1209,7 +1209,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
         {/* LEFT: Inventory Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-2 overflow-y-auto"
+          className="flex-shrink-0 rounded-xl p-2 overflow-y-auto scrollbar-rpg"
           style={{ width: "100%", maxWidth: 310, maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           {/* Header + Sort */}
@@ -1578,7 +1578,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
         {/* RIGHT: Stats / Gear Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
+          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto scrollbar-rpg"
           style={{ width: "100%", maxWidth: 250, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
         >
           {/* Tab toggle */}

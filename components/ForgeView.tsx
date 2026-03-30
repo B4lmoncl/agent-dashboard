@@ -1833,7 +1833,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <button
                                 onClick={() => canDo && !craftProgress && startCraftCast(recipe.id, effectiveCount)}
                                 disabled={!canDo || crafting || !!craftProgress}
-                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold relative overflow-hidden"
+                                className="forge-btn btn-press text-sm px-4 py-2 rounded-lg font-semibold relative overflow-hidden"
                                 style={{
                                   background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
                                   color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
@@ -3047,7 +3047,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               ) : autoSalvagePreview && autoSalvagePreview.count > 0 ? (
                 <>
                   {/* Item grid */}
-                  <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                  <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto scrollbar-rpg" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
                       {autoSalvagePreview.items.map(item => {
                         const rc = RARITY_COLORS[item.rarity] || "#888";
@@ -3258,7 +3258,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
                     Effect Library ({cubeData.library.length})
                   </p>
-                  <div className="space-y-1 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+                  <div className="space-y-1 max-h-[200px] overflow-y-auto scrollbar-rpg">
                     {cubeData.library.map(e => {
                       const colors = { offensive: "#ef4444", defensive: "#3b82f6", utility: "#22c55e" };
                       const c = colors[e.category as keyof typeof colors] || "#888";

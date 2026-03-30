@@ -187,7 +187,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
         </div>
         <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }}>
           <div
-            className="progress-bar-diablo-fill"
+            className="progress-bar-diablo-fill progress-shimmer"
             style={{
               width: `${Math.round(progress * 100)}%`,
               background: `linear-gradient(90deg, ${lvl.color}88, ${lvl.color}, ${lvl.color}cc)`,

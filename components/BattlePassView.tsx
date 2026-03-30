@@ -179,7 +179,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         </div>
         <div className={`progress-bar-diablo${player.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="progress-bar-diablo-fill bar-pulse"
+            className="progress-bar-diablo-fill bar-pulse progress-shimmer"
             style={{
               width: `${Math.round(player.progress * 100)}%`,
               background: `linear-gradient(90deg, ${config.seasonAccent}88, ${config.seasonAccent}, ${config.seasonAccent}cc)`,

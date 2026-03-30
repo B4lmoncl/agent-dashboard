@@ -571,7 +571,7 @@ function BannerPullModal({
               onClick={() => onPull(banner.id, 1)}
               disabled={!canPull1 || pulling}
               title={!canPull1 ? `Need ${banner.costSingle - balance} more ${ci.label}` : ""}
-              className="rounded-xl flex-1 min-w-[140px] transition-all group/btn"
+              className="rounded-xl flex-1 min-w-[140px] transition-all group/btn btn-press"
               style={{
                 position: "relative",
                 overflow: "hidden",
@@ -607,7 +607,7 @@ function BannerPullModal({
               onClick={() => onPull(banner.id, 10)}
               disabled={!canPull10 || pulling}
               title={!canPull10 ? `Need ${banner.cost10 - balance} more ${ci.label}` : ""}
-              className="rounded-xl flex-1 min-w-[140px] transition-all group/btn"
+              className="rounded-xl flex-1 min-w-[140px] transition-all group/btn btn-press"
               style={{
                 position: "relative",
                 overflow: "hidden",
