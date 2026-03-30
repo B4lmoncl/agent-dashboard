@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import { createPortal } from "react-dom";
+import { getBalance } from "@/lib/balance-cache";
 
 // ─── Tooltip System ──────────────────────────────────────────────────────────
 // Hover with 0.8s delay → tooltip appears. Nested keywords inside tooltips
@@ -27,7 +28,9 @@ export interface TooltipEntry {
 // ─── Central Tooltip Registry ───────────────────────────────────────────────
 // All game terms that can be hovered for explanations.
 
-const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
+function buildTooltipRegistry(): Record<string, TooltipEntry> {
+  const B = getBalance();
+  return {
   // ── Stats ──
   kraft: {
     title: "Kraft",
@@ -36,8 +39,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat from equipped gear. Increases Quest <GTRef k="xp">XP</GTRef> earned.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% <GTRef k="xp">XP</GTRef> per point (linear)</span></div>
-        <div className="gt-stat-row"><span>At 20</span><span>+10% · At 30 (gear cap): +15%</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.kraft?.label || "+0.5% XP per point"}</span></div>
+        <div className="gt-stat-row"><span>At 20</span><span>+{(B.stats.kraft?.effect || 0.005) * 20 * 100}% · At 30: +{(B.stats.kraft?.effect || 0.005) * 30 * 100}%</span></div>
         <p className="gt-source">Sources: Gear affixes, set bonuses, enchantments</p>
       </>
     ),
@@ -49,8 +52,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Slows <GTRef k="forge_temp">Forge Temperature</GTRef> decay rate.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>-0.5% decay rate per point</span></div>
-        <div className="gt-stat-row"><span>Floor</span><span>10% of base decay rate</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.ausdauer?.label || "-0.5% Forge Decay per point"}</span></div>
+        <div className="gt-stat-row"><span>Floor</span><span>{((B.stats.ausdauer?.decayFloor || 0.1) * 100).toFixed(0)}% of base decay rate</span></div>
         <p className="gt-source">Sources: Gear affixes (armor, shield, boots)</p>
       </>
     ),
@@ -62,8 +65,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases <GTRef k="gold">Gold</GTRef> earned from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.4% <GTRef k="gold">Gold</GTRef> per point (linear)</span></div>
-        <div className="gt-stat-row"><span>At 20</span><span>+8% · At 30 (gear cap): +12%</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.weisheit?.label || "+0.4% Gold per point"}</span></div>
+        <div className="gt-stat-row"><span>At 20</span><span>+{(B.stats.weisheit?.effect || 0.004) * 20 * 100}% · At 30: +{(B.stats.weisheit?.effect || 0.004) * 30 * 100}%</span></div>
         <p className="gt-source">Sources: Gear affixes (helm, amulet, weapon)</p>
       </>
     ),
@@ -75,8 +78,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases loot drop chance from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.3% drop chance per point (linear)</span></div>
-        <div className="gt-stat-row"><span>At 20</span><span>+6% · At 30 (gear cap): +9%</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.glueck?.label || "+0.3% drop chance per point"}</span></div>
+        <div className="gt-stat-row"><span>At 20</span><span>+{((B.stats.glueck?.effect || 0.003) * 20 * 100).toFixed(0)}% · At 30: +{((B.stats.glueck?.effect || 0.003) * 30 * 100).toFixed(1)}%</span></div>
         <p className="gt-source">Sources: Gear affixes (boots, amulet, helm)</p>
       </>
     ),
@@ -88,8 +91,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Minor stat. Adds flat bonus <GTRef k="xp">XP</GTRef> to every quest completion.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+1 <GTRef k="xp">XP</GTRef> per point</span></div>
-        <div className="gt-stat-row"><span>Cap</span><span>+50 <GTRef k="xp">XP</GTRef></span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.fokus?.label || "+1 flat XP per point"}</span></div>
+        <div className="gt-stat-row"><span>Cap</span><span>+{B.stats.fokus?.cap || 50} <GTRef k="xp">XP</GTRef></span></div>
       </>
     ),
   },
@@ -100,8 +103,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Minor stat. Chance to automatically save your <GTRef k="streak">Streak</GTRef> when you miss a day.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+1% auto-recovery per point</span></div>
-        <div className="gt-stat-row"><span>Cap</span><span>75% total</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.vitalitaet?.label || "+1% streak protection per point"}</span></div>
+        <div className="gt-stat-row"><span>Cap</span><span>{((B.stats.vitalitaet?.cap || 0.75) * 100).toFixed(0)}% total</span></div>
       </>
     ),
   },
@@ -112,7 +115,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Minor stat. Increases Bond <GTRef k="xp">XP</GTRef> earned from companion quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+5% Bond <GTRef k="xp">XP</GTRef> per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.charisma?.label || "+5% Bond XP per point"}</span></div>
       </>
     ),
   },
@@ -123,7 +126,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Minor stat. Increases <GTRef k="forge_temp">Forge Temperature</GTRef> recovery from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+1% recovery per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>{B.stats.tempo?.label || "+1% Forge Temp recovery per point"}</span></div>
       </>
     ),
   },
@@ -135,13 +138,13 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#f97316",
     body: (
       <>
-        <p>Activity meter (0-100%). Higher temp = more <GTRef k="xp">XP</GTRef> &amp; <GTRef k="gold">Gold</GTRef>. Decays 2%/hour, <GTRef k="ausdauer">Ausdauer</GTRef> slows decay. Each quest: +10.</p>
-        <div className="gt-stat-row"><span>100% White-hot</span><span>×1.25 <GTRef k="xp">XP</GTRef> · ×1.25 <GTRef k="gold">Gold</GTRef></span></div>
-        <div className="gt-stat-row"><span>80%+ Blazing</span><span>×1.15 <GTRef k="xp">XP</GTRef> · ×1.15 <GTRef k="gold">Gold</GTRef></span></div>
-        <div className="gt-stat-row"><span>60%+ Burning</span><span>×1.10 <GTRef k="xp">XP</GTRef> · ×1.08 <GTRef k="gold">Gold</GTRef></span></div>
-        <div className="gt-stat-row"><span>40%+ Warming</span><span>×1.0 <GTRef k="xp">XP</GTRef></span></div>
-        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>20%+ Smoldering</span><span>×0.85 <GTRef k="xp">XP</GTRef></span></div>
-        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>&lt;20% Cold</span><span>×0.6 <GTRef k="xp">XP</GTRef></span></div>
+        <p>Activity meter (0-100%). Higher temp = more <GTRef k="xp">XP</GTRef> &amp; <GTRef k="gold">Gold</GTRef>. Decays {B.forgeTemp.decayPerHour}%/hour, <GTRef k="ausdauer">Ausdauer</GTRef> slows decay. Each quest: +{B.forgeTemp.gainPerQuest}.</p>
+        {B.forgeTemp.tiers.map((t, i) => (
+          <div key={i} className="gt-stat-row" style={t.xp < 1 ? { color: "#ef4444" } : undefined}>
+            <span>{t.min === 0 ? `<${B.forgeTemp.tiers[i > 0 ? i - 1 : 0]?.min || 20}%` : `${t.min}%+`} {t.label}</span>
+            <span>×{t.xp} <GTRef k="xp">XP</GTRef>{t.gold !== 1 ? ` · ×${t.gold} Gold` : ""}</span>
+          </div>
+        ))}
       </>
     ),
   },
@@ -151,8 +154,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#fbbf24",
     body: (
       <>
-        <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to +45% at 30+ days).</p>
-        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+1.5% per day, max +45% at 30 days</span></div>
+        <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to +{(B.streak.maxBonus * 100).toFixed(0)}% at {B.streak.maxDays}+ days).</p>
+        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+{(B.streak.bonusPerDay * 100).toFixed(1)}% per day, max +{(B.streak.maxBonus * 100).toFixed(0)}% at {B.streak.maxDays} days</span></div>
         <div className="gt-stat-row"><span>Protection</span><span><GTRef k="vitalitaet">Vitalität</GTRef> stat, Streak Shields, Legendary gear</span></div>
         <p className="gt-source">Milestones: Bronze (7d), Silver (21d), Gold (60d), Diamond (180d), Legend (365d)</p>
       </>
@@ -275,10 +278,10 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Having too many active quests reduces <GTRef k="xp">XP</GTRef> earned. Encourages completing quests before claiming new ones.</p>
-        <div className="gt-stat-row"><span>1-20 quests</span><span style={{ color: "#22c55e" }}>No penalty</span></div>
-        <div className="gt-stat-row"><span>21-24 quests</span><span style={{ color: "#ef4444" }}>-10% <GTRef k="xp">XP</GTRef> per quest over 20</span></div>
-        <div className="gt-stat-row"><span>25+ quests</span><span style={{ color: "#ef4444" }}>-50% <GTRef k="xp">XP</GTRef> (soft cap)</span></div>
-        <div className="gt-stat-row"><span>30+ quests</span><span style={{ color: "#ef4444" }}>-80% <GTRef k="xp">XP</GTRef> (hard cap)</span></div>
+        <div className="gt-stat-row"><span>1-{B.hoarding.freeLimit} quests</span><span style={{ color: "#22c55e" }}>No penalty</span></div>
+        <div className="gt-stat-row"><span>{B.hoarding.freeLimit + 1}-{B.hoarding.hardCapAt - 1} quests</span><span style={{ color: "#ef4444" }}>-{B.hoarding.penaltyPerQuest}% <GTRef k="xp">XP</GTRef> per quest over {B.hoarding.freeLimit}</span></div>
+        <div className="gt-stat-row"><span>{B.hoarding.hardCapAt - 5}+ quests</span><span style={{ color: "#ef4444" }}>-{B.hoarding.softCap}% <GTRef k="xp">XP</GTRef> (soft cap)</span></div>
+        <div className="gt-stat-row"><span>{B.hoarding.hardCapAt}+ quests</span><span style={{ color: "#ef4444" }}>-{B.hoarding.hardCap}% <GTRef k="xp">XP</GTRef> (hard cap)</span></div>
       </>
     ),
   },
@@ -510,12 +513,12 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Draw items from the Aetherstream. The Wheel remembers every pull.</p>
-        <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>0.8%</span></div>
-        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>3%</span></div>
-        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>25%</span></div>
-        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>45%</span></div>
-        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>26.2%</span></div>
-        <p className="gt-source"><GTRef k="pity">Pity</GTRef>: Soft at 55, hard at 75. 10-pull = 10% discount + guaranteed Epic+. Duplicates → <GTRef k="runensplitter">Rune Shards</GTRef>.</p>
+        <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>{(B.gacha.legendaryRate * 100).toFixed(1)}%</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{(B.gacha.epicRate * 100).toFixed(0)}%</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>{(B.gacha.rareRate * 100).toFixed(0)}%</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>{(B.gacha.uncommonRate * 100).toFixed(0)}%</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>{((1 - B.gacha.legendaryRate - B.gacha.epicRate - B.gacha.rareRate - B.gacha.uncommonRate) * 100).toFixed(1)}%</span></div>
+        <p className="gt-source"><GTRef k="pity">Pity</GTRef>: Soft at {B.gacha.softPity}, hard at {B.gacha.hardPity}. 10-pull = 10% discount + guaranteed Epic+. Duplicates → <GTRef k="runensplitter">Rune Shards</GTRef>.</p>
       </>
     ),
   },
@@ -1447,11 +1450,21 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     ),
   },
 };
+}
+
+// Lazy-initialized cache (rebuilt when balance data changes)
+let _registryCache: Record<string, TooltipEntry> | null = null;
+function getRegistry(): Record<string, TooltipEntry> {
+  if (!_registryCache) _registryCache = buildTooltipRegistry();
+  return _registryCache;
+}
+// Allow cache invalidation when balance data loads
+export function invalidateTooltipCache() { _registryCache = null; }
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────
 
 function GTRef({ k, children }: { k: string; children: React.ReactNode }) {
-  const entry = TOOLTIP_REGISTRY[k];
+  const entry = getRegistry()[k];
   if (!entry) return <span style={{ color: "#f0f0f0", fontWeight: 600 }}>{children}</span>;
   return (
     <GameTooltip entry={entry}>
@@ -1479,7 +1492,7 @@ interface GameTooltipProps {
 
 export function GameTooltip({ k, entry: directEntry, children, align: alignProp, heading, hoverDelay }: GameTooltipProps) {
   const align = alignProp || (heading ? "center" : "left");
-  const resolvedEntry = directEntry || (k ? TOOLTIP_REGISTRY[k] : null);
+  const resolvedEntry = directEntry || (k ? getRegistry()[k] : null);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
@@ -1639,7 +1652,7 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
 // <Tip k="kraft">Kraft</Tip> → hoverable "Kraft" text that shows tooltip
 
 export function Tip({ k, children, accent, heading }: { k: string; children: React.ReactNode; accent?: string; heading?: boolean }) {
-  const entry = TOOLTIP_REGISTRY[k];
+  const entry = getRegistry()[k];
   if (!entry) return <>{children}</>;
   return (
     <GameTooltip k={k} heading={heading}>
@@ -1663,5 +1676,5 @@ export function TipCustom({ title, icon, accent, body, children, heading, hoverD
   );
 }
 
-export { TOOLTIP_REGISTRY, GTRef };
+export { getRegistry as getTooltipRegistry, GTRef };
 export default GameTooltip;
