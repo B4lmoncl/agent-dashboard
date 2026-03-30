@@ -602,7 +602,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
           trackUniqueInCollection(uid, uniqueTemplate.id);
           if (!u.collectionLogDates) u.collectionLogDates = {};
           u.collectionLogDates[uniqueTemplate.id] = now();
-          uniqueDrop = { name: uniqueTemplate.name, slot: uniqueTemplate.slot, id: uniqueTemplate.id };
+          uniqueDrop = { name: uniqueTemplate.name, slot: uniqueTemplate.slot, id: uniqueTemplate.id, icon: uniqueTemplate.icon || null };
           break; // Max 1 unique per run
         }
       }

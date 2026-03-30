@@ -463,7 +463,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
           trackUniqueInCollection(uid, dropId);
           if (!user.collectionLogDates) user.collectionLogDates = {};
           user.collectionLogDates[dropId] = new Date().toISOString();
-          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, slot: uniqueTemplate.slot });
+          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, slot: uniqueTemplate.slot, icon: uniqueTemplate.icon || null });
         }
       } else {
         // Fallback: unique template not found, use legacy behavior
