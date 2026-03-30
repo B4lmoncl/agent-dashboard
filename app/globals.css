@@ -862,6 +862,15 @@ button[disabled] {
   pointer-events: none;
 }
 
+/* Profession Mastery portrait glow — golden breathe at Skill 225+ */
+.mastery-portrait-glow {
+  animation: mastery-breathe 3s ease-in-out infinite;
+}
+@keyframes mastery-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(251,191,36,0.15), inset 0 0 4px rgba(251,191,36,0.05); }
+  50% { box-shadow: 0 0 16px rgba(251,191,36,0.3), inset 0 0 8px rgba(251,191,36,0.1); }
+}
+
 /* Mondlicht glow — vivid blue with pulsing outer glow (GPU-friendly opacity animation) */
 @keyframes mondlicht-card-pulse {
   0%, 100% { opacity: 0.3; }

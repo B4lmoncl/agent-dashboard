@@ -932,7 +932,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             >
               <div className="flex items-center gap-3 mb-2">
                 {/* NPC portrait — border evolves with rank */}
-                <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0" style={{ background: `${prof.color}12`, border: `2px solid ${prof.rankColor || prof.color}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}` }}>
+                <div className={`w-14 h-14 rounded-lg overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
                   <img src={prof.npcPortrait} alt={prof.npcName} width={56} height={56} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -942,6 +942,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${prof.rankColor}15`, color: prof.rankColor, border: `1px solid ${prof.rankColor}30` }}>
                         {prof.rank}
                       </span>
+                    )}
+                    {prof.masteryActive && (
+                      <TipCustom title="Mastery Active" icon="★" accent="#fbbf24" body={<p>Skill 225+ — {prof.masteryBonus?.type === "potion_duration" ? "Extended potion duration" : prof.masteryBonus?.type === "enchant_power" ? "Enhanced enchant power" : prof.masteryBonus?.type === "gear_stat_boost" ? "Boosted gear stats" : prof.masteryBonus?.type === "meal_duration" ? "Extended meal duration" : "Mastery bonus active"}!</p>}>
+                        <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", cursor: "help" }}>Mastery</span>
+                      </TipCustom>
                     )}
                   </div>
                   <p className="text-sm line-clamp-2 overflow-hidden" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}
@@ -1382,7 +1387,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 }} />
               ))}
               <div className="flex items-center gap-4 relative">
-                <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 20px ${selectedNpc.color}25` }}>
+                <div className={`w-24 h-24 rounded-xl overflow-hidden flex-shrink-0${selectedNpc.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ border: `2px solid ${selectedNpc.masteryActive ? "#fbbf24" : selectedNpc.color}60`, boxShadow: selectedNpc.masteryActive ? `0 0 24px rgba(251,191,36,0.3), 0 0 8px ${selectedNpc.color}25` : `0 0 20px ${selectedNpc.color}25` }}>
                   <img src={selectedNpc.npcPortrait} alt="" width={96} height={96} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
