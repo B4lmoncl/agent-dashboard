@@ -62,6 +62,11 @@
       "7":  "7 Tage Allianz-Streak! Eine Woche für deine Leute da sein. Das ist seltener als legendärer Loot und deutlich wertvoller. Die Gilde vermerkt das.",
       "14": "14 Tage Allianz-Streak! Zwei Wochen. Deine Verbündeten würden ohne Zögern für dich in den Kampf ziehen. Oder zumindest beim Umzug helfen. Was ehrlich gesagt schwieriger ist.",
       "30": "30 Tage Allianz-Streak! Einen Monat lang für andere da gewesen. Du hast etwas gebaut, das die meisten Abenteurer nie erreichen — echte Verbindung. Die Gilde schweigt respektvoll. Das passiert selten."
-    }
+    },
+    "nightCompletion": "Soziale Interaktion nach Mitternacht. Die besten Gespräche passieren, wenn die Vernunft schläft.",
+    "morningCompletion": "Menschenkontakt vor dem Frühstück. Du bist entweder ein Morgenmensch oder verzweifelt. Die Gilde respektiert beides.",
+    "weekendCompletion": "Soziale Interaktion am Wochenende. Freiwillig. Die Gilde ist gerührt und leicht besorgt.",
+    "streakMilestone7": "Sieben Tage für andere da gewesen. Deine Verbündeten haben angefangen, dich mit Namen zu grüßen statt mit einem vagen Nicken. Revolution.",
+    "streakMilestone30": "Dreißig Tage. Du hast ein Netzwerk aus echten Verbindungen gebaut. Nicht aus Pflicht. Aus Wahl. Die Gilde hat dafür kein Wort. Also haben sie eins erfunden."
   }
 }
