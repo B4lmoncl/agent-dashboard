@@ -71,6 +71,16 @@
         "amount": 5
       },
       "icon": "/images/icons/loot-common.png"
+    },
+    {
+      "id": "random-gear-common",
+      "name": "Alte Truhe",
+      "icon": "/images/icons/loot-common.png",
+      "effect": {
+        "type": "random_gear",
+        "amount": 1
+      },
+      "minLevel": 1
     }
   ],
   "uncommon": [
@@ -147,6 +157,16 @@
         "duration": "5_tasks"
       },
       "icon": "/images/icons/loot-uncommon.png"
+    },
+    {
+      "id": "random-gear-uncommon",
+      "name": "Verschlossene Truhe",
+      "icon": "/images/icons/loot-uncommon.png",
+      "effect": {
+        "type": "random_gear",
+        "amount": 1
+      },
+      "minLevel": 3
     }
   ],
   "rare": [
