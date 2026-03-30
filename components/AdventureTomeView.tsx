@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -148,9 +149,11 @@ export default function AdventureTomeView({
     <div className="space-y-5 tab-content-enter">
       {/* ─── Header ────────────────────────────────────────────────────────── */}
       <div className="text-center space-y-2">
-        <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>
-          Abenteuerbuch
-        </h2>
+        <Tip k="adventure_tome" heading>
+          <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>
+            Abenteuerbuch
+          </h2>
+        </Tip>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)", maxWidth: "min(480px, 100%)", margin: "0 auto" }}>
           Track your completionist progress across every floor of the tower. Reach milestones to claim exclusive rewards.
         </p>
