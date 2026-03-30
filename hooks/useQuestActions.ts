@@ -275,7 +275,7 @@ export function useQuestActions({
           loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6", icon: data.npcFinalReward.icon } : data.lootDrop || null,
           achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
           ...(currencies.length > 0 ? { currencies } : {}),
-          ...(data.npcFinalReward ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` } : {}),
+          ...(data.npcFinalReward ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` } : data.dailyDiminishing != null && data.dailyDiminishing < 1 ? { flavor: `Daily quest ${data.dailyQuestCount || "?"} — Rewards at ${Math.round(data.dailyDiminishing * 100)}%` } : {}),
           ...(data.companionReward ? {
             bondXp: data.companionReward.bondXpGained || 0,
             companionEmoji: data.companionReward.companionType === "ember_sprite" ? "🔥" : data.companionReward.companionType === "lore_owl" ? "🦉" : data.companionReward.companionType === "gear_golem" ? "⚙️" : "🐾",
@@ -320,6 +320,11 @@ export function useQuestActions({
             }
           }
         }
+        // Diminishing returns notification (first time hitting a new tier)
+        if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Daily rewards reduced to 75%", icon: "◆", sub: "Complete 5 quests early for full value" });
+        else if (data.dailyQuestCount === 11) addToast({ type: "flavor", message: "Daily rewards reduced to 50%", icon: "◆", sub: "Consider resting until tomorrow" });
+        else if (data.dailyQuestCount === 21) addToast({ type: "flavor", message: "Daily rewards at minimum (25%)", icon: "◆", sub: "Your forge burns low — rest and return stronger" });
+
         // Optimistically update NPC quest chain
         setActiveNpcs(prev => prev.map(npc => {
           if (!npc.questChain.some(q => q.questId === questId)) return npc;
