@@ -261,15 +261,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const loggedIn = playerName && reviewApiKey;
 
   /** Compute total vendor reagent gold cost for a recipe (× count). */
-  const getVendorReagentCost = useCallback((recipe: Recipe, count: number = 1): number => {
-    if (!recipe.vendorReagents) return 0;
-    let cost = 0;
-    for (const [rid, qty] of Object.entries(recipe.vendorReagents)) {
-      const def = vendorReagentDefs.find(r => r.id === rid);
-      if (def) cost += def.price * (qty as number);
-    }
-    return cost * count;
-  }, [vendorReagentDefs]);
+  // Vendor reagents are now in recipe.materials (not separate) — no gold cost calculation needed
 
   const fetchData = useCallback(async () => {
     if (!playerName) return;
@@ -1656,7 +1648,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         const effectiveCount = isBatchable ? craftCount : 1;
                         const canAffordCheck = (() => {
                           const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                          const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount + getVendorReagentCost(recipe, effectiveCount);
+                          const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount;
                           if (totalGoldNeeded > 0 && g < totalGoldNeeded) return false;
                           for (const [matId, amt] of Object.entries(recipe.materials || {})) {
                             if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
@@ -1667,7 +1659,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       if (showHaveMatsOnly) {
                         const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
-                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= ((recipe.cost?.gold || 0) + getVendorReagentCost(recipe));
+                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= ((recipe.cost?.gold || 0));
                         if (!hasMats || !hasGold) return false;
                       }
                       return true;
@@ -1751,7 +1743,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const effectiveCount = isBatchable ? craftCount : 1;
                     const canAfford = (() => {
                       const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                      const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount + getVendorReagentCost(recipe, effectiveCount);
+                      const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount;
                       if (totalGoldNeeded > 0 && gold < totalGoldNeeded) return false;
                       for (const [matId, amt] of Object.entries(recipe.materials || {})) {
                         if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
@@ -1817,7 +1809,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               // Calculate max craftable quantity for the "Max" option
                               const playerGoldForMax = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
                               const maxFromMats = Object.entries(recipe.materials || {}).map(([matId, amt]) => Math.floor((materials[matId] || 0) / (amt as number)));
-                              const perCraftGold = (recipe.cost?.gold || 0) + getVendorReagentCost(recipe);
+                              const perCraftGold = (recipe.cost?.gold || 0);
                               const maxFromGold = perCraftGold > 0 ? Math.floor(playerGoldForMax / perCraftGold) : Infinity;
                               const hasMaterials = Object.keys(recipe.materials || {}).length > 0;
                               const batchCap = hasMaterials ? 50 : 10;
