@@ -1769,10 +1769,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft = 0, ausdauer = 0, weisheit = 0, glueck = 0, fokus = 0, vitalitaet = 0, charisma = 0, tempo = 0 } = charData.stats || {};
             const base = charData.baseStats || { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · Quest XP bonus (diminishing returns)" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Forge Decay reduction (diminishing)" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · Gold bonus (diminishing returns)" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Drop Chance bonus (diminishing returns)" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest XP per point" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay per point (floor 10%)" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.4% Gold per point" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.3% Drop Chance per point" },
             ];
             const minorStatRows = [
               { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus XP per point (max +50)" },
