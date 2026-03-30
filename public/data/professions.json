@@ -2676,7 +2676,7 @@
       "xp": 8,
       "description": "Stellt her: Grober Schärfstein.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Macht stumpfe Dinge weniger stumpf. Wie ein Montag mit Kaffee."
     },
     {
       "id": "recipe-schmied-rauer-schaerfstein",
@@ -2699,7 +2699,7 @@
       "description": "Stellt her: Rauer Schärfstein.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Rauer als der grobe. Varn sagt, der Unterschied sei eine Frage der Einstellung. Und der Körnung."
     },
     {
       "id": "recipe-schmied-schwerer-schaerfstein",
@@ -2721,7 +2721,7 @@
       "xp": 18,
       "description": "Stellt her: Schwerer Schärfstein.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Schwer genug um damit zu werfen. Varn empfiehlt das nicht. Die Wand auch nicht."
     },
     {
       "id": "recipe-schmied-dichter-schaerfstein",
@@ -2744,7 +2744,7 @@
       "description": "Stellt her: Dichter Schärfstein.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "So dicht gepackt dass er fast intelligent wirkt. Fast."
     },
     {
       "id": "recipe-schmied-elementar-schaerfstein",
@@ -2766,7 +2766,7 @@
       "xp": 35,
       "description": "Stellt her: Elementarer Schärfstein.",
       "trainerCost": 1500,
-      "desc": ""
+      "desc": "Schärft auf atomarer Ebene. Varn behauptet er kann das erklären. Er kann es nicht."
     },
     {
       "id": "recipe-schmied-leichter-gewichtstein",
@@ -2875,7 +2875,7 @@
       "xp": 10,
       "description": "Stellt her: Eiserne Schilddornen.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Dornen für Schilde. Damit der Feind lernt dass Anfassen keine gute Idee war."
     },
     {
       "id": "recipe-schmied-kristall-schilddornen",
@@ -2897,7 +2897,7 @@
       "xp": 22,
       "description": "Stellt her: Kristall-Schilddornen.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Kristalldornen die bei Kontakt splittern. In den Feind. Designentscheidung, kein Defekt."
     },
     {
       "id": "recipe-schmied-aether-schilddornen",
@@ -2919,7 +2919,7 @@
       "description": "Stellt her: Aether-Schilddornen.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Dornen aus Aether. Wechseln die Farbe je nach Stimmung des Schilds. Ja, das Schild hat Stimmungen."
     },
     {
       "id": "recipe-schmied-leichte-panzerverstaerkung",
@@ -3090,7 +3090,7 @@
       "xp": 10,
       "description": "Klinge schärfen I.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Erste Schärfung. Der Anfang einer Beziehung zwischen Stahl und Schleifstein."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-2",
@@ -3110,7 +3110,7 @@
       "xp": 15,
       "description": "Klinge schärfen II.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Schärfer als zuvor. Varn testet es an seinem Daumen. Er hat noch alle zehn. Neun. Er hat neun."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-3",
@@ -3131,7 +3131,7 @@
       "xp": 22,
       "description": "Klinge schärfen III.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Dritte Schärfung. Die Klinge schneidet jetzt Argumente. Und manchmal Tische."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-4",
@@ -3153,7 +3153,7 @@
       "description": "Klinge schärfen IV.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Vierte Schärfung. Ab hier schneidet die Klinge Dinge die nicht geschnitten werden wollen."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-5",
@@ -3175,7 +3175,7 @@
       "description": "Klinge schärfen V.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Maximale Schärfe. Die Klinge schneidet durch alles. Einschließlich Varns Geduld, was bemerkenswert ist."
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-1",
@@ -3277,7 +3277,7 @@
       "xp": 12,
       "description": "Schild polieren I.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Poliert den Schild bis er reflektiert. Feinde. Und gelegentlich die eigene Unsicherheit."
     },
     {
       "id": "recipe-schmied-schild-polieren-2",
@@ -3298,7 +3298,7 @@
       "description": "Schild polieren II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stärkere Politur. Der Schild blendet jetzt. Absichtlich."
     },
     {
       "id": "recipe-schmied-schild-polieren-3",
@@ -3319,7 +3319,7 @@
       "description": "Schild polieren III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Maximale Politur. Der Schild ist jetzt ein Spiegel mit Verteidigungswert."
     },
     {
       "id": "recipe-schmied-amulett-segnen-1",
@@ -12074,7 +12074,7 @@
       "xp": 5,
       "description": "Schmiedet: Eiserner Rundschild.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Rund, eisern, effektiv. Varn sagt, manchmal ist einfach am besten. Er meint es nicht als Kompliment."
     },
     {
       "id": "recipe-waffenschmied-eisernes-kurzschwert",
@@ -12093,7 +12093,7 @@
       "xp": 5,
       "description": "Schmiedet: Eisernes Kurzschwert.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Kurz genug für enge Räume. Lang genug für deutliche Aussagen."
     },
     {
       "id": "recipe-waffenschmied-eiserner-buckler",
@@ -12112,7 +12112,7 @@
       "xp": 6,
       "description": "Schmiedet: Eiserner Buckler.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Klein, leicht, und der Grund warum Varn jeden Morgen 'Deckung!' ruft. Zur Übung."
     },
     {
       "id": "recipe-waffenschmied-einfacher-zauberstab",
@@ -12131,7 +12131,7 @@
       "xp": 6,
       "description": "Schmiedet: Einfacher Zauberstab.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Ein Stock mit Ambitionen. Varn hat ihn ungern gemacht. Holz ist unter seiner Würde."
     },
     {
       "id": "recipe-waffenschmied-eisenstab",
@@ -12150,7 +12150,7 @@
       "xp": 6,
       "description": "Schmiedet: Eisenstab.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Ein Stab aus Eisen. Varn hat gefragt wozu. Die Antwort hat ihn nicht überzeugt. Er hat ihn trotzdem gemacht."
     },
     {
       "id": "recipe-waffenschmied-eiserne-streitaxt",
@@ -12169,7 +12169,7 @@
       "xp": 7,
       "description": "Schmiedet: Eiserne Streitaxt.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Spaltet Meinungen. Und Holz. Und gelegentlich Tische wenn Varn sie testet."
     },
     {
       "id": "recipe-waffenschmied-rostiger-dolch",
@@ -12188,7 +12188,7 @@
       "xp": 7,
       "description": "Schmiedet: Rostiger Dolch.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Der Name ist Programm. Varn schämt sich nicht dafür. Er schämt sich für den Preis."
     },
     {
       "id": "recipe-waffenschmied-grober-kriegshammer",
@@ -12207,7 +12207,7 @@
       "xp": 8,
       "description": "Schmiedet: Grober Kriegshammer.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Subtilität in Hammerform. Varn sagt, manchmal braucht ein Problem einen größeren Hammer."
     },
     {
       "id": "recipe-waffenschmied-einfacher-fokus",
@@ -12228,7 +12228,7 @@
       "description": "Schmiedet: Einfacher Fokus.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Fokussiert magische Energie. Oder zumindest die Aufmerksamkeit des Trägers auf die Tatsache dass er einen Fokus hält."
     },
     {
       "id": "recipe-waffenschmied-eisernes-beil",
@@ -12248,7 +12248,7 @@
       "description": "Schmiedet: Eisernes Beil.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Hackt. Das ist alles was es tut. Varn findet das ehrlicher als die meisten Leute."
     },
     {
       "id": "recipe-waffenschmied-grober-streitkolben",
@@ -12268,7 +12268,7 @@
       "description": "Schmiedet: Grober Streitkolben.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Für Argumente die mit Worten nicht zu gewinnen sind. Und das sind die meisten."
     },
     {
       "id": "recipe-waffenschmied-eiserner-langschild",
@@ -12289,7 +12289,7 @@
       "description": "Schmiedet: Eiserner Langschild.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Länger als der Rundschild. Schwerer als der Buckler. Teurer als beides. Varns Geschäftsmodell."
     },
     {
       "id": "recipe-waffenschmied-einfaches-schutzbuch",
@@ -12310,7 +12310,7 @@
       "description": "Schmiedet: Einfaches Schutzbuch.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Ein Buch das schützt statt bildet. Varn versteht es nicht. Er hat es trotzdem geschmiedet."
     },
     {
       "id": "recipe-waffenschmied-grober-schild",
@@ -12330,7 +12330,7 @@
       "description": "Schmiedet: Grober Schild.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Grob in der Verarbeitung, effektiv im Einsatz. Wie die meisten Ratschläge."
     },
     {
       "id": "recipe-waffenschmied-geschmiedeter-buckler",
@@ -12351,7 +12351,7 @@
       "description": "Schmiedet: Geschmiedeter Buckler.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Ein Buckler mit Haltung. Klein genug zum Tragen, groß genug zum Überleben."
     },
     {
       "id": "recipe-waffenschmied-eiserne-tartsche",
@@ -12372,7 +12372,7 @@
       "description": "Schmiedet: Eiserne Tartsche.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Tartsche klingt fancy. Ist ein Schild mit Kurve. Varn verlangt trotzdem Aufpreis für den Namen."
     },
     {
       "id": "recipe-waffenschmied-eiserne-klinge",
@@ -12392,7 +12392,7 @@
       "description": "Schmiedet: Eiserne Klinge.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Gerade, scharf, und ohne Schnörkel. Varn sagt, wer Verzierung will soll zum Juwelier gehen."
     },
     {
       "id": "recipe-waffenschmied-schlichter-wanderstab",
@@ -12412,7 +12412,7 @@
       "description": "Schmiedet: Schlichter Wanderstab.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Ein Stab zum Wandern. Oder zum Zuschlagen. Varn gibt keine Garantie für welchen Zweck du ihn nutzt."
     },
     {
       "id": "recipe-waffenschmied-eiserner-turmschild",
@@ -12432,7 +12432,7 @@
       "description": "Schmiedet: Eiserner Turmschild.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "So groß dass man sich dahinter verstecken kann. Physisch und emotional."
     },
     {
       "id": "recipe-waffenschmied-grobes-foliant",
@@ -12453,7 +12453,7 @@
       "description": "Schmiedet: Grobes Foliant.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Ein Buch aus Metall. Schwerer als Wissen, aber leichter als Ignoranz."
     },
     {
       "id": "recipe-waffenschmied-kristall-tartsche",
@@ -12474,7 +12474,7 @@
       "description": "Schmiedet: Kristall-Tartsche.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Kristall-Tartsche. Reflektiert Angriffe und gelegentlich das Selbstbild des Angreifers."
     },
     {
       "id": "recipe-waffenschmied-kristall-buckler",
@@ -12495,7 +12495,7 @@
       "description": "Schmiedet: Kristall-Buckler.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Klein, kristallin, und aggressiver als er aussieht. Wie ein Kolibri mit Meinung."
     },
     {
       "id": "recipe-waffenschmied-kristallklinge",
@@ -12515,7 +12515,7 @@
       "xp": 13,
       "description": "Schmiedet: Kristallklinge.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Kristall als Klinge. Sollte brechen. Tut es nicht. Varn stellt keine Fragen mehr."
     },
     {
       "id": "recipe-waffenschmied-staehlernes-langschwert",
@@ -12535,7 +12535,7 @@
       "xp": 13,
       "description": "Schmiedet: Stählernes Langschwert.",
       "trainerCost": 250,
-      "desc": ""
+      "desc": "Lang genug um Respekt zu verdienen. Scharf genug um ihn einzufordern."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-zauberstab",
@@ -12555,7 +12555,7 @@
       "xp": 14,
       "description": "Schmiedet: Stählerner Zauberstab.",
       "trainerCost": 250,
-      "desc": ""
+      "desc": "Stahl statt Holz. Varn sagt, Magier brauchen auch etwas Handfestes im Leben."
     },
     {
       "id": "recipe-waffenschmied-kristall-prunkschild",
@@ -12575,7 +12575,7 @@
       "xp": 14,
       "description": "Schmiedet: Kristall-Prunkschild.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Prunk ist das operative Wort. Der Schild schützt, aber er tut es mit Stil."
     },
     {
       "id": "recipe-waffenschmied-kristall-kriegsbeil",
@@ -12595,7 +12595,7 @@
       "xp": 15,
       "description": "Schmiedet: Kristall-Kriegsbeil.",
       "trainerCost": 250,
-      "desc": ""
+      "desc": "Ein Beil aus Kristall. Die Physik hat protestiert. Varn hat die Physik ignoriert."
     },
     {
       "id": "recipe-waffenschmied-kristall-fokus",
@@ -12616,7 +12616,7 @@
       "description": "Schmiedet: Kristall-Fokus.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Fokussiert magische Energie durch Kristall. Das Kristall beschwert sich nicht. Noch nicht."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-turmschild",
@@ -12636,7 +12636,7 @@
       "xp": 15,
       "description": "Schmiedet: Stählerner Turmschild.",
       "trainerCost": 250,
-      "desc": ""
+      "desc": "Ein Turm den man tragen kann. Varn findet die Idee absurd. Er hat ihn trotzdem gemacht."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-schutzschild",
@@ -12655,7 +12655,7 @@
       "xp": 16,
       "description": "Schmiedet: Stählerner Schutzschild.",
       "trainerCost": 250,
-      "desc": ""
+      "desc": "Schützt. Steht im Namen. Varn hält überflüssige Beschreibungen für Zeitverschwendung."
     },
     {
       "id": "recipe-waffenschmied-staehlernes-foliant",
@@ -12675,7 +12675,7 @@
       "description": "Schmiedet: Stählernes Foliant.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Stählernes Buch. Unlesbar, aber unzerstörbar. Wie manche Memoiren."
     },
     {
       "id": "recipe-waffenschmied-staehlernes-breitschwert",
@@ -12695,7 +12695,7 @@
       "description": "Schmiedet: Stählernes Breitschwert.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Breit, stählern, und der Grund warum Varn seinen Amboss 'den Kritiker' getauft hat."
     },
     {
       "id": "recipe-waffenschmied-gewobener-fokuskristall",
@@ -12715,7 +12715,7 @@
       "description": "Schmiedet: Gewobener Fokuskristall.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Ein Kristall der gewoben wurde. Nicht physisch — magisch. Varn hat dabei die Augen verdreht."
     },
     {
       "id": "recipe-waffenschmied-kristall-rundschild",
@@ -12735,7 +12735,7 @@
       "description": "Schmiedet: Kristall-Rundschild.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Rund wie die Erde. Und genauso bereit sich zu verteidigen."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-zeremonialstab",
