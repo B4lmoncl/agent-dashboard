@@ -44253,6 +44253,234 @@
       },
       "legendaryEffect": null,
       "setId": "master"
+    },
+    {
+      "id": "set-turmwaechter-helm",
+      "name": "Turmwächter-Visier",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "desc": "Die Wache sieht alles. Vor allem die Dinge, die man lieber nicht sehen würde. Der vorherige Träger hat sich für den Ruhestand entschieden. Dreimal.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "turmwaechter-garnitur"
+    },
+    {
+      "id": "set-turmwaechter-armor",
+      "name": "Turmwächter-Brustpanzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "desc": "Drei Zentimeter Stahl zwischen dir und allem, was dich nicht mag. Der Schmied nannte es \"ausreichend\". Das ist das höchste Lob, das er vergibt.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "turmwaechter-garnitur"
+    },
+    {
+      "id": "set-turmwaechter-boots",
+      "name": "Turmwächter-Stiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "desc": "Für die Wache, die 247 Stufen am Tag läuft. Die Sohlen sind aus dem gleichen Material wie die Geduld der Wache: zäh, aber nicht unendlich.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "turmwaechter-garnitur"
+    },
+    {
+      "id": "set-turmwaechter-shield",
+      "name": "Turmwächter-Schild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "desc": "Auf der Vorderseite prangt das Wappen des Turms. Auf der Rückseite hat jemand \"Hilfe\" geritzt. Es ist unklar, ob das ein Hilferuf oder eine Erinnerung ist.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "turmwaechter-garnitur"
     }
   ],
   "setBonus": {
@@ -44594,6 +44822,34 @@
       "fullBonus": {
         "ausdauer": 5,
         "label": "Flammenherz-Bollwerk: +20% Streak Protection"
+      }
+    },
+    {
+      "id": "turmwaechter-garnitur",
+      "name": "Turmwächter-Garnitur",
+      "rarity": "epic",
+      "pieces": [
+        "set-turmwaechter-helm",
+        "set-turmwaechter-armor",
+        "set-turmwaechter-boots",
+        "set-turmwaechter-shield"
+      ],
+      "partialBonus": {
+        "2": {
+          "label": "+4 Ausdauer, +4 Vitalität",
+          "stats": {
+            "ausdauer": 4,
+            "vitalitaet": 4
+          }
+        }
+      },
+      "fullBonus": {
+        "label": "+8% XP, +8% Gold, -10% Forge Decay",
+        "stats": {
+          "ausdauer": 6
+        },
+        "xpBonus": 8,
+        "goldBonus": 8
       }
     }
   ]
