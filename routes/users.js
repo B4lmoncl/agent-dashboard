@@ -4,7 +4,7 @@
 const crypto = require('crypto');
 const { state, LEVELS, QUEST_FLAVOR, CAMPAIGN_NPCS, DEFAULT_CURRENCIES, ensureUserCurrencies, saveUsers, saveClasses, saveManagedKeys, rebuildUserIndexes } = require('../lib/state');
 const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate } = require('../lib/helpers');
-const { requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
+const { requireAuth, requireSelf, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { generateTokenPair, setRefreshCookie, clearRefreshCookie, getRefreshTokenFromRequest, verifyRefreshToken, revokeRefreshToken, resolveAuth } = require('../lib/auth');
 const { isEmailConfigured, sendPasswordResetEmail, sendVerificationEmail } = require('../lib/email');
 
@@ -167,7 +167,7 @@ router.get('/api/achievements', (req, res) => {
 });
 
 // POST /api/player/:name/frame — equip a cosmetic frame
-router.post('/api/player/:name/frame', requireAuth, (req, res) => {
+router.post('/api/player/:name/frame', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
   const u = state.usersByName.get(uid);
   if (!u) return res.status(404).json({ error: 'User not found' });
