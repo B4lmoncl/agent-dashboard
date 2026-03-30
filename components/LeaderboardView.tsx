@@ -102,7 +102,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   if (merged.length === 0) {
     return (
       <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-2xl mb-2">{mode === "players" ? "🏆" : "🤖"}</p>
+        <img src="/images/icons/nav-proving.png" alt="" width={48} height={48} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-medium mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>{mode === "players" ? "The Proving Grounds await" : "No agents deployed"}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{mode === "players" ? "Register and complete quests to claim your rank." : "Deploy agents to see them on the leaderboard."}</p>
       </div>
@@ -229,7 +229,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             >
               <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>
                 <RankMedal rank={entry.rank} />
-                {isMe && rankImproved && <span className="stat-flash-up" style={{ fontSize: 10, marginLeft: 2 }}>{"\u25B2"}</span>}
+                {isMe && rankImproved && <span className="stat-flash-up" style={{ fontSize: 12, marginLeft: 2 }}>{"\u25B2"}</span>}
               </span>
               <div className="flex items-center gap-2 min-w-0">
                 <div
