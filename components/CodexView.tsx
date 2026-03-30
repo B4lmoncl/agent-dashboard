@@ -25,6 +25,10 @@ export default function CodexView() {
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [activeCat, setActiveCat] = useState("all");
+  const [selectedEntry, setSelectedEntry] = useState<CodexEntry | null>(null);
+  const [readEntries, setReadEntries] = useState<Set<string>>(() => {
+    try { const stored = localStorage.getItem("qh_codex_read"); return stored ? new Set(JSON.parse(stored)) : new Set(); } catch { return new Set(); }
+  });
 
   const fetchCodex = useCallback(async () => {
     try {
@@ -39,6 +43,20 @@ export default function CodexView() {
     } catch { /* ignore */ }
     setLoading(false);
   }, []);
+
+  const markRead = (id: string) => {
+    setReadEntries(prev => {
+      const next = new Set(prev);
+      next.add(id);
+      try { localStorage.setItem("qh_codex_read", JSON.stringify([...next])); } catch { /* private */ }
+      return next;
+    });
+  };
+
+  const openEntry = (entry: CodexEntry) => {
+    setSelectedEntry(entry);
+    markRead(entry.id);
+  };
 
   useEffect(() => { fetchCodex(); }, [fetchCodex]);
 
@@ -117,34 +135,68 @@ export default function CodexView() {
         })}
       </div>
 
-      {/* Discovered entries */}
-      <div className="space-y-2">
+      {/* Discovered entries — compact title grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
         {discoveredFiltered.map(entry => {
           const cat = categories.find(c => c.id === entry.category);
+          const isUnread = !readEntries.has(entry.id);
           return (
-            <div
+            <button
               key={entry.id}
-              className="rounded-lg px-4 py-3 crystal-breathe"
+              onClick={() => openEntry(entry)}
+              className="text-left rounded-lg px-3 py-2.5 relative transition-all"
               style={{
-                background: "rgba(255,255,255,0.03)",
-                border: `1px solid ${cat ? `${cat.color}15` : "rgba(251,191,36,0.12)"}`,
+                background: "rgba(255,255,255,0.025)",
+                border: `1px solid ${cat ? `${cat.color}18` : "rgba(251,191,36,0.1)"}`,
                 borderLeft: `3px solid ${cat?.color || "#fbbf24"}`,
-                ["--glow-color" as string]: `${cat?.color || "#818cf8"}40`,
+                cursor: "pointer",
               }}
             >
-              <div className="flex items-center gap-2 mb-1">
-                <p className="text-sm font-semibold" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
-                {cat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{cat.name}</span>}
-              </div>
-              {entry.text && (
-                <p className="text-xs leading-relaxed italic" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  &ldquo;{entry.text}&rdquo;
-                </p>
+              {isUnread && (
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{ background: "#fbbf24", boxShadow: "0 0 4px rgba(251,191,36,0.6)" }} />
               )}
-            </div>
+              <p className="text-xs font-semibold line-clamp-2" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
+              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>{cat?.name}</p>
+            </button>
           );
         })}
       </div>
+
+      {/* Entry detail modal */}
+      {selectedEntry && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(4px)" }}
+          onClick={() => setSelectedEntry(null)}
+        >
+          <div
+            className="rounded-xl overflow-hidden w-full max-w-lg max-h-[80vh] overflow-y-auto tab-content-enter"
+            style={{
+              background: "#111318",
+              border: `1px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}30`,
+              boxShadow: `0 20px 60px rgba(0,0,0,0.7)`,
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", borderLeft: `4px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}` }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-bold" style={{ color: categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24" }}>{selectedEntry.title}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{categories.find(c => c.id === selectedEntry.category)?.name}</p>
+                </div>
+                <button onClick={() => setSelectedEntry(null)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>×</button>
+              </div>
+            </div>
+            {selectedEntry.text && (
+              <div className="px-5 py-4">
+                <p className="text-sm leading-relaxed italic" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  &ldquo;{selectedEntry.text}&rdquo;
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Undiscovered entries */}
       {undiscoveredFiltered.length > 0 && (
