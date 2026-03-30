@@ -113,7 +113,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <img src="/images/icons/nav-hearth.png" alt="" width={40} height={40} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+        <img src="/images/icons/nav-hearth.png" alt="" width={96} height={96} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Hearth</p>
         <p className="text-xs text-w15">Log in to rest at the Hearth.</p>
       </div>
@@ -149,7 +149,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
       {/* Header */}
       <div className="text-center space-y-2">
         <div className="relative inline-block">
-          <img src="/images/icons/nav-hearth.png" alt="" width={48} height={48} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+          <img src="/images/icons/nav-hearth.png" alt="" width={96} height={96} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
           {/* Heat wave lines */}
           {[0,1,2].map(i => (
             <div key={`wave-${i}`} className="absolute pointer-events-none" style={{
