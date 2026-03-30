@@ -73197,6 +73197,1545 @@
       },
       "legendaryEffect": null,
       "setId": "legendary"
+    },
+    {
+      "id": "gen-rare-turmklinge",
+      "name": "Turmklinge",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-aetherschwert",
+      "name": "Aetherschwert",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "icon": "/images/icons/gacha-eisenschwert.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-schattenstecher",
+      "name": "Schattenstecher",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein seltener Fund. Der vorherige Besitzer hat es absichtlich zurückgelassen. Oder unabsichtlich. Die Blutflecken helfen nicht bei der Klärung.",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-donnerschlag",
+      "name": "Donnerschlag",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 29,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein seltener Fund. Der vorherige Besitzer hat es absichtlich zurückgelassen. Oder unabsichtlich. Die Blutflecken helfen nicht bei der Klärung.",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-frostbiss",
+      "name": "Frostbiss",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 32,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-turmschild",
+      "name": "Turmschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-aetherschild",
+      "name": "Aetherschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-nebelschild",
+      "name": "Nebelschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/equip-shield.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-adlervisier",
+      "name": "Adlervisier",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "icon": "/images/icons/equip-helm.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-sturmkappe",
+      "name": "Sturmkappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "icon": "/images/icons/equip-helm.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-kronenhelm",
+      "name": "Kronenhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "icon": "/images/icons/equip-helm.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-nebelhaube",
+      "name": "Nebelhaube",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 29,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "icon": "/images/icons/equip-helm.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-schattenpanzer",
+      "name": "Schattenpanzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "icon": "/images/icons/gacha-wanderermantel.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-sturmmantel",
+      "name": "Sturmmantel",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "icon": "/images/icons/gacha-flickenumhang.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-eisenherz",
+      "name": "Eisenherz",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "icon": "/images/icons/equip-armor.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-drachenbalg",
+      "name": "Drachenbalg",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 29,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "icon": "/images/icons/gacha-wanderermantel.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-sternamulett",
+      "name": "Sternamulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "icon": "/images/icons/equip-amulet.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-blutstein",
+      "name": "Blutstein",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "icon": "/images/icons/equip-amulet.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-elfenbein-kette",
+      "name": "Elfenbein-Kette",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/equip-amulet.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-mondsplitter",
+      "name": "Mondsplitter",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 29,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "icon": "/images/icons/equip-amulet.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-windtreter",
+      "name": "Windtreter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "icon": "/images/icons/equip-boots.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-nebelschritt",
+      "name": "Nebelschritt",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "icon": "/images/icons/equip-boots.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-sturmstiefel",
+      "name": "Sturmstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/equip-boots.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-schattentreter",
+      "name": "Schattentreter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 29,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/equip-boots.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-siegelring",
+      "name": "Siegelring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/equip-ring.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-d-mmerband",
+      "name": "Dämmerband",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein seltener Fund. Der vorherige Besitzer hat es absichtlich zurückgelassen. Oder unabsichtlich. Die Blutflecken helfen nicht bei der Klärung.",
+      "icon": "/images/icons/equip-ring.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rare-nebelring",
+      "name": "Nebelring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "icon": "/images/icons/equip-ring.png",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
     }
   ],
   "setBonus": {
