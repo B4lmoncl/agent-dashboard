@@ -521,7 +521,7 @@ function BannerPullModal({
               </>) : <p>Pull to start tracking pity</p>}
               <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary rate</span><span>0.8%</span></div>
               <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>3%</span></div>
-              <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare rate</span><span>35%</span></div>
+              <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare rate</span><span>25%</span></div>
               <p className="gt-source">Soft pity at pull 55, hard pity at 75 guarantees legendary.</p>
             </>}>
               <div className="text-right" style={{ cursor: "help" }}>
