@@ -97,7 +97,7 @@
 24. Coop-Rituals with invitation system
 25. User-Generated Quests (suggest system exists, full UGC pending)
 26. ~~Room-to-Room navigation~~ → ✅ TowerMap with floor rooms
-27. ~~Core Lore establishment~~ → ✅ Codex with 89 entries, LYRA-PLAYBOOK lore bible
+27. ~~Core Lore establishment~~ → ✅ Codex with 95 entries, LYRA-PLAYBOOK lore bible
 
 ## 🔧 TECH DEBT
 
@@ -110,7 +110,7 @@
 - [x] Concurrency locks on all mutation endpoints (createPlayerLock pattern)
 - [x] All tooltip formulas verified against backend (Forge Temp, stats, streak, hoarding, gacha)
 - [ ] page.tsx monolith (~2350 lines) — extract into feature modules
-- [ ] Frontend tooltips should consume /api/config balance data instead of hardcoded values
+- [x] Frontend tooltips consume /api/config balance data via getBalance() (GameTooltip, GachaView, TutorialModal, DashboardModals, ChallengesView)
 - [ ] Missing JSON Schema validation for template files
 
 ## 📋 PLANNED FEATURES (from audits)
