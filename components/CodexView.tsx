@@ -244,7 +244,7 @@ function CompanionGallery() {
         <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{open ? "▲" : "▼"}</span>
       </button>
       {open && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter stagger-list">
           {companions.map(c => (
             <div key={c.id} className="rounded-xl p-3 text-center crystal-breathe" style={{ background: `${c.color}08`, border: `1px solid ${c.color}20`, ["--glow-color" as string]: `${c.color}15` }}>
               <span className="text-3xl block mb-1">{c.emoji}</span>
