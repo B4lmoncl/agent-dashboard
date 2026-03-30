@@ -2348,7 +2348,7 @@
       "description": "Schmiedet: Drachenzahn-Kettenhemd.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Zweitausend Glieder aus Drachenzahn. Grimvar hat bei jedem einzeln geflucht. Zweihundertacht Mal."
     },
     {
       "id": "recipe-schmied-seelenkrone-des-meisters",
@@ -2369,7 +2369,7 @@
       "description": "Schmiedet: Seelenkrone des Meisters.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Die Krone die Grimvar für sich selbst schmieden wollte. Er hat sie dann doch verkauft. Der Preis war überzeugender als die Eitelkeit."
     },
     {
       "id": "recipe-schmied-aether-kettenhemd",
@@ -2388,7 +2388,7 @@
       "xp": 30,
       "description": "Schmiedet: Aether-Kettenhemd.",
       "trainerCost": 1100,
-      "desc": ""
+      "desc": "Aether-infundierte Kettenglieder. Klirren nicht. Summen. Grimvar findet das unheimlich. Die Kunden finden es teuer."
     },
     {
       "id": "recipe-schmied-seelen-kettenruestung",
@@ -2407,7 +2407,7 @@
       "xp": 30,
       "description": "Schmiedet: Seelen-Kettenrüstung.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Die Rüstung kennt deinen Namen. Grimvar sagt, das sei ein Feature. Die meisten Kunden sind sich nicht sicher."
     },
     {
       "id": "recipe-schmied-seelen-krone",
@@ -2426,7 +2426,7 @@
       "xp": 32,
       "description": "Schmiedet: Seelen-Krone.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Ein Helm der entscheidet ob du ihn verdienst. Bisher hat er zweimal nein gesagt. Beide Male zu Grimvar."
     },
     {
       "id": "recipe-schmied-aetherkern-panzer",
@@ -2446,7 +2446,7 @@
       "xp": 33,
       "description": "Schmiedet: Aetherkern-Panzer.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Aetherkern als Herzstück. Der Panzer atmet. Nicht metaphorisch. Tatsächlich. Grimvar schläft seitdem unruhig."
     },
     {
       "id": "recipe-schmied-seelengeschmiedete-platte",
@@ -2467,7 +2467,7 @@
       "description": "Schmiedet: Seelengeschmiedete Platte.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Geschmiedet mit einer Seele die freiwillig mitgemacht hat. Angeblich. Grimvar zeigt den Vertrag nicht vor."
     },
     {
       "id": "recipe-schmied-aether-brustplatte",
@@ -2487,7 +2487,7 @@
       "xp": 34,
       "description": "Schmiedet: Aether-Brustplatte.",
       "trainerCost": 1400,
-      "desc": ""
+      "desc": "Leuchtet blau bei Mondlicht. Leuchtet rot bei Gefahr. Leuchtet grün wenn Grimvar in der Nähe ist. Niemand weiß warum."
     },
     {
       "id": "recipe-schmied-aetherkern-sturmkappe",
@@ -2508,7 +2508,7 @@
       "description": "Schmiedet: Aetherkern-Sturmkappe.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Ein Helm der Gedanken abwehrt. Hauptsächlich schlechte. Die guten kommen meistens trotzdem durch."
     },
     {
       "id": "recipe-schmied-seelen-schulterwacht",
@@ -2528,7 +2528,7 @@
       "xp": 36,
       "description": "Schmiedet: Seelen-Schulterwacht.",
       "trainerCost": 1500,
-      "desc": ""
+      "desc": "Die Schulterplatten flüstern Ermutigungen. Leise. Manchmal grammatisch falsch. Aber der Gedanke zählt."
     },
     {
       "id": "recipe-schmied-seelen-wanderstiefel",
