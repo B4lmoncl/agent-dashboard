@@ -1322,11 +1322,17 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
           {!loading && charData && (() => {
-            const equippedIds = new Set(
-              Object.values(charData.equipment).filter(Boolean).map(v =>
-                typeof v === 'object' && v !== null ? ((v as GearInstance).instanceId || (v as GearInstance).templateId) : v
-              )
-            );
+            const equippedIds = new Set<string>();
+            for (const v of Object.values(charData.equipment)) {
+              if (!v) continue;
+              if (typeof v === 'object' && v !== null) {
+                const gi = v as GearInstance;
+                if (gi.instanceId) equippedIds.add(gi.instanceId);
+                if (gi.templateId) equippedIds.add(gi.templateId);
+              } else if (typeof v === 'string') {
+                equippedIds.add(v);
+              }
+            }
             // ─── Materials Tab ─────────────────────────────────────────
             if (invFilter === "materials") {
               const mats = charData.craftingMaterials || {};
@@ -1376,7 +1382,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               );
             }
 
-            let unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
+            let unequipped = charData.inventory.filter(i =>
+              !equippedIds.has(i.id) && !equippedIds.has(i.templateId || "") && !equippedIds.has((i as unknown as Record<string, string>).instanceId || "")
+            );
 
             // Search
             if (invSearch.trim()) {
@@ -1612,7 +1620,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
                   const item = gi
                     ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
-                    : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
+                    : equippedItemId ? { id: String(equippedItemId), name: String(equippedItemId), slot, rarity: "common", stats: {}, tier: 0, minLevel: 0 } : null;
                   const rc = item ? (RARITY_COLORS[item.rarity] || "#9ca3af") : "rgba(255,255,255,0.08)";
                   // Slot positions on the paper doll
                   const positions: Record<string, { top: number; left: number }> = {
