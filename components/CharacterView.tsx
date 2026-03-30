@@ -585,27 +585,39 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
         {/* Stats with comparison */}
         {hasStats && (
           <div className="space-y-0.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-            {[...allStatKeys].map(stat => {
-              const val = (item.stats?.[stat] as number) || 0;
-              const eqVal = (eqStats[stat] as number) || 0;
-              const diff = val - eqVal;
-              const showDiff = equippedItem && equippedItem.id !== item.id;
-              return (
-                <div key={stat} className="flex items-center justify-between text-xs">
-                  <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="font-mono font-semibold" style={{ color: val > 0 ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
-                      {val > 0 ? `+${val}` : val}
-                    </span>
-                    {showDiff && (
-                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : diff < 0 ? "#ef4444" : "rgba(255,255,255,0.2)", fontSize: 12 }}>
-                        {diff > 0 ? `▲${diff}` : diff < 0 ? `▼${Math.abs(diff)}` : "="}
+            {(() => {
+              const itemAny = item as Record<string, unknown>;
+              const affixes = (itemAny.affixes && typeof itemAny.affixes === "object") ? itemAny.affixes as { primary?: { pool: { stat: string; min: number; max: number }[] }; minor?: { pool: { stat: string; min: number; max: number }[] } } : null;
+              const rangeMap: Record<string, { min: number; max: number }> = {};
+              if (affixes) {
+                for (const p of [...(affixes.primary?.pool || []), ...(affixes.minor?.pool || [])]) {
+                  rangeMap[p.stat] = { min: p.min, max: p.max };
+                }
+              }
+              return [...allStatKeys].map(stat => {
+                const val = (item.stats?.[stat] as number) || 0;
+                const eqVal = (eqStats[stat] as number) || 0;
+                const diff = val - eqVal;
+                const showDiff = equippedItem && equippedItem.id !== item.id;
+                const range = rangeMap[stat];
+                return (
+                  <div key={stat} className="flex items-center justify-between text-xs">
+                    <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="font-mono font-semibold" style={{ color: val > 0 ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
+                        {val > 0 ? `+${val}` : val}
                       </span>
-                    )}
-                  </span>
-                </div>
-              );
-            })}
+                      {range && <span className="font-mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>[{range.min}-{range.max}]</span>}
+                      {showDiff && (
+                        <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : diff < 0 ? "#ef4444" : "rgba(255,255,255,0.2)", fontSize: 12 }}>
+                          {diff > 0 ? `▲${diff}` : diff < 0 ? `▼${Math.abs(diff)}` : "="}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                );
+              });
+            })()}
           </div>
         )}
 

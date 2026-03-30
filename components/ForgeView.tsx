@@ -373,10 +373,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         else if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 300}]`;
-        // Batch craft: sequential tick animation
+        // Batch craft: sequential tick animation with progress indicator
         if (count > 1 && (data.craftCount || count) > 1) {
           const total = data.craftCount || count;
-          setCraftResult(`Crafting 1/${total}...`);
+          setCraftResult(`◆ Crafting 1/${total}...`);
           let tick = 1;
           const interval = setInterval(() => {
             tick++;
@@ -384,7 +384,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               clearInterval(interval);
               setCraftResult(msg);
             } else {
-              setCraftResult(`Crafting ${tick}/${total}...`);
+              const bar = "█".repeat(tick) + "░".repeat(total - tick);
+              setCraftResult(`◆ Crafting ${tick}/${total} ${bar}`);
             }
           }, 200);
         } else {

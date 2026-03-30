@@ -79,10 +79,14 @@ export default function DashboardHeader({
   const [soundMuted, setSoundMuted] = useState(() => {
     try { return localStorage.getItem("qh_sound_muted") === "1"; } catch { return false; }
   });
+  const [soundVolume, setSoundVolume] = useState(() => {
+    try { const v = localStorage.getItem("qh_sound_volume"); return v != null ? parseFloat(v) : 0.3; } catch { return 0.3; }
+  });
 
   // Init sound system from stored preference
   useEffect(() => {
     SFX.initFromStorage();
+    try { const v = localStorage.getItem("qh_sound_volume"); if (v != null) SFX.setVolume(parseFloat(v)); } catch { /* private browsing */ }
   }, []);
 
   const toggleMute = () => {
@@ -90,6 +94,13 @@ export default function DashboardHeader({
     setSoundMuted(next);
     SFX.setMuted(next);
     if (!next) SFX.click(); // play a click to confirm unmute
+  };
+
+  const handleVolumeChange = (v: number) => {
+    const clamped = Math.max(0, Math.min(1, v));
+    setSoundVolume(clamped);
+    SFX.setVolume(clamped);
+    try { localStorage.setItem("qh_sound_volume", String(clamped)); } catch { /* private browsing */ }
   };
 
   // Settings popup — click-outside to close
@@ -234,16 +245,29 @@ export default function DashboardHeader({
         </div>
 
         <div className="flex items-center gap-4">
-          <button
-            data-feedback-id="header.sound-toggle"
-            onClick={toggleMute}
-            className="btn-interactive text-xs px-2 py-1.5 sm:py-0.5 rounded text-w40 bg-w5 border-w10"
-            title={soundMuted ? "Enable sound" : "Mute sound"}
-            aria-label={soundMuted ? "Unmute sound effects" : "Mute sound effects"}
-            style={{ minWidth: 28, textAlign: "center" }}
-          >
-            {soundMuted ? "🔇" : "🔊"}
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              data-feedback-id="header.sound-toggle"
+              onClick={toggleMute}
+              className="btn-interactive text-xs px-2 py-1.5 sm:py-0.5 rounded text-w40 bg-w5 border-w10"
+              title={soundMuted ? "Enable sound" : "Mute sound"}
+              aria-label={soundMuted ? "Unmute sound effects" : "Mute sound effects"}
+              style={{ minWidth: 28, textAlign: "center", fontFamily: "monospace" }}
+            >
+              {soundMuted ? "×" : "♪"}
+            </button>
+            {!soundMuted && (
+              <input
+                type="range"
+                min={0} max={100} step={5}
+                value={Math.round(soundVolume * 100)}
+                onChange={e => handleVolumeChange(parseInt(e.target.value, 10) / 100)}
+                className="w-14 h-1 rounded-full appearance-none cursor-pointer"
+                style={{ accentColor: "#818cf8", background: `linear-gradient(to right, #818cf8 ${soundVolume * 100}%, rgba(255,255,255,0.1) ${soundVolume * 100}%)` }}
+                title={`Volume: ${Math.round(soundVolume * 100)}%`}
+              />
+            )}
+          </div>
           <button
             data-feedback-id="header.info-button"
             onClick={() => { setInfoOverlayTab("guide"); setInfoOverlayOpen(true); }}
