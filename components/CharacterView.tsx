@@ -855,7 +855,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
       <>
         <div
           className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse" : ""}`}
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default" }}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
@@ -868,6 +868,12 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
               : <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{label.slice(0, 3)}</span>
           }
         </div>
+        {item && (
+          <p className="text-center truncate mt-0.5" style={{ fontSize: 12, width: 56, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
+        )}
+        {!item && (
+          <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.1)", lineHeight: 1.2 }}>{label}</p>
+        )}
         {hovered && item && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
       </>
     );
@@ -1583,7 +1589,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {rightTab === "equipment" && (
             <div>
               {/* Paper Doll Grid */}
-              <div className="relative mx-auto" style={{ width: 240, height: 320 }}>
+              <div className="relative mx-auto" style={{ width: 240, height: 250 }}>
                 {/* Legendary equipment shimmer particles */}
                 {(() => {
                   const hasLegendary = charData && Object.values(charData.equipment).some(v => {
@@ -1625,12 +1631,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   // Slot positions on the paper doll
                   const positions: Record<string, { top: number; left: number }> = {
                     helm:   { top: 0,   left: 88 },
-                    amulet: { top: 60,  left: 170 },
-                    weapon: { top: 110, left: 0 },
-                    armor:  { top: 110, left: 88 },
-                    shield: { top: 110, left: 176 },
-                    ring:   { top: 200, left: 0 },
-                    boots:  { top: 250, left: 88 },
+                    amulet: { top: 0,   left: 176 },
+                    weapon: { top: 80,  left: 0 },
+                    armor:  { top: 80,  left: 88 },
+                    shield: { top: 80,  left: 176 },
+                    ring:   { top: 160, left: 0 },
+                    boots:  { top: 160, left: 88 },
                   };
                   const pos = positions[slot] || { top: 0, left: 0 };
                   // Gem socket dots
