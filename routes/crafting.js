@@ -359,7 +359,7 @@ router.get('/api/professions', (req, res) => {
     }
   }
   const favoriteRecipes = u?.favoriteRecipes || [];
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents: PROFESSIONS_DATA.vendorReagents || [], proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
@@ -1007,6 +1007,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     skillUpColor,
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
+    vendorReagentCost,
     atSkillCap: newSkill >= skillCap,
     skillCap,
     nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
