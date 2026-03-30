@@ -702,142 +702,142 @@
     },
     {
       "id": "kohlestueck",
-      "name": "Kohlestück",
+      "name": "Glutkern",
       "icon": "/images/icons/mat-kohle.png",
       "rarity": "common",
-      "desc": "Grundzutat für Metallarbeiten. Grimvar verkauft sie widerwillig.",
+      "desc": "Gepresste Glut aus den Tiefen der Schmiede. Grimvar behauptet, sie brennen aus Überzeugung.",
       "source": "vendor",
       "price": 3
     },
     {
       "id": "eisenfluss",
-      "name": "Eisenfluss",
+      "name": "Läuterungssand",
       "icon": "/images/icons/mat-eisenfluss.png",
       "rarity": "common",
-      "desc": "Reinigt das Metall beim Schmelzen. Riecht nach Fortschritt und verbrannten Augenbrauen.",
+      "desc": "Feiner Sand der Unreinheiten aus Metall zieht. Wie ein guter Freund, nur nützlicher.",
       "source": "vendor",
       "price": 10
     },
     {
       "id": "schmelztiegel",
-      "name": "Schmelztiegel",
+      "name": "Härtungsessenz",
       "icon": "/images/icons/mat-schmelz.png",
       "rarity": "common",
-      "desc": "Für fortgeschrittene Metallarbeiten. Teurer als er aussieht.",
+      "desc": "Flüssigkeit die Metall vergessen lässt, dass es mal Erz war.",
       "source": "vendor",
       "price": 25
     },
     {
       "id": "aetherflux",
-      "name": "Ätherflux",
+      "name": "Sternenglut",
       "icon": "/images/icons/mat-aetherflux.png",
       "rarity": "common",
-      "desc": "Für die höchste Stufe der Metallverarbeitung. Der Preis ist der Grund warum Schmiede so grimmig schauen.",
+      "desc": "Brennt heißer als Feuer und kühler als Logik. Physik hat aufgehört Fragen zu stellen.",
       "source": "vendor",
       "price": 60
     },
     {
       "id": "grober-faden",
-      "name": "Grober Faden",
+      "name": "Turmgarn",
       "icon": "/images/icons/mat-faden-grob.png",
       "rarity": "common",
-      "desc": "Hält Stoff zusammen. Meistens.",
+      "desc": "Einfaches Garn aus dem Turm. Hält mehr aus als es aussieht.",
       "source": "vendor",
       "price": 2
     },
     {
       "id": "naehfaden",
-      "name": "Feiner Nähfaden",
+      "name": "Silberzwirn",
       "icon": "/images/icons/mat-faden.png",
       "rarity": "common",
-      "desc": "Hält Stoff zusammen. Und gelegentlich Beziehungen.",
+      "desc": "Fein genug für ernsthafte Arbeit. Grob genug für Anfänger.",
       "source": "vendor",
       "price": 8
     },
     {
       "id": "seidenfaden",
-      "name": "Seidenfaden",
+      "name": "Mondgespinst",
       "icon": "/images/icons/mat-faden-seide.png",
       "rarity": "common",
-      "desc": "So fein, dass man ihn kaum sieht. Wie die Rechnung, bis sie kommt.",
+      "desc": "Faden der im Mondlicht gewoben wurde. Oder zumindest bei Kerzenlicht. Selina macht da keinen Unterschied.",
       "source": "vendor",
       "price": 25
     },
     {
       "id": "runenfaden",
-      "name": "Runenfaden",
+      "name": "Aetherfaser",
       "icon": "/images/icons/mat-faden-rune.png",
       "rarity": "common",
-      "desc": "Faden mit eingewobenen Runen. Teuer, aber das Ergebnis leuchtet. Buchstäblich.",
+      "desc": "Faden mit eingewobenen Runen. Leuchtet. Manchmal im falschen Moment.",
       "source": "vendor",
       "price": 50
     },
     {
       "id": "faerbemittel",
-      "name": "Färbemittel",
+      "name": "Tinkturglas",
       "icon": "/images/icons/mat-farbe.png",
       "rarity": "common",
-      "desc": "Verwandelt langweiligen Stoff in weniger langweiligen Stoff.",
+      "desc": "Farbe in flüssiger Form. Was du damit anstellst, ist dein Problem und das des Stoffes.",
       "source": "vendor",
       "price": 15
     },
     {
       "id": "lederoel",
-      "name": "Rohes Lederöl",
+      "name": "Gerbersalz",
       "icon": "/images/icons/mat-oel.png",
       "rarity": "common",
-      "desc": "Macht Leder geschmeidig. Macht auch Hände geschmeidig. Beides nicht immer erwünscht.",
+      "desc": "Trocknet und härtet Leder. Roderic schwört darauf. Das Leder hat keine Wahl.",
       "source": "vendor",
       "price": 5
     },
     {
       "id": "feines-lederoel",
-      "name": "Feines Lederöl",
+      "name": "Runensalbe",
       "icon": "/images/icons/mat-oel-fein.png",
       "rarity": "common",
-      "desc": "Für Leder das mehr verdient als die Grundbehandlung.",
+      "desc": "Für Leder das mehr verdient als die Grundbehandlung. Deutlich teurer, deutlich weicher.",
       "source": "vendor",
       "price": 20
     },
     {
       "id": "leere-phiole",
-      "name": "Leere Phiole",
+      "name": "Glaskolben",
       "icon": "/images/icons/mat-phiole.png",
       "rarity": "common",
-      "desc": "Leer. Was du reinfüllst, ist dein Problem.",
+      "desc": "Leer. Robust. Wartet darauf gefüllt zu werden. Wie ein neuer Lehrling.",
       "source": "vendor",
       "price": 2
     },
     {
       "id": "blei-phiole",
-      "name": "Bleiphiole",
+      "name": "Dickwandkolben",
       "icon": "/images/icons/mat-phiole-blei.png",
       "rarity": "common",
-      "desc": "Hält aggressive Substanzen aus. Meistens. Die Erfolgsquote liegt bei neunzig Prozent.",
+      "desc": "Für Substanzen die normales Glas persönlich beleidigen würden.",
       "source": "vendor",
       "price": 12
     },
     {
       "id": "kristallphiole",
-      "name": "Kristallphiole",
+      "name": "Aethergefäß",
       "icon": "/images/icons/mat-kristallphiole.png",
       "rarity": "common",
-      "desc": "Für Tränke die man nicht in billigem Glas aufbewahren sollte.",
+      "desc": "Kristallgefäß das den Inhalt stabilisiert. Oder zumindest davon überzeugt nicht zu explodieren.",
       "source": "vendor",
       "price": 35
     },
     {
       "id": "milde-gewuerze",
-      "name": "Milde Gewürze",
+      "name": "Kräuterprise",
       "icon": "/images/icons/mat-gewuerz-mild.png",
       "rarity": "common",
-      "desc": "Brunas Einstiegsdroge. Danach willst du mehr.",
+      "desc": "Brunas Einstieg. Macht alles besser. Außer Suppe. Die war schon perfekt.",
       "source": "vendor",
       "price": 1
     },
     {
       "id": "scharfe-gewuerze",
-      "name": "Scharfe Gewürze",
+      "name": "Feuerwürze",
       "icon": "/images/icons/mat-gewuerz-scharf.png",
       "rarity": "common",
       "desc": "Für Gerichte die einen bleibenden Eindruck hinterlassen. Im Mund und im Gedächtnis.",
@@ -846,52 +846,52 @@
     },
     {
       "id": "beruhigende-gewuerze",
-      "name": "Beruhigende Gewürze",
+      "name": "Mondkräutermix",
       "icon": "/images/icons/mat-gewuerz-beruh.png",
       "rarity": "common",
-      "desc": "Für Mahlzeiten die heilen sollen. Oder zumindest nicht schaden.",
+      "desc": "Für Mahlzeiten die heilen sollen. Bruna sagt es ist Wissenschaft. Es ist Liebe.",
       "source": "vendor",
       "price": 15
     },
     {
       "id": "verzauberungstinte",
-      "name": "Verzauberungstinte",
+      "name": "Runentinte",
       "icon": "/images/icons/mat-tinte.png",
       "rarity": "common",
-      "desc": "Schreibt Runen die funktionieren. Meistens.",
+      "desc": "Schreibt Zeichen die funktionieren. Eldric behauptet, die Tinte denkt mit.",
       "source": "vendor",
       "price": 8
     },
     {
       "id": "aethertinte",
-      "name": "Äthertinte",
+      "name": "Sternentinte",
       "icon": "/images/icons/mat-tinte-aether.png",
       "rarity": "common",
-      "desc": "Für Runen die mehr können als nur hübsch aussehen. Deutlich teurer, deutlich wirksamer.",
+      "desc": "Tinte aus kondensiertem Aether. Schreibt Runen die mehr können als nur hübsch aussehen.",
       "source": "vendor",
       "price": 30
     },
     {
       "id": "schleifpulver",
-      "name": "Grobes Schleifpulver",
+      "name": "Poliersand",
       "icon": "/images/icons/mat-schliff.png",
       "rarity": "common",
-      "desc": "Für den ersten Schliff. Buchstäblich.",
+      "desc": "Macht aus rau rund. Der erste Schritt zum Funkeln.",
       "source": "vendor",
       "price": 5
     },
     {
       "id": "feines-schleifpulver",
-      "name": "Feines Schleifpulver",
+      "name": "Kristallstaub",
       "icon": "/images/icons/mat-schliff-fein.png",
       "rarity": "common",
-      "desc": "Für Edelsteine die bereits gut aussehen aber noch nicht perfekt.",
+      "desc": "Feinster Staub für feinste Arbeit. Selindra niest trotzdem.",
       "source": "vendor",
       "price": 18
     },
     {
       "id": "aetherschliff",
-      "name": "Ätherschliff",
+      "name": "Sternenstaub",
       "icon": "/images/icons/mat-schliff-aether.png",
       "rarity": "common",
       "desc": "Das Beste vom Besten. Der Preis ist der Beweis.",
@@ -984,8 +984,8 @@
   "vendorReagents": [
     {
       "id": "kohlestueck",
-      "name": "Kohlestück",
-      "desc": "Grundzutat für Metallarbeiten. Grimvar verkauft sie widerwillig.",
+      "name": "Glutkern",
+      "desc": "Gepresste Glut aus den Tiefen der Schmiede. Grimvar behauptet, sie brennen aus Überzeugung.",
       "price": 3,
       "professions": [
         "schmied",
@@ -995,8 +995,8 @@
     },
     {
       "id": "eisenfluss",
-      "name": "Eisenfluss",
-      "desc": "Reinigt das Metall beim Schmelzen. Riecht nach Fortschritt und verbrannten Augenbrauen.",
+      "name": "Läuterungssand",
+      "desc": "Feiner Sand der Unreinheiten aus Metall zieht. Wie ein guter Freund, nur nützlicher.",
       "price": 10,
       "professions": [
         "schmied",
@@ -1006,8 +1006,8 @@
     },
     {
       "id": "schmelztiegel",
-      "name": "Schmelztiegel",
-      "desc": "Für fortgeschrittene Metallarbeiten. Teurer als er aussieht.",
+      "name": "Härtungsessenz",
+      "desc": "Flüssigkeit die Metall vergessen lässt, dass es mal Erz war.",
       "price": 25,
       "professions": [
         "schmied",
@@ -1018,8 +1018,8 @@
     },
     {
       "id": "aetherflux",
-      "name": "Ätherflux",
-      "desc": "Für die höchste Stufe der Metallverarbeitung. Der Preis ist der Grund warum Schmiede so grimmig schauen.",
+      "name": "Sternenglut",
+      "desc": "Brennt heißer als Feuer und kühler als Logik. Physik hat aufgehört Fragen zu stellen.",
       "price": 60,
       "professions": [
         "schmied",
@@ -1029,8 +1029,8 @@
     },
     {
       "id": "grober-faden",
-      "name": "Grober Faden",
-      "desc": "Hält Stoff zusammen. Meistens.",
+      "name": "Turmgarn",
+      "desc": "Einfaches Garn aus dem Turm. Hält mehr aus als es aussieht.",
       "price": 2,
       "professions": [
         "schneider",
@@ -1040,8 +1040,8 @@
     },
     {
       "id": "naehfaden",
-      "name": "Feiner Nähfaden",
-      "desc": "Hält Stoff zusammen. Und gelegentlich Beziehungen.",
+      "name": "Silberzwirn",
+      "desc": "Fein genug für ernsthafte Arbeit. Grob genug für Anfänger.",
       "price": 8,
       "professions": [
         "schneider",
@@ -1051,8 +1051,8 @@
     },
     {
       "id": "seidenfaden",
-      "name": "Seidenfaden",
-      "desc": "So fein, dass man ihn kaum sieht. Wie die Rechnung, bis sie kommt.",
+      "name": "Mondgespinst",
+      "desc": "Faden der im Mondlicht gewoben wurde. Oder zumindest bei Kerzenlicht. Selina macht da keinen Unterschied.",
       "price": 25,
       "professions": [
         "schneider",
@@ -1062,8 +1062,8 @@
     },
     {
       "id": "runenfaden",
-      "name": "Runenfaden",
-      "desc": "Faden mit eingewobenen Runen. Teuer, aber das Ergebnis leuchtet. Buchstäblich.",
+      "name": "Aetherfaser",
+      "desc": "Faden mit eingewobenen Runen. Leuchtet. Manchmal im falschen Moment.",
       "price": 50,
       "professions": [
         "schneider",
@@ -1073,8 +1073,8 @@
     },
     {
       "id": "faerbemittel",
-      "name": "Färbemittel",
-      "desc": "Verwandelt langweiligen Stoff in weniger langweiligen Stoff.",
+      "name": "Tinkturglas",
+      "desc": "Farbe in flüssiger Form. Was du damit anstellst, ist dein Problem und das des Stoffes.",
       "price": 15,
       "professions": [
         "schneider"
@@ -1083,8 +1083,8 @@
     },
     {
       "id": "lederoel",
-      "name": "Rohes Lederöl",
-      "desc": "Macht Leder geschmeidig. Macht auch Hände geschmeidig. Beides nicht immer erwünscht.",
+      "name": "Gerbersalz",
+      "desc": "Trocknet und härtet Leder. Roderic schwört darauf. Das Leder hat keine Wahl.",
       "price": 5,
       "professions": [
         "lederverarbeiter"
@@ -1093,8 +1093,8 @@
     },
     {
       "id": "feines-lederoel",
-      "name": "Feines Lederöl",
-      "desc": "Für Leder das mehr verdient als die Grundbehandlung.",
+      "name": "Runensalbe",
+      "desc": "Für Leder das mehr verdient als die Grundbehandlung. Deutlich teurer, deutlich weicher.",
       "price": 20,
       "professions": [
         "lederverarbeiter"
@@ -1103,8 +1103,8 @@
     },
     {
       "id": "leere-phiole",
-      "name": "Leere Phiole",
-      "desc": "Leer. Was du reinfüllst, ist dein Problem.",
+      "name": "Glaskolben",
+      "desc": "Leer. Robust. Wartet darauf gefüllt zu werden. Wie ein neuer Lehrling.",
       "price": 2,
       "professions": [
         "alchemist"
@@ -1113,8 +1113,8 @@
     },
     {
       "id": "blei-phiole",
-      "name": "Bleiphiole",
-      "desc": "Hält aggressive Substanzen aus. Meistens. Die Erfolgsquote liegt bei neunzig Prozent.",
+      "name": "Dickwandkolben",
+      "desc": "Für Substanzen die normales Glas persönlich beleidigen würden.",
       "price": 12,
       "professions": [
         "alchemist"
@@ -1123,8 +1123,8 @@
     },
     {
       "id": "kristallphiole",
-      "name": "Kristallphiole",
-      "desc": "Für Tränke die man nicht in billigem Glas aufbewahren sollte.",
+      "name": "Aethergefäß",
+      "desc": "Kristallgefäß das den Inhalt stabilisiert. Oder zumindest davon überzeugt nicht zu explodieren.",
       "price": 35,
       "professions": [
         "alchemist"
@@ -1133,8 +1133,8 @@
     },
     {
       "id": "milde-gewuerze",
-      "name": "Milde Gewürze",
-      "desc": "Brunas Einstiegsdroge. Danach willst du mehr.",
+      "name": "Kräuterprise",
+      "desc": "Brunas Einstieg. Macht alles besser. Außer Suppe. Die war schon perfekt.",
       "price": 1,
       "professions": [
         "koch"
@@ -1143,7 +1143,7 @@
     },
     {
       "id": "scharfe-gewuerze",
-      "name": "Scharfe Gewürze",
+      "name": "Feuerwürze",
       "desc": "Für Gerichte die einen bleibenden Eindruck hinterlassen. Im Mund und im Gedächtnis.",
       "price": 5,
       "professions": [
@@ -1153,8 +1153,8 @@
     },
     {
       "id": "beruhigende-gewuerze",
-      "name": "Beruhigende Gewürze",
-      "desc": "Für Mahlzeiten die heilen sollen. Oder zumindest nicht schaden.",
+      "name": "Mondkräutermix",
+      "desc": "Für Mahlzeiten die heilen sollen. Bruna sagt es ist Wissenschaft. Es ist Liebe.",
       "price": 15,
       "professions": [
         "koch"
@@ -1163,8 +1163,8 @@
     },
     {
       "id": "verzauberungstinte",
-      "name": "Verzauberungstinte",
-      "desc": "Schreibt Runen die funktionieren. Meistens.",
+      "name": "Runentinte",
+      "desc": "Schreibt Zeichen die funktionieren. Eldric behauptet, die Tinte denkt mit.",
       "price": 8,
       "professions": [
         "verzauberer"
@@ -1173,8 +1173,8 @@
     },
     {
       "id": "aethertinte",
-      "name": "Äthertinte",
-      "desc": "Für Runen die mehr können als nur hübsch aussehen. Deutlich teurer, deutlich wirksamer.",
+      "name": "Sternentinte",
+      "desc": "Tinte aus kondensiertem Aether. Schreibt Runen die mehr können als nur hübsch aussehen.",
       "price": 30,
       "professions": [
         "verzauberer"
@@ -1183,8 +1183,8 @@
     },
     {
       "id": "schleifpulver",
-      "name": "Grobes Schleifpulver",
-      "desc": "Für den ersten Schliff. Buchstäblich.",
+      "name": "Poliersand",
+      "desc": "Macht aus rau rund. Der erste Schritt zum Funkeln.",
       "price": 5,
       "professions": [
         "juwelier"
@@ -1193,8 +1193,8 @@
     },
     {
       "id": "feines-schleifpulver",
-      "name": "Feines Schleifpulver",
-      "desc": "Für Edelsteine die bereits gut aussehen aber noch nicht perfekt.",
+      "name": "Kristallstaub",
+      "desc": "Feinster Staub für feinste Arbeit. Selindra niest trotzdem.",
       "price": 18,
       "professions": [
         "juwelier"
@@ -1203,7 +1203,7 @@
     },
     {
       "id": "aetherschliff",
-      "name": "Ätherschliff",
+      "name": "Sternenstaub",
       "desc": "Das Beste vom Besten. Der Preis ist der Beweis.",
       "price": 45,
       "professions": [
@@ -1506,7 +1506,9 @@
         "eisenerz": 2,
         "kohlestueck": 1
       },
-      "vendorReagents": ["kohlestueck"],
+      "vendorReagents": [
+        "kohlestueck"
+      ],
       "result": {
         "type": "material",
         "materialId": "rohbarren",
@@ -1528,7 +1530,9 @@
         "kristallsplitter": 1,
         "eisenfluss": 1
       },
-      "vendorReagents": ["eisenfluss"],
+      "vendorReagents": [
+        "eisenfluss"
+      ],
       "result": {
         "type": "material",
         "materialId": "stahlbarren",
@@ -1550,7 +1554,9 @@
         "drachenschuppe": 1,
         "schmelztiegel": 1
       },
-      "vendorReagents": ["schmelztiegel"],
+      "vendorReagents": [
+        "schmelztiegel"
+      ],
       "result": {
         "type": "material",
         "materialId": "mithrilbarren",
@@ -3367,7 +3373,9 @@
         "leinenstoff": 3,
         "grober-faden": 1
       },
-      "vendorReagents": ["grober-faden"],
+      "vendorReagents": [
+        "grober-faden"
+      ],
       "result": {
         "type": "material",
         "materialId": "leinenballen",
@@ -3388,7 +3396,9 @@
         "wollstoff": 3,
         "naehfaden": 1
       },
-      "vendorReagents": ["naehfaden"],
+      "vendorReagents": [
+        "naehfaden"
+      ],
       "result": {
         "type": "material",
         "materialId": "wollballen",
@@ -3409,7 +3419,9 @@
         "seidenstoff": 3,
         "seidenfaden": 1
       },
-      "vendorReagents": ["seidenfaden"],
+      "vendorReagents": [
+        "seidenfaden"
+      ],
       "result": {
         "type": "material",
         "materialId": "seidenballen",
@@ -3431,7 +3443,9 @@
         "runenstoff": 1,
         "runenfaden": 1
       },
-      "vendorReagents": ["runenfaden"],
+      "vendorReagents": [
+        "runenfaden"
+      ],
       "result": {
         "type": "material",
         "materialId": "runenballen",
@@ -5307,7 +5321,9 @@
         "leichtesleder": 3,
         "lederoel": 1
       },
-      "vendorReagents": ["lederoel"],
+      "vendorReagents": [
+        "lederoel"
+      ],
       "result": {
         "type": "material",
         "materialId": "gehaertetes-leder",
@@ -5329,7 +5345,9 @@
         "schweresleder": 1,
         "feines-lederoel": 1
       },
-      "vendorReagents": ["feines-lederoel"],
+      "vendorReagents": [
+        "feines-lederoel"
+      ],
       "result": {
         "type": "material",
         "materialId": "verstaerktes-leder",
@@ -6992,7 +7010,9 @@
         "kraeuterbuendel": 3,
         "leere-phiole": 1
       },
-      "vendorReagents": ["leere-phiole"],
+      "vendorReagents": [
+        "leere-phiole"
+      ],
       "result": {
         "type": "material",
         "materialId": "kraeuterdestillat",
@@ -7014,7 +7034,9 @@
         "kraeuterdestillat": 1,
         "blei-phiole": 1
       },
-      "vendorReagents": ["blei-phiole"],
+      "vendorReagents": [
+        "blei-phiole"
+      ],
       "result": {
         "type": "material",
         "materialId": "mondessenz",
@@ -7036,7 +7058,9 @@
         "mondessenz": 1,
         "kristallphiole": 1
       },
-      "vendorReagents": ["kristallphiole"],
+      "vendorReagents": [
+        "kristallphiole"
+      ],
       "result": {
         "type": "material",
         "materialId": "aetheressenz",
@@ -8675,7 +8699,9 @@
         "wildfleisch": 2,
         "milde-gewuerze": 1
       },
-      "vendorReagents": ["milde-gewuerze"],
+      "vendorReagents": [
+        "milde-gewuerze"
+      ],
       "result": {
         "type": "material",
         "materialId": "gewuerztes-filet",
@@ -9993,7 +10019,9 @@
         "runenstein": 1,
         "verzauberungstinte": 1
       },
-      "vendorReagents": ["verzauberungstinte"],
+      "vendorReagents": [
+        "verzauberungstinte"
+      ],
       "result": {
         "type": "material",
         "materialId": "runenessenz",
@@ -14602,7 +14630,9 @@
         "kristallsplitter": 2,
         "schleifpulver": 1
       },
-      "vendorReagents": ["schleifpulver"],
+      "vendorReagents": [
+        "schleifpulver"
+      ],
       "result": {
         "type": "material",
         "materialId": "geschliffener-stein",
