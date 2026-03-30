@@ -574,6 +574,7 @@ export interface FriendInfo {
   avatar: string;
   color: string;
   level: number;
+  classId: string | null;
   isOnline: boolean;
   onlineStatus: "online" | "idle" | "offline";
   lastActiveAt: string | null;

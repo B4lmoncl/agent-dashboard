@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -168,13 +169,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
-        if (onRewardCelebration && d.rewards) {
+        if (onRewardCelebration) {
           onRewardCelebration({
             type: "rift",
             title: d.riftCompleted ? "Rift Complete!" : "Stage Complete!",
-            xpEarned: d.rewards.xp || 0,
-            goldEarned: d.rewards.gold || 0,
-            loot: d.rewards.loot ? { name: d.rewards.loot.name, emoji: "⚔️", rarity: d.rewards.loot.rarity || "rare" } : null,
+            xpEarned: d.xpEarned || 0,
+            goldEarned: d.goldEarned || 0,
+            loot: d.riftGearDrop ? { name: d.riftGearDrop.name, emoji: "◆", rarity: d.riftGearDrop.rarity || "epic" } : d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare" } : undefined,
           });
         }
         fetchRift(); onRefresh?.();
@@ -257,7 +258,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         <div className={`rounded-xl p-5 space-y-4${!activeRift.completed && (new Date(activeRift.expiresAt).getTime() - Date.now()) < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 && (new Date(activeRift.expiresAt).getTime() - Date.now()) > 0 ? " rift-urgent" : ""}`} style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {activeRift.tierIcon?.startsWith("/") ? <img src={activeRift.tierIcon} alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: `1px solid ${activeRift.tierColor}30` }} /> : <span className="text-xl">{activeRift.tierIcon}</span>}
+              {activeRift.tierIcon?.startsWith("/") ? <img src={activeRift.tierIcon} alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: `1px solid ${activeRift.tierColor}30` }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl">{activeRift.tierIcon}</span>}
               <div>
                 <p className="text-sm font-bold" style={{ color: activeRift.tierColor }}>
                   {activeRift.tier === "mythic" && activeRift.mythicLevel ? `${activeRift.tierName} +${activeRift.mythicLevel}` : activeRift.tierName}
@@ -366,7 +367,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 disabled={actionLoading}
                 className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
                 style={{ background: `linear-gradient(135deg, ${activeRift.tierColor}, ${activeRift.tierColor}cc)`, color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-                title={actionLoading ? "Action in progress..." : undefined}
+                title={actionLoading ? "Action in progress..." : `Mark stage ${activeRift.currentStage} as complete — earns XP, Gold, and potential loot`}
               >
                 {actionLoading ? "..." : `Complete Stage ${activeRift.currentStage}`}
               </button>
@@ -440,10 +441,10 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   {locked && <p className="text-xs text-w20">Requires Lv.{tier.minLevel}</p>}
                 </div>
                 <div className="space-y-1 text-xs text-w35">
-                  <TipCustom title="Rift Stages" icon="⚔️" accent={tier.color} body={<p>Complete {tier.questCount} quests sequentially with escalating difficulty (1× to {1 + (tier.questCount - 1) * 0.5}×). Each stage grants full XP, Gold, and loot rewards.</p>}>
+                  <TipCustom title="Rift Stages" icon="◆" accent={tier.color} body={<p>Complete {tier.questCount} quests sequentially with escalating difficulty (1× to {1 + (tier.questCount - 1) * 0.5}×). Each stage grants full XP, Gold, and loot rewards.</p>}>
                     <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tier.questCount}</span></div>
                   </TipCustom>
-                  <TipCustom title="Time Limit" icon="⏱️" accent={tier.color} body={<p>You have {tier.timeLimitHours} hours to complete all {tier.questCount} stages. If time runs out, the run fails and a cooldown is triggered.</p>}>
+                  <TipCustom title="Time Limit" icon="◆" accent={tier.color} body={<p>You have {tier.timeLimitHours} hours to complete all {tier.questCount} stages. If time runs out, the run fails and a cooldown is triggered.</p>}>
                     <div className="flex justify-between"><span>Time Limit</span><span className="font-mono text-w50">{tier.timeLimitHours}h</span></div>
                   </TipCustom>
                   <Tip k="rift_cooldown">
@@ -510,7 +511,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       {!activeRift && mythicUnlocked && (
         <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.2)" }}>
           <div className="flex items-center gap-3">
-            <img src="/images/icons/rift-mythic.png" alt="" width={32} height={32} className="img-render-auto" />
+            <img src="/images/icons/rift-mythic.png" alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: "1px solid rgba(255,68,68,0.3)" }} />
             <div className="flex-1">
               <p className="text-sm font-bold" style={{ color: "#ff4444" }}>Mythic Rift</p>
               <p className="text-xs text-w25">Endless scaling difficulty. How deep can you go?</p>
@@ -566,10 +567,10 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           {tiers.mythic && (
             <div className="space-y-1 text-xs text-w35">
               <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tiers.mythic.questCount}</span></div>
-              <TipCustom title="Mythic Time Scaling" icon="⏱️" accent="#ff4444" body={<p>Time limit decreases by 1.5h per Mythic level (minimum 18h). Higher levels demand faster completion.</p>}>
+              <TipCustom title="Mythic Time Scaling" icon="◆" accent="#ff4444" body={<p>Time limit decreases by 1.5h per Mythic level (minimum 18h). Higher levels demand faster completion.</p>}>
                 <div className="flex justify-between cursor-help"><span>Time Limit</span><span className="font-mono text-w50">{Math.max(18, 30 - selectedMythicLevel * 1.5)}h</span></div>
               </TipCustom>
-              <TipCustom title="Mythic Difficulty" icon="⚔️" accent="#ff4444" body={<p>Each Mythic level adds +0.3× base difficulty, stages escalate +0.5× each. At M+{selectedMythicLevel}: base difficulty {(1 + selectedMythicLevel * 0.3).toFixed(1)}× → {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}× on final stage. No fail cooldown — retry immediately.</p>}>
+              <TipCustom title="Mythic Difficulty" icon="◆" accent="#ff4444" body={<p>Each Mythic level adds +0.3× base difficulty, stages escalate +0.5× each. At M+{selectedMythicLevel}: base difficulty {(1 + selectedMythicLevel * 0.3).toFixed(1)}× → {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}× on final stage. No fail cooldown — retry immediately.</p>}>
                 <div className="flex justify-between cursor-help"><span>Difficulty</span><span className="font-mono text-w50">{(1 + selectedMythicLevel * 0.3).toFixed(1)}× – {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}×</span></div>
               </TipCustom>
               <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">None</span></div>

@@ -434,7 +434,7 @@ export default function DashboardHeader({
             if (!isNight) return null;
             return (
               <div className="flex items-center gap-1 text-xs" style={{ color: "#818cf8" }} title="Mondlicht-Schmiede active (22:00-06:00 Berlin) — +20% minimum rolls on crafted gear">
-                <span style={{ fontSize: 10, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
+                <span style={{ fontSize: 12, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
                 <span style={{ opacity: 0.6 }}>Mondlicht</span>
               </div>
             );

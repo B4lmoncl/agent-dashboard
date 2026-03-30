@@ -513,7 +513,7 @@ function BannerPullModal({
               <p className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Cost per pull</p>
               <p className="text-sm font-mono font-bold" style={{ color: ci.color }}>{banner.costSingle} {ci.label}</p>
             </div>
-            <TipCustom title="Pity System" icon="🎯" accent="#fbbf24" body={<>
+            <TipCustom title="Pity System" icon="◆" accent="#fbbf24" body={<>
               {pity ? (<>
                 <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>{pity.pityCounter}/{pity.hardPity || 75}</span></div>
                 <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{pity.epicPityCounter}/10</span></div>

@@ -456,7 +456,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {activeRun.dungeonIcon?.startsWith("/") ? <img src={activeRun.dungeonIcon} alt="" width={32} height={32} className="img-render-auto rounded" /> : <span className="text-xl">{activeRun.dungeonIcon}</span>}
+              {activeRun.dungeonIcon?.startsWith("/") ? <img src={activeRun.dungeonIcon} alt="" width={32} height={32} className="img-render-auto rounded" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl">{activeRun.dungeonIcon}</span>}
               <div>
                 <p className="text-sm font-bold" style={{ color: activeRun.dungeonAccent }}>
                   {activeRun.dungeonName}
@@ -711,7 +711,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     <span>Duration</span>
                     <span className="font-mono text-w50">{d.durationHours}h</span>
                   </div>
-                  <TipCustom title="Gear Score Threshold" icon="🛡️" accent="#fbbf24" body={<p>Combined gear score of all party members vs. the dungeon&apos;s threshold determines success chance.</p>}>
+                  <TipCustom title="Gear Score Threshold" icon="◆" accent="#fbbf24" body={<p>Combined gear score of all party members vs. the dungeon&apos;s threshold determines success chance.</p>}>
                     <div className="flex justify-between cursor-help">
                       <span>Gear Score</span>
                       <span className="font-mono text-w50">{d.gearScoreThreshold}/player</span>

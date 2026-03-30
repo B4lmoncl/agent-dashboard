@@ -852,7 +852,7 @@ button[disabled] {
   animation: new-badge-pulse 2s ease-in-out infinite;
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: #000;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
   padding: 1px 4px;

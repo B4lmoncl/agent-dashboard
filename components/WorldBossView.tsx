@@ -289,14 +289,14 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       <div className="space-y-5 tab-content-enter">
         {/* Header */}
         <div className="text-center space-y-2">
-          <p className="text-3xl">💀</p>
+          <img src="/images/icons/nav-worldboss.png" alt="" width={48} height={48} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
           <Tip k="world_boss" heading>
             <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
           </Tip>
         </div>
 
         <div className="rounded-xl p-8 text-center space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <p className="text-4xl" style={{ opacity: 0.3 }}>🏔️</p>
+          <img src="/images/icons/nav-worldboss.png" alt="" width={48} height={48} className="mx-auto img-render-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
           <p className="text-sm font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>No World Boss Active</p>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: "min(360px, 100%)", margin: "0 auto" }}>
             The land rests in uneasy peace. A new threat will emerge from the darkness when the time is right.
@@ -346,7 +346,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       )}
       {/* Header */}
       <div className="text-center space-y-2">
-        <p className="text-3xl">💀</p>
+        <img src="/images/icons/nav-worldboss.png" alt="" width={48} height={48} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <Tip k="world_boss" heading>
           <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
         </Tip>
@@ -587,7 +587,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{formatNumber(playerContribution.damage)}</p>
-              <TipCustom title="Damage Dealt" icon="⚔️" accent="#ef4444" body={<p>Damage is calculated from quest completions. Higher rarity quests deal more damage.</p>}>
+              <TipCustom title="Damage Dealt" icon="◆" accent="#ef4444" body={<p>Damage is calculated from quest completions. Higher rarity quests deal more damage.</p>}>
                 <p className="text-xs text-w20 cursor-help">Damage Dealt</p>
               </TipCustom>
             </div>
@@ -610,7 +610,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         <div className="rounded-xl p-4" style={{ background: "rgba(239,68,68,0.03)", border: "1px solid rgba(239,68,68,0.1)" }}>
           <div className="flex items-center justify-between mb-2">
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(239,68,68,0.6)" }}>Damage per Quest</p>
-            <TipCustom title="Damage Calculation" icon="⚔️" accent="#ef4444" body={<><p>Base damage depends on quest rarity. Your Gear Score adds a multiplier: +10% per 50 GS (max +100%).</p><p style={{ marginTop: 4, opacity: 0.7 }}>Your GS: {projectedDamage.gearScore} → ×{projectedDamage.gsMultiplier.toFixed(1)}</p></>}>
+            <TipCustom title="Damage Calculation" icon="◆" accent="#ef4444" body={<><p>Base damage depends on quest rarity. Your Gear Score adds a multiplier: +10% per 50 GS (max +100%).</p><p style={{ marginTop: 4, opacity: 0.7 }}>Your GS: {projectedDamage.gearScore} → ×{projectedDamage.gsMultiplier.toFixed(1)}</p></>}>
               <span className="text-xs cursor-help" style={{ color: "rgba(255,255,255,0.3)" }}>GS {projectedDamage.gearScore} · ×{projectedDamage.gsMultiplier.toFixed(1)}</span>
             </TipCustom>
           </div>

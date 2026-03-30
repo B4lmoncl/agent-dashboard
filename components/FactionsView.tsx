@@ -174,7 +174,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
     <div className="space-y-5 tab-content-enter">
       {/* Header */}
       <div className="text-center space-y-2">
-        <p className="text-3xl">🜂</p>
+        <img src="/images/icons/nav-factions.png" alt="" width={48} height={48} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <Tip k="factions" heading>
           <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>The Four Circles</h2>
         </Tip>
@@ -249,9 +249,9 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     </TipCustom>
                   ))}
                   {weeklyBonusLeft > 0 && (
-                    <TipCustom title="Weekly Bonus" icon="⚡" accent={f.accent} body={<p>Your next {weeklyBonusLeft} quest{weeklyBonusLeft > 1 ? "s" : ""} for this faction grant 2× reputation. Resets weekly.</p>}>
+                    <TipCustom title="Weekly Bonus" icon="★" accent={f.accent} body={<p>Your next {weeklyBonusLeft} quest{weeklyBonusLeft > 1 ? "s" : ""} for this faction grant 2× reputation. Resets weekly.</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ background: "rgba(250,204,21,0.1)", color: "#facc15", border: "1px solid rgba(250,204,21,0.2)" }}>
-                        ⚡ {weeklyBonusLeft}× Bonus
+                        ★ {weeklyBonusLeft}× Bonus
                       </span>
                     </TipCustom>
                   )}
@@ -361,7 +361,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                             color: isReached ? s.color : "rgba(255,255,255,0.12)",
                             border: `1px solid ${isCurrent ? `${s.color}50` : isReached ? `${s.color}20` : "rgba(255,255,255,0.04)"}`,
                             fontWeight: isCurrent ? 700 : 400,
-                            fontSize: 10,
+                            fontSize: 12,
                             boxShadow: isClaimed ? `0 0 6px ${s.color}15` : "none",
                           }}
                         >

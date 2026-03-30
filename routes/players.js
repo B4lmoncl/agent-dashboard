@@ -6,6 +6,7 @@ const { state, NPC_META, saveUsers, savePlayerProgress } = require('../lib/state
 const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore, createPlayerLock } = require('../lib/helpers');
 const companionUltimateLock = createPlayerLock('companion-ultimate');
 const companionExpeditionLock = createPlayerLock('companion-expedition');
+const tavernLock = createPlayerLock('tavern-action');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 
 // ─── Companion Expeditions data ─────────────────────────────────────────────
@@ -726,6 +727,8 @@ router.get('/api/tavern/status', (req, res) => {
 // POST /api/tavern/enter — enter rest mode
 router.post('/api/tavern/enter', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!tavernLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -757,11 +760,14 @@ router.post('/api/tavern/enter', requireAuth, (req, res) => {
   saveUsers();
   console.log(`[tavern] ${uid} entered rest mode for ${restDays} days`);
   res.json({ ok: true, days: restDays, message: `Entered the Hearth for ${restDays} days. Streaks and forge temp are frozen.` });
+  } finally { tavernLock.release(uid); }
 });
 
 // POST /api/tavern/leave — leave rest mode early
 router.post('/api/tavern/leave', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!tavernLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   if (!u.tavernRest?.active) return res.status(400).json({ error: 'Not currently resting' });
@@ -787,6 +793,7 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
   saveUsers();
   console.log(`[tavern] ${uid} left the Hearth early, granted Welcome Back buff`);
   res.json({ ok: true, message: 'Welcome back, adventurer! Your streak and forge temp have been restored. You feel refreshed — +25% XP for your next 50 quests!' });
+  } finally { tavernLock.release(uid); }
 });
 
 // ─── Companion Expeditions ──────────────────────────────────────────────────

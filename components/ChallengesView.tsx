@@ -10,7 +10,7 @@ import { Tip, TipCustom } from "@/components/GameTooltip";
 const CURRENCY_ICONS: Record<string, { label: string; color: string }> = {
   gold: { label: "Gold", color: "#f59e0b" },
   runensplitter: { label: "Runensplitter", color: "#a855f7" },
-  essenz: { label: "Essenz", color: "#3b82f6" },
+  essenz: { label: "Essenz", color: "#ef4444" },
   sternentaler: { label: "Sternentaler", color: "#fbbf24" },
   xp: { label: "XP", color: "#22c55e" },
 };
@@ -148,7 +148,7 @@ function SternenpfadView({
                   style={{
                     background: canClaim ? "rgba(251,191,36,0.08)" : "transparent",
                     cursor: canClaim && claimingMilestone === null ? "pointer" : claimed ? "default" : "not-allowed",
-                    animation: canClaim ? "pulse 2s infinite" : "none",
+                    animation: canClaim ? "pulse 4s infinite" : "none",
                   }}
                 >
                   <div
@@ -274,7 +274,7 @@ function SternenpfadView({
                   </span>
                   <Stars earned={stage.earnedStars} animated />
                   {speedBonusActive && (
-                    <TipCustom title="Speed Bonus" icon="⚡" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
+                    <TipCustom title="Speed Bonus" icon="★" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
                         ★ Speed Bonus
                       </span>
@@ -296,12 +296,12 @@ function SternenpfadView({
                     </span>
                     <span className="text-w20">{progressPct}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <div className={`progress-bar-diablo${progressPct > 90 ? " progress-bar-nearly-full" : ""}`}>
                     <div
-                      className="h-full rounded-full transition-all"
+                      className="progress-bar-diablo-fill"
                       style={{
                         width: `${progressPct}%`,
-                        background: isCompleted ? "#22c55e" : `linear-gradient(90deg, ${stageColor}, ${stageColor}80)`,
+                        background: isCompleted ? "#22c55e" : `linear-gradient(90deg, ${stageColor}88, ${stageColor}, ${stageColor}cc)`,
                       }}
                     />
                   </div>
@@ -355,7 +355,7 @@ function SternenpfadView({
                       opacity: claiming ? 0.5 : 1,
                       cursor: claiming ? "not-allowed" : "pointer",
                     }}
-                    title={claiming ? "Claiming reward..." : undefined}
+                    title={claiming ? "Claiming reward..." : `Claim Stage ${stage.stage} reward (${stage.earnedStars} stars earned)`}
                   >
                     {claiming ? "Claiming..." : `Claim Stage ${stage.stage}`}
                   </button>
@@ -431,12 +431,12 @@ function ExpeditionView({
           <span className="font-semibold text-w50">Guild Progress</span>
           <span className="font-bold" style={{ color: "#4ade80" }}>{expedition.progress} Quests</span>
         </div>
-        <div className="h-2.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+        <div className={`progress-bar-diablo${overallPct > 90 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="h-full rounded-full transition-all"
+            className="progress-bar-diablo-fill"
             style={{
               width: `${overallPct}%`,
-              background: "linear-gradient(90deg, #22c55e, #4ade80)",
+              background: "linear-gradient(90deg, #22c55e88, #22c55e, #4ade80)",
             }}
           />
         </div>
@@ -618,7 +618,7 @@ function ExpeditionView({
                     <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
                       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: aboveFair ? "#4ade80" : "#f8717180" }} />
                       {/* Fair share target line */}
-                      <TipCustom title="Fair Share" icon="⚖️" accent="#fbbf24" body={<p>Each player&apos;s fair share is <strong>{fairShare} quests</strong>. Active players compensate for inactive ones.</p>}>
+                      <TipCustom title="Fair Share" icon="◆" accent="#fbbf24" body={<p>Each player&apos;s fair share is <strong>{fairShare} quests</strong>. Active players compensate for inactive ones.</p>}>
                         <div className="absolute top-0 bottom-0" style={{ left: `${Math.min(100, Math.round((fairShare / topCount) * 100))}%`, width: 1, background: "rgba(251,191,36,0.5)" }} />
                       </TipCustom>
                     </div>
@@ -853,7 +853,7 @@ export default function ChallengesView({
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2">🏔️</p>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>▲</p>
             <p className="text-sm font-bold mb-1 text-w25">No Expedition active</p>
             <p className="text-xs text-w15">The Expedition resets every Monday. Rally your guild!</p>
           </div>

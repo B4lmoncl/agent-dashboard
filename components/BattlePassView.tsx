@@ -50,11 +50,11 @@ const REWARD_CONFIG: Record<string, { icon: string; color: string; label: string
   essenz: { icon: "/images/icons/currency-essenz.png", color: "#ef4444", label: "Essenz" },
   runensplitter: { icon: "/images/icons/currency-runensplitter.png", color: "#a78bfa", label: "Rune Shards" },
   stardust: { icon: "/images/icons/currency-stardust.png", color: "#818cf8", label: "Stardust" },
-  sternentaler: { icon: "/images/icons/currency-stardust.png", color: "#fbbf24", label: "Sternentaler" },
+  sternentaler: { icon: "/images/icons/nav-challenges.png", color: "#fbbf24", label: "Sternentaler" },
   mondstaub: { icon: "/images/icons/currency-mondstaub.png", color: "#c084fc", label: "Mondstaub" },
-  material: { icon: "/images/icons/equip-weapon.png", color: "#f59e0b", label: "Material" },
-  title: { icon: "/images/icons/currency-gildentaler.png", color: "#fbbf24", label: "Title" },
-  frame: { icon: "/images/icons/currency-gildentaler.png", color: "#a78bfa", label: "Frame" },
+  material: { icon: "/images/icons/mat-eisenerz.png", color: "#f59e0b", label: "Material" },
+  title: { icon: "/images/icons/nav-proving.png", color: "#fbbf24", label: "Title" },
+  frame: { icon: "/images/icons/nav-character.png", color: "#a78bfa", label: "Frame" },
 };
 
 // ─── Component ──────────────────────────────────────────────────────────────
@@ -105,10 +105,11 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           if (g.type === "mondstaub" && g.amount) currencies.push({ name: "Mondstaub", amount: g.amount, color: "#c084fc" });
           onRewardCelebration({
             type: "battlepass",
-            title: g.type === "title" ? `Title: ${g.titleName}` : g.type === "frame" ? `Frame: ${g.frameName}` : `Level ${level} Reward`,
+            title: g.type === "title" ? `Title: ${g.titleName}` : g.type === "frame" ? `Frame: ${g.frameName}` : g.type === "material" ? `${g.amount || 1}x ${g.materialId || "Material"}` : `Level ${level} Reward`,
             xpEarned: 0,
             goldEarned: g.type === "gold" ? (g.amount || 0) : 0,
             currencies: currencies.length > 0 ? currencies : undefined,
+            flavor: g.type === "material" ? "Crafting materials from the Season Pass." : undefined,
           });
         }
       } else {
@@ -268,7 +269,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
               {/* Reward icon + description */}
               <div className="flex-1 min-w-0 flex items-center gap-2">
                 {rc.icon.startsWith("/") ? (
-                  <img src={rc.icon} alt="" width={20} height={20} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                  <img src={rc.icon} alt="" width={28} height={28} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
                 ) : (
                   <span style={{ fontSize: 18 }}>{rc.icon}</span>
                 )}
