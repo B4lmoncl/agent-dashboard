@@ -2922,8 +2922,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
       {profCelebration && createPortal(
-        <div className="fixed inset-0 z-[160] flex items-center justify-center modal-backdrop" onClick={() => setProfCelebration(null)}>
-          <div className="w-full max-w-md rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-[160] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} onClick={() => setProfCelebration(null)}>
+          <div className="w-full max-w-md mx-4 rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
             {/* Accent bar */}
             <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
             <div className="p-6 space-y-5">

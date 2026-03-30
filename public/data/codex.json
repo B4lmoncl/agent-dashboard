@@ -224,7 +224,7 @@
       "id": "orden-der-klinge",
       "category": "factions",
       "title": "Orden der Klinge",
-      "text": "Stärke ist kein Zustand, sondern eine Entscheidung. Der Orden glaubt, dass der Körper das erste Werkzeug ist und das letzte, das einen im Stich lässt. Ihre Mitglieder trainieren, bis Schweiß zu Stahl wird.",
+      "text": "Der Orden löst Probleme mit der ältesten Methode der Welt: Erschöpfung. Ihre Mitglieder trainieren, bis Schweiß zu Stahl wird und Stahl zu Metapher. Ein Novize fragte einmal, ob es auch einen intellektuellen Pfad gäbe. Man gab ihm einen schwereren Hammer.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -354,7 +354,7 @@
       "id": "sternenpfad",
       "category": "world",
       "title": "Der Sternenpfad",
-      "text": "Jede Woche eine neue Herausforderung. Drei Stufen, neun mögliche Sterne. Der Pfad führt nach oben — immer nach oben. Wer alle Sterne sammelt, hat nicht nur gewonnen. Er hat bewiesen, dass Konstanz eine Superkraft ist.",
+      "text": "Drei Stufen, neun Sterne, eine Woche. Der Sternenpfad belohnt die, die schnell sind, und tröstet die, die es nächste Woche nochmal versuchen. Jemand hat ausgerechnet, dass man statistisch gesehen siebzehn Wochen braucht, um einmal alle neun Sterne zu holen. Dieser Jemand hat danach aufgehört, Statistiken zu lesen, und es in drei Wochen geschafft.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -571,7 +571,7 @@
       "id": "erste-helden",
       "category": "history",
       "title": "Die Ersten Helden",
-      "text": "Bevor es den Turm gab, gab es die, die ihn nötig machten. Namenlose Wanderer, die erkannten, dass Disziplin keine Strafe ist sondern ein Geschenk. Sie bauten nichts. Sie lebten nur so, dass andere anfingen, ihnen nachzueifern. Der Turm wuchs um ihre Gewohnheiten herum.",
+      "text": "Bevor es den Turm gab, gab es die, die ihn nötig machten. Namenlose Wanderer mit unerklärlich guter Körperhaltung und einer beunruhigenden Vorliebe für Tagesplanung. Sie bauten nichts. Sie standen einfach diszipliniert herum, bis andere aus purem Gruppenzwang anfingen, es ihnen nachzutun. Der Turm wuchs um ihre Gewohnheiten herum wie Moos um einen besonders motivierten Stein.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
