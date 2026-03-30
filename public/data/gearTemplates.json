@@ -44481,6 +44481,735 @@
       },
       "legendaryEffect": null,
       "setId": "turmwaechter-garnitur"
+    },
+    {
+      "id": "gen-holzschild",
+      "name": "Holzschild",
+      "slot": "shield",
+      "tier": 1,
+      "rarity": "common",
+      "reqLevel": 1,
+      "desc": "Aus einem Fass gewonnen. Riecht noch nach dem, was drin war.",
+      "price": 5,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-stoffamulett",
+      "name": "Stoffamulett",
+      "slot": "amulet",
+      "tier": 1,
+      "rarity": "common",
+      "reqLevel": 1,
+      "desc": "Ein Knoten aus Stoff. Jemand hat \"Glück\" draufgeschrieben. In sehr unsicherer Handschrift.",
+      "price": 5,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-strohstiefel",
+      "name": "Strohstiefel",
+      "slot": "boots",
+      "tier": 1,
+      "rarity": "common",
+      "reqLevel": 1,
+      "desc": "Regenfest für genau eine Pfütze. Danach: Kompostierbar.",
+      "price": 5,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-eisenschild",
+      "name": "Eisenschild",
+      "slot": "shield",
+      "tier": 1,
+      "rarity": "uncommon",
+      "reqLevel": 3,
+      "desc": "Schwer, zuverlässig, nicht schön. Wie ein guter Freund.",
+      "price": 15,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-knochenamulett",
+      "name": "Knochenamulett",
+      "slot": "amulet",
+      "tier": 1,
+      "rarity": "uncommon",
+      "reqLevel": 3,
+      "desc": "Von welchem Tier der Knochen stammt, fragt man besser nicht.",
+      "price": 15,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-lederstiefel-des-wanderers",
+      "name": "Wandererstiefel",
+      "slot": "boots",
+      "tier": 1,
+      "rarity": "uncommon",
+      "reqLevel": 4,
+      "desc": "Hundert Meilen. Zweihundert Meilen. Diese Stiefel zählen nicht. Sie laufen einfach.",
+      "price": 15,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-stahlschild",
+      "name": "Stahlschild",
+      "slot": "shield",
+      "tier": 2,
+      "rarity": "uncommon",
+      "reqLevel": 10,
+      "desc": "Hält stand. Nicht glanzvoll, nicht elegant, einfach: verlässlich.",
+      "price": 15,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-jadeamulett",
+      "name": "Jadeamulett",
+      "slot": "amulet",
+      "tier": 2,
+      "rarity": "uncommon",
+      "reqLevel": 10,
+      "desc": "Die Jade flüstert. Nicht wirklich. Aber man wünscht es sich.",
+      "price": 15,
+      "shopHidden": false,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-dornenschild",
+      "name": "Dornenschild",
+      "slot": "shield",
+      "tier": 2,
+      "rarity": "rare",
+      "reqLevel": 12,
+      "desc": "Wer diesen Schild angreift, bereut es. Wer ihn trägt, bereut die Dornen an der Rückseite.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-falkenamulett",
+      "name": "Falkenamulett",
+      "slot": "amulet",
+      "tier": 2,
+      "rarity": "rare",
+      "reqLevel": 12,
+      "desc": "Geschnitzt aus dem Schnabel eines Falken. Der Falke war einverstanden. Wahrscheinlich.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-eisenstiefel",
+      "name": "Eisenstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "rarity": "rare",
+      "reqLevel": 12,
+      "desc": "Leise sind sie nicht. Dafür spürt man keine Steine mehr. Oder Zehen.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-obsidianschild",
+      "name": "Obsidianschild",
+      "slot": "shield",
+      "tier": 3,
+      "rarity": "epic",
+      "reqLevel": 20,
+      "desc": "Aus vulkanischem Glas. Reflektiert Angriffe und den existenziellen Horror des Angreifers.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-mondsplitter-amulett",
+      "name": "Mondsplitter-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "rarity": "epic",
+      "reqLevel": 20,
+      "desc": "Ein Splitter des Mondes. Oder ein sehr überzeugender Kieselstein. Die Aura ist trotzdem beeindruckend.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-schattenstiefel",
+      "name": "Schattenstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "rarity": "epic",
+      "reqLevel": 20,
+      "desc": "Lautlos. Geruchlos. Geschmacklos, wenn man die Verzierungen betrachtet. Aber effektiv.",
+      "price": 0,
+      "shopHidden": true,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
     }
   ],
   "setBonus": {
