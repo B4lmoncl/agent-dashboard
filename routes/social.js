@@ -734,6 +734,9 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
       saveUsers();
       logActivity(trade.initiator, 'trade_complete', { with: trade.recipient, summary: result.summary });
       logActivity(trade.recipient, 'trade_complete', { with: trade.initiator, summary: result.summary });
+      // Track for achievements
+      if (state.users[trade.initiator]) state.users[trade.initiator]._tradesCompleted = (state.users[trade.initiator]._tradesCompleted || 0) + 1;
+      if (state.users[trade.recipient]) state.users[trade.recipient]._tradesCompleted = (state.users[trade.recipient]._tradesCompleted || 0) + 1;
       console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
       return res.json({ ok: true, trade, executed: true, summary: result.summary });
     } finally {

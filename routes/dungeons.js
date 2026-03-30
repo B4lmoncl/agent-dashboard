@@ -509,6 +509,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Mark collected BEFORE success determination to prevent duplicate collection
   run.collected.push(uid);
+  u._dungeonCompletions = (u._dungeonCompletions || 0) + 1;
 
   // ── Determine run success ONCE (first collector calculates, subsequent reuse) ──
   const participantCount = run.participants.length;

@@ -216,6 +216,8 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     }
   }
   ritual.lastCompleted = today;
+  // Track for achievements
+  if (u) u._ritualsCompleted = (u._ritualsCompleted || 0) + 1;
   ritual.missedDays = 0;
 
   // Track longest streak and completion history

@@ -425,6 +425,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   if (allDone) {
     rift.completed = true;
     rift.completedAt = now();
+    u._riftCompletions = (u._riftCompletions || 0) + 1;
 
     // Award completion bonus currencies (raw — these are bonus on top of quest rewards)
     const tier = RIFT_TIERS[rift.tier];

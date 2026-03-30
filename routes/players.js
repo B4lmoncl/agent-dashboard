@@ -986,6 +986,7 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
 
   // Mark collected FIRST to prevent double-collect race condition
   expedition.collected = true;
+  u._expeditionCompletions = (u._expeditionCompletions || 0) + 1;
   expedition.lastCollectedAt = now();
 
   const bondLevel = u.companion.bondLevel || getBondLevel(u.companion.bondXp || 0).level;

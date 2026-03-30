@@ -172,6 +172,9 @@ function dealBossDamage(userId, questRarity) {
   }
   boss.contributions[userId].damage += dmg;
   boss.contributions[userId].quests += 1;
+  // Track for achievements
+  const wbUser = state.users[userId];
+  if (wbUser) wbUser._worldBossContributions = (wbUser._worldBossContributions || 0) + 1;
 
   // Apply damage
   boss.currentHp = Math.max(0, boss.currentHp - dmg);
