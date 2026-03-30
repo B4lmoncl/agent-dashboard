@@ -316,6 +316,9 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
+  // Block during tavern rest
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot enter dungeons while resting in The Hearth.' });
+
   const { dungeonId, invitePlayers } = req.body;
   if (!dungeonId || typeof dungeonId !== 'string') return res.status(400).json({ error: 'dungeonId required' });
 

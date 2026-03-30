@@ -281,6 +281,9 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
+  // Block during tavern rest
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot enter rifts while resting in The Hearth.' });
+
   const { tier: tierId, mythicLevel: rawMythicLevel } = req.body;
   if (!tierId || !RIFT_TIERS[tierId]) return res.status(400).json({ error: 'Invalid rift tier' });
 
