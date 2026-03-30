@@ -266,7 +266,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                       </div>
                     );
                     return (
-                      <TipCustom key={slot} title={item.name} icon={item.icon ?? "⚔️"} accent={rc} body={tooltipBody}>
+                      <TipCustom key={slot} title={item.name} icon={item.icon ?? "◆"} accent={rc} body={tooltipBody}>
                         <div className="rounded-lg p-2 cursor-help" style={{ background: `${rc}08`, border: `1px solid ${rc}25` }}>
                           <div className="flex items-center gap-1.5">
                             {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />}
@@ -341,14 +341,14 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                   {profile.achievements.slice(0, 20).map(a => {
                     const achColor = RARITY_COLORS[a.rarity] || "#fbbf24";
                     return (
-                      <TipCustom key={a.id} title={a.name} icon={a.icon?.startsWith("/") ? undefined : a.icon || "🏆"} accent={achColor} body={
+                      <TipCustom key={a.id} title={a.name} icon={a.icon?.startsWith("/") ? undefined : a.icon || "★"} accent={achColor} body={
                         <div>
                           <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{a.desc}</p>
                           <p className="text-xs mt-1" style={{ color: achColor }}>{a.rarity.charAt(0).toUpperCase() + a.rarity.slice(1)} · {a.points} pts</p>
                         </div>
                       }>
                         <span className="inline-flex cursor-help">
-                          {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
+                          {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="text-sm" style={{ color: "#fbbf24" }}>★</span>}
                         </span>
                       </TipCustom>
                     );

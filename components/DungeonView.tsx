@@ -711,7 +711,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     <span>Duration</span>
                     <span className="font-mono text-w50">{d.durationHours}h</span>
                   </div>
-                  <TipCustom title="Gear Score Threshold" icon="🛡️" accent="#fbbf24" body={<p>Combined gear score of all party members vs. the dungeon&apos;s threshold determines success chance.</p>}>
+                  <TipCustom title="Gear Score Threshold" icon="◆" accent="#fbbf24" body={<p>Combined gear score of all party members vs. the dungeon&apos;s threshold determines success chance.</p>}>
                     <div className="flex justify-between cursor-help">
                       <span>Gear Score</span>
                       <span className="font-mono text-w50">{d.gearScoreThreshold}/player</span>
