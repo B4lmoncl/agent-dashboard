@@ -1486,6 +1486,36 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
       </>
     ),
   },
+  // ── New Features ──
+  talent_tree: {
+    title: "Schicksalsbaum (Talent Tree)",
+    icon: "/images/icons/nav-talents.png",
+    accent: "#a855f7",
+    body: (
+      <>
+        <p>Passive skill tree with 26 nodes in 3 concentric rings. Allocate points to unlock permanent bonuses.</p>
+        <div className="gt-stat-row"><span>Unlock</span><span>Level 5</span></div>
+        <div className="gt-stat-row"><span>Points</span><span>1 per 2 levels (max 25)</span></div>
+        <div className="gt-stat-row"><span>Rings</span><span>Inner (8) · Middle (10) · Outer (8)</span></div>
+        <div className="gt-stat-row"><span>Reset</span><span>500 Gold + 50 Essenz</span></div>
+        <p className="gt-source">Some nodes are mutually exclusive — choose wisely. Build archetypes: Grinder, Crafter, Gambler, Social, Rift Runner.</p>
+      </>
+    ),
+  },
+  adventure_tome: {
+    title: "Abenteuerbuch (Adventure Tome)",
+    icon: "/images/icons/nav-tome.png",
+    accent: "#f97316",
+    body: (
+      <>
+        <p>Completionist tracker for every floor of the tower. Complete objectives to fill the progress bar and claim milestone rewards.</p>
+        <div className="gt-stat-row"><span>Floors</span><span>5 (Great Halls → Pinnacle)</span></div>
+        <div className="gt-stat-row"><span>Milestones</span><span>25% · 50% · 75% · 100%</span></div>
+        <div className="gt-stat-row"><span>Rewards</span><span>Gold, Essenz, Runensplitter, Titles, Frames</span></div>
+        <p className="gt-source">100% a floor to earn its exclusive title. 100% all floors for the ultimate Turmkronenwächter title + frame.</p>
+      </>
+    ),
+  },
 };
 }
 
