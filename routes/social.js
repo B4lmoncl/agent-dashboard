@@ -339,6 +339,10 @@ router.post('/api/social/message', requireAuth, (req, res) => {
     read: false,
   };
   state.socialData.messages.push(message);
+  // Cap total messages to prevent unbounded growth (keep most recent 5000)
+  if (state.socialData.messages.length > 5000) {
+    state.socialData.messages = state.socialData.messages.slice(-5000);
+  }
   saveSocial();
   console.log(`[social] Message sent: ${fromId} → ${to} (${text.length} chars)`);
   res.json({ ok: true, message });
@@ -545,6 +549,12 @@ router.post('/api/social/trade/propose', requireAuth, (req, res) => {
   };
 
   state.socialData.trades.push(trade);
+  // Prune old completed/cancelled trades to prevent unbounded growth (keep 200 most recent)
+  if (state.socialData.trades.length > 200) {
+    const active = state.socialData.trades.filter(t => t.status === 'pending' || t.status === 'negotiating');
+    const inactive = state.socialData.trades.filter(t => t.status !== 'pending' && t.status !== 'negotiating');
+    state.socialData.trades = [...active, ...inactive.slice(-Math.max(0, 200 - active.length))];
+  }
   saveSocial();
   console.log(`[social] Trade proposed: ${fromId} → ${to} (${offeredGold}g, ${itemIds.length} items)`);
   res.json({ ok: true, trade });
