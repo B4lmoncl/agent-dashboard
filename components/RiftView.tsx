@@ -258,7 +258,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         <div className={`rounded-xl p-5 space-y-4${!activeRift.completed && (new Date(activeRift.expiresAt).getTime() - Date.now()) < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 && (new Date(activeRift.expiresAt).getTime() - Date.now()) > 0 ? " rift-urgent" : ""}`} style={{ background: `${activeRift.tierColor}08`, border: `1px solid ${activeRift.tierColor}30` }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {activeRift.tierIcon?.startsWith("/") ? <img src={activeRift.tierIcon} alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: `1px solid ${activeRift.tierColor}30` }} /> : <span className="text-xl">{activeRift.tierIcon}</span>}
+              {activeRift.tierIcon?.startsWith("/") ? <img src={activeRift.tierIcon} alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: `1px solid ${activeRift.tierColor}30` }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl">{activeRift.tierIcon}</span>}
               <div>
                 <p className="text-sm font-bold" style={{ color: activeRift.tierColor }}>
                   {activeRift.tier === "mythic" && activeRift.mythicLevel ? `${activeRift.tierName} +${activeRift.mythicLevel}` : activeRift.tierName}
