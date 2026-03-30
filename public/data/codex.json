@@ -1115,6 +1115,16 @@
         "type": "profession_skill",
         "value": 200
       }
+    },
+    {
+      "id": "erholungs-pool",
+      "category": "systems",
+      "title": "Der Erholungs-Pool",
+      "text": "Der Turm belohnt Abwesenheit. Nicht viel, aber genug um sich darüber zu ärgern, dass man nicht öfter fehlt. Pro acht Stunden Offline sammelt sich ein blaues Leuchten in deiner XP-Leiste — der Erholungs-Pool. Fünf Prozent deines Level-XP pro acht Stunden, gedeckelt bei hundertfünfzig Prozent. Sobald du zurückkommst, verdoppelt er deine XP-Einnahmen, bis er leer ist. Das System wurde von jemandem erfunden, der verstanden hat, dass die beste Motivation die ist, aufzuhören. Die zweitbeste ist, wiederzukommen und doppelt belohnt zu werden. Die Taverne und der Erholungs-Pool sind übrigens nicht kompatibel. Weil das zu einfach wäre.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 3
+      }
     }
   ]
 }
