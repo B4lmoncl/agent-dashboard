@@ -143,19 +143,31 @@ Cat, Dog, Hamster, Bird, Fish, Rabbit — fehlen noch als richtige Portraits.
 | `nav-talents.png` | Kopie von nav-arcanum | Circular skill tree with 3 concentric glowing rings, nodes connected by lines, dark background, fantasy RPG icon |
 | `nav-tome.png` | Kopie von nav-codex | Open ancient book with progress bar overlay, golden glow, completion percentage visible, dark background, fantasy RPG icon |
 
-### PRIO 9: Vendor Reagent Icons (10 fehlend, 128×128)
+### PRIO 9: Vendor Reagent Icons (22 fehlend, 128×128)
 
 **Pfad:** `public/images/icons/mat-{reagent}.png`
 
-| Reagent | Datei | Prompt |
-|---------|-------|--------|
-| Kohlestück | `mat-kohle.png` | Small dark charcoal piece, glowing ember edge, dark background, fantasy RPG crafting material icon |
-| Schmelztiegel | `mat-schmelz.png` | Small stone crucible with molten metal inside, orange glow, dark background, fantasy RPG icon |
-| Nähfaden | `mat-faden.png` | Spool of magical silver thread, slight glow, dark background, fantasy RPG crafting icon |
-| Färbemittel | `mat-farbe.png` | Small bottle of purple dye with dripping stopper, dark background, fantasy RPG icon |
-| Leere Phiole | `mat-phiole.png` | Empty glass vial with cork, clear glass with slight blue tint, dark background, fantasy RPG icon |
-| Kristallphiole | `mat-kristallphiole.png` | Crystal vial with prismatic reflections, ornate stopper, dark background, fantasy RPG icon |
-| Gewürzmischung | `mat-gewuerz.png` | Small cloth pouch of spices with herbs spilling out, warm colors, dark background, fantasy RPG icon |
-| Verzauberungstinte | `mat-tinte.png` | Inkwell with glowing purple enchanting ink, rune-etched bottle, dark background, fantasy RPG icon |
-| Lederöl | `mat-oel.png` | Small brown leather oil bottle, amber liquid, dark background, fantasy RPG crafting icon |
-| Schleifpulver | `mat-schliff.png` | Small pile of sparkling polishing powder with gemstone dust, dark background, fantasy RPG icon |
+| Reagent | Datei | Profession | Prompt |
+|---------|-------|------------|--------|
+| Kohlestück | `mat-kohle.png` | Schmied T1 | Small dark charcoal piece, glowing ember edge, dark background, fantasy RPG icon |
+| Eisenfluss | `mat-eisenfluss.png` | Schmied T2 | Small iron flux powder, metallic sheen, dark background, fantasy RPG icon |
+| Schmelztiegel | `mat-schmelz.png` | Schmied T3 | Stone crucible with molten metal, orange glow, dark background, fantasy RPG icon |
+| Ätherflux | `mat-aetherflux.png` | Schmied T4 | Glowing purple-gold flux crystal, arcane sparks, dark background, fantasy RPG icon |
+| Grober Faden | `mat-faden-grob.png` | Schneider T1 | Rough hemp thread spool, simple, dark background, fantasy RPG icon |
+| Feiner Nähfaden | `mat-faden.png` | Schneider T2 | Fine silver thread spool, slight glow, dark background, fantasy RPG icon |
+| Seidenfaden | `mat-faden-seide.png` | Schneider T3 | Shimmering silk thread spool, iridescent, dark background, fantasy RPG icon |
+| Runenfaden | `mat-faden-rune.png` | Schneider T4 | Glowing rune-inscribed thread spool, magical aura, dark background, fantasy RPG icon |
+| Färbemittel | `mat-farbe.png` | Schneider | Small bottle of purple dye, dripping stopper, dark background, fantasy RPG icon |
+| Rohes Lederöl | `mat-oel.png` | Leder T1 | Brown leather oil bottle, amber liquid, dark background, fantasy RPG icon |
+| Feines Lederöl | `mat-oel-fein.png` | Leder T2 | Refined golden leather oil, ornate bottle, dark background, fantasy RPG icon |
+| Leere Phiole | `mat-phiole.png` | Alchemist T1 | Empty glass vial with cork, clear glass, dark background, fantasy RPG icon |
+| Bleiphiole | `mat-phiole-blei.png` | Alchemist T2 | Leaded glass vial, darker tint, reinforced stopper, dark background, fantasy RPG icon |
+| Kristallphiole | `mat-kristallphiole.png` | Alchemist T3 | Crystal vial with prismatic reflections, ornate stopper, dark background, fantasy RPG icon |
+| Milde Gewürze | `mat-gewuerz-mild.png` | Koch T1 | Small herb pouch, gentle green herbs, dark background, fantasy RPG icon |
+| Scharfe Gewürze | `mat-gewuerz-scharf.png` | Koch T2 | Red spice pouch with chili peppers, warm glow, dark background, fantasy RPG icon |
+| Beruhigende Gewürze | `mat-gewuerz-beruh.png` | Koch T3 | Blue-tinted healing herb pouch, calming aura, dark background, fantasy RPG icon |
+| Verzauberungstinte | `mat-tinte.png` | Verzauberer T1 | Inkwell with glowing purple ink, rune-etched bottle, dark background, fantasy RPG icon |
+| Äthertinte | `mat-tinte-aether.png` | Verzauberer T2 | Ethereal blue-gold ink, floating runes above bottle, dark background, fantasy RPG icon |
+| Grobes Schleifpulver | `mat-schliff.png` | Juwelier T1 | Pile of sparkling polishing powder, dark background, fantasy RPG icon |
+| Feines Schleifpulver | `mat-schliff-fein.png` | Juwelier T2 | Fine diamond dust pile, prismatic sparkle, dark background, fantasy RPG icon |
+| Ätherschliff | `mat-schliff-aether.png` | Juwelier T3 | Glowing ethereal polishing compound, arcane particles, dark background, fantasy RPG icon |
