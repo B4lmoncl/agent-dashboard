@@ -691,6 +691,112 @@
       "rauesleder": 0.03
     }
   },
+  "vendorReagents": [
+    {
+      "id": "kohlestueck",
+      "name": "Kohlestück",
+      "desc": "Grundzutat für Metallarbeiten. Grimvar verkauft sie widerwillig.",
+      "price": 5,
+      "professions": [
+        "schmied",
+        "waffenschmied"
+      ],
+      "icon": "/images/icons/mat-kohle.png"
+    },
+    {
+      "id": "schmelztiegel",
+      "name": "Schmelztiegel",
+      "desc": "Für fortgeschrittene Metallarbeiten. Teurer als er aussieht.",
+      "price": 15,
+      "professions": [
+        "schmied",
+        "waffenschmied",
+        "juwelier"
+      ],
+      "icon": "/images/icons/mat-schmelz.png"
+    },
+    {
+      "id": "naehfaden",
+      "name": "Nähfaden",
+      "desc": "Hält Stoff zusammen. Und gelegentlich Beziehungen.",
+      "price": 5,
+      "professions": [
+        "schneider",
+        "lederverarbeiter"
+      ],
+      "icon": "/images/icons/mat-faden.png"
+    },
+    {
+      "id": "faerbemittel",
+      "name": "Färbemittel",
+      "desc": "Verwandelt langweiligen Stoff in weniger langweiligen Stoff.",
+      "price": 20,
+      "professions": [
+        "schneider"
+      ],
+      "icon": "/images/icons/mat-farbe.png"
+    },
+    {
+      "id": "leere-phiole",
+      "name": "Leere Phiole",
+      "desc": "Leer. Was du reinfüllst, ist dein Problem.",
+      "price": 5,
+      "professions": [
+        "alchemist"
+      ],
+      "icon": "/images/icons/mat-phiole.png"
+    },
+    {
+      "id": "kristallphiole",
+      "name": "Kristallphiole",
+      "desc": "Für Tränke die man nicht in billigem Glas aufbewahren sollte.",
+      "price": 30,
+      "professions": [
+        "alchemist"
+      ],
+      "icon": "/images/icons/mat-kristallphiole.png"
+    },
+    {
+      "id": "gewuerzmischung",
+      "name": "Gewürzmischung",
+      "desc": "Brunas Geheimrezept. Das Geheimnis ist: es ist nur Salz.",
+      "price": 3,
+      "professions": [
+        "koch"
+      ],
+      "icon": "/images/icons/mat-gewuerz.png"
+    },
+    {
+      "id": "verzauberungstinte",
+      "name": "Verzauberungstinte",
+      "desc": "Schreibt Runen die funktionieren. Meistens.",
+      "price": 10,
+      "professions": [
+        "verzauberer"
+      ],
+      "icon": "/images/icons/mat-tinte.png"
+    },
+    {
+      "id": "lederoel",
+      "name": "Lederöl",
+      "desc": "Macht Leder geschmeidig. Macht auch Hände geschmeidig. Beides nicht immer erwünscht.",
+      "price": 8,
+      "professions": [
+        "lederverarbeiter"
+      ],
+      "icon": "/images/icons/mat-oel.png"
+    },
+    {
+      "id": "schleifpulver",
+      "name": "Schleifpulver",
+      "desc": "Für den letzten Schliff. Buchstäblich.",
+      "price": 15,
+      "professions": [
+        "juwelier"
+      ],
+      "icon": "/images/icons/mat-schliff.png"
+    }
+  ],
   "recipes": [
     {
       "id": "flask_of_embers",
@@ -709,7 +815,10 @@
         "amount": 15
       },
       "xp": 15,
-      "description": "Stellt 15% Schmiedetemperatur wieder her."
+      "description": "Stellt 15% Schmiedetemperatur wieder her.",
+      "vendorReagents": {
+        "leere-phiole": 1
+      }
     },
     {
       "id": "scholars_ink",
@@ -729,7 +838,10 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "Verzaubert: +2 Weisheit für 3 Quests."
+      "description": "Verzaubert: +2 Weisheit für 3 Quests.",
+      "vendorReagents": {
+        "verzauberungstinte": 1
+      }
     },
     {
       "id": "artisans_whetstone",
@@ -749,7 +861,10 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+1 Berufs-XP pro Craft für 3 Quests."
+      "description": "+1 Berufs-XP pro Craft für 3 Quests.",
+      "vendorReagents": {
+        "kohlestueck": 1
+      }
     },
     {
       "id": "resonance_charm",
@@ -769,7 +884,10 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "Verzaubert: +2 Fokus für 3 Quests."
+      "description": "Verzaubert: +2 Fokus für 3 Quests.",
+      "vendorReagents": {
+        "verzauberungstinte": 1
+      }
     },
     {
       "id": "recipe-schmied-eisenbarren",
@@ -787,7 +905,10 @@
       },
       "xp": 5,
       "description": "Schmilzt Eisenerz zu einem Barren.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "kohlestueck": 1
+      }
     },
     {
       "id": "recipe-schmied-stahlbarren",
@@ -806,7 +927,10 @@
       },
       "xp": 10,
       "description": "Härtet Eisen mit Kristall zu Stahl.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "kohlestueck": 1
+      }
     },
     {
       "id": "recipe-schmied-kristallbarren",
@@ -844,7 +968,11 @@
       },
       "xp": 18,
       "description": "Dreifach kristallverstärkter Stahl.",
-      "trainerCost": 243
+      "trainerCost": 243,
+      "vendorReagents": {
+        "kohlestueck": 1,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-schmied-drachenstahl",
@@ -863,7 +991,10 @@
       },
       "xp": 22,
       "description": "Drachenschuppen verleihen dem Stahl Feuerresistenz.",
-      "trainerCost": 375
+      "trainerCost": 375,
+      "vendorReagents": {
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-schmied-drachenkern",
@@ -882,7 +1013,10 @@
       },
       "xp": 25,
       "description": "Ein Kern aus reinem Drachenfeuer.",
-      "trainerCost": 625
+      "trainerCost": 625,
+      "vendorReagents": {
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-schmied-aetherlegierung",
@@ -901,7 +1035,10 @@
       },
       "xp": 30,
       "description": "Aether und Drache verschmelzen.",
-      "trainerCost": 1000
+      "trainerCost": 1000,
+      "vendorReagents": {
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-schmied-aetherbarren",
@@ -920,7 +1057,10 @@
       },
       "xp": 35,
       "description": "Reiner Aether in Barrenform.",
-      "trainerCost": 1500
+      "trainerCost": 1500,
+      "vendorReagents": {
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-schmied-seelenlegierung",
@@ -939,7 +1079,10 @@
       },
       "xp": 40,
       "description": "Seele trifft Aether. Das Ergebnis flüstert.",
-      "trainerCost": 2000
+      "trainerCost": 2000,
+      "vendorReagents": {
+        "schmelztiegel": 3
+      }
     },
     {
       "id": "recipe-schmied-seelenstahl",
@@ -1172,7 +1315,11 @@
       "xp": 13,
       "description": "Schmiedet: Stählerne Marschtreter.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "kohlestueck": 1,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-schmied-staehlerne-sturmhaube",
@@ -1933,7 +2080,10 @@
       },
       "xp": 8,
       "description": "Stellt her: Grober Schärfstein.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "kohlestueck": 1
+      }
     },
     {
       "id": "recipe-schmied-rauer-schaerfstein",
@@ -1954,7 +2104,10 @@
       "xp": 12,
       "description": "Stellt her: Rauer Schärfstein.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "kohlestueck": 1
+      }
     },
     {
       "id": "recipe-schmied-schwerer-schaerfstein",
@@ -1974,7 +2127,11 @@
       },
       "xp": 18,
       "description": "Stellt her: Schwerer Schärfstein.",
-      "trainerCost": 208
+      "trainerCost": 208,
+      "vendorReagents": {
+        "kohlestueck": 1,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-schmied-dichter-schaerfstein",
@@ -1995,7 +2152,10 @@
       "xp": 25,
       "description": "Stellt her: Dichter Schärfstein.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-schmied-elementar-schaerfstein",
@@ -2015,7 +2175,10 @@
       },
       "xp": 35,
       "description": "Stellt her: Elementarer Schärfstein.",
-      "trainerCost": 1500
+      "trainerCost": 1500,
+      "vendorReagents": {
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-schmied-leichter-gewichtstein",
@@ -2114,7 +2277,10 @@
       },
       "xp": 10,
       "description": "Stellt her: Eiserne Schilddornen.",
-      "trainerCost": 83
+      "trainerCost": 83,
+      "vendorReagents": {
+        "kohlestueck": 1
+      }
     },
     {
       "id": "recipe-schmied-kristall-schilddornen",
@@ -2134,7 +2300,10 @@
       },
       "xp": 22,
       "description": "Stellt her: Kristall-Schilddornen.",
-      "trainerCost": 375
+      "trainerCost": 375,
+      "vendorReagents": {
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-schmied-aether-schilddornen",
@@ -2154,7 +2323,10 @@
       "xp": 35,
       "description": "Stellt her: Aether-Schilddornen.",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "schmelztiegel": 3
+      }
     },
     {
       "id": "recipe-schmied-leichte-panzerverstaerkung",
@@ -2346,7 +2518,10 @@
       },
       "xp": 22,
       "description": "Klinge schärfen III.",
-      "factionId": "orden_der_klinge"
+      "factionId": "orden_der_klinge",
+      "vendorReagents": {
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-4",
@@ -2366,7 +2541,10 @@
       "xp": 30,
       "description": "Klinge schärfen IV.",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-5",
@@ -2591,7 +2769,10 @@
       },
       "xp": 5,
       "description": "Verarbeitet Leinenstoff zu einem Ballen.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "naehfaden": 1
+      }
     },
     {
       "id": "recipe-schneider-wollballen",
@@ -2609,7 +2790,10 @@
       },
       "xp": 12,
       "description": "Dichter Wollballen — warm und vielseitig.",
-      "trainerCost": 83
+      "trainerCost": 83,
+      "vendorReagents": {
+        "naehfaden": 1
+      }
     },
     {
       "id": "recipe-schneider-seidenballen",
@@ -2627,7 +2811,10 @@
       },
       "xp": 20,
       "description": "Mondschein-Seide, zu einem Ballen verwoben.",
-      "trainerCost": 275
+      "trainerCost": 275,
+      "vendorReagents": {
+        "naehfaden": 2
+      }
     },
     {
       "id": "recipe-schneider-magiestoffballen",
@@ -2645,7 +2832,11 @@
       },
       "xp": 28,
       "description": "Magiestoff-Ballen. Leuchtet dezent. Nicht fallen lassen.",
-      "trainerCost": 793
+      "trainerCost": 793,
+      "vendorReagents": {
+        "naehfaden": 2,
+        "faerbemittel": 1
+      }
     },
     {
       "id": "recipe-schneider-runenstoffballen",
@@ -2663,7 +2854,10 @@
       },
       "xp": 40,
       "description": "Runenstoff — jeder Faden eine Geschichte.",
-      "trainerCost": 1900
+      "trainerCost": 1900,
+      "vendorReagents": {
+        "faerbemittel": 2
+      }
     },
     {
       "id": "recipe-schneider-sternenlichtfarbe",
@@ -2682,7 +2876,10 @@
       },
       "xp": 22,
       "description": "Farbe aus kondensiertem Sternenlicht.",
-      "trainerCost": 375
+      "trainerCost": 375,
+      "vendorReagents": {
+        "faerbemittel": 1
+      }
     },
     {
       "id": "recipe-schneider-arkanerfaden",
@@ -2701,7 +2898,10 @@
       },
       "xp": 30,
       "description": "Ein Faden aus arkaner Energie.",
-      "trainerCost": 1000
+      "trainerCost": 1000,
+      "vendorReagents": {
+        "faerbemittel": 2
+      }
     },
     {
       "id": "recipe-schneider-runenfaden",
@@ -2720,7 +2920,10 @@
       },
       "xp": 42,
       "description": "Runen weben sich in den Faden. Von allein.",
-      "trainerCost": 2000
+      "trainerCost": 2000,
+      "vendorReagents": {
+        "faerbemittel": 3
+      }
     },
     {
       "id": "recipe-schneider-leinenkappe",
@@ -2737,7 +2940,10 @@
       },
       "xp": 6,
       "description": "Webt: Leinenkappe.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "naehfaden": 1
+      }
     },
     {
       "id": "recipe-schneider-leinenhut",
@@ -2914,7 +3120,11 @@
       "xp": 13,
       "description": "Webt: Wollsandalen.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "naehfaden": 1,
+        "faerbemittel": 1
+      }
     },
     {
       "id": "recipe-schneider-wollgewand",
@@ -4306,7 +4516,10 @@
       },
       "xp": 5,
       "description": "Verarbeitet: Geheiltes Leichtleder.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "naehfaden": 1
+      }
     },
     {
       "id": "recipe-leder-geheiltes-mittleres-leder",
@@ -4324,7 +4537,10 @@
       },
       "xp": 12,
       "description": "Verarbeitet: Geheiltes Mittleres Leder.",
-      "trainerCost": 83
+      "trainerCost": 83,
+      "vendorReagents": {
+        "naehfaden": 1
+      }
     },
     {
       "id": "recipe-leder-gehaertetes-schwerleder",
@@ -4342,7 +4558,10 @@
       },
       "xp": 20,
       "description": "Verarbeitet: Gehärtetes Schwerleder.",
-      "trainerCost": 275
+      "trainerCost": 275,
+      "vendorReagents": {
+        "lederoel": 1
+      }
     },
     {
       "id": "recipe-leder-bestien-lederballen",
@@ -4360,7 +4579,10 @@
       },
       "xp": 28,
       "description": "Verarbeitet: Bestien-Lederballen.",
-      "trainerCost": 793
+      "trainerCost": 793,
+      "vendorReagents": {
+        "lederoel": 2
+      }
     },
     {
       "id": "recipe-leder-urzeitleder-ballen",
@@ -4378,7 +4600,10 @@
       },
       "xp": 40,
       "description": "Verarbeitet: Urzeitleder-Ballen.",
-      "trainerCost": 1900
+      "trainerCost": 1900,
+      "vendorReagents": {
+        "lederoel": 3
+      }
     },
     {
       "id": "recipe-leder-klauenoel",
@@ -4397,7 +4622,10 @@
       },
       "xp": 14,
       "description": "Verarbeitet: Klauenöl.",
-      "trainerCost": 125
+      "trainerCost": 125,
+      "vendorReagents": {
+        "lederoel": 1
+      }
     },
     {
       "id": "recipe-leder-salzgerbung",
@@ -4416,7 +4644,10 @@
       },
       "xp": 25,
       "description": "Verarbeitet: Salzgerbung.",
-      "trainerCost": 583
+      "trainerCost": 583,
+      "vendorReagents": {
+        "lederoel": 2
+      }
     },
     {
       "id": "recipe-leder-uraltes-gerbmittel",
@@ -4435,7 +4666,11 @@
       },
       "xp": 38,
       "description": "Verarbeitet: Uraltes Gerbmittel.",
-      "trainerCost": 1700
+      "trainerCost": 1700,
+      "vendorReagents": {
+        "lederoel": 2,
+        "naehfaden": 2
+      }
     },
     {
       "id": "recipe-leder-leichtleder-stiefel",
@@ -4631,7 +4866,11 @@
       "xp": 13,
       "description": "Gerbt: Jäger-Kappe.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "naehfaden": 1,
+        "lederoel": 1
+      }
     },
     {
       "id": "recipe-leder-jagd-maske",
@@ -4650,7 +4889,11 @@
       "xp": 13,
       "description": "Gerbt: Jagd-Maske.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "naehfaden": 1,
+        "lederoel": 1
+      }
     },
     {
       "id": "recipe-leder-jaeger-stiefel",
@@ -6014,7 +6257,10 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Trank der Kraft.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "leere-phiole": 1
+      }
     },
     {
       "id": "recipe-alch-schwacher-trank-der-weisheit",
@@ -6033,7 +6279,10 @@
       },
       "xp": 5,
       "description": "Braut: Schwacher Trank der Weisheit.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "leere-phiole": 1
+      }
     },
     {
       "id": "recipe-alch-schwacher-trank-des-gluecks",
@@ -6211,7 +6460,10 @@
       "xp": 15,
       "description": "Braut: Normaler Trank der Kraft.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "leere-phiole": 2
+      }
     },
     {
       "id": "recipe-alch-normaler-trank-der-weisheit",
@@ -6231,7 +6483,10 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Trank der Weisheit.",
-      "trainerCost": 153
+      "trainerCost": 153,
+      "vendorReagents": {
+        "leere-phiole": 2
+      }
     },
     {
       "id": "recipe-alch-normaler-trank-des-gluecks",
@@ -6251,7 +6506,10 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Trank des Glücks.",
-      "trainerCost": 163
+      "trainerCost": 163,
+      "vendorReagents": {
+        "leere-phiole": 2
+      }
     },
     {
       "id": "recipe-alch-normaler-trank-der-ausdauer",
@@ -6478,7 +6736,10 @@
       "xp": 28,
       "description": "Braut: Überlegener Trank der Kraft.",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "kristallphiole": 1
+      }
     },
     {
       "id": "recipe-alch-ueberlegener-trank-der-weisheit",
@@ -6499,7 +6760,10 @@
       "xp": 28,
       "description": "Braut: Überlegener Trank der Weisheit.",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "kristallphiole": 1
+      }
     },
     {
       "id": "recipe-alch-ueberlegener-trank-des-gluecks",
@@ -6583,7 +6847,10 @@
       "xp": 40,
       "description": "Braut: Mächtiger Trank der Kraft.",
       "factionId": "tinte",
-      "factionMinRep": "honored"
+      "factionMinRep": "honored",
+      "vendorReagents": {
+        "kristallphiole": 2
+      }
     },
     {
       "id": "recipe-alch-maechtiger-trank-der-weisheit",
@@ -6604,7 +6871,10 @@
       "xp": 40,
       "description": "Braut: Mächtiger Trank der Weisheit.",
       "factionId": "tinte",
-      "factionMinRep": "honored"
+      "factionMinRep": "honored",
+      "vendorReagents": {
+        "kristallphiole": 2
+      }
     },
     {
       "id": "recipe-alch-maechtiger-trank-des-gluecks",
@@ -7539,7 +7809,10 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Stärke.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "gewuerzmischung": 1
+      }
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-weisheit",
@@ -7558,7 +7831,10 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit der Weisheit.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "gewuerzmischung": 1
+      }
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-gluecks",
@@ -7577,7 +7853,10 @@
       },
       "xp": 5,
       "description": "Kocht: EinfacheMahlzeit des Glücks.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "gewuerzmischung": 1
+      }
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-ausdauer",
@@ -7774,7 +8053,10 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Stärke.",
-      "trainerCost": 175
+      "trainerCost": 175,
+      "vendorReagents": {
+        "gewuerzmischung": 2
+      }
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-weisheit",
@@ -7794,7 +8076,10 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Weisheit.",
-      "trainerCost": 185
+      "trainerCost": 185,
+      "vendorReagents": {
+        "gewuerzmischung": 2
+      }
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-gluecks",
@@ -7814,7 +8099,10 @@
       },
       "xp": 16,
       "description": "Kocht: FeineMahlzeit des Glücks.",
-      "trainerCost": 195
+      "trainerCost": 195,
+      "vendorReagents": {
+        "gewuerzmischung": 2
+      }
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-ausdauer",
@@ -7895,7 +8183,10 @@
       "xp": 22,
       "description": "Kocht: ErleseneMahlzeit der Stärke.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "gewuerzmischung": 3
+      }
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-weisheit",
@@ -7916,7 +8207,10 @@
       "xp": 22,
       "description": "Kocht: ErleseneMahlzeit der Weisheit.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "gewuerzmischung": 3
+      }
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-des-gluecks",
@@ -8021,7 +8315,10 @@
       "xp": 35,
       "description": "Kocht: Meister-Mahlzeit der Stärke.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "gewuerzmischung": 4
+      }
     },
     {
       "id": "recipe-koch-meister-mahlzeit-der-weisheit",
@@ -8042,7 +8339,10 @@
       "xp": 35,
       "description": "Kocht: Meister-Mahlzeit der Weisheit.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "gewuerzmischung": 4
+      }
     },
     {
       "id": "recipe-koch-meister-mahlzeit-des-gluecks",
@@ -8773,7 +9073,10 @@
       },
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Kraft.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "verzauberungstinte": 1
+      }
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-weisheit",
@@ -8930,7 +9233,10 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Kraft.",
-      "trainerCost": 175
+      "trainerCost": 175,
+      "vendorReagents": {
+        "verzauberungstinte": 1
+      }
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-weisheit",
@@ -8950,7 +9256,10 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Weisheit.",
-      "trainerCost": 193
+      "trainerCost": 193,
+      "vendorReagents": {
+        "verzauberungstinte": 1
+      }
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-ausdauer",
@@ -8970,7 +9279,10 @@
       },
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Ausdauer.",
-      "trainerCost": 208
+      "trainerCost": 208,
+      "vendorReagents": {
+        "verzauberungstinte": 1
+      }
     },
     {
       "id": "recipe-verz-starke-verzauberung-des-gluecks",
@@ -9032,7 +9344,10 @@
       "xp": 22,
       "description": "Verzaubert: Mächtige Verzauberung der Weisheit.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "verzauberungstinte": 2
+      }
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-der-ausdauer",
@@ -9053,7 +9368,10 @@
       "xp": 22,
       "description": "Verzaubert: Mächtige Verzauberung der Ausdauer.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "verzauberungstinte": 2
+      }
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-des-gluecks",
@@ -9137,7 +9455,10 @@
       "xp": 30,
       "description": "Verzaubert: Überlegene Verzauberung der Ausdauer.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "verzauberungstinte": 3
+      }
     },
     {
       "id": "recipe-verz-ueberlegene-verzauberung-des-gluecks",
@@ -9158,7 +9479,10 @@
       "xp": 30,
       "description": "Verzaubert: Überlegene Verzauberung des Glücks.",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "verzauberungstinte": 3
+      }
     },
     {
       "id": "recipe-verz-legendaere-verzauberung-der-kraft",
@@ -13129,7 +13453,10 @@
       },
       "xp": 5,
       "description": "Fasst: Eiserner Ring.",
-      "trainerCost": 20
+      "trainerCost": 20,
+      "vendorReagents": {
+        "schleifpulver": 1
+      }
     },
     {
       "id": "recipe-juwelier-schlichter-kupferring",
@@ -13146,7 +13473,10 @@
       },
       "xp": 6,
       "description": "Fasst: Schlichter Kupferring.",
-      "trainerCost": 25
+      "trainerCost": 25,
+      "vendorReagents": {
+        "schleifpulver": 1
+      }
     },
     {
       "id": "recipe-juwelier-grober-siegelring",
@@ -13163,7 +13493,10 @@
       },
       "xp": 6,
       "description": "Fasst: Grober Siegelring.",
-      "trainerCost": 35
+      "trainerCost": 35,
+      "vendorReagents": {
+        "schleifpulver": 1
+      }
     },
     {
       "id": "recipe-juwelier-eisenband",
@@ -13379,7 +13712,11 @@
       },
       "xp": 13,
       "description": "Fasst: Stählerner Siegelring.",
-      "trainerCost": 120
+      "trainerCost": 120,
+      "vendorReagents": {
+        "schleifpulver": 1,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-juwelier-kristallband",
@@ -13397,7 +13734,11 @@
       },
       "xp": 13,
       "description": "Fasst: Kristallband.",
-      "factionId": "bund_der_schatten"
+      "factionId": "bund_der_schatten",
+      "vendorReagents": {
+        "schleifpulver": 1,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-juwelier-ring-des-forschers",
@@ -13416,7 +13757,11 @@
       "xp": 14,
       "description": "Fasst: Ring des Forschers.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "schleifpulver": 1,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-juwelier-staehlerner-reif",
@@ -13679,7 +14024,11 @@
       "xp": 21,
       "description": "Fasst: Drachenauge-Ring.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "schleifpulver": 2,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-juwelier-ring-des-meisters",
@@ -13698,7 +14047,11 @@
       "xp": 21,
       "description": "Fasst: Ring des Meisters.",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "vendorReagents": {
+        "schleifpulver": 2,
+        "schmelztiegel": 1
+      }
     },
     {
       "id": "recipe-juwelier-smaragdband",
@@ -14000,7 +14353,11 @@
       "xp": 29,
       "description": "Fasst: Ring der Leere.",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "vendorReagents": {
+        "schleifpulver": 2,
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-juwelier-seelen-siegelring",
@@ -14018,7 +14375,11 @@
       },
       "xp": 30,
       "description": "Fasst: Seelen-Siegelring.",
-      "factionId": "pakt_der_wildnis"
+      "factionId": "pakt_der_wildnis",
+      "vendorReagents": {
+        "schleifpulver": 2,
+        "schmelztiegel": 2
+      }
     },
     {
       "id": "recipe-juwelier-runenring",

@@ -551,13 +551,31 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
+  // Vendor reagent gold cost (WoW-style NPC reagents — gold sink)
+  let vendorReagentCost = 0;
+  if (recipe.vendorReagents) {
+    const reagentDefs = PROFESSIONS_DATA.vendorReagents || [];
+    for (const [reagentId, count] of Object.entries(recipe.vendorReagents)) {
+      const def = reagentDefs.find(r => r.id === reagentId);
+      if (def) vendorReagentCost += def.price * count * effectiveCount;
+    }
+  }
+  if (vendorReagentCost > 0) {
+    ensureUserCurrencies(u);
+    const userGold = u.currencies.gold ?? u.gold ?? 0;
+    if (userGold < vendorReagentCost + (totalGoldCost || 0)) {
+      return res.status(400).json({ error: `Not enough gold for vendor reagents (${vendorReagentCost + (totalGoldCost || 0)}g needed, have ${userGold}g)` });
+    }
+  }
+
   // ─── All validation passed — enroll profession + deduct costs ──────────────
   if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
 
   // Deduct gold (×count) — sync both fields
-  if (totalGoldCost > 0) {
+  const totalDeduction = (totalGoldCost || 0) + vendorReagentCost;
+  if (totalDeduction > 0) {
     ensureUserCurrencies(u);
-    u.currencies.gold = (u.currencies.gold || 0) - totalGoldCost;
+    u.currencies.gold = (u.currencies.gold || 0) - totalDeduction;
     u.gold = u.currencies.gold;
   }
   // Deduct materials (×count)
