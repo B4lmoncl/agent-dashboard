@@ -156,8 +156,8 @@
       "title": "Der Riss",
       "text": "Die Risse sind Narben in der Realität. Zeitlich begrenzte Passagen in Welten, die nicht ganz da sind und nicht ganz weg. Normal, Schwer, Legendär — und dann Mythisch, wo die Regeln aufhören sich an die Regeln zu halten.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 8
+        "type": "rift_completions",
+        "value": 1
       }
     },
     {
@@ -166,8 +166,8 @@
       "title": "Das Untergewölbe",
       "text": "Unter dem Turm liegen Dungeons, die älter sind als der Turm selbst. Das versunkene Archiv. Die zerbrochene Spirale. Der hohle Kern. Drei Orte, drei Geschichten, keine davon mit einem glücklichen Ende. Zumindest nicht für die, die vor dir dort waren.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 12
+        "type": "dungeon_completed",
+        "value": 1
       }
     },
     {
@@ -266,8 +266,8 @@
       "title": "Der Prokrastinations-Wyrm",
       "text": "Er kommt nicht. Das ist sein Trick. Er wartet, bis du wartest. Und dann wartet ihr beide, bis es zu spät ist. Der Wyrm ist nicht gefährlich, weil er angreift — er ist gefährlich, weil er dir einredet, dass du morgen anfangen kannst.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 15
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -276,8 +276,8 @@
       "title": "Der Burnout-Koloss",
       "text": "Er war einmal ein Held. Der beste sogar. Hundertachtzig Quests pro Woche. Null Pausen. Null Beschwerden. Jetzt ist er drei Stockwerke groß, hohl wie eine Trommel und macht ein Geräusch wie Wind durch leere Rüstung. Man kann in seinem Brustkorb Picknick machen. Jemand hat es versucht. Es war deprimierend. Die Taverne wurde eigens erfunden, um zu verhindern, dass so etwas nochmal passiert. Der Koloss steht übrigens immer noch da. Er blockiert den Osteingang. Keiner traut sich, es ihm zu sagen.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 15
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -286,8 +286,8 @@
       "title": "Die Chaos-Hydra",
       "text": "Schneide einen Kopf ab, und drei neue wachsen nach. Jeder Kopf ist ein neues Projekt, eine neue Idee, ein neues 'das mache ich auch noch'. Die Hydra wird nicht besiegt indem man kämpft — sondern indem man priorisiert.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 15
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -296,8 +296,8 @@
       "title": "Das Zweifel-Phantom",
       "text": "Es flüstert. Nicht einmal etwas Kreatives. Immer dasselbe: 'Bist du sicher?' 'Reicht das?' 'Was wenn du scheiterst?' Drei Sätze. Das ist sein ganzes Repertoire. Für ein übermächtiges Phantom ist das ehrlich gesagt etwas peinlich. Es hat keine Substanz, keine Klauen, keine Zähne. Nur ein Mundwerk und die Ausdauer einer Parkuhr. Der Trick ist, lauter zu sein. Was nicht schwer ist, weil es buchstäblich flüstert.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 15
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -523,8 +523,8 @@
       "title": "Der Stagnations-Golem",
       "text": "Er bewegt sich nicht. Seit Äonen. Nicht einen Zentimeter. Das klingt harmlos, bis du realisierst, dass er genau in der Mitte eines sehr wichtigen Korridors steht. Man hat versucht, ihn zu verschieben. Man hat versucht, ihn zu sprengen. Man hat versucht, ihn höflich zu bitten. Er bewegt sich nicht. Sein Gesichtsausdruck sagt: 'Ich mache das morgen.' Seit dreihundert Jahren. Manche Helden erkennen sich in ihm wieder und werden sehr, sehr still.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 20
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -533,8 +533,8 @@
       "title": "Der Perfektions-Seraph",
       "text": "Sechs Flügel, jeder makellos. Jede Feder symmetrisch. Jede Bewegung berechnet. Der Seraph hat nie einen Fehler gemacht. Er hat auch nie etwas erschaffen, weil das Risiko eines Fehlers inakzeptabel war. Er schwebt dort oben. Perfekt. Nutzlos. Wunderschön.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 25
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -543,8 +543,8 @@
       "title": "Der Isolations-Leviathan",
       "text": "Er schwimmt allein in Gewässern, die er selbst geschaffen hat. Sehr beeindruckende Gewässer. Niemand sieht sie, weil er niemanden einlädt. Der Leviathan hat einmal eine Einladung zum Breakaway bekommen. Er hat sie gelesen, gefaltet, gefressen und weitergeschwommen. Das Breakaway-Komitee hat daraufhin beschlossen, keine Einladungen mehr an Wesen zu schicken, die größer als das Gebäude sind.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 25
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -553,8 +553,8 @@
       "title": "Der Apathie-Souverän",
       "text": "Er sitzt auf einem Thron aus Gleichgültigkeit und regiert ein Königreich aus Achselzucken. Sein Volk war weder glücklich noch unglücklich. Sie waren 'meh'. Eine Armee aus 'meh' ist übrigens erschreckend schwer zu bekämpfen, weil sie sich nicht genug dafür interessiert, besiegt zu werden. Der Souverän wurde letztendlich nicht besiegt, sondern ignoriert. Was ihn nicht gestört hat. Was der ganze Punkt ist. Was alle wahnsinnig macht.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 30
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -563,8 +563,8 @@
       "title": "Die Entropie-Weberin",
       "text": "Sie webt Fäden aus Unordnung in die Realität. Jeder Faden ein kleines Chaos: ein verlegter Schlüssel, ein vergessener Termin, eine Datei die du gespeichert hast aber die jetzt weg ist. Einzeln harmlos. Zusammen? Du stehst morgens auf und dein ganzer Tag ist bereits ruiniert und du weißt nicht warum. Die Weberin wurde einmal gefragt, ob sie böse sei. 'Böse?', sagte sie. 'Ich bin Bürokratie.'",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 30
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -653,8 +653,8 @@
       "title": "Das Versunkene Archiv",
       "text": "Der erste Dungeon. Manche sagen, er war einmal eine Bibliothek. Die Bücher sind noch da — aber die Wörter haben sich neu arrangiert. Was einmal Rezepte waren, sind jetzt Warnungen. Was einmal Warnungen waren, sind jetzt Witze. Der Humor des Archivs ist... speziell.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 10
+        "type": "dungeon_completed",
+        "value": 1
       }
     },
     {
@@ -663,8 +663,8 @@
       "title": "Die Zerbrochene Spirale",
       "text": "Ein Turm im Turm. Einmal aufrecht, jetzt horizontal, durchbrochen von Rissen im Raum. Die Schwerkraft hier ist eine Suggestion, kein Gesetz. Wer die Spirale betritt, sollte sich merken wo oben ist. Die meisten vergessen es. Die Spirale hilft nicht beim Erinnern.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 20
+        "type": "dungeon_completed",
+        "value": 1
       }
     },
     {
@@ -673,8 +673,8 @@
       "title": "Der Hohle Kern",
       "text": "Ganz unten. Unter allem. Der Kern ist nicht leer — er ist voll mit Nichts, und das ist ein wichtiger Unterschied. Wer den Kern betritt, hört auf zu denken und fängt an zu verstehen. Oder andersherum. Die Überlebenden sind sich uneinig.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 35
+        "type": "dungeon_completed",
+        "value": 1
       }
     },
     {
@@ -843,8 +843,8 @@
       "title": "Die Geburt der Titanen",
       "text": "Die Weltbosse sind keine Monster. Sie sind Manifestationen menschlicher Schwächen, was bedeutet, dass du im Grunde gegen deine eigenen schlechten Gewohnheiten kämpfst, nur dass deine schlechten Gewohnheiten jetzt neun Meter groß sind und einen Gesundheitsbalken haben. Der Prokrastinations-Wyrm wurde nicht geboren — er wurde herbeigewartet. Sehr, sehr geduldig. Der Burnout-Koloss entstand aus einem Helden, der vergaß aufzuhören. Das Ironie-Level ist nicht verloren gegangen. Es wurde ignoriert.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 20
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -922,8 +922,8 @@
       "title": "Der Erste Hammerschlag",
       "text": "Es gibt eine Tradition im Zirkel des Amboss: Jeder neue Meister schmiedet ein Werkzeug, das er selbst nie benutzen wird. Manche schmieden Schlüssel für Türen, die es noch nicht gibt. Andere Uhren, die rückwärts laufen. Einer schmiedete einmal einen perfekten Spiegel aus Stahl und stellte fest, dass sein Spiegelbild einen besseren Bart hatte. Der Amboss lehrt nicht Perfektion — er lehrt, dass die interessantesten Dinge entstehen, wenn man aufhört, das Ergebnis kontrollieren zu wollen.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 20
+        "type": "faction_rank",
+        "value": 1
       }
     },
     {
@@ -1002,8 +1002,8 @@
       "title": "Der Vergleichsdämon",
       "text": "Er sitzt auf deiner Schulter und zeigt dir das Leaderboard. Immer. Auch wenn du nicht fragst. Besonders wenn du nicht fragst. 'Schau mal, der hat dreißig Level mehr als du.' 'Und bessere Ausrüstung.' 'Und mehr Freunde.' Der Dämon lügt nicht. Das ist das Schlimmste an ihm. Die Taverne ist der einzige Ort, an dem er die Klappe hält — vermutlich weil die Taverne keinen Empfang hat.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 15
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -1012,8 +1012,8 @@
       "title": "Der Multitask-Golem",
       "text": "Er hat achtzehn Arme und erledigt mit keinem davon etwas zu Ende. Angefangene Projekte türmen sich in seinem Inneren wie geologische Schichten: unten die Ambitionen von 2019, in der Mitte ein halbfertiger Roman, oben eine Yogamatte die er einmal benutzt hat. Der Golem ist technisch gesehen unsterblich. Nicht weil er mächtig ist — sondern weil er nie irgendwo lange genug bleibt um besiegt zu werden. Sein Schwachpunkt: zwing ihn, eine Sache zu Ende zu machen. Er kollabiert vor Schreck.",
       "unlockedBy": {
-        "type": "quests_completed",
-        "value": 50
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -1022,8 +1022,8 @@
       "title": "Der Perfektionismus-Phönix",
       "text": "Er verbrennt sich selbst. Immer wieder. Nicht weil er muss — sondern weil das Ergebnis noch nicht perfekt genug war. Die Asche des dreihundertsiebten Versuchs ist laut Analyse identisch mit der des ersten. Der Phönix sieht das anders. 'Diesmal', sagt er jedes Mal und zündet sich wieder an, 'diesmal wird es richtig.' Die anderen Bosse haben aufgehört zuzusehen. Nicht aus Desinteresse, sondern aus Erschöpfung.",
       "unlockedBy": {
-        "type": "crafts_completed",
-        "value": 25
+        "type": "world_boss_contributions",
+        "value": 1
       }
     },
     {
@@ -1165,6 +1165,152 @@
         "type": "level_reached",
         "value": 3
       }
+    },
+    {
+      "id": "kanais-wuerfel",
+      "category": "systems",
+      "title": "Der Ätherwürfel",
+      "text": "Jemand hat einen Würfel gebaut, der legendäre Effekte aus Gegenständen extrahiert. Der Gegenstand überlebt das nicht. Der Effekt schon. Der Besitzer meistens auch, sofern er die Bedienungsanleitung gelesen hat — dreihundertzwölf Seiten, davon zweihundertneunzig Sicherheitshinweise. Die restlichen zweiundzwanzig sind eine Haftungsausschluss-Kette, die juristisch betrachtet beeindruckender ist als der Würfel selbst. Drei Extraktions-Slots: Waffe, Rüstung, Schmuck. Wer alle drei füllt, gilt offiziell als 'ambitioniert'. Das Formular dafür hat eine eigene Fußnote.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 25
+      }
+    },
+    {
+      "id": "schmiedekunst-system",
+      "category": "systems",
+      "title": "Schmiedekunst — Die Kunst der kontrollierten Zerstörung",
+      "text": "Schmiedekunst ist das System, in dem man teure Dinge kaputt macht, um daraus nützliche Dinge zu gewinnen. Zerlegen verwandelt Ausrüstung in Essenz und Materialien. Transmutation nimmt drei gleichwertige Gegenstände und macht einen besseren daraus — oder zumindest einen anderen, was optimistisch als 'besser' vermarktet wird. Reforging würfelt alles neu. Der Schmied nennt es 'dem Zufall eine zweite Chance geben'. Statistisch gesehen ist die zweite Chance genauso schlecht wie die erste, aber die Hoffnung ist hartnäckiger als die Mathematik. Fünfhundert Gold Gebühr. Pro Versuch. Der Schmied hat eine Yacht.",
+      "unlockedBy": {
+        "type": "crafts_completed",
+        "value": 1
+      }
+    },
+    {
+      "id": "season-pass-system",
+      "category": "systems",
+      "title": "Der Saisonpass — Vierzig Stufen Verbindlichkeit",
+      "text": "Vierzig Stufen. Jede mit einer Belohnung. Die erste Stufe gibt Gold. Die letzte gibt einen Rahmen, der leuchtet. Dazwischen liegen achtunddreißig Stufen, die sich anfühlen wie ein Vertrag, den du nicht gelesen hast, aber trotzdem unterschrieben. XP sammelt sich aus Quests, Ritualen, Gelübden und täglichen Missionen. Saisonwechsel setzen alles zurück. Nicht beanspruchte Belohnungen verschwinden. Der Pass hat kein Mitleid. Der Pass hat einen Zeitplan. Und der Zeitplan hat immer Recht.",
+      "unlockedBy": {
+        "type": "battlepass_level",
+        "value": 1
+      }
+    },
+    {
+      "id": "dungeon-system",
+      "category": "systems",
+      "title": "Das Untergewölbe — Gruppenaktivitäten für Introvertierte",
+      "text": "Dungeons sind kooperativ und asynchron, was bedeutet: du kämpfst gemeinsam, aber nie gleichzeitig. Zwei bis vier Freunde betreten das Untergewölbe, der Dungeon wertet den kombinierten Gearscore aus, und nach einer Wartezeit steht fest, ob ihr gewonnen habt. Drei Schwierigkeitsstufen: Normal für Optimisten, Hart für Realisten, Legendär für Leute, die Schmerz als Hobby betrachten. Sieben Tage Abklingzeit pro Dungeon. Nicht pro Charakter. Pro Dungeon. Der Dungeon braucht Erholung. Du auch, aber das interessiert niemanden.",
+      "unlockedBy": {
+        "type": "dungeon_completed",
+        "value": 1
+      }
+    },
+    {
+      "id": "mythic-endlos",
+      "category": "systems",
+      "title": "Mythisch+ — Das Gegenteil von Feierabend",
+      "text": "Hinter der legendären Schwierigkeitsstufe des Rifts liegt eine Tür, die nicht aufhört. Mythisch+1 beginnt dort, wo vernünftige Leute aufhören würden. Jede Stufe erhöht den Multiplikator um 0,25 und verkürzt die Zeit, die du nicht hast. Es gibt kein Ende. Es gibt eine Rangliste. Bei Mythisch+5 gibt es besseren Loot. Bei Mythisch+10 gibt es Titel. Bei Mythisch+20 gibt es die leise Erkenntnis, dass du dieses Spiel nicht spielst — es spielt dich. Keine Abklingzeit bei Scheitern. Sofort nochmal. Das ist entweder Gnade oder Grausamkeit, je nachdem wie gut du im Verdrängen bist.",
+      "unlockedBy": {
+        "type": "rift_completions",
+        "value": 1
+      }
+    },
+    {
+      "id": "fraktions-taegliche",
+      "category": "systems",
+      "title": "Tägliche Fraktionsaufgaben",
+      "text": "Jede der vier Fraktionen hat täglich Aufgaben, die Ruf einbringen. Zehn bis dreißig Punkte pro Quest, abhängig davon, ob die Quest zur Fraktion passt. Kampfquests für den Orden der Klinge, Wissensquests für den Zirkel der Sterne, und so weiter. Das System ist transparent. Die Fraktionen nicht. Jede behauptet, die wichtigste zu sein. Jede hat Unrecht. Jede hat trotzdem Recht, was das eigentliche Problem ist. Ruf akkumuliert sich automatisch. Vertrauen nicht. Aber Ruf reicht für die Händler-Rabatte, und Vertrauen war noch nie im Angebot.",
+      "unlockedBy": {
+        "type": "faction_rank",
+        "value": 1
+      }
+    },
+    {
+      "id": "werkstatt-upgrades",
+      "category": "systems",
+      "title": "Werkstatt-Upgrades — Vier Dinge, die man nur einmal kauft",
+      "text": "Im Handwerkerviertel stehen vier Gegenstände, die permanent sind. Goldgeschmiedete Werkzeuge: zwei bis fünf Prozent mehr Gold. Beutechancen-Amulett: ein bis drei Prozent bessere Drops. Streak-Schild-Talisman: rettet eine Streak pro Woche, automatisch, ohne dein Wissen und ohne dein Zutun, was entweder beruhigend oder beunruhigend ist. Materialmagnet: fünf bis fünfzehn Prozent mehr Materialien. Vier Stufen pro Upgrade. Jede teurer als die letzte. Das Preis-Leistungs-Verhältnis nimmt ab, aber wer rechnet schon nach, wenn das Wort 'permanent' in der Beschreibung steht.",
+      "unlockedBy": {
+        "type": "workshop_upgrade_purchased",
+        "value": 1
+      }
+    },
+    {
+      "id": "tagesordnung-system",
+      "category": "systems",
+      "title": "Die Tagesordnung — Sechs Punkte, keine Diskussion",
+      "text": "Jeden Tag sechs Aufgaben: Einloggen, Quests erledigen, Rituale pflegen, den Begleiter streicheln, etwas herstellen. Vier Meilensteine bei hundert, dreihundert, fünfhundert und siebenhundertfünfzig Punkten, jeder mit Währungsbelohnungen. Das System fragt nicht, ob du Lust hast. Das System hat eine Liste. Listen haben keine Gefühle. Listen haben Haken, und die Haken wollen gesetzt werden. Wer alle sechs schafft, bekommt die volle Ausbeute. Wer null schafft, bekommt morgen dieselbe Liste. Die Liste ist geduldig. Geduldiger als du.",
+      "unlockedBy": {
+        "type": "daily_missions_completed",
+        "value": 1
+      }
+    },
+    {
+      "id": "hortungsstrafe",
+      "category": "systems",
+      "title": "Die Hortungsstrafe — Gier skaliert schlecht",
+      "text": "Ab zwanzig gleichzeitig laufenden Quests setzt ein Malus ein. Die ersten fünf am Tag: volle Belohnung. Sechs bis zehn: fünfundsiebzig Prozent. Elf bis zwanzig: fünfzig. Darüber: fünfundzwanzig. Das nennt sich 'Diminishing Returns' und wurde von jemandem entworfen, der beobachtet hat, wie Leute dreißig Quests annehmen und dann überrascht sind, dass keine davon fertig wird. Die Strafe motiviert nicht zur Zurückhaltung. Sie bestraft die Maßlosigkeit. Ein feiner Unterschied, der den Maßlosen selten tröstet.",
+      "unlockedBy": {
+        "type": "quests_in_progress",
+        "value": 15
+      }
+    },
+    {
+      "id": "npc-aldric-juwelier",
+      "category": "npcs",
+      "title": "Aldric — Der Juwelier",
+      "text": "Aldric spricht über Edelsteine wie andere Leute über Familienmitglieder: mit Zuneigung, Sorge und gelegentlicher Enttäuschung. Er kann einen Rohdiamanten von einem Glasstück in fünf Metern Entfernung unterscheiden, aber vergisst regelmäßig, wo er seinen Laden abgeschlossen hat. Sein Spezialgebiet: Sockelung. Er setzt Edelsteine in Ausrüstung ein und entfernt sie wieder, wobei Letzteres ihn persönlich kränkt. 'Man trennt eine Verbindung nicht einfach auf', sagt er dann und meint den Stein, nicht die Beziehung. Obwohl die Grenze zunehmend unklar wird. Sein teuerster Fehler: ein Königlicher Rubin, eingesetzt in einen Kochlöffel. Der Kochlöffel hat jetzt mehr Kraft als die meisten Schwerter.",
+      "unlockedBy": {
+        "type": "unique_npcs_completed",
+        "value": 1
+      }
+    },
+    {
+      "id": "npc-thalia-schneiderin",
+      "category": "npcs",
+      "title": "Thalia — Die Schneiderin",
+      "text": "Thalia näht keine Kleidung. Thalia näht Meinungen. Jeder Stich ist ein Kommentar, jeder Saum ein Urteil, und jeder Knopf sitzt dort, wo er sitzt, weil Thalia es so entschieden hat, und Thalia entscheidet selten falsch. Ihre Werkstatt riecht nach Lavendel und leisem Vorwurf. Sie hat einmal einen Umhang genäht, der seinen Träger unsichtbar machte. Nicht magisch — der Umhang war einfach so unauffällig, dass niemand hinschaute. Sie betrachtet das als ihren größten Erfolg. Ihre Kundenliste ist lang und alphabetisch sortiert, was sie für eine Tugend hält und alle anderen für eine Drohung.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "npc-kael-waffenschmied",
+      "category": "npcs",
+      "title": "Kael — Der Waffenschmied",
+      "text": "Kael testet jede Waffe selbst. Nicht an Übungspuppen — an Türen. Sein Laden hat achtzehn Türen, keine davon original. Die Nachbarn haben aufgehört, sich zu beschweren, nicht weil es besser wurde, sondern weil Kael ihnen einen Rabatt auf Türreparaturen gibt. Seine Philosophie: 'Eine gute Waffe muss drei Dinge können — durchschlagen, durchschneiden und beeindrucken. Zwei von drei reichen auch.' Er schmiedet ausschließlich mit geschlossenen Augen die letzten drei Hammerschläge, was er 'Vertrauen in den Prozess' nennt. Seine Lehrlinge nennen es 'der Grund für die Versicherung'.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "npc-renna-lederverarbeiter",
+      "category": "npcs",
+      "title": "Renna — Die Lederverarbeiterin",
+      "text": "Renna redet nicht über ihre Arbeit. Sie zeigt sie. Dann wartet sie, bis du etwas Kluges sagst, und wenn du nichts Kluges sagst, wartet sie einfach weiter, bis die Stille unangenehmer wird als ein falsches Kompliment. Ihre Lederarbeiten sind funktional, langlebig und frei von Verzierung. 'Verzierung', sagt Renna, 'ist die Entschuldigung von Leuten, die das Grundmaterial nicht respektieren.' Sie bezieht ihr Leder ausschließlich von Tieren, die eines natürlichen Todes gestorben sind, was in einer Welt voller Monster überraschend oft vorkommt. Ihr Gesellenstück war ein Paar Handschuhe, die dreißig Jahre hielten. Die Handschuhe wurden danach an den nächsten Prüfer weitergegeben. Der Prüfer war dagegen.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 100
+      }
+    },
+    {
+      "id": "npc-pip-ingenieur",
+      "category": "npcs",
+      "title": "Pip — Der Ingenieur",
+      "text": "Pip ist entweder ein Genie oder ein Sicherheitsrisiko, und die Grenze verläuft entlang der Tageszeit. Morgens: brillante Erfindungen. Nachmittags: brillante Erfindungen, die explodieren. Abends: Entschuldigungsschreiben. Sein Meisterwerk: ein automatischer Questvergabe-Automat, der exakt eine Stunde funktionierte, bevor er anfing, Quests zu erfinden, die niemand bestellt hatte. 'Töte den Mond' war die letzte, bevor sie den Stecker zogen. Pip ist zwölf. Oder fünfzig. Niemand hat je gefragt, und Pip hat nie geantwortet, was beides als unhöflich gilt, aber funktioniert. Seine Werkstatt hat drei Rauchmelder. Alle drei sind von ihm gebaut. Keiner funktioniert.",
+      "unlockedBy": {
+        "type": "unique_npcs_completed",
+        "value": 1
+      }
+    },
+    {
+      "id": "kristall-sockel",
+      "category": "artifacts",
+      "title": "Kristall-Sockel — Eine Verbindung, die man besser nicht löst",
+      "text": "Ein Edelstein in einem Sockel ist mehr als Dekoration. Er ist ein Versprechen zwischen Stein und Stahl, das der Juwelier mit einer Mischung aus Handwerk und Sentimentalität besiegelt. Sechs Typen: Rubin für Kraft, Saphir für Weisheit, Smaragd für Glück, Topas für Ausdauer, Amethyst für Vitalität, Diamant für Fokus. Fünf Qualitätsstufen von 'angeschlagen' bis 'königlich'. Das Einsetzen ist feierlich. Das Entfernen ist teuer und emotional kompliziert — der Juwelier nimmt es persönlich, der Stein nimmt es persönlich, und die Ausrüstung knirscht vorwurfsvoll. Aufwerten geht vor Ort: drei gleiche Steine werden zu einem besseren. Was mit dem vierten Stein passiert, den du nicht brauchst, fragt besser niemand laut."
     }
   ]
 }
