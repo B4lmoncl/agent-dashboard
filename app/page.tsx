@@ -1132,6 +1132,12 @@ export default function Dashboard() {
                     </div>
                   );
                 })()}
+                {/* Tavern Rest Indicator */}
+                {loggedInUser?.tavernRest?.active && (
+                  <div className="mt-1 text-xs px-2 py-0.5 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706", border: "1px solid rgba(217,119,6,0.25)" }} title="Resting — quests and rituals are paused">
+                    Resting
+                  </div>
+                )}
               </div>
             </div>
           </div>
