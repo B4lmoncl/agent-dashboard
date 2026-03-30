@@ -67,7 +67,7 @@ export default function CodexView() {
   const discoveredFiltered = filtered.filter(e => e.discovered);
   const undiscoveredFiltered = filtered.filter(e => !e.discovered);
 
-  if (loading) return <div className="text-xs text-center py-16 text-w20">Loading codex...</div>;
+  if (loading) return <div className="space-y-3 tab-content-enter"><div className="skeleton-card h-10" /><div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{Array.from({ length: 9 }).map((_, i) => <div key={i} className="skeleton-card h-16 rounded-lg" />)}</div></div>;
 
   return (
     <div className="tab-content-enter space-y-4 relative">
