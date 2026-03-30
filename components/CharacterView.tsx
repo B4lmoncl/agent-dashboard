@@ -705,7 +705,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
 
 const RARITY_SORT_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
 
-type InvFilter = "all" | "equipment" | "consumable" | "passive";
+type InvFilter = "all" | "equipment" | "consumable" | "passive" | "materials";
 type InvSort = "none" | "rarity" | "name" | "level";
 
 const INV_FILTERS: { key: InvFilter; label: string }[] = [
@@ -713,6 +713,7 @@ const INV_FILTERS: { key: InvFilter; label: string }[] = [
   { key: "equipment", label: "Gear" },
   { key: "consumable", label: "Items" },
   { key: "passive", label: "Passive" },
+  { key: "materials", label: "Materials" },
 ];
 
 const INV_SORTS: { key: InvSort; label: string }[] = [
@@ -1326,6 +1327,55 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 typeof v === 'object' && v !== null ? ((v as GearInstance).instanceId || (v as GearInstance).templateId) : v
               )
             );
+            // ─── Materials Tab ─────────────────────────────────────────
+            if (invFilter === "materials") {
+              const mats = charData.craftingMaterials || {};
+              const matDefs = charData.materialDefs || [];
+              const matEntries = Object.entries(mats).filter(([, count]) => count > 0);
+              const searchQ = invSearch.trim().toLowerCase();
+              const filtered = searchQ
+                ? matEntries.filter(([id]) => {
+                    const def = matDefs.find(d => d.id === id);
+                    return (def?.name || id).toLowerCase().includes(searchQ);
+                  })
+                : matEntries;
+              const sorted = [...filtered].sort((a, b) => {
+                const da = matDefs.find(d => d.id === a[0]);
+                const db = matDefs.find(d => d.id === b[0]);
+                const ra = RARITY_SORT_ORDER[da?.rarity || "common"] ?? 9;
+                const rb = RARITY_SORT_ORDER[db?.rarity || "common"] ?? 9;
+                return ra - rb || (da?.name || a[0]).localeCompare(db?.name || b[0]);
+              });
+              return (
+                <div className="space-y-2">
+                  <p className="text-xs text-w25">{sorted.length} material{sorted.length !== 1 ? "s" : ""} in storage</p>
+                  {sorted.length === 0 ? (
+                    <p className="text-xs text-center py-8 text-w15">No materials yet. Complete quests to gather materials based on your professions.</p>
+                  ) : (
+                    <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))" }}>
+                      {sorted.map(([id, count]) => {
+                        const def = matDefs.find(d => d.id === id);
+                        const rarityColor = RARITY_COLORS[def?.rarity || "common"] || "#9ca3af";
+                        return (
+                          <div key={id} className="flex items-center gap-2 rounded-lg px-2.5 py-2" style={{ background: "rgba(255,255,255,0.025)", border: `1px solid ${rarityColor}20` }}>
+                            {def?.icon ? (
+                              <img src={def.icon} alt="" width={28} height={28} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                            ) : (
+                              <span className="text-sm flex-shrink-0" style={{ color: rarityColor }}>◆</span>
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold truncate" style={{ color: rarityColor }}>{def?.name || id}</p>
+                              <p className="text-xs font-mono font-bold" style={{ color: "rgba(255,255,255,0.6)" }}>×{count}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             let unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
 
             // Search

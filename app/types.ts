@@ -489,6 +489,8 @@ export interface CharacterData {
   statBreakdown?: Record<string, { source: string; value: number; type: string }[]>;
   relationshipStatus?: string;
   partnerName?: string | null;
+  craftingMaterials?: Record<string, number>;
+  materialDefs?: { id: string; name: string; icon?: string; rarity?: string; desc?: string }[];
 }
 
 // ─── Challenge System Types ──────────────────────────────────────────────────

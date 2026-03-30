@@ -1002,6 +1002,8 @@ router.get('/api/player/:name/character', (req, res) => {
     equippedTitle: u.equippedTitle || null,
     earnedTitleCount: (u.earnedTitles || []).length,
     statBreakdown: getStatBreakdown(uid),
+    craftingMaterials: u.craftingMaterials || {},
+    materialDefs: state.professionsData?.materials || [],
   });
 });
 
