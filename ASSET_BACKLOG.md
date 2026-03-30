@@ -85,17 +85,59 @@ In WoW Classic teilen sich ~15-20 Items dasselbe Icon. Ein "Eisenschwert" und ei
 
 Nach Generierung: Items in gearTemplates.json automatisch per Slot + Hash zuweisen (Script existiert bereits).
 
-### PRIO 2: Unique Item Icons (31 fehlend, 128×128)
+### PRIO 2: Neue World Boss Portraits (6 fehlend, 256×256)
+
+**Pfad:** `public/images/bosses/{boss-id}.png`
+
+| Boss | Datei | Prompt |
+|------|-------|--------|
+| Der Aufschub-Kraken | `aufschub-kraken.png` | Giant kraken with tentacles wrapped around clocks and calendars, dark underwater background, fantasy RPG character portrait |
+| Die Routine-Sphinx | `routine-sphinx.png` | Stone sphinx with glowing hieroglyphs, sitting on pile of scrolls, desert night, fantasy RPG portrait |
+| Der Vergleichs-Spiegel | `vergleichs-spiegel.png` | Ornate magical mirror with malevolent face in glass, golden cracked frame, dark background, fantasy RPG |
+| Das Imposter-Phantom | `imposter-phantom.png` | Shadowy figure wearing stolen hero armor that doesn't fit, translucent, dark purple mist, fantasy RPG |
+| Die Komfortzone | `komfortzone.png` | Massive cozy creature made of pillows and blankets with sleepy eyes, deceptively warm glow, fantasy RPG |
+| Der Deadline-Drache | `deadline-drache.png` | Dragon made of burning papers and scrolls, hourglass embedded in chest, flames intensifying, fantasy RPG |
+
+### PRIO 3: Neue Companion Portraits (4 fehlend, 256×256)
+
+**Pfad:** `public/images/companions/companion-{type}.png`
+
+| Companion | Datei | Prompt |
+|-----------|-------|--------|
+| Basalt (Turtle) | `companion-turtle.png` | Ancient stone turtle with glowing rune cracks on shell, calm eyes, dark background, fantasy RPG |
+| Nyx (Raven) | `companion-raven.png` | Sleek black raven with one glowing purple eye, holding stolen gem in beak, dark background, fantasy RPG |
+| Whisper (Cat) | `companion-cat.png` | Elegant dark cat with piercing green eyes, sitting judgmentally, slight magical aura, dark background, fantasy RPG |
+| Flint (Salamander) | `companion-salamander.png` | Bright orange salamander with small flames on back, quick dynamic pose, dark background, fantasy RPG |
+
+### PRIO 4: Gacha Banner NPC Portraits (3 fehlend, 128×128)
+
+Gacha-Banner brauchen NPC-Bilder als Featured Character.
+**Pfad:** `public/images/npcs/{banner-npc}.png`
+
+| Banner | NPC | Datei | Prompt |
+|--------|-----|-------|--------|
+| Waffenkammer | Varn der Klingenmeister | `varn-klingenmeister.png` | Grizzled weaponsmith with scarred hands holding a glowing blade, forge sparks, dark background, fantasy RPG portrait |
+| Rüstkammer | Selina die Weberin | `selina-weberin.png` | Elegant weaver woman with silver threads floating around her, enchanted loom in background, fantasy RPG portrait |
+| Saisonales Schicksal | Lyra die Archivarin | `lyra-archivarin.png` | Young woman with star-map eyes holding an ancient glowing book, constellation patterns, fantasy RPG portrait |
+
+### PRIO 5: Unique Item Icons (31 fehlend, 128×128)
 
 Jedes Unique Named Item verdient ein eigenes Icon (sie sind handcrafted).
 **Pfad:** `public/images/icons/unique-{id}.png`
 
-### PRIO 3: Companion Portraits (Real Companions, 256×256)
+### PRIO 6: Companion Portraits — Real Animals (6 fehlend, 256×256)
 
 Cat, Dog, Hamster, Bird, Fish, Rabbit — fehlen noch als richtige Portraits.
 **Pfad:** `public/images/portraits/companion-{type}.png`
 
-### PRIO 4: NPC Portraits (78 fehlend von 100 NPCs, 128×128)
+### PRIO 7: NPC Portraits (78 fehlend von 100 NPCs, 128×128)
 
 22 NPCs haben Portraits, 78 fehlen.
 **Pfad:** `public/images/npcs/{npc-id}.png`
+
+### PRIO 8: Nav Icons für neue Rooms (2 Placeholder, 128×128)
+
+| Icon | Aktuell | Prompt |
+|------|---------|--------|
+| `nav-talents.png` | Kopie von nav-arcanum | Circular skill tree with 3 concentric glowing rings, nodes connected by lines, dark background, fantasy RPG icon |
+| `nav-tome.png` | Kopie von nav-codex | Open ancient book with progress bar overlay, golden glow, completion percentage visible, dark background, fantasy RPG icon |
