@@ -45210,6 +45210,5615 @@
       },
       "legendaryEffect": null,
       "setId": "master"
+    },
+    {
+      "id": "gen-axt-des-donners-t1",
+      "name": "Axt des Donners",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-schwert-der-schatten-t1",
+      "name": "Schwert der Schatten",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-schwert-des-blutes-t1",
+      "name": "Schwert des Blutes",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-klinge-der-winde-t1",
+      "name": "Klinge der Winde",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wappenschild-der-winde-t1",
+      "name": "Wappenschild der Winde",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-aegis-der-tiefe-t1",
+      "name": "Aegis der Tiefe",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wappenschild-der-asche-t1",
+      "name": "Wappenschild der Asche",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-krone-der-schatten-t1",
+      "name": "Krone der Schatten",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-krone-der-winde-t1",
+      "name": "Krone der Winde",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-visier-der-vergessenen-t1",
+      "name": "Visier der Vergessenen",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Aus einem Material, das offiziell nicht existiert. Inoffiziell: sehr stabil.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-haube-des-wanderers-t1",
+      "name": "Haube des Wanderers",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-r-stung-der-ewigkeit-t1",
+      "name": "Rüstung der Ewigkeit",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-kettenhemd-der-nacht-t1",
+      "name": "Kettenhemd der Nacht",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wams-des-feuers-t1",
+      "name": "Wams des Feuers",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-brustplatte-des-sturms-t1",
+      "name": "Brustplatte des Sturms",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-talisman-der-tiefe-t1",
+      "name": "Talisman der Tiefe",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-medaillon-des-blutes-t1",
+      "name": "Medaillon des Blutes",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-anh-nger-der-stille-t1",
+      "name": "Anhänger der Stille",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-kette-des-blutes-t1",
+      "name": "Kette des Blutes",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-stiefel-des-nordens-t1",
+      "name": "Stiefel des Nordens",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Aus einem Material, das offiziell nicht existiert. Inoffiziell: sehr stabil.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-treter-der-d-mmerung-t1",
+      "name": "Treter der Dämmerung",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-stiefel-der-schatten-t1",
+      "name": "Stiefel der Schatten",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-gamaschen-der-winde-t1",
+      "name": "Gamaschen der Winde",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-der-schatten-t1",
+      "name": "Ring der Schatten",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-reif-des-schicksals-t1",
+      "name": "Reif des Schicksals",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 10,
+      "shopHidden": false,
+      "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-band-der-nacht-t1",
+      "name": "Band der Nacht",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 25,
+      "shopHidden": false,
+      "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-schwert-des-nordens-t2",
+      "name": "Schwert des Nordens",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-keule-des-blutes-t2",
+      "name": "Keule des Blutes",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schwert-des-schicksals-t2",
+      "name": "Schwert des Schicksals",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schwert-der-dornen-t2",
+      "name": "Schwert der Dornen",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-turmschild-des-nordens-t2",
+      "name": "Turmschild des Nordens",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-buckler-des-abgrunds-t2",
+      "name": "Buckler des Abgrunds",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schild-des-abgrunds-t2",
+      "name": "Schild des Abgrunds",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-haube-des-donners-t2",
+      "name": "Haube des Donners",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-helm-des-mondes-t2",
+      "name": "Helm des Mondes",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-diadem-des-feuers-t2",
+      "name": "Diadem des Feuers",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-kettenhemd-der-vergessenen-t2",
+      "name": "Kettenhemd der Vergessenen",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-brustplatte-der-vergessenen-t2",
+      "name": "Brustplatte der Vergessenen",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-r-stung-des-schicksals-t2",
+      "name": "Rüstung des Schicksals",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-r-stung-der-vergessenen-t2",
+      "name": "Rüstung der Vergessenen",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-talisman-des-abgrunds-t2",
+      "name": "Talisman des Abgrunds",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-anh-nger-des-wanderers-t2",
+      "name": "Anhänger des Wanderers",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-anh-nger-des-mondes-t2",
+      "name": "Anhänger des Mondes",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-medaillon-des-blutes-t2",
+      "name": "Medaillon des Blutes",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-sandalen-des-blutes-t2",
+      "name": "Sandalen des Blutes",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schuhe-des-nebels-t2",
+      "name": "Schuhe des Nebels",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-gamaschen-der-stille-t2",
+      "name": "Gamaschen der Stille",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-treter-der-tiefe-t2",
+      "name": "Treter der Tiefe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-der-schatten-t2",
+      "name": "Ring der Schatten",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-band-der-tiefe-t2",
+      "name": "Band der Tiefe",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 35,
+      "shopHidden": false,
+      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-band-des-mondes-t2",
+      "name": "Band des Mondes",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-klinge-der-vergessenen-t3",
+      "name": "Klinge der Vergessenen",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-axt-des-erwachens-t3",
+      "name": "Axt des Erwachens",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-dolch-des-schicksals-t3",
+      "name": "Dolch des Schicksals",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-speer-der-k-lte-t3",
+      "name": "Speer der Kälte",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-wappenschild-des-blutes-t3",
+      "name": "Wappenschild des Blutes",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-buckler-der-asche-t3",
+      "name": "Buckler der Asche",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-wappenschild-des-abgrunds-t3",
+      "name": "Wappenschild des Abgrunds",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-diadem-der-k-lte-t3",
+      "name": "Diadem der Kälte",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-krone-des-donners-t3",
+      "name": "Krone des Donners",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-haube-des-donners-t3",
+      "name": "Haube des Donners",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-haube-des-erwachens-t3",
+      "name": "Haube des Erwachens",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-wams-der-schatten-t3",
+      "name": "Wams der Schatten",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-r-stung-des-nordens-t3",
+      "name": "Rüstung des Nordens",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-r-stung-der-asche-t3",
+      "name": "Rüstung der Asche",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-wams-des-feuers-t3",
+      "name": "Wams des Feuers",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-kette-des-wanderers-t3",
+      "name": "Kette des Wanderers",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-medaillon-der-d-mmerung-t3",
+      "name": "Medaillon der Dämmerung",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-amulett-des-blutes-t3",
+      "name": "Amulett des Blutes",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-medaillon-des-donners-t3",
+      "name": "Medaillon des Donners",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-sandalen-des-donners-t3",
+      "name": "Sandalen des Donners",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-treter-der-nacht-t3",
+      "name": "Treter der Nacht",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-stiefel-der-schatten-t3",
+      "name": "Stiefel der Schatten",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-stiefel-der-stille-t3",
+      "name": "Stiefel der Stille",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-der-schatten-t3",
+      "name": "Ring der Schatten",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-reif-des-erwachens-t3",
+      "name": "Reif des Erwachens",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-band-des-erwachens-t3",
+      "name": "Band des Erwachens",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-keule-des-erwachens-t4",
+      "name": "Keule des Erwachens",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-stab-der-dornen-t4",
+      "name": "Stab der Dornen",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-hammer-der-d-mmerung-t4",
+      "name": "Hammer der Dämmerung",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 5,
+        "max": 12,
+        "label": "-{value}% Forge Decay"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-klinge-der-nacht-t4",
+      "name": "Klinge der Nacht",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-wappenschild-des-feuers-t4",
+      "name": "Wappenschild des Feuers",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-aegis-des-nordens-t4",
+      "name": "Aegis des Nordens",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-aegis-des-blutes-t4",
+      "name": "Aegis des Blutes",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "salvage_bonus",
+        "min": 5,
+        "max": 10,
+        "label": "+{value}% Salvage"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-diadem-des-nordens-t4",
+      "name": "Diadem des Nordens",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-kappe-des-eisens-t4",
+      "name": "Kappe des Eisens",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-helm-der-stille-t4",
+      "name": "Helm der Stille",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "material_double",
+        "min": 3,
+        "max": 8,
+        "label": "+{value}% Double Material"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-krone-des-eisens-t4",
+      "name": "Krone des Eisens",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% Gold"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-brustplatte-des-abgrunds-t4",
+      "name": "Brustplatte des Abgrunds",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-mantel-des-donners-t4",
+      "name": "Mantel des Donners",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-mantel-des-feuers-t4",
+      "name": "Mantel des Feuers",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "salvage_bonus",
+        "min": 5,
+        "max": 10,
+        "label": "+{value}% Salvage"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-kettenhemd-des-blutes-t4",
+      "name": "Kettenhemd des Blutes",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 3,
+        "max": 6,
+        "label": "+{value}% Bond XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-kette-des-schicksals-t4",
+      "name": "Kette des Schicksals",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-talisman-des-erwachens-t4",
+      "name": "Talisman des Erwachens",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-amulett-der-vergessenen-t4",
+      "name": "Amulett der Vergessenen",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "cooldown_reduction",
+        "min": 3,
+        "max": 6,
+        "label": "-{value}% Cooldown"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-talisman-der-nacht-t4",
+      "name": "Talisman der Nacht",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-stiefel-des-feuers-t4",
+      "name": "Stiefel des Feuers",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-sandalen-der-ewigkeit-t4",
+      "name": "Sandalen der Ewigkeit",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-treter-der-d-mmerung-t4",
+      "name": "Treter der Dämmerung",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "material_double",
+        "min": 3,
+        "max": 8,
+        "label": "+{value}% Double Material"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-treter-des-schicksals-t4",
+      "name": "Treter des Schicksals",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 3,
+        "max": 6,
+        "label": "+{value}% Bond XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-fingerring-der-vergessenen-t4",
+      "name": "Fingerring der Vergessenen",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-siegelring-der-ewigkeit-t4",
+      "name": "Siegelring der Ewigkeit",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-fingerring-des-eisens-t4",
+      "name": "Fingerring des Eisens",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% Crit Chance"
+      },
+      "setId": "legendary"
     }
   ],
   "setBonus": {
