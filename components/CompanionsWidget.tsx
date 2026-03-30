@@ -118,6 +118,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [expeditionCollecting, setExpeditionCollecting] = useState(false);
   const [expeditionError, setExpeditionError] = useState<string | null>(null);
   const [expeditionConfirm, setExpeditionConfirm] = useState<{ id: string; name: string; hours: number } | null>(null);
+  const [lastExpeditionTier, setLastExpeditionTier] = useState<string | null>(null);
 
   const fetchExpeditions = useCallback(async () => {
     if (!playerName || !apiKey || !user?.companion) return;
@@ -175,6 +176,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       });
       const d = await r.json();
       if (r.ok) {
+        setLastExpeditionTier(expeditionId);
         await fetchExpeditions();
         if (onUserRefresh) onUserRefresh();
       } else {
@@ -846,6 +848,21 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     Your companion is resting. Available in {Math.ceil(expeditionData.cooldownRemainingMs / 60000)} minutes.
                   </div>
                 )}
+
+                {/* Send Again shortcut (after cooldown, if last tier known) */}
+                {!expeditionData.active && expeditionData.cooldownRemainingMs <= 0 && lastExpeditionTier && !expeditionConfirm && (() => {
+                  const lastExp = expeditionData.available?.find((e: { id: string }) => e.id === lastExpeditionTier);
+                  if (!lastExp) return null;
+                  return (
+                    <button
+                      onClick={() => setExpeditionConfirm({ id: lastExp.id, name: lastExp.name, hours: lastExp.durationHours })}
+                      className="w-full text-xs px-3 py-2 rounded font-semibold mb-2"
+                      style={{ background: "rgba(167,139,250,0.08)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: "pointer" }}
+                    >
+                      Send Again: {lastExp.name} ({lastExp.durationHours}h)
+                    </button>
+                  );
+                })()}
 
                 {/* Confirm dialog */}
                 {expeditionConfirm && (
