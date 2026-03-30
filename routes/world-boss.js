@@ -93,12 +93,22 @@ function calcMaxHp(template) {
 }
 
 function pickNextBoss() {
-  // Deterministic rotation: cycle through ALL bosses before repeating any
-  // Uses history length as index → guarantees every boss appears once before repeat
-  const historyCount = worldBossState.history.length;
+  // Weighted random: all bosses start at weight 1.0
+  // Bosses that appeared in history get weight 0.6 (less likely to repeat)
   const bosses = bossData.bosses;
   if (bosses.length === 0) return null;
-  return bosses[historyCount % bosses.length];
+  const seenIds = new Set(worldBossState.history.map(h => h.bossId));
+  const weighted = bosses.map(b => ({
+    boss: b,
+    weight: seenIds.has(b.id) ? 0.6 : 1.0,
+  }));
+  const totalWeight = weighted.reduce((sum, w) => sum + w.weight, 0);
+  let roll = Math.random() * totalWeight;
+  for (const w of weighted) {
+    roll -= w.weight;
+    if (roll <= 0) return w.boss;
+  }
+  return bosses[0]; // fallback
 }
 
 function spawnBoss(bossId) {
