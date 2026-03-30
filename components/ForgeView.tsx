@@ -1653,7 +1653,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         const effectiveCount = isBatchable ? craftCount : 1;
                         const canAffordCheck = (() => {
                           const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                          if (recipe.cost?.gold && g < recipe.cost.gold * effectiveCount) return false;
+                          const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount + getVendorReagentCost(recipe, effectiveCount);
+                          if (totalGoldNeeded > 0 && g < totalGoldNeeded) return false;
                           for (const [matId, amt] of Object.entries(recipe.materials || {})) {
                             if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
                           }
@@ -1663,7 +1664,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       if (showHaveMatsOnly) {
                         const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
-                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= (recipe.cost?.gold || 0);
+                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= ((recipe.cost?.gold || 0) + getVendorReagentCost(recipe));
                         if (!hasMats || !hasGold) return false;
                       }
                       return true;
@@ -1747,7 +1748,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const effectiveCount = isBatchable ? craftCount : 1;
                     const canAfford = (() => {
                       const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                      if (recipe.cost?.gold && gold < recipe.cost.gold * effectiveCount) return false;
+                      const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount + getVendorReagentCost(recipe, effectiveCount);
+                      if (totalGoldNeeded > 0 && gold < totalGoldNeeded) return false;
                       for (const [matId, amt] of Object.entries(recipe.materials || {})) {
                         if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
                       }
@@ -1812,7 +1814,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               // Calculate max craftable quantity for the "Max" option
                               const playerGoldForMax = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
                               const maxFromMats = Object.entries(recipe.materials || {}).map(([matId, amt]) => Math.floor((materials[matId] || 0) / (amt as number)));
-                              const maxFromGold = recipe.cost?.gold && recipe.cost.gold > 0 ? Math.floor(playerGoldForMax / recipe.cost.gold) : Infinity;
+                              const perCraftGold = (recipe.cost?.gold || 0) + getVendorReagentCost(recipe);
+                              const maxFromGold = perCraftGold > 0 ? Math.floor(playerGoldForMax / perCraftGold) : Infinity;
                               const hasMaterials = Object.keys(recipe.materials || {}).length > 0;
                               const batchCap = hasMaterials ? 50 : 10;
                               const maxCraftable = Math.min(batchCap, maxFromGold, ...(maxFromMats.length > 0 ? maxFromMats : [batchCap]));
@@ -1878,6 +1881,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {recipe.cost.gold * effectiveCount}{effectiveCount > 1 ? ` (${recipe.cost.gold}x${effectiveCount})` : ""}
                             </span>
                           )}
+                          {recipe.vendorReagents && vendorReagentDefs.length > 0 && (() => {
+                            let cost = 0;
+                            for (const [rid, count] of Object.entries(recipe.vendorReagents)) {
+                              const def = vendorReagentDefs.find(r => r.id === rid);
+                              if (def) cost += def.price * (count as number);
+                            }
+                            if (cost <= 0) return null;
+                            return <span className="text-xs" style={{ color: "#fbbf24", opacity: 0.6 }} title="Vendor reagent cost">{cost * effectiveCount}g reagents</span>;
+                          })()}
                           {Object.entries(recipe.materials || {}).map(([matId, amt]) => {
                             const mat = materialDefs.find(m => m.id === matId);
                             const needed = (amt as number) * effectiveCount;
