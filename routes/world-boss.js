@@ -93,13 +93,12 @@ function calcMaxHp(template) {
 }
 
 function pickNextBoss() {
-  // Pick a boss that wasn't the most recent one
-  const lastBossId = worldBossState.history.length > 0
-    ? worldBossState.history[worldBossState.history.length - 1].bossId
-    : null;
-  const candidates = bossData.bosses.filter(b => b.id !== lastBossId);
-  if (candidates.length === 0) return bossData.bosses[0];
-  return candidates[Math.floor(Math.random() * candidates.length)];
+  // Deterministic rotation: cycle through ALL bosses before repeating any
+  // Uses history length as index → guarantees every boss appears once before repeat
+  const historyCount = worldBossState.history.length;
+  const bosses = bossData.bosses;
+  if (bosses.length === 0) return null;
+  return bosses[historyCount % bosses.length];
 }
 
 function spawnBoss(bossId) {
