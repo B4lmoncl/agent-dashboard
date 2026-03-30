@@ -439,6 +439,11 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 | `components/DungeonView.tsx` | Dungeon UI: tier cards, friend picker, active run, rewards |
 | `public/data/dungeons.json` | Dungeon templates (3 tiers), rewards, gear score thresholds |
 | `public/data/companionExpeditions.json` | Companion expedition templates (4 tiers, 4-24h) |
+| `routes/talent-tree.js` | Passive Talent Tree: allocate/deallocate/reset, getUserTalentEffects() |
+| `routes/adventure-tome.js` | Adventure Tome: per-floor completionist tracker with milestone claims |
+| `components/TalentTreeView.tsx` | Schicksalsbaum UI: 3-ring circular SVG tree with node selection |
+| `components/AdventureTomeView.tsx` | Abenteuerbuch UI: floor cards, objectives, milestone claims |
+| `public/data/talentTree.json` | 26 talent nodes, 3 rings, connections, choice groups, archetypes |
 
 ## Pixellab Asset Generation Rules
 
