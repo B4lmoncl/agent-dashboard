@@ -24,6 +24,8 @@ const BattlePassView = lazy(() => import("@/components/BattlePassView"));
 const WorldBossView = lazy(() => import("@/components/WorldBossView"));
 const DungeonView = lazy(() => import("@/components/DungeonView"));
 const CodexView = lazy(() => import("@/components/CodexView"));
+const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
+const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
@@ -2021,6 +2023,16 @@ export default function Dashboard() {
               <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
+        )}
+
+        {/* ── TALENT TREE TAB ── */}
+        {dashView === "talents" && playerName && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><TalentTreeView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── ADVENTURE TOME TAB ── */}
+        {dashView === "tome" && playerName && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><AdventureTomeView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── CHARACTER TAB ── */}
