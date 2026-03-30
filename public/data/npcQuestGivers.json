@@ -32,7 +32,8 @@
               "task": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel.",
               "realWorldTask": "Mach einen 20-Minuten Spaziergang",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -49,7 +50,8 @@
               "task": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist.",
               "realWorldTask": "Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -68,7 +70,8 @@
             "rewards": {
               "xp": 20,
               "gold": 12
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -85,7 +88,8 @@
               "task": "'Ein aufgeräumtes Heim, ein aufgeräumter Geist', sagt Oma Ilse.",
               "realWorldTask": "Räume einen Bereich deiner Wohnung gründlich auf — 20 Minuten",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -104,7 +108,8 @@
             "rewards": {
               "xp": 20,
               "gold": 12
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -121,7 +126,8 @@
             "rewards": {
               "xp": 26,
               "gold": 16
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ],
@@ -177,7 +183,8 @@
               "task": "Karim braucht Hilfe beim Sortieren seiner Waren.",
               "realWorldTask": "Räume deinen Schreibtisch oder ein Regal auf",
               "difficulty": "easy"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -194,7 +201,8 @@
               "task": "Karim erzählt von einer fernen Stadt.",
               "realWorldTask": "Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -211,7 +219,8 @@
               "task": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas.",
               "realWorldTask": "Tu jemandem einen Gefallen",
               "difficulty": "hard"
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -230,7 +239,8 @@
               "task": "Karim sagt: 'Wer den Markt kennt, gewinnt.'",
               "realWorldTask": "Vergleiche heute Preise oder Optionen für etwas das du kaufen willst — 15 Minuten Recherche",
               "difficulty": "easy"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -247,7 +257,8 @@
             "rewards": {
               "xp": 46,
               "gold": 29
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -266,7 +277,8 @@
               "task": "Karim hat viele Länder bereist.",
               "realWorldTask": "Lerne 20 Minuten über eine andere Kultur — Essen, Sprache, Traditionen",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -283,7 +295,8 @@
               "task": "'Ein guter Händler kennt seinen Wert.'",
               "realWorldTask": "Erledige heute eine Aufgabe die du schon lange aufgeschoben hast",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -300,7 +313,8 @@
               "task": "Karim verschenkt etwas aus seiner Sammlung.",
               "realWorldTask": "Gib heute jemandem etwas — Zeit, Hilfe, oder ein kleines Geschenk",
               "difficulty": "hard"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ],
@@ -356,7 +370,8 @@
             "rewards": {
               "xp": 48,
               "gold": 30
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -373,7 +388,8 @@
               "task": "'Stärke kommt von Disziplin, nicht von Wünschen.'",
               "realWorldTask": "Mach ein 30-Minuten Workout",
               "difficulty": "hard"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -390,7 +406,8 @@
               "task": "'Wahrer Kampf findet im Kopf statt.'",
               "realWorldTask": "Lerne 30 Minuten etwas Neues — egal was",
               "difficulty": "hard"
-            }
+            },
+            "rarity": "epic"
           }
         ],
         [
@@ -409,7 +426,8 @@
             "rewards": {
               "xp": 48,
               "gold": 30
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -426,7 +444,8 @@
               "task": "'Gleichgewicht ist die Basis aller Stärke.'",
               "realWorldTask": "Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -443,7 +462,8 @@
               "task": "'Lenke all deine Kraft auf einen Punkt.'",
               "realWorldTask": "Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe",
               "difficulty": "epic"
-            }
+            },
+            "rarity": "epic"
           }
         ],
         [
@@ -462,7 +482,8 @@
               "task": "Tanaka steht immer mit der Sonne auf.",
               "realWorldTask": "Stehe morgen früh auf und beginne den Tag mit Bewegung — 15 Minuten",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -479,7 +500,8 @@
               "task": "'Wiederholung ist der Meister.'",
               "realWorldTask": "Übe eine Fähigkeit bewusst — 30 Minuten intensives Üben",
               "difficulty": "hard"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ],
@@ -535,7 +557,8 @@
             "rewards": {
               "xp": 35,
               "gold": 22
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -552,7 +575,8 @@
             "rewards": {
               "xp": 46,
               "gold": 29
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -571,7 +595,8 @@
             "rewards": {
               "xp": 35,
               "gold": 22
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -588,7 +613,8 @@
             "rewards": {
               "xp": 46,
               "gold": 29
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -605,7 +631,8 @@
             "rewards": {
               "xp": 56,
               "gold": 35
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -624,7 +651,8 @@
             "rewards": {
               "xp": 35,
               "gold": 22
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -641,7 +669,8 @@
               "task": "'Der Körper ist dein Tempel.'",
               "realWorldTask": "Schlafe heute mindestens 7 Stunden oder mach eine Entspannungsübung vor dem Schlafen",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ],
@@ -698,7 +727,8 @@
             "rewards": {
               "xp": 20,
               "gold": 12
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -715,7 +745,8 @@
             "rewards": {
               "xp": 26,
               "gold": 16
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -732,7 +763,8 @@
               "task": "'Trau dich!'",
               "realWorldTask": "Tu heute etwas außerhalb deiner Komfortzone — egal wie klein",
               "difficulty": "hard"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -751,7 +783,8 @@
             "rewards": {
               "xp": 20,
               "gold": 12
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -768,7 +801,8 @@
               "task": "'Worte sind Magie', flüstert Finnegan.",
               "realWorldTask": "Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -787,7 +821,8 @@
             "rewards": {
               "xp": 20,
               "gold": 12
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -804,7 +839,8 @@
               "task": "'Kunst entsteht überall.'",
               "realWorldTask": "Besuche heute etwas Inspirierendes — Museum, Konzert, Kunstwerk online, oder ein Buch",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -821,7 +857,8 @@
             "rewards": {
               "xp": 32,
               "gold": 19
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ],
@@ -872,7 +909,8 @@
               "task": "Tomas faltet die Hände und schließt die Augen. 'Bevor der Tag beginnt, muss der Geist zur Ruhe kommen.'",
               "realWorldTask": "Setze dich morgens 5 Minuten still hin — kein Handy, kein Lärm. Nur atmen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -889,7 +927,8 @@
               "task": "Tomas erklärt ruhig die Kraft des bewussten Verzichts. Er hat es selbst dreißig Jahre lang geübt.",
               "realWorldTask": "Verzichte heute 3 Stunden lang auf soziale Medien oder Bildschirme. Vollständig.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -908,7 +947,8 @@
               "task": "Tomas geht jeden Morgen denselben Pfad — nicht aus Gewohnheit, sondern aus Wahl.",
               "realWorldTask": "Geh 20 Minuten spazieren — ohne Kopfhörer, ohne Ziel. Nur der Weg selbst.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -925,7 +965,8 @@
               "task": "'Du wirst das merken, wenn es schwer wird', sagt Tomas. Er lächelt dabei.",
               "realWorldTask": "Mach ein 30-Minuten-Training — keine Ausreden, kein Abkürzen, kein Aufhören wenn es unangenehm wird.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -944,7 +985,8 @@
               "task": "Tomas trägt sein ganzes Leben einen kleinen Lederkodex mit sich. Er ist fast voll.",
               "realWorldTask": "Schreibe drei Werte auf, nach denen du leben willst. Erkläre jeden in einem Satz.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -961,7 +1003,8 @@
               "task": "Tomas lächelt schmal. 'Erkenne deine schwächste Stelle. Dann bewache sie.'",
               "realWorldTask": "Identifiziere eine schlechte Gewohnheit. Verzichte heute vollständig darauf — einen einzigen Tag lang.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -978,7 +1021,8 @@
               "task": "Tomas verbeugt sich kaum merklich. Bei ihm bedeutet das Respekt.",
               "realWorldTask": "Meditiere 20 Minuten ohne Unterbrechung — kein Timer-Check, kein Fidgeting, kein Aufgeben wenn der Geist wandert.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ],
@@ -1031,7 +1075,8 @@
               "task": "Zara kritzelt in ein Notizbuch. Drei Federn fallen heraus. Sie bemerkt es nicht.",
               "realWorldTask": "Schreibe 10 Dinge auf die du heute wahrgenommen hast — Gerüche, Farben, Geräusche, Gefühle.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1048,7 +1093,8 @@
               "task": "'Versuch Nummer... ich verliere den Überblick. Egal, wir machen weiter!'",
               "realWorldTask": "Probiere heute etwas Neues aus — ein Rezept, eine Technik, eine App. Schreibe das Ergebnis auf.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1065,7 +1111,8 @@
               "task": "Zara schiebt dir eine Aufgabe hin. Halb sind die Seiten angesengt.",
               "realWorldTask": "Kombiniere zwei Interessen oder Fähigkeiten in einem Projekt — 45 Minuten fokussiertes Arbeiten.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           }
         ],
         [
@@ -1084,7 +1131,8 @@
               "task": "Zara murmelt etwas über 'Aetherkristalle in Alltagsgegenständen'. Wahrscheinlich metaphorisch.",
               "realWorldTask": "Recherchiere 20 Minuten über ein Thema das dich schon immer interessiert hat.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1101,7 +1149,8 @@
               "task": "Zara zeigt dir ihr verstaubtes Labornotizbuch. Seite 847. Es gibt noch dreihundert weitere.",
               "realWorldTask": "Lerne eine Sache wirklich gründlich — 30 Minuten fokussiertes Lernen zu einem einzigen Unterthema.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1118,7 +1167,8 @@
               "task": "Zara tippt aufgeregt auf die Tischplatte. Das könnten Morsezeichen sein.",
               "realWorldTask": "Erkläre jemandem etwas das du gelernt hast — mündlich oder als kurze schriftliche Zusammenfassung.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           }
         ],
         [
@@ -1137,7 +1187,8 @@
               "task": "Zara legt drei Kolben nebeneinander. Keiner davon ist beschriftet.",
               "realWorldTask": "Plane ein persönliches Projekt: Schreibe Ziel, konkrete Schritte und den ersten Schritt für morgen auf.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1154,7 +1205,8 @@
               "task": "Zaras letzter Versuch hat eine Augenbraue gekostet. Sie scheint aufrichtig stolz zu sein.",
               "realWorldTask": "Denke an etwas das kürzlich schiefgelaufen ist. Schreibe auf: Was passierte, was hast du gelernt, was machst du nächstes Mal anders.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1171,7 +1223,8 @@
               "task": "Zara springt auf. Etwas fällt vom Regal. Sie bemerkt es nicht.",
               "realWorldTask": "Schließe ein Vorhaben ab das du begonnen hast. Zeige das Ergebnis jemandem — egal wie klein es ist.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ],
@@ -1224,7 +1277,8 @@
               "task": "Henrik schaut in die Baumkronen. Er wartet schon eine Weile.",
               "realWorldTask": "Geh 20 Minuten draußen spazieren — ohne Kopfhörer, ohne Handy. Nur die Umgebung wahrnehmen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -1241,7 +1295,8 @@
               "task": "Henrik deutet auf eine Stelle am Boden. 'Siehst du das?' Er wartet geduldig.",
               "realWorldTask": "Wähle eine Pflanze, ein Tier oder ein Naturphänomen und lerne 20 Minuten darüber.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -1260,7 +1315,8 @@
               "task": "Henrik lehnt gegen eine alte Buche. Er spricht selten — und dann meint er es.",
               "realWorldTask": "Verbringe 30 Minuten ohne Ablenkung — kein Handy, kein Lärm. Schreibe danach auf, was dir eingefallen ist.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -1277,7 +1333,8 @@
               "task": "Henrik zählt Jahresringe auf einem gefällten Stamm. Langsam. Sehr langsam.",
               "realWorldTask": "Reflektiere das vergangene Jahr: Was hat dich verändert? Schreibe drei Erkenntnisse auf.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ],
         [
@@ -1296,7 +1353,8 @@
               "task": "Henrik nimmt heute einen anderen Pfad als sonst. Er nennt keinen Grund.",
               "realWorldTask": "Tu heute etwas auf eine neue, langsamere Art — kochen, lernen, arbeiten. Keine Abkürzungen.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -1313,7 +1371,8 @@
               "task": "Henrik pflanzt jeden Sommer einen Baum. Über hundert stehen schon.",
               "realWorldTask": "Tue heute etwas das jemandem anderem nützt — ohne dass er davon weiß.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -1330,7 +1389,8 @@
               "task": "Henrik nickt in Richtung der Siedlung. Eine seltene Geste.",
               "realWorldTask": "Führe ein echtes Gespräch mit einem älteren Menschen — frage nach seiner Geschichte und höre zu.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ],
@@ -1383,7 +1443,8 @@
               "task": "Lumi tanzt aufgeregt um dich herum. Die Luft riecht nach Mondlicht und irgendwie nach Sommer.",
               "realWorldTask": "Schaue heute Abend 10 Minuten in den Himmel — mit oder ohne Sterne. Einfach hinaufschauen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1400,7 +1461,8 @@
               "task": "Lumi setzt sich auf deine Schulter. So ungefähr. Ungefähr in der Größe.",
               "realWorldTask": "Erledige heute Abend nach 20 Uhr eine kreative Aufgabe — schreiben, zeichnen, nachdenken.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1417,7 +1479,8 @@
               "task": "Lumi schweigt kurz. Bei ihr bedeutet das fast eine Ewigkeit.",
               "realWorldTask": "Schreibe bei Kerzenlicht oder gedimmtem Licht 15 Minuten lang — was auch immer dir einfällt.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "legendary"
           }
         ],
         [
@@ -1436,7 +1499,8 @@
               "task": "Lumi zeigt dir eine Stelle im Raum die leer aussieht. Sie sieht das eindeutig anders.",
               "realWorldTask": "Beobachte heute 15 Minuten lang etwas — eine Kerze, den Regen, Menschen auf der Straße. Nur beobachten, nicht urteilen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1453,7 +1517,8 @@
               "task": "Lumi neigt den Kopf. 'Was hast du letzte Nacht geträumt? Wirklich, ich frage mich das immer.'",
               "realWorldTask": "Lege heute Nacht ein Notizbuch neben dein Bett und schreibe morgen früh als erstes auf, was du geträumt hast.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1470,7 +1535,8 @@
               "task": "Lumi leuchtet kurz heller — dann dunkler. Eine Geste die du nicht ganz deutest.",
               "realWorldTask": "Schreibe einem Menschen den du schätzt, warum du ihn schätzt — ohne besonderen Anlass.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1487,7 +1553,8 @@
               "task": "Lumi murmelt etwas in einer Sprache die älter ist als Aethermoor. Es klingt wie fließendes Wasser.",
               "realWorldTask": "Lerne 30 Minuten eine neue Sprache — oder lerne 10 Vokabeln einer Sprache die du noch nicht sprichst.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ],
         [
@@ -1506,7 +1573,8 @@
               "task": "Lumi schwebt knapp über dem Boden. 'Komm, ich zeig dir was.'",
               "realWorldTask": "Mache einen Abendspaziergang nach Einbruch der Dunkelheit — mindestens 20 Minuten.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1523,7 +1591,8 @@
               "task": "Lumi hält inne. Ihr Licht flackert leise. Für einen Moment wirkt sie sehr, sehr alt.",
               "realWorldTask": "Schreibe eine Erinnerung auf die du nicht vergessen möchtest — über eine Person, einen Moment, einen Ort.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1540,7 +1609,8 @@
               "task": "Lumi dreht sich langsam, als würde sie die Halle umarmen.",
               "realWorldTask": "Erschaffe heute etwas Bleibendes — ein Gedicht, ein Brief, ein Foto das du ausdruckst, ein Eintrag im Tagebuch.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -1557,7 +1627,8 @@
               "task": "Lumi leuchtet so hell wie du sie noch nie gesehen hast. Dann schwindet das Licht langsam — sie lächelt dabei.",
               "realWorldTask": "Beginne heute eine Routine die du wirklich 30 Tage durchhalten willst. Schreibe auf, warum es diesmal klappt.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ],
@@ -1611,7 +1682,8 @@
               "task": "Rogar klopft einmal auf den Amboss. Das bedeutet: Fang an.",
               "realWorldTask": "Beginne heute sofort mit deiner wichtigsten Aufgabe — keine Vorbereitung, kein Zögern, direkt loslegen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1628,7 +1700,8 @@
               "task": "Rogars Hammer fällt im selben Takt seit dreißig Jahren. Kein Tag fehlt.",
               "realWorldTask": "Arbeite heute 45 Minuten ohne Pause an einer Aufgabe — Handy weg, alles andere weg.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1645,7 +1718,8 @@
               "task": "Rogar wirft ein schlecht geschmiedetes Stück in die Ecke. Ohne ein Wort.",
               "realWorldTask": "Nimm eine erledigte Aufgabe und mache sie besser — überarbeite, verfeinere, poliere. Kein 'gut genug'.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           }
         ],
         [
@@ -1664,7 +1738,8 @@
               "task": "Rogar ordnet seine Werkzeuge. Jedes liegt genau richtig. Schon immer.",
               "realWorldTask": "Richte deinen Arbeitsplatz richtig ein — aufräumen, organisieren, die richtigen Werkzeuge bereitstellen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1681,7 +1756,8 @@
               "task": "Rogar streckt die Hand ins Feuer. Er zieht sie wieder zurück. Das war ein Test.",
               "realWorldTask": "Mache heute ein intensives körperliches Training — 30 Minuten, volle Leistung, keine Abkürzungen.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1698,7 +1774,8 @@
               "task": "Rogar nickt dir zu. Das ist bei ihm viel.",
               "realWorldTask": "Wiederhole eine Fähigkeit 30 Minuten lang bewusst — dieselbe Übung, dieselbe Bewegung, dieselbe Technik. Meisterschaft durch Wiederholung.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           }
         ],
         [
@@ -1717,7 +1794,8 @@
               "task": "Rogar zeigt dir seine alten Schmiedepläne. Hunderte Seiten. Nichts korrigiert — alles durchgestrichen und neu gemacht.",
               "realWorldTask": "Plane ein ambitioniertes Vorhaben schriftlich: Ziel, konkrete Schritte, Zeitrahmen und was du brauchst.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1734,7 +1812,8 @@
               "task": "Rogar stellt sich dir gegenüber. Seine Augen sagen mehr als seine Worte.",
               "realWorldTask": "Stelle dich heute einer Aufgabe die du fürchtest oder aufgeschoben hast. Fang an — halte 20 Minuten durch.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -1751,7 +1830,8 @@
               "task": "Rogar betrachtet das Ergebnis lange. Dann legt er kurz seine Hand darauf. Das ist die höchste Form des Lobes.",
               "realWorldTask": "Schließe ein Projekt vollständig ab — von Anfang bis Ende in einer Sitzung. Kein 'fast fertig'.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ],
@@ -1805,7 +1885,8 @@
             "vars": {
               "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
               "realWorldTask": "Der gestohlene Auftritt"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "title": "Scharfes Auge",
@@ -1820,7 +1901,8 @@
             "vars": {
               "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
               "realWorldTask": "Scharfes Auge"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "title": "Das Rätsel der drei Schlüssel",
@@ -1835,7 +1917,8 @@
             "vars": {
               "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
               "realWorldTask": "Das Rätsel der drei Schlüssel"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "title": "Verbündete sammeln",
@@ -1850,7 +1933,8 @@
             "vars": {
               "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
               "realWorldTask": "Verbündete sammeln"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "title": "Der letzte Vorhang",
@@ -1865,7 +1949,8 @@
             "vars": {
               "quote": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
               "realWorldTask": "Der letzte Vorhang"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ],
@@ -1930,7 +2015,8 @@
             "vars": {
               "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Überfällige Rückgabe"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "title": "Stille Lektüre",
@@ -1945,7 +2031,8 @@
             "vars": {
               "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Stille Lektüre"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "title": "Katalogisierung",
@@ -1960,7 +2047,8 @@
             "vars": {
               "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Katalogisierung"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "title": "Wissensaustausch",
@@ -1975,7 +2063,8 @@
             "vars": {
               "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Wissensaustausch"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ],
@@ -2029,7 +2118,8 @@
             "vars": {
               "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
               "realWorldTask": "Seekarten studieren"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "title": "Sturm im Wasserglas",
@@ -2044,7 +2134,8 @@
             "vars": {
               "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
               "realWorldTask": "Sturm im Wasserglas"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "title": "Proviant beschaffen",
@@ -2059,7 +2150,8 @@
             "vars": {
               "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
               "realWorldTask": "Proviant beschaffen"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "title": "Die singende See",
@@ -2074,7 +2166,8 @@
             "vars": {
               "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
               "realWorldTask": "Die singende See"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "title": "Anker lichten",
@@ -2089,7 +2182,8 @@
             "vars": {
               "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
               "realWorldTask": "Anker lichten"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "title": "Neue Koordinaten",
@@ -2104,7 +2198,8 @@
             "vars": {
               "quote": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
               "realWorldTask": "Neue Koordinaten"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ],
@@ -2162,7 +2257,8 @@
               "task": "Sable will einen Beweis deiner Diskretion. Erledige etwas Unangenehmes ohne darüber zu reden.",
               "realWorldTask": "Erledige eine unangenehme Aufgabe die du aufschiebst — ohne dich zu beschweren",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -2179,7 +2275,8 @@
               "task": "Sable hat einen Auftrag. Details unnötig. Ergebnis: alles.",
               "realWorldTask": "Plane und organisiere deinen nächsten Tag komplett durch — ohne Lücken",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -2216,7 +2313,8 @@
               "task": "Der Professor braucht Hilfe bei seiner Recherche. Lerne etwas Neues und berichte ihm.",
               "realWorldTask": "Lerne 30 Minuten über ein Thema das dich schon immer interessiert hat",
               "difficulty": "medium"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2233,7 +2331,8 @@
               "task": "Teste dein Wissen. Der Professor stellt Fragen. Du versuchst, nicht zu versagen.",
               "realWorldTask": "Mach ein Quiz oder einen Übungstest zu einem Thema das du lernst",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -2252,7 +2351,8 @@
               "task": "Hilf dem Professor sein Notizbuch zu finden. Spoiler: Es ist in seiner Tasche.",
               "realWorldTask": "Räume deinen Schreibtisch auf und organisiere deine Notizen",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2269,7 +2369,8 @@
               "task": "Dokumentiere etwas das du gelernt hast. Der Professor verspricht es zu lesen. Irgendwann.",
               "realWorldTask": "Schreib eine kurze Zusammenfassung oder Notiz zu etwas das du diese Woche gelernt hast",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2306,7 +2407,8 @@
               "task": "Mara verlangt eine Trainingseinheit. Keine Ausreden.",
               "realWorldTask": "30 Minuten Workout deiner Wahl — kein halbes, ein ganzes",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2323,7 +2425,8 @@
               "task": "Eine härtere Übung. Mara beobachtet. Mara urteilt. Mara nickt am Ende.",
               "realWorldTask": "Ein intensives Workout: HIIT, schweres Krafttraining, oder ein langer Lauf (45min+)",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2340,7 +2443,8 @@
               "task": "Maras letzte Prüfung. Der wichtigste Schritt ist immer der nächste.",
               "realWorldTask": "Setze dir ein neues Fitness-Ziel für die nächste Woche und starte heute damit",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2377,7 +2481,8 @@
               "task": "Giovanni braucht einen Sous-Chef. Du bist es. Ob du willst oder nicht.",
               "realWorldTask": "Koche eine Mahlzeit von Grund auf — kein Fertiggericht, kein Lieferdienst",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2394,7 +2499,8 @@
               "task": "Giovanni will dass du ein neues Rezept ausprobierst. Kreativität zählt mehr als Können.",
               "realWorldTask": "Probiere ein neues Rezept aus das du noch nie gekocht hast",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2431,7 +2537,8 @@
               "task": "Sera stellt eine Frage. Die Antwort braucht Recherche, Nachdenken, und Demut.",
               "realWorldTask": "Vertiefe dich 1 Stunde in ein komplexes Thema. Mach dir strukturierte Notizen.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -2448,7 +2555,8 @@
               "task": "Sera will dass du über deine Prioritäten nachdenkst. Ernsthaft, diesmal.",
               "realWorldTask": "Schreibe deine Top-3 Prioritäten für die nächsten 6 Monate auf. Dann streiche alles was nicht dazugehört.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -2485,7 +2593,8 @@
               "task": "Pip braucht Hilfe mit einem Projekt. Es wird chaotisch. Es wird Spaß machen.",
               "realWorldTask": "Arbeite 45 Minuten an einem persönlichen Projekt oder Side-Hustle",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2502,7 +2611,8 @@
               "task": "Verbesserung. Pip will dass du etwas optimierst das du bereits gebaut hast.",
               "realWorldTask": "Überarbeite oder verbessere etwas an dem du bereits gearbeitet hast — Code, Text, Prozess",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -2521,7 +2631,8 @@
               "task": "Pip hat ein neues Tool entdeckt und will dass du es testest.",
               "realWorldTask": "Teste ein neues Tool, eine App oder ein Framework das du noch nie benutzt hast (30min)",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2558,7 +2669,8 @@
               "task": "Martha braucht Hilfe beim Sammeln.",
               "realWorldTask": "Geh 20 Minuten spazieren und achte bewusst auf die Natur um dich herum",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2575,7 +2687,8 @@
               "task": "Hilf Martha die Tinktur herzustellen.",
               "realWorldTask": "Bereite einen gesunden Tee oder Smoothie zu und genieße ihn bewusst",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2612,7 +2725,8 @@
               "task": "Hans hat eine Liste. Die Liste ist lang. Fang oben an.",
               "realWorldTask": "Repariere oder fixe etwas Kleines in deiner Wohnung das schon lange kaputt ist",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2629,7 +2743,8 @@
               "task": "Hans will eine vollständige Inspektion. Gründlich.",
               "realWorldTask": "Mach einen Check deiner Wohnung: Rauchmelder, Glühbirnen, tropfende Hähne, quietschende Türen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2666,7 +2781,8 @@
               "task": "Emil erinnert dich daran, deine Nachrichten zu lesen. Alle.",
               "realWorldTask": "Bearbeite alle ungelesenen E-Mails und Nachrichten — Inbox Zero Versuch",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2703,7 +2819,8 @@
               "task": "Rose will dass du dich um etwas Lebendes kümmerst.",
               "realWorldTask": "Gieße alle Pflanzen in deiner Wohnung. Keine Pflanzen? Kauf eine.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2720,7 +2837,8 @@
               "task": "Rose braucht Hilfe im Garten des Turms. Oder in deinem.",
               "realWorldTask": "Räume deinen Balkon/Garten/Fensterbrett auf oder pflanze etwas Neues",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2757,7 +2875,8 @@
               "task": "Lin will deinen Kleiderschrank inspizieren.",
               "realWorldTask": "Geh deinen Kleiderschrank durch. Sortiere aus was du seit 6+ Monaten nicht getragen hast",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2774,7 +2893,8 @@
               "task": "Lin besteht darauf dass du die aussortierten Sachen loswerden.",
               "realWorldTask": "Bringe ausgemistete Kleidung zur Spende oder zum Recycling",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2811,7 +2931,8 @@
               "task": "Kurt will einen Sicherheitscheck. Gründlich. Mit Checkliste.",
               "realWorldTask": "Überprüfe: Türen abgeschlossen? Passwörter aktuell? Backup gemacht? Rauchmelder funktioniert?",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2848,7 +2969,8 @@
               "task": "Helga duldet keinen Staub. Nirgendwo. Jemals.",
               "realWorldTask": "Putze ein Zimmer gründlich das du lange vernachlässigt hast — Boden, Oberflächen, Fenster",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2865,7 +2987,8 @@
               "task": "Helga kennt die Stellen die du ignorierst. Heute nicht mehr.",
               "realWorldTask": "Reinige die Stellen die du normalerweise übergehst: hinter Möbeln, unter dem Bett, Ofenrost",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2902,7 +3025,8 @@
               "task": "Nadia will eine Geschichte von dir. Eine echte.",
               "realWorldTask": "Schreibe eine kurze persönliche Erinnerung auf die dir wichtig ist (10-15 Min Journaling)",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2919,7 +3043,8 @@
               "task": "Nadia will dass du deine Geschichte teilst. Mit jemandem echtem.",
               "realWorldTask": "Erzähle einem Freund oder Familienmitglied eine persönliche Geschichte die du noch nie geteilt hast",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -2956,7 +3081,8 @@
               "task": "Otto will wissen wo dein Geld hingeht. Du auch, eigentlich.",
               "realWorldTask": "Mache eine Übersicht deiner monatlichen Ausgaben — was kommt rein, was geht raus",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -2973,7 +3099,8 @@
               "task": "Otto erstellt einen Plan. Du befolgst ihn. So einfach ist das. Theoretisch.",
               "realWorldTask": "Richte einen automatischen Sparplan ein oder überprüfe deinen bestehenden",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3010,7 +3137,8 @@
               "task": "Felix braucht jemanden der mithalten kann. Kurz. Intensiv. Fertig.",
               "realWorldTask": "20 Minuten zügiges Gehen oder leichtes Joggen — keine Ausreden, jetzt sofort",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3047,7 +3175,8 @@
               "task": "Ada braucht Hilfe beim Katalogisieren. Bring Ordnung ins Chaos.",
               "realWorldTask": "Organisiere deine digitalen Notizen, Bookmarks oder Leseliste — alles in Ordner/Kategorien",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3064,7 +3193,8 @@
               "task": "Ada vergibt Lesehausaufgaben. Widerspruch zwecklos.",
               "realWorldTask": "Lies 30 Minuten in einem Buch das schon lange auf deiner Liste steht",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3101,7 +3231,8 @@
               "task": "Rex verlangt Grundlagen. Keine Abkürzungen.",
               "realWorldTask": "Mache ein 20-minütiges Ganzkörper-Workout: Liegestützen, Squats, Planks",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3118,7 +3249,8 @@
               "task": "Rex erhöht die Intensität. Progressiv. Unerbittlich.",
               "realWorldTask": "Das gleiche Workout wie gestern — aber 10% mehr Wiederholungen oder Dauer",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3135,7 +3267,8 @@
               "task": "Rex will Ergebnisse sehen. Konkret. Messbar. Ehrlich.",
               "realWorldTask": "Setze dir ein konkretes Fitness-Ziel und teste ob du es erreichst (z.B. 5km unter 30min, 20 Pullups, etc.)",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3172,7 +3305,8 @@
               "task": "Yara will dass du auf deinen Körper hörst. Wirklich hörst.",
               "realWorldTask": "Trinke heute mindestens 2 Liter Wasser und iss bewusst — kein Fast Food, kein Zucker",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3189,7 +3323,8 @@
               "task": "Yara erinnert dich an Dinge die du aufschiebst.",
               "realWorldTask": "Mache einen Termin beim Arzt/Zahnarzt den du vor dir herschiebst",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3226,7 +3361,8 @@
               "task": "Werner will eine Karte deines Lebens. Wo stehst du? Wo willst du hin?",
               "realWorldTask": "Schreibe deine aktuelle Situation in 3 Bereichen auf: Karriere, Gesundheit, Beziehungen. Wo stehst du wirklich?",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3243,7 +3379,8 @@
               "task": "Werner braucht eine Route — vom Ist zum Soll.",
               "realWorldTask": "Erstelle einen konkreten Plan für ein Ziel: Meilensteine, Deadlines, erste Schritte",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3280,7 +3417,8 @@
               "task": "Tick will wissen wohin deine Zeit fließt. Die Wahrheit. Nicht die schöne Version.",
               "realWorldTask": "Tracke heute jeden Zeitblock (30min) — was hast du wirklich gemacht?",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3297,7 +3435,8 @@
               "task": "Tick hat dein Zeitprotokoll analysiert. Jetzt wird optimiert.",
               "realWorldTask": "Identifiziere 1 Stunde Zeitverschwendung pro Tag und plane eine produktive Alternative",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3334,7 +3473,8 @@
               "task": "Luna sagt es ist Zeit sich bei jemandem zu melden.",
               "realWorldTask": "Schreibe 3 Leuten die du lange nicht kontaktiert hast — echter Kontakt, kein 'Hey'",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3351,7 +3491,8 @@
               "task": "Luna will dass du deinen Horizont erweiterst.",
               "realWorldTask": "Tritt einer neuen Community bei, besuche ein Meetup, oder connecte dich mit jemandem Neuem",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3388,7 +3529,8 @@
               "task": "Boris will dass du fokussiert arbeitest. Wie eine Biene. Ohne das Stechen.",
               "realWorldTask": "Arbeite 45 Minuten fokussiert an einer einzigen Aufgabe — kein Multitasking, kein Handy",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3425,7 +3567,8 @@
               "task": "Mei verlangt geschriebene Worte. Qualität optional. Quantität auch. Aber irgendwas.",
               "realWorldTask": "Schreibe 500 Worte — Blog-Post, Journal-Eintrag, Dokumentation, egal was",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3442,7 +3585,8 @@
               "task": "Mei will dass du überarbeitest was du geschrieben hast. Besser. Schärfer. Kürzer.",
               "realWorldTask": "Überarbeite einen Text den du kürzlich geschrieben hast — kürze 20%, verbessere den Anfang",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3479,7 +3623,8 @@
               "task": "Grim sagt deine digitale Sicherheit ist ein Witz. Er lacht nicht.",
               "realWorldTask": "Ändere mindestens 5 wichtige Passwörter zu sicheren, einzigartigen Passwörtern",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ],
         [
@@ -3498,7 +3643,8 @@
               "task": "Grim besteht auf maximale Sicherheit.",
               "realWorldTask": "Aktiviere 2FA auf allen wichtigen Accounts (E-Mail, Bank, Social Media)",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3535,7 +3681,8 @@
               "task": "Celes will dass du den Himmel beobachtest. Nicht metaphorisch.",
               "realWorldTask": "Geh abends raus und schau 10 Minuten in den Nachthimmel — ohne Handy, nur beobachten",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -3552,7 +3699,8 @@
               "task": "Celes möchte dass du reflektierst. Über das Große und das Kleine.",
               "realWorldTask": "Schreibe 3 Dinge auf die dich diese Woche dankbar gemacht haben und 3 Ziele für die nächste",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -3589,7 +3737,8 @@
               "task": "Dante braucht einen Beweis deiner Zuverlässigkeit.",
               "realWorldTask": "Erledige 3 Aufgaben die du seit über einer Woche aufschiebst — heute, keine Ausreden",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3606,7 +3755,8 @@
               "task": "Dante hat einen eiligen Auftrag. Geschwindigkeit und Ausdauer gefragt.",
               "realWorldTask": "45 Minuten Cardio — Laufen, Radfahren oder schnelles Gehen. Tempo zählt.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3623,7 +3773,8 @@
               "task": "Dante schließt seinen Handel ab. Du verhandelst.",
               "realWorldTask": "Verhandle etwas in deinem Leben: Preis, Gehalt, Aufgabenverteilung, oder einen Kompromiss mit jemandem",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -3660,7 +3811,8 @@
               "task": "Stella hat eine Theorie. Sie braucht Daten. Du bist die Daten.",
               "realWorldTask": "Recherchiere 45 Minuten ein wissenschaftliches Thema das dich fasziniert und mache strukturierte Notizen",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3677,7 +3829,8 @@
               "task": "Stella will dass du erklärst was du gelernt hast. Verständlich. Für jemanden der es nicht kennt.",
               "realWorldTask": "Erkläre jemandem ein komplexes Thema in einfachen Worten — oder schreib einen Erklärungstext",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -3714,7 +3867,8 @@
               "task": "Gus will dass sein Tisch voll ist. Sorg dafür.",
               "realWorldTask": "Organisiere ein gemeinsames Essen — koche für jemanden oder lade Freunde/Familie ein",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3731,7 +3885,8 @@
               "task": "Gus will dass du nicht nur kochst, sondern die Zeit genießt.",
               "realWorldTask": "Verbring einen Abend mit jemandem Wichtigem — handyfrei, bewusst, mit gutem Essen",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -3768,7 +3923,8 @@
               "task": "Kaya beginnt langsam. Fundament zuerst.",
               "realWorldTask": "30 Minuten Outdoor-Aktivität: Wandern, Treppensteigen, bergauf Joggen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3785,7 +3941,8 @@
               "task": "Kaya erhöht die Anforderung. Der Berg wird steiler.",
               "realWorldTask": "Ein hartes Workout: 60 Minuten Cardio, Treppenlauf, oder eine echte Wanderung mit Höhenmetern",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3802,7 +3959,8 @@
               "task": "Der Gipfel. Der Moment der Ruhe danach. Kayas eigentliche Lektion.",
               "realWorldTask": "Geh an einen ruhigen Ort in der Natur. Sitz 15 Minuten still. Denk nach über was du erreicht hast.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -3839,7 +3997,8 @@
               "task": "Simon will dass du etwas Altes hervorholst — Fotos, Briefe, Erinnerungen.",
               "realWorldTask": "Geh durch alte Fotos, Briefe oder Erinnerungsstücke. Ordne sie. Genieß die Nostalgie.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3856,7 +4015,8 @@
               "task": "Simon sagt: Erinnerungen sind zum Teilen da.",
               "realWorldTask": "Teile ein altes Foto oder eine Erinnerung mit jemandem der dabei war. Lacht zusammen.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -3893,7 +4053,8 @@
               "task": "Ines lehrt Verteidigung. Im Leben wie im Kampf: Grenzen setzen.",
               "realWorldTask": "Sage heute zu mindestens einer Sache bewusst 'Nein' die du normalerweise akzeptieren würdest",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3910,7 +4071,8 @@
               "task": "Ines' zweite Lektion: Nach dem Nein kommt das Ja zu etwas Besserem.",
               "realWorldTask": "Nachdem du gestern Nein gesagt hast — nutze die gewonnene Zeit für etwas das DIR wichtig ist",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -3947,7 +4109,8 @@
               "task": "Kaspar hat dich untersucht. Die Ergebnisse sind... voraussehbar.",
               "realWorldTask": "20 Minuten Mobility/Stretching-Routine — Fokus auf Nacken, Schultern, Hüfte, unterer Rücken",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -3964,7 +4127,8 @@
               "task": "Kaspar verschreibt eine Kur. Ganzkörperlich. Ganzheitlich.",
               "realWorldTask": "Heute: 30min Bewegung + 2L Wasser + kein Zucker + 7h Schlaf. Das volle Programm.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -4001,7 +4165,8 @@
               "task": "Marco stellt unbequeme Fragen. Du findest unbequeme Antworten.",
               "realWorldTask": "Reflektiere ehrlich: In welchen Situationen 'spielst' du eine Rolle? Schreib es auf.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -4018,7 +4183,8 @@
               "task": "Marco's letzte Lektion: Sei ehrlich. Mit jemandem der es verdient.",
               "realWorldTask": "Führe ein ehrliches Gespräch mit jemandem über etwas das du normalerweise vermeidest",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -4055,7 +4221,8 @@
               "task": "Compass sagt: Beweg dich. Wohin ist zweitrangig.",
               "realWorldTask": "Geh 30 Minuten spazieren — ohne Ziel, ohne Podcast, ohne Handy. Nur gehen und denken.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -4072,7 +4239,8 @@
               "task": "Compass will dass du einen neuen Weg findest. Buchstäblich oder metaphorisch.",
               "realWorldTask": "Ändere eine Routine: anderer Arbeitsweg, anderer Laden, anderer Tagesablauf — irgendwas Neues",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -4109,7 +4277,8 @@
               "task": "Nora hat eine Challenge. Die Regeln sind einfach. Das Durchhalten weniger.",
               "realWorldTask": "Mach eine langweilige Aufgabe (Putzen, Papierkram, Sortieren) — aber mit einem Timer und dem Ziel es in Rekordzeit zu schaffen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -4126,7 +4295,8 @@
               "task": "Nora verlangt: Spiel mit anderen. Brett, Karten, digital — egal. Zusammen.",
               "realWorldTask": "Organisiere einen Spieleabend mit Freunden, Familie oder online — mindestens 1 Stunde",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -4163,7 +4333,8 @@
               "task": "Valka beginnt mit Disziplin. Nicht mit Motivation — Motivation ist unzuverlässig.",
               "realWorldTask": "Steh morgen 30 Minuten früher auf als gewohnt und nutze die Zeit für Bewegung oder Planung",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -4180,7 +4351,8 @@
               "task": "Valka plant nicht nur — sie plant für das Scheitern des Plans.",
               "realWorldTask": "Plane deine gesamte nächste Woche: Hauptziele, Backup-Plan, und was du tust wenn alles schiefgeht",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -4197,7 +4369,8 @@
               "task": "Valkas letzte Prüfung. Alles was du geplant hast — jetzt durchziehen.",
               "realWorldTask": "Zieh deinen Wochenplan durch — den ganzen Tag, Punkt für Punkt. Kein Abweichen.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -4234,7 +4407,8 @@
               "task": "Faye hat eine Idee. Ob sie funktioniert? Nur ein Weg das herauszufinden.",
               "realWorldTask": "Probiere etwas Neues aus bei dem du wahrscheinlich scheiterst — neue Programmiersprache, Technik, Rezept. Das Scheitern IST der Erfolg.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -4251,7 +4425,8 @@
               "task": "Faye will dass du es nochmal versuchst. Besser. Anders. Mutiger.",
               "realWorldTask": "Nimm das Gescheiterte von gestern und verbesser es. Analysiere was schiefging und mach es neu.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -4288,7 +4463,8 @@
               "task": "Aurelius lehrt Diplomatie. Lektion 1: Zuhören. Wirklich zuhören.",
               "realWorldTask": "Führe ein Gespräch in dem du nur Fragen stellst und zuhörst. Kein Ratschlag, kein 'bei mir auch'. Nur Zuhören.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -4305,7 +4481,8 @@
               "task": "Aurelius' Meisterstück: Eine Brücke bauen wo vorher keine war.",
               "realWorldTask": "Löse einen Konflikt oder ein Missverständnis mit jemandem. Geh auf die Person zu, nicht weg.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -4342,7 +4519,8 @@
               "task": "Ignis fordert dich. Nicht physisch — mental. Der härteste Kampf ist gegen dich selbst.",
               "realWorldTask": "Mache die schwierigste Aufgabe auf deiner Liste — die die du am meisten fürchtest. Heute.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -4359,7 +4537,8 @@
               "task": "Ignis' finale Aufgabe: Erschaffe etwas auf das du stolz bist.",
               "realWorldTask": "Widme einen halben Tag (4+ Stunden) deinem wichtigsten kreativen oder beruflichen Projekt. Kein Multitasking.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -4396,7 +4575,8 @@
               "task": "Raven konfrontiert dich mit dem was du vermeidest.",
               "realWorldTask": "Schreibe 3 Dinge auf die du verdängst oder vor dir herschiebst — und warum. Ehrlich.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -4413,7 +4593,8 @@
               "task": "Raven will Taten sehen. Die Geister vertreiben heißt sich ihnen stellen.",
               "realWorldTask": "Erledige eine der Sachen von gestern. Die schlimmste. Heute. Keine Ausreden.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -4450,7 +4631,8 @@
               "task": "Aeon stellt eine Frage die kein Buch beantworten kann.",
               "realWorldTask": "Setz dich 30 Minuten hin und schreibe: Was sind deine 5 tiefsten Überzeugungen? Warum glaubst du sie? Stimmen sie noch?",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -4467,7 +4649,8 @@
               "task": "Aeons Perspektive: Du hast nicht ewig. Handle danach.",
               "realWorldTask": "Wenn du nur noch 5 Jahre hättest — was würdest du ändern? Schreib es auf. Ändere EINE Sache davon heute.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -4484,7 +4667,8 @@
               "task": "Aeons letzte Aufgabe: Hinterlasse etwas das bleibt.",
               "realWorldTask": "Erstelle etwas Bleibendes: Schreib einen Artikel, lehre jemanden eine Fähigkeit, starte ein Projekt das anderen hilft",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ]
@@ -4521,7 +4705,8 @@
               "task": "Der Besucher stellt eine einfache Frage. Die Antwort ist es nicht.",
               "realWorldTask": "Tue heute etwas das sich wirklich lohnt. Nicht produktiv — lohnenswert. Es gibt einen Unterschied.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -4538,7 +4723,8 @@
               "task": "Der Besucher geht. Aber die Frage bleibt.",
               "realWorldTask": "Mach einen Plan für die nächsten 3 Monate. Was willst du erreicht haben wenn er wiederkommt? Schreib es auf.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ]
@@ -4575,7 +4761,8 @@
               "task": "Die Stille sagt nichts. Aber der Raum um sie herum sagt alles. Hör zu.",
               "realWorldTask": "10 Minuten absolute Stille. Kein Handy, keine Musik, keine Gespräche. Nur sitzen und da sein.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -4592,7 +4779,8 @@
               "task": "Die Stille wird tiefer. In ihr findest du was du suchst. Oder was dich sucht.",
               "realWorldTask": "30 Minuten Meditation oder Achtsamkeit. Keine geführte — nur du und die Stille. Was kommt hoch?",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -4609,7 +4797,8 @@
               "task": "Die dritte Stille ist die Stille des Verstehens. Man findet sie nur wenn man aufhört zu suchen.",
               "realWorldTask": "Verbring 1 Stunde allein in der Natur. Kein Ziel, kein Tempo, kein Plan. Nur sein.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ]
@@ -4646,7 +4835,8 @@
               "task": "Ernst braucht fleißige Hände.",
               "realWorldTask": "Erledige 3 kleine Haushaltsaufgaben die du sonst ignorierst — Müll, Geschirr, Wäsche",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -4683,7 +4873,8 @@
               "task": "Vivienne will Bewegung. Nicht Sport — Bewegung. Der Unterschied ist Freude.",
               "realWorldTask": "Hör dein Lieblingslied und tanz 5 Minuten dazu. Allein. Niemand schaut. Versprochen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -4700,7 +4891,8 @@
               "task": "Vivienne fordert eine längere Session.",
               "realWorldTask": "30 Minuten Bewegung die Spaß macht — Tanzen, Yoga, Schwimmen, Radfahren — kein 'Muss', nur 'Will'",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -4737,7 +4929,8 @@
               "task": "Ash hat einen Fall. Du bist der Ermittler.",
               "realWorldTask": "Recherchiere ein Problem das du hast — wirklich recherchieren, nicht googlen und aufgeben. 45 Minuten deep dive.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -4754,7 +4947,8 @@
               "task": "Ash will keine Vermutungen — Ash will Fakten.",
               "realWorldTask": "Setze um was du recherchiert hast. Konkretes Ergebnis, nicht nur Wissen.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -4791,7 +4985,8 @@
               "task": "Helen stellt eine Frage. Die Antwort findest du nicht im Internet.",
               "realWorldTask": "Frage dich: Was würdest du tun wenn du wüsstest dass du nicht scheitern kannst? Schreib 3 Antworten auf.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -4828,7 +5023,8 @@
               "task": "Finn erinnert dich an deine Verantwortung. Die mit den Augen.",
               "realWorldTask": "Kümmere dich um dein Haustier: Extra-Spielzeit, Fellpflege, neues Spielzeug. Kein Haustier? Geh Tiere im Tierheim besuchen.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -4865,7 +5061,8 @@
               "task": "Claude will dass du etwas erschaffst. Qualität ist irrelevant. Mut ist alles.",
               "realWorldTask": "Zeichne, male oder kritzle 20 Minuten. Egal was. Egal wie. Zeig es niemandem wenn du willst.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -4882,7 +5079,8 @@
               "task": "Claude will dass du deine Kreation zeigst.",
               "realWorldTask": "Teile etwas Kreatives das du gemacht hast mit jemandem — ein Bild, einen Text, eine Idee",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -4919,7 +5117,8 @@
               "task": "Echo will dass du dich informierst. Über etwas das dich direkt betrifft.",
               "realWorldTask": "Informiere dich gründlich über ein Thema das deine Karriere oder Finanzen direkt betrifft — 45min Recherche",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -4936,7 +5135,8 @@
               "task": "Echo erwartet Ergebnisse. Keine Berichte — Ergebnisse.",
               "realWorldTask": "Handle basierend auf deiner Recherche: Mach einen Termin, bewirb dich, kündige etwas, ändere etwas",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -4973,7 +5173,8 @@
               "task": "Aria will dass du Musik nicht nur hörst — sondern fühlst.",
               "realWorldTask": "Hör dir ein Musikalbum komplett durch — von Anfang bis Ende, ohne Unterbrechung, ohne Multitasking",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -4990,7 +5191,8 @@
               "task": "Aria sucht dein persönliches Lied — nicht zum Singen, zum Leben.",
               "realWorldTask": "Erstelle eine Playlist mit 10 Songs die dein aktuelles Lebensgefühl beschreiben. Teile sie mit jemandem.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -5027,7 +5229,8 @@
               "task": "Petra braucht handwerkliche Hilfe.",
               "realWorldTask": "Mach etwas Handwerkliches: Regal montieren, Bild aufhängen, Fahrrad reparieren, Möbel zusammenbauen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -5044,7 +5247,8 @@
               "task": "Petra will dass du etwas FERTIG machst. Nicht anfängst — FERTIG.",
               "realWorldTask": "Beende ein Projekt das du angefangen aber nie abgeschlossen hast — egal wie klein",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5081,7 +5285,8 @@
               "task": "Dominik hält dir den Spiegel vor. Ist nicht immer angenehm.",
               "realWorldTask": "Schreibe 5 Dinge auf die du verbessern KÖNNTEST aber bewusst nicht tust. Warum nicht? Ehrlich sein.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -5098,7 +5303,8 @@
               "task": "Dominik hat genug geredet. Jetzt wird gemacht.",
               "realWorldTask": "Nimm eine Sache von gestern und mach den ersten konkreten Schritt. Nicht planen — MACHEN.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5135,7 +5341,8 @@
               "task": "Björn braucht Hilfe beim Brauen. Oder beim Trinken. Meist beides.",
               "realWorldTask": "Nimm dir 30 Minuten für etwas das Geduld erfordert — langsam kochen, Handarbeit, oder einfach warten ohne Handy",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5172,7 +5379,8 @@
               "task": "Clara hat Post für dich. Antworten ist Pflicht.",
               "realWorldTask": "Beantworte 3 Nachrichten die du schuldig bist — E-Mails, Texte, Briefe",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5209,7 +5417,8 @@
               "task": "Thorn jätet Unkraut. Heute jätest du.",
               "realWorldTask": "Identifiziere eine schlechte Gewohnheit und ersetze sie heute bewusst durch eine bessere",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5246,7 +5455,8 @@
               "task": "Swift will dass du dich bewegst. Sofort. Jetzt. LOS.",
               "realWorldTask": "10 Minuten HIIT oder Sprint-Intervalle — 30 Sek schnell, 30 Sek Pause, repeat",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5283,7 +5493,8 @@
               "task": "Agnes duldet keine Schmutzwäsche. Weder echte noch metaphorische.",
               "realWorldTask": "Wäsche waschen, zusammenlegen UND wegräumen. Ja, auch wegräumen. Der schwierigste Teil.",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5320,7 +5531,8 @@
               "task": "Vulkan fordert Kraft. Nicht die physische — die andere. Die die zählt.",
               "realWorldTask": "Krafttraining: 3 Sätze Liegestützen, Squats, und Planks — bis zum Muskelversagen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -5337,7 +5549,8 @@
               "task": "Vulkan testet deine Belastbarkeit. Nicht physisch — mental.",
               "realWorldTask": "Tu etwas Unbequemes das dich langfristig stärker macht: schwieriges Gespräch, Bewerbung, Grenze setzen",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5374,7 +5587,8 @@
               "task": "Nova sagt dir was passiert wenn du so weitermachst wie bisher. Keine Sterne. Nur Logik.",
               "realWorldTask": "Projiziere: Wenn du die nächsten 90 Tage genau so weitermachst wie jetzt — wo stehst du dann? Schreib es auf.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5411,7 +5625,8 @@
               "task": "Magpie will dass du dein eigenes Chaos ordnest.",
               "realWorldTask": "Räume eine Schublade, einen Schrank oder einen digitalen Ordner komplett aus und organisiere ihn neu",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5448,7 +5663,8 @@
               "task": "Fern lehrt Geduld durch Beobachtung.",
               "realWorldTask": "Geh raus und beobachte die Natur 20 Minuten — beschreibe 5 Dinge die dir zum ersten Mal auffallen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -5465,7 +5681,8 @@
               "task": "Fern stellt die tiefere Frage.",
               "realWorldTask": "Reflektiere: Was gibt dir Halt? Wer sind die Menschen die dich tragen? Melde dich bei einem davon.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -5502,7 +5719,8 @@
               "task": "Tesla hat eine Idee. Du bist der Prototyp.",
               "realWorldTask": "Lerne ein neues Tool oder eine Technologie und bau damit etwas Kleines in 1 Stunde",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -5519,7 +5737,8 @@
               "task": "Tesla will Iteration. Nicht neu anfangen — verbessern.",
               "realWorldTask": "Nimm was du gestern gebaut hast und verbessere es. Dokumentiere was du geändert hast und warum.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -5556,7 +5775,8 @@
               "task": "Justina will Rechenschaft. Von dir. Über dich.",
               "realWorldTask": "Mache eine ehrliche Selbstbewertung: Was läuft gut? Was nicht? Was lügst du dir vor?",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -5573,7 +5793,8 @@
               "task": "Justina duldet keine Ausreden. Nur Taten.",
               "realWorldTask": "Ändere EINE Sache die du bei der Selbstbewertung gefunden hast. Nicht planen — ändern. Heute.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -5610,7 +5831,8 @@
               "task": "Sol lehrt Ausdauer. Die stille Art.",
               "realWorldTask": "Mache etwas allein das du normalerweise vermeidest — allein essen gehen, allein spazieren, allein ins Kino",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -5627,7 +5849,8 @@
               "task": "Sol zeigt dass Alleinsein und Einsamsein verschiedene Dinge sind.",
               "realWorldTask": "Hilf jemandem der gerade eine schwere Zeit hat — aktiv, nicht nur 'Meld dich wenn du was brauchst'",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -5644,7 +5867,8 @@
               "task": "Sols letzte Lektion: Durchhalten. Nicht weil es leicht ist.",
               "realWorldTask": "Steh bei Sonnenaufgang auf. Sieh zu wie es hell wird. Dann leg los mit dem wichtigsten Tag dieser Woche.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -5681,7 +5905,8 @@
               "task": "Elara zeigt dir deine unsichtbaren Fäden.",
               "realWorldTask": "Identifiziere 3 Gewohnheiten oder Verhaltensweisen die du tust weil du 'musst' — nicht weil du willst. Hinterfrage jede.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -5698,7 +5923,8 @@
               "task": "Elara gibt dir die Schere. Was du damit machst ist deine Entscheidung.",
               "realWorldTask": "Ändere oder beende eine Sache in deinem Leben die du nur aus Gewohnheit oder Pflichtgefühl machst — nicht mehr",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -5735,7 +5961,8 @@
               "task": "Der Namenlose sagt drei Worte. Sie treffen.",
               "realWorldTask": "Schreibe die eine Sache auf die dich am meisten belastet. Sag sie laut. Dann entscheide was du damit tust.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -5752,7 +5979,8 @@
               "task": "Der Namenlose geht. Du gehst mit. Schweigend.",
               "realWorldTask": "60 Minuten gehen. Kein Ziel. Kein Podcast. Kein Telefon. Nur du und der Weg.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -5769,7 +5997,8 @@
               "task": "Der Namenlose verschwindet wie er kam. Aber seine letzte Aufgabe bleibt.",
               "realWorldTask": "Schenke jemandem 2 Stunden deiner ungeteilten Aufmerksamkeit. Kein Handy. Kein Nebenbei. Nur für diese Person da sein.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ]
@@ -5806,7 +6035,8 @@
               "task": "Fritz beginnt seine Arbeit um 4 Uhr. Du fängst etwas bescheidener an.",
               "realWorldTask": "Steh morgen 30 Minuten früher auf als normal und nutze die extra Zeit produktiv",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5843,7 +6073,8 @@
               "task": "Magda inspiziert. Magda urteilt. Magda hat immer recht.",
               "realWorldTask": "Kompletter Deep-Clean einer Zone: Küche ODER Bad ODER Schlafzimmer — richtig gründlich",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5880,7 +6111,8 @@
               "task": "Pip will dass du jemandem den Tag erhellst.",
               "realWorldTask": "Mach jemandem eine kleine Freude: Kompliment, Kaffee ausgeben, Tür aufhalten, Nachricht schreiben",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5917,7 +6149,8 @@
               "task": "Iris will einen Bauplan. Nicht für ein Haus — für deine Woche.",
               "realWorldTask": "Plane deine nächste Woche strukturiert: Zeitblöcke, Prioritäten, Puffer für Unerwartetes",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -5934,7 +6167,8 @@
               "task": "Iris will sehen ob dein Plan funktioniert hat. Und was du gelernt hast wenn nicht.",
               "realWorldTask": "Review deiner Wochenplanung: Was hat funktioniert? Was nicht? Passe den Plan für nächste Woche an.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -5971,7 +6205,8 @@
               "task": "Jest will dass du jemanden zum Lachen bringst. Echt lachen. Nicht höflich.",
               "realWorldTask": "Bring heute mindestens eine Person zum ehrlichen Lachen — Witz, lustige Geschichte, albernes Meme",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -6008,7 +6243,8 @@
               "task": "Grau teilt eine Lektion. Du entscheidest ob du sie annimmst.",
               "realWorldTask": "Sprich mit jemandem der mehr Erfahrung hat als du in einem Bereich der dir wichtig ist. Hör zu.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -6025,7 +6261,8 @@
               "task": "Grau will dass du weitergibst was du gelernt hast.",
               "realWorldTask": "Hilf jemandem der weniger Erfahrung hat als du — erkläre, zeige, teile dein Wissen",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -6062,7 +6299,8 @@
               "task": "Luna lehrt Priorisierung. Die schmerzhafte Art.",
               "realWorldTask": "Liste alle deine aktuellen Verpflichtungen auf. Streiche eine. Ja, eine muss weg.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -6099,7 +6337,8 @@
               "task": "Gold zeigt dir was sich ändern muss.",
               "realWorldTask": "Identifiziere einen Bereich deines Lebens der stagniert. Schreibe 3 konkrete Schritte auf um ihn zu verändern.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -6116,7 +6355,8 @@
               "task": "Gold will Ergebnisse. Konkret. Messbar. Jetzt.",
               "realWorldTask": "Mache den ersten Schritt deines Plans von gestern. Nicht den leichtesten — den wichtigsten.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -6153,7 +6393,8 @@
               "task": "Morphea will dass du zuhörst. Nicht anderen — dir selbst.",
               "realWorldTask": "Schreibe morgen direkt nach dem Aufwachen auf woran du dich erinnerst — Träume, Gedanken, Gefühle. 10 Minuten.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -6170,7 +6411,8 @@
               "task": "Morphea gibt dir einen wachen Traum. Eine Vision davon was sein könnte.",
               "realWorldTask": "Schreibe in 20 Minuten dein ideales Leben in 5 Jahren auf. Detailliert. Wo, was, mit wem, wie.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -6207,7 +6449,8 @@
               "task": "Granite lehrt Reduktion. Weniger ist mehr. Viel weniger ist viel mehr.",
               "realWorldTask": "Lösche 20 Apps von deinem Handy die du im letzten Monat nicht benutzt hast",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "rare"
           },
           {
             "template": "npc-quest",
@@ -6224,7 +6467,8 @@
               "task": "Granite meißelt weiter. Diesmal an deinem Zeitplan.",
               "realWorldTask": "Streiche 3 regelmäßige Verpflichtungen die dir nichts geben. Sag ab. Befreie Zeit.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -6261,7 +6505,8 @@
               "task": "Mappe zeichnet deine Zukunftskarte. Du entscheidest die Route.",
               "realWorldTask": "Erstelle eine Roadmap für ein persönliches Ziel: 30-60-90 Tage Meilensteine",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "rare"
           }
         ]
       ]
@@ -6298,7 +6543,8 @@
               "task": "Athena lehrt strategisches Denken. Nicht theoretisch — praktisch.",
               "realWorldTask": "Analysiere ein Problem das du hast aus 3 verschiedenen Perspektiven. Schreibe für jede einen Lösungsansatz.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -6315,7 +6561,8 @@
               "task": "Athena fordert den entscheidenden Zug.",
               "realWorldTask": "Mache heute die eine Sache die du seit Wochen vor dir herschiebst. Die große. Die unbequeme. Jetzt.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -6352,7 +6599,8 @@
               "task": "Chronos zeigt dir deine Muster. Die bequemen und die zerstörerischen.",
               "realWorldTask": "Identifiziere ein sich wiederholendes Problem in deinem Leben. Wann passiert es? Was triggert es? Schreib das Muster auf.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -6369,7 +6617,8 @@
               "task": "Chronos will dass du das Muster brichst. Einmal. Bewusst. Heute.",
               "realWorldTask": "Wenn dein Trigger-Moment heute kommt: reagiere ANDERS als sonst. Bewusst. Dokumentiere was passiert.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -6406,7 +6655,8 @@
               "task": "Grace diagnostiziert. Nicht den Körper — die Gewohnheiten.",
               "realWorldTask": "Sei heute gut zu dir: Gesund essen, genug trinken, früh schlafen, 30min Bewegung. Alles davon.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -6423,7 +6673,8 @@
               "task": "Grace will Kontinuität. Nicht einen guten Tag — eine gute Woche.",
               "realWorldTask": "Wiederhole den gesunden Tag von gestern. 5 Tage in Folge. Grace kontrolliert.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
@@ -6460,7 +6711,8 @@
               "task": "Max will dass du dich informierst. Aber richtig — nicht scrollen.",
               "realWorldTask": "Lies 15 Minuten echte Nachrichten oder einen Fachartikel — kein Social Media Feed",
               "difficulty": "starter"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -6497,7 +6749,8 @@
               "task": "Mutter Erde will einen Anruf. Nicht morgen. Jetzt.",
               "realWorldTask": "Ruf deine Mutter an. Oder deinen Vater. Oder die Person die für dich 'Mutter Erde' ist. Mindestens 15 Minuten.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -6514,7 +6767,8 @@
               "task": "Mutter Erde will ein Familienessen. Kein Fast Food. Kein Handy. Nur Familie.",
               "realWorldTask": "Organisiere ein Essen mit deiner Familie. Koche selbst oder geht zusammen essen. Quality Time.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           },
           {
             "template": "npc-quest",
@@ -6531,7 +6785,8 @@
               "task": "Mutter Erdes letzte Bitte: Bewahre die Geschichten.",
               "realWorldTask": "Frag ein älteres Familienmitglied nach einer Geschichte aus der Vergangenheit. Schreib sie auf. Wirklich auf.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "legendary"
           }
         ]
       ]
@@ -6568,7 +6823,8 @@
               "task": "Umami will dass du kochst. Richtig. Von Grund auf.",
               "realWorldTask": "Koche ein Gericht das du noch nie gemacht hast. Neues Rezept, neue Zutaten, neues Abenteuer.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           },
           {
             "template": "npc-quest",
@@ -6585,7 +6841,8 @@
               "task": "Umami will dass du teilst.",
               "realWorldTask": "Bekoche jemanden — Partner, Freund, Familie, Nachbar. Das Essen ist das Geschenk.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -6622,7 +6879,8 @@
               "task": "Gruber will Tiefgang. Nicht oberflächlich lernen — richtig.",
               "realWorldTask": "Vertiefe dich 1 Stunde in ein Thema. Nicht googeln-und-weiter — wirklich verstehen, Notizen machen, Zusammenhänge finden.",
               "difficulty": "intermediate"
-            }
+            },
+            "rarity": "uncommon"
           }
         ]
       ]
@@ -6659,7 +6917,8 @@
               "task": "Erin stellt die wichtigste Frage: Wo sind deine Grenzen?",
               "realWorldTask": "Sage heute zu einer Sache Nein die du normalerweise aus Pflichtgefühl zusagst. Ohne Entschuldigung.",
               "difficulty": "advanced"
-            }
+            },
+            "rarity": "epic"
           },
           {
             "template": "npc-quest",
@@ -6676,7 +6935,8 @@
               "task": "Erin will dass du dir Zeit nimmst. Nur für dich. Ohne Schuldgefühle.",
               "realWorldTask": "Blockiere 2 Stunden in deinem Kalender nur für dich. Keine Arbeit, keine Pflichten. Was du willst.",
               "difficulty": "expert"
-            }
+            },
+            "rarity": "epic"
           }
         ]
       ]
