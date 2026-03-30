@@ -34,7 +34,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Stats ──
   kraft: {
     title: "Kraft",
-    icon: "⚔️",
+    icon: "/images/icons/stat-kraft.png",
     accent: "#ef4444",
     body: (
       <>
@@ -47,7 +47,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   ausdauer: {
     title: "Ausdauer",
-    icon: "🛡️",
+    icon: "/images/icons/stat-ausdauer.png",
     accent: "#3b82f6",
     body: (
       <>
@@ -60,7 +60,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   weisheit: {
     title: "Weisheit",
-    icon: "📖",
+    icon: "/images/icons/stat-weisheit.png",
     accent: "#f59e0b",
     body: (
       <>
@@ -73,7 +73,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   glueck: {
     title: "Glück",
-    icon: "🍀",
+    icon: "/images/icons/stat-glueck.png",
     accent: "#22c55e",
     body: (
       <>
@@ -134,7 +134,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Core Systems ──
   forge_temp: {
     title: "Forge Temperature",
-    icon: "🔥",
+    icon: "/images/icons/temp-hot.png",
     accent: "#f97316",
     body: (
       <>
@@ -150,7 +150,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   streak: {
     title: "Streak",
-    icon: "🔗",
+    icon: "/images/icons/ui-streak-fire.png",
     accent: "#fbbf24",
     body: (
       <>
@@ -163,7 +163,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   xp: {
     title: "Experience Points (XP)",
-    icon: "✨",
+    icon: "/images/icons/reward-xp.png",
     accent: "#a855f7",
     body: (
       <>
@@ -181,7 +181,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Currencies ──
   gold: {
     title: "Gold",
-    icon: "🪙",
+    icon: "/images/icons/currency-gold.png",
     accent: "#f59e0b",
     body: (
       <>
@@ -210,7 +210,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   essenz: {
     title: "Essenz",
-    icon: "🔴",
+    icon: "/images/icons/currency-essenz.png",
     accent: "#ef4444",
     body: <p>Crafting currency. Earned by <strong>dismantling gear</strong> at the Schmied (Salvage tab) and from daily login rewards. Used for enchanting rerolls, Ätherwürfel extraction, and recipe learning.</p>,
   },
@@ -344,7 +344,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   rift: {
     title: "The Rift (Dungeons)",
-    icon: "🌀",
+    icon: "/images/icons/nav-rift.png",
     accent: "#a855f7",
     body: (
       <>
@@ -414,7 +414,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   hearth: {
     title: "The Hearth (Rest Mode)",
-    icon: "🏠",
+    icon: "/images/icons/nav-hearth.png",
     accent: "#d97706",
     body: (
       <>
@@ -524,7 +524,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   companions: {
     title: "Companions",
-    icon: "🐾",
+    icon: "/images/icons/companion-dragon.png",
     accent: "#ec4899",
     body: (
       <>
@@ -622,7 +622,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Professions & Crafting ──
   professions: {
     title: "Professions",
-    icon: "⚒️",
+    icon: "/images/icons/nav-forge.png",
     accent: "#f59e0b",
     body: (
       <>
@@ -640,7 +640,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   prof_waffenschmied: {
     title: "Weaponsmith",
-    icon: "⚔️",
+    icon: "/images/icons/prof-waffenschmied.png",
     accent: "#dc2626",
     body: (
       <>
@@ -668,7 +668,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   prof_schneider: {
     title: "Tailor",
-    icon: "🧵",
+    icon: "/images/icons/prof-schneider.png",
     accent: "#a855f7",
     body: (
       <>
@@ -682,7 +682,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   prof_lederverarbeiter: {
     title: "Leatherworker",
-    icon: "🦌",
+    icon: "/images/icons/prof-lederverarbeiter.png",
     accent: "#b45309",
     body: (
       <>
@@ -696,7 +696,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   prof_alchemist: {
     title: "Alchemist",
-    icon: "⚗️",
+    icon: "/images/icons/prof-alchemist.png",
     accent: "#22c55e",
     body: (
       <>
@@ -709,7 +709,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   prof_koch: {
     title: "Cook",
-    icon: "🍳",
+    icon: "/images/icons/prof-koch.png",
     accent: "#ef4444",
     body: (
       <>
@@ -722,7 +722,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   prof_verzauberer: {
     title: "Enchanter",
-    icon: "✨",
+    icon: "/images/icons/prof-verzauberer.png",
     accent: "#6366f1",
     body: (
       <>
@@ -776,7 +776,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   materials: {
     title: "Crafting Materials",
-    icon: "🧱",
+    icon: "/images/icons/mat-eisenerz.png",
     accent: "#f59e0b",
     body: (
       <>
@@ -807,7 +807,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   gems: {
     title: "Gem & Socket System",
-    icon: "💎",
+    icon: "/images/icons/currency-stardust.png",
     accent: "#a855f7",
     body: (
       <>
@@ -908,7 +908,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Weekly Challenge Subtypes ──
   sternenpfad: {
     title: "Star Path (Sternenpfad)",
-    icon: "⭐",
+    icon: "/images/icons/nav-challenges.png",
     accent: "#fbbf24",
     body: (
       <>
@@ -921,7 +921,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   },
   expedition: {
     title: "Expedition",
-    icon: "🗺️",
+    icon: "/images/icons/expedition-generic.png",
     accent: "#22c55e",
     body: (
       <>
@@ -1129,7 +1129,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Quest Details ──
   quest_types: {
     title: "Quest Types",
-    icon: "🏷️",
+    icon: "/images/icons/ui-quest-scroll.png",
     accent: "#6366f1",
     body: (
       <>
