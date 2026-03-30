@@ -42639,6 +42639,1620 @@
         "label": "+{value}% Crit Chance"
       },
       "setId": "legendary"
+    },
+    {
+      "id": "dun-ring-sunken-archive-rare",
+      "name": "Archivarsring der Tiefe",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Aus dem Archiv geborgen. Die Gravuren verändern sich, wenn man nicht hinschaut.",
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-ring-sunken-archive-epic",
+      "name": "Siegelring des Versunkenen Wissens",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Archivar trug ihn drei Jahrhunderte. Er sagt, der Ring habe mehr gelesen als er selbst.",
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-ring-shattered-spire-rare",
+      "name": "Splitterring des Turms",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Splitter des alten Turms, zu einem Ring geschmiedet. Er vibriert bei Höhenangst.",
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-ring-shattered-spire-epic",
+      "name": "Kronring der Zerbrochenen Spitze",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Geschmiedet aus dem Kern der Spitze. Der Schmied brauchte danach zwei Wochen Urlaub.",
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-ring-hollow-core-rare",
+      "name": "Hohlkernband",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Im Katalog steht: \"Enthält nichts.\" Die Fußnote widerspricht dem energisch.",
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-ring-hollow-core-epic",
+      "name": "Ring des Leeren Zentrums",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der letzte Träger behauptet, der Ring habe mit ihm gesprochen. Der Ring bestreitet das.",
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "rift-aetherklinge-des-wanderers",
+      "name": "Aetherklinge des Wanderers",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Sie schneidet nicht durch Materie. Sie schneidet durch die Ausreden, die Materie dafür hat, im Weg zu stehen.",
+      "icon": null,
+      "source": "rift:hard",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "rift-nullpunkt-stab",
+      "name": "Nullpunkt-Stab",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Temperatur: absoluter Nullpunkt. Stimmung: ähnlich. Im Katalog steht \"kühlend\". Das ist wie einen Tsunami \"feucht\" zu nennen.",
+      "icon": null,
+      "source": "rift:hard",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "rift-klinge-der-letzten-frist",
+      "name": "Klinge der Letzten Frist",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Geschmiedet in den letzten fünf Minuten vor einer Deadline. Man spürt die Panik. Sie macht stärker.",
+      "icon": null,
+      "source": "rift:legendary",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-zeitrissschwert",
+      "name": "Zeitrissschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es existiert gleichzeitig in drei Zeitlinien. In zweien davon ist es schärfer. In der dritten ist es ein Löffel. Niemand weiß, welche unsere ist.",
+      "icon": null,
+      "source": "rift:legendary",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 3,
+        "max": 6,
+        "label": "+{value}% Bond XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "wb-aschemantel-des-kolosses",
+      "name": "Aschemantel des Kolosses",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Gewoben aus der Asche eines gefallenen Burnout-Kolosses. Riecht nach verbrannter Ambition und Entschlossenheit.",
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "wb-wyrm-schuppenstiefel",
+      "name": "Wyrm-Schuppenstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Schuppen des Prokrastinations-Wyrms sind erstaunlich robust. Vermutlich, weil sie nie benutzt wurden.",
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "wb-helm-der-perfekten-makel",
+      "name": "Helm der Perfekten Makel",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Perfektions-Seraph trug ihn, um seine eine Schwäche zu verbergen: Er konnte \"gut genug\" nicht akzeptieren. Der Helm hat einen winzigen Kratzer. Er ist Absicht.",
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "streak_protection",
+        "min": 5,
+        "max": 15,
+        "label": "+{value}% Streak Protection"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "wb-apathie-souver-ns-thronschild",
+      "name": "Apathie-Souveräns Thronschild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Er hat aufgehört, sich zu verteidigen. Der Schild nicht. Im Grunde ist der Schild motivierter als sein ehemaliger Besitzer.",
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 5,
+        "max": 12,
+        "label": "-{value}% Forge Decay"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-flickenlederg-rtel",
+      "name": "Flickenledergürtel",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Er hält die Hose oben. Mehr wurde nicht versprochen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-verbeulter-topfhelm",
+      "name": "Verbeulter Topfhelm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "War mal ein Topf. Ist jetzt ein Helm. Die Beförderung war nicht geplant.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-rostige-klinge",
+      "name": "Rostige Klinge",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Technisch gesehen eine Waffe. Praktisch gesehen ein Tetanus-Risiko.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wollm-tze-des-entschlossenen",
+      "name": "Wollmütze des Entschlossenen",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 15,
+      "shopHidden": false,
+      "desc": "Sie hält warm und die Entschlossenheit drin. Oder den Wahnsinn. Schwer zu sagen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-lederschultern-des-anf-ngers",
+      "name": "Lederschultern des Anfängers",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 15,
+      "shopHidden": false,
+      "desc": "Jeder Held fängt irgendwo an. Die meisten fangen mit schlechten Schulterpolstern an.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-klingenw-chter-schwert",
+      "name": "Klingenwächter-Schwert",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Der Wächter, der es trug, wachte über eine Tür, die nirgendwohin führte. Das Schwert war trotzdem scharf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-kettenhemd-des-bibliothekars",
+      "name": "Kettenhemd des Bibliothekars",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Für den Bibliothekar, der weiß, dass manche Bücher zurückschlagen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-stiefel-des-vielgereisten",
+      "name": "Stiefel des Vielgereisten",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Zehntausend Meilen. Drei Kontinente. Null Blasen. Das Geheimnis? Gute Socken.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-amulett-der-stillen-st-rke",
+      "name": "Amulett der Stillen Stärke",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Es macht nicht stärker. Es macht stiller. Das ist manchmal das Gleiche.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schild-der-trotzigen",
+      "name": "Schild der Trotzigen",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Auf der Rückseite steht: \"Nein.\" Auf der Vorderseite auch. Die Botschaft ist klar.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schattenwandler-umhang",
+      "name": "Schattenwandler-Umhang",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Man wird nicht unsichtbar. Man wird nur sehr, sehr leicht zu übersehen. Der Unterschied ist subtil aber juristisch relevant.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-dornenkrone-des-willens",
+      "name": "Dornenkrone des Willens",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Die Dornen zeigen nach innen. Das ist entweder ein Designfehler oder ein Statement. Der Schmied weigert sich, es zu klären.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-sturmbrecher-axt",
+      "name": "Sturmbrecher-Axt",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Bricht keine Stürme. Macht sie. Der Wetterbericht hasst dieses Item.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
     }
   ],
   "setBonus": {
