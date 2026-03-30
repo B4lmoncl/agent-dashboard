@@ -660,6 +660,9 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
     }
   }
 
+  // Check achievements after dungeon collection
+  try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); } catch { /* optional */ }
+
   // Log activity for social feed
   logActivity(uid, 'quest_complete', {
     questTitle: `${dungeon.name} (Dungeon)`,

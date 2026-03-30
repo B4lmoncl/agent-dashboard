@@ -515,6 +515,9 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     rewards.push({ type: 'stardust', amount: bonusStardust });
   }
 
+  // Check achievements after world boss rewards
+  try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); } catch { /* optional */ }
+
   // Battle Pass XP for world boss kill
   try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(user, 'quest_complete', { rarity: 'legendary' }); } catch (e) { console.warn('[bp-xp] world-boss:', e.message); }
 

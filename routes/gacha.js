@@ -288,9 +288,19 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
       return res.status(500).json({ error: 'Pull failed — pool empty?' });
     }
 
+    // Track gacha pull count for achievements
+    u._gachaPullCount = (u._gachaPullCount || 0) + 1;
+    if (result.item.rarity) {
+      if (!u._gachaRarityPulls) u._gachaRarityPulls = {};
+      u._gachaRarityPulls[result.item.rarity] = (u._gachaRarityPulls[result.item.rarity] || 0) + 1;
+    }
+
     const { saveUsers } = require('../lib/state');
     saveUsers();
     saveGachaState();
+
+    // Check achievements after gacha pull
+    try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); } catch { /* optional */ }
 
     // Activity feed for epic+ pulls
     if (['epic', 'legendary'].includes(result.item.rarity)) {
