@@ -447,6 +447,12 @@ router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
     u.earnedTitles.push({ id: item.titleId, name: item.titleName, rarity: item.titleRarity || 'epic', earnedAt: now() });
     resultMsg = `Title "${item.titleName}" earned!`;
   } else if (item.type === 'boost' && item.effect) {
+    // Buff cap check (same as gold shop)
+    u.activeBuffs = u.activeBuffs || [];
+    if (u.activeBuffs.length >= 50) {
+      u.currencies[currency] += cost;
+      return res.status(400).json({ error: 'Max 50 active buffs. Use some first.' });
+    }
     resultMsg = applyShopEffect(u, item) || 'Boost activated!';
   } else if (item.type === 'cosmetic') {
     u.cosmetics = u.cosmetics || [];
