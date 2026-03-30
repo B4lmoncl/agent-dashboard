@@ -1876,15 +1876,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {recipe.cost.gold * effectiveCount}{effectiveCount > 1 ? ` (${recipe.cost.gold}x${effectiveCount})` : ""}
                             </span>
                           )}
-                          {recipe.vendorReagents && vendorReagentDefs.length > 0 && (() => {
-                            let cost = 0;
-                            for (const [rid, count] of Object.entries(recipe.vendorReagents)) {
-                              const def = vendorReagentDefs.find(r => r.id === rid);
-                              if (def) cost += def.price * (count as number);
-                            }
-                            if (cost <= 0) return null;
-                            return <span className="text-xs" style={{ color: "#fbbf24", opacity: 0.6 }} title="Vendor reagent cost">{cost * effectiveCount}g reagents</span>;
-                          })()}
                           {Object.entries(recipe.materials || {}).map(([matId, amt]) => {
                             const mat = materialDefs.find(m => m.id === matId);
                             const needed = (amt as number) * effectiveCount;
