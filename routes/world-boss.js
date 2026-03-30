@@ -499,7 +499,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
       const instance = rollSuffix(createGearInstance(template));
       if (!user.inventory) user.inventory = [];
       user.inventory.push(instance);
-      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot });
+      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null });
     }
   }
 

@@ -417,7 +417,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     const instance = rollSuffix(createGearInstance(template));
     if (!u.inventory) u.inventory = [];
     u.inventory.push(instance);
-    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot };
+    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null };
   }
 
   // Check if rift is fully completed
