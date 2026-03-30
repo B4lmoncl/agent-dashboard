@@ -274,7 +274,7 @@ function SternenpfadView({
                   </span>
                   <Stars earned={stage.earnedStars} animated />
                   {speedBonusActive && (
-                    <TipCustom title="Speed Bonus" icon="⚡" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
+                    <TipCustom title="Speed Bonus" icon="★" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
                         ★ Speed Bonus
                       </span>
@@ -618,7 +618,7 @@ function ExpeditionView({
                     <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
                       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: aboveFair ? "#4ade80" : "#f8717180" }} />
                       {/* Fair share target line */}
-                      <TipCustom title="Fair Share" icon="⚖️" accent="#fbbf24" body={<p>Each player&apos;s fair share is <strong>{fairShare} quests</strong>. Active players compensate for inactive ones.</p>}>
+                      <TipCustom title="Fair Share" icon="◆" accent="#fbbf24" body={<p>Each player&apos;s fair share is <strong>{fairShare} quests</strong>. Active players compensate for inactive ones.</p>}>
                         <div className="absolute top-0 bottom-0" style={{ left: `${Math.min(100, Math.round((fairShare / topCount) * 100))}%`, width: 1, background: "rgba(251,191,36,0.5)" }} />
                       </TipCustom>
                     </div>
@@ -853,7 +853,7 @@ export default function ChallengesView({
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2">🏔️</p>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>▲</p>
             <p className="text-sm font-bold mb-1 text-w25">No Expedition active</p>
             <p className="text-xs text-w15">The Expedition resets every Monday. Rally your guild!</p>
           </div>

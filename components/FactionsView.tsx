@@ -249,7 +249,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     </TipCustom>
                   ))}
                   {weeklyBonusLeft > 0 && (
-                    <TipCustom title="Weekly Bonus" icon="⚡" accent={f.accent} body={<p>Your next {weeklyBonusLeft} quest{weeklyBonusLeft > 1 ? "s" : ""} for this faction grant 2× reputation. Resets weekly.</p>}>
+                    <TipCustom title="Weekly Bonus" icon="★" accent={f.accent} body={<p>Your next {weeklyBonusLeft} quest{weeklyBonusLeft > 1 ? "s" : ""} for this faction grant 2× reputation. Resets weekly.</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ background: "rgba(250,204,21,0.1)", color: "#facc15", border: "1px solid rgba(250,204,21,0.2)" }}>
                         ★ {weeklyBonusLeft}× Bonus
                       </span>

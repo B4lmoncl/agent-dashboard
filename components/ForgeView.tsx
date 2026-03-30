@@ -1716,7 +1716,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
                                 {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}
                                 {recipe.name}
-                                {newlyLearned.has(recipe.id) && <span className="new-badge-pulse text-xs font-bold ml-1.5 px-1 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", fontSize: 10 }}>NEW</span>}
+                                {newlyLearned.has(recipe.id) && <span className="new-badge-pulse text-xs font-bold ml-1.5 px-1 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", fontSize: 12 }}>NEW</span>}
                               </p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
