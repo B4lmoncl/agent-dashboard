@@ -11,7 +11,7 @@ const treeData = (() => {
     return require("../public/data/talentTree.json");
   } catch (e) {
     console.warn('[talent-tree] talentTree.json not found, using empty tree');
-    return { meta: { unlockLevel: 10, pointsPerLevel: 1, maxPoints: 40, rings: 3 }, nodes: [] };
+    return { meta: { firstPointLevel: 5, pointsPerLevel: 0.5, maxPoints: 25 }, nodes: [] };
   }
 })();
 
@@ -20,6 +20,11 @@ const nodeById = new Map();
 for (const node of (treeData.nodes || [])) {
   nodeById.set(node.id, node);
 }
+
+const META = treeData.meta || {};
+const FIRST_POINT_LEVEL = META.firstPointLevel || META.unlockLevel || 5;
+const POINTS_PER_LEVEL = META.pointsPerLevel || 0.5;
+const RESPEC_COST = META.respecCost || { gold: 500, essenz: 50 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -32,13 +37,20 @@ function ensureUserTalents(user) {
 
 function getAvailablePoints(user) {
   const lvl = getLevelInfo(user.xp || 0).level;
-  const unlockLvl = treeData.meta.unlockLevel || 10;
-  if (lvl < unlockLvl) return 0;
+  if (lvl < FIRST_POINT_LEVEL) return 0;
   const talents = ensureUserTalents(user);
-  const earned = (lvl - unlockLvl + 1) * (treeData.meta.pointsPerLevel || 1);
-  // Bonus points from "Opfergabe" (sacrifice legendary) — stored as _bonusTalentPoints
+  // pointsPerLevel: 0.5 means 1 point per 2 levels
+  const levelsAboveUnlock = lvl - FIRST_POINT_LEVEL;
+  const earned = Math.floor(levelsAboveUnlock * POINTS_PER_LEVEL) + 1; // +1 for the unlock level itself
   const bonus = user._bonusTalentPoints || 0;
   return Math.max(0, earned + bonus - talents.totalSpent);
+}
+
+function getTotalAllocated(talents) {
+  return Object.keys(talents.allocated || {}).reduce((sum, nid) => {
+    const rank = talents.allocated[nid]?.rank || 1;
+    return sum + rank;
+  }, 0);
 }
 
 function canAllocate(user, nodeId) {
@@ -46,10 +58,17 @@ function canAllocate(user, nodeId) {
   if (!node) return { ok: false, reason: 'Unknown node' };
 
   const talents = ensureUserTalents(user);
-  if (talents.allocated[nodeId]) return { ok: false, reason: 'Already allocated' };
+  const currentRank = talents.allocated[nodeId]?.rank || 0;
+  const maxRank = node.maxRank || 1;
 
-  const cost = node.cost || 1;
-  if (getAvailablePoints(user) < cost) return { ok: false, reason: 'Not enough talent points' };
+  if (currentRank >= maxRank) return { ok: false, reason: 'Already at max rank' };
+  if (getAvailablePoints(user) < 1) return { ok: false, reason: 'Not enough talent points' };
+
+  // Check reqPoints (minimum total allocated before this node is available)
+  const totalAllocated = getTotalAllocated(talents);
+  if (node.reqPoints && totalAllocated < node.reqPoints) {
+    return { ok: false, reason: `Need ${node.reqPoints} allocated points first (have ${totalAllocated})` };
+  }
 
   // Check prerequisites
   if (node.requires && node.requires.length > 0) {
@@ -61,10 +80,20 @@ function canAllocate(user, nodeId) {
     }
   }
 
+  // Check exclusions (mutually exclusive nodes)
+  if (node.excludes && node.excludes.length > 0) {
+    for (const exId of node.excludes) {
+      if (talents.allocated[exId]) {
+        const exNode = nodeById.get(exId);
+        return { ok: false, reason: `Exclusive with: ${exNode ? exNode.name : exId}` };
+      }
+    }
+  }
+
   return { ok: true };
 }
 
-// ─── Get talent tree data + user state ─────────────────────────────────────
+// ─── GET /api/talents ──────────────────────────────────────────────────────
 router.get('/api/talents', requireAuth, (req, res) => {
   const uid = req.auth.userId;
   const user = state.users[uid];
@@ -75,18 +104,20 @@ router.get('/api/talents', requireAuth, (req, res) => {
 
   res.json({
     meta: treeData.meta,
-    paths: treeData.paths,
     nodes: treeData.nodes,
+    connections: treeData.connections || [],
+    choiceGroups: treeData.choiceGroups || [],
+    buildArchetypes: treeData.buildArchetypes || [],
     allocated: talents.allocated,
     totalSpent: talents.totalSpent,
     availablePoints: getAvailablePoints(user),
     bonusPoints: user._bonusTalentPoints || 0,
     playerLevel: lvl,
-    unlocked: lvl >= (treeData.meta.unlockLevel || 10),
+    unlocked: lvl >= FIRST_POINT_LEVEL,
   });
 });
 
-// ─── Allocate a talent point ───────────────────────────────────────────────
+// ─── POST /api/talents/allocate ────────────────────────────────────────────
 router.post('/api/talents/allocate', requireAuth, (req, res) => {
   const uid = req.auth.userId;
   if (!talentLock.acquire(uid)) return res.status(429).json({ error: 'Talent allocation in progress' });
@@ -104,17 +135,21 @@ router.post('/api/talents/allocate', requireAuth, (req, res) => {
 
     const node = nodeById.get(nodeId);
     const talents = ensureUserTalents(user);
+    const currentRank = talents.allocated[nodeId]?.rank || 0;
+    const newRank = currentRank + 1;
+
     talents.allocated[nodeId] = {
+      rank: newRank,
       allocatedAt: new Date().toISOString(),
       effect: node.effect,
     };
-    talents.totalSpent += (node.cost || 1);
+    talents.totalSpent += 1;
 
     saveUsers();
 
     res.json({
       success: true,
-      node: { id: node.id, name: node.name, effect: node.effect },
+      node: { id: node.id, name: node.name, rank: newRank, maxRank: node.maxRank || 1, effect: node.effect },
       availablePoints: getAvailablePoints(user),
       totalSpent: talents.totalSpent,
     });
@@ -123,7 +158,7 @@ router.post('/api/talents/allocate', requireAuth, (req, res) => {
   }
 });
 
-// ─── Deallocate a talent point ─────────────────────────────────────────────
+// ─── POST /api/talents/deallocate ──────────────────────────────────────────
 router.post('/api/talents/deallocate', requireAuth, (req, res) => {
   const uid = req.auth.userId;
   if (!talentLock.acquire(uid)) return res.status(429).json({ error: 'Talent operation in progress' });
@@ -153,8 +188,14 @@ router.post('/api/talents/deallocate', requireAuth, (req, res) => {
       }
     }
 
-    delete talents.allocated[nodeId];
-    talents.totalSpent -= (node.cost || 1);
+    const currentRank = talents.allocated[nodeId].rank || 1;
+    if (currentRank > 1) {
+      // Multi-rank: reduce by 1
+      talents.allocated[nodeId].rank = currentRank - 1;
+    } else {
+      delete talents.allocated[nodeId];
+    }
+    talents.totalSpent -= 1;
     if (talents.totalSpent < 0) talents.totalSpent = 0;
 
     saveUsers();
@@ -170,7 +211,7 @@ router.post('/api/talents/deallocate', requireAuth, (req, res) => {
   }
 });
 
-// ─── Full reset (costs gold) ───────────────────────────────────────────────
+// ─── POST /api/talents/reset ───────────────────────────────────────────────
 router.post('/api/talents/reset', requireAuth, (req, res) => {
   const uid = req.auth.userId;
   if (!talentLock.acquire(uid)) return res.status(429).json({ error: 'Talent operation in progress' });
@@ -182,13 +223,23 @@ router.post('/api/talents/reset', requireAuth, (req, res) => {
     const nodeCount = Object.keys(talents.allocated).length;
     if (nodeCount === 0) return res.status(400).json({ error: 'No talents to reset' });
 
-    // Cost: 50 gold per allocated node (WoW-style escalating respec)
-    const resetCost = nodeCount * 50;
-    if ((user.gold || 0) < resetCost) {
-      return res.status(400).json({ error: `Not enough gold. Reset costs ${resetCost}g (${nodeCount} nodes × 50g)` });
+    // Use respecCost from meta
+    const goldCost = RESPEC_COST.gold || 500;
+    const essenzCost = RESPEC_COST.essenz || 0;
+
+    if ((user.gold || 0) < goldCost) {
+      return res.status(400).json({ error: `Not enough gold. Reset costs ${goldCost}g` });
+    }
+    if (essenzCost > 0) {
+      const userEssenz = user.currencies?.essenz || 0;
+      if (userEssenz < essenzCost) {
+        return res.status(400).json({ error: `Not enough Essenz. Reset costs ${essenzCost}` });
+      }
+      user.currencies.essenz -= essenzCost;
     }
 
-    user.gold -= resetCost;
+    user.gold -= goldCost;
+    if (user.currencies) user.currencies.gold = user.gold;
     talents.allocated = {};
     talents.totalSpent = 0;
 
@@ -196,7 +247,8 @@ router.post('/api/talents/reset', requireAuth, (req, res) => {
 
     res.json({
       success: true,
-      goldSpent: resetCost,
+      goldSpent: goldCost,
+      essenzSpent: essenzCost,
       availablePoints: getAvailablePoints(user),
       gold: user.gold,
     });
@@ -215,8 +267,18 @@ function getUserTalentEffects(userId) {
     const node = nodeById.get(nodeId);
     if (!node || !node.effect) continue;
     const type = node.effect.type;
+    const rank = data.rank || 1;
+    // For multi-rank nodes with valuePerRank array, use the rank-appropriate value
+    let value = 0;
+    if (node.effect.valuePerRank && Array.isArray(node.effect.valuePerRank)) {
+      value = node.effect.valuePerRank[Math.min(rank, node.effect.valuePerRank.length) - 1] || 0;
+    } else if (node.effect.chancePerRank && Array.isArray(node.effect.chancePerRank)) {
+      value = node.effect.chancePerRank[Math.min(rank, node.effect.chancePerRank.length) - 1] || 0;
+    } else {
+      value = node.effect.value || 0;
+    }
     if (!effects[type]) effects[type] = 0;
-    effects[type] += (node.effect.value || 0);
+    effects[type] += value;
   }
   return effects;
 }
