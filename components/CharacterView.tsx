@@ -792,7 +792,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
           width: 56,
           height: 56,
           background: isDropTarget ? "rgba(167,139,250,0.2)" : rarityBg,
-          border: `1px solid ${isDropTarget ? "rgba(167,139,250,0.5)" : rarityBorder}`,
+          border: `${item.rarity === "legendary" || (item as Record<string, unknown>).isUnique ? 2 : item.rarity === "epic" ? 2 : 1}px solid ${isDropTarget ? "rgba(167,139,250,0.5)" : rarityBorder}`,
           borderRadius: 3,
           cursor: "grab",
           display: "flex",
@@ -1305,6 +1305,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               </div>
             )}
           </div>
+
+          {/* Inventory count */}
+          {charData && (
+            <p className="text-xs text-right mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+              {charData.inventory.length} / 100 slots
+            </p>
+          )}
 
           {/* Filter Tabs */}
           <div className="flex gap-1 mb-2">
