@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useModalBehavior } from "@/components/ModalPortal";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -79,6 +80,7 @@ export default function TalentTreeView({
   const [allocating, setAllocating] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
+  useModalBehavior(confirmReset, () => setConfirmReset(false));
 
   // ─── Fetch ──────────────────────────────────────────────────────────────
   const fetchTalents = useCallback(async () => {
