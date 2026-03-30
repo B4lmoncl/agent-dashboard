@@ -286,6 +286,29 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
       u.gold = (u.gold || 0) + pactCompletionGold;
       u.currencies.gold = u.gold;
       ritual.pactCompleted = true;
+
+    // ─── Mega-milestone premium currency bonuses (180/365 day streaks) ───
+    const MEGA_MILESTONES = [
+      { days: 180, stardust: 50, essenz: 100, title: { id: 'pact-half-year', name: 'Halbjahreseid', rarity: 'epic' } },
+      { days: 365, stardust: 150, essenz: 300, title: { id: 'pact-year', name: 'Jahresschwur', rarity: 'legendary' } },
+    ];
+    if (ritual.bloodPact) {
+      for (const mm of MEGA_MILESTONES) {
+        const mmKey = `pactMega_${mm.days}`;
+        if (ritual.streak >= mm.days && !ritual[mmKey]) {
+          ritual[mmKey] = true;
+          ensureUserCurrencies(u);
+          if (mm.stardust) { u.currencies.stardust = (u.currencies.stardust || 0) + mm.stardust; }
+          if (mm.essenz) { u.currencies.essenz = (u.currencies.essenz || 0) + mm.essenz; }
+          if (mm.title) {
+            u.earnedTitles = u.earnedTitles || [];
+            if (!u.earnedTitles.find(t => t.id === mm.title.id)) {
+              u.earnedTitles.push({ id: mm.title.id, name: mm.title.name, rarity: mm.title.rarity, source: 'blood-pact-mega', earnedAt: now() });
+            }
+          }
+        }
+      }
+    }
     }
 
     // Milestone check
