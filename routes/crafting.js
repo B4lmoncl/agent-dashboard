@@ -551,28 +551,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
-  // Vendor reagent gold cost (WoW-style NPC reagents — gold sink)
-  let vendorReagentCost = 0;
-  if (recipe.vendorReagents) {
-    const reagentDefs = PROFESSIONS_DATA.vendorReagents || [];
-    for (const [reagentId, count] of Object.entries(recipe.vendorReagents)) {
-      const def = reagentDefs.find(r => r.id === reagentId);
-      if (def) vendorReagentCost += def.price * count * effectiveCount;
-    }
-  }
-  if (vendorReagentCost > 0) {
-    ensureUserCurrencies(u);
-    const userGold = u.currencies.gold ?? u.gold ?? 0;
-    if (userGold < vendorReagentCost + (totalGoldCost || 0)) {
-      return res.status(400).json({ error: `Not enough gold for vendor reagents (${vendorReagentCost + (totalGoldCost || 0)}g needed, have ${userGold}g)` });
-    }
-  }
-
   // ─── All validation passed — enroll profession + deduct costs ──────────────
   if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
 
   // Deduct gold (×count) — sync both fields
-  const totalDeduction = (totalGoldCost || 0) + vendorReagentCost;
+  const totalDeduction = totalGoldCost || 0;
   if (totalDeduction > 0) {
     ensureUserCurrencies(u);
     u.currencies.gold = (u.currencies.gold || 0) - totalDeduction;
@@ -1007,7 +990,6 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     skillUpColor,
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
-    vendorReagentCost,
     atSkillCap: newSkill >= skillCap,
     skillCap,
     nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
@@ -1314,6 +1296,36 @@ router.post('/api/professions/favorite', requireAuth, (req, res) => {
   }
   saveUsers();
   res.json({ ok: true, favoriteRecipes: u.favoriteRecipes });
+});
+
+// ─── POST /api/professions/buy-reagent — Buy vendor reagents from trainer ───
+router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const { reagentId, count } = req.body;
+  if (!reagentId || !count || count < 1 || count > 100) {
+    return res.status(400).json({ error: 'reagentId and count (1-100) required' });
+  }
+
+  const reagent = (PROFESSIONS_DATA.vendorReagents || []).find(r => r.id === reagentId);
+  if (!reagent) return res.status(400).json({ error: 'Unknown reagent' });
+
+  const safeCount = Math.min(100, Math.max(1, parseInt(count) || 1));
+  const totalCost = reagent.price * safeCount;
+  ensureUserCurrencies(u);
+  if ((u.currencies.gold ?? u.gold ?? 0) < totalCost) {
+    return res.status(400).json({ error: `Not enough gold (need ${totalCost}g)` });
+  }
+
+  u.currencies.gold = (u.currencies.gold || 0) - totalCost;
+  u.gold = u.currencies.gold;
+  u.craftingMaterials = u.craftingMaterials || {};
+  u.craftingMaterials[reagentId] = (u.craftingMaterials[reagentId] || 0) + safeCount;
+
+  saveUsers();
+  res.json({ ok: true, bought: { id: reagentId, name: reagent.name, count: safeCount, totalCost }, materials: u.craftingMaterials });
 });
 
 // ─── Exports (shared with schmiedekunst.js and enchanting.js) ─────────────
