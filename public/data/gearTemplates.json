@@ -50819,6 +50819,6780 @@
         "label": "+{value}% Crit Chance"
       },
       "setId": "legendary"
+    },
+    {
+      "id": "trash-angelaufenes-kn-ppel-0",
+      "name": "Angelaufenes Knüppel",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-stumpfes-messer-1",
+      "name": "Stumpfes Messer",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-angelaufenes-schwert-2",
+      "name": "Angelaufenes Schwert",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verbogenes-schwert-3",
+      "name": "Verbogenes Schwert",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-repariertes-hackbeil-4",
+      "name": "Repariertes Hackbeil",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-billiges-schwert-5",
+      "name": "Billiges Schwert",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-gebrauchtes-pr-gel-0",
+      "name": "Gebrauchtes Prügel",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-repariertes-spie--1",
+      "name": "Repariertes Spieß",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-abgenutztes-stecken-2",
+      "name": "Abgenutztes Stecken",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-abgenutztes-pr-gel-3",
+      "name": "Abgenutztes Prügel",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verbogener-buckler-0",
+      "name": "Verbogener Buckler",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verbeulter-schild-1",
+      "name": "Verbeulter Schild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-rissiger-deckel-2",
+      "name": "Rissiger Deckel",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-provisorischer-schild-3",
+      "name": "Provisorischer Schild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verbogener-deckel-4",
+      "name": "Verbogener Deckel",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-behelfsm-iger-holzschild-5",
+      "name": "Behelfsmäßiger Holzschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Besser als nichts. Knapp.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-provisorischer-brett-0",
+      "name": "Provisorischer Brett",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-wackeliger-brett-1",
+      "name": "Wackeliger Brett",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-rissiger-schild-2",
+      "name": "Rissiger Schild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-verbeulter-holzschild-3",
+      "name": "Verbeulter Holzschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-ausgeblichener-helm-0",
+      "name": "Ausgeblichener Helm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-fleckiger-kappe-1",
+      "name": "Fleckiger Kappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-ausgeblichener-kopfschutz-2",
+      "name": "Ausgeblichener Kopfschutz",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-ramponierter-helm-3",
+      "name": "Ramponierter Helm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verschlissener-helm-4",
+      "name": "Verschlissener Helm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-fleckiger-helm-5",
+      "name": "Fleckiger Helm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-verschlissener-hut-0",
+      "name": "Verschlissener Hut",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-fleckiger-topf-1",
+      "name": "Fleckiger Topf",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-fleckiger-hut-2",
+      "name": "Fleckiger Hut",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-verschlissener-topf-3",
+      "name": "Verschlissener Topf",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-staubige-r-stung-0",
+      "name": "Staubige Rüstung",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-zerschlissene-sch-rze-1",
+      "name": "Zerschlissene Schürze",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verblichene-lumpen-2",
+      "name": "Verblichene Lumpen",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-mottenzerfressene-weste-3",
+      "name": "Mottenzerfressene Weste",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verschlissene-jacke-4",
+      "name": "Verschlissene Jacke",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-geflickte-jacke-5",
+      "name": "Geflickte Jacke",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-geflickte-tunika-0",
+      "name": "Geflickte Tunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-zerschlissene-tunika-1",
+      "name": "Zerschlissene Tunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-geflickte-tunika-2",
+      "name": "Geflickte Tunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-mottenzerfressene-tunika-3",
+      "name": "Mottenzerfressene Tunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-mattes-amulett-0",
+      "name": "Mattes Amulett",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-zerkratztes-schnur-1",
+      "name": "Zerkratztes Schnur",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-angelaufenes-amulett-2",
+      "name": "Angelaufenes Amulett",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-einfaches-kette-3",
+      "name": "Einfaches Kette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-einfaches-anh-nger-4",
+      "name": "Einfaches Anhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-mattes-anh-nger-5",
+      "name": "Mattes Anhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-angelaufenes-amulett-0",
+      "name": "Angelaufenes Amulett",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-mattes-anh-nger-1",
+      "name": "Mattes Anhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Besser als nichts. Knapp.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-zerkratztes-kette-2",
+      "name": "Zerkratztes Kette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-zerkratztes-stein-3",
+      "name": "Zerkratztes Stein",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verschlammte-stiefel-0",
+      "name": "Verschlammte Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-klapprige-stiefel-1",
+      "name": "Klapprige Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-l-chrige-schuhe-2",
+      "name": "Löchrige Schuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Besser als nichts. Knapp.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-klapprige-sandalen-3",
+      "name": "Klapprige Sandalen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-klapprige-stiefel-4",
+      "name": "Klapprige Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-klapprige-schuhe-5",
+      "name": "Klapprige Schuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-ausgeleierte-stiefel-0",
+      "name": "Ausgeleierte Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-klapprige-schuhe-1",
+      "name": "Klapprige Schuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-abgelaufene-schuhe-2",
+      "name": "Abgelaufene Schuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-klapprige-latschen-3",
+      "name": "Klapprige Latschen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-billiger-ring-0",
+      "name": "Billiger Ring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-einfacher-drahtring-1",
+      "name": "Einfacher Drahtring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-billiger-reif-2",
+      "name": "Billiger Reif",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-verbogener-reif-3",
+      "name": "Verbogener Reif",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-schlichter-drahtring-4",
+      "name": "Schlichter Drahtring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-einfacher-bandring-5",
+      "name": "Einfacher Bandring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "common",
+      "price": 5,
+      "shopHidden": false,
+      "desc": "Besser als nichts. Knapp.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-angelaufener-ring-0",
+      "name": "Angelaufener Ring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-schlichter-ring-1",
+      "name": "Schlichter Ring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-billiger-bandring-2",
+      "name": "Billiger Bandring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-uc-billiger-bandring-3",
+      "name": "Billiger Bandring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 18,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "trash-billiges-pr-gel-0",
+      "name": "Billiges Prügel",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-repariertes-messer-1",
+      "name": "Repariertes Messer",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-gebrauchtes-messer-2",
+      "name": "Gebrauchtes Messer",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-billiges-kn-ppel-3",
+      "name": "Billiges Knüppel",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-repariertes-hackbeil-0",
+      "name": "Repariertes Hackbeil",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-stumpfes-schwert-1",
+      "name": "Stumpfes Schwert",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-verbogenes-kn-ppel-2",
+      "name": "Verbogenes Knüppel",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-gefundenes-hackbeil-3",
+      "name": "Gefundenes Hackbeil",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-behelfsm-iger-brett-0",
+      "name": "Behelfsmäßiger Brett",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-verbogener-schild-1",
+      "name": "Verbogener Schild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-angeschlagener-schild-2",
+      "name": "Angeschlagener Schild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-wackeliger-schild-3",
+      "name": "Wackeliger Schild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-verbogener-deckel-0",
+      "name": "Verbogener Deckel",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-behelfsm-iger-deckel-1",
+      "name": "Behelfsmäßiger Deckel",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-rissiger-holzschild-2",
+      "name": "Rissiger Holzschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-wackeliger-deckel-3",
+      "name": "Wackeliger Deckel",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-verbeulter-topf-0",
+      "name": "Verbeulter Topf",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-ramponierter-topf-1",
+      "name": "Ramponierter Topf",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-ausgeblichener-hut-2",
+      "name": "Ausgeblichener Hut",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-fleckiger-kopfschutz-3",
+      "name": "Fleckiger Kopfschutz",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-l-dierter-helm-0",
+      "name": "Lädierter Helm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-fleckiger-kopfschutz-1",
+      "name": "Fleckiger Kopfschutz",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-verbeulter-helm-2",
+      "name": "Verbeulter Helm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-verschlissener-kopfschutz-3",
+      "name": "Verschlissener Kopfschutz",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-mottenzerfressene-tunika-0",
+      "name": "Mottenzerfressene Tunika",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-verblichene-jacke-1",
+      "name": "Verblichene Jacke",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-ausgebesserte-jacke-2",
+      "name": "Ausgebesserte Jacke",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-zerrissene-r-stung-3",
+      "name": "Zerrissene Rüstung",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-geflickte-weste-0",
+      "name": "Geflickte Weste",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-ausgebesserte-tunika-1",
+      "name": "Ausgebesserte Tunika",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-ausgebesserte-tunika-2",
+      "name": "Ausgebesserte Tunika",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-verschlissene-tunika-3",
+      "name": "Verschlissene Tunika",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-angelaufenes-amulett-0",
+      "name": "Angelaufenes Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-angelaufenes-anh-nger-1",
+      "name": "Angelaufenes Anhänger",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-mattes-amulett-2",
+      "name": "Mattes Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-zerkratztes-stein-3",
+      "name": "Zerkratztes Stein",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-einfaches-schnur-0",
+      "name": "Einfaches Schnur",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-zerkratztes-stein-1",
+      "name": "Zerkratztes Stein",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-angelaufenes-anh-nger-2",
+      "name": "Angelaufenes Anhänger",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-angelaufenes-anh-nger-3",
+      "name": "Angelaufenes Anhänger",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-ausgeleierte-latschen-0",
+      "name": "Ausgeleierte Latschen",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-aufgeweichte-stiefel-1",
+      "name": "Aufgeweichte Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-klapprige-stiefel-2",
+      "name": "Klapprige Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-klapprige-latschen-3",
+      "name": "Klapprige Latschen",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-aufgeweichte-schuhe-0",
+      "name": "Aufgeweichte Schuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-aufgeweichte-schuhe-1",
+      "name": "Aufgeweichte Schuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-l-chrige-treter-2",
+      "name": "Löchrige Treter",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-ausgeleierte-sandalen-3",
+      "name": "Ausgeleierte Sandalen",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-verbogener-reif-0",
+      "name": "Verbogener Reif",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-verbogener-drahtring-1",
+      "name": "Verbogener Drahtring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-einfacher-bandring-2",
+      "name": "Einfacher Bandring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-zerkratzter-bandring-3",
+      "name": "Zerkratzter Bandring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "common",
+      "price": 8,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-schlichter-ring-0",
+      "name": "Schlichter Ring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-verbogener-bandring-1",
+      "name": "Verbogener Bandring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-einfacher-bandring-2",
+      "name": "Einfacher Bandring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-uc-billiger-ring-3",
+      "name": "Billiger Ring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "price": 26,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "trash-gefundenes-kn-ppel-0",
+      "name": "Gefundenes Knüppel",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-repariertes-pr-gel-1",
+      "name": "Repariertes Prügel",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-billiges-schwert-0",
+      "name": "Billiges Schwert",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-provisorisches-stecken-1",
+      "name": "Provisorisches Stecken",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Es hat Charakter. Leider den falschen.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-angerostetes-kn-ppel-2",
+      "name": "Angerostetes Knüppel",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-rissiger-buckler-0",
+      "name": "Rissiger Buckler",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-verbeulter-deckel-0",
+      "name": "Verbeulter Deckel",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-angeschlagener-buckler-2",
+      "name": "Angeschlagener Buckler",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-ramponierter-helm-0",
+      "name": "Ramponierter Helm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-ramponierter-kopfschutz-1",
+      "name": "Ramponierter Kopfschutz",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-verschlissener-helm-0",
+      "name": "Verschlissener Helm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-fleckiger-kappe-1",
+      "name": "Fleckiger Kappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-verschlissener-kappe-2",
+      "name": "Verschlissener Kappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-ausgebesserte-sch-rze-0",
+      "name": "Ausgebesserte Schürze",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-verblichene-sch-rze-1",
+      "name": "Verblichene Schürze",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-zerschlissene-tunika-0",
+      "name": "Zerschlissene Tunika",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-zerschlissene-sch-rze-1",
+      "name": "Zerschlissene Schürze",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-zerschlissene-sch-rze-2",
+      "name": "Zerschlissene Schürze",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Funktional. Wenn man großzügig definiert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-zerkratztes-amulett-0",
+      "name": "Zerkratztes Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-zerkratztes-stein-1",
+      "name": "Zerkratztes Stein",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-unscheinbares-anh-nger-0",
+      "name": "Unscheinbares Anhänger",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-zerkratztes-amulett-1",
+      "name": "Zerkratztes Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-einfaches-stein-2",
+      "name": "Einfaches Stein",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-klapprige-treter-0",
+      "name": "Klapprige Treter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-ausgeleierte-stiefel-1",
+      "name": "Ausgeleierte Stiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Besser als nichts. Knapp.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-verschlammte-schuhe-0",
+      "name": "Verschlammte Schuhe",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-aufgeweichte-treter-1",
+      "name": "Aufgeweichte Treter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-abgelaufene-treter-2",
+      "name": "Abgelaufene Treter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-angelaufener-ring-0",
+      "name": "Angelaufener Ring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-verbogener-reif-1",
+      "name": "Verbogener Reif",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 11,
+      "shopHidden": false,
+      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-billiger-reif-0",
+      "name": "Billiger Reif",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-einfacher-drahtring-1",
+      "name": "Einfacher Drahtring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "trash-uc-schlichter-drahtring-2",
+      "name": "Schlichter Drahtring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "uncommon",
+      "price": 34,
+      "shopHidden": false,
+      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
     }
   ],
   "setBonus": {
