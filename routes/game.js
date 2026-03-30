@@ -168,6 +168,15 @@ router.post('/api/rituals/:id/recommit', requireApiKey, (req, res) => {
 // POST /api/rituals/:id/complete — mark done today [auth]
 router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   const { playerId } = req.body;
+
+  // Block ritual completion during tavern rest mode
+  if (playerId) {
+    const restUser = state.users[playerId.toLowerCase()];
+    if (restUser?.tavernRest?.active) {
+      return res.status(400).json({ error: 'Cannot complete rituals while resting in The Hearth. Leave rest mode first.' });
+    }
+  }
+
   const ritual = state.rituals.find(r => r.id === req.params.id);
   if (!ritual) return res.status(404).json({ error: 'Ritual not found' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
