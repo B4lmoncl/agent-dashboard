@@ -18,7 +18,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 1 quest."
     },
     {
       "id": "apprentice",
@@ -37,7 +37,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 10 quests."
     },
     {
       "id": "knight",
@@ -56,7 +56,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 50 quests."
     },
     {
       "id": "legend",
@@ -75,7 +75,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 100 quests."
     },
     {
       "id": "week_warrior",
@@ -94,7 +94,7 @@
       "category": "streak",
       "hidden": false,
       "points": 5,
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 7-day streak."
     },
     {
       "id": "monthly_champ",
@@ -113,7 +113,7 @@
       "category": "streak",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 30-day streak."
     },
     {
       "id": "lightning",
@@ -132,7 +132,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Complete undefined quests in a single day."
+      "desc": "Complete 3 quests in a single day."
     },
     {
       "id": "all_trades",
@@ -151,7 +151,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: completed_types undefined."
+      "desc": "Complete quests of 5 different types."
     },
     {
       "id": "boss_slayer",
@@ -170,7 +170,7 @@
       "category": "boss",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 1 world boss."
     },
     {
       "id": "ember_sprite",
@@ -190,7 +190,7 @@
       "category": "companion",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 10 development quests."
     },
     {
       "id": "lore_owl",
@@ -210,7 +210,7 @@
       "category": "companion",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 5 learning quests."
     },
     {
       "id": "gear_golem",
@@ -229,7 +229,7 @@
       "category": "companion",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: xp_threshold undefined."
+      "desc": "Earn 300 total XP."
     },
     {
       "id": "challenge_coder",
@@ -248,7 +248,7 @@
       "category": "challenge",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: challenge_completed undefined."
+      "desc": "Complete the 30-Day Code Sprint"
     },
     {
       "id": "challenge_learner",
@@ -267,7 +267,7 @@
       "category": "challenge",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: challenge_completed undefined."
+      "desc": "Complete the Learning Marathon"
     },
     {
       "id": "night_owl",
@@ -287,7 +287,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: time_of_day undefined."
+      "desc": "Complete a quest between 23:00 and 05:00"
     },
     {
       "id": "speed_runner",
@@ -306,7 +306,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: completion_time undefined."
+      "desc": "Complete a quest within 1 hour of claiming it"
     },
     {
       "id": "social_butterfly",
@@ -326,7 +326,7 @@
       "category": "variety",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 5 social quests."
     },
     {
       "id": "scholar",
@@ -346,7 +346,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 10 learning quests."
     },
     {
       "id": "gym_rat",
@@ -366,7 +366,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 10 fitness quests."
     },
     {
       "id": "chain_master",
@@ -385,7 +385,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: chain_completed undefined."
+      "desc": "Complete 1 quest chain."
     },
     {
       "id": "campaign_victor",
@@ -404,7 +404,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: campaign_completed undefined."
+      "desc": "Complete 1 campaign."
     },
     {
       "id": "npc_whisperer",
@@ -422,7 +422,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: all_agents_online undefined."
+      "desc": "Have all agents online."
     },
     {
       "id": "forge_novice",
@@ -442,7 +442,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 1 development quests."
     },
     {
       "id": "arena_first",
@@ -462,7 +462,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 1 fitness quests."
     },
     {
       "id": "scholar_first",
@@ -482,7 +482,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 1 learning quests."
     },
     {
       "id": "ten_quests",
@@ -501,7 +501,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 25 quests."
     },
     {
       "id": "fifty_quests",
@@ -520,7 +520,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 75 quests."
     },
     {
       "id": "coop_hero",
@@ -539,7 +539,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: coop_completed undefined."
+      "desc": "Complete 1 co-op quest."
     },
     {
       "id": "early_bird",
@@ -559,7 +559,7 @@
       "category": "speed",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: early_completions undefined."
+      "desc": "Complete 3 quests before 08:00"
     },
     {
       "id": "forbidden_code",
@@ -578,7 +578,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 10,
-      "desc": "Achieve: day_of_week undefined."
+      "desc": "Complete a quest on a Sunday"
     },
     {
       "id": "easter_egg",
@@ -596,7 +596,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Achieve: secret_found undefined."
+      "desc": "Found something secret..."
     },
     {
       "id": "perfectionist",
@@ -615,7 +615,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 150 quests."
     },
     {
       "id": "no_rest",
@@ -634,7 +634,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 60-day streak."
     },
     {
       "id": "one_ring",
@@ -653,7 +653,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 1000 gold."
     },
     {
       "id": "centurion",
@@ -672,7 +672,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 200 quests."
     },
     {
       "id": "master",
@@ -691,7 +691,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Complete undefined quests."
+      "desc": "Complete 500 quests."
     },
     {
       "id": "hermit",
@@ -711,7 +711,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 25 personal quests."
     },
     {
       "id": "boss_hunter",
@@ -730,7 +730,7 @@
       "category": "boss",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 5 world bosses."
     },
     {
       "id": "boss_legend",
@@ -749,7 +749,7 @@
       "category": "boss",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 20 world bosses."
     },
     {
       "id": "two_week_warrior",
@@ -768,7 +768,7 @@
       "category": "streak",
       "hidden": false,
       "points": 10,
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 14-day streak."
     },
     {
       "id": "quarter_year",
@@ -787,7 +787,7 @@
       "category": "streak",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 90-day streak."
     },
     {
       "id": "gold_hoarder",
@@ -806,7 +806,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 500 gold."
     },
     {
       "id": "dragon_hoard",
@@ -825,7 +825,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 5000 gold."
     },
     {
       "id": "initiate",
@@ -844,7 +844,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 5,
-      "desc": "Achieve: xp_threshold undefined."
+      "desc": "Earn 100 total XP."
     },
     {
       "id": "adept",
@@ -863,7 +863,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: xp_threshold undefined."
+      "desc": "Earn 500 total XP."
     },
     {
       "id": "master_rank",
@@ -882,7 +882,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: xp_threshold undefined."
+      "desc": "Earn 1500 total XP."
     },
     {
       "id": "grandmaster",
@@ -901,7 +901,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: xp_threshold undefined."
+      "desc": "Earn 5000 total XP."
     },
     {
       "id": "chain_veteran",
@@ -920,7 +920,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: chain_completed undefined."
+      "desc": "Complete 5 quest chains."
     },
     {
       "id": "marathon_runner",
@@ -939,7 +939,7 @@
       "category": "speed",
       "hidden": false,
       "points": 25,
-      "desc": "Complete undefined quests in a single day."
+      "desc": "Complete 10 quests in a single day."
     },
     {
       "id": "social_king",
@@ -959,7 +959,7 @@
       "category": "variety",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 25 social quests."
     },
     {
       "id": "fitness_fanatic",
@@ -979,7 +979,7 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 50 fitness quests."
     },
     {
       "id": "knowledge_seeker",
@@ -999,7 +999,7 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 50 learning quests."
     },
     {
       "id": "dev_legend",
@@ -1019,7 +1019,7 @@
       "category": "variety",
       "hidden": false,
       "points": 100,
-      "desc": "Achieve: quest_type_count undefined."
+      "desc": "Complete 50 development quests."
     },
     {
       "id": "weekend_warrior",
@@ -1038,7 +1038,7 @@
       "category": "speed",
       "hidden": false,
       "points": 25,
-      "desc": "Achieve: weekend_completions undefined."
+      "desc": "Complete 10 quests on weekends"
     },
     {
       "id": "coop_legend",
@@ -1057,7 +1057,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Achieve: coop_completed undefined."
+      "desc": "Complete 10 co-op quests."
     },
     {
       "id": "hidden_midnight",
@@ -1078,7 +1078,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Achieve: night_completions undefined."
+      "desc": "Complete 10 quests after midnight"
     },
     {
       "id": "hidden_skulduggery",
@@ -1097,7 +1097,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Achieve: easter_egg undefined."
+      "desc": "You found something familiar..."
     },
     {
       "id": "hidden_stormlight",
@@ -1116,7 +1116,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Achieve: easter_egg undefined."
+      "desc": "Life before death. Strength before weakness."
     },
     {
       "id": "hidden_critical_role",
@@ -1135,7 +1135,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Achieve: easter_egg undefined."
+      "desc": "Is it Thursday yet?"
     },
     {
       "id": "hidden_dndads",
@@ -1154,7 +1154,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Achieve: easter_egg undefined."
+      "desc": "For real facts."
     },
     {
       "id": "hidden_perfectionist",
@@ -1172,7 +1172,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Achieve: completed_all_types undefined."
+      "desc": "Complete quests of  different types."
     },
     {
       "id": "hidden_npc_collector",
@@ -1190,7 +1190,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Achieve: all_npcs_unlocked undefined."
+      "desc": "Unlock all NPC quest givers."
     },
     {
       "id": "hidden_gacha_addict",
@@ -1209,7 +1209,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 50,
-      "desc": "Achieve: gacha_pulls undefined."
+      "desc": "Perform 50 gacha pulls."
     },
     {
       "id": "hidden_full_inventory",
@@ -1228,7 +1228,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 25,
-      "desc": "Have undefined items in inventory."
+      "desc": "Have 50 items in inventory."
     },
     {
       "id": "hidden_legendary_pull",
@@ -1247,7 +1247,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Achieve: gacha_rarity_pull undefined."
+      "desc": "Pull a legendary from the gacha."
     },
     {
       "id": "chain_quest_bronze",
@@ -1268,7 +1268,7 @@
       "chainId": "quest_runner",
       "chainTier": 1,
       "chainNext": "chain_quest_silver",
-      "desc": "Complete undefined quests."
+      "desc": "Complete 25 quests."
     },
     {
       "id": "chain_quest_silver",
@@ -1290,7 +1290,7 @@
       "chainTier": 2,
       "chainPrev": "chain_quest_bronze",
       "chainNext": "chain_quest_gold",
-      "desc": "Complete undefined quests."
+      "desc": "Complete 100 quests."
     },
     {
       "id": "chain_quest_gold",
@@ -1312,7 +1312,7 @@
       "chainTier": 3,
       "chainPrev": "chain_quest_silver",
       "chainNext": "chain_quest_legend",
-      "desc": "Complete undefined quests."
+      "desc": "Complete 300 quests."
     },
     {
       "id": "chain_quest_legend",
@@ -1333,7 +1333,7 @@
       "chainId": "quest_runner",
       "chainTier": 4,
       "chainPrev": "chain_quest_gold",
-      "desc": "Complete undefined quests."
+      "desc": "Complete 1000 quests."
     },
     {
       "id": "chain_streak_bronze",
@@ -1354,7 +1354,7 @@
       "chainId": "streak_keeper",
       "chainTier": 1,
       "chainNext": "chain_streak_silver",
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 7-day streak."
     },
     {
       "id": "chain_streak_silver",
@@ -1376,7 +1376,7 @@
       "chainTier": 2,
       "chainPrev": "chain_streak_bronze",
       "chainNext": "chain_streak_gold",
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 30-day streak."
     },
     {
       "id": "chain_streak_gold",
@@ -1398,7 +1398,7 @@
       "chainTier": 3,
       "chainPrev": "chain_streak_silver",
       "chainNext": "chain_streak_legend",
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 90-day streak."
     },
     {
       "id": "chain_streak_legend",
@@ -1419,7 +1419,7 @@
       "chainId": "streak_keeper",
       "chainTier": 4,
       "chainPrev": "chain_streak_gold",
-      "desc": "Achieve: streak_days undefined."
+      "desc": "Maintain a 365-day streak."
     },
     {
       "id": "chain_gold_bronze",
@@ -1439,7 +1439,7 @@
       "chainId": "gold_hoarder",
       "chainTier": 1,
       "chainNext": "chain_gold_silver",
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 500 gold."
     },
     {
       "id": "chain_gold_silver",
@@ -1460,7 +1460,7 @@
       "chainTier": 2,
       "chainPrev": "chain_gold_bronze",
       "chainNext": "chain_gold_gold",
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 5000 gold."
     },
     {
       "id": "chain_gold_gold",
@@ -1481,7 +1481,7 @@
       "chainTier": 3,
       "chainPrev": "chain_gold_silver",
       "chainNext": "chain_gold_legend",
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 25000 gold."
     },
     {
       "id": "chain_gold_legend",
@@ -1501,7 +1501,7 @@
       "chainId": "gold_hoarder",
       "chainTier": 4,
       "chainPrev": "chain_gold_gold",
-      "desc": "Achieve: gold_threshold undefined."
+      "desc": "Accumulate 100000 gold."
     },
     {
       "id": "chain_boss_bronze",
@@ -1522,7 +1522,7 @@
       "chainId": "boss_slayer",
       "chainTier": 1,
       "chainNext": "chain_boss_silver",
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 1 world boss."
     },
     {
       "id": "chain_boss_silver",
@@ -1544,7 +1544,7 @@
       "chainTier": 2,
       "chainPrev": "chain_boss_bronze",
       "chainNext": "chain_boss_gold",
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 5 world bosses."
     },
     {
       "id": "chain_boss_gold",
@@ -1566,7 +1566,7 @@
       "chainTier": 3,
       "chainPrev": "chain_boss_silver",
       "chainNext": "chain_boss_legend",
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 15 world bosses."
     },
     {
       "id": "chain_boss_legend",
@@ -1587,7 +1587,7 @@
       "chainId": "boss_slayer",
       "chainTier": 4,
       "chainPrev": "chain_boss_gold",
-      "desc": "Achieve: boss_defeated undefined."
+      "desc": "Defeat 50 world bosses."
     },
     {
       "id": "chain_craft_bronze",
@@ -1608,7 +1608,7 @@
       "chainId": "crafter",
       "chainTier": 1,
       "chainNext": "chain_craft_silver",
-      "desc": "Reach skill undefined in any profession."
+      "desc": "Profession Skill 50"
     },
     {
       "id": "chain_craft_silver",
@@ -1630,7 +1630,7 @@
       "chainTier": 2,
       "chainPrev": "chain_craft_bronze",
       "chainNext": "chain_craft_gold",
-      "desc": "Reach skill undefined in any profession."
+      "desc": "Profession Skill 150"
     },
     {
       "id": "chain_craft_gold",
@@ -1652,7 +1652,7 @@
       "chainTier": 3,
       "chainPrev": "chain_craft_silver",
       "chainNext": "chain_craft_legend",
-      "desc": "Reach skill undefined in any profession."
+      "desc": "Profession Skill 250"
     },
     {
       "id": "chain_craft_legend",
@@ -1673,7 +1673,7 @@
       "chainId": "crafter",
       "chainTier": 4,
       "chainPrev": "chain_craft_gold",
-      "desc": "Reach skill undefined in any profession."
+      "desc": "Profession Skill 300"
     },
     {
       "id": "dual_profession",
@@ -2398,7 +2398,10 @@
       "category": "exploration",
       "rarity": "common",
       "points": 5,
-      "condition": { "type": "codex_discovered", "value": 10 }
+      "condition": {
+        "type": "codex_discovered",
+        "value": 10
+      }
     },
     {
       "id": "codex-scholar",
@@ -2408,7 +2411,10 @@
       "category": "exploration",
       "rarity": "uncommon",
       "points": 10,
-      "condition": { "type": "codex_discovered", "value": 25 },
+      "condition": {
+        "type": "codex_discovered",
+        "value": 25
+      },
       "chainPrev": "codex-initiate"
     },
     {
@@ -2419,7 +2425,10 @@
       "category": "exploration",
       "rarity": "rare",
       "points": 25,
-      "condition": { "type": "codex_discovered", "value": 50 },
+      "condition": {
+        "type": "codex_discovered",
+        "value": 50
+      },
       "chainPrev": "codex-scholar"
     },
     {
@@ -2430,7 +2439,10 @@
       "category": "exploration",
       "rarity": "epic",
       "points": 50,
-      "condition": { "type": "codex_discovered", "value": 75 },
+      "condition": {
+        "type": "codex_discovered",
+        "value": 75
+      },
       "chainPrev": "codex-archivist"
     },
     {
@@ -2441,7 +2453,10 @@
       "category": "exploration",
       "rarity": "legendary",
       "points": 100,
-      "condition": { "type": "codex_discovered", "value": 85 },
+      "condition": {
+        "type": "codex_discovered",
+        "value": 85
+      },
       "chainPrev": "codex-lorekeeper",
       "hidden": true
     }

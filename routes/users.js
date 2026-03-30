@@ -369,7 +369,8 @@ router.post('/api/register', authLimiter, async (req, res) => {
     earnedAchievements: [],
     streakDays: 0,
     streakLastDate: null,
-    forgeTemp: 0,
+    forgeTemp: 50, // New players start warm — no XP penalty on first quests
+    forgeTempAt: now(), // Start decay timer from registration
     currencies: { ...DEFAULT_CURRENCIES },
     apiKey,
     passwordHash: hashedPassword,
