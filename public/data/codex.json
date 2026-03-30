@@ -204,7 +204,7 @@
       "id": "eldric",
       "category": "npcs",
       "title": "Eldric der Verzauberer",
-      "text": "Er spricht in Gleichungen und denkt in Runen. Für Eldric ist jeder Gegenstand ein Rätsel und jede Verzauberung eine Konversation mit dem Aetherstrom. Ob der Strom antwortet oder nicht — er führt das Gespräch trotzdem weiter.",
+      "text": "Eldric spricht in Gleichungen, denkt in Runen und hört Dingen zu, die nicht da sind. Für ihn ist jeder Gegenstand ein Rätsel und jede Verzauberung eine Konversation mit dem Aetherstrom. Ob der Strom antwortet oder nicht — er führt das Gespräch trotzdem weiter. Seit dreißig Jahren. Die anderen Handwerker haben aufgehört, sich Sorgen zu machen. Nicht weil es besser wurde. Sie haben sich einfach daran gewöhnt.",
       "unlockedBy": {
         "type": "profession_skill",
         "value": 10
@@ -521,7 +521,7 @@
       "id": "stagnations-golem",
       "category": "creatures",
       "title": "Der Stagnations-Golem",
-      "text": "Er bewegt sich nicht. Das ist seine Stärke und sein Statement. Der Golem steht seit Äonen an derselben Stelle und wartet darauf, dass etwas passiert, ohne selbst etwas zu tun. Manche Helden erkennen sich in ihm wieder. Die klugen erschrecken dabei.",
+      "text": "Er bewegt sich nicht. Seit Äonen. Nicht einen Zentimeter. Das klingt harmlos, bis du realisierst, dass er genau in der Mitte eines sehr wichtigen Korridors steht. Man hat versucht, ihn zu verschieben. Man hat versucht, ihn zu sprengen. Man hat versucht, ihn höflich zu bitten. Er bewegt sich nicht. Sein Gesichtsausdruck sagt: 'Ich mache das morgen.' Seit dreihundert Jahren. Manche Helden erkennen sich in ihm wieder und werden sehr, sehr still.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -551,7 +551,7 @@
       "id": "apathie-souveraen",
       "category": "creatures",
       "title": "Der Apathie-Souverän",
-      "text": "Er saß auf einem Thron aus Gleichgültigkeit und regierte ein Königreich aus Achselzucken. Sein Volk war weder glücklich noch unglücklich — sie waren nichts. Der Souverän wurde nicht besiegt. Er wurde ignoriert. Das war schlimmer.",
+      "text": "Er sitzt auf einem Thron aus Gleichgültigkeit und regiert ein Königreich aus Achselzucken. Sein Volk war weder glücklich noch unglücklich. Sie waren 'meh'. Eine Armee aus 'meh' ist übrigens erschreckend schwer zu bekämpfen, weil sie sich nicht genug dafür interessiert, besiegt zu werden. Der Souverän wurde letztendlich nicht besiegt, sondern ignoriert. Was ihn nicht gestört hat. Was der ganze Punkt ist. Was alle wahnsinnig macht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 30
@@ -631,7 +631,7 @@
       "id": "mondstaub-essenz",
       "category": "artifacts",
       "title": "Mondstaub",
-      "text": "Extrem selten. Extrem begehrt. Extrem schwer zu erklären. Mondstaub entsteht, wenn Konsistenz auf Hingabe trifft — und selbst dann nur in homöopathischen Dosen. Wer genug davon hat, kann die Zeit selbst verlangsamen. Oder zumindest einen Rift-Timer verlängern.",
+      "text": "Extrem selten. Extrem begehrt. Extrem schwer zu erklären, ohne wie ein Esoteriker zu klingen. Mondstaub entsteht aus Konsistenz und Hingabe, was bedeutet, dass Leute die ihn haben, bereits bewiesenermaßen verrückt sind. Wer genug sammelt, kann einen Rift-Timer verlängern, was ungefähr so ist, als würde man sich mehr Zeit kaufen, in der man sterben kann. Beliebt. Aus Gründen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 15
@@ -691,7 +691,7 @@
       "id": "wanderer-kodex",
       "category": "npcs",
       "title": "Der Wanderer-Kodex",
-      "text": "Jeder NPC, der den Turm betritt, folgt unausgesprochenen Regeln. Komm mit einer Quest. Geh mit einer Geschichte. Nimm nichts mit, was dir nicht gehört. Lass nichts zurück, das jemanden verfolgen könnte. Die meisten halten sich daran. Die interessanten nicht.",
+      "text": "Jeder NPC, der den Turm betritt, folgt unausgesprochenen Regeln. Regel eins: Komm mit einer Quest. Regel zwei: Geh mit einer Geschichte. Regel drei: Nimm nichts mit, was dir nicht gehört. Regel vier: Lass nichts zurück, das jemanden verfolgen könnte. Regel fünf existiert, wird aber nur mündlich weitergegeben, und nur an NPCs die Regel eins bis vier gebrochen haben. Die meisten halten sich an den Kodex. Die interessanten nicht. Die gefährlichen kennen ihn auswendig und ignorieren ihn trotzdem.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
@@ -721,7 +721,7 @@
       "id": "turmerbauer",
       "category": "history",
       "title": "Die Turmerbauer",
-      "text": "Niemand weiß, wer den Turm gebaut hat. Die offiziellen Aufzeichnungen widersprechen sich — in drei verschiedenen Sprachen, von denen eine nicht von Menschen stammt. Was sicher ist: Wer auch immer es war, hatte keinen Architekten. Der Turm folgt keinem Plan. Er folgt einer Idee.",
+      "text": "Niemand weiß, wer den Turm gebaut hat. Die offiziellen Aufzeichnungen widersprechen sich — in drei verschiedenen Sprachen, von denen eine nicht von Menschen stammt und eine andere grammatisch so falsch ist, dass sie von Menschen stammen muss. Es gibt keine Baupläne. Es gibt keine Genehmigung. Es gibt kein Fundament, was die Statiker beunruhigt. Der Turm steht trotzdem. Die Statiker trinken.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -731,7 +731,7 @@
       "id": "vergessene-guild",
       "category": "history",
       "title": "Die Vergessene Gilde",
-      "text": "Vor den Vier Zirkeln gab es eine fünfte Fraktion. Niemand erinnert sich an ihren Namen. Das ist nicht Zufall — es ist ihr letzter Akt. Sie haben sich aus der Geschichte gelöscht, wie man eine Kerze ausbläst. Warum? Das steht in den Aufzeichnungen, die sie mitgenommen haben.",
+      "text": "Vor den Vier Zirkeln gab es eine fünfte Fraktion. Niemand erinnert sich an ihren Namen, was entweder tragisch oder genau das ist, was sie wollten. Sie haben sich aus der Geschichte gelöscht. Gründlich. Professionell. Wie jemand, der seinen Browserverlauf löscht, nur mit der gesamten historischen Aufzeichnung. Die einzige Spur ist ein leerer Stuhl am Ratstisch, den niemand wegnimmt, weil jedes Mal wenn jemand es versucht, der Stuhl am nächsten Morgen wieder da steht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 25
@@ -861,7 +861,7 @@
       "id": "expedition-geschichten",
       "category": "world",
       "title": "Die Expeditions-Routen",
-      "text": "Vier Pfade führen vom Turm in die Wildnis. Schnelles Sammeln: vier Stunden, wenig Risiko, Taschen voll mit Kräutern. Tiefer Wald: acht Stunden, in denen dein Companion Dinge sieht, über die er nicht sprechen möchte. Bergpass: zwölf Stunden vertikaler Wahnsinn. Und die Alten Ruinen: ein ganzer Tag in Relikten, die älter sind als die Erinnerung.",
+      "text": "Vier Pfade. Aufsteigende Verrücktheit. Schnelles Sammeln: vier Stunden, du kommst zurück mit Kräutern und deiner Würde intakt. Tiefer Wald: acht Stunden, dein Companion sieht Dinge, über die er nicht sprechen möchte, und du respektierst das, weil sein Blick dich beunruhigt. Bergpass: zwölf Stunden vertikaler Wahnsinn. Alte Ruinen: vierundzwanzig Stunden in Relikten, die älter sind als die Erinnerung. Dein Companion kommt verändert zurück. Du auch.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 8

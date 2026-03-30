@@ -427,7 +427,7 @@
     {
       "id": "forge_novice",
       "name": "Forge Novice",
-      "description": "Complete your first development quest",
+      "description": "Erste Dev-Quest. Du hast etwas gebaut. Ob es funktioniert, ist eine philosophische Frage.",
       "icon": "/images/icons/ach-forge-novice.png",
       "condition": {
         "type": "quest_type_count",
@@ -447,7 +447,7 @@
     {
       "id": "arena_first",
       "name": "Arena Debut",
-      "description": "Complete your first fitness quest",
+      "description": "Erste Fitness-Quest. Dein Körper wollte eine Erklärung. Du hast keine gegeben.",
       "icon": "/images/icons/ach-arena-debut.png",
       "condition": {
         "type": "quest_type_count",
@@ -467,7 +467,7 @@
     {
       "id": "scholar_first",
       "name": "First Scroll",
-      "description": "Complete your first learning quest",
+      "description": "Erste Lern-Quest. Du hast eine Schriftrolle geöffnet. Die Schriftrolle war enttäuscht.",
       "icon": "/images/icons/ach-first-scroll.png",
       "condition": {
         "type": "quest_type_count",
@@ -487,7 +487,7 @@
     {
       "id": "ten_quests",
       "name": "Ten Quest Mark",
-      "description": "Complete 25 quests total",
+      "description": "25 Quests. Du bist jetzt offiziell zu weit gegangen, um umzukehren.",
       "icon": "/images/icons/ach-ten-quests.png",
       "condition": {
         "type": "quests_completed",
@@ -506,7 +506,7 @@
     {
       "id": "fifty_quests",
       "name": "Half Century",
-      "description": "Complete 75 quests total",
+      "description": "75 Quests. Drei Viertel der Hundert. Die letzten 25 werden sich wie 75 anfühlen.",
       "icon": "/images/icons/ach-fifty-quests.png",
       "condition": {
         "type": "quests_completed",
@@ -525,7 +525,7 @@
     {
       "id": "coop_hero",
       "name": "Co-op Hero",
-      "description": "Complete a co-op quest",
+      "description": "Erste Co-op Quest. Du hast mit jemandem zusammengearbeitet. Beide haben überlebt. Erstaunlich.",
       "icon": "/images/icons/ach-coop-hero.png",
       "condition": {
         "type": "coop_completed",
@@ -544,7 +544,7 @@
     {
       "id": "early_bird",
       "name": "Early Bird",
-      "description": "Complete 3 quests before 08:00",
+      "description": "3 Quests vor 8 Uhr morgens. Die Sonne ist kaum aufgegangen und du hast schon Probleme gelöst, die sie nicht kennt.",
       "icon": "/images/icons/ach-early-bird.png",
       "condition": {
         "type": "early_completions",
@@ -564,7 +564,7 @@
     {
       "id": "forbidden_code",
       "name": "The Forbidden Code",
-      "description": "Complete a quest on a Sunday",
+      "description": "Eine Quest am Sonntag. Gott ruhte am siebten Tag. Du offensichtlich nicht.",
       "icon": "/images/icons/ach-forbidden-code.png",
       "condition": {
         "type": "day_of_week",
@@ -583,7 +583,7 @@
     {
       "id": "easter_egg",
       "name": "Easter Egg Hunter",
-      "description": "Found something secret...",
+      "description": "Du hast etwas gefunden, das versteckt war. Manche Dinge sind aus gutem Grund versteckt.",
       "icon": "/images/icons/achievement-easter-egg.png",
       "condition": {
         "type": "secret_found"
@@ -601,7 +601,7 @@
     {
       "id": "perfectionist",
       "name": "Perfectionist",
-      "description": "Complete 150 quests",
+      "description": "150 Quests. Perfektion ist keine Eigenschaft, sondern eine Störung. Herzlichen Glückwunsch zur Diagnose.",
       "icon": "/images/icons/achievement-perfectionist.png",
       "condition": {
         "type": "quests_completed",
@@ -620,7 +620,7 @@
     {
       "id": "no_rest",
       "name": "No Rest for the Wicked",
-      "description": "Maintain a 60-day streak",
+      "description": "60 Tage Streak. Zwei Monate. Du hast vergessen, wie Wochenenden sich anfühlen.",
       "icon": "/images/icons/achievement-no-rest.png",
       "condition": {
         "type": "streak_days",
@@ -639,7 +639,7 @@
     {
       "id": "one_ring",
       "name": "The One Ring",
-      "description": "Earn 1000 gold total",
+      "description": "1000 Gold. Genug für einen Neuanfang oder einen sehr teuren Fehler.",
       "icon": "/images/icons/achievement-one-ring.png",
       "condition": {
         "type": "gold_threshold",
@@ -658,7 +658,7 @@
     {
       "id": "centurion",
       "name": "Centurion",
-      "description": "Complete 200 quests",
+      "description": "200 Quests. Eine Zahl, die Respekt verdient. Oder professionelle Hilfe. Die Grenze ist fließend.",
       "icon": "?",
       "condition": {
         "type": "quests_completed",
@@ -677,7 +677,7 @@
     {
       "id": "master",
       "name": "Quest Master",
-      "description": "Complete 500 quests",
+      "description": "500 Quests. Die Halle kennt deinen Namen. Die Halle hat Angst vor deinem Namen.",
       "icon": "?",
       "condition": {
         "type": "quests_completed",
@@ -696,7 +696,7 @@
     {
       "id": "hermit",
       "name": "The Hermit",
-      "description": "Complete 25 personal quests",
+      "description": "25 persönliche Quests. Du hast 25 Mal etwas für dich getan und es als Arbeit deklariert. Clever.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -716,7 +716,7 @@
     {
       "id": "boss_hunter",
       "name": "Boss Hunter",
-      "description": "Complete 5 boss battles",
+      "description": "5 Weltbosse. Du bist jetzt der Typ, der bei jedem Boss-Fight auftaucht. Die Bosse erkennen dich.",
       "icon": "?",
       "condition": {
         "type": "boss_defeated",
@@ -735,7 +735,7 @@
     {
       "id": "boss_legend",
       "name": "Boss Legend",
-      "description": "Complete 20 boss battles",
+      "description": "20 Weltbosse erlegt. An diesem Punkt hast du ein berufliches Verhältnis zum Monstertöten.",
       "icon": "?",
       "condition": {
         "type": "boss_defeated",
@@ -754,7 +754,7 @@
     {
       "id": "two_week_warrior",
       "name": "Fortnight Fighter",
-      "description": "Maintain a 14-day streak",
+      "description": "14 Tage. Zwei Wochen. Lang genug für eine Gewohnheit, kurz genug für Ausreden.",
       "icon": "?",
       "condition": {
         "type": "streak_days",
@@ -773,7 +773,7 @@
     {
       "id": "quarter_year",
       "name": "Seasonal Champion",
-      "description": "Maintain a 90-day streak",
+      "description": "90 Tage Streak. Ein Vierteljahr. Die Jahreszeiten wechseln, du nicht.",
       "icon": "?",
       "condition": {
         "type": "streak_days",

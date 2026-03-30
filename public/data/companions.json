@@ -9,25 +9,25 @@
     "other":   { "emoji": "🐾", "careQuests": ["feed", "care"] }
   },
   "virtualTemplates": {
-    "dragon":  { "emoji": "🐉", "name": "Ember",  "desc": "Ein feuriger Drache der dich antreibt",                        "personality": "fierce" },
-    "owl":     { "emoji": "🦉", "name": "Sage",   "desc": "Eine weise Eule die dich beim Lernen begleitet",               "personality": "wise" },
-    "phoenix": { "emoji": "🔥", "name": "Blaze",  "desc": "Ein Phoenix der aus jeder Niederlage stärker aufsteht",        "personality": "resilient" },
-    "wolf":    { "emoji": "🐺", "name": "Shadow", "desc": "Ein treuer Wolf der immer an deiner Seite steht",              "personality": "loyal" },
-    "fox":     { "emoji": "🦊", "name": "Trick",  "desc": "Ein schlauer Fuchs der kreative Lösungen findet",             "personality": "clever" },
-    "bear":    { "emoji": "🐻", "name": "Bjorn",  "desc": "Ein starker Bär der dich durch harte Zeiten trägt",           "personality": "strong" }
+    "dragon":  { "emoji": "🐉", "name": "Ember",  "desc": "Spuckt Feuer. Leider auch auf Verbündete, Möbel und gelegentlich sich selbst.",                        "personality": "fierce" },
+    "owl":     { "emoji": "🦉", "name": "Sage",   "desc": "Gilt als weise. Fliegt trotzdem regelmäßig gegen Fenster.",               "personality": "wise" },
+    "phoenix": { "emoji": "🔥", "name": "Blaze",  "desc": "Stirbt dramatisch, steht wieder auf, verlangt Applaus. Jedes. Einzelne. Mal.",        "personality": "resilient" },
+    "wolf":    { "emoji": "🐺", "name": "Shadow", "desc": "Folgt dir überall hin. Nicht aus Treue, sondern weil er den Weg zurück vergessen hat.",              "personality": "loyal" },
+    "fox":     { "emoji": "🦊", "name": "Trick",  "desc": "Löst Probleme, die es vorher nicht gab. Verursacht drei neue.",             "personality": "clever" },
+    "bear":    { "emoji": "🐻", "name": "Bjorn",  "desc": "Theoretisch ein Beschützer. Praktisch eine Stolperfalle mit Fell.",           "personality": "strong" }
   },
   "careQuestTemplates": {
-    "feed":       { "title": "{name} füttern",                        "desc": "Vergiss nicht, {name} braucht Futter!",                              "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "walk":       { "title": "Gassi gehen mit {name}",                "desc": "Frische Luft tut euch beiden gut!",                                  "recurrence": "daily",   "xp": 10, "gold": 3 },
-    "play":       { "title": "Mit {name} spielen",                    "desc": "Quality Time mit deinem Begleiter!",                                 "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "training":   { "title": "{name} trainieren",                     "desc": "Übung macht den Meister — auch für {name}!",                         "recurrence": "weekly",  "xp": 15, "gold": 5 },
-    "grooming":   { "title": "{name} pflegen",                        "desc": "Ein gepflegter Begleiter ist ein glücklicher Begleiter.",             "recurrence": "weekly",  "xp": 10, "gold": 3 },
-    "cuddle":     { "title": "Kuschelzeit mit {name}",                "desc": "Manchmal braucht man einfach Nähe.",                                 "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "vet_check":  { "title": "Tierarzt-Check für {name}",             "desc": "Regelmäßige Checks halten {name} gesund.",                           "recurrence": "monthly", "xp": 25, "gold": 10 },
-    "clean_cage": { "title": "{name}s Zuhause sauber machen",         "desc": "Ein sauberes Heim für einen glücklichen Freund.",                    "recurrence": "weekly",  "xp": 10, "gold": 3 },
-    "clean_tank": { "title": "Aquarium für {name} reinigen",          "desc": "Klares Wasser, glücklicher Fisch!",                                  "recurrence": "weekly",  "xp": 10, "gold": 3 },
-    "sing":       { "title": "Mit {name} singen",                     "desc": "{name} liebt es wenn du singst!",                                    "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "care":       { "title": "Für {name} sorgen",                     "desc": "Deinem Begleiter geht es besser wenn du für ihn sorgst.",            "recurrence": "daily",   "xp": 5,  "gold": 2 }
+    "feed":       { "title": "{name} füttern",                        "desc": "{name} starrt dich an. Nicht liebevoll. Hungrig.",                    "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "walk":       { "title": "Gassi gehen mit {name}",                "desc": "{name} zerrt dich durch die Gegend. Du nennst es Spaziergang.",      "recurrence": "daily",   "xp": 10, "gold": 3 },
+    "play":       { "title": "Mit {name} spielen",                    "desc": "{name} spielt. Du räumst hinterher auf. Teamwork.",                  "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "training":   { "title": "{name} trainieren",                     "desc": "Du trainierst {name}. {name} trainiert deine Geduld. Unentschieden.", "recurrence": "weekly",  "xp": 15, "gold": 5 },
+    "grooming":   { "title": "{name} pflegen",                        "desc": "{name} duldet die Prozedur mit der Würde eines Kriegsgefangenen.",    "recurrence": "weekly",  "xp": 10, "gold": 3 },
+    "cuddle":     { "title": "Kuschelzeit mit {name}",                "desc": "{name} erlaubt körperliche Nähe. Sei dankbar. Es ist selten.",        "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "vet_check":  { "title": "Tierarzt-Check für {name}",             "desc": "Der Heiler bestätigt: {name} ist kerngesund. Und nachtragend.",      "recurrence": "monthly", "xp": 25, "gold": 10 },
+    "clean_cage": { "title": "{name}s Zuhause sauber machen",         "desc": "{name} beobachtet dich beim Putzen. Kein Dank. Nur Urteil.",         "recurrence": "weekly",  "xp": 10, "gold": 3 },
+    "clean_tank": { "title": "Aquarium für {name} reinigen",          "desc": "{name} schwimmt desinteressiert weiter. Du bist das Personal.",      "recurrence": "weekly",  "xp": 10, "gold": 3 },
+    "sing":       { "title": "Mit {name} singen",                     "desc": "{name} singt mit. Ob aus Freude oder Protest — unklar.",             "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "care":       { "title": "Für {name} sorgen",                     "desc": "Hat drei Besitzer überlebt. Nicht weil er sie beschützt hat.",       "recurrence": "daily",   "xp": 5,  "gold": 2 }
   },
   "bondLevels": [
     { "level": 1,  "title": "Stranger",      "minXp": 0   },
@@ -49,9 +49,9 @@
         "id": "instant_complete",
         "name": "Sofort-Abschluss",
         "icon": "/images/icons/ult-instant.png",
-        "desc": "{name} erledigt eine offene Quest sofort für dich.",
+        "desc": "{name} erledigt eine Quest sofort. Frag nicht wie. Frag nie wie.",
         "effect": { "type": "instant_complete_quest" },
-        "flavorText": "{name} stürmt los und kehrt siegreich zurück!"
+        "flavorText": "{name} verschwindet kurz. Kommt zurück. Riecht nach Rauch und Bedauern."
       },
       {
         "id": "double_reward",

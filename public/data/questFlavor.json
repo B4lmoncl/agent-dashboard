@@ -1,29 +1,29 @@
 {
   "development": {
-    "completionMessage": "xx **PROTOCOL FORGED.** The anvil cools and your creation hums with power. Another artifact added to the Guild vault. The Forge Masters nod in approval — your craft grows sharper with every strike.",
+    "completionMessage": "**ARTEFAKT GESCHMIEDET.** Der Code kompiliert. Keine Warnungen. Keine Fehler. Das passiert so selten, dass die Gilde es als übernatürliches Ereignis klassifiziert hat.",
     "streakBonus": {
-      "3":  "x 3-day Forge Streak! The anvil hasn't cooled in days. You're entering a state the old smiths called *The Endless Heat*.",
-      "7":  "xxx 7-day Forge Streak! The Guild speaks your name in whispers. They call you Ironhand — one who never lets the fire die.",
-      "14": "x 14-day Forge Streak! You've transcended mortal crafting. The Forge itself bends to your will. Legendary Artificer status unlocked.",
-      "30": "xxx 30-day Forge Streak! The Council of Master Smiths has no choice but to acknowledge a new peer. You are now part of the living legend of the Guild."
+      "3":  "3 Tage Schmiede-Streak! Du hast drei Tage in Folge produktiven Code geschrieben. Die Statistik sagt, das ist seltener als ein legendärer Drop.",
+      "7":  "7 Tage Schmiede-Streak! Eine ganze Woche. Der Amboss glüht, dein Editor glüht, dein Kaffeekonsum glüht. Mindestens zwei davon sind gesund.",
+      "14": "14 Tage Schmiede-Streak! Zwei Wochen durchgehend am Schmieden. Deine Finger tippen mittlerweile im Schlaf. Das ist kein Witz — dein Mitbewohner hat gefragt.",
+      "30": "30 Tage Schmiede-Streak! Ein ganzer Monat. Die Schmiede hat dich adoptiert. Du riechst nach Amboss und Ehrgeiz. Hauptsächlich Amboss."
     }
   },
   "learning": {
-    "completionMessage": "x **KNOWLEDGE ACQUIRED.** The Archive glows as a new understanding etches itself into your mind. You feel the subtle shift — you are not who you were when you opened that first page. The Guild's Lorekeepers record your advancement.",
+    "completionMessage": "**WISSEN ERWORBEN.** Du hast etwas gelernt. Dein Gehirn hat kurz protestiert, dann nachgegeben. So funktioniert Bildung — durch freundliche Belagerung.",
     "streakBonus": {
-      "3":  "x 3-day Study Streak! The candles in the Archive burn for you alone. Your mind sharpens like a blade on the whetstone of knowledge.",
-      "7":  "xx 7-day Study Streak! The Lorekeepers have taken notice. They've started leaving rare texts on your desk — they see potential for mastery.",
-      "14": "x 14-day Study Streak! You've entered the Scholar's Flow. Concepts that once seemed like foreign runes now read like your mother tongue.",
-      "30": "xxx 30-day Study Streak! The Grand Lorekeeper has granted you a key to the Restricted Section. Few have ever earned this honor. Your intellect is now a Guild-tier weapon."
+      "3":  "3 Tage Studien-Streak! Drei Tage hintereinander gelernt. Die Kerzen im Archiv brennen nur für dich. Alle anderen benutzen Lampen, aber du hast Stil.",
+      "7":  "7 Tage Studien-Streak! Eine Woche Wissen aufsaugen. Die Lorekeepers haben angefangen, Bücher auf deinem Schreibtisch zu horten. Das ist entweder Respekt oder eine Brandgefahr.",
+      "14": "14 Tage Studien-Streak! Zwei Wochen ununterbrochenes Lernen. Du zitierst Quellen im Alltag. Deine Freunde finden das furchtbar. Die Gilde findet das vorbildlich.",
+      "30": "30 Tage Studien-Streak! Ein Monat. Du hast den Punkt erreicht, an dem du Dinge weißt, die niemand wissen will. Das ist die reinste Form von Gelehrsamkeit."
     }
   },
   "personal": {
-    "completionMessage": "x **DOMAIN SECURED.** Your quarters are fortified, your supplies restocked, your chaos tamed. It's invisible work, but the Guild knows — operational readiness is what wins wars. Respect earned where it matters most: in the foundation.",
+    "completionMessage": "**DOMÄNE GESICHERT.** Das Chaos wurde bezwungen. Vorübergehend. Es wird zurückkommen — das Chaos hat immer einen Schlüssel — aber heute gehört der Sieg dir.",
     "streakBonus": {
-      "3":  "x 3-day Upkeep Streak! Your domain runs like a well-oiled siege engine. Consistency is the unsexy superpower, and you're wielding it.",
-      "7":  "xx 7-day Upkeep Streak! The Guild Quartermaster is impressed. Your personal operations are running at peak efficiency. Others are starting to ask how you do it.",
-      "14": "xx 14-day Upkeep Streak! You've built something rare — sustainable order from chaos. The Guild promotes you to Keeper of the Inner Sanctum.",
-      "30": "xx 30-day Upkeep Streak! A full month of unbroken discipline. Your domain is a fortress others aspire to. The Guild whispers of a new rank: Sovereign of the Hearth."
+      "3":  "3 Tage Ordnungs-Streak! Drei Tage am Stück aufgeräumt. Deine Wohnung sieht aus wie ein Ort, an dem ein funktionierender Erwachsener lebt. Beeindruckend. Verdächtig, aber beeindruckend.",
+      "7":  "7 Tage Ordnungs-Streak! Eine Woche Haushalt. Der Quartiermeister ist sprachlos. Nicht vor Freude — er glaubt dir einfach nicht.",
+      "14": "14 Tage Ordnungs-Streak! Zwei Wochen. Die Staubschicht hat offiziell aufgegeben. Du hast Ordnung aus dem Nichts erschaffen. Das ist im Grunde Magie.",
+      "30": "30 Tage Ordnungs-Streak! Ein Monat ohne Chaos. Die Gilde vermutet, du wurdest durch einen Doppelgänger ersetzt. Der echte du hätte längst aufgegeben."
     }
   },
   "fitness": {
