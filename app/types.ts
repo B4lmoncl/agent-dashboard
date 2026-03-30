@@ -180,6 +180,7 @@ export interface User {
   tavernRest?: { active: boolean; frozenAt: string; forgeFrozenAt: number; unfreezeAt: string; reason?: string } | null;
   companionExpedition?: { tier: string; startedAt: string; dueAt: string } | null;
   activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number }[];
+  _restedXpPool?: number;
 }
 
 export interface CampaignQuest {

@@ -47,6 +47,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
   const lvl = getUserLevel(xp);
   const progress = getUserXpProgress(xp);
   const nextLvlEntry = GUILD_LEVELS[lvl.level];
+  const xpForLevel = nextLvlEntry ? (nextLvlEntry.xpRequired - (GUILD_LEVELS[lvl.level - 1]?.xpRequired || 0)) : 1000;
   const isMilestoneLevel = lvl.level === 10 || lvl.level === 20 || lvl.level === 30;
   const streak = user.streakDays ?? 0;
   const temp = Math.min(user.forgeTemp ?? 0, 100);
@@ -184,7 +185,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
             {nextLvlEntry ? `${(xp - lvl.xpRequired).toLocaleString()} / ${(nextLvlEntry.xpRequired - lvl.xpRequired).toLocaleString()}` : "MAX"}
           </span>
         </div>
-        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
+        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }}>
           <div
             className="progress-bar-diablo-fill"
             style={{
@@ -192,6 +193,22 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
               background: `linear-gradient(90deg, ${lvl.color}88, ${lvl.color}, ${lvl.color}cc)`,
             }}
           />
+          {/* Rested XP pool indicator (blue zone after current XP) */}
+          {user._restedXpPool && user._restedXpPool > 0 && xpForLevel > 0 && (() => {
+            const restedPct = Math.min(100 - Math.round(progress * 100), Math.round((user._restedXpPool / xpForLevel) * 100));
+            if (restedPct <= 0) return null;
+            return (
+              <div style={{
+                position: "absolute",
+                left: `${Math.round(progress * 100)}%`,
+                top: 0,
+                bottom: 0,
+                width: `${restedPct}%`,
+                background: "rgba(59,130,246,0.35)",
+                borderRadius: "0 3px 3px 0",
+              }} title={`Rested XP: ${user._restedXpPool} XP pool remaining`} />
+            );
+          })()}
         </div>
       </div>
 
