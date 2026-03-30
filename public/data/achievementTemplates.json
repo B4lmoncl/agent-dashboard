@@ -1481,7 +1481,7 @@
       "chainTier": 3,
       "chainPrev": "chain_gold_silver",
       "chainNext": "chain_gold_legend",
-      "desc": "Accumulate 25000 gold."
+      "desc": "25.000 Gold. Reich, aber es fühlt sich nicht so an. Das ist das Zeichen."
     },
     {
       "id": "chain_gold_legend",
@@ -1501,7 +1501,7 @@
       "chainId": "gold_hoarder",
       "chainTier": 4,
       "chainPrev": "chain_gold_gold",
-      "desc": "Accumulate 100000 gold."
+      "desc": "100.000 Gold. Mehr als manche Kleinstaaten. Ausgeben wirst du es trotzdem nicht."
     },
     {
       "id": "chain_boss_bronze",
@@ -1522,7 +1522,7 @@
       "chainId": "boss_slayer",
       "chainTier": 1,
       "chainNext": "chain_boss_silver",
-      "desc": "Defeat 1 world boss."
+      "desc": "Ein Weltboss. Technisch gesehen beteiligt. Protokolliert als 'anwesend'."
     },
     {
       "id": "chain_boss_silver",
@@ -1544,7 +1544,7 @@
       "chainTier": 2,
       "chainPrev": "chain_boss_bronze",
       "chainNext": "chain_boss_gold",
-      "desc": "Defeat 5 world bosses."
+      "desc": "5 Weltbosse. Auftauchen, Schaden, Beute, verschwinden. Ein Muster."
     },
     {
       "id": "chain_boss_gold",
@@ -1566,7 +1566,7 @@
       "chainTier": 3,
       "chainPrev": "chain_boss_silver",
       "chainNext": "chain_boss_legend",
-      "desc": "Defeat 15 world bosses."
+      "desc": "15 Weltbosse. Die haben inzwischen eine Selbsthilfegruppe. Wegen dir."
     },
     {
       "id": "chain_boss_legend",
@@ -1587,7 +1587,7 @@
       "chainId": "boss_slayer",
       "chainTier": 4,
       "chainPrev": "chain_boss_gold",
-      "desc": "Defeat 50 world bosses."
+      "desc": "50 Weltbosse. Der Grund, warum Bosse einen Gewerkschaftsvertreter haben."
     },
     {
       "id": "chain_craft_bronze",
@@ -1608,7 +1608,7 @@
       "chainId": "crafter",
       "chainTier": 1,
       "chainNext": "chain_craft_silver",
-      "desc": "Profession Skill 50"
+      "desc": "Skill 50. Dinge, die nicht sofort auseinanderfallen. Niedrige Latte, aber immerhin."
     },
     {
       "id": "chain_craft_silver",
@@ -1630,7 +1630,7 @@
       "chainTier": 2,
       "chainPrev": "chain_craft_bronze",
       "chainNext": "chain_craft_gold",
-      "desc": "Profession Skill 150"
+      "desc": "Skill 150. Halbzeit. Die NPCs lassen dich an die guten Werkzeuge."
     },
     {
       "id": "chain_craft_gold",
@@ -1652,7 +1652,7 @@
       "chainTier": 3,
       "chainPrev": "chain_craft_silver",
       "chainNext": "chain_craft_legend",
-      "desc": "Profession Skill 250"
+      "desc": "Skill 250. Du riechst nach Kohle und Kräutern. Dein Companion hält Abstand."
     },
     {
       "id": "chain_craft_legend",
@@ -1673,13 +1673,13 @@
       "chainId": "crafter",
       "chainTier": 4,
       "chainPrev": "chain_craft_gold",
-      "desc": "Profession Skill 300"
+      "desc": "Skill 300. Maximum. Grimvar weint vor Stolz. Oder Rauch. Schwer zu sagen."
     },
     {
       "id": "dual_profession",
       "name": "Doppelmeister",
       "icon": "/images/icons/ach-dual-prof.png",
-      "desc": "Reach Skill 150+ in two primary professions simultaneously.",
+      "desc": "Zwei Professionen auf 150+. Du konntest dich nicht entscheiden und hast einfach beides gemacht.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
