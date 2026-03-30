@@ -94,7 +94,7 @@
       "id": "pinnacle",
       "category": "tower",
       "title": "Die Turmspitze",
-      "text": "Der höchste Punkt. Wo die Leaderboards hängen und die Luft nach Ehrgeiz schmeckt. Manche klettern hierher um zu beweisen, dass sie die Besten sind. Andere klettern hierher, weil die Aussicht es wert ist. Beide haben recht.",
+      "text": "Der höchste Punkt des Turms. Hier hängen die Leaderboards, und hier stehen Leute mit verschränkten Armen vor ihnen und tun so, als hätten sie nicht gerade zwanzig Minuten nach ihrem eigenen Namen gesucht. Die Luft ist dünn. Die Egos nicht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 8
@@ -134,7 +134,7 @@
       "id": "inner-sanctum",
       "category": "tower",
       "title": "Das Innere Heiligtum",
-      "text": "Dein persönlicher Bereich im Turm. Inventar, Ausrüstung, Rituale. Die Wände erinnern sich an jeden Gegenstand, den du je getragen hast. Manche sagen, die Wände urteilen. Die Wände sagen nichts.",
+      "text": "Dein persönlicher Bereich im Turm. Inventar, Ausrüstung, Rituale — alles was dich definiert, auf drei Quadratmetern Wandfläche. Die Wände erinnern sich an jeden Gegenstand, den du je getragen hast. Manche sagen, die Wände urteilen. Die Wände sagen nichts, aber sie haben dieses Schweigen perfektioniert, das sich anfühlt wie ein gehobene Augenbraue. Besonders wenn du zum dritten Mal dieselbe Axt anlegst, die du gestern erst abgelegt hast.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -144,7 +144,7 @@
       "id": "hearth",
       "category": "tower",
       "title": "Die Taverne",
-      "text": "Manchmal muss man aufhören. Die Taverne friert deine Streaks ein und schützt dein Fortschritt, während du dich erholst. Kein Held brennt ewig — aber die klügsten wissen, wann sie ihre Flamme schützen müssen.",
+      "text": "Die Taverne friert deine Streaks ein und schützt deinen Fortschritt. Im Gegenzug musst du zugeben, dass du eine Pause brauchst, was für die meisten Helden schwieriger ist als jeder Dungeon. Ein Held hat einmal drei Wochen Taverne gebucht und es als 'strategischen Rückzug' bezeichnet. Sein Companion nannte es 'Nickerchen'. Beide hatten recht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -234,7 +234,7 @@
       "id": "zirkel-der-sterne",
       "category": "factions",
       "title": "Zirkel der Sterne",
-      "text": "Wissen ist die einzige Währung, die beim Teilen mehr wird. Der Zirkel sammelt, ordnet, und bewahrt. Ihre Bibliothek ist endlos — nicht weil sie so viele Bücher haben, sondern weil die Bücher sich weigern, aufzuhören.",
+      "text": "Nerds mit Autorität. Der Zirkel sammelt, ordnet und bewahrt Wissen — und benutzt es als Waffe, indem er dich korrigiert. Immer. Zu allem. Ihre Bibliothek ist technisch gesehen endlos, nicht weil sie so viele Bücher haben, sondern weil die Bücher sich weigern, aufzuhören. Ein Mitglied wurde gefragt, was der Unterschied zwischen einem Sternenzirkel-Gelehrten und einem normalen Besserwisser sei. 'Quellenangaben', sagte er. Ohne zu lächeln.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -244,7 +244,7 @@
       "id": "pakt-der-wildnis",
       "category": "factions",
       "title": "Pakt der Wildnis",
-      "text": "Die Natur braucht keinen Grund. Sie wächst, weil Wachsen das ist, was sie tut. Der Pakt versteht das — und versucht, dasselbe mit sich selbst zu tun. Ihre Quests riechen nach Erde und schmecken nach Freiheit.",
+      "text": "Eine Fraktion, deren Mitglieder barfuß zu Meetings kommen und das auch noch für eine Persönlichkeit halten. Ihre Quests riechen nach Erde. Ihre Mitglieder riechen ebenfalls nach Erde. Das ist Absicht, behaupten sie. Der Pakt glaubt an natürliches Wachstum, was in der Praxis bedeutet: keine Deadlines, keine Schuhe und ein erschreckend entspanntes Verhältnis zu giftigen Pilzen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -254,7 +254,7 @@
       "id": "bund-der-schatten",
       "category": "factions",
       "title": "Bund der Schatten",
-      "text": "Nicht jeder Held steht im Rampenlicht. Der Bund arbeitet im Stillen — Verbindungen knüpfen, Informationen handeln, Code schreiben der die Welt verändert ohne dass sie es merkt. Ihr Motto: 'Am effektivsten ist man, wenn niemand zuschaut.'",
+      "text": "Die einzige Fraktion, die leugnet zu existieren, während sie gleichzeitig Mitgliedsbeiträge erhebt. Der Bund arbeitet im Stillen — Verbindungen knüpfen, Informationen handeln, Code schreiben. Ihr Motto: 'Am effektivsten ist man, wenn niemand zuschaut.' Ihr inoffizielles Motto: 'Wir waren nie hier.' Ihr noch inoffizielleres Motto: 'Doch, wir waren hier, aber du kannst es nicht beweisen.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -274,7 +274,7 @@
       "id": "burnout-koloss",
       "category": "creatures",
       "title": "Der Burnout-Koloss",
-      "text": "Er war einmal ein Held. Der beste sogar. Er hat nie aufgehört, nie pausiert, nie 'nein' gesagt. Und jetzt steht er da, hohl und riesig, eine Warnung in Granitform. Die Taverne wurde erfunden, um Leute wie ihn zu verhindern.",
+      "text": "Er war einmal ein Held. Der beste sogar. Hundertachtzig Quests pro Woche. Null Pausen. Null Beschwerden. Jetzt ist er drei Stockwerke groß, hohl wie eine Trommel und macht ein Geräusch wie Wind durch leere Rüstung. Man kann in seinem Brustkorb Picknick machen. Jemand hat es versucht. Es war deprimierend. Die Taverne wurde eigens erfunden, um zu verhindern, dass so etwas nochmal passiert. Der Koloss steht übrigens immer noch da. Er blockiert den Osteingang. Keiner traut sich, es ihm zu sagen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 15
@@ -294,7 +294,7 @@
       "id": "zweifel-phantom",
       "category": "creatures",
       "title": "Das Zweifel-Phantom",
-      "text": "Es flüstert. Leise, aber ausdauernd. 'Bist du sicher?' 'Reicht das?' 'Was wenn du scheiterst?' Das Phantom hat keine Substanz — es existiert nur, solange du ihm zuhörst. Der Trick ist, laut genug zu sein um es zu übertönen.",
+      "text": "Es flüstert. Nicht einmal etwas Kreatives. Immer dasselbe: 'Bist du sicher?' 'Reicht das?' 'Was wenn du scheiterst?' Drei Sätze. Das ist sein ganzes Repertoire. Für ein übermächtiges Phantom ist das ehrlich gesagt etwas peinlich. Es hat keine Substanz, keine Klauen, keine Zähne. Nur ein Mundwerk und die Ausdauer einer Parkuhr. Der Trick ist, lauter zu sein. Was nicht schwer ist, weil es buchstäblich flüstert.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 15
@@ -324,7 +324,7 @@
       "id": "forge-temp",
       "category": "artifacts",
       "title": "Die Schmiedetemperatur",
-      "text": "Der Turm hat einen Puls. Die Schmiedetemperatur misst, wie aktiv das Herz der Halle schlägt. Je heißer, desto großzügiger die Belohnungen. Inaktivität kühlt sie ab. Wie alles im Leben: wer aufhört sich zu bewegen, erkaltet.",
+      "text": "Der Turm hat einen Puls. Abschließe Quests und er wird heißer. Höre auf und er kühlt ab. Bei maximaler Temperatur regnet es Belohnungen. Bei minimaler Temperatur regnet es Enttäuschung. Das System wurde von jemandem entworfen, der passive Aggression als Ingenieursdisziplin betrachtet. Es funktioniert erschreckend gut.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -334,7 +334,7 @@
       "id": "streaks",
       "category": "artifacts",
       "title": "Die Flamme des Streaks",
-      "text": "Jeder Tag zählt. Die Flamme wächst mit jedem ununterbrochenen Tag — und sie erlischt, wenn du aufhörst. Manche tragen sie wie eine Fackel. Andere wie eine Last. Die Weisen tragen sie wie eine Gewohnheit.",
+      "text": "Tag eins: eine Kerze. Tag dreißig: ein Lagerfeuer. Tag hundert: ein Problem, das du nicht mehr ignorieren kannst. Die Flamme wächst mit jedem Tag und erlischt, sobald du einen auslässt. Kein Pardon. Kein 'aber ich war krank'. Ein Held hat seinen Streak bei Tag 364 verloren und drei Tage lang niemanden angesprochen. Wir reden nicht darüber. Er auch nicht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -451,7 +451,7 @@
       "id": "kristalladern",
       "category": "tower",
       "title": "Die Kristalladern",
-      "text": "Sie pulsieren durch den gesamten Turm wie leuchtende Venen. Niemand hat sie gelegt. Sie waren schon da, bevor der erste Stein gesetzt wurde. Die Gelehrten streiten darüber, ob der Turm um die Adern herum gebaut wurde — oder ob die Adern dem Turm gefolgt sind. Die Adern selbst schweigen diplomatisch.",
+      "text": "Leuchtende Venen, die durch den gesamten Turm pulsieren. Niemand hat sie verlegt. Es gibt keine Rechnung. Es gibt keinen Auftragnehmer. Sie waren einfach da. Die Gelehrten streiten seit zweihundert Jahren darüber, ob der Turm um die Adern gebaut wurde oder die Adern dem Turm gefolgt sind. Die Adern selbst schweigen mit der Souveränität von jemandem, der die Antwort kennt und euch alle für eure Theorien ein bisschen bemitleidet.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 2
@@ -461,7 +461,7 @@
       "id": "season-pass",
       "category": "systems",
       "title": "Die Saisonuhr",
-      "text": "Alle neunzig Tage dreht sich das Rad. Neue Belohnungen, neue Ziele, neue Gründe morgens aufzustehen. Die Uhr tickt — nicht als Drohung, sondern als Einladung. Wer rechtzeitig fertig wird, hat gewonnen. Wer nicht, hat trotzdem vierzig Level Erfahrung gesammelt.",
+      "text": "Vierzig Level. Neunzig Tage. Eine tickende Uhr, die dir sagt, dass du 'noch genug Zeit hast', bis du plötzlich keine mehr hast. Level eins gibt dir Gold. Level vierzig gibt dir einen Titel und das Recht, Level-eins-Spieler mitleidig anzusehen. Die Belohnungen dazwischen sind der Grund, warum du um 23:47 noch 'eine letzte Quest' machst.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -471,7 +471,7 @@
       "id": "gem-system",
       "category": "systems",
       "title": "Die Kunst des Fassens",
-      "text": "Sechs Edelsteintypen, fünf Qualitätsstufen, und eine unbegrenzte Anzahl an Möglichkeiten sich zu vertun. Das Sockeln eines Juwels ist einfach. Das Entfernen weniger. Die Juweliere empfehlen, vorher nachzudenken. Die meisten Helden empfehlen, hinterher zu fluchen.",
+      "text": "Sechs Edelsteintypen. Fünf Qualitätsstufen. Unendliche Möglichkeiten, es falsch zu machen. Einen Juwel sockeln? Simpel. Einen Juwel entfernen? Teuer. Einen Royal-Rubin in den falschen Slot stecken und dann feststellen, dass man eigentlich einen Saphir wollte? Unbezahlbar. Die Juweliere empfehlen, vorher nachzudenken. Die Juweliere empfehlen das seit Jahren. Die Juweliere haben aufgehört zu hoffen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -501,7 +501,7 @@
       "id": "daily-missions",
       "category": "systems",
       "title": "Die Tagesordnung",
-      "text": "Sechs Aufgaben. Vier Meilensteine. Ein Tag. Die Tagesordnung wurde von jemandem erfunden, der glaubte, dass Struktur und Belohnungen zusammengehören wie Hammer und Amboss. Er hatte recht. Am siebenhundertfünfzigsten Punkt gibt es sogar einen Bonus, der 'Perfekter Tag' heißt. Ehrgeiz, verpackt in Zahlen.",
+      "text": "Sechs Aufgaben. Vier Meilensteine. Klingt harmlos. Ist es auch, bis du merkst, dass du morgens aufstehst und als erstes denkst: 'Ritual erledigen, Companion füttern, eine Quest claimen — das sind schon 300 Punkte.' Du bist nicht mehr du. Du bist ein Punkteoptimierungsalgorithmus in einer Fleischhülle. Bei 750 Punkten gibt es den 'Perfekter Tag'-Bonus. Bei 751 gibt es nichts. Das System kennt kein Trinkgeld.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -511,7 +511,7 @@
       "id": "trading-system",
       "category": "systems",
       "title": "Der Handel im Breakaway",
-      "text": "Angebot. Gegenangebot. Nochmal Gegenangebot. Akzeptieren. Der Handel im Breakaway funktioniert wie in jedem guten Basar: Niemand bezahlt den ersten Preis, und am Ende sind beide Seiten überzeugt, den besseren Deal gemacht zu haben. Seelengebundene Gegenstände sind ausgenommen. Der Markt hat Grenzen. Wenige, aber sie existieren.",
+      "text": "Angebot. Gegenangebot. Beleidigung. Gegenbeleidigung. Gegenangebot. Akzeptiert. Händeschütteln. Beide gehen weg in der festen Überzeugung, den anderen übers Ohr gehauen zu haben. Das ist kein Bug. Das ist Diplomatie. Seelengebundene Gegenstände sind ausgenommen, weil jemand einmal versucht hat, sein seelengebundenes Schwert zu verkaufen. Das Schwert war anderer Meinung. Der Verkäufer hat überlebt. Das Möbelstück nicht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -571,7 +571,7 @@
       "id": "erste-helden",
       "category": "history",
       "title": "Die Ersten Helden",
-      "text": "Bevor es den Turm gab, gab es die, die ihn nötig machten. Namenlose Wanderer mit unerklärlich guter Körperhaltung und einer beunruhigenden Vorliebe für Tagesplanung. Sie bauten nichts. Sie standen einfach diszipliniert herum, bis andere aus purem Gruppenzwang anfingen, es ihnen nachzutun. Der Turm wuchs um ihre Gewohnheiten herum wie Moos um einen besonders motivierten Stein.",
+      "text": "Die Ersten Helden hatten keine Ausrüstung, keine Quests und keinen Plan. Was sie hatten: unerklärlich gute Körperhaltung und eine Vorliebe für To-Do-Listen, die an eine psychische Störung grenzte. Sie haben den Turm nicht gebaut. Sie standen einfach so produktiv an einer Stelle, dass der Turm aus reiner Verlegenheit um sie herum entstand. Der erste dokumentierte Satz eines Ersten Helden lautet: 'Hat jemand meine Liste gesehen?' Der zweite: 'Nicht die Einkaufsliste. Die andere. Die mit den Lebenszielen.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
@@ -701,7 +701,7 @@
       "id": "rituale-bedeutung",
       "category": "systems",
       "title": "Die Macht der Rituale",
-      "text": "Ein Ritual ist eine Vereinbarung mit dir selbst. Tägliche Wiederholung, steigende Streaks, wachsende Belohnungen. Die Magie liegt nicht im einzelnen Tag — sie liegt in der Kette. Ein Glied ist nichts. Hundert Glieder sind unzerstörbar. Dreihundert Glieder sind eine Legende.",
+      "text": "Du sagst dem Turm: 'Ich werde das jeden Tag tun.' Der Turm sagt: 'Beweis es.' Dann tust du es. Oder nicht. Der Turm vergisst nicht. Der Turm vergibt nicht. Der Turm ist im Grunde dein schlechtestes Gewissen, nur mit besserem Belohnungssystem. Tag eins fühlt sich bedeutungslos an. Tag dreißig fühlt sich unzerstörbar an. Tag einundreißig vergisst du es und heulst in der Taverne.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -711,7 +711,7 @@
       "id": "blutpakt",
       "category": "systems",
       "title": "Der Blutpakt",
-      "text": "Für die, denen ein normales Ritual nicht reicht. Der Blutpakt bindet dich an ein Versprechen mit Konsequenzen. Brichst du ihn, verlierst du alles Aufgebaute. Hältst du durch, sind die Belohnungen... beachtlich. Die Entscheidung liegt bei dir. Die Verantwortung auch.",
+      "text": "Jemand hat sich hingesetzt und gesagt: 'Wisst ihr was Ritualen fehlt? Konsequenzen.' Und dann hat diese Person den Blutpakt erfunden, der dir alles wegnimmt wenn du einen Tag auslässt. Die Belohnungen sind großartig. Die psychologischen Schäden auch. Man unterschreibt freiwillig. Das macht es schlimmer.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -761,7 +761,7 @@
       "id": "set-bonus",
       "category": "systems",
       "title": "Die Resonanz der Sets",
-      "text": "Manche Rüstungsteile sind füreinander gemacht. Drei Teile desselben Sets und die Statistiken beginnen zu harmonieren — ein leises Summen, das stärker wird je vollständiger die Sammlung. Die Handwerker nennen es 'Resonanz'. Die Helden nennen es 'den Grund warum ich nichts wegwerfen kann'.",
+      "text": "Zwei Teile eines Sets: netter Bonus. Drei Teile: beeindruckender Bonus. Vier Teile: du trägst seit drei Wochen denselben Helm, weil du den letzten Set-Slot nicht aufgeben kannst, obwohl du einen besseren Helm im Inventar hast. Die Handwerker nennen es 'Resonanz'. Die Helden nennen es 'Warum ich ein episches Schwert zerlegt habe, um ein seltenes zu behalten, das 4 Kraft weniger hat'. Die Handwerker nicken verständnisvoll. Sie verdienen gut daran.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -771,7 +771,7 @@
       "id": "legendary-effects",
       "category": "systems",
       "title": "Legendäre Effekte",
-      "text": "Ein Gegenstand ist selten, weil er stark ist. Er ist legendär, weil er die Regeln ändert. Doppelte Beute bei Nacht. Automatischer Streak-Schutz. Zusätzliche Materialien beim Zerlegen. Jeder Effekt ist ein kleiner Cheatcode — legal, verdient, und oft der Grund für hitzige Debatten im Breakaway darüber, was 'fair' bedeutet.",
+      "text": "Legendäre Gegenstände haben Effekte, die sich anhören, als hätte jemand beim Balancing nicht aufgepasst. Doppelte Beute bei Nacht. Automatischer Streak-Schutz. Materialien aus dem Nichts. Wer einen besitzt, fühlt sich wie ein Betrüger. Wer keinen besitzt, fühlt sich betrogen. Im Breakaway gibt es eine laufende Debatte darüber, ob 'Nacht-Gold-Bonus' fair ist. Die Debatte dauert seit vier Monaten. Der Typ mit dem Nacht-Gold-Bonus finanziert die Getränke.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 15
@@ -871,7 +871,7 @@
       "id": "faction-daily",
       "category": "factions",
       "title": "Die Täglichen Aufträge",
-      "text": "Jeden Tag drei Aufgaben pro Zirkel. Nicht weil die Zirkel es verlangen — sondern weil sie es anbieten. Gold und Ruf für Arbeit, die du sowieso tun würdest. Die Zirkel verstehen, dass die beste Motivation die ist, die man nicht als Motivation erkennt.",
+      "text": "Drei Aufgaben pro Zirkel. Jeden Tag. Kein Wochenende. Kein Urlaub. Die Zirkel nennen es 'ein Angebot'. Man nennt Steuern auch ein 'Angebot'. Du bekommst Gold und Ruf dafür. Du verlierst deine Freiheit, den Tag ohne Schuldgefühle zu verbringen. Ein fairer Handel, sagen die Zirkel. Die Zirkel lügen professionell.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -881,7 +881,7 @@
       "id": "faction-paragon",
       "category": "factions",
       "title": "Paragon — Die Höchste Stufe",
-      "text": "Fünfzehntausend Rufpunkte. Wer das erreicht, hat nicht nur bewiesen, dass er dem Zirkel treu ist — er hat bewiesen, dass er einer Sache treu sein kann. Paragon ist kein Rang. Es ist ein Charakter-Zeugnis. Mit besseren Rabatten.",
+      "text": "Fünfzehntausend Rufpunkte. Das sind ungefähr sechshundert tägliche Aufträge, oder zwei Monate deines Lebens, die du nie zurückbekommst. Paragon ist kein Rang. Es ist eine Charakterreferenz. Mit besseren Rabatten. Die letzte Person, die Paragon bei allen vier Zirkeln erreicht hat, wurde gefragt, wie es sich anfühlt. Sie sagte: 'Leer.' Dann hat sie die Rabatte gesehen und gesagt: 'Weniger leer.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 30
