@@ -128,7 +128,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Klassen" icon="⚔️" accent="rgba(167,139,250,0.3)">
+              <GuideSection title="Klassen" icon="◆" accent="rgba(167,139,250,0.3)">
                 Klassen definieren deinen Berufspfad und schalten passende Quests frei.
                 <ul className="space-y-1 mt-2">
                   <li>• Wähle eine <Stat color="#a78bfa">aktive Klasse</Stat> aus der Liste — sofort verfügbar.</li>
@@ -137,7 +137,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Begleiter (Companions)" icon="🐾" accent="rgba(249,115,22,0.3)">
+              <GuideSection title="Begleiter (Companions)" icon="●" accent="rgba(249,115,22,0.3)">
                 Dein Begleiter erscheint auf deiner Spielerkarte, gibt dir Quests und motiviert dich:
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
@@ -174,7 +174,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Seltenheit & Belohnungen" icon="✨" accent="rgba(168,85,247,0.3)">
+              <GuideSection title="Seltenheit & Belohnungen" icon="◇" accent="rgba(168,85,247,0.3)">
                 Quests haben eine Seltenheitsstufe die Belohnungen bestimmt:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
@@ -231,7 +231,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="NPC-Seltenheiten" icon="⭐">
+              <GuideSection title="NPC-Seltenheiten" icon="★">
                 <div className="space-y-1 mt-2">
                   <div className="flex items-center gap-2"><Rarity r="common">Common</Rarity> <span style={{ color: "rgba(255,255,255,0.4)" }}>— 2-3 Ketten, einfach, gemütlich</span></div>
                   <div className="flex items-center gap-2"><Rarity r="rare">Rare</Rarity> <span style={{ color: "rgba(255,255,255,0.4)" }}>— 3 Ketten, 6-8 Quests, anspruchsvoll</span></div>
@@ -248,7 +248,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Dein Inventar, Ausrüstung, Stats und Begleiter auf einen Blick. Erreichbar über <Stat color="#3b82f6">Character</Stat> im Inner Sanctum (nur eingeloggt).
               </GuideSection>
 
-              <GuideSection title="Ausrüstung (7 Slots)" icon="⚔️">
+              <GuideSection title="Ausrüstung (7 Slots)" icon="◆">
                 Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt:
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 mt-2 text-center text-xs">
                   {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Ring", "Boots"] as const).map(s => (
@@ -289,7 +289,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Companion & Bond-System" icon="🐾" accent="rgba(236,72,153,0.3)">
+              <GuideSection title="Companion & Bond-System" icon="●" accent="rgba(236,72,153,0.3)">
                 Bond-Level 1-10. Höherer Bond = mehr Boni:
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Streicheln</Stat> — 2×/Tag, +0.5 Bond-XP</li>
@@ -298,7 +298,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 mt-1.5 text-center text-xs">
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)" }}>◆ Sofort-Abschluss</div>
-                  <div className="rounded px-1 py-1.5" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>✨ 2× Loot</div>
+                  <div className="rounded px-1 py-1.5" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>◇ 2× Loot</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>🔥 +3 Streak-Tage</div>
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
@@ -443,7 +443,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Meals + Feasts</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)" }}>
-                    <p className="font-bold text-xs" style={{ color: "#6366f1" }}>✨ Eldric (Verzauberer)</p>
+                    <p className="font-bold text-xs" style={{ color: "#6366f1" }}>◇ Eldric (Verzauberer)</p>
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants + Scrolls</p>
                   </div>
                 </div>
@@ -526,18 +526,18 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Blood Oaths können nicht verlängert werden. Payout nur wenn Streak ≥ Commitment-Tage.</GuideTip>
               </GuideSection>
 
-              <GuideSection title="Vow Shrine (Gelübde)" icon="⚔️">
+              <GuideSection title="Vow Shrine (Gelübde)" icon="◆">
                 Langfristige Versprechen, Dinge <strong>nicht</strong> zu tun. Jeder Tag ohne Verstoß = &quot;Clean Day&quot;. Verstoß = Reset.
               </GuideSection>
             </>
           )}
           {tab === "challenges" && (
             <>
-              <GuideSection title="Wöchentliche Challenges" icon="⭐" accent="rgba(251,191,36,0.4)">
+              <GuideSection title="Wöchentliche Challenges" icon="★" accent="rgba(251,191,36,0.4)">
                 Zwei wöchentliche Herausforderungen in den <Stat color="#f97316">Great Halls</Stat>. Reset jeden Montag.
               </GuideSection>
 
-              <GuideSection title="Sternenpfad (Solo)" icon="⭐">
+              <GuideSection title="Sternenpfad (Solo)" icon="★">
                 Persönliche 3-stufige Challenge mit Sternbewertung:
                 <ul className="space-y-1 mt-2">
                   <li>• <strong>3 Stufen</strong> mit aufsteigender Schwierigkeit</li>
@@ -651,10 +651,10 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Activity Feed" icon="◆" accent="rgba(129,140,248,0.3)">
                 Feed mit Aktivitäten deiner Freunde:
                 <div className="flex flex-wrap gap-1.5 mt-2 text-xs">
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⚔️ Quests</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◆ Quests</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>▲ Level-Ups</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◆ Achievements</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>✨ Gacha (Epic+)</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◇ Gacha (Epic+)</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◇ Rare Drops</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◈ Trades</span>
                 </div>
@@ -765,7 +765,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 55+ Achievements — automatisch freigeschaltet bei Meilensteinen.
               </GuideSection>
 
-              <GuideSection title="Achievement Points" icon="⭐">
+              <GuideSection title="Achievement Points" icon="★">
                 Punkte nach Seltenheit:
                 <div className="flex gap-2 mt-2 text-xs">
                   <span><Rarity r="common">Common</Rarity> 5</span>
