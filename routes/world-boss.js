@@ -45,7 +45,9 @@ function loadWorldBossState() {
 function saveWorldBossState() {
   try {
     ensureRuntimeDir();
-    fs.writeFileSync(BOSS_FILE, JSON.stringify(worldBossState, null, 2));
+    const tmp = BOSS_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(worldBossState, null, 2));
+    fs.renameSync(tmp, BOSS_FILE);
   } catch (e) {
     console.error('[world-boss] Failed to save state:', e.message);
   }

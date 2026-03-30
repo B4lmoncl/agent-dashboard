@@ -66,7 +66,9 @@ function loadDungeonState() {
 function saveDungeonState() {
   try {
     ensureRuntimeDir();
-    fs.writeFileSync(DUNGEON_STATE_FILE, JSON.stringify(dungeonState, null, 2));
+    const tmp = DUNGEON_STATE_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(dungeonState, null, 2));
+    fs.renameSync(tmp, DUNGEON_STATE_FILE);
   } catch (e) {
     console.error('[dungeons] Failed to save dungeon state:', e.message);
   }
