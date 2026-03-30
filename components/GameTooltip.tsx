@@ -511,10 +511,10 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       <>
         <p>Draw items from the Aetherstream. The Wheel remembers every pull.</p>
         <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>0.8%</span></div>
-        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>13%</span></div>
-        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>35%</span></div>
-        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>40%</span></div>
-        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>11.2%</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>3%</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>25%</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>45%</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>26.2%</span></div>
         <p className="gt-source"><GTRef k="pity">Pity</GTRef>: Soft at 55, hard at 75. 10-pull = 10% discount + guaranteed Epic+. Duplicates → <GTRef k="runensplitter">Rune Shards</GTRef>.</p>
       </>
     ),

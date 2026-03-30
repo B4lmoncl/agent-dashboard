@@ -356,7 +356,7 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (0.5% per Weisheit point)` : "No Weisheit bonus" },
+                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (0.4% per Weisheit point)` : "No Weisheit bonus" },
                     { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} days (+1.5% per day, max ×1.45)` },
                     ...(loggedInUser.modifiers.gold.legendary && loggedInUser.modifiers.gold.legendary !== 1 ? [{ label: "Legendary", val: loggedInUser.modifiers.gold.legendary, color: "#f97316", desc: `+${Math.round((loggedInUser.modifiers.gold.legendary - 1) * 100)}% from Legendary Gear` }] : []),
                   ].map(r => (

@@ -672,12 +672,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Forge-Temperatur" icon="🔥" accent="rgba(249,115,22,0.3)">
                 Aktivitätsmeter (0-100%) — beeinflusst XP und Gold:
                 <div className="mt-2 space-y-0.5 text-xs">
-                  <div className="flex justify-between"><Stat color="#e0f0ff">100% White-hot</Stat><span>×1.5 XP · ×1.5 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#f97316">80%+ Blazing</Stat><span>×1.25 XP · ×1.3 Gold</span></div>
-                  <div className="flex justify-between"><Stat color="#ea580c">60%+ Burning</Stat><span>×1.15 XP · ×1.15 Gold</span></div>
+                  <div className="flex justify-between"><Stat color="#e0f0ff">100% White-hot</Stat><span>×1.25 XP · ×1.25 Gold</span></div>
+                  <div className="flex justify-between"><Stat color="#f97316">80%+ Blazing</Stat><span>×1.15 XP · ×1.15 Gold</span></div>
+                  <div className="flex justify-between"><Stat color="#ea580c">60%+ Burning</Stat><span>×1.10 XP · ×1.08 Gold</span></div>
                   <div className="flex justify-between"><Stat color="#b45309">40%+ Warming</Stat><span>×1.0 XP</span></div>
-                  <div className="flex justify-between"><Stat color="#78716c">20%+ Smoldering</Stat><Stat color="#ef4444">×0.8 XP</Stat></div>
-                  <div className="flex justify-between"><Stat color="#4b5563">&lt;20% Cold</Stat><Stat color="#ef4444">×0.5 XP</Stat></div>
+                  <div className="flex justify-between"><Stat color="#78716c">20%+ Smoldering</Stat><Stat color="#ef4444">×0.85 XP</Stat></div>
+                  <div className="flex justify-between"><Stat color="#4b5563">&lt;20% Cold</Stat><Stat color="#ef4444">×0.6 XP</Stat></div>
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Verfall: 2%/h (Ausdauer verlangsamt). Jede Quest: +10 Temp.</p>
               </GuideSection>
