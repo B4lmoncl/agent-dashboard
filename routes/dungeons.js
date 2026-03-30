@@ -659,6 +659,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Apply currency/material rewards
   applyDungeonRewards(uid, rewards);
+  delete rewards._dungeonTier; // Clean up internal field before response
 
   // Apply gem drop (if rolled)
   if (rewards.gemTier) {

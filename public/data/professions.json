@@ -393,10 +393,11 @@
     },
     {
       "id": "stahlbarren",
-      "name": "Gehärteter Stahl",
-      "icon": null,
+      "name": "Stahlbarren",
+      "icon": "/images/icons/mat-stahlbarren.png",
       "rarity": "uncommon",
-      "desc": "Stahl, gehärtet mit Kristall. Stärker als er aussieht — und er sieht schon stark aus."
+      "source": "crafted",
+      "desc": "Stärker als Eisen. Der Schmied grunzt anerkennend."
     },
     {
       "id": "kristallbarren",
@@ -457,23 +458,26 @@
     {
       "id": "leinenballen",
       "name": "Leinenballen",
-      "icon": null,
+      "icon": "/images/icons/mat-leinenballen.png",
       "rarity": "common",
-      "desc": "Ein Ballen verarbeitetes Leinen. Grundlage für einfache Gewänder."
+      "source": "crafted",
+      "desc": "Drei Stoffe ergeben einen Ballen. Mathematik der Schneider."
     },
     {
       "id": "wollballen",
       "name": "Wollballen",
-      "icon": null,
+      "icon": "/images/icons/mat-wollballen.png",
       "rarity": "uncommon",
-      "desc": "Dichter Wollballen. Wärmt und schützt — beides ist nützlich."
+      "source": "crafted",
+      "desc": "Wärmer und teurer. Wie alles im Leben."
     },
     {
       "id": "seidenballen",
       "name": "Seidenballen",
-      "icon": null,
+      "icon": "/images/icons/mat-seidenballen.png",
       "rarity": "rare",
-      "desc": "Mondschein-Seide, verwoben zu einem Ballen von beunruhigender Schönheit."
+      "source": "crafted",
+      "desc": "Gleitet durch die Finger wie ein gutes Argument."
     },
     {
       "id": "magiestoffballen",
@@ -607,6 +611,94 @@
       "icon": null,
       "rarity": "rare",
       "desc": "Koch-Zutat: Mondstaub-Salz."
+    },
+    {
+      "id": "rohbarren",
+      "name": "Rohbarren",
+      "rarity": "common",
+      "icon": "/images/icons/mat-rohbarren.png",
+      "source": "crafted",
+      "desc": "Grundlegendes Metall. Nicht aufregend, aber zuverlässig."
+    },
+    {
+      "id": "mithrilbarren",
+      "name": "Mithrilbarren",
+      "rarity": "rare",
+      "icon": "/images/icons/mat-mithrilbarren.png",
+      "source": "crafted",
+      "desc": "Leicht und hart zugleich. Physik hat Meinungen dazu."
+    },
+    {
+      "id": "runenballen",
+      "name": "Runenballen",
+      "rarity": "epic",
+      "icon": "/images/icons/mat-runenballen.png",
+      "source": "crafted",
+      "desc": "Stoff mit Meinung. Die Runen leuchten wenn man sie falsch faltet."
+    },
+    {
+      "id": "gehaertetes-leder",
+      "name": "Gehärtetes Leder",
+      "rarity": "uncommon",
+      "icon": "/images/icons/mat-gehaertetes-leder.png",
+      "source": "crafted",
+      "desc": "Leder das aufgehört hat nachzugeben."
+    },
+    {
+      "id": "verstaerktes-leder",
+      "name": "Verstärktes Leder",
+      "rarity": "rare",
+      "icon": "/images/icons/mat-verstaerktes-leder.png",
+      "source": "crafted",
+      "desc": "Drei Schichten übereinander. Der Gerber nennt es Kunst."
+    },
+    {
+      "id": "kraeuterdestillat",
+      "name": "Kräuterdestillat",
+      "rarity": "common",
+      "icon": "/images/icons/mat-destillat.png",
+      "source": "crafted",
+      "desc": "Konzentriertes Kräuterwasser. Riecht besser als es schmeckt."
+    },
+    {
+      "id": "mondessenz",
+      "name": "Mondessenz",
+      "rarity": "uncommon",
+      "icon": "/images/icons/mat-mondessenz.png",
+      "source": "crafted",
+      "desc": "Destilliertes Mondlicht. Ysolde sagt, es klingt poeti-sch. Es ist vor allem teuer."
+    },
+    {
+      "id": "aetheressenz",
+      "name": "Aetheressenz",
+      "rarity": "rare",
+      "icon": "/images/icons/mat-aetheressenz.png",
+      "source": "crafted",
+      "desc": "Reiner Aether in flüssiger Form. Instabil, aber nützlich."
+    },
+    {
+      "id": "gewuerztes-filet",
+      "name": "Gewürztes Filet",
+      "rarity": "common",
+      "icon": "/images/icons/mat-filet.png",
+      "source": "crafted",
+      "desc": "Fleisch mit Gewürzen. Bruna sagt es ist Handwerk. Andere sagen es ist Abendessen."
+    },
+    {
+      "id": "geschliffener-stein",
+      "name": "Geschliffener Stein",
+      "rarity": "uncommon",
+      "icon": "/images/icons/mat-geschliffen.png",
+      "source": "crafted",
+      "desc": "Aus roh wurde rund. Der erste Schritt zum Funkeln."
+    },
+    {
+      "id": "runenessenz",
+      "name": "Runenessenz",
+      "rarity": "uncommon",
+      "icon": "/images/icons/mat-runenessenz.png",
+      "source": "crafted",
+      "desc": "Konzentrierte Magie. Kribbelt beim Anfassen."
     },
     {
       "id": "kohlestueck",
@@ -1403,6 +1495,71 @@
       "xp": 45,
       "description": "Das edelste Metall der Gilde.",
       "trainerCost": 2750
+    },
+    {
+      "id": "smelt-rohbarren",
+      "name": "Rohbarren schmelzen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 1,
+      "materials": {
+        "eisenerz": 2,
+        "kohlestueck": 1
+      },
+      "vendorReagents": ["kohlestueck"],
+      "result": {
+        "type": "material",
+        "materialId": "rohbarren",
+        "count": 1
+      },
+      "xp": 8,
+      "cooldownMinutes": 0,
+      "description": "Zwei Erze werden eins. Grimvar nennt das Effizienz.",
+      "trainerCost": 10
+    },
+    {
+      "id": "smelt-stahlbarren",
+      "name": "Stahlbarren schmelzen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 100,
+      "materials": {
+        "eisenerz": 3,
+        "kristallsplitter": 1,
+        "eisenfluss": 1
+      },
+      "vendorReagents": ["eisenfluss"],
+      "result": {
+        "type": "material",
+        "materialId": "stahlbarren",
+        "count": 1
+      },
+      "xp": 15,
+      "cooldownMinutes": 0,
+      "description": "Eisen wird Stahl. Der Unterschied sind Hitze und Geduld.",
+      "trainerCost": 200
+    },
+    {
+      "id": "smelt-mithrilbarren",
+      "name": "Mithrilbarren schmelzen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 200,
+      "materials": {
+        "kristallsplitter": 3,
+        "drachenschuppe": 1,
+        "schmelztiegel": 1
+      },
+      "vendorReagents": ["schmelztiegel"],
+      "result": {
+        "type": "material",
+        "materialId": "mithrilbarren",
+        "count": 1
+      },
+      "xp": 25,
+      "cooldownMinutes": 0,
+      "description": "Leichter als Stahl, härter als Meinungen.",
+      "trainerCost": 500
     },
     {
       "id": "recipe-schmied-eiserne-brustplatte",
@@ -3199,6 +3356,91 @@
       "xp": 40,
       "description": "Runenstoff — jeder Faden eine Geschichte.",
       "trainerCost": 1900
+    },
+    {
+      "id": "process-leinenballen",
+      "name": "Leinenballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 1,
+      "materials": {
+        "leinenstoff": 3,
+        "grober-faden": 1
+      },
+      "vendorReagents": ["grober-faden"],
+      "result": {
+        "type": "material",
+        "materialId": "leinenballen",
+        "count": 1
+      },
+      "xp": 8,
+      "cooldownMinutes": 0,
+      "description": "Drei Stoffe, ein Ballen. Mathe für Schneider.",
+      "trainerCost": 10
+    },
+    {
+      "id": "process-wollballen",
+      "name": "Wollballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 75,
+      "materials": {
+        "wollstoff": 3,
+        "naehfaden": 1
+      },
+      "vendorReagents": ["naehfaden"],
+      "result": {
+        "type": "material",
+        "materialId": "wollballen",
+        "count": 1
+      },
+      "xp": 15,
+      "cooldownMinutes": 0,
+      "description": "Wärmer, dichter, teurer. Wie ein guter Mantel.",
+      "trainerCost": 125
+    },
+    {
+      "id": "process-seidenballen",
+      "name": "Seidenballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 150,
+      "materials": {
+        "seidenstoff": 3,
+        "seidenfaden": 1
+      },
+      "vendorReagents": ["seidenfaden"],
+      "result": {
+        "type": "material",
+        "materialId": "seidenballen",
+        "count": 1
+      },
+      "xp": 20,
+      "cooldownMinutes": 0,
+      "description": "Seide zu verarbeiten erfordert leise Hände und laute Geduld.",
+      "trainerCost": 375
+    },
+    {
+      "id": "process-runenballen",
+      "name": "Runenballen weben",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 225,
+      "materials": {
+        "magiestoff": 2,
+        "runenstoff": 1,
+        "runenfaden": 1
+      },
+      "vendorReagents": ["runenfaden"],
+      "result": {
+        "type": "material",
+        "materialId": "runenballen",
+        "count": 1
+      },
+      "xp": 30,
+      "cooldownMinutes": 0,
+      "description": "Stoff mit eingewobenen Runen. Sie leuchten. Manchmal im falschen Moment.",
+      "trainerCost": 1000
     },
     {
       "id": "recipe-schneider-sternenlichtfarbe",
@@ -5056,6 +5298,49 @@
       "trainerCost": 1700
     },
     {
+      "id": "process-gehaertetes",
+      "name": "Leder härten",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 50,
+      "materials": {
+        "leichtesleder": 3,
+        "lederoel": 1
+      },
+      "vendorReagents": ["lederoel"],
+      "result": {
+        "type": "material",
+        "materialId": "gehaertetes-leder",
+        "count": 1
+      },
+      "xp": 12,
+      "cooldownMinutes": 0,
+      "description": "Salz, Öl, und Geduld. Das Leder wird es dir danken. Irgendwann.",
+      "trainerCost": 83
+    },
+    {
+      "id": "process-verstaerktes",
+      "name": "Leder verstärken",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 150,
+      "materials": {
+        "mittleresleder": 2,
+        "schweresleder": 1,
+        "feines-lederoel": 1
+      },
+      "vendorReagents": ["feines-lederoel"],
+      "result": {
+        "type": "material",
+        "materialId": "verstaerktes-leder",
+        "count": 1
+      },
+      "xp": 22,
+      "cooldownMinutes": 0,
+      "description": "Drei Schichten. Der Gerber nennt es Überzeugungsarbeit.",
+      "trainerCost": 375
+    },
+    {
       "id": "recipe-leder-leichtleder-stiefel",
       "name": "Leichtleder-Stiefel",
       "profession": "lederverarbeiter",
@@ -6698,6 +6983,71 @@
       "trainerCost": 2000
     },
     {
+      "id": "process-destillat",
+      "name": "Kräuter destillieren",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 1,
+      "materials": {
+        "kraeuterbuendel": 3,
+        "leere-phiole": 1
+      },
+      "vendorReagents": ["leere-phiole"],
+      "result": {
+        "type": "material",
+        "materialId": "kraeuterdestillat",
+        "count": 1
+      },
+      "xp": 8,
+      "cooldownMinutes": 0,
+      "description": "Drei Bündel rein, eine Flasche raus. Ysolde nennt es Wissenschaft.",
+      "trainerCost": 10
+    },
+    {
+      "id": "process-mondessenz",
+      "name": "Mondessenz brauen",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 100,
+      "materials": {
+        "mondblume": 2,
+        "kraeuterdestillat": 1,
+        "blei-phiole": 1
+      },
+      "vendorReagents": ["blei-phiole"],
+      "result": {
+        "type": "material",
+        "materialId": "mondessenz",
+        "count": 1
+      },
+      "xp": 18,
+      "cooldownMinutes": 0,
+      "description": "Mondlicht in Flüssigkeit. Physikalisch fragwürdig, alchemistisch einwandfrei.",
+      "trainerCost": 200
+    },
+    {
+      "id": "process-aetheressenz",
+      "name": "Aetheressenz extrahieren",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 200,
+      "materials": {
+        "sternenfrucht": 2,
+        "mondessenz": 1,
+        "kristallphiole": 1
+      },
+      "vendorReagents": ["kristallphiole"],
+      "result": {
+        "type": "material",
+        "materialId": "aetheressenz",
+        "count": 1
+      },
+      "xp": 28,
+      "cooldownMinutes": 0,
+      "description": "Reiner Aether. Instabil. Ysolde empfiehlt Handschuhe. Und Abstand.",
+      "trainerCost": 500
+    },
+    {
       "id": "recipe-alch-schwacher-trank-der-kraft",
       "name": "Schwacher Trank der Kraft",
       "profession": "alchemist",
@@ -8316,6 +8666,27 @@
       "factionId": "bund_der_schatten"
     },
     {
+      "id": "process-filet",
+      "name": "Fleisch filetieren",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 1,
+      "materials": {
+        "wildfleisch": 2,
+        "milde-gewuerze": 1
+      },
+      "vendorReagents": ["milde-gewuerze"],
+      "result": {
+        "type": "material",
+        "materialId": "gewuerztes-filet",
+        "count": 1
+      },
+      "xp": 8,
+      "cooldownMinutes": 0,
+      "description": "Zwei Stücke Fleisch, ein Messer, null Unfälle. Meistens.",
+      "trainerCost": 10
+    },
+    {
       "id": "recipe-koch-einfachemahlzeit-der-staerke",
       "name": "EinfacheMahlzeit der Stärke",
       "profession": "koch",
@@ -9610,6 +9981,28 @@
       "xp": 30,
       "description": "Bereitet zu: Mondstaub-Salz.",
       "trainerCost": 958
+    },
+    {
+      "id": "process-runenessenz",
+      "name": "Runenessenz konzentrieren",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 50,
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1,
+        "verzauberungstinte": 1
+      },
+      "vendorReagents": ["verzauberungstinte"],
+      "result": {
+        "type": "material",
+        "materialId": "runenessenz",
+        "count": 1
+      },
+      "xp": 12,
+      "cooldownMinutes": 0,
+      "description": "Magie verdichten. Kribbelt. Das ist normal. Meistens.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-kraft",
@@ -14198,6 +14591,27 @@
       "xp": 24,
       "description": "Stellt her: Schwerleder-Jagdstiefel.",
       "factionId": "orden_der_klinge"
+    },
+    {
+      "id": "process-geschliffen",
+      "name": "Stein schleifen",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 25,
+      "materials": {
+        "kristallsplitter": 2,
+        "schleifpulver": 1
+      },
+      "vendorReagents": ["schleifpulver"],
+      "result": {
+        "type": "material",
+        "materialId": "geschliffener-stein",
+        "count": 1
+      },
+      "xp": 10,
+      "cooldownMinutes": 0,
+      "description": "Aus rau wird rund. Der Rest ist Geduld und Schleifpulver.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-juwelier-eiserner-ring",
