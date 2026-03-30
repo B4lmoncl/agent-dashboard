@@ -72,8 +72,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Ein Splitter lebendiger Flamme aus dem Herzen des Burnout-Kolosses.",
-      "flavorText": "Ruhe ist keine Schwäche. Sie ist der Brennstoff für größeres Feuer.",
+      "desc": "Ein Splitter lebendiger Flamme aus dem Herzen des Burnout-Kolosses. Brennt permanent bei exakt der Temperatur, die unangenehm, aber nicht gefährlich ist. Wie ein schlechtes Gewissen.",
+      "flavorText": "Die Inschrift auf der Rückseite lautet: 'Mach mal Pause.' Darunter, in einer anderen Handschrift: 'NEIN.' Und darunter, in einer dritten: 'Bitte.'",
       "icon": "/images/icons/equip-amulet.png",
       "affixes": {
         "primary": {
@@ -137,8 +137,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Getragen von jenen, die die vielen Stimmen der Chaos-Hydra zum Schweigen brachten.",
-      "flavorText": "Fokus ist die Klinge die durch Chaos schneidet.",
+      "desc": "Getragen von jenen, die die vielen Stimmen der Chaos-Hydra zum Schweigen brachten. Die Krone flüstert gelegentlich. Aber nur eine Sache auf einmal, was bereits ein enormer Fortschritt ist.",
+      "flavorText": "Neun Köpfe schrien neun verschiedene Dinge. Jetzt schreien sie nichts mehr. Die Krone erinnert sich trotzdem an alle neun.",
       "icon": "/images/icons/equip-helm.png",
       "affixes": {
         "primary": {
@@ -202,8 +202,8 @@
       "rarity": "legendary",
       "tier": 2,
       "reqLevel": 15,
-      "desc": "Gebunden in wassergetränktes Leder, summt dieses Folianten-Rüstungsstück mit bewahrtem Wissen.",
-      "flavorText": "Das Archiv erinnert sich an das, was die Welt vergessen hat.",
+      "desc": "Wurde in einer verschlossenen Truhe gefunden, in einer verschlossenen Kammer, in einem versunkenen Archiv. Jemand wollte wirklich sichergehen. Das ist nie ein gutes Zeichen.",
+      "flavorText": "Das Buch auf der Vorderseite ist lesbar. Es enthält eine detaillierte Anleitung, wie man es nie hätte öffnen sollen.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
@@ -267,8 +267,8 @@
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 25,
-      "desc": "Eine Klinge aus den Trümmern des kollabierten Turms. Knistert noch immer vor Restenergie.",
-      "flavorText": "Was zerbrochen war, kann immer noch tief schneiden.",
+      "desc": "Eine Klinge aus den Trümmern des kollabierten Turms. Sie knistert vor Restenergie und gelegentlicher Selbstüberschätzung. Der Turm fiel. Das Schwert fand das nicht relevant.",
+      "flavorText": "Auf der Klinge steht 'Unzerbrechlich'. Auf den Trümmern des Turms, aus dem sie stammt, übrigens auch.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
@@ -332,8 +332,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "Ein dunkler Steinanhänger der Licht zu absorbieren scheint. Am tiefsten Punkt des Turms gefunden.",
-      "flavorText": "Blicke in die Leere und sie blickt zurück.",
+      "desc": "Ein dunkler Steinanhänger, der Licht absorbiert, Hoffnung dämpft und bei Partys für unangenehme Stille sorgt. Neben ihm lag ein Zettel: 'Es tut mir leid' in drei Sprachen.",
+      "flavorText": "Die Leere blickt zurück. Sie ist nicht beeindruckt. Aber sie zahlt gut, also nimm den Deal.",
       "icon": "/images/icons/equip-amulet.png",
       "affixes": {
         "primary": {
@@ -397,8 +397,8 @@
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 20,
-      "desc": "Stiefel gewoben aus den Schatten des Doubt Phantom. Wer sie trägt, hört das Flüstern — und ignoriert es.",
-      "flavorText": "Der Zweifel ging mit dir. Jetzt gehst du schneller.",
+      "desc": "Stiefel gewoben aus den Schatten des Doubt Phantom. Sie flüstern 'Du schaffst das nicht' bei jedem Schritt. Nach einer Woche wird es weißes Rauschen. Nach zwei Wochen vermisst man es, wenn man sie auszieht.",
+      "flavorText": "Vier vorherige Besitzer. Einer wurde verrückt, einer wurde erleuchtet, zwei konnten den Unterschied nicht feststellen.",
       "icon": "/images/icons/equip-boots.png",
       "affixes": {
         "primary": {
@@ -460,8 +460,8 @@
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 20,
-      "desc": "Rüstung aus dem kristallisierten Netz des Entropy Weaver. Jeder Faden hält eine zerbrochene Gewohnheit zusammen.",
-      "flavorText": "Was zerfällt, kann neu verwoben werden.",
+      "desc": "Rüstung aus dem kristallisierten Netz des Entropy Weaver. Jeder Faden war mal ein guter Vorsatz. Die meisten sind von Januar. Keiner hat Februar überlebt.",
+      "flavorText": "Das Netz hält alles zusammen. Fragt man es, woraus es besteht, sagt es 'Enttäuschung und Koffein'. Es lügt nicht.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
@@ -525,8 +525,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Ein Helm aus dem steinernen Herz des Stagnation Golem. Schwer, aber unerschütterlich.",
-      "flavorText": "Stillstand ist eine Wahl. Nicht deine.",
+      "desc": "Ein Helm aus dem steinernen Herz des Stagnation Golem. Wiegt so viel wie drei gescheiterte Neujahrsvorsätze. Bewegt sich nur, wenn du dich bewegst. Das ist entweder tiefsinnig oder ein Designfehler.",
+      "flavorText": "Der Golem stand 400 Jahre auf derselben Stelle. Nicht weil er musste. Sondern weil ihm niemand gesagt hat, dass er auch gehen könnte.",
       "icon": "/images/icons/equip-helm.png",
       "affixes": {
         "primary": {
@@ -590,8 +590,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Eine blendende Feder des Perfection Seraph. Sie erinnert dich daran, dass 'gut genug' manchmal perfekt ist.",
-      "flavorText": "Perfektion ist ein Gefängnis. Exzellenz ist ein Pfad.",
+      "desc": "Eine blendende Feder des Perfection Seraph. Der Seraph hat 200 Jahre an seiner 'perfekten Form' gearbeitet. Dann ist er explodiert. Die Feder ist alles was übrig ist. Nimm sie als Warnung.",
+      "flavorText": "Die Inschrift lautet 'Für den Würdigen'. Darunter, in kleinerer Schrift: 'Oder den Pragmatischen. Wer zuerst kommt.'",
       "icon": "/images/icons/equip-amulet.png",
       "affixes": {
         "primary": {
@@ -655,8 +655,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 45,
-      "desc": "Die Waffe des Isolation Leviathan. Sie durchschneidet nicht Fleisch, sondern die Mauern die man um sich baut.",
-      "flavorText": "Allein bist du nichts. Zusammen — unaufhaltbar.",
+      "desc": "Die Waffe des Isolation Leviathan. Lag 3000 Jahre auf dem Meeresgrund, weil der Leviathan sie verlegt hat und zu stolz war, jemanden um Hilfe zu bitten. Das erklärt einiges.",
+      "flavorText": "Der Dreizack hat drei Zinken. Eine für Stolz, eine für Sturheit, eine für den Moment wo man einsieht dass man Hilfe braucht. Die dritte ist die schärfste.",
       "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {

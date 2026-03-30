@@ -792,7 +792,7 @@
     {
       "id": "gold_hoarder",
       "name": "Gold Hoarder",
-      "description": "Earn 500 gold total",
+      "description": "500 Gold. Genug für ein anständiges Abendessen oder fünf fragwürdige Tränke.",
       "icon": "?",
       "condition": {
         "type": "gold_threshold",
@@ -811,7 +811,7 @@
     {
       "id": "dragon_hoard",
       "name": "Dragon's Hoard",
-      "description": "Earn 5000 gold total",
+      "description": "5000 Gold. Du schläfst auf einem Haufen Münzen wie ein kleiner, zufriedener Drache.",
       "icon": "?",
       "condition": {
         "type": "gold_threshold",
@@ -830,7 +830,7 @@
     {
       "id": "initiate",
       "name": "Initiate",
-      "description": "Earn 100 XP total",
+      "description": "100 XP. Du hast angefangen zu existieren. Die Halle nimmt das zur Kenntnis.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -849,7 +849,7 @@
     {
       "id": "adept",
       "name": "Adept",
-      "description": "Earn 500 XP total",
+      "description": "500 XP. Du weißt inzwischen, was du tust. Zumindest sieht es so aus.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -868,7 +868,7 @@
     {
       "id": "master_rank",
       "name": "Master",
-      "description": "Earn 1,500 XP total",
+      "description": "1500 XP. Meister. Ein Titel, der mehr verspricht, als er hält, aber das gilt für die meisten Titel.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -887,7 +887,7 @@
     {
       "id": "grandmaster",
       "name": "Grandmaster",
-      "description": "Earn 5,000 XP total",
+      "description": "5000 XP. Großmeister. Die anderen Meister schauen nervös, wenn du den Raum betrittst.",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -906,7 +906,7 @@
     {
       "id": "chain_veteran",
       "name": "Chain Veteran",
-      "description": "Complete 5 quest chains",
+      "description": "5 Quest-Ketten. Du magst Aufgaben, die andere Aufgaben gebären. Das sagt viel über dich aus.",
       "icon": "?",
       "condition": {
         "type": "chain_completed",
@@ -925,7 +925,7 @@
     {
       "id": "marathon_runner",
       "name": "Marathon Runner",
-      "description": "Complete 10 quests in one day",
+      "description": "10 Quests an einem Tag. Das ist kein Marathon, das ist ein Hilfeschrei in Aufgabenform.",
       "icon": "?",
       "condition": {
         "type": "quests_today",
@@ -944,7 +944,7 @@
     {
       "id": "social_king",
       "name": "Social Monarch",
-      "description": "Complete 25 social quests",
+      "description": "25 Social-Quests. Du bist jetzt das, was Extrovertierte einen 'Naturtalent' nennen und Introvertierte 'erschöpfend'.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -964,7 +964,7 @@
     {
       "id": "fitness_fanatic",
       "name": "Fitness Fanatic",
-      "description": "Complete 50 fitness quests",
+      "description": "50 Fitness-Quests. Dein Körper hat aufgehört zu fragen und angefangen zu gehorchen.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -984,7 +984,7 @@
     {
       "id": "knowledge_seeker",
       "name": "Knowledge Seeker",
-      "description": "Complete 50 learning quests",
+      "description": "50 Lern-Quests. Du sammelst Wissen wie andere Leute Staub. Und genau so nützlich.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -1004,7 +1004,7 @@
     {
       "id": "dev_legend",
       "name": "Dev Legend",
-      "description": "Complete 50 development quests",
+      "description": "50 Dev-Quests. Du hast 50 Dinge gebaut. Mindestens 12 davon tun, was sie sollen.",
       "icon": "?",
       "condition": {
         "type": "quest_type_count",
@@ -1024,7 +1024,7 @@
     {
       "id": "weekend_warrior",
       "name": "Weekend Warrior",
-      "description": "Complete 10 quests on weekends",
+      "description": "10 Quests am Wochenende. Andere Leute gehen brunch. Du grindest.",
       "icon": "?",
       "condition": {
         "type": "weekend_completions",
@@ -1043,7 +1043,7 @@
     {
       "id": "coop_legend",
       "name": "Co-op Legend",
-      "description": "Complete 10 co-op quests",
+      "description": "10 Co-op Quests. Du arbeitest gut im Team. Das Team ist anderer Meinung, aber das ist irrelevant.",
       "icon": "?",
       "condition": {
         "type": "coop_completed",
@@ -1062,7 +1062,7 @@
     {
       "id": "hidden_midnight",
       "name": "Midnight Oil",
-      "description": "Complete 10 quests after midnight",
+      "description": "10 Quests nach Mitternacht. Schlaf ist eine Ressource und du hast beschlossen, sie nicht zu farmen.",
       "icon": "?",
       "condition": {
         "type": "night_completions",
@@ -1083,7 +1083,7 @@
     {
       "id": "hidden_skulduggery",
       "name": "Pleasant Surprise",
-      "description": "You found something familiar...",
+      "description": "Etwas Vertrautes. Ein Skelett in einem gut sitzenden Anzug hätte das auch gefunden. Eventuell schneller.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1102,7 +1102,7 @@
     {
       "id": "hidden_stormlight",
       "name": "Journey Before Destination",
-      "description": "Life before death. Strength before weakness.",
+      "description": "Leben vor dem Tod. Stärke vor Schwäche. Reise vor dem Ziel. Frühstück vor allem anderen.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1121,7 +1121,7 @@
     {
       "id": "hidden_critical_role",
       "name": "Bidet",
-      "description": "Is it Thursday yet?",
+      "description": "Ist schon Donnerstag? Du fragst das an einem Dienstag. Das sagt alles.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",

@@ -57,17 +57,17 @@
         "id": "double_reward",
         "name": "Doppelte Belohnung",
         "icon": "/images/icons/ult-double.png",
-        "desc": "Die nächste abgeschlossene Quest gibt doppelte XP und Gold.",
+        "desc": "Doppelte Belohnung. {name} nimmt sich natürlich einen Anteil. Den größeren.",
         "effect": { "type": "buff", "buffType": "double_reward", "duration": "1_quest" },
-        "flavorText": "{name}s Augen leuchten — die nächste Beute wird groß!"
+        "flavorText": "{name}s Augen leuchten. Das ist nie ein gutes Zeichen."
       },
       {
         "id": "streak_extend",
         "name": "Streak-Verlängerung",
         "icon": "/images/icons/ult-streak.png",
-        "desc": "Verlängert deinen aktuellen Streak um 3 Tage.",
+        "desc": "3 Tage Streak-Schutz. Bond Level 5 heißt nicht Loyalität. Es heißt, er hat zu viel gesehen um zu gehen.",
         "effect": { "type": "streak_extend", "days": 3 },
-        "flavorText": "{name} wacht über deinen Streak — 3 Tage Schutz!"
+        "flavorText": "{name} wacht über deinen Streak. Nicht aus Pflichtgefühl. Aus Langeweile."
       }
     ]
   }

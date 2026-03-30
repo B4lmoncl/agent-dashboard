@@ -324,7 +324,7 @@
       "id": "forge-temp",
       "category": "artifacts",
       "title": "Die Schmiedetemperatur",
-      "text": "Der Turm hat einen Puls. Abschließe Quests und er wird heißer. Höre auf und er kühlt ab. Bei maximaler Temperatur regnet es Belohnungen. Bei minimaler Temperatur regnet es Enttäuschung. Das System wurde von jemandem entworfen, der passive Aggression als Ingenieursdisziplin betrachtet. Es funktioniert erschreckend gut.",
+      "text": "Der Turm hat einen Puls. Schließe Quests ab und er wird heißer. Höre auf und er kühlt ab. Bei maximaler Temperatur regnet es Belohnungen. Bei minimaler Temperatur regnet es Enttäuschung. Das System wurde von jemandem entworfen, der passive Aggression als Ingenieursdisziplin betrachtet. Es funktioniert erschreckend gut.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -433,7 +433,7 @@
       "id": "hidden-truth",
       "category": "world",
       "title": "Die Wahrheit über den Turm",
-      "text": "Der Turm schläft nicht. Er beobachtet. Er erinnert sich an jeden Helden, der je seine Hallen betreten hat — und an jeden, der gegangen ist ohne sich umzudrehen. Manchmal, in stillen Nächten, seufzt er. Nicht aus Trauer. Aus Geduld.",
+      "text": "Der Turm schläft nicht. Er beobachtet. Er erinnert sich an jeden Helden, der je seine Hallen betreten hat — und an jeden, der gegangen ist ohne sich umzudrehen. Er nimmt es nicht persönlich. Aber die Tür klemmt danach immer ein bisschen. Manchmal, in stillen Nächten, seufzt er. Nicht aus Trauer. Aus Geduld. Der Turm hat sehr, sehr viel Geduld. Das ist entweder tröstlich oder bedrohlich, je nachdem was man heute vor hat.",
       "unlockedBy": {
         "type": "hidden"
       }
@@ -541,7 +541,7 @@
       "id": "isolations-leviathan",
       "category": "creatures",
       "title": "Der Isolations-Leviathan",
-      "text": "Er schwimmt allein in Gewässern, die er selbst geschaffen hat. Nicht weil er keine Gesellschaft finden konnte — sondern weil er aufgehört hat zu suchen. Der Leviathan ist eine Erinnerung daran, dass die Breakaway nicht nur ein Stockwerk ist. Sie ist ein Gegenargument.",
+      "text": "Er schwimmt allein in Gewässern, die er selbst geschaffen hat. Sehr beeindruckende Gewässer. Niemand sieht sie, weil er niemanden einlädt. Der Leviathan hat einmal eine Einladung zum Breakaway bekommen. Er hat sie gelesen, gefaltet, gefressen und weitergeschwommen. Das Breakaway-Komitee hat daraufhin beschlossen, keine Einladungen mehr an Wesen zu schicken, die größer als das Gebäude sind.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 25
@@ -561,7 +561,7 @@
       "id": "entropie-weber",
       "category": "creatures",
       "title": "Die Entropie-Weberin",
-      "text": "Sie webt Fäden aus Unordnung in die Realität. Jeder Faden ein kleines Chaos: ein verlegter Schlüssel, ein vergessener Termin, ein Plan der nicht aufgeht. Einzeln harmlos. Zusammen? Ein Netz, in dem selbst die organisiertesten Helden hängenbleiben.",
+      "text": "Sie webt Fäden aus Unordnung in die Realität. Jeder Faden ein kleines Chaos: ein verlegter Schlüssel, ein vergessener Termin, eine Datei die du gespeichert hast aber die jetzt weg ist. Einzeln harmlos. Zusammen? Du stehst morgens auf und dein ganzer Tag ist bereits ruiniert und du weißt nicht warum. Die Weberin wurde einmal gefragt, ob sie böse sei. 'Böse?', sagte sie. 'Ich bin Bürokratie.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 30

@@ -27,21 +27,21 @@
     }
   },
   "fitness": {
-    "completionMessage": "xx **TRIAL SURVIVED.** You walked into the Arena and walked out stronger. Muscles forged, limits pushed, weakness burned away. The Warrior's Path demands everything, and today you paid the toll. The Guild salutes your iron will.",
+    "completionMessage": "**PRÜFUNG ÜBERLEBT.** Du hast dich bewegt. Freiwillig. Dein Körper ist verwirrt, aber dankbar. Dein Sofa ist enttäuscht. Man kann es nicht allen recht machen.",
     "streakBonus": {
-      "3":  "x 3-day Arena Streak! Your body is beginning to remember what it was built for. The soreness is just your weakness leaving — the old warriors called it *The Shedding*.",
-      "7":  "xxx 7-day Arena Streak! A full week in the Arena. The other warriors have stopped underestimating you. Your discipline echoes through the training halls like war drums.",
-      "14": "x 14-day Arena Streak! Two weeks of unbroken combat training. The Arena Masters have inscribed your name on the Wall of Perseverance. Your body is becoming a weapon of Guild legend.",
-      "30": "xxx 30-day Arena Streak! Thirty days. THIRTY. The Arena has tested you with everything it has, and you are still standing. The Guild bestows upon you the title: Ironforged Champion."
+      "3":  "3 Tage Arena-Streak! Drei Tage Sport. Dein Muskelkater hat Muskelkater. Die alten Krieger nannten das *Charakter*. Du nennst es Dienstag.",
+      "7":  "7 Tage Arena-Streak! Eine Woche Training. Die anderen Krieger haben aufgehört, dich zu unterschätzen. Hauptsächlich, weil du immer noch auftauchst. Hartnäckigkeit ist eine Waffe.",
+      "14": "14 Tage Arena-Streak! Zwei Wochen. Dein Körper funktioniert jetzt einfach so. Ohne Verhandlungen, ohne Bestechung. Das ist verdächtig reibungslos, aber genieß es.",
+      "30": "30 Tage Arena-Streak! Dreißig Tage. Die Arena hat alles versucht, und du stehst immer noch. Die Gilde ist beeindruckt. Dein Sofa hat die Hoffnung aufgegeben."
     }
   },
   "social": {
-    "completionMessage": "x **ALLIANCE STRENGTHENED.** The bonds between you and your allies grow deeper. In the quiet moments between battles, these are the connections that keep a warrior whole. The Guild knows: the strongest fighters are the ones with something worth fighting for.",
+    "completionMessage": "**ALLIANZ GESTÄRKT.** Du hast mit einem echten Menschen interagiert. Nicht per Emoji. Nicht per Reaktion. Richtig. Die Gilde ist gerührt. Leicht verstört, aber gerührt.",
     "streakBonus": {
-      "3":  "x 3-day Alliance Streak! You're showing up for your people consistently. Trust compounds quietly, but its power is immense. Your inner circle feels it.",
-      "7":  "xx 7-day Alliance Streak! A full week of tending your alliances. The bonds are visibly stronger now. Your people know they can count on you — that's rarer than legendary loot.",
-      "14": "xx 14-day Alliance Streak! Two weeks of dedicated connection. Your allies would ride into battle for you without hesitation. The Guild calls this *Unbreakable Accord*.",
-      "30": "xx 30-day Alliance Streak! Thirty days of showing up for the people who matter. You've built something most adventurers never achieve — a true Fellowship. The Guild honors you as Warden of the Inner Circle."
+      "3":  "3 Tage Allianz-Streak! Drei Tage soziale Kontakte. Du baust Vertrauen auf. Leise, stetig, wie ein Belagerungsturm. Nur freundlicher.",
+      "7":  "7 Tage Allianz-Streak! Eine Woche für deine Leute da sein. Das ist seltener als legendärer Loot und deutlich wertvoller. Die Gilde vermerkt das.",
+      "14": "14 Tage Allianz-Streak! Zwei Wochen. Deine Verbündeten würden ohne Zögern für dich in den Kampf ziehen. Oder zumindest beim Umzug helfen. Was ehrlich gesagt schwieriger ist.",
+      "30": "30 Tage Allianz-Streak! Einen Monat lang für andere da gewesen. Du hast etwas gebaut, das die meisten Abenteurer nie erreichen — echte Verbindung. Die Gilde schweigt respektvoll. Das passiert selten."
     }
   }
 }
