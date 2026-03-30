@@ -935,6 +935,66 @@
         "type": "level_reached",
         "value": 20
       }
+    },
+    {
+      "id": "npc-lore-eleganter-herr",
+      "category": "npcs",
+      "title": "Der Elegante Herr — Ein Profil",
+      "text": "Niemand weiß, wie er heißt. Niemand weiß, woher er kommt. Was man weiß: Er trägt einen Anzug, der teurer aussieht als der gesamte fünfte Stock, und er riecht nach Bergamotte und leichter Bedrohung. Sein Lächeln ist das eines Mannes, der einen Witz kennt, den sonst niemand versteht — und der Witz bist vermutlich du. Die Archivarin behauptet, er sei \"schon immer da gewesen\". Der Wachmann behauptet, er habe ihn einmal durch eine geschlossene Tür gehen sehen. Der Elegante Herr selbst sagt dazu nur: \"Türen sind eine Empfehlung, kein Gesetz.\"",
+      "unlockedBy": {
+        "type": "quests_completed",
+        "value": 50
+      }
+    },
+    {
+      "id": "npc-lore-hoeflicher-besucher",
+      "category": "npcs",
+      "title": "Der Höfliche Besucher — Beobachtungen",
+      "text": "Er kommt immer ohne Einladung, aber nie ohne Manieren. Er bringt Tee mit. Der Tee ist immer genau die richtige Temperatur, was physikalisch unmöglich sein sollte, weil er auch im Winter ohne Mantel kommt. Auf die Frage, ob er der Tod sei, antwortete er einmal: \"Das wäre unhöflich.\" Auf die Nachfrage, was er denn dann sei, sagte er: \"Pünktlich.\" Der Tee war ausgezeichnet.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 25
+      }
+    },
+    {
+      "id": "npc-lore-rogar-amboss",
+      "category": "npcs",
+      "title": "Rogar Amboss — Meisterschmied",
+      "text": "Rogar spricht selten und wenn, dann in Metaphern über Metall. \"Du bist wie schlecht gehärteter Stahl\", sagte er einmal zu einem Lehrling. \"Zu viel Hitze, zu wenig Geduld.\" Der Lehrling fragte, ob das ein Kompliment sei. Rogar schwieg drei Stunden und hämmerte. Am Ende des Tages überreichte er dem Lehrling einen perfekten Nagel und sagte: \"Jetzt bist du bereit für Schrauben.\" Der Lehrling arbeitet seit vier Jahren an Schrauben. Er hat noch nicht gefragt, was danach kommt.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 100
+      }
+    },
+    {
+      "id": "creature-prokrastinations-wyrm",
+      "category": "creatures",
+      "title": "Der Prokrastinations-Wyrm",
+      "text": "Man sieht ihn nie direkt. Man spürt ihn. Er flüstert Dinge wie \"morgen reicht auch\" und \"fünf Minuten noch\" und \"hast du schon die neue Staffel gesehen?\" Seine Schuppen bestehen aus verpassten Deadlines, und sein Atem riecht nach dem süßen Gift der Bequemlichkeit. Die Gelehrten des Turms sind sich einig: Der Wyrm existiert. Sie planen seit drei Jahren eine Expedition, um ihn zu studieren. Sie fangen nächste Woche an. Bestimmt.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 15
+      }
+    },
+    {
+      "id": "creature-burnout-koloss",
+      "category": "creatures",
+      "title": "Der Burnout-Koloss",
+      "text": "Er war einmal ein Held. Der produktivste Abenteurer des Turms, sagten sie. Zwanzig Quests am Tag, keine Pausen, Schlaf als optionale Schwäche betrachtet. Dann, eines Morgens, verwandelte er sich. Nicht dramatisch — kein Blitz, kein Donner. Er stand einfach auf und konnte nicht mehr. Jetzt wandert er durch die unteren Stockwerke und flüstert: \"Warum hast du nicht auf die Forge-Temperatur geachtet?\" Die Wachen sagen, man kann ihn besiegen. Aber nur, wenn man vorher eine Pause gemacht hat.",
+      "unlockedBy": {
+        "type": "streak",
+        "value": 14
+      }
+    },
+    {
+      "id": "creature-zweifel-phantom",
+      "category": "creatures",
+      "title": "Das Zweifel-Phantom",
+      "text": "Es sieht aus wie du, nur blasser und mit schlechterem Selbstvertrauen. Es taucht immer dann auf, wenn du kurz davor bist, etwas Mutiges zu tun, und fragt: \"Bist du sicher?\" Erfahrene Abenteurer haben gelernt, ihm zu antworten: \"Nein, aber ich mache es trotzdem.\" Das Phantom hasst diese Antwort. Es verschwindet dann für genau 24 Stunden und kommt mit einer neuen, kreativeren Frage zurück. Letzte Woche fragte es jemanden: \"Was wenn alle nur so tun, als würden sie dich mögen?\" Der Abenteurer lachte. Das Phantom weinte. Es war ein guter Tag.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 20
+      }
     }
   ]
 }
