@@ -12755,7 +12755,7 @@
       "description": "Schmiedet: Stählerner Zeremonialstab.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Für Zeremonien bei denen jemand einen Stab braucht und trotzdem kämpfen will. Multitasking."
     },
     {
       "id": "recipe-waffenschmied-kristall-kampfstab",
@@ -12775,7 +12775,7 @@
       "description": "Schmiedet: Kristall-Kampfstab.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Kampfstab aus Kristall. Leuchtet bei jedem Treffer. Der Getroffene findet das weniger hübsch."
     },
     {
       "id": "recipe-waffenschmied-kristall-streitaxt",
@@ -12795,7 +12795,7 @@
       "description": "Schmiedet: Kristall-Streitaxt.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Kristall-Streitaxt. Spaltet Holz UND Licht. Varn nennt sie seinen zweitliebsten Fehler."
     },
     {
       "id": "recipe-waffenschmied-kristalldolch",
@@ -12815,7 +12815,7 @@
       "description": "Schmiedet: Kristalldolch.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Klein, kristallin, und schärfer als Grimvars Humor. Was etwas heißen will."
     },
     {
       "id": "recipe-waffenschmied-kristall-schutzfolio",
@@ -12835,7 +12835,7 @@
       "description": "Schmiedet: Kristall-Schutzfolio.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Ein Buch das schützt. Kristallseiten, unlesbar, unzerstörbar. Wie die Bedienungsanleitung eines Druiden."
     },
     {
       "id": "recipe-waffenschmied-kristallstab",
@@ -12855,7 +12855,7 @@
       "description": "Schmiedet: Kristallstab.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Stab aus reinem Kristall. Vibriert bei Magie. Vibriert auch ohne Magie. Varn zuckt mit den Schultern."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-wanderstab",
@@ -12875,7 +12875,7 @@
       "description": "Schmiedet: Stählerner Wanderstab.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Wanderstab aus Stahl. Für Wanderer die nicht wandern wollen sondern Dinge schlagen."
     },
     {
       "id": "recipe-waffenschmied-kristall-ritualklinge",
@@ -12895,7 +12895,7 @@
       "description": "Schmiedet: Kristall-Ritualklinge.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Ritualklinge. Für Rituale. Nicht für die Küche. Varn betont das bei jeder Übergabe."
     },
     {
       "id": "recipe-waffenschmied-staehlerne-streitaxt",
@@ -12915,7 +12915,7 @@
       "description": "Schmiedet: Stählerne Streitaxt.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Streitaxt aus gehärtetem Stahl. Der Streit endet meistens nach dem ersten Schwung."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-kriegshammer",
@@ -12935,7 +12935,7 @@
       "description": "Schmiedet: Stählerner Kriegshammer.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Ein Hammer der Kriege beendet. Oder anfängt. Hängt davon ab auf welcher Seite man steht."
     },
     {
       "id": "recipe-waffenschmied-staehlerner-wappenschild",
@@ -12955,7 +12955,7 @@
       "description": "Schmiedet: Stählerner Wappenschild.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Wappenschild mit Gravur. Das Wappen ist optional. Der Schutz nicht."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-foliant",
@@ -12976,7 +12976,7 @@
       "description": "Schmiedet: Drachenzahn-Foliant.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Foliant mit Drachenzahn-Beschlägen. Die Drachen haben eine Sammelklage eingereicht."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-breitschwert",
@@ -12996,7 +12996,7 @@
       "xp": 20,
       "description": "Schmiedet: Drachenstahl-Breitschwert.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Breit, drachenartig, und mit einer Klinge die Meinungen teilt. Im wörtlichen Sinne."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-hammer",
@@ -13016,7 +13016,7 @@
       "xp": 21,
       "description": "Schmiedet: Drachenschuppen-Hammer.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Hammer mit Drachenschuppen am Griff. Für besseren Halt. Oder als Statement. Varn sagt beides."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-kriegsbeil",
@@ -13036,7 +13036,7 @@
       "xp": 21,
       "description": "Schmiedet: Drachenzahn-Kriegsbeil.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Ein Beil aus Drachenzahn. Spaltet alles außer den Willen des Schmieds der es gemacht hat."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-wappenschild",
@@ -13056,7 +13056,7 @@
       "xp": 22,
       "description": "Schmiedet: Drachenstahl-Wappenschild.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Wappenschild aus Drachenstahl. Das Wappen darauf ist immer dasselbe: ein Drache der sauer aussieht."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-tartsche",
@@ -13076,7 +13076,7 @@
       "xp": 22,
       "description": "Schmiedet: Drachenzahn-Tartsche.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Tartsche mit Zähnen. Des Drachens, nicht des Schilds. Obwohl — man weiß nie."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-schattenklinge",
@@ -13096,7 +13096,7 @@
       "xp": 23,
       "description": "Schmiedet: Drachenzahn-Schattenklinge.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Eine Klinge die im Schatten verschwindet. Und im Licht. Und manchmal einfach so. Varns Meisterwerk."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-ritualstab",
@@ -13116,7 +13116,7 @@
       "xp": 23,
       "description": "Schmiedet: Drachenstahl-Ritualstab.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Ritualstab aus Drachenstahl. Die Rituale werden lauter. Nicht besser, aber lauter."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-meisterschwert",
@@ -13136,7 +13136,7 @@
       "xp": 23,
       "description": "Schmiedet: Drachenzahn-Meisterschwert.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Das Schwert das Varn für sich selbst machen wollte. Er hat es verkauft. Der Preis war überzeugender als der Stolz."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-kampfschild",
@@ -13156,7 +13156,7 @@
       "xp": 24,
       "description": "Schmiedet: Drachenstahl-Kampfschild.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Kampfschild der zurückschlägt. Nicht metaphorisch. Varn hat es getestet. An sich selbst."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-stab",
@@ -13177,7 +13177,7 @@
       "description": "Schmiedet: Drachenstahl-Stab.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Ein Stab der mehr kann als nur stehen. Er kann auch fallen. Mit Absicht."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-dolch",
@@ -13198,7 +13198,7 @@
       "description": "Schmiedet: Drachenzahn-Dolch.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Ein Dolch aus einem Drachenzahn. Der Drache hat ihn bei einem Niesen verloren. Romantischer Ursprung."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-fokus",
@@ -13219,7 +13219,7 @@
       "description": "Schmiedet: Drachenschuppen-Fokus.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Fokus mit Drachenschuppen. Kanalisiert Magie und gelegentlich den Zorn des Drachen."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-prunkfokus",
@@ -13240,7 +13240,7 @@
       "description": "Schmiedet: Drachenstahl-Prunkfokus.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Prunkfokus. Fokussiert Magie UND Aufmerksamkeit. Varn verlangt Aufpreis für den Prunk."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-axt",
@@ -13261,7 +13261,7 @@
       "description": "Schmiedet: Drachenstahl-Axt.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Axt aus Drachenstahl. Varn hat beim Schmieden gesummt. Ein Zeichen von Zufriedenheit. Oder Wahnsinn."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-streitkolben",
@@ -13282,7 +13282,7 @@
       "description": "Schmiedet: Drachenschuppen-Streitkolben.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Ein Kolben der mit Schuppen bedeckt ist. Nicht zum Kuscheln gedacht."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-aegis",
@@ -13303,7 +13303,7 @@
       "description": "Schmiedet: Drachenschuppen-Aegis.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Aegis aus Drachenschuppen. Der Drache hatte eine Aegis. Jetzt hat sie jemand anderes."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-turmschild",
@@ -13323,7 +13323,7 @@
       "description": "Schmiedet: Drachenschuppen-Turmschild.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Turmschild aus einem ganzen Drachen. Fast. Der Rest wurde zu Stiefeln."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-schwert",
@@ -13343,7 +13343,7 @@
       "description": "Schmiedet: Drachenzahn-Schwert.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Schwert aus einem Drachenzahn. Beißender Humor in Klingenform."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-zeremonialstab",
@@ -13363,7 +13363,7 @@
       "description": "Schmiedet: Drachenstahl-Zeremonialstab.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Zeremonien brauchen Stäbe. Drachenstahl-Zeremonien brauchen teurere Stäbe."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-zauberstab",
@@ -13383,7 +13383,7 @@
       "description": "Schmiedet: Drachenschuppen-Zauberstab.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Zauberstab mit Schuppen. Die Magie fließt. Die Schuppen urteilen."
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-buckler",
@@ -13403,7 +13403,7 @@
       "description": "Schmiedet: Drachenstahl-Buckler.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Der kleinste Drachenstahl-Schild. Klein aber mit einer Meinung die größer ist als er."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-schlachtbeil",
@@ -13423,7 +13423,7 @@
       "description": "Schmiedet: Drachenschuppen-Schlachtbeil.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Schlachtbeil. Der Name ist Programm. Das Programm ist kurz."
     },
     {
       "id": "recipe-waffenschmied-drachenzahn-rundschild",
@@ -13443,7 +13443,7 @@
       "description": "Schmiedet: Drachenzahn-Rundschild.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Rundschild mit einem Zahn in der Mitte. Dekorativ. Und ein Versprechen."
     },
     {
       "id": "recipe-waffenschmied-drachenschuppen-klingenbrecher",
@@ -13463,7 +13463,7 @@
       "description": "Schmiedet: Drachenschuppen-Klingenbrecher.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Bricht Klingen. Seinen eigenen Namen nimmt er ernst. Varns Lieblingsschild."
     },
     {
       "id": "recipe-waffenschmied-seelen-kodex",
@@ -13483,7 +13483,7 @@
       "xp": 28,
       "description": "Schmiedet: Seelen-Kodex.",
       "trainerCost": 750,
-      "desc": ""
+      "desc": "Ein Buch mit Seele. Buchstäblich. Es hat Kapitel die sich selbst schreiben."
     },
     {
       "id": "recipe-waffenschmied-seelen-fokuskristall",
@@ -13504,7 +13504,7 @@
       "description": "Schmiedet: Seelen-Fokuskristall.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Kristall der fokussiert. Und urteilt. Und gelegentlich Vorschläge macht die niemand wollte."
     },
     {
       "id": "recipe-waffenschmied-aether-hammer",
@@ -13525,7 +13525,7 @@
       "description": "Schmiedet: Aether-Hammer.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Hammer aus Aether. Trifft in dieser Dimension und ein bisschen in der nächsten."
     },
     {
       "id": "recipe-waffenschmied-aether-buckler",
@@ -13546,7 +13546,7 @@
       "description": "Schmiedet: Aether-Buckler.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Aether-Buckler. Existiert zu neunzig Prozent. Die fehlenden zehn Prozent sind das Geheimnis."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-axt",
@@ -13567,7 +13567,7 @@
       "description": "Schmiedet: Aetherkern-Axt.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Axt mit Aetherkern. Spaltet Holz, Stahl, und gelegentlich die Raumzeit. In dieser Reihenfolge."
     },
     {
       "id": "recipe-waffenschmied-aether-zeremonialstab",
@@ -13588,7 +13588,7 @@
       "description": "Schmiedet: Aether-Zeremonialstab.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Zeremonialstab der in drei Farben gleichzeitig leuchtet. Varn versteht keine davon."
     },
     {
       "id": "recipe-waffenschmied-seelen-sternenstab",
@@ -13608,7 +13608,7 @@
       "xp": 33,
       "description": "Schmiedet: Seelen-Sternenstab.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Stab der Sterne kanalisiert. Die Sterne haben nicht zugestimmt. Sie sind nur zu weit weg um sich zu beschweren."
     },
     {
       "id": "recipe-waffenschmied-seelen-donnerhammer",
@@ -13628,7 +13628,7 @@
       "xp": 33,
       "description": "Schmiedet: Seelen-Donnerhammer.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Donnerhammer. Man hört ihn bevor man ihn sieht. Und man fühlt ihn bevor man ihn hört."
     },
     {
       "id": "recipe-waffenschmied-aether-kriegsklinge",
@@ -13649,7 +13649,7 @@
       "description": "Schmiedet: Aether-Kriegsklinge.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Kriegsklinge aus Aether. Schneidet durch Materie wie durch eine Ausrede. Sauber."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-turmschild",
@@ -13670,7 +13670,7 @@
       "description": "Schmiedet: Aetherkern-Turmschild.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Turmschild mit Aetherkern. Der Turm wäre neidisch wenn er wüsste."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-zauberstab",
@@ -13690,7 +13690,7 @@
       "xp": 36,
       "description": "Schmiedet: Aetherkern-Zauberstab.",
       "trainerCost": 2000,
-      "desc": ""
+      "desc": "Zauberstab mit Kern aus purem Aether. Vibriert vor Potential. Und vor Instabilität."
     },
     {
       "id": "recipe-waffenschmied-seelen-aegis",
@@ -13710,7 +13710,7 @@
       "xp": 36,
       "description": "Schmiedet: Seelen-Aegis.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Aegis mit einer Seele. Die Seele beschwert sich selten. Sie hat sich daran gewöhnt ein Schild zu sein."
     },
     {
       "id": "recipe-waffenschmied-seelenwaechter-schild",
@@ -13732,7 +13732,7 @@
       "description": "Schmiedet: Seelenwächter-Schild.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Ein Schild das wacht. Über dich. Und über deine Entscheidungen. Vor allem die schlechten."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-schlachtbeil",
@@ -13753,7 +13753,7 @@
       "description": "Schmiedet: Aetherkern-Schlachtbeil.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Das letzte Beil das Varn diesen Monat macht. Sagt er. Wie jeden Monat."
     },
     {
       "id": "recipe-waffenschmied-seelengeschmiedeter-stab",
@@ -13775,7 +13775,7 @@
       "description": "Schmiedet: Seelengeschmiedeter Stab.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Ein Stab der lebt. Im metaphorischen Sinne. Hoffentlich."
     },
     {
       "id": "recipe-waffenschmied-seelensiegel-fokus",
@@ -13797,7 +13797,7 @@
       "description": "Schmiedet: Seelensiegel-Fokus.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Versiegelt Seelen in Kristall. Ethisch fragwürdig. Magisch einwandfrei."
     },
     {
       "id": "recipe-waffenschmied-seelen-schattenklinge",
@@ -13818,7 +13818,7 @@
       "description": "Schmiedet: Seelen-Schattenklinge.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Verschwindet im Schatten. Auch auf dem Tisch. Varn hat drei davon verlegt."
     },
     {
       "id": "recipe-waffenschmied-seelen-kriegsaxt",
@@ -13839,7 +13839,7 @@
       "description": "Schmiedet: Seelen-Kriegsaxt.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Kriegsaxt mit Seele. Die Seele führt Krieg mit sich selbst. Die Axt schneidet trotzdem."
     },
     {
       "id": "recipe-waffenschmied-aether-stab",
@@ -13860,7 +13860,7 @@
       "description": "Schmiedet: Aether-Stab.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Purer Aether in Stabform. Instabil. Aber was Gutes ist schon stabil."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-fokus",
@@ -13881,7 +13881,7 @@
       "description": "Schmiedet: Aetherkern-Fokus.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Fokussiert alles. Magie, Licht, und die Aufmerksamkeit aller im Raum."
     },
     {
       "id": "recipe-waffenschmied-seelen-richtschwert",
@@ -13902,7 +13902,7 @@
       "description": "Schmiedet: Seelen-Richtschwert.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Richtet. Über was, entscheidet das Schwert. Nicht du."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-dolch",
@@ -13923,7 +13923,7 @@
       "description": "Schmiedet: Aetherkern-Dolch.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Dolch mit Aetherkern. Flüstert dem Träger Geheimnisse zu. Meistens unbrauchbare."
     },
     {
       "id": "recipe-waffenschmied-aether-schwert",
@@ -13944,7 +13944,7 @@
       "description": "Schmiedet: Aether-Schwert.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Schwert aus reinem Aether. Existiert in drei Dimensionen gleichzeitig. Varn hat Kopfschmerzen davon."
     },
     {
       "id": "recipe-waffenschmied-seelen-bollwerk",
@@ -13965,7 +13965,7 @@
       "description": "Schmiedet: Seelen-Bollwerk.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Bollwerk das Seelen schützt. Ob deine oder seine — darüber verhandelt ihr noch."
     },
     {
       "id": "recipe-waffenschmied-aether-foliant",
@@ -13986,7 +13986,7 @@
       "description": "Schmiedet: Aether-Foliant.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Foliant aus Aether. Die Seiten schreiben sich selbst. Der Inhalt ist... irritierend."
     },
     {
       "id": "recipe-waffenschmied-seelenklinge-des-meisters",
@@ -14008,7 +14008,7 @@
       "description": "Schmiedet: Seelenklinge des Meisters.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Varns Meisterwerk. Er behauptet die Klinge hat ihm im Traum gesagt wie sie geschmiedet werden will. Er hat zugehört."
     },
     {
       "id": "recipe-waffenschmied-aetherkern-ritualklinge",
@@ -14029,7 +14029,7 @@
       "description": "Schmiedet: Aetherkern-Ritualklinge.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Ritualklinge für Rituale die man besser nicht allein durchführt."
     },
     {
       "id": "recipe-waffenschmied-seelenbrecher-axt",
@@ -14051,7 +14051,7 @@
       "description": "Schmiedet: Seelenbrecher-Axt.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Bricht Seelen. Und Tische. Und einmal Varns Lieblingsamboss. Er redet nicht darüber."
     },
     {
       "id": "recipe-waffenschmied-aether-wappenschild",
@@ -14072,7 +14072,7 @@
       "description": "Schmiedet: Aether-Wappenschild.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Wappenschild aus Aether. Das Wappen ändert sich je nach Betrachter. Meistens zeigt es ein fragendes Gesicht."
     },
     {
       "id": "recipe-waffenschmied-seelen-prunkschild",
@@ -14093,7 +14093,7 @@
       "description": "Schmiedet: Seelen-Prunkschild.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Der letzte Schild den Varn je machen wird. Sagt er seit drei Jahren. Er hat elf davon gemacht."
     },
     {
       "id": "recipe-schmied-eisenkappe-des-waechters",
@@ -19370,7 +19370,7 @@
       "description": "Schmiedet: Untiefen-Klinge. Summt leise vor sich hin. Ob das charmant oder besorgniserregend ist, hängt vom Kontext ab.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Geschmiedet in den Tiefen des Rifts wo das Licht aufgehört hat vorbeizuschauen."
     },
     {
       "id": "recipe-waffenschmied-rissbrecher-schild",
@@ -19393,7 +19393,7 @@
       "description": "Schmiedet: Rissbrecher-Schild. Schützt vor den meisten Dingen. Auch vor einigen, von denen man nichts wusste.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Ein Schild der Risse stoppt. In der Realität. Und in Varns Geduld."
     },
     {
       "id": "recipe-juwelier-abgrund-amulett",
