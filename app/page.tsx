@@ -2764,7 +2764,7 @@ export default function Dashboard() {
           >
             <div className="text-center space-y-2">
               <h2 className="text-lg font-bold text-bright">
-                Version {gameVersion} is live! ✨
+                Version {gameVersion} is live!
               </h2>
               {changelogData[0] && (
                 <p className="text-sm text-w50">
