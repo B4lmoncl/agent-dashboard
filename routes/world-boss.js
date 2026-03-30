@@ -388,6 +388,9 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'Rewards already claimed' });
   }
   boss.rewardsClaimed.push(uid);
+  // Track unique bosses killed for achievements
+  if (!user._bossKillIds) user._bossKillIds = [];
+  if (!user._bossKillIds.includes(boss.bossId)) user._bossKillIds.push(boss.bossId);
 
   const template = getBossTemplate(boss.bossId);
   const leaderboard = getContributionLeaderboard(boss, 999);
