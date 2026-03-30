@@ -1981,11 +1981,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {craftProgress.total > 1 && <span style={{ color: "rgba(255,255,255,0.3)", marginRight: 4 }}>{Math.min(craftProgress.current + 1, craftProgress.total)}/{craftProgress.total}</span>}
                               {castCountdown ?? "0.0"}s
                             </div>
-                            <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                              <div className="h-full rounded-full" style={{
+                            <div className="w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)", height: 7, border: "1px solid rgba(255,255,255,0.1)", boxShadow: "inset 0 1px 3px rgba(0,0,0,0.5)" }}>
+                              <div className="h-full rounded-full progress-shimmer" style={{
                                 background: `linear-gradient(90deg, ${selectedNpc.color}80, ${selectedNpc.color})`,
                                 animation: `craft-cast-fill ${craftCastMsRef.current}ms linear forwards`,
-                                boxShadow: `0 0 8px ${selectedNpc.color}60, 0 0 2px ${selectedNpc.color}`,
+                                boxShadow: `0 0 12px ${selectedNpc.color}60, 0 0 4px ${selectedNpc.color}, inset 0 1px 0 rgba(255,255,255,0.2)`,
                               }} />
                             </div>
                             <p className="text-xs text-center mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>ESC to cancel</p>
