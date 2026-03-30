@@ -1403,7 +1403,7 @@
     {
       "id": "chain_streak_legend",
       "name": "Streak Keeper: Legendary",
-      "description": "365-Tage Streak",
+      "description": "365 Tage. Ein ganzes Jahr. Die Erde hat die Sonne einmal umkreist und du warst jeden Tag hier.",
       "icon": null,
       "condition": {
         "type": "streak_days",
@@ -1424,7 +1424,7 @@
     {
       "id": "chain_gold_bronze",
       "name": "Gold Hoarder: Bronze",
-      "description": "500 Gold gesammelt",
+      "description": "500 Gold. Der erste Schritt zum Reichtum. Oder zum Horten. Hängt von der Perspektive ab.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1444,7 +1444,7 @@
     {
       "id": "chain_gold_silver",
       "name": "Gold Hoarder: Silver",
-      "description": "5.000 Gold",
+      "description": "5000 Gold. Du könntest dir etwas Schönes kaufen. Wirst du aber nicht. Du sparst lieber.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1465,7 +1465,7 @@
     {
       "id": "chain_gold_gold",
       "name": "Gold Hoarder: Gold",
-      "description": "25.000 Gold",
+      "description": "25.000 Gold. Du bist reich. Du fühlst dich nicht reich. Das ist das Zeichen, dass es funktioniert.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",
@@ -1486,7 +1486,7 @@
     {
       "id": "chain_gold_legend",
       "name": "Gold Hoarder: Legendary",
-      "description": "100.000 Gold",
+      "description": "100.000 Gold. Du besitzt mehr als manche Kleinstaaten. Ausgeben wirst du es trotzdem nicht.",
       "icon": null,
       "condition": {
         "type": "gold_threshold",

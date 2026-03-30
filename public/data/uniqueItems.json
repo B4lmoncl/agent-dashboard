@@ -1006,8 +1006,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 38,
-      "desc": "Zeigt Dinge die noch nicht passiert sind. Meistens Deadlines. Gelegentlich Mittagessen.",
-      "flavorText": "Prophezeiung ist überbewertet. Terminkalender sind nützlicher.",
+      "desc": "Zeigt Dinge die noch nicht passiert sind. Meistens Deadlines. Gelegentlich den eigenen Tod. Einmal zeigte er Dienstagabend-Eintopf. Niemand weiß warum, aber alle hatten danach Angst vor Dienstag.",
+      "flavorText": "Der Helm hat eine Rückgabequote von 100%. Jeder gibt ihn zurück. Die meisten rennen dabei.",
       "icon": "/images/icons/equip-helm.png",
       "fixedStats": true,
       "stats": {
@@ -1029,8 +1029,8 @@
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 28,
-      "desc": "Ein Schild aus den versiegelten Regalen des Sunken Archive. Die Bücher darauf sind lesbar. Sie handeln von Buchhaltung. Entmutigend effektiv.",
-      "flavorText": "Nichts hält Feinde so fern wie eine detaillierte Steuererklärung.",
+      "desc": "Ein Schild aus den versiegelten Regalen des Sunken Archive. Die Bücher darauf handeln von Buchhaltung, Steuerrecht und Erbschaftsregelungen. Feinde fliehen bei Sichtkontakt. Verbündete auch.",
+      "flavorText": "Der Bibliothekar, der es versiegelt hat, hinterließ eine Notiz: 'Falls jemand das hier findet — es tut mir leid. Für alles.'",
       "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "fixedStats": true,
       "stats": {
