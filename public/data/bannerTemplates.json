@@ -12,10 +12,10 @@
     "lore": "The ancient portal of the Guild opens. Each turn of the Wheel reveals an artifact drawn from the depths of the Aether. What will fate whisper to you?",
     "dropRates": {
       "legendary": "0.8%",
-      "epic": "8%",
-      "rare": "38%",
-      "uncommon": "40%",
-      "common": "13.2%"
+      "epic": "3%",
+      "rare": "25%",
+      "uncommon": "45%",
+      "common": "26.2%"
     }
   },
   {
@@ -25,16 +25,18 @@
     "currency": "stardust",
     "costSingle": 10,
     "cost10": 90,
-    "featuredItems": ["klinge-aetherstrom"],
+    "featuredItems": [
+      "klinge-aetherstrom"
+    ],
     "active": true,
     "icon": "/images/icons/currency-stardust.png",
     "lore": "Starlight pierces the darkness. Within its glow lie the mightiest artifacts of the Guild. Only the worthy shall wield them.",
     "dropRates": {
-      "legendary": "0.8% (50/50 Featured)",
-      "epic": "8%",
-      "rare": "38%",
-      "uncommon": "40%",
-      "common": "13.2%"
+      "legendary": "0.8%",
+      "epic": "3%",
+      "rare": "25%",
+      "uncommon": "45%",
+      "common": "26.2%"
     }
   }
 ]

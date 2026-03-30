@@ -163,7 +163,7 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
       stats: rolledStats,
       legendaryEffect: rolledLegendaryEffect,
       affixes: isEquipment ? (item.affixes || null) : null,
-      slot: item.type === 'weapon' ? 'weapon' : item.type === 'armor' ? 'armor' : null,
+      slot: item.slot || (item.type === 'weapon' ? 'weapon' : item.type === 'armor' ? 'armor' : null),
       obtainedAt: new Date().toISOString(),
       source: 'gacha',
     });
