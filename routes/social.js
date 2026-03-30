@@ -522,11 +522,26 @@ router.post('/api/social/trade/propose', requireAuth, (req, res) => {
   const validation = validateTradeItems(u, fromId, itemIds);
   if (!validation.ok) return res.status(400).json({ error: validation.error });
 
+  // Validate materials (crafting materials trade)
+  const offeredMaterials = {};
+  if (offer.materials && typeof offer.materials === 'object') {
+    u.craftingMaterials = u.craftingMaterials || {};
+    for (const [matId, amount] of Object.entries(offer.materials)) {
+      const amt = Math.max(0, Math.floor(Number(amount) || 0));
+      if (amt <= 0) continue;
+      if ((u.craftingMaterials[matId] || 0) < amt) {
+        return res.status(400).json({ error: `Not enough ${matId} (have ${u.craftingMaterials[matId] || 0}, offering ${amt})` });
+      }
+      offeredMaterials[matId] = amt;
+    }
+  }
+
   const round = {
     by: fromId,
     offer: {
       gold: offeredGold,
       items: itemIds,
+      materials: offeredMaterials,
     },
     message: message.slice(0, 500),
     at: now(),
@@ -796,6 +811,20 @@ function executeTrade(trade) {
     return { ok: false, error: `${trade.recipient}'s inventory would exceed ${INVENTORY_CAP} items` };
   }
 
+  // Verify materials still available
+  const mats1Check = offer1.materials || {};
+  const mats2Check = offer2.materials || {};
+  for (const [matId, amt] of Object.entries(mats1Check)) {
+    if ((u1.craftingMaterials?.[matId] || 0) < (Number(amt) || 0)) {
+      return { ok: false, error: `${trade.initiator} no longer has enough ${matId}` };
+    }
+  }
+  for (const [matId, amt] of Object.entries(mats2Check)) {
+    if ((u2.craftingMaterials?.[matId] || 0) < (Number(amt) || 0)) {
+      return { ok: false, error: `${trade.recipient} no longer has enough ${matId}` };
+    }
+  }
+
   // Verify items still in inventory and not equipped
   const v1 = validateTradeItems(u1, trade.initiator, items1);
   if (!v1.ok) return { ok: false, error: v1.error };
@@ -839,16 +868,40 @@ function executeTrade(trade) {
     }
   }
 
+  // Transfer materials: initiator → recipient
+  const mats1 = offer1.materials || {};
+  const mats2 = offer2.materials || {};
+  u1.craftingMaterials = u1.craftingMaterials || {};
+  u2.craftingMaterials = u2.craftingMaterials || {};
+  for (const [matId, amt] of Object.entries(mats1)) {
+    const amount = Number(amt) || 0;
+    if (amount > 0) {
+      u1.craftingMaterials[matId] = Math.max(0, (u1.craftingMaterials[matId] || 0) - amount);
+      if (u1.craftingMaterials[matId] <= 0) delete u1.craftingMaterials[matId];
+      u2.craftingMaterials[matId] = (u2.craftingMaterials[matId] || 0) + amount;
+    }
+  }
+  for (const [matId, amt] of Object.entries(mats2)) {
+    const amount = Number(amt) || 0;
+    if (amount > 0) {
+      u2.craftingMaterials[matId] = Math.max(0, (u2.craftingMaterials[matId] || 0) - amount);
+      if (u2.craftingMaterials[matId] <= 0) delete u2.craftingMaterials[matId];
+      u1.craftingMaterials[matId] = (u1.craftingMaterials[matId] || 0) + amount;
+    }
+  }
+
   // Mark trade as completed
   trade.status = 'completed';
   trade.completedAt = now();
 
+  const matCount1 = Object.values(mats1).reduce((s, v) => s + (Number(v) || 0), 0);
+  const matCount2 = Object.values(mats2).reduce((s, v) => s + (Number(v) || 0), 0);
   const summary = {
-    initiatorGave: { gold: gold1, itemCount: items1.length },
-    recipientGave: { gold: gold2, itemCount: items2.length },
+    initiatorGave: { gold: gold1, itemCount: items1.length, materialCount: matCount1 },
+    recipientGave: { gold: gold2, itemCount: items2.length, materialCount: matCount2 },
   };
 
-  console.log(`[social] Trade executed: ${trade.initiator} gave ${gold1}g + ${items1.length} items, ${trade.recipient} gave ${gold2}g + ${items2.length} items`);
+  console.log(`[social] Trade executed: ${trade.initiator} gave ${gold1}g + ${items1.length} items + ${matCount1} mats, ${trade.recipient} gave ${gold2}g + ${items2.length} items + ${matCount2} mats`);
   return { ok: true, summary };
 }
 
