@@ -1525,6 +1525,7 @@
         "aetherkern": 1,
         "aetherflux": 2
       },
+      "desc": "Metall das zurückstarrt. Grimvar sagt, man soll es nicht zu lange ansehen. Er hat mal geblinzelt. Der Stahl nicht.",
       "result": {
         "type": "material",
         "materialId": "seelenstahl",
@@ -1532,8 +1533,7 @@
       },
       "xp": 45,
       "description": "Das edelste Metall der Gilde.",
-      "trainerCost": 2750,
-      "desc": ""
+      "trainerCost": 2750
     },
     {
       "id": "smelt-rohbarren",
@@ -1557,7 +1557,7 @@
       "cooldownMinutes": 0,
       "description": "Zwei Erze werden eins. Grimvar nennt das Effizienz.",
       "trainerCost": 10,
-      "desc": ""
+      "desc": "Der erste Barren den jeder Lehrling macht. Der letzte den er freiwillig zeigt."
     },
     {
       "id": "smelt-stahlbarren",
@@ -1582,7 +1582,7 @@
       "cooldownMinutes": 0,
       "description": "Eisen wird Stahl. Der Unterschied sind Hitze und Geduld.",
       "trainerCost": 200,
-      "desc": ""
+      "desc": "Eisen trifft Hitze trifft Läuterungssand. Das Ergebnis klingt besser als die Zutaten verdienen."
     },
     {
       "id": "smelt-mithrilbarren",
@@ -1607,7 +1607,7 @@
       "cooldownMinutes": 0,
       "description": "Leichter als Stahl, härter als Meinungen.",
       "trainerCost": 500,
-      "desc": ""
+      "desc": "Leichter als Stahl, teurer als Vernunft. Grimvar legt sie einzeln hin. Wie Neugeborene."
     },
     {
       "id": "recipe-schmied-eiserne-brustplatte",
@@ -1626,7 +1626,7 @@
       "xp": 6,
       "description": "Schmiedet: Eiserne Brustplatte.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Hat drei Feuerproben bestanden und eine Scheidung überlebt. Der vorherige Besitzer will nicht darüber reden."
     },
     {
       "id": "recipe-schmied-geschlossener-eisenhelm",
@@ -1645,7 +1645,7 @@
       "xp": 7,
       "description": "Schmiedet: Geschlossener Eisenhelm.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schützt den Kopf. Nicht die Frisur. Grimvar sagt, Prioritäten seien wichtig."
     },
     {
       "id": "recipe-schmied-eiserne-sturmhaube",
@@ -1664,7 +1664,7 @@
       "xp": 7,
       "description": "Schmiedet: Eiserne Sturmhaube.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Für Leute die ihr Gesicht mögen und es behalten wollen. Ein vernünftiger Wunsch."
     },
     {
       "id": "recipe-schmied-eiserne-panzerhaube",
@@ -1684,7 +1684,7 @@
       "description": "Schmiedet: Eiserne Panzerhaube.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Schwerer als nötig, sicherer als erhofft. Grimvar nennt das den optimalen Kompromiss."
     },
     {
       "id": "recipe-schmied-eiserne-stiefel",
@@ -1704,7 +1704,7 @@
       "description": "Schmiedet: Eiserne Stiefel.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Trittfest auf jedem Untergrund. Sogar auf dem Ego des Schmieds, was bemerkenswert ist."
     },
     {
       "id": "recipe-schmied-gehaertete-eisenstiefel",
@@ -1724,7 +1724,7 @@
       "description": "Schmiedet: Gehärtete Eisenstiefel.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Wie normale Eisenstiefel, nur mit mehr Überzeugung gehärtet. Der Unterschied ist spürbar. Am Gewicht."
     },
     {
       "id": "recipe-schmied-eiserner-brustpanzer",
@@ -1744,7 +1744,7 @@
       "description": "Schmiedet: Eiserner Brustpanzer.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Der vorherige Besitzer hat ihn freiwillig abgegeben, was bei Brustpanzern entweder sehr gut oder sehr schlecht ist."
     },
     {
       "id": "recipe-schmied-eiserne-beinschienen",
@@ -1764,7 +1764,7 @@
       "description": "Schmiedet: Eiserne Beinschienen.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Schützen die Beine vor allem was von unten kommt. Grimvar weigert sich zu erklären was genau."
     },
     {
       "id": "recipe-schmied-eisenkappe",
@@ -1784,7 +1784,7 @@
       "description": "Schmiedet: Eisenkappe.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Schlicht, effektiv, und der Grund warum Grimvar findet dass Mode überbewertet ist."
     },
     {
       "id": "recipe-schmied-gehaerteter-plattenpanzer",
@@ -1805,7 +1805,7 @@
       "description": "Schmiedet: Gehärteter Plattenpanzer.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Wurde nach dem Härten gegen eine Wand geworfen. Die Wand hat verloren."
     },
     {
       "id": "recipe-schmied-staehlerner-drachenhelm",
@@ -1824,7 +1824,7 @@
       "xp": 12,
       "description": "Schmiedet: Stählerner Drachenhelm.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Hat Drachenschuppen im Design. Kein Drache wurde gefragt. Keiner hat sich beschwert. Noch nicht."
     },
     {
       "id": "recipe-schmied-staehlerne-marschtreters",
@@ -1845,7 +1845,7 @@
       "description": "Schmiedet: Stählerne Marschtreter.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Für Leute die laufen müssen und dabei lieber nicht sterben wollen. Ein vernünftiges Anliegen."
     },
     {
       "id": "recipe-schmied-staehlerne-sturmhaube",
@@ -1865,7 +1865,7 @@
       "xp": 15,
       "description": "Schmiedet: Stählerne Sturmhaube.",
       "trainerCost": 195,
-      "desc": ""
+      "desc": "Grimvar hat sie drei Tage lang gehämmert. Die Nachbarn haben nach zwei Tagen aufgehört sich zu beschweren."
     },
     {
       "id": "recipe-schmied-kristall-beinschienen",
@@ -1885,7 +1885,7 @@
       "xp": 15,
       "description": "Schmiedet: Kristall-Beinschienen.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Kristall und Stahl. Sieht aus wie ein Widerspruch. Fühlt sich an wie eine schlechte Idee. Funktioniert trotzdem."
     },
     {
       "id": "recipe-schmied-staehlerne-bruenne",
@@ -1905,7 +1905,7 @@
       "description": "Schmiedet: Stählerne Brünne.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Kettenhemd für Leute die Kettenhemden satt haben. Schwerer, besser, lauter beim Hinsetzen."
     },
     {
       "id": "recipe-schmied-kristall-koenigsruestung",
@@ -1925,7 +1925,7 @@
       "description": "Schmiedet: Kristall-Königsrüstung.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Der Name ist Programm. Der Preis auch. Grimvar hat bei der Namensgebung nicht an Bescheidenheit gedacht."
     },
     {
       "id": "recipe-schmied-staehlerne-sturmstiefel",
@@ -1945,7 +1945,7 @@
       "description": "Schmiedet: Stählerne Sturmstiefel.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Klingen im Absatz. Nicht beabsichtigt, aber Grimvar hat beschlossen es ein Feature zu nennen."
     },
     {
       "id": "recipe-schmied-kristall-visierhelm",
@@ -1965,7 +1965,7 @@
       "description": "Schmiedet: Kristall-Visierhelm.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Man sieht durch Kristall besser als durch Stahl. Man sieht auch was auf einen zukommt. Nicht immer ein Vorteil."
     },
     {
       "id": "recipe-schmied-kristall-schuppenpanzer",
@@ -1985,7 +1985,7 @@
       "description": "Schmiedet: Kristall-Schuppenpanzer.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Jede Schuppe einzeln geschliffen. Grimvar hat dabei nicht geflucht. Er hat sehr laut geschwiegen."
     },
     {
       "id": "recipe-schmied-kristall-stiefel",
@@ -2005,7 +2005,7 @@
       "description": "Schmiedet: Kristall-Stiefel.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Kristall an den Füßen. Klingt fragil. Ist es nicht. Der Boden hat mehr Angst als du."
     },
     {
       "id": "recipe-schmied-kristall-kettenhemd",
@@ -2025,7 +2025,7 @@
       "description": "Schmiedet: Kristall-Kettenhemd.",
       "factionId": "glut",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Dreitausend Kristallglieder. Grimvar hat jedes einzeln verflucht und dann für gut befunden."
     },
     {
       "id": "recipe-schmied-kristall-spangenhelm",
@@ -2045,7 +2045,7 @@
       "description": "Schmiedet: Kristall-Spangenhelm.",
       "factionId": "glut",
       "factionMinRep": "revered",
-      "desc": ""
+      "desc": "Die Spangen leuchten bei Gefahr. Oder bei Sonnenuntergang. Kristall ist kein verlässlicher Indikator."
     },
     {
       "id": "recipe-schmied-staehlerner-plattenpanzer",
@@ -2065,7 +2065,7 @@
       "description": "Schmiedet: Stählerner Plattenpanzer.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Sechs Kilo Stahl zwischen dir und dem Universum. Das Universum hat bisher nachgegeben."
     },
     {
       "id": "recipe-schmied-drachenstahl-stiefel",
@@ -2085,7 +2085,7 @@
       "xp": 20,
       "description": "Schmiedet: Drachenstahl-Stiefel.",
       "trainerCost": 400,
-      "desc": ""
+      "desc": "Drachenstahl an den Füßen. Der Drache wurde nicht gefragt. Die Füße auch nicht."
     },
     {
       "id": "recipe-schmied-drachenschuppen-kronenhelm",
@@ -2104,7 +2104,7 @@
       "xp": 21,
       "description": "Schmiedet: Drachenschuppen-Kronenhelm.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Eine Krone aus Drachenschuppen. Grimvar sagt, der Helm entscheidet selbst wer ihn tragen darf."
     },
     {
       "id": "recipe-schmied-drachenschuppen-panzerstiefel",
@@ -2124,7 +2124,7 @@
       "description": "Schmiedet: Drachenschuppen-Panzerstiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Schwer genug um Eindruck zu machen. Leicht genug um wegzurennen. Beides wichtig."
     },
     {
       "id": "recipe-schmied-drachenschuppen-drachenhelm",
@@ -2143,7 +2143,7 @@
       "xp": 22,
       "description": "Schmiedet: Drachenschuppen-Drachenhelm.",
       "trainerCost": 500,
-      "desc": ""
+      "desc": "Doppelt Drache im Namen, doppelt so teuer. Grimvar versteht Marketing besser als er zugibt."
     },
     {
       "id": "recipe-schmied-drachenstahl-brustplatte",
@@ -2163,7 +2163,7 @@
       "xp": 23,
       "description": "Schmiedet: Drachenstahl-Brustplatte.",
       "trainerCost": 550,
-      "desc": ""
+      "desc": "Fünf Kilo Drachenstahl, geformt wie eine Umarmung die dich nicht umbringt. Ein seltenes Konzept."
     },
     {
       "id": "recipe-schmied-drachenschuppen-plattenpanzer",
@@ -2183,7 +2183,7 @@
       "description": "Schmiedet: Drachenschuppen-Plattenpanzer.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Jede Schuppe stammt von einem anderen Drachen. Keiner wurde gefragt. Alle waren dagegen."
     },
     {
       "id": "recipe-schmied-drachenstahl-helm",
@@ -2204,7 +2204,7 @@
       "description": "Schmiedet: Drachenstahl-Helm.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Grimvar hat beim Schmieden eine Träne vergossen. Er behauptet, es war Schweiß. Der Helm weiß es besser."
     },
     {
       "id": "recipe-schmied-drachenzahn-koenigsruestung",
@@ -2225,7 +2225,7 @@
       "description": "Schmiedet: Drachenzahn-Königsrüstung.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Für Könige oder Leute die sich für welche halten. Der Preis diskriminiert nicht."
     },
     {
       "id": "recipe-schmied-drachenzahn-kriegsstiefel",
@@ -2246,7 +2246,7 @@
       "description": "Schmiedet: Drachenzahn-Kriegsstiefel.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Drachenzähne im Sohlendesign. Unpraktisch für Parkettböden. Perfekt für alles andere."
     },
     {
       "id": "recipe-schmied-drachenschuppen-beinschienen",
@@ -2267,7 +2267,7 @@
       "description": "Schmiedet: Drachenschuppen-Beinschienen.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Schützen die Beine und sehen dabei aus als hätten sie eine Meinung. Haben sie auch."
     },
     {
       "id": "recipe-schmied-drachenzahn-sturmhaube",
@@ -2288,7 +2288,7 @@
       "description": "Schmiedet: Drachenzahn-Sturmhaube.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Der Zahn der Haube stammt von einem Drachen der es persönlich genommen hat. Zu Recht."
     },
     {
       "id": "recipe-schmied-drachenstahl-visierhelm",
@@ -2308,7 +2308,7 @@
       "description": "Schmiedet: Drachenstahl-Visierhelm.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Man sieht die Welt durch Drachenstahl-Schlitze. Die Welt sieht zurück. Und blinzelt zuerst."
     },
     {
       "id": "recipe-schmied-drachenstahl-kriegspanzer",
@@ -2328,7 +2328,7 @@
       "description": "Schmiedet: Drachenstahl-Kriegspanzer.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Grimvars Meisterwerk dieser Woche. Nächste Woche macht er einen besseren. Behauptet er."
     },
     {
       "id": "recipe-schmied-drachenzahn-kettenhemd",
