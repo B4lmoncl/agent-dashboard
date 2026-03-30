@@ -383,7 +383,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                     />
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold" style={{ color: isActive ? f.color : "rgba(255,255,255,0.6)" }}>{f.name}</p>
-                      <p style={{ color: "rgba(255,255,255,0.2)", fontSize: 11 }}>
+                      <p style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
                         {f.source || (f.glow ? "Glowing border + card effect" : "Colored border")}
                       </p>
                     </div>
