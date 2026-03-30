@@ -650,6 +650,19 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           );
         })()}
 
+        {/* Salvage Preview */}
+        {(() => {
+          const ESSENZ_BY_RARITY: Record<string, number> = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
+          const essenz = ESSENZ_BY_RARITY[item.rarity] || 2;
+          return (
+            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                Salvage: +{essenz} Essenz {item.rarity !== "common" ? "+ chance for materials" : ""}
+              </p>
+            </div>
+          );
+        })()}
+
         {/* Comparison summary — equipped item info */}
         {equippedItem && equippedItem.id !== item.id && (() => {
           const totalDiff = [...allStatKeys].reduce((sum, stat) => {
