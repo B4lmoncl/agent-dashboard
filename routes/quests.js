@@ -287,6 +287,12 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
 
+  // Block quest completion during tavern rest mode
+  const restUser = state.users[agentKey];
+  if (restUser?.tavernRest?.active) {
+    return res.status(400).json({ error: 'Cannot complete quests while resting in The Hearth. Leave rest mode first.' });
+  }
+
   // NPC quests: per-player completion (quest stays globally available for others)
   if (quest.npcGiverId && state.users[agentKey]) {
     const pp = getPlayerProgress(agentKey);
