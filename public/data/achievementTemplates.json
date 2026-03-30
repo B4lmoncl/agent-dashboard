@@ -4,7 +4,7 @@
     {
       "id": "first_quest",
       "name": "First Quest",
-      "description": "Complete your first quest",
+      "description": "Erste Quest. Der Anfang einer langen Reihe fragwürdiger Entscheidungen.",
       "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
@@ -23,7 +23,7 @@
     {
       "id": "apprentice",
       "name": "Apprentice",
-      "description": "Complete 10 quests",
+      "description": "10 Quests. Die ersten drei waren aufregend, die nächsten fünf Routine, die letzten zwei 'na gut, bin eh schon hier'.",
       "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "quests_completed",
@@ -42,7 +42,7 @@
     {
       "id": "knight",
       "name": "Knight",
-      "description": "Complete 50 quests",
+      "description": "50 Quests. Irgendwann hört man auf zu zählen und fängt an zu funktionieren.",
       "icon": "/images/icons/ach-knight.png",
       "condition": {
         "type": "quests_completed",
@@ -61,7 +61,7 @@
     {
       "id": "legend",
       "name": "Legend",
-      "description": "Complete 100 quests",
+      "description": "100 Quests. Das ist keine Leistung mehr, das ist ein Lebensstil.",
       "icon": "/images/icons/ach-legend.png",
       "condition": {
         "type": "quests_completed",
@@ -80,7 +80,7 @@
     {
       "id": "week_warrior",
       "name": "Week Warrior",
-      "description": "7-day quest streak",
+      "description": "7 Tage am Stück. Noch nennt man das Disziplin. Bald nennt man es Gewohnheit. Dann Problem.",
       "icon": "/images/icons/ach-week-warrior.png",
       "condition": {
         "type": "streak_days",
@@ -99,7 +99,7 @@
     {
       "id": "monthly_champ",
       "name": "Monthly Champion",
-      "description": "30-day quest streak",
+      "description": "30 Tage Streak. Ein ganzer Monat. Deine Freunde machen sich langsam Sorgen.",
       "icon": "/images/icons/ach-monthly-champ.png",
       "condition": {
         "type": "streak_days",
@@ -118,7 +118,7 @@
     {
       "id": "lightning",
       "name": "Lightning Hands",
-      "description": "Complete 3 quests in one day",
+      "description": "3 Quests an einem Tag. Entweder hochmotiviert oder der Kalender war leer. Beides verdächtig.",
       "icon": "/images/icons/ach-lightning.png",
       "condition": {
         "type": "quests_today",
@@ -137,7 +137,7 @@
     {
       "id": "all_trades",
       "name": "Jack of All Trades",
-      "description": "Complete all quest types",
+      "description": "Alle Quest-Typen durch. Nicht weil du vielseitig bist, sondern weil dir die normalen ausgegangen sind.",
       "icon": "/images/icons/ach-all-trades.png",
       "condition": {
         "type": "completed_types",
@@ -156,7 +156,7 @@
     {
       "id": "boss_slayer",
       "name": "Boss Slayer",
-      "description": "Defeat your first Boss Battle",
+      "description": "Erster Weltboss besiegt. 'Besiegt' ist großzügig formuliert. Du warst dabei. Das zählt.",
       "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
@@ -175,7 +175,7 @@
     {
       "id": "ember_sprite",
       "name": "Ember Sprite",
-      "description": "Complete 10 development quests",
+      "description": "10 Dev-Quests. Der Code kompiliert. Meistens. Das Sprite ist zufrieden. Meistens.",
       "icon": "/images/icons/ach-ember-sprite.png",
       "condition": {
         "type": "quest_type_count",
@@ -195,7 +195,7 @@
     {
       "id": "lore_owl",
       "name": "Lore Owl",
-      "description": "Complete 5 learning quests",
+      "description": "5 Lern-Quests. Du weißt jetzt mehr als vorher. Ob das hilft, steht auf einem anderen Blatt.",
       "icon": "/images/icons/ach-lore-owl.png",
       "condition": {
         "type": "quest_type_count",
@@ -215,7 +215,7 @@
     {
       "id": "gear_golem",
       "name": "Gear Golem",
-      "description": "Reach Knight level (300 XP)",
+      "description": "300 XP. Der Golem nickt anerkennend. Er nickt bei allem anerkennend. Er ist ein Golem.",
       "icon": "/images/icons/ach-gear-golem.png",
       "condition": {
         "type": "xp_threshold",
@@ -234,7 +234,7 @@
     {
       "id": "challenge_coder",
       "name": "Code Sprinter",
-      "description": "Complete the 30-Day Code Sprint",
+      "description": "30 Tage Code Sprint. Tag 1: Euphorie. Tag 15: Kaffee. Tag 29: Leere. Tag 30: Huh, geschafft.",
       "icon": "/images/icons/ach-code-sprinter.png",
       "condition": {
         "type": "challenge_completed",
@@ -253,7 +253,7 @@
     {
       "id": "challenge_learner",
       "name": "Marathon Learner",
-      "description": "Complete the Learning Marathon",
+      "description": "Lern-Marathon geschafft. Du hast jetzt Wissen, das du in keinem Bewerbungsgespräch erwähnen wirst.",
       "icon": "/images/icons/ach-marathon-learner.png",
       "condition": {
         "type": "challenge_completed",
@@ -272,7 +272,7 @@
     {
       "id": "night_owl",
       "name": "Night Owl",
-      "description": "Complete a quest between 23:00 and 05:00",
+      "description": "Quest zwischen 23 und 5 Uhr. Schlafrhythmus ist ein Konzept, kein Gesetz.",
       "icon": "/images/icons/ach-night-owl.png",
       "condition": {
         "type": "time_of_day",
@@ -292,7 +292,7 @@
     {
       "id": "speed_runner",
       "name": "Speed Runner",
-      "description": "Complete a quest within 1 hour of claiming it",
+      "description": "Quest in unter einer Stunde. Entweder beeindruckend schnell oder beunruhigend einfach.",
       "icon": "/images/icons/ach-speed-runner.png",
       "condition": {
         "type": "completion_time",
@@ -311,7 +311,7 @@
     {
       "id": "social_butterfly",
       "name": "Social Butterfly",
-      "description": "Complete 5 social quests",
+      "description": "5 Social-Quests. Du hast mit Menschen interagiert. Freiwillig. Fünfmal.",
       "icon": "/images/icons/ach-social-butterfly.png",
       "condition": {
         "type": "quest_type_count",
@@ -331,7 +331,7 @@
     {
       "id": "scholar",
       "name": "Scholar",
-      "description": "Complete 10 learning quests",
+      "description": "10 Lern-Quests. Dein Gehirn hat jetzt einen eigenen Bibliotheksausweis.",
       "icon": "/images/icons/ach-scholar.png",
       "condition": {
         "type": "quest_type_count",
@@ -351,7 +351,7 @@
     {
       "id": "gym_rat",
       "name": "Gym Rat",
-      "description": "Complete 10 fitness quests",
+      "description": "10 Fitness-Quests. Dein Körper ist verwirrt, aber kooperativ.",
       "icon": "/images/icons/ach-gym-rat.png",
       "condition": {
         "type": "quest_type_count",
@@ -371,7 +371,7 @@
     {
       "id": "chain_master",
       "name": "Chain Master",
-      "description": "Complete a full quest chain",
+      "description": "Erste Quest-Kette abgeschlossen. Hat sich angefühlt wie eine Aufgabe, die drei andere Aufgaben in einem Trenchcoat waren.",
       "icon": "/images/icons/ach-chain-master.png",
       "condition": {
         "type": "chain_completed",
@@ -390,7 +390,7 @@
     {
       "id": "campaign_victor",
       "name": "Campaign Victor",
-      "description": "Complete a campaign",
+      "description": "Kampagne abgeschlossen. Du hast das Ende der Geschichte erreicht. Die Geschichte war davon genauso überrascht wie du.",
       "icon": "/images/icons/ach-campaign-victor.png",
       "condition": {
         "type": "campaign_completed",
@@ -409,7 +409,7 @@
     {
       "id": "npc_whisperer",
       "name": "NPC Whisperer",
-      "description": "Have all agents online at the same time",
+      "description": "Alle Agenten gleichzeitig online. Ein seltenes astronomisches Ereignis, vergleichbar mit einer Sonnenfinsternis.",
       "icon": "/images/icons/ach-npc-whisperer.png",
       "condition": {
         "type": "all_agents_online"

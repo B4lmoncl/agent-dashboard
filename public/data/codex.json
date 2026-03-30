@@ -384,7 +384,7 @@
       "id": "binding-system",
       "category": "artifacts",
       "title": "Seelenbindung",
-      "text": "Manche Gegenstände binden sich an ihren Träger. Nicht aus Loyalität — aus Pragmatismus. Ein Schwert, das zu viele Hände kennt, vergisst welche es beschützen soll. Seelengebundene Items können nicht gehandelt werden. Das ist kein Bug. Das ist Absicht.",
+      "text": "Manche Gegenstände kleben sich an dich fest wie eine schlechte Entscheidung. Nicht aus Loyalität — aus Pragmatismus. Ein Schwert, das zu viele Hände kennt, wird unzuverlässig. Wie ein Freelancer. Seelengebundene Items können nicht gehandelt werden. Jemand hat es trotzdem versucht und einen halben Tag damit verbracht, einem Händler zu erklären, warum das Schwert seinen Arm nicht loslässt. Das System funktioniert.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 1
@@ -394,7 +394,7 @@
       "id": "companion-bond",
       "category": "npcs",
       "title": "Die Gefährtenbindung",
-      "text": "Ein Companion ist mehr als ein Haustier. Er ist ein Spiegel, ein Freund, und manchmal ein besserer Mensch als du. Die Bindung wächst mit der Zeit — und mit Bauchkraulen. Letzteres ist wissenschaftlich belegt.",
+      "text": "Ein Companion ist technisch gesehen kein Haustier. Sag das laut und dein Companion gibt dir einen Blick, der 'natürlich nicht, ich bin dein gleichberechtigter Partner' sagt, und dann legt er sich auf deinen Schoß und will Bauchkraulen. Die Bindung wächst mit der Zeit. Auch mit Bauchkraulen. Letzteres ist wissenschaftlich belegt. Die Studie wurde allerdings von Companions finanziert, also nimm das mit Vorsicht.",
       "unlockedBy": {
         "type": "bond_level",
         "value": 2
@@ -611,7 +611,7 @@
       "id": "runensplitter-geheimnis",
       "category": "artifacts",
       "title": "Runensplitter",
-      "text": "Kristallisierte Fragmente des Aetherstroms. Sie klingen beim Berühren — ein Ton, der nicht ganz in diese Realität gehört. Man kann sie ins Schicksalsgewölbe werfen und hoffen. Oder man kann sie sammeln, bis man genug hat um nicht mehr hoffen zu müssen.",
+      "text": "Kristallisierte Fragmente des Aetherstroms. Sie klingen beim Berühren — ein Ton, der nicht ganz in diese Realität gehört und den die Nachbarn als 'nervig' bezeichnen. Man kann sie ins Schicksalsgewölbe werfen und hoffen. Oder man kann sie horten, bis man genug hat um nicht mehr hoffen zu müssen. Das zweite ist klüger. Das erste macht mehr Spaß. Die Schnittmenge ist leer.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -621,7 +621,7 @@
       "id": "essenz-natur",
       "category": "artifacts",
       "title": "Essenz",
-      "text": "Was übrig bleibt, wenn man einen Gegenstand bis auf seine Grundsubstanz zerlegt. Essenz ist konzentriertes 'Gewesen-Sein'. Die Handwerker verwenden sie als Grundzutat für alles, was kompliziert und teuer ist. Also für alles.",
+      "text": "Du nimmst ein Schwert. Du zerlegst es. Übrig bleibt ein trauriges Häufchen Essenz und die leise Frage, ob das Schwert das verdient hat. Essenz ist konzentriertes 'Gewesen-Sein'. Die Handwerker verwenden sie für alles, was kompliziert und teuer ist. Also für alles. Ein Held hat einmal aus Versehen sein bestes Epic zerlegt. Der Schrei war auf drei Stockwerken zu hören. Die Essenz war es nicht wert.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -791,7 +791,7 @@
       "id": "hidden-companion-secret",
       "category": "npcs",
       "title": "Das Geheimnis der Gefährten",
-      "text": "Auf Bondstufe fünf passiert etwas. Der Companion hört auf, ein Begleiter zu sein, und wird ein Partner. Eine Fähigkeit erwacht — einzigartig, mächtig, und mit einem siebentägigen Cooldown der sich anfühlt wie eine Ewigkeit. Wer es einmal erlebt hat, versteht warum Geduld eine Tugend ist.",
+      "text": "Auf Bondstufe fünf passiert etwas. Dein Companion guckt dich an. Du guckst deinen Companion an. Dann explodiert er in eine einzigartige Fähigkeit, die so übertrieben mächtig ist, dass sie einen siebentägigen Cooldown hat. Sieben Tage. Das sind 168 Stunden, in denen du auf dein Companion-Menü starrst und rechnest. Die Fähigkeit ist es wert. Das Warten ist ein Verbrechen gegen die Menschlichkeit.",
       "unlockedBy": {
         "type": "bond_level",
         "value": 5
@@ -801,7 +801,7 @@
       "id": "hidden-mythic-truth",
       "category": "world",
       "title": "Jenseits des Legendären",
-      "text": "Mythisch+1. Dann +2. Dann +5. Irgendwann hören die Zahlen auf, etwas zu bedeuten, und die Herausforderung wird zur Meditation. Der Riss skaliert endlos. Die Belohnungen auch. Die Frage ist nicht, ob du es schaffst — die Frage ist, wann du aufhörst. Die richtige Antwort ist: nie.",
+      "text": "Mythisch+1. +2. +5. +10. Ab +10 gibt es Belohnungen, die es sonst nirgends gibt. Ab +15 gibt es Titel, die niemand aussprechen kann. Ab +20 gibt es Respekt von Leuten, deren Respekt dir eigentlich egal sein sollte. Der Riss skaliert endlos. Theoretisch. In der Praxis hört er da auf, wo dein Verstand aufhört. Der aktuelle Rekordhalter wurde gefragt, was er auf Mythisch+23 gesehen hat. Er sagte: 'Meine Fehlentscheidungen.' Dann hat er +24 gestartet.",
       "unlockedBy": {
         "type": "mythic_cleared",
         "value": 5
@@ -811,7 +811,7 @@
       "id": "hidden-artisan-mastery",
       "category": "npcs",
       "title": "Meisterschaft",
-      "text": "Dreihundert Punkte. Das Maximum. Die Grenze, an der ein Handwerker aufhört, ein Handwerker zu sein, und anfängt, ein Künstler zu sein. Der Unterschied? Ein Handwerker folgt dem Rezept. Ein Künstler verbessert es. Grimvar hat einmal gelacht, als jemand diese Schwelle erreicht hat. Es war beunruhigend.",
+      "text": "Dreihundert Punkte. Das Maximum. Die Schwelle, ab der du aufhörst, Dinge herzustellen und anfängst, Dinge zu erschaffen. Der Unterschied ist unsichtbar für alle außer andere Dreihundert-Punkte-Handwerker, die dir zunicken wie Mitglieder eines Geheimbundes, dem niemand beitreten wollte. Grimvar hat einmal gelacht, als jemand dreihundert erreicht hat. Einmal. In vierzig Jahren. Alle Anwesenden berichten übereinstimmend, dass es das verstörendste Geräusch war, das sie je gehört haben.",
       "unlockedBy": {
         "type": "profession_skill",
         "value": 280
@@ -821,7 +821,7 @@
       "id": "hidden-streak-legend",
       "category": "history",
       "title": "Die Ewige Flamme",
-      "text": "Es gibt eine Legende von einem Helden, dessen Streak niemals erlosch. Dreihundertfünfundsechzig Tage. Dann nochmal. Und nochmal. Irgendwann hörte man auf zu zählen. Die Flamme brannte weiter. Manche sagen, sie brennt noch heute — irgendwo in den Tiefen des Turms, als Erinnerung daran, dass Konstanz die mächtigste aller Magien ist.",
+      "text": "Es gibt eine Legende von einem Helden, dessen Streak niemals erlosch. Dreihundertfünfundsechzig Tage. Dann nochmal. Dann nochmal. Irgendwann hörte der Turm auf zu zählen, nicht aus Ehrfurcht, sondern weil der Zähler nicht für vierstellige Zahlen gebaut war. Man sagt, die Flamme brennt noch heute irgendwo in den Tiefen des Turms. Man sagt auch, der Held hat nie wieder Urlaub gemacht, nie wieder spontan gehandelt und nie wieder ein Restaurant besucht, ohne vorher zu fragen ob es WLAN gibt. Eine Inspiration. Oder eine Warnung. Kommt drauf an, wen man fragt.",
       "unlockedBy": {
         "type": "streak",
         "value": 90
@@ -831,7 +831,7 @@
       "id": "hidden-collection",
       "category": "artifacts",
       "title": "Die Einzigartigen",
-      "text": "Handgefertigte Gegenstände mit Geschichte. Jedes Unikat hat einen Namen, eine Vergangenheit, und einen Grund warum es existiert. Man findet sie nicht — sie finden einen. In Dungeons, im Riss, beim Weltenboss. Der Sammlungskatalog führt Buch. Die Lücken darin sind Einladungen.",
+      "text": "Handgefertigte Gegenstände mit festgelegten Werten, eigenem Namen und einer Hintergrundgeschichte, die länger ist als deine. Man findet sie nicht — sie tauchen auf, wenn du nicht damit rechnest, in Dungeons, im Riss oder wenn du den Weltenboss triffst. Der Sammlungskatalog führt Buch. Die Lücken darin sehen dich an. Vorwurfsvoll.",
       "unlockedBy": {
         "type": "quests_completed",
         "value": 50
@@ -841,7 +841,7 @@
       "id": "hidden-world-boss-origin",
       "category": "history",
       "title": "Die Geburt der Titanen",
-      "text": "Die Weltenboss sind keine Monster. Sie sind Manifestationen. Der Prokrastinations-Wyrm wurde nicht geboren — er wurde herbeigewartet. Der Burnout-Koloss wurde nicht erschaffen — er entstand aus einem Helden, der vergaß aufzuhören. Jeder Boss ist ein Spiegel. Die meisten Helden mögen nicht, was sie darin sehen.",
+      "text": "Die Weltbosse sind keine Monster. Sie sind Manifestationen menschlicher Schwächen, was bedeutet, dass du im Grunde gegen deine eigenen schlechten Gewohnheiten kämpfst, nur dass deine schlechten Gewohnheiten jetzt neun Meter groß sind und einen Gesundheitsbalken haben. Der Prokrastinations-Wyrm wurde nicht geboren — er wurde herbeigewartet. Sehr, sehr geduldig. Der Burnout-Koloss entstand aus einem Helden, der vergaß aufzuhören. Das Ironie-Level ist nicht verloren gegangen. Es wurde ignoriert.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -891,7 +891,7 @@
       "id": "hidden-turm-bewusstsein",
       "category": "tower",
       "title": "Das Bewusstsein des Turms",
-      "text": "Er denkt nicht. Nicht so wie wir. Aber er... bemerkt. Wenn ein Held einen Streak von hundert Tagen erreicht, vibrieren die Wände leicht. Wenn ein Unikat gefunden wird, summen die Kristalladern kurz auf. Und wenn ein Spieler nach langer Abwesenheit zurückkehrt, öffnet sich die Tür ein wenig leichter als sonst.",
+      "text": "Der Turm denkt nicht. Nicht so wie wir. Aber er... bemerkt. Bei hundert Tagen Streak vibrieren die Wände. Bei einem Unikat-Fund summen die Kristalladern. Bei einer Rückkehr nach langer Abwesenheit öffnet sich die Tür leichter als sonst. Jemand hat einmal versucht, ein Gespräch mit dem Turm zu führen. Der Turm antwortete nicht. Aber die Tür zum Klo war danach drei Tage lang verklemmt. Zufall, vermutlich.",
       "unlockedBy": {
         "type": "hidden"
       }
