@@ -14,7 +14,11 @@
     "phoenix": { "emoji": "🔥", "name": "Blaze",  "desc": "Stirbt dramatisch, steht wieder auf, verlangt Applaus. Jedes. Einzelne. Mal.",        "personality": "resilient" },
     "wolf":    { "emoji": "🐺", "name": "Shadow", "desc": "Folgt dir überall hin. Nicht aus Treue, sondern weil er den Weg zurück vergessen hat.",              "personality": "loyal" },
     "fox":     { "emoji": "🦊", "name": "Trick",  "desc": "Löst Probleme, die es vorher nicht gab. Verursacht drei neue.",             "personality": "clever" },
-    "bear":    { "emoji": "🐻", "name": "Bjorn",  "desc": "Theoretisch ein Beschützer. Praktisch eine Stolperfalle mit Fell.",           "personality": "strong" }
+    "bear":    { "emoji": "🐻", "name": "Bjorn",  "desc": "Theoretisch ein Beschützer. Praktisch eine Stolperfalle mit Fell.",           "personality": "strong" },
+    "turtle":     { "emoji": "🐢",     "name": "Basalt",   "desc": "Hat drei Besitzer überlebt. Nicht weil er sie beschützt hat.",                                            "personality": "patient" },
+    "raven":      { "emoji": "🐦‍⬛",    "name": "Nyx",      "desc": "Hochintelligent. Stiehlt alles, was glänzt, und einiges, was nicht glänzt. Nennt es Forschung.",           "personality": "cunning" },
+    "cat":        { "emoji": "🐈",     "name": "Whisper",  "desc": "Folgt dir. Aus Verachtung, nicht aus Zuneigung. Urteilt leise, aber vernichtend.",                         "personality": "independent" },
+    "salamander": { "emoji": "🦎",     "name": "Flint",    "desc": "Schnell, wendig, fängt gelegentlich Feuer. Laut Züchter ist das ein Feature, kein Bug.",                   "personality": "quick" }
   },
   "careQuestTemplates": {
     "feed":       { "title": "{name} füttern",                        "desc": "{name} starrt dich an. Nicht liebevoll. Hungrig.",                    "recurrence": "daily",   "xp": 5,  "gold": 2 },
