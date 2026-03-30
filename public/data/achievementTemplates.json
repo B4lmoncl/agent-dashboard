@@ -1253,7 +1253,7 @@
       "id": "chain_quest_bronze",
       "name": "Quest Runner: Bronze",
       "description": "25 Quests. Bronze. Die Farbe von 'guter Anfang' und 'dritte Wahl'.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 25
@@ -1274,7 +1274,7 @@
       "id": "chain_quest_silver",
       "name": "Quest Runner: Silver",
       "description": "100 Quests. Silber. Weil Gold zu optimistisch wäre.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 100
@@ -1296,7 +1296,7 @@
       "id": "chain_quest_gold",
       "name": "Quest Runner: Gold",
       "description": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 300
@@ -1318,7 +1318,7 @@
       "id": "chain_quest_legend",
       "name": "Quest Runner: Legendary",
       "description": "1000 Quests. Legendär. Nicht weil es beeindruckend ist, sondern weil niemand es glaubt.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 1000
@@ -1339,7 +1339,7 @@
       "id": "chain_streak_bronze",
       "name": "Streak Keeper: Bronze",
       "description": "7 Tage. Eine Woche. Du hattest keine andere Wahl, du hast angefangen.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 7
@@ -1360,7 +1360,7 @@
       "id": "chain_streak_silver",
       "name": "Streak Keeper: Silver",
       "description": "30 Tage. Der Streak kontrolliert jetzt deinen Tagesablauf. Du kontrollierst gar nichts mehr.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 30
@@ -1382,7 +1382,7 @@
       "id": "chain_streak_gold",
       "name": "Streak Keeper: Gold",
       "description": "90 Tage. Drei Monate. Du hast die Grippe durchgespielt, den Urlaub und zwei existenzielle Krisen.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 90
@@ -1404,7 +1404,7 @@
       "id": "chain_streak_legend",
       "name": "Streak Keeper: Legendary",
       "description": "365 Tage. Ein ganzes Jahr. Die Erde hat die Sonne einmal umkreist und du warst jeden Tag hier.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 365
@@ -1425,7 +1425,7 @@
       "id": "chain_gold_bronze",
       "name": "Gold Hoarder: Bronze",
       "description": "500 Gold. Der erste Schritt zum Reichtum. Oder zum Horten. Hängt von der Perspektive ab.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 500
@@ -1445,7 +1445,7 @@
       "id": "chain_gold_silver",
       "name": "Gold Hoarder: Silver",
       "description": "5000 Gold. Du könntest dir etwas Schönes kaufen. Wirst du aber nicht. Du sparst lieber.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 5000
@@ -1466,7 +1466,7 @@
       "id": "chain_gold_gold",
       "name": "Gold Hoarder: Gold",
       "description": "25.000 Gold. Du bist reich. Du fühlst dich nicht reich. Das ist das Zeichen, dass es funktioniert.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 25000
@@ -1487,7 +1487,7 @@
       "id": "chain_gold_legend",
       "name": "Gold Hoarder: Legendary",
       "description": "100.000 Gold. Du besitzt mehr als manche Kleinstaaten. Ausgeben wirst du es trotzdem nicht.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 100000
@@ -1507,7 +1507,7 @@
       "id": "chain_boss_bronze",
       "name": "Boss Slayer: Bronze",
       "description": "Ein Weltboss. Du warst technisch gesehen beteiligt. Dein Beitrag wird großzügig als 'anwesend' protokolliert.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 1
@@ -1528,7 +1528,7 @@
       "id": "chain_boss_silver",
       "name": "Boss Slayer: Silver",
       "description": "5 Weltbosse. Du hast ein Muster entwickelt: Auftauchen, Schaden machen, Beute einsammeln, verschwinden.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 5
@@ -1550,7 +1550,7 @@
       "id": "chain_boss_gold",
       "name": "Boss Slayer: Gold",
       "description": "15 Weltbosse. Die Bosse haben inzwischen eine Selbsthilfegruppe gegründet. Wegen dir.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 15
@@ -1572,7 +1572,7 @@
       "id": "chain_boss_legend",
       "name": "Boss Slayer: Legendary",
       "description": "50 Weltbosse. Du bist der Grund, warum Bosse einen Gewerkschaftsvertreter haben.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 50
@@ -1593,7 +1593,7 @@
       "id": "chain_craft_bronze",
       "name": "Master Crafter: Bronze",
       "description": "Skill 50. Du kannst jetzt Dinge herstellen, die nicht sofort auseinanderfallen. Niedrige Latte, aber immerhin.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 50
@@ -1614,7 +1614,7 @@
       "id": "chain_craft_silver",
       "name": "Master Crafter: Silver",
       "description": "Skill 150. Halbzeit. Die NPCs lassen dich jetzt an die guten Werkzeuge.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 150
@@ -1636,7 +1636,7 @@
       "id": "chain_craft_gold",
       "name": "Master Crafter: Gold",
       "description": "Skill 250. Du riechst permanent nach Kohle, Kräutern oder beidem. Dein Companion hält Abstand.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 250
@@ -1658,7 +1658,7 @@
       "id": "chain_craft_legend",
       "name": "Master Crafter: Legendary",
       "description": "Skill 300. Maximum. Du hast dein Handwerk gemeistert. Grimvar weint leise vor Stolz. Oder Rauch. Schwer zu sagen.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 300
