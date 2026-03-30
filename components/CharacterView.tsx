@@ -1606,31 +1606,6 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 })}
               </div>
 
-              {/* Detailed list fallback below paper doll */}
-              <div className="space-y-1.5 mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
-                const eqRaw = charData?.equipment[slot];
-                const isInstance = eqRaw && typeof eqRaw === 'object';
-                const gi = isInstance ? eqRaw as GearInstance : null;
-                const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
-                const item = gi
-                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
-                  : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
-                return (
-                  <GearSlotRow
-                    key={slot}
-                    slot={slot}
-                    iconSrc={iconSrc}
-                    label={label}
-                    item={item}
-                    onUnequip={handleUnequip}
-                    unequipping={unequipping}
-                  />
-                );
-              })}
-              </div>
-
-
               {/* Passive Items */}
               {charData && (() => {
                 const passives = charData.inventory.filter(i => i.type === "passive");
