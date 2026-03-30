@@ -41157,6 +41157,1488 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-schlichter-eisenring",
+      "name": "Schlichter Eisenring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-einfacher-kupferring",
+      "name": "Einfacher Kupferring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-eingravierter-ring",
+      "name": "Eingravierter Ring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-mondstein-reif",
+      "name": "Mondstein-Reif",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-flimmernder-ring",
+      "name": "Flimmernder Ring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-saphirband",
+      "name": "Saphirband",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-ring-st-hlerner-ring",
+      "name": "Stählerner Ring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-eichenring",
+      "name": "Eichenring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-sternenband",
+      "name": "Sternenband",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-windreif",
+      "name": "Windreif",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-mystischer-ring",
+      "name": "Mystischer Ring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-aetherfunkenring",
+      "name": "Aetherfunkenring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-d-mmerungsring",
+      "name": "Dämmerungsring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-flammenreif",
+      "name": "Flammenreif",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ring-runenreif",
+      "name": "Runenreif",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-kristallring",
+      "name": "Kristallring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-donnerschlag-ring",
+      "name": "Donnerschlag-Ring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-nebelschleierring",
+      "name": "Nebelschleierring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-voidband",
+      "name": "Voidband",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-drachenauge-ring",
+      "name": "Drachenauge-Ring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-kronjuwel-ring",
+      "name": "Kronjuwel-Ring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% Crit Chance"
+      },
+      "setId": "master"
+    },
+    {
+      "id": "gen-ring-titanring",
+      "name": "Titanring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-ring-sturmring",
+      "name": "Sturmring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": false,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-ring-weltenschl-ssel-ring",
+      "name": "Weltenschlüssel-Ring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-ring-zeitrissband",
+      "name": "Zeitrissband",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-ring-sternenbrecher-siegelring",
+      "name": "Sternenbrecher-Siegelring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% Crit Chance"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-ring--therwandler-ring",
+      "name": "Ätherwandler-Ring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 2,
+        "max": 5,
+        "label": "+{value}% Crit Chance"
+      },
+      "setId": "legendary"
     }
   ],
   "setBonus": {
