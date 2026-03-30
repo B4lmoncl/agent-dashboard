@@ -66,6 +66,12 @@ router.get('/api/config', (req, res) => {
       },
       setBonuses: { partial: 0.05, full: 0.10 },
       starBonus: { twoStar: 0.15, threeStar: 0.33 },
+      dailyDiminishing: { tiers: [
+        { maxQuests: 5, multiplier: 1.0, label: "Full rewards" },
+        { maxQuests: 10, multiplier: 0.75, label: "75% rewards" },
+        { maxQuests: 20, multiplier: 0.50, label: "50% rewards" },
+        { maxQuests: Infinity, multiplier: 0.25, label: "25% rewards" },
+      ]},
     },
   });
 });
