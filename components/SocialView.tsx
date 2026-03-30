@@ -1860,20 +1860,24 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
       </div>
 
       {/* Tab navigation */}
-      <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
+      <div className="inline-flex rounded-lg p-0.5 flex-wrap" style={{ background: "#111" }}>
         {(["friends", "messages", "trades", "mail", "challenges", "activity"] as SocialTab[]).map(tab => {
           const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
+          const unreadDot = false; // Per-tab unread counts require lifting state — deferred
           return (
             <Tip key={tab} k={tipKey}>
               <button
                 onClick={() => setActiveTab(tab)}
-                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize"
+                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize relative"
                 style={{
                   background: activeTab === tab ? "#252525" : "transparent",
                   color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
                 }}
               >
                 {tab === "activity" ? "Feed" : tab}
+                {unreadDot && activeTab !== tab && (
+                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: "#a855f7", boxShadow: "0 0 4px rgba(168,85,247,0.5)" }} />
+                )}
               </button>
             </Tip>
           );
