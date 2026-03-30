@@ -693,8 +693,8 @@
       "title": "Der Wanderer-Kodex",
       "text": "Jeder NPC, der den Turm betritt, folgt unausgesprochenen Regeln. Regel eins: Komm mit einer Quest. Regel zwei: Geh mit einer Geschichte. Regel drei: Nimm nichts mit, was dir nicht gehört. Regel vier: Lass nichts zurück, das jemanden verfolgen könnte. Regel fünf existiert, wird aber nur mündlich weitergegeben, und nur an NPCs die Regel eins bis vier gebrochen haben. Die meisten halten sich an den Kodex. Die interessanten nicht. Die gefährlichen kennen ihn auswendig und ignorieren ihn trotzdem.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 5
+        "type": "unique_npcs_completed",
+        "value": 1
       }
     },
     {
@@ -942,8 +942,8 @@
       "title": "Der Elegante Herr — Ein Profil",
       "text": "Niemand weiß, wie er heißt. Niemand weiß, woher er kommt. Was man weiß: Er trägt einen Anzug, der teurer aussieht als der gesamte fünfte Stock, und er riecht nach Bergamotte und leichter Bedrohung. Sein Lächeln ist das eines Mannes, der einen Witz kennt, den sonst niemand versteht — und der Witz bist vermutlich du. Die Archivarin behauptet, er sei \"schon immer da gewesen\". Der Wachmann behauptet, er habe ihn einmal durch eine geschlossene Tür gehen sehen. Der Elegante Herr selbst sagt dazu nur: \"Türen sind eine Empfehlung, kein Gesetz.\"",
       "unlockedBy": {
-        "type": "quests_completed",
-        "value": 50
+        "type": "unique_npcs_completed",
+        "value": 10
       }
     },
     {
@@ -952,8 +952,8 @@
       "title": "Der Höfliche Besucher — Beobachtungen",
       "text": "Er kommt immer ohne Einladung, aber nie ohne Manieren. Er bringt Tee mit. Der Tee ist immer genau die richtige Temperatur, was physikalisch unmöglich sein sollte, weil er auch im Winter ohne Mantel kommt. Auf die Frage, ob er der Tod sei, antwortete er einmal: \"Das wäre unhöflich.\" Auf die Nachfrage, was er denn dann sei, sagte er: \"Pünktlich.\" Der Tee war ausgezeichnet.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 25
+        "type": "unique_npcs_completed",
+        "value": 5
       }
     },
     {
@@ -1092,8 +1092,8 @@
       "title": "Lyra — Die Archivarin",
       "text": "Lyra hat jedes Buch im Turm gelesen. Jedes. Einschließlich der drei, die nicht existieren, was eine Leistung ist, die selbst die Gelehrten nicht erklären können. Sie spricht in Fußnoten und denkt in Querverweisen. Auf die Frage, welches Buch sie am meisten bewegt hat, antwortete sie: 'Das Rückgabeformular der Bibliothek. Seite zwei, Paragraph vier.' Dort steht: 'Wer ein Buch nicht zurückgibt, verliert sein Recht auf Stille.' Niemand weiß, was das bedeutet. Alle geben ihre Bücher zurück. Pünktlich.",
       "unlockedBy": {
-        "type": "level_reached",
-        "value": 15
+        "type": "unique_npcs_completed",
+        "value": 3
       }
     },
     {
