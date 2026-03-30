@@ -8425,7 +8425,7 @@
       "xp": 12,
       "description": "Transmutation: Leicht → Mittel Leder.",
       "trainerCost": 100,
-      "desc": ""
+      "desc": "Leichtleder wird mittleres Leder. Roderic nennt es Betrug. Ysolde nennt es Chemie."
     },
     {
       "id": "recipe-alch-transmute-mittel-schwer",
@@ -8445,7 +8445,7 @@
       "xp": 18,
       "description": "Transmutation: Mittel → Schwer Leder.",
       "trainerCost": 275,
-      "desc": ""
+      "desc": "Mittleres wird schweres Leder. Die Physik beschwert sich. Ysolde hört nicht zu."
     },
     {
       "id": "recipe-alch-transmute-schwer-dick",
@@ -8467,7 +8467,7 @@
       "cooldownMinutes": 1440,
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Schwer wird dick. Ysolde sagt, das passiere auch ohne Alchemie. Beim Abendessen."
     },
     {
       "id": "recipe-alch-transmute-magie-runen",
@@ -8489,7 +8489,7 @@
       "cooldownMinutes": 1440,
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Magiestoff wird Runenstoff. Selina ist gleichzeitig beeindruckt und beleidigt."
     },
     {
       "id": "recipe-alch-transmute-dick-rau",
@@ -8511,7 +8511,7 @@
       "cooldownMinutes": 2880,
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Dickes Leder wird raues Leder. Upgrade klingt paradox. Ist es auch."
     },
     {
       "id": "recipe-alch-schwaches-elixier-des-fokus",
@@ -8531,7 +8531,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Elixier des Fokus.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Fokus in einer Flasche. Für Leute die nicht stillsitzen können. Wie Ysolde."
     },
     {
       "id": "recipe-alch-schwaches-elixier-der-vitalitaet",
@@ -8551,7 +8551,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Elixier der Vitalität.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Vitalitätstrank. Man fühlt sich lebendiger. Kurz. Dann müde. Dann braucht man noch einen."
     },
     {
       "id": "recipe-alch-schwaches-elixier-des-charisma",
@@ -8571,7 +8571,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Elixier des Charisma.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Charisma zum Trinken. Ysolde sagt, es wirke subtil. Die Wirkung ist auffällig. Der Geschmack auch."
     },
     {
       "id": "recipe-alch-elixier-des-fokus",
@@ -8591,7 +8591,7 @@
       "xp": 14,
       "description": "Braut: Elixier des Fokus.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Stärkerer Fokus. Die Gedanken werden klarer. Die Rechnung auch."
     },
     {
       "id": "recipe-alch-elixier-der-vitalitaet",
@@ -8611,7 +8611,7 @@
       "xp": 14,
       "description": "Braut: Elixier der Vitalität.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Mehr Lebenskraft. Ysolde empfiehlt es vor dem Frühstück. Nicht statt dem Frühstück."
     },
     {
       "id": "recipe-alch-elixier-des-charisma",
@@ -8632,7 +8632,7 @@
       "description": "Braut: Elixier des Charisma.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mehr Charisma. Ysolde trinkt keinen. Sie braucht keinen. Behauptet sie."
     },
     {
       "id": "recipe-alch-starkes-elixier-des-fokus",
@@ -8653,7 +8653,7 @@
       "description": "Braut: Starkes Elixier des Fokus.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Starker Fokus. Man kann die Zeit vergessen. Und das Essen. Und den eigenen Namen. Vorübergehend."
     },
     {
       "id": "recipe-alch-starkes-elixier-der-vitalitaet",
@@ -8674,7 +8674,7 @@
       "description": "Braut: Starkes Elixier der Vitalität.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Starke Vitalität. Ysolde sagt, man fühle sich wie zwanzig. Man sieht immer noch aus wie immer."
     },
     {
       "id": "recipe-alch-starkes-elixier-des-charisma",
@@ -8695,7 +8695,7 @@
       "description": "Braut: Starkes Elixier des Charisma.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Starkes Charisma. Der Raum dreht sich zu dir wenn du eintrittst. Oder das Elixier dreht den Raum."
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-des-fokus",
@@ -8715,7 +8715,7 @@
       "xp": 28,
       "description": "Braut: Überragendes Elixier des Fokus.",
       "trainerCost": 875,
-      "desc": ""
+      "desc": "Überragender Fokus. Man sieht einzelne Staubkörner. Man zählt sie. Man kann nicht aufhören."
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-der-vitalitaet",
@@ -8735,7 +8735,7 @@
       "xp": 28,
       "description": "Braut: Überragendes Elixier der Vitalität.",
       "trainerCost": 915,
-      "desc": ""
+      "desc": "Überragende Vitalität. Ysolde hat es an sich getestet. Sie hat drei Tage nicht geschlafen. Wollte sie nicht."
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-des-charisma",
@@ -8755,7 +8755,7 @@
       "xp": 28,
       "description": "Braut: Überragendes Elixier des Charisma.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Überragendes Charisma. Feinde werden zu Fans. Kurzzeitig. Dann ärgern sie sich über sich selbst."
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-fokus",
@@ -8775,7 +8775,7 @@
       "xp": 40,
       "description": "Braut: Legendäres Elixier des Fokus.",
       "trainerCost": 1900,
-      "desc": ""
+      "desc": "Legendärer Fokus. Ysoldes stärkstes Rezept. Sie hat beim Brauen den Turm vergessen. Drei Stunden lang."
     },
     {
       "id": "recipe-alch-legendaeres-elixier-der-vitalitaet",
@@ -8796,7 +8796,7 @@
       "description": "Braut: Legendäres Elixier der Vitalität.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Legendäre Vitalität. Man fühlt sich unsterblich. Ist man nicht. Aber die fünf Minuten sind nett."
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-charisma",
@@ -8817,7 +8817,7 @@
       "description": "Braut: Legendäres Elixier des Charisma.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Legendäres Charisma. Der Trank flirtet mit dir bevor du ihn trinkst."
     },
     {
       "id": "recipe-alch-gegengift-1",
@@ -8838,7 +8838,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Gegengift.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Schwaches Gegengift. Hilft gegen leichte Vergiftungen. Und gegen Ysoldes Kochversuche."
     },
     {
       "id": "recipe-alch-gegengift-2",
@@ -8861,7 +8861,7 @@
       "description": "Braut: Starkes Gegengift.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Starkes Gegengift. Für Vergiftungen die ernst gemeint waren."
     },
     {
       "id": "recipe-alch-gegengift-3",
@@ -8884,7 +8884,7 @@
       "description": "Braut: Meister-Gegengift.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Meister-Gegengift. Entgiftet alles. Ysolde hat es an allem getestet. Einschließlich dem Mittagessen."
     },
     {
       "id": "recipe-alch-schmiedekatalysator-1",
@@ -8904,7 +8904,7 @@
       "xp": 12,
       "description": "Braut: Schwacher Schmiedekatalysator.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Heizt die Schmiede. Grimvar ist dankbar. Er zeigt es nicht. Weil er Grimvar ist."
     },
     {
       "id": "recipe-alch-schmiedekatalysator-2",
@@ -8925,7 +8925,7 @@
       "description": "Braut: Starker Schmiedekatalysator.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stärkerer Katalysator. Grimvar grunzt zufriedener. Marginal."
     },
     {
       "id": "recipe-alch-schmiedekatalysator-3",
@@ -8945,7 +8945,7 @@
       "xp": 38,
       "description": "Braut: Meister-Schmiedekatalysator.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Meisterkatalysator. Die Schmiede brennt so heiß dass Grimvar lächelt. Einmal. Kurz."
     },
     {
       "id": "recipe-alch-streakschutz-1",
@@ -8965,7 +8965,7 @@
       "xp": 15,
       "description": "Braut: Alchemistischer Streakschutz.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Alchemistischer Streakschutz. Schützt Gewohnheiten mit Chemie. Ysolde ist der Beweis dass es funktioniert."
     },
     {
       "id": "recipe-alch-streakschutz-2",
@@ -8986,7 +8986,7 @@
       "description": "Braut: Verstärkter Streakschutz.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Verstärkter Schutz. Deine Streak ist jetzt chemisch unterstützt. Wie die meisten Dinge in Ysoldes Leben."
     },
     {
       "id": "recipe-alch-manaoel",
@@ -9010,7 +9010,7 @@
       "description": "Braut: Brillantes Manaöl.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Brillantes Manaöl. Leuchtet blau. Schmeckt blau. Ysolde sagt blau sei ein Geschmack. Diskussion beendet."
     },
     {
       "id": "recipe-alch-schattenoel",
@@ -9033,7 +9033,7 @@
       "xp": 25,
       "description": "Braut: Schattenöl.",
       "trainerCost": 625,
-      "desc": ""
+      "desc": "Schattenöl. Für Dinge die im Dunkeln passieren sollen. Ysolde fragt nicht welche."
     },
     {
       "id": "recipe-alch-wildes-oel",
@@ -9055,7 +9055,7 @@
       "xp": 24,
       "description": "Braut: Wildes Öl.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Wildes Öl. Unkontrolliert, unberechenbar, und exakt so wie Ysolde es geplant hat."
     },
     {
       "id": "recipe-alch-luck-potion",
@@ -9077,7 +9077,7 @@
       "xp": 32,
       "description": "Braut: Trank des Glücksregens.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Glücksregen in einer Flasche. Ysolde sagt es regne Glück. Es regnet grüne Flüssigkeit. Aber das Glück kommt."
     },
     {
       "id": "process-filet",
