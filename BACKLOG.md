@@ -68,20 +68,20 @@
 
 ## ⭐ FEATURES (Remaining — Mittelfristig)
 
-4. Companion swap + retain bond
-5. Vow Rework: positive long-term goals, not just abstinence
-6. Ritual difficulty customization + reward scaling
-7. Bond + Mood system split (bond progression separate from mood state)
-8. ~~Level-Locked Sections (tabs locked by level)~~ → ✅ Floor Level-Gating (DONE-008)
+4. ~~Companion swap + retain bond~~ → ✅ POST /api/player/:name/companion/swap (7-day cooldown)
+5. ~~Vow Rework~~ → ✅ Already implemented (commitment levels, blood pact, anti-rituals)
+6. ~~Ritual difficulty customization + reward scaling~~ → ✅ Already implemented (easy/medium/hard/legendary with DIFFICULTY_BOND_SCALE)
+7. ~~Bond + Mood system split~~ → ✅ Already implemented (bondXp/bondLevel separate from petCountToday)
+8. ~~Level-Locked Sections~~ → ✅ Floor Level-Gating (DONE-008)
 9. ~~Mini quest overview~~ → ✅ TodayDrawer covers this
 10. ~~Blood Pact 180/365 day bonuses~~ → ✅ Implemented
-11. Pet image + fur color randomization + petting animation
+11. ~~Pet image + petting animation~~ → ✅ Already exists (heartAnim, companion portraits for all types)
 12. Mini Companions: custom name + image (not "Pets")
-13. Bazaar → "Deepforge" tab with harder tool progression
-14. NPC as Gacha Banner prize
-15. ~~Locked quests removal~~ → NOT NEEDED (locked quests serve NPC chain gating + level teaser purposes)
-16. Frontend consumes /api/config balance data dynamically (instead of hardcoded tooltip numbers)
-17. Material picker in trade counter-offers (currently only in new proposals)
+13. ~~Bazaar → "Deepforge" tab~~ → ✅ Already exists (Schmied = "Deepforge" label + workshop upgrades)
+14. ~~NPC as Gacha Banner prize~~ → ✅ Implemented (3 NPC-visit items in gacha pool, guaranteed spawn)
+15. ~~Locked quests removal~~ → NOT NEEDED (serves NPC chain gating + level teasers)
+16. ~~Frontend dynamic balance config~~ → ✅ Implemented (lib/balance-cache.ts + /api/config balance endpoint)
+17. ~~Material picker in trade counter-offers~~ → ✅ Implemented (SocialView counter-offer UI)
 18. Mail system: decide keep/remove (overlaps with messages + trading, but provides one-way gifts + future NPC/system mail capability)
 
 ## 🚀 PHASE 2 (Große Features)
