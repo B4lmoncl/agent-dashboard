@@ -3402,7 +3402,7 @@
       "xp": 5,
       "description": "Verarbeitet Leinenstoff zu einem Ballen.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Drei Leinen ergeben einen Ballen. Selina sagt, das sei Mathematik. Es ist Stoff."
     },
     {
       "id": "recipe-schneider-wollballen",
@@ -3422,7 +3422,7 @@
       "xp": 12,
       "description": "Dichter Wollballen — warm und vielseitig.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Wolle zu Ballen. Selina spricht leise mit dem Faden dabei. Der Faden antwortet nicht. Meistens."
     },
     {
       "id": "recipe-schneider-seidenballen",
@@ -3442,7 +3442,7 @@
       "xp": 20,
       "description": "Mondschein-Seide, zu einem Ballen verwoben.",
       "trainerCost": 275,
-      "desc": ""
+      "desc": "Seide weben erfordert Fingerspitzengefühl. Und die Bereitschaft, dreitausend Gold pro Fehler zu verlieren."
     },
     {
       "id": "recipe-schneider-magiestoffballen",
@@ -3462,7 +3462,7 @@
       "xp": 28,
       "description": "Magiestoff-Ballen. Leuchtet dezent. Nicht fallen lassen.",
       "trainerCost": 793,
-      "desc": ""
+      "desc": "Magiestoff webt sich fast von allein. Fast. Die letzten drei Prozent sind Selinas Job."
     },
     {
       "id": "recipe-schneider-runenstoffballen",
@@ -3482,7 +3482,7 @@
       "xp": 40,
       "description": "Runenstoff — jeder Faden eine Geschichte.",
       "trainerCost": 1900,
-      "desc": ""
+      "desc": "Runenstoff der beim Weben leuchtet. Selina trägt seitdem eine Sonnenbrille. Nachts."
     },
     {
       "id": "process-leinenballen",
@@ -3506,7 +3506,7 @@
       "cooldownMinutes": 0,
       "description": "Drei Stoffe, ein Ballen. Mathe für Schneider.",
       "trainerCost": 10,
-      "desc": ""
+      "desc": "Drei Stoffe, ein Ballen. Der Webstuhl macht den Rest. Selina macht den Webstuhl."
     },
     {
       "id": "process-wollballen",
@@ -3530,7 +3530,7 @@
       "cooldownMinutes": 0,
       "description": "Wärmer, dichter, teurer. Wie ein guter Mantel.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Wolle zu etwas Nützlichem verarbeiten. Selina sagt, das gelte auch für Menschen."
     },
     {
       "id": "process-seidenballen",
@@ -3554,7 +3554,7 @@
       "cooldownMinutes": 0,
       "description": "Seide zu verarbeiten erfordert leise Hände und laute Geduld.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Seide weben. Leise. Langsam. Teuer. Selinas drei Lieblingswörter."
     },
     {
       "id": "process-runenballen",
@@ -3579,7 +3579,7 @@
       "cooldownMinutes": 0,
       "description": "Stoff mit eingewobenen Runen. Sie leuchten. Manchmal im falschen Moment.",
       "trainerCost": 1000,
-      "desc": ""
+      "desc": "Runen weben sich in den Stoff wie Meinungen in Gespräche. Ungefragt."
     },
     {
       "id": "recipe-schneider-sternenlichtfarbe",
@@ -3600,7 +3600,7 @@
       "xp": 22,
       "description": "Farbe aus kondensiertem Sternenlicht.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Farbe die im Sternenlicht leuchtet. Selina verwendet sie für alles. Ihr Webstuhl glüht nachts."
     },
     {
       "id": "recipe-schneider-arkanerfaden",
@@ -3621,7 +3621,7 @@
       "xp": 30,
       "description": "Ein Faden aus arkaner Energie.",
       "trainerCost": 1000,
-      "desc": ""
+      "desc": "Faden mit arkaner Energie. Selina sagt, er vibriert vor Potential. Alle anderen sagen, er vibriert einfach."
     },
     {
       "id": "recipe-schneider-runenfaden",
@@ -3642,7 +3642,7 @@
       "xp": 42,
       "description": "Runen weben sich in den Faden. Von allein.",
       "trainerCost": 2000,
-      "desc": ""
+      "desc": "Faden mit eingewobenen Runen. Liest man sie rückwärts, steht 'Rückgabe ausgeschlossen'."
     },
     {
       "id": "recipe-schneider-leinenkappe",
@@ -3661,7 +3661,7 @@
       "xp": 6,
       "description": "Webt: Leinenkappe.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Bedeckt den Kopf. Wärmt das Gemüt. Kostet weniger als Selbstwertgefühl."
     },
     {
       "id": "recipe-schneider-leinenhut",
@@ -3680,7 +3680,7 @@
       "xp": 7,
       "description": "Webt: Leinenhut.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Ein Hut aus Leinen. Schützt vor Sonne. Nicht vor Urteilen."
     },
     {
       "id": "recipe-schneider-leinensandalen",
@@ -3699,7 +3699,7 @@
       "xp": 8,
       "description": "Webt: Leinensandalen.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Offene Schuhe aus Stoff. Für Leute die ihre Zehen mögen und der Welt zeigen wollen."
     },
     {
       "id": "recipe-schneider-leinenrobe",
@@ -3719,7 +3719,7 @@
       "description": "Webt: Leinenrobe.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Die erste Robe die jeder Schneider macht. Selina hat ihre aufgehoben. Als Warnung."
     },
     {
       "id": "recipe-schneider-leinengewand",
@@ -3739,7 +3739,7 @@
       "description": "Webt: Leinengewand.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Ein Gewand das sagt 'Ich gebe mir Mühe'. Leise, aber deutlich."
     },
     {
       "id": "recipe-schneider-leinenschuhe",
@@ -3759,7 +3759,7 @@
       "description": "Webt: Leinenschuhe.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Stoffschuhe. Bequem bei Sonnenschein. Katastrophal bei Regen. Selina verschweigt letzteres."
     },
     {
       "id": "recipe-schneider-leinenpantoffeln",
@@ -3779,7 +3779,7 @@
       "description": "Webt: Leinenpantoffeln.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Pantoffeln für den Turm. Leise, warm, und der Grund warum niemand die Wache kommen hört."
     },
     {
       "id": "recipe-schneider-leinentunika",
@@ -3799,7 +3799,7 @@
       "description": "Webt: Leinentunika.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Tunika aus Leinen. Einfach, aber mit der Überzeugung von jemandem der den Webstuhl persönlich nimmt."
     },
     {
       "id": "recipe-schneider-leinenhaube",
@@ -3819,7 +3819,7 @@
       "description": "Webt: Leinenhaube.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Haube die den Kopf warm hält. Und das Ego kühl. Selina nennt das Balance."
     },
     {
       "id": "recipe-schneider-wollstiefel",
@@ -3838,7 +3838,7 @@
       "xp": 12,
       "description": "Webt: Wollstiefel.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Wollstiefel. Warm wie eine Entschuldigung und doppelt so nützlich."
     },
     {
       "id": "recipe-schneider-wollsandalen",
@@ -3858,7 +3858,7 @@
       "description": "Webt: Wollsandalen.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wollsandalen. Ein Widerspruch den Selina mit Stolz vertritt."
     },
     {
       "id": "recipe-schneider-wollgewand",
@@ -3878,7 +3878,7 @@
       "xp": 14,
       "description": "Webt: Wollgewand.",
       "trainerCost": 165,
-      "desc": ""
+      "desc": "Wollgewand für kalte Tage und kühle Meinungen."
     },
     {
       "id": "recipe-schneider-wollmantel",
@@ -3898,7 +3898,7 @@
       "xp": 15,
       "description": "Webt: Wollmantel.",
       "trainerCost": 185,
-      "desc": ""
+      "desc": "Ein Mantel der wärmt. Den Körper. Nicht die Seele. Dafür gibt es die Taverne."
     },
     {
       "id": "recipe-schneider-wollhut",
@@ -3919,7 +3919,7 @@
       "description": "Webt: Wollhut.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Wollhut. Wärmt Kopf und Ohren gleichzeitig. Multitasking in Hutform."
     },
     {
       "id": "recipe-schneider-wollrobe",
@@ -3940,7 +3940,7 @@
       "description": "Webt: Wollrobe.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Robe aus Wolle. Kratzt anfangs. Dann gewöhnt man sich dran. Wie die meisten Dinge im Turm."
     },
     {
       "id": "recipe-schneider-gewobene-kappe",
@@ -3961,7 +3961,7 @@
       "description": "Webt: Gewobene Kappe.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Selina hat diese Kappe sieben Mal neu gewoben. Nicht weil sie musste — weil sie konnte."
     },
     {
       "id": "recipe-schneider-gewobene-schuhe",
@@ -3981,7 +3981,7 @@
       "description": "Webt: Gewobene Schuhe.",
       "factionId": "echo",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Schuhe aus gewobener Wolle. Leise genug um Grimvar zu überraschen. Was niemand freiwillig tut."
     },
     {
       "id": "recipe-schneider-wollschleier",
@@ -4002,7 +4002,7 @@
       "description": "Webt: Wollschleier.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Verbirgt das Gesicht und die Enttäuschung über den Preis."
     },
     {
       "id": "recipe-schneider-gewobene-treter",
@@ -4022,7 +4022,7 @@
       "description": "Webt: Gewobene Treter.",
       "factionId": "echo",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Treter aus gewebtem Stoff. Selina nennt sie 'dezent'. Sie sind alles außer dezent."
     },
     {
       "id": "recipe-schneider-gewobene-kutte",
@@ -4043,7 +4043,7 @@
       "description": "Webt: Gewobene Kutte.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Kutte für Leute die geheimnisvoll aussehen wollen. Funktioniert besser bei Kerzenlicht."
     },
     {
       "id": "recipe-schneider-wollkapuze",
@@ -4064,7 +4064,7 @@
       "description": "Webt: Wollkapuze.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Kapuze die mehr verbirgt als sie zeigt. Selina findet das poetisch. Die Kunden finden es praktisch."
     },
     {
       "id": "recipe-schneider-mondschein-kutte",
@@ -4084,7 +4084,7 @@
       "xp": 20,
       "description": "Webt: Mondschein-Kutte.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Kutte die im Mondlicht schimmert. Tagsüber sieht sie aus wie ein teurer Fehler."
     },
     {
       "id": "recipe-schneider-mondschein-tiara",
@@ -4104,7 +4104,7 @@
       "description": "Webt: Mondschein-Tiara.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Tiara aus Mondscheinfäden. Selina hat geweint als sie fertig war. Vor Stolz. Und vor der Rechnung."
     },
     {
       "id": "recipe-schneider-mondschein-treter",
@@ -4124,7 +4124,7 @@
       "xp": 21,
       "description": "Webt: Mondschein-Treter.",
       "trainerCost": 425,
-      "desc": ""
+      "desc": "Treter die im Dunkeln leuchten. Praktisch. Außer wenn man sich verstecken will."
     },
     {
       "id": "recipe-schneider-seidenschuhe",
@@ -4144,7 +4144,7 @@
       "xp": 21,
       "description": "Webt: Seidenschuhe.",
       "trainerCost": 450,
-      "desc": ""
+      "desc": "Seidenschuhe. So leise dass der Boden sich fragt ob du da bist."
     },
     {
       "id": "recipe-schneider-seidenmantel",
@@ -4164,7 +4164,7 @@
       "xp": 22,
       "description": "Webt: Seidenmantel.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Seide die sich anfühlt wie eine Umarmung. Eine teure Umarmung die man bezahlen muss."
     },
     {
       "id": "recipe-schneider-seidensandalen",
@@ -4184,7 +4184,7 @@
       "xp": 24,
       "description": "Webt: Seidensandalen.",
       "trainerCost": 600,
-      "desc": ""
+      "desc": "Offene Seidenschuhe. Für Sommer im Turm. Der Turm hat keinen Sommer. Selina kümmert das nicht."
     },
     {
       "id": "recipe-schneider-seidenschleier",
@@ -4204,7 +4204,7 @@
       "description": "Webt: Seidenschleier.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Schleier aus Seide. Man sieht durch, aber die Welt sieht nicht zurück. Ein fairer Deal."
     },
     {
       "id": "recipe-schneider-seidenkappe",
@@ -4224,7 +4224,7 @@
       "description": "Webt: Seidenkappe.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Kappe aus Seide. Schützt nicht viel. Sieht dafür aus als würde sie es tun."
     },
     {
       "id": "recipe-schneider-mondschein-gewand",
@@ -4244,7 +4244,7 @@
       "description": "Webt: Mondschein-Gewand.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Gewand das bei Mondlicht lebt. Bei Tageslicht schläft es. Selina nennt es introvertiert."
     },
     {
       "id": "recipe-schneider-seidenrobe",
@@ -4264,7 +4264,7 @@
       "description": "Webt: Seidenrobe.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Die Robe die jeder Schneider träumen lässt. Und jeden Geldbeutel weinen."
     },
     {
       "id": "recipe-schneider-mondschein-haube",
@@ -4284,7 +4284,7 @@
       "description": "Webt: Mondschein-Haube.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Haube die Mondlicht einfängt und langsam wieder abgibt. Wie ein sehr teures Nachtlicht."
     },
     {
       "id": "recipe-schneider-mondschein-pantoffeln",
@@ -4305,7 +4305,7 @@
       "description": "Webt: Mondschein-Pantoffeln.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Pantoffeln die bei jedem Schritt leise klingeln. Romantisch. Bis der Nachbar sich beschwert."
     },
     {
       "id": "recipe-schneider-seelenstiefel",
@@ -4327,7 +4327,7 @@
       "xp": 29,
       "description": "Webt: Seelenstiefel.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Stiefel mit Seele. Sie gehen manchmal allein los. Selina findet das normal."
     },
     {
       "id": "recipe-schneider-seelenrobe",
@@ -4349,7 +4349,7 @@
       "description": "Webt: Seelenrobe.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Robe die den Träger kennt. Und gelegentlich Vorschläge zur Garderobe macht."
     },
     {
       "id": "recipe-schneider-runensandalen",
@@ -4371,7 +4371,7 @@
       "xp": 33,
       "description": "Webt: Runensandalen.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Sandalen mit Runen. Jeder Schritt schreibt eine Botschaft auf den Boden die nach drei Sekunden verblasst."
     },
     {
       "id": "recipe-schneider-aethergewand",
@@ -4393,7 +4393,7 @@
       "description": "Webt: Äthergewand.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Gewand aus Aetherstoff. Fließt wie Wasser und schützt wie... nun ja, Stoff. Sehr guter Stoff."
     },
     {
       "id": "recipe-schneider-runenschleier",
@@ -4414,7 +4414,7 @@
       "description": "Webt: Runenschleier.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Schleier mit Runen die man nur lesen kann wenn man ihn nicht trägt. Designentscheidung."
     },
     {
       "id": "recipe-schneider-sternenhaube",
@@ -4435,7 +4435,7 @@
       "description": "Webt: Sternenhaube.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Haube mit eingewobenen Sternenmustern. Die Sterne bewegen sich. Selina behauptet das sei Absicht."
     },
     {
       "id": "recipe-schneider-aetherkrone",
@@ -4456,7 +4456,7 @@
       "description": "Webt: Ätherkrone.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Krone aus Aether und Stoff. Klingt unmöglich. Selina nimmt 'unmöglich' persönlich."
     },
     {
       "id": "recipe-schneider-sternenrobe",
@@ -4477,7 +4477,7 @@
       "description": "Webt: Sternenrobe.",
       "factionId": "echo",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Robe aus Sternenstoff. Die Sterne darin funkeln. Selina sagt, sie funkeln zurück."
     },
     {
       "id": "recipe-schneider-arkane-robe",
@@ -4498,7 +4498,7 @@
       "description": "Webt: Arkane Robe.",
       "factionId": "echo",
       "factionMinRep": "friendly",
-      "desc": ""
+      "desc": "Selinas Meisterwerk. Sie hat drei Nächte nicht geschlafen. Die Robe schlief für sie."
     },
     {
       "id": "recipe-schneider-runengewand",
@@ -4519,7 +4519,7 @@
       "description": "Webt: Runengewand.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Gewand mit lebenden Runen. Sie wandern über den Stoff wie Ameisen. Ordentliche Ameisen."
     },
     {
       "id": "recipe-schneider-arkane-krone",
@@ -4540,7 +4540,7 @@
       "description": "Webt: Arkane Krone.",
       "factionId": "echo",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Krone die den Träger klüger aussehen lässt. Ob er klüger wird, hängt nicht von der Krone ab."
     },
     {
       "id": "recipe-schneider-aetherschuhe",
@@ -4562,7 +4562,7 @@
       "description": "Webt: Ätherschuhe.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Schuhe aus Aether. Man steht auf nichts. Und doch steht man. Philosophie am Fuß."
     },
     {
       "id": "recipe-schneider-seelenwandler-schuhe",
@@ -4584,7 +4584,7 @@
       "description": "Webt: Seelenwandler-Schuhe.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Schuhe die den Weg kennen. Leider nicht immer deinen Weg."
     },
     {
       "id": "recipe-schneider-seelenkappe",
@@ -4605,7 +4605,7 @@
       "description": "Webt: Seelenkappe.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Kappe mit eigenem Willen. Sie rutscht absichtlich. Selina schwört."
     },
     {
       "id": "recipe-schneider-arkane-schuhe",
@@ -4627,7 +4627,7 @@
       "description": "Webt: Arkane Schuhe.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Die letzten Schuhe die Selina je machen wird. Sagt sie. Wie immer."
     },
     {
       "id": "recipe-schneider-einfacher-zauberfaden",
@@ -4648,7 +4648,7 @@
       "xp": 8,
       "description": "Stellt her: Einfacher Zauberfaden.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Faden der magische Energie speichert. Oder vergisst. Hängt vom Tag ab."
     },
     {
       "id": "recipe-schneider-wollener-zauberfaden",
@@ -4671,7 +4671,7 @@
       "description": "Stellt her: Wollener Zauberfaden.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wollener Faden mit magischer Ladung. Warm und elektrisierend. Wie Selinas Persönlichkeit."
     },
     {
       "id": "recipe-schneider-seidener-zauberfaden",
@@ -4693,7 +4693,7 @@
       "xp": 20,
       "description": "Stellt her: Seidener Zauberfaden.",
       "trainerCost": 308,
-      "desc": ""
+      "desc": "Seidenfaden mit eingewobener Magie. Gleitet durch Nadeln wie Ausreden durch Münder."
     },
     {
       "id": "recipe-schneider-arkaner-zauberfaden",
@@ -4716,7 +4716,7 @@
       "description": "Stellt her: Arkaner Zauberfaden.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Arkaner Faden. Die Nadel weigert sich manchmal ihn zu führen. Er hat Meinungen."
     },
     {
       "id": "recipe-schneider-runen-zauberfaden",
@@ -4738,7 +4738,7 @@
       "description": "Stellt her: Runen-Zauberfaden.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Runenfaden der beim Nähen singt. Schlecht. Aber enthusiastisch."
     },
     {
       "id": "recipe-schneider-einfacher-gluecksfaden",
@@ -4759,7 +4759,7 @@
       "xp": 10,
       "description": "Stellt her: Einfacher Glücksfaden.",
       "trainerCost": 68,
-      "desc": ""
+      "desc": "Faden der Glück bringt. Angeblich. Selina hat keine Garantie unterschrieben."
     },
     {
       "id": "recipe-schneider-seidener-gluecksfaden",
@@ -4781,7 +4781,7 @@
       "xp": 22,
       "description": "Stellt her: Seidener Glücksfaden.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Seidenglücksfaden. Das Glück fühlt sich weicher an. Der Preis auch."
     },
     {
       "id": "recipe-schneider-arkaner-gluecksfaden",
@@ -4804,7 +4804,7 @@
       "description": "Stellt her: Arkaner Glücksfaden.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Arkaner Glücksfaden. Das Glück ist jetzt wissenschaftlich messbar. Und teuer."
     },
     {
       "id": "recipe-schneider-fokus-faden",
@@ -4826,7 +4826,7 @@
       "xp": 14,
       "description": "Stellt her: Konzentrationsfaden.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Faden der fokussiert. Nicht den Träger — den Faden selbst. Er ist sehr konzentriert."
     },
     {
       "id": "recipe-schneider-seidener-fokusfaden",
@@ -4847,7 +4847,7 @@
       "xp": 25,
       "description": "Stellt her: Seidener Konzentrationsfaden.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Seidener Konzentrationsfaden. Fokussiert so hart dass Selina Kopfschmerzen bekommt."
     },
     {
       "id": "recipe-schneider-arkaner-fokusfaden",
@@ -4869,7 +4869,7 @@
       "xp": 38,
       "description": "Stellt her: Arkaner Konzentrationsfaden.",
       "trainerCost": 1700,
-      "desc": ""
+      "desc": "Maximaler Fokus in Fadenform. Der Faden denkt schneller als du. Das sollte dir Sorgen machen."
     },
     {
       "id": "recipe-schneider-charisma-faden",
@@ -4891,7 +4891,7 @@
       "xp": 18,
       "description": "Stellt her: Bezaubernder Faden.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Faden der bezaubert. Nicht magisch — sozial. Der Träger wird charmanter. Oder glaubt es zumindest."
     },
     {
       "id": "recipe-schneider-seidener-charismafaden",
@@ -4913,7 +4913,7 @@
       "xp": 30,
       "description": "Stellt her: Seidener Bezaubernder Faden.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Seidenes Charisma. Selina sagt, man kann Charme nicht kaufen. Man kann aber den Faden kaufen."
     },
     {
       "id": "recipe-schneider-leinener-streakschutz",
@@ -4933,7 +4933,7 @@
       "xp": 15,
       "description": "Stellt her: Leinener Streakschutz.",
       "trainerCost": 143,
-      "desc": ""
+      "desc": "Schutz für die Streak. Aus Leinen. Selina findet es rührend dass Stoff Gewohnheiten retten kann."
     },
     {
       "id": "recipe-schneider-arkaner-streakschutz",
@@ -4953,7 +4953,7 @@
       "xp": 30,
       "description": "Stellt her: Arkaner Streakschutz.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Arkaner Streakschutz. Deine Streak ist jetzt magisch geschützt. Dein Zeitmanagement leider nicht."
     },
     {
       "id": "recipe-schneider-waermender-stoff",
@@ -4973,7 +4973,7 @@
       "xp": 18,
       "description": "Stellt her: Wärmender Stoff.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Stoff der wärmt. Ohne Feuer. Selina sagt es sei Liebe. Es ist Wolle. Aber die Vorstellung ist nett."
     },
     {
       "id": "recipe-schneider-arkaner-waermestoff",
@@ -4994,7 +4994,7 @@
       "description": "Stellt her: Arkaner Wärmestoff.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Arkan erwärmter Stoff. Heizt den Forge-Temp. Die Schmiede findet das seltsam. Selina findet die Schmiede seltsam."
     },
     {
       "id": "recipe-schneider-xp-gewand-1",
@@ -5016,7 +5016,7 @@
       "xp": 22,
       "description": "Stellt her: Gewand der Erleuchtung I.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Gewand das Wissen anzieht. Buchstäblich. Selina schwört die Nähte summen wenn man lernt."
     },
     {
       "id": "recipe-schneider-xp-gewand-2",
@@ -5038,7 +5038,7 @@
       "description": "Stellt her: Gewand der Erleuchtung II.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Stärkere Erleuchtung. Das Gewand leuchtet jetzt. Die Bibliothek bittet um Rücksichtnahme."
     },
     {
       "id": "recipe-schneider-stoff-veredeln-1",
@@ -5058,7 +5058,7 @@
       "xp": 10,
       "description": "Stoff veredeln I.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Stoff wird besser. Wie Wein. Nur trockener. Und tragbar."
     },
     {
       "id": "recipe-schneider-stoff-veredeln-2",
@@ -5078,7 +5078,7 @@
       "xp": 15,
       "description": "Stoff veredeln II.",
       "trainerCost": 125,
-      "desc": ""
+      "desc": "Zweite Veredelung. Der Stoff fühlt sich jetzt wichtiger als sein Träger."
     },
     {
       "id": "recipe-schneider-stoff-veredeln-3",
@@ -5098,7 +5098,7 @@
       "xp": 22,
       "description": "Stoff veredeln III.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Dritte Veredelung. Selina sagt der Stoff habe jetzt Charakter. Er widerspricht nicht."
     },
     {
       "id": "recipe-schneider-stoff-veredeln-4",
@@ -5119,7 +5119,7 @@
       "description": "Stoff veredeln IV.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Vierte Veredelung. Ab hier redet Selina mit dem Stoff wie mit einem Freund. Der Stoff antwortet nicht. Noch nicht."
     },
     {
       "id": "recipe-schneider-stoff-veredeln-5",
@@ -5140,7 +5140,7 @@
       "description": "Stoff veredeln V.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Fünfte und letzte Veredelung. Der Stoff ist jetzt besser als die meisten Leute. Selina auch."
     },
     {
       "id": "recipe-schneider-fokus-weben-1",
@@ -5160,7 +5160,7 @@
       "xp": 10,
       "description": "Fokus weben I.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Fokus in Stoff weben. Der Stoff konzentriert sich jetzt besser als du morgens."
     },
     {
       "id": "recipe-schneider-fokus-weben-2",
@@ -5181,7 +5181,7 @@
       "xp": 18,
       "description": "Fokus weben II.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Mehr Fokus. Selina sagt der Stoff hilft beim Denken. Der Stoff sagt nichts. Er denkt."
     },
     {
       "id": "recipe-schneider-fokus-weben-3",
@@ -5202,7 +5202,7 @@
       "xp": 25,
       "description": "Fokus weben III.",
       "trainerCost": 583,
-      "desc": ""
+      "desc": "Noch mehr Fokus. Ab hier lenkt das Gewand ab weil es zu fokussiert ist. Ironie."
     },
     {
       "id": "recipe-schneider-fokus-weben-4",
@@ -5222,7 +5222,7 @@
       "xp": 35,
       "description": "Fokus weben IV.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Maximaler Fokus. Das Gewand ist jetzt konzentrierter als ein Espresso in Menschenform."
     },
     {
       "id": "recipe-schneider-charisma-sticken-1",
@@ -5244,7 +5244,7 @@
       "description": "Charisma sticken I.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Charme in Stoff gestickt. Selina sagt Charme sei tragbar. Der Stoff glaubt ihr."
     },
     {
       "id": "recipe-schneider-charisma-sticken-2",
@@ -5264,7 +5264,7 @@
       "xp": 22,
       "description": "Charisma sticken II.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Mehr Charisma. Der Stoff lächelt jetzt. Nicht sichtbar. Aber spürbar."
     },
     {
       "id": "recipe-schneider-charisma-sticken-3",
@@ -5286,7 +5286,7 @@
       "description": "Charisma sticken III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Maximales Charisma im Stoff. Der Träger wird unwiderstehlich. Oder zumindest erträglicher."
     },
     {
       "id": "recipe-schneider-glueck-weben-1",
@@ -5308,7 +5308,7 @@
       "description": "Glück weben I.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Glück in Stoff. Selina hat es versucht. Es hat funktioniert. Einmal. Reicht als Beweis."
     },
     {
       "id": "recipe-schneider-glueck-weben-2",
@@ -5329,7 +5329,7 @@
       "description": "Glück weben II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mehr Glück. Der Stoff bringt Glück. Dem Träger. Selina hat es aufgegeben das Glück für sich zu behalten."
     },
     {
       "id": "recipe-schneider-glueck-weben-3",
@@ -5350,7 +5350,7 @@
       "description": "Glück weben III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Maximales Glück. Das Gewand zieht Glück an wie ein Magnet. Und Staub. Hauptsächlich Glück."
     },
     {
       "id": "recipe-leder-geheiltes-leichtleder",
@@ -14488,7 +14488,7 @@
       "xp": 8,
       "trainerCost": 78,
       "description": "Stellt her: Leinenschleier des Gelehrten.",
-      "desc": ""
+      "desc": "Für Gelehrte die lesen und dabei gut aussehen wollen. Beides geht. Behauptet Selina."
     },
     {
       "id": "recipe-schneider-wollkappe-des-forschers",
@@ -14508,7 +14508,7 @@
       "xp": 16,
       "trainerCost": 228,
       "description": "Stellt her: Wollkappe des Forschers.",
-      "desc": ""
+      "desc": "Forscherkappe. Wärmt den Kopf in dem die Ideen stecken. Oder die Leere. Selina urteilt nicht."
     },
     {
       "id": "recipe-schneider-seidenschleier-des-weisen",
@@ -14528,7 +14528,7 @@
       "description": "Stellt her: Seidenschleier des Weisen.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Schleier für Weise. Oder Leute die weise aussehen wollen. Selina sieht keinen Unterschied."
     },
     {
       "id": "recipe-schneider-arkane-weisenkrone",
@@ -14548,7 +14548,7 @@
       "xp": 35,
       "description": "Stellt her: Arkane Weisenkrone.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Krone der Weisheit. Macht nicht weiser. Aber die Leute nehmen dich ernster."
     },
     {
       "id": "recipe-schneider-einfache-leinenkappe",
@@ -14567,7 +14567,7 @@
       "xp": 8,
       "trainerCost": 45,
       "description": "Stellt her: Einfache Leinenkappe.",
-      "desc": ""
+      "desc": "Einfach. Leinen. Kappe. Selina hat sich bei der Namensgebung nicht angestrengt. Beim Weben schon."
     },
     {
       "id": "recipe-schneider-gewobener-wollschleier",
@@ -14587,7 +14587,7 @@
       "xp": 16,
       "description": "Stellt her: Gewobener Wollschleier.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Gewoben mit Geduld die Selina normalerweise nicht hat. Ausnahmsweise gut investiert."
     },
     {
       "id": "recipe-schneider-mondschein-gelehrtenkappe",
@@ -14606,7 +14606,7 @@
       "xp": 24,
       "trainerCost": 610,
       "description": "Stellt her: Mondschein-Gelehrtenkappe.",
-      "desc": ""
+      "desc": "Gelehrtenkappe die im Mondlicht leuchtet. Praktisch zum Lesen. Problematisch zum Schlafen."
     },
     {
       "id": "recipe-schneider-sternenmantel",
@@ -14627,7 +14627,7 @@
       "description": "Stellt her: Sternenmantel.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Mantel aus Sternenstoff. Die Sterne darin bewegen sich. Selina sagt, sie tanzen. Astronomen widersprechen."
     },
     {
       "id": "recipe-schneider-leinengewand-des-wanderers",
@@ -14646,7 +14646,7 @@
       "xp": 8,
       "trainerCost": 40,
       "description": "Stellt her: Leinengewand des Wanderers.",
-      "desc": ""
+      "desc": "Für Wanderer die wandern. Nicht für Leute die nur so heißen."
     },
     {
       "id": "recipe-schneider-wollrobe-des-wanderers",
@@ -14666,7 +14666,7 @@
       "xp": 16,
       "trainerCost": 448,
       "description": "Stellt her: Wollrobe des Wanderers.",
-      "desc": ""
+      "desc": "Wollrobe für den ernsteren Wanderer. Wärmer, schwerer, teurer. Die Wanderung lohnt sich doppelt."
     },
     {
       "id": "recipe-schneider-seidenrobe-der-erleuchtung",
@@ -14685,7 +14685,7 @@
       "xp": 24,
       "trainerCost": 565,
       "description": "Stellt her: Seidenrobe der Erleuchtung.",
-      "desc": ""
+      "desc": "Seidenrobe die erleuchtet. Nicht den Träger — den Raum. Subtiler Unterschied."
     },
     {
       "id": "recipe-schneider-arkane-meisterrobe",
@@ -14705,7 +14705,7 @@
       "xp": 35,
       "description": "Stellt her: Arkane Meisterrobe.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Selinas Meisterwerk. Sie hat beim Weben nicht geatmet. Drei Minuten lang. Freiwillig."
     },
     {
       "id": "recipe-schneider-leinenpantoffeln-des-lesers",
@@ -14724,7 +14724,7 @@
       "xp": 8,
       "trainerCost": 118,
       "description": "Stellt her: Leinenpantoffeln des Lesers.",
-      "desc": ""
+      "desc": "Pantoffeln für stille Stunden. Die Seiten rascheln lauter als die Schritte."
     },
     {
       "id": "recipe-schneider-wollstiefel-des-reisenden",
@@ -14745,7 +14745,7 @@
       "description": "Stellt her: Wollstiefel des Reisenden.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wollstiefel für die Reise. Und die Rückkehr. Und die nächste Reise. Sie halten."
     },
     {
       "id": "recipe-schneider-seidenpantoffeln-des-meisters",
@@ -14764,7 +14764,7 @@
       "xp": 24,
       "trainerCost": 573,
       "description": "Stellt her: Seidenpantoffeln des Meisters.",
-      "desc": ""
+      "desc": "Meisterpantoffeln aus Seide. Man schwebt statt geht. Metaphorisch. Meistens."
     },
     {
       "id": "recipe-schneider-arkane-meisterschuhe",
@@ -14785,7 +14785,7 @@
       "description": "Stellt her: Arkane Meisterschuhe.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Die letzten Schuhe die Selina je machen wird. Stimmt nie. Aber klingt jedes Mal überzeugend."
     },
     {
       "id": "recipe-schneider-einfache-leinenschuhe",
@@ -14804,7 +14804,7 @@
       "xp": 8,
       "trainerCost": 55,
       "description": "Stellt her: Einfache Leinenschuhe.",
-      "desc": ""
+      "desc": "Schuhe aus Leinen. Leicht wie Luft. Haltbar wie... weniger als Luft."
     },
     {
       "id": "recipe-schneider-gewobene-wollschuhe",
@@ -14825,7 +14825,7 @@
       "description": "Stellt her: Gewobene Wollschuhe.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wollschuhe die gewoben wurden. Klingt aufwändiger als es ist. Ist aufwändiger als es klingt."
     },
     {
       "id": "recipe-schneider-mondschein-schritte",
@@ -14845,7 +14845,7 @@
       "description": "Stellt her: Mondschein-Schritte.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Schuhe die bei Mondlicht silbrig glänzen. Selina hat sie nach sich selbst benannt. Dezent."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-jaegerkappe",
@@ -18415,7 +18415,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leinen Kappe II.",
-      "desc": ""
+      "desc": "Version zwei. Besser als die erste. Selina gibt es ungern zu."
     },
     {
       "id": "recipe-schneider-woll-robe-ii",
@@ -18434,7 +18434,7 @@
       "xp": 16,
       "description": "Stellt her: Woll Robe II.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Wollrobe, überarbeitet. Weniger Kratzen, mehr Würde."
     },
     {
       "id": "recipe-schneider-seiden-marschtritt-ii",
@@ -18453,7 +18453,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Seiden Marschtritt II.",
-      "desc": ""
+      "desc": "Seidener Marschtritt, verbessert. Man marschiert jetzt leiser. Die Seide ist stolzer."
     },
     {
       "id": "recipe-schneider-arkan-haube-ii",
@@ -18472,7 +18472,7 @@
       "xp": 32,
       "trainerCost": 1500,
       "description": "Stellt her: Arkan Haube II.",
-      "desc": ""
+      "desc": "Arkane Haube mit Updates. Leuchtet jetzt in zwei Farben statt einer."
     },
     {
       "id": "recipe-schneider-leinen-mantel-ii",
@@ -18491,7 +18491,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leinen Mantel II.",
-      "desc": ""
+      "desc": "Leinenmantel, zweite Auflage. Selina hat das Logo geändert. Es gibt kein Logo. Aber sie hat es geändert."
     },
     {
       "id": "recipe-schneider-woll-stiefel-ii",
@@ -18511,7 +18511,7 @@
       "description": "Stellt her: Woll Stiefel II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wollstiefel, Mark II. Wärmer. Robuster. Immer noch Wolle."
     },
     {
       "id": "recipe-schneider-seiden-helm-ii",
@@ -18531,7 +18531,7 @@
       "description": "Stellt her: Seiden Helm II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Seidenhelm klingt wie ein Widerspruch. Ist einer. Funktioniert trotzdem."
     },
     {
       "id": "recipe-schneider-arkan-platte-ii",
@@ -18551,7 +18551,7 @@
       "description": "Stellt her: Arkan Platte II.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Arkane Platte aus Stoff. Physik weint. Selina lacht."
     },
     {
       "id": "recipe-schneider-leinen-treter-ii",
@@ -18570,7 +18570,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leinen Treter II.",
-      "desc": ""
+      "desc": "Treter, zweite Version. Mehr Tritt, weniger Verschleiß."
     },
     {
       "id": "recipe-schneider-woll-visier-ii",
@@ -18590,7 +18590,7 @@
       "description": "Stellt her: Woll Visier II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wollvisier. Man sieht durch Wolle. Schlecht. Aber warm."
     },
     {
       "id": "recipe-schneider-seiden-panzer-ii",
@@ -18609,7 +18609,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Seiden Panzer II.",
-      "desc": ""
+      "desc": "Seidenpanzer. Zwei Wörter die nicht zusammengehören. Und doch."
     },
     {
       "id": "recipe-schneider-arkan-schuhe-ii",
@@ -18628,7 +18628,7 @@
       "xp": 32,
       "trainerCost": 1500,
       "description": "Stellt her: Arkan Schuhe II.",
-      "desc": ""
+      "desc": "Arkane Schuhe, verbessert. Schweben jetzt einen Millimeter über dem Boden. Selina bemerkt es. Sonst niemand."
     },
     {
       "id": "recipe-schneider-leinen-schleier-iii",
@@ -18647,7 +18647,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leinen Schleier III.",
-      "desc": ""
+      "desc": "Schleier, dritte Version. Verbirgt jetzt auch die Augenringe."
     },
     {
       "id": "recipe-schneider-woll-wams-iii",
@@ -18666,7 +18666,7 @@
       "xp": 16,
       "trainerCost": 200,
       "description": "Stellt her: Woll Wams III.",
-      "desc": ""
+      "desc": "Wams aus Wolle, drittes Design. Selina hat die Nähte neu erfunden. Niemand hat den Unterschied bemerkt."
     },
     {
       "id": "recipe-schneider-seiden-sandalen-iii",
@@ -18685,7 +18685,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Seiden Sandalen III.",
-      "desc": ""
+      "desc": "Seidensandalen, dritte Auflage. Barfuß war gestern. Seide am Fuß ist heute."
     },
     {
       "id": "recipe-schneider-arkan-kappe-iii",
@@ -18705,7 +18705,7 @@
       "description": "Stellt her: Arkan Kappe III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Arkane Kappe, Version drei. Selina sagt, Perfektion braucht Wiederholung. Und Geld."
     },
     {
       "id": "recipe-schneider-leinen-robe-iii",
@@ -18725,7 +18725,7 @@
       "description": "Stellt her: Leinen Robe III.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Leinenrobe, dritte Iteration. Selina hat jeden Faden einzeln verlegt. Und einzeln verflucht."
     },
     {
       "id": "recipe-schneider-woll-marschtritt-iii",
@@ -18744,7 +18744,7 @@
       "xp": 16,
       "trainerCost": 200,
       "description": "Stellt her: Woll Marschtritt III.",
-      "desc": ""
+      "desc": "Wollmarschtritt, dritte Generation. Der Boden gibt freiwillig nach."
     },
     {
       "id": "recipe-schneider-seiden-haube-iii",
@@ -18763,7 +18763,7 @@
       "xp": 24,
       "description": "Stellt her: Seiden Haube III.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Seidenhaube, dritte Auflage. Leuchtet jetzt schwach. Selina nennt es Bonus."
     },
     {
       "id": "recipe-schneider-arkan-mantel-iii",
@@ -18782,7 +18782,7 @@
       "xp": 32,
       "description": "Stellt her: Arkan Mantel III.",
       "factionId": "zirkel_der_sterne",
-      "desc": ""
+      "desc": "Arkaner Mantel, Version drei. Der Mantel hat jetzt seinen eigenen Charakter. Introvertiert."
     },
     {
       "id": "recipe-schneider-leinen-stiefel-iii",
@@ -18802,7 +18802,7 @@
       "description": "Stellt her: Leinen Stiefel III.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Leinenstiefel, dritte Version. Selina sagt, die dritte Version ist immer die beste. Das sagte sie auch über die zweite."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-kappe-ii",
@@ -19278,7 +19278,7 @@
       "description": "Webt: Schattengewebe-Robe. Der Stoff hat sich freiwillig gemeldet. Angeblich.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Robe aus dem Schatten des Rifts gewoben. Selina hat dabei nicht hingesehen. Wollte sie nicht."
     },
     {
       "id": "recipe-schneider-rissgewebte-kapuze",
@@ -19301,7 +19301,7 @@
       "description": "Webt: Rissgewebte Kapuze. Vibriert leicht. Vor Aufregung, sagt der Schneider. Er lügt.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Kapuze aus Rissstoff. Der Stoff erinnert sich an Dinge die nicht passiert sind. Noch nicht."
     },
     {
       "id": "recipe-leder-gruft-geschnittene-armschienen",
@@ -19542,7 +19542,7 @@
       },
       "xp": 8,
       "description": "Webt Leinenstoff zu einem brauchbaren Ballen.",
-      "desc": ""
+      "desc": "Leinen wird Ballen. Der Anfang einer langen Reise von Rohstoff zu Robe."
     },
     {
       "id": "bolt_wollballen",
@@ -19562,7 +19562,7 @@
       },
       "xp": 12,
       "description": "Webt Wolle zu einem stabilen Ballen.",
-      "desc": ""
+      "desc": "Wolle wird Ballen. Selina summt dabei. Der Webstuhl summt mit."
     },
     {
       "id": "bolt_seidenballen",
@@ -19582,7 +19582,7 @@
       },
       "xp": 18,
       "description": "Feinste Seide, verdichtet zu einem wertvollen Ballen.",
-      "desc": ""
+      "desc": "Seide wird Ballen. Leise, langsam, und mit der Vorsicht von jemandem der weiß was Seide kostet."
     },
     {
       "id": "cure_leichtleder",
