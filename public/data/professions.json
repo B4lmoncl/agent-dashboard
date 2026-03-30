@@ -6420,7 +6420,7 @@
       "description": "Gerbt: Seelenjäger-Wams.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Wams das den Jäger zum Gejagten macht. Oder umgekehrt. Roderic ist sich nicht sicher."
     },
     {
       "id": "recipe-leder-urzeit-stiefel",
@@ -6443,7 +6443,7 @@
       "description": "Gerbt: Urzeit-Stiefel.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Urzeitstiefel. Schwer wie Schuld und doppelt so haltbar."
     },
     {
       "id": "recipe-leder-seelenjaeger-schuhe",
@@ -6466,7 +6466,7 @@
       "description": "Gerbt: Seelenjäger-Schuhe.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": ""
+      "desc": "Schuhe die wissen wohin die Seele will. Meistens zur Taverne. Verständlich."
     },
     {
       "id": "recipe-leder-bestien-ruestung",
@@ -6488,7 +6488,7 @@
       "description": "Gerbt: Bestien-Rüstung.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Vollständige Bestienrüstung. Die Bestie trägt sie nicht mehr. Du schon."
     },
     {
       "id": "recipe-leder-urzeit-jacke",
@@ -6510,7 +6510,7 @@
       "description": "Gerbt: Urzeit-Jacke.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Jacke aus dem ältesten Leder im Turm. Roderic hat drei Jahre darauf gewartet. Das Leder hat dreitausend."
     },
     {
       "id": "recipe-leder-urzeit-mantel",
@@ -6532,7 +6532,7 @@
       "description": "Gerbt: Urzeit-Mantel.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mantel der nach Geschichte riecht. Und nach Roderic. Hauptsächlich nach Roderic."
     },
     {
       "id": "recipe-leder-bestien-krone",
@@ -6553,7 +6553,7 @@
       "description": "Gerbt: Bestien-Krone.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Krone aus Bestienleder. Macht den Träger nicht zum König. Aber zum am besten angezogenen Abenteurer."
     },
     {
       "id": "recipe-leder-urzeit-visier",
@@ -6574,7 +6574,7 @@
       "description": "Gerbt: Urzeit-Visier.",
       "factionId": "amboss",
       "factionMinRep": "honored",
-      "desc": ""
+      "desc": "Visier aus Urzeitleder. Man sieht durch jahrtausendealtes Material. Die Welt sieht alt aus. War sie vorher auch."
     },
     {
       "id": "recipe-leder-einfaches-lederkit",
@@ -6595,7 +6595,7 @@
       "xp": 8,
       "description": "Stellt her: Einfaches Leder-Kit.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Kit für einfache Reparaturen. Oder einfache Ausreden warum die Rüstung anders aussieht."
     },
     {
       "id": "recipe-leder-mittleres-lederkit",
@@ -6618,7 +6618,7 @@
       "description": "Stellt her: Mittleres Leder-Kit.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mittleres Reparaturkit. Für mittlere Probleme und mittlere Budgets."
     },
     {
       "id": "recipe-leder-schweres-lederkit",
@@ -6640,7 +6640,7 @@
       "xp": 20,
       "description": "Stellt her: Schweres Leder-Kit.",
       "trainerCost": 308,
-      "desc": ""
+      "desc": "Schweres Kit. Für schwere Schäden und schwere Seufzer wenn man die Rechnung sieht."
     },
     {
       "id": "recipe-leder-bestien-lederkit",
@@ -6662,7 +6662,7 @@
       "xp": 28,
       "description": "Stellt her: Bestien-Leder-Kit.",
       "trainerCost": 793,
-      "desc": ""
+      "desc": "Kit aus Bestienleder. Repariert Bestienrüstung. Und gelegentlich das Ego des Trägers."
     },
     {
       "id": "recipe-leder-urzeit-lederkit",
@@ -6685,7 +6685,7 @@
       "description": "Stellt her: Urzeit-Leder-Kit.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Uraltes Kit. Repariert alles. Roderic sagt, es hat schon Dinge repariert bevor sie kaputt waren."
     },
     {
       "id": "recipe-leder-einfacher-gluecksflicken",
@@ -6706,7 +6706,7 @@
       "xp": 10,
       "description": "Stellt her: Einfacher Glücksflicken.",
       "trainerCost": 68,
-      "desc": ""
+      "desc": "Flicken der Glück bringt. Oder zumindest das Loch stopft. Eins von beiden hilft."
     },
     {
       "id": "recipe-leder-schwerer-gluecksflicken",
@@ -6728,7 +6728,7 @@
       "xp": 22,
       "description": "Stellt her: Schwerer Glücksflicken.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Schwerer Glücksflicken. Das Glück wiegt mehr, aber es hält auch länger."
     },
     {
       "id": "recipe-leder-bestien-gluecksflicken",
@@ -6750,7 +6750,7 @@
       "xp": 35,
       "description": "Stellt her: Bestien-Glücksflicken.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Bestienglücksflicken. Die Bestie hatte kein Glück. Du hast ihres jetzt."
     },
     {
       "id": "recipe-leder-leichter-koecher",
@@ -6772,7 +6772,7 @@
       "xp": 12,
       "description": "Stellt her: Leichter Köcher.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Köcher für Pfeile die es nicht gibt. Wir haben keine Bögen. Roderic auch nicht. Aber den Köcher hat er."
     },
     {
       "id": "recipe-leder-schwerer-koecher",
@@ -6793,7 +6793,7 @@
       "xp": 22,
       "description": "Stellt her: Schwerer Köcher.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Schwererer Köcher. Für schwerere Pfeile. Die immer noch nicht existieren."
     },
     {
       "id": "recipe-leder-bestien-koecher",
@@ -6814,7 +6814,7 @@
       "xp": 35,
       "description": "Stellt her: Bestien-Köcher.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Bestienköcher. Hält Drops besser. Und sieht dabei aus als meine er es ernst."
     },
     {
       "id": "recipe-leder-kleiner-goldbeutel",
@@ -6835,7 +6835,7 @@
       "xp": 8,
       "description": "Stellt her: Kleiner Goldbeutel.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Kleiner Beutel. Hält Gold. Verliert Gold. Das Loch ist ein Feature, sagt Roderic."
     },
     {
       "id": "recipe-leder-mittlerer-goldbeutel",
@@ -6856,7 +6856,7 @@
       "xp": 18,
       "description": "Stellt her: Mittlerer Goldbeutel.",
       "trainerCost": 208,
-      "desc": ""
+      "desc": "Mittlerer Beutel. Weniger Löcher. Mehr Gold. Die Mathematik stimmt."
     },
     {
       "id": "recipe-leder-grosser-goldbeutel",
@@ -6879,7 +6879,7 @@
       "description": "Stellt her: Großer Goldbeutel.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Großer Goldbeutel. Roderic hat ihn nach sich selbst benannt. Beide sind robust."
     },
     {
       "id": "recipe-leder-urzeit-goldbeutel",
@@ -6901,7 +6901,7 @@
       "xp": 42,
       "description": "Stellt her: Urzeit-Goldbeutel.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Urzeitbeutel. Hält Gold seit Jahrhunderten. Das Gold beschwert sich nicht."
     },
     {
       "id": "recipe-leder-streakschutz",
@@ -6921,7 +6921,7 @@
       "xp": 15,
       "description": "Stellt her: Leder-Streakschutz.",
       "trainerCost": 143,
-      "desc": ""
+      "desc": "Schutz für die Streak. Aus Leder. Roderic findet es absurd. Er hat es trotzdem gemacht."
     },
     {
       "id": "recipe-leder-bestien-streakschutz",
@@ -6942,7 +6942,7 @@
       "description": "Stellt her: Bestien-Streakschutz.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Stärkerer Streakschutz. Die Bestie schützt jetzt deine Gewohnheiten. Post mortem."
     },
     {
       "id": "recipe-leder-waermendes-fell",
@@ -6962,7 +6962,7 @@
       "xp": 18,
       "description": "Stellt her: Wärmendes Fell.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Fell das wärmt. Heizt die Schmiede. Roderic versteht nicht warum. Er akzeptiert es."
     },
     {
       "id": "recipe-leder-urzeit-waermefell",
@@ -6982,7 +6982,7 @@
       "xp": 35,
       "description": "Stellt her: Urzeit-Wärmefell.",
       "trainerCost": 1300,
-      "desc": ""
+      "desc": "Urzeitwärmefell. Wärmt so gut dass Grimvar eifersüchtig wird. Auf Fell."
     },
     {
       "id": "recipe-leder-verstaerken-1",
@@ -7002,7 +7002,7 @@
       "xp": 10,
       "description": "Leder verstärken I.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Erste Verstärkung. Das Leder wird stärker. Roderic auch. Emotional."
     },
     {
       "id": "recipe-leder-verstaerken-2",
@@ -7022,7 +7022,7 @@
       "xp": 15,
       "description": "Leder verstärken II.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Zweite Verstärkung. Roderic hämmert das Leder. Das Leder hämmert zurück."
     },
     {
       "id": "recipe-leder-verstaerken-3",
@@ -7042,7 +7042,7 @@
       "xp": 22,
       "description": "Leder verstärken III.",
       "trainerCost": 375,
-      "desc": ""
+      "desc": "Dritte Verstärkung. Ab hier braucht man Kraft um das Leder zu biegen. Und Argumente."
     },
     {
       "id": "recipe-leder-verstaerken-4",
@@ -7062,7 +7062,7 @@
       "xp": 30,
       "description": "Leder verstärken IV.",
       "trainerCost": 1000,
-      "desc": ""
+      "desc": "Vierte Verstärkung. Das Leder hat aufgehört sich zu beschweren. Es hat gewonnen."
     },
     {
       "id": "recipe-leder-verstaerken-5",
@@ -7084,7 +7084,7 @@
       "description": "Leder verstärken V.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Fünfte Verstärkung. Maximale Härte. Roderic ist stolz. Das Leder ist gleichgültig."
     },
     {
       "id": "recipe-leder-tempo-1",
@@ -7104,7 +7104,7 @@
       "xp": 10,
       "description": "Tempo einarbeiten I.",
       "trainerCost": 25,
-      "desc": ""
+      "desc": "Tempo in Leder. Klingt unmöglich. Roderic hat 'unmöglich' aus seinem Wörterbuch gestrichen."
     },
     {
       "id": "recipe-leder-tempo-2",
@@ -7125,7 +7125,7 @@
       "description": "Tempo einarbeiten II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mehr Tempo. Das Leder bewegt sich schneller als sein Träger. Meistens."
     },
     {
       "id": "recipe-leder-tempo-3",
@@ -7147,7 +7147,7 @@
       "description": "Tempo einarbeiten III.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Noch mehr Tempo. Roderic sagt, das Leder habe jetzt einen eigenen Zeitplan."
     },
     {
       "id": "recipe-leder-tempo-4",
@@ -7168,7 +7168,7 @@
       "description": "Tempo einarbeiten IV.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Maximales Tempo. Das Leder ist jetzt schneller als die meisten Entscheidungen."
     },
     {
       "id": "recipe-leder-glueck-1",
@@ -7188,7 +7188,7 @@
       "xp": 12,
       "description": "Glück einarbeiten I.",
       "trainerCost": 83,
-      "desc": ""
+      "desc": "Glück in Leder gepresst. Roderic ist Pragmatiker. Und abergläubisch. Beides."
     },
     {
       "id": "recipe-leder-glueck-2",
@@ -7209,7 +7209,7 @@
       "description": "Glück einarbeiten II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mehr Glück. Das Leder zieht gute Dinge an. Und Staub. Hauptsächlich Staub."
     },
     {
       "id": "recipe-leder-glueck-3",
@@ -7231,7 +7231,7 @@
       "description": "Glück einarbeiten III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Maximales Glück. Roderic hat einmal darauf gesessen. Seitdem gewinnt er jeden Münzwurf."
     },
     {
       "id": "recipe-leder-kraft-1",
@@ -7251,7 +7251,7 @@
       "xp": 14,
       "description": "Kraft einarbeiten I.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Kraft in Leder. Roderic drückt es rein. Buchstäblich. Mit seinen Händen."
     },
     {
       "id": "recipe-leder-kraft-2",
@@ -7271,7 +7271,7 @@
       "xp": 25,
       "description": "Kraft einarbeiten II.",
       "trainerCost": 583,
-      "desc": ""
+      "desc": "Mehr Kraft. Das Leder macht den Träger stärker. Oder zumindest mutiger."
     },
     {
       "id": "recipe-leder-kraft-3",
@@ -7292,7 +7292,7 @@
       "xp": 42,
       "description": "Kraft einarbeiten III.",
       "trainerCost": 2000,
-      "desc": ""
+      "desc": "Maximale Kraft im Leder. Roderic sagt, er habe seine ganze Kraft reingesteckt. Deshalb sitzt er jetzt."
     },
     {
       "id": "process-destillat",
@@ -14864,7 +14864,7 @@
       "xp": 8,
       "trainerCost": 100,
       "description": "Stellt her: Leichtleder-Jägerkappe.",
-      "desc": ""
+      "desc": "Jägerkappe aus Leichtleder. Für Jäger die leicht reisen. Und schwer zurückkommen."
     },
     {
       "id": "recipe-lederverarbeiter-mittlere-leder-jaegerkappe",
@@ -14883,7 +14883,7 @@
       "xp": 16,
       "trainerCost": 200,
       "description": "Stellt her: Mittlere Leder-Jägerkappe.",
-      "desc": ""
+      "desc": "Mittlere Jägerkappe. Für mittlere Jäger mit mittleren Ambitionen."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-jaegerkrone",
@@ -14903,7 +14903,7 @@
       "xp": 24,
       "trainerCost": 665,
       "description": "Stellt her: Schwerleder-Jägerkrone.",
-      "desc": ""
+      "desc": "Jägerkrone aus Schwerleder. Klingt majestätisch. Riecht nach Roderic."
     },
     {
       "id": "recipe-lederverarbeiter-urzeitleder-krone",
@@ -14923,7 +14923,7 @@
       "description": "Stellt her: Urzeitleder-Krone.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Urzeitkrone. Roderic sagt, die letzte Person die sie trug war ein König. Oder ein Hirte. Die Aufzeichnungen sind unklar."
     },
     {
       "id": "recipe-lederverarbeiter-einfache-lederkappe",
@@ -14942,7 +14942,7 @@
       "xp": 8,
       "trainerCost": 135,
       "description": "Stellt her: Einfache Lederkappe.",
-      "desc": ""
+      "desc": "Einfache Kappe. Roderic hat sie in zehn Minuten gemacht. Die nächste hat drei Stunden gedauert. Fortschritt."
     },
     {
       "id": "recipe-lederverarbeiter-gehaertete-lederkappe",
@@ -14961,7 +14961,7 @@
       "xp": 16,
       "trainerCost": 220,
       "description": "Stellt her: Gehärtete Lederkappe.",
-      "desc": ""
+      "desc": "Gehärtete Kappe. Schützt den Kopf und Roderics Ruf."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-lederkappe",
@@ -14982,7 +14982,7 @@
       "description": "Stellt her: Bestien-Lederkappe.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Bestienkappe. Die Augen der Bestie starren noch. Roderic sagt, das sei Absicht."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-meisterwams",
@@ -15002,7 +15002,7 @@
       "description": "Stellt her: Bestien-Meisterwams.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Meisterwams aus Bestienleder. Roderics bestes Werk. Diese Woche."
     },
     {
       "id": "recipe-lederverarbeiter-einfacher-lederpanzer",
