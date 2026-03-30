@@ -384,7 +384,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Drop Rates" icon="◆">
                 <div className="mt-2 space-y-0.5">
-                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","3%","#a855f7"],["rare","Rare","25%","#3b82f6"],["uncommon","Uncommon","45%","#22c55e"],["common","Common","~26%","#9ca3af"]] as const).map(([,name,rate,color]) => (
+                  {(() => { const g = getBalance().gacha; return [["legendary","Legendary",`${(g.legendaryRate*100).toFixed(1)}%`,"#f97316"],["epic","Epic",`${(g.epicRate*100).toFixed(0)}%`,"#a855f7"],["rare","Rare",`${(g.rareRate*100).toFixed(0)}%`,"#3b82f6"],["uncommon","Uncommon",`${(g.uncommonRate*100).toFixed(0)}%`,"#22c55e"],["common","Common",`~${((1-g.legendaryRate-g.epicRate-g.rareRate-g.uncommonRate)*100).toFixed(0)}%`,"#9ca3af"]] as [string,string,string,string][]; })().map(([,name,rate,color]) => (
                     <div key={name} className="flex items-center gap-2">
                       <div className="h-1.5 rounded-full" style={{ background: color, width: name === "Legendary" ? "8%" : name === "Epic" ? "26%" : name === "Rare" ? "70%" : name === "Uncommon" ? "80%" : "22%", minWidth: 6 }} />
                       <span className="flex-shrink-0 w-20" style={{ color, fontWeight: 600 }}>{name}</span>
