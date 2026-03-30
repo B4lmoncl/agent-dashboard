@@ -719,7 +719,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     <div className="rounded-xl p-3 space-y-2" style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.2)" }}>
                       <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Quests that will be generated</p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
-                        {vc?.emoji} {virtualCompanionName || vc?.name} will create a daily motivational quest for you, based on their personality.
+                        {vc?.iconSrc ? <img src={vc.iconSrc} alt="" width={16} height={16} className="inline-block img-render-auto" style={{ borderRadius: 2, verticalAlign: "text-bottom" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : null} {virtualCompanionName || vc?.name} will create a daily motivational quest for you, based on their personality.
                       </p>
                     </div>
                   );
