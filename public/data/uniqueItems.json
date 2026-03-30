@@ -720,8 +720,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 45,
-      "desc": "Die Krone des Apathy Sovereign — eines gefallenen Helden, der aufgehört hat zu kämpfen. Wer sie trägt, schwört nie aufzuhören.",
-      "flavorText": "Der Thron steht leer. Du nicht.",
+      "desc": "Die Krone des Apathy Sovereign. Er hat aufgehört zu kämpfen, aufgehört zu essen, aufgehört seine Post zu öffnen. Die Krone lag neben einem Stapel unbeantworteter Briefe und einer Notiz: 'Morgen. Bestimmt.'",
+      "flavorText": "Der Thron steht leer. Der König ging irgendwann einfach weg. Nicht dramatisch. Er ist einfach... nicht mehr wiedergekommen. Die Krone wartet noch.",
       "icon": "/images/icons/equip-helm.png",
       "affixes": {
         "primary": {
@@ -785,8 +785,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "Ein Rüstungsfragment aus geronnenem Sternenlicht. Lyra sagt, sie habe es verloren. Lyra lügt manchmal.",
-      "flavorText": "Die Sterne sehen alles. Dieser Schleier lässt dich zurückblicken.",
+      "desc": "Ein Rüstungsfragment aus geronnenem Sternenlicht. Lyra sagt, sie habe es verloren. Lyra sagt viel wenn der Tag lang ist. Der Schleier sagt gar nichts, was ihn zum verlässlicheren der beiden macht.",
+      "flavorText": "Wurde aus dem Gacha gezogen. Die statistische Wahrscheinlichkeit lag bei 0,5%. Jemand hat entweder sehr viel Glück oder sehr wenig Geld übrig.",
       "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
@@ -850,8 +850,8 @@
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "Ein Schild geschmiedet aus dem Mechanismus der Schicksalskammer. Es dreht sich, immer. Und was es abwehrt, kommt verdreht zurück.",
-      "flavorText": "Das Schicksal lässt sich nicht aufhalten. Aber umlenken.",
+      "desc": "Ein Schild geschmiedet aus dem Mechanismus der Schicksalskammer. Es dreht sich permanent. Man kann es nicht an die Wand hängen. Man kann es nicht hinlegen. Es hat drei Tische ruiniert und eine Freundschaft.",
+      "flavorText": "Das Schicksal hat einen Sinn für Humor. Das Schild auch. Beide lachen auf deine Kosten.",
       "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {

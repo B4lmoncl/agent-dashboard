@@ -1140,7 +1140,7 @@
     {
       "id": "hidden_dndads",
       "name": "Daddy Magic",
-      "description": "For real facts.",
+      "description": "Echte Fakten. Die beste Art von Fakten, wenn man die Alternative bedenkt.",
       "icon": "?",
       "condition": {
         "type": "easter_egg",
@@ -1159,7 +1159,7 @@
     {
       "id": "hidden_perfectionist",
       "name": "No Quest Left Behind",
-      "description": "Complete every available quest type at least once",
+      "description": "Jeden Quest-Typ mindestens einmal. Nicht weil du perfektionistisch bist, sondern weil dir sonst nichts übrig blieb.",
       "icon": "?",
       "condition": {
         "type": "completed_all_types"
@@ -1177,7 +1177,7 @@
     {
       "id": "hidden_npc_collector",
       "name": "NPC Collector",
-      "description": "Unlock all NPCs",
+      "description": "Alle NPCs freigeschaltet. Du kennst jetzt jeden im Turm. Die meisten wünschten, das wäre anders.",
       "icon": "?",
       "condition": {
         "type": "all_npcs_unlocked"
@@ -1195,7 +1195,7 @@
     {
       "id": "hidden_gacha_addict",
       "name": "Gacha Addict",
-      "description": "Pull from the gacha 50 times",
+      "description": "50 Gacha-Pulls. Das ist keine Sucht. Das ist eine Investitionsstrategie. Eine schlechte.",
       "icon": "?",
       "condition": {
         "type": "gacha_pulls",
@@ -1214,7 +1214,7 @@
     {
       "id": "hidden_full_inventory",
       "name": "Hoarder's Dream",
-      "description": "Have 50 items in your inventory",
+      "description": "50 Items im Inventar. Du wirfst nichts weg. Du 'archivierst'. So nennst du das.",
       "icon": "?",
       "condition": {
         "type": "inventory_count",
@@ -1233,7 +1233,7 @@
     {
       "id": "hidden_legendary_pull",
       "name": "Legendary Luck",
-      "description": "Pull a legendary item from the gacha",
+      "description": "Ein Legendary aus der Gacha. Das Universum hat dir zugelächelt. Es wird nicht wieder passieren.",
       "icon": "?",
       "condition": {
         "type": "gacha_rarity_pull",
