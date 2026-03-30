@@ -2019,7 +2019,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-kettenhemd"
+        "templateId": "craft-schmied-kristall-schuppenpanzer"
       },
       "xp": 20,
       "description": "Schmiedet: Kristall-Kettenhemd.",
@@ -2342,7 +2342,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-drachenzahn-kettenhemd"
+        "templateId": "craft-schmied-abgrundstahl-brustplatte"
       },
       "xp": 28,
       "description": "Schmiedet: Drachenzahn-Kettenhemd.",
@@ -2383,7 +2383,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-aether-kettenhemd"
+        "templateId": "craft-schmied-abgrundstahl-brustplatte"
       },
       "xp": 30,
       "description": "Schmiedet: Aether-Kettenhemd.",
@@ -2402,7 +2402,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-seelen-kettenruestung"
+        "templateId": "craft-schmied-abgrundstahl-brustplatte"
       },
       "xp": 30,
       "description": "Schmiedet: Seelen-Kettenrüstung.",
@@ -3733,7 +3733,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-leinengewand"
+        "templateId": "craft-schmied-eiserne-stiefel"
       },
       "xp": 9,
       "description": "Webt: Leinengewand.",
@@ -3873,7 +3873,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-wollgewand"
+        "templateId": "craft-schmied-staehlerne-marschtreters"
       },
       "xp": 14,
       "description": "Webt: Wollgewand.",
@@ -4238,7 +4238,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-mondschein-gewand"
+        "templateId": "craft-schmied-drachenzahn-kriegsstiefel"
       },
       "xp": 25,
       "description": "Webt: Mondschein-Gewand.",
@@ -4387,7 +4387,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-aethergewand"
+        "templateId": "craft-schmied-riss-geschmiedete-beinschienen"
       },
       "xp": 34,
       "description": "Webt: Äthergewand.",
@@ -4513,7 +4513,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-runengewand"
+        "templateId": "craft-schmied-seelenstiefel-des-wanderers"
       },
       "xp": 46,
       "description": "Webt: Runengewand.",
@@ -14265,7 +14265,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-kettenpanzer"
+        "templateId": "craft-schmied-eiserner-brustpanzer"
       },
       "xp": 8,
       "trainerCost": 60,
@@ -14285,7 +14285,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-kettenpanzer"
+        "templateId": "craft-schmied-gehaerteter-plattenpanzer"
       },
       "xp": 16,
       "trainerCost": 465,
@@ -14305,7 +14305,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-drachenschuppen-kettenhemd"
+        "templateId": "craft-schmied-abgrundstahl-brustplatte"
       },
       "xp": 24,
       "description": "Stellt her: Drachenschuppen-Kettenhemd.",
@@ -14641,7 +14641,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-leinengewand-des-wanderers"
+        "templateId": "craft-schmied-eiserne-stiefel"
       },
       "xp": 8,
       "trainerCost": 40,
@@ -14661,7 +14661,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schneider-wollrobe-des-wanderers"
+        "templateId": "craft-schmied-staehlerne-marschtreters"
       },
       "xp": 16,
       "trainerCost": 448,
@@ -19667,6 +19667,70 @@
       "xp": 12,
       "description": "Verfeinert jedes Gericht. Ein Grundpfeiler der Gilde.",
       "desc": "Nährt Körper und Seele. Hauptsächlich den Körper."
+    },
+    {
+      "id": "recipe-koch-gap-130",
+      "name": "Gewürzter Eintopf",
+      "profession": "koch",
+      "reqSkill": 130,
+      "result": {
+        "type": "buff",
+        "buffType": "forge_temp",
+        "value": 8,
+        "duration": 3
+      },
+      "materials": {
+        "gewuerztes-filet": 2,
+        "scharfe-gewuerze": 1,
+        "feuerwurz": 1
+      },
+      "xp": 18,
+      "desc": "Eintopf der die Schmiede aufheizt. Bruna sagt, das sei Absicht.",
+      "source": "trainer",
+      "trainerCost": 80,
+      "cooldownMinutes": 0
+    },
+    {
+      "id": "recipe-koch-gap-140",
+      "name": "Kräuterbouillon",
+      "profession": "koch",
+      "reqSkill": 140,
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_5",
+        "questsRemaining": 5
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "scharfe-gewuerze": 1,
+        "mondblume": 1
+      },
+      "xp": 20,
+      "desc": "Bouillon die den Geist schärft. Und den Magen beruhigt.",
+      "source": "trainer",
+      "trainerCost": 100,
+      "cooldownMinutes": 0
+    },
+    {
+      "id": "recipe-vz-gap-135",
+      "name": "Fokus-Infusion",
+      "profession": "verzauberer",
+      "reqSkill": 135,
+      "result": {
+        "type": "gear_enhance",
+        "stat": "fokus",
+        "bonus": 2
+      },
+      "materials": {
+        "magische-essenz": 2,
+        "arkaner-staub": 3,
+        "runenstein": 1
+      },
+      "xp": 20,
+      "desc": "Eldric fokussiert sich. Der Gegenstand auch. Win-win.",
+      "source": "trainer",
+      "trainerCost": 120,
+      "cooldownMinutes": 0
     }
   ]
 }
