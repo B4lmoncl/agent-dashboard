@@ -1301,6 +1301,8 @@ router.post('/api/professions/favorite', requireAuth, (req, res) => {
 // ─── POST /api/professions/buy-reagent — Buy vendor reagents from trainer ───
 router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Purchase in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -1326,6 +1328,7 @@ router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
 
   saveUsers();
   res.json({ ok: true, bought: { id: reagentId, name: reagent.name, count: safeCount, totalCost }, materials: u.craftingMaterials });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── Exports (shared with schmiedekunst.js and enchanting.js) ─────────────
