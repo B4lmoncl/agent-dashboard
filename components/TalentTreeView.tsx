@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useModalBehavior } from "@/components/ModalPortal";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
+import type { ToastInput } from "@/components/ToastStack";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -71,7 +72,7 @@ export default function TalentTreeView({
   addToast,
 }: {
   onRewardCelebration?: (d: RewardCelebrationData) => void;
-  addToast?: (t: { type: string; message: string }) => void;
+  addToast?: (t: ToastInput) => void;
 }) {
   const _toast = addToast || (() => {});
   const [data, setData] = useState<TalentData | null>(null);
@@ -111,7 +112,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "success", message: `${d.node.name} freigeschaltet!` });
+        _toast({ type: "flavor", icon: "◆", message: `${d.node.name} freigeschaltet!` });
         fetchTalents();
       } else {
         _toast({ type: "error", message: d.error || "Fehler" });
@@ -135,7 +136,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "success", message: "Talent entfernt" });
+        _toast({ type: "flavor", icon: "◆", message: "Talent entfernt" });
         fetchTalents();
       } else {
         _toast({ type: "error", message: d.error || "Fehler" });
@@ -158,7 +159,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "success", message: `Alle Talente zurückgesetzt! ${d.goldSpent}g bezahlt.` });
+        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt! ${d.goldSpent}g bezahlt.` });
         setConfirmReset(false);
         fetchTalents();
       } else {
@@ -184,10 +185,11 @@ export default function TalentTreeView({
       const nodes = byRing[ring];
       const radius = RING_RADII[ring === "inner" ? 0 : ring === "middle" ? 1 : 2];
       const count = nodes.length;
-      // Sort by segment + slot for consistent positioning
+      // Sort by id suffix for consistent positioning (inner-1, inner-2, etc.)
       nodes.sort((a, b) => {
-        if (a.position.segment !== b.position.segment) return a.position.segment - b.position.segment;
-        return a.position.slot - b.position.slot;
+        const aNum = parseInt(a.id.split("-").pop() || "0", 10);
+        const bNum = parseInt(b.id.split("-").pop() || "0", 10);
+        return aNum - bNum;
       });
       for (let i = 0; i < count; i++) {
         const angle = (i / count) * Math.PI * 2 - Math.PI / 2; // Start at top

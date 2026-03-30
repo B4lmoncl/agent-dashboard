@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
+import type { ToastInput } from "@/components/ToastStack";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -47,7 +48,7 @@ export default function AdventureTomeView({
   addToast,
 }: {
   onRewardCelebration?: (data: RewardCelebrationData) => void;
-  addToast?: (t: { type: string; message: string }) => void;
+  addToast?: (t: ToastInput) => void;
 } = {}) {
   const _toast = addToast || (() => {});
   const [data, setData] = useState<TomeData | null>(null);
@@ -83,7 +84,7 @@ export default function AdventureTomeView({
       });
       const result = await r.json();
       if (r.ok) {
-        addToast?.(`Milestone claimed: ${label}`, "success");
+        _toast({ type: "flavor", message: `Milestone claimed: ${label}`, icon: "◆" });
         fetchTome();
         if (onRewardCelebration) {
           const floor = data?.floors.find(f => f.id === floorId);
@@ -98,26 +99,13 @@ export default function AdventureTomeView({
           });
         }
       } else {
-        addToast?.(result.error || "Failed to claim", "error");
+        _toast({ type: "error", message: result.error || "Failed to claim" });
       }
     } catch {
-      addToast?.("Network error", "error");
+      _toast({ type: "error", message: "Network error" });
     }
     setClaiming(null);
   };
-
-  if (!playerName) {
-    return (
-      <div
-        className="rounded-xl p-8 text-center"
-        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
-      >
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-          Log in to view the Adventure Tome.
-        </p>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
