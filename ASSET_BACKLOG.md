@@ -67,6 +67,7 @@ In WoW Classic teilen sich ~15-20 Items dasselbe Icon. Ein "Eisenschwert" und ei
 - ✅ 4 Faction Icons — `public/images/icons/faction-*.png`
 - ✅ 9 World Boss Portraits — `public/images/bosses/*.png`
 - ✅ 23 Material Icons — `public/images/icons/mat-*.png`
+- ⬜ 10 Vendor Reagent Icons — `public/images/icons/mat-{reagent}.png` (see PRIO 9 below)
 - ✅ 19 Nav Icons — `public/images/icons/nav-*.png`
 - ✅ 8 Expedition Location Icons — `public/images/icons/exp-*.png`
 - ✅ 9 Weekly Challenge Icons — `public/images/icons/wc-*.png`
@@ -141,3 +142,20 @@ Cat, Dog, Hamster, Bird, Fish, Rabbit — fehlen noch als richtige Portraits.
 |------|---------|--------|
 | `nav-talents.png` | Kopie von nav-arcanum | Circular skill tree with 3 concentric glowing rings, nodes connected by lines, dark background, fantasy RPG icon |
 | `nav-tome.png` | Kopie von nav-codex | Open ancient book with progress bar overlay, golden glow, completion percentage visible, dark background, fantasy RPG icon |
+
+### PRIO 9: Vendor Reagent Icons (10 fehlend, 128×128)
+
+**Pfad:** `public/images/icons/mat-{reagent}.png`
+
+| Reagent | Datei | Prompt |
+|---------|-------|--------|
+| Kohlestück | `mat-kohle.png` | Small dark charcoal piece, glowing ember edge, dark background, fantasy RPG crafting material icon |
+| Schmelztiegel | `mat-schmelz.png` | Small stone crucible with molten metal inside, orange glow, dark background, fantasy RPG icon |
+| Nähfaden | `mat-faden.png` | Spool of magical silver thread, slight glow, dark background, fantasy RPG crafting icon |
+| Färbemittel | `mat-farbe.png` | Small bottle of purple dye with dripping stopper, dark background, fantasy RPG icon |
+| Leere Phiole | `mat-phiole.png` | Empty glass vial with cork, clear glass with slight blue tint, dark background, fantasy RPG icon |
+| Kristallphiole | `mat-kristallphiole.png` | Crystal vial with prismatic reflections, ornate stopper, dark background, fantasy RPG icon |
+| Gewürzmischung | `mat-gewuerz.png` | Small cloth pouch of spices with herbs spilling out, warm colors, dark background, fantasy RPG icon |
+| Verzauberungstinte | `mat-tinte.png` | Inkwell with glowing purple enchanting ink, rune-etched bottle, dark background, fantasy RPG icon |
+| Lederöl | `mat-oel.png` | Small brown leather oil bottle, amber liquid, dark background, fantasy RPG crafting icon |
+| Schleifpulver | `mat-schliff.png` | Small pile of sparkling polishing powder with gemstone dust, dark background, fantasy RPG icon |
