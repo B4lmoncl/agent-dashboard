@@ -259,7 +259,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
             title: "World Boss Rewards!",
             xpEarned: 0,
             goldEarned: goldReward?.amount || 0,
-            loot: lootReward ? { name: lootReward.name || "Loot Drop", emoji: "◆", rarity: lootReward.rarity || "legendary", rarityColor: lootReward.type === "gear-drop" ? "#a855f7" : "#ff8c00" } : undefined,
+            loot: lootReward ? { name: lootReward.name || "Loot Drop", emoji: "◆", rarity: lootReward.rarity || "legendary", rarityColor: lootReward.type === "gear-drop" ? "#a855f7" : "#ff8c00", icon: lootReward.icon } : undefined,
             currencies: currencies.length > 0 ? currencies : undefined,
             flavor: d.rank ? `Rank #${d.rank} · ${d.contributionPercent}% contribution` : undefined,
           });

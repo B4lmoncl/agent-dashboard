@@ -272,7 +272,7 @@ export function useQuestActions({
           title: data.npcFinalReward ? `${questTitle} — Chain Complete!` : questTitle,
           xpEarned: data.xpEarned || 0,
           goldEarned: data.goldEarned || 0,
-          loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6" } : data.lootDrop || null,
+          loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6", icon: data.npcFinalReward.icon } : data.lootDrop || null,
           achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
           ...(currencies.length > 0 ? { currencies } : {}),
           ...(data.npcFinalReward ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` } : {}),
