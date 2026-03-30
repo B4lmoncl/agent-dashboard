@@ -653,7 +653,7 @@
       "category": "hidden",
       "hidden": true,
       "points": 100,
-      "desc": "Accumulate 1000 gold."
+      "desc": "1000 Gold. Genug für einen Neuanfang oder einen sehr teuren Fehler."
     },
     {
       "id": "centurion",
@@ -672,7 +672,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 50,
-      "desc": "Complete 200 quests."
+      "desc": "200 Quests. Respekt oder professionelle Hilfe. Die Grenze ist fließend."
     },
     {
       "id": "master",
@@ -691,7 +691,7 @@
       "category": "milestone",
       "hidden": false,
       "points": 100,
-      "desc": "Complete 500 quests."
+      "desc": "500 Quests. Die Halle kennt deinen Namen. Die Halle hat Angst vor deinem Namen."
     },
     {
       "id": "hermit",
@@ -711,7 +711,7 @@
       "category": "variety",
       "hidden": false,
       "points": 25,
-      "desc": "Complete 25 personal quests."
+      "desc": "25 persönliche Quests. Etwas für dich getan und es als Arbeit deklariert. Clever."
     },
     {
       "id": "boss_hunter",
@@ -730,7 +730,7 @@
       "category": "boss",
       "hidden": false,
       "points": 50,
-      "desc": "Defeat 5 world bosses."
+      "desc": "5 Weltbosse. Du tauchst bei jedem Boss-Fight auf. Die Bosse erkennen dich."
     },
     {
       "id": "boss_legend",
@@ -749,7 +749,7 @@
       "category": "boss",
       "hidden": false,
       "points": 100,
-      "desc": "Defeat 20 world bosses."
+      "desc": "20 Weltbosse. Ein berufliches Verhältnis zum Monstertöten."
     },
     {
       "id": "two_week_warrior",
@@ -768,7 +768,7 @@
       "category": "streak",
       "hidden": false,
       "points": 10,
-      "desc": "Maintain a 14-day streak."
+      "desc": "14 Tage. Lang genug für eine Gewohnheit, kurz genug für Ausreden."
     },
     {
       "id": "quarter_year",
