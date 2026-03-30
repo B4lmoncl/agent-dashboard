@@ -15021,7 +15021,7 @@
       "xp": 8,
       "trainerCost": 45,
       "description": "Stellt her: Einfacher Lederpanzer.",
-      "desc": ""
+      "desc": "Lederpanzer für Anfänger. Roderic hat 'Anfänger' in Anführungszeichen gesetzt. Niemand weiß warum."
     },
     {
       "id": "recipe-lederverarbeiter-gehaerteter-lederpanzer",
@@ -15040,7 +15040,7 @@
       "xp": 16,
       "description": "Stellt her: Gehärteter Lederpanzer.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Gehärteter Panzer. Das Leder hat sich gegen die Härtung gewehrt. Das Leder hat verloren."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-lederwams",
@@ -15061,7 +15061,7 @@
       "description": "Stellt her: Bestien-Lederwams.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Bestienwams für fortgeschrittene Jäger. Oder für Anfänger mit zu viel Gold."
     },
     {
       "id": "recipe-lederverarbeiter-urzeitleder-panzer",
@@ -15081,7 +15081,7 @@
       "description": "Stellt her: Urzeitleder-Panzer.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Panzer aus Urzeitleder. Schützt vor allem. Einschließlich moderner Ideen."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-wams",
@@ -15100,7 +15100,7 @@
       "xp": 8,
       "trainerCost": 123,
       "description": "Stellt her: Leichtleder-Wams.",
-      "desc": ""
+      "desc": "Wams aus Leichtleder. Leicht genug zum Rennen. Stark genug um anzukommen."
     },
     {
       "id": "recipe-lederverarbeiter-mittleres-leder-wams",
@@ -15119,7 +15119,7 @@
       "xp": 16,
       "trainerCost": 458,
       "description": "Stellt her: Mittleres Leder-Wams.",
-      "desc": ""
+      "desc": "Mittleres Wams. Nicht zu leicht, nicht zu schwer. Roderic nennt es den goldenen Schnitt. Des Leders."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-jagdpanzer",
@@ -15140,7 +15140,7 @@
       "description": "Stellt her: Schwerleder-Jagdpanzer.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Schwerer Jagdpanzer. Die Beute sieht dich trotzdem. Aber sie respektiert dich."
     },
     {
       "id": "recipe-lederverarbeiter-urzeitleder-stiefel",
@@ -15160,7 +15160,7 @@
       "description": "Stellt her: Urzeitleder-Stiefel.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Urzeitstiefel. Haben mehr Kilometer als die meisten Wanderer. Und mehr Meinungen."
     },
     {
       "id": "recipe-lederverarbeiter-einfache-lederschuhe",
@@ -15179,7 +15179,7 @@
       "xp": 8,
       "trainerCost": 45,
       "description": "Stellt her: Einfache Lederschuhe.",
-      "desc": ""
+      "desc": "Die einfachsten Schuhe die Roderic macht. Er braucht drei Minuten. Und eine Woche Stolz."
     },
     {
       "id": "recipe-lederverarbeiter-gehaertete-lederschuhe",
@@ -15199,7 +15199,7 @@
       "xp": 16,
       "trainerCost": 283,
       "description": "Stellt her: Gehärtete Lederschuhe.",
-      "desc": ""
+      "desc": "Gehärtete Schuhe. Geben nicht nach. Weder dem Boden noch dem Träger."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-treter",
@@ -15220,7 +15220,7 @@
       "description": "Stellt her: Bestien-Treter.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Bestientreter. Die Bestie konnte nicht mehr davonlaufen. Du schon."
     },
     {
       "id": "recipe-lederverarbeiter-raues-leder-marsch",
@@ -15240,7 +15240,7 @@
       "description": "Stellt her: Raues Leder-Marsch.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Raues Leder für den letzten Marsch. Roderic sagt, man braucht nur ein Paar. Er meint es wörtlich."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-stiefel",
@@ -15259,7 +15259,7 @@
       "xp": 8,
       "trainerCost": 65,
       "description": "Stellt her: Leichtleder-Stiefel.",
-      "desc": ""
+      "desc": "Leichtleder-Stiefel. Roderics Einstiegswerk. Er ist seitdem besser geworden. Behauptet er."
     },
     {
       "id": "recipe-lederverarbeiter-mittlere-leder-stiefel",
@@ -15279,7 +15279,7 @@
       "description": "Stellt her: Mittlere Leder-Stiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mittlere Stiefel. Roderic sagt, mittel sei perfekt. Für Leute die nicht wissen was sie wollen."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-jagdstiefel",
@@ -15299,7 +15299,7 @@
       "xp": 24,
       "description": "Stellt her: Schwerleder-Jagdstiefel.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Jagdstiefel aus Schwerleder. Die Jagd dauert kürzer als das Gerben."
     },
     {
       "id": "process-geschliffen",
@@ -18821,7 +18821,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leichtleder Kappe II.",
-      "desc": ""
+      "desc": "Leichtleder-Kappe, Version zwei. Roderic hat den Fehler von Version eins gefunden. Er war Roderic."
     },
     {
       "id": "recipe-lederverarbeiter-mittelleder-robe-ii",
@@ -18840,7 +18840,7 @@
       "xp": 16,
       "trainerCost": 200,
       "description": "Stellt her: Mittelleder Robe II.",
-      "desc": ""
+      "desc": "Mittlere Lederrobe, Neuauflage. Weniger Kratzen, mehr Komfort. Gleicher Geruch."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-marschtritt-ii",
@@ -18860,7 +18860,7 @@
       "description": "Stellt her: Schwerleder Marschtritt II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Marschtritt aus Schwerleder, verbessert. Der Boden weint leiser."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-haube-ii",
@@ -18879,7 +18879,7 @@
       "xp": 32,
       "trainerCost": 1500,
       "description": "Stellt her: Bestien Haube II.",
-      "desc": ""
+      "desc": "Bestienhaube, überarbeitet. Die Augen starren jetzt in beide Richtungen."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-mantel-ii",
@@ -18898,7 +18898,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leichtleder Mantel II.",
-      "desc": ""
+      "desc": "Leichtledermantel, Version zwei. Fließt besser. Riecht gleich."
     },
     {
       "id": "recipe-lederverarbeiter-mittelleder-stiefel-ii",
@@ -18919,7 +18919,7 @@
       "description": "Stellt her: Mittelleder Stiefel II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Mittlere Stiefel, Mark II. Roderic hat die Sohle erneuert. Und die Einstellung."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-helm-ii",
@@ -18939,7 +18939,7 @@
       "description": "Stellt her: Schwerleder Helm II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Schwerlederhelm, aktualisiert. Schützt jetzt auch vor Roderics Blick. Fast."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-platte-ii",
@@ -18958,7 +18958,7 @@
       "xp": 32,
       "description": "Stellt her: Bestien Platte II.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Bestienplatte, verbessert. Die Bestie wäre beeindruckt. Wenn sie noch könnte."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-treter-ii",
@@ -18977,7 +18977,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leichtleder Treter II.",
-      "desc": ""
+      "desc": "Treter, zweite Generation. Mehr Tritt, weniger Geräusch."
     },
     {
       "id": "recipe-lederverarbeiter-mittelleder-visier-ii",
@@ -18997,7 +18997,7 @@
       "xp": 16,
       "trainerCost": 200,
       "description": "Stellt her: Mittelleder Visier II.",
-      "desc": ""
+      "desc": "Mittleres Visier, überarbeitet. Man sieht jetzt auch um Ecken. Nicht wirklich. Aber fast."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-panzer-ii",
@@ -19016,7 +19016,7 @@
       "xp": 24,
       "description": "Stellt her: Schwerleder Panzer II.",
       "factionId": "pakt_der_wildnis",
-      "desc": ""
+      "desc": "Schwerer Panzer, Version zwei. Roderic hat ein Kilo abgenommen. Vom Panzer, nicht von sich."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-schuhe-ii",
@@ -19035,7 +19035,7 @@
       "xp": 32,
       "description": "Stellt her: Bestien Schuhe II.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Bestienschuhe, verbessert. Die Bestie hat jetzt weniger Schuppen. Am Schuh."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-schleier-iii",
@@ -19054,7 +19054,7 @@
       "xp": 8,
       "description": "Stellt her: Leichtleder Schleier III.",
       "factionId": "bund_der_schatten",
-      "desc": ""
+      "desc": "Schleier, dritte Auflage. Verbirgt jetzt auch die Enttäuschung über den Preis der ersten beiden."
     },
     {
       "id": "recipe-lederverarbeiter-mittelleder-wams-iii",
@@ -19074,7 +19074,7 @@
       "description": "Stellt her: Mittelleder Wams III.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Wams, dritte Version. Roderic sagt drei sei seine Glückszahl. Stimmt nicht. Aber klingt gut."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-sandalen-iii",
@@ -19093,7 +19093,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Schwerleder Sandalen III.",
-      "desc": ""
+      "desc": "Schwere Sandalen. Ein Oxymoron das Roderic persönlich verteidigt."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-kappe-iii",
@@ -19113,7 +19113,7 @@
       "description": "Stellt her: Bestien Kappe III.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": ""
+      "desc": "Bestienkappe, Version drei. Die Augen leuchten jetzt. Im Dunkeln. Ungefragt."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-robe-iii",
@@ -19132,7 +19132,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Leichtleder Robe III.",
-      "desc": ""
+      "desc": "Lederrobe, dritte Auflage. Roderic hat aufgehört zu erklären warum Leder eine Robe braucht."
     },
     {
       "id": "recipe-lederverarbeiter-mittelleder-marschtritt-iii",
@@ -19151,7 +19151,7 @@
       "xp": 16,
       "description": "Stellt her: Mittelleder Marschtritt III.",
       "factionId": "orden_der_klinge",
-      "desc": ""
+      "desc": "Marschtritt, Version drei. Der Marsch endet nie. Die Stiefel auch nicht."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-haube-iii",
@@ -19170,7 +19170,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Schwerleder Haube III.",
-      "desc": ""
+      "desc": "Haube aus Schwerleder, dritte Version. Schwerer als nötig. Sicherer als erhofft. Typisch Roderic."
     },
     {
       "id": "recipe-lederverarbeiter-bestien-mantel-iii",
@@ -19189,7 +19189,7 @@
       "xp": 32,
       "trainerCost": 1500,
       "description": "Stellt her: Bestien Mantel III.",
-      "desc": ""
+      "desc": "Bestienmantel, finales Design. Roderic weigert sich einen vierten zu machen. Bis nächste Woche."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-stiefel-iii",
@@ -19209,7 +19209,7 @@
       "description": "Stellt her: Leichtleder Stiefel III.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": ""
+      "desc": "Leichtstiefel, dritte Generation. Roderic hat sie perfektioniert. Sagt er. Wie bei Version zwei."
     },
     {
       "id": "recipe-schmied-abgrundstahl-brustplatte",
@@ -19324,7 +19324,7 @@
       "description": "Gerbt: Gruftgeschnittene Armschienen. Die Gerber schweigen über die Herkunft. Die Armschienen auch.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Geschnitten aus Leder das in einer Gruft lag. Das Leder hat Geschichten. Keine davon hat ein Happy End."
     },
     {
       "id": "recipe-leder-risslaeufer-stiefel",
@@ -19347,7 +19347,7 @@
       "description": "Gerbt: Rissläufer-Stiefel. Hervorragende Traktion auf instabiler Realität. Auch gut auf Kopfsteinpflaster.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic",
-      "desc": ""
+      "desc": "Stiefel für den Riss. Das Leder wurde dort gegerbt wo die Realität aufgehört hat Regeln zu setzen."
     },
     {
       "id": "recipe-waffenschmied-untiefen-klinge",
@@ -19603,7 +19603,7 @@
       },
       "xp": 8,
       "description": "Gerbt rohes Leichtleder zu verarbeitetem Material.",
-      "desc": ""
+      "desc": "Gerben ist Geduld in flüssiger Form. Roderic hat davon genug. Von der Geduld, nicht vom Leder."
     },
     {
       "id": "cure_mittleresleder",
@@ -19624,7 +19624,7 @@
       },
       "xp": 12,
       "description": "Gerbt mittleres Leder zu einem geschmeidigen Material.",
-      "desc": ""
+      "desc": "Mittleres Leder gerben. Braucht mehr Salz. Und mehr Stille. Beides hat Roderic."
     },
     {
       "id": "prepare_gewuerzmischung",
