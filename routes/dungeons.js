@@ -13,7 +13,7 @@ const _collectLocks = new Map();
 function acquireCollectLock(uid) { if (_collectLocks.has(uid)) return false; _collectLocks.set(uid, true); return true; }
 function releaseCollectLock(uid) { _collectLocks.delete(uid); }
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir, logActivity } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers, rollCraftingMaterials } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { createPlayerLock } = require('../lib/helpers');
 const dungeonJoinLock = createPlayerLock('dungeon-join');
@@ -186,6 +186,19 @@ function applyDungeonRewards(userId, rewards) {
         u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
       }
     }
+  }
+
+  // Profession-aware material drops via rollCraftingMaterials (content-tier based on dungeon tier)
+  const dungeonTierMap = { normal: 2, hard: 3, legendary: 4 };
+  const dungeonContentTier = dungeonTierMap[rewards._dungeonTier] || 2;
+  const dungeonMods = getLegendaryModifiers(userId);
+  const dungeonMats = rollCraftingMaterials(null, dungeonMods.materialDoubleChance || 0, u, userId, dungeonContentTier);
+  if (dungeonMats.length > 0) {
+    if (!u.craftingMaterials) u.craftingMaterials = {};
+    for (const mat of dungeonMats) {
+      u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + mat.amount;
+    }
+    rewards.professionMaterials = dungeonMats;
   }
 }
 
@@ -569,6 +582,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Roll individual rewards (each player gets own rolls)
   const rewards = rollDungeonRewards(dungeon, isSuccess);
+  rewards._dungeonTier = dungeon.tier; // Pass tier for profession material drops
 
   // Apply legendary dungeon loot bonus to gold/essenz
   const dungeonMods = getLegendaryModifiers(uid);

@@ -7,7 +7,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir, logActivity } = require('../lib/state');
-const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
+const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock, rollCraftingMaterials, getLegendaryModifiers } = require('../lib/helpers');
 const wbClaimLock = createPlayerLock('wb-claim');
 const wbBoostLock = createPlayerLock('wb-boost');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
@@ -528,6 +528,18 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   user.craftingMaterials = user.craftingMaterials || {};
   user.craftingMaterials.seelensplitter = (user.craftingMaterials.seelensplitter || 0) + 1;
   rewards.push({ type: 'material', name: 'Seelensplitter', materialId: 'seelensplitter', amount: 1 });
+
+  // ── Crafting material drops (content-tier based on boss tier) ──
+  const bossTierMap = { champion: 4, titan: 5, colossus: 5 };
+  const wbContentTier = bossTierMap[template?.tier] || 4;
+  const wbLegendaryMods = getLegendaryModifiers(uid);
+  const wbMats = rollCraftingMaterials(null, wbLegendaryMods.materialDoubleChance || 0, user, uid, wbContentTier);
+  if (wbMats.length > 0) {
+    for (const mat of wbMats) {
+      user.craftingMaterials[mat.id] = (user.craftingMaterials[mat.id] || 0) + mat.amount;
+      rewards.push({ type: 'material', name: mat.id, materialId: mat.id, amount: mat.amount });
+    }
+  }
 
   // ── Bonus stardust for high contributors ──
   if (contributionPercent >= 0.1) {
