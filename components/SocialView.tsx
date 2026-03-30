@@ -747,6 +747,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const [newTradeGold, setNewTradeGold] = useState(0);
   const [newTradeMsg, setNewTradeMsg] = useState("");
   const [newTradeItems, setNewTradeItems] = useState<string[]>([]);
+  const [newTradeMaterials, setNewTradeMaterials] = useState<Record<string, number>>({});
 
   // Counter-offer form
   const [counterGold, setCounterGold] = useState(0);
@@ -793,7 +794,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" },
         body: JSON.stringify({
           to: newTradeTarget.trim(),
-          offer: { gold: newTradeGold, items: newTradeItems },
+          offer: { gold: newTradeGold, items: newTradeItems, materials: Object.keys(newTradeMaterials).length > 0 ? newTradeMaterials : undefined },
           message: newTradeMsg.trim(),
         }),
       });
@@ -1067,6 +1068,47 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
               className="input-dark w-full text-xs px-3 py-2 rounded-lg"
             />
           </div>
+          {/* Materials offer */}
+          {(() => {
+            const mats = loggedInUser?.craftingMaterials || {};
+            const matEntries = Object.entries(mats).filter(([, count]) => (count as number) > 0);
+            if (matEntries.length === 0) return null;
+            return (
+              <div>
+                <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
+                <div className="flex flex-wrap gap-1">
+                  {matEntries.slice(0, 12).map(([id, count]) => {
+                    const offered = newTradeMaterials[id] || 0;
+                    return (
+                      <button
+                        key={id}
+                        onClick={() => {
+                          setNewTradeMaterials(prev => {
+                            const next = { ...prev };
+                            if (!next[id]) next[id] = 1;
+                            else if (next[id] >= (count as number)) delete next[id];
+                            else next[id]++;
+                            return next;
+                          });
+                        }}
+                        className="text-xs px-2 py-1 rounded"
+                        style={{
+                          background: offered > 0 ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
+                          color: offered > 0 ? "#a78bfa" : "rgba(255,255,255,0.4)",
+                          border: `1px solid ${offered > 0 ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
+                          cursor: "pointer",
+                        }}
+                        title={`Click to add/increase. ${count} available.`}
+                      >
+                        {id.replace(/-/g, " ")} {offered > 0 ? `×${offered}` : ""}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
+
           {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
           <div className="flex gap-2">
             <button
@@ -1078,7 +1120,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
             >
               Send Proposal
             </button>
-            <button onClick={() => { setShowNewTrade(false); setError(null); setNewTradeItems([]); }} className="btn-interactive text-xs px-4 py-2 rounded-lg text-w30">Cancel</button>
+            <button onClick={() => { setShowNewTrade(false); setError(null); setNewTradeItems([]); setNewTradeMaterials({}); }} className="btn-interactive text-xs px-4 py-2 rounded-lg text-w30">Cancel</button>
           </div>
         </div>
       )}
