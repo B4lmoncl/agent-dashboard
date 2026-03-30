@@ -1863,9 +1863,8 @@
       "source": "drop",
       "reqSkill": 102,
       "materials": {
-        "kristallsplitter": 1,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 1
       },
       "result": {
         "type": "craft_gear",
@@ -1883,9 +1882,8 @@
       "source": "drop",
       "reqSkill": 105,
       "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -1903,9 +1901,8 @@
       "source": "drop",
       "reqSkill": 112,
       "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -1923,9 +1920,8 @@
       "source": "drop",
       "reqSkill": 115,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -1943,9 +1939,8 @@
       "source": "drop",
       "reqSkill": 121,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -1963,9 +1958,8 @@
       "source": "drop",
       "reqSkill": 124,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -1983,9 +1977,8 @@
       "source": "faction",
       "reqSkill": 136,
       "materials": {
-        "kristallsplitter": 3,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -2003,9 +1996,8 @@
       "source": "faction",
       "reqSkill": 142,
       "materials": {
-        "kristallsplitter": 3,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -2023,9 +2015,8 @@
       "source": "drop",
       "reqSkill": 145,
       "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 2,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -2255,9 +2246,8 @@
       "source": "drop",
       "reqSkill": 202,
       "materials": {
-        "drachenstahl": 3,
-        "drachenkern": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -2275,9 +2265,8 @@
       "source": "faction",
       "reqSkill": 205,
       "materials": {
-        "drachenstahl": 3,
-        "drachenkern": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -2295,9 +2284,8 @@
       "source": "faction",
       "reqSkill": 208,
       "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -3716,8 +3704,8 @@
       "source": "trainer",
       "reqSkill": 75,
       "materials": {
-        "wollstoff": 2,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3734,8 +3722,8 @@
       "source": "drop",
       "reqSkill": 81,
       "materials": {
-        "wollstoff": 2,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3753,9 +3741,9 @@
       "source": "trainer",
       "reqSkill": 87,
       "materials": {
-        "wollstoff": 1,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3772,9 +3760,9 @@
       "source": "trainer",
       "reqSkill": 93,
       "materials": {
-        "wollstoff": 1,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3791,9 +3779,9 @@
       "source": "drop",
       "reqSkill": 112,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3811,9 +3799,9 @@
       "source": "drop",
       "reqSkill": 115,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3831,9 +3819,9 @@
       "source": "drop",
       "reqSkill": 124,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3851,8 +3839,7 @@
       "source": "faction",
       "reqSkill": 133,
       "materials": {
-        "wollstoff": 4,
-        "wollballen": 1,
+        "wollballen": 2,
         "seidenfaden": 1
       },
       "result": {
@@ -3871,9 +3858,9 @@
       "source": "faction",
       "reqSkill": 136,
       "materials": {
-        "wollstoff": 3,
         "leinenballen": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3891,8 +3878,7 @@
       "source": "faction",
       "reqSkill": 139,
       "materials": {
-        "wollstoff": 4,
-        "wollballen": 1,
+        "wollballen": 2,
         "seidenfaden": 1
       },
       "result": {
@@ -3911,9 +3897,9 @@
       "source": "faction",
       "reqSkill": 142,
       "materials": {
-        "wollstoff": 3,
         "leinenballen": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3931,9 +3917,9 @@
       "source": "drop",
       "reqSkill": 145,
       "materials": {
-        "wollstoff": 3,
         "leinenballen": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3951,7 +3937,6 @@
       "source": "trainer",
       "reqSkill": 150,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "sternenlichtfarbe": 1,
         "seidenfaden": 1
@@ -3971,7 +3956,6 @@
       "source": "drop",
       "reqSkill": 153,
       "materials": {
-        "seidenstoff": 1,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -3991,7 +3975,6 @@
       "source": "trainer",
       "reqSkill": 156,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "sternenlichtfarbe": 1,
         "seidenfaden": 1
@@ -4011,7 +3994,6 @@
       "source": "trainer",
       "reqSkill": 159,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "sternenlichtfarbe": 1,
         "seidenfaden": 1
@@ -4031,7 +4013,6 @@
       "source": "faction",
       "reqSkill": 165,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "sternenlichtfarbe": 1,
         "seidenfaden": 1
@@ -4051,7 +4032,6 @@
       "source": "trainer",
       "reqSkill": 177,
       "materials": {
-        "seidenstoff": 3,
         "seidenballen": 1,
         "sternenlichtfarbe": 1,
         "seidenfaden": 1
@@ -4071,7 +4051,6 @@
       "source": "drop",
       "reqSkill": 180,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -4091,7 +4070,6 @@
       "source": "drop",
       "reqSkill": 187,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -4111,7 +4089,6 @@
       "source": "drop",
       "reqSkill": 190,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -4131,7 +4108,6 @@
       "source": "drop",
       "reqSkill": 193,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -4151,7 +4127,6 @@
       "source": "drop",
       "reqSkill": 202,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "runenfaden": 1
       },
@@ -4171,8 +4146,7 @@
       "source": "drop",
       "reqSkill": 220,
       "materials": {
-        "seidenstoff": 4,
-        "seidenballen": 1,
+        "seidenballen": 2,
         "sternenlichtfarbe": 1,
         "runenfaden": 1
       },
@@ -4192,11 +4166,11 @@
       "source": "faction",
       "reqSkill": 228,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
         "magiestoffballen": 1,
         "seelensplitter": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4213,10 +4187,10 @@
       "source": "drop",
       "reqSkill": 230,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
         "magiestoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4234,11 +4208,11 @@
       "source": "faction",
       "reqSkill": 240,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
         "magiestoffballen": 1,
         "seelensplitter": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4255,10 +4229,10 @@
       "source": "drop",
       "reqSkill": 245,
       "materials": {
-        "magiestoff": 3,
         "arkanerfaden": 1,
         "magiestoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4276,9 +4250,9 @@
       "source": "drop",
       "reqSkill": 253,
       "materials": {
-        "magiestoff": 2,
         "magiestoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4296,9 +4270,9 @@
       "source": "drop",
       "reqSkill": 255,
       "materials": {
-        "magiestoff": 2,
         "magiestoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4316,9 +4290,9 @@
       "source": "drop",
       "reqSkill": 258,
       "materials": {
-        "magiestoff": 2,
         "magiestoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4396,9 +4370,9 @@
       "source": "faction",
       "reqSkill": 288,
       "materials": {
-        "magiestoff": 3,
         "magiestoffballen": 1,
-        "runenfaden": 2
+        "runenfaden": 2,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -4458,9 +4432,9 @@
       "source": "drop",
       "reqSkill": 295,
       "materials": {
-        "magiestoff": 3,
         "magiestoffballen": 1,
-        "runenfaden": 2
+        "runenfaden": 2,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5501,8 +5475,8 @@
       "source": "faction",
       "reqSkill": 55,
       "materials": {
-        "leichtesleder": 4,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -5520,8 +5494,8 @@
       "source": "faction",
       "reqSkill": 59,
       "materials": {
-        "leichtesleder": 3,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "gehaertetes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5539,8 +5513,8 @@
       "source": "drop",
       "reqSkill": 70,
       "materials": {
-        "leichtesleder": 4,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -5674,9 +5648,10 @@
       "source": "trainer",
       "reqSkill": 102,
       "materials": {
-        "mittleresleder": 3,
         "geheiltesmittleresleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2,
+        "mittleresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5693,9 +5668,10 @@
       "source": "drop",
       "reqSkill": 115,
       "materials": {
-        "mittleresleder": 3,
         "geheiltesmittleresleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2,
+        "mittleresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5713,9 +5689,8 @@
       "source": "drop",
       "reqSkill": 118,
       "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -5733,9 +5708,8 @@
       "source": "faction",
       "reqSkill": 139,
       "materials": {
-        "mittleresleder": 3,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 3
       },
       "result": {
         "type": "craft_gear",
@@ -5753,9 +5727,8 @@
       "source": "faction",
       "reqSkill": 142,
       "materials": {
-        "mittleresleder": 3,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 3
       },
       "result": {
         "type": "craft_gear",
@@ -5773,9 +5746,10 @@
       "source": "drop",
       "reqSkill": 145,
       "materials": {
-        "mittleresleder": 4,
         "geheiltesmittleresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 3,
+        "mittleresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5793,10 +5767,10 @@
       "source": "trainer",
       "reqSkill": 165,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
         "salzgerbung": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5813,10 +5787,10 @@
       "source": "drop",
       "reqSkill": 171,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
         "salzgerbung": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5834,9 +5808,9 @@
       "source": "trainer",
       "reqSkill": 174,
       "materials": {
-        "schweresleder": 1,
         "gehaertetesschwerleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5853,9 +5827,9 @@
       "source": "drop",
       "reqSkill": 180,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5873,9 +5847,9 @@
       "source": "drop",
       "reqSkill": 187,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5893,10 +5867,11 @@
       "source": "drop",
       "reqSkill": 190,
       "materials": {
-        "schweresleder": 3,
         "gehaertetesschwerleder": 1,
         "salzgerbung": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1,
+        "schweresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5914,10 +5889,11 @@
       "source": "faction",
       "reqSkill": 205,
       "materials": {
-        "schweresleder": 4,
         "gehaertetesschwerleder": 1,
         "salzgerbung": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 2,
+        "schweresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5935,9 +5911,9 @@
       "source": "faction",
       "reqSkill": 208,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5955,10 +5931,11 @@
       "source": "faction",
       "reqSkill": 214,
       "materials": {
-        "schweresleder": 4,
         "gehaertetesschwerleder": 1,
         "salzgerbung": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 2,
+        "schweresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5976,9 +5953,10 @@
       "source": "faction",
       "reqSkill": 217,
       "materials": {
-        "schweresleder": 3,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1,
+        "schweresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5996,10 +5974,11 @@
       "source": "drop",
       "reqSkill": 220,
       "materials": {
-        "schweresleder": 4,
         "gehaertetesschwerleder": 1,
         "salzgerbung": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 2,
+        "schweresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -6017,9 +5996,10 @@
       "source": "drop",
       "reqSkill": 223,
       "materials": {
-        "schweresleder": 3,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1,
+        "schweresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -7414,9 +7394,10 @@
       "source": "trainer",
       "reqSkill": 100,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "kraeuterbuendel": 2,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7435,9 +7416,10 @@
       "source": "trainer",
       "reqSkill": 107,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "kraeuterbuendel": 2,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7456,9 +7438,10 @@
       "source": "drop",
       "reqSkill": 114,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "kraeuterbuendel": 3,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7478,9 +7461,10 @@
       "source": "drop",
       "reqSkill": 130,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "runenstein": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7500,9 +7484,10 @@
       "source": "drop",
       "reqSkill": 133,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "runenstein": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7522,9 +7507,10 @@
       "source": "drop",
       "reqSkill": 136,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "runenstein": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7544,9 +7530,10 @@
       "source": "drop",
       "reqSkill": 139,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "runenstein": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7566,9 +7553,10 @@
       "source": "drop",
       "reqSkill": 142,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "runenstein": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7588,9 +7576,10 @@
       "source": "drop",
       "reqSkill": 190,
       "materials": {
-        "mondblume": 4,
+        "mondblume": 2,
         "phoenixfeder": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7610,9 +7599,10 @@
       "source": "drop",
       "reqSkill": 193,
       "materials": {
-        "mondblume": 4,
+        "mondblume": 2,
         "phoenixfeder": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7632,9 +7622,10 @@
       "source": "drop",
       "reqSkill": 196,
       "materials": {
-        "mondblume": 4,
+        "mondblume": 2,
         "phoenixfeder": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7654,9 +7645,10 @@
       "source": "drop",
       "reqSkill": 199,
       "materials": {
-        "mondblume": 4,
+        "mondblume": 2,
         "phoenixfeder": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -7676,9 +7668,9 @@
       "source": "drop",
       "reqSkill": 202,
       "materials": {
-        "mondblume": 4,
         "phoenixfeder": 1,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7699,8 +7691,8 @@
       "reqSkill": 260,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7721,8 +7713,8 @@
       "reqSkill": 263,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7743,8 +7735,8 @@
       "reqSkill": 266,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7765,8 +7757,8 @@
       "reqSkill": 269,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7787,8 +7779,8 @@
       "reqSkill": 272,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7811,9 +7803,9 @@
       "reqSkill": 240,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 4,
         "runenstein": 2,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7834,9 +7826,9 @@
       "reqSkill": 250,
       "materials": {
         "phoenixfeder": 2,
-        "mondblume": 3,
         "runenstein": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7857,8 +7849,8 @@
       "reqSkill": 260,
       "materials": {
         "phoenixfeder": 3,
-        "mondblume": 4,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7880,8 +7872,9 @@
       "materials": {
         "phoenixfeder": 3,
         "runenstein": 3,
-        "mondblume": 2,
-        "kristallphiole": 2
+        "mondblume": 1,
+        "kristallphiole": 2,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7902,9 +7895,9 @@
       "reqSkill": 285,
       "materials": {
         "phoenixfeder": 4,
-        "mondblume": 4,
         "runenstein": 2,
-        "kristallphiole": 2
+        "kristallphiole": 2,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -7926,9 +7919,9 @@
       "reqSkill": 295,
       "materials": {
         "phoenixfeder": 5,
-        "mondblume": 5,
         "runenstein": 3,
-        "kristallphiole": 2
+        "kristallphiole": 2,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -8518,8 +8511,8 @@
       "reqSkill": 225,
       "materials": {
         "phoenixfeder": 1,
-        "mondblume": 3,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -8636,9 +8629,10 @@
       "source": "drop",
       "reqSkill": 160,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "magiestaub": 2,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -8658,9 +8652,10 @@
       "source": "trainer",
       "reqSkill": 180,
       "materials": {
-        "mondblume": 3,
+        "mondblume": 1,
         "runenstein": 1,
-        "blei-phiole": 1
+        "blei-phiole": 1,
+        "mondessenz": 1
       },
       "result": {
         "type": "buff",
@@ -8701,9 +8696,9 @@
       "reqSkill": 230,
       "materials": {
         "phoenixfeder": 1,
-        "mondblume": 4,
         "runenstein": 1,
-        "kristallphiole": 1
+        "kristallphiole": 1,
+        "aetheressenz": 1
       },
       "result": {
         "type": "buff",
@@ -12118,9 +12113,8 @@
       "source": "trainer",
       "reqSkill": 102,
       "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12137,9 +12131,8 @@
       "source": "drop",
       "reqSkill": 105,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -12157,9 +12150,8 @@
       "source": "drop",
       "reqSkill": 108,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -12177,9 +12169,8 @@
       "source": "drop",
       "reqSkill": 112,
       "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12197,9 +12188,8 @@
       "source": "drop",
       "reqSkill": 115,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -12217,9 +12207,8 @@
       "source": "drop",
       "reqSkill": 118,
       "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12237,9 +12226,8 @@
       "source": "drop",
       "reqSkill": 121,
       "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12257,9 +12245,8 @@
       "source": "drop",
       "reqSkill": 124,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -12277,9 +12264,8 @@
       "source": "drop",
       "reqSkill": 127,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -12297,9 +12283,8 @@
       "source": "faction",
       "reqSkill": 130,
       "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12317,9 +12302,8 @@
       "source": "faction",
       "reqSkill": 133,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -12337,9 +12321,8 @@
       "source": "faction",
       "reqSkill": 136,
       "materials": {
-        "kristallsplitter": 3,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12357,9 +12340,8 @@
       "source": "faction",
       "reqSkill": 139,
       "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12377,9 +12359,8 @@
       "source": "faction",
       "reqSkill": 142,
       "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12397,9 +12378,8 @@
       "source": "drop",
       "reqSkill": 145,
       "materials": {
-        "kristallsplitter": 3,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12417,9 +12397,8 @@
       "source": "drop",
       "reqSkill": 148,
       "materials": {
-        "kristallsplitter": 3,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12768,9 +12747,8 @@
       "source": "drop",
       "reqSkill": 202,
       "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12788,9 +12766,8 @@
       "source": "faction",
       "reqSkill": 205,
       "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12808,9 +12785,8 @@
       "source": "faction",
       "reqSkill": 208,
       "materials": {
-        "drachenstahl": 3,
-        "drachenkern": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -12828,9 +12804,8 @@
       "source": "faction",
       "reqSkill": 211,
       "materials": {
-        "drachenschuppe": 3,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12848,9 +12823,8 @@
       "source": "faction",
       "reqSkill": 214,
       "materials": {
-        "drachenschuppe": 3,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12868,9 +12842,8 @@
       "source": "faction",
       "reqSkill": 217,
       "materials": {
-        "drachenstahl": 4,
-        "drachenkern": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12888,9 +12861,8 @@
       "source": "drop",
       "reqSkill": 220,
       "materials": {
-        "drachenschuppe": 3,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -12908,9 +12880,8 @@
       "source": "drop",
       "reqSkill": 223,
       "materials": {
-        "drachenstahl": 4,
-        "drachenkern": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 4
       },
       "result": {
         "type": "craft_gear",
@@ -13547,9 +13518,8 @@
       "source": "trainer",
       "reqSkill": 129,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -13566,9 +13536,8 @@
       "source": "drop",
       "reqSkill": 219,
       "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -13623,9 +13592,8 @@
       "source": "faction",
       "reqSkill": 115,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -13776,9 +13744,8 @@
       "source": "trainer",
       "reqSkill": 134,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 2
       },
       "result": {
         "type": "craft_gear",
@@ -13795,9 +13762,8 @@
       "source": "drop",
       "reqSkill": 209,
       "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -13872,9 +13838,8 @@
       "source": "faction",
       "reqSkill": 215,
       "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "mithrilbarren": 3
       },
       "result": {
         "type": "craft_gear",
@@ -13909,9 +13874,9 @@
       "source": "trainer",
       "reqSkill": 81,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -13928,7 +13893,6 @@
       "source": "drop",
       "reqSkill": 181,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -13948,9 +13912,9 @@
       "source": "faction",
       "reqSkill": 241,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -13985,9 +13949,9 @@
       "source": "faction",
       "reqSkill": 107,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14004,7 +13968,6 @@
       "source": "trainer",
       "reqSkill": 156,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -14023,9 +13986,9 @@
       "source": "drop",
       "reqSkill": 245,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14061,9 +14024,9 @@
       "source": "trainer",
       "reqSkill": 101,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14080,7 +14043,6 @@
       "source": "trainer",
       "reqSkill": 196,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -14099,9 +14061,9 @@
       "source": "faction",
       "reqSkill": 276,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
-        "runenfaden": 2
+        "runenfaden": 2,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14136,9 +14098,9 @@
       "source": "drop",
       "reqSkill": 94,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14156,7 +14118,6 @@
       "source": "trainer",
       "reqSkill": 197,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -14175,9 +14136,9 @@
       "source": "drop",
       "reqSkill": 237,
       "materials": {
-        "magiestoff": 2,
         "arkanerfaden": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14213,9 +14174,9 @@
       "source": "drop",
       "reqSkill": 111,
       "materials": {
-        "wollstoff": 2,
         "leinenballen": 1,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14233,7 +14194,6 @@
       "source": "drop",
       "reqSkill": 168,
       "materials": {
-        "seidenstoff": 2,
         "seidenballen": 1,
         "seidenfaden": 1
       },
@@ -14271,9 +14231,8 @@
       "source": "trainer",
       "reqSkill": 103,
       "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -14290,9 +14249,9 @@
       "source": "trainer",
       "reqSkill": 194,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14346,9 +14305,8 @@
       "source": "trainer",
       "reqSkill": 133,
       "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -14365,9 +14323,9 @@
       "source": "drop",
       "reqSkill": 187,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14422,9 +14380,8 @@
       "source": "faction",
       "reqSkill": 125,
       "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -14441,9 +14398,9 @@
       "source": "drop",
       "reqSkill": 218,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14498,9 +14455,8 @@
       "source": "trainer",
       "reqSkill": 106,
       "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -14517,9 +14473,9 @@
       "source": "drop",
       "reqSkill": 218,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14593,9 +14549,9 @@
       "source": "drop",
       "reqSkill": 215,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -14650,9 +14606,8 @@
       "source": "drop",
       "reqSkill": 129,
       "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 2
       },
       "result": {
         "type": "craft_gear",
@@ -14670,9 +14625,9 @@
       "source": "faction",
       "reqSkill": 217,
       "materials": {
-        "schweresleder": 2,
         "gehaertetesschwerleder": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17270,8 +17225,8 @@
       "source": "drop",
       "reqSkill": 116,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17289,8 +17244,8 @@
       "source": "faction",
       "reqSkill": 155,
       "materials": {
-        "drachenschuppe": 2,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "drachenstahl": 2
       },
       "result": {
         "type": "craft_gear",
@@ -17362,8 +17317,8 @@
       "source": "trainer",
       "reqSkill": 164,
       "materials": {
-        "drachenschuppe": 2,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "drachenstahl": 2
       },
       "result": {
         "type": "craft_gear",
@@ -17417,8 +17372,8 @@
       "source": "faction",
       "reqSkill": 127,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17435,8 +17390,8 @@
       "source": "trainer",
       "reqSkill": 190,
       "materials": {
-        "drachenschuppe": 2,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "drachenstahl": 2
       },
       "result": {
         "type": "craft_gear",
@@ -17508,8 +17463,8 @@
       "source": "faction",
       "reqSkill": 199,
       "materials": {
-        "drachenschuppe": 2,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "drachenstahl": 2
       },
       "result": {
         "type": "craft_gear",
@@ -17562,8 +17517,8 @@
       "source": "trainer",
       "reqSkill": 140,
       "materials": {
-        "kristallsplitter": 2,
-        "eisenfluss": 1
+        "eisenfluss": 1,
+        "stahlbarren": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17580,8 +17535,8 @@
       "source": "drop",
       "reqSkill": 175,
       "materials": {
-        "drachenschuppe": 2,
-        "schmelztiegel": 1
+        "schmelztiegel": 1,
+        "drachenstahl": 2
       },
       "result": {
         "type": "craft_gear",
@@ -17653,8 +17608,8 @@
       "source": "faction",
       "reqSkill": 112,
       "materials": {
-        "wollstoff": 2,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17671,8 +17626,8 @@
       "source": "trainer",
       "reqSkill": 165,
       "materials": {
-        "seidenstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "seidenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17689,8 +17644,8 @@
       "source": "trainer",
       "reqSkill": 255,
       "materials": {
-        "magiestoff": 2,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17725,8 +17680,8 @@
       "source": "drop",
       "reqSkill": 81,
       "materials": {
-        "wollstoff": 2,
-        "naehfaden": 1
+        "naehfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17744,8 +17699,8 @@
       "source": "drop",
       "reqSkill": 168,
       "materials": {
-        "seidenstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "seidenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17763,8 +17718,8 @@
       "source": "drop",
       "reqSkill": 269,
       "materials": {
-        "magiestoff": 2,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17800,8 +17755,8 @@
       "source": "drop",
       "reqSkill": 127,
       "materials": {
-        "wollstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17819,8 +17774,8 @@
       "source": "trainer",
       "reqSkill": 198,
       "materials": {
-        "seidenstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "seidenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17837,8 +17792,8 @@
       "source": "trainer",
       "reqSkill": 247,
       "materials": {
-        "magiestoff": 2,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17873,8 +17828,8 @@
       "source": "trainer",
       "reqSkill": 126,
       "materials": {
-        "wollstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17891,8 +17846,8 @@
       "source": "trainer",
       "reqSkill": 198,
       "materials": {
-        "seidenstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "seidenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17909,8 +17864,8 @@
       "source": "drop",
       "reqSkill": 242,
       "materials": {
-        "magiestoff": 2,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17947,8 +17902,8 @@
       "source": "trainer",
       "reqSkill": 133,
       "materials": {
-        "wollstoff": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "wollballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17965,8 +17920,8 @@
       "source": "faction",
       "reqSkill": 217,
       "materials": {
-        "seidenstoff": 2,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seidenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -17983,8 +17938,8 @@
       "source": "faction",
       "reqSkill": 254,
       "materials": {
-        "magiestoff": 2,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "runenballen": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18056,8 +18011,8 @@
       "source": "drop",
       "reqSkill": 197,
       "materials": {
-        "schweresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18111,8 +18066,9 @@
       "source": "drop",
       "reqSkill": 129,
       "materials": {
-        "mittleresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 1,
+        "mittleresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18130,8 +18086,8 @@
       "source": "drop",
       "reqSkill": 197,
       "materials": {
-        "schweresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18185,8 +18141,9 @@
       "source": "trainer",
       "reqSkill": 100,
       "materials": {
-        "mittleresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "gehaertetes-leder": 1,
+        "mittleresleder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18203,8 +18160,8 @@
       "source": "faction",
       "reqSkill": 179,
       "materials": {
-        "schweresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18276,8 +18233,8 @@
       "source": "trainer",
       "reqSkill": 172,
       "materials": {
-        "schweresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
@@ -18349,8 +18306,8 @@
       "source": "trainer",
       "reqSkill": 177,
       "materials": {
-        "schweresleder": 2,
-        "seidenfaden": 1
+        "seidenfaden": 1,
+        "verstaerktes-leder": 1
       },
       "result": {
         "type": "craft_gear",
