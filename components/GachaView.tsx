@@ -32,7 +32,7 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
           <h3 className="text-base font-bold flex items-center gap-2" style={{ color: "#e8e8e8" }}>
             <span style={{ fontSize: 20 }}>★</span> How the Wheel of Stars Works
           </h3>
-          <button onClick={onClose} className="text-xl" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+          <button onClick={onClose} aria-label="Schließen" className="text-xl" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
         </div>
 
         <div className="space-y-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
@@ -837,7 +837,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         <div data-feedback-id="gacha-view.history-modal" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl max-h-[70vh] rounded-2xl p-5 overflow-y-auto" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Pull History (last 50)</h3>
-            <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>✕</button>
+            <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Schließen">✕</button>
           </div>
           {history.length === 0 ? (
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No pulls yet.</p>
@@ -864,7 +864,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         <div data-feedback-id="gacha-view.pool-modal" className="w-full max-h-[88vh] rounded-2xl p-7 overflow-y-auto" style={{ maxWidth: "1500px", background: "linear-gradient(180deg, #0f1729 0%, #1a1028 40%, #0f1729 100%)", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-5">
             <h3 className="text-base font-bold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.7)" }}>Item Pool</h3>
-            <button onClick={closePool} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>✕</button>
+            <button onClick={closePool} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Schließen">✕</button>
           </div>
           {poolInfo && (
             <div className="space-y-6">
