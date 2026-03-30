@@ -853,7 +853,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     return (
       <>
         <div
-          className="flex items-center justify-center rounded-lg"
+          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse" : ""}`}
           style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default" }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
