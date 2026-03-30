@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
@@ -70,10 +69,12 @@ const SVG_SIZE = 640;
 
 export default function TalentTreeView({
   onRewardCelebration,
+  addToast,
 }: {
   onRewardCelebration?: (d: RewardCelebrationData) => void;
+  addToast?: (t: { type: string; message: string }) => void;
 }) {
-  const { addToast } = useDashboard();
+  const _toast = addToast || (() => {});
   const [data, setData] = useState<TalentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
@@ -110,13 +111,13 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        addToast({ type: "success", message: `${d.node.name} freigeschaltet!` });
+        _toast({ type: "success", message: `${d.node.name} freigeschaltet!` });
         fetchTalents();
       } else {
-        addToast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Fehler" });
       }
     } catch (e) {
-      addToast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Netzwerkfehler" });
     } finally {
       setAllocating(false);
     }
@@ -134,13 +135,13 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        addToast({ type: "success", message: "Talent entfernt" });
+        _toast({ type: "success", message: "Talent entfernt" });
         fetchTalents();
       } else {
-        addToast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Fehler" });
       }
     } catch (e) {
-      addToast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Netzwerkfehler" });
     } finally {
       setAllocating(false);
     }
@@ -157,14 +158,14 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        addToast({ type: "success", message: `Alle Talente zurückgesetzt! ${d.goldSpent}g bezahlt.` });
+        _toast({ type: "success", message: `Alle Talente zurückgesetzt! ${d.goldSpent}g bezahlt.` });
         setConfirmReset(false);
         fetchTalents();
       } else {
-        addToast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Fehler" });
       }
     } catch (e) {
-      addToast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Netzwerkfehler" });
     } finally {
       setResetting(false);
     }

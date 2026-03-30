@@ -174,7 +174,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
     <div className="space-y-5 tab-content-enter">
       {/* Header */}
       <div className="text-center space-y-2">
-        <img src="/images/icons/nav-factions.png" alt="" width={48} height={48} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+        <img src="/images/icons/nav-factions.png" alt="" width={96} height={96} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <Tip k="factions" heading>
           <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>The Four Circles</h2>
         </Tip>

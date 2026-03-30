@@ -150,10 +150,10 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex">(() => {
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex" | "talents" | "tome">(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("dash_view");
-      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex";
+      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex" | "talents" | "tome";
     }
     return "questBoard";
   });
@@ -2027,12 +2027,12 @@ export default function Dashboard() {
 
         {/* ── TALENT TREE TAB ── */}
         {dashView === "talents" && playerName && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><TalentTreeView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><TalentTreeView onRewardCelebration={setRewardCelebration} addToast={addToast} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ADVENTURE TOME TAB ── */}
         {dashView === "tome" && playerName && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><AdventureTomeView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><AdventureTomeView onRewardCelebration={setRewardCelebration} addToast={addToast} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── CHARACTER TAB ── */}

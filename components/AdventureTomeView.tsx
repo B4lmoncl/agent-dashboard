@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
@@ -44,10 +43,12 @@ interface TomeData {
 
 export default function AdventureTomeView({
   onRewardCelebration,
+  addToast,
 }: {
   onRewardCelebration?: (data: RewardCelebrationData) => void;
+  addToast?: (t: { type: string; message: string }) => void;
 } = {}) {
-  const { playerName, addToast } = useDashboard();
+  const _toast = addToast || (() => {});
   const [data, setData] = useState<TomeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState<string | null>(null);
