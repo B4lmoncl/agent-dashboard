@@ -64,7 +64,7 @@
       "id": "aetherstrom",
       "category": "world",
       "title": "Der Aetherstrom",
-      "text": "Manche nennen es Magie. Die Gelehrten nennen es den Strom. Die Alten nannten es den Atem. Es ist keine Kraft die man sich nimmt — es ist eine, die man leiht. Und der Strom vergisst nie, wem er was geliehen hat.",
+      "text": "Manche nennen es Magie. Die Gelehrten nennen es den Strom. Die Alten nannten es den Atem. Die Praktischen nennen es 'das Zeug, das Dinge explodieren lässt, wenn man es falsch anfasst'. Es ist keine Kraft die man sich nimmt — es ist eine, die man leiht. Und der Strom vergisst nie, wem er was geliehen hat. Er ist im Grunde eine kosmische Bank mit unbegrenzter Geduld und einer sehr, sehr detaillierten Buchhaltung.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -74,7 +74,7 @@
       "id": "zeitalter-wiederkehr",
       "category": "world",
       "title": "Das Zeitalter der Wiederkehr",
-      "text": "Die Risse öffnen sich wieder. Dungeons, die seit Jahrhunderten schliefen, gähnen und strecken sich. Neue Helden werden gebraucht — nicht weil die alten versagt haben, sondern weil sie ihre Arbeit getan haben und es jetzt an anderen ist.",
+      "text": "Die Risse öffnen sich wieder. Dungeons, die seit Jahrhunderten schliefen, gähnen und strecken sich und benehmen sich so, als hätte man sie geweckt. Was man hat. Neue Helden werden gebraucht. Nicht weil die alten versagt haben — sie sind in Rente gegangen. Die meisten betreiben jetzt Wirtshäuser und erzählen jedem, der nicht schnell genug wegrennt, wie viel schlimmer alles früher war.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
@@ -364,7 +364,7 @@
       "id": "mondlicht",
       "category": "world",
       "title": "Das Mondlicht",
-      "text": "Wenn die Sterne über Aethermoor aufgehen und die Nacht den Turm umhüllt, pulsiert der Aetherstrom anders. Ruhiger. Tiefer. Die alten Schmiede wussten: was im Mondlicht geschmiedet wird, trägt ein Stück Ewigkeit in sich.",
+      "text": "Nachts passieren Dinge im Turm, die tagsüber nicht passieren. Der Aetherstrom pulsiert anders. Die Schmiede klingt anders. Gold vermehrt sich für Leute mit dem richtigen Gegenstand. Die alten Schmiede behaupteten, Mondlicht-geschmiedete Waffen tragen Ewigkeit in sich. Die neuen Schmiede behaupten, die alten Schmiede hatten Schlafmangel. Beide könnten recht haben.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
@@ -404,7 +404,7 @@
       "id": "expedition-wilds",
       "category": "world",
       "title": "Die Wildnis um den Turm",
-      "text": "Jenseits der Mauern liegt eine Welt, die sich nicht darum kümmert ob du bereit bist. Wälder die flüstern. Berge die urteilen. Ruinen die sich erinnern. Dein Companion kennt den Weg — meistens.",
+      "text": "Jenseits der Mauern liegt eine Welt, die sich nicht darum kümmert ob du bereit bist. Auch nicht ob du Proviant hast. Oder einen Plan. Dein Companion kennt den Weg — behauptet er. In Wahrheit kennt er den Weg ungefähr so gut wie jemand, der einmal eine Karte gesehen hat und seitdem behauptet, er sei 'gut mit Richtungen'. Ihr kommt trotzdem an. Meistens. Ungefähr.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
@@ -581,7 +581,7 @@
       "id": "grosse-stille",
       "category": "history",
       "title": "Die Große Stille",
-      "text": "Es gab eine Zeit, in der der Turm leer stand. Keine Quests, keine Helden, keine Geschichten. Die Gelehrten nennen sie die Große Stille. Sie dauerte nicht lang — irgendwann kam jemand vorbei, der eine Liste hatte und etwas erledigen wollte. Der Rest ist Geschichte.",
+      "text": "Es gab eine Zeit, in der der Turm leer stand. Keine Quests. Keine Helden. Nur ein sehr großes Gebäude und eine unangenehme Stille. Die Gelehrten nennen diese Epoche die Große Stille und haben siebzehn Bücher darüber geschrieben, was bemerkenswert ist für eine Periode, in der buchstäblich nichts passiert ist. Sie endete, als jemand mit einer Liste und einem Problem vorbeikam. Beides löste sich gegenseitig.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -681,7 +681,7 @@
       "id": "kristallvenen-netz",
       "category": "tower",
       "title": "Das Venennetz",
-      "text": "Die Kristalladern bilden ein Netzwerk, das den gesamten Turm durchzieht. Nachts pulsieren sie stärker — als würde der Turm im Schlaf atmen. Die Farbe der Adern ändert sich je nach Stockwerk. Die Handwerker sagen, die Farbe zeigt die Stimmung des Turms. Bisher hat sich niemand getraut zu fragen, was Rot bedeutet.",
+      "text": "Die Kristalladern bilden ein Netzwerk, das den gesamten Turm durchzieht. Nachts pulsieren sie stärker. Die Farbe ändert sich je nach Stockwerk: Blau in den Hallen, Grün im Gewerbeviertel, Violett in der Bibliothek. Im dritten Keller sind sie rot. Die Handwerker sagen, die Farbe zeigt die Stimmung des Turms. Auf die Frage, was Rot bedeutet, antwortete Grimvar: 'Nimm die Treppe nach oben.' Er hat nicht gesagt warum. Er musste nicht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 8
@@ -851,7 +851,7 @@
       "id": "turm-jahreszeiten",
       "category": "tower",
       "title": "Die Jahreszeiten des Turms",
-      "text": "Der Turm kennt Frühling, Sommer, Herbst und Winter — aber auf seine eigene Art. Im Frühling sprießen neue Quests. Im Sommer brennt die Schmiede heißer. Im Herbst fallen die Blätter und die Preise. Im Winter wird alles stiller, und die Kristalladern glühen wärmer, als wollte der Turm seine Bewohner trösten.",
+      "text": "Der Turm hat Jahreszeiten. Nicht die normalen. Im Frühling sprießen neue Quests aus dem Questboard wie Unkraut. Im Sommer brennt die Schmiede so heiß, dass Grimvar einmal sein Frühstück auf dem Amboss gebraten hat. Im Herbst fallen die Preise im Basar und Bruna hortet Kürbisse. Im Winter passiert wenig, aber die Kristalladern glühen wärmer, was entweder Fürsorge ist oder eine Fehlfunktion. Der Turm äußert sich nicht.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
