@@ -36,8 +36,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat from equipped gear. Increases Quest <GTRef k="xp">XP</GTRef> earned.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>Quest <GTRef k="xp">XP</GTRef> bonus (diminishing returns, ~10% at 20)</span></div>
-        <div className="gt-stat-row"><span>Cap</span><span>+30% (60 points)</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>+0.5% <GTRef k="xp">XP</GTRef> per point (linear)</span></div>
+        <div className="gt-stat-row"><span>At 20</span><span>+10% · At 30 (gear cap): +15%</span></div>
         <p className="gt-source">Sources: Gear affixes, set bonuses, enchantments</p>
       </>
     ),
@@ -62,8 +62,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases <GTRef k="gold">Gold</GTRef> earned from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span><GTRef k="gold">Gold</GTRef> bonus (diminishing returns, ~7.5% at 20)</span></div>
-        <div className="gt-stat-row"><span>Cap</span><span>+30% (60 points)</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>+0.4% <GTRef k="gold">Gold</GTRef> per point (linear)</span></div>
+        <div className="gt-stat-row"><span>At 20</span><span>+8% · At 30 (gear cap): +12%</span></div>
         <p className="gt-source">Sources: Gear affixes (helm, amulet, weapon)</p>
       </>
     ),
@@ -75,8 +75,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases loot drop chance from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>Drop chance bonus (diminishing returns, ~6% at 20)</span></div>
-        <div className="gt-stat-row"><span>Cap</span><span>+20% (40 points)</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>+0.3% drop chance per point (linear)</span></div>
+        <div className="gt-stat-row"><span>At 20</span><span>+6% · At 30 (gear cap): +9%</span></div>
         <p className="gt-source">Sources: Gear affixes (boots, amulet, helm)</p>
       </>
     ),
@@ -136,12 +136,12 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Activity meter (0-100%). Higher temp = more <GTRef k="xp">XP</GTRef> &amp; <GTRef k="gold">Gold</GTRef>. Decays 2%/hour, <GTRef k="ausdauer">Ausdauer</GTRef> slows decay. Each quest: +10.</p>
-        <div className="gt-stat-row"><span>100% White-hot</span><span>×1.5 <GTRef k="xp">XP</GTRef> · ×1.5 <GTRef k="gold">Gold</GTRef></span></div>
-        <div className="gt-stat-row"><span>80%+ Blazing</span><span>×1.25 <GTRef k="xp">XP</GTRef> · ×1.3 <GTRef k="gold">Gold</GTRef></span></div>
-        <div className="gt-stat-row"><span>60%+ Burning</span><span>×1.15 <GTRef k="xp">XP</GTRef> · ×1.15 <GTRef k="gold">Gold</GTRef></span></div>
+        <div className="gt-stat-row"><span>100% White-hot</span><span>×1.25 <GTRef k="xp">XP</GTRef> · ×1.25 <GTRef k="gold">Gold</GTRef></span></div>
+        <div className="gt-stat-row"><span>80%+ Blazing</span><span>×1.15 <GTRef k="xp">XP</GTRef> · ×1.15 <GTRef k="gold">Gold</GTRef></span></div>
+        <div className="gt-stat-row"><span>60%+ Burning</span><span>×1.10 <GTRef k="xp">XP</GTRef> · ×1.08 <GTRef k="gold">Gold</GTRef></span></div>
         <div className="gt-stat-row"><span>40%+ Warming</span><span>×1.0 <GTRef k="xp">XP</GTRef></span></div>
-        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>20%+ Smoldering</span><span>×0.8 <GTRef k="xp">XP</GTRef></span></div>
-        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>&lt;20% Cold</span><span>×0.5 <GTRef k="xp">XP</GTRef></span></div>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>20%+ Smoldering</span><span>×0.85 <GTRef k="xp">XP</GTRef></span></div>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>&lt;20% Cold</span><span>×0.6 <GTRef k="xp">XP</GTRef></span></div>
       </>
     ),
   },
@@ -152,7 +152,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to +45% at 30+ days).</p>
-        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>Gold bonus (diminishing, ~10% at 30 days)</span></div>
+        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+1.5% per day, max +45% at 30 days</span></div>
         <div className="gt-stat-row"><span>Protection</span><span><GTRef k="vitalitaet">Vitalität</GTRef> stat, Streak Shields, Legendary gear</span></div>
         <p className="gt-source">Milestones: Bronze (7d), Silver (21d), Gold (60d), Diamond (180d), Legend (365d)</p>
       </>
