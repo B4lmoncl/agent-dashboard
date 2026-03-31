@@ -12,16 +12,68 @@ function applyShopEffect(u, item) {
   if (!item.effect) return null;
   const { type, questsRemaining, amount } = item.effect;
 
-  // Instant currency grants
-  if (type === 'instant_stardust') {
+  // Instant currency grants (multiple naming conventions supported)
+  if (type === 'instant_stardust' || type === 'stardust') {
     u.currencies = u.currencies || {};
-    u.currencies.stardust = (u.currencies.stardust || 0) + amount;
-    return `+${amount} Stardust received!`;
+    u.currencies.stardust = (u.currencies.stardust || 0) + (amount || 1);
+    return `+${amount || 1} Stardust received!`;
   }
-  if (type === 'instant_essenz') {
+  if (type === 'instant_essenz' || type === 'essenz') {
     u.currencies = u.currencies || {};
-    u.currencies.essenz = (u.currencies.essenz || 0) + amount;
-    return `+${amount} Essenz received!`;
+    u.currencies.essenz = (u.currencies.essenz || 0) + (amount || 1);
+    return `+${amount || 1} Essenz received!`;
+  }
+  if (type === 'runensplitter') {
+    u.currencies = u.currencies || {};
+    u.currencies.runensplitter = (u.currencies.runensplitter || 0) + (amount || 1);
+    return `+${amount || 1} Runensplitter received!`;
+  }
+  if (type === 'sternentaler') {
+    u.currencies = u.currencies || {};
+    u.currencies.sternentaler = (u.currencies.sternentaler || 0) + (amount || 1);
+    return `+${amount || 1} Sternentaler received!`;
+  }
+
+  // Instant faction reputation
+  if (type === 'faction_rep') {
+    const factionId = item.effect.factionId;
+    if (factionId) {
+      u.factions = u.factions || {};
+      u.factions[factionId] = u.factions[factionId] || { rep: 0 };
+      u.factions[factionId].rep = (u.factions[factionId].rep || 0) + (amount || 50);
+    }
+    return `+${amount || 50} Faction reputation!`;
+  }
+
+  // Craft discount (reduces vendor reagent costs for N crafts)
+  if (type === 'craft_discount') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'craft_discount', questsRemaining: questsRemaining || 10, value: item.effect.value || 0.2, activatedAt: now() });
+    return `Crafting discount active for ${questsRemaining || 10} crafts!`;
+  }
+
+  // Expedition speed bonus
+  if (type === 'expedition_speed') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'expedition_speed', questsRemaining: questsRemaining || 1, value: item.effect.value || 0.25, activatedAt: now() });
+    return `Expedition speed boost active!`;
+  }
+
+  // Rift time extend (alternative naming for rift_time_extension)
+  if (type === 'rift_time_extend') {
+    if (!u.activeRift || !u.activeRift.active) return 'No active rift to extend.';
+    if (u.activeRift.extended) return 'Rift timer already extended.';
+    const hours = item.effect.hours || 6;
+    u.activeRift.timeLimitHours = (u.activeRift.timeLimitHours || 48) + hours;
+    u.activeRift.extended = true;
+    return `Rift timer extended by ${hours} hours!`;
+  }
+
+  // Multi-reward (doubles next quest reward)
+  if (type === 'multi_reward' || type === 'double_reward') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'double_reward', questsRemaining: questsRemaining || 1, activatedAt: now() });
+    return `Next ${questsRemaining || 1} quest(s) give double rewards!`;
   }
 
   // Instant forge temp boost (self-care rewards)
@@ -71,12 +123,18 @@ function applyShopEffect(u, item) {
   const buffNames = {
     xp_boost_10: `+10% XP for ${questsRemaining} quests`,
     xp_boost_15: `+15% XP for ${questsRemaining} quests`,
+    xp_boost_5: `+5% XP for ${questsRemaining} quests`,
+    xp_boost_25_return: `+25% XP for ${questsRemaining} quests`,
+    xp_boost_50_perfect: `+50% XP for ${questsRemaining} quests`,
+    xp_gold_boost: `+${item.effect.xpPercent || 15}% XP +${item.effect.goldPercent || 10}% Gold for ${questsRemaining} quests`,
     gold_boost_10: `+10% Gold for ${questsRemaining} quests`,
     gold_boost_15: `+15% Gold for ${questsRemaining} quests`,
+    luck_boost: `Increased loot chance for ${questsRemaining} quests`,
     luck_boost_20: `Increased loot chance for ${questsRemaining} quests`,
     streak_shield: 'Streak Shield activated!',
     material_double: `Double material drops for ${questsRemaining} quests`,
     world_boss_damage_boost: `+${item.effect.value || 25}% boss damage for ${questsRemaining} quests`,
+    feast_buff: `+15% XP +10% Gold for ${questsRemaining} quests (Feast)`,
   };
   return buffNames[type] || 'Effect activated!';
 }
