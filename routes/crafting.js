@@ -929,6 +929,17 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.message = `Enchant Vellum: +${vVal} ${vStat} (${hours}h) — can be traded!${masteryDef ? ' (Mastery)' : ''}`;
         break;
       }
+      // Material processing handler (smelting bars, weaving bolts, etc.)
+      if (recipe.result?.type === 'material') {
+        u.craftingMaterials = u.craftingMaterials || {};
+        const outMat = recipe.result.materialId || recipe.result.outputMaterial;
+        const outAmt = (recipe.result.amount || recipe.result.count || 1) * effectiveCount;
+        if (!outMat) { result.message = 'Invalid material recipe'; result.success = false; break; }
+        u.craftingMaterials[outMat] = (u.craftingMaterials[outMat] || 0) + outAmt;
+        const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === outMat);
+        result.message = `${recipe.name}: +${outAmt} ${matDef?.name || outMat}`;
+        break;
+      }
       // Transmute material handler (alchemist transmutes)
       if (recipe.result?.type === 'transmute_material') {
         u.craftingMaterials = u.craftingMaterials || {};
