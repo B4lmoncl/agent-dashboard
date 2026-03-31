@@ -637,7 +637,7 @@
       "name": "Morgenmensch",
       "icon": "morning-person",
       "desc": "Erste Quest des Tages gibt +8% Gold. Aber NUR die erste.",
-      "flavor": "Frühaufsteher bekommen den Wurm. Und zwanzig Prozent mehr Gold. Der Wurm ist gratis.",
+      "flavor": "Frühaufsteher bekommen den Wurm. Und acht Prozent mehr Gold. Der Wurm ist gratis.",
       "maxRank": 1,
       "reqPoints": 5,
       "requires": [],
