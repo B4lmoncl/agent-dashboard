@@ -228,6 +228,7 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
     duplicateRefund,
     pityCounter: gs.pityCounter,
     epicPityCounter: gs.epicPityCounter,
+    isWeeklyEpic: usedWeeklyEpic || false,
   };
 }
 

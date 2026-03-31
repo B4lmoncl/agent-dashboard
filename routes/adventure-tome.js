@@ -141,6 +141,11 @@ function evaluateFloor(floor, user, progress) {
   const lvl = getLevelInfo(user.xp || 0).level;
   const results = [];
 
+  // Cache talent effect outside loop (called per-objective otherwise)
+  const { getUserTalentEffects } = require('./talent-tree');
+  const tomeBonus = getUserTalentEffects(user.name?.toLowerCase() || user.id)?.tome_progress_bonus;
+  const tomeBonusValue = (tomeBonus && typeof tomeBonus === 'object') ? (tomeBonus.value || 0) : (typeof tomeBonus === 'number' ? tomeBonus : 0);
+
   for (const obj of floor.objectives) {
     let current = 0;
 
@@ -293,14 +298,8 @@ function evaluateFloor(floor, user, progress) {
       current = count;
     }
 
-    // Talent: tome_progress_bonus — adds flat bonus to each objective's current value
-    const { getUserTalentEffects } = require('./talent-tree');
-    const tomeBonus = getUserTalentEffects(user.name?.toLowerCase() || user.id)?.tome_progress_bonus;
-    if (tomeBonus && typeof tomeBonus === 'object' && tomeBonus.value > 0) {
-      current += tomeBonus.value;
-    } else if (typeof tomeBonus === 'number' && tomeBonus > 0) {
-      current += tomeBonus;
-    }
+    // Talent: tome_progress_bonus — adds flat bonus to each objective's counter
+    if (tomeBonusValue > 0) current += tomeBonusValue;
 
     results.push({
       id: obj.id,

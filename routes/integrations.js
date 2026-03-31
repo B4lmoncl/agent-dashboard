@@ -128,18 +128,17 @@ router.post('/api/events/level-up', requireApiKey, (req, res) => {
 // POST /api/forge/temp-decay — decay forgeTemp for users who missed recurring quests
 // Call this from a cron or trigger manually
 router.post('/api/forge/temp-decay', requireApiKey, (req, res) => {
+  const { calcDynamicForgeTemp } = require('../lib/helpers');
   const today = todayStr();
   let decayed = 0;
-  for (const u of Object.values(state.users)) {
+  for (const [uid, u] of Object.entries(state.users)) {
     if (!u.streakLastDate || u.streakLastDate === today) continue;
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
     if (u.streakLastDate !== yesterday) {
-      // missed at least one day — apply pending time decay first, then penalty
-      if (u.forgeTempAt) {
-        const hrs = (Date.now() - new Date(u.forgeTempAt).getTime()) / 3600000;
-        u.forgeTemp = Math.max(0, (u.forgeTemp ?? 100) - hrs * 2);
-      }
-      u.forgeTemp = Math.max(0, (u.forgeTemp ?? 100) - 10);
+      // missed at least one day — use calcDynamicForgeTemp (includes talent + legendary + stats)
+      // then apply the -10 miss penalty
+      const currentTemp = calcDynamicForgeTemp(uid);
+      u.forgeTemp = Math.max(0, currentTemp - 10);
       u.forgeTempAt = new Date().toISOString();
       decayed++;
     }
