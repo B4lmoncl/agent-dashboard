@@ -173,9 +173,27 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
-  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "reagents" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
+  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "reagents" | "schmiedekunst" | "transmutation" | "enchanting" | "disenchant">("recipes");
   const [reagentBuyCount, setReagentBuyCount] = useState<Record<string, number>>({});
   const [buyingReagent, setBuyingReagent] = useState<string | null>(null);
+  const [disenchantInv, setDisenchantInv] = useState<InventoryItem[]>([]);
+  const [disenchantLoading, setDisenchantLoading] = useState(false);
+
+  // Fetch inventory when disenchant tab opens
+  useEffect(() => {
+    if (npcModalTab !== "disenchant" || !playerName || !reviewApiKey) return;
+    setDisenchantLoading(true);
+    fetch(`/api/character?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) })
+      .then(r => r.json())
+      .then(data => {
+        setDisenchantInv((data.inventory || []).filter((i: InventoryItem) => {
+          const r = (i.rarity || 'common').toLowerCase();
+          return r !== 'common' && !i.locked;
+        }));
+      })
+      .catch(() => {})
+      .finally(() => setDisenchantLoading(false));
+  }, [npcModalTab, playerName, reviewApiKey]);
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
@@ -1478,6 +1496,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               }
               if (selectedNpc.id === "verzauberer") {
                 tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
+                tabs.push({ key: "disenchant" as typeof npcModalTab, label: "Entzaubern", color: "#ef4444" });
               }
               if (selectedNpc.id === "alchemist") {
                 tabs.push({ key: "transmutation", label: "Transmutation", color: "#22c55e" });
@@ -2046,6 +2065,75 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 )}
               </div>
             )}
+
+            {/* ─── Tab: Disenchant (destroy uncommon+ items for enchanting materials) */}
+            {npcModalTab === "disenchant" && selectedNpc.id === "verzauberer" && (() => {
+              // Fetch inventory on first open
+              if (!disenchantLoading && disenchantInv.length === 0) {
+                setDisenchantLoading(true);
+                fetch(`/api/character?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) })
+                  .then(r => r.json())
+                  .then(data => { setDisenchantInv((data.inventory || []).filter((i: InventoryItem) => { const r = (i.rarity || 'common').toLowerCase(); return r !== 'common' && !i.locked; })); setDisenchantLoading(false); })
+                  .catch(() => setDisenchantLoading(false));
+              }
+              const inv = disenchantInv;
+              return (
+                <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-w30">Entzaubern</p>
+                      <p className="text-xs text-w20 mt-0.5">Zerstöre Uncommon+ Items für Verzauberungsmaterialien</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg p-3" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                    <p className="text-xs" style={{ color: "#fca5a5" }}>Uncommon → Arkaner Staub · Rare → Magische Essenz · Epic → Schimmersplitter · Legendary → Nexuskristall</p>
+                  </div>
+                  {inv.length === 0 ? (
+                    <p className="text-xs text-w20 text-center py-6">Keine entzauberbaren Items (Uncommon+ und nicht gesperrt)</p>
+                  ) : (
+                    <div className="space-y-1.5 max-h-[300px] overflow-y-auto scrollbar-rpg">
+                      {inv.map(item => {
+                        const rc = ({"uncommon":"#22c55e","rare":"#3b82f6","epic":"#a855f7","legendary":"#f97316"} as Record<string,string>)[(item.rarity||'').toLowerCase()] || "#9ca3af";
+                        return (
+                          <div key={item.instanceId || item.id} className="flex items-center gap-2 rounded-lg p-2 card-hover-lift" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${rc}30` }}>
+                            <div className="w-8 h-8 rounded flex-shrink-0 flex items-center justify-center" style={{ background: `${rc}15`, border: `1px solid ${rc}30` }}>
+                              {item.icon ? <img src={item.icon} alt="" className="w-6 h-6 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs" style={{ color: rc }}>◆</span>}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold truncate" style={{ color: rc }}>{item.name}</p>
+                              <p className="text-xs text-w20">{item.rarity} · {item.slot}</p>
+                            </div>
+                            <button
+                              onClick={async () => {
+                                try {
+                                  const r = await fetch("/api/disenchant", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                    body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
+                                  });
+                                  const data = await r.json();
+                                  if (r.ok) {
+                                    setCraftResult(data.message || "Entzaubert!");
+                                    if (onRefresh) onRefresh();
+                                    fetchData();
+                                  } else {
+                                    setCraftResult(data.error || "Fehler");
+                                  }
+                                } catch { setCraftResult("Netzwerkfehler"); }
+                              }}
+                              className="btn-press text-xs px-3 py-1.5 rounded font-semibold flex-shrink-0"
+                              style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+                            >
+                              Entzaubern
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* ─── Tab: Enchanting (D3-style stat reroll — Verzauberer only) */}
             {npcModalTab === "enchanting" && selectedNpc.id === "verzauberer" && (() => {
