@@ -105,7 +105,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           if (g.type === "mondstaub" && g.amount) currencies.push({ name: "Mondstaub", amount: g.amount, color: "#c084fc" });
           onRewardCelebration({
             type: "battlepass",
-            title: g.type === "title" ? `Title: ${g.titleName}` : g.type === "frame" ? `Frame: ${g.frameName}` : g.type === "material" ? `${g.amount || 1}x ${g.materialId || "Material"}` : `Level ${level} Reward`,
+            title: g.type === "title" ? `Title: ${g.titleName}` : g.type === "frame" ? `Frame: ${g.frameName}` : g.type === "material" ? `${g.amount || 1}x ${g.materialId || "Material"}` : g.type === "gold" ? `+${g.amount || 0} Gold` : `Level ${level} Reward`,
             xpEarned: 0,
             goldEarned: g.type === "gold" ? (g.amount || 0) : 0,
             currencies: currencies.length > 0 ? currencies : undefined,
@@ -200,7 +200,26 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 const data = await r.json();
                 if (r.ok) {
                   setMessage({ type: "success", text: `Claimed ${data.count} rewards!` });
-                  if (onRewardCelebration) onRewardCelebration({ type: "battlepass", title: `${data.count} Rewards Claimed!`, xpEarned: 0, goldEarned: 0 });
+                  if (onRewardCelebration) {
+                    // Aggregate rewards for meaningful celebration
+                    let totalGold = 0;
+                    const currMap: Record<string, number> = {};
+                    const titles: string[] = [];
+                    for (const g of (data.granted || [])) {
+                      if (g.type === "gold") totalGold += g.amount || 0;
+                      else if (g.type === "title") titles.push(g.titleName || "Title");
+                      else if (g.type === "frame") titles.push(`Frame: ${g.frameName || "?"}`);
+                      else if (g.amount) currMap[g.type] = (currMap[g.type] || 0) + g.amount;
+                    }
+                    const currencies = Object.entries(currMap).map(([type, amount]) => ({
+                      name: type.charAt(0).toUpperCase() + type.slice(1),
+                      amount,
+                      color: type === "essenz" ? "#ef4444" : type === "runensplitter" ? "#a78bfa" : type === "stardust" ? "#818cf8" : type === "sternentaler" ? "#fbbf24" : "#c084fc",
+                    }));
+                    const parts = [`${data.count} Rewards`];
+                    if (titles.length > 0) parts.push(titles.join(", "));
+                    onRewardCelebration({ type: "battlepass", title: parts.join(" — "), xpEarned: 0, goldEarned: totalGold, currencies: currencies.length > 0 ? currencies : undefined });
+                  }
                   fetchBP();
                 } else {
                   setMessage({ type: "error", text: data.error || "Claim failed" });

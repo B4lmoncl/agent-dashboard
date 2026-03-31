@@ -188,7 +188,7 @@ function getEffectiveProgress(progress, modifier) {
 }
 
 // ─── GET /api/weekly-challenge — get current weekly challenge + progress ─────
-router.get('/api/weekly-challenge', (req, res) => {
+router.get('/api/weekly-challenge', requireAuth, (req, res) => {
   const playerName = (req.query.player || '').toLowerCase();
   const u = playerName ? state.usersByName.get(playerName) : null;
   if (!u) return res.json({ challenge: null });
@@ -390,7 +390,8 @@ router.post('/api/weekly-challenge/claim-milestone', requireAuth, (req, res) => 
   const challenge = getActiveChallenge(uid);
   if (!challenge) return res.status(400).json({ error: 'No active challenge' });
 
-  const { stars: targetStars } = req.body;
+  const targetStars = parseInt(req.body.stars, 10);
+  if (!targetStars || isNaN(targetStars)) return res.status(400).json({ error: 'stars must be a number' });
   const milestone = STAR_MILESTONES.find(m => m.stars === targetStars);
   if (!milestone) return res.status(400).json({ error: 'Invalid milestone' });
 

@@ -484,6 +484,7 @@ router.get('/api/dashboard', (req, res) => {
     })(),
     dungeonActive: isDungeonActiveForPlayer(playerLower),
     notifications,
+    seen: playerLower ? (state.users[playerLower]?.seen || {}) : null,
     apiLive: true,
   });
 });

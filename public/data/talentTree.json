@@ -232,7 +232,7 @@
       "excludes": [],
       "effect": {
         "type": "guaranteed_material_drop",
-        "value": 1
+        "value": 0.05
       }
     },
     {

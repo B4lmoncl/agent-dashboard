@@ -198,15 +198,18 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
             const restedPct = Math.min(100 - Math.round(progress * 100), Math.round((user._restedXpPool / xpForLevel) * 100));
             if (restedPct <= 0) return null;
             return (
-              <div style={{
-                position: "absolute",
-                left: `${Math.round(progress * 100)}%`,
-                top: 0,
-                bottom: 0,
-                width: `${restedPct}%`,
-                background: "rgba(59,130,246,0.35)",
-                borderRadius: "0 3px 3px 0",
-              }} title={`Rested XP: ${user._restedXpPool} XP pool remaining`} />
+              <Tip k="rested_xp">
+                <div style={{
+                  position: "absolute",
+                  left: `${Math.round(progress * 100)}%`,
+                  top: 0,
+                  bottom: 0,
+                  width: `${restedPct}%`,
+                  background: "rgba(59,130,246,0.35)",
+                  borderRadius: "0 3px 3px 0",
+                  cursor: "help",
+                }} />
+              </Tip>
             );
           })()}
         </div>

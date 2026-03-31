@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useModalBehavior } from "@/components/ModalPortal";
+import { TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
 
@@ -13,6 +14,9 @@ interface TalentEffect {
   value?: number;
   valuePerRank?: number[];
   chancePerRank?: number[];
+  bonus?: { stat: string; modifier: number };
+  penalty?: { stat: string; modifier?: number; override?: number };
+  maxTotal?: number;
   [key: string]: unknown;
 }
 
@@ -302,14 +306,42 @@ export default function TalentTreeView({
         </div>
       </div>
 
-      {/* Theme legend (Wolcen-style path colors) */}
+      {/* Theme legend (Wolcen-style path colors) with tooltips */}
       <div className="flex gap-4 mb-4">
-        {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme]) => (
-          <div key={key} className="flex items-center gap-1.5" title={theme.desc}>
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: theme.color }} />
-            <span className="text-xs text-w40">{theme.label}</span>
-          </div>
-        ))}
+        {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme]) => {
+          const nodesInTheme = data.nodes.filter(n => theme.nodeIds.includes(n.id));
+          const allocatedCount = nodesInTheme.filter(n => !!data.allocated[n.id]).length;
+          return (
+            <TipCustom
+              key={key}
+              title={theme.label}
+              accent={theme.color}
+              body={
+                <div className="text-xs space-y-1">
+                  <div className="text-w40">{theme.desc}</div>
+                  <div className="text-w25 mt-1">{allocatedCount} / {nodesInTheme.length} Nodes aktiv</div>
+                  <div className="text-w20 mt-1 space-y-0.5">
+                    {nodesInTheme.slice(0, 6).map(n => (
+                      <div key={n.id} className="flex items-center gap-1">
+                        <span style={{ color: data.allocated[n.id] ? theme.color : "rgba(255,255,255,0.2)" }}>
+                          {data.allocated[n.id] ? "◆" : "◇"}
+                        </span>
+                        <span>{n.name}</span>
+                      </div>
+                    ))}
+                    {nodesInTheme.length > 6 && <div className="text-w15">+{nodesInTheme.length - 6} weitere</div>}
+                  </div>
+                </div>
+              }
+            >
+              <div className="flex items-center gap-1.5 cursor-default" style={{ borderBottom: `1px dotted ${theme.color}44` }}>
+                <div className="w-2.5 h-2.5 rounded-full" style={{ background: theme.color }} />
+                <span className="text-xs text-w40">{theme.label}</span>
+                <span className="text-xs text-w20 ml-0.5">{allocatedCount}/{nodesInTheme.length}</span>
+              </div>
+            </TipCustom>
+          );
+        })}
       </div>
 
       {/* SVG Tree + Detail panel */}
@@ -343,7 +375,7 @@ export default function TalentTreeView({
               );
             })}
 
-            {/* Ring circles with subtle rotation */}
+            {/* Ring circles with slow SMIL rotation */}
             {RING_RADII.map((r, i) => (
               <circle
                 key={i}
@@ -352,11 +384,16 @@ export default function TalentTreeView({
                 stroke="rgba(255,255,255,0.04)"
                 strokeWidth={i === 2 ? 2 : 1}
                 strokeDasharray={i === 2 ? "4 4" : i === 1 ? "8 12" : undefined}
-                style={{
-                  transformOrigin: `${CENTER}px ${CENTER}px`,
-                  animation: `talent-ring-rotate ${120 + i * 60}s linear infinite${i % 2 === 1 ? " reverse" : ""}`,
-                }}
-              />
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from={`${i % 2 === 1 ? 360 : 0} ${CENTER} ${CENTER}`}
+                  to={`${i % 2 === 1 ? 0 : 360} ${CENTER} ${CENTER}`}
+                  dur={`${120 + i * 60}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
             ))}
 
             {/* SVG Defs for glow + pulse animations */}
@@ -371,7 +408,7 @@ export default function TalentTreeView({
               </filter>
             </defs>
 
-            {/* Connection lines — active ones pulse slowly */}
+            {/* Connection lines — active ones pulse slowly via SMIL */}
             {data.nodes.map(n => {
               const pos = nodePositions.get(n.id);
               if (!pos || !n.requires.length) return null;
@@ -389,31 +426,39 @@ export default function TalentTreeView({
                     strokeWidth={isActive ? 2.5 : 1}
                     opacity={isActive ? 0.8 : 0.5}
                     filter={isActive ? "url(#line-glow)" : undefined}
-                    style={isActive ? { animation: "talent-line-pulse 3s ease-in-out infinite" } : undefined}
-                  />
+                  >
+                    {isActive && (
+                      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite" />
+                    )}
+                  </line>
                 );
               });
             })}
 
-            {/* Particle effects on allocated nodes — slow rising sparkles */}
+            {/* Particle effects on allocated nodes — slow rising sparkles via SMIL */}
             {data.nodes.filter(n => !!data.allocated[n.id]).map(n => {
               const pos = nodePositions.get(n.id);
               if (!pos) return null;
               const color = getNodeThemeColor(n.id, data.meta.themes);
-              return Array.from({ length: 3 }).map((_, i) => (
-                <circle
-                  key={`particle-${n.id}-${i}`}
-                  cx={pos.x + (i - 1) * 6}
-                  cy={pos.y}
-                  r={1.5}
-                  fill={color}
-                  opacity={0.6}
-                  style={{
-                    animation: `talent-particle-rise ${3 + i * 0.7}s ease-out ${i * 1.2}s infinite`,
-                    transformOrigin: `${pos.x + (i - 1) * 6}px ${pos.y}px`,
-                  }}
-                />
-              ));
+              return Array.from({ length: 3 }).map((_, i) => {
+                const cx = pos.x + (i - 1) * 6;
+                const dur = `${3 + i * 0.7}s`;
+                const begin = `${i * 1.2}s`;
+                return (
+                  <circle
+                    key={`particle-${n.id}-${i}`}
+                    cx={cx}
+                    cy={pos.y}
+                    r={1.5}
+                    fill={color}
+                    opacity={0}
+                  >
+                    <animate attributeName="cy" values={`${pos.y};${pos.y - 25};${pos.y - 40}`} dur={dur} begin={begin} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.7;0" dur={dur} begin={begin} repeatCount="indefinite" />
+                    <animate attributeName="r" values="1.5;1;0.5" dur={dur} begin={begin} repeatCount="indefinite" />
+                  </circle>
+                );
+              });
             })}
 
             {/* Nodes */}
@@ -447,32 +492,35 @@ export default function TalentTreeView({
                 <g
                   key={n.id}
                   onClick={() => setSelectedNode(n.id === selectedNode ? null : n.id)}
-                  style={{
-                    cursor: "pointer",
-                    ...(state === "allocated" ? { animation: "talent-node-breathe 4s ease-in-out infinite", color: pathColor } : {}),
-                  }}
+                  style={{ cursor: "pointer" }}
                   opacity={opacity}
                   filter={state === "allocated" ? "url(#node-glow)" : undefined}
                 >
-                  {/* Glow for allocated */}
+                  {/* Breathing glow halo for allocated nodes */}
                   {state === "allocated" && (
                     <circle
                       cx={pos.x} cy={pos.y} r={radius + 6}
                       fill="none"
                       stroke={pathColor}
                       strokeWidth={1}
-                      opacity={0.3}
-                    />
+                      opacity={0.2}
+                    >
+                      <animate attributeName="opacity" values="0.15;0.45;0.15" dur="4s" repeatCount="indefinite" />
+                      <animate attributeName="r" values={`${radius + 5};${radius + 8};${radius + 5}`} dur="4s" repeatCount="indefinite" />
+                    </circle>
                   )}
-                  {/* Selection ring */}
+                  {/* Selection ring with SMIL pulse */}
                   {isSelected && (
                     <circle
                       cx={pos.x} cy={pos.y} r={radius + 5}
                       fill="none"
                       stroke="#fbbf24"
                       strokeWidth={2}
-                      style={{ animation: "talent-select-pulse 2s ease-in-out infinite" }}
-                    />
+                      opacity={0.8}
+                    >
+                      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+                      <animate attributeName="stroke-width" values="1.5;2.5;1.5" dur="2s" repeatCount="indefinite" />
+                    </circle>
                   )}
                   {/* Node shape: diamond for tradeoff, circle for normal */}
                   {isTradeoff ? (
@@ -547,11 +595,47 @@ export default function TalentTreeView({
                 </div>
               </div>
 
-              {/* Effect */}
+              {/* Effect description + structured details */}
               <div className="rounded-lg p-3 mb-3" style={{ background: "rgba(0,0,0,0.3)" }}>
                 <p className="text-xs text-w60" style={{ lineHeight: "1.5" }}>
                   {selected.desc}
                 </p>
+                {/* Structured effect values */}
+                {selected.effect && (
+                  <div className="mt-2 space-y-1">
+                    {selected.effect.type === "tradeoff" && selected.effect.bonus && selected.effect.penalty && (
+                      <div className="flex gap-3 text-xs">
+                        <span style={{ color: "#22c55e" }}>+{selected.effect.bonus.stat}: {typeof selected.effect.bonus.modifier === "number" ? `${(selected.effect.bonus.modifier * 100).toFixed(0)}%` : selected.effect.bonus.modifier}</span>
+                        <span style={{ color: "#ef4444" }}>-{selected.effect.penalty.stat}: {typeof selected.effect.penalty.modifier === "number" ? `${(selected.effect.penalty.modifier * 100).toFixed(0)}%` : (selected.effect.penalty.override !== undefined ? `→ ${selected.effect.penalty.override}` : "")}</span>
+                      </div>
+                    )}
+                    {selected.effect.valuePerRank && Array.isArray(selected.effect.valuePerRank) && (
+                      <div className="text-xs text-w30">
+                        Rang-Werte: {selected.effect.valuePerRank.map((v: number, i: number) => (
+                          <span key={i} className="inline-block mr-1.5" style={{ color: (data.allocated[selected.id]?.rank || 0) > i ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
+                            {typeof v === "number" ? (v < 1 ? `${(v * 100).toFixed(0)}%` : v) : v}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {selected.effect.chancePerRank && Array.isArray(selected.effect.chancePerRank) && (
+                      <div className="text-xs text-w30">
+                        Chance pro Rang: {selected.effect.chancePerRank.map((v: number, i: number) => (
+                          <span key={i} className="inline-block mr-1.5" style={{ color: (data.allocated[selected.id]?.rank || 0) > i ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
+                            {typeof v === "number" ? `${(v * 100).toFixed(0)}%` : v}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {selected.effect.value !== undefined && !selected.effect.valuePerRank && !selected.effect.chancePerRank && selected.effect.type !== "tradeoff" && (
+                      <div className="text-xs text-w30">
+                        Effekt: <span style={{ color: "#fbbf24" }}>
+                          {typeof selected.effect.value === "number" ? (selected.effect.value < 1 && selected.effect.value > 0 ? `${(selected.effect.value * 100).toFixed(0)}%` : selected.effect.value) : String(selected.effect.value)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
                 {selected.excludes && selected.excludes.length > 0 && (
                   <div className="flex items-center gap-1.5 mt-2">
                     <span className="text-xs px-1.5 py-0.5 rounded font-bold"
@@ -559,6 +643,15 @@ export default function TalentTreeView({
                       TRADEOFF
                     </span>
                     <span className="text-xs text-w20">Hat Vor- und Nachteile</span>
+                  </div>
+                )}
+                {selected.effect?.type === "tradeoff" && !selected.excludes?.length && (
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <span className="text-xs px-1.5 py-0.5 rounded font-bold"
+                      style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
+                      TRADEOFF
+                    </span>
+                    <span className="text-xs text-w20">Bonus + Malus</span>
                   </div>
                 )}
               </div>
@@ -630,6 +723,53 @@ export default function TalentTreeView({
                   </div>
                 )}
               </div>
+
+              {/* Sacrifice UI for Opfergabe talent */}
+              {nodeStates.get(selected.id) === "allocated" && selected.effect?.type === "sacrifice_legendary_for_talent_point" && (
+                <div className="mt-3 rounded-lg p-3" style={{ background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.15)" }}>
+                  <p className="text-xs font-bold mb-2" style={{ color: "#f97316" }}>Opfergabe</p>
+                  <p className="text-xs text-w30 mb-2">
+                    Bonus-Talentpunkte: <span style={{ color: "#fbbf24" }}>{data.bonusPoints || 0}</span> / {selected.effect.maxTotal || 3}
+                  </p>
+                  {(data.bonusPoints || 0) < (selected.effect.maxTotal || 3) ? (
+                    <button
+                      onClick={async () => {
+                        // Find first legendary in inventory (simplified — user picks via confirm)
+                        const confirm = window.confirm("Ein Legendary Item aus deinem Inventar opfern für +1 Talentpunkt?\n\nDas erste nicht-ausgerüstete, nicht-gesperrte Legendary wird geopfert.");
+                        if (!confirm) return;
+                        try {
+                          // Fetch inventory to find a legendary
+                          const invR = await fetch("/api/inventory", { headers: getAuthHeaders() });
+                          const invD = await invR.json();
+                          const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
+                          if (legendaries.length === 0) {
+                            _toast({ type: "error", message: "Kein Legendary Item verfügbar" });
+                            return;
+                          }
+                          const item = legendaries[0];
+                          const r = await fetch("/api/talents/sacrifice", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+                            body: JSON.stringify({ instanceId: item.instanceId || item.id }),
+                          });
+                          const d = await r.json();
+                          if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
+                          else {
+                            _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert! +1 Talentpunkt` });
+                            fetchTalents();
+                          }
+                        } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }
+                      }}
+                      className="text-xs px-3 py-1.5 rounded font-semibold"
+                      style={{ background: "rgba(249,115,22,0.15)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)", cursor: "pointer" }}
+                    >
+                      Legendary opfern
+                    </button>
+                  ) : (
+                    <p className="text-xs text-w20">Maximum erreicht</p>
+                  )}
+                </div>
+              )}
             </div>
           ) : (
             <div className="rounded-xl p-6 text-center" style={{ background: "rgba(255,255,255,0.02)" }}>

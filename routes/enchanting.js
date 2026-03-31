@@ -220,7 +220,7 @@ router.post('/api/disenchant', requireAuth, (req, res) => {
     for (const drop of drops) {
       let amount = drop.min + Math.floor(Math.random() * (drop.max - drop.min + 1));
       // Talent bonus: flat +1 per material type if check passes
-      if (talentDEBonus > 0 && Math.random() < talentDEBonus) amount += 1;
+      if (talentDEBonus > 0 && Math.random() < Math.min(talentDEBonus, 1.0)) amount += 1;
       u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + amount;
       results.push({ id: drop.id, amount });
     }

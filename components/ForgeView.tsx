@@ -199,7 +199,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
   const [profCelebration, setProfCelebration] = useState<ProfessionDef | null>(null);
   const [workshopCelebration, setWorkshopCelebration] = useState<{ name: string; label: string; icon: string; value: number } | null>(null);
-  const [guideOpen, setGuideOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState<boolean | null>(null); // null = auto (open if no profs)
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState<Set<string>>(new Set());
@@ -873,13 +873,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* ─── Profession Guide (expandable) ─────────────────────────────── */}
       <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <button onClick={() => setGuideOpen(g => !g)} className="w-full flex items-center justify-between px-4 py-2.5 text-left" style={{ cursor: "pointer" }}>
+        <button onClick={() => setGuideOpen(g => g === true ? false : g === false ? true : false)} className="w-full flex items-center justify-between px-4 py-2.5 text-left" style={{ cursor: "pointer" }}>
           <span className="text-xs font-semibold uppercase tracking-wider text-w30">
             {chosenCount === 0 ? "Wie funktionieren Berufe?" : "Berufe-Handbuch"}
           </span>
-          <span className="text-xs text-w20">{guideOpen ? "▲" : "▼"}</span>
+          <span className="text-xs text-w20">{(guideOpen === true || (guideOpen === null && chosenCount === 0)) ? "▲" : "▼"}</span>
         </button>
-        {(guideOpen || chosenCount === 0) && (
+        {(guideOpen === true || (guideOpen === null && chosenCount === 0)) && (
           <div className="px-4 pb-4 space-y-3 tab-content-enter" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
               <div className="rounded-lg p-3" style={{ background: "rgba(249,115,22,0.04)", border: "1px solid rgba(249,115,22,0.12)" }}>
@@ -967,8 +967,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             >
               <div className="flex items-center gap-3 mb-2">
                 {/* NPC portrait — border evolves with rank */}
-                <div className={`w-14 h-14 rounded-lg overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
-                  <img src={prof.npcPortrait} alt={prof.npcName} width={56} height={56} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+                <div className={`w-20 h-20 rounded-lg overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
+                  <img src={prof.npcPortrait} alt={prof.npcName} width={128} height={128} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -1429,8 +1429,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 }} />
               ))}
               <div className="flex items-center gap-4 relative">
-                <div className={`w-24 h-24 rounded-xl overflow-hidden flex-shrink-0${selectedNpc.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ border: `2px solid ${selectedNpc.masteryActive ? "#fbbf24" : selectedNpc.color}60`, boxShadow: selectedNpc.masteryActive ? `0 0 24px rgba(251,191,36,0.3), 0 0 8px ${selectedNpc.color}25` : `0 0 20px ${selectedNpc.color}25` }}>
-                  <img src={selectedNpc.npcPortrait} alt="" width={96} height={96} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+                <div className={`w-32 h-32 rounded-xl overflow-hidden flex-shrink-0${selectedNpc.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ border: `2px solid ${selectedNpc.masteryActive ? "#fbbf24" : selectedNpc.color}60`, boxShadow: selectedNpc.masteryActive ? `0 0 24px rgba(251,191,36,0.3), 0 0 8px ${selectedNpc.color}25` : `0 0 20px ${selectedNpc.color}25` }}>
+                  <img src={selectedNpc.npcPortrait} alt="" width={128} height={128} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">

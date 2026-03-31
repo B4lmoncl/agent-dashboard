@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, NPC_META, saveUsers, savePlayerProgress, logActivity } = require('../lib/state');
+const { state, NPC_META, saveUsers, savePlayerProgress, logActivity, ensureUserCurrencies } = require('../lib/state');
 const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore, createPlayerLock } = require('../lib/helpers');
 const companionUltimateLock = createPlayerLock('companion-ultimate');
 const companionExpeditionLock = createPlayerLock('companion-expedition');
@@ -856,6 +856,55 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
   console.log(`[tavern] ${uid} left the Hearth early, granted Welcome Back buff${passiveGoldEarned > 0 ? `, +${passiveGoldEarned}g passive gold` : ''}`);
   res.json({ ok: true, message: `Welcome back, adventurer! Your streak and forge temp have been restored. You feel refreshed — +25% XP for your next 50 quests!${passiveGoldEarned > 0 ? ` You earned ${passiveGoldEarned}g while resting.` : ''}`, passiveGoldEarned });
   } finally { tavernLock.release(uid); }
+});
+
+// ─── Persistent Seen/Read State ─────────────────────────────────────────────
+// Replaces localStorage-based tracking. Survives container restarts + cache clears.
+// Categories: items, codex, rooms, suggestions, questIds, npcIds
+
+// GET /api/player/:name/seen — get all seen state
+router.get('/api/player/:name/seen', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  res.json(u.seen || {});
+});
+
+// POST /api/player/:name/seen — mark items as seen (batch)
+// Body: { category: "items"|"codex"|"rooms"|"suggestions"|"questIds"|"npcIds", ids: ["id1", "id2"] }
+router.post('/api/player/:name/seen', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { category, ids } = req.body;
+  const VALID_CATEGORIES = ['items', 'codex', 'rooms', 'suggestions', 'questIds', 'npcIds'];
+  if (!category || !VALID_CATEGORIES.includes(category)) {
+    return res.status(400).json({ error: `Invalid category. Must be one of: ${VALID_CATEGORIES.join(', ')}` });
+  }
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ error: 'ids must be a non-empty array' });
+  }
+  // Cap batch size to prevent abuse
+  const safeIds = ids.slice(0, 500).map(String);
+
+  u.seen = u.seen || {};
+  u.seen[category] = u.seen[category] || [];
+  const existing = new Set(u.seen[category]);
+  let added = 0;
+  for (const id of safeIds) {
+    if (!existing.has(id)) {
+      u.seen[category].push(id);
+      existing.add(id);
+      added++;
+    }
+  }
+  // Cap stored list at 2000 per category to prevent unbounded growth
+  if (u.seen[category].length > 2000) {
+    u.seen[category] = u.seen[category].slice(-2000);
+  }
+  if (added > 0) saveUsers();
+  res.json({ ok: true, category, added, total: u.seen[category].length });
 });
 
 // ─── Companion Expeditions ──────────────────────────────────────────────────

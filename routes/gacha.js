@@ -114,17 +114,23 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
 
   // Talent: weekly_guaranteed_epic_pull — once per week, force epic+ rarity
   const weeklyEpicTalent = getUserTalentEffects(playerId).weekly_guaranteed_epic_pull;
+  let usedWeeklyEpic = false;
   if (weeklyEpicTalent && rarity !== 'legendary' && rarity !== 'epic') {
     const u = state.users[playerId];
     const weekStart = new Date(); weekStart.setDate(weekStart.getDate() - weekStart.getDay()); weekStart.setHours(0, 0, 0, 0);
     const lastUsed = u?._weeklyEpicPullUsedAt ? new Date(u._weeklyEpicPullUsedAt).getTime() : 0;
     if (lastUsed < weekStart.getTime()) {
       rarity = 'epic';
-      if (u) u._weeklyEpicPullUsedAt = new Date().toISOString();
+      usedWeeklyEpic = true;
     }
   }
 
   let item = pickItemFromPool(pool, rarity, banner.id);
+  // Only mark weekly epic as used AFTER successful item selection
+  if (usedWeeklyEpic && item) {
+    const u = state.users[playerId];
+    if (u) u._weeklyEpicPullUsedAt = new Date().toISOString();
+  }
 
   // 50/50 system for legendaries on featured banner
   if (rarity === 'legendary' && banner.type === 'featured' && banner.featuredItems?.length > 0) {
@@ -222,6 +228,7 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
     duplicateRefund,
     pityCounter: gs.pityCounter,
     epicPityCounter: gs.epicPityCounter,
+    isWeeklyEpic: usedWeeklyEpic || false,
   };
 }
 
