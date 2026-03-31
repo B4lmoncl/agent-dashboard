@@ -304,7 +304,7 @@ export default function TalentTreeView({
             viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
             className="select-none"
           >
-            {/* Ring circles */}
+            {/* Ring circles with subtle rotation */}
             {RING_RADII.map((r, i) => (
               <circle
                 key={i}
@@ -312,11 +312,27 @@ export default function TalentTreeView({
                 fill="none"
                 stroke="rgba(255,255,255,0.04)"
                 strokeWidth={i === 2 ? 2 : 1}
-                strokeDasharray={i === 2 ? "4 4" : undefined}
+                strokeDasharray={i === 2 ? "4 4" : i === 1 ? "8 12" : undefined}
+                style={{
+                  transformOrigin: `${CENTER}px ${CENTER}px`,
+                  animation: `talent-ring-rotate ${120 + i * 60}s linear infinite${i % 2 === 1 ? " reverse" : ""}`,
+                }}
               />
             ))}
 
-            {/* Connection lines */}
+            {/* SVG Defs for glow + pulse animations */}
+            <defs>
+              <filter id="node-glow">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+              <filter id="line-glow">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+
+            {/* Connection lines — active ones pulse slowly */}
             {data.nodes.map(n => {
               const pos = nodePositions.get(n.id);
               if (!pos || !n.requires.length) return null;
@@ -331,11 +347,34 @@ export default function TalentTreeView({
                     x1={reqPos.x} y1={reqPos.y}
                     x2={pos.x} y2={pos.y}
                     stroke={isActive ? RING_COLORS[n.ring] : isAvailable ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
-                    strokeWidth={isActive ? 2 : 1}
+                    strokeWidth={isActive ? 2.5 : 1}
                     opacity={isActive ? 0.8 : 0.5}
+                    filter={isActive ? "url(#line-glow)" : undefined}
+                    style={isActive ? { animation: "talent-line-pulse 3s ease-in-out infinite" } : undefined}
                   />
                 );
               });
+            })}
+
+            {/* Particle effects on allocated nodes — slow rising sparkles */}
+            {data.nodes.filter(n => !!data.allocated[n.id]).map(n => {
+              const pos = nodePositions.get(n.id);
+              if (!pos) return null;
+              const color = RING_COLORS[n.ring];
+              return Array.from({ length: 3 }).map((_, i) => (
+                <circle
+                  key={`particle-${n.id}-${i}`}
+                  cx={pos.x + (i - 1) * 6}
+                  cy={pos.y}
+                  r={1.5}
+                  fill={color}
+                  opacity={0.6}
+                  style={{
+                    animation: `talent-particle-rise ${3 + i * 0.7}s ease-out ${i * 1.2}s infinite`,
+                    transformOrigin: `${pos.x + (i - 1) * 6}px ${pos.y}px`,
+                  }}
+                />
+              ));
             })}
 
             {/* Nodes */}
@@ -369,8 +408,12 @@ export default function TalentTreeView({
                 <g
                   key={n.id}
                   onClick={() => setSelectedNode(n.id === selectedNode ? null : n.id)}
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: "pointer",
+                    ...(state === "allocated" ? { animation: "talent-node-breathe 4s ease-in-out infinite", color: pathColor } : {}),
+                  }}
                   opacity={opacity}
+                  filter={state === "allocated" ? "url(#node-glow)" : undefined}
                 >
                   {/* Glow for allocated */}
                   {state === "allocated" && (
@@ -385,11 +428,11 @@ export default function TalentTreeView({
                   {/* Selection ring */}
                   {isSelected && (
                     <circle
-                      cx={pos.x} cy={pos.y} r={radius + 4}
+                      cx={pos.x} cy={pos.y} r={radius + 5}
                       fill="none"
                       stroke="#fbbf24"
                       strokeWidth={2}
-                      opacity={0.8}
+                      style={{ animation: "talent-select-pulse 2s ease-in-out infinite" }}
                     />
                   )}
                   {/* Node shape: diamond for tradeoff, circle for normal */}
