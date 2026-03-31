@@ -361,11 +361,16 @@ export function useQuestActions({
   const handleChainAccept = useCallback(async (chainOffer: { template: Record<string, unknown>; parentTitle: string } | null) => {
     if (!reviewApiKey || !chainOffer) return;
     try {
-      await fetch("/api/quest", {
+      const r = await fetch("/api/quest", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ ...chainOffer.template, createdBy: playerName || "unknown" }),
       });
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to create chain quest" });
+        return;
+      }
       setChainOffer(null);
       await refresh();
     } catch {
