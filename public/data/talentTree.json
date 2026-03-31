@@ -2,7 +2,7 @@
   "_comment": "Talent Tree — 3-ring radial layout. Inner = foundational, Middle = specialization, Outer = capstones. 1 point per 2 levels (25 total at Lv50). WoW-style meaningful choices with Diablo-style build diversity.",
   "meta": {
     "version": "1.0.0",
-    "maxPoints": 30,
+    "maxPoints": 23,
     "pointsPerLevel": 0.5,
     "firstPointLevel": 5,
     "respecCost": {
@@ -29,7 +29,8 @@
         "reqPoints": 12,
         "nodeCount": 14
       }
-    }
+    },
+    "_note": "maxPoints reflects level 50. Bonus points from Opfergabe can exceed this."
   },
   "nodes": [
     {
