@@ -1199,6 +1199,17 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
     const masteryExtra = masteryDef?.type === 'meal_duration' ? masteryDef.value : 0;
     preview.outputType = 'meal';
     preview.meal = { type: recipe.result?.buffType || recipeId, duration: (recipe.result?.duration || 5) + masteryExtra, mastery: masteryExtra > 0 };
+  } else if (recipe.result?.type === 'gem_cut') {
+    preview.outputType = 'gem';
+    const gemData = state.gemsData?.gems?.find(g => g.id === recipe.result.gemType);
+    const tierData = gemData?.tiers?.find(t => t.tier === recipe.result.gemTier);
+    preview.gem = { type: recipe.result.gemType, tier: recipe.result.gemTier, name: tierData?.name || `Tier ${recipe.result.gemTier}`, stat: gemData?.stat, statBonus: tierData?.statBonus, color: gemData?.color };
+  } else if (recipe.result?.type === 'gem_merge') {
+    preview.outputType = 'gem_merge';
+    preview.gemMerge = { fromTier: recipe.result.fromTier, toTier: recipe.result.toTier };
+  } else if (recipe.result?.type === 'gear_enhance') {
+    preview.outputType = 'gear_enhance';
+    preview.enhance = { stat: recipe.result.stat, amount: recipe.result.amount || 1 };
   } else {
     preview.outputType = 'unknown';
   }
