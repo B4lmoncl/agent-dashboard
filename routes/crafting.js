@@ -975,7 +975,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         }
         const instance = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
         // Apply mastery bonus (cloth_stat_boost, gear_stat_boost, or leather_stat_boost)
-        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost')) {
+        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost' || masteryDef.type === 'weapon_stat_boost')) {
           const boost = 1 + (masteryDef.value || 10) / 100;
           for (const stat of Object.keys(instance.stats)) {
             instance.stats[stat] = Math.round(instance.stats[stat] * boost);
@@ -1003,8 +1003,16 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       // Gem cutting handler (Juwelier: create a gem from materials)
       if (recipe.result?.type === 'gem_cut') {
         const gemType = recipe.result.gemType;
-        const gemTier = recipe.result.gemTier;
+        let gemTier = recipe.result.gemTier;
         if (!gemType || !gemTier) { result.message = 'Invalid gem recipe'; result.success = false; break; }
+        // Mastery: gem_quality_boost — chance to create one tier higher
+        if (masteryDef && masteryDef.type === 'gem_quality_boost' && gemTier < 5) {
+          const upgradeChance = (masteryDef.value || 1) * 0.10; // 10% per mastery value
+          if (Math.random() < upgradeChance) {
+            gemTier = Math.min(5, gemTier + 1);
+            result.masteryProc = true;
+          }
+        }
         const gemKey = `${gemType}_${gemTier}`;
         u.gems = u.gems || {};
         for (let i = 0; i < effectiveCount; i++) {
@@ -1012,7 +1020,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         }
         const gemData = state.gemsData?.gems?.find(g => g.id === gemType);
         const tierData = gemData?.tiers?.find(t => t.tier === gemTier);
-        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}`;
+        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}${result.masteryProc ? ' (Mastery: Tier UP!)' : ''}`;
         break;
       }
       // Gem merge handler (Juwelier: combine 3 gems → 1 higher tier)
