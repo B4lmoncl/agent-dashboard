@@ -2104,22 +2104,29 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <p className="text-xs text-w20">{item.rarity} · {item.slot}</p>
                             </div>
                             <button
-                              onClick={async () => {
-                                try {
-                                  const r = await fetch("/api/disenchant", {
-                                    method: "POST",
-                                    headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-                                    body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
-                                  });
-                                  const data = await r.json();
-                                  if (r.ok) {
-                                    setCraftResult(data.message || "Entzaubert!");
-                                    if (onRefresh) onRefresh();
-                                    fetchData();
-                                  } else {
-                                    setCraftResult(data.error || "Fehler");
-                                  }
-                                } catch { setCraftResult("Netzwerkfehler"); }
+                              onClick={() => {
+                                setConfirmAction({
+                                  message: `"${item.name}" (${item.rarity}) entzaubern?\n\nDas Item wird zerstört und in Verzauberungsmaterialien umgewandelt. Dies kann nicht rückgängig gemacht werden.`,
+                                  onConfirm: async () => {
+                                    setConfirmAction(null);
+                                    try {
+                                      const r = await fetch("/api/disenchant", {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                        body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
+                                      });
+                                      const data = await r.json();
+                                      if (r.ok) {
+                                        setCraftResult(data.message || "Entzaubert!");
+                                        setDisenchantInv(prev => prev.filter(i => (i.instanceId || i.id) !== (item.instanceId || item.id)));
+                                        if (onRefresh) onRefresh();
+                                        fetchData();
+                                      } else {
+                                        setCraftResult(data.error || "Fehler");
+                                      }
+                                    } catch { setCraftResult("Netzwerkfehler"); }
+                                  },
+                                });
                               }}
                               className="btn-press text-xs px-3 py-1.5 rounded font-semibold flex-shrink-0"
                               style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
