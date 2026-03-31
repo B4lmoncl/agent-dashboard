@@ -97,8 +97,33 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
   const hasRarityBoost = hasPassiveEffect(playerId, 'rarity_boost_15');
   // Legendary effect: pityReduction — effectively boosts pity counter so thresholds are reached sooner
   const gachaMods = getLegendaryModifiers(playerId);
-  const effectivePity = gs.pityCounter + (gachaMods.pityReduction || 0);
-  const rarity = rollRarity(effectivePity, gs.epicPityCounter, hasRarityBoost);
+  // Talent: gacha_lucky_streak — pity acceleration on every Nth pull
+  const { getUserTalentEffects } = require('./talent-tree');
+  const luckyStreak = getUserTalentEffects(playerId).gacha_lucky_streak;
+  let talentPityBoost = 0;
+  if (luckyStreak && luckyStreak.pityAcceleration > 0) {
+    const totalPulls = gs.pityCounter;
+    const everyN = luckyStreak.everyNthPull || 5;
+    // Every Nth pull: pity counter advances extra steps
+    if (totalPulls > 0 && totalPulls % everyN === 0) {
+      talentPityBoost = luckyStreak.pityAcceleration;
+    }
+  }
+  const effectivePity = gs.pityCounter + (gachaMods.pityReduction || 0) + talentPityBoost;
+  let rarity = rollRarity(effectivePity, gs.epicPityCounter, hasRarityBoost);
+
+  // Talent: weekly_guaranteed_epic_pull — once per week, force epic+ rarity
+  const weeklyEpicTalent = getUserTalentEffects(playerId).weekly_guaranteed_epic_pull;
+  if (weeklyEpicTalent && rarity !== 'legendary' && rarity !== 'epic') {
+    const u = state.users[playerId];
+    const weekStart = new Date(); weekStart.setDate(weekStart.getDate() - weekStart.getDay()); weekStart.setHours(0, 0, 0, 0);
+    const lastUsed = u?._weeklyEpicPullUsedAt ? new Date(u._weeklyEpicPullUsedAt).getTime() : 0;
+    if (lastUsed < weekStart.getTime()) {
+      rarity = 'epic';
+      if (u) u._weeklyEpicPullUsedAt = new Date().toISOString();
+    }
+  }
+
   let item = pickItemFromPool(pool, rarity, banner.id);
 
   // 50/50 system for legendaries on featured banner

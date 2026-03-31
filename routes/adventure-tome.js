@@ -293,6 +293,15 @@ function evaluateFloor(floor, user, progress) {
       current = count;
     }
 
+    // Talent: tome_progress_bonus — adds flat bonus to each objective's current value
+    const { getUserTalentEffects } = require('./talent-tree');
+    const tomeBonus = getUserTalentEffects(user.id || user.name)?.tome_progress_bonus;
+    if (tomeBonus && typeof tomeBonus === 'object' && tomeBonus.value > 0) {
+      current += tomeBonus.value;
+    } else if (typeof tomeBonus === 'number' && tomeBonus > 0) {
+      current += tomeBonus;
+    }
+
     results.push({
       id: obj.id,
       label: obj.label,

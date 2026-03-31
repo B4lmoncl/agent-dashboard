@@ -394,14 +394,22 @@ router.get('/api/dashboard', (req, res) => {
         { id: 'pet', label: 'Pet your Companion', points: 50, done: petCount >= 1 },
         { id: 'craft', label: 'Craft an Item', points: 100, done: craftedToday },
       ];
+      // Talent: daily_mission_extra_slot — adds bonus mission(s)
+      const { getUserTalentEffects } = require('./talent-tree');
+      const dailyExtraSlot = getUserTalentEffects(playerLower).daily_mission_extra_slot;
+      if (dailyExtraSlot && dailyExtraSlot.extraSlots >= 1) {
+        const extraPoints = Math.round((dailyExtraSlot.pointModifier || 0.5) * 150);
+        missions.push({ id: 'quest5', label: 'Complete 5 Quests', points: extraPoints, done: questsToday >= 5 });
+      }
       const earned = missions.filter(m => m.done).reduce((sum, m) => sum + m.points, 0);
+      const totalPoints = missions.reduce((sum, m) => sum + m.points, 0);
       const milestones = [
         { threshold: 100, reward: { gold: 10 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(100) },
         { threshold: 300, reward: { gold: 20, essenz: 3 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(300) },
         { threshold: 500, reward: { gold: 35, runensplitter: 2 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(500) },
         { threshold: 750, reward: { gold: 50, sternentaler: 1 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(750) },
       ];
-      dailyMissions = { missions, earned, total: 750, milestones };
+      dailyMissions = { missions, earned, total: totalPoints, milestones };
     }
   }
 
@@ -628,7 +636,10 @@ function buildVisiblePool(playerName, playerLevel) {
       pool.push(shuffled[i].id);
     }
   }
-  return pool.slice(0, 11);
+  // Talent tree: quest_pool_size — increases visible quest pool
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentPoolBonus = getUserTalentEffects(uid).quest_pool_size || 0;
+  return pool.slice(0, 11 + talentPoolBonus);
 }
 
 // Generate 18 fresh quests from templates for a specific player

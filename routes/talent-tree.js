@@ -257,6 +257,61 @@ router.post('/api/talents/reset', requireAuth, (req, res) => {
   }
 });
 
+// ─── POST /api/talents/sacrifice — sacrifice legendary item for bonus talent point
+router.post('/api/talents/sacrifice', requireAuth, (req, res) => {
+  const uid = req.auth.userId;
+  if (!talentLock.acquire(uid)) return res.status(429).json({ error: 'Talent operation in progress' });
+  try {
+    const user = state.users[uid];
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    const talents = ensureUserTalents(user);
+    // Check if user has the sacrifice talent allocated
+    const sacrificeNode = Object.entries(talents.allocated).find(([nid]) => {
+      const node = nodeById.get(nid);
+      return node?.effect?.type === 'sacrifice_legendary_for_talent_point';
+    });
+    if (!sacrificeNode) return res.status(400).json({ error: 'Opfergabe talent not allocated' });
+
+    const effect = nodeById.get(sacrificeNode[0]).effect;
+    const maxTotal = effect.maxTotal || 3;
+    const currentBonus = user._bonusTalentPoints || 0;
+    if (currentBonus >= maxTotal) {
+      return res.status(400).json({ error: `Already sacrificed maximum (${maxTotal}) items` });
+    }
+
+    const { instanceId } = req.body;
+    if (!instanceId) return res.status(400).json({ error: 'instanceId required' });
+
+    const inventory = user.inventory || [];
+    const idx = inventory.findIndex(i => i.instanceId === instanceId);
+    if (idx === -1) return res.status(400).json({ error: 'Item not found in inventory' });
+
+    const item = inventory[idx];
+    const rarity = (item.rarity || '').toLowerCase();
+    if (rarity !== 'legendary') {
+      return res.status(400).json({ error: 'Only legendary items can be sacrificed' });
+    }
+    if (item.locked) return res.status(400).json({ error: 'Item is locked' });
+
+    // Remove item and grant bonus talent point
+    inventory.splice(idx, 1);
+    user._bonusTalentPoints = currentBonus + (effect.pointsPerRank || 1);
+    user._sacrificedItems = user._sacrificedItems || [];
+    user._sacrificedItems.push({ name: item.name, rarity: item.rarity, at: new Date().toISOString() });
+
+    saveUsers();
+    res.json({
+      success: true,
+      sacrificedItem: item.name,
+      bonusTalentPoints: user._bonusTalentPoints,
+      availablePoints: getAvailablePoints(user),
+    });
+  } finally {
+    talentLock.release(uid);
+  }
+});
+
 // ─── Get active talent effects for a user (used by helpers.js) ─────────────
 function getUserTalentEffects(userId) {
   const user = state.users[userId];
