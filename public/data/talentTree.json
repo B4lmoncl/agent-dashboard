@@ -2,7 +2,7 @@
   "_comment": "Talent Tree — 3-ring radial layout. Inner = foundational, Middle = specialization, Outer = capstones. 1 point per 2 levels (25 total at Lv50). WoW-style meaningful choices with Diablo-style build diversity.",
   "meta": {
     "version": "1.0.0",
-    "maxPoints": 25,
+    "maxPoints": 30,
     "pointsPerLevel": 0.5,
     "firstPointLevel": 5,
     "respecCost": {
@@ -15,19 +15,19 @@
         "label": "Grundstein",
         "desc": "Fundamentale Verstärkungen. Solide, aber nicht aufregend.",
         "reqPoints": 0,
-        "nodeCount": 8
+        "nodeCount": 12
       },
       "middle": {
         "label": "Zwielicht",
         "desc": "Hier beginnen die Entscheidungen zu schmerzen. Macht kommt mit einem Preis.",
         "reqPoints": 5,
-        "nodeCount": 10
+        "nodeCount": 18
       },
       "outer": {
         "label": "Aszension",
         "desc": "Spielverändernde Kräfte. Jede einzelne formt deinen Spielstil.",
         "reqPoints": 12,
-        "nodeCount": 8
+        "nodeCount": 14
       }
     }
   },
@@ -521,6 +521,305 @@
         "perEntryPercent": 0.001,
         "maxPercent": 0.05,
         "maxEntries": 50
+      }
+    },
+    {
+      "id": "inner-9",
+      "ring": "inner",
+      "name": "Nachtarbeiter",
+      "icon": "night-worker",
+      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +12% XP.",
+      "flavor": "Die Nacht gehört denen die nicht schlafen. Und denen die es bereuen.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "night_xp_bonus",
+        "value": 0.12
+      }
+    },
+    {
+      "id": "inner-10",
+      "ring": "inner",
+      "name": "Sparfuchs",
+      "icon": "thrifty-fox",
+      "desc": "Alle Shop-Preise und Trainer-Kosten sind 5% günstiger.",
+      "flavor": "Nicht geizig. Wirtschaftlich denkend. Es gibt einen Unterschied. Angeblich.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "shop_discount",
+        "value": 0.05
+      }
+    },
+    {
+      "id": "inner-11",
+      "ring": "inner",
+      "name": "Ruhesucher",
+      "icon": "rest-seeker",
+      "desc": "Rested XP Pool akkumuliert 10% schneller. Auch im Turm, nicht nur offline.",
+      "flavor": "Erholt sich schneller als andere. Oder tut zumindest so überzeugend.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "rested_xp_accumulation_bonus",
+        "value": 0.1
+      }
+    },
+    {
+      "id": "inner-12",
+      "ring": "inner",
+      "name": "Ordnungshüter",
+      "icon": "order-keeper",
+      "desc": "Hoarding-Strafe setzt erst bei 23 Quests ein statt bei 20.",
+      "flavor": "Drei extra Quests im Rucksack. Klingt nach wenig. Fühlt sich an wie Freiheit.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "hoarding_threshold_bonus",
+        "value": 3
+      }
+    },
+    {
+      "id": "mid-11",
+      "ring": "middle",
+      "name": "Zeitdieb",
+      "icon": "time-thief",
+      "desc": "Rift-Zeitlimit +10%. Dafür: Rift-Belohnungen -5%.",
+      "flavor": "Mehr Zeit, weniger Beute. Du hast nicht gestohlen. Du hast geliehen. Unbefristet.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "tradeoff",
+        "bonus": {
+          "stat": "rift_time_limit",
+          "modifier": 0.1
+        },
+        "penalty": {
+          "stat": "rift_rewards",
+          "modifier": -0.05
+        }
+      }
+    },
+    {
+      "id": "mid-12",
+      "ring": "middle",
+      "name": "Sammlerwahn",
+      "icon": "collector-mania",
+      "desc": "Jedes einzigartige Item das du zum ersten Mal findest gibt +50 Bonus-XP.",
+      "flavor": "Der Sammler freut sich. Über alles. Besonders über Dinge die er nicht braucht.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "unique_item_discovery_xp",
+        "value": 50
+      }
+    },
+    {
+      "id": "mid-13",
+      "ring": "middle",
+      "name": "Morgenmensch",
+      "icon": "morning-person",
+      "desc": "Erste Quest des Tages gibt +20% Gold. Aber NUR die erste.",
+      "flavor": "Frühaufsteher bekommen den Wurm. Und zwanzig Prozent mehr Gold. Der Wurm ist gratis.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [
+        "mid-11"
+      ],
+      "effect": {
+        "type": "first_quest_gold_bonus",
+        "value": 0.2
+      }
+    },
+    {
+      "id": "mid-14",
+      "ring": "middle",
+      "name": "Disenchanter",
+      "icon": "disenchanter",
+      "desc": "Disenchant gibt 1 zusätzliches Material pro Vorgang.",
+      "flavor": "Mehr rausholen als reinstecken. Das ist keine Magie. Das ist Talent.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "disenchant_bonus_material",
+        "value": 1
+      }
+    },
+    {
+      "id": "mid-15",
+      "ring": "middle",
+      "name": "Händlerinstinkt",
+      "icon": "merchant-instinct",
+      "desc": "Vendor Reagents kosten 10% weniger Gold beim Kauf.",
+      "flavor": "Der Händler mag dich nicht. Aber er respektiert dein Verhandlungsgeschick.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [
+        "inner-10"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "vendor_reagent_discount",
+        "value": 0.1
+      }
+    },
+    {
+      "id": "mid-16",
+      "ring": "middle",
+      "name": "Recycler",
+      "icon": "recycler",
+      "desc": "Salvage gibt 25% mehr Essenz.",
+      "flavor": "Aus Müll wird Gold. Oder zumindest Essenz. Was fast Gold ist. Fast.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "salvage_essenz_bonus",
+        "value": 0.25
+      }
+    },
+    {
+      "id": "mid-17",
+      "ring": "middle",
+      "name": "Wochenendkrieger",
+      "icon": "weekend-warrior",
+      "desc": "Am Wochenende (Sa+So) geben Quests +8% XP.",
+      "flavor": "Samstag und Sonntag sind keine freien Tage. Sie sind Bonustage. Perspektive.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "weekend_xp_bonus",
+        "value": 0.08
+      }
+    },
+    {
+      "id": "mid-18",
+      "ring": "middle",
+      "name": "Fraktionsdiplomat",
+      "icon": "faction-diplomat",
+      "desc": "Fraktions-Reputation +8% aus allen Quellen.",
+      "flavor": "Alle mögen dich. Oder tun zumindest so. Beides hat denselben Effekt auf den Rufbalken.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "faction_rep_bonus",
+        "value": 0.08
+      }
+    },
+    {
+      "id": "outer-9",
+      "ring": "outer",
+      "name": "Seelenernte",
+      "icon": "soul-harvest",
+      "desc": "World-Boss-Contribution gibt +15% mehr Schaden. Kostet 3 Talentpunkte.",
+      "flavor": "Der Boss hat dich vorher nicht bemerkt. Jetzt schon. Ob das gut ist, zeigt sich.",
+      "maxRank": 3,
+      "reqPoints": 15,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "world_boss_damage_bonus",
+        "value": 0.15
+      }
+    },
+    {
+      "id": "outer-10",
+      "ring": "outer",
+      "name": "Dungeoninstinkt",
+      "icon": "dungeon-instinct",
+      "desc": "Dungeon-Erfolgsrate +10%. Kostet 2 Talentpunkte.",
+      "flavor": "Du weißt wo die Fallen sind. Nicht weil du sie siehst. Sondern weil du reingefallen bist.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "dungeon_success_bonus",
+        "value": 0.1
+      }
+    },
+    {
+      "id": "outer-11",
+      "ring": "outer",
+      "name": "Aethersicht",
+      "icon": "aether-sight",
+      "desc": "Du siehst die Affix-Ranges von Items im Shop BEVOR du sie kaufst. Kostet 2 Punkte.",
+      "flavor": "Wissen ist Macht. Und in diesem Fall: Wissen ist weniger Reue nach dem Kauf.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "shop_affix_preview",
+        "value": 1
+      }
+    },
+    {
+      "id": "outer-12",
+      "ring": "outer",
+      "name": "Schicksalswende",
+      "icon": "fate-turn",
+      "desc": "Einmal pro Woche: Nächster Gacha-Pull ist guaranteed Epic oder besser. Kostet 3 Punkte.",
+      "flavor": "Einmal die Woche lächelt das Schicksal. Den Rest der Woche schaut es zu.",
+      "maxRank": 3,
+      "reqPoints": 15,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "weekly_guaranteed_epic_pull",
+        "value": 1
+      }
+    },
+    {
+      "id": "outer-13",
+      "ring": "outer",
+      "name": "Turmbewusstsein",
+      "icon": "tower-mind",
+      "desc": "Adventure Tome Objectives zählen +1 Fortschritt extra. Kostet 2 Punkte.",
+      "flavor": "Der Turm bemerkt dich. Und gibt dir Bonuspunkte. Weil er kann.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "tome_progress_bonus",
+        "value": 1
+      }
+    },
+    {
+      "id": "outer-14",
+      "ring": "outer",
+      "name": "Erinnerungssplitter",
+      "icon": "memory-shard",
+      "desc": "Season Pass XP +10% aus allen Quellen. Kostet 2 Punkte.",
+      "flavor": "Der Pass erinnert sich an dich. Besser als du dich an ihn erinnerst.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "battlepass_xp_bonus",
+        "value": 0.1
       }
     }
   ],
