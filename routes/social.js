@@ -647,6 +647,8 @@ router.get('/api/social/trade/:tradeId', requireAuth, (req, res) => {
 // POST /api/social/trade/:tradeId/counter — counter-offer
 router.post('/api/social/trade/:tradeId/counter', requireAuth, (req, res) => {
   const userId = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
+  if (!acquireTradeLock(userId)) return res.status(429).json({ error: 'Trade action in progress' });
+  try {
   const trade = state.socialData.trades.find(t => t.id === req.params.tradeId);
   if (!trade) return res.status(404).json({ error: 'Trade not found' });
 
@@ -716,14 +718,24 @@ router.post('/api/social/trade/:tradeId/counter', requireAuth, (req, res) => {
   saveSocial();
   console.log(`[social] Trade counter-offer: ${userId} on trade ${trade.id} (${offeredGold}g, ${itemIds.length} items)`);
   res.json({ ok: true, trade });
+  } finally { releaseTradeLock(userId); }
 });
 
 // POST /api/social/trade/:tradeId/accept — accept current trade terms
 router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
   const userId = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
+  // Acquire lock BEFORE reading trade state to prevent TOCTOU race
+  if (!acquireTradeLock(userId)) {
+    return res.status(429).json({ error: 'Trade action in progress, please wait' });
+  }
+  try {
   const trade = state.socialData.trades.find(t => t.id === req.params.tradeId);
   if (!trade) return res.status(404).json({ error: 'Trade not found' });
 
+  // Guard: prevent re-execution of completed/cancelled trades
+  if (trade.status === 'completed' || trade.status === 'cancelled' || trade.status === 'declined') {
+    return res.status(400).json({ error: 'Trade is no longer active' });
+  }
   if (trade.status !== 'pending_initiator' && trade.status !== 'pending_recipient') {
     return res.status(400).json({ error: 'Trade is no longer active' });
   }
@@ -748,11 +760,13 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
 
   // Check if BOTH sides have accepted
   if (trade.initiatorAccepted && trade.recipientAccepted) {
-    // Acquire locks for both players to prevent concurrent trade execution
-    if (!acquireTradeLock(trade.initiator) || !acquireTradeLock(trade.recipient)) {
-      releaseTradeLock(trade.initiator);
-      releaseTradeLock(trade.recipient);
-      return res.status(429).json({ error: 'Trade in progress, please wait' });
+    // Acquire lock for the OTHER player too
+    const otherId = isInitiator ? trade.recipient : trade.initiator;
+    if (!acquireTradeLock(otherId)) {
+      // Revert acceptance
+      if (isInitiator) trade.initiatorAccepted = false;
+      if (isRecipient) trade.recipientAccepted = false;
+      return res.status(429).json({ error: 'Trade partner action in progress, please wait' });
     }
     try {
       // Execute the trade atomically
@@ -785,6 +799,7 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
   saveSocial();
   console.log(`[social] Trade accepted by ${userId}, waiting for other party on trade ${trade.id}`);
   res.json({ ok: true, trade, executed: false, message: 'Waiting for the other player to accept' });
+  } finally { releaseTradeLock(userId); }
 });
 
 // POST /api/social/trade/:tradeId/decline — decline/cancel trade
@@ -813,6 +828,8 @@ router.post('/api/social/trade/:tradeId/decline', requireAuth, (req, res) => {
 // ─── Trade Execution ──────────────────────────────────────────────────────────
 
 function executeTrade(trade) {
+  // Idempotency guard: prevent re-execution of already completed trades
+  if (trade.status === 'completed') return { ok: false, error: 'Trade already completed' };
   const u1 = state.users[trade.initiator];
   const u2 = state.users[trade.recipient];
   if (!u1 || !u2) return { ok: false, error: 'One or both players no longer exist' };
