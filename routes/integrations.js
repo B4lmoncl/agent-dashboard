@@ -30,8 +30,8 @@ router.post('/api/webhooks/github', (req, res) => {
     const pr = payload.pull_request;
     const quest = {
       id: `quest-gh-pr-${pr.number}-${Date.now()}`,
-      title: `[PR #${pr.number}] ${pr.title}`,
-      description: pr.body ? pr.body.slice(0, 300) : `Merged PR by ${pr.user?.login}`,
+      title: `[PR #${pr.number}] ${String(pr.title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}`,
+      description: pr.body ? String(pr.body).slice(0, 300).replace(/</g, '&lt;').replace(/>/g, '&gt;') : `Merged PR by ${pr.user?.login}`,
       priority: 'medium',
       type: 'development',
       categories: ['Coding'],
@@ -55,8 +55,8 @@ router.post('/api/webhooks/github', (req, res) => {
     const issue = payload.issue;
     const quest = {
       id: `quest-gh-issue-${issue.number}-${Date.now()}`,
-      title: `[Issue #${issue.number}] ${issue.title}`,
-      description: issue.body ? issue.body.slice(0, 300) : `GitHub issue opened by ${issue.user?.login}`,
+      title: `[Issue #${issue.number}] ${String(issue.title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}`,
+      description: issue.body ? String(issue.body).slice(0, 300).replace(/</g, '&lt;').replace(/>/g, '&gt;') : `GitHub issue opened by ${issue.user?.login}`,
       priority: 'medium',
       type: 'development',
       categories: ['Bug Fix'],
