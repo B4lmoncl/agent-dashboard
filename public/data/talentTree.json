@@ -961,19 +961,16 @@
     {
       "id": "grinder",
       "name": "Der Unermüdliche",
-      "desc": "Maximiert XP und Quest-Durchsatz. Lebt für den Grind.",
+      "desc": "Maximiert XP und Quest-Durchsatz.",
       "suggestedNodes": [
         "inner-7",
         "inner-2",
         "inner-9",
-        "inner-12",
         "mid-1",
         "mid-5",
         "mid-17",
-        "mid-12",
         "outer-6",
-        "outer-8",
-        "outer-14"
+        "outer-8"
       ]
     },
     {
@@ -985,21 +982,17 @@
         "inner-8",
         "inner-10",
         "mid-6",
-        "mid-8",
         "mid-14",
         "mid-15",
-        "mid-16",
-        "outer-1",
-        "outer-11"
+        "mid-16"
       ]
     },
     {
       "id": "gambler",
       "name": "Der Glücksspieler",
-      "desc": "Hohe Varianz, hohe Belohnung. Liebt Risiko.",
+      "desc": "Hohe Varianz, hohe Belohnung.",
       "suggestedNodes": [
         "inner-5",
-        "inner-11",
         "mid-3",
         "mid-10",
         "mid-13",
@@ -1010,31 +1003,25 @@
     {
       "id": "social",
       "name": "Der Diplomat",
-      "desc": "Profitiert von Freunden, Fraktionen und Gemeinschaft.",
+      "desc": "Profitiert von Freunden und Fraktionen.",
       "suggestedNodes": [
         "inner-6",
-        "inner-10",
         "mid-9",
         "mid-18",
-        "mid-15",
         "outer-3",
-        "outer-4",
-        "outer-13"
+        "outer-4"
       ]
     },
     {
       "id": "rift-runner",
       "name": "Der Schattenläufer",
-      "desc": "Optimiert für Rifts, Dungeons und World Bosses.",
+      "desc": "Optimiert für Rifts und Dungeons.",
       "suggestedNodes": [
         "inner-1",
         "inner-4",
         "mid-2",
         "mid-4",
-        "mid-11",
         "outer-2",
-        "outer-5",
-        "outer-9",
         "outer-10"
       ]
     }
