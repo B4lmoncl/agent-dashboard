@@ -1253,7 +1253,7 @@
       "id": "chain_quest_bronze",
       "name": "Quest Runner: Bronze",
       "description": "25 Quests. Bronze. Die Farbe von 'guter Anfang' und 'dritte Wahl'.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 25
@@ -1274,7 +1274,7 @@
       "id": "chain_quest_silver",
       "name": "Quest Runner: Silver",
       "description": "100 Quests. Silber. Weil Gold zu optimistisch wäre.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 100
@@ -1296,7 +1296,7 @@
       "id": "chain_quest_gold",
       "name": "Quest Runner: Gold",
       "description": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 300
@@ -1318,7 +1318,7 @@
       "id": "chain_quest_legend",
       "name": "Quest Runner: Legendary",
       "description": "1000 Quests. Legendär. Nicht weil es beeindruckend ist, sondern weil niemand es glaubt.",
-      "icon": null,
+      "icon": "/images/icons/ach-first-quest.png",
       "condition": {
         "type": "quests_completed",
         "count": 1000
@@ -1339,7 +1339,7 @@
       "id": "chain_streak_bronze",
       "name": "Streak Keeper: Bronze",
       "description": "7 Tage. Eine Woche. Du hattest keine andere Wahl, du hast angefangen.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 7
@@ -1360,7 +1360,7 @@
       "id": "chain_streak_silver",
       "name": "Streak Keeper: Silver",
       "description": "30 Tage. Der Streak kontrolliert jetzt deinen Tagesablauf. Du kontrollierst gar nichts mehr.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 30
@@ -1382,7 +1382,7 @@
       "id": "chain_streak_gold",
       "name": "Streak Keeper: Gold",
       "description": "90 Tage. Drei Monate. Du hast die Grippe durchgespielt, den Urlaub und zwei existenzielle Krisen.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 90
@@ -1404,7 +1404,7 @@
       "id": "chain_streak_legend",
       "name": "Streak Keeper: Legendary",
       "description": "365 Tage. Ein ganzes Jahr. Die Erde hat die Sonne einmal umkreist und du warst jeden Tag hier.",
-      "icon": null,
+      "icon": "/images/icons/streak-bronze.png",
       "condition": {
         "type": "streak_days",
         "count": 365
@@ -1425,7 +1425,7 @@
       "id": "chain_gold_bronze",
       "name": "Gold Hoarder: Bronze",
       "description": "500 Gold. Der erste Schritt zum Reichtum. Oder zum Horten. Hängt von der Perspektive ab.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 500
@@ -1445,7 +1445,7 @@
       "id": "chain_gold_silver",
       "name": "Gold Hoarder: Silver",
       "description": "5000 Gold. Du könntest dir etwas Schönes kaufen. Wirst du aber nicht. Du sparst lieber.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 5000
@@ -1466,7 +1466,7 @@
       "id": "chain_gold_gold",
       "name": "Gold Hoarder: Gold",
       "description": "25.000 Gold. Du bist reich. Du fühlst dich nicht reich. Das ist das Zeichen, dass es funktioniert.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 25000
@@ -1487,7 +1487,7 @@
       "id": "chain_gold_legend",
       "name": "Gold Hoarder: Legendary",
       "description": "100.000 Gold. Du besitzt mehr als manche Kleinstaaten. Ausgeben wirst du es trotzdem nicht.",
-      "icon": null,
+      "icon": "/images/icons/ach-dragon-hoard.png",
       "condition": {
         "type": "gold_threshold",
         "count": 100000
@@ -1507,7 +1507,7 @@
       "id": "chain_boss_bronze",
       "name": "Boss Slayer: Bronze",
       "description": "Ein Weltboss. Du warst technisch gesehen beteiligt. Dein Beitrag wird großzügig als 'anwesend' protokolliert.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 1
@@ -1528,7 +1528,7 @@
       "id": "chain_boss_silver",
       "name": "Boss Slayer: Silver",
       "description": "5 Weltbosse. Du hast ein Muster entwickelt: Auftauchen, Schaden machen, Beute einsammeln, verschwinden.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 5
@@ -1550,7 +1550,7 @@
       "id": "chain_boss_gold",
       "name": "Boss Slayer: Gold",
       "description": "15 Weltbosse. Die Bosse haben inzwischen eine Selbsthilfegruppe gegründet. Wegen dir.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 15
@@ -1572,7 +1572,7 @@
       "id": "chain_boss_legend",
       "name": "Boss Slayer: Legendary",
       "description": "50 Weltbosse. Du bist der Grund, warum Bosse einen Gewerkschaftsvertreter haben.",
-      "icon": null,
+      "icon": "/images/icons/ach-boss-slayer.png",
       "condition": {
         "type": "boss_defeated",
         "count": 50
@@ -1593,7 +1593,7 @@
       "id": "chain_craft_bronze",
       "name": "Master Crafter: Bronze",
       "description": "Skill 50. Du kannst jetzt Dinge herstellen, die nicht sofort auseinanderfallen. Niedrige Latte, aber immerhin.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 50
@@ -1614,7 +1614,7 @@
       "id": "chain_craft_silver",
       "name": "Master Crafter: Silver",
       "description": "Skill 150. Halbzeit. Die NPCs lassen dich jetzt an die guten Werkzeuge.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 150
@@ -1636,7 +1636,7 @@
       "id": "chain_craft_gold",
       "name": "Master Crafter: Gold",
       "description": "Skill 250. Du riechst permanent nach Kohle, Kräutern oder beidem. Dein Companion hält Abstand.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 250
@@ -1658,7 +1658,7 @@
       "id": "chain_craft_legend",
       "name": "Master Crafter: Legendary",
       "description": "Skill 300. Maximum. Du hast dein Handwerk gemeistert. Grimvar weint leise vor Stolz. Oder Rauch. Schwer zu sagen.",
-      "icon": null,
+      "icon": "/images/icons/ach-apprentice.png",
       "condition": {
         "type": "profession_skill",
         "count": 300
@@ -2329,7 +2329,7 @@
       "id": "variety_all_types_10",
       "name": "Universalist",
       "icon": "/images/icons/ach-universalist.png",
-      "desc": "Complete 10+ quests of every type.",
+      "desc": "10+ Quests von jedem Typ. Du bist nicht vielseitig, du hast Commitment-Probleme und nennst es 'Horizonterweiterung'.",
       "category": "variety",
       "rarity": "epic",
       "points": 50,
@@ -2342,7 +2342,7 @@
       "id": "variety_5_npcs",
       "name": "NPC-Kenner",
       "icon": "/images/icons/ach-5-npcs.png",
-      "desc": "Complete quest chains from 5 different NPCs.",
+      "desc": "Questketten von 5 verschiedenen NPCs. Du kennst jetzt fünf Leute beim Vornamen. Vier davon wünschten, das wäre anders.",
       "category": "variety",
       "rarity": "uncommon",
       "points": 10,
@@ -2355,7 +2355,7 @@
       "id": "variety_20_npcs",
       "name": "Turm-Bekanntschaft",
       "icon": "/images/icons/ach-20-npcs.png",
-      "desc": "Complete quest chains from 20 different NPCs.",
+      "desc": "Questketten von 20 NPCs. Du bist jetzt stadtbekannt. Nicht als Held — als der Typ, der immer wiederkommt.",
       "category": "variety",
       "rarity": "epic",
       "points": 50,
@@ -2368,7 +2368,7 @@
       "id": "speed_3_quests_day",
       "name": "Dreifachschlag",
       "icon": "/images/icons/ach-3-day.png",
-      "desc": "Complete 3 quests in a single day.",
+      "desc": "3 Quests an einem Tag. Das nennt man Schwung. Oder einen leeren Kalender. Beides funktioniert.",
       "category": "speed",
       "rarity": "uncommon",
       "points": 10,
@@ -2394,7 +2394,7 @@
       "id": "codex-initiate",
       "name": "Neugieriger Geist",
       "icon": "/images/icons/nav-observatory.png",
-      "desc": "Discover 10 codex entries.",
+      "desc": "10 Codex-Einträge. Du liest die Gebrauchsanweisung. In einem Turm voller Leute, die das nicht tun, ist das fast heldenhaft.",
       "category": "exploration",
       "rarity": "common",
       "points": 5,
@@ -2407,7 +2407,7 @@
       "id": "codex-scholar",
       "name": "Gelehrter",
       "icon": "/images/icons/nav-observatory.png",
-      "desc": "Discover 25 codex entries.",
+      "desc": "25 Codex-Einträge. Du weißt jetzt mehr über den Turm als die meisten Bewohner. Die finden das nicht beeindruckend, sondern beunruhigend.",
       "category": "exploration",
       "rarity": "uncommon",
       "points": 10,
@@ -2421,7 +2421,7 @@
       "id": "codex-archivist",
       "name": "Archivar",
       "icon": "/images/icons/nav-observatory.png",
-      "desc": "Discover 50 codex entries.",
+      "desc": "50 Codex-Einträge. Du archivierst Wissen, das nie jemand von dir verlangt hat. Das ist entweder Leidenschaft oder ein Hilferuf.",
       "category": "exploration",
       "rarity": "rare",
       "points": 25,
@@ -2435,7 +2435,7 @@
       "id": "codex-lorekeeper",
       "name": "Hüter der Chroniken",
       "icon": "/images/icons/nav-observatory.png",
-      "desc": "Discover 75 codex entries. The tower reveals its deepest secrets.",
+      "desc": "75 Codex-Einträge. Der Turm flüstert dir Geheimnisse zu. Du flüsterst zurück. Passanten wechseln die Straßenseite.",
       "category": "exploration",
       "rarity": "epic",
       "points": 50,
@@ -2449,7 +2449,7 @@
       "id": "codex-omniscient",
       "name": "Allwissend",
       "icon": "/images/icons/nav-observatory.png",
-      "desc": "Discover all codex entries. You know everything the tower knows.",
+      "desc": "Alle Codex-Einträge. Du weißt alles, was der Turm weiß. Der Turm findet das unangenehm. Du findest das normal. Das ist der beunruhigende Teil.",
       "category": "exploration",
       "rarity": "legendary",
       "points": 100,
@@ -2459,6 +2459,246 @@
       },
       "chainPrev": "codex-lorekeeper",
       "hidden": true
+    },
+    {
+      "id": "talent_first",
+      "name": "Erste Weichenstellung",
+      "description": "Ersten Talentpunkt vergeben. Der Schicksalsbaum hat jetzt eine Meinung über dich. Er behält sie für sich. Vorerst.",
+      "icon": "/images/icons/nav-talents.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "talent_points_spent",
+        "count": 1
+      }
+    },
+    {
+      "id": "talent_10",
+      "name": "Verzweigt",
+      "description": "Zehn Talentpunkte vergeben. Der Baum sieht aus wie dein Entscheidungsprozess: chaotisch, aber irgendwie tragfähig. Die inneren Ringe urteilen leise.",
+      "icon": "/images/icons/nav-talents.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "talent_points_spent",
+        "count": 10
+      }
+    },
+    {
+      "id": "talent_respec",
+      "name": "Identitätskrise",
+      "description": "Kompletten Respec durchgeführt. Fünfhundert Gold und fünfzig Essenz, um festzustellen, dass die alten Talente doch besser waren. Das Formular für die Rückerstattung existiert. Es hat siebzehn Seiten.",
+      "icon": "/images/icons/nav-talents.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "talent_respec",
+        "count": 1
+      }
+    },
+    {
+      "id": "tome_first_milestone",
+      "name": "Inhaltsverzeichnis",
+      "description": "Ersten Meilenstein im Abenteuerbuch erreicht. Fünfundzwanzig Prozent eines Stockwerks. Die restlichen fünfundsiebzig Prozent schauen dich erwartungsvoll an. Das Buch hat keine Augen. Es fühlt sich trotzdem so an.",
+      "icon": "/images/icons/nav-tome.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "tome_milestone_claimed",
+        "count": 1
+      }
+    },
+    {
+      "id": "tome_50_percent",
+      "name": "Halbwissen",
+      "description": "Fünfzig Prozent Gesamtfortschritt im Abenteuerbuch. Genug um bei Fragen mitzureden. Zu wenig um bei Antworten aufzufallen. Der ideale Zustand, laut dem Buch.",
+      "icon": "/images/icons/nav-tome.png",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "tome_total_percent",
+        "count": 50
+      }
+    },
+    {
+      "id": "tome_floor_100",
+      "name": "Gründlich",
+      "description": "Ein Stockwerk im Abenteuerbuch zu hundert Prozent. Jede Quest, jedes Ritual, jeder Winkel. Der Stockwerk-Geist kann jetzt in Rente gehen. Er wird es nicht tun, aber die Option besteht theoretisch.",
+      "icon": "/images/icons/nav-tome.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "tome_floor_complete",
+        "count": 1
+      }
+    },
+    {
+      "id": "enchant_first",
+      "name": "Zweite Meinung",
+      "description": "Ersten Stat-Reroll bei Eldric durchgeführt. Er hat den alten Wert gesehen, kurz geschwiegen, und dann gesagt: 'Ja. Das würde ich auch neu würfeln.' Eldrics Schweigen ist teurer als sein Rat.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "enchantments_done",
+        "count": 1
+      }
+    },
+    {
+      "id": "enchant_10",
+      "name": "Chronischer Optimist",
+      "description": "Zehn Stat-Rerolls. Die Kosten steigen exponentiell. Dein Goldvorrat fällt exponentiell. Eldric sagt, das gleicht sich aus. Eldric hat eine Yacht. Zieh deine Schlüsse.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "enchantments_done",
+        "count": 10
+      }
+    },
+    {
+      "id": "kanai_first",
+      "name": "Kontrollierter Vandalismus",
+      "description": "Erste legendäre Extraktion im Ätherwürfel. Der Gegenstand ist weg. Der Effekt bleibt. Dein Gewissen ist irgendwo dazwischen, näher am Effekt als am Gegenstand, was dir mehr über dich sagt als über den Würfel.",
+      "icon": "/images/icons/equip-weapon.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "kanai_extractions",
+        "count": 1
+      }
+    },
+    {
+      "id": "kanai_full",
+      "name": "Vollständiger Würfel",
+      "description": "Alle drei Ätherwürfel-Slots gefüllt: Waffe, Rüstung, Schmuck. Drei legendäre Gegenstände wurden dafür geopfert. Der Würfel summt zufrieden. Du hast eine Sammelklage weniger Gegenstände. Das Formular dafür hat eine Fußnote.",
+      "icon": "/images/icons/equip-weapon.png",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "kanai_slots_filled",
+        "count": 3
+      }
+    },
+    {
+      "id": "mail_first",
+      "name": "Schriftverkehr",
+      "description": "Erste Nachricht verschickt. Die Zustellung dauert null Sekunden, was den Postboten arbeitslos gemacht hat. Er hat sich umschulen lassen. Zum Dungeon-Guide. Beide Berufe enden damit, dass man Dinge zustellt, die niemand bestellt hat.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "mails_sent",
+        "count": 1
+      }
+    },
+    {
+      "id": "mail_10",
+      "name": "Korrespondenz",
+      "description": "Zehn Nachrichten verschickt. Du bist jetzt offiziell ein Brieffreund. Das Wort klingt harmlos. Die Realität: du hast zehn Textdokumente produziert, die jemand archivieren muss. Archivierung ist die Rache der Bürokratie.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "mails_sent",
+        "count": 10
+      }
+    },
+    {
+      "id": "expedition_first",
+      "name": "Alleingang",
+      "description": "Ersten Begleiter auf Expedition geschickt. Er kommt zurück. Wahrscheinlich. Die Statistik sagt ja. Die Statistik hat den Begleiter allerdings noch nie persönlich getroffen.",
+      "icon": "/images/icons/nav-wanderer.png",
+      "rarity": "common",
+      "points": 5,
+      "condition": {
+        "type": "expedition_completions",
+        "count": 1
+      }
+    },
+    {
+      "id": "expedition_10",
+      "name": "Reisebüro",
+      "description": "Zehn Expeditionen abgeschlossen. Dein Begleiter hat mehr von der Welt gesehen als du. Er erzählt nicht davon. Entweder aus Bescheidenheit oder weil er dir die Enttäuschung ersparen will. Beides wäre fair.",
+      "icon": "/images/icons/nav-wanderer.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "expedition_completions",
+        "count": 10
+      }
+    },
+    {
+      "id": "expedition_ancient",
+      "name": "Grabräuber",
+      "description": "Uralte-Ruinen-Expedition abgeschlossen. Vierundzwanzig Stunden Wartezeit. Dein Begleiter kam zurück mit Schätzen, einem neuen Trauma und der Weigerung, über den dritten Raum zu sprechen. Business as usual.",
+      "icon": "/images/icons/nav-wanderer.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "expedition_tier_ancient",
+        "count": 1
+      }
+    },
+    {
+      "id": "craft_skill_100",
+      "name": "Lehrjahre vorbei",
+      "description": "Handwerksskill hundert erreicht. Du bist offiziell kein Anfänger mehr. Du machst jetzt dieselben Fehler, nur schneller und mit teureren Materialien. Fortschritt ist relativ.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "profession_skill",
+        "count": 100
+      }
+    },
+    {
+      "id": "craft_skill_200",
+      "name": "Sachverständiger",
+      "description": "Handwerksskill zweihundert. Die Rezepte werden grün. Nicht weil sie einfacher werden, sondern weil das System dir höflich mitteilt, dass du unter deinem Niveau arbeitest. Konstruktive Kritik vom Fortschrittsbalken.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "profession_skill",
+        "count": 200
+      }
+    },
+    {
+      "id": "craft_skill_300",
+      "name": "Großmeister",
+      "description": "Skill dreihundert — das Maximum. Die letzte Stufe war grau. Du hast sie trotzdem gemacht. Nicht für den Skillpunkt. Für das Prinzip. Das Prinzip hat vierzig Eisenbarren und zwei Stunden Lebenszeit gekostet.",
+      "icon": "/images/icons/nav-forge.png",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "profession_skill",
+        "count": 300
+      }
+    },
+    {
+      "id": "social_5_friends",
+      "name": "Gesellschaftsfähig",
+      "description": "Fünf Freunde. Nicht weil du beliebt bist, sondern weil der Dungeon-Finder mindestens zwei braucht und ein Sicherheitsnetz nicht schadet. Die anderen drei sind Dekoration. Nützliche Dekoration.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "friends_count",
+        "count": 5
+      }
+    },
+    {
+      "id": "trade_materials",
+      "name": "Tauschgeschäft",
+      "description": "Ersten Handel mit Materialien abgeschlossen. Du hast etwas weggegeben und etwas bekommen. Beide Seiten glauben, den besseren Deal gemacht zu haben. Das ist entweder Diplomatie oder kollektiver Selbstbetrug. Beides funktioniert.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "trades_completed",
+        "count": 1
+      }
     }
   ],
   "pointMilestones": [

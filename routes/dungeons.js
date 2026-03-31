@@ -13,7 +13,7 @@ const _collectLocks = new Map();
 function acquireCollectLock(uid) { if (_collectLocks.has(uid)) return false; _collectLocks.set(uid, true); return true; }
 function releaseCollectLock(uid) { _collectLocks.delete(uid); }
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir, logActivity } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers, rollCraftingMaterials } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { createPlayerLock } = require('../lib/helpers');
 const dungeonJoinLock = createPlayerLock('dungeon-join');
@@ -103,9 +103,13 @@ function isOnCooldown(userId, dungeonId) {
   return { onCooldown: true, endsAt: new Date(endsAt).toISOString(), remainingMs: endsAt - Date.now() };
 }
 
-function getActiveRunForPlayer(userId) {
+function getActiveRunForPlayer(userId, includeInvited = true) {
   for (const [runId, run] of Object.entries(dungeonState.activeRuns)) {
-    if (run.participants.includes(userId) || run.invitedPlayers.includes(userId)) {
+    if (run.participants.includes(userId)) {
+      return { runId, run };
+    }
+    // Only include pending invites when browsing (not when blocking new actions)
+    if (includeInvited && run.status === 'forming' && run.invitedPlayers.includes(userId) && !run.participants.includes(userId)) {
       return { runId, run };
     }
   }
@@ -183,6 +187,19 @@ function applyDungeonRewards(userId, rewards) {
       }
     }
   }
+
+  // Profession-aware material drops via rollCraftingMaterials (content-tier based on dungeon tier)
+  const dungeonTierMap = { normal: 2, hard: 3, legendary: 4 };
+  const dungeonContentTier = dungeonTierMap[rewards._dungeonTier] || 2;
+  const dungeonMods = getLegendaryModifiers(userId);
+  const dungeonMats = rollCraftingMaterials(null, dungeonMods.materialDoubleChance || 0, u, userId, dungeonContentTier);
+  if (dungeonMats.length > 0) {
+    if (!u.craftingMaterials) u.craftingMaterials = {};
+    for (const mat of dungeonMats) {
+      u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + mat.amount;
+    }
+    rewards.professionMaterials = dungeonMats;
+  }
 }
 
 // ─── Endpoints ──────────────────────────────────────────────────────────────
@@ -191,6 +208,7 @@ function applyDungeonRewards(userId, rewards) {
 // Called lazily on GET — prunes forming runs older than 24h
 function pruneStaleRuns() {
   const MAX_FORMING_AGE_MS = 24 * 3600000; // 24 hours
+  const MAX_ACTIVE_OVERDUE_MS = 48 * 3600000; // 48 hours past completesAt = auto-fail
   let pruned = 0;
   for (const [runId, run] of Object.entries(dungeonState.activeRuns)) {
     if (run.status === 'forming' && run.createdAt) {
@@ -200,10 +218,39 @@ function pruneStaleRuns() {
         pruned++;
       }
     }
+    // Auto-expire active runs where completesAt has passed by 48+ hours
+    // and no one has collected — prevents permanently stuck players
+    if (run.status === 'active' && run.completesAt) {
+      const overdue = Date.now() - new Date(run.completesAt).getTime();
+      if (overdue > MAX_ACTIVE_OVERDUE_MS) {
+        const dungeon = getDungeon(run.dungeonId);
+        dungeonState.history.push({
+          runId,
+          dungeonId: run.dungeonId,
+          dungeonName: dungeon?.name || run.dungeonId,
+          tier: dungeon?.tier || 'normal',
+          createdBy: run.createdBy,
+          participants: [...run.participants],
+          startedAt: run.startedAt,
+          completedAt: now(),
+          success: false,
+          expired: true,
+          effectivePower: 0,
+          threshold: 0,
+          successChance: 0,
+        });
+        delete dungeonState.activeRuns[runId];
+        pruned++;
+        console.log(`[dungeons] Auto-expired overdue active run ${runId} (${run.dungeonId})`);
+      }
+    }
   }
   if (pruned > 0) {
+    if (dungeonState.history.length > 100) {
+      dungeonState.history = dungeonState.history.slice(-100);
+    }
     saveDungeonState();
-    console.log(`[dungeons] Pruned ${pruned} stale forming runs`);
+    console.log(`[dungeons] Pruned ${pruned} stale runs`);
   }
 }
 
@@ -337,8 +384,8 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
     return res.status(400).json({ error: `On cooldown until ${cd.endsAt}`, cooldown: cd });
   }
 
-  // Active run check
-  const existing = getActiveRunForPlayer(uid);
+  // Active run check (only block if actually participating, not merely invited)
+  const existing = getActiveRunForPlayer(uid, false);
   if (existing) {
     return res.status(400).json({ error: 'You already have an active dungeon run', runId: existing.runId });
   }
@@ -440,8 +487,8 @@ router.post('/api/dungeons/:runId/join', requireAuth, (req, res) => {
     return res.status(400).json({ error: `On cooldown until ${cd.endsAt}` });
   }
 
-  // Active run check (if player is already in another run)
-  const otherRun = getActiveRunForPlayer(uid);
+  // Active run check (if player is already participating in another run)
+  const otherRun = getActiveRunForPlayer(uid, false);
   if (otherRun && otherRun.runId !== runId) {
     return res.status(400).json({ error: 'You already have an active dungeon run' });
   }
@@ -535,6 +582,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Roll individual rewards (each player gets own rolls)
   const rewards = rollDungeonRewards(dungeon, isSuccess);
+  rewards._dungeonTier = dungeon.tier; // Pass tier for profession material drops
 
   // Apply legendary dungeon loot bonus to gold/essenz
   const dungeonMods = getLegendaryModifiers(uid);
@@ -611,6 +659,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Apply currency/material rewards
   applyDungeonRewards(uid, rewards);
+  delete rewards._dungeonTier; // Clean up internal field before response
 
   // Apply gem drop (if rolled)
   if (rewards.gemTier) {

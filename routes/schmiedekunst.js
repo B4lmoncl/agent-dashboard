@@ -80,43 +80,27 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   // Remove from inventory
   u.inventory.splice(idx, 1);
 
-  // Award essenz
+  // Award essenz (Salvage = Essenz only, no crafting materials)
   ensureUserCurrencies(u);
   u.currencies.essenz = (u.currencies.essenz || 0) + essenzGained;
 
-  // Roll material drops
-  u.craftingMaterials = u.craftingMaterials || {};
-  const materialsGained = [];
-  for (const mat of matDrops) {
-    if (Math.random() < mat.chance) {
-      u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
-      const matDef = state.professionsData.materials?.find(m => m.id === mat.id);
-      materialsGained.push({ id: mat.id, name: matDef?.name || mat.id, amount: 1 });
-    }
-  }
-
-  // Legendary effect: salvageBonus — extra materials from dismantling
+  // Legendary effect: salvageBonus — extra essenz from dismantling
   const salvageMods = getLegendaryModifiers(uid);
   const salvageBonusMult = salvageMods.salvageBonus || 0;
+  let bonusEssenz = 0;
   if (salvageBonusMult > 0) {
-    for (const mat of materialsGained) {
-      const bonus = Math.round(mat.amount * salvageBonusMult);
-      if (bonus > 0) {
-        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + bonus;
-        mat.amount += bonus;
-      }
-    }
+    bonusEssenz = Math.round(essenzGained * salvageBonusMult);
+    u.currencies.essenz += bonusEssenz;
   }
 
   // Sync write — dismantle must survive container restarts
   saveUsersSync();
   res.json({
-    message: `${item.name} dismantled! +${essenzGained} Essenz${materialsGained.length > 0 ? ' + Materials' : ''}`,
+    message: `${item.name} dismantled! +${essenzGained + bonusEssenz} Essenz`,
     dismantled: { name: item.name, rarity },
-    essenzGained,
-    materialsGained,
+    essenzGained: essenzGained + bonusEssenz,
+    materialsGained: [],
     currencies: u.currencies,
-    craftingMaterials: u.craftingMaterials,
   });
   } finally { schmiedeLock.release(uid); }
 });
@@ -201,15 +185,9 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const salvageMods = getLegendaryModifiers(uid);
   const salvageBonusMult = salvageMods.salvageBonus || 0;
   for (const item of toDismantle) {
-    totalEssenz += DISMANTLE_ESSENZ[rarity] || 2;
-    for (const mat of (getDismantleMaterials(uid, rarity))) {
-      if (Math.random() < mat.chance) {
-        let amount = 1;
-        if (salvageBonusMult > 0) amount += Math.round(amount * salvageBonusMult);
-        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + amount;
-        allMats[mat.id] = (allMats[mat.id] || 0) + amount;
-      }
-    }
+    let itemEssenz = DISMANTLE_ESSENZ[rarity] || 2;
+    if (salvageBonusMult > 0) itemEssenz += Math.round(itemEssenz * salvageBonusMult);
+    totalEssenz += itemEssenz;
   }
   // Remove all dismantled items in one pass (O(n) instead of O(n²))
   u.inventory = u.inventory.filter(i => !dismantleIds.has(i.instanceId || i.id));
@@ -218,17 +196,12 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   // Sync write — bulk dismantle must survive container restarts
   saveUsersSync();
 
-  const matList = Object.entries(allMats).map(([id, amt]) => {
-    const def = state.professionsData.materials?.find(m => m.id === id);
-    return `${def?.name || id} x${amt}`;
-  });
   res.json({
-    message: `${toDismantle.length}x ${rarity} dismantled! +${totalEssenz} Essenz${matList.length ? ` + ${matList.join(', ')}` : ''}`,
+    message: `${toDismantle.length}x ${rarity} dismantled! +${totalEssenz} Essenz`,
     count: toDismantle.length,
     totalEssenz,
-    materialsGained: allMats,
+    materialsGained: {},
     currencies: u.currencies,
-    craftingMaterials: u.craftingMaterials,
   });
   } finally { schmiedeLock.release(uid); }
 });

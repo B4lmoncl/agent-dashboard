@@ -6,7 +6,12 @@
       "7":  "7 Tage Schmiede-Streak! Eine ganze Woche. Der Amboss glüht, dein Editor glüht, dein Kaffeekonsum glüht. Mindestens zwei davon sind gesund.",
       "14": "14 Tage Schmiede-Streak! Zwei Wochen durchgehend am Schmieden. Deine Finger tippen mittlerweile im Schlaf. Das ist kein Witz — dein Mitbewohner hat gefragt.",
       "30": "30 Tage Schmiede-Streak! Ein ganzer Monat. Die Schmiede hat dich adoptiert. Du riechst nach Amboss und Ehrgeiz. Hauptsächlich Amboss."
-    }
+    },
+    "nightCompletion": "Code um drei Uhr nachts. Der Compiler urteilt nicht. Dein Schlafrhythmus schon.",
+    "morningCompletion": "Code vor dem Frühstück. Dein Compiler ist beeindruckt. Dein Körper weniger.",
+    "weekendCompletion": "Samstag. Sonntag. Du schmiedest trotzdem. Die Gilde bewundert deine Hingabe. Deine Freunde vermissen dich.",
+    "streakMilestone7": "Sieben Tage am Amboss. Dein Editor startet schneller als dein Kaffee brüht. Das ist entweder Effizienz oder ein Hilferuf.",
+    "streakMilestone30": "Dreißig Tage. Du denkst in Funktionen. Du träumst in Variablen. Der Amboss hat angefangen, zurückzuflüstern."
   },
   "learning": {
     "completionMessage": "**WISSEN ERWORBEN.** Du hast etwas gelernt. Dein Gehirn hat kurz protestiert, dann nachgegeben. So funktioniert Bildung — durch freundliche Belagerung.",
@@ -15,7 +20,12 @@
       "7":  "7 Tage Studien-Streak! Eine Woche Wissen aufsaugen. Die Lorekeepers haben angefangen, Bücher auf deinem Schreibtisch zu horten. Das ist entweder Respekt oder eine Brandgefahr.",
       "14": "14 Tage Studien-Streak! Zwei Wochen ununterbrochenes Lernen. Du zitierst Quellen im Alltag. Deine Freunde finden das furchtbar. Die Gilde findet das vorbildlich.",
       "30": "30 Tage Studien-Streak! Ein Monat. Du hast den Punkt erreicht, an dem du Dinge weißt, die niemand wissen will. Das ist die reinste Form von Gelehrsamkeit."
-    }
+    },
+    "nightCompletion": "Studieren um Mitternacht. Die Kerzen im Archiv flackern nervös. Du bist der Letzte hier. Wie immer.",
+    "morningCompletion": "Wissen vor Sonnenaufgang. Dein Gehirn funktioniert noch nicht richtig. Perfekte Bedingungen — kein Widerstand.",
+    "weekendCompletion": "Lernen am Wochenende. Freiwillig. Die Lorekeepers haben eine Gedenktafel in Auftrag gegeben.",
+    "streakMilestone7": "Sieben Tage ununterbrochenes Studium. Die Bücher im Archiv rücken näher, wenn du kommst. Das ist entweder Respekt oder sie fallen um.",
+    "streakMilestone30": "Dreißig Tage. Du zitierst im Schlaf. Deine Träume haben Fußnoten. Die Lorekeepers haben dir einen eigenen Stuhl gegeben. Mit Namensschild."
   },
   "personal": {
     "completionMessage": "**DOMÄNE GESICHERT.** Das Chaos wurde bezwungen. Vorübergehend. Es wird zurückkommen — das Chaos hat immer einen Schlüssel — aber heute gehört der Sieg dir.",
@@ -24,7 +34,12 @@
       "7":  "7 Tage Ordnungs-Streak! Eine Woche Haushalt. Der Quartiermeister ist sprachlos. Nicht vor Freude — er glaubt dir einfach nicht.",
       "14": "14 Tage Ordnungs-Streak! Zwei Wochen. Die Staubschicht hat offiziell aufgegeben. Du hast Ordnung aus dem Nichts erschaffen. Das ist im Grunde Magie.",
       "30": "30 Tage Ordnungs-Streak! Ein Monat ohne Chaos. Die Gilde vermutet, du wurdest durch einen Doppelgänger ersetzt. Der echte du hätte längst aufgegeben."
-    }
+    },
+    "nightCompletion": "Aufräumen nach Mitternacht. Das Chaos schläft. Der perfekte Zeitpunkt für einen Hinterhalt.",
+    "morningCompletion": "Haushalt vor dem Frühstück. Der Tag hat noch nicht angefangen und du hast schon gewonnen. Das Chaos hatte keine Chance.",
+    "weekendCompletion": "Wochenend-Aufräumaktion. Freiwillig. Der Quartiermeister weint leise vor Stolz. Oder Ungläubigkeit. Schwer zu sagen.",
+    "streakMilestone7": "Sieben Tage Ordnung. Deine Wohnung ist sauberer als manche Tempel. Der Staub hat eine Petition eingereicht.",
+    "streakMilestone30": "Dreißig Tage. Das Chaos hat aufgehört zu klopfen. Es schickt jetzt Briefe. Höfliche Briefe. Du hast es gebrochen."
   },
   "fitness": {
     "completionMessage": "**PRÜFUNG ÜBERLEBT.** Du hast dich bewegt. Freiwillig. Dein Körper ist verwirrt, aber dankbar. Dein Sofa ist enttäuscht. Man kann es nicht allen recht machen.",
@@ -33,7 +48,12 @@
       "7":  "7 Tage Arena-Streak! Eine Woche Training. Die anderen Krieger haben aufgehört, dich zu unterschätzen. Hauptsächlich, weil du immer noch auftauchst. Hartnäckigkeit ist eine Waffe.",
       "14": "14 Tage Arena-Streak! Zwei Wochen. Dein Körper funktioniert jetzt einfach so. Ohne Verhandlungen, ohne Bestechung. Das ist verdächtig reibungslos, aber genieß es.",
       "30": "30 Tage Arena-Streak! Dreißig Tage. Die Arena hat alles versucht, und du stehst immer noch. Die Gilde ist beeindruckt. Dein Sofa hat die Hoffnung aufgegeben."
-    }
+    },
+    "nightCompletion": "Du trainierst nachts. Das ist entweder Disziplin oder Schlaflosigkeit. Beides respektabel.",
+    "morningCompletion": "Training vor Sonnenaufgang. Dein Körper hat noch nicht gemerkt, was passiert. Ausnutzen, bevor er protestiert.",
+    "weekendCompletion": "Sport am Wochenende. Dein Sofa starrt ungläubig. Die Arena hat nicht mit dir gerechnet. Überraschungsangriff.",
+    "streakMilestone7": "Sieben Tage Arena. Dein Muskelkater hat aufgehört sich zu beschweren und angefangen, Miete zu zahlen. Fortschritt.",
+    "streakMilestone30": "Dreißig Tage. Die Arena kennt deinen Namen. Dein Sofa hat dich aus dem Testament gestrichen. Die Krieger nicken dir zu. Das ist das höchste Lob."
   },
   "social": {
     "completionMessage": "**ALLIANZ GESTÄRKT.** Du hast mit einem echten Menschen interagiert. Nicht per Emoji. Nicht per Reaktion. Richtig. Die Gilde ist gerührt. Leicht verstört, aber gerührt.",
@@ -42,6 +62,11 @@
       "7":  "7 Tage Allianz-Streak! Eine Woche für deine Leute da sein. Das ist seltener als legendärer Loot und deutlich wertvoller. Die Gilde vermerkt das.",
       "14": "14 Tage Allianz-Streak! Zwei Wochen. Deine Verbündeten würden ohne Zögern für dich in den Kampf ziehen. Oder zumindest beim Umzug helfen. Was ehrlich gesagt schwieriger ist.",
       "30": "30 Tage Allianz-Streak! Einen Monat lang für andere da gewesen. Du hast etwas gebaut, das die meisten Abenteurer nie erreichen — echte Verbindung. Die Gilde schweigt respektvoll. Das passiert selten."
-    }
+    },
+    "nightCompletion": "Soziale Interaktion nach Mitternacht. Die besten Gespräche passieren, wenn die Vernunft schläft.",
+    "morningCompletion": "Menschenkontakt vor dem Frühstück. Du bist entweder ein Morgenmensch oder verzweifelt. Die Gilde respektiert beides.",
+    "weekendCompletion": "Soziale Interaktion am Wochenende. Freiwillig. Die Gilde ist gerührt und leicht besorgt.",
+    "streakMilestone7": "Sieben Tage für andere da gewesen. Deine Verbündeten haben angefangen, dich mit Namen zu grüßen statt mit einem vagen Nicken. Revolution.",
+    "streakMilestone30": "Dreißig Tage. Du hast ein Netzwerk aus echten Verbindungen gebaut. Nicht aus Pflicht. Aus Wahl. Die Gilde hat dafür kein Wort. Also haben sie eins erfunden."
   }
 }

@@ -705,7 +705,7 @@ router.post('/api/quest/:id/approve', requireApiKey, (req, res) => {
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.status !== 'suggested') return res.status(409).json({ error: `Quest is not in suggested state (current: ${quest.status})` });
   quest.status = 'open';
-  if (req.body && req.body.comment) quest.comment = req.body.comment;
+  if (req.body && req.body.comment) quest.comment = String(req.body.comment).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 500);
   saveQuests();
   console.log(`[quest] ${quest.id} approved → open`);
   res.json({ ok: true, quest });
@@ -718,7 +718,7 @@ router.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.status === 'completed') return res.status(409).json({ error: 'Cannot reject a completed quest' });
   quest.status = 'rejected';
-  if (req.body && req.body.comment) quest.comment = req.body.comment;
+  if (req.body && req.body.comment) quest.comment = String(req.body.comment).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 500);
   saveQuests();
   console.log(`[quest] ${quest.id} rejected`);
   res.json({ ok: true, quest });

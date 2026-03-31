@@ -173,4 +173,68 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
   } finally { enchantLock.release(uid); }
 });
 
+// ─── Disenchant — WoW-style: destroy uncommon+ items for enchanting materials ─
+router.post('/api/disenchant', requireAuth, (req, res) => {
+  const uid = (req.auth?.userId || '').toLowerCase();
+  if (!enchantLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
+    const u = state.users[uid];
+    if (!u) return res.status(404).json({ error: 'User not found' });
+
+    // Must have Verzauberer profession
+    if (!(u.chosenProfessions || []).includes('verzauberer')) {
+      return res.status(400).json({ error: 'Requires Verzauberer profession' });
+    }
+
+    const { inventoryItemId } = req.body;
+    if (!inventoryItemId) return res.status(400).json({ error: 'inventoryItemId required' });
+
+    const inv = u.inventory || [];
+    const idx = inv.findIndex(i => (i.instanceId || i.id) === inventoryItemId);
+    if (idx === -1) return res.status(404).json({ error: 'Item not found in inventory' });
+
+    const item = inv[idx];
+    if (item.locked) return res.status(400).json({ error: 'Item is locked' });
+
+    const rarity = (item.rarity || 'common').toLowerCase();
+    if (rarity === 'common') {
+      return res.status(400).json({ error: 'Common items cannot be disenchanted. Use Salvage instead.' });
+    }
+
+    // Disenchant table: rarity → materials
+    const DISENCHANT_TABLE = {
+      uncommon:  [{ id: 'arkaner-staub', min: 2, max: 4 }],
+      rare:      [{ id: 'arkaner-staub', min: 1, max: 2 }, { id: 'magische-essenz', min: 1, max: 3 }],
+      epic:      [{ id: 'magische-essenz', min: 1, max: 2 }, { id: 'schimmersplitter', min: 1, max: 2 }],
+      legendary: [{ id: 'schimmersplitter', min: 1, max: 2 }, { id: 'nexuskristall', min: 1, max: 1 }],
+    };
+
+    const drops = DISENCHANT_TABLE[rarity] || DISENCHANT_TABLE.uncommon;
+    const results = [];
+    u.craftingMaterials = u.craftingMaterials || {};
+
+    for (const drop of drops) {
+      const amount = drop.min + Math.floor(Math.random() * (drop.max - drop.min + 1));
+      u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + amount;
+      results.push({ id: drop.id, amount });
+    }
+
+    // Remove item from inventory
+    u.inventory.splice(idx, 1);
+
+    // Track for achievements
+    u._disenchantCount = (u._disenchantCount || 0) + 1;
+
+    saveUsers();
+
+    res.json({
+      ok: true,
+      message: `${item.name} disenchanted`,
+      destroyed: { name: item.name, rarity: item.rarity },
+      materials: results,
+      craftingMaterials: u.craftingMaterials,
+    });
+  } finally { enchantLock.release(uid); }
+});
+
 module.exports = router;

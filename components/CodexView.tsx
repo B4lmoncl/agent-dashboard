@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
+import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { TipCustom } from "@/components/GameTooltip";
 
@@ -27,6 +28,7 @@ export default function CodexView() {
   const [loading, setLoading] = useState(true);
   const [activeCat, setActiveCat] = useState("all");
   const [selectedEntry, setSelectedEntry] = useState<CodexEntry | null>(null);
+  useModalBehavior(!!selectedEntry, () => setSelectedEntry(null));
   const [readEntries, setReadEntries] = useState<Set<string>>(() => {
     try { const stored = localStorage.getItem("qh_codex_read"); return stored ? new Set(JSON.parse(stored)) : new Set(); } catch { return new Set(); }
   });
@@ -65,7 +67,7 @@ export default function CodexView() {
   const discoveredFiltered = filtered.filter(e => e.discovered);
   const undiscoveredFiltered = filtered.filter(e => !e.discovered);
 
-  if (loading) return <div className="text-xs text-center py-16 text-w20">Loading codex...</div>;
+  if (loading) return <div className="space-y-3 tab-content-enter"><div className="skeleton-card h-10" /><div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{Array.from({ length: 9 }).map((_, i) => <div key={i} className="skeleton-card h-16 rounded-lg" />)}</div></div>;
 
   return (
     <div className="tab-content-enter space-y-4 relative">
@@ -185,7 +187,7 @@ export default function CodexView() {
                   <p className="text-sm font-bold" style={{ color: categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24" }}>{selectedEntry.title}</p>
                   <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{categories.find(c => c.id === selectedEntry.category)?.name}</p>
                 </div>
-                <button onClick={() => setSelectedEntry(null)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>×</button>
+                <button onClick={() => setSelectedEntry(null)} aria-label="Schließen" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>×</button>
               </div>
             </div>
             {selectedEntry.text && (
@@ -244,7 +246,7 @@ function CompanionGallery() {
         <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{open ? "▲" : "▼"}</span>
       </button>
       {open && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter stagger-list">
           {companions.map(c => (
             <div key={c.id} className="rounded-xl p-3 text-center crystal-breathe" style={{ background: `${c.color}08`, border: `1px solid ${c.color}20`, ["--glow-color" as string]: `${c.color}15` }}>
               <span className="text-3xl block mb-1">{c.emoji}</span>

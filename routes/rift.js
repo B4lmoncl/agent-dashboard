@@ -7,7 +7,7 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies, logActivity } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser, createPlayerLock } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser, createPlayerLock, rollCraftingMaterials, getLegendaryModifiers } = require('../lib/helpers');
 const riftStageLock = createPlayerLock('rift-stage');
 const riftEnterLock = createPlayerLock('rift-enter');
 const riftAbandonLock = createPlayerLock('rift-abandon');
@@ -420,6 +420,17 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null };
   }
 
+  // ── Material drops from rift stage (content-tier based) ──
+  const riftContentTier = rift.tier === 'normal' ? 2 : rift.tier === 'hard' ? 3 : rift.mythicLevel ? Math.min(5, 4 + Math.floor(rift.mythicLevel / 6)) : 4;
+  const legendaryMods = getLegendaryModifiers(uid);
+  const riftMats = rollCraftingMaterials(null, legendaryMods.materialDoubleChance || 0, u, uid, riftContentTier);
+  if (riftMats.length > 0) {
+    u.craftingMaterials = u.craftingMaterials || {};
+    for (const mat of riftMats) {
+      u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + mat.amount;
+    }
+  }
+
   // Check if rift is fully completed
   const allDone = rift.quests.every(q => q.completed);
   if (allDone) {
@@ -508,6 +519,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     goldEarned,
     loot,
     riftGearDrop: riftGearDrop || undefined,
+    riftMaterials: riftMats.length > 0 ? riftMats : undefined,
     riftCompleted: allDone,
     completionBonus: allDone ? (() => {
       const base = RIFT_TIERS[rift.tier]?.completionBonus;

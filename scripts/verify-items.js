@@ -8,7 +8,17 @@ const handledEffects = [
   'gear_next_tier', 'undo_missed_ritual', 'named_gear', 'team_buff',
   'title', 'unlock_secret_quest', 'revive', 'gold_2x_24h',
   'essenz_boost_48h', 'quest_timer_24h', 'small_heal',
-  'streak_recovery_100', 'armor'
+  'streak_recovery_100', 'armor',
+  // Added: all effect types handled by applyShopEffect in shop.js
+  'xp_gold_boost', 'essenz', 'stardust', 'runensplitter', 'sternentaler',
+  'luck_boost', 'faction_rep', 'craft_discount', 'expedition_speed',
+  'rift_time_extend', 'multi_reward', 'double_reward',
+  'instant_stardust', 'instant_essenz', 'instant_forge_temp',
+  'instant_streak_shield', 'instant_forge_temp_and_streak_shield',
+  'rift_time_extension',
+  'xp_boost_10', 'xp_boost_15', 'xp_boost_5', 'xp_boost_25_return', 'xp_boost_50_perfect',
+  'gold_boost_10', 'gold_boost_15', 'luck_boost_20', 'material_double',
+  'world_boss_damage_boost', 'feast_buff',
 ];
 
 const templates = state.state.itemTemplates;

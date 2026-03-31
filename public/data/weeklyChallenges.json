@@ -349,6 +349,206 @@
           { "stage": 2, "desc": "Schließe 5 Quests ab und halte den Streak 3 Tage.", "requirement": { "type": "streak_maintained", "count": 3 }, "starThresholds": [3, 4, 5] },
           { "stage": 3, "desc": "Schließe 11 Quests ab — der Turm steht, solange du wachst.", "requirement": { "type": "total_quests", "count": 11 }, "starThresholds": [11, 14, 17] }
         ]
+      },
+      {
+        "id": "knochenmühle",
+        "name": "Knochenmühle",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 4 Fitness-Quests ab. Knochen brechen nicht von allein.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 4 }, "starThresholds": [4, 5, 7] },
+          { "stage": 2, "desc": "Schließe 3 Health-Quests ab. Repariere, was die Mühle zermahlt.", "requirement": { "type": "quest_type", "questType": "health", "count": 3 }, "starThresholds": [3, 5, 7] },
+          { "stage": 3, "desc": "Schließe 14 Quests ab — du bist aus härterem Stoff als du denkst.", "requirement": { "type": "total_quests", "count": 14 }, "starThresholds": [14, 17, 20] }
+        ]
+      },
+      {
+        "id": "fluesterkammer",
+        "name": "Flüsterkammer",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Learning-Quests ab. Die Wände flüstern Geheimnisse.", "requirement": { "type": "quest_type", "questType": "learning", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 2, "desc": "Schließe 4 Learning-Quests ab. Manche Geheimnisse flüstern zurück.", "requirement": { "type": "quest_type", "questType": "learning", "count": 4 }, "starThresholds": [4, 6, 8] },
+          { "stage": 3, "desc": "Schließe 6 Learning-Quests und 3 Development-Quests ab.", "requirement": { "type": "quest_type", "questType": "learning", "count": 6 }, "starThresholds": [6, 8, 11] }
+        ]
+      },
+      {
+        "id": "dornenpfad",
+        "name": "Dornenpfad",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte den Streak 4 Tage. Dornen sind nur für die Unvorbereiteten.", "requirement": { "type": "streak_maintained", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 2, "desc": "Schließe 8 Quests ab. Der Pfad wird schmaler.", "requirement": { "type": "total_quests", "count": 8 }, "starThresholds": [8, 10, 12] },
+          { "stage": 3, "desc": "Halte den Streak 7 Tage und schließe 12 Quests ab.", "requirement": { "type": "streak_maintained", "count": 7 }, "starThresholds": [7, 8, 10] }
+        ]
+      },
+      {
+        "id": "schmelztiegel",
+        "name": "Schmelztiegel",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe Quests aus 3 verschiedenen Kategorien ab. Alles in den Tiegel.", "requirement": { "type": "unique_types", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 7 Quests ab. Das Feuer schmilzt die Unterschiede.", "requirement": { "type": "total_quests", "count": 7 }, "starThresholds": [7, 9, 11] },
+          { "stage": 3, "desc": "Schließe Quests aus 6 verschiedenen Kategorien ab — reines Gold.", "requirement": { "type": "unique_types", "count": 6 }, "starThresholds": [6, 7, 8] }
+        ]
+      },
+      {
+        "id": "mitternachtsruf",
+        "name": "Mitternachtsruf",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Social-Quests ab. Um Mitternacht hört jeder zu.", "requirement": { "type": "quest_type", "questType": "social", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 3 Companion-Quests ab. Auch Gefährten schlafen ungern allein.", "requirement": { "type": "quest_type", "questType": "companion", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 3, "desc": "Schließe 8 Quests ab, davon 4 Social- oder Companion-Quests.", "requirement": { "type": "total_quests", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "traumschmied",
+        "name": "Traumschmied",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Creative-Quests ab. Träume formen sich nicht von selbst.", "requirement": { "type": "quest_type", "questType": "creative", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 2 Crafting-Quests ab. Die Werkstatt kennt keine Träumer.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 3, "desc": "Schließe 10 Quests ab — Kreativität braucht Disziplin, nicht umgekehrt.", "requirement": { "type": "total_quests", "count": 10 }, "starThresholds": [10, 13, 16] }
+        ]
+      },
+      {
+        "id": "puls-der-stadt",
+        "name": "Puls der Stadt",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Social-Quests ab. Die Stadt lebt durch ihre Bewohner.", "requirement": { "type": "quest_type", "questType": "social", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 5 Social-Quests ab. Du kennst jetzt mehr Leute als dir lieb ist.", "requirement": { "type": "quest_type", "questType": "social", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 8 Social-Quests ab — du BIST der Puls.", "requirement": { "type": "quest_type", "questType": "social", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "essenz-destille",
+        "name": "Essenz-Destille",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Crafting-Quests ab. Die Destille blubbert vielversprechend.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 5 Crafting-Quests ab. Es riecht entweder nach Erfolg oder Explosion.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 8 Crafting-Quests ab — Ysolde wäre fast stolz.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "irrlichter",
+        "name": "Irrlichter",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 5 Quests ab. Die Irrlichter tanzen nur für Fleißige.", "requirement": { "type": "total_quests", "count": 5 }, "starThresholds": [5, 6, 8] },
+          { "stage": 2, "desc": "Schließe Quests aus 4 verschiedenen Kategorien ab. Irrlichter mögen Abwechslung.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Schließe 15 Quests ab — die Irrlichter verneigen sich.", "requirement": { "type": "total_quests", "count": 15 }, "starThresholds": [15, 18, 22] }
+        ]
+      },
+      {
+        "id": "morgenrot",
+        "name": "Morgenrot",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Health-Quests ab. Der Morgen gehört den Gesunden.", "requirement": { "type": "quest_type", "questType": "health", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 2 Fitness-Quests ab. Gesundheit ohne Bewegung ist wie Suppe ohne Löffel.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 3, "desc": "Schließe 9 Quests ab, davon 4 Health- oder Fitness-Quests.", "requirement": { "type": "total_quests", "count": 9 }, "starThresholds": [9, 11, 14] }
+        ]
+      },
+      {
+        "id": "uhrwerk",
+        "name": "Uhrwerk",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Quests in den ersten 2 Tagen ab. Tick, tack.", "requirement": { "type": "total_quests", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Halte den Streak 5 Tage. Ein Uhrwerk kennt keine Pausen.", "requirement": { "type": "streak_maintained", "count": 5 }, "starThresholds": [5, 6, 7] },
+          { "stage": 3, "desc": "Schließe 11 Quests ab — präzise wie ein Schweizer Uhrwerk. Fast.", "requirement": { "type": "total_quests", "count": 11 }, "starThresholds": [11, 13, 16] }
+        ]
+      },
+      {
+        "id": "bibliothek-der-vergessenen",
+        "name": "Bibliothek der Vergessenen",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Learning-Quests ab. Die Bücher stauben nicht von allein ab.", "requirement": { "type": "quest_type", "questType": "learning", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 5 Learning-Quests ab. Einige Bücher beißen, sei gewarnt.", "requirement": { "type": "quest_type", "questType": "learning", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 8 Learning-Quests ab — Wissen ist Macht. Macht ist optional.", "requirement": { "type": "quest_type", "questType": "learning", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "gefaehrtenschwur",
+        "name": "Gefährtenschwur",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Companion-Quests ab. Dein Gefährte hat sich Mühe gegeben.", "requirement": { "type": "quest_type", "questType": "companion", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 5 Companion-Quests ab. Ob der Schwur gegenseitig war, bleibt unklar.", "requirement": { "type": "quest_type", "questType": "companion", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 7 Companion-Quests ab — der Bund ist besiegelt.", "requirement": { "type": "quest_type", "questType": "companion", "count": 7 }, "starThresholds": [7, 9, 12] }
+        ]
+      },
+      {
+        "id": "frostmarsch",
+        "name": "Frostmarsch",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 5 Quests ab. Der Frost beißt nur die Langsamen.", "requirement": { "type": "total_quests", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 2, "desc": "Schließe 8 Quests ab. Wenn die Füße taub sind, zählt nur Willenskraft.", "requirement": { "type": "total_quests", "count": 8 }, "starThresholds": [8, 10, 13] },
+          { "stage": 3, "desc": "Schließe 13 Quests ab und halte den Streak 5 Tage.", "requirement": { "type": "streak_maintained", "count": 5 }, "starThresholds": [5, 6, 7] }
+        ]
+      },
+      {
+        "id": "maskenball",
+        "name": "Maskenball",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe Quests aus 3 verschiedenen Kategorien ab. Jede Maske ein anderes Gesicht.", "requirement": { "type": "unique_types", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe Quests aus 5 verschiedenen Kategorien ab. Niemand kennt dein wahres Ich.", "requirement": { "type": "unique_types", "count": 5 }, "starThresholds": [5, 6, 7] },
+          { "stage": 3, "desc": "Schließe 12 Quests aus 5 Kategorien ab — der Ball endet bei Morgengrauen.", "requirement": { "type": "total_quests", "count": 12 }, "starThresholds": [12, 15, 18] }
+        ]
+      },
+      {
+        "id": "spiegelklinge",
+        "name": "Spiegelklinge",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Development-Quests ab. Der Code spiegelt den Coder.", "requirement": { "type": "quest_type", "questType": "development", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 2 Creative-Quests ab. Auch Klingen brauchen Ästhetik.", "requirement": { "type": "quest_type", "questType": "creative", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 3, "desc": "Schließe 11 Quests ab — die Klinge schneidet in beide Richtungen.", "requirement": { "type": "total_quests", "count": 11 }, "starThresholds": [11, 14, 17] }
+        ]
+      },
+      {
+        "id": "koerperkult",
+        "name": "Körperkult",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Fitness-Quests ab. Dein Körper ist ein Tempel. Leider baufällig.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 6 Fitness-Quests ab. Die Renovierung läuft.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 6 }, "starThresholds": [6, 8, 10] },
+          { "stage": 3, "desc": "Schließe 9 Fitness-Quests ab — der Tempel erstrahlt. Vermutlich.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 9 }, "starThresholds": [9, 11, 14] }
+        ]
+      },
+      {
+        "id": "schicksalsweber",
+        "name": "Schicksalsweber",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte den Streak 3 Tage und schließe 4 Quests ab.", "requirement": { "type": "total_quests", "count": 4 }, "starThresholds": [4, 5, 7] },
+          { "stage": 2, "desc": "Schließe Quests aus 4 verschiedenen Kategorien ab. Das Schicksal liebt Vielfalt.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Schließe 13 Quests ab und halte den Streak 6 Tage — das Netz ist gewoben.", "requirement": { "type": "streak_maintained", "count": 6 }, "starThresholds": [6, 7, 9] }
+        ]
+      },
+      {
+        "id": "kristallhoehle",
+        "name": "Kristallhöhle",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Crafting-Quests ab. Die Kristalle wachsen im Dunkeln.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 3 Learning-Quests ab. Wissen ist der beste Spitzhacke-Ersatz.", "requirement": { "type": "quest_type", "questType": "learning", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 3, "desc": "Schließe 10 Quests ab aus 4 Kategorien — die Höhle gibt ihre Schätze frei.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] }
+        ]
+      },
+      {
+        "id": "letzte-stunde",
+        "name": "Letzte Stunde",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 5 Quests ab. Die Uhr tickt, auch wenn du sie ignorierst.", "requirement": { "type": "total_quests", "count": 5 }, "starThresholds": [5, 6, 8] },
+          { "stage": 2, "desc": "Schließe 9 Quests ab. Die vorletzte Stunde war gemütlicher.", "requirement": { "type": "total_quests", "count": 9 }, "starThresholds": [9, 11, 14] },
+          { "stage": 3, "desc": "Schließe 16 Quests ab — gegen die Uhr gewinnt man nicht. Aber man kann unentschieden spielen.", "requirement": { "type": "total_quests", "count": 16 }, "starThresholds": [16, 19, 23] }
+        ]
       }
     ]
   }

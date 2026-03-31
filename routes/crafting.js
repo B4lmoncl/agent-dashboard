@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP } = require('../lib/helpers');
+const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP, getTodayBerlin } = require('../lib/helpers');
 
 // ─── Mondlicht-Schmiede: +20% better minimum rolls during night hours (22:00-06:00 Berlin) ───
 function isMoonlightActive() {
@@ -33,7 +33,8 @@ function playerMeetsFactionRep(user, recipeFactionId) {
   return rep >= FACTION_REP_REQUIRED;
 }
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
-const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
+// Slot-requiring recipe types: these target a specific equipped item and can't be batched
+const SLOT_RECIPES = ['gear_enhance', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Crafting lock (prevents concurrent craft for same player) ──────────────
@@ -213,7 +214,7 @@ function isRecipeVisible(recipe, profProgress, user) {
 
 // ─── Helper: check if player gets daily crafting bonus ───────────────────────
 function getDailyBonusInfo(u) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getTodayBerlin();
   const lastCraftDate = u?.lastCraftDate || null;
   const hasCraftedToday = lastCraftDate === today;
   return { dailyBonusAvailable: !hasCraftedToday, lastCraftDate };
@@ -359,7 +360,7 @@ router.get('/api/professions', (req, res) => {
     }
   }
   const favoriteRecipes = u?.favoriteRecipes || [];
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents: PROFESSIONS_DATA.vendorReagents || [], proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
@@ -499,11 +500,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Slot-requiring recipes can't batch (they target specific gear)
-  const isSlotRecipe = SLOT_RECIPES.includes(recipeId);
+  const isSlotRecipe = SLOT_RECIPES.includes(recipe.result?.type) || SLOT_RECIPES.includes(recipeId);
+  // Gear crafting can't batch (each item is individually rolled + inventory cap)
+  const isGearCraft = recipe.result?.type === 'craft_gear';
   // Block batch crafting on gray recipes (0 XP — prevents wasting materials)
   const recipeReqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
   const isGrayRecipe = getSkillUpColor(profProgress.skill, recipeReqSkill) === 'gray';
-  const effectiveCount = isSlotRecipe ? 1 : (isGrayRecipe ? Math.min(count, 1) : count);
+  const effectiveCount = (isSlotRecipe || isGearCraft) ? 1 : (isGrayRecipe ? Math.min(count, 1) : count);
 
   // Validate slot-requiring recipes have a targetSlot and valid gear
   if (isSlotRecipe) {
@@ -549,13 +552,24 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
+  // ─── Pre-deduction validation for inventory-consuming recipes ──────────────
+  // Check inventory cap BEFORE deducting materials to prevent material loss on full inventory
+  const resultType = recipe.result?.type;
+  if (resultType === 'craft_gear' || resultType === 'vellum') {
+    u.inventory = u.inventory || [];
+    if (u.inventory.length >= (INVENTORY_CAP || 200)) {
+      return res.status(400).json({ error: 'Inventory full — free up space before crafting gear' });
+    }
+  }
+
   // ─── All validation passed — enroll profession + deduct costs ──────────────
   if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
 
   // Deduct gold (×count) — sync both fields
-  if (totalGoldCost > 0) {
+  const totalDeduction = totalGoldCost || 0;
+  if (totalDeduction > 0) {
     ensureUserCurrencies(u);
-    u.currencies.gold = (u.currencies.gold || 0) - totalGoldCost;
+    u.currencies.gold = (u.currencies.gold || 0) - totalDeduction;
     u.gold = u.currencies.gold;
   }
   // Deduct materials (×count)
@@ -598,7 +612,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     const isTransmuteRecipe = recipe.result?.type === 'material' && recipe.id.includes('transmute');
     if (isTransmuteRecipe) u._lastTransmuteAt = now();
   }
-  u.lastCraftDate = new Date().toISOString().slice(0, 10);
+  u.lastCraftDate = getTodayBerlin();
   const newSkill = u.professions[recipe.profession].skill;
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
@@ -915,6 +929,17 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.message = `Enchant Vellum: +${vVal} ${vStat} (${hours}h) — can be traded!${masteryDef ? ' (Mastery)' : ''}`;
         break;
       }
+      // Material processing handler (smelting bars, weaving bolts, etc.)
+      if (recipe.result?.type === 'material') {
+        u.craftingMaterials = u.craftingMaterials || {};
+        const outMat = recipe.result.materialId || recipe.result.outputMaterial;
+        const outAmt = (recipe.result.amount || recipe.result.count || 1) * effectiveCount;
+        if (!outMat) { result.message = 'Invalid material recipe'; result.success = false; break; }
+        u.craftingMaterials[outMat] = (u.craftingMaterials[outMat] || 0) + outAmt;
+        const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === outMat);
+        result.message = `${recipe.name}: +${outAmt} ${matDef?.name || outMat}`;
+        break;
+      }
       // Transmute material handler (alchemist transmutes)
       if (recipe.result?.type === 'transmute_material') {
         u.craftingMaterials = u.craftingMaterials || {};
@@ -950,7 +975,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         }
         const instance = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
         // Apply mastery bonus (cloth_stat_boost, gear_stat_boost, or leather_stat_boost)
-        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost')) {
+        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost' || masteryDef.type === 'weapon_stat_boost')) {
           const boost = 1 + (masteryDef.value || 10) / 100;
           for (const stat of Object.keys(instance.stats)) {
             instance.stats[stat] = Math.round(instance.stats[stat] * boost);
@@ -959,6 +984,60 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         u.inventory.push(instance);
         result.message = `Crafted: ${instance.name} (${instance.rarity})`;
         result.craftedItem = instance;
+        break;
+      }
+      // Gear enhancement handler (stat boost on equipped item)
+      if (recipe.result?.type === 'gear_enhance') {
+        const stat = recipe.result.stat;
+        const amount = recipe.result.amount || 1;
+        if (!stat) { result.message = 'Invalid enhance recipe'; result.success = false; break; }
+        if (!targetSlot) { result.message = 'Select an equipment slot first'; result.success = false; break; }
+        const eq = u.equipment?.[targetSlot];
+        if (!eq || typeof eq === 'string') { result.message = 'No gear equipped in this slot'; result.success = false; break; }
+        eq.stats = eq.stats || {};
+        eq.stats[stat] = (eq.stats[stat] || 0) + amount;
+        result.message = `Enhanced: +${amount} ${stat} on ${eq.name || targetSlot}`;
+        result.updatedGear = eq;
+        break;
+      }
+      // Gem cutting handler (Juwelier: create a gem from materials)
+      if (recipe.result?.type === 'gem_cut') {
+        const gemType = recipe.result.gemType;
+        let gemTier = recipe.result.gemTier;
+        if (!gemType || !gemTier) { result.message = 'Invalid gem recipe'; result.success = false; break; }
+        // Mastery: gem_quality_boost — chance to create one tier higher
+        if (masteryDef && masteryDef.type === 'gem_quality_boost' && gemTier < 5) {
+          const upgradeChance = (masteryDef.value || 1) * 0.10; // 10% per mastery value
+          if (Math.random() < upgradeChance) {
+            gemTier = Math.min(5, gemTier + 1);
+            result.masteryProc = true;
+          }
+        }
+        const gemKey = `${gemType}_${gemTier}`;
+        u.gems = u.gems || {};
+        for (let i = 0; i < effectiveCount; i++) {
+          u.gems[gemKey] = (u.gems[gemKey] || 0) + 1;
+        }
+        const gemData = state.gemsData?.gems?.find(g => g.id === gemType);
+        const tierData = gemData?.tiers?.find(t => t.tier === gemTier);
+        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}${result.masteryProc ? ' (Mastery: Tier UP!)' : ''}`;
+        break;
+      }
+      // Gem merge handler (Juwelier: combine 3 gems → 1 higher tier)
+      if (recipe.result?.type === 'gem_merge') {
+        // Gem merges are handled via /api/gems/upgrade — this is a recipe wrapper
+        // The materials already include the source gems, so just award the result
+        const toTier = recipe.result.toTier;
+        if (!toTier) { result.message = 'Invalid merge recipe'; result.success = false; break; }
+        // Award a random gem of the target tier (player chose which to merge via materials)
+        const gemTypes = ['ruby', 'sapphire', 'emerald', 'topaz', 'amethyst', 'diamond'];
+        const randomGem = gemTypes[Math.floor(Math.random() * gemTypes.length)];
+        const gemKey = `${randomGem}_${toTier}`;
+        u.gems = u.gems || {};
+        u.gems[gemKey] = (u.gems[gemKey] || 0) + 1;
+        const gemData = state.gemsData?.gems?.find(g => g.id === randomGem);
+        const tierData = gemData?.tiers?.find(t => t.tier === toTier);
+        result.message = `Merged: ${tierData?.name || gemKey}`;
         break;
       }
       return res.status(400).json({ error: `Unknown recipe: ${recipeId}` });
@@ -1072,6 +1151,11 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
       icon: template.icon || null,
       desc: template.desc || template.flavorText || '',
     };
+  } else if (recipe.result?.type === 'material') {
+    const matId = recipe.result.materialId || recipe.result.outputMaterial;
+    const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === matId);
+    preview.outputType = 'material';
+    preview.material = { id: matId, name: matDef?.name || matId, amount: recipe.result.amount || recipe.result.count || 1 };
   } else if (recipe.result?.type === 'transmute_material') {
     const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === recipe.result.outputMaterial);
     preview.outputType = 'material';
@@ -1123,6 +1207,17 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
     const masteryExtra = masteryDef?.type === 'meal_duration' ? masteryDef.value : 0;
     preview.outputType = 'meal';
     preview.meal = { type: recipe.result?.buffType || recipeId, duration: (recipe.result?.duration || 5) + masteryExtra, mastery: masteryExtra > 0 };
+  } else if (recipe.result?.type === 'gem_cut') {
+    preview.outputType = 'gem';
+    const gemData = state.gemsData?.gems?.find(g => g.id === recipe.result.gemType);
+    const tierData = gemData?.tiers?.find(t => t.tier === recipe.result.gemTier);
+    preview.gem = { type: recipe.result.gemType, tier: recipe.result.gemTier, name: tierData?.name || `Tier ${recipe.result.gemTier}`, stat: gemData?.stat, statBonus: tierData?.statBonus, color: gemData?.color };
+  } else if (recipe.result?.type === 'gem_merge') {
+    preview.outputType = 'gem_merge';
+    preview.gemMerge = { fromTier: recipe.result.fromTier, toTier: recipe.result.toTier };
+  } else if (recipe.result?.type === 'gear_enhance') {
+    preview.outputType = 'gear_enhance';
+    preview.enhance = { stat: recipe.result.stat, amount: recipe.result.amount || 1 };
   } else {
     preview.outputType = 'unknown';
   }
@@ -1213,12 +1308,15 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
   if (u.professions?.[dropProfession]) {
     u.professions[dropProfession] = { level: 0, skill: 0, xp: 0, lastCraftAt: null, trainedRanks: ['Apprentice'], recipeCooldowns: {} };
   }
-  // Remove all learned recipes for this profession (WoW-style: dropping = lose everything)
+  // Remove all learned + unlocked recipes for this profession (WoW-style: dropping = lose everything)
+  const profRecipeIds = new Set(
+    (PROFESSIONS_DATA.recipes || []).filter(r => r.profession === dropProfession).map(r => r.id)
+  );
   if (u.learnedRecipes?.length) {
-    const profRecipeIds = new Set(
-      (PROFESSIONS_DATA.recipes || []).filter(r => r.profession === dropProfession).map(r => r.id)
-    );
     u.learnedRecipes = u.learnedRecipes.filter(rid => !profRecipeIds.has(rid));
+  }
+  if (u.unlockedRecipes?.length) {
+    u.unlockedRecipes = u.unlockedRecipes.filter(rid => !profRecipeIds.has(rid));
   }
 
   saveUsers();
@@ -1293,6 +1391,39 @@ router.post('/api/professions/favorite', requireAuth, (req, res) => {
   }
   saveUsers();
   res.json({ ok: true, favoriteRecipes: u.favoriteRecipes });
+});
+
+// ─── POST /api/professions/buy-reagent — Buy vendor reagents from trainer ───
+router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Purchase in progress' });
+  try {
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const { reagentId, count } = req.body;
+  if (!reagentId || !count || count < 1 || count > 100) {
+    return res.status(400).json({ error: 'reagentId and count (1-100) required' });
+  }
+
+  const reagent = (PROFESSIONS_DATA.vendorReagents || []).find(r => r.id === reagentId);
+  if (!reagent) return res.status(400).json({ error: 'Unknown reagent' });
+
+  const safeCount = Math.min(100, Math.max(1, parseInt(count) || 1));
+  const totalCost = reagent.price * safeCount;
+  ensureUserCurrencies(u);
+  if ((u.currencies.gold ?? u.gold ?? 0) < totalCost) {
+    return res.status(400).json({ error: `Not enough gold (need ${totalCost}g)` });
+  }
+
+  u.currencies.gold = (u.currencies.gold || 0) - totalCost;
+  u.gold = u.currencies.gold;
+  u.craftingMaterials = u.craftingMaterials || {};
+  u.craftingMaterials[reagentId] = (u.craftingMaterials[reagentId] || 0) + safeCount;
+
+  saveUsers();
+  res.json({ ok: true, bought: { id: reagentId, name: reagent.name, count: safeCount, totalCost }, materials: u.craftingMaterials });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── Exports (shared with schmiedekunst.js and enchanting.js) ─────────────

@@ -34655,7 +34655,7 @@
     {
       "id": "craft-juwelier-eiserner-ring",
       "name": "Eiserner Ring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 1,
       "reqLevel": 1,
       "rarity": "common",
@@ -34769,7 +34769,7 @@
     {
       "id": "craft-juwelier-grober-siegelring",
       "name": "Grober Siegelring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 1,
       "reqLevel": 2,
       "rarity": "common",
@@ -34883,7 +34883,7 @@
     {
       "id": "craft-juwelier-einfacher-steinring",
       "name": "Einfacher Steinring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 1,
       "reqLevel": 4,
       "rarity": "common",
@@ -34940,7 +34940,7 @@
     {
       "id": "craft-juwelier-ring-des-lehrlings",
       "name": "Ring des Lehrlings",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 1,
       "reqLevel": 5,
       "rarity": "uncommon",
@@ -34997,7 +34997,7 @@
     {
       "id": "craft-juwelier-kupferreif",
       "name": "Kupferreif",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 1,
       "reqLevel": 6,
       "rarity": "uncommon",
@@ -35054,7 +35054,7 @@
     {
       "id": "craft-juwelier-eisenring-des-wanderers",
       "name": "Eisenring des Wanderers",
-      "slot": "weapon",
+      "slot": "ring",
       "tier": 1,
       "reqLevel": 6,
       "rarity": "uncommon",
@@ -35396,7 +35396,7 @@
     {
       "id": "craft-juwelier-kristallring",
       "name": "Kristallring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 12,
       "rarity": "rare",
@@ -35453,7 +35453,7 @@
     {
       "id": "craft-juwelier-staehlerner-siegelring",
       "name": "Stählerner Siegelring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 13,
       "rarity": "rare",
@@ -35567,7 +35567,7 @@
     {
       "id": "craft-juwelier-ring-des-forschers",
       "name": "Ring des Forschers",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 15,
       "rarity": "rare",
@@ -35681,7 +35681,7 @@
     {
       "id": "craft-juwelier-kristall-siegelring",
       "name": "Kristall-Siegelring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 16,
       "rarity": "rare",
@@ -35738,7 +35738,7 @@
     {
       "id": "craft-juwelier-mondsteinring",
       "name": "Mondsteinring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 17,
       "rarity": "rare",
@@ -35795,7 +35795,7 @@
     {
       "id": "craft-juwelier-ring-der-erkenntnis",
       "name": "Ring der Erkenntnis",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 18,
       "rarity": "rare",
@@ -36308,7 +36308,7 @@
     {
       "id": "craft-juwelier-saphirring",
       "name": "Saphirring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 25,
       "rarity": "epic",
@@ -36365,7 +36365,7 @@
     {
       "id": "craft-juwelier-drachenauge-ring",
       "name": "Drachenauge-Ring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 25,
       "rarity": "epic",
@@ -36422,7 +36422,7 @@
     {
       "id": "craft-juwelier-ring-des-meisters",
       "name": "Ring des Meisters",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 26,
       "rarity": "epic",
@@ -36536,7 +36536,7 @@
     {
       "id": "craft-juwelier-mondschein-siegelring",
       "name": "Mondschein-Siegelring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 28,
       "rarity": "epic",
@@ -36593,7 +36593,7 @@
     {
       "id": "craft-juwelier-ring-der-sterne",
       "name": "Ring der Sterne",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 28,
       "rarity": "epic",
@@ -37277,7 +37277,7 @@
     {
       "id": "craft-juwelier-aetherring",
       "name": "Aetherring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 37,
       "rarity": "legendary",
@@ -37401,7 +37401,7 @@
     {
       "id": "craft-juwelier-seelen-siegelring",
       "name": "Seelen-Siegelring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 38,
       "rarity": "legendary",
@@ -37463,7 +37463,7 @@
     {
       "id": "craft-juwelier-runenring",
       "name": "Runenring",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 39,
       "rarity": "legendary",
@@ -37711,7 +37711,7 @@
     {
       "id": "craft-juwelier-ring-des-schicksals",
       "name": "Ring des Schicksals",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 41,
       "rarity": "legendary",
@@ -37897,7 +37897,7 @@
     {
       "id": "craft-juwelier-ring-der-ewigkeit",
       "name": "Ring der Ewigkeit",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 43,
       "rarity": "legendary",

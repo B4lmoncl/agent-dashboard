@@ -57,6 +57,7 @@ interface Recipe {
   skillUpColor?: string;
   cooldownRemaining?: number;
   result?: { type?: string; templateId?: string };
+  vendorReagents?: Record<string, number>;
 }
 
 interface MaterialDef {
@@ -65,6 +66,15 @@ interface MaterialDef {
   icon: string;
   rarity: string;
   desc: string;
+}
+
+interface VendorReagentDef {
+  id: string;
+  name: string;
+  desc: string;
+  price: number;
+  professions: string[];
+  icon?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -152,6 +162,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
+  const [vendorReagentDefs, setVendorReagentDefs] = useState<VendorReagentDef[]>([]);
   const [currencies, setCurrencies] = useState<Record<string, number>>({});
   const [maxProfSlots, setMaxProfSlots] = useState(2);
   const [selectedNpc, setSelectedNpc] = useState<ProfessionDef | null>(null);
@@ -162,7 +173,27 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
-  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
+  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "reagents" | "schmiedekunst" | "transmutation" | "enchanting" | "disenchant">("recipes");
+  const [reagentBuyCount, setReagentBuyCount] = useState<Record<string, number>>({});
+  const [buyingReagent, setBuyingReagent] = useState<string | null>(null);
+  const [disenchantInv, setDisenchantInv] = useState<InventoryItem[]>([]);
+  const [disenchantLoading, setDisenchantLoading] = useState(false);
+
+  // Fetch inventory when disenchant tab opens
+  useEffect(() => {
+    if (npcModalTab !== "disenchant" || !playerName || !reviewApiKey) return;
+    setDisenchantLoading(true);
+    fetch(`/api/character?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) })
+      .then(r => r.json())
+      .then(data => {
+        setDisenchantInv((data.inventory || []).filter((i: InventoryItem) => {
+          const r = (i.rarity || 'common').toLowerCase();
+          return r !== 'common' && !i.locked;
+        }));
+      })
+      .catch(() => {})
+      .finally(() => setDisenchantLoading(false));
+  }, [npcModalTab, playerName, reviewApiKey]);
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
@@ -247,6 +278,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const loggedIn = playerName && reviewApiKey;
 
+  /** Compute total vendor reagent gold cost for a recipe (× count). */
+  // Vendor reagents are now in recipe.materials (not separate) — no gold cost calculation needed
+
   const fetchData = useCallback(async () => {
     if (!playerName) return;
     try {
@@ -257,6 +291,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         setRecipes(data.recipes || []);
         setMaterials(data.materials || {});
         setMaterialDefs(data.materialDefs || []);
+        if (data.vendorReagents) setVendorReagentDefs(data.vendorReagents);
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.moonlightActive !== undefined) setMoonlightActive(data.moonlightActive);
@@ -1453,6 +1488,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {(() => {
               const tabs: { key: typeof npcModalTab; label: string; color: string }[] = [
                 { key: "recipes", label: "Recipes", color: selectedNpc.color },
+                { key: "reagents", label: "Reagents", color: "#f59e0b" },
                 { key: "trainer", label: "Trainer", color: "#fbbf24" },
               ];
               if (selectedNpc.id === "schmied") {
@@ -1460,6 +1496,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               }
               if (selectedNpc.id === "verzauberer") {
                 tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
+                tabs.push({ key: "disenchant" as typeof npcModalTab, label: "Entzaubern", color: "#ef4444" });
               }
               if (selectedNpc.id === "alchemist") {
                 tabs.push({ key: "transmutation", label: "Transmutation", color: "#22c55e" });
@@ -1626,11 +1663,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         const isLearned = recipe.learned !== false;
                         const meetsLevel = recipe.canCraft;
                         const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
-                        const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
+                        const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp" || recipe.result?.type === "material" || recipe.result?.type === "transmute_material" || recipe.result?.type === "gem_cut";
                         const effectiveCount = isBatchable ? craftCount : 1;
                         const canAffordCheck = (() => {
                           const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                          if (recipe.cost?.gold && g < recipe.cost.gold * effectiveCount) return false;
+                          const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount;
+                          if (totalGoldNeeded > 0 && g < totalGoldNeeded) return false;
                           for (const [matId, amt] of Object.entries(recipe.materials || {})) {
                             if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
                           }
@@ -1640,7 +1678,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       if (showHaveMatsOnly) {
                         const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
-                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= (recipe.cost?.gold || 0);
+                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= ((recipe.cost?.gold || 0));
                         if (!hasMats || !hasGold) return false;
                       }
                       return true;
@@ -1720,11 +1758,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const meetsLevel = recipe.canCraft;
                     const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
                     const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
-                    const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
+                    const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp" || recipe.result?.type === "material" || recipe.result?.type === "transmute_material" || recipe.result?.type === "gem_cut";
                     const effectiveCount = isBatchable ? craftCount : 1;
                     const canAfford = (() => {
                       const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                      if (recipe.cost?.gold && gold < recipe.cost.gold * effectiveCount) return false;
+                      const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount;
+                      if (totalGoldNeeded > 0 && gold < totalGoldNeeded) return false;
                       for (const [matId, amt] of Object.entries(recipe.materials || {})) {
                         if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
                       }
@@ -1789,7 +1828,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               // Calculate max craftable quantity for the "Max" option
                               const playerGoldForMax = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
                               const maxFromMats = Object.entries(recipe.materials || {}).map(([matId, amt]) => Math.floor((materials[matId] || 0) / (amt as number)));
-                              const maxFromGold = recipe.cost?.gold && recipe.cost.gold > 0 ? Math.floor(playerGoldForMax / recipe.cost.gold) : Infinity;
+                              const perCraftGold = (recipe.cost?.gold || 0);
+                              const maxFromGold = perCraftGold > 0 ? Math.floor(playerGoldForMax / perCraftGold) : Infinity;
                               const hasMaterials = Object.keys(recipe.materials || {}).length > 0;
                               const batchCap = hasMaterials ? 50 : 10;
                               const maxCraftable = Math.min(batchCap, maxFromGold, ...(maxFromMats.length > 0 ? maxFromMats : [batchCap]));
@@ -1833,7 +1873,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <button
                                 onClick={() => canDo && !craftProgress && startCraftCast(recipe.id, effectiveCount)}
                                 disabled={!canDo || crafting || !!craftProgress}
-                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold relative overflow-hidden"
+                                className="forge-btn btn-press text-sm px-4 py-2 rounded-lg font-semibold relative overflow-hidden"
                                 style={{
                                   background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
                                   color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
@@ -1981,11 +2021,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {craftProgress.total > 1 && <span style={{ color: "rgba(255,255,255,0.3)", marginRight: 4 }}>{Math.min(craftProgress.current + 1, craftProgress.total)}/{craftProgress.total}</span>}
                               {castCountdown ?? "0.0"}s
                             </div>
-                            <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                              <div className="h-full rounded-full" style={{
+                            <div className="w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)", height: 7, border: "1px solid rgba(255,255,255,0.1)", boxShadow: "inset 0 1px 3px rgba(0,0,0,0.5)" }}>
+                              <div className="h-full rounded-full progress-shimmer" style={{
                                 background: `linear-gradient(90deg, ${selectedNpc.color}80, ${selectedNpc.color})`,
                                 animation: `craft-cast-fill ${craftCastMsRef.current}ms linear forwards`,
-                                boxShadow: `0 0 8px ${selectedNpc.color}60, 0 0 2px ${selectedNpc.color}`,
+                                boxShadow: `0 0 12px ${selectedNpc.color}60, 0 0 4px ${selectedNpc.color}, inset 0 1px 0 rgba(255,255,255,0.2)`,
                               }} />
                             </div>
                             <p className="text-xs text-center mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>ESC to cancel</p>
@@ -2025,6 +2065,82 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 )}
               </div>
             )}
+
+            {/* ─── Tab: Disenchant (destroy uncommon+ items for enchanting materials) */}
+            {npcModalTab === "disenchant" && selectedNpc.id === "verzauberer" && (() => {
+              // Fetch inventory on first open
+              if (!disenchantLoading && disenchantInv.length === 0) {
+                setDisenchantLoading(true);
+                fetch(`/api/character?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) })
+                  .then(r => r.json())
+                  .then(data => { setDisenchantInv((data.inventory || []).filter((i: InventoryItem) => { const r = (i.rarity || 'common').toLowerCase(); return r !== 'common' && !i.locked; })); setDisenchantLoading(false); })
+                  .catch(() => setDisenchantLoading(false));
+              }
+              const inv = disenchantInv;
+              return (
+                <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-w30">Entzaubern</p>
+                      <p className="text-xs text-w20 mt-0.5">Zerstöre Uncommon+ Items für Verzauberungsmaterialien</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg p-3" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                    <p className="text-xs" style={{ color: "#fca5a5" }}>Uncommon → Arkaner Staub · Rare → Magische Essenz · Epic → Schimmersplitter · Legendary → Nexuskristall</p>
+                  </div>
+                  {inv.length === 0 ? (
+                    <p className="text-xs text-w20 text-center py-6">Keine entzauberbaren Items (Uncommon+ und nicht gesperrt)</p>
+                  ) : (
+                    <div className="space-y-1.5 max-h-[300px] overflow-y-auto scrollbar-rpg">
+                      {inv.map(item => {
+                        const rc = ({"uncommon":"#22c55e","rare":"#3b82f6","epic":"#a855f7","legendary":"#f97316"} as Record<string,string>)[(item.rarity||'').toLowerCase()] || "#9ca3af";
+                        return (
+                          <div key={item.instanceId || item.id} className="flex items-center gap-2 rounded-lg p-2 card-hover-lift" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${rc}30` }}>
+                            <div className="w-8 h-8 rounded flex-shrink-0 flex items-center justify-center" style={{ background: `${rc}15`, border: `1px solid ${rc}30` }}>
+                              {item.icon ? <img src={item.icon} alt="" className="w-6 h-6 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs" style={{ color: rc }}>◆</span>}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold truncate" style={{ color: rc }}>{item.name}</p>
+                              <p className="text-xs text-w20">{item.rarity} · {item.slot}</p>
+                            </div>
+                            <button
+                              onClick={() => {
+                                setConfirmAction({
+                                  message: `"${item.name}" (${item.rarity}) entzaubern?\n\nDas Item wird zerstört und in Verzauberungsmaterialien umgewandelt. Dies kann nicht rückgängig gemacht werden.`,
+                                  onConfirm: async () => {
+                                    setConfirmAction(null);
+                                    try {
+                                      const r = await fetch("/api/disenchant", {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                        body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
+                                      });
+                                      const data = await r.json();
+                                      if (r.ok) {
+                                        setCraftResult(data.message || "Entzaubert!");
+                                        setDisenchantInv(prev => prev.filter(i => (i.instanceId || i.id) !== (item.instanceId || item.id)));
+                                        if (onRefresh) onRefresh();
+                                        fetchData();
+                                      } else {
+                                        setCraftResult(data.error || "Fehler");
+                                      }
+                                    } catch { setCraftResult("Netzwerkfehler"); }
+                                  },
+                                });
+                              }}
+                              className="btn-press text-xs px-3 py-1.5 rounded font-semibold flex-shrink-0"
+                              style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+                            >
+                              Entzaubern
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* ─── Tab: Enchanting (D3-style stat reroll — Verzauberer only) */}
             {npcModalTab === "enchanting" && selectedNpc.id === "verzauberer" && (() => {
@@ -2290,6 +2406,81 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       {enchantResult}
                     </div>
                   )}
+                </div>
+              );
+            })()}
+
+            {/* ─── Tab: Reagents (Buy vendor reagents from trainer) ────────── */}
+            {(npcModalTab as string) === "reagents" && (() => {
+              if (!selectedNpc.chosen) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-sm text-w30">Wähle diesen Beruf zuerst um Reagents zu kaufen.</p></div>;
+              const profReagents = vendorReagentDefs.filter(r => r.professions?.includes(selectedNpc.id));
+              if (profReagents.length === 0) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-xs text-w25">Keine Reagents für diesen Beruf verfügbar.</p></div>;
+              const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+              return (
+                <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-w30">Vendor Reagents — {selectedNpc.npcName}</p>
+                    <p className="text-xs font-mono" style={{ color: "#fbbf24" }}>{Math.floor(gold).toLocaleString()}g</p>
+                  </div>
+                  <p className="text-xs text-w20 mb-3">Kaufe Verbrauchsmaterialien die du zum Craften brauchst. Werden wie normale Materialien im Inventar gelagert.</p>
+                  <div className="space-y-2">
+                    {profReagents.map(reagent => {
+                      const count = reagentBuyCount[reagent.id] || 1;
+                      const totalCost = reagent.price * count;
+                      const canAfford = gold >= totalCost;
+                      const owned = materials[reagent.id] || 0;
+                      return (
+                        <div key={reagent.id} className="flex items-center gap-3 rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <div className="w-8 h-8 rounded flex-shrink-0 flex items-center justify-center" style={{ background: "rgba(255,255,255,0.05)" }}>
+                            {reagent.icon ? <img src={reagent.icon} alt="" className="w-6 h-6 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs text-w20">◆</span>}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-w60">{reagent.name}</p>
+                            <p className="text-xs text-w20">{reagent.desc}</p>
+                            <p className="text-xs mt-0.5" style={{ color: "#fbbf24" }}>{reagent.price}g pro Stück · Du hast: <span className="font-mono">{owned}</span></p>
+                          </div>
+                          <div className="flex items-center gap-1.5 flex-shrink-0">
+                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, (prev[reagent.id] || 1) - 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>−</button>
+                            <input type="number" min={1} max={100} value={count} onChange={e => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, Math.min(100, parseInt(e.target.value) || 1)) }))} className="w-12 text-center text-xs font-mono rounded py-1 input-dark" style={{ border: "1px solid rgba(255,255,255,0.1)" }} />
+                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.min(100, (prev[reagent.id] || 1) + 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>+</button>
+                          </div>
+                          <button
+                            onClick={async () => {
+                              if (buyingReagent || !canAfford) return;
+                              setBuyingReagent(reagent.id);
+                              try {
+                                const r = await fetch("/api/professions/buy-reagent", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                  body: JSON.stringify({ reagentId: reagent.id, count }),
+                                });
+                                const data = await r.json();
+                                if (r.ok) {
+                                  setCurrencies(prev => ({ ...prev, gold: (prev.gold || 0) - totalCost }));
+                                  setMaterials(prev => ({ ...prev, [reagent.id]: (prev[reagent.id] || 0) + count }));
+                                } else {
+                                  setCraftResult(data.error || "Kauf fehlgeschlagen");
+                                }
+                              } catch { setCraftResult("Netzwerkfehler"); }
+                              setBuyingReagent(null);
+                            }}
+                            disabled={!canAfford || !!buyingReagent}
+                            className="btn-press text-xs px-3 py-2 rounded-lg font-semibold flex-shrink-0"
+                            style={{
+                              background: canAfford ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
+                              color: canAfford ? "#fbbf24" : "rgba(255,255,255,0.2)",
+                              border: `1px solid ${canAfford ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
+                              cursor: canAfford && !buyingReagent ? "pointer" : "not-allowed",
+                              opacity: buyingReagent === reagent.id ? 0.5 : 1,
+                            }}
+                            title={!canAfford ? `Nicht genug Gold (brauchst ${totalCost}g)` : `${count}× ${reagent.name} für ${totalCost}g kaufen`}
+                          >
+                            {buyingReagent === reagent.id ? "..." : `${totalCost}g`}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })()}
@@ -3047,7 +3238,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               ) : autoSalvagePreview && autoSalvagePreview.count > 0 ? (
                 <>
                   {/* Item grid */}
-                  <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                  <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto scrollbar-rpg" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
                       {autoSalvagePreview.items.map(item => {
                         const rc = RARITY_COLORS[item.rarity] || "#888";
@@ -3258,7 +3449,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
                     Effect Library ({cubeData.library.length})
                   </p>
-                  <div className="space-y-1 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+                  <div className="space-y-1 max-h-[200px] overflow-y-auto scrollbar-rpg">
                     {cubeData.library.map(e => {
                       const colors = { offensive: "#ef4444", defensive: "#3b82f6", utility: "#22c55e" };
                       const c = colors[e.category as keyof typeof colors] || "#888";

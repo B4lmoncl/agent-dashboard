@@ -12,16 +12,68 @@ function applyShopEffect(u, item) {
   if (!item.effect) return null;
   const { type, questsRemaining, amount } = item.effect;
 
-  // Instant currency grants
-  if (type === 'instant_stardust') {
+  // Instant currency grants (multiple naming conventions supported)
+  if (type === 'instant_stardust' || type === 'stardust') {
     u.currencies = u.currencies || {};
-    u.currencies.stardust = (u.currencies.stardust || 0) + amount;
-    return `+${amount} Stardust received!`;
+    u.currencies.stardust = (u.currencies.stardust || 0) + (amount || 1);
+    return `+${amount || 1} Stardust received!`;
   }
-  if (type === 'instant_essenz') {
+  if (type === 'instant_essenz' || type === 'essenz') {
     u.currencies = u.currencies || {};
-    u.currencies.essenz = (u.currencies.essenz || 0) + amount;
-    return `+${amount} Essenz received!`;
+    u.currencies.essenz = (u.currencies.essenz || 0) + (amount || 1);
+    return `+${amount || 1} Essenz received!`;
+  }
+  if (type === 'runensplitter') {
+    u.currencies = u.currencies || {};
+    u.currencies.runensplitter = (u.currencies.runensplitter || 0) + (amount || 1);
+    return `+${amount || 1} Runensplitter received!`;
+  }
+  if (type === 'sternentaler') {
+    u.currencies = u.currencies || {};
+    u.currencies.sternentaler = (u.currencies.sternentaler || 0) + (amount || 1);
+    return `+${amount || 1} Sternentaler received!`;
+  }
+
+  // Instant faction reputation
+  if (type === 'faction_rep') {
+    const factionId = item.effect.factionId;
+    if (factionId) {
+      u.factions = u.factions || {};
+      u.factions[factionId] = u.factions[factionId] || { rep: 0 };
+      u.factions[factionId].rep = (u.factions[factionId].rep || 0) + (amount || 50);
+    }
+    return `+${amount || 50} Faction reputation!`;
+  }
+
+  // Craft discount (reduces vendor reagent costs for N crafts)
+  if (type === 'craft_discount') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'craft_discount', questsRemaining: questsRemaining || 10, value: item.effect.value || 0.2, activatedAt: now() });
+    return `Crafting discount active for ${questsRemaining || 10} crafts!`;
+  }
+
+  // Expedition speed bonus
+  if (type === 'expedition_speed') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'expedition_speed', questsRemaining: questsRemaining || 1, value: item.effect.value || 0.25, activatedAt: now() });
+    return `Expedition speed boost active!`;
+  }
+
+  // Rift time extend (alternative naming for rift_time_extension)
+  if (type === 'rift_time_extend') {
+    if (!u.activeRift || !u.activeRift.active) return 'No active rift to extend.';
+    if (u.activeRift.extended) return 'Rift timer already extended.';
+    const hours = item.effect.hours || 6;
+    u.activeRift.timeLimitHours = (u.activeRift.timeLimitHours || 48) + hours;
+    u.activeRift.extended = true;
+    return `Rift timer extended by ${hours} hours!`;
+  }
+
+  // Multi-reward (doubles next quest reward)
+  if (type === 'multi_reward' || type === 'double_reward') {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ type: 'double_reward', questsRemaining: questsRemaining || 1, activatedAt: now() });
+    return `Next ${questsRemaining || 1} quest(s) give double rewards!`;
   }
 
   // Instant forge temp boost (self-care rewards)
@@ -62,16 +114,27 @@ function applyShopEffect(u, item) {
 
   // Buff-based effects
   u.activeBuffs = u.activeBuffs || [];
-  u.activeBuffs.push({ type, questsRemaining, activatedAt: now() });
+  const buffEntry = { type, questsRemaining, activatedAt: now() };
+  // Preserve extra effect fields (value, xpPercent, goldPercent, etc.) so consumers can read them
+  if (item.effect.value != null) buffEntry.value = item.effect.value;
+  if (item.effect.xpPercent != null) buffEntry.xpPercent = item.effect.xpPercent;
+  if (item.effect.goldPercent != null) buffEntry.goldPercent = item.effect.goldPercent;
+  u.activeBuffs.push(buffEntry);
   const buffNames = {
     xp_boost_10: `+10% XP for ${questsRemaining} quests`,
     xp_boost_15: `+15% XP for ${questsRemaining} quests`,
+    xp_boost_5: `+5% XP for ${questsRemaining} quests`,
+    xp_boost_25_return: `+25% XP for ${questsRemaining} quests`,
+    xp_boost_50_perfect: `+50% XP for ${questsRemaining} quests`,
+    xp_gold_boost: `+${item.effect.xpPercent || 15}% XP +${item.effect.goldPercent || 10}% Gold for ${questsRemaining} quests`,
     gold_boost_10: `+10% Gold for ${questsRemaining} quests`,
     gold_boost_15: `+15% Gold for ${questsRemaining} quests`,
+    luck_boost: `Increased loot chance for ${questsRemaining} quests`,
     luck_boost_20: `Increased loot chance for ${questsRemaining} quests`,
     streak_shield: 'Streak Shield activated!',
     material_double: `Double material drops for ${questsRemaining} quests`,
     world_boss_damage_boost: `+${item.effect.value || 25}% boss damage for ${questsRemaining} quests`,
+    feast_buff: `+15% XP +10% Gold for ${questsRemaining} quests (Feast)`,
   };
   return buffNames[type] || 'Effect activated!';
 }
@@ -442,6 +505,12 @@ router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
     u.earnedTitles.push({ id: item.titleId, name: item.titleName, rarity: item.titleRarity || 'epic', earnedAt: now() });
     resultMsg = `Title "${item.titleName}" earned!`;
   } else if (item.type === 'boost' && item.effect) {
+    // Buff cap check (same as gold shop)
+    u.activeBuffs = u.activeBuffs || [];
+    if (u.activeBuffs.length >= 50) {
+      u.currencies[currency] += cost;
+      return res.status(400).json({ error: 'Max 50 active buffs. Use some first.' });
+    }
     resultMsg = applyShopEffect(u, item) || 'Boost activated!';
   } else if (item.type === 'cosmetic') {
     u.cosmetics = u.cosmetics || [];
@@ -530,6 +599,8 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
   const { userId, challengeId } = req.body;
   if (!userId || !challengeId) return res.status(400).json({ error: 'userId and challengeId required' });
   const uid = userId.toLowerCase();
+  if (!shopBuyLock.acquire(uid)) return res.status(429).json({ error: 'Request in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const challenge = FORGE_CHALLENGES.find(c => c.id === challengeId);
@@ -574,6 +645,7 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
   saveQuests();
   console.log(`[challenge] ${uid} joined "${challenge.name}"`);
   res.json({ ok: true, challenge: challenge.name, questsCreated: created.length });
+  } finally { shopBuyLock.release(uid); }
 });
 
 module.exports = router;

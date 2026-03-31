@@ -362,8 +362,10 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
 
   // Guarantee at least 1 epic if none rolled
   if (!hasEpicOrBetter && results.length === 10) {
-    const pool = state.gachaPool.standardPool || [];
-    const epicPool = pool.filter(item => item.rarity === 'epic');
+    const bannerPool = banner.type === 'featured' && state.gachaPool.featuredPool?.length > 0
+      ? state.gachaPool.featuredPool
+      : state.gachaPool.standardPool || [];
+    const epicPool = bannerPool.filter(item => item.rarity === 'epic');
     if (epicPool.length > 0) {
       // Replace the worst item (last common/uncommon)
       let worstIdx = results.findIndex(r => r.item.rarity === 'common');
@@ -409,12 +411,16 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
         });
       }
 
+      // Reset epic pity on the actual player state (the guarantee counts as an epic pull)
+      const gs = getPlayerGachaState(uid);
+      gs.epicPityCounter = 0;
+
       results[idx] = {
         item: epicItem,
         isNew: !isDup,
         isDuplicate: isDup,
         duplicateRefund: isDup ? (DUPLICATE_REFUND['epic'] || 20) : 0,
-        pityCounter: getPlayerGachaState(uid).pityCounter,
+        pityCounter: gs.pityCounter,
         epicPityCounter: 0,
       };
     }

@@ -52,6 +52,16 @@ function genId(prefix) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
+/** Strip HTML tags and script-dangerous patterns from user text input */
+function sanitizeText(text) {
+  if (typeof text !== 'string') return '';
+  return text
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function areFriends(a, b) {
   ensureFriendIndex();
   return _friendIndex.get(a)?.has(b) || false;
@@ -149,6 +159,14 @@ router.post('/api/social/friend-request', requireAuth, (req, res) => {
   // Check if already friends
   if (areFriends(fromId, targetPlayer)) {
     return res.status(409).json({ error: 'Already friends with this player' });
+  }
+
+  // Cap pending outgoing requests per player to prevent spam (max 20)
+  const pendingOutgoing = state.socialData.friendRequests.filter(
+    r => r.from === fromId && r.status === 'pending'
+  );
+  if (pendingOutgoing.length >= 20) {
+    return res.status(429).json({ error: 'Too many pending friend requests (max 20). Wait for responses or cancel existing ones.' });
   }
 
   // Check for existing pending request in either direction
@@ -330,11 +348,28 @@ router.post('/api/social/message', requireAuth, (req, res) => {
     return res.status(403).json({ error: 'You must be friends to send messages' });
   }
 
+  // Per-conversation message cap: max 500 messages per pair
+  const conversationMsgs = state.socialData.messages.filter(
+    m => (m.from === fromId && m.to === to) || (m.from === to && m.to === fromId)
+  );
+  if (conversationMsgs.length >= 500) {
+    // Prune oldest 100 from this conversation
+    const toRemove = new Set(
+      conversationMsgs
+        .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        .slice(0, 100)
+        .map(m => m.id)
+    );
+    state.socialData.messages = state.socialData.messages.filter(m => !toRemove.has(m.id));
+  }
+
+  const sanitizedText = sanitizeText(text);
+
   const message = {
     id: genId('msg'),
     from: fromId,
     to,
-    text,
+    text: sanitizedText,
     createdAt: now(),
     read: false,
   };
@@ -543,7 +578,7 @@ router.post('/api/social/trade/propose', requireAuth, (req, res) => {
       items: itemIds,
       materials: offeredMaterials,
     },
-    message: message.slice(0, 500),
+    message: sanitizeText(message.slice(0, 500)),
     at: now(),
   };
 
@@ -566,8 +601,8 @@ router.post('/api/social/trade/propose', requireAuth, (req, res) => {
   state.socialData.trades.push(trade);
   // Prune old completed/cancelled trades to prevent unbounded growth (keep 200 most recent)
   if (state.socialData.trades.length > 200) {
-    const active = state.socialData.trades.filter(t => t.status === 'pending' || t.status === 'negotiating');
-    const inactive = state.socialData.trades.filter(t => t.status !== 'pending' && t.status !== 'negotiating');
+    const active = state.socialData.trades.filter(t => t.status === 'pending_initiator' || t.status === 'pending_recipient');
+    const inactive = state.socialData.trades.filter(t => t.status !== 'pending_initiator' && t.status !== 'pending_recipient');
     state.socialData.trades = [...active, ...inactive.slice(-Math.max(0, 200 - active.length))];
   }
   saveSocial();
@@ -658,7 +693,7 @@ router.post('/api/social/trade/:tradeId/counter', requireAuth, (req, res) => {
       gold: offeredGold,
       items: itemIds,
     },
-    message: message.slice(0, 500),
+    message: sanitizeText(message.slice(0, 500)),
     at: now(),
   };
 

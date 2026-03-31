@@ -495,7 +495,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 <button
                   onClick={() => canEnter && enterRift(id)}
                   disabled={!canEnter || actionLoading}
-                  className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
+                  className="btn-interactive btn-press w-full text-xs font-bold py-2 rounded-lg"
                   style={{
                     background: canEnter ? `${tier.color}15` : "rgba(255,255,255,0.03)",
                     color: canEnter ? tier.color : "rgba(255,255,255,0.2)",
@@ -610,7 +610,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             onClick={() => enterRift("mythic", selectedMythicLevel)}
             disabled={actionLoading || (tiers.mythic?.onCooldown ?? false)}
             title={tiers.mythic?.onCooldown ? "On cooldown — wait for it to expire" : actionLoading ? "Action in progress..." : `Enter Mythic +${selectedMythicLevel}`}
-            className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
+            className="btn-interactive btn-press w-full text-xs font-bold py-2.5 rounded-lg"
             style={{
               background: tiers.mythic?.onCooldown ? "rgba(255,255,255,0.03)" : "rgba(255,68,68,0.12)",
               color: tiers.mythic?.onCooldown ? "rgba(255,255,255,0.2)" : "#ff4444",

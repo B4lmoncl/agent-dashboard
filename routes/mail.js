@@ -6,6 +6,12 @@
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const { now, INVENTORY_CAP, createPlayerLock } = require('../lib/helpers');
+
+/** Strip HTML tags for XSS prevention */
+function sanitizeText(text) {
+  if (typeof text !== 'string') return '';
+  return text.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 const mailSendLock = createPlayerLock('mail-send');
 const mailCollectLock = createPlayerLock('mail-collect');
 const { requireAuth } = require('../lib/middleware');
@@ -134,8 +140,8 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
     id: `mail-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     from: u.name || uid,
     to: recipientId,
-    subject,
-    body: (body || '').slice(0, 500),
+    subject: sanitizeText(subject),
+    body: sanitizeText((body || '').slice(0, 500)),
     gold: goldAmount,
     items: attachedItems,
     sentAt: now(),

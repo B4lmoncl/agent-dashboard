@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
+import type { ToastInput } from "@/components/ToastStack";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -46,7 +48,7 @@ export default function AdventureTomeView({
   addToast,
 }: {
   onRewardCelebration?: (data: RewardCelebrationData) => void;
-  addToast?: (t: { type: string; message: string }) => void;
+  addToast?: (t: ToastInput) => void;
 } = {}) {
   const _toast = addToast || (() => {});
   const [data, setData] = useState<TomeData | null>(null);
@@ -82,7 +84,7 @@ export default function AdventureTomeView({
       });
       const result = await r.json();
       if (r.ok) {
-        addToast?.(`Milestone claimed: ${label}`, "success");
+        _toast({ type: "flavor", message: `Milestone claimed: ${label}`, icon: "◆" });
         fetchTome();
         if (onRewardCelebration) {
           const floor = data?.floors.find(f => f.id === floorId);
@@ -97,26 +99,13 @@ export default function AdventureTomeView({
           });
         }
       } else {
-        addToast?.(result.error || "Failed to claim", "error");
+        _toast({ type: "error", message: result.error || "Failed to claim" });
       }
     } catch {
-      addToast?.("Network error", "error");
+      _toast({ type: "error", message: "Network error" });
     }
     setClaiming(null);
   };
-
-  if (!playerName) {
-    return (
-      <div
-        className="rounded-xl p-8 text-center"
-        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
-      >
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-          Log in to view the Adventure Tome.
-        </p>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
@@ -148,9 +137,11 @@ export default function AdventureTomeView({
     <div className="space-y-5 tab-content-enter">
       {/* ─── Header ────────────────────────────────────────────────────────── */}
       <div className="text-center space-y-2">
-        <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>
-          Abenteuerbuch
-        </h2>
+        <Tip k="adventure_tome" heading>
+          <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>
+            Abenteuerbuch
+          </h2>
+        </Tip>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)", maxWidth: "min(480px, 100%)", margin: "0 auto" }}>
           Track your completionist progress across every floor of the tower. Reach milestones to claim exclusive rewards.
         </p>
@@ -316,7 +307,7 @@ export default function AdventureTomeView({
                               : m.reached
                                 ? "rgba(250,204,21,0.8)"
                                 : "rgba(255,255,255,0.15)",
-                            fontSize: 10,
+                            fontSize: 12,
                             marginTop: 1,
                           }}
                         >
@@ -361,7 +352,7 @@ export default function AdventureTomeView({
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
-                              fontSize: 10,
+                              fontSize: 12,
                               background: obj.completed
                                 ? "rgba(34,197,94,0.15)"
                                 : "rgba(255,255,255,0.04)",

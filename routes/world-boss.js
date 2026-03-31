@@ -7,7 +7,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir, logActivity } = require('../lib/state');
-const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
+const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock, rollCraftingMaterials, getLegendaryModifiers } = require('../lib/helpers');
 const wbClaimLock = createPlayerLock('wb-claim');
 const wbBoostLock = createPlayerLock('wb-boost');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
@@ -93,13 +93,22 @@ function calcMaxHp(template) {
 }
 
 function pickNextBoss() {
-  // Pick a boss that wasn't the most recent one
-  const lastBossId = worldBossState.history.length > 0
-    ? worldBossState.history[worldBossState.history.length - 1].bossId
-    : null;
-  const candidates = bossData.bosses.filter(b => b.id !== lastBossId);
-  if (candidates.length === 0) return bossData.bosses[0];
-  return candidates[Math.floor(Math.random() * candidates.length)];
+  // Weighted random: all bosses start at weight 1.0
+  // Bosses that appeared in history get weight 0.6 (less likely to repeat)
+  const bosses = bossData.bosses;
+  if (bosses.length === 0) return null;
+  const seenIds = new Set(worldBossState.history.map(h => h.bossId));
+  const weighted = bosses.map(b => ({
+    boss: b,
+    weight: seenIds.has(b.id) ? 0.6 : 1.0,
+  }));
+  const totalWeight = weighted.reduce((sum, w) => sum + w.weight, 0);
+  let roll = Math.random() * totalWeight;
+  for (const w of weighted) {
+    roll -= w.weight;
+    if (roll <= 0) return w.boss;
+  }
+  return bosses[0]; // fallback
 }
 
 function spawnBoss(bossId) {
@@ -520,6 +529,18 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   user.craftingMaterials.seelensplitter = (user.craftingMaterials.seelensplitter || 0) + 1;
   rewards.push({ type: 'material', name: 'Seelensplitter', materialId: 'seelensplitter', amount: 1 });
 
+  // ── Crafting material drops (content-tier based on boss tier) ──
+  const bossTierMap = { champion: 4, titan: 5, colossus: 5 };
+  const wbContentTier = bossTierMap[template?.tier] || 4;
+  const wbLegendaryMods = getLegendaryModifiers(uid);
+  const wbMats = rollCraftingMaterials(null, wbLegendaryMods.materialDoubleChance || 0, user, uid, wbContentTier);
+  if (wbMats.length > 0) {
+    for (const mat of wbMats) {
+      user.craftingMaterials[mat.id] = (user.craftingMaterials[mat.id] || 0) + mat.amount;
+      rewards.push({ type: 'material', name: mat.id, materialId: mat.id, amount: mat.amount });
+    }
+  }
+
   // ── Bonus stardust for high contributors ──
   if (contributionPercent >= 0.1) {
     const bonusStardust = Math.floor(contributionPercent * 50);
@@ -555,8 +576,11 @@ router.post('/api/world-boss/spawn', requireMasterKey, (req, res) => {
   const current = getActiveBoss();
   if (current) {
     current.expired = true;
-    const { contributions, ...archiveSafe } = current;
-    worldBossState.history.push(archiveSafe);
+    const archived = { ...current, contributorCount: Object.keys(current.contributions).length };
+    delete archived.contributions;
+    delete archived.rewardsClaimed;
+    worldBossState.history.push(archived);
+    if (worldBossState.history.length > 50) worldBossState.history = worldBossState.history.slice(-50);
     worldBossState.activeBoss = null;
   }
 
