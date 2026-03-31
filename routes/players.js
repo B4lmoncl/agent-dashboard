@@ -797,7 +797,7 @@ router.post('/api/tavern/enter', requireAuth, (req, res) => {
     active: true,
     startedAt: now(),
     days: restDays,
-    reason: (reason || '').slice(0, 200) || null,
+    reason: (reason || '').slice(0, 200).replace(/</g, '&lt;').replace(/>/g, '&gt;') || null,
     streakFrozenAt: u.streakDays || 0,
     forgeFrozenAt: u.forgeTemp || 0,
     endedAt: null,
