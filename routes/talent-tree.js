@@ -268,7 +268,35 @@ function getUserTalentEffects(userId) {
     if (!node || !node.effect) continue;
     const type = node.effect.type;
     const rank = data.rank || 1;
-    // For multi-rank nodes with valuePerRank array, use the rank-appropriate value
+
+    // Tradeoff nodes: store bonus AND penalty separately
+    if (type === 'tradeoff') {
+      const bonus = node.effect.bonus;
+      const penalty = node.effect.penalty;
+      if (bonus?.stat && bonus?.modifier) {
+        effects[bonus.stat] = (effects[bonus.stat] || 0) + bonus.modifier;
+      }
+      if (penalty?.stat && penalty?.modifier) {
+        effects[penalty.stat] = (effects[penalty.stat] || 0) + penalty.modifier;
+      }
+      if (penalty?.stat && penalty?.override !== undefined) {
+        effects[`${penalty.stat}_override`] = penalty.override;
+      }
+      continue;
+    }
+
+    // Special complex effects: store as objects
+    if (type === 'forge_overcap' || type === 'rift_loot_split' || type === 'completion_chain_bonus' ||
+        type === 'streak_break_buffer' || type === 'nth_quest_gamble' || type === 'rift_stage_skip' ||
+        type === 'friend_quest_xp_echo' || type === 'tavern_passive_gold' || type === 'daily_mission_extra_slot' ||
+        type === 'gacha_lucky_streak' || type === 'codex_permanent_xp' || type === 'sacrifice_legendary_for_talent_point' ||
+        type === 'companion_expedition_bond_xp' || type === 'weekly_guaranteed_epic_pull' || type === 'shop_affix_preview' ||
+        type === 'tome_progress_bonus' || type === 'unique_item_discovery_xp') {
+      effects[type] = node.effect;
+      continue;
+    }
+
+    // Standard numeric effects
     let value = 0;
     if (node.effect.valuePerRank && Array.isArray(node.effect.valuePerRank)) {
       value = node.effect.valuePerRank[Math.min(rank, node.effect.valuePerRank.length) - 1] || 0;
