@@ -1143,6 +1143,11 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
       icon: template.icon || null,
       desc: template.desc || template.flavorText || '',
     };
+  } else if (recipe.result?.type === 'material') {
+    const matId = recipe.result.materialId || recipe.result.outputMaterial;
+    const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === matId);
+    preview.outputType = 'material';
+    preview.material = { id: matId, name: matDef?.name || matId, amount: recipe.result.amount || recipe.result.count || 1 };
   } else if (recipe.result?.type === 'transmute_material') {
     const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === recipe.result.outputMaterial);
     preview.outputType = 'material';
