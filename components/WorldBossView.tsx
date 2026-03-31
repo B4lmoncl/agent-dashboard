@@ -322,7 +322,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   const isUrgent = expiresIn < 24 * 60 * 60 * 1000;
   const isWarning = !isUrgent && expiresIn < 72 * 60 * 60 * 1000;
   const playerRank = playerContribution
-    ? leaderboard.findIndex(e => e.name?.toLowerCase() === playerName?.toLowerCase()) + 1
+    ? leaderboard.findIndex(e => (e.playerId || e.name)?.toLowerCase() === playerName?.toLowerCase()) + 1
     : 0;
 
   return (
@@ -499,7 +499,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                 try {
                   const r = await fetch("/api/world-boss/boost", {
                     method: "POST",
-                    headers: getAuthHeaders(),
+                    headers: getAuthHeaders(reviewApiKey),
                   });
                   const d = await r.json();
                   if (r.ok) {

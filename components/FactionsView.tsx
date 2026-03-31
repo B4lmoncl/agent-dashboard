@@ -231,7 +231,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-bold" style={{ color: f.standingColor }}>{f.standingName}</p>
-                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Ruf wird automatisch durch passende Quests verdient (+10-30 je nach Quest-Typ). Weekly Bonus verdoppelt den Ruf-Gewinn.</p>}>
+                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Ruf wird automatisch durch passende Quests verdient (+5-35 je nach Quest-Rarit&auml;t). Weekly Bonus verdoppelt den Ruf-Gewinn.</p>}>
                       <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{f.playerRep} Rep</p>
                     </TipCustom>
                   </div>
@@ -265,7 +265,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     <span className="text-xs" style={{ color: f.standingColor, cursor: "help" }}>{f.standingName}</span>
                   </TipCustom>
                   {f.nextStanding && (
-                    <TipCustom title="Rufpunkte" icon="◆" accent={f.accent} body={<p>Fortschritt zur n&auml;chsten Stufe. Ruf wird durch passende Quests verdient (+10-30 pro Quest).</p>}>
+                    <TipCustom title="Rufpunkte" icon="◆" accent={f.accent} body={<p>Fortschritt zur n&auml;chsten Stufe. Ruf wird durch passende Quests verdient (+5-35 je nach Rarit&auml;t).</p>}>
                       <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
                         {f.playerRep} / {f.nextStanding.minRep}
                       </span>
