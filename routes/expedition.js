@@ -125,7 +125,7 @@ function contributeQuest(userId) {
 }
 
 // ─── GET /api/expedition — get current expedition state ─────────────────────
-router.get('/api/expedition', (req, res) => {
+router.get('/api/expedition', requireAuth, (req, res) => {
   const exp = ensureExpedition();
   if (!exp) return res.json({ expedition: null });
 
