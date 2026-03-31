@@ -30,7 +30,74 @@
         "nodeCount": 14
       }
     },
-    "_note": "maxPoints reflects level 50. Bonus points from Opfergabe can exceed this."
+    "_note": "maxPoints reflects level 50. Bonus points from Opfergabe can exceed this.",
+    "themes": {
+      "combat": {
+        "label": "Pfad des Kampfes",
+        "color": "#ef4444",
+        "desc": "Rifts, Dungeons, World Bosses",
+        "nodeIds": [
+          "inner-1",
+          "inner-4",
+          "inner-9",
+          "inner-12",
+          "mid-2",
+          "mid-4",
+          "mid-5",
+          "mid-7",
+          "mid-11",
+          "outer-2",
+          "outer-5",
+          "outer-9",
+          "outer-10"
+        ]
+      },
+      "fortune": {
+        "label": "Pfad des Schicksals",
+        "color": "#22c55e",
+        "desc": "Gacha, Luck, Economy",
+        "nodeIds": [
+          "inner-5",
+          "inner-10",
+          "mid-1",
+          "mid-3",
+          "mid-8",
+          "mid-10",
+          "mid-13",
+          "mid-15",
+          "outer-4",
+          "outer-7",
+          "outer-11",
+          "outer-12"
+        ]
+      },
+      "mastery": {
+        "label": "Pfad der Meisterschaft",
+        "color": "#3b82f6",
+        "desc": "Crafting, Professions, Knowledge",
+        "nodeIds": [
+          "inner-2",
+          "inner-3",
+          "inner-6",
+          "inner-7",
+          "inner-8",
+          "inner-11",
+          "mid-6",
+          "mid-9",
+          "mid-12",
+          "mid-14",
+          "mid-16",
+          "mid-17",
+          "mid-18",
+          "outer-1",
+          "outer-3",
+          "outer-6",
+          "outer-8",
+          "outer-13",
+          "outer-14"
+        ]
+      }
+    }
   },
   "nodes": [
     {
