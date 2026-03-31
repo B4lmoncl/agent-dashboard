@@ -37,7 +37,7 @@
       "ring": "inner",
       "name": "Ausdauernder Geist",
       "icon": "spirit-endurance",
-      "desc": "Forge-Temperatur sinkt 8% langsamer pro Tag.",
+      "desc": "Forge-Temperatur sinkt 3% langsamer pro Tag.",
       "flavor": "Die Schmiede vergisst langsamer. Nicht aus Loyalität, sondern weil sie kein Kurzzeitgedächtnis hat.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -45,7 +45,7 @@
       "excludes": [],
       "effect": {
         "type": "forge_decay_reduction",
-        "value": 0.08
+        "value": 0.03
       }
     },
     {
@@ -69,7 +69,7 @@
       "ring": "inner",
       "name": "Lehrmeister",
       "icon": "teacher",
-      "desc": "Professions-XP +10%/+20% für die erste Herstellung pro Tag.",
+      "desc": "Professions-XP +3%/+5% für die erste Herstellung pro Tag.",
       "flavor": "30% mehr Professions-XP am Tag. Das spart ungefähr drei Wochen Lebenszeit, die du sowieso nicht hattest.",
       "maxRank": 2,
       "reqPoints": 0,
@@ -78,8 +78,8 @@
       "effect": {
         "type": "profession_daily_bonus_modifier",
         "valuePerRank": [
-          0.1,
-          0.2
+          0.03,
+          0.05
         ]
       }
     },
@@ -88,7 +88,7 @@
       "ring": "inner",
       "name": "Dickes Fell",
       "icon": "thick-skin",
-      "desc": "Streak-Verlust gibt 12h Gnadenfrist statt sofortigem Reset.",
+      "desc": "Streak-Verlust gibt 8h Gnadenfrist statt sofortigem Reset.",
       "flavor": "Dein Streak ist jetzt widerstandsfähiger. Nicht unzerstörbar. Verwechsle das nicht.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -96,7 +96,7 @@
       "excludes": [],
       "effect": {
         "type": "streak_grace_period_hours",
-        "value": 12
+        "value": 8
       }
     },
     {
@@ -104,15 +104,15 @@
       "ring": "inner",
       "name": "Goldader",
       "icon": "gold-vein",
-      "desc": "Gold-Belohnungen haben eine Mindestgarantie von 60% des Maximalwerts.",
-      "flavor": "Mindestens 75% Gold garantiert. Für Leute, die dem Zufall grundsätzlich misstrauen. Zu Recht.",
+      "desc": "+2 flat Gold Bonus auf jede Quest-Belohnung.",
+      "flavor": "Zwei Gold mehr. Klingt nach wenig. Multiplizier es mit tausend Quests.",
       "maxRank": 1,
       "reqPoints": 0,
       "requires": [],
       "excludes": [],
       "effect": {
-        "type": "gold_floor_percent",
-        "value": 0.6
+        "type": "flat_gold_bonus",
+        "value": 2
       }
     },
     {
@@ -120,7 +120,7 @@
       "ring": "inner",
       "name": "Gefährteninstinkt",
       "icon": "companion-instinct",
-      "desc": "Companion Bond-XP +5%/+10% aus allen Quellen.",
+      "desc": "Companion Bond-XP +3%/+6% aus allen Quellen.",
       "flavor": "Dein Gefährte mag dich jetzt 20% schneller. Vermutlich weil du aufgehört hast, ihn als 'das Vieh' zu bezeichnen.",
       "maxRank": 2,
       "reqPoints": 0,
@@ -129,8 +129,8 @@
       "effect": {
         "type": "companion_bond_xp_bonus",
         "valuePerRank": [
-          0.05,
-          0.1
+          0.03,
+          0.06
         ]
       }
     },
@@ -172,7 +172,7 @@
       "ring": "middle",
       "name": "Blutzoll",
       "icon": "blood-price",
-      "desc": "Opfere 10% aller Gold-Belohnungen. Dafür: +20% XP auf alle Quests.",
+      "desc": "Opfere 10% aller Gold-Belohnungen. Dafür: +8% XP auf alle Quests.",
       "flavor": "Gold ist überbewertet. Das sagte zumindest der letzte Held, der das hier genommen hat. Er starb arm, aber gebildet.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -188,7 +188,7 @@
         },
         "bonus": {
           "stat": "quest_xp",
-          "modifier": 0.2
+          "modifier": 0.08
         }
       }
     },
@@ -218,7 +218,7 @@
       "ring": "middle",
       "name": "Resonanzkristall",
       "icon": "resonance-crystal",
-      "desc": "Eingesetzte Edelsteine geben +15% Bonus-Stats. Entfernen zerstört den Edelstein IMMER.",
+      "desc": "Eingesetzte Edelsteine geben +5% Bonus-Stats. Entfernen zerstört den Edelstein IMMER.",
       "flavor": "15% mehr Stats. Aber der Edelstein kommt nie wieder raus. Das nennt man in Fachkreisen 'Commitment'.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -232,7 +232,7 @@
         },
         "bonus": {
           "stat": "gem_stat_bonus",
-          "modifier": 0.15
+          "modifier": 0.05
         }
       }
     },
@@ -277,7 +277,7 @@
       "ring": "middle",
       "name": "Geisterhand",
       "icon": "ghost-hand",
-      "desc": "Jede Herstellung hat 8%/15% Chance, keine Materialien zu verbrauchen.",
+      "desc": "Jede Herstellung hat 3%/6% Chance, keine Materialien zu verbrauchen.",
       "flavor": "15% Chance, dass die Materialien einfach... da bleiben. Die Handwerker nennen es 'Effizienz'. Die Materialien nennen es 'Diebstahl'.",
       "maxRank": 2,
       "reqPoints": 5,
@@ -288,8 +288,8 @@
       "effect": {
         "type": "craft_material_preserve",
         "chancePerRank": [
-          0.08,
-          0.15
+          0.03,
+          0.06
         ]
       }
     },
@@ -449,7 +449,7 @@
       "ring": "outer",
       "name": "Traumwandler",
       "icon": "dreamwalker",
-      "desc": "Rested XP sammelt sich 25% schneller an — gilt NUR für Quests vor 12:00 Uhr.",
+      "desc": "Rested XP sammelt sich 10% schneller an — gilt NUR für Quests vor 12:00 Uhr.",
       "flavor": "Morgens bist du 25% effizienter. Nachmittags nicht. Das System hat Meinungen über deinen Schlafrhythmus.",
       "maxRank": 1,
       "reqPoints": 12,
@@ -461,7 +461,7 @@
         "type": "tradeoff",
         "bonus": {
           "stat": "rested_xp_gain_rate",
-          "modifier": 0.25
+          "modifier": 0.1
         },
         "condition": {
           "questCompletedBefore": "12:00"
@@ -528,7 +528,7 @@
       "ring": "inner",
       "name": "Nachtarbeiter",
       "icon": "night-worker",
-      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +8% XP.",
+      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +3% XP.",
       "flavor": "Die Nacht gehört denen die nicht schlafen. Und denen die es bereuen.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -536,7 +536,7 @@
       "excludes": [],
       "effect": {
         "type": "night_xp_bonus",
-        "value": 0.08
+        "value": 0.03
       }
     },
     {
@@ -544,7 +544,7 @@
       "ring": "inner",
       "name": "Sparfuchs",
       "icon": "thrifty-fox",
-      "desc": "Alle Shop-Preise und Trainer-Kosten sind 5% günstiger.",
+      "desc": "Alle Shop-Preise und Trainer-Kosten sind 3% günstiger.",
       "flavor": "Nicht geizig. Wirtschaftlich denkend. Es gibt einen Unterschied. Angeblich.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -552,7 +552,7 @@
       "excludes": [],
       "effect": {
         "type": "shop_discount",
-        "value": 0.05
+        "value": 0.03
       }
     },
     {
@@ -560,7 +560,7 @@
       "ring": "inner",
       "name": "Ruhesucher",
       "icon": "rest-seeker",
-      "desc": "Rested XP Pool akkumuliert 10% schneller. Auch im Turm, nicht nur offline.",
+      "desc": "Rested XP Pool akkumuliert 3% schneller.",
       "flavor": "Erholt sich schneller als andere. Oder tut zumindest so überzeugend.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -568,7 +568,7 @@
       "excludes": [],
       "effect": {
         "type": "rested_xp_accumulation_bonus",
-        "value": 0.1
+        "value": 0.03
       }
     },
     {
@@ -592,21 +592,23 @@
       "ring": "middle",
       "name": "Zeitdieb",
       "icon": "time-thief",
-      "desc": "Rift-Zeitlimit +10%. Dafür: Rift-Belohnungen -5%.",
+      "desc": "Rift-Zeitlimit +5%. Dafür: Rift-Belohnungen -3%.",
       "flavor": "Mehr Zeit, weniger Beute. Du hast nicht gestohlen. Du hast geliehen. Unbefristet.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": [],
+      "requires": [
+        "inner-9"
+      ],
       "excludes": [],
       "effect": {
         "type": "tradeoff",
         "bonus": {
           "stat": "rift_time_limit",
-          "modifier": 0.1
+          "modifier": 0.05
         },
         "penalty": {
           "stat": "rift_rewards",
-          "modifier": -0.05
+          "modifier": -0.03
         }
       }
     },
@@ -615,15 +617,17 @@
       "ring": "middle",
       "name": "Sammlerwahn",
       "icon": "collector-mania",
-      "desc": "Jedes einzigartige Item das du zum ersten Mal findest gibt +50 Bonus-XP.",
+      "desc": "Jedes einzigartige Item das du zum ersten Mal findest gibt +15 Bonus-XP.",
       "flavor": "Der Sammler freut sich. Über alles. Besonders über Dinge die er nicht braucht.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": [],
+      "requires": [
+        "inner-2"
+      ],
       "excludes": [],
       "effect": {
         "type": "unique_item_discovery_xp",
-        "value": 50
+        "value": 15
       }
     },
     {
@@ -631,7 +635,7 @@
       "ring": "middle",
       "name": "Morgenmensch",
       "icon": "morning-person",
-      "desc": "Erste Quest des Tages gibt +15% Gold. Aber NUR die erste.",
+      "desc": "Erste Quest des Tages gibt +8% Gold. Aber NUR die erste.",
       "flavor": "Frühaufsteher bekommen den Wurm. Und zwanzig Prozent mehr Gold. Der Wurm ist gratis.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -641,7 +645,7 @@
       ],
       "effect": {
         "type": "first_quest_gold_bonus",
-        "value": 0.15
+        "value": 0.08
       }
     },
     {
@@ -665,7 +669,7 @@
       "ring": "middle",
       "name": "Händlerinstinkt",
       "icon": "merchant-instinct",
-      "desc": "Vendor Reagents kosten 10% weniger Gold beim Kauf.",
+      "desc": "Vendor Reagents kosten 5% weniger Gold beim Kauf.",
       "flavor": "Der Händler mag dich nicht. Aber er respektiert dein Verhandlungsgeschick.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -675,7 +679,7 @@
       "excludes": [],
       "effect": {
         "type": "vendor_reagent_discount",
-        "value": 0.1
+        "value": 0.05
       }
     },
     {
@@ -683,15 +687,17 @@
       "ring": "middle",
       "name": "Recycler",
       "icon": "recycler",
-      "desc": "Salvage gibt 15% mehr Essenz.",
+      "desc": "Salvage gibt 8% mehr Essenz.",
       "flavor": "Aus Müll wird Gold. Oder zumindest Essenz. Was fast Gold ist. Fast.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": [],
+      "requires": [
+        "inner-8"
+      ],
       "excludes": [],
       "effect": {
         "type": "salvage_essenz_bonus",
-        "value": 0.15
+        "value": 0.08
       }
     },
     {
@@ -699,7 +705,7 @@
       "ring": "middle",
       "name": "Wochenendkrieger",
       "icon": "weekend-warrior",
-      "desc": "Am Wochenende (Sa+So) geben Quests +8% XP.",
+      "desc": "Am Wochenende (Sa+So) geben Quests +3% XP.",
       "flavor": "Samstag und Sonntag sind keine freien Tage. Sie sind Bonustage. Perspektive.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -707,7 +713,7 @@
       "excludes": [],
       "effect": {
         "type": "weekend_xp_bonus",
-        "value": 0.08
+        "value": 0.03
       }
     },
     {
@@ -715,7 +721,7 @@
       "ring": "middle",
       "name": "Fraktionsdiplomat",
       "icon": "faction-diplomat",
-      "desc": "Fraktions-Reputation +8% aus allen Quellen.",
+      "desc": "Fraktions-Reputation +3% aus allen Quellen.",
       "flavor": "Alle mögen dich. Oder tun zumindest so. Beides hat denselben Effekt auf den Rufbalken.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -723,7 +729,7 @@
       "excludes": [],
       "effect": {
         "type": "faction_rep_bonus",
-        "value": 0.08
+        "value": 0.03
       }
     },
     {
@@ -731,15 +737,17 @@
       "ring": "outer",
       "name": "Seelenernte",
       "icon": "soul-harvest",
-      "desc": "World-Boss-Contribution gibt +15% mehr Schaden. Kostet 3 Talentpunkte.",
+      "desc": "World-Boss-Contribution gibt +8% mehr Schaden. Kostet 3 Talentpunkte.",
       "flavor": "Der Boss hat dich vorher nicht bemerkt. Jetzt schon. Ob das gut ist, zeigt sich.",
       "maxRank": 3,
       "reqPoints": 15,
-      "requires": [],
+      "requires": [
+        "mid-4"
+      ],
       "excludes": [],
       "effect": {
         "type": "world_boss_damage_bonus",
-        "value": 0.15
+        "value": 0.08
       }
     },
     {
@@ -747,7 +755,7 @@
       "ring": "outer",
       "name": "Dungeoninstinkt",
       "icon": "dungeon-instinct",
-      "desc": "Dungeon-Erfolgsrate +10%. Kostet 2 Talentpunkte.",
+      "desc": "Dungeon-Erfolgsrate +5%. Kostet 2 Talentpunkte.",
       "flavor": "Du weißt wo die Fallen sind. Nicht weil du sie siehst. Sondern weil du reingefallen bist.",
       "maxRank": 2,
       "reqPoints": 12,
@@ -755,7 +763,7 @@
       "excludes": [],
       "effect": {
         "type": "dungeon_success_bonus",
-        "value": 0.1
+        "value": 0.05
       }
     },
     {
@@ -767,7 +775,9 @@
       "flavor": "Wissen ist Macht. Und in diesem Fall: Wissen ist weniger Reue nach dem Kauf.",
       "maxRank": 2,
       "reqPoints": 12,
-      "requires": [],
+      "requires": [
+        "inner-10"
+      ],
       "excludes": [],
       "effect": {
         "type": "shop_affix_preview",
@@ -783,7 +793,9 @@
       "flavor": "Einmal die Woche lächelt das Schicksal. Den Rest der Woche schaut es zu.",
       "maxRank": 3,
       "reqPoints": 15,
-      "requires": [],
+      "requires": [
+        "mid-10"
+      ],
       "excludes": [],
       "effect": {
         "type": "weekly_guaranteed_epic_pull",
@@ -799,7 +811,9 @@
       "flavor": "Der Turm bemerkt dich. Und gibt dir Bonuspunkte. Weil er kann.",
       "maxRank": 2,
       "reqPoints": 12,
-      "requires": [],
+      "requires": [
+        "mid-12"
+      ],
       "excludes": [],
       "effect": {
         "type": "tome_progress_bonus",
@@ -811,7 +825,7 @@
       "ring": "outer",
       "name": "Erinnerungssplitter",
       "icon": "memory-shard",
-      "desc": "Season Pass XP +10% aus allen Quellen. Kostet 2 Punkte.",
+      "desc": "Season Pass XP +5% aus allen Quellen. Kostet 2 Punkte.",
       "flavor": "Der Pass erinnert sich an dich. Besser als du dich an ihn erinnerst.",
       "maxRank": 2,
       "reqPoints": 12,
@@ -819,7 +833,7 @@
       "excludes": [],
       "effect": {
         "type": "battlepass_xp_bonus",
-        "value": 0.1
+        "value": 0.05
       }
     }
   ],
@@ -863,6 +877,51 @@
       "from": "outer-4",
       "to": "outer-5",
       "type": "exclusion"
+    },
+    {
+      "from": "mid-13",
+      "to": "mid-11",
+      "type": "exclusion"
+    },
+    {
+      "from": "inner-9",
+      "to": "mid-11",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-2",
+      "to": "mid-12",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-8",
+      "to": "mid-16",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-10",
+      "to": "mid-15",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-10",
+      "to": "outer-11",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-4",
+      "to": "outer-9",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-10",
+      "to": "outer-12",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-12",
+      "to": "outer-13",
+      "type": "prerequisite"
     }
   ],
   "choiceGroups": [
@@ -883,6 +942,16 @@
       "nodes": [
         "outer-4",
         "outer-5"
+      ],
+      "maxPicks": 1
+    },
+    {
+      "id": "cg-time",
+      "label": "Tageszeit",
+      "desc": "Morgenmensch ODER Zeitdieb — nicht beides. Du musst dich entscheiden wann du am stärksten bist.",
+      "nodes": [
+        "mid-13",
+        "mid-11"
       ],
       "maxPicks": 1
     }
