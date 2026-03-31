@@ -1663,7 +1663,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         const isLearned = recipe.learned !== false;
                         const meetsLevel = recipe.canCraft;
                         const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
-                        const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
+                        const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp" || recipe.result?.type === "material" || recipe.result?.type === "transmute_material" || recipe.result?.type === "gem_cut";
                         const effectiveCount = isBatchable ? craftCount : 1;
                         const canAffordCheck = (() => {
                           const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
@@ -1758,7 +1758,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const meetsLevel = recipe.canCraft;
                     const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
                     const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
-                    const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
+                    const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp" || recipe.result?.type === "material" || recipe.result?.type === "transmute_material" || recipe.result?.type === "gem_cut";
                     const effectiveCount = isBatchable ? craftCount : 1;
                     const canAfford = (() => {
                       const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
