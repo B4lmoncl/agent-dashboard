@@ -27,10 +27,10 @@ router.post('/api/campaigns', requireApiKey, (req, res) => {
   if (!title || !String(title).trim()) return res.status(400).json({ error: 'title required' });
   const campaign = {
     id: `campaign-${Date.now()}`,
-    title: String(title).trim(),
-    description: String(description || '').trim(),
+    title: String(title).trim().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+    description: String(description || '').trim().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
     icon: icon || null,
-    lore: String(lore || '').trim(),
+    lore: String(lore || '').trim().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
     createdBy: createdBy || 'unknown',
     createdAt: now(),
     status: 'active',
@@ -62,10 +62,10 @@ router.patch('/api/campaigns/:id', requireMasterKey, (req, res) => {
   const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const { title, description, icon, lore, status, bossQuestId, rewards, questIds } = req.body;
-  if (title !== undefined) campaign.title = String(title).trim();
-  if (description !== undefined) campaign.description = String(description);
+  if (title !== undefined) campaign.title = String(title).trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (description !== undefined) campaign.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (icon !== undefined) campaign.icon = icon;
-  if (lore !== undefined) campaign.lore = String(lore);
+  if (lore !== undefined) campaign.lore = String(lore).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (status !== undefined && ['active', 'completed', 'archived'].includes(status)) campaign.status = status;
   if (bossQuestId !== undefined) campaign.bossQuestId = bossQuestId || null;
   if (rewards !== undefined) campaign.rewards = { ...campaign.rewards, ...rewards };

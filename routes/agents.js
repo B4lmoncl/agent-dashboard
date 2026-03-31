@@ -118,8 +118,8 @@ router.post('/api/agent/:name/register', requireApiKey, (req, res) => {
       health: 'ok',
       lastUpdate: null,
       commands: [],
-      role: role || 'Agent',
-      description: description || '',
+      role: String(role || 'Agent').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+      description: String(description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
       color: color || '#666',
       avatar: avatar || name.slice(0, 2).toUpperCase(),
     };
