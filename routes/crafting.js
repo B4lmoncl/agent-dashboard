@@ -552,6 +552,16 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
+  // ─── Pre-deduction validation for inventory-consuming recipes ──────────────
+  // Check inventory cap BEFORE deducting materials to prevent material loss on full inventory
+  const resultType = recipe.result?.type;
+  if (resultType === 'craft_gear' || resultType === 'vellum') {
+    u.inventory = u.inventory || [];
+    if (u.inventory.length >= (INVENTORY_CAP || 200)) {
+      return res.status(400).json({ error: 'Inventory full — free up space before crafting gear' });
+    }
+  }
+
   // ─── All validation passed — enroll profession + deduct costs ──────────────
   if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
 
