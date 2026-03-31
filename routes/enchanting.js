@@ -213,8 +213,14 @@ router.post('/api/disenchant', requireAuth, (req, res) => {
     const results = [];
     u.craftingMaterials = u.craftingMaterials || {};
 
+    // Talent tree: disenchant_bonus_material — chance for extra materials
+    const { getUserTalentEffects } = require('./talent-tree');
+    const talentDEBonus = getUserTalentEffects(uid).disenchant_bonus_material || 0;
+
     for (const drop of drops) {
-      const amount = drop.min + Math.floor(Math.random() * (drop.max - drop.min + 1));
+      let amount = drop.min + Math.floor(Math.random() * (drop.max - drop.min + 1));
+      // Talent bonus: flat +1 per material type if check passes
+      if (talentDEBonus > 0 && Math.random() < talentDEBonus) amount += 1;
       u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + amount;
       results.push({ id: drop.id, amount });
     }

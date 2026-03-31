@@ -344,7 +344,10 @@ function grantReputation(user, questType, questRarity) {
     }
 
     const legendaryRepBoost = 1 + (getLegendaryModifiers(user.id).factionRepBoost || 0);
-    const gained = Math.round(repAmount * multiplier * legendaryRepBoost);
+    // Talent tree: faction_rep_bonus
+    const { getUserTalentEffects } = require('./talent-tree');
+    const talentRepBonus = 1 + (getUserTalentEffects(user.id).faction_rep_bonus || 0);
+    const gained = Math.round(repAmount * multiplier * legendaryRepBoost * talentRepBonus);
     playerData.rep += gained;
 
     const newStanding = getStanding(playerData.rep);

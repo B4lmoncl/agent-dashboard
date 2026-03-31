@@ -572,10 +572,22 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     u.currencies.gold = (u.currencies.gold || 0) - totalDeduction;
     u.gold = u.currencies.gold;
   }
-  // Deduct materials (×count)
+  // Deduct materials (×count) — Talent: craft_material_preserve chance to save materials
+  const talentPreserve = (require('./talent-tree').getUserTalentEffects(uid)).craft_material_preserve || 0;
   for (const [matId, amount] of Object.entries(recipe.materials || {})) {
-    u.craftingMaterials[matId] -= amount * effectiveCount;
-    if (u.craftingMaterials[matId] <= 0) delete u.craftingMaterials[matId];
+    let totalCost = amount * effectiveCount;
+    // Each unit has independent chance to be preserved
+    if (talentPreserve > 0) {
+      let preserved = 0;
+      for (let i = 0; i < totalCost; i++) {
+        if (Math.random() < talentPreserve) preserved++;
+      }
+      totalCost -= preserved;
+    }
+    if (totalCost > 0) {
+      u.craftingMaterials[matId] -= totalCost;
+      if (u.craftingMaterials[matId] <= 0) delete u.craftingMaterials[matId];
+    }
   }
 
   // Update profession XP & timestamp — WoW-style: fixed XP per craft, probabilistic skill-up
@@ -592,7 +604,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const mentorBonus = getLegendaryModifiers(uid).mentor || 0;
   const skillUpChance = Math.min(1.0, getSkillUpChance(currentSkill, reqSkill) + mentorBonus);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
-  const dailyMultiplier = dailyBonusAvailable ? 2 : 1;
+  // Talent tree: profession_daily_bonus_modifier — increases daily bonus multiplier
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentEffects = getUserTalentEffects(uid);
+  const talentDailyMod = talentEffects.profession_daily_bonus_modifier || 0;
+  const dailyMultiplier = dailyBonusAvailable ? (2 + talentDailyMod) : 1;
   // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
   let totalSkillGained = 0;
   for (let i = 0; i < effectiveCount; i++) {
@@ -1410,7 +1426,10 @@ router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
   if (!reagent) return res.status(400).json({ error: 'Unknown reagent' });
 
   const safeCount = Math.min(100, Math.max(1, parseInt(count) || 1));
-  const totalCost = reagent.price * safeCount;
+  // Talent tree: vendor_reagent_discount — reduces vendor reagent cost
+  const talentReagentDiscount = (require('./talent-tree').getUserTalentEffects(uid)).vendor_reagent_discount || 0;
+  const discountedPrice = Math.max(1, Math.round(reagent.price * (1 - talentReagentDiscount)));
+  const totalCost = discountedPrice * safeCount;
   ensureUserCurrencies(u);
   if ((u.currencies.gold ?? u.gold ?? 0) < totalCost) {
     return res.status(400).json({ error: `Not enough gold (need ${totalCost}g)` });

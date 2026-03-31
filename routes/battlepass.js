@@ -357,6 +357,11 @@ function grantBattlePassXP(user, source, detail) {
 
   if (xpGain <= 0) return null;
 
+  // Talent tree: battlepass_xp_bonus
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentBPBonus = getUserTalentEffects(user.id).battlepass_xp_bonus || 0;
+  if (talentBPBonus > 0) xpGain = Math.round(xpGain * (1 + talentBPBonus));
+
   const bp = user.battlePass;
   const oldLevel = getBPLevel(bp.xp);
   bp.xp += xpGain;

@@ -86,7 +86,10 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
 
   // Legendary effect: salvageBonus — extra essenz from dismantling
   const salvageMods = getLegendaryModifiers(uid);
-  const salvageBonusMult = salvageMods.salvageBonus || 0;
+  // Talent tree: salvage_essenz_bonus — stacks with legendary
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentSalvageBonus = getUserTalentEffects(uid).salvage_essenz_bonus || 0;
+  const salvageBonusMult = (salvageMods.salvageBonus || 0) + talentSalvageBonus;
   let bonusEssenz = 0;
   if (salvageBonusMult > 0) {
     bonusEssenz = Math.round(essenzGained * salvageBonusMult);

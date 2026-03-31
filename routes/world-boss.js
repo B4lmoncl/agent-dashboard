@@ -179,6 +179,11 @@ function dealBossDamage(userId, questRarity) {
     }
   }
 
+  // Talent tree: world_boss_damage_bonus
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentBossDmg = getUserTalentEffects(userId).world_boss_damage_bonus || 0;
+  if (talentBossDmg > 0) dmg = Math.round(dmg * (1 + talentBossDmg));
+
   // Update contribution
   if (!boss.contributions[userId]) {
     boss.contributions[userId] = { damage: 0, quests: 0 };
