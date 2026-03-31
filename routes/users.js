@@ -537,6 +537,9 @@ router.post('/api/auth/change-password', requireAuth, async (req, res) => {
   if (user.passwordHash) {
     const match = await bcrypt.compare(currentPassword, user.passwordHash);
     if (!match) return res.status(401).json({ error: 'Current password is incorrect' });
+  } else {
+    // Legacy user without password: require set-password flow instead
+    return res.status(400).json({ error: 'No password set. Use the set-password endpoint first.' });
   }
   user.passwordHash = await bcrypt.hash(newPassword, 10);
   saveUsers();
