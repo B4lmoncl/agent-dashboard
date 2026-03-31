@@ -124,8 +124,8 @@ router.post('/api/quest', requireApiKey, (req, res) => {
   }
   const quest = {
     id: `quest-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    title,
-    description: description || '',
+    title: title.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+    description: (description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
     priority: priority || 'medium',
     type: resolvedType,
     categories: resolvedCategories,
@@ -733,11 +733,11 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
     if (!['low', 'medium', 'high'].includes(priority)) return res.status(400).json({ error: 'Invalid priority' });
     quest.priority = priority;
   }
-  if (proof !== undefined) quest.proof = proof;
-  if (title !== undefined) quest.title = title;
-  if (description !== undefined) quest.description = description;
-  if (req.body.flavorText !== undefined) quest.flavorText = req.body.flavorText;
-  if (req.body.lore !== undefined) quest.lore = req.body.lore;
+  if (proof !== undefined) quest.proof = String(proof).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (title !== undefined) quest.title = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (description !== undefined) quest.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (req.body.flavorText !== undefined) quest.flavorText = String(req.body.flavorText).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (req.body.lore !== undefined) quest.lore = String(req.body.lore).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (claimedBy !== undefined) {
     quest.claimedBy = claimedBy;
     if (claimedBy && quest.status === 'open') quest.status = 'in_progress';
