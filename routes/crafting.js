@@ -33,7 +33,8 @@ function playerMeetsFactionRep(user, recipeFactionId) {
   return rep >= FACTION_REP_REQUIRED;
 }
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
-const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
+// Slot-requiring recipe types: these target a specific equipped item and can't be batched
+const SLOT_RECIPES = ['gear_enhance', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Crafting lock (prevents concurrent craft for same player) ──────────────
@@ -499,7 +500,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Slot-requiring recipes can't batch (they target specific gear)
-  const isSlotRecipe = SLOT_RECIPES.includes(recipeId);
+  const isSlotRecipe = SLOT_RECIPES.includes(recipe.result?.type) || SLOT_RECIPES.includes(recipeId);
   // Gear crafting can't batch (each item is individually rolled + inventory cap)
   const isGearCraft = recipe.result?.type === 'craft_gear';
   // Block batch crafting on gray recipes (0 XP — prevents wasting materials)
