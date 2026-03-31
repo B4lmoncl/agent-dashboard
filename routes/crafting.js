@@ -1300,12 +1300,15 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
   if (u.professions?.[dropProfession]) {
     u.professions[dropProfession] = { level: 0, skill: 0, xp: 0, lastCraftAt: null, trainedRanks: ['Apprentice'], recipeCooldowns: {} };
   }
-  // Remove all learned recipes for this profession (WoW-style: dropping = lose everything)
+  // Remove all learned + unlocked recipes for this profession (WoW-style: dropping = lose everything)
+  const profRecipeIds = new Set(
+    (PROFESSIONS_DATA.recipes || []).filter(r => r.profession === dropProfession).map(r => r.id)
+  );
   if (u.learnedRecipes?.length) {
-    const profRecipeIds = new Set(
-      (PROFESSIONS_DATA.recipes || []).filter(r => r.profession === dropProfession).map(r => r.id)
-    );
     u.learnedRecipes = u.learnedRecipes.filter(rid => !profRecipeIds.has(rid));
+  }
+  if (u.unlockedRecipes?.length) {
+    u.unlockedRecipes = u.unlockedRecipes.filter(rid => !profRecipeIds.has(rid));
   }
 
   saveUsers();
