@@ -858,6 +858,55 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
   } finally { tavernLock.release(uid); }
 });
 
+// ─── Persistent Seen/Read State ─────────────────────────────────────────────
+// Replaces localStorage-based tracking. Survives container restarts + cache clears.
+// Categories: items, codex, rooms, suggestions, questIds, npcIds
+
+// GET /api/player/:name/seen — get all seen state
+router.get('/api/player/:name/seen', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  res.json(u.seen || {});
+});
+
+// POST /api/player/:name/seen — mark items as seen (batch)
+// Body: { category: "items"|"codex"|"rooms"|"suggestions"|"questIds"|"npcIds", ids: ["id1", "id2"] }
+router.post('/api/player/:name/seen', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { category, ids } = req.body;
+  const VALID_CATEGORIES = ['items', 'codex', 'rooms', 'suggestions', 'questIds', 'npcIds'];
+  if (!category || !VALID_CATEGORIES.includes(category)) {
+    return res.status(400).json({ error: `Invalid category. Must be one of: ${VALID_CATEGORIES.join(', ')}` });
+  }
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ error: 'ids must be a non-empty array' });
+  }
+  // Cap batch size to prevent abuse
+  const safeIds = ids.slice(0, 500).map(String);
+
+  u.seen = u.seen || {};
+  u.seen[category] = u.seen[category] || [];
+  const existing = new Set(u.seen[category]);
+  let added = 0;
+  for (const id of safeIds) {
+    if (!existing.has(id)) {
+      u.seen[category].push(id);
+      existing.add(id);
+      added++;
+    }
+  }
+  // Cap stored list at 2000 per category to prevent unbounded growth
+  if (u.seen[category].length > 2000) {
+    u.seen[category] = u.seen[category].slice(-2000);
+  }
+  if (added > 0) saveUsers();
+  res.json({ ok: true, category, added, total: u.seen[category].length });
+});
+
 // ─── Companion Expeditions ──────────────────────────────────────────────────
 
 // GET /api/player/:name/companion/expeditions — list available expeditions + active status

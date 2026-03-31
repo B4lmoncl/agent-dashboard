@@ -957,10 +957,18 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
 }
 
 export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; agents: Agent[] }) {
-  const [dismissed, setDismissed] = useState<Set<string>>(() => {
-    try { return new Set(JSON.parse(localStorage.getItem("dismissed_suggestions") ?? "[]")); } catch { return new Set(); }
-  });
+  const { playerName, reviewApiKey } = useDashboard();
+  const [dismissed, setDismissed] = useState<Set<string>>(new Set());
   const [open, setOpen] = useState(true);
+
+  // Load dismissed from backend
+  useEffect(() => {
+    if (!playerName) return;
+    fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, { headers: getAuthHeaders(reviewApiKey) })
+      .then(r => r.ok ? r.json() : {})
+      .then((d: Record<string, string[]>) => { if (d.suggestions) setDismissed(new Set(d.suggestions)); })
+      .catch(() => {});
+  }, [playerName, reviewApiKey]);
 
   const allSuggestions = buildSuggestions(quests, agents);
   const visible = allSuggestions.filter(s => !dismissed.has(s.id));
@@ -968,7 +976,13 @@ export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; 
   const dismiss = (id: string) => {
     const next = new Set(dismissed).add(id);
     setDismissed(next);
-    try { localStorage.setItem("dismissed_suggestions", JSON.stringify([...next])); } catch { /* ignore */ }
+    if (playerName) {
+      fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ category: "suggestions", ids: [id] }),
+      }).catch(() => {});
+    }
   };
 
   if (visible.length === 0) return null;

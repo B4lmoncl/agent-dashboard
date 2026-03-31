@@ -130,6 +130,7 @@ export async function fetchDashboard(playerName?: string): Promise<{
   riftActive?: boolean;
   dungeonActive?: boolean;
   notifications?: Record<string, number> | null;
+  seen?: Record<string, string[]> | null;
   apiLive: boolean;
 } | null> {
   try {

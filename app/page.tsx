@@ -183,9 +183,10 @@ export default function Dashboard() {
     setSearchFilter(""); // Clear quest search on tab switch
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
-  // Track seen content for notification dots (persists across renders via ref)
+  // Track seen content for notification dots (backed by persistent backend state)
   const seenQuestIdsRef = useRef<Set<string>>(new Set());
   const seenNpcIdsRef = useRef<Set<string>>(new Set());
+  const seenRoomsRef = useRef<Set<string>>(new Set());
   // Trigger re-render when seen sets change
   const [seenVersion, setSeenVersion] = useState(0);
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
@@ -218,6 +219,15 @@ export default function Dashboard() {
   // This is the root fix for filter bugs after login on new devices / incognito.
   const playerNameRef = useRef(playerName);
   playerNameRef.current = playerName;
+  // Helper: persist seen IDs to backend (fire-and-forget)
+  const persistSeen = useCallback((category: string, ids: string[]) => {
+    if (!playerName || !reviewApiKey || ids.length === 0) return;
+    fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/seen`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+      body: JSON.stringify({ category, ids }),
+    }).catch(() => {});
+  }, [playerName, reviewApiKey]);
   const [guideOpen, setGuideOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
@@ -394,21 +404,24 @@ export default function Dashboard() {
     return activeNpcs.some(n => !seenNpcIdsRef.current.has(n.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dashView, activeNpcs, seenVersion]);
-  // Mark content as seen when user visits a tab
+  // Mark content as seen when user visits a tab (+ persist to backend)
   useEffect(() => {
-    let changed = false;
+    const newQuestIds: string[] = [];
+    const newNpcIds: string[] = [];
     if (dashView === "questBoard") {
       for (const q of quests.open) {
-        if (!seenQuestIdsRef.current.has(q.id)) { seenQuestIdsRef.current.add(q.id); changed = true; }
+        if (!seenQuestIdsRef.current.has(q.id)) { seenQuestIdsRef.current.add(q.id); newQuestIds.push(q.id); }
       }
     }
     if (dashView === "npcBoard") {
       for (const n of activeNpcs) {
-        if (!seenNpcIdsRef.current.has(n.id)) { seenNpcIdsRef.current.add(n.id); changed = true; }
+        if (!seenNpcIdsRef.current.has(n.id)) { seenNpcIdsRef.current.add(n.id); newNpcIds.push(n.id); }
       }
     }
-    if (changed) setSeenVersion(v => v + 1);
-  }, [dashView, quests.open, activeNpcs]);
+    if (newQuestIds.length > 0) persistSeen("questIds", newQuestIds);
+    if (newNpcIds.length > 0) persistSeen("npcIds", newNpcIds);
+    if (newQuestIds.length + newNpcIds.length > 0) setSeenVersion(v => v + 1);
+  }, [dashView, quests.open, activeNpcs, persistSeen]);
 
   // ─── New Version popup check ────────────────────────────────────────────
   const versionCheckedRef = useRef(false);
@@ -503,6 +516,13 @@ export default function Dashboard() {
         // Character: companion expedition
         counts.character = n.expeditionReady || 0;
         setNavNotifs(counts);
+      }
+      // Load persistent seen state from backend (replaces localStorage)
+      if (batch.seen) {
+        const s = batch.seen;
+        if (s.questIds) for (const id of s.questIds) seenQuestIdsRef.current.add(id);
+        if (s.npcIds) for (const id of s.npcIds) seenNpcIdsRef.current.add(id);
+        if (s.rooms) for (const r of s.rooms) seenRoomsRef.current.add(r);
       }
       if (batch.worldBossActive !== undefined) setWorldBossActive(!!batch.worldBossActive);
       if (batch.riftActive !== undefined) setRiftActive(!!batch.riftActive);
@@ -1307,11 +1327,14 @@ export default function Dashboard() {
         {(() => {
           const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
           const visibleRooms = currentFloor.rooms.filter(r => (!r.requiresLogin || playerName) && (!r.minLevel || (currentPlayerLevel ?? 1) >= r.minLevel));
-          // Track which rooms the player has visited (for "NEW" unlock badges)
-          const seenRoomsKey = `qh_seen_rooms_${playerName}`;
-          const getSeenRooms = (): Set<string> => { try { return new Set(JSON.parse(localStorage.getItem(seenRoomsKey) || "[]")); } catch { return new Set(); } };
-          const markRoomSeen = (key: string) => { try { const s = getSeenRooms(); s.add(key); localStorage.setItem(seenRoomsKey, JSON.stringify([...s])); } catch { /* ignore */ } };
-          const seenRooms = getSeenRooms();
+          // Track which rooms the player has visited (backed by persistent backend state)
+          const markRoomSeen = (key: string) => {
+            if (!seenRoomsRef.current.has(key)) {
+              seenRoomsRef.current.add(key);
+              persistSeen("rooms", [key]);
+            }
+          };
+          const seenRooms = seenRoomsRef.current;
           // Notification dots per room
           const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
           const getRoomNotif = (key: string): { color: string; count?: number; isNew?: boolean } | null => {

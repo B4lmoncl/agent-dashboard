@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useDashboard } from "@/app/DashboardContext";
 import { TipCustom } from "@/components/GameTooltip";
 
 interface CodexEntry {
@@ -25,33 +26,46 @@ export default function CodexView() {
   const [entries, setEntries] = useState<CodexEntry[]>([]);
   const [discoveredCount, setDiscoveredCount] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  const { playerName, reviewApiKey } = useDashboard();
   const [loading, setLoading] = useState(true);
   const [activeCat, setActiveCat] = useState("all");
   const [selectedEntry, setSelectedEntry] = useState<CodexEntry | null>(null);
   useModalBehavior(!!selectedEntry, () => setSelectedEntry(null));
-  const [readEntries, setReadEntries] = useState<Set<string>>(() => {
-    try { const stored = localStorage.getItem("qh_codex_read"); return stored ? new Set(JSON.parse(stored)) : new Set(); } catch { return new Set(); }
-  });
+  const [readEntries, setReadEntries] = useState<Set<string>>(new Set());
 
   const fetchCodex = useCallback(async () => {
     try {
-      const r = await fetch("/api/codex", { headers: getAuthHeaders() });
-      if (r.ok) {
-        const data = await r.json();
+      const [codexR, seenR] = await Promise.all([
+        fetch("/api/codex", { headers: getAuthHeaders() }),
+        playerName ? fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, { headers: getAuthHeaders() }) : null,
+      ]);
+      if (codexR.ok) {
+        const data = await codexR.json();
         setCategories(data.categories || []);
         setEntries(data.entries || []);
         setDiscoveredCount(data.discoveredCount || 0);
         setTotalCount(data.totalCount || 0);
       }
+      if (seenR?.ok) {
+        const seenData = await seenR.json();
+        if (seenData.codex) setReadEntries(new Set(seenData.codex));
+      }
     } catch { /* ignore */ }
     setLoading(false);
-  }, []);
+  }, [playerName]);
 
   const markRead = (id: string) => {
     setReadEntries(prev => {
+      if (prev.has(id)) return prev;
       const next = new Set(prev);
       next.add(id);
-      try { localStorage.setItem("qh_codex_read", JSON.stringify([...next])); } catch { /* private */ }
+      if (playerName) {
+        fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+          body: JSON.stringify({ category: "codex", ids: [id] }),
+        }).catch(() => {});
+      }
       return next;
     });
   };

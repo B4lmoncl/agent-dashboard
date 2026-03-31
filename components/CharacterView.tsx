@@ -989,23 +989,31 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
     return () => document.removeEventListener("mousedown", close);
   }, [sortDropdownOpen]);
 
-  // Track seen items for NEW badge
+  // Track seen items for NEW badge (persistent via backend)
   const [seenItemIds, setSeenItemIds] = useState<Set<string>>(new Set());
   useEffect(() => {
-    if (!playerName) return;
-    try {
-      const saved = localStorage.getItem(`seen-items-${playerName}`);
-      if (saved) setSeenItemIds(new Set(JSON.parse(saved)));
-    } catch { /* ignore */ }
-  }, [playerName]);
+    if (!playerName || !apiKey) return;
+    fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, { headers: getAuthHeaders(apiKey) })
+      .then(r => r.ok ? r.json() : {})
+      .then((d: Record<string, string[]>) => { if (d.items) setSeenItemIds(new Set(d.items)); })
+      .catch(() => {});
+  }, [playerName, apiKey]);
   const markItemSeen = useCallback((itemId: string) => {
     setSeenItemIds(prev => {
+      if (prev.has(itemId)) return prev;
       const next = new Set(prev);
       next.add(itemId);
-      try { localStorage.setItem(`seen-items-${playerName}`, JSON.stringify([...next])); } catch { /* ignore */ }
+      // Persist to backend (fire-and-forget)
+      if (playerName && apiKey) {
+        fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+          body: JSON.stringify({ category: "items", ids: [itemId] }),
+        }).catch(() => {});
+      }
       return next;
     });
-  }, [playerName]);
+  }, [playerName, apiKey]);
 
   // Load inventory positions from localStorage
   useEffect(() => {
