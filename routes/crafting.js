@@ -975,6 +975,20 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.craftedItem = instance;
         break;
       }
+      // Gear enhancement handler (stat boost on equipped item)
+      if (recipe.result?.type === 'gear_enhance') {
+        const stat = recipe.result.stat;
+        const amount = recipe.result.amount || 1;
+        if (!stat) { result.message = 'Invalid enhance recipe'; result.success = false; break; }
+        if (!targetSlot) { result.message = 'Select an equipment slot first'; result.success = false; break; }
+        const eq = u.equipment?.[targetSlot];
+        if (!eq || typeof eq === 'string') { result.message = 'No gear equipped in this slot'; result.success = false; break; }
+        eq.stats = eq.stats || {};
+        eq.stats[stat] = (eq.stats[stat] || 0) + amount;
+        result.message = `Enhanced: +${amount} ${stat} on ${eq.name || targetSlot}`;
+        result.updatedGear = eq;
+        break;
+      }
       // Gem cutting handler (Juwelier: create a gem from materials)
       if (recipe.result?.type === 'gem_cut') {
         const gemType = recipe.result.gemType;
