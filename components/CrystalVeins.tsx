@@ -124,6 +124,9 @@ function hexToRgb(hex: string): [number, number, number] {
   return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
 }
 
+// Cache generated veins per seed+width so they survive component remount (tab switches)
+const _veinCache = new Map<string, Vein[]>();
+
 export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1, seed = 0 }: { floorColor?: string; moonIntensity?: number; seed?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const veinsRef = useRef<Vein[]>([]);
@@ -228,7 +231,18 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
       if (widthChanged) {
         generatedForWidth = w;
         const refH = Math.max(h, 4000);
-        veinsRef.current = generateVeinNetwork(w, refH, Math.floor(seed * 13337 + 42));
+        const cacheKey = `${seed}-${w}`;
+        if (_veinCache.has(cacheKey)) {
+          veinsRef.current = _veinCache.get(cacheKey)!;
+        } else {
+          veinsRef.current = generateVeinNetwork(w, refH, Math.floor(seed * 13337 + 42));
+          _veinCache.set(cacheKey, veinsRef.current);
+          // Keep cache bounded (max 20 entries — ~20 different tabs)
+          if (_veinCache.size > 20) {
+            const first = _veinCache.keys().next().value;
+            if (first !== undefined) _veinCache.delete(first);
+          }
+        }
       }
     };
 

@@ -1468,14 +1468,24 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   unplaced.push(item);
                 }
               }
-              // Place remaining items in first available slots
+              // Place remaining items in first available slots (and auto-save their positions)
               let nextSlot = 0;
+              let positionsChanged = false;
               for (const item of unplaced) {
                 while (nextSlot < GRID_TOTAL && grid[nextSlot] !== null) nextSlot++;
                 if (nextSlot < GRID_TOTAL) {
                   grid[nextSlot] = item;
+                  // Auto-assign position so items stay put after removal of others
+                  if (invPositions[item.id] !== nextSlot) {
+                    invPositions[item.id] = nextSlot;
+                    positionsChanged = true;
+                  }
                   nextSlot++;
                 }
+              }
+              // Persist auto-assigned positions
+              if (positionsChanged) {
+                try { localStorage.setItem(`inv-pos-${playerName}`, JSON.stringify(invPositions)); } catch { /* ignore */ }
               }
             }
 

@@ -152,32 +152,86 @@ export default function CodexView() {
         })}
       </div>
 
-      {/* Discovered entries — compact title grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-        {discoveredFiltered.map(entry => {
-          const cat = categories.find(c => c.id === entry.category);
-          const isUnread = !readEntries.has(entry.id);
-          return (
-            <button
-              key={entry.id}
-              onClick={() => openEntry(entry)}
-              className="text-left rounded-lg px-3 py-2.5 relative transition-all"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: `1px solid ${cat ? `${cat.color}18` : "rgba(251,191,36,0.1)"}`,
-                borderLeft: `3px solid ${cat?.color || "#fbbf24"}`,
-                cursor: "pointer",
-              }}
-            >
-              {isUnread && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{ background: "#fbbf24", boxShadow: "0 0 4px rgba(251,191,36,0.6)" }} />
-              )}
-              <p className="text-xs font-semibold line-clamp-2" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>{cat?.name}</p>
-            </button>
-          );
-        })}
-      </div>
+      {/* Entries grouped by category — visual variety */}
+      {activeCat === "all" ? (
+        <div className="space-y-6">
+          {categories.map(cat => {
+            const catDiscovered = entries.filter(e => e.category === cat.id && e.discovered);
+            const catTotal = entries.filter(e => e.category === cat.id).length;
+            if (catDiscovered.length === 0) return null;
+            return (
+              <div key={cat.id}>
+                {/* Category section header */}
+                <div className="flex items-center gap-3 mb-2.5">
+                  <div className="w-1 h-6 rounded-full" style={{ background: cat.color }} />
+                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: cat.color }}>{cat.name}</span>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>{catDiscovered.length}/{catTotal}</span>
+                  <div className="flex-1 h-px" style={{ background: `${cat.color}15` }} />
+                </div>
+                {/* Mixed layout: first entry larger, rest compact */}
+                <div className="grid grid-cols-3 gap-2">
+                  {catDiscovered.map((entry, idx) => {
+                    const isUnread = !readEntries.has(entry.id);
+                    const isFeatured = idx === 0 && catDiscovered.length >= 3;
+                    return (
+                      <button
+                        key={entry.id}
+                        onClick={() => openEntry(entry)}
+                        className={`text-left rounded-lg relative transition-all${isFeatured ? " col-span-2 row-span-2" : ""}`}
+                        style={{
+                          padding: isFeatured ? "16px" : "8px 12px",
+                          background: isFeatured ? `${cat.color}08` : "rgba(255,255,255,0.02)",
+                          border: `1px solid ${cat.color}${isFeatured ? "25" : "12"}`,
+                          borderLeft: `3px solid ${cat.color}${isFeatured ? "" : "80"}`,
+                          cursor: "pointer",
+                          boxShadow: isFeatured ? `inset 0 1px 0 ${cat.color}10, 0 2px 8px rgba(0,0,0,0.15)` : undefined,
+                        }}
+                      >
+                        {isUnread && (
+                          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{ background: "#fbbf24", boxShadow: "0 0 4px rgba(251,191,36,0.6)" }} />
+                        )}
+                        <p className={`font-semibold line-clamp-2 ${isFeatured ? "text-sm mb-1" : "text-xs"}`} style={{ color: cat.color }}>{entry.title}</p>
+                        {isFeatured && entry.text && (
+                          <p className="text-xs line-clamp-3 mt-1" style={{ color: "rgba(255,255,255,0.25)", lineHeight: "1.5" }}>
+                            {entry.text.slice(0, 120)}{entry.text.length > 120 ? "..." : ""}
+                          </p>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        /* Single category view — standard grid */
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {discoveredFiltered.map(entry => {
+            const cat = categories.find(c => c.id === entry.category);
+            const isUnread = !readEntries.has(entry.id);
+            return (
+              <button
+                key={entry.id}
+                onClick={() => openEntry(entry)}
+                className="text-left rounded-lg px-3 py-2.5 relative transition-all"
+                style={{
+                  background: "rgba(255,255,255,0.025)",
+                  border: `1px solid ${cat ? `${cat.color}18` : "rgba(251,191,36,0.1)"}`,
+                  borderLeft: `3px solid ${cat?.color || "#fbbf24"}`,
+                  cursor: "pointer",
+                }}
+              >
+                {isUnread && (
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{ background: "#fbbf24", boxShadow: "0 0 4px rgba(251,191,36,0.6)" }} />
+                )}
+                <p className="text-xs font-semibold line-clamp-2" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
+                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>{cat?.name}</p>
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {/* Entry detail modal — portaled to body for correct viewport centering */}
       {selectedEntry && createPortal(
