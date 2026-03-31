@@ -660,7 +660,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   }
 
   // 2. Check user.inventory[] for equipment-type items (already owned — no gold cost)
-  const invEntry = u.inventory.find(i => i.id === req.params.itemId);
+  const equipItemId = req.params.itemId;
+  const invEntry = u.inventory.find(i => (i.instanceId || i.id) === equipItemId);
   if (!invEntry) return res.status(404).json({ error: 'Gear item not found' });
 
   const templateId = invEntry.itemId || invEntry.id;
