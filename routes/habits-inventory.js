@@ -119,7 +119,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
-  const invItem = (u.inventory || []).find(i => i.id === req.params.itemId);
+  const useItemId = req.params.itemId;
+  const invItem = (u.inventory || []).find(i => (i.instanceId || i.id) === useItemId);
   if (!invItem) return res.status(404).json({ error: 'Item not found in inventory' });
 
   // Resolve the full template for this item
@@ -548,11 +549,12 @@ router.post('/api/player/:name/inventory/lock/:itemId', requireAuth, requireSelf
   const uid = req.params.name.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
-  const item = (u.inventory || []).find(i => i.id === req.params.itemId);
+  const lockItemId = req.params.itemId;
+  const item = (u.inventory || []).find(i => (i.instanceId || i.id) === lockItemId);
   if (!item) return res.status(404).json({ error: 'Item not found in inventory' });
   item.locked = !item.locked;
   saveUsers();
-  res.json({ ok: true, locked: item.locked, itemId: item.id });
+  res.json({ ok: true, locked: item.locked, itemId: item.instanceId || item.id });
 });
 
 router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireSelf('name'), (req, res) => {
@@ -562,9 +564,16 @@ router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireS
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
-  const idx = (u.inventory || []).findIndex(i => i.id === req.params.itemId);
+  const itemId = req.params.itemId;
+  const idx = (u.inventory || []).findIndex(i => (i.instanceId || i.id) === itemId);
   if (idx === -1) return res.status(404).json({ error: 'Item not found in inventory' });
   if (u.inventory[idx].locked) return res.status(400).json({ error: 'Item is locked — unlock it first' });
+  // Cannot discard equipped items
+  const equippedIds = new Set();
+  for (const v of Object.values(u.equipment || {})) {
+    if (v && typeof v === 'object' && v.instanceId) equippedIds.add(v.instanceId);
+  }
+  if (equippedIds.has(u.inventory[idx].instanceId)) return res.status(400).json({ error: 'Unequip the item first' });
 
   const discarded = u.inventory.splice(idx, 1)[0];
   saveUsers();
@@ -651,7 +660,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   }
 
   // 2. Check user.inventory[] for equipment-type items (already owned — no gold cost)
-  const invEntry = u.inventory.find(i => i.id === req.params.itemId);
+  const equipItemId = req.params.itemId;
+  const invEntry = u.inventory.find(i => (i.instanceId || i.id) === equipItemId);
   if (!invEntry) return res.status(404).json({ error: 'Gear item not found' });
 
   const templateId = invEntry.itemId || invEntry.id;

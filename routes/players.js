@@ -797,7 +797,7 @@ router.post('/api/tavern/enter', requireAuth, (req, res) => {
     active: true,
     startedAt: now(),
     days: restDays,
-    reason: (reason || '').slice(0, 200) || null,
+    reason: (reason || '').slice(0, 200).replace(/</g, '&lt;').replace(/>/g, '&gt;') || null,
     streakFrozenAt: u.streakDays || 0,
     forgeFrozenAt: u.forgeTemp || 0,
     endedAt: null,
@@ -836,9 +836,25 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
     label: 'Welcome Back — +25% XP',
   });
 
+  // Talent: tavern_passive_gold — earn gold while resting
+  const { getUserTalentEffects } = require('./talent-tree');
+  const tavernGoldEffect = getUserTalentEffects(uid).tavern_passive_gold;
+  let passiveGoldEarned = 0;
+  if (tavernGoldEffect && u.tavernRest.startedAt) {
+    const hoursRested = (Date.now() - new Date(u.tavernRest.startedAt).getTime()) / 3600000;
+    const maxHours = tavernGoldEffect.maxHoursPerDay || 24;
+    const cappedHours = Math.min(hoursRested, maxHours * (u.tavernRest.days || 1));
+    passiveGoldEarned = Math.round(cappedHours * (tavernGoldEffect.goldPerHour || 5));
+    if (passiveGoldEarned > 0) {
+      ensureUserCurrencies(u);
+      u.currencies.gold = (u.currencies.gold || 0) + passiveGoldEarned;
+      u.gold = u.currencies.gold;
+    }
+  }
+
   saveUsers();
-  console.log(`[tavern] ${uid} left the Hearth early, granted Welcome Back buff`);
-  res.json({ ok: true, message: 'Welcome back, adventurer! Your streak and forge temp have been restored. You feel refreshed — +25% XP for your next 50 quests!' });
+  console.log(`[tavern] ${uid} left the Hearth early, granted Welcome Back buff${passiveGoldEarned > 0 ? `, +${passiveGoldEarned}g passive gold` : ''}`);
+  res.json({ ok: true, message: `Welcome back, adventurer! Your streak and forge temp have been restored. You feel refreshed — +25% XP for your next 50 quests!${passiveGoldEarned > 0 ? ` You earned ${passiveGoldEarned}g while resting.` : ''}`, passiveGoldEarned });
   } finally { tavernLock.release(uid); }
 });
 
@@ -1061,6 +1077,19 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
     if (loot) {
       addLootToInventory(uid, loot);
       collected.rareItem = { name: loot.name, rarity: loot.rarity, slot: loot.slot, icon: loot.icon };
+    }
+  }
+
+  // Talent: companion_expedition_bond_xp — earn reduced bond XP while companion is on expedition
+  const talentExpBondXp = getUserTalentEffects(uid).companion_expedition_bond_xp;
+  if (talentExpBondXp && u.companion) {
+    const rate = talentExpBondXp.rate || 0.5;
+    const hours = (Date.now() - new Date(expedition.startedAt).getTime()) / 3600000;
+    const bondXpGain = Math.round(hours * rate * 0.1); // 0.1 bond XP per hour scaled by rate
+    if (bondXpGain > 0) {
+      u.companion.bondXp = (u.companion.bondXp || 0) + bondXpGain;
+      u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+      collected.expeditionBondXp = bondXpGain;
     }
   }
 

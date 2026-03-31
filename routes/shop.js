@@ -437,7 +437,11 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
       if (key.endsWith('_discount')) discount = Math.max(discount, u.factionBonuses[key]);
     }
   }
-  const finalCost = Math.max(1, Math.floor(item.cost * (1 - discount / 100)));
+  // Talent tree: shop_discount — additional % off shop prices
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentDiscount = (getUserTalentEffects(uid).shop_discount || 0) * 100; // stored as decimal e.g. 0.03 → 3%
+  const totalDiscount = discount + talentDiscount;
+  const finalCost = Math.max(1, Math.floor(item.cost * (1 - totalDiscount / 100)));
   if ((u.gold || 0) < finalCost) return res.status(400).json({ error: `Insufficient gold. Need ${finalCost}, have ${u.gold || 0}` });
   u.gold = (u.gold || 0) - finalCost;
   if (!u.currencies) u.currencies = {};

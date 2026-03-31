@@ -431,6 +431,27 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     }
   }
 
+  // Talent: rift_stage_skip — auto-complete the next stage (no rewards for skipped stage)
+  const { getUserTalentEffects } = require('./talent-tree');
+  const riftSkipEffect = getUserTalentEffects(uid).rift_stage_skip;
+  let skippedStage = null;
+  const allDonePreCheck = rift.quests.every(q => q.completed);
+  if (riftSkipEffect && !allDonePreCheck) {
+    const skipsUsed = u._riftSkipsUsed?.[`${rift.tier}-${rift.startedAt}`] || 0;
+    const maxSkips = riftSkipEffect.skipsPerRift || 1;
+    if (skipsUsed < maxSkips) {
+      const nextSkippable = rift.quests.find(q => !q.completed);
+      if (nextSkippable) {
+        nextSkippable.completed = true;
+        nextSkippable.completedAt = now();
+        nextSkippable._skipped = true;
+        u._riftSkipsUsed = u._riftSkipsUsed || {};
+        u._riftSkipsUsed[`${rift.tier}-${rift.startedAt}`] = skipsUsed + 1;
+        skippedStage = nextSkippable.stage;
+      }
+    }
+  }
+
   // Check if rift is fully completed
   const allDone = rift.quests.every(q => q.completed);
   if (allDone) {
@@ -520,6 +541,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     loot,
     riftGearDrop: riftGearDrop || undefined,
     riftMaterials: riftMats.length > 0 ? riftMats : undefined,
+    skippedStage: skippedStage || undefined,
     riftCompleted: allDone,
     completionBonus: allDone ? (() => {
       const base = RIFT_TIERS[rift.tier]?.completionBonus;

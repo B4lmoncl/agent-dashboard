@@ -1775,3 +1775,37 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   box-shadow: 0 0 6px rgba(168,85,247,0.2), 0 0 14px rgba(168,85,247,0.06), inset 0 0 4px rgba(168,85,247,0.04);
   border-color: rgba(168,85,247,0.25);
 }
+
+/* ─── Talent Tree Animations ────────────────────────────────────────────── */
+
+/* Slow pulse on active connection lines */
+@keyframes talent-line-pulse {
+  0%, 100% { opacity: 0.5; stroke-width: 2; }
+  50%      { opacity: 0.9; stroke-width: 3; }
+}
+
+/* Particles rising from allocated nodes — slow, ethereal */
+@keyframes talent-particle-rise {
+  0%   { transform: translateY(0) scale(1); opacity: 0.7; }
+  40%  { transform: translateY(-18px) scale(0.8); opacity: 0.5; }
+  80%  { transform: translateY(-35px) scale(0.4); opacity: 0.2; }
+  100% { transform: translateY(-45px) scale(0); opacity: 0; }
+}
+
+/* Ambient glow breath on allocated nodes */
+@keyframes talent-node-breathe {
+  0%, 100% { filter: drop-shadow(0 0 4px currentColor); }
+  50%      { filter: drop-shadow(0 0 10px currentColor); }
+}
+
+/* Ring circle slow rotation (very subtle) */
+@keyframes talent-ring-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Selection ring pulse */
+@keyframes talent-select-pulse {
+  0%, 100% { stroke-opacity: 0.6; stroke-width: 2; }
+  50%      { stroke-opacity: 1; stroke-width: 3; }
+}

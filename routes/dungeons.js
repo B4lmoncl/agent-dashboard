@@ -584,9 +584,11 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   const rewards = rollDungeonRewards(dungeon, isSuccess);
   rewards._dungeonTier = dungeon.tier; // Pass tier for profession material drops
 
-  // Apply legendary dungeon loot bonus to gold/essenz
+  // Apply legendary dungeon loot bonus + talent bonus to gold/essenz
   const dungeonMods = getLegendaryModifiers(uid);
-  const lootMulti = 1 + (dungeonMods.dungeonLootBonus || 0);
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentDungeonBonus = getUserTalentEffects(uid).dungeon_success_bonus || 0;
+  const lootMulti = 1 + (dungeonMods.dungeonLootBonus || 0) + (isSuccess ? talentDungeonBonus : 0);
   if (lootMulti !== 1) {
     rewards.gold = Math.round((rewards.gold || 0) * lootMulti);
     rewards.essenz = Math.round((rewards.essenz || 0) * lootMulti);

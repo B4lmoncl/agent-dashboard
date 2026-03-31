@@ -257,6 +257,61 @@ router.post('/api/talents/reset', requireAuth, (req, res) => {
   }
 });
 
+// ─── POST /api/talents/sacrifice — sacrifice legendary item for bonus talent point
+router.post('/api/talents/sacrifice', requireAuth, (req, res) => {
+  const uid = req.auth.userId;
+  if (!talentLock.acquire(uid)) return res.status(429).json({ error: 'Talent operation in progress' });
+  try {
+    const user = state.users[uid];
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    const talents = ensureUserTalents(user);
+    // Check if user has the sacrifice talent allocated
+    const sacrificeNode = Object.entries(talents.allocated).find(([nid]) => {
+      const node = nodeById.get(nid);
+      return node?.effect?.type === 'sacrifice_legendary_for_talent_point';
+    });
+    if (!sacrificeNode) return res.status(400).json({ error: 'Opfergabe talent not allocated' });
+
+    const effect = nodeById.get(sacrificeNode[0]).effect;
+    const maxTotal = effect.maxTotal || 3;
+    const currentBonus = user._bonusTalentPoints || 0;
+    if (currentBonus >= maxTotal) {
+      return res.status(400).json({ error: `Already sacrificed maximum (${maxTotal}) items` });
+    }
+
+    const { instanceId } = req.body;
+    if (!instanceId) return res.status(400).json({ error: 'instanceId required' });
+
+    const inventory = user.inventory || [];
+    const idx = inventory.findIndex(i => i.instanceId === instanceId);
+    if (idx === -1) return res.status(400).json({ error: 'Item not found in inventory' });
+
+    const item = inventory[idx];
+    const rarity = (item.rarity || '').toLowerCase();
+    if (rarity !== 'legendary') {
+      return res.status(400).json({ error: 'Only legendary items can be sacrificed' });
+    }
+    if (item.locked) return res.status(400).json({ error: 'Item is locked' });
+
+    // Remove item and grant bonus talent point
+    inventory.splice(idx, 1);
+    user._bonusTalentPoints = currentBonus + (effect.pointsPerRank || 1);
+    user._sacrificedItems = user._sacrificedItems || [];
+    user._sacrificedItems.push({ name: item.name, rarity: item.rarity, at: new Date().toISOString() });
+
+    saveUsers();
+    res.json({
+      success: true,
+      sacrificedItem: item.name,
+      bonusTalentPoints: user._bonusTalentPoints,
+      availablePoints: getAvailablePoints(user),
+    });
+  } finally {
+    talentLock.release(uid);
+  }
+});
+
 // ─── Get active talent effects for a user (used by helpers.js) ─────────────
 function getUserTalentEffects(userId) {
   const user = state.users[userId];
@@ -268,7 +323,35 @@ function getUserTalentEffects(userId) {
     if (!node || !node.effect) continue;
     const type = node.effect.type;
     const rank = data.rank || 1;
-    // For multi-rank nodes with valuePerRank array, use the rank-appropriate value
+
+    // Tradeoff nodes: store bonus AND penalty separately
+    if (type === 'tradeoff') {
+      const bonus = node.effect.bonus;
+      const penalty = node.effect.penalty;
+      if (bonus?.stat && bonus?.modifier) {
+        effects[bonus.stat] = (effects[bonus.stat] || 0) + bonus.modifier;
+      }
+      if (penalty?.stat && penalty?.modifier) {
+        effects[penalty.stat] = (effects[penalty.stat] || 0) + penalty.modifier;
+      }
+      if (penalty?.stat && penalty?.override !== undefined) {
+        effects[`${penalty.stat}_override`] = penalty.override;
+      }
+      continue;
+    }
+
+    // Special complex effects: store as objects
+    if (type === 'forge_overcap' || type === 'rift_loot_split' || type === 'completion_chain_bonus' ||
+        type === 'streak_break_buffer' || type === 'nth_quest_gamble' || type === 'rift_stage_skip' ||
+        type === 'friend_quest_xp_echo' || type === 'tavern_passive_gold' || type === 'daily_mission_extra_slot' ||
+        type === 'gacha_lucky_streak' || type === 'codex_permanent_xp' || type === 'sacrifice_legendary_for_talent_point' ||
+        type === 'companion_expedition_bond_xp' || type === 'weekly_guaranteed_epic_pull' || type === 'shop_affix_preview' ||
+        type === 'tome_progress_bonus' || type === 'unique_item_discovery_xp') {
+      effects[type] = node.effect;
+      continue;
+    }
+
+    // Standard numeric effects
     let value = 0;
     if (node.effect.valuePerRank && Array.isArray(node.effect.valuePerRank)) {
       value = node.effect.valuePerRank[Math.min(rank, node.effect.valuePerRank.length) - 1] || 0;

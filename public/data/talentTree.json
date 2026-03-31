@@ -2,26 +2,110 @@
   "_comment": "Talent Tree — 3-ring radial layout. Inner = foundational, Middle = specialization, Outer = capstones. 1 point per 2 levels (25 total at Lv50). WoW-style meaningful choices with Diablo-style build diversity.",
   "meta": {
     "version": "1.0.0",
-    "maxPoints": 25,
+    "maxPoints": 23,
     "pointsPerLevel": 0.5,
     "firstPointLevel": 5,
-    "respecCost": { "gold": 500, "essenz": 50 },
+    "respecCost": {
+      "gold": 500,
+      "essenz": 50
+    },
     "respecCooldownHours": 168,
     "rings": {
-      "inner": { "label": "Grundstein", "desc": "Fundamentale Verstärkungen. Solide, aber nicht aufregend.", "reqPoints": 0, "nodeCount": 8 },
-      "middle": { "label": "Zwielicht", "desc": "Hier beginnen die Entscheidungen zu schmerzen. Macht kommt mit einem Preis.", "reqPoints": 5, "nodeCount": 10 },
-      "outer": { "label": "Aszension", "desc": "Spielverändernde Kräfte. Jede einzelne formt deinen Spielstil.", "reqPoints": 12, "nodeCount": 8 }
+      "inner": {
+        "label": "Grundstein",
+        "desc": "Fundamentale Verstärkungen. Solide, aber nicht aufregend.",
+        "reqPoints": 0,
+        "nodeCount": 12
+      },
+      "middle": {
+        "label": "Zwielicht",
+        "desc": "Hier beginnen die Entscheidungen zu schmerzen. Macht kommt mit einem Preis.",
+        "reqPoints": 5,
+        "nodeCount": 18
+      },
+      "outer": {
+        "label": "Aszension",
+        "desc": "Spielverändernde Kräfte. Jede einzelne formt deinen Spielstil.",
+        "reqPoints": 12,
+        "nodeCount": 14
+      }
+    },
+    "_note": "maxPoints reflects level 50. Bonus points from Opfergabe can exceed this.",
+    "themes": {
+      "combat": {
+        "label": "Pfad des Kampfes",
+        "color": "#ef4444",
+        "desc": "Rifts, Dungeons, World Bosses",
+        "nodeIds": [
+          "inner-1",
+          "inner-4",
+          "inner-9",
+          "inner-12",
+          "mid-2",
+          "mid-4",
+          "mid-5",
+          "mid-7",
+          "mid-11",
+          "outer-2",
+          "outer-5",
+          "outer-9",
+          "outer-10"
+        ]
+      },
+      "fortune": {
+        "label": "Pfad des Schicksals",
+        "color": "#22c55e",
+        "desc": "Gacha, Luck, Economy",
+        "nodeIds": [
+          "inner-5",
+          "inner-10",
+          "mid-1",
+          "mid-3",
+          "mid-8",
+          "mid-10",
+          "mid-13",
+          "mid-15",
+          "outer-4",
+          "outer-7",
+          "outer-11",
+          "outer-12"
+        ]
+      },
+      "mastery": {
+        "label": "Pfad der Meisterschaft",
+        "color": "#3b82f6",
+        "desc": "Crafting, Professions, Knowledge",
+        "nodeIds": [
+          "inner-2",
+          "inner-3",
+          "inner-6",
+          "inner-7",
+          "inner-8",
+          "inner-11",
+          "mid-6",
+          "mid-9",
+          "mid-12",
+          "mid-14",
+          "mid-16",
+          "mid-17",
+          "mid-18",
+          "outer-1",
+          "outer-3",
+          "outer-6",
+          "outer-8",
+          "outer-13",
+          "outer-14"
+        ]
+      }
     }
   },
-
   "nodes": [
-
     {
       "id": "inner-1",
       "ring": "inner",
       "name": "Ausdauernder Geist",
       "icon": "spirit-endurance",
-      "desc": "Forge-Temperatur sinkt 20% langsamer pro Tag.",
+      "desc": "Forge-Temperatur sinkt 3% langsamer pro Tag.",
       "flavor": "Die Schmiede vergisst langsamer. Nicht aus Loyalität, sondern weil sie kein Kurzzeitgedächtnis hat.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -29,7 +113,7 @@
       "excludes": [],
       "effect": {
         "type": "forge_decay_reduction",
-        "value": 0.20
+        "value": 0.03
       }
     },
     {
@@ -53,15 +137,18 @@
       "ring": "inner",
       "name": "Lehrmeister",
       "icon": "teacher",
-      "desc": "Professions-XP +15%/+30% für die erste Herstellung pro Tag.",
-      "flavor": "30% mehr Professions-XP am Tag. Das spart ungefähr drei Wochen Lebenszeit, die du sowieso nicht hattest.",
+      "desc": "Professions-XP +3%/+5% für die erste Herstellung pro Tag.",
+      "flavor": "Fünf Prozent mehr am Tag klingt harmlos. Rechne es auf ein Jahr hoch. Dann weinst du. Vor Freude.",
       "maxRank": 2,
       "reqPoints": 0,
       "requires": [],
       "excludes": [],
       "effect": {
         "type": "profession_daily_bonus_modifier",
-        "valuePerRank": [0.15, 0.30]
+        "valuePerRank": [
+          0.03,
+          0.05
+        ]
       }
     },
     {
@@ -69,7 +156,7 @@
       "ring": "inner",
       "name": "Dickes Fell",
       "icon": "thick-skin",
-      "desc": "Streak-Verlust gibt 24h Gnadenfrist statt sofortigem Reset.",
+      "desc": "Streak-Verlust gibt 8h Gnadenfrist statt sofortigem Reset.",
       "flavor": "Dein Streak ist jetzt widerstandsfähiger. Nicht unzerstörbar. Verwechsle das nicht.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -77,7 +164,7 @@
       "excludes": [],
       "effect": {
         "type": "streak_grace_period_hours",
-        "value": 24
+        "value": 8
       }
     },
     {
@@ -85,15 +172,15 @@
       "ring": "inner",
       "name": "Goldader",
       "icon": "gold-vein",
-      "desc": "Gold-Belohnungen haben eine Mindestgarantie von 75% des Maximalwerts (statt zufällig min-max).",
-      "flavor": "Mindestens 75% Gold garantiert. Für Leute, die dem Zufall grundsätzlich misstrauen. Zu Recht.",
+      "desc": "+2 flat Gold Bonus auf jede Quest-Belohnung.",
+      "flavor": "Zwei Gold mehr. Klingt nach wenig. Multiplizier es mit tausend Quests.",
       "maxRank": 1,
       "reqPoints": 0,
       "requires": [],
       "excludes": [],
       "effect": {
-        "type": "gold_floor_percent",
-        "value": 0.75
+        "type": "flat_gold_bonus",
+        "value": 2
       }
     },
     {
@@ -101,15 +188,18 @@
       "ring": "inner",
       "name": "Gefährteninstinkt",
       "icon": "companion-instinct",
-      "desc": "Companion Bond-XP +10%/+20% aus allen Quellen.",
-      "flavor": "Dein Gefährte mag dich jetzt 20% schneller. Vermutlich weil du aufgehört hast, ihn als 'das Vieh' zu bezeichnen.",
+      "desc": "Companion Bond-XP +3%/+6% aus allen Quellen.",
+      "flavor": "Dein Gefährte mag dich jetzt etwas schneller. Vermutlich weil du aufgehört hast, ihn als 'das Vieh' zu bezeichnen.",
       "maxRank": 2,
       "reqPoints": 0,
       "requires": [],
       "excludes": [],
       "effect": {
         "type": "companion_bond_xp_bonus",
-        "valuePerRank": [0.10, 0.20]
+        "valuePerRank": [
+          0.03,
+          0.06
+        ]
       }
     },
     {
@@ -145,23 +235,29 @@
         "value": 1
       }
     },
-
-
     {
       "id": "mid-1",
       "ring": "middle",
       "name": "Blutzoll",
       "icon": "blood-price",
-      "desc": "Opfere 10% aller Gold-Belohnungen. Dafür: +25% XP auf alle Quests.",
+      "desc": "Opfere 10% aller Gold-Belohnungen. Dafür: +8% XP auf alle Quests.",
       "flavor": "Gold ist überbewertet. Das sagte zumindest der letzte Held, der das hier genommen hat. Er starb arm, aber gebildet.",
       "maxRank": 1,
       "reqPoints": 5,
       "requires": [],
-      "excludes": ["mid-2"],
+      "excludes": [
+        "mid-2"
+      ],
       "effect": {
         "type": "tradeoff",
-        "penalty": { "stat": "gold_rewards", "modifier": -0.10 },
-        "bonus": { "stat": "quest_xp", "modifier": 0.25 }
+        "penalty": {
+          "stat": "gold_rewards",
+          "modifier": -0.1
+        },
+        "bonus": {
+          "stat": "quest_xp",
+          "modifier": 0.08
+        }
       }
     },
     {
@@ -170,11 +266,15 @@
       "name": "Gierige Flamme",
       "icon": "greedy-flame",
       "desc": "Forge-Temperatur kann auf 120% überladen werden. Über 100% zerfällt sie doppelt so schnell.",
-      "flavor": "Das Feuer flüstert: 'Mehr. Mehr. MEHR.'",
+      "flavor": "Das Feuer flüstert: 'Mehr. Mehr. MEHR.' Der Sicherheitsbeauftragte hat zum dritten Mal gekündigt. Diesmal meint er es ernst.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": ["inner-1"],
-      "excludes": ["mid-1"],
+      "requires": [
+        "inner-1"
+      ],
+      "excludes": [
+        "mid-1"
+      ],
       "effect": {
         "type": "forge_overcap",
         "maxTemp": 120,
@@ -186,16 +286,22 @@
       "ring": "middle",
       "name": "Resonanzkristall",
       "icon": "resonance-crystal",
-      "desc": "Eingesetzte Edelsteine geben +15% Bonus-Stats. Entfernen zerstört den Edelstein IMMER.",
-      "flavor": "15% mehr Stats. Aber der Edelstein kommt nie wieder raus. Das nennt man in Fachkreisen 'Commitment'.",
+      "desc": "Eingesetzte Edelsteine geben +5% Bonus-Stats. Entfernen zerstört den Edelstein IMMER.",
+      "flavor": "Fünf Prozent mehr Stats. Dafür kommt der Stein nie wieder raus. In Fachkreisen nennt man das Commitment. Oder Fehler.",
       "maxRank": 1,
       "reqPoints": 5,
       "requires": [],
       "excludes": [],
       "effect": {
         "type": "tradeoff",
-        "penalty": { "stat": "gem_preserve_chance", "override": 0 },
-        "bonus": { "stat": "gem_stat_bonus", "modifier": 0.15 }
+        "penalty": {
+          "stat": "gem_preserve_chance",
+          "override": 0
+        },
+        "bonus": {
+          "stat": "gem_stat_bonus",
+          "modifier": 0.05
+        }
       }
     },
     {
@@ -211,7 +317,7 @@
       "excludes": [],
       "effect": {
         "type": "rift_loot_split",
-        "hardLegendaryBonus": 0.20,
+        "hardLegendaryBonus": 0.2,
         "normalPenalty": -0.15
       }
     },
@@ -239,15 +345,20 @@
       "ring": "middle",
       "name": "Geisterhand",
       "icon": "ghost-hand",
-      "desc": "Jede Herstellung hat 8%/15% Chance, keine Materialien zu verbrauchen.",
-      "flavor": "15% Chance, dass die Materialien einfach... da bleiben. Die Handwerker nennen es 'Effizienz'. Die Materialien nennen es 'Diebstahl'.",
+      "desc": "Jede Herstellung hat 3%/6% Chance, keine Materialien zu verbrauchen.",
+      "flavor": "Sechs Prozent Chance dass die Materialien einfach... da bleiben. Die Handwerker nennen es Effizienz. Die Materialien nennen es Diebstahl.",
       "maxRank": 2,
       "reqPoints": 5,
-      "requires": ["inner-3"],
+      "requires": [
+        "inner-3"
+      ],
       "excludes": [],
       "effect": {
         "type": "craft_material_preserve",
-        "chancePerRank": [0.08, 0.15]
+        "chancePerRank": [
+          0.03,
+          0.06
+        ]
       }
     },
     {
@@ -259,11 +370,13 @@
       "flavor": "Dein Streak ist gebrochen, aber er hat dir noch 50% hinterlassen. Wie ein Ex, der die Möbel dalässt.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": ["inner-4"],
+      "requires": [
+        "inner-4"
+      ],
       "excludes": [],
       "effect": {
         "type": "streak_break_buffer",
-        "retainPercent": 0.50,
+        "retainPercent": 0.5,
         "durationDays": 3
       }
     },
@@ -280,8 +393,14 @@
       "excludes": [],
       "effect": {
         "type": "tradeoff",
-        "penalty": { "stat": "shop_refresh_days", "modifier": 1 },
-        "bonus": { "stat": "shop_prices", "modifier": -0.15 }
+        "penalty": {
+          "stat": "shop_refresh_days",
+          "modifier": 1
+        },
+        "bonus": {
+          "stat": "shop_prices",
+          "modifier": -0.15
+        }
       }
     },
     {
@@ -293,11 +412,13 @@
       "flavor": "Dein Companion ist auf Expedition, verdient aber trotzdem Bond-XP. Abwesenheit macht das Herz... effizienter.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": ["inner-6"],
+      "requires": [
+        "inner-6"
+      ],
       "excludes": [],
       "effect": {
         "type": "companion_expedition_bond_xp",
-        "rate": 0.50
+        "rate": 0.5
       }
     },
     {
@@ -314,12 +435,10 @@
       "effect": {
         "type": "nth_quest_gamble",
         "everyN": 10,
-        "doubleChance": 0.50,
-        "halveChance": 0.50
+        "doubleChance": 0.5,
+        "halveChance": 0.5
       }
     },
-
-
     {
       "id": "outer-1",
       "ring": "outer",
@@ -347,7 +466,9 @@
       "flavor": "Du überspringst eine Stufe. Dafür bekommst du nichts. Das ist entweder Strategie oder Faulheit. Beides hat seine Berechtigung.",
       "maxRank": 1,
       "reqPoints": 12,
-      "requires": ["mid-4"],
+      "requires": [
+        "mid-4"
+      ],
       "excludes": [],
       "effect": {
         "type": "rift_stage_skip",
@@ -382,7 +503,9 @@
       "maxRank": 1,
       "reqPoints": 12,
       "requires": [],
-      "excludes": ["outer-5"],
+      "excludes": [
+        "outer-5"
+      ],
       "effect": {
         "type": "tavern_passive_gold",
         "goldPerHour": 5,
@@ -394,16 +517,23 @@
       "ring": "outer",
       "name": "Traumwandler",
       "icon": "dreamwalker",
-      "desc": "Rested XP sammelt sich 25% schneller an — gilt NUR für Quests vor 12:00 Uhr.",
-      "flavor": "Morgens bist du 25% effizienter. Nachmittags nicht. Das System hat Meinungen über deinen Schlafrhythmus.",
+      "desc": "Rested XP sammelt sich 10% schneller an — gilt NUR für Quests vor 12:00 Uhr.",
+      "flavor": "Morgens bist du effizienter. Nachmittags nicht. Das System hat Meinungen über deinen Schlafrhythmus.",
       "maxRank": 1,
       "reqPoints": 12,
       "requires": [],
-      "excludes": ["outer-4"],
+      "excludes": [
+        "outer-4"
+      ],
       "effect": {
         "type": "tradeoff",
-        "bonus": { "stat": "rested_xp_gain_rate", "modifier": 0.25 },
-        "condition": { "questCompletedBefore": "12:00" }
+        "bonus": {
+          "stat": "rested_xp_gain_rate",
+          "modifier": 0.1
+        },
+        "condition": {
+          "questCompletedBefore": "12:00"
+        }
       }
     },
     {
@@ -415,12 +545,14 @@
       "flavor": "Ein vierter Missions-Slot. Die Punkte sind halbiert, aber dein Pflichtgefühl kennt kein Limit.",
       "maxRank": 1,
       "reqPoints": 12,
-      "requires": ["mid-5"],
+      "requires": [
+        "mid-5"
+      ],
       "excludes": [],
       "effect": {
         "type": "daily_mission_extra_slot",
         "extraSlots": 1,
-        "pointModifier": 0.50
+        "pointModifier": 0.5
       }
     },
     {
@@ -458,67 +590,507 @@
         "maxPercent": 0.05,
         "maxEntries": 50
       }
+    },
+    {
+      "id": "inner-9",
+      "ring": "inner",
+      "name": "Nachtarbeiter",
+      "icon": "night-worker",
+      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +3% XP.",
+      "flavor": "Die Nacht gehört denen die nicht schlafen. Und denen die es bereuen.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "night_xp_bonus",
+        "value": 0.03
+      }
+    },
+    {
+      "id": "inner-10",
+      "ring": "inner",
+      "name": "Sparfuchs",
+      "icon": "thrifty-fox",
+      "desc": "Alle Shop-Preise und Trainer-Kosten sind 3% günstiger.",
+      "flavor": "Nicht geizig. Wirtschaftlich denkend. Es gibt einen Unterschied. Angeblich.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "shop_discount",
+        "value": 0.03
+      }
+    },
+    {
+      "id": "inner-11",
+      "ring": "inner",
+      "name": "Ruhesucher",
+      "icon": "rest-seeker",
+      "desc": "Rested XP Pool akkumuliert 3% schneller.",
+      "flavor": "Erholt sich schneller als andere. Oder tut zumindest so überzeugend.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "rested_xp_accumulation_bonus",
+        "value": 0.03
+      }
+    },
+    {
+      "id": "inner-12",
+      "ring": "inner",
+      "name": "Ordnungshüter",
+      "icon": "order-keeper",
+      "desc": "Hoarding-Strafe setzt erst bei 23 Quests ein statt bei 20.",
+      "flavor": "Drei extra Quests im Rucksack. Klingt nach wenig. Fühlt sich an wie Freiheit.",
+      "maxRank": 1,
+      "reqPoints": 0,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "hoarding_threshold_bonus",
+        "value": 3
+      }
+    },
+    {
+      "id": "mid-11",
+      "ring": "middle",
+      "name": "Zeitdieb",
+      "icon": "time-thief",
+      "desc": "Rift-Zeitlimit +5%. Dafür: Rift-Belohnungen -3%.",
+      "flavor": "Mehr Zeit, weniger Beute. Du hast nicht gestohlen. Du hast geliehen. Unbefristet.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [
+        "inner-9"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "tradeoff",
+        "bonus": {
+          "stat": "rift_time_limit",
+          "modifier": 0.05
+        },
+        "penalty": {
+          "stat": "rift_rewards",
+          "modifier": -0.03
+        }
+      }
+    },
+    {
+      "id": "mid-12",
+      "ring": "middle",
+      "name": "Sammlerwahn",
+      "icon": "collector-mania",
+      "desc": "Jedes einzigartige Item das du zum ersten Mal findest gibt +15 Bonus-XP.",
+      "flavor": "Der Sammler freut sich. Über alles. Besonders über Dinge die er nicht braucht.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [
+        "inner-2"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "unique_item_discovery_xp",
+        "value": 15
+      }
+    },
+    {
+      "id": "mid-13",
+      "ring": "middle",
+      "name": "Morgenmensch",
+      "icon": "morning-person",
+      "desc": "Erste Quest des Tages gibt +8% Gold. Aber NUR die erste.",
+      "flavor": "Frühaufsteher bekommen den Wurm. Und acht Prozent mehr Gold. Der Wurm ist gratis.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [
+        "mid-11"
+      ],
+      "effect": {
+        "type": "first_quest_gold_bonus",
+        "value": 0.08
+      }
+    },
+    {
+      "id": "mid-14",
+      "ring": "middle",
+      "name": "Disenchanter",
+      "icon": "disenchanter",
+      "desc": "Disenchant gibt 1 zusätzliches Material pro Vorgang.",
+      "flavor": "Mehr rausholen als reinstecken. Das ist keine Magie. Das ist Talent.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "disenchant_bonus_material",
+        "value": 1
+      }
+    },
+    {
+      "id": "mid-15",
+      "ring": "middle",
+      "name": "Händlerinstinkt",
+      "icon": "merchant-instinct",
+      "desc": "Vendor Reagents kosten 5% weniger Gold beim Kauf.",
+      "flavor": "Der Händler mag dich nicht. Aber er respektiert dein Verhandlungsgeschick.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [
+        "inner-10"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "vendor_reagent_discount",
+        "value": 0.05
+      }
+    },
+    {
+      "id": "mid-16",
+      "ring": "middle",
+      "name": "Recycler",
+      "icon": "recycler",
+      "desc": "Salvage gibt 8% mehr Essenz.",
+      "flavor": "Aus Müll wird Gold. Oder zumindest Essenz. Was fast Gold ist. Fast.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [
+        "inner-8"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "salvage_essenz_bonus",
+        "value": 0.08
+      }
+    },
+    {
+      "id": "mid-17",
+      "ring": "middle",
+      "name": "Wochenendkrieger",
+      "icon": "weekend-warrior",
+      "desc": "Am Wochenende (Sa+So) geben Quests +3% XP.",
+      "flavor": "Samstag und Sonntag sind keine freien Tage. Sie sind Bonustage. Perspektive.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "weekend_xp_bonus",
+        "value": 0.03
+      }
+    },
+    {
+      "id": "mid-18",
+      "ring": "middle",
+      "name": "Fraktionsdiplomat",
+      "icon": "faction-diplomat",
+      "desc": "Fraktions-Reputation +3% aus allen Quellen.",
+      "flavor": "Alle mögen dich. Oder tun zumindest so. Beides hat denselben Effekt auf den Rufbalken.",
+      "maxRank": 1,
+      "reqPoints": 5,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "faction_rep_bonus",
+        "value": 0.03
+      }
+    },
+    {
+      "id": "outer-9",
+      "ring": "outer",
+      "name": "Seelenernte",
+      "icon": "soul-harvest",
+      "desc": "World-Boss-Contribution gibt +8% mehr Schaden. Kostet 3 Talentpunkte.",
+      "flavor": "Der Boss hat dich vorher nicht bemerkt. Jetzt schon. Ob das gut ist, zeigt sich.",
+      "maxRank": 3,
+      "reqPoints": 15,
+      "requires": [
+        "mid-4"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "world_boss_damage_bonus",
+        "value": 0.08
+      }
+    },
+    {
+      "id": "outer-10",
+      "ring": "outer",
+      "name": "Dungeoninstinkt",
+      "icon": "dungeon-instinct",
+      "desc": "Dungeon-Erfolgsrate +5%. Kostet 2 Talentpunkte.",
+      "flavor": "Du weißt wo die Fallen sind. Nicht weil du sie siehst. Sondern weil du reingefallen bist.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "dungeon_success_bonus",
+        "value": 0.05
+      }
+    },
+    {
+      "id": "outer-11",
+      "ring": "outer",
+      "name": "Aethersicht",
+      "icon": "aether-sight",
+      "desc": "Du siehst die Affix-Ranges von Items im Shop BEVOR du sie kaufst. Kostet 2 Punkte.",
+      "flavor": "Wissen ist Macht. Und in diesem Fall: Wissen ist weniger Reue nach dem Kauf.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [
+        "inner-10"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "shop_affix_preview",
+        "value": 1
+      }
+    },
+    {
+      "id": "outer-12",
+      "ring": "outer",
+      "name": "Schicksalswende",
+      "icon": "fate-turn",
+      "desc": "Einmal pro Woche: Nächster Gacha-Pull ist guaranteed Epic oder besser. Kostet 3 Punkte.",
+      "flavor": "Einmal die Woche lächelt das Schicksal. Den Rest der Woche schaut es zu.",
+      "maxRank": 3,
+      "reqPoints": 15,
+      "requires": [
+        "mid-10"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "weekly_guaranteed_epic_pull",
+        "value": 1
+      }
+    },
+    {
+      "id": "outer-13",
+      "ring": "outer",
+      "name": "Turmbewusstsein",
+      "icon": "tower-mind",
+      "desc": "Adventure Tome Objectives zählen +1 Fortschritt extra. Kostet 2 Punkte.",
+      "flavor": "Der Turm bemerkt dich. Und gibt dir Bonuspunkte. Weil er kann.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [
+        "mid-12"
+      ],
+      "excludes": [],
+      "effect": {
+        "type": "tome_progress_bonus",
+        "value": 1
+      }
+    },
+    {
+      "id": "outer-14",
+      "ring": "outer",
+      "name": "Erinnerungssplitter",
+      "icon": "memory-shard",
+      "desc": "Season Pass XP +5% aus allen Quellen. Kostet 2 Punkte.",
+      "flavor": "Der Pass erinnert sich an dich. Besser als du dich an ihn erinnerst.",
+      "maxRank": 2,
+      "reqPoints": 12,
+      "requires": [],
+      "excludes": [],
+      "effect": {
+        "type": "battlepass_xp_bonus",
+        "value": 0.05
+      }
     }
   ],
-
   "connections": [
-    { "from": "inner-1", "to": "mid-2", "type": "prerequisite" },
-    { "from": "inner-3", "to": "mid-6", "type": "prerequisite" },
-    { "from": "inner-4", "to": "mid-7", "type": "prerequisite" },
-    { "from": "inner-6", "to": "mid-9", "type": "prerequisite" },
-    { "from": "mid-4", "to": "outer-2", "type": "prerequisite" },
-    { "from": "mid-5", "to": "outer-6", "type": "prerequisite" },
-    { "from": "mid-1", "to": "mid-2", "type": "exclusion" },
-    { "from": "outer-4", "to": "outer-5", "type": "exclusion" }
+    {
+      "from": "inner-1",
+      "to": "mid-2",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-3",
+      "to": "mid-6",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-4",
+      "to": "mid-7",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-6",
+      "to": "mid-9",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-4",
+      "to": "outer-2",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-5",
+      "to": "outer-6",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-1",
+      "to": "mid-2",
+      "type": "exclusion"
+    },
+    {
+      "from": "outer-4",
+      "to": "outer-5",
+      "type": "exclusion"
+    },
+    {
+      "from": "mid-13",
+      "to": "mid-11",
+      "type": "exclusion"
+    },
+    {
+      "from": "inner-9",
+      "to": "mid-11",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-2",
+      "to": "mid-12",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-8",
+      "to": "mid-16",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-10",
+      "to": "mid-15",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-10",
+      "to": "outer-11",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-4",
+      "to": "outer-9",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-10",
+      "to": "outer-12",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-12",
+      "to": "outer-13",
+      "type": "prerequisite"
+    }
   ],
-
   "choiceGroups": [
     {
       "id": "cg-economy",
       "label": "Wirtschaftspfad",
       "desc": "Wähle: XP-Fokus (Blutzoll) ODER Forge-Fokus (Gierige Flamme). Nicht beides.",
-      "nodes": ["mid-1", "mid-2"],
+      "nodes": [
+        "mid-1",
+        "mid-2"
+      ],
       "maxPicks": 1
     },
     {
       "id": "cg-downtime",
       "label": "Ruhephase",
       "desc": "Wähle: Passive Tavern-Einnahmen (Stille Wasser) ODER Morgen-XP-Boost (Traumwandler).",
-      "nodes": ["outer-4", "outer-5"],
+      "nodes": [
+        "outer-4",
+        "outer-5"
+      ],
+      "maxPicks": 1
+    },
+    {
+      "id": "cg-time",
+      "label": "Tageszeit",
+      "desc": "Morgenmensch ODER Zeitdieb — nicht beides. Du musst dich entscheiden wann du am stärksten bist.",
+      "nodes": [
+        "mid-13",
+        "mid-11"
+      ],
       "maxPicks": 1
     }
   ],
-
   "buildArchetypes": [
     {
       "id": "grinder",
       "name": "Der Unermüdliche",
-      "desc": "Maximiert XP und Quest-Durchsatz. Opfert Gold für rohe Erfahrung.",
-      "suggestedNodes": ["inner-7", "inner-2", "mid-1", "mid-5", "outer-6", "outer-8"]
+      "desc": "Maximiert XP und Quest-Durchsatz.",
+      "suggestedNodes": [
+        "inner-7",
+        "inner-2",
+        "inner-9",
+        "mid-1",
+        "mid-5",
+        "mid-17",
+        "outer-6",
+        "outer-8"
+      ]
     },
     {
       "id": "crafter",
       "name": "Der Handwerksmeister",
-      "desc": "Crafting-Effizienz und Material-Sicherheit. Produziert mehr mit weniger.",
-      "suggestedNodes": ["inner-3", "inner-8", "mid-6", "mid-8", "outer-1"]
+      "desc": "Crafting-Effizienz und Material-Sicherheit.",
+      "suggestedNodes": [
+        "inner-3",
+        "inner-8",
+        "inner-10",
+        "mid-6",
+        "mid-14",
+        "mid-15",
+        "mid-16"
+      ]
     },
     {
       "id": "gambler",
       "name": "Der Glücksspieler",
-      "desc": "Hohe Varianz, hohe Belohnung. Liebt Risiko und Zufallselemente.",
-      "suggestedNodes": ["inner-5", "mid-10", "mid-3", "outer-7", "outer-1"]
+      "desc": "Hohe Varianz, hohe Belohnung.",
+      "suggestedNodes": [
+        "inner-5",
+        "mid-3",
+        "mid-10",
+        "mid-13",
+        "outer-7",
+        "outer-12"
+      ]
     },
     {
       "id": "social",
-      "name": "Der Gefährte",
-      "desc": "Profitiert von Freunden, Companions und der Gemeinschaft.",
-      "suggestedNodes": ["inner-6", "mid-9", "outer-3", "outer-4"]
+      "name": "Der Diplomat",
+      "desc": "Profitiert von Freunden und Fraktionen.",
+      "suggestedNodes": [
+        "inner-6",
+        "mid-9",
+        "mid-18",
+        "outer-3",
+        "outer-4"
+      ]
     },
     {
       "id": "rift-runner",
       "name": "Der Schattenläufer",
-      "desc": "Optimiert für Rift-Inhalte. Schwere Herausforderungen, größere Beute.",
-      "suggestedNodes": ["inner-1", "mid-2", "mid-4", "outer-2", "outer-5"]
+      "desc": "Optimiert für Rifts und Dungeons.",
+      "suggestedNodes": [
+        "inner-1",
+        "inner-4",
+        "mid-2",
+        "mid-4",
+        "outer-2",
+        "outer-10"
+      ]
     }
   ]
 }
