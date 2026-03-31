@@ -5,23 +5,39 @@
     "maxPoints": 25,
     "pointsPerLevel": 0.5,
     "firstPointLevel": 5,
-    "respecCost": { "gold": 500, "essenz": 50 },
+    "respecCost": {
+      "gold": 500,
+      "essenz": 50
+    },
     "respecCooldownHours": 168,
     "rings": {
-      "inner": { "label": "Grundstein", "desc": "Fundamentale Verstärkungen. Solide, aber nicht aufregend.", "reqPoints": 0, "nodeCount": 8 },
-      "middle": { "label": "Zwielicht", "desc": "Hier beginnen die Entscheidungen zu schmerzen. Macht kommt mit einem Preis.", "reqPoints": 5, "nodeCount": 10 },
-      "outer": { "label": "Aszension", "desc": "Spielverändernde Kräfte. Jede einzelne formt deinen Spielstil.", "reqPoints": 12, "nodeCount": 8 }
+      "inner": {
+        "label": "Grundstein",
+        "desc": "Fundamentale Verstärkungen. Solide, aber nicht aufregend.",
+        "reqPoints": 0,
+        "nodeCount": 8
+      },
+      "middle": {
+        "label": "Zwielicht",
+        "desc": "Hier beginnen die Entscheidungen zu schmerzen. Macht kommt mit einem Preis.",
+        "reqPoints": 5,
+        "nodeCount": 10
+      },
+      "outer": {
+        "label": "Aszension",
+        "desc": "Spielverändernde Kräfte. Jede einzelne formt deinen Spielstil.",
+        "reqPoints": 12,
+        "nodeCount": 8
+      }
     }
   },
-
   "nodes": [
-
     {
       "id": "inner-1",
       "ring": "inner",
       "name": "Ausdauernder Geist",
       "icon": "spirit-endurance",
-      "desc": "Forge-Temperatur sinkt 20% langsamer pro Tag.",
+      "desc": "Forge-Temperatur sinkt 8% langsamer pro Tag.",
       "flavor": "Die Schmiede vergisst langsamer. Nicht aus Loyalität, sondern weil sie kein Kurzzeitgedächtnis hat.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -29,7 +45,7 @@
       "excludes": [],
       "effect": {
         "type": "forge_decay_reduction",
-        "value": 0.20
+        "value": 0.08
       }
     },
     {
@@ -53,7 +69,7 @@
       "ring": "inner",
       "name": "Lehrmeister",
       "icon": "teacher",
-      "desc": "Professions-XP +15%/+30% für die erste Herstellung pro Tag.",
+      "desc": "Professions-XP +10%/+20% für die erste Herstellung pro Tag.",
       "flavor": "30% mehr Professions-XP am Tag. Das spart ungefähr drei Wochen Lebenszeit, die du sowieso nicht hattest.",
       "maxRank": 2,
       "reqPoints": 0,
@@ -61,7 +77,10 @@
       "excludes": [],
       "effect": {
         "type": "profession_daily_bonus_modifier",
-        "valuePerRank": [0.15, 0.30]
+        "valuePerRank": [
+          0.1,
+          0.2
+        ]
       }
     },
     {
@@ -69,7 +88,7 @@
       "ring": "inner",
       "name": "Dickes Fell",
       "icon": "thick-skin",
-      "desc": "Streak-Verlust gibt 24h Gnadenfrist statt sofortigem Reset.",
+      "desc": "Streak-Verlust gibt 12h Gnadenfrist statt sofortigem Reset.",
       "flavor": "Dein Streak ist jetzt widerstandsfähiger. Nicht unzerstörbar. Verwechsle das nicht.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -77,7 +96,7 @@
       "excludes": [],
       "effect": {
         "type": "streak_grace_period_hours",
-        "value": 24
+        "value": 12
       }
     },
     {
@@ -85,7 +104,7 @@
       "ring": "inner",
       "name": "Goldader",
       "icon": "gold-vein",
-      "desc": "Gold-Belohnungen haben eine Mindestgarantie von 75% des Maximalwerts (statt zufällig min-max).",
+      "desc": "Gold-Belohnungen haben eine Mindestgarantie von 60% des Maximalwerts.",
       "flavor": "Mindestens 75% Gold garantiert. Für Leute, die dem Zufall grundsätzlich misstrauen. Zu Recht.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -93,7 +112,7 @@
       "excludes": [],
       "effect": {
         "type": "gold_floor_percent",
-        "value": 0.75
+        "value": 0.6
       }
     },
     {
@@ -101,7 +120,7 @@
       "ring": "inner",
       "name": "Gefährteninstinkt",
       "icon": "companion-instinct",
-      "desc": "Companion Bond-XP +10%/+20% aus allen Quellen.",
+      "desc": "Companion Bond-XP +5%/+10% aus allen Quellen.",
       "flavor": "Dein Gefährte mag dich jetzt 20% schneller. Vermutlich weil du aufgehört hast, ihn als 'das Vieh' zu bezeichnen.",
       "maxRank": 2,
       "reqPoints": 0,
@@ -109,7 +128,10 @@
       "excludes": [],
       "effect": {
         "type": "companion_bond_xp_bonus",
-        "valuePerRank": [0.10, 0.20]
+        "valuePerRank": [
+          0.05,
+          0.1
+        ]
       }
     },
     {
@@ -145,8 +167,6 @@
         "value": 1
       }
     },
-
-
     {
       "id": "mid-1",
       "ring": "middle",
@@ -157,11 +177,19 @@
       "maxRank": 1,
       "reqPoints": 5,
       "requires": [],
-      "excludes": ["mid-2"],
+      "excludes": [
+        "mid-2"
+      ],
       "effect": {
         "type": "tradeoff",
-        "penalty": { "stat": "gold_rewards", "modifier": -0.10 },
-        "bonus": { "stat": "quest_xp", "modifier": 0.25 }
+        "penalty": {
+          "stat": "gold_rewards",
+          "modifier": -0.1
+        },
+        "bonus": {
+          "stat": "quest_xp",
+          "modifier": 0.25
+        }
       }
     },
     {
@@ -173,8 +201,12 @@
       "flavor": "Das Feuer flüstert: 'Mehr. Mehr. MEHR.'",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": ["inner-1"],
-      "excludes": ["mid-1"],
+      "requires": [
+        "inner-1"
+      ],
+      "excludes": [
+        "mid-1"
+      ],
       "effect": {
         "type": "forge_overcap",
         "maxTemp": 120,
@@ -194,8 +226,14 @@
       "excludes": [],
       "effect": {
         "type": "tradeoff",
-        "penalty": { "stat": "gem_preserve_chance", "override": 0 },
-        "bonus": { "stat": "gem_stat_bonus", "modifier": 0.15 }
+        "penalty": {
+          "stat": "gem_preserve_chance",
+          "override": 0
+        },
+        "bonus": {
+          "stat": "gem_stat_bonus",
+          "modifier": 0.15
+        }
       }
     },
     {
@@ -211,7 +249,7 @@
       "excludes": [],
       "effect": {
         "type": "rift_loot_split",
-        "hardLegendaryBonus": 0.20,
+        "hardLegendaryBonus": 0.2,
         "normalPenalty": -0.15
       }
     },
@@ -243,11 +281,16 @@
       "flavor": "15% Chance, dass die Materialien einfach... da bleiben. Die Handwerker nennen es 'Effizienz'. Die Materialien nennen es 'Diebstahl'.",
       "maxRank": 2,
       "reqPoints": 5,
-      "requires": ["inner-3"],
+      "requires": [
+        "inner-3"
+      ],
       "excludes": [],
       "effect": {
         "type": "craft_material_preserve",
-        "chancePerRank": [0.08, 0.15]
+        "chancePerRank": [
+          0.08,
+          0.15
+        ]
       }
     },
     {
@@ -259,11 +302,13 @@
       "flavor": "Dein Streak ist gebrochen, aber er hat dir noch 50% hinterlassen. Wie ein Ex, der die Möbel dalässt.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": ["inner-4"],
+      "requires": [
+        "inner-4"
+      ],
       "excludes": [],
       "effect": {
         "type": "streak_break_buffer",
-        "retainPercent": 0.50,
+        "retainPercent": 0.5,
         "durationDays": 3
       }
     },
@@ -280,8 +325,14 @@
       "excludes": [],
       "effect": {
         "type": "tradeoff",
-        "penalty": { "stat": "shop_refresh_days", "modifier": 1 },
-        "bonus": { "stat": "shop_prices", "modifier": -0.15 }
+        "penalty": {
+          "stat": "shop_refresh_days",
+          "modifier": 1
+        },
+        "bonus": {
+          "stat": "shop_prices",
+          "modifier": -0.15
+        }
       }
     },
     {
@@ -293,11 +344,13 @@
       "flavor": "Dein Companion ist auf Expedition, verdient aber trotzdem Bond-XP. Abwesenheit macht das Herz... effizienter.",
       "maxRank": 1,
       "reqPoints": 5,
-      "requires": ["inner-6"],
+      "requires": [
+        "inner-6"
+      ],
       "excludes": [],
       "effect": {
         "type": "companion_expedition_bond_xp",
-        "rate": 0.50
+        "rate": 0.5
       }
     },
     {
@@ -314,12 +367,10 @@
       "effect": {
         "type": "nth_quest_gamble",
         "everyN": 10,
-        "doubleChance": 0.50,
-        "halveChance": 0.50
+        "doubleChance": 0.5,
+        "halveChance": 0.5
       }
     },
-
-
     {
       "id": "outer-1",
       "ring": "outer",
@@ -347,7 +398,9 @@
       "flavor": "Du überspringst eine Stufe. Dafür bekommst du nichts. Das ist entweder Strategie oder Faulheit. Beides hat seine Berechtigung.",
       "maxRank": 1,
       "reqPoints": 12,
-      "requires": ["mid-4"],
+      "requires": [
+        "mid-4"
+      ],
       "excludes": [],
       "effect": {
         "type": "rift_stage_skip",
@@ -382,7 +435,9 @@
       "maxRank": 1,
       "reqPoints": 12,
       "requires": [],
-      "excludes": ["outer-5"],
+      "excludes": [
+        "outer-5"
+      ],
       "effect": {
         "type": "tavern_passive_gold",
         "goldPerHour": 5,
@@ -399,11 +454,18 @@
       "maxRank": 1,
       "reqPoints": 12,
       "requires": [],
-      "excludes": ["outer-4"],
+      "excludes": [
+        "outer-4"
+      ],
       "effect": {
         "type": "tradeoff",
-        "bonus": { "stat": "rested_xp_gain_rate", "modifier": 0.25 },
-        "condition": { "questCompletedBefore": "12:00" }
+        "bonus": {
+          "stat": "rested_xp_gain_rate",
+          "modifier": 0.25
+        },
+        "condition": {
+          "questCompletedBefore": "12:00"
+        }
       }
     },
     {
@@ -415,12 +477,14 @@
       "flavor": "Ein vierter Missions-Slot. Die Punkte sind halbiert, aber dein Pflichtgefühl kennt kein Limit.",
       "maxRank": 1,
       "reqPoints": 12,
-      "requires": ["mid-5"],
+      "requires": [
+        "mid-5"
+      ],
       "excludes": [],
       "effect": {
         "type": "daily_mission_extra_slot",
         "extraSlots": 1,
-        "pointModifier": 0.50
+        "pointModifier": 0.5
       }
     },
     {
@@ -460,65 +524,130 @@
       }
     }
   ],
-
   "connections": [
-    { "from": "inner-1", "to": "mid-2", "type": "prerequisite" },
-    { "from": "inner-3", "to": "mid-6", "type": "prerequisite" },
-    { "from": "inner-4", "to": "mid-7", "type": "prerequisite" },
-    { "from": "inner-6", "to": "mid-9", "type": "prerequisite" },
-    { "from": "mid-4", "to": "outer-2", "type": "prerequisite" },
-    { "from": "mid-5", "to": "outer-6", "type": "prerequisite" },
-    { "from": "mid-1", "to": "mid-2", "type": "exclusion" },
-    { "from": "outer-4", "to": "outer-5", "type": "exclusion" }
+    {
+      "from": "inner-1",
+      "to": "mid-2",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-3",
+      "to": "mid-6",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-4",
+      "to": "mid-7",
+      "type": "prerequisite"
+    },
+    {
+      "from": "inner-6",
+      "to": "mid-9",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-4",
+      "to": "outer-2",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-5",
+      "to": "outer-6",
+      "type": "prerequisite"
+    },
+    {
+      "from": "mid-1",
+      "to": "mid-2",
+      "type": "exclusion"
+    },
+    {
+      "from": "outer-4",
+      "to": "outer-5",
+      "type": "exclusion"
+    }
   ],
-
   "choiceGroups": [
     {
       "id": "cg-economy",
       "label": "Wirtschaftspfad",
       "desc": "Wähle: XP-Fokus (Blutzoll) ODER Forge-Fokus (Gierige Flamme). Nicht beides.",
-      "nodes": ["mid-1", "mid-2"],
+      "nodes": [
+        "mid-1",
+        "mid-2"
+      ],
       "maxPicks": 1
     },
     {
       "id": "cg-downtime",
       "label": "Ruhephase",
       "desc": "Wähle: Passive Tavern-Einnahmen (Stille Wasser) ODER Morgen-XP-Boost (Traumwandler).",
-      "nodes": ["outer-4", "outer-5"],
+      "nodes": [
+        "outer-4",
+        "outer-5"
+      ],
       "maxPicks": 1
     }
   ],
-
   "buildArchetypes": [
     {
       "id": "grinder",
       "name": "Der Unermüdliche",
       "desc": "Maximiert XP und Quest-Durchsatz. Opfert Gold für rohe Erfahrung.",
-      "suggestedNodes": ["inner-7", "inner-2", "mid-1", "mid-5", "outer-6", "outer-8"]
+      "suggestedNodes": [
+        "inner-7",
+        "inner-2",
+        "mid-1",
+        "mid-5",
+        "outer-6",
+        "outer-8"
+      ]
     },
     {
       "id": "crafter",
       "name": "Der Handwerksmeister",
       "desc": "Crafting-Effizienz und Material-Sicherheit. Produziert mehr mit weniger.",
-      "suggestedNodes": ["inner-3", "inner-8", "mid-6", "mid-8", "outer-1"]
+      "suggestedNodes": [
+        "inner-3",
+        "inner-8",
+        "mid-6",
+        "mid-8",
+        "outer-1"
+      ]
     },
     {
       "id": "gambler",
       "name": "Der Glücksspieler",
       "desc": "Hohe Varianz, hohe Belohnung. Liebt Risiko und Zufallselemente.",
-      "suggestedNodes": ["inner-5", "mid-10", "mid-3", "outer-7", "outer-1"]
+      "suggestedNodes": [
+        "inner-5",
+        "mid-10",
+        "mid-3",
+        "outer-7",
+        "outer-1"
+      ]
     },
     {
       "id": "social",
       "name": "Der Gefährte",
       "desc": "Profitiert von Freunden, Companions und der Gemeinschaft.",
-      "suggestedNodes": ["inner-6", "mid-9", "outer-3", "outer-4"]
+      "suggestedNodes": [
+        "inner-6",
+        "mid-9",
+        "outer-3",
+        "outer-4"
+      ]
     },
     {
       "id": "rift-runner",
       "name": "Der Schattenläufer",
       "desc": "Optimiert für Rift-Inhalte. Schwere Herausforderungen, größere Beute.",
-      "suggestedNodes": ["inner-1", "mid-2", "mid-4", "outer-2", "outer-5"]
+      "suggestedNodes": [
+        "inner-1",
+        "mid-2",
+        "mid-4",
+        "outer-2",
+        "outer-5"
+      ]
     }
   ]
 }
