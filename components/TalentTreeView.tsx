@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useModalBehavior } from "@/components/ModalPortal";
+import { TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
 
@@ -302,14 +303,42 @@ export default function TalentTreeView({
         </div>
       </div>
 
-      {/* Theme legend (Wolcen-style path colors) */}
+      {/* Theme legend (Wolcen-style path colors) with tooltips */}
       <div className="flex gap-4 mb-4">
-        {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme]) => (
-          <div key={key} className="flex items-center gap-1.5" title={theme.desc}>
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: theme.color }} />
-            <span className="text-xs text-w40">{theme.label}</span>
-          </div>
-        ))}
+        {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme]) => {
+          const nodesInTheme = data.nodes.filter(n => theme.nodeIds.includes(n.id));
+          const allocatedCount = nodesInTheme.filter(n => !!data.allocated[n.id]).length;
+          return (
+            <TipCustom
+              key={key}
+              title={theme.label}
+              accent={theme.color}
+              body={
+                <div className="text-xs space-y-1">
+                  <div className="text-w40">{theme.desc}</div>
+                  <div className="text-w25 mt-1">{allocatedCount} / {nodesInTheme.length} Nodes aktiv</div>
+                  <div className="text-w20 mt-1 space-y-0.5">
+                    {nodesInTheme.slice(0, 6).map(n => (
+                      <div key={n.id} className="flex items-center gap-1">
+                        <span style={{ color: data.allocated[n.id] ? theme.color : "rgba(255,255,255,0.2)" }}>
+                          {data.allocated[n.id] ? "◆" : "◇"}
+                        </span>
+                        <span>{n.name}</span>
+                      </div>
+                    ))}
+                    {nodesInTheme.length > 6 && <div className="text-w15">+{nodesInTheme.length - 6} weitere</div>}
+                  </div>
+                </div>
+              }
+            >
+              <div className="flex items-center gap-1.5 cursor-default" style={{ borderBottom: `1px dotted ${theme.color}44` }}>
+                <div className="w-2.5 h-2.5 rounded-full" style={{ background: theme.color }} />
+                <span className="text-xs text-w40">{theme.label}</span>
+                <span className="text-xs text-w20 ml-0.5">{allocatedCount}/{nodesInTheme.length}</span>
+              </div>
+            </TipCustom>
+          );
+        })}
       </div>
 
       {/* SVG Tree + Detail panel */}
@@ -371,7 +400,7 @@ export default function TalentTreeView({
               </filter>
             </defs>
 
-            {/* Connection lines — active ones pulse slowly */}
+            {/* Connection lines — active ones pulse slowly via SMIL */}
             {data.nodes.map(n => {
               const pos = nodePositions.get(n.id);
               if (!pos || !n.requires.length) return null;
@@ -389,31 +418,39 @@ export default function TalentTreeView({
                     strokeWidth={isActive ? 2.5 : 1}
                     opacity={isActive ? 0.8 : 0.5}
                     filter={isActive ? "url(#line-glow)" : undefined}
-                    style={isActive ? { animation: "talent-line-pulse 3s ease-in-out infinite" } : undefined}
-                  />
+                  >
+                    {isActive && (
+                      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite" />
+                    )}
+                  </line>
                 );
               });
             })}
 
-            {/* Particle effects on allocated nodes — slow rising sparkles */}
+            {/* Particle effects on allocated nodes — slow rising sparkles via SMIL */}
             {data.nodes.filter(n => !!data.allocated[n.id]).map(n => {
               const pos = nodePositions.get(n.id);
               if (!pos) return null;
               const color = getNodeThemeColor(n.id, data.meta.themes);
-              return Array.from({ length: 3 }).map((_, i) => (
-                <circle
-                  key={`particle-${n.id}-${i}`}
-                  cx={pos.x + (i - 1) * 6}
-                  cy={pos.y}
-                  r={1.5}
-                  fill={color}
-                  opacity={0.6}
-                  style={{
-                    animation: `talent-particle-rise ${3 + i * 0.7}s ease-out ${i * 1.2}s infinite`,
-                    transformOrigin: `${pos.x + (i - 1) * 6}px ${pos.y}px`,
-                  }}
-                />
-              ));
+              return Array.from({ length: 3 }).map((_, i) => {
+                const cx = pos.x + (i - 1) * 6;
+                const dur = `${3 + i * 0.7}s`;
+                const begin = `${i * 1.2}s`;
+                return (
+                  <circle
+                    key={`particle-${n.id}-${i}`}
+                    cx={cx}
+                    cy={pos.y}
+                    r={1.5}
+                    fill={color}
+                    opacity={0}
+                  >
+                    <animate attributeName="cy" values={`${pos.y};${pos.y - 25};${pos.y - 40}`} dur={dur} begin={begin} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.7;0" dur={dur} begin={begin} repeatCount="indefinite" />
+                    <animate attributeName="r" values="1.5;1;0.5" dur={dur} begin={begin} repeatCount="indefinite" />
+                  </circle>
+                );
+              });
             })}
 
             {/* Nodes */}
@@ -447,32 +484,35 @@ export default function TalentTreeView({
                 <g
                   key={n.id}
                   onClick={() => setSelectedNode(n.id === selectedNode ? null : n.id)}
-                  style={{
-                    cursor: "pointer",
-                    ...(state === "allocated" ? { animation: "talent-node-breathe 4s ease-in-out infinite", color: pathColor } : {}),
-                  }}
+                  style={{ cursor: "pointer" }}
                   opacity={opacity}
                   filter={state === "allocated" ? "url(#node-glow)" : undefined}
                 >
-                  {/* Glow for allocated */}
+                  {/* Breathing glow halo for allocated nodes */}
                   {state === "allocated" && (
                     <circle
                       cx={pos.x} cy={pos.y} r={radius + 6}
                       fill="none"
                       stroke={pathColor}
                       strokeWidth={1}
-                      opacity={0.3}
-                    />
+                      opacity={0.2}
+                    >
+                      <animate attributeName="opacity" values="0.15;0.45;0.15" dur="4s" repeatCount="indefinite" />
+                      <animate attributeName="r" values={`${radius + 5};${radius + 8};${radius + 5}`} dur="4s" repeatCount="indefinite" />
+                    </circle>
                   )}
-                  {/* Selection ring */}
+                  {/* Selection ring with SMIL pulse */}
                   {isSelected && (
                     <circle
                       cx={pos.x} cy={pos.y} r={radius + 5}
                       fill="none"
                       stroke="#fbbf24"
                       strokeWidth={2}
-                      style={{ animation: "talent-select-pulse 2s ease-in-out infinite" }}
-                    />
+                      opacity={0.8}
+                    >
+                      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+                      <animate attributeName="stroke-width" values="1.5;2.5;1.5" dur="2s" repeatCount="indefinite" />
+                    </circle>
                   )}
                   {/* Node shape: diamond for tradeoff, circle for normal */}
                   {isTradeoff ? (
