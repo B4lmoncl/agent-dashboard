@@ -30,12 +30,20 @@ interface TalentNode {
   effect: TalentEffect;
 }
 
+interface TalentTheme {
+  color: string;
+  label: string;
+  desc: string;
+  nodeIds: string[];
+}
+
 interface TalentMeta {
   maxPoints: number;
   pointsPerLevel: number;
   firstPointLevel: number;
   respecCost: { gold: number; essenz: number };
   rings: Record<string, { label: string; desc: string; reqPoints: number; nodeCount: number }>;
+  themes?: Record<string, TalentTheme>;
   [key: string]: unknown;
 }
 
@@ -64,6 +72,15 @@ const RING_COLORS: Record<string, string> = {
 const RING_RADII = [120, 200, 280];
 const CENTER = 320;
 const SVG_SIZE = 640;
+
+// ─── Node color by theme ────────────────────────────────────────────────────
+function getNodeThemeColor(nodeId: string, themes: Record<string, TalentTheme> | undefined): string {
+  if (!themes) return RING_COLORS.inner;
+  for (const theme of Object.values(themes)) {
+    if (theme.nodeIds?.includes(nodeId)) return theme.color;
+  }
+  return RING_COLORS.inner;
+}
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
@@ -285,12 +302,12 @@ export default function TalentTreeView({
         </div>
       </div>
 
-      {/* Ring legend */}
+      {/* Theme legend (Wolcen-style path colors) */}
       <div className="flex gap-4 mb-4">
-        {Object.entries(data.meta.rings || {}).map(([key, ring]) => (
-          <div key={key} className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: RING_COLORS[key] }} />
-            <span className="text-xs text-w40">{ring.label} ({ring.nodeCount})</span>
+        {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme]) => (
+          <div key={key} className="flex items-center gap-1.5" title={theme.desc}>
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: theme.color }} />
+            <span className="text-xs text-w40">{theme.label}</span>
           </div>
         ))}
       </div>
@@ -304,6 +321,28 @@ export default function TalentTreeView({
             viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
             className="select-none"
           >
+            {/* Theme sector backgrounds (Wolcen-style colored segments) */}
+            {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme], i) => {
+              const startAngle = (i * 120 - 90) * Math.PI / 180;
+              const endAngle = ((i + 1) * 120 - 90) * Math.PI / 180;
+              const outerR = RING_RADII[2] + 30;
+              const x1 = CENTER + Math.cos(startAngle) * outerR;
+              const y1 = CENTER + Math.sin(startAngle) * outerR;
+              const x2 = CENTER + Math.cos(endAngle) * outerR;
+              const y2 = CENTER + Math.sin(endAngle) * outerR;
+              return (
+                <path
+                  key={key}
+                  d={`M ${CENTER} ${CENTER} L ${x1} ${y1} A ${outerR} ${outerR} 0 0 1 ${x2} ${y2} Z`}
+                  fill={theme.color}
+                  opacity={0.02}
+                  stroke={theme.color}
+                  strokeWidth={0.5}
+                  strokeOpacity={0.06}
+                />
+              );
+            })}
+
             {/* Ring circles with subtle rotation */}
             {RING_RADII.map((r, i) => (
               <circle
@@ -346,7 +385,7 @@ export default function TalentTreeView({
                     key={`${n.id}-${reqId}`}
                     x1={reqPos.x} y1={reqPos.y}
                     x2={pos.x} y2={pos.y}
-                    stroke={isActive ? RING_COLORS[n.ring] : isAvailable ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
+                    stroke={isActive ? getNodeThemeColor(n.id, data.meta.themes) : isAvailable ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
                     strokeWidth={isActive ? 2.5 : 1}
                     opacity={isActive ? 0.8 : 0.5}
                     filter={isActive ? "url(#line-glow)" : undefined}
@@ -360,7 +399,7 @@ export default function TalentTreeView({
             {data.nodes.filter(n => !!data.allocated[n.id]).map(n => {
               const pos = nodePositions.get(n.id);
               if (!pos) return null;
-              const color = RING_COLORS[n.ring];
+              const color = getNodeThemeColor(n.id, data.meta.themes);
               return Array.from({ length: 3 }).map((_, i) => (
                 <circle
                   key={`particle-${n.id}-${i}`}
@@ -383,7 +422,7 @@ export default function TalentTreeView({
               if (!pos) return null;
               const state = nodeStates.get(n.id) || "locked";
               const isSelected = selectedNode === n.id;
-              const pathColor = RING_COLORS[n.ring];
+              const pathColor = getNodeThemeColor(n.id, data.meta.themes);
               const isTradeoff = n.excludes && n.excludes.length > 0;
               const radius = n.ring === "outer" ? 16 : n.ring === "middle" ? 13 : 11;
 
@@ -490,12 +529,12 @@ export default function TalentTreeView({
               className="rounded-xl p-4"
               style={{
                 background: "rgba(255,255,255,0.03)",
-                border: `1px solid ${RING_COLORS[selected.ring]}22`,
+                border: `1px solid ${getNodeThemeColor(selected.id, data.meta.themes)}22`,
               }}
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="text-sm font-bold" style={{ color: RING_COLORS[selected.ring] }}>
+                  <h3 className="text-sm font-bold" style={{ color: getNodeThemeColor(selected.id, data.meta.themes) }}>
                     {selected.name}
                   </h3>
                   <p className="text-xs text-w25 mt-0.5">
@@ -557,9 +596,9 @@ export default function TalentTreeView({
                     disabled={allocating}
                     className="text-xs px-4 py-2 rounded-lg font-semibold"
                     style={{
-                      background: `${RING_COLORS[selected.ring]}22`,
-                      color: RING_COLORS[selected.ring],
-                      border: `1px solid ${RING_COLORS[selected.ring]}44`,
+                      background: `${getNodeThemeColor(selected.id, data.meta.themes)}22`,
+                      color: getNodeThemeColor(selected.id, data.meta.themes),
+                      border: `1px solid ${getNodeThemeColor(selected.id, data.meta.themes)}44`,
                       cursor: allocating ? "not-allowed" : "pointer",
                       opacity: allocating ? 0.5 : 1,
                     }}
@@ -627,9 +666,9 @@ export default function TalentTreeView({
                     onClick={() => setSelectedNode(n.id)}
                     className="text-xs px-2 py-1 rounded"
                     style={{
-                      background: `${RING_COLORS[n.ring]}15`,
-                      color: RING_COLORS[n.ring],
-                      border: `1px solid ${RING_COLORS[n.ring]}30`,
+                      background: `${getNodeThemeColor(n.id, data?.meta?.themes)}15`,
+                      color: getNodeThemeColor(n.id, data?.meta?.themes),
+                      border: `1px solid ${getNodeThemeColor(n.id, data?.meta?.themes)}30`,
                       cursor: "pointer",
                     }}
                   >
