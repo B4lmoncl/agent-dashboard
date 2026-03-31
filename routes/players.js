@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, NPC_META, saveUsers, savePlayerProgress, logActivity } = require('../lib/state');
+const { state, NPC_META, saveUsers, savePlayerProgress, logActivity, ensureUserCurrencies } = require('../lib/state');
 const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore, createPlayerLock } = require('../lib/helpers');
 const companionUltimateLock = createPlayerLock('companion-ultimate');
 const companionExpeditionLock = createPlayerLock('companion-expedition');

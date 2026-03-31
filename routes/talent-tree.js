@@ -293,6 +293,10 @@ router.post('/api/talents/sacrifice', requireAuth, (req, res) => {
       return res.status(400).json({ error: 'Only legendary items can be sacrificed' });
     }
     if (item.locked) return res.status(400).json({ error: 'Item is locked' });
+    // Prevent sacrificing equipped items
+    const equipped = user.equipment || {};
+    const equippedIds = new Set(Object.values(equipped).map(e => typeof e === 'object' ? e?.instanceId : e).filter(Boolean));
+    if (equippedIds.has(instanceId)) return res.status(400).json({ error: 'Cannot sacrifice equipped items' });
 
     // Remove item and grant bonus talent point
     inventory.splice(idx, 1);
@@ -341,7 +345,7 @@ function getUserTalentEffects(userId) {
     }
 
     // Special complex effects: store as objects
-    if (type === 'forge_overcap' || type === 'rift_loot_split' || type === 'completion_chain_bonus' ||
+    if (type === 'forge_overcap' || type === 'rift_loot_split' || type === 'completion_chain_bonus' || type === 'variety_chain_bonus' ||
         type === 'streak_break_buffer' || type === 'nth_quest_gamble' || type === 'rift_stage_skip' ||
         type === 'friend_quest_xp_echo' || type === 'tavern_passive_gold' || type === 'daily_mission_extra_slot' ||
         type === 'gacha_lucky_streak' || type === 'codex_permanent_xp' || type === 'sacrifice_legendary_for_talent_point' ||

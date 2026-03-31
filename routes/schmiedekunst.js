@@ -184,9 +184,11 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   let totalEssenz = 0;
   const allMats = {};
   const dismantleIds = new Set(toDismantle.map(i => i.instanceId || i.id));
-  // Legendary effect: salvageBonus — extra materials from dismantling
+  // Legendary + Talent: salvageBonus — extra essenz from dismantling
   const salvageMods = getLegendaryModifiers(uid);
-  const salvageBonusMult = salvageMods.salvageBonus || 0;
+  const { getUserTalentEffects } = require('./talent-tree');
+  const talentSalvageBonus = getUserTalentEffects(uid).salvage_essenz_bonus || 0;
+  const salvageBonusMult = (salvageMods.salvageBonus || 0) + talentSalvageBonus;
   for (const item of toDismantle) {
     let itemEssenz = DISMANTLE_ESSENZ[rarity] || 2;
     if (salvageBonusMult > 0) itemEssenz += Math.round(itemEssenz * salvageBonusMult);
