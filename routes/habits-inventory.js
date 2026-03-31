@@ -562,9 +562,16 @@ router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireS
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
-  const idx = (u.inventory || []).findIndex(i => i.id === req.params.itemId);
+  const itemId = req.params.itemId;
+  const idx = (u.inventory || []).findIndex(i => (i.instanceId || i.id) === itemId);
   if (idx === -1) return res.status(404).json({ error: 'Item not found in inventory' });
   if (u.inventory[idx].locked) return res.status(400).json({ error: 'Item is locked — unlock it first' });
+  // Cannot discard equipped items
+  const equippedIds = new Set();
+  for (const v of Object.values(u.equipment || {})) {
+    if (v && typeof v === 'object' && v.instanceId) equippedIds.add(v.instanceId);
+  }
+  if (equippedIds.has(u.inventory[idx].instanceId)) return res.status(400).json({ error: 'Unequip the item first' });
 
   const discarded = u.inventory.splice(idx, 1)[0];
   saveUsers();
