@@ -172,7 +172,7 @@
       "ring": "middle",
       "name": "Blutzoll",
       "icon": "blood-price",
-      "desc": "Opfere 10% aller Gold-Belohnungen. Dafür: +25% XP auf alle Quests.",
+      "desc": "Opfere 10% aller Gold-Belohnungen. Dafür: +20% XP auf alle Quests.",
       "flavor": "Gold ist überbewertet. Das sagte zumindest der letzte Held, der das hier genommen hat. Er starb arm, aber gebildet.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -188,7 +188,7 @@
         },
         "bonus": {
           "stat": "quest_xp",
-          "modifier": 0.25
+          "modifier": 0.2
         }
       }
     },
@@ -528,7 +528,7 @@
       "ring": "inner",
       "name": "Nachtarbeiter",
       "icon": "night-worker",
-      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +12% XP.",
+      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +8% XP.",
       "flavor": "Die Nacht gehört denen die nicht schlafen. Und denen die es bereuen.",
       "maxRank": 1,
       "reqPoints": 0,
@@ -536,7 +536,7 @@
       "excludes": [],
       "effect": {
         "type": "night_xp_bonus",
-        "value": 0.12
+        "value": 0.08
       }
     },
     {
@@ -631,7 +631,7 @@
       "ring": "middle",
       "name": "Morgenmensch",
       "icon": "morning-person",
-      "desc": "Erste Quest des Tages gibt +20% Gold. Aber NUR die erste.",
+      "desc": "Erste Quest des Tages gibt +15% Gold. Aber NUR die erste.",
       "flavor": "Frühaufsteher bekommen den Wurm. Und zwanzig Prozent mehr Gold. Der Wurm ist gratis.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -641,7 +641,7 @@
       ],
       "effect": {
         "type": "first_quest_gold_bonus",
-        "value": 0.2
+        "value": 0.15
       }
     },
     {
@@ -683,7 +683,7 @@
       "ring": "middle",
       "name": "Recycler",
       "icon": "recycler",
-      "desc": "Salvage gibt 25% mehr Essenz.",
+      "desc": "Salvage gibt 15% mehr Essenz.",
       "flavor": "Aus Müll wird Gold. Oder zumindest Essenz. Was fast Gold ist. Fast.",
       "maxRank": 1,
       "reqPoints": 5,
@@ -691,7 +691,7 @@
       "excludes": [],
       "effect": {
         "type": "salvage_essenz_bonus",
-        "value": 0.25
+        "value": 0.15
       }
     },
     {
