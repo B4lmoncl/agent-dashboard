@@ -60,6 +60,51 @@ function checkCodexDiscovery(userId) {
       case 'streak':
         unlocked = (u.streakDays || 0) >= cond.value;
         break;
+      case 'streak_days':
+        unlocked = (u.streakDays || 0) >= cond.value;
+        break;
+      case 'world_boss_contributions':
+        unlocked = (u._worldBossContributions || 0) >= cond.value;
+        break;
+      case 'dungeon_completed':
+        unlocked = (u._dungeonsCompleted || 0) >= cond.value;
+        break;
+      case 'rift_completions':
+        unlocked = (u._riftCompletions || 0) >= cond.value;
+        break;
+      case 'unique_npcs_completed':
+        unlocked = (u._npcsUnlocked || 0) >= cond.value;
+        break;
+      case 'crafts_completed':
+        unlocked = (u._craftsCompleted || 0) >= cond.value;
+        break;
+      case 'trades_completed':
+        unlocked = (u._tradesCompleted || 0) >= cond.value;
+        break;
+      case 'gem_tier': {
+        const gems = u.gems || {};
+        unlocked = Object.keys(gems).some(k => parseInt(k.split('_').pop() || '0', 10) >= cond.value);
+        break;
+      }
+      case 'faction_rank': {
+        const factions = u.factions || {};
+        unlocked = Object.values(factions).some(f => (f && typeof f === 'object' ? f.rep || 0 : 0) >= (cond.value || 500));
+        break;
+      }
+      case 'battlepass_level':
+        unlocked = (u.battlePass?.level || 0) >= cond.value;
+        break;
+      case 'daily_missions_completed':
+        unlocked = (u._dailyMissionsCompleted || 0) >= cond.value;
+        break;
+      case 'quests_in_progress': {
+        const inProgress = state.quests ? state.quests.filter(q => q.claimedBy?.toLowerCase() === userId && q.status === 'in_progress').length : 0;
+        unlocked = inProgress >= cond.value;
+        break;
+      }
+      case 'workshop_upgrade_purchased':
+        unlocked = Object.keys(u.workshopUpgrades || {}).length >= cond.value;
+        break;
       case 'hidden':
         // Hidden entries — never auto-discovered
         unlocked = false;
