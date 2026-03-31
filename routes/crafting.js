@@ -975,6 +975,38 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.craftedItem = instance;
         break;
       }
+      // Gem cutting handler (Juwelier: create a gem from materials)
+      if (recipe.result?.type === 'gem_cut') {
+        const gemType = recipe.result.gemType;
+        const gemTier = recipe.result.gemTier;
+        if (!gemType || !gemTier) { result.message = 'Invalid gem recipe'; result.success = false; break; }
+        const gemKey = `${gemType}_${gemTier}`;
+        u.gems = u.gems || {};
+        for (let i = 0; i < effectiveCount; i++) {
+          u.gems[gemKey] = (u.gems[gemKey] || 0) + 1;
+        }
+        const gemData = state.gemsData?.gems?.find(g => g.id === gemType);
+        const tierData = gemData?.tiers?.find(t => t.tier === gemTier);
+        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}`;
+        break;
+      }
+      // Gem merge handler (Juwelier: combine 3 gems → 1 higher tier)
+      if (recipe.result?.type === 'gem_merge') {
+        // Gem merges are handled via /api/gems/upgrade — this is a recipe wrapper
+        // The materials already include the source gems, so just award the result
+        const toTier = recipe.result.toTier;
+        if (!toTier) { result.message = 'Invalid merge recipe'; result.success = false; break; }
+        // Award a random gem of the target tier (player chose which to merge via materials)
+        const gemTypes = ['ruby', 'sapphire', 'emerald', 'topaz', 'amethyst', 'diamond'];
+        const randomGem = gemTypes[Math.floor(Math.random() * gemTypes.length)];
+        const gemKey = `${randomGem}_${toTier}`;
+        u.gems = u.gems || {};
+        u.gems[gemKey] = (u.gems[gemKey] || 0) + 1;
+        const gemData = state.gemsData?.gems?.find(g => g.id === randomGem);
+        const tierData = gemData?.tiers?.find(t => t.tier === toTier);
+        result.message = `Merged: ${tierData?.name || gemKey}`;
+        break;
+      }
       return res.status(400).json({ error: `Unknown recipe: ${recipeId}` });
     }
   }
