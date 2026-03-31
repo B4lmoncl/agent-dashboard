@@ -481,7 +481,7 @@ router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
   if (!item) return res.status(404).json({ error: 'Item not found in this shop' });
 
   const currency = item.currency || shopType;
-  const cost = item.cost || 0;
+  const cost = Math.max(1, Math.floor(item.cost || 0));
   if ((u.currencies[currency] || 0) < cost) {
     return res.status(400).json({ error: `Not enough ${currency}. Need ${cost}, have ${u.currencies[currency] || 0}` });
   }
