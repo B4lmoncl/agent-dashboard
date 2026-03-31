@@ -14,6 +14,9 @@ interface TalentEffect {
   value?: number;
   valuePerRank?: number[];
   chancePerRank?: number[];
+  bonus?: { stat: string; modifier: number };
+  penalty?: { stat: string; modifier?: number; override?: number };
+  maxTotal?: number;
   [key: string]: unknown;
 }
 
@@ -372,7 +375,7 @@ export default function TalentTreeView({
               );
             })}
 
-            {/* Ring circles with subtle rotation */}
+            {/* Ring circles with slow SMIL rotation */}
             {RING_RADII.map((r, i) => (
               <circle
                 key={i}
@@ -381,11 +384,16 @@ export default function TalentTreeView({
                 stroke="rgba(255,255,255,0.04)"
                 strokeWidth={i === 2 ? 2 : 1}
                 strokeDasharray={i === 2 ? "4 4" : i === 1 ? "8 12" : undefined}
-                style={{
-                  transformOrigin: `${CENTER}px ${CENTER}px`,
-                  animation: `talent-ring-rotate ${120 + i * 60}s linear infinite${i % 2 === 1 ? " reverse" : ""}`,
-                }}
-              />
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from={`${i % 2 === 1 ? 360 : 0} ${CENTER} ${CENTER}`}
+                  to={`${i % 2 === 1 ? 0 : 360} ${CENTER} ${CENTER}`}
+                  dur={`${120 + i * 60}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
             ))}
 
             {/* SVG Defs for glow + pulse animations */}
@@ -587,11 +595,47 @@ export default function TalentTreeView({
                 </div>
               </div>
 
-              {/* Effect */}
+              {/* Effect description + structured details */}
               <div className="rounded-lg p-3 mb-3" style={{ background: "rgba(0,0,0,0.3)" }}>
                 <p className="text-xs text-w60" style={{ lineHeight: "1.5" }}>
                   {selected.desc}
                 </p>
+                {/* Structured effect values */}
+                {selected.effect && (
+                  <div className="mt-2 space-y-1">
+                    {selected.effect.type === "tradeoff" && selected.effect.bonus && selected.effect.penalty && (
+                      <div className="flex gap-3 text-xs">
+                        <span style={{ color: "#22c55e" }}>+{selected.effect.bonus.stat}: {typeof selected.effect.bonus.modifier === "number" ? `${(selected.effect.bonus.modifier * 100).toFixed(0)}%` : selected.effect.bonus.modifier}</span>
+                        <span style={{ color: "#ef4444" }}>-{selected.effect.penalty.stat}: {typeof selected.effect.penalty.modifier === "number" ? `${(selected.effect.penalty.modifier * 100).toFixed(0)}%` : (selected.effect.penalty.override !== undefined ? `→ ${selected.effect.penalty.override}` : "")}</span>
+                      </div>
+                    )}
+                    {selected.effect.valuePerRank && Array.isArray(selected.effect.valuePerRank) && (
+                      <div className="text-xs text-w30">
+                        Rang-Werte: {selected.effect.valuePerRank.map((v: number, i: number) => (
+                          <span key={i} className="inline-block mr-1.5" style={{ color: (data.allocated[selected.id]?.rank || 0) > i ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
+                            {typeof v === "number" ? (v < 1 ? `${(v * 100).toFixed(0)}%` : v) : v}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {selected.effect.chancePerRank && Array.isArray(selected.effect.chancePerRank) && (
+                      <div className="text-xs text-w30">
+                        Chance pro Rang: {selected.effect.chancePerRank.map((v: number, i: number) => (
+                          <span key={i} className="inline-block mr-1.5" style={{ color: (data.allocated[selected.id]?.rank || 0) > i ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
+                            {typeof v === "number" ? `${(v * 100).toFixed(0)}%` : v}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {selected.effect.value !== undefined && !selected.effect.valuePerRank && !selected.effect.chancePerRank && selected.effect.type !== "tradeoff" && (
+                      <div className="text-xs text-w30">
+                        Effekt: <span style={{ color: "#fbbf24" }}>
+                          {typeof selected.effect.value === "number" ? (selected.effect.value < 1 && selected.effect.value > 0 ? `${(selected.effect.value * 100).toFixed(0)}%` : selected.effect.value) : String(selected.effect.value)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
                 {selected.excludes && selected.excludes.length > 0 && (
                   <div className="flex items-center gap-1.5 mt-2">
                     <span className="text-xs px-1.5 py-0.5 rounded font-bold"
@@ -599,6 +643,15 @@ export default function TalentTreeView({
                       TRADEOFF
                     </span>
                     <span className="text-xs text-w20">Hat Vor- und Nachteile</span>
+                  </div>
+                )}
+                {selected.effect?.type === "tradeoff" && !selected.excludes?.length && (
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <span className="text-xs px-1.5 py-0.5 rounded font-bold"
+                      style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
+                      TRADEOFF
+                    </span>
+                    <span className="text-xs text-w20">Bonus + Malus</span>
                   </div>
                 )}
               </div>
@@ -670,6 +723,53 @@ export default function TalentTreeView({
                   </div>
                 )}
               </div>
+
+              {/* Sacrifice UI for Opfergabe talent */}
+              {nodeStates.get(selected.id) === "allocated" && selected.effect?.type === "sacrifice_legendary_for_talent_point" && (
+                <div className="mt-3 rounded-lg p-3" style={{ background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.15)" }}>
+                  <p className="text-xs font-bold mb-2" style={{ color: "#f97316" }}>Opfergabe</p>
+                  <p className="text-xs text-w30 mb-2">
+                    Bonus-Talentpunkte: <span style={{ color: "#fbbf24" }}>{data.bonusPoints || 0}</span> / {selected.effect.maxTotal || 3}
+                  </p>
+                  {(data.bonusPoints || 0) < (selected.effect.maxTotal || 3) ? (
+                    <button
+                      onClick={async () => {
+                        // Find first legendary in inventory (simplified — user picks via confirm)
+                        const confirm = window.confirm("Ein Legendary Item aus deinem Inventar opfern für +1 Talentpunkt?\n\nDas erste nicht-ausgerüstete, nicht-gesperrte Legendary wird geopfert.");
+                        if (!confirm) return;
+                        try {
+                          // Fetch inventory to find a legendary
+                          const invR = await fetch("/api/inventory", { headers: getAuthHeaders() });
+                          const invD = await invR.json();
+                          const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
+                          if (legendaries.length === 0) {
+                            _toast({ type: "error", message: "Kein Legendary Item verfügbar" });
+                            return;
+                          }
+                          const item = legendaries[0];
+                          const r = await fetch("/api/talents/sacrifice", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+                            body: JSON.stringify({ instanceId: item.instanceId || item.id }),
+                          });
+                          const d = await r.json();
+                          if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
+                          else {
+                            _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert! +1 Talentpunkt` });
+                            fetchTalents();
+                          }
+                        } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }
+                      }}
+                      className="text-xs px-3 py-1.5 rounded font-semibold"
+                      style={{ background: "rgba(249,115,22,0.15)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)", cursor: "pointer" }}
+                    >
+                      Legendary opfern
+                    </button>
+                  ) : (
+                    <p className="text-xs text-w20">Maximum erreicht</p>
+                  )}
+                </div>
+              )}
             </div>
           ) : (
             <div className="rounded-xl p-6 text-center" style={{ background: "rgba(255,255,255,0.02)" }}>
