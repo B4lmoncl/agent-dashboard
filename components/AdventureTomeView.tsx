@@ -307,7 +307,7 @@ export default function AdventureTomeView({
                               : m.reached
                                 ? "rgba(250,204,21,0.8)"
                                 : "rgba(255,255,255,0.15)",
-                            fontSize: 10,
+                            fontSize: 12,
                             marginTop: 1,
                           }}
                         >
@@ -352,7 +352,7 @@ export default function AdventureTomeView({
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
-                              fontSize: 10,
+                              fontSize: 12,
                               background: obj.completed
                                 ? "rgba(34,197,94,0.15)"
                                 : "rgba(255,255,255,0.04)",
