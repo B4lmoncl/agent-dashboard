@@ -144,7 +144,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   const effectType = effect?.type || (typeof effect === 'string' ? effect : null);
   if (!effectType) {
     // No effect — just remove the item
-    u.inventory = u.inventory.filter(i => i.id !== invItem.id);
+    const rmId = invItem.instanceId || invItem.id;
+    u.inventory = u.inventory.filter(i => (i.instanceId || i.id) !== rmId);
     saveUsers();
     return res.json({ ok: true, effect: null, message: 'Item consumed.', updatedValues: {} });
   }
@@ -504,7 +505,9 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   }
 
   // Remove item from inventory (consumable is consumed)
-  u.inventory = u.inventory.filter(i => i.id !== invItem.id);
+  // Use the same ID that was used for lookup (instanceId takes priority over id)
+  const removeId = invItem.instanceId || invItem.id;
+  u.inventory = u.inventory.filter(i => (i.instanceId || i.id) !== removeId);
   saveUsers();
   // Some effects modify quests (e.g., quest_timer_24h) — persist those too
   if (updatedValues.questsExtended) {
@@ -676,14 +679,14 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   const slot = template.slot;
   if (!slot) return res.status(400).json({ error: 'Item has no equipment slot' });
 
-  // Check if already equipped (instance or legacy)
-  const currentSlotItem = u.equipment[slot];
-  if (currentSlotItem) {
-    const currentId = typeof currentSlotItem === 'object' ? currentSlotItem.templateId : currentSlotItem;
-    if (currentId === templateId && typeof currentSlotItem === 'object' && currentSlotItem.instanceId === invEntry.id) {
-      return res.status(409).json({ error: 'Already equipped' });
+  // Check if already equipped in ANY slot (prevents cross-slot duplication)
+  const equipId = invEntry.instanceId || invEntry.id;
+  for (const [eqSlot, eqItem] of Object.entries(u.equipment || {})) {
+    if (eqItem && typeof eqItem === 'object' && (eqItem.instanceId === equipId || eqItem.id === equipId)) {
+      return res.status(409).json({ error: `Already equipped in ${eqSlot}` });
     }
   }
+  const currentSlotItem = u.equipment[slot];
 
   // Swap: return currently equipped item to inventory
   if (currentSlotItem) {
