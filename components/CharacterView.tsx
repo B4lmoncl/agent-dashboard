@@ -2329,31 +2329,32 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <div key={type}>
                     <p className="text-xs font-semibold mb-1" style={{ color: GEM_COLORS[type] || "#9ca3af" }}>{type}</p>
                     <div className="space-y-0.5">
-                      {entries.sort((a, b) => a.gem.tier - b.gem.tier).map(({ gemKey, gem, count }) => (
+                      {entries.sort((a, b) => a.tier - b.tier).map(({ gemKey, gem, count, tier }) => (
                         <div key={gemKey} className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
                           <div className="flex items-center gap-1.5">
                             <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: GEM_COLORS[gem.type] || "#9ca3af" }} />
                             <span className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{gem.name}</span>
-                            <span className="text-xs text-w20">T{gem.tier}</span>
+                            <span className="text-xs text-w20">T{tier}</span>
+                            {gem.stat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>+{(gem as unknown as { tiers?: { tier: number; statBonus: number }[] }).tiers?.find(t => t.tier === tier)?.statBonus ?? "?"} {gem.stat}</span>}
                           </div>
                           <div className="flex items-center gap-1.5">
                             <span className="text-xs font-mono" style={{ color: GEM_COLORS[gem.type] || "#9ca3af" }}>x{count}</span>
-                            {count >= 3 && gem.tier < 5 && (
+                            {count >= 3 && tier < 5 && (
                               <button
                                 onClick={() => doGemAction("upgrade", { gemKey })}
                                 disabled={!!gemAction}
-                                title={gemAction ? "Action in progress…" : `Combine 3 × T${gem.tier} → 1 × T${gem.tier + 1} (costs 100g + Essenz)`}
+                                title={gemAction ? "Action in progress…" : `Combine 3 × T${tier} → 1 × T${tier + 1} (costs 100g + Essenz)`}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
                                 3{"\u2192"}1
                               </button>
                             )}
-                            {gem.tier < 5 && (
+                            {tier < 5 && (
                               <button
                                 onClick={() => doGemAction("polish", { gemKey })}
                                 disabled={!!gemAction}
-                                title={gemAction ? "Action in progress…" : `Polish 1 × T${gem.tier} → T${gem.tier + 1} (costs ${500 * gem.tier}g + ${Math.floor(500 * gem.tier / 2)} Essenz)`}
+                                title={gemAction ? "Action in progress…" : `Polish 1 × T${tier} → T${tier + 1} (costs ${500 * tier}g + ${Math.floor(500 * tier / 2)} Essenz)`}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
@@ -2409,7 +2410,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                   </button>
                                 ) : (
                                   <button
-                                    onClick={() => doGemAction("unsocket", { instanceId, socketIndex: si })}
+                                    onClick={() => {
+                                      if (!window.confirm(`Gem entfernen? Kostet ${gemData.unsocketCost || 50}g. Der Edelstein kann dabei zerstört werden.`)) return;
+                                      doGemAction("unsocket", { instanceId, socketIndex: si });
+                                    }}
                                     disabled={!!gemAction}
                                     title={gemAction ? "Action in progress…" : "Remove socketed gem"}
                                     className="text-xs px-1 py-0.5 rounded"
