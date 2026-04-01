@@ -628,7 +628,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                       {COMMITMENT_TIERS.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendRitualCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendRitualCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: extendRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
+                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
                         </button>
                       ))}
                     </div>
