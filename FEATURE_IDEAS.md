@@ -333,3 +333,38 @@
 - **Bereich:** Frontend
 - **Beschreibung:** professions.json hat "synergies" Felder die Profession-Pairings beschreiben (z.B. Schmied+Lederverarbeiter). ForgeView zeigt diese Synergien nicht an wenn man eine zweite Profession wählt.
 - **Warum:** WoW zeigt "Recommended pairing" bei der Professionswahl. Hilft Neulingen.
+
+### [FI-046] Campaign Quest Chain Sorting
+- **Quelle:** WoW Classic (Quest Chain Display)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** CampaignHub rendert Quests in API-Reihenfolge ohne Sort. Wenn Backend Quests in Insertion-Order liefert statt Chain-Order, ist die Anzeige falsch. Sollte nach chainIndex sortiert werden.
+- **Warum:** Campaign Timeline zeigt Quests möglicherweise in falscher Reihenfolge.
+
+### [FI-047] RoadmapView Loading State
+- **Quelle:** UX
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** RoadmapView flasht "No roadmap items yet" bevor der Fetch auflöst. Braucht loading-State mit Skeleton.
+- **Warum:** Jede View-Öffnung zeigt kurz den Empty-State bevor Daten erscheinen.
+
+### [FI-048] Daily Diminishing Returns Proactive Warning
+- **Quelle:** HSR (Trailblaze Power Warning)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** Zeige nach Quest 4 ein subtiles Banner: "Noch 1 Quest mit voller Belohnung heute." Bei Quest 6+ zeige den aktuellen DR-Multiplikator (75%/50%/25%) neben der Quest-Belohnungs-Vorschau.
+- **Warum:** Spieler wissen erst bei Quest 6 von Diminishing Returns. HSR zeigt Trailblaze Power immer prominent an.
+
+### [FI-049] Gacha Banner Expiry Countdown
+- **Quelle:** HSR / Genshin (Banner Timer)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** GachaView Banner-Cards zeigen keinen Countdown bis zum nächsten Banner-Wechsel. HSR zeigt immer "Ends in X days" prominent an.
+- **Warum:** FOMO-Mechanik für Engagement. Spieler weiß nicht wann der Banner wechselt.
+
+### [FI-050] Companion Bond Progress Bar
+- **Quelle:** Diablo 3 (Follower Level)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** CompanionsWidget zeigt Bond-Level als Zahl aber keinen Fortschrittsbalken zum nächsten Level. D3 zeigt immer eine XP-Bar für den Follower.
+- **Warum:** Spieler sieht nicht wie nah er am nächsten Bond-Level ist.
