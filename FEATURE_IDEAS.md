@@ -487,3 +487,10 @@
 - **Bereich:** Frontend
 - **Beschreibung:** Zwischen Login (playerName gesetzt) und erstem Refresh (loggedInUser populiert) verschwindet die Player Card. Sollte ein Skeleton zeigen.
 - **Warum:** Flicker beim Login — Card blinkt kurz weg.
+
+### [FI-068] Content-Security-Policy Header
+- **Quelle:** OWASP Security Headers
+- **Aufwand:** M (2-4h)
+- **Bereich:** Backend
+- **Beschreibung:** Kein CSP-Header konfiguriert. Sollte mindestens script-src, style-src, img-src, connect-src Policies setzen. Express helmet Paket oder manueller Header.
+- **Warum:** CSP verhindert XSS auch wenn React-Escaping versagt (Defense in Depth).
