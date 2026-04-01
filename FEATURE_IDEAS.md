@@ -403,3 +403,38 @@
 - **Bereich:** Frontend
 - **Beschreibung:** HSR zeigt am Ende einer Session: "Du hast X Quests abgeschlossen, Y XP verdient, Z Gold erhalten, Level A→B." Sowas fehlt komplett. Ein TodayDrawer-Widget könnte das zeigen.
 - **Warum:** Spieler bekommt kein Gesamtbild seiner Session-Leistung. Nur einzelne Quest-Rewards.
+
+### [FI-056] Crafting Buff Effect Preview
+- **Quelle:** WoW Classic (Potion Tooltip)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** ForgeView Craft-Preview zeigt für Buff-Rezepte nur "3 Quests remaining". Sollte den tatsächlichen Effekt zeigen: "+10% XP für 3 Quests" oder "+2 Kraft für 3 Quests".
+- **Warum:** Spieler sieht nicht was der Buff tut bevor er craftet. WoW-Potions zeigen immer den exakten Effekt.
+
+### [FI-057] Passive Buff Active Indicator
+- **Quelle:** Diablo 3 (Active Buffs Bar)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** Aktive Buffs (aus Crafting, Shop, Companions) werden nirgends zentral angezeigt. D3 hat eine Buff-Bar am oberen Bildschirmrand die alle aktiven Effekte mit Timer zeigt.
+- **Warum:** Spieler weiß nicht welche Buffs aktiv sind oder wie viele Quests noch übrig sind.
+
+### [FI-058] Quest Difficulty Visual Scaling
+- **Quelle:** Diablo 3 (Torment Difficulty)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** Quest-Rarity bestimmt Schwierigkeit und Belohnung, aber die visuelle Darstellung ist nur ein kleines Farb-Dot. D3 zeigt Difficulty prominent mit Schädelicons und farbiger Umrandung. QuestCards sollten Rarity stärker visuell kommunizieren (größerer Accent, Glow-Border, etc).
+- **Warum:** Common und Legendary Quests sehen fast gleich aus bis auf einen kleinen Farbakzent.
+
+### [FI-059] Crafting Queue (Batch Progress)
+- **Quelle:** WoW Classic (Craft Queue)
+- **Aufwand:** L (4-8h)
+- **Bereich:** Both
+- **Beschreibung:** Beim Batch-Craften (x10) zeigt ForgeView nur das Endergebnis. WoW zeigt einen Fortschrittsbalken der jeden einzelnen Craft animiert mit Skill-Up-Chance pro Craft. Jeder erfolgreiche Skill-Up wird einzeln gefeiert.
+- **Warum:** Batch-Craften fühlt sich wie ein Klick an statt wie 10 individuelle Crafts. Skill-Up-Celebrations gehen unter.
+
+### [FI-060] Quick-Navigate from Celebration Popup
+- **Quelle:** HSR (Quick Actions in Popups)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** RewardCelebration Popup zeigt nur "Nehmen" als Aktion. HSR zeigt nach Boss-Kill auch "Loot anzeigen" oder "Nochmal spielen". QH könnte "Inventar öffnen" (wenn Loot), "Nächste Quest" (wenn Chain), "Leaderboard" zeigen.
+- **Warum:** Nach dem Reward-Popup muss der Spieler manuell navigieren. Quick-Actions sparen Klicks.
