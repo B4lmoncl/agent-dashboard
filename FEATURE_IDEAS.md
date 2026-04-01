@@ -466,3 +466,10 @@
 - **Bereich:** Backend
 - **Beschreibung:** players.js liest version.json synchron bei jedem /api/version Request. Sollte einmal beim Startup geladen und gecacht werden.
 - **Warum:** Blocking fs.readFileSync in Request-Handler. Minimaler Impact (kleine Datei), aber Best Practice.
+
+### [FI-065] Package.json Node Engine Spec
+- **Quelle:** DevOps Best Practice
+- **Aufwand:** S (5min)
+- **Bereich:** Config
+- **Beschreibung:** package.json hat kein "engines" Feld. Sollte "node": ">=20" spezifizieren da das Projekt Node 20 (Docker) und Node 22 (dev) verwendet.
+- **Warum:** Verhindert versehentliches Deployment auf Node 16/18 wo Features fehlen.
