@@ -133,7 +133,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   const handleSubmitCustomClass = async () => {
     if (!customProfession.trim()) return;
     try {
-      await fetch("/api/classes", {
+      const r = await fetch("/api/classes", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-api-key": "pending" },
         body: JSON.stringify({
@@ -144,6 +144,10 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           createdBy: name.trim() || "unknown",
         }),
       });
+      if (r.ok) {
+        const d = await r.json();
+        if (d.classId || d.id) setSelectedClassId(d.classId || d.id);
+      }
     } catch (err) { console.error('Failed to submit custom class:', err); }
     setCustomClassSubmitted(true);
   };

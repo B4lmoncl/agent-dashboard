@@ -627,7 +627,6 @@ router.get('/api/player/:name/public-profile', (req, res) => {
     questsCompleted: u.questsCompleted || 0,
     streakDays: u.streakDays || 0,
     forgeTemp: dynamicForgeTemp,
-    gold: u.currencies?.gold ?? u.gold ?? 0,
     achievementPoints: u.achievementPoints || 0,
     equippedTitle: u.equippedTitle || null,
     equippedFrame: u.equippedFrame || null,
