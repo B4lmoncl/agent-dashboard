@@ -547,7 +547,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
                         cursor: petting ? "not-allowed" : "pointer",
                       }}>
-                        <TipCustom title="Pet Companion" icon="🐾" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
+                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
                           <span>Pet</span>
                         </TipCustom>
                       </button>
