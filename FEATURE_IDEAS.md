@@ -186,3 +186,24 @@
 - **Bereich:** Backend
 - **Beschreibung:** kanais-cube.js hat kein Library-Limit. Wächst unbegrenzt. D3 hat zwar auch kein Cap, aber ein UIUX-Display-Problem tritt auf bei 100+ Einträgen.
 - **Warum:** Performance + UX. Irgendwann wird die Library-Anzeige unbrauchbar.
+
+### [FI-025] Workshop Upgrades in UI
+- **Quelle:** Diablo 3 (Artisan Upgrades)
+- **Aufwand:** L (4-8h)
+- **Bereich:** Frontend
+- **Beschreibung:** Workshop Upgrades (Gold-Forged Tools, Loot Chance Amulet, etc.) sind im Backend komplett implementiert aber im Frontend nicht erreichbar. ShopView.tsx hat sie auskommentiert mit "moved to Artisan's Quarter" — aber es gibt keinen Artisan's Quarter View.
+- **Warum:** Audit Fund: 4 permanente Upgrade-Trees komplett unerreichbar fuer Spieler.
+
+### [FI-026] Image Alt Text Sweep
+- **Quelle:** A11y (WCAG 2.1)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** 22 von 152 img-Tags haben kein alt-Attribut. CLAUDE.md: "Alt text: Required for meaningful images; empty alt='' for decorative icons."
+- **Warum:** Accessibility + CLAUDE.md Compliance.
+
+### [FI-027] Expired Boss Claim Window
+- **Quelle:** Original (Bug Fix — bereits gefixt)
+- **Aufwand:** S (fertig)
+- **Bereich:** Backend
+- **Beschreibung:** World Boss Claim Endpoint rief getActiveBoss() nicht auf — abgelaufene Bosse konnten noch claimed werden.
+- **Warum:** Gefixt in Runde 85+.
