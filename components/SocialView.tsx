@@ -353,6 +353,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
   const [activeConvo, setActiveConvo] = useState<string | null>(null);
   const [messages, setMessages] = useState<SocialMessage[]>([]);
   const [msgInput, setMsgInput] = useState("");
+  const [sendingMsg, setSendingMsg] = useState(false);
   const [sendError, setSendError] = useState("");
   const [loading, setLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -404,7 +405,8 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!msgInput.trim() || !activeConvo) return;
+    if (!msgInput.trim() || !activeConvo || sendingMsg) return;
+    setSendingMsg(true);
     try {
       const r = await fetch("/api/social/message", {
         method: "POST",
@@ -420,6 +422,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         setSendError(data?.error || "Failed to send message");
       }
     } catch (e) { console.error('[social]', e); }
+    setSendingMsg(false);
   };
 
   if (loading) return (
@@ -475,10 +478,10 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
           />
           <button
             onClick={sendMessage}
-            disabled={!msgInput.trim()}
+            disabled={!msgInput.trim() || sendingMsg}
+            title={sendingMsg ? "Sending..." : !msgInput.trim() ? "Type a message first" : undefined}
             className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg"
-            style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)", opacity: msgInput.trim() ? 1 : 0.4, cursor: msgInput.trim() ? "pointer" : "not-allowed" }}
-            title={!msgInput.trim() ? "Type a message first" : undefined}
+            style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)", opacity: (msgInput.trim() && !sendingMsg) ? 1 : 0.4, cursor: (msgInput.trim() && !sendingMsg) ? "pointer" : "not-allowed" }}
           >
             Send
           </button>
