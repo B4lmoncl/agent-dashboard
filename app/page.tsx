@@ -174,9 +174,15 @@ export default function Dashboard() {
     const floor = getFloorForRoom(view);
     if (floor) {
       const lvl = playerLevelRef.current;
-      if (floor.minLevel && lvl < floor.minLevel) return;
+      if (floor.minLevel && lvl < floor.minLevel) {
+        addToast({ type: "error", message: `Unlocks at Level ${floor.minLevel}` });
+        return;
+      }
       const room = floor.rooms.find(r => r.key === view);
-      if (room?.minLevel && lvl < room.minLevel) return;
+      if (room?.minLevel && lvl < room.minLevel) {
+        addToast({ type: "error", message: `${room.label || view} unlocks at Level ${room.minLevel}` });
+        return;
+      }
       setActiveFloor(floor.id);
     }
     setDashViewRaw(view);
