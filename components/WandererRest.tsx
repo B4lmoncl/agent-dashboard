@@ -213,7 +213,7 @@ export function WandererRest({
                       )}
                       {urgent && !allDone && (
                         <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(220,38,38,0.8)", fontSize: 12, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
-                          ⏳ {npc.hoursLeft}H LEFT
+                          ◈ {npc.hoursLeft}H LEFT
                         </div>
                       )}
                       {/* Gold pulsing dot for NPCs with unclaimed open quests */}

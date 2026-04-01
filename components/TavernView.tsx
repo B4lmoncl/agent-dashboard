@@ -219,7 +219,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           </div>
 
           <button
-            onClick={leaveTavern}
+            onClick={() => { if (window.confirm("Taverne verlassen? Der 30-Tage-Cooldown startet erneut. Dein Streak und Forge Temp werden wiederhergestellt.")) leaveTavern(); }}
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
             style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
