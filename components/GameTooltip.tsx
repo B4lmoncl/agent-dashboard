@@ -997,7 +997,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Wheel of Stars</span><span>Standard · costs <GTRef k="runensplitter">Rune Shards</GTRef></span></div>
         <div className="gt-stat-row"><span>Astral Radiance</span><span>Featured · costs <GTRef k="stardust">Stardust</GTRef></span></div>
         <p>Featured banners have a 50/50 system: lose the coin flip once, and your next Legendary is guaranteed to be the featured item.</p>
-        <p className="gt-source"><GTRef k="pity">Pity</GTRef> tracks separately per banner.</p>
+        <p className="gt-source"><GTRef k="pity">Pity</GTRef> counter is shared across all banners.</p>
       </>
     ),
   },
