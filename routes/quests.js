@@ -1,8 +1,9 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
 const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById, logActivity } = require('../lib/state');
-const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory } = require('../lib/helpers');
+const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory, createPlayerLock } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
+const questCompleteLock = createPlayerLock('quest-complete');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
 // ─── Quest Pool (used by GET /api/quests and exported for config-admin) ──────
@@ -281,11 +282,17 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/complete — mark quest as done
 router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
-  const quest = state.questsById.get(req.params.id);
-  if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+
+  // Per-player lock prevents concurrent double-complete
+  if (!questCompleteLock.acquire(agentKey)) {
+    return res.status(429).json({ error: 'Quest completion in progress, please wait' });
+  }
+  try {
+  const quest = state.questsById.get(req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
 
   // Block quest completion during tavern rest mode
   const restUser = state.users[agentKey];
@@ -436,7 +443,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const gildentalerEarned = u3?._lastGildentalerEarned || 0;
   const dailyDiminishing = u3?._lastDailyDiminishing ?? 1;
   const dailyQuestCount = u3?._lastDailyCount ?? 0;
-  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; delete u3._lastRunensplitterEarned; delete u3._lastGildentalerEarned; delete u3._lastDailyDiminishing; delete u3._lastDailyCount; }
+  const gemDrop = u3?._lastGemDrop || null;
+  const recipeDrop = u3?._lastRecipeDrop || null;
+  const repGains = u3?._lastRepGains || null;
+  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; delete u3._lastRunensplitterEarned; delete u3._lastGildentalerEarned; delete u3._lastDailyDiminishing; delete u3._lastDailyCount; delete u3._lastGemDrop; delete u3._lastRecipeDrop; delete u3._lastRepGains; delete u3._lastCodexDiscovery; }
   // Activity feed: quest completion + optional level-up
   if (state.users[agentKey]) {
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
@@ -453,7 +463,8 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     }
   }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, dailyDiminishing, dailyQuestCount, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
+  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, dailyDiminishing, dailyQuestCount, gemDrop, recipeDrop, repGains, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
+  } finally { questCompleteLock.release(agentKey); }
 });
 
 // POST /api/quest/:id/unclaim — agent/player unclaims a quest
@@ -530,12 +541,14 @@ router.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/coop-complete — player marks their part as done
 router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
-  const quest = state.questsById.get(req.params.id);
-  if (!quest) return res.status(404).json({ error: 'Quest not found' });
-  if (quest.type !== 'relationship-coop') return res.status(400).json({ error: 'Not a co-op quest' });
   const { userId } = req.body;
   if (!userId) return res.status(400).json({ error: 'userId is required' });
   const uid = userId.toLowerCase();
+  if (!questCompleteLock.acquire(uid)) return res.status(429).json({ error: 'Completion in progress' });
+  try {
+  const quest = state.questsById.get(req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  if (quest.type !== 'relationship-coop') return res.status(400).json({ error: 'Not a co-op quest' });
   quest.coopCompletions = quest.coopCompletions || [];
   if (quest.coopCompletions.includes(uid)) {
     return res.status(409).json({ error: 'Already marked complete by this user' });
@@ -559,6 +572,7 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
   saveQuests();
   console.log(`[coop] ${quest.id} part completed by ${uid} — allDone: ${allDone}`);
   res.json({ ok: true, quest, allDone, newAchievements });
+  } finally { questCompleteLock.release(uid); }
 });
 
 // GET /api/quests — list all quests grouped by status
@@ -765,22 +779,32 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
 router.patch('/api/quests/:id/complete', requireApiKey, (req, res) => {
   const { id } = req.params;
   const { completedBy } = req.body;
+  const authUser = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  const agentKey2 = (completedBy || authUser || '').toLowerCase();
 
+  // Validate: non-admin users can only complete quests for themselves
+  if (!req.auth?.isAdmin && agentKey2 && authUser && agentKey2 !== authUser) {
+    return res.status(403).json({ error: 'Cannot complete quests for another player' });
+  }
+  if (!questCompleteLock.acquire(agentKey2)) {
+    return res.status(429).json({ error: 'Quest completion in progress' });
+  }
+  try {
   const quest = state.questsById.get(id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.status === 'completed') return res.status(409).json({ error: 'Quest already completed' });
 
   quest.status = 'completed';
-  quest.completedBy = completedBy || 'unknown';
+  quest.completedBy = agentKey2 || 'unknown';
   quest.completedAt = now();
   saveQuests();
   unlockNextChainQuest(quest);
-  const agentKey2 = (completedBy || '').toLowerCase();
   let newAchievements = [];
   if (state.users[agentKey2]) {
     newAchievements = onQuestCompletedByUser(agentKey2, quest);
   }
   res.json({ success: true, message: 'Quest completed', quest, newAchievements });
+  } finally { questCompleteLock.release(agentKey2); }
 });
 
 // POST /api/quests/bulk-update — update status of multiple quests at once
