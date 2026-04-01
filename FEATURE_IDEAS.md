@@ -242,3 +242,17 @@
 - **Bereich:** DevOps
 - **Beschreibung:** 2 Vulnerabilities: Next.js (HTTP smuggling, CSRF bypass, disk cache DoS) + path-to-regexp (ReDoS). Fix via npm audit fix (--force fuer Next.js Update 16.1.6 → 16.2.2).
 - **Warum:** 1 High severity (ReDoS), 4 Moderate (Next.js). Should be updated in a dedicated PR with full testing.
+
+### [FI-033] Missing World Boss Portraits (6)
+- **Quelle:** Content Scan
+- **Aufwand:** M (2-4h) — Pixellab Asset Generation
+- **Bereich:** Data/Assets
+- **Beschreibung:** 6 von 15 World Bosses haben fehlende Portrait-PNGs: aufschub-kraken, routine-sphinx, vergleichs-spiegel, imposter-phantom, komfortzone, deadline-drache. Alle 256x256px.
+- **Warum:** Content Scan: Bosses ohne Portrait zeigen Fallback/broken Image im WorldBossView.
+
+### [FI-034] Gap Recipes Missing Descriptions (3)
+- **Quelle:** Content Scan
+- **Aufwand:** S (1h)
+- **Bereich:** Data
+- **Beschreibung:** recipe-koch-gap-130, recipe-koch-gap-140, recipe-vz-gap-135 haben keine description. Brauchen Skulduggery Pleasant Humor.
+- **Warum:** Content Completeness: 878/881 Recipes haben Descriptions.
