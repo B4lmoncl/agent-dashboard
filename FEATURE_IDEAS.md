@@ -438,3 +438,17 @@
 - **Bereich:** Frontend
 - **Beschreibung:** RewardCelebration Popup zeigt nur "Nehmen" als Aktion. HSR zeigt nach Boss-Kill auch "Loot anzeigen" oder "Nochmal spielen". QH könnte "Inventar öffnen" (wenn Loot), "Nächste Quest" (wenn Chain), "Leaderboard" zeigen.
 - **Warum:** Nach dem Reward-Popup muss der Spieler manuell navigieren. Quick-Actions sparen Klicks.
+
+### [FI-061] QuestDetailModal Loading Guards
+- **Quelle:** UX Best Practice
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** QuestDetailModal Claim/Complete/Coop Buttons rufen onClose() sofort auf und haben keinen Loading-State. Double-Click auf Claim feuert duplicate API-Calls.
+- **Warum:** Pattern-Inkonsistenz: QuestCards haben Loading-Guards, QuestDetailModal nicht.
+
+### [FI-062] Quest Requirements Display
+- **Quelle:** WoW Classic (Quest Requirements Panel)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** QuestDetailModal zeigt keine Quest-Requirements (Items, Level, Vorbedingungen). Nur minLevel wird als Badge angezeigt. WoW zeigt immer "Required Items: X" und "Required Level: Y".
+- **Warum:** Spieler sieht nicht was er braucht um eine Quest abzuschliessen.
