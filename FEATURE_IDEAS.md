@@ -158,3 +158,31 @@
 - **Bereich:** Backend
 - **Beschreibung:** helpers.js: varietyBonus liest todayCompletions BEVOR recordUserCompletion laeuft. Der aktuelle Quest-Typ zaehlt nicht fuer den eigenen Variety-Bonus.
 - **Warum:** Erste Quest eines neuen Typs bekommt 0 Stacks statt 1. Off-by-one.
+
+### [FI-021] Shop Gold Buy Loading Guard
+- **Quelle:** Original (UX)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** ShopView Gold-Buy Buttons haben keinen Loading-State. Double-Click feuert mehrere POSTs.
+- **Warum:** Alle Currency-Shop Buttons haben Loading, nur Gold-Shop nicht.
+
+### [FI-022] Currency Shop "Already Owned" State
+- **Quelle:** Diablo 3 (Dye Shop)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Both
+- **Beschreibung:** Frames/Titles im Currency-Shop zeigen keinen "Owned" Status. Spieler muss kaufen um 409 zu bekommen.
+- **Warum:** D3 zeigt "Already Learned" grau an. Spieler sollte vor dem Kauf wissen ob er das Item hat.
+
+### [FI-023] NPC Chain Direct Links
+- **Quelle:** WoW Classic (Quest Chain)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Backend
+- **Beschreibung:** NPC Quest Chains haben keine directen Links zwischen Steps (nextQuestId/prevQuestId). Chain Progression basiert auf chainIndex Arithmetik — fragil bei Quest-Deletion.
+- **Warum:** WoW hat explizite Quest-Chain-Pointer. Robuster gegen Datenkorruption.
+
+### [FI-024] Kanai Library Capacity Cap
+- **Quelle:** Diablo 3 (Kanai's Cube)
+- **Aufwand:** S (1h)
+- **Bereich:** Backend
+- **Beschreibung:** kanais-cube.js hat kein Library-Limit. Wächst unbegrenzt. D3 hat zwar auch kein Cap, aber ein UIUX-Display-Problem tritt auf bei 100+ Einträgen.
+- **Warum:** Performance + UX. Irgendwann wird die Library-Anzeige unbrauchbar.
