@@ -132,11 +132,16 @@ export function useQuestActions({
     if (!reviewApiKey || selectedIds.size === 0) return;
     setBulkLoading(true);
     try {
-      await fetch("/api/quests/bulk-update", {
+      const r = await fetch("/api/quests/bulk-update", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ ids: Array.from(selectedIds), status }),
       });
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Bulk update failed" });
+        return;
+      }
       setSelectedIds(new Set());
       await refresh();
     } catch {
