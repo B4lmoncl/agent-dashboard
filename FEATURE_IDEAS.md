@@ -228,3 +228,10 @@
 - **Bereich:** Frontend
 - **Beschreibung:** RewardCelebration hat keinen "levelUp" Typ — Level-Ups fallen auf den Quest-Theme zurueck. Eigener Theme mit dediziertem Sound/Visual waere besser.
 - **Warum:** Level-Ups sind der wichtigste Progressions-Moment. Sollte sich besonders anfuehlen.
+
+### [FI-031] Electron Security Hardening
+- **Quelle:** Electron Security Best Practices
+- **Aufwand:** M (2-4h)
+- **Bereich:** Electron
+- **Beschreibung:** electron-quest-app hat nodeIntegration: true + contextIsolation: false. Sollte auf contextIsolation: true + preload script umgestellt werden.
+- **Warum:** Electron Security Guideline. Aktuell nicht kritisch (lokale App), aber Best Practice.
