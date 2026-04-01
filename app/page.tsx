@@ -670,6 +670,12 @@ export default function Dashboard() {
 
   // Re-fetch when playerName changes (login/logout) so filters apply correctly
   useEffect(() => {
+    // Clear seen-state refs on logout/switch to prevent data leaking between accounts
+    seenQuestIdsRef.current.clear();
+    seenNpcIdsRef.current.clear();
+    seenRoomsRef.current.clear();
+    prevLevelRef.current = 0;
+    versionCheckedRef.current = false;
     refresh();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerName]);
