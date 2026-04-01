@@ -454,8 +454,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     {DIFFICULTY_TIERS_VOW.map(d => (
                       <button key={d.id} onClick={() => setNewVowDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newVowDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
                       </button>
                     ))}
                   </div>
@@ -466,8 +466,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     {COMMITMENT_TIERS_VOW.map(tier => (
                       <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                       </button>
                     ))}
                   </div>
@@ -483,7 +483,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                   <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Reward Preview</p>
                   <p className="text-xs mb-1" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Täglich bei Check-in:</p>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
+                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: 12 }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
                   {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                   {newVowBloodPact && pactCompletionXp > 0 && <>
                     <div style={{ borderTop: "1px solid rgba(99,102,241,0.15)", margin: "8px 0 6px" }} />
@@ -570,7 +570,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       {COMMITMENT_TIERS_VOW.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
+                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
                         </button>
                       ))}
                     </div>
