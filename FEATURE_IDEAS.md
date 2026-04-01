@@ -368,3 +368,38 @@
 - **Bereich:** Frontend
 - **Beschreibung:** CompanionsWidget zeigt Bond-Level als Zahl aber keinen Fortschrittsbalken zum nächsten Level. D3 zeigt immer eine XP-Bar für den Follower.
 - **Warum:** Spieler sieht nicht wie nah er am nächsten Bond-Level ist.
+
+### [FI-051] Trade Round Item Names Display
+- **Quelle:** Diablo 3 (Trade Window)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** SocialView Trade-Verhandlungsrunden zeigen nur "+N items" statt Item-Namen. D3 zeigt immer die exakten Items mit Rarity-Color im Trade-Window.
+- **Warum:** Spieler kann nicht nachvollziehen was in welcher Runde angeboten wurde.
+
+### [FI-052] Stale Trade Item Validation
+- **Quelle:** WoW Classic (Trade Window)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** SocialView proposeTrade validiert nicht ob Items noch im Inventar sind wenn Submit gedrückt wird. Stale loggedInUser-Snapshot kann Items referenzieren die schon weg sind.
+- **Warum:** WoW re-validiert Items bei Trade-Bestätigung. Aktuell schickt Frontend blinde Item-IDs.
+
+### [FI-053] Quest Type Icons per Card
+- **Quelle:** WoW Classic (Quest Type Icons)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** QuestCards zeigen den Quest-Typ als Text-Label. WoW zeigt ein kleines Icon pro Quest-Typ (Tägliche Quest = blaues !, Elite = Totenkopf, Gruppierung = Schwert+Schild). Eigene Icons pro Typ (development, learning, fitness, social, personal) wären besser als Text.
+- **Warum:** Visuelle Differenzierung auf einen Blick. Text-Labels erfordern Lesen.
+
+### [FI-054] Quest Time Estimate Display
+- **Quelle:** Habitica (Task Duration)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** Quest-Karten zeigen keine geschätzte Dauer. questCatalog.json hat ein "estimatedMinutes" Feld auf vielen Templates. Sollte als "~15 min" angezeigt werden.
+- **Warum:** Habitica zeigt Task-Duration. Hilft bei der Planung welche Quest zuerst angegangen wird.
+
+### [FI-055] Session Stats Summary
+- **Quelle:** HSR (Session End Summary)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** HSR zeigt am Ende einer Session: "Du hast X Quests abgeschlossen, Y XP verdient, Z Gold erhalten, Level A→B." Sowas fehlt komplett. Ein TodayDrawer-Widget könnte das zeigen.
+- **Warum:** Spieler bekommt kein Gesamtbild seiner Session-Leistung. Nur einzelne Quest-Rewards.
