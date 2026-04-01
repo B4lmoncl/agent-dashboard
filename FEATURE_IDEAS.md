@@ -459,3 +459,10 @@
 - **Bereich:** Backend
 - **Beschreibung:** Das Frontend sendet jetzt die gewählte Vow-Frequency (daily/trigger), aber der Backend-Handler in game.js prüft nur schedule.type === "daily" für den Completion-Check. "On Trigger" Vows brauchen einen eigenen Completion-Flow (manueller Trigger statt täglichem Check-In).
 - **Warum:** Fix FI-063 machte das Frontend korrekt, aber der Backend-Support für non-daily Schedules ist noch nicht implementiert.
+
+### [FI-064] Cache Version.json at Startup
+- **Quelle:** Performance Best Practice
+- **Aufwand:** S (30min)
+- **Bereich:** Backend
+- **Beschreibung:** players.js liest version.json synchron bei jedem /api/version Request. Sollte einmal beim Startup geladen und gecacht werden.
+- **Warum:** Blocking fs.readFileSync in Request-Handler. Minimaler Impact (kleine Datei), aber Best Practice.
