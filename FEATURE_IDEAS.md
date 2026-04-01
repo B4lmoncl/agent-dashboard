@@ -207,3 +207,10 @@
 - **Bereich:** Backend
 - **Beschreibung:** World Boss Claim Endpoint rief getActiveBoss() nicht auf — abgelaufene Bosse konnten noch claimed werden.
 - **Warum:** Gefixt in Runde 85+.
+
+### [FI-028] Systematic Fetch Error Handling
+- **Quelle:** Original (UX Robustness)
+- **Aufwand:** L (4-8h)
+- **Bereich:** Frontend
+- **Beschreibung:** 15+ POST-Fetch-Calls in Frontend-Komponenten prüfen nicht r.ok und zeigen keinen Error-Toast bei Fehler. Betrifft: CampaignHub, CharacterView (inventory reorder), DashboardHeader (login/register/forgot-pw), FeedbackModal, ForgeView (craft/learn), OnboardingWizard (class/register), QuestModals (create/spawn). Pattern: fetch → .then(refresh) ohne Error-Check.
+- **Warum:** Spieler-Aktionen die fehlschlagen geben kein Feedback. Sieht aus als wäre nichts passiert.
