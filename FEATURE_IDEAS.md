@@ -123,3 +123,38 @@
 - **Bereich:** Backend
 - **Beschreibung:** campaigns.js erzwingt keine Quest-Reihenfolge. Quest N kann vor N-1 abgeschlossen werden.
 - **Warum:** Campaigns sollen sequentiell sein. Ohne Ordering ist die Story-Reihenfolge beliebig.
+
+### [FI-016] TodayDrawer Midnight Refresh
+- **Quelle:** Original (UX)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** TodayDrawer.tsx: today-Variable und timeInfo sind einmal beim Mount berechnet und werden nie aktualisiert. Ritual/Pet-Resets, Tagesgruesse und Daily-Status gehen bei langen Sessions stale.
+- **Warum:** Spieler die den Drawer ueber Mitternacht offen haben sehen veraltete Daten.
+
+### [FI-017] Public Profile Gold Privacy
+- **Quelle:** Diablo 3 (Profile Privacy)
+- **Aufwand:** S (fertig — gefixt in Runde 85)
+- **Bereich:** Backend
+- **Beschreibung:** Gold-Balance war im Public Profile sichtbar. Entfernt.
+- **Warum:** Spieler-Vermoegen ist privat. D3 zeigt nur Paragon Level, nicht Gold.
+
+### [FI-018] Custom Class Onboarding Fix
+- **Quelle:** Original (Bug Fix)
+- **Aufwand:** S (fertig — gefixt in Runde 85)
+- **Bereich:** Frontend
+- **Beschreibung:** Custom Class ID wurde beim Onboarding verworfen.
+- **Warum:** Spieler die eine Custom-Klasse erstellen hatten danach keine Klasse zugewiesen.
+
+### [FI-019] World Boss in Active Content Section
+- **Quelle:** Original (UX Completeness)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** TodayDrawer zeigt World Boss nur in "Urgent", nicht in "Active Content". Andere aktive Features (Rift, Dungeon, Expedition) erscheinen in beiden Sektionen.
+- **Warum:** Inkonsistenz — Spieler koennten den World Boss verpassen wenn er nicht urgent ist.
+
+### [FI-020] Variety Bonus Consistency
+- **Quelle:** Original (Balance Fix)
+- **Aufwand:** S (1h)
+- **Bereich:** Backend
+- **Beschreibung:** helpers.js: varietyBonus liest todayCompletions BEVOR recordUserCompletion laeuft. Der aktuelle Quest-Typ zaehlt nicht fuer den eigenen Variety-Bonus.
+- **Warum:** Erste Quest eines neuen Typs bekommt 0 Stacks statt 1. Off-by-one.
