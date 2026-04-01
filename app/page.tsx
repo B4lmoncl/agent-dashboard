@@ -2526,6 +2526,7 @@ export default function Dashboard() {
             currentGear={u.gear}
             onClose={() => setShopUserId(null)}
             onBuy={handleShopBuy}
+            onGearBuy={handleGearBuy}
           />
         );
       })()}
