@@ -88,3 +88,38 @@
 - **Bereich:** Frontend
 - **Beschreibung:** CompanionsWidget: Wenn Pet-Limit (2x/Tag) erreicht, Button zeigt "Tomorrow!" statt nur disabled.
 - **Warum:** Spieler klickt Pet-Button, passiert nichts, kein Feedback warum.
+
+### [FI-011] NPC Quest Double-Click Protection
+- **Quelle:** Original (UX Best Practice)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** WandererRest Accept/Complete Buttons haben kein disabled-State waehrend API-Call. Kann doppelt geklickt werden.
+- **Warum:** Audit Fund: Buttons spammbar ohne Loading-Guard.
+
+### [FI-012] Tavern Leave Countdown Display Fix
+- **Quelle:** Original (UX)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** TavernView zeigt "3d left" UND "3d 2h remaining" gleichzeitig. Redundant. Nur timeLeft() behalten.
+- **Warum:** Audit Fund: Doppelte Anzeige desselben Werts.
+
+### [FI-013] Rift Bolstering Affix Implementation
+- **Quelle:** WoW Mythic+ (Bolstering)
+- **Aufwand:** S (1h)
+- **Bereich:** Backend
+- **Beschreibung:** rift.js hat Bolstering-Affix definiert aber nie implementiert. Timer sollte -1h pro Stage reduziert werden.
+- **Warum:** Affix verspricht Mechanik die nicht existiert. Bricht Spielervertrauen.
+
+### [FI-014] Agents Command Queue Auth
+- **Quelle:** Original (Security)
+- **Aufwand:** S (1h)
+- **Bereich:** Backend
+- **Beschreibung:** GET /api/agent/:name/commands hat kein requireApiKey. Command Queue ist public lesbar.
+- **Warum:** Security Audit: Command-Inhalte koennten sensibel sein.
+
+### [FI-015] Campaign Quest Ordering
+- **Quelle:** WoW Classic (Campaign Quest Chains)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Backend
+- **Beschreibung:** campaigns.js erzwingt keine Quest-Reihenfolge. Quest N kann vor N-1 abgeschlossen werden.
+- **Warum:** Campaigns sollen sequentiell sein. Ohne Ordering ist die Story-Reihenfolge beliebig.
