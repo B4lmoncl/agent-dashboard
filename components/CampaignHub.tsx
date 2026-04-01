@@ -183,7 +183,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           <div>
             {cq.map((q, idx) => {
               const isBoss = q.id === expandedCampaign.bossQuestId;
-              const isCurrentQuest = !isBoss && idx === firstIncompleteIdx;
+              const isCurrentQuest = idx === firstIncompleteIdx;
               return getQuestNode(q, isBoss, isCurrentQuest, idx);
             })}
           </div>
