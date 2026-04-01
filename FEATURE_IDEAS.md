@@ -452,3 +452,10 @@
 - **Bereich:** Frontend
 - **Beschreibung:** QuestDetailModal zeigt keine Quest-Requirements (Items, Level, Vorbedingungen). Nur minLevel wird als Badge angezeigt. WoW zeigt immer "Required Items: X" und "Required Level: Y".
 - **Warum:** Spieler sieht nicht was er braucht um eine Quest abzuschliessen.
+
+### [FI-063] Vow Frequency "On Trigger" Backend Support
+- **Quelle:** Original (Bug adjacend — gefixt in letztem Commit)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Backend
+- **Beschreibung:** Das Frontend sendet jetzt die gewählte Vow-Frequency (daily/trigger), aber der Backend-Handler in game.js prüft nur schedule.type === "daily" für den Completion-Check. "On Trigger" Vows brauchen einen eigenen Completion-Flow (manueller Trigger statt täglichem Check-In).
+- **Warum:** Fix FI-063 machte das Frontend korrekt, aber der Backend-Support für non-daily Schedules ist noch nicht implementiert.
