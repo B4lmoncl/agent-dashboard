@@ -67,3 +67,24 @@
 - **Beschreibung:** OnboardingWizard: Core Systems erklaeren (XP, Tower, Quests, Streaks).
 - **Warum:** Neue Spieler bekommen null Erklaerung der Kern-Mechaniken.
 
+
+### [FI-008] State Management Refactor (page.tsx)
+- **Quelle:** Original (React Best Practices)
+- **Aufwand:** XL (8h+)
+- **Bereich:** Frontend
+- **Beschreibung:** page.tsx hat 90 useState Calls. State in Context/Reducer aufteilen (Dashboard, Player, UI). Reduziert Re-Renders.
+- **Warum:** Performance: Jeder State-Update rendert den gesamten Component Tree neu. Splitting wuerde nur betroffene Subtrees re-rendern.
+
+### [FI-009] Unique Named Items Content
+- **Quelle:** Diablo 3 (Set Items / Uniques)
+- **Aufwand:** L (4-8h)
+- **Bereich:** Data
+- **Beschreibung:** uniqueItems.json ist leer. Braucht 15-30 handgefertigte Items mit fixen Stats, Lore, und Flavor-Text. Quellen: World Boss, Mythic Rift, Special Events.
+- **Warum:** D3 Uniques sind der Endgame-Antrieb. Aktuell gibts keine — Collection Log ist leer.
+
+### [FI-010] Companion Pet Limit UX Feedback
+- **Quelle:** Original
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** CompanionsWidget: Wenn Pet-Limit (2x/Tag) erreicht, Button zeigt "Tomorrow!" statt nur disabled.
+- **Warum:** Spieler klickt Pet-Button, passiert nichts, kein Feedback warum.
