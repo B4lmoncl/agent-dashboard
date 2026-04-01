@@ -256,3 +256,10 @@
 - **Bereich:** Data
 - **Beschreibung:** recipe-koch-gap-130, recipe-koch-gap-140, recipe-vz-gap-135 haben keine description. Brauchen Skulduggery Pleasant Humor.
 - **Warum:** Content Completeness: 878/881 Recipes haben Descriptions.
+
+### [FI-035] Missing Image onError Handlers (6)
+- **Quelle:** CLAUDE.md UI Guidelines
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** 6 von 152 img-Tags haben keinen onError Handler. CLAUDE.md: "Always add onError handler to hide broken images gracefully."
+- **Warum:** Broken Images zeigen das Browser-Default-Broken-Icon statt graceful zu verschwinden.
