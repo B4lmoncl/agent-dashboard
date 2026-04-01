@@ -293,7 +293,10 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           {/* Extend timer button (Mondstaub) */}
           {!activeRift.completed && !activeRift.failed && !activeRift.extended && reviewApiKey && (
             <button
+              disabled={actionLoading}
               onClick={async () => {
+                if (actionLoading) return;
+                setActionLoading(true);
                 try {
                   const r = await fetch("/api/rift/extend", {
                     method: "POST",
@@ -308,17 +311,19 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   }
                 } catch { setMessage({ text: "Network error", type: "error" }); }
                 setTimeout(() => setMessage(null), 4000);
+                setActionLoading(false);
               }}
-              title="Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"
+              title={actionLoading ? "Action in progress..." : "Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"}
               className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
               style={{
                 background: "rgba(192,132,252,0.08)",
                 color: "#c084fc",
                 border: "1px solid rgba(192,132,252,0.2)",
-                cursor: "pointer",
+                cursor: actionLoading ? "not-allowed" : "pointer",
+                opacity: actionLoading ? 0.5 : 1,
               }}
             >
-              Extend Timer +6h (30 Mondstaub)
+              {actionLoading ? "..." : "Extend Timer +6h (30 Mondstaub)"}
             </button>
           )}
 
