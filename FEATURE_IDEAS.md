@@ -214,3 +214,17 @@
 - **Bereich:** Frontend
 - **Beschreibung:** 15+ POST-Fetch-Calls in Frontend-Komponenten prüfen nicht r.ok und zeigen keinen Error-Toast bei Fehler. Betrifft: CampaignHub, CharacterView (inventory reorder), DashboardHeader (login/register/forgot-pw), FeedbackModal, ForgeView (craft/learn), OnboardingWizard (class/register), QuestModals (create/spawn). Pattern: fetch → .then(refresh) ohne Error-Check.
 - **Warum:** Spieler-Aktionen die fehlschlagen geben kein Feedback. Sieht aus als wäre nichts passiert.
+
+### [FI-029] Modal ESC Stack — Only Close Topmost
+- **Quelle:** Original (UX Architecture)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** Alle useModalBehavior-Instanzen registrieren ESC auf document-Level. Bei gestapelten Modals (z.B. RewardCelebration über einem anderen Modal) schliessen alle gleichzeitig statt nur das oberste. Braucht globalen Modal-Stack oder Event-Flag.
+- **Warum:** ESC sollte nur das oberste Modal schliessen. Aktuell schliesst es alle gestapelten Modals auf einmal.
+
+### [FI-030] Level-Up Reward Type
+- **Quelle:** Diablo 3 (Level-Up Celebration)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** RewardCelebration hat keinen "levelUp" Typ — Level-Ups fallen auf den Quest-Theme zurueck. Eigener Theme mit dediziertem Sound/Visual waere besser.
+- **Warum:** Level-Ups sind der wichtigste Progressions-Moment. Sollte sich besonders anfuehlen.
