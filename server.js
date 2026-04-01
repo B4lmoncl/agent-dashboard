@@ -39,6 +39,7 @@ const app = express();
 app.set("trust proxy", true);
 const PORT = process.env.PORT || 3001;
 
+app.disable('x-powered-by'); // Don't leak Express version
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json({
   verify: (req, _res, buf) => { req.rawBody = buf; }, // Store raw body for webhook HMAC verification
