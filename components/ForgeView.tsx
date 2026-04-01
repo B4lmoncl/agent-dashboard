@@ -183,7 +183,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   useEffect(() => {
     if (npcModalTab !== "disenchant" || !playerName || !reviewApiKey) return;
     setDisenchantLoading(true);
-    fetch(`/api/character?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) })
+    fetch(`/api/player/${encodeURIComponent(playerName)}/character`, { headers: getAuthHeaders(reviewApiKey) })
       .then(r => r.json())
       .then(data => {
         setDisenchantInv((data.inventory || []).filter((i: InventoryItem) => {

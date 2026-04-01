@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useDashboard } from "@/app/DashboardContext";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
@@ -96,6 +97,7 @@ export default function TalentTreeView({
   addToast?: (t: ToastInput) => void;
 }) {
   const _toast = addToast || (() => {});
+  const { playerName } = useDashboard();
   const [data, setData] = useState<TalentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
@@ -739,7 +741,7 @@ export default function TalentTreeView({
                         if (!confirm) return;
                         try {
                           // Fetch inventory to find a legendary
-                          const invR = await fetch("/api/inventory", { headers: getAuthHeaders() });
+                          const invR = await fetch(`/api/player/${encodeURIComponent(playerName || "")}/character`, { headers: getAuthHeaders() });
                           const invD = await invR.json();
                           const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
                           if (legendaries.length === 0) {
