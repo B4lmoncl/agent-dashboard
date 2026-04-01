@@ -418,8 +418,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: habitScoring === h.id ? "not-allowed" : "pointer" }}
                       >-</button>
                       <button
-                        onClick={() => deleteHabit(h.id)}
-                        title="Delete habit"
+                        onClick={() => { if (window.confirm("Delete this habit? Score history will be lost.")) deleteHabit(h.id); }}
+                        title="Delete habit (permanent)"
                         className="text-xs w-7 h-7 rounded flex items-center justify-center"
                         style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
                       >x</button>
