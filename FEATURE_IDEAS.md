@@ -263,3 +263,17 @@
 - **Bereich:** Frontend
 - **Beschreibung:** 6 von 152 img-Tags haben keinen onError Handler. CLAUDE.md: "Always add onError handler to hide broken images gracefully."
 - **Warum:** Broken Images zeigen das Browser-Default-Broken-Icon statt graceful zu verschwinden.
+
+### [FI-036] Loading Skeletons for 14 Components
+- **Quelle:** CLAUDE.md UI Guidelines
+- **Aufwand:** L (4-8h)
+- **Bereich:** Frontend
+- **Beschreibung:** 14 Komponenten fetchen Daten on mount aber zeigen kein Loading-Skeleton: GachaView (3 parallele Fetches!), LeaderboardView, QuestModals, TalentTreeView, AdventureTomeView, ShopView, CampaignHub, CompanionsWidget, RitualChamber, QuestPanels, HonorsView, DashboardHeader, FeedbackModal, CVBuilderPanel.
+- **Warum:** CLAUDE.md: "Skeleton loading: skeleton-pulse animation for placeholder cards during data fetch." User sieht leeren Screen bis alle Daten da sind.
+
+### [FI-037] Replace window.confirm with Styled Modals
+- **Quelle:** UX Consistency
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** 3 destructive actions nutzen browser-native window.confirm statt styled Modals: TavernView (leave), TalentTreeView (sacrifice), CharacterView (gem unsocket). ForgeView hat bereits ein eigenes Confirm-Modal.
+- **Warum:** Native Browser-Dialoge brechen das visuelle Design und sind nicht theme-bar.
