@@ -132,7 +132,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             }} />
           ))}
         </div>
-        {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry) => {
+        {(top3.length === 1 ? [top3[0]] : [top3[1], top3[0], top3[2]]).filter(Boolean).map((entry) => {
           const rank = entry.rank;
           const heights: Record<number, string> = { 1: "h-32", 2: "h-24", 3: "h-20" };
           const podiumHeightClass = heights[rank] ?? "h-16";
