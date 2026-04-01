@@ -310,6 +310,16 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
     if (mythicLevel > highestCleared + 1) {
       return res.status(400).json({ error: `Cannot skip Mythic levels. Highest cleared: ${highestCleared}, max entry: ${highestCleared + 1}` });
     }
+    // Prevent replaying the same cleared level for infinite rewards
+    // Must push to the next level OR wait for weekly reset
+    if (mythicLevel <= highestCleared) {
+      const lastClear = (u.riftHistory || []).filter(h => h.tier === 'mythic' && h.mythicLevel === mythicLevel && h.success);
+      const weekAgo = Date.now() - 7 * 24 * 3600000;
+      const recentClear = lastClear.find(h => new Date(h.completedAt).getTime() > weekAgo);
+      if (recentClear) {
+        return res.status(400).json({ error: `Mythic+${mythicLevel} already cleared this week. Push to +${highestCleared + 1} or wait for reset.` });
+      }
+    }
   }
 
   // Check cooldown
