@@ -277,3 +277,10 @@
 - **Bereich:** Frontend
 - **Beschreibung:** 3 destructive actions nutzen browser-native window.confirm statt styled Modals: TavernView (leave), TalentTreeView (sacrifice), CharacterView (gem unsocket). ForgeView hat bereits ein eigenes Confirm-Modal.
 - **Warum:** Native Browser-Dialoge brechen das visuelle Design und sind nicht theme-bar.
+
+### [FI-038] CompanionsWidget setTimeout Cleanup
+- **Quelle:** React Best Practices
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** CompanionsWidget hat 15 setTimeout→setState Calls ohne clearTimeout. Kann "setState on unmounted" Warnings erzeugen wenn Component vor Timeout abgebaut wird.
+- **Warum:** React 19 behandelt das graceful (kein Crash), aber cleanup ist Best Practice.
