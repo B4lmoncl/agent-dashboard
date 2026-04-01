@@ -494,3 +494,10 @@
 - **Bereich:** Backend
 - **Beschreibung:** Kein CSP-Header konfiguriert. Sollte mindestens script-src, style-src, img-src, connect-src Policies setzen. Express helmet Paket oder manueller Header.
 - **Warum:** CSP verhindert XSS auch wenn React-Escaping versagt (Defense in Depth).
+
+### [FI-069] CSS Keyframe Cleanup
+- **Quelle:** Code Quality
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** 41 von 132 @keyframes Animationen in globals.css scheinen unbenutzt. Manche werden dynamisch referenziert (Template-Strings), aber viele sind wahrscheinlich Dead CSS von entfernten Features.
+- **Warum:** CSS-Datei ist 1813 Zeilen. Entfernung von ~200 Zeilen Dead Keyframes wuerde die Ladezeit marginal verbessern.
