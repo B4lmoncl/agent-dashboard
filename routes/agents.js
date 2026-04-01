@@ -128,8 +128,8 @@ router.post('/api/agent/:name/register', requireApiKey, (req, res) => {
   } else {
     // Update meta fields if provided in the request body
     if (avatar !== undefined) state.store.agents[name].avatar = avatar;
-    if (role !== undefined) state.store.agents[name].role = role;
-    if (description !== undefined) state.store.agents[name].description = description;
+    if (role !== undefined) state.store.agents[name].role = String(role).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    if (description !== undefined) state.store.agents[name].description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
     if (color !== undefined) state.store.agents[name].color = color;
   }
   saveData();
