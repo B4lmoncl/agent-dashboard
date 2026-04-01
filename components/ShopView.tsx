@@ -59,9 +59,8 @@ const CURRENCY_SHOPS: { key: string; label: string; color: string; iconPath: str
   { key: "mondstaub", label: "Moondust", color: "#c084fc", iconPath: "/images/icons/currency-mondstaub.png" },
 ];
 
-export default function ShopView({ onBuy, onGearBuy, onNavigate, onRewardCelebration }: {
+export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   onBuy: (userId: string, itemId: string) => void;
-  onGearBuy: (userId: string, gearId: string) => void;
   onNavigate?: (view: string) => void;
   onRewardCelebration?: (data: RewardCelebrationData) => void;
 }) {

@@ -1596,7 +1596,6 @@ export default function Dashboard() {
         {dashView === "shop" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><ShopView
             onBuy={handleShopBuy}
-            onGearBuy={handleGearBuy}
             onNavigate={(v) => setDashView(v as typeof dashView)}
             onRewardCelebration={setRewardCelebration}
           /></Suspense></ErrorBoundary>
@@ -2521,7 +2520,6 @@ export default function Dashboard() {
             currentGear={u.gear}
             onClose={() => setShopUserId(null)}
             onBuy={handleShopBuy}
-            onGearBuy={handleGearBuy}
           />
         );
       })()}
