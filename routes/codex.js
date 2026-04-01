@@ -113,8 +113,9 @@ function checkCodexDiscovery(userId) {
         break;
     }
 
-    if (unlocked) {
+    if (unlocked && !discovered.has(entry.id)) {
       u.codexDiscovered.push(entry.id);
+      discovered.add(entry.id); // Prevent duplicates within same call
       newEntries.push(entry.id);
     }
   }

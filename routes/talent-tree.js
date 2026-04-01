@@ -90,6 +90,18 @@ function canAllocate(user, nodeId) {
     }
   }
 
+  // Enforce choice groups: max picks per group (server-side enforcement)
+  if (treeData.choiceGroups) {
+    for (const group of treeData.choiceGroups) {
+      if (!group.nodes.includes(nodeId)) continue;
+      const maxPicks = group.maxPicks || 1;
+      const pickedInGroup = group.nodes.filter(nid => nid !== nodeId && talents.allocated[nid]).length;
+      if (pickedInGroup >= maxPicks) {
+        return { ok: false, reason: `Choice group "${group.label}": max ${maxPicks} pick(s) allowed` };
+      }
+    }
+  }
+
   return { ok: true };
 }
 
