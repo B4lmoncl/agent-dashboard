@@ -284,3 +284,52 @@
 - **Bereich:** Frontend
 - **Beschreibung:** CompanionsWidget hat 15 setTimeout→setState Calls ohne clearTimeout. Kann "setState on unmounted" Warnings erzeugen wenn Component vor Timeout abgebaut wird.
 - **Warum:** React 19 behandelt das graceful (kein Crash), aber cleanup ist Best Practice.
+
+### [FI-039] Achievement Filter + Search in HonorsView
+- **Quelle:** Diablo 3 (Achievement Browser)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** HonorsView hat keine Filter/Suche. 165 Achievements werden alle gleichzeitig gerendert. Braucht: Filter nach earned/unearned, Rarity-Filter, Category-Tabs, Suchfeld.
+- **Warum:** D3 hat einen vollen Achievement-Browser mit Kategorie-Tabs + Fortschrittsbalken pro Kategorie. Aktuell ist alles ein langer Scroll.
+
+### [FI-040] Achievement Points Display
+- **Quelle:** CLAUDE.md (Achievement Points System)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** HonorsView rendert keine Achievement-Punkte obwohl achievementTemplates.json ein points-Feld hat und CLAUDE.md ein Punktesystem definiert (common=5, uncommon=10, rare=25, epic=50, legendary=100). Points sollten pro Achievement und als Gesamtsumme angezeigt werden.
+- **Warum:** CLAUDE.md definiert cosmetic frame unlocks bei Punktemeilensteinen. Die Punkte werden nirgends angezeigt.
+
+### [FI-041] Ritual Complete Loading State
+- **Quelle:** UX Best Practice
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** RitualChamber "Check off" Button hat keinen Loading-State während des API-Calls. Double-Click möglich.
+- **Warum:** Alle anderen Action-Buttons haben Loading-Guards. Rituals nicht.
+
+### [FI-042] Quest Pool Size Display
+- **Quelle:** WoW Classic (Available Quests Counter)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** Die Quest-Pool-Größe (wie viele Quests zur Auswahl stehen) wird nirgends angezeigt. Der Talent "quest_pool_size" erhöht sie aber der Spieler sieht nicht wie viele Quests im Pool sind vs. Maximum.
+- **Warum:** Transparenz: Spieler weiß nicht wie sein Talent die Questauswahl beeinflusst.
+
+### [FI-043] Crafting Material Source Hints
+- **Quelle:** WoW Classic (Material Tooltip Sources)
+- **Aufwand:** M (2-4h)
+- **Bereich:** Frontend
+- **Beschreibung:** Materials in der ForgeView Craft-Preview zeigen keinen Hinweis WO man sie bekommt (Quest-Drops, Vendor, Crafted). WoW zeigt "Drops from: X" auf jedem Material.
+- **Warum:** Spieler weiß nicht wo er fehlende Materialien farmen soll.
+
+### [FI-044] Tavern Rest Duration Preview
+- **Quelle:** Original (UX)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** TavernView "Enter the Hearth" zeigt keine Preview wie lange Streak+Forge eingefroren werden. Der Spieler muss die Anzahl Tage erst eingeben bevor er sieht was passiert.
+- **Warum:** Transparenz vor dem Commitment.
+
+### [FI-045] Profession Synergy Display
+- **Quelle:** WoW Classic (Profession Pairing)
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** professions.json hat "synergies" Felder die Profession-Pairings beschreiben (z.B. Schmied+Lederverarbeiter). ForgeView zeigt diese Synergien nicht an wenn man eine zweite Profession wählt.
+- **Warum:** WoW zeigt "Recommended pairing" bei der Professionswahl. Hilft Neulingen.
