@@ -473,3 +473,17 @@
 - **Bereich:** Config
 - **Beschreibung:** package.json hat kein "engines" Feld. Sollte "node": ">=20" spezifizieren da das Projekt Node 20 (Docker) und Node 22 (dev) verwendet.
 - **Warum:** Verhindert versehentliches Deployment auf Node 16/18 wo Features fehlen.
+
+### [FI-066] Logout View Transition
+- **Quelle:** UX
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** Wenn ein eingeloggter Spieler auf Codex/Talents/Tome/Character ist und ausloggt, verschwindet die View sofort (blank area). Sollte stattdessen zum Quest Board fallbacken oder einen Login-Prompt zeigen.
+- **Warum:** Jarring UX — View verschwindet ohne Feedback.
+
+### [FI-067] Login Player Card Skeleton
+- **Quelle:** UX
+- **Aufwand:** S (1h)
+- **Bereich:** Frontend
+- **Beschreibung:** Zwischen Login (playerName gesetzt) und erstem Refresh (loggedInUser populiert) verschwindet die Player Card. Sollte ein Skeleton zeigen.
+- **Warum:** Flicker beim Login — Card blinkt kurz weg.
