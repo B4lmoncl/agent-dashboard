@@ -235,3 +235,10 @@
 - **Bereich:** Electron
 - **Beschreibung:** electron-quest-app hat nodeIntegration: true + contextIsolation: false. Sollte auf contextIsolation: true + preload script umgestellt werden.
 - **Warum:** Electron Security Guideline. Aktuell nicht kritisch (lokale App), aber Best Practice.
+
+### [FI-032] Dependency Security Updates
+- **Quelle:** npm audit
+- **Aufwand:** S (1h)
+- **Bereich:** DevOps
+- **Beschreibung:** 2 Vulnerabilities: Next.js (HTTP smuggling, CSRF bypass, disk cache DoS) + path-to-regexp (ReDoS). Fix via npm audit fix (--force fuer Next.js Update 16.1.6 → 16.2.2).
+- **Warum:** 1 High severity (ReDoS), 4 Moderate (Next.js). Should be updated in a dedicated PR with full testing.
