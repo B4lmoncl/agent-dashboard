@@ -133,7 +133,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({
           title: newTitle.trim(),
-          schedule: { type: "daily" },
+          schedule: { type: newVowFrequency || "daily" },
           playerId: playerName,
           createdBy: playerName,
           isAntiRitual: true,
