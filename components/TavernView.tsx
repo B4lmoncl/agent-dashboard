@@ -222,7 +222,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
           <button
             onClick={() => {
-              setConfirmMessage("Taverne verlassen? Der 30-Tage-Cooldown startet erneut. Dein Streak und Forge Temp werden wiederhergestellt.");
+              setConfirmMessage("Leave the Hearth? The 30-day cooldown restarts. Your streak and forge temperature will resume.");
               setConfirmAction(() => () => leaveTavern());
             }}
             disabled={actionLoading}
@@ -371,14 +371,14 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
                 className="text-xs px-4 py-2 rounded-lg font-semibold"
                 style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
               >
-                Abbrechen
+                Cancel
               </button>
               <button
                 onClick={() => { confirmAction(); setConfirmAction(null); }}
                 className="text-xs px-4 py-2 rounded-lg font-semibold"
                 style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
               >
-                Bestätigen
+                Confirm
               </button>
             </div>
           </div>

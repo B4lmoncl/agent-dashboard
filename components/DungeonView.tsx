@@ -305,7 +305,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-2xl mb-2">◆</p>
+        <img src="/images/icons/nav-dungeons.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-2" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
         <p className="text-xs text-w15">Log in to enter the dungeons.</p>
       </div>
@@ -601,7 +601,23 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
             {/* Already collected */}
             {activeRun.collected.some(c => c.toLowerCase() === playerName?.toLowerCase()) && (
-              <p className="text-xs text-w25 py-2.5">Rewards collected. Waiting for other party members.</p>
+              <div className="py-2.5">
+                <p className="text-xs text-w25">Rewards collected. Waiting for party members:</p>
+                <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                  {activeRun.participants.map(p => {
+                    const hasCollected = activeRun.collected.some(c => c.toLowerCase() === p.name.toLowerCase());
+                    return (
+                      <span key={p.name} className="text-xs px-2 py-0.5 rounded" style={{
+                        background: hasCollected ? "rgba(34,197,94,0.08)" : "rgba(255,255,255,0.03)",
+                        color: hasCollected ? "#22c55e" : "rgba(255,255,255,0.3)",
+                        border: `1px solid ${hasCollected ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.06)"}`,
+                      }}>
+                        {hasCollected ? "✓" : "..."} {p.name}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
             )}
 
             {/* Waiting status */}
