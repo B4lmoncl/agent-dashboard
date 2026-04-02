@@ -200,13 +200,18 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   }
 
   // Streak logic: was it done yesterday?
+  // Trigger-type vows only count on explicit completion — missed days don't break the streak.
+  const isTriggerType = ritual.schedule?.type === 'trigger';
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   if (ritual.lastCompleted === yesterday) {
     ritual.streak = (ritual.streak || 0) + 1;
   } else if (!ritual.lastCompleted) {
     ritual.streak = 1;
+  } else if (isTriggerType) {
+    // Trigger-based: no missed-day penalty — just increment the count
+    ritual.streak = (ritual.streak || 0) + 1;
   } else {
-    // Missed days
+    // Missed days (daily schedule only)
     const lastDate = new Date(ritual.lastCompleted);
     const daysMissed = Math.floor((Date.now() - lastDate.getTime()) / 86400000) - 1;
     if (daysMissed === 1) {
