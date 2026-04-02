@@ -360,7 +360,13 @@ router.get('/api/professions', (req, res) => {
     }
   }
   const favoriteRecipes = u?.favoriteRecipes || [];
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents: PROFESSIONS_DATA.vendorReagents || [], proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
+  // Apply vendor reagent discount from talent tree
+  const talentReagentDiscount = uid ? (require('./talent-tree').getUserTalentEffects(uid)).vendor_reagent_discount || 0 : 0;
+  const vendorReagents = (PROFESSIONS_DATA.vendorReagents || []).map(r => ({
+    ...r,
+    discountedPrice: talentReagentDiscount > 0 ? Math.max(1, Math.round(r.price * (1 - talentReagentDiscount))) : null,
+  }));
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────

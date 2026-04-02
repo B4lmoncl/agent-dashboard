@@ -447,7 +447,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.atSkillCap && data.nextRankNeeded) msg += ` — Skill Cap reached! Train ${data.nextRankNeeded} to continue.`;
         else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (!hadSkillUp && data.skillUpColor !== "gray") msg += " (No skill-up)";
-        if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 300}]`;
+        if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 75}]`;
         setCraftResultSkillUpColor(resultSkillUpColor);
         setCraftResultHadSkillUp(hadSkillUp);
         // Batch craft: sequential tick animation with progress indicator
@@ -1056,9 +1056,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               {prof.unlocked && (
                 <div className="flex items-center gap-2">
                   <div className="flex-1 progress-bar-diablo" style={{ height: 7 }}>
-                    <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}cc, ${prof.color})`, width: `${(prof.skill || prof.playerXp || 0) / (prof.skillCap || prof.nextLevelXp || 300) * 100}%`, boxShadow: `0 0 6px ${prof.color}40` }} />
+                    <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}cc, ${prof.color})`, width: `${(prof.skill || prof.playerXp || 0) / (prof.skillCap || prof.nextLevelXp || 75) * 100}%`, boxShadow: `0 0 6px ${prof.color}40` }} />
                   </div>
-                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 300} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
+                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 75} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
                 </div>
               )}
               {prof.masteryBonus && (prof.masteryActive ? (
@@ -1497,7 +1497,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <p style={{ marginTop: 4, opacity: 0.6 }}>Skill-Up Colors: <span style={{ color: "#f97316" }}>Orange</span>=100%, <span style={{ color: "#eab308" }}>Yellow</span>=~75%, <span style={{ color: "#22c55e" }}>Green</span>=~25%, Gray=0%</p>
                     </>}>
                       <div className={`w-32 progress-bar-diablo${skillUpFlash ? " skill-bar-flash" : ""}`} style={{ height: 7, cursor: "help" }}>
-                        <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
+                        <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 75)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
                       </div>
                     </TipCustom>
                     <span className="text-sm font-mono" style={{ color: selectedNpc.rankColor || "rgba(255,255,255,0.35)" }}>
@@ -1890,8 +1890,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               const maxFromMats = Object.entries(recipe.materials || {}).map(([matId, amt]) => Math.floor((materials[matId] || 0) / (amt as number)));
                               const perCraftGold = (recipe.cost?.gold || 0);
                               const maxFromGold = perCraftGold > 0 ? Math.floor(playerGoldForMax / perCraftGold) : Infinity;
-                              const hasMaterials = Object.keys(recipe.materials || {}).length > 0;
-                              const batchCap = hasMaterials ? 50 : 10;
+                              // Match backend logic: only material/transmute recipes get 50 cap
+                              const isMaterialRecipe = recipe.result?.type === "transmute_material" || recipe.result?.type === "material";
+                              const batchCap = isMaterialRecipe ? 50 : 10;
                               const maxCraftable = Math.min(batchCap, maxFromGold, ...(maxFromMats.length > 0 ? maxFromMats : [batchCap]));
                               const safeMax = Math.max(0, maxCraftable);
                               return (
@@ -2518,7 +2519,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <div className="space-y-2">
                     {profReagents.map(reagent => {
                       const count = reagentBuyCount[reagent.id] || 1;
-                      const totalCost = reagent.price * count;
+                      const effectivePrice = (reagent as { discountedPrice?: number | null }).discountedPrice ?? reagent.price;
+                      const totalCost = effectivePrice * count;
                       const canAfford = gold >= totalCost;
                       const owned = materials[reagent.id] || 0;
                       return (
@@ -2529,7 +2531,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold text-w60">{reagent.name}</p>
                             <p className="text-xs text-w20">{reagent.desc}</p>
-                            <p className="text-xs mt-0.5" style={{ color: "#fbbf24" }}>{reagent.price}g pro Stück · Du hast: <span className="font-mono">{owned}</span></p>
+                            <p className="text-xs mt-0.5" style={{ color: "#fbbf24" }}>{effectivePrice < reagent.price ? <><s style={{ opacity: 0.4 }}>{reagent.price}g</s> {effectivePrice}g</> : <>{reagent.price}g</>} pro Stück · Du hast: <span className="font-mono">{owned}</span></p>
                           </div>
                           <div className="flex items-center gap-1.5 flex-shrink-0">
                             <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, (prev[reagent.id] || 1) - 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>−</button>
