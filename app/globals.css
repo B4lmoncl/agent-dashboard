@@ -1825,3 +1825,12 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   0%, 100% { stroke-opacity: 0.6; stroke-width: 2; }
   50%      { stroke-opacity: 1; stroke-width: 3; }
 }
+
+/* Skill-up flash for crafting profession bar (ForgeView) */
+.skill-bar-flash {
+  animation: skill-bar-flash-anim 0.6s ease-out;
+}
+@keyframes skill-bar-flash-anim {
+  0% { box-shadow: 0 0 20px rgba(251,191,36,0.8), inset 0 0 10px rgba(251,191,36,0.5); filter: brightness(2); }
+  100% { box-shadow: none; filter: brightness(1); }
+}
