@@ -82,7 +82,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
           <div>
             <Tip k="achievements" heading><h2 className="text-lg font-bold" style={{ color: "#d4a64a" }}>Hall of Honors</h2></Tip>
             <p className="text-xs" style={{ color: "rgba(212,166,74,0.4)" }}>
-              {loggedInUser ? `${loggedInUser.name} — ${playerEarnedIds.size} / ${catalogue.length} achievements` : "Log in to track your achievements"}
+              {loggedInUser ? `${loggedInUser.name} — ${playerEarnedIds.size}/${catalogue.length} achievements · ${catalogue.filter(a => playerEarnedIds.has(a.id)).reduce((sum, a) => sum + ((a as unknown as { points?: number }).points || 0), 0)} pts` : "Log in to track your achievements"}
             </p>
             <p className="text-xs italic mt-0.5" style={{ color: "rgba(212,166,74,0.25)" }}>Die Sterne erinnern sich an jeden Helden. Auch an die, die niemand sonst kennt.</p>
           </div>
@@ -206,6 +206,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1.5">
                               <p className="text-xs font-bold truncate" style={{ color: highlight ? "#f0f0f0" : "rgba(255,255,255,0.35)" }}>{ach.name}</p>
+                              {(ach as unknown as { points?: number }).points && <span className="text-xs font-mono" style={{ color: "rgba(251,191,36,0.4)" }}>{(ach as unknown as { points: number }).points}pt</span>}
                               {isHidden && myEarned && <span className="text-xs px-1 rounded" style={{ background: "rgba(138,43,226,0.2)", color: "#a855f7" }}>SECRET</span>}
                             </div>
                             {earnerCount > 0 || myEarned

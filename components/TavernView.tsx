@@ -181,9 +181,9 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </div>
             <div className="text-right">
               <p className="text-lg font-mono font-bold" style={{ color: "#fbbf24" }}>
-                {status.remainingDays}d left
+                {timeLeft(status.remainingMs || 0)}
               </p>
-              <p className="text-xs text-w25">{timeLeft(status.remainingMs || 0)} remaining</p>
+              <p className="text-xs text-w25">remaining</p>
             </div>
           </div>
 
