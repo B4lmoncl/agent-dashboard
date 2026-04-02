@@ -147,7 +147,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'Daily morning checklist to start the day strong. Streak tracking built in.',
     type: 'personal',
-    priority: 'medium',
+    rarity: 'uncommon',
     recurrence: 'daily',
     checklist: [
       { text: 'Wake up on time', done: false },
@@ -163,7 +163,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'Gym session quest. Log workout type, sets, reps, and weight. Rest days count too.',
     type: 'fitness',
-    priority: 'high',
+    rarity: 'rare',
     recurrence: null,
     checklist: [
       { text: 'Warm up (10 min)', done: false },
@@ -179,7 +179,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'AirIT learning path study session — Fortinet, Cisco, SD-WAN, MPLS, or BGP.',
     type: 'learning',
-    priority: 'high',
+    rarity: 'rare',
     recurrence: null,
     checklist: [
       { text: 'Choose topic (Fortinet / Cisco / SD-WAN / MPLS / BGP)', done: false },
@@ -194,7 +194,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: '30-minute focused learning session. One topic, no distractions, full concentration.',
     type: 'learning',
-    priority: 'medium',
+    rarity: 'uncommon',
     recurrence: 'daily',
     checklist: [
       { text: 'Pick one topic', done: false },
@@ -209,7 +209,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'Exam prep session. Track study hours, mock exams, and certification deadline.',
     type: 'learning',
-    priority: 'high',
+    rarity: 'rare',
     recurrence: null,
     checklist: [
       { text: 'Review exam objectives', done: false },
@@ -225,7 +225,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'Quality time with your partner. Plan something special — connection matters.',
     type: 'social',
-    priority: 'medium',
+    rarity: 'uncommon',
     recurrence: 'weekly',
     checklist: [
       { text: 'Plan activity or location', done: false },
@@ -240,7 +240,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'Weekly review and planning session. Strategize the week ahead like a raid leader.',
     type: 'personal',
-    priority: 'high',
+    rarity: 'rare',
     recurrence: 'weekly',
     checklist: [
       { text: 'Review last week\'s wins and misses', done: false },
@@ -256,7 +256,7 @@ const PERSONAL_QUEST_TEMPLATES = [
     icon: null,
     desc: 'Sleep and recovery quest. Target 7–9 hours. Track wind-down routine.',
     type: 'fitness',
-    priority: 'medium',
+    rarity: 'uncommon',
     recurrence: 'daily',
     checklist: [
       { text: 'No screens 30 min before bed', done: false },
@@ -275,7 +275,7 @@ const FORGE_CHALLENGES = [
     icon: null,
     desc: 'Write code every day for 30 days. Daily development quest auto-created.',
     quests: [
-      { title: 'Code Sprint Day', type: 'development', recurrence: 'daily', priority: 'medium' },
+      { title: 'Code Sprint Day', type: 'development', recurrence: 'daily', rarity: 'uncommon' },
     ],
     achievement: 'challenge_coder',
   },
@@ -285,7 +285,7 @@ const FORGE_CHALLENGES = [
     icon: null,
     desc: '4 weeks of focused learning. Weekly learning quest auto-created.',
     quests: [
-      { title: 'Learning Marathon Session', type: 'learning', recurrence: 'weekly', priority: 'medium' },
+      { title: 'Learning Marathon Session', type: 'learning', recurrence: 'weekly', rarity: 'uncommon' },
     ],
     achievement: 'challenge_learner',
   },
@@ -295,7 +295,7 @@ const FORGE_CHALLENGES = [
     icon: null,
     desc: 'Daily personal quest for 2 weeks. Build positive habits.',
     quests: [
-      { title: 'Clean Slate Daily Habit', type: 'personal', recurrence: 'daily', priority: 'low' },
+      { title: 'Clean Slate Daily Habit', type: 'personal', recurrence: 'daily', rarity: 'common' },
     ],
     achievement: null,
   },
@@ -560,7 +560,6 @@ router.post('/api/personal-templates/spawn', requireApiKey, (req, res) => {
     id: `quest-${Date.now()}`,
     title: template.name,
     description: template.desc,
-    priority: template.priority,
     type: template.type,
     categories: [],
     product: null,
@@ -621,7 +620,6 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
       id: `quest-${Date.now()}-${Math.random().toString(36).slice(2,6)}`,
       title: `${qTemplate.title} (${u.name})`,
       description: `Part of challenge: ${challenge.name}`,
-      priority: qTemplate.priority || 'medium',
       type: qTemplate.type || 'development',
       categories: [],
       product: null,

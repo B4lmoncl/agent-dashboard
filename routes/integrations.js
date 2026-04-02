@@ -12,7 +12,8 @@ function verifyGitHubSignature(req) {
   if (!secret) return false; // Fail closed — require secret to be configured
   const sig = req.headers['x-hub-signature-256'];
   if (!sig) return false;
-  const body = JSON.stringify(req.body);
+  // Use raw body bytes for HMAC (re-serializing parsed JSON doesn't match GitHub's signature)
+  const body = req.rawBody || Buffer.from(JSON.stringify(req.body));
   const expected = 'sha256=' + crypto.createHmac('sha256', secret).update(body).digest('hex');
   return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
 }
@@ -32,7 +33,7 @@ router.post('/api/webhooks/github', (req, res) => {
       id: `quest-gh-pr-${pr.number}-${Date.now()}`,
       title: `[PR #${pr.number}] ${String(pr.title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}`,
       description: pr.body ? String(pr.body).slice(0, 300).replace(/</g, '&lt;').replace(/>/g, '&gt;') : `Merged PR by ${pr.user?.login}`,
-      priority: 'medium',
+      rarity: 'uncommon',
       type: 'development',
       categories: ['Coding'],
       status: 'completed',
@@ -57,7 +58,7 @@ router.post('/api/webhooks/github', (req, res) => {
       id: `quest-gh-issue-${issue.number}-${Date.now()}`,
       title: `[Issue #${issue.number}] ${String(issue.title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}`,
       description: issue.body ? String(issue.body).slice(0, 300).replace(/</g, '&lt;').replace(/>/g, '&gt;') : `GitHub issue opened by ${issue.user?.login}`,
-      priority: 'medium',
+      rarity: 'uncommon',
       type: 'development',
       categories: ['Bug Fix'],
       status: 'suggested',

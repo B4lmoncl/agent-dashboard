@@ -106,20 +106,6 @@ export function useQuestActions({
     }
   }, [reviewApiKey, loadingAction, refresh, addToast]);
 
-  const handleChangePriority = useCallback(async (id: string, priority: Quest["priority"]) => {
-    if (!reviewApiKey) return;
-    try {
-      const r = await fetch(`/api/quest/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-        body: JSON.stringify({ priority }),
-      });
-      if (!r.ok) addToast({ type: "error", message: "Failed to change priority" });
-    } catch {
-      addToast({ type: "error", message: "Network error — could not change priority" });
-    }
-  }, [reviewApiKey, addToast]);
-
   const toggleSelect = useCallback((id: string) => {
     setSelectedIds(prev => {
       const next = new Set(prev);
@@ -132,11 +118,16 @@ export function useQuestActions({
     if (!reviewApiKey || selectedIds.size === 0) return;
     setBulkLoading(true);
     try {
-      await fetch("/api/quests/bulk-update", {
+      const r = await fetch("/api/quests/bulk-update", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ ids: Array.from(selectedIds), status }),
       });
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Bulk update failed" });
+        return;
+      }
       setSelectedIds(new Set());
       await refresh();
     } catch {
@@ -281,6 +272,8 @@ export function useQuestActions({
             companionEmoji: data.companionReward.companionType === "ember_sprite" ? "🔥" : data.companionReward.companionType === "lore_owl" ? "🦉" : data.companionReward.companionType === "gear_golem" ? "⚙️" : "🐾",
             companionAccent: data.companionReward.companionType === "ember_sprite" ? "#f97316" : data.companionReward.companionType === "lore_owl" ? "#a78bfa" : data.companionReward.companionType === "gear_golem" ? "#60a5fa" : "#ff6b9d",
           } : {}),
+          chainQuestTemplate: data.chainQuestTemplate || null,
+          levelUp: data.levelUp || null,
         });
         // Fire toasts for additional achievements beyond the first (which is shown in celebration)
         if (data.newAchievements?.length > 1) {
@@ -320,8 +313,9 @@ export function useQuestActions({
             }
           }
         }
-        // Diminishing returns notification (first time hitting a new tier)
-        if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Daily rewards reduced to 75%", icon: "◆", sub: "Complete 5 quests early for full value" });
+        // Diminishing returns notification — warn early, then each tier
+        if (data.dailyQuestCount === 5) addToast({ type: "flavor", message: "1 more quest at full rewards today!", icon: "◆", sub: "After quest 6 rewards drop to 75%" });
+        else if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Daily rewards reduced to 75%", icon: "◆", sub: "Complete 5 quests early for full value" });
         else if (data.dailyQuestCount === 11) addToast({ type: "flavor", message: "Daily rewards reduced to 50%", icon: "◆", sub: "Consider resting until tomorrow" });
         else if (data.dailyQuestCount === 21) addToast({ type: "flavor", message: "Daily rewards at minimum (25%)", icon: "◆", sub: "Your forge burns low — rest and return stronger" });
 
@@ -471,7 +465,6 @@ export function useQuestActions({
     // Handlers
     handleApprove,
     handleReject,
-    handleChangePriority,
     toggleSelect,
     handleBulkUpdate,
     handleToggleFavorite,

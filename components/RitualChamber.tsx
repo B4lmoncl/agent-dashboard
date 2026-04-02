@@ -47,6 +47,7 @@ interface RitualChamberProps {
 export default function RitualChamber({ rituals, setRituals, setRewardCelebration }: RitualChamberProps) {
   const { playerName, reviewApiKey, refresh, loggedInUser } = useDashboard();
   const isResting = !!loggedInUser?.tavernRest?.active;
+  const [loading, setLoading] = useState(true);
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
   const [ritualNameError, setRitualNameError] = useState(false);
@@ -57,6 +58,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [newRitualBloodPact, setNewRitualBloodPact] = useState(false);
   const [newRitualDifficulty, setNewRitualDifficulty] = useState("medium");
   const [deleteRitualConfirmId, setDeleteRitualConfirmId] = useState<string | null>(null);
+  const [completingRitualId, setCompletingRitualId] = useState<string | null>(null);
   const [extendRitualId, setExtendRitualId] = useState<string | null>(null);
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
   const [recommitRitualId, setRecommitRitualId] = useState<string | null>(null);
@@ -67,6 +69,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [habitsOpen, setHabitsOpen] = useState(false);
   const [newHabitTitle, setNewHabitTitle] = useState("");
   const [habitScoring, setHabitScoring] = useState<string | null>(null);
+  const [confirmDeleteHabitId, setConfirmDeleteHabitId] = useState<string | null>(null);
 
   const fetchHabits = useCallback(async () => {
     if (!playerName) return;
@@ -77,6 +80,11 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   }, [playerName]);
 
   useEffect(() => { fetchHabits(); }, [fetchHabits]);
+
+  // Clear loading once rituals prop arrives or when no player is logged in
+  useEffect(() => {
+    if (!playerName || rituals.length > 0) setLoading(false);
+  }, [playerName, rituals.length]);
 
   const createHabit = async () => {
     if (!newHabitTitle.trim() || !reviewApiKey || !playerName) return;
@@ -237,9 +245,10 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             ) : (
               <>
                 <button
-                  disabled={doneToday || !reviewApiKey}
+                  disabled={doneToday || !reviewApiKey || completingRitualId === ritual.id}
                   onClick={async () => {
-                    if (!reviewApiKey || !playerName) return;
+                    if (!reviewApiKey || !playerName || completingRitualId) return;
+                    setCompletingRitualId(ritual.id);
                     try {
                       const r = await fetch(`/api/rituals/${ritual.id}/complete`, {
                         method: 'POST',
@@ -262,18 +271,20 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         refresh();
                       }
                     } catch { /* network error — retry silently */ }
+                    setCompletingRitualId(null);
                   }}
                   className="text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all"
                   style={{
-                    background: doneToday ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.15)",
+                    background: doneToday ? "rgba(34,197,94,0.08)" : completingRitualId === ritual.id ? "rgba(167,139,250,0.08)" : "rgba(167,139,250,0.15)",
                     color: doneToday ? "rgba(34,197,94,0.5)" : "#a78bfa",
                     border: `1px solid ${doneToday ? "rgba(34,197,94,0.2)" : "rgba(167,139,250,0.3)"}`,
-                    cursor: doneToday ? 'default' : 'pointer',
+                    cursor: (doneToday || completingRitualId === ritual.id) ? 'not-allowed' : 'pointer',
+                    opacity: completingRitualId === ritual.id ? 0.5 : 1,
                   }}
                   onMouseEnter={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.28)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(167,139,250,0.2)"; } }}
                   onMouseLeave={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.15)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; } }}
                 >
-                  {doneToday ? "✓ Done" : "Check off"}
+                  {doneToday ? "✓ Done" : completingRitualId === ritual.id ? "..." : "Check off"}
                 </button>
                 {reviewApiKey && !ritual.bloodPact && (
                   <button
@@ -295,6 +306,16 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
       </div>
     );
   };
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -418,8 +439,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: habitScoring === h.id ? "not-allowed" : "pointer" }}
                       >-</button>
                       <button
-                        onClick={() => deleteHabit(h.id)}
-                        title="Delete habit"
+                        onClick={() => setConfirmDeleteHabitId(h.id)}
+                        title="Delete habit (permanent)"
                         className="text-xs w-7 h-7 rounded flex items-center justify-center"
                         style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
                       >x</button>
@@ -538,13 +559,13 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Reward Preview</p>
                     <p className="text-xs mb-1" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Daily on check-off:</p>
-                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.75rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.75rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
-                    {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
+                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.75rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
+                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.75rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
+                    {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                     {newRitualBloodPact && pactCompletionXp > 0 && <>
                       <div style={{ borderTop: "1px solid rgba(239,68,68,0.15)", margin: "8px 0 6px" }} />
                       <p className="text-xs mb-0.5" style={{ color: "rgba(239,68,68,0.5)", fontStyle: "italic", letterSpacing: "0.03em" }}>Einmalig nach {tierData.days}d Abschluss <span style={{ fontWeight: 600 }}>(Pact ×{pactMulti})</span>:</p>
-                      <p className="text-xs" style={{ color: "rgba(239,68,68,0.8)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
+                      <p className="text-xs" style={{ color: "rgba(239,68,68,0.8)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
                     </>}
                     <p className="text-xs mt-2 mb-0.5" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Bei Streak-Meilenstein:</p>
                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.5)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>
@@ -628,7 +649,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                       {COMMITMENT_TIERS.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendRitualCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendRitualCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: extendRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
+                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
                         </button>
                       ))}
                     </div>
@@ -721,6 +742,36 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           </ModalPortal>
         );
       })()}
+
+      {/* Delete Habit Confirmation Modal */}
+      {confirmDeleteHabitId && (
+        <div
+          className="fixed inset-0 z-[150] flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.7)" }}
+          onClick={() => setConfirmDeleteHabitId(null)}
+        >
+          <div
+            className="rounded-xl p-5 max-w-sm w-full mx-4"
+            style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            <p className="text-sm font-bold mb-1" style={{ color: "#e8e8e8" }}>Habit löschen?</p>
+            <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>Die Score-Historie geht dauerhaft verloren.</p>
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => setConfirmDeleteHabitId(null)}
+                className="text-xs px-4 py-2 rounded-lg"
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+              >Abbrechen</button>
+              <button
+                onClick={() => { deleteHabit(confirmDeleteHabitId); setConfirmDeleteHabitId(null); }}
+                className="text-xs px-4 py-2 rounded-lg font-bold"
+                style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+              >Löschen</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

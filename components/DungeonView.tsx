@@ -529,7 +529,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           {/* Combined Power Stats */}
           {activeRun.status === "active" && (
             <div className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
-              <TipCustom title="Success Formula" icon="📊" accent="#3b82f6" body={<p>Effective Power = total Gear Score + Bond Bonus (+5 per bond level). If power ≥ threshold: 100%. At 70%: 70%, 50%: 40%, below: 15%.</p>}>
+              <TipCustom title="Success Formula" icon="◆" accent="#3b82f6" body={<p>Effective Power = total Gear Score + Bond Bonus (+5 per bond level). If power ≥ threshold: 100%. At 70%: 70%, 50%: 40%, below: 15%.</p>}>
                 <p className="text-xs text-w25 mb-1 cursor-help">Group Power</p>
               </TipCustom>
               {(() => {

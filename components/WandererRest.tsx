@@ -6,7 +6,7 @@ import { useModalBehavior } from "@/components/ModalPortal";
 import type { Quest, ActiveNpc, QuestsData } from "@/app/types";
 import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
-  ClickablePriorityBadge, CategoryBadge, ProductBadge, PriorityBadge,
+  CategoryBadge, ProductBadge,
 } from "@/components/QuestBoard";
 import { Tip } from "@/components/GameTooltip";
 import { RARITY_COLORS } from "@/app/constants";
@@ -30,7 +30,6 @@ interface WandererRestProps {
   setDevInProgressCollapsed: (fn: (v: boolean) => boolean) => void;
   handleApprove: (id: string, comment?: string) => void;
   handleReject: (id: string, comment?: string) => void;
-  handleChangePriority: (id: string, priority: Quest["priority"]) => void;
   reviewComments: Record<string, string>;
   setReviewComments: (fn: (prev: Record<string, string>) => Record<string, string>) => void;
   dobbieOpen: boolean;
@@ -43,9 +42,9 @@ interface WandererRestProps {
   lyraQuestsInProgress: Quest[];
   lyraAllQuests: Quest[];
   // Quest actions
-  handleClaim?: (questId: string) => void;
-  handleUnclaim?: (questId: string) => void;
-  handleComplete?: (questId: string, questTitle: string) => void;
+  handleClaim?: (questId: string) => void | Promise<void>;
+  handleUnclaim?: (questId: string) => void | Promise<void>;
+  handleComplete?: (questId: string, questTitle: string) => void | Promise<void>;
   // For mood unification
   streak?: number;
   user?: { companion?: { bondLevel?: number; lastPetted?: string | null; type?: string; emoji?: string; name?: string } | null } | null;
@@ -109,7 +108,7 @@ export function WandererRest({
   searchFilter, setSearchFilter,
   devOpenCollapsed, setDevOpenCollapsed,
   devInProgressCollapsed, setDevInProgressCollapsed,
-  handleApprove, handleReject, handleChangePriority,
+  handleApprove, handleReject,
   reviewComments, setReviewComments,
   dobbieOpen, setDobbieOpen,
   loading, petName,
@@ -132,6 +131,7 @@ export function WandererRest({
   }, [activeNpcs, selectedNpc, setSelectedNpc]);
 
   const [npcInfoOpen, setNpcInfoOpen] = useState(false);
+  const [claimingQuestId, setClaimingQuestId] = useState<string | null>(null);
 
   // ESC + scroll lock for NPC popup handled by useModalBehavior in page.tsx
   // ESC + scroll lock for NPC info popup
@@ -213,7 +213,7 @@ export function WandererRest({
                       )}
                       {urgent && !allDone && (
                         <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(220,38,38,0.8)", fontSize: 12, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
-                          ⏳ {npc.hoursLeft}H LEFT
+                          ◈ {npc.hoursLeft}H LEFT
                         </div>
                       )}
                       {/* Gold pulsing dot for NPCs with unclaimed open quests */}
@@ -511,24 +511,33 @@ export function WandererRest({
                           )}
                           {currentQuest.status === "open" && handleClaim && playerName && (
                             <button
-                              onClick={(e) => {
+                              disabled={claimingQuestId === currentQuest.questId}
+                              onClick={async (e) => {
                                 e.stopPropagation();
-                                handleClaim(currentQuest.questId);
+                                if (claimingQuestId) return;
+                                setClaimingQuestId(currentQuest.questId);
+                                try { await handleClaim(currentQuest.questId); } finally { setClaimingQuestId(null); }
                               }}
                               className="text-xs px-3 py-1 rounded-lg font-semibold ml-auto"
-                              style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)", cursor: "pointer", transition: "all 0.2s" }}
-                              onMouseEnter={e => { (e.currentTarget).style.background = "rgba(245,158,11,0.35)"; }}
-                              onMouseLeave={e => { (e.currentTarget).style.background = "rgba(245,158,11,0.2)"; }}
-                            >Accept Quest</button>
+                              style={{ background: claimingQuestId === currentQuest.questId ? "rgba(245,158,11,0.1)" : "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)", cursor: claimingQuestId === currentQuest.questId ? "not-allowed" : "pointer", opacity: claimingQuestId === currentQuest.questId ? 0.6 : 1, transition: "all 0.2s" }}
+                              onMouseEnter={e => { if (!claimingQuestId) (e.currentTarget).style.background = "rgba(245,158,11,0.35)"; }}
+                              onMouseLeave={e => { (e.currentTarget).style.background = claimingQuestId === currentQuest.questId ? "rgba(245,158,11,0.1)" : "rgba(245,158,11,0.2)"; }}
+                            >{claimingQuestId === currentQuest.questId ? "Accepting…" : "Accept Quest"}</button>
                           )}
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && currentQuest.claimedBy?.toLowerCase() === playerName?.toLowerCase() && handleComplete && (
                             <button
-                              onClick={(e) => { e.stopPropagation(); handleComplete(currentQuest.questId, currentQuest.title); }}
+                              disabled={claimingQuestId === currentQuest.questId}
+                              onClick={async (e) => {
+                                e.stopPropagation();
+                                if (claimingQuestId) return;
+                                setClaimingQuestId(currentQuest.questId);
+                                try { await handleComplete(currentQuest.questId, currentQuest.title); } finally { setClaimingQuestId(null); }
+                              }}
                               className="text-xs px-3 py-1 rounded-lg font-semibold ml-auto"
-                              style={{ background: "rgba(34,197,94,0.2)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)", cursor: "pointer", transition: "all 0.2s" }}
-                              onMouseEnter={e => { (e.currentTarget).style.background = "rgba(34,197,94,0.35)"; }}
-                              onMouseLeave={e => { (e.currentTarget).style.background = "rgba(34,197,94,0.2)"; }}
-                            >Complete</button>
+                              style={{ background: claimingQuestId === currentQuest.questId ? "rgba(34,197,94,0.1)" : "rgba(34,197,94,0.2)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)", cursor: claimingQuestId === currentQuest.questId ? "not-allowed" : "pointer", opacity: claimingQuestId === currentQuest.questId ? 0.6 : 1, transition: "all 0.2s" }}
+                              onMouseEnter={e => { if (!claimingQuestId) (e.currentTarget).style.background = "rgba(34,197,94,0.35)"; }}
+                              onMouseLeave={e => { (e.currentTarget).style.background = claimingQuestId === currentQuest.questId ? "rgba(34,197,94,0.1)" : "rgba(34,197,94,0.2)"; }}
+                            >{claimingQuestId === currentQuest.questId ? "Completing…" : "Complete"}</button>
                           )}
                         </div>
                       </div>
@@ -688,7 +697,7 @@ export function WandererRest({
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1">
-                              <ClickablePriorityBadge priority={q.priority} onClick={() => { const cycle: Quest["priority"][] = ["low","medium","high"]; const next = cycle[(cycle.indexOf(q.priority)+1)%3]; handleChangePriority(q.id, next); }} />
+                              <span className="text-xs px-1.5 py-0.5 rounded font-semibold flex-shrink-0" style={{ color: RARITY_COLORS[q.rarity || "common"] || RARITY_COLORS.common, background: `${RARITY_COLORS[q.rarity || "common"] || RARITY_COLORS.common}1F`, border: `1px solid ${RARITY_COLORS[q.rarity || "common"] || RARITY_COLORS.common}4D` }}>{(q.rarity || "common").charAt(0).toUpperCase() + (q.rarity || "common").slice(1)}</span>
                               <h3 className="text-sm font-medium truncate" style={{ color: "rgba(255,255,255,0.85)" }}>{q.title}</h3>
                             </div>
                             {q.description && <p className="text-xs leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>{q.description}</p>}

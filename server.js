@@ -39,8 +39,11 @@ const app = express();
 app.set("trust proxy", true);
 const PORT = process.env.PORT || 3001;
 
+app.disable('x-powered-by'); // Don't leak Express version
 app.use(cors({ credentials: true, origin: true }));
-app.use(express.json());
+app.use(express.json({
+  verify: (req, _res, buf) => { req.rawBody = buf; }, // Store raw body for webhook HMAC verification
+}));
 app.use(cookieParser());
 
 // Security headers
@@ -49,6 +52,8 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  // CSP: restrict script/style sources, allow inline styles (Tailwind), images from self
+  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'self'");
   next();
 });
 

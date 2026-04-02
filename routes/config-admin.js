@@ -103,22 +103,8 @@ router.get('/api/dashboard', (req, res) => {
   // ─── Users (inline from GET /api/users — no pagination for dashboard) ─────
   const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
   const users = Object.values(state.users).map(u => {
+    const isRequestingPlayer = playerLower && u.id === playerLower;
     const ft = calcDynamicForgeTemp(u.id);
-    const forgeXpPure = getForgeXpBase(u.id);
-    const kraftBonus = getKraftBonus(u.id);
-    const forgeXp = getXpMultiplier(u.id);
-    const forgeGoldPure = getForgeGoldBase(u.id);
-    const weisheitBonus = getWeisheitBonus(u.id);
-    const forgeGold = getGoldMultiplier(u.id);
-    const gear = getUserGear(u.id);
-    const gearBonus = 1 + (gear.xpBonus || 0) / 100;
-    const earnedIds = new Set((u.earnedAchievements || []).map(a => a.id));
-    const compBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
-    const bondBonus = 1 + 0.01 * Math.max(0, (u.companion?.bondLevel ?? 1) - 1);
-    const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
-    const hoarding = getQuestHoardingMalus(u.id);
-    const hoardingMultiplier = hoarding.multiplier;
-    const legendaryMods = getLegendaryModifiers(u.id);
     const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = u;
     if (Array.isArray(safeUser.earnedAchievements)) {
       safeUser.earnedAchievements = safeUser.earnedAchievements.map(a => {
@@ -127,15 +113,33 @@ router.get('/api/dashboard', (req, res) => {
         return { ...a, icon: a.icon || tpl.icon, desc: a.desc || tpl.desc, rarity: a.rarity || tpl.rarity, category: a.category || tpl.category };
       });
     }
-    return {
+    const result = {
       ...safeUser,
       forgeTemp: ft,
       equippedTitle: u.equippedTitle || null,
-      modifiers: {
-        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoardingMultiplier * legendaryMods.xpBonus).toFixed(2) },
-        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
-      },
     };
+    // Only compute expensive modifiers for the requesting player (not all users)
+    if (isRequestingPlayer) {
+      const forgeXpPure = getForgeXpBase(u.id);
+      const kraftBonus = getKraftBonus(u.id);
+      const forgeXp = getXpMultiplier(u.id);
+      const forgeGoldPure = getForgeGoldBase(u.id);
+      const weisheitBonus = getWeisheitBonus(u.id);
+      const forgeGold = getGoldMultiplier(u.id);
+      const gear = getUserGear(u.id);
+      const gearBonus = 1 + (gear.xpBonus || 0) / 100;
+      const earnedIds = new Set((u.earnedAchievements || []).map(a => a.id));
+      const compBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
+      const bondBonus = 1 + 0.01 * Math.max(0, (u.companion?.bondLevel ?? 1) - 1);
+      const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
+      const hoarding = getQuestHoardingMalus(u.id);
+      const legendaryMods = getLegendaryModifiers(u.id);
+      result.modifiers = {
+        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoarding.multiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoarding.multiplier * legendaryMods.xpBonus).toFixed(2) },
+        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
+      };
+    }
+    return result;
   });
 
   // ─── Achievements (inline from GET /api/achievements) ─────────────────────
@@ -149,7 +153,7 @@ router.get('/api/dashboard', (req, res) => {
     const questDetails = c.questIds.map(id => {
       const q = state.questsById.get(id);
       if (!q) return { id, title: '(deleted)', status: 'deleted' };
-      return { id: q.id, title: q.title, status: q.status, priority: q.priority, type: q.type,
+      return { id: q.id, title: q.title, status: q.status, type: q.type,
                completedBy: q.completedBy, completedAt: q.completedAt, claimedBy: q.claimedBy,
                lore: q.lore || null, description: q.description };
     });
@@ -218,7 +222,6 @@ router.get('/api/dashboard', (req, res) => {
             title: q.title,
             description: q.description,
             type: q.type,
-            priority: q.priority,
             status,
             claimedBy,
             completedBy,
@@ -691,7 +694,6 @@ function generatePlayerQuests(playerName, playerLevel) {
     daySeed,
   });
 
-  const priorityMap = { starter: 'low', intermediate: 'medium', advanced: 'high', expert: 'high' };
   const REWARDS_BY_RARITY = {
     common:    { xp: 10, gold: 8  },
     uncommon:  { xp: 18, gold: 14 },
@@ -706,7 +708,6 @@ function generatePlayerQuests(playerName, playerLevel) {
       id: `quest-${uid}-${Date.now()}-${String(i + 1).padStart(3, '0')}`,
       title: resolved.title || t.title,
       description: resolved.description || t.description,
-      priority: priorityMap[t.difficulty] || t.priority || 'medium',
       type: resolved.type || t.type || 'personal',
       categories: t.category ? [t.category] : [],
       product: null, humanInputRequired: false,

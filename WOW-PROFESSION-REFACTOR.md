@@ -409,17 +409,17 @@ Diese Entscheidungen sind verbindlich für alle zukünftigen Implementierungs-Se
 | ring, amulet | Schmuck | Juwelier |
 | — | Consumables | Alchemist, Koch, Verzauberer |
 
-### Session 9: Final Balance Pass + Frontend (TODO)
-- [ ] Skill-gap analysis: ensure no skill brackets without recipes
-- [ ] Material cost audit: costs scale linearly per WoW-PROFESSION-REFACTOR table
-- [ ] CLAUDE.md: update profession count (8), skill system, slot ownership
+### Session 9: Final Balance Pass + Frontend (PARTIAL — remaining items below)
+- [x] Skill-gap analysis: ensure no skill brackets without recipes (881 recipes, well distributed)
+- [x] Material cost audit: costs scale linearly per WoW-PROFESSION-REFACTOR table
+- [x] CLAUDE.md: update profession count (8), skill system, slot ownership
 - [ ] CharacterView: Ring slot in equipment UI
 - [ ] ForgeView: BoE badge, gem-cut/gem-merge recipe display
-- [ ] Rank training endpoint working + UI button
-- [ ] Trainer recipe learning cost UI (Learn button + gold)
-- [ ] Unlearn profession UI (2-step confirm)
-- [ ] Material drops gate: only with profession + only affinity mats (backend done, needs testing)
-- [ ] Synergy hints update for 8 professions
+- [x] Rank training endpoint working + UI button (implemented in crafting.js)
+- [x] Trainer recipe learning cost UI (Learn button + gold in ForgeView)
+- [x] Unlearn profession UI (2-step confirm in ForgeView)
+- [x] Material drops gate: only with profession + only affinity mats (backend + tested)
+- [ ] Synergy hints update for 8 professions (FI-045 in FEATURE_IDEAS.md)
 
 ---
 
@@ -427,7 +427,7 @@ Diese Entscheidungen sind verbindlich für alle zukünftigen Implementierungs-Se
 
 | File | Status |
 |------|--------|
-| `professions.json` | 8 professions, 55 materials, 760 recipes ✅ |
+| `professions.json` | 8 professions, 91 materials, 881 recipes ✅ |
 | `gearTemplates.json` | 251 general items (unchanged) ✅ |
 | `gearTemplates-schmied.json` | 71 heavy armor (helm/armor/boots) ✅ |
 | `gearTemplates-schneider.json` | 67 cloth armor ✅ |

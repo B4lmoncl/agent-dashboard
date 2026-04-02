@@ -84,6 +84,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
   const [spawning, setSpawning] = useState<string | null>(null);
   const [spawned, setSpawned] = useState<Set<string>>(new Set());
   const [collapsed, setCollapsed] = useState(false);
+  const [spawnError, setSpawnError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/personal-templates").then(r => r.ok ? r.json() : []).then(setTemplates).catch(e => console.error('[quest-modals]', e));
@@ -91,6 +92,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
 
   const handleSpawn = async (templateId: string) => {
     setSpawning(templateId);
+    setSpawnError(null);
     try {
       const r = await fetch("/api/personal-templates/spawn", {
         method: "POST",
@@ -100,8 +102,11 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
       if (r.ok) {
         setSpawned(prev => new Set(prev).add(templateId));
         onRefresh();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setSpawnError(d.error || "Failed to add quest. Try again.");
       }
-    } catch { /* ignore */ } finally {
+    } catch { setSpawnError("Network error. Could not add quest."); } finally {
       setSpawning(null);
     }
   };
@@ -115,7 +120,6 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
     social:      { color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
   };
   const typeIcons: Record<string, string> = { personal: "·", learning: "·", fitness: "·", social: "·" };
-  const priorityBadge: Record<string, string> = { high: "#ef4444", medium: "#eab308", low: "#22c55e" };
 
   return (
     <section className="mb-6">
@@ -133,6 +137,9 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
           {collapsed ? "▸" : "▾"}
         </span>
       </button>
+      {spawnError && (
+        <p className="text-xs mb-2" style={{ color: "#ef4444" }}>{spawnError}</p>
+      )}
       {!collapsed && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {templates.map(t => {
@@ -208,6 +215,7 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   const [challenges, setChallenges] = useState<ForgeChallengeTemplate[]>([]);
   const [joining, setJoining] = useState<string | null>(null);
   const [joinUserId, setJoinUserId] = useState<string>(() => users[0]?.id ?? "");
+  const [joinError, setJoinError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/challenges").then(r => r.ok ? r.json() : []).then(setChallenges).catch(e => console.error('[quest-modals]', e));
@@ -216,16 +224,22 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   const handleJoin = async (challengeId: string) => {
     if (!joinUserId) return;
     setJoining(challengeId);
+    setJoinError(null);
     try {
-      await fetch("/api/challenges/join", {
+      const r = await fetch("/api/challenges/join", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ userId: joinUserId, challengeId }),
       });
-      const updated = await fetch("/api/challenges").then(r => r.ok ? r.json() : challenges);
-      setChallenges(updated);
-      onRefresh();
-    } catch { /* ignore */ } finally {
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        setJoinError(d.error || "Failed to join challenge. Try again.");
+      } else {
+        const updated = await fetch("/api/challenges").then(r2 => r2.ok ? r2.json() : challenges);
+        setChallenges(updated);
+        onRefresh();
+      }
+    } catch { setJoinError("Network error. Could not join challenge."); } finally {
       setJoining(null);
     }
   };
@@ -252,6 +266,9 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
           </select>
         )}
       </div>
+      {joinError && (
+        <p className="text-xs mb-2" style={{ color: "#ef4444" }}>{joinError}</p>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {challenges.map(c => {
           const joined = users.find(u => u.id === joinUserId) && c.participants.some(p => p.id === joinUserId);
@@ -331,7 +348,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
         body: JSON.stringify({
           title: template.title,
           description: template.description,
-          priority: "medium",
+          rarity: "uncommon",
           type: "relationship-coop",
           createdBy: "leon",
           coopPartners: [partner1.toLowerCase(), partner2.toLowerCase()],
@@ -459,7 +476,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
         body: JSON.stringify({
           title: template.name,
           description: `Learning quest chain: ${template.name}`,
-          priority: "medium",
+          rarity: "uncommon",
           type: "learning",
           createdBy: "leon",
         }),
@@ -472,7 +489,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
           headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
           body: JSON.stringify({
             title: step,
-            priority: "low",
+            rarity: "common",
             type: "learning",
             parentQuestId: parent.id,
             createdBy: "leon",
@@ -559,12 +576,12 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
 // ─── Household Quest Board ────────────────────────────────────────────────────
 
 const CHORE_TEMPLATES = [
-  { title: "Vacuum the apartment", recurrence: "weekly", priority: "low"    as Quest["priority"] },
-  { title: "Clean bathroom",       recurrence: "weekly", priority: "medium" as Quest["priority"] },
-  { title: "Do laundry",           recurrence: "weekly", priority: "medium" as Quest["priority"] },
-  { title: "Wash dishes",          recurrence: "daily",  priority: "low"    as Quest["priority"] },
-  { title: "Take out trash",       recurrence: "weekly", priority: "low"    as Quest["priority"] },
-  { title: "Grocery shopping",     recurrence: "weekly", priority: "medium" as Quest["priority"] },
+  { title: "Vacuum the apartment", recurrence: "weekly", rarity: "common"   },
+  { title: "Clean bathroom",       recurrence: "weekly", rarity: "uncommon" },
+  { title: "Do laundry",           recurrence: "weekly", rarity: "uncommon" },
+  { title: "Wash dishes",          recurrence: "daily",  rarity: "common"   },
+  { title: "Take out trash",       recurrence: "weekly", rarity: "common"   },
+  { title: "Grocery shopping",     recurrence: "weekly", rarity: "uncommon" },
 ];
 
 export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: {
@@ -605,7 +622,7 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
         body: JSON.stringify({
           title: chore.title,
           type: "personal",
-          priority: chore.priority,
+          rarity: chore.rarity,
           recurrence: chore.recurrence,
           createdBy: "leon",
         }),
@@ -689,12 +706,12 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
 // ─── Thoughtful Hero Panel ─────────────────────────────────────────────────────
 
 const THOUGHTFUL_PROMPTS = [
-  { icon: "/images/icons/cat-social.png", title: "Gift Idea Reminder",  desc: "Note a gift idea for someone special",                 priority: "low"    as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Call Reminder",        desc: "Schedule a call with someone you care about",          priority: "medium" as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Plan Date Night",      desc: "Plan a special date or quality time together",         priority: "high"   as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Send a Kind Message",  desc: "Reach out and say something thoughtful",               priority: "low"    as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Celebrate Someone",    desc: "Celebrate an achievement or milestone in their life",  priority: "medium" as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Check In",             desc: "Check in on a friend or family member",                priority: "low"    as Quest["priority"] },
+  { icon: "/images/icons/cat-social.png", title: "Gift Idea Reminder",  desc: "Note a gift idea for someone special",                 rarity: "common"   },
+  { icon: "/images/icons/cat-social.png", title: "Call Reminder",        desc: "Schedule a call with someone you care about",          rarity: "uncommon" },
+  { icon: "/images/icons/cat-social.png", title: "Plan Date Night",      desc: "Plan a special date or quality time together",         rarity: "rare"     },
+  { icon: "/images/icons/cat-social.png", title: "Send a Kind Message",  desc: "Reach out and say something thoughtful",               rarity: "common"   },
+  { icon: "/images/icons/cat-social.png", title: "Celebrate Someone",    desc: "Celebrate an achievement or milestone in their life",  rarity: "uncommon" },
+  { icon: "/images/icons/cat-social.png", title: "Check In",             desc: "Check in on a friend or family member",                rarity: "common"   },
 ];
 
 export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
@@ -717,7 +734,7 @@ export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
           title: prompt.title,
           description: prompt.desc,
           type: "social",
-          priority: prompt.priority,
+          rarity: prompt.rarity,
           createdBy: "leon",
         }),
       });

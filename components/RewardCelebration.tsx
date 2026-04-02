@@ -5,7 +5,7 @@ import { SFX } from "@/lib/sounds";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon";
+export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon" | "levelUp";
 
 export interface RewardCelebrationData {
   type: RewardType;
@@ -26,6 +26,10 @@ export interface RewardCelebrationData {
   pactBonus?: { xp: number; gold: number } | null;
   /** Currency rewards (daily bonus) */
   currencies?: { name: string; amount: number; color: string }[];
+  /** Chain quest available after this quest */
+  chainQuestTemplate?: { title?: string } | null;
+  /** Level-up info if the player leveled up */
+  levelUp?: { level: number; title: string } | null;
 }
 
 // ─── Theme config per reward type ────────────────────────────────────────────
@@ -208,6 +212,20 @@ const THEMES: Record<RewardType, ThemeConfig> = {
       "A dungeon well plundered!",
     ],
   },
+  levelUp: {
+    accent: "#fbbf24",
+    accentRgb: "251,191,36",
+    gradientTop: "#1a1400",
+    label: "Level Up!",
+    icon: "★",
+    flavorMessages: [
+      "A new level of power unlocked!",
+      "The Hall of Records grows!",
+      "Greater strength, greater purpose.",
+      "Ascension. The forge burns hotter.",
+      "Power, earned through deeds.",
+    ],
+  },
 };
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -228,7 +246,8 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
 
   // Play reward sound on mount
   useEffect(() => {
-    if (data.type === "ritual") SFX.ritualComplete();
+    if (data.type === "levelUp") SFX.levelUp();
+    else if (data.type === "ritual") SFX.ritualComplete();
     else if (data.type === "vow") SFX.ritualComplete();
     else SFX.questComplete();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -460,28 +479,96 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
           </div>
         )}
 
-        {/* Collect button */}
-        <button
-          onClick={() => { if (onCollect) onCollect(data); onClose(); }}
-          className="action-btn w-full py-2.5 rounded-xl text-sm font-bold transition-all"
-          style={{
-            background: `rgba(${accentRgb},0.12)`,
-            color: accent,
-            border: `1px solid rgba(${accentRgb},0.35)`,
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.background = `rgba(${accentRgb},0.25)`;
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 20px rgba(${accentRgb},0.2)`;
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.background = `rgba(${accentRgb},0.12)`;
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
-          }}
-        >
-          Nehmen
-        </button>
+        {/* Collect button row */}
+        <div className="flex gap-2">
+          {/* Contextual quick-navigate buttons */}
+          {onNavigate && data.loot && (
+            <QuickNavBtn
+              label="Inventar"
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("character"); onClose(); }}
+              accentRgb={accentRgb}
+            />
+          )}
+          {onNavigate && data.chainQuestTemplate && (
+            <QuickNavBtn
+              label="Nächste Quest"
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("questBoard"); onClose(); }}
+              accentRgb={accentRgb}
+            />
+          )}
+          {onNavigate && data.levelUp && (
+            <QuickNavBtn
+              label="Leaderboard"
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("leaderboard"); onClose(); }}
+              accentRgb={accentRgb}
+            />
+          )}
+          {onNavigate && data.type === "faction" && (
+            <QuickNavBtn
+              label="Factions"
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("factions"); onClose(); }}
+              accentRgb={accentRgb}
+            />
+          )}
+
+          <button
+            onClick={() => { if (onCollect) onCollect(data); onClose(); }}
+            className="action-btn flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
+            style={{
+              background: `rgba(${accentRgb},0.12)`,
+              color: accent,
+              border: `1px solid rgba(${accentRgb},0.35)`,
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLButtonElement).style.background = `rgba(${accentRgb},0.25)`;
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 20px rgba(${accentRgb},0.2)`;
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLButtonElement).style.background = `rgba(${accentRgb},0.12)`;
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+            }}
+          >
+            Nehmen
+          </button>
+        </div>
       </div>
     </div>
+  );
+}
+
+// ─── QuickNavBtn ─────────────────────────────────────────────────────────────
+
+interface QuickNavBtnProps {
+  label: string;
+  onClick: () => void;
+  accentRgb: string;
+}
+
+function QuickNavBtn({ label, onClick, accentRgb }: QuickNavBtnProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="py-2.5 px-3 rounded-xl text-xs font-semibold transition-all"
+      style={{
+        background: "transparent",
+        color: `rgba(${accentRgb},0.75)`,
+        border: `1px solid rgba(${accentRgb},0.3)`,
+        cursor: "pointer",
+        whiteSpace: "nowrap",
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLButtonElement).style.background = `rgba(${accentRgb},0.12)`;
+        (e.currentTarget as HTMLButtonElement).style.color = `rgba(${accentRgb},1)`;
+        (e.currentTarget as HTMLButtonElement).style.borderColor = `rgba(${accentRgb},0.55)`;
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+        (e.currentTarget as HTMLButtonElement).style.color = `rgba(${accentRgb},0.75)`;
+        (e.currentTarget as HTMLButtonElement).style.borderColor = `rgba(${accentRgb},0.3)`;
+      }}
+    >
+      {label} →
+    </button>
   );
 }
 

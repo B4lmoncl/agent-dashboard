@@ -1,9 +1,3 @@
-export const priorityConfig = {
-  low:    { label: "Low",    color: "#22c55e", bg: "rgba(34,197,94,0.12)",   border: "rgba(34,197,94,0.3)"   },
-  medium: { label: "Med",   color: "#eab308", bg: "rgba(234,179,8,0.12)",   border: "rgba(234,179,8,0.3)"   },
-  high:   { label: "High",  color: "#ef4444", bg: "rgba(239,68,68,0.12)",   border: "rgba(239,68,68,0.3)"   },
-};
-
 export const categoryConfig: Record<string, { color: string; bg: string }> = {
   "Coding":         { color: "#10b981", bg: "rgba(16,185,129,0.1)"  },
   "Research":       { color: "#6366f1", bg: "rgba(99,102,241,0.1)"  },

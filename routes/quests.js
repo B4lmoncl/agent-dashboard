@@ -1,6 +1,6 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
-const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById, logActivity } = require('../lib/state');
+const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById, logActivity } = require('../lib/state');
 const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory, createPlayerLock } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const questCompleteLock = createPlayerLock('quest-complete');
@@ -52,19 +52,15 @@ function unlockNextChainQuest(completedQuest) {
 
 // POST /api/quest — create a new quest
 router.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest, minLevel, classRequired, requiresRelationship, rarity } = req.body;
+  const { title, description, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest, minLevel, classRequired, requiresRelationship, rarity } = req.body;
   if (!title || typeof title !== 'string') return res.status(400).json({ error: 'title is required and must be a string' });
   if (title.length > 500) return res.status(400).json({ error: 'title too long (max 500 chars)' });
   if (description != null && typeof description !== 'string') return res.status(400).json({ error: 'description must be a string' });
   if (typeof description === 'string' && description.length > 5000) return res.status(400).json({ error: 'description too long (max 5000 chars)' });
-  const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
   const validTypes = ['development', 'personal', 'learning', 'social', 'fitness', 'boss', 'relationship-coop', 'companion'];
   const validRecurrences = ['daily', 'weekly', 'monthly'];
-  if (priority && !validPriorities.includes(priority)) {
-    return res.status(400).json({ error: `Invalid priority. Use: ${validPriorities.join(', ')}` });
-  }
   if (type && !validTypes.includes(type)) {
     return res.status(400).json({ error: `Invalid type. Use: ${validTypes.join(', ')}` });
   }
@@ -119,7 +115,6 @@ router.post('/api/quest', requireApiKey, (req, res) => {
       title: String(nextQuestTemplate.title || '').trim() || null,
       description: String(nextQuestTemplate.description || '').trim() || null,
       type: validTypes.includes(nextQuestTemplate.type) ? nextQuestTemplate.type : resolvedType,
-      priority: validPriorities.includes(nextQuestTemplate.priority) ? nextQuestTemplate.priority : (priority || 'medium'),
     };
     if (!resolvedNextQuestTemplate.title) resolvedNextQuestTemplate = null;
   }
@@ -127,7 +122,6 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     id: `quest-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     title: title.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
     description: (description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-    priority: priority || 'medium',
     type: resolvedType,
     categories: resolvedCategories,
     product: product || null,
@@ -172,9 +166,9 @@ router.post('/api/quest', requireApiKey, (req, res) => {
       minLevel: quest.minLevel || 1,
       chainId: quest.parentQuestId || null,
       chainOrder: null,
-      difficulty: quest.difficulty || (quest.priority === 'high' ? 'advanced' : quest.priority === 'medium' ? 'intermediate' : 'starter'),
+      difficulty: quest.difficulty || (quest.rarity === 'epic' || quest.rarity === 'legendary' ? 'advanced' : quest.rarity === 'uncommon' || quest.rarity === 'rare' ? 'intermediate' : 'starter'),
       estimatedTime: null,
-      rewards: { xp: XP_BY_RARITY[quest.rarity] || XP_BY_PRIORITY[quest.priority] || 10, gold: 0 },
+      rewards: { xp: XP_BY_RARITY[quest.rarity] || 10, gold: 0 },
       tags: quest.skills || [],
       createdBy: quest.createdBy,
       createdAt: quest.createdAt,
@@ -298,6 +292,20 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const restUser = state.users[agentKey];
   if (restUser?.tavernRest?.active) {
     return res.status(400).json({ error: 'Cannot complete quests while resting in The Hearth. Leave rest mode first.' });
+  }
+
+  // Campaign sequential ordering: block if previous quest in campaign is not completed
+  const parentCampaign = state.campaigns.find(c => c.questIds.includes(quest.id));
+  if (parentCampaign) {
+    const idx = parentCampaign.questIds.indexOf(quest.id);
+    if (idx > 0) {
+      const prevQuestId = parentCampaign.questIds[idx - 1];
+      const prevQuest = state.questsById.get(prevQuestId);
+      if (prevQuest && prevQuest.status !== 'completed') {
+        questCompleteLock.release(agentKey);
+        return res.status(400).json({ error: 'Complete the previous campaign quest first', prevQuestId });
+      }
+    }
   }
 
   // NPC quests: per-player completion (quest stays globally available for others)
@@ -738,15 +746,11 @@ router.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
   res.json({ ok: true, quest });
 });
 
-// PATCH /api/quest/:id — update quest fields (priority, proof, title, description, claimedBy, etc.)
+// PATCH /api/quest/:id — update quest fields (proof, title, description, claimedBy, etc.)
 router.patch('/api/quest/:id', requireApiKey, (req, res) => {
   const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
-  const { priority, proof, title, description, status, claimedBy } = req.body;
-  if (priority !== undefined) {
-    if (!['low', 'medium', 'high'].includes(priority)) return res.status(400).json({ error: 'Invalid priority' });
-    quest.priority = priority;
-  }
+  const { proof, title, description, status, claimedBy } = req.body;
   if (proof !== undefined) quest.proof = String(proof).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (title !== undefined) quest.title = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (description !== undefined) quest.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -840,7 +844,7 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
 });
 
 // POST /api/quests/import — bulk create quests from a JSON array (Batch API pipeline)
-// Body: { quests: [ { title, description, priority, type, ... }, ... ] }
+// Body: { quests: [ { title, description, type, rarity, ... }, ... ] }
 // Returns: { created: [...ids], skipped: number, errors: [...] }
 router.post('/api/quests/import', requireApiKey, (req, res) => {
   const incoming = req.body.quests;
@@ -848,7 +852,6 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
     return res.status(400).json({ error: 'Body must contain a non-empty "quests" array' });
   }
   const VALID_TYPES     = ['development', 'personal', 'learning', 'fitness', 'social', 'boss', 'companion', 'relationship-coop'];
-  const VALID_PRIORITIES = ['low', 'medium', 'high'];
   const created = [];
   const errors  = [];
   let skipped   = 0;
@@ -859,7 +862,6 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
       continue;
     }
     const type     = VALID_TYPES.includes(q.type)       ? q.type     : 'development';
-    const priority = VALID_PRIORITIES.includes(q.priority) ? q.priority : 'medium';
     // Dedup guard: skip if a quest with identical title + type already exists and is open/in_progress
     const isDuplicate = state.quests.some(
       ex => ex.title === q.title.trim() && ex.type === type && ['open','in_progress'].includes(ex.status)
@@ -871,7 +873,6 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
       id,
       title:              q.title.trim(),
       description:        q.description || '',
-      priority,
       type,
       categories:         Array.isArray(q.categories) ? q.categories : [],
       product:            q.product    || null,

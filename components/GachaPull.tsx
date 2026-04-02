@@ -245,15 +245,17 @@ function SinglePullReveal({ result, onDone, onNavigate }: { result: GachaPullRes
       style={{ background: "rgba(0,0,0,0.85)" }}
       onClick={() => { if (phase === "reveal") onDone(); }}
     >
-      {/* Skip button */}
-      <button
-        data-feedback-id="gacha-pull.single.skip"
-        onClick={onDone}
-        className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
-        style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)" }}
-      >
-        Skip
-      </button>
+      {/* Skip button — only active during reveal phase */}
+      {phase === "reveal" && (
+        <button
+          data-feedback-id="gacha-pull.single.skip"
+          onClick={onDone}
+          className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
+          style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer" }}
+        >
+          Skip
+        </button>
+      )}
 
       {/* Charge phase — neutral white-blue orb */}
       {phase === "charge" && <ChargeOrb durationMs={5500} />}
@@ -379,15 +381,17 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
         else if (phase === "summary") onDone();
       }}
     >
-      {/* Skip button */}
-      <button
-        data-feedback-id="gacha-pull.multi.skip"
-        onClick={onDone}
-        className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
-        style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)" }}
-      >
-        Skip
-      </button>
+      {/* Skip button — only during reveal/summary phases */}
+      {(phase === "sequential" || phase === "summary") && (
+        <button
+          data-feedback-id="gacha-pull.multi.skip"
+          onClick={onDone}
+          className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
+          style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer" }}
+        >
+          Skip
+        </button>
+      )}
 
       {/* Charge phase — 8s neutral */}
       {phase === "charge" && <ChargeOrb durationMs={8000} />}
@@ -485,7 +489,7 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
                     {cfg.label}
                   </span>
                   {result.isDuplicate && (
-                    <span className="text-xs font-mono inline-flex items-center gap-1" style={{ color: "#a78bfa" }}>DUP +{result.duplicateRefund} <img src="/images/icons/currency-runensplitter.png" width={14} height={14} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span>
+                    <span className="text-xs font-mono inline-flex items-center gap-1" style={{ color: "#a78bfa" }}>DUP +{result.duplicateRefund} <img src="/images/icons/currency-runensplitter.png" alt="" width={14} height={14} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span>
                   )}
                   {result.isNew && (
                     <div className="absolute -top-1.5 -right-1.5 text-xs font-bold px-1.5 py-0.5 rounded-full"

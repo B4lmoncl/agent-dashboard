@@ -16,7 +16,7 @@ const QUEST_TYPE_FACTION: Record<string, { name: string; icon: string; color: st
 import { typeConfig } from "@/app/config";
 import {
   CategoryBadge, ProductBadge, HumanInputBadge, TypeBadge,
-  AgentBadge, RecurringBadge, PriorityBadge,
+  AgentBadge, RecurringBadge,
 } from "./QuestBadges";
 import { RARITY_COLORS } from "@/app/constants";
 
@@ -235,6 +235,9 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, letterSpacing: "0.06em" }}>{rarity}</span>
+            {quest.estimatedMinutes != null && quest.estimatedMinutes > 0 && (
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }} title="Estimated time">~{quest.estimatedMinutes}m</span>
+            )}
           </div>
         </div>
       </div>
@@ -395,8 +398,11 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                 <span className="text-xs px-1 py-0.5 rounded font-bold uppercase" style={{ fontSize: 12, letterSpacing: "0.05em", color: "#e879f9", background: "rgba(232,121,249,0.08)", border: "1px solid rgba(232,121,249,0.25)" }}>NPC</span>
               )}
               {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
-              <span style={{ fontSize: "0.75rem", color: "rgba(179,157,219,0.6)" }}>{(quest.rewards?.xp != null && quest.rewards.xp > 0) ? quest.rewards.xp : ({ high: 30, medium: 20, low: 10 }[quest.priority] ?? 10)} XP</span>
-              <span style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.6)" }}><img src="/images/icons/currency-gold.png" alt="" style={{width:14,height:14,display:"inline",verticalAlign:"middle",marginRight:2}} onError={e => { e.currentTarget.style.display = "none"; }} /> {(quest.rewards?.gold != null && quest.rewards.gold > 0) ? quest.rewards.gold : ({ high: 25, medium: 15, low: 9 }[quest.priority] ?? 9)}</span>
+              <span style={{ fontSize: "0.75rem", color: "rgba(179,157,219,0.6)" }}>{(quest.rewards?.xp != null && quest.rewards.xp > 0) ? quest.rewards.xp : ({ legendary: 80, epic: 50, rare: 30, uncommon: 18, common: 10, companion: 10 }[quest.rarity || "common"] ?? 10)} XP</span>
+              <span style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.6)" }}><img src="/images/icons/currency-gold.png" alt="" style={{width:14,height:14,display:"inline",verticalAlign:"middle",marginRight:2}} onError={e => { e.currentTarget.style.display = "none"; }} /> {(quest.rewards?.gold != null && quest.rewards.gold > 0) ? quest.rewards.gold : ({ legendary: 65, epic: 40, rare: 24, uncommon: 14, common: 8, companion: 8 }[quest.rarity || "common"] ?? 9)}</span>
+              {quest.estimatedMinutes != null && quest.estimatedMinutes > 0 && (
+                <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.25)" }} title="Estimated time">~{quest.estimatedMinutes} min</span>
+              )}
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
             </div>
             <div className="flex items-center gap-1.5">
@@ -404,13 +410,13 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onClaim(quest.id); }} disabled={isLoading} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }} title={isLoading ? "Action in progress..." : "Claim quest"}>{isLoading ? "..." : "!"}</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Unclaim"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Unclaim"}</button>
               )}
               {!isCoop && onComplete && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
               )}
               {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
-                <button onClick={e => { e.stopPropagation(); onCoopClaim(quest.id); }} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>Join</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Join co-op quest"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Join"}</button>
               )}
               {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
                 <button onClick={e => { e.stopPropagation(); onCoopComplete(quest.id); }} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ My Part Done</button>

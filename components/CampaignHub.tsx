@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import { Campaign, CampaignQuest, Quest, QuestsData } from "@/app/types";
 import { timeAgo } from "@/app/utils";
-import { priorityConfig } from "@/app/config";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
@@ -22,6 +21,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
   const [form, setForm] = useState({ title: "", description: "", icon: "", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
   const [selectedQuestIds, setSelectedQuestIds] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [createError, setCreateError] = useState("");
+  const [deleteError, setDeleteError] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   const closeCreateModal = useCallback(() => setCreateOpen(false), []);
@@ -67,11 +68,6 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               )}
               {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>(quest deleted)</p>}
             </div>
-            {q.priority && (
-              <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: priorityConfig[q.priority as keyof typeof priorityConfig]?.bg ?? "rgba(255,255,255,0.05)", color: priorityConfig[q.priority as keyof typeof priorityConfig]?.color ?? "#aaa", border: `1px solid ${priorityConfig[q.priority as keyof typeof priorityConfig]?.border ?? "transparent"}` }}>
-                {priorityConfig[q.priority as keyof typeof priorityConfig]?.label ?? q.priority}
-              </span>
-            )}
           </div>
         </div>
       </div>
@@ -81,6 +77,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
   const handleCreate = async () => {
     if (!form.title.trim() || !reviewApiKey) return;
     setSubmitting(true);
+    setCreateError("");
     try {
       const r = await fetch("/api/campaigns", {
         method: "POST",
@@ -100,19 +97,36 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         setForm({ title: "", description: "", icon: "", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
         setSelectedQuestIds([]);
         onRefresh();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setCreateError(d.error || "Failed to create campaign. Try again.");
       }
-    } catch (err) { console.error("[CampaignHub] Create failed:", err); }
+    } catch (err) {
+      console.error("[CampaignHub] Create failed:", err);
+      setCreateError("Network error. Try again.");
+    }
     setSubmitting(false);
   };
 
   const handleDelete = async (id: string) => {
     if (!reviewApiKey) return;
+    setDeleteError("");
     try {
-      await fetch(`/api/campaigns/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
+      const r = await fetch(`/api/campaigns/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
+      if (r.ok) {
+        setDeleteConfirm(null);
+        if (expandedId === id) setExpandedId(null);
+        onRefresh();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setDeleteError(d.error || "Failed to delete campaign.");
+        setDeleteConfirm(null);
+      }
+    } catch (err) {
+      console.error("[CampaignHub] Delete failed:", err);
+      setDeleteError("Network error. Could not delete campaign.");
       setDeleteConfirm(null);
-      if (expandedId === id) setExpandedId(null);
-      onRefresh();
-    } catch (err) { console.error("[CampaignHub] Delete failed:", err); }
+    }
   };
 
   const statusColors: Record<string, { color: string; bg: string; border: string; label: string }> = {
@@ -123,7 +137,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 
   // ── Expanded campaign timeline view ──────────────────────────────────────────
   if (expandedId && expandedCampaign) {
-    const cq = expandedCampaign.quests ?? [];
+    const cq = [...(expandedCampaign.quests ?? [])].sort((a, b) => (a.chainIndex || 0) - (b.chainIndex || 0));
     const firstIncompleteIdx = cq.findIndex(q => q.status !== "completed");
     const completedCount = expandedCampaign.progress?.completed ?? 0;
     const totalCount = expandedCampaign.progress?.total ?? cq.length;
@@ -183,7 +197,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           <div>
             {cq.map((q, idx) => {
               const isBoss = q.id === expandedCampaign.bossQuestId;
-              const isCurrentQuest = !isBoss && idx === firstIncompleteIdx;
+              const isCurrentQuest = idx === firstIncompleteIdx;
               return getQuestNode(q, isBoss, isCurrentQuest, idx);
             })}
           </div>
@@ -213,6 +227,10 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           + New Campaign
         </button>
       </div>
+
+      {deleteError && (
+        <p className="text-xs" style={{ color: "#ef4444" }}>{deleteError}</p>
+      )}
 
       {/* Empty state */}
       {campaigns.length === 0 && (
@@ -378,6 +396,9 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 </div>
               </div>
 
+              {createError && (
+                <p className="text-xs" style={{ color: "#ef4444" }}>{createError}</p>
+              )}
               <div className="flex gap-2 pt-2">
                 <button onClick={handleCreate} disabled={!form.title.trim() || submitting || !reviewApiKey}
                   className="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"

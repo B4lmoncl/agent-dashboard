@@ -1,174 +1,105 @@
-# Agent Dashboard — OpenClaw Revenue Team
+# Quest Hall
 
-Real-time operations center for Leon's AI revenue agents: **Nova, Hex, Echo, Pixel, Atlas, Lyra, Forge**.
+> Gamified quest management system with RPG mechanics. Real-world tasks become quests in an ancient tower.
 
-Live: http://187.77.139.247:3001
+## What is this?
 
-## Features
+Quest Hall turns daily tasks into an RPG adventure. Complete quests, earn XP, level up, craft gear, pull gacha, challenge world bosses, and climb the leaderboard. Built as a self-hosted web app with an optional Electron desktop companion.
 
-- **OpenClaw dark theme** — `#0a0a0a` background, red/orange accents, ember particle system
-- **7 AI agents** — live status, current task, last seen, XP & level progression
-- **Quest Board** — open/in-progress/completed quests with priority, types, sub-quests (quest chains)
-- **Quest Types** — development, personal, learning, social
-- **Quest Chains** — parent/child quests with progress tracking
-- **Recurring Quests** — daily/weekly/monthly auto-reset with streak tracking
-- **XP System** — agents earn XP on quest completion; level progression Novice → Apprentice → Knight → Archmage
-- **REST API** — agents post status/results, dashboard auto-refreshes
-- **Admin Keys** — master-key-protected API key management (create, list, revoke)
-- **Master Key Auth** — separate master key for admin operations
-- **Leaderboard** — agents ranked by XP and quests completed
-- **Review Pipeline** — agents post quest suggestions for Leon to approve/reject
-- **Quest Forge** — companion Electron desktop app (Windows/Linux/macOS)
-  - System tray integration with Quick Forge popup
-  - Post quests, review suggestions, manage API keys
-  - Sound effects: forge hammer, sync, notifications, errors
+**Design References:** WoW Classic (professions, grind), Diablo 3 (loot, affixes, Kanai's Cube), Honkai Star Rail (gacha, daily missions), Habitica (real tasks as quests).
 
-## Running the API Server
+## Quick Start
 
 ```bash
+# Install
 npm install
-node server.js        # API at http://187.77.139.247:3001
+
+# Run (two terminals)
+npm run dev          # Frontend: http://localhost:3000
+npm run server       # Backend:  http://localhost:3001
+
+# Or via Docker
+docker compose up -d # Both at http://localhost:3001
 ```
 
-Then open `http://187.77.139.247:3001` (serves the built frontend).
+Set `API_KEY=your-secret` in `.env` (see `.env.example`).
 
-Build first: `npm run build`
+## Tech Stack
 
-## API Reference
+| Layer | Tech |
+|-------|------|
+| Frontend | Next.js 16, React 19, TypeScript 5, Tailwind CSS 4 |
+| Backend | Express.js 4.18, Node.js 20 |
+| Desktop | Electron 29 (Quest Forge companion app) |
+| Storage | JSON files in `/data` (no database) |
+| Deploy | Docker (Node 20 Alpine), Docker Compose |
 
-### Agent Endpoints
+## Game Systems
 
-```
-GET  /api/agents                        → all agent statuses (includes xp field)
-GET  /api/agent/:name                   → single agent
-POST /api/agent/:name/status            → agent posts status update
-POST /api/agent/:name/result            → agent posts task result
-POST /api/agent/:name/command           → send command to agent
-GET  /api/agent/:name/commands          → agent polls for pending commands
-PATCH /api/agent/:name/command/:cmdId   → agent acks command
-POST /api/agent/:name/register          → auto-register new agent
-POST /api/agent/:name/checkin           → reset health to ok
-GET  /api/leaderboard                   → agents ranked by XP
-```
+- **50 Levels** with prestige titles (31-50)
+- **Quest Board** with pool rotation, rarity tiers, daily diminishing returns
+- **8 Crafting Professions** (WoW Classic 300-skill system)
+- **Diablo 3 Loot** — affix rolling, legendary effects, set bonuses, Kanai's Cube
+- **Gacha** with soft pity (55) and hard pity (75)
+- **World Bosses** — community-wide HP pool, contribution tracking
+- **Dungeons** — async cooperative 2-4 player, 3 tiers
+- **The Rift** — timed quest chains, Normal/Hard/Legendary + Mythic+
+- **Season Pass** — 40-level reward track
+- **4 Factions** with 6 reputation tiers
+- **Talent Tree** — 44-node circular skill tree (Wolcen-inspired)
+- **Adventure Tome** — per-floor completionist tracker
+- **Social** — friends, messaging, trading, activity feed
+- **Companions** with bond levels, ultimates, expeditions
+- **6 Gem types** with 5 tiers, socketing, upgrading
 
-### Quest Endpoints
-
-```
-GET   /api/quests              → all quests grouped by status (open/inProgress/completed/suggested/rejected)
-POST  /api/quest               → create quest
-PATCH /api/quest/:id           → update quest (status, priority, progress, proof...)
-DELETE /api/quest/:id          → delete quest
-POST  /api/quest/:id/approve   → approve a suggested quest
-POST  /api/quest/:id/reject    → reject a suggested quest
-GET   /api/quests/reset-recurring → reset recurring quests past their interval
-GET   /api/health              → server health check
-GET   /api/version             → server version
-```
-
-### Admin Key Endpoints (require master key)
+## Project Structure
 
 ```
-GET    /api/admin/keys         → list all managed API keys (masked)
-POST   /api/admin/keys         → create new API key { label }
-DELETE /api/admin/keys/:key    → revoke an API key
+app/            # Next.js frontend (page.tsx, types, config)
+components/     # 55 React components
+hooks/          # Custom React hooks
+lib/            # Backend core (state, helpers, auth, NPC engine)
+routes/         # 31 Express API route files
+public/data/    # 56 JSON game data files
+public/images/  # Pixel art assets
+electron-quest-app/  # Desktop companion
 ```
 
-### Quest Create
+## API
 
-```bash
-curl -X POST http://187.77.139.247:3001/api/quest \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: YOUR_KEY" \
-  -d '{
-    "title": "Research AI cost-tracker SaaS opportunity",
-    "description": "Analyze the market for AI agent cost tracking tools",
-    "priority": "high",
-    "type": "development",
-    "categories": ["Research"],
-    "agentId": "atlas",
-    "recurrence": "weekly"
-  }'
-```
+All endpoints under `/api/`. Auth via JWT Bearer token or `X-API-Key` header.
 
-### Agent Status Update
+Key endpoints:
+- `GET /api/dashboard?player=X` — batch endpoint (replaces 14 individual fetches)
+- `POST /api/quest/:id/complete` — complete a quest (awards XP, gold, materials, gems)
+- `GET /api/player/:name/character` — full character data
+- `POST /api/professions/craft` — craft recipes (WoW-style skill-up)
+- `POST /api/gacha/pull` — gacha pull with pity tracking
 
-```bash
-curl -X POST http://187.77.139.247:3001/api/agent/nova/status \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: YOUR_KEY" \
-  -d '{"status": "active", "currentTask": "Analyzing KPI metrics..."}'
-```
+Full API docs: `GET /api/docs` (OpenAPI/Swagger).
 
-## Agents
+## Environment Variables
 
-| Name  | Role            | Specialty                                  |
-|-------|----------------|---------------------------------------------|
-| Nova  | Optimizer       | KPI frameworks, dashboard optimization      |
-| Hex   | Code Engineer   | MVP development, automation scripts         |
-| Echo  | Sales           | Target segments, cold outreach, pricing     |
-| Pixel | Marketer        | Landing pages, SEO, social campaigns        |
-| Atlas | Researcher      | Market research, competitor analysis        |
-| Lyra  | AI Orchestrator | Team lead, quest management, coordination   |
-| Forge | Idea Smith      | Feature ideation, quest suggestions         |
+| Variable | Purpose |
+|----------|---------|
+| `API_KEY` | API authentication key |
+| `API_KEYS` | Multiple keys (comma-separated) |
+| `MASTER_KEY` | Admin operations |
+| `PORT` | Server port (default: 3001) |
+| `GITHUB_WEBHOOK_SECRET` | Webhook HMAC verification |
 
-## XP & Level System
+## Documentation
 
-Agents earn XP when quests are completed:
-- High priority quest: 30 XP
-- Medium priority quest: 20 XP
-- Low priority quest: 10 XP
+| File | Purpose |
+|------|---------|
+| `CLAUDE.md` | Primary reference — tech stack, code rules, UI guidelines, balancing |
+| `LYRA-PLAYBOOK.md` | Content creation guide + Lore Bible |
+| `ARCHITECTURE.md` | Technical architecture deep-dive |
+| `WOW-PROFESSION-REFACTOR.md` | Profession system design spec |
+| `AUTOPILOT_AUDIT.md` | Autonomous audit protocol |
+| `FEATURE_IDEAS.md` | Proposed features (not implemented) |
+| `REJECTED.md` | Feature blocklist |
 
-Level thresholds:
-- **Novice**: 0–99 XP
-- **Apprentice**: 100–299 XP
-- **Knight**: 300–599 XP
-- **Archmage**: 600+ XP
+## License
 
-## Quest Forge (Companion App)
-
-Desktop app for posting quests and managing Quest Hall.
-
-```bash
-cd electron-quest-app
-npm install
-npm start
-```
-
-Features:
-- Post quests with priority, type, categories, recurring schedule
-- Review agent suggestions (approve/reject)
-- Admin panel: manage API keys (requires master key)
-- System tray: minimize to tray, Quick Forge popup on click
-- Sound effects (toggleable mute + volume)
-- Auto-update from GitHub releases
-
-## Production Deployment
-
-### API Key Configuration
-
-**DO NOT commit API keys to Git!**
-
-```bash
-cd /opt/agent-dashboard
-cp .env.example .env
-nano .env  # Set API_KEY=your-actual-key and MASTER_KEY=your-master-key
-```
-
-Or via docker-compose.override.yml (gitignored):
-
-```yaml
-version: '3.8'
-services:
-  api:
-    environment:
-      - API_KEY=your-api-key
-      - MASTER_KEY=your-master-key
-```
-
-### Rebuild Without Losing Config
-
-```bash
-git pull
-docker compose build --no-cache
-docker compose up -d
-```
+Private project.

@@ -203,3 +203,17 @@ Only 1 class defined. The class system (routes/game.js, classes.json) is built b
 - Weekly challenges (32 templates, 18 modifiers)
 - Achievement system (65 diverse achievements)
 - World bosses (9 with excellent lore integration)
+
+---
+
+## 5. Technical Scalability Notes
+
+> Consolidated from former SCALABILITY-AUDIT.md (deleted 2026-04-02)
+
+- **state.quests** grows unbounded — no eviction/archiving of completed quests
+- **Dashboard endpoint** optimized: expensive modifiers only computed for requesting player (not all users)
+- **Debounced saves** have 2s max-delay ceiling to prevent indefinite deferral
+- **All save functions** use atomicWriteSync (write-to-temp-then-rename)
+- **Per-request caching** for getTalentEffects + getLegendaryModifiers
+- **page.tsx** has 90 useState calls — potential state management refactor target
+- **gearTemplates.json** is 1.6MB — largest data file, loaded once at boot

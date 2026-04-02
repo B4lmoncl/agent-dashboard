@@ -310,6 +310,16 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
     if (mythicLevel > highestCleared + 1) {
       return res.status(400).json({ error: `Cannot skip Mythic levels. Highest cleared: ${highestCleared}, max entry: ${highestCleared + 1}` });
     }
+    // Prevent replaying the same cleared level for infinite rewards
+    // Must push to the next level OR wait for weekly reset
+    if (mythicLevel <= highestCleared) {
+      const lastClear = (u.riftHistory || []).filter(h => h.tier === 'mythic' && h.mythicLevel === mythicLevel && h.success);
+      const weekAgo = Date.now() - 7 * 24 * 3600000;
+      const recentClear = lastClear.find(h => new Date(h.completedAt).getTime() > weekAgo);
+      if (recentClear) {
+        return res.status(400).json({ error: `Mythic+${mythicLevel} already cleared this week. Push to +${highestCleared + 1} or wait for reset.` });
+      }
+    }
   }
 
   // Check cooldown
@@ -392,12 +402,18 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     id: `rift-${rift.tier}-stage-${nextStage.stage}`,
     title: `${rift.mythicLevel ? `Mythic Rift +${rift.mythicLevel}` : (RIFT_TIERS[rift.tier]?.name || 'Rift')}: ${nextStage.name}`,
     type: nextStage.type,
-    priority: nextStage.difficulty >= 2.5 ? 'high' : nextStage.difficulty >= 1.5 ? 'medium' : 'low',
     rarity: stageRarity,
     status: 'completed',
     rewards: { xp: nextStage.xpReward, gold: nextStage.goldReward },
   };
   onQuestCompletedByUser(uid, syntheticQuest);
+
+  // ── Bolstering affix: reduce remaining time by 1h per completed stage ──
+  const bolsteringAffix = (rift.affixes || []).find(a => a.effect?.type === 'time_penalty');
+  if (bolsteringAffix && rift.expiresAt) {
+    const penaltyMs = (bolsteringAffix.effect.value || 1) * 3600000;
+    rift.expiresAt = new Date(new Date(rift.expiresAt).getTime() - penaltyMs).toISOString();
+  }
 
   // ── Rift-exclusive gear drop (from gearTemplates-rift.json pool) ──
   const riftSource = rift.mythicLevel ? 'rift:mythic' : `rift:${rift.tier}`;

@@ -21,7 +21,7 @@ export interface Quest {
   id: string;
   title: string;
   description: string;
-  priority: "low" | "medium" | "high";
+  priority?: string;
   type?: "development" | "personal" | "learning" | "fitness" | "social" | "boss" | "relationship-coop";
   category: string | null;
   categories: string[];
@@ -39,7 +39,7 @@ export interface Quest {
   recurrence?: string | null;
   proof?: string | null;
   checklist?: { text: string; done: boolean }[] | null;
-  nextQuestTemplate?: { title: string; description?: string | null; type?: string; priority?: string } | null;
+  nextQuestTemplate?: { title: string; description?: string | null; type?: string } | null;
   coopPartners?: string[] | null;
   coopClaimed?: string[];
   coopCompletions?: string[];
@@ -59,6 +59,7 @@ export interface Quest {
   flavorText?: string | null;
   chainIndex?: number | null;
   chainTotal?: number | null;
+  estimatedMinutes?: number | null;
 }
 
 export interface NpcQuestChainEntry {
@@ -66,7 +67,6 @@ export interface NpcQuestChainEntry {
   title: string;
   description: string;
   type: string;
-  priority: string;
   status: string;
   claimedBy: string | null;
   completedBy: string | null;
@@ -174,26 +174,28 @@ export interface User {
   };
   craftingMaterials?: Record<string, number>;
   equippedTitle?: { id: string; name: string; rarity: string } | null;
+  earnedTitles?: { id: string; name: string; rarity: string; earnedAt?: string; source?: string }[];
   chosenProfessions?: string[];
   inventory?: { id: string; name: string; rarity: string; slot?: string; emoji?: string; effect?: { type: string; amount?: number } }[];
   workshopUpgrades?: Record<string, number>;
   tavernRest?: { active: boolean; frozenAt: string; forgeFrozenAt: number; unfreezeAt: string; reason?: string } | null;
   companionExpedition?: { tier: string; startedAt: string; dueAt: string } | null;
-  activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number }[];
+  activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number; chargesRemaining?: number; label?: string; activatedAt?: string; value?: number; xpPercent?: number; goldPercent?: number }[];
   _restedXpPool?: number;
+  _dailyCompletions?: { date: string; count: number };
 }
 
 export interface CampaignQuest {
   id: string;
   title: string;
   status: string;
-  priority?: string;
   type?: string;
   completedBy?: string | null;
   completedAt?: string | null;
   claimedBy?: string | null;
   lore?: string | null;
   description?: string;
+  chainIndex?: number;
 }
 
 export interface Campaign {
@@ -317,7 +319,6 @@ export interface PersonalTemplate {
   icon: string;
   desc: string;
   type: string;
-  priority: "low" | "medium" | "high";
   recurrence: string | null;
   checklist: { text: string; done: boolean }[] | null;
 }

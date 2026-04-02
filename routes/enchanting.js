@@ -94,14 +94,16 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
   const isPrimary = PRIMARY_STATS.includes(lockedStat);
   const pool = isPrimary ? template.affixes.primary?.pool : template.affixes.minor?.pool;
   const poolEntry = pool?.find(p => p.stat === lockedStat);
-  if (!poolEntry) {
-    // Stat not in pool — try any pool entry for same category
+  let effectivePoolEntry = poolEntry;
+  if (!effectivePoolEntry) {
+    // Stat not in pool — try first pool entry for same category as fallback
     const fallbackPool = isPrimary ? template.affixes.primary?.pool : template.affixes.minor?.pool;
     if (!fallbackPool?.length) return res.status(400).json({ error: 'No affix pool available for reroll' });
+    effectivePoolEntry = fallbackPool[0]; // Use first pool entry's range (better than hardcoded 1-3)
   }
 
-  const rollMin = poolEntry?.min ?? 1;
-  const rollMax = poolEntry?.max ?? 3;
+  const rollMin = effectivePoolEntry.min ?? 1;
+  const rollMax = effectivePoolEntry.max ?? 3;
 
   // If chosenOption is not provided, this is a "roll" request — roll 2 options
   if (chosenOption == null) {
@@ -112,10 +114,11 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
     if (gold < goldCost) return res.status(400).json({ error: `Not enough gold (need ${goldCost}, have ${gold})` });
     if (essenz < essenzCost) return res.status(400).json({ error: `Not enough essenz (need ${essenzCost}, have ${essenz})` });
 
-    // Deduct cost
+    // Deduct cost + increment reroll count NOW (not on commit — prevents cost-escalation bypass)
     u.currencies.gold -= goldCost;
     u.gold = u.currencies.gold;
     u.currencies.essenz -= essenzCost;
+    eq.rerollCount = rerollCount + 1;
 
     // Roll 2 new options (guaranteed at least one different from current)
     const currentVal = eq.stats[lockedStat];

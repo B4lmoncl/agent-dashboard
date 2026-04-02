@@ -1,10 +1,35 @@
 {
   "quests": [
-    { "id": "feed_dobbie", "title": "Feed Dobbie Before 18:00", "description": "His Highness demands his meal on time. No excuses.", "priority": "high" },
-    { "id": "clean_litter", "title": "Clean the Litter Box", "description": "The sacred ritual must be performed. Dobbie demands cleanliness.", "priority": "medium" },
-    { "id": "pet_dobbie", "title": "Pet Dobbie for 5 Minutes", "description": "Five minutes of undivided attention. The minimum acceptable tribute.", "priority": "low" },
-    { "id": "play_time", "title": "Interactive Play Session", "description": "10 minutes with the wand toy. Dobbie requires stimulation.", "priority": "low" },
-    { "id": "window_watch", "title": "Open Window for Bird Watching", "description": "Allow access to the window ledge for prime bird surveillance.", "priority": "low" }
+    {
+      "id": "feed_dobbie",
+      "title": "Feed Dobbie Before 18:00",
+      "description": "His Highness demands his meal on time. No excuses.",
+      "rarity": "rare"
+    },
+    {
+      "id": "clean_litter",
+      "title": "Clean the Litter Box",
+      "description": "The sacred ritual must be performed. Dobbie demands cleanliness.",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "pet_dobbie",
+      "title": "Pet Dobbie for 5 Minutes",
+      "description": "Five minutes of undivided attention. The minimum acceptable tribute.",
+      "rarity": "common"
+    },
+    {
+      "id": "play_time",
+      "title": "Interactive Play Session",
+      "description": "10 minutes with the wand toy. Dobbie requires stimulation.",
+      "rarity": "common"
+    },
+    {
+      "id": "window_watch",
+      "title": "Open Window for Bird Watching",
+      "description": "Allow access to the window ledge for prime bird surveillance.",
+      "rarity": "common"
+    }
   ],
   "moodQuotes": {
     "Sleeping": "Zzz... Do not disturb. Consequences will be severe.",

@@ -400,6 +400,8 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     return res.status(403).json({ error: `World Boss requires Level ${WB_MIN_LEVEL} (you are Level ${playerLevel})` });
   }
 
+  // Use getActiveBoss() to trigger expiry cleanup, then check raw state for defeated boss
+  getActiveBoss(); // Side-effect: cleans up expired bosses
   const boss = worldBossState.activeBoss;
   if (!boss || !boss.defeated) {
     return res.status(400).json({ error: 'No defeated boss to claim rewards from' });

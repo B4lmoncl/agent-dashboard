@@ -77,7 +77,6 @@ router.get('/api/npcs/active', (req, res) => {
             title: q.title,
             description: q.description,
             type: q.type,
-            priority: q.priority,
             status,
             claimedBy,
             completedBy,
@@ -147,8 +146,8 @@ router.post('/api/feedback', (req, res) => {
     elementPath: elementPath || 'unknown',
     type: type === 'bug' ? 'bug' : 'feedback',
     text: text.trim().slice(0, 2000).replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-    userId: userId || 'anonymous',
-    timestamp: timestamp || new Date().toISOString(),
+    userId: 'anonymous', // Always anonymous on unauthed endpoint — don't trust caller-supplied userId
+    timestamp: new Date().toISOString(), // Server-set only — don't trust client timestamp
     resolved: false,
   };
   state.feedbackEntries.push(entry);

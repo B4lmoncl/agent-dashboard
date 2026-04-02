@@ -7,7 +7,7 @@ import { typeConfig } from "@/app/config";
 // ─── Chain Quest Toast ────────────────────────────────────────────────────────
 export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: {
   parentTitle: string;
-  template: { title: string; description?: string | null; type?: string; priority?: string };
+  template: { title: string; description?: string | null; type?: string };
   onAccept: () => void;
   onDismiss: () => void;
 }) {

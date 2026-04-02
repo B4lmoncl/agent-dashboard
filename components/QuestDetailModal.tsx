@@ -40,6 +40,7 @@ export default function QuestDetailModal({
   // NOTE: useModalBehavior is called in page.tsx (line 248) — do NOT duplicate here
   // or body scroll lock will break on close (double-lock restores "hidden" instead of "")
   const [modalStarAnimating, setModalStarAnimating] = useState(false);
+  const [actionLoading, setActionLoading] = useState(false);
 
   const rarity = getQuestRarity(q);
   const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
@@ -67,11 +68,9 @@ export default function QuestDetailModal({
 
   const XP_BY_RARITY: Record<string, number> = { common: 10, uncommon: 18, rare: 30, epic: 50, legendary: 80 };
   const GOLD_BY_RARITY: Record<string, [number, number]> = { common: [5, 10], uncommon: [10, 18], rare: [18, 30], epic: [30, 50], legendary: [50, 80] };
-  const XP_FALLBACK: Record<string, number> = { high: 30, medium: 20, low: 10 };
-  const GOLD_FALLBACK: Record<string, number> = { high: 25, medium: 15, low: 9 };
-  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (q.rarity ? (XP_BY_RARITY[q.rarity] ?? XP_FALLBACK[q.priority] ?? 10) : (XP_FALLBACK[q.priority] ?? 10));
-  const goldRange = q.rarity ? GOLD_BY_RARITY[q.rarity] : null;
-  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? String(q.rewards.gold) : (goldRange ? `${goldRange[0]}–${goldRange[1]}` : String(GOLD_FALLBACK[q.priority] ?? 9));
+  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (XP_BY_RARITY[q.rarity || "common"] ?? 10);
+  const goldRange = GOLD_BY_RARITY[q.rarity || "common"] || null;
+  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? String(q.rewards.gold) : (goldRange ? `${goldRange[0]}–${goldRange[1]}` : "9");
 
   return (
     <ModalPortal>
@@ -107,7 +106,6 @@ export default function QuestDetailModal({
                   <span className="text-xs font-mono px-1.5 py-0.5 rounded capitalize text-w50" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>{q.difficulty}</span>
                 )}
                 <span className="text-xs capitalize text-w35">{q.type ?? "personal"}</span>
-                {/* priority hidden from modal header */}
                 {q.minLevel != null && q.minLevel > 0 && (() => {
                   const meets = playerLevel >= q.minLevel;
                   return (
@@ -166,19 +164,40 @@ export default function QuestDetailModal({
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{q.description}</p>
             </div>
           )}
+          {/* Requirements */}
+          {((q.minLevel != null && q.minLevel > 1) || q.classRequired) && (
+            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Voraussetzungen</p>
+              <div className="flex flex-wrap gap-x-4 gap-y-1">
+                {q.minLevel != null && q.minLevel > 1 && (() => {
+                  const meets = playerLevel >= q.minLevel;
+                  return (
+                    <span className="text-xs font-mono" style={{ color: meets ? "#22c55e" : "#ef4444" }}>
+                      Requires: Level {q.minLevel}
+                    </span>
+                  );
+                })()}
+                {q.classRequired && (
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.55)" }}>
+                    Klasse: {q.classRequired}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
           {/* Rewards */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Reward</p>
             <div className="flex items-center gap-3">
               <Tip k="gold">
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-                  <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  <img src="/images/icons/reward-gold.png" alt="" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                   <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
                 </div>
               </Tip>
               <Tip k="xp">
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                  <img src="/images/icons/reward-xp.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  <img src="/images/icons/reward-xp.png" alt="" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                   <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
                 </div>
               </Tip>
@@ -192,29 +211,46 @@ export default function QuestDetailModal({
         <div className="px-5 py-4 flex items-center justify-end gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
-              onClick={() => { handleClaim(q.id); onClose(); }}
-              style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: "pointer", transition: "background 0.15s, color 0.15s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; }}
+              disabled={actionLoading}
+              onClick={async () => { setActionLoading(true); try { await handleClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
+              style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
+              onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(180deg, #2a2a2a, #1a1a1a)"; (e.currentTarget as HTMLButtonElement).style.color = "#FFD700"; }}
-            >Claim Quest</button>
+            >{actionLoading ? "Claiming…" : "Claim Quest"}</button>
           )}
           {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
             <>
-              <button onClick={() => { handleUnclaim(q.id); onClose(); }} className="text-xs px-3 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}>Unclaim</button>
               <button
-                onClick={() => { handleComplete(q.id, q.title); onClose(); }}
+                disabled={actionLoading}
+                onClick={async () => { setActionLoading(true); try { await handleUnclaim(q.id); onClose(); } finally { setActionLoading(false); } }}
+                className="text-xs px-3 py-1.5 rounded font-medium"
+                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+              >{actionLoading ? "…" : "Unclaim"}</button>
+              <button
+                disabled={actionLoading}
+                onClick={async () => { setActionLoading(true); try { await handleComplete(q.id, q.title); onClose(); } finally { setActionLoading(false); } }}
                 className="text-sm px-4 py-1.5 rounded font-semibold"
-                style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.35)", cursor: "pointer", transition: "background 0.15s, color 0.15s" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#22c55e"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; }}
+                style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.35)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
+                onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#22c55e"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,197,94,0.15)"; (e.currentTarget as HTMLButtonElement).style.color = "#22c55e"; }}
-              >Abgeschlossen</button>
+              >{actionLoading ? "Completing…" : "Abgeschlossen"}</button>
             </>
           )}
           {isCoop && isCoopPartner && !hasCoopClaimed && q.status !== "completed" && reviewApiKey && playerName && (
-            <button onClick={() => { handleCoopClaim(q.id); onClose(); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: "pointer" }}>Join Coop</button>
+            <button
+              disabled={actionLoading}
+              onClick={async () => { setActionLoading(true); try { await handleCoopClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
+              className="text-sm px-4 py-1.5 rounded font-semibold"
+              style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+            >{actionLoading ? "Joining…" : "Join Coop"}</button>
           )}
           {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && q.status !== "completed" && reviewApiKey && playerName && (
-            <button onClick={() => { handleCoopComplete(q.id); onClose(); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>My Part Done</button>
+            <button
+              disabled={actionLoading}
+              onClick={async () => { setActionLoading(true); try { await handleCoopComplete(q.id); onClose(); } finally { setActionLoading(false); } }}
+              className="text-sm px-4 py-1.5 rounded font-semibold"
+              style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+            >{actionLoading ? "Completing…" : "My Part Done"}</button>
           )}
         </div>
       </div>

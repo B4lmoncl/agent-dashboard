@@ -152,6 +152,11 @@ router.post('/api/rituals/:id/recommit', requireApiKey, (req, res) => {
   const ritual = state.rituals.find(r => r.id === req.params.id);
   if (!ritual) return res.status(404).json({ error: 'Ritual not found' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  // Ownership check
+  const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  if (!req.auth?.isAdmin && ritual.playerId?.toLowerCase() !== authId) {
+    return res.status(403).json({ error: 'Cannot modify another player\'s ritual' });
+  }
   if (ritual.status !== 'broken') return res.status(400).json({ error: 'Ritual is not broken' });
 
   // Reset to active with streak 0
@@ -195,13 +200,18 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   }
 
   // Streak logic: was it done yesterday?
+  // Trigger-type vows only count on explicit completion — missed days don't break the streak.
+  const isTriggerType = ritual.schedule?.type === 'trigger';
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   if (ritual.lastCompleted === yesterday) {
     ritual.streak = (ritual.streak || 0) + 1;
   } else if (!ritual.lastCompleted) {
     ritual.streak = 1;
+  } else if (isTriggerType) {
+    // Trigger-based: no missed-day penalty — just increment the count
+    ritual.streak = (ritual.streak || 0) + 1;
   } else {
-    // Missed days
+    // Missed days (daily schedule only)
     const lastDate = new Date(ritual.lastCompleted);
     const daysMissed = Math.floor((Date.now() - lastDate.getTime()) / 86400000) - 1;
     if (daysMissed === 1) {
@@ -216,9 +226,14 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     }
   }
   ritual.lastCompleted = today;
+  ritual.missedDays = 0;
+
+  // Award XP/gold to player
+  const uid = playerId.toLowerCase();
+  const u = state.users[uid];
+
   // Track for achievements
   if (u) u._ritualsCompleted = (u._ritualsCompleted || 0) + 1;
-  ritual.missedDays = 0;
 
   // Track longest streak and completion history
   if (!ritual.longestStreak || ritual.streak > ritual.longestStreak) {
@@ -227,15 +242,10 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   if (!ritual.completedDates) ritual.completedDates = [];
   if (!ritual.completedDates.includes(today)) {
     ritual.completedDates.push(today);
-    // Keep only last 90 days to avoid bloat
     if (ritual.completedDates.length > 90) {
       ritual.completedDates = ritual.completedDates.slice(-90);
     }
   }
-
-  // Award XP/gold to player
-  const uid = playerId.toLowerCase();
-  const u = state.users[uid];
   let newAchievements = [];
   let lootDrop = null;
   let milestoneDrop = null;
@@ -367,6 +377,11 @@ router.patch('/api/rituals/:id/extend', requireApiKey, (req, res) => {
   const { newCommitment, newCommitmentDays } = req.body;
   const ritual = state.rituals.find(r => r.id === req.params.id);
   if (!ritual) return res.status(404).json({ error: 'Ritual not found' });
+  // Ownership check
+  const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  if (!req.auth?.isAdmin && ritual.playerId?.toLowerCase() !== authId) {
+    return res.status(403).json({ error: 'Cannot modify another player\'s ritual' });
+  }
 
   // Blood Oaths cannot be extended (they are permanent)
   if (ritual.bloodPact) {
@@ -418,6 +433,12 @@ router.post('/api/rituals/:id/violate', requireApiKey, (req, res) => {
 router.delete('/api/rituals/:id', requireApiKey, (req, res) => {
   const idx = state.rituals.findIndex(r => r.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: 'Ritual not found' });
+  // Ownership check
+  const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  const ritual = state.rituals[idx];
+  if (!req.auth?.isAdmin && ritual.playerId?.toLowerCase() !== authId) {
+    return res.status(403).json({ error: 'Cannot delete another player\'s ritual' });
+  }
   state.rituals.splice(idx, 1);
   saveRituals();
   res.json({ ok: true });

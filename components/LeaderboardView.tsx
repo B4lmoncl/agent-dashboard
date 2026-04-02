@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { LeaderboardEntry, Agent, User } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { getLbLevel } from "@/app/utils";
@@ -62,6 +62,21 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const agentIdSet = new Set(agents.map(a => a.id));
   const prevRankRef = useRef<number | null>(null);
   const [seasonal, setSeasonal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (users.length > 0 || entries.length > 0) setLoading(false);
+  }, [users.length, entries.length]);
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   // Build user lookup for player mode (to get extra fields not on LeaderboardEntry)
   const userMap = new Map(users.map(u => [u.id, u]));
@@ -132,7 +147,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             }} />
           ))}
         </div>
-        {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry) => {
+        {(top3.length === 1 ? [top3[0]] : [top3[1], top3[0], top3[2]]).filter(Boolean).map((entry) => {
           const rank = entry.rank;
           const heights: Record<number, string> = { 1: "h-32", 2: "h-24", 3: "h-20" };
           const podiumHeightClass = heights[rank] ?? "h-16";

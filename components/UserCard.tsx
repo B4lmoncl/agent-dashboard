@@ -2,7 +2,8 @@
 
 import type { User, ClassDef } from "@/app/types";
 import { getUserLevel, getUserXpProgress, GUILD_LEVELS } from "@/app/utils";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
+import { FLOORS } from "@/app/config";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -29,6 +30,41 @@ const TITLE_COLORS: Record<string, string> = {
   epic: "#a855f7",
   legendary: "#f97316",
 };
+
+// ─── Feature Unlock Map ──────────────────────────────────────────────────────
+
+/** Derived from FLOORS: groups features by the minimum level required to access them. */
+function buildUnlockMap(): Array<{ level: number; features: string[]; color: string }> {
+  const map = new Map<number, { features: string[]; color: string }>();
+
+  for (const floor of FLOORS) {
+    const floorLevel = floor.minLevel ?? 1;
+    const floorColor = floor.color;
+
+    // The floor itself: add its label only when the floor has a minLevel > 1
+    // (floors at Lv1 are available from the start — their rooms may still be gated)
+    if (floorLevel > 1) {
+      if (!map.has(floorLevel)) map.set(floorLevel, { features: [], color: floorColor });
+      map.get(floorLevel)!.features.push(floor.name);
+    }
+
+    for (const room of floor.rooms) {
+      const roomLevel = room.minLevel ?? floorLevel;
+      if (roomLevel <= 1) continue; // skip base-level rooms
+      // If already captured under the floor entry at the same level, skip
+      if (roomLevel === floorLevel && floorLevel > 1) continue;
+      const color = floorColor;
+      if (!map.has(roomLevel)) map.set(roomLevel, { features: [], color });
+      map.get(roomLevel)!.features.push(room.label);
+    }
+  }
+
+  return Array.from(map.entries())
+    .map(([level, { features, color }]) => ({ level, features, color }))
+    .sort((a, b) => a.level - b.level);
+}
+
+const UNLOCK_MILESTONES = buildUnlockMap();
 
 // ─── SmartIcon ───────────────────────────────────────────────────────────────
 
@@ -72,6 +108,11 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
 
   // Only earned achievement icons (no ???)
   const displayAchs = achs.slice(-6);
+
+  // Feature unlock roadmap
+  const currentLevel = lvl.level;
+  const nextUnlock = UNLOCK_MILESTONES.find(m => m.level > currentLevel) ?? null;
+  const upcomingUnlocks = UNLOCK_MILESTONES.filter(m => m.level > currentLevel);
 
   // Companion portrait
   const companionSrc = comp
@@ -254,6 +295,53 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
           </Tip>
         </div>
       </div>
+
+      {/* ── Next Unlock ── */}
+      {nextUnlock ? (
+        <div className="px-3 pb-2.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+          <TipCustom
+            title="Feature Roadmap"
+            accent={nextUnlock.color}
+            body={
+              <div style={{ minWidth: 180 }}>
+                {upcomingUnlocks.map(m => (
+                  <div key={m.level} className="flex items-start gap-2 mb-1 last:mb-0">
+                    <span
+                      className="text-xs font-mono font-bold flex-shrink-0"
+                      style={{ color: m.color, minWidth: 28 }}
+                    >
+                      Lv{m.level}
+                    </span>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.7)" }}>
+                      {m.features.join(", ")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            }
+          >
+            <div className="flex items-center gap-1.5 pt-2 cursor-help">
+              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+                Next unlock
+              </span>
+              <span className="text-xs font-bold font-mono" style={{ color: nextUnlock.color }}>
+                Lv{nextUnlock.level}:
+              </span>
+              <span className="text-xs truncate" style={{ color: "rgba(255,255,255,0.45)" }}>
+                {nextUnlock.features.join(", ")}
+              </span>
+            </div>
+          </TipCustom>
+        </div>
+      ) : (
+        currentLevel >= 15 && (
+          <div className="px-3 pb-2.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+              All features unlocked
+            </p>
+          </div>
+        )
+      )}
 
       {/* ── Footer: Companion + Earned Achievements ── */}
       {(comp || displayAchs.length > 0) && (

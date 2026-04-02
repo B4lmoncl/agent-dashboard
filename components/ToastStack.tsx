@@ -8,7 +8,7 @@ import { typeConfig } from "@/app/config";
 export type ToastItem =
   | { type: "flavor"; id: string; message: string; icon: string; sub?: string }
   | { type: "achievement"; id: string; achievement: EarnedAchievement }
-  | { type: "chain"; id: string; parentTitle: string; template: { title: string; description?: string | null; type?: string; priority?: string }; onAccept: () => void }
+  | { type: "chain"; id: string; parentTitle: string; template: { title: string; description?: string | null; type?: string }; onAccept: () => void }
   | { type: "purchase"; id: string; message: string }
   | { type: "item"; id: string; itemName: string; message: string; icon?: string; rarity: string }
   | { type: "companionBond"; id: string; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
@@ -17,7 +17,7 @@ export type ToastItem =
 export type ToastInput =
   | { type: "flavor"; message: string; icon: string; sub?: string }
   | { type: "achievement"; achievement: EarnedAchievement }
-  | { type: "chain"; parentTitle: string; template: { title: string; description?: string | null; type?: string; priority?: string }; onAccept: () => void }
+  | { type: "chain"; parentTitle: string; template: { title: string; description?: string | null; type?: string }; onAccept: () => void }
   | { type: "purchase"; message: string }
   | { type: "item"; itemName: string; message: string; icon?: string; rarity: string }
   | { type: "companionBond"; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
@@ -112,7 +112,7 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
 
 function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
   parentTitle: string;
-  template: { title: string; description?: string | null; type?: string; priority?: string };
+  template: { title: string; description?: string | null; type?: string };
   onAccept: () => void;
   onClose: () => void;
 }) {

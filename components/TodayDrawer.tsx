@@ -266,6 +266,118 @@ function ForgeEmbers({ temp, color }: { temp: number; color: string }) {
   );
 }
 
+// ─── Today's Progress Widget ─────────────────────────────────────────────────
+
+/** Diminishing returns tier label + color from daily quest count */
+function getDRTier(count: number): { label: string; color: string } {
+  if (count <= 5) return { label: "Full rewards", color: "#4ade80" };
+  if (count <= 10) return { label: "75% rewards", color: "#fbbf24" };
+  if (count <= 20) return { label: "50% rewards", color: "#f97316" };
+  return { label: "25% rewards", color: "#ef4444" };
+}
+
+/** Approximate XP for N completed quests using 50 XP average (common baseline) */
+function approxXpEarned(count: number): number {
+  // Tiers: 1-5 = 100%, 6-10 = 75%, 11-20 = 50%, 21+ = 25%
+  const AVG = 50;
+  let xp = 0;
+  for (let i = 1; i <= count; i++) {
+    const rate = i <= 5 ? 1.0 : i <= 10 ? 0.75 : i <= 20 ? 0.5 : 0.25;
+    xp += Math.round(AVG * rate);
+  }
+  return xp;
+}
+
+/** Approximate Gold for N completed quests using 15 gold average */
+function approxGoldEarned(count: number): number {
+  const AVG = 15;
+  let gold = 0;
+  for (let i = 1; i <= count; i++) {
+    const rate = i <= 5 ? 1.0 : i <= 10 ? 0.75 : i <= 20 ? 0.5 : 0.25;
+    gold += Math.round(AVG * rate);
+  }
+  return gold;
+}
+
+interface TodayProgressProps {
+  questsToday: number;
+  streakDays: number;
+}
+
+function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
+  const drTier = getDRTier(questsToday);
+  const xpEarned = approxXpEarned(questsToday);
+  const goldEarned = approxGoldEarned(questsToday);
+
+  return (
+    <div
+      className="rounded-xl px-4 py-3 mb-1"
+      style={{
+        background: "linear-gradient(135deg, rgba(230,204,128,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+        border: "1px solid rgba(230,204,128,0.12)",
+        boxShadow: "inset 0 1px 0 rgba(230,204,128,0.06)",
+      }}
+    >
+      {/* Header row */}
+      <div className="flex items-center justify-between mb-2.5">
+        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(230,204,128,0.6)" }}>
+          Today's Progress
+        </span>
+        {/* Streak badge */}
+        <div className="flex items-center gap-1.5">
+          <StreakFlame streak={streakDays} />
+          <span className="text-xs font-bold font-mono" style={{ color: streakDays > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>
+            {streakDays}
+            <span className="font-normal" style={{ color: "rgba(255,255,255,0.3)" }}> day{streakDays !== 1 ? "s" : ""}</span>
+          </span>
+        </div>
+      </div>
+
+      {/* 2×2 stat pill grid */}
+      <div className="grid grid-cols-2 gap-2">
+        {/* Quests Today */}
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <img src="/images/icons/equip-weapon.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>Quests</span>
+          </div>
+          <span className="text-base font-bold font-mono" style={{ color: "#e8e8e8" }}>{questsToday}</span>
+          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>today</span>
+        </div>
+
+        {/* DR Tier */}
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>◆</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>DR Tier</span>
+          </div>
+          <span className="text-xs font-semibold" style={{ color: drTier.color, fontSize: 12 }}>{drTier.label}</span>
+        </div>
+
+        {/* XP Earned */}
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <img src="/images/icons/currency-essenz.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>XP</span>
+          </div>
+          <span className="text-base font-bold font-mono" style={{ color: "#818cf8" }}>~{xpEarned}</span>
+          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>earned</span>
+        </div>
+
+        {/* Gold Earned */}
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <img src="/images/icons/currency-gold.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>Gold</span>
+          </div>
+          <span className="text-base font-bold font-mono" style={{ color: "#fbbf24" }}>~{goldEarned}</span>
+          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>earned</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function TodayDrawer({
@@ -341,14 +453,22 @@ export default function TodayDrawer({
   const xpProgress = useMemo(() => getUserXpProgress(xp), [xp]);
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
   const streak = loggedInUser?.streakDays ?? 0;
-  const timeInfo = useMemo(() => getTimeGreeting(), []);
+  const [timeInfo, setTimeInfo] = useState<TimeInfo>(() => getTimeGreeting());
+  const [today, setToday] = useState(() => new Date().toISOString().slice(0, 10));
+
+  // FI-016: Refresh time-based values every 60 seconds so they stay accurate overnight
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTimeInfo(getTimeGreeting());
+      setToday(new Date().toISOString().slice(0, 10));
+    }, 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   // Forge color
   const forgeTempColor = forgeTemp >= 100 ? "#e0f0ff" : forgeTemp >= 80 ? "#f97316" : forgeTemp >= 60 ? "#ea580c" : forgeTemp >= 40 ? "#b45309" : forgeTemp >= 20 ? "#78716c" : "#4b5563";
 
   // ─── Build categories ────────────────────────────────────────────────────
-
-  const today = new Date().toISOString().slice(0, 10);
 
   const categories = useMemo(() => {
     const urgent: TodayItem[] = [];
@@ -540,6 +660,20 @@ export default function TodayDrawer({
         reward: starsEarned < 3 ? "Sternentaler" : undefined,
         tooltipKey: "sternenpfad",
         onClick: () => { onNavigate("challenges"); onClose(); },
+      });
+    }
+
+    // World Boss in active content (Lv15+) — also shown in urgent if active
+    if (worldBossActive && (playerLevel ?? 1) >= 15) {
+      content.push({
+        id: "world-boss-content",
+        icon: "/images/icons/ach-boss-slayer.png",
+        label: "World Boss Active",
+        done: false,
+        sub: "Deal damage now",
+        reward: "Unique drops",
+        tooltipKey: "world_boss",
+        onClick: () => { onNavigate("worldboss"); onClose(); },
       });
     }
 
@@ -911,6 +1045,20 @@ export default function TodayDrawer({
 
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
         <div className="flex-1 overflow-y-auto px-4 pb-3 relative today-scroll" style={{ zIndex: 1 }}>
+
+          {/* Today's Progress — top of drawer, only when logged in */}
+          {loggedInUser && (
+            <>
+              <div className="pt-3 pb-1">
+                <TodayProgressWidget
+                  questsToday={loggedInUser._dailyCompletions?.count ?? 0}
+                  streakDays={loggedInUser.streakDays ?? 0}
+                />
+              </div>
+              <MagicDivider />
+            </>
+          )}
+
           {categories.map((cat, catIdx) => {
             const catAllDone = cat.items.every(i => i.done);
             return (

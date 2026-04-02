@@ -82,7 +82,7 @@ router.post('/api/agent/:name/command', requireApiKey, (req, res) => {
 });
 
 // GET /api/agent/:name/commands — agent polls for pending commands
-router.get('/api/agent/:name/commands', (req, res) => {
+router.get('/api/agent/:name/commands', requireApiKey, (req, res) => {
   const agent = getAgent(req.params.name);
   if (!agent) return res.status(404).json({ error: 'Agent not found' });
   const pending = (agent.commands || []).filter(c => c.status === 'pending');
@@ -128,8 +128,8 @@ router.post('/api/agent/:name/register', requireApiKey, (req, res) => {
   } else {
     // Update meta fields if provided in the request body
     if (avatar !== undefined) state.store.agents[name].avatar = avatar;
-    if (role !== undefined) state.store.agents[name].role = role;
-    if (description !== undefined) state.store.agents[name].description = description;
+    if (role !== undefined) state.store.agents[name].role = String(role).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    if (description !== undefined) state.store.agents[name].description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
     if (color !== undefined) state.store.agents[name].color = color;
   }
   saveData();

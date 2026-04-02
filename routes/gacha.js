@@ -82,11 +82,6 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
   if (!u) return null;
   const gs = getPlayerGachaState(playerId);
 
-  // Passive: pity_minus_5 — reduce pity counter by 5 (once per pull session, not per item)
-  if (!skipPityPassive && hasPassiveEffect(playerId, 'pity_minus_5')) {
-    gs.pityCounter = Math.max(0, gs.pityCounter - 5);
-  }
-
   const pool = banner.type === 'featured' && state.gachaPool.featuredPool?.length > 0
     ? state.gachaPool.featuredPool
     : state.gachaPool.standardPool || [];
@@ -95,6 +90,8 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
 
   // Passive: rarity_boost_15 — +15% chance for rare+ rarity
   const hasRarityBoost = hasPassiveEffect(playerId, 'rarity_boost_15');
+  // Passive: pity_minus_5 — ephemeral offset (NOT permanent mutation of stored counter)
+  const pityPassiveBoost = (!skipPityPassive && hasPassiveEffect(playerId, 'pity_minus_5')) ? 5 : 0;
   // Legendary effect: pityReduction — effectively boosts pity counter so thresholds are reached sooner
   const gachaMods = getLegendaryModifiers(playerId);
   // Talent: gacha_lucky_streak — pity acceleration on every Nth pull
@@ -104,12 +101,11 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
   if (luckyStreak && luckyStreak.pityAcceleration > 0) {
     const totalPulls = gs.pityCounter;
     const everyN = luckyStreak.everyNthPull || 5;
-    // Every Nth pull: pity counter advances extra steps
     if (totalPulls > 0 && totalPulls % everyN === 0) {
       talentPityBoost = luckyStreak.pityAcceleration;
     }
   }
-  const effectivePity = gs.pityCounter + (gachaMods.pityReduction || 0) + talentPityBoost;
+  const effectivePity = gs.pityCounter + (gachaMods.pityReduction || 0) + talentPityBoost + pityPassiveBoost;
   let rarity = rollRarity(effectivePity, gs.epicPityCounter, hasRarityBoost);
 
   // Talent: weekly_guaranteed_epic_pull — once per week, force epic+ rarity

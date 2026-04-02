@@ -170,7 +170,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
 
             {/* Milestone Progress */}
             <div className="space-y-1.5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-              <TipCustom title="Streak-Meilensteine" icon="🔗" accent="#fbbf24" body={<p>Belohnungen f&uuml;r ununterbrochene Login-Streaks. Je l&auml;nger der Streak, desto besser die Boni.</p>}>
+              <TipCustom title="Streak-Meilensteine" icon="★" accent="#fbbf24" body={<p>Belohnungen f&uuml;r ununterbrochene Login-Streaks. Je l&auml;nger der Streak, desto besser die Boni.</p>}>
                 <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Streak-Meilensteine</p>
               </TipCustom>
               {MILESTONES.map(m => {

@@ -138,7 +138,7 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
   // Create mail
   const mail = {
     id: `mail-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-    from: u.name || uid,
+    from: sanitizeText(u.name || uid),
     to: recipientId,
     subject: sanitizeText(subject),
     body: sanitizeText((body || '').slice(0, 500)),

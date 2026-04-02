@@ -154,8 +154,8 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#fbbf24",
     body: (
       <>
-        <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to +{(B.streak.maxBonus * 100).toFixed(0)}% at {B.streak.maxDays}+ days).</p>
-        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+{(B.streak.bonusPerDay * 100).toFixed(1)}% per day, max +{(B.streak.maxBonus * 100).toFixed(0)}% at {B.streak.maxDays} days</span></div>
+        <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to ~+20% with diminishing returns at 30+ days).</p>
+        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+0.5%/day (diminishing), soft cap ~20% at 60+ days</span></div>
         <div className="gt-stat-row"><span>Protection</span><span><GTRef k="vitalitaet">Vitalität</GTRef> stat, Streak Shields, Legendary gear</span></div>
         <p className="gt-source">Milestones: Bronze (7d), Silver (21d), Gold (60d), Diamond (180d), Legend (365d)</p>
       </>
@@ -168,8 +168,8 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     body: (
       <>
         <p>Earned from quests. XP is multiplied by many factors:</p>
-        <div className="gt-stat-row"><span><GTRef k="forge_temp">Forge Temp</GTRef></span><span>×0.5 to ×1.5</span></div>
-        <div className="gt-stat-row"><span><GTRef k="kraft">Kraft</GTRef> stat</span><span>up to +30%</span></div>
+        <div className="gt-stat-row"><span><GTRef k="forge_temp">Forge Temp</GTRef></span><span>×0.6 to ×1.25</span></div>
+        <div className="gt-stat-row"><span><GTRef k="kraft">Kraft</GTRef> stat</span><span>+0.5% per point (max +15% at 30)</span></div>
         <div className="gt-stat-row"><span>Gear bonus</span><span>Varies by equipment</span></div>
         <div className="gt-stat-row"><span>Companion Bond</span><span>+1% per bond level</span></div>
         <div className="gt-stat-row"><span>Hoarding malus</span><span>-10%/quest over 20 active</span></div>
@@ -247,7 +247,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
   // ── Game Features ──
   pity: {
     title: "Pity System",
-    icon: "🎯",
+    icon: "◆",
     accent: "#fbbf24",
     body: (
       <>
@@ -997,7 +997,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Wheel of Stars</span><span>Standard · costs <GTRef k="runensplitter">Rune Shards</GTRef></span></div>
         <div className="gt-stat-row"><span>Astral Radiance</span><span>Featured · costs <GTRef k="stardust">Stardust</GTRef></span></div>
         <p>Featured banners have a 50/50 system: lose the coin flip once, and your next Legendary is guaranteed to be the featured item.</p>
-        <p className="gt-source"><GTRef k="pity">Pity</GTRef> tracks separately per banner.</p>
+        <p className="gt-source"><GTRef k="pity">Pity</GTRef> counter is shared across all banners.</p>
       </>
     ),
   },

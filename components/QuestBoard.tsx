@@ -19,8 +19,6 @@ export {
   CreatorBadge,
   AgentBadge,
   RecurringBadge,
-  PriorityBadge,
-  ClickablePriorityBadge,
 } from "./QuestBadges";
 
 // ─── Quest Cards ─────────────────────────────────────────────────────────────

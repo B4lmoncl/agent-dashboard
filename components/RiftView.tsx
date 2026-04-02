@@ -206,7 +206,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" />
+        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Rift</p>
         <p className="text-xs text-w15">Log in to enter The Rift.</p>
       </div>
@@ -239,7 +239,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       </div>
       {/* Header */}
       <div className="flex items-center gap-3">
-        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto" />
+        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <div>
           <Tip k="rift" heading><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>The Rift</h2></Tip>
           <p className="text-xs text-w25">Timed quest chains with escalating difficulty. Complete all stages before time runs out.</p>
@@ -293,7 +293,10 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           {/* Extend timer button (Mondstaub) */}
           {!activeRift.completed && !activeRift.failed && !activeRift.extended && reviewApiKey && (
             <button
+              disabled={actionLoading}
               onClick={async () => {
+                if (actionLoading) return;
+                setActionLoading(true);
                 try {
                   const r = await fetch("/api/rift/extend", {
                     method: "POST",
@@ -308,17 +311,19 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   }
                 } catch { setMessage({ text: "Network error", type: "error" }); }
                 setTimeout(() => setMessage(null), 4000);
+                setActionLoading(false);
               }}
-              title="Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"
+              title={actionLoading ? "Action in progress..." : "Spend 30 Mondstaub to add 6 hours to the rift timer (once per run)"}
               className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
               style={{
                 background: "rgba(192,132,252,0.08)",
                 color: "#c084fc",
                 border: "1px solid rgba(192,132,252,0.2)",
-                cursor: "pointer",
+                cursor: actionLoading ? "not-allowed" : "pointer",
+                opacity: actionLoading ? 0.5 : 1,
               }}
             >
-              Extend Timer +6h (30 Mondstaub)
+              {actionLoading ? "..." : "Extend Timer +6h (30 Mondstaub)"}
             </button>
           )}
 
@@ -519,7 +524,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       {!activeRift && mythicUnlocked && (
         <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.2)" }}>
           <div className="flex items-center gap-3">
-            <img src="/images/icons/rift-mythic.png" alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: "1px solid rgba(255,68,68,0.3)" }} />
+            <img src="/images/icons/rift-mythic.png" alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: "1px solid rgba(255,68,68,0.3)" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <div className="flex-1">
               <p className="text-sm font-bold" style={{ color: "#ff4444" }}>Mythic Rift</p>
               <p className="text-xs text-w25">Endless scaling difficulty. How deep can you go?</p>
@@ -621,7 +626,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               cursor: (actionLoading || tiers.mythic?.onCooldown) ? "not-allowed" : "pointer",
             }}
           >
-            {tiers.mythic?.onCooldown ? "On Cooldown" : actionLoading ? "..." : <><img src="/images/icons/rift-mythic.png" alt="" width={16} height={16} className="img-render-auto inline-block mr-1 -mt-0.5" /> Enter Mythic +{selectedMythicLevel}</>}
+            {tiers.mythic?.onCooldown ? "On Cooldown" : actionLoading ? "..." : <><img src="/images/icons/rift-mythic.png" alt="" width={16} height={16} className="img-render-auto inline-block mr-1 -mt-0.5" onError={e => { e.currentTarget.style.display = "none"; }} /> Enter Mythic +{selectedMythicLevel}</>}
           </button>
           {tiers.mythic?.onCooldown && tiers.mythic.cooldownEndsAt && (
             <p className="text-xs text-center" style={{ color: "#ef4444" }}>
@@ -632,7 +637,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           {/* Mythic Leaderboard */}
           {mythicLeaderboard.length > 0 && (
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2 flex items-center gap-1"><img src="/images/icons/rift-mythic.png" alt="" width={14} height={14} className="img-render-auto" /> Mythic Leaderboard</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2 flex items-center gap-1"><img src="/images/icons/rift-mythic.png" alt="" width={14} height={14} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> Mythic Leaderboard</p>
               <div className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,68,68,0.12)" }}>
                 <table className="w-full text-xs">
                   <thead>

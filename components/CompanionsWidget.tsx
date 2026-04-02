@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { User, Quest } from "@/app/types";
@@ -103,6 +103,17 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const closeRewardPopup = useCallback(() => setRewardPopup(null), []);
   useModalBehavior(!!rewardPopup, closeRewardPopup);
 
+  // ─── Timeout refs for cleanup on unmount ─────────────────────────────────
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const safeTimeout = useCallback((fn: () => void, delay: number) => {
+    const id = setTimeout(fn, delay);
+    timeoutRefs.current.push(id);
+    return id;
+  }, []);
+  useEffect(() => {
+    return () => { timeoutRefs.current.forEach(clearTimeout); };
+  }, []);
+
   // ─── Companion Expedition State ───────────────────────────────────────────
   const [expeditionData, setExpeditionData] = useState<{
     active: { expeditionId: string; name: string; icon: string; sentAt: string; completesAt: string; remainingMs: number; completed: boolean } | null;
@@ -112,6 +123,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     bondMultiplier: number;
   } | null>(null);
   const [expeditionLoading, setExpeditionLoading] = useState(false);
+  const [expeditionInitialLoading, setExpeditionInitialLoading] = useState(true);
   const [expeditionTimer, setExpeditionTimer] = useState<string | null>(null);
   const [expeditionTimerProgress, setExpeditionTimerProgress] = useState(0);
   const [expeditionSending, setExpeditionSending] = useState<string | null>(null);
@@ -121,7 +133,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [lastExpeditionTier, setLastExpeditionTier] = useState<string | null>(null);
 
   const fetchExpeditions = useCallback(async () => {
-    if (!playerName || !apiKey || !user?.companion) return;
+    if (!playerName || !apiKey || !user?.companion) { setExpeditionInitialLoading(false); return; }
     try {
       const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/expeditions`, {
         headers: { ...getAuthHeaders(apiKey) },
@@ -130,7 +142,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         const data = await r.json();
         setExpeditionData(data);
       }
-    } catch { /* silent */ }
+    } catch { /* silent */ } finally {
+      setExpeditionInitialLoading(false);
+    }
   }, [playerName, apiKey, user?.companion]);
 
   // Fetch expedition data on mount and when companion changes
@@ -181,11 +195,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         if (onUserRefresh) onUserRefresh();
       } else {
         setExpeditionError(d.error || "Failed to send companion");
-        setTimeout(() => setExpeditionError(null), 5000);
+        safeTimeout(() => setExpeditionError(null), 5000);
       }
     } catch {
       setExpeditionError("Network error");
-      setTimeout(() => setExpeditionError(null), 5000);
+      safeTimeout(() => setExpeditionError(null), 5000);
     }
     setExpeditionSending(null);
   };
@@ -222,16 +236,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           });
         }
         setCompanionGlow(true);
-        setTimeout(() => setCompanionGlow(false), 2000);
+        safeTimeout(() => setCompanionGlow(false), 2000);
         await fetchExpeditions();
         if (onUserRefresh) onUserRefresh();
       } else {
         setExpeditionError(d.error || "Failed to collect");
-        setTimeout(() => setExpeditionError(null), 5000);
+        safeTimeout(() => setExpeditionError(null), 5000);
       }
     } catch {
       setExpeditionError("Network error");
-      setTimeout(() => setExpeditionError(null), 5000);
+      safeTimeout(() => setExpeditionError(null), 5000);
     }
     setExpeditionCollecting(false);
   };
@@ -250,7 +264,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         setCompletedIds(prev => new Set([...prev, questId]));
         // Success animation on button for 1.5s
         setCompletingSuccessId(questId);
-        setTimeout(() => setCompletingSuccessId(null), 1500);
+        safeTimeout(() => setCompletingSuccessId(null), 1500);
         // Show reward celebration via unified popup
         if (onRewardCelebration) {
           const cColor = getCompanionColor(user?.companion?.type || user?.companion?.species);
@@ -277,8 +291,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         }
         // Companion glow effect
         setCompanionGlow(true);
-        setTimeout(() => setCompanionGlow(false), 2000);
-        setTimeout(() => {
+        safeTimeout(() => setCompanionGlow(false), 2000);
+        safeTimeout(() => {
           setCompletedIds(prev => { const s = new Set(prev); s.delete(questId); return s; });
           if (onUserRefresh) onUserRefresh();
         }, 2000);
@@ -331,7 +345,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     SFX.companionPet();
     // Always play heart animation
     setHeartAnim(true);
-    setTimeout(() => setHeartAnim(false), 1200);
+    safeTimeout(() => setHeartAnim(false), 1200);
     try {
       const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/pet`, {
         method: "POST",
@@ -344,9 +358,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         if (onUserRefresh) onUserRefresh();
       } else {
         setPetError(d.error || "Error");
-        setTimeout(() => setPetError(""), 3000);
+        safeTimeout(() => setPetError(""), 3000);
       }
-    } catch { setPetError("Error"); setTimeout(() => setPetError(""), 3000); }
+    } catch { setPetError("Error"); safeTimeout(() => setPetError(""), 3000); }
     setPetting(false);
   };
 
@@ -366,14 +380,14 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         setUltimatePickQuest(false);
         setUltimateGlow(true);
         SFX.companionPet();
-        setTimeout(() => setUltimateResult(null), 5000);
-        setTimeout(() => setUltimateGlow(false), 4000);
+        safeTimeout(() => setUltimateResult(null), 5000);
+        safeTimeout(() => setUltimateGlow(false), 4000);
         if (onUserRefresh) onUserRefresh();
       } else {
         setUltimateResult(d.error || "Error");
-        setTimeout(() => setUltimateResult(null), 4000);
+        safeTimeout(() => setUltimateResult(null), 4000);
       }
-    } catch { setUltimateResult("Network error"); setTimeout(() => setUltimateResult(null), 3000); }
+    } catch { setUltimateResult("Network error"); safeTimeout(() => setUltimateResult(null), 3000); }
     setUltimateUsing(null);
   };
 
@@ -517,8 +531,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <Tip k="bond_level"><span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.65)`, cursor: "help" }}>Bond Lv.{bondLevel} — {bondTitle}</span></Tip>
                       {bondXpBonus > 0 && <span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.45)` }}>+{bondXpBonus}% XP</span>}
                     </div>
-                    <div className="mt-1 rounded-full overflow-hidden" style={{ height: 4, background: `rgba(${cColor.accentRgb},0.1)` }}>
-                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${bondProgress * 100}%`, background: `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)` }} />
+                    <div className="progress-bar-diablo mt-1" style={{ height: 3, borderRadius: 2 }}>
+                      <div className="progress-bar-diablo-fill" style={{ width: `${bondProgress * 100}%`, background: `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)` }} />
                     </div>
                   </div>
                   {playerName && apiKey && (
@@ -539,15 +553,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           ))}
                         </div>
                       )}
-                      <button onClick={handlePet} disabled={petting} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
-                        title={petting ? "Petting in progress…" : ""}
+                      <button onClick={handlePet} disabled={petting || (petsToday !== null && petsToday >= 2)} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
+                        title={petting ? "Petting in progress…" : (petsToday !== null && petsToday >= 2) ? "Daily belly rub limit reached (2/2)" : "Give a belly rub (+0.5 Bond XP)"}
                         style={{
                         background: heartAnim ? "linear-gradient(135deg, rgba(255,107,157,0.3), rgba(255,107,157,0.15))" : "linear-gradient(135deg, rgba(255,107,157,0.12), rgba(255,107,157,0.06))",
                         color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)",
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
-                        cursor: petting ? "not-allowed" : "pointer",
+                        cursor: (petting || (petsToday !== null && petsToday >= 2)) ? "not-allowed" : "pointer",
+                        opacity: (petsToday !== null && petsToday >= 2) ? 0.4 : 1,
                       }}>
-                        <TipCustom title="Pet Companion" icon="🐾" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
+                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
                           <span>Pet</span>
                         </TipCustom>
                       </button>
@@ -756,8 +771,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               </p>
             )}
 
+            {/* ─── Companion Expeditions skeleton ─── */}
+            {user?.companion && playerName && apiKey && expeditionInitialLoading && (
+              <div style={{ background: "#0e1018", border: "1px solid #1a1c28", borderRadius: 2, padding: "8px 10px", marginTop: 10 }}>
+                <div className="skeleton-pulse h-3 w-32 rounded mb-3" style={{ background: "rgba(255,255,255,0.06)" }} />
+                <div className="skeleton-pulse h-12 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+              </div>
+            )}
+
             {/* ─── Companion Expeditions ─── */}
-            {user?.companion && playerName && apiKey && expeditionData && (
+            {user?.companion && playerName && apiKey && !expeditionInitialLoading && expeditionData && (
               <div className="tab-content-enter" style={{
                 background: "#0e1018",
                 border: "1px solid #1a1c28",

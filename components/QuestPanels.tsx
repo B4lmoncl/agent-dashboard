@@ -52,6 +52,7 @@ const ANTI_RITUAL_MILESTONES = [
 export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?: (data: { type: "vow"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string; rarityColor?: string } | null; streak?: number; pactBonus?: { xp: number; gold: number } | null }) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [antiRituals, setAntiRituals] = useState<AntiRitual[]>([]);
+  const [vowsLoading, setVowsLoading] = useState(true);
   const [createOpen, setCreateOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newVowCategory, setNewVowCategory] = useState("personal");
@@ -82,7 +83,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
   }, [createOpen]);
 
   const loadAntiRituals = useCallback(async () => {
-    if (!playerName) return;
+    if (!playerName) { setVowsLoading(false); return; }
     try {
       const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}&type=anti`, { cache: "no-store" });
       if (r.ok) {
@@ -102,7 +103,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
           status: r.status ?? "active",
         })));
       }
-    } catch { /* ignore */ }
+    } catch { /* ignore */ } finally {
+      setVowsLoading(false);
+    }
   }, [playerName]);
 
   useEffect(() => { loadAntiRituals(); }, [loadAntiRituals]);
@@ -133,7 +136,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({
           title: newTitle.trim(),
-          schedule: { type: "daily" },
+          schedule: { type: newVowFrequency || "daily" },
           playerId: playerName,
           createdBy: playerName,
           isAntiRitual: true,
@@ -366,7 +369,13 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               </button>
             )}
           </div>
-          {antiRituals.length === 0 ? (
+          {vowsLoading ? (
+            <div className="space-y-2">
+              {[0, 1].map(i => (
+                <div key={i} className="skeleton-pulse rounded-xl" style={{ height: 64, background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.1)" }} />
+              ))}
+            </div>
+          ) : antiRituals.length === 0 ? (
             <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-2xl mb-2">×</p>
               <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>
@@ -454,8 +463,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     {DIFFICULTY_TIERS_VOW.map(d => (
                       <button key={d.id} onClick={() => setNewVowDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newVowDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
                       </button>
                     ))}
                   </div>
@@ -466,8 +475,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     {COMMITMENT_TIERS_VOW.map(tier => (
                       <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
-                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                       </button>
                     ))}
                   </div>
@@ -482,13 +491,13 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(99,102,241,0.12)" }}>
                   <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Reward Preview</p>
                   <p className="text-xs mb-1" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Täglich bei Check-in:</p>
-                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
-                  {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
+                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: 12 }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
+                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: 12 }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
+                  {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                   {newVowBloodPact && pactCompletionXp > 0 && <>
                     <div style={{ borderTop: "1px solid rgba(99,102,241,0.15)", margin: "8px 0 6px" }} />
                     <p className="text-xs mb-0.5" style={{ color: "rgba(99,102,241,0.6)", fontStyle: "italic", letterSpacing: "0.03em" }}>Einmalig nach {tierData.days}d Abschluss <span style={{ fontWeight: 600 }}>(Pact ×{pactMulti})</span>:</p>
-                    <p className="text-xs" style={{ color: "rgba(129,140,248,0.9)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
+                    <p className="text-xs" style={{ color: "rgba(129,140,248,0.9)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
                   </>}
                   <p className="text-xs mt-2 mb-0.5" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Bei Streak-Meilenstein:</p>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.45)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>
@@ -570,7 +579,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       {COMMITMENT_TIERS_VOW.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
+                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days}d</div>
                         </button>
                       ))}
                     </div>
@@ -713,13 +722,13 @@ export function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestio
     }
   }
 
-  // 3. High-priority pile — 3+ high-priority open quests unclaimed
-  const highOpen = quests.open.filter(q => q.priority === "high" && !q.claimedBy);
+  // 3. High-rarity pile — 3+ rare/epic/legendary open quests unclaimed
+  const highOpen = quests.open.filter(q => (q.rarity === "rare" || q.rarity === "epic" || q.rarity === "legendary") && !q.claimedBy);
   if (highOpen.length >= 3) {
     suggestions.push({
       id: "high-pile",
       icon: "",
-      title: `${highOpen.length} high-priority quests unclaimed`,
+      title: `${highOpen.length} high-rarity quests unclaimed`,
       body: `High-value work is piling up: ${highOpen.slice(0, 2).map(q => `"${q.title}"`).join(", ")}${highOpen.length > 2 ? ` +${highOpen.length - 2} more` : ""}. Consider assigning them.`,
       accent: "#ef4444",
       accentBg: "rgba(239,68,68,0.08)",
@@ -780,7 +789,7 @@ export function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestio
 
 import companionProfiles from "../public/data/companionProfiles.json";
 
-type CompanionProfile = { quests: { id: string; title: string; description: string; priority: "high" | "medium" | "low" }[]; moodQuotes: Record<string, string> };
+type CompanionProfile = { quests: { id: string; title: string; description: string; rarity: string }[]; moodQuotes: Record<string, string> };
 
 export function getCompanionProfile(companion?: { isReal?: boolean; type?: string; name?: string } | null): CompanionProfile {
   if (!companion) return companionProfiles.real_pet as CompanionProfile;
@@ -861,7 +870,6 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
         body: JSON.stringify({
           title: q.title,
           description: q.description,
-          priority: q.priority,
           type: "personal",
           createdBy: "companion",
           recurrence: "daily",

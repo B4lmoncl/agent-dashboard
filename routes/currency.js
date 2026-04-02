@@ -4,10 +4,13 @@
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 
-// ─── Player lock (prevents concurrent claims) ───────────────────────────────
-const _dailyLocks = new Map();
-function acquireDailyLock(uid) { if (_dailyLocks.has(uid)) return false; _dailyLocks.set(uid, true); return true; }
-function releaseDailyLock(uid) { _dailyLocks.delete(uid); }
+// ─── Player locks (prevents concurrent mutations) ──────────────────────────
+const { createPlayerLock } = require('../lib/helpers');
+const dailyLock = createPlayerLock('daily-bonus');
+const currencyLock = createPlayerLock('currency-mutation');
+// Legacy aliases
+function acquireDailyLock(uid) { return dailyLock.acquire(uid); }
+function releaseDailyLock(uid) { dailyLock.release(uid); }
 const { requireApiKey } = require('../lib/middleware');
 const { now, awardCurrency, getStreakMilestone, getTodayBerlin } = require('../lib/helpers');
 
@@ -51,8 +54,9 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
   if (!(currency in u.currencies)) {
     return res.status(400).json({ error: `Unknown currency: ${currency}` });
   }
-  const amt = Math.min(1000000, Math.abs(Math.floor(amount)));
-  if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
+  if (typeof amount !== 'number' || amount <= 0) return res.status(400).json({ error: 'Amount must be a positive number' });
+  const amt = Math.min(1000000, Math.floor(amount));
+  if (amt <= 0) return res.status(400).json({ error: 'Amount too small' });
 
   if (action === 'spend') {
     if (u.currencies[currency] < amt) {
@@ -72,6 +76,8 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
 // body: { from: string, to: string, amount: number }
 router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   const uid = req.params.playerId.toLowerCase();
+  if (!currencyLock.acquire(uid)) return res.status(429).json({ error: 'Currency operation in progress' });
+  try {
   // Self-check: only convert own currency (admin bypass)
   const callerId = req.auth?.userId?.toLowerCase();
   if (!req.auth?.isAdmin && callerId !== uid) {
@@ -98,8 +104,9 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
     return res.status(400).json({ error: `Conversion from ${from} to ${to} is not allowed` });
   }
 
-  const amt = Math.min(1000000, Math.abs(Math.floor(amount)));
-  if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
+  if (typeof amount !== 'number' || amount <= 0) return res.status(400).json({ error: 'Amount must be a positive number' });
+  const amt = Math.min(1000000, Math.floor(amount));
+  if (amt <= 0) return res.status(400).json({ error: 'Amount too small' });
   if (u.currencies[from] < amt) {
     return res.status(400).json({ error: `Not enough ${from}. Have ${u.currencies[from]}, need ${amt}` });
   }
@@ -117,6 +124,7 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[currency] ${uid} converted ${amt} ${from} → ${received} ${to} (tax ${Math.round(taxRate * 100)}%)`);
   res.json({ ok: true, spent: amt, received, from, to, taxRate, currencies: u.currencies });
+  } finally { currencyLock.release(uid); }
 });
 
 // GET /api/currency/templates — get all currency definitions

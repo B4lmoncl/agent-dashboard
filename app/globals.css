@@ -109,6 +109,7 @@ img {
 .premium-stardust {
   --glow-color: rgba(167, 139, 250, 0.4);
   animation: premium-breathe 4s ease-in-out infinite;
+  will-change: filter;
 }
 
 .premium-rune-shards {
@@ -841,6 +842,7 @@ button[disabled] {
 }
 .milestone-pulse {
   animation: milestone-pulse 2s ease-in-out infinite;
+  will-change: transform, box-shadow;
 }
 
 /* NEW unlock badge pulse on navigation tabs */
@@ -905,7 +907,7 @@ button[disabled] {
   0%, 100% { box-shadow: 0 0 4px var(--glow-color, rgba(255,255,255,0.05)), inset 0 0 4px var(--glow-color, rgba(255,255,255,0.02)); }
   50% { box-shadow: 0 0 12px var(--glow-color, rgba(255,255,255,0.12)), inset 0 0 8px var(--glow-color, rgba(255,255,255,0.06)); }
 }
-.crystal-breathe { animation: crystal-breathe 6s ease-in-out infinite; }
+.crystal-breathe { animation: crystal-breathe 6s ease-in-out infinite; will-change: box-shadow; }
 
 
 
