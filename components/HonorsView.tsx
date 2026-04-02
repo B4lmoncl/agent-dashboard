@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useEffect, useRef, useState } from "react";
+import { useMemo, useEffect, useRef, useState, useCallback } from "react";
 import type { AchievementDef } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -31,9 +31,28 @@ function conditionToText(cond: Record<string, unknown> | undefined): string {
   }
 }
 
+// Category color map — used for tab highlight tints
+const CAT_COLORS: Record<string, string> = {
+  hidden: "#a855f7",
+  progression: "#f59e0b",
+  social: "#3b82f6",
+  combat: "#ef4444",
+  exploration: "#22c55e",
+  crafting: "#f97316",
+  collection: "#06b6d4",
+};
+
+function getCatColor(cat: string): string {
+  return CAT_COLORS[cat.toLowerCase()] ?? "#a0a0a0";
+}
+
 export default function HonorsView({ catalogue, highlightedAchievementId, onHighlightClear }: { catalogue: AchievementDef[]; highlightedAchievementId?: string | null; onHighlightClear?: () => void }) {
   const highlightRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
+  const [activeCat, setActiveCat] = useState("all");
+  const [earnedFilter, setEarnedFilter] = useState<"all" | "earned" | "unearned">("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   useEffect(() => {
     if (catalogue.length > 0) setLoading(false);
@@ -47,9 +66,16 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
       return () => clearTimeout(timer);
     }
   }, [highlightedAchievementId, onHighlightClear]);
+
+  // Debounce search input by 200ms
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearch(searchQuery), 200);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const { users, playerName: ctxPlayerName } = useDashboard();
   const playerName = ctxPlayerName || "";
-  const categories = Array.from(new Set(catalogue.map(a => a.category)));
+  const allCategories = Array.from(new Set(catalogue.map(a => a.category)));
   const loggedInUser = playerName ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
   const playerEarnedIds = new Set((loggedInUser?.earnedAchievements ?? []).map(a => a.id));
   const playerEarnedMap = new Map((loggedInUser?.earnedAchievements ?? []).map(a => [a.id, a]));
@@ -65,8 +91,27 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
   const totalUsers = users.length;
 
-  // Sort achievements: earned first, then by rarity (fewer earners = rarer)
-    // Keep original order — no sorting by earned/unearned
+  // Filtered catalogue — apply all three filters
+  const filteredCatalogue = useMemo(() => {
+    let result = catalogue;
+    if (activeCat !== "all") result = result.filter(a => a.category === activeCat);
+    if (earnedFilter === "earned") result = result.filter(a => playerEarnedIds.has(a.id));
+    else if (earnedFilter === "unearned") result = result.filter(a => !playerEarnedIds.has(a.id));
+    if (debouncedSearch.trim()) {
+      const q = debouncedSearch.toLowerCase();
+      result = result.filter(a => !a.hidden || playerEarnedIds.has(a.id)
+        ? a.name.toLowerCase().includes(q)
+        : false);
+    }
+    return result;
+  }, [catalogue, activeCat, earnedFilter, debouncedSearch, playerEarnedIds]);
+
+  // Visible categories after filtering (for rendering groups)
+  const categories = activeCat === "all"
+    ? allCategories.filter(cat => filteredCatalogue.some(a => a.category === cat))
+    : [activeCat];
+
+  // Sort achievements: keep original order
   const sortAchievements = (achs: AchievementDef[]) => achs;
 
   const getRarityLabel = (count: number) => {
@@ -122,8 +167,110 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No achievements data. Connect to the API.</p>
         </div>
       ) : (
-        categories.map(cat => {
-          const catAchs = catalogue.filter(a => a.category === cat);
+        <>
+          {/* ── Filters ── */}
+          <div className="space-y-2">
+            {/* Category tabs — horizontally scrollable */}
+            <div className="flex gap-1.5 flex-nowrap overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+              <button
+                onClick={() => setActiveCat("all")}
+                className="text-xs px-2.5 py-1 rounded-lg flex-shrink-0"
+                style={{
+                  background: activeCat === "all" ? "rgba(245,158,11,0.15)" : "rgba(255,255,255,0.03)",
+                  color: activeCat === "all" ? "#f59e0b" : "rgba(255,255,255,0.3)",
+                  border: `1px solid ${activeCat === "all" ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.06)"}`,
+                  cursor: "pointer",
+                }}
+              >
+                All ({catalogue.length})
+              </button>
+              {allCategories.map(cat => {
+                const color = getCatColor(cat);
+                const total = catalogue.filter(a => a.category === cat).length;
+                const isActive = activeCat === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCat(cat)}
+                    className="text-xs px-2.5 py-1 rounded-lg flex-shrink-0"
+                    style={{
+                      background: isActive ? `${color}22` : "rgba(255,255,255,0.03)",
+                      color: isActive ? color : "rgba(255,255,255,0.3)",
+                      border: `1px solid ${isActive ? `${color}40` : "rgba(255,255,255,0.06)"}`,
+                      cursor: "pointer",
+                    }}
+                  >
+                    {cat === "hidden" ? "Secret" : cat} ({total})
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Per-category progress bar — only when a specific category is active and player is logged in */}
+            {activeCat !== "all" && loggedInUser && (() => {
+              const catTotal = catalogue.filter(a => a.category === activeCat).length;
+              const catEarned = catalogue.filter(a => a.category === activeCat && playerEarnedIds.has(a.id)).length;
+              const color = getCatColor(activeCat);
+              return catTotal > 0 ? (
+                <div>
+                  <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
+                    <div
+                      className="h-full rounded-full transition-all duration-700"
+                      style={{ width: `${(catEarned / catTotal) * 100}%`, background: color, opacity: 0.7 }}
+                    />
+                  </div>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>{catEarned}/{catTotal} in this category</p>
+                </div>
+              ) : null;
+            })()}
+
+            {/* Earned / Unearned filter + Search row */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex gap-1">
+                {(["all", "earned", "unearned"] as const).map(f => (
+                  <button
+                    key={f}
+                    onClick={() => setEarnedFilter(f)}
+                    className="text-xs px-2 py-0.5 rounded"
+                    style={{
+                      background: earnedFilter === f ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.03)",
+                      color: earnedFilter === f ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.25)",
+                      border: `1px solid ${earnedFilter === f ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.06)"}`,
+                      cursor: "pointer",
+                    }}
+                  >
+                    {f === "all" ? "All" : f === "earned" ? "Earned" : "Unearned"}
+                  </button>
+                ))}
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Search achievements..."
+                className="input-dark text-xs flex-1 min-w-[140px] max-w-xs"
+                style={{ height: 26, padding: "0 8px" }}
+              />
+              {(activeCat !== "all" || earnedFilter !== "all" || searchQuery) && (
+                <button
+                  onClick={() => { setActiveCat("all"); setEarnedFilter("all"); setSearchQuery(""); }}
+                  className="text-xs px-2 py-0.5 rounded"
+                  style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
+
+          {filteredCatalogue.length === 0 && (
+            <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No achievements match the current filters.</p>
+            </div>
+          )}
+
+          {categories.map(cat => {
+          const catAchs = filteredCatalogue.filter(a => a.category === cat);
           if (catAchs.length === 0) return null;
           const sorted = sortAchievements(catAchs);
           const earnedInCat = sorted.filter(a => playerEarnedIds.has(a.id)).length;
@@ -277,7 +424,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
               </div>
             </div>
           );
-        })
+        })}
+        </>
       )}
     </div>
   );
