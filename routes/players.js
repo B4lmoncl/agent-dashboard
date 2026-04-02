@@ -458,16 +458,13 @@ router.get('/api/player/:name/favorites', (req, res) => {
   res.json({ favorites: pp.favorites || [] });
 });
 
-// GET /api/game-version — get current game version from version.json
-router.get('/api/game-version', (req, res) => {
-  const fs = require('fs');
-  const path = require('path');
+// GET /api/game-version — cached at startup (no fs.readFileSync per request)
+const _versionData = (() => {
   try {
-    const versionFile = path.join(__dirname, '..', 'public', 'data', 'version.json');
-    const data = JSON.parse(fs.readFileSync(versionFile, 'utf8'));
-    res.json(data);
-  } catch { res.json({ version: '1.5.1' }); }
-});
+    return JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'data', 'version.json'), 'utf8'));
+  } catch { return { version: '1.6.0' }; }
+})();
+router.get('/api/game-version', (req, res) => res.json(_versionData));
 
 // GET /api/changelog-data — get structured changelog from changelog.json
 router.get('/api/changelog-data', (req, res) => {

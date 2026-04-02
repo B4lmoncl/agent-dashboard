@@ -29,6 +29,7 @@
 - REJ-014 UI Rift Timer Urgency + Post-Rift Summary
 - REJ-015 UI Pinned Objective Tracker (Floating Widget)
 - REJ-016 UI Activity Log / Event Feed
+- REJ-017 UI Modal ESC Stack (globaler Modal-Stack fuer gestapelte ESC-Handler) — Architektur-Overhead fuer seltenen Edge Case
 - REJ-017 UI Weekly Statistics Page
 - REJ-018 UI Achievement Kategorien mit Sub-Tabs
 - REJ-019 UI Keyboard Shortcuts (I/C/P/R/M)

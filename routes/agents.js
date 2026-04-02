@@ -82,7 +82,7 @@ router.post('/api/agent/:name/command', requireApiKey, (req, res) => {
 });
 
 // GET /api/agent/:name/commands — agent polls for pending commands
-router.get('/api/agent/:name/commands', (req, res) => {
+router.get('/api/agent/:name/commands', requireApiKey, (req, res) => {
   const agent = getAgent(req.params.name);
   if (!agent) return res.status(404).json({ error: 'Agent not found' });
   const pending = (agent.commands || []).filter(c => c.status === 'pending');

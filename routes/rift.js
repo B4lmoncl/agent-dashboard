@@ -409,6 +409,13 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   };
   onQuestCompletedByUser(uid, syntheticQuest);
 
+  // ── Bolstering affix: reduce remaining time by 1h per completed stage ──
+  const bolsteringAffix = (rift.affixes || []).find(a => a.effect?.type === 'time_penalty');
+  if (bolsteringAffix && rift.expiresAt) {
+    const penaltyMs = (bolsteringAffix.effect.value || 1) * 3600000;
+    rift.expiresAt = new Date(new Date(rift.expiresAt).getTime() - penaltyMs).toISOString();
+  }
+
   // ── Rift-exclusive gear drop (from gearTemplates-rift.json pool) ──
   const riftSource = rift.mythicLevel ? 'rift:mythic' : `rift:${rift.tier}`;
   const RARITY_ORDER_RIFT = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
