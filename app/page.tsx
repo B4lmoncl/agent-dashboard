@@ -1261,7 +1261,7 @@ export default function Dashboard() {
                             title={getTooltip(b)}
                             className="flex items-center gap-0.5 rounded px-1.5 py-0.5 shrink-0 cursor-default select-none"
                             style={{
-                              fontSize: 11,
+                              fontSize: 12,
                               background: `${meta.color}1a`,
                               border: `1px solid ${meta.color}40`,
                               color: meta.color,
@@ -1269,7 +1269,7 @@ export default function Dashboard() {
                               maxWidth: 110,
                             }}
                           >
-                            <span style={{ fontSize: 9, opacity: 0.8 }}>{meta.icon}</span>
+                            <span style={{ fontSize: 12, opacity: 0.8 }}>{meta.icon}</span>
                             <span className="truncate font-medium">{meta.label}</span>
                             {rem && (
                               <span style={{ opacity: 0.65, marginLeft: 2, fontVariantNumeric: "tabular-nums" }}>· {rem}</span>
@@ -1280,7 +1280,7 @@ export default function Dashboard() {
                       {overflow > 0 && (
                         <div
                           className="flex items-center rounded px-1.5 py-0.5 shrink-0 cursor-default"
-                          style={{ fontSize: 11, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}
+                          style={{ fontSize: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}
                           title={buffs.slice(4).map(b => getTooltip(b)).join("\n")}
                         >
                           +{overflow} more

@@ -321,7 +321,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
             }
           >
             <div className="flex items-center gap-1.5 pt-2 cursor-help">
-              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
                 Next unlock
               </span>
               <span className="text-xs font-bold font-mono" style={{ color: nextUnlock.color }}>
@@ -336,7 +336,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
       ) : (
         currentLevel >= 15 && (
           <div className="px-3 pb-2.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
               All features unlocked
             </p>
           </div>
