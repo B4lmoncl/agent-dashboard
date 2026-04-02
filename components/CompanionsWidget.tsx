@@ -651,6 +651,25 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 </div>
               </div>
             )}
+            {/* Locked ultimate teaser for players below bond level 5 */}
+            {bondLevel < 5 && (
+              <div style={{
+                background: "#0e1018",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: 2,
+                padding: "8px 10px",
+                marginBottom: 10,
+                opacity: 0.45,
+              }}>
+                <div className="flex items-center gap-2">
+                  <span style={{ fontSize: 16, filter: "grayscale(1)" }}>◆</span>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Ultimate Ability</span>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Unlocks at Bond Level 5 ({5 - bondLevel} levels away)</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Quest cards in 2-column grid */}
             {dobbieQuests && dobbieQuests.length > 0 && (

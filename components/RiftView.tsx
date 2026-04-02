@@ -415,6 +415,44 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         </div>
       )}
 
+      {/* Failed Rift — show failure panel with cooldown */}
+      {activeRift?.failed && (
+        <div className="rounded-xl p-5 space-y-3 tab-content-enter" style={{ background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.2)" }}>
+          <div className="flex items-center gap-3">
+            {activeRift.tierIcon?.startsWith("/") ? <img src={activeRift.tierIcon} alt="" width={36} height={36} className="img-render-auto rounded-lg" style={{ opacity: 0.5, border: "1px solid rgba(239,68,68,0.2)" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl" style={{ opacity: 0.5 }}>{activeRift.tierIcon}</span>}
+            <div>
+              <p className="text-sm font-bold" style={{ color: "#ef4444" }}>Rift Failed</p>
+              <p className="text-xs text-w30">
+                {activeRift.tierName} — Reached stage {activeRift.reachedStage ?? activeRift.currentStage} of {activeRift.totalStages}
+              </p>
+            </div>
+          </div>
+          <p className="text-xs italic" style={{ color: "rgba(239,68,68,0.5)" }}>
+            The Rift has sealed itself. Time ran out before all stages could be cleared.
+          </p>
+          {activeRift.failedAt && (() => {
+            const tier = tiers[activeRift.tier];
+            if (!tier?.failCooldownDays) return null;
+            const cdEnd = new Date(activeRift.failedAt).getTime() + tier.failCooldownDays * 86400000;
+            const remaining = cdEnd - Date.now();
+            if (remaining <= 0) return <p className="text-xs" style={{ color: "#22c55e" }}>Cooldown expired — you may enter again.</p>;
+            const daysLeft = Math.ceil(remaining / 86400000);
+            const pct = Math.max(0, Math.min(100, ((tier.failCooldownDays * 86400000 - remaining) / (tier.failCooldownDays * 86400000)) * 100));
+            return (
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span style={{ color: "rgba(239,68,68,0.6)" }}>Cooldown</span>
+                  <span className="font-mono" style={{ color: "rgba(239,68,68,0.5)" }}>{daysLeft}d remaining</span>
+                </div>
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(239,68,68,0.08)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: "rgba(239,68,68,0.4)" }} />
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
       {/* Tier selection — shown when no active rift */}
       {!activeRift && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
