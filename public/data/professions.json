@@ -19685,10 +19685,11 @@
         "feuerwurz": 1
       },
       "xp": 18,
-      "desc": "Eintopf der die Schmiede aufheizt. Bruna sagt, das sei die Liebe. Grimvar sagt, das seien die Gewürze.",
+      "desc": "Bruna kocht diesen Eintopf bei offener Flamme, mit geschlossenen Augen und einem Lächeln, das Grimvar nervös macht. Er hat einmal gefragt, was das Geheimnis sei. Sie sagte: Geduld. Er hat seitdem nicht wieder gefragt — aber auch nie aufgehört, den Eintopf zu essen.",
       "source": "trainer",
       "trainerCost": 80,
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "description": "Ein Gericht das so durchschnittlich ist, dass es in keinem Kochbuch steht. Genau deshalb schmeckt es den meisten."
     },
     {
       "id": "recipe-koch-gap-140",
@@ -19706,10 +19707,11 @@
         "mondblume": 1
       },
       "xp": 20,
-      "desc": "Bouillon die den Geist schärft. Und den Magen beruhigt. Selten beides gleichzeitig.",
+      "desc": "Die Bouillon riecht nach Kräutern, Mondblumen und dem vagen Versprechen, dass heute ein guter Tag wird. Bruna behauptet, sie könne damit Kopfschmerzen heilen. Eldric behauptet, sie verursache welche. Die Wahrheit liegt vermutlich irgendwo in der Mitte — wie bei den meisten Dingen, die gut riechen.",
       "source": "trainer",
       "trainerCost": 100,
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "description": "Die Art Mahlzeit die man vergisst sobald man sie gegessen hat. Effizient, nahrhaft, vollkommen unmerkwürdig. Perfektion."
     },
     {
       "id": "recipe-vz-gap-135",
@@ -19727,10 +19729,11 @@
         "runenstein": 1
       },
       "xp": 20,
-      "desc": "Fokus-Infusion. Eldric fokussiert sich. Der Gegenstand auch. Beide brauchen danach eine Pause.",
+      "desc": "Eldric gießt arkane Energie in den Gegenstand und flüstert dabei Worte, die er nie jemandem beibringen wird. Nicht aus Geheimniskrämerei — er hat sie schlicht vergessen und improvisiert jedes Mal neu. Das Ergebnis ist trotzdem makellos. Manche Dinge funktionieren besser, wenn man aufhört, sie zu verstehen.",
       "source": "trainer",
       "trainerCost": 120,
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "description": "Eine Verzauberung die exakt das tut was sie soll und nichts darüber hinaus. Der Verzauberer war an dem Tag ungewöhnlich nüchtern."
     }
   ]
 }
