@@ -2030,7 +2030,10 @@ export default function Dashboard() {
                     </div>
                     {/* Search + Sort row */}
                     <div className="flex gap-1 mb-2">
-                      <input data-feedback-id="quest-board.search" type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="flex-1 text-xs px-2 py-1.5 rounded input-dark border-w8" />
+                      <div className="flex-1 relative">
+                        <input data-feedback-id="quest-board.search" type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded input-dark border-w8" style={{ paddingRight: searchFilter ? 24 : 8 }} onKeyDown={e => { if (e.key === "Escape") { setSearchFilter(""); (e.target as HTMLInputElement).blur(); } }} />
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="absolute right-1.5 top-1/2 -translate-y-1/2" style={{ color: "rgba(255,255,255,0.3)", fontSize: 14, cursor: "pointer", lineHeight: 1, background: "none", border: "none", padding: 0 }} title="Clear search">×</button>}
+                      </div>
                       <button
                         data-feedback-id="quest-board.sort"
                         onClick={() => setSortMode(s => s === "rarity" ? "newest" : "rarity")}
