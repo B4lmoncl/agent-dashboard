@@ -341,14 +341,22 @@ export default function TodayDrawer({
   const xpProgress = useMemo(() => getUserXpProgress(xp), [xp]);
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
   const streak = loggedInUser?.streakDays ?? 0;
-  const timeInfo = useMemo(() => getTimeGreeting(), []);
+  const [timeInfo, setTimeInfo] = useState<TimeInfo>(() => getTimeGreeting());
+  const [today, setToday] = useState(() => new Date().toISOString().slice(0, 10));
+
+  // FI-016: Refresh time-based values every 60 seconds so they stay accurate overnight
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTimeInfo(getTimeGreeting());
+      setToday(new Date().toISOString().slice(0, 10));
+    }, 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   // Forge color
   const forgeTempColor = forgeTemp >= 100 ? "#e0f0ff" : forgeTemp >= 80 ? "#f97316" : forgeTemp >= 60 ? "#ea580c" : forgeTemp >= 40 ? "#b45309" : forgeTemp >= 20 ? "#78716c" : "#4b5563";
 
   // ─── Build categories ────────────────────────────────────────────────────
-
-  const today = new Date().toISOString().slice(0, 10);
 
   const categories = useMemo(() => {
     const urgent: TodayItem[] = [];

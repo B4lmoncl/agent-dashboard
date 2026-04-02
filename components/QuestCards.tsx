@@ -235,6 +235,9 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, letterSpacing: "0.06em" }}>{rarity}</span>
+            {quest.estimatedMinutes != null && quest.estimatedMinutes > 0 && (
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }} title="Estimated time">~{quest.estimatedMinutes}m</span>
+            )}
           </div>
         </div>
       </div>

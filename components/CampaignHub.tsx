@@ -22,6 +22,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
   const [form, setForm] = useState({ title: "", description: "", icon: "", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
   const [selectedQuestIds, setSelectedQuestIds] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [createError, setCreateError] = useState("");
+  const [deleteError, setDeleteError] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   const closeCreateModal = useCallback(() => setCreateOpen(false), []);
@@ -81,6 +83,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
   const handleCreate = async () => {
     if (!form.title.trim() || !reviewApiKey) return;
     setSubmitting(true);
+    setCreateError("");
     try {
       const r = await fetch("/api/campaigns", {
         method: "POST",
@@ -100,19 +103,36 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         setForm({ title: "", description: "", icon: "", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
         setSelectedQuestIds([]);
         onRefresh();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setCreateError(d.error || "Failed to create campaign. Try again.");
       }
-    } catch (err) { console.error("[CampaignHub] Create failed:", err); }
+    } catch (err) {
+      console.error("[CampaignHub] Create failed:", err);
+      setCreateError("Network error. Try again.");
+    }
     setSubmitting(false);
   };
 
   const handleDelete = async (id: string) => {
     if (!reviewApiKey) return;
+    setDeleteError("");
     try {
-      await fetch(`/api/campaigns/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
+      const r = await fetch(`/api/campaigns/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
+      if (r.ok) {
+        setDeleteConfirm(null);
+        if (expandedId === id) setExpandedId(null);
+        onRefresh();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setDeleteError(d.error || "Failed to delete campaign.");
+        setDeleteConfirm(null);
+      }
+    } catch (err) {
+      console.error("[CampaignHub] Delete failed:", err);
+      setDeleteError("Network error. Could not delete campaign.");
       setDeleteConfirm(null);
-      if (expandedId === id) setExpandedId(null);
-      onRefresh();
-    } catch (err) { console.error("[CampaignHub] Delete failed:", err); }
+    }
   };
 
   const statusColors: Record<string, { color: string; bg: string; border: string; label: string }> = {
@@ -213,6 +233,10 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           + New Campaign
         </button>
       </div>
+
+      {deleteError && (
+        <p className="text-xs" style={{ color: "#ef4444" }}>{deleteError}</p>
+      )}
 
       {/* Empty state */}
       {campaigns.length === 0 && (
@@ -378,6 +402,9 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 </div>
               </div>
 
+              {createError && (
+                <p className="text-xs" style={{ color: "#ef4444" }}>{createError}</p>
+              )}
               <div className="flex gap-2 pt-2">
                 <button onClick={handleCreate} disabled={!form.title.trim() || submitting || !reviewApiKey}
                   className="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"

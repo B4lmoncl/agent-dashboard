@@ -665,6 +665,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const [infoOpen, setInfoOpen] = useState(false);
   const [selectedBanner, setSelectedBanner] = useState<GachaBanner | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const loggedIn = playerName && reviewApiKey;
   const user = loggedIn ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
@@ -673,7 +674,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   useEffect(() => {
     fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (Array.isArray(data)) setBanners(data);
-    }).catch(e => console.error('[gacha-view]', e));
+    }).catch(e => console.error('[gacha-view]', e)).finally(() => setLoading(false));
   }, []);
 
   // Load pity
@@ -730,6 +731,16 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const closePool = useCallback(() => setPoolOpen(false), []);
   const closeInfo = useCallback(() => setInfoOpen(false), []);
   const closeBanner = useCallback(() => setSelectedBanner(null), []);
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   if (!loggedIn || !user) {
     return (

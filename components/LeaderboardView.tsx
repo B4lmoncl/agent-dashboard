@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { LeaderboardEntry, Agent, User } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { getLbLevel } from "@/app/utils";
@@ -62,6 +62,21 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const agentIdSet = new Set(agents.map(a => a.id));
   const prevRankRef = useRef<number | null>(null);
   const [seasonal, setSeasonal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (users.length > 0 || entries.length > 0) setLoading(false);
+  }, [users.length, entries.length]);
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   // Build user lookup for player mode (to get extra fields not on LeaderboardEntry)
   const userMap = new Map(users.map(u => [u.id, u]));

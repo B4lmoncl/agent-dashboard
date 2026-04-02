@@ -84,6 +84,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
   const [spawning, setSpawning] = useState<string | null>(null);
   const [spawned, setSpawned] = useState<Set<string>>(new Set());
   const [collapsed, setCollapsed] = useState(false);
+  const [spawnError, setSpawnError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/personal-templates").then(r => r.ok ? r.json() : []).then(setTemplates).catch(e => console.error('[quest-modals]', e));
@@ -91,6 +92,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
 
   const handleSpawn = async (templateId: string) => {
     setSpawning(templateId);
+    setSpawnError(null);
     try {
       const r = await fetch("/api/personal-templates/spawn", {
         method: "POST",
@@ -100,8 +102,11 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
       if (r.ok) {
         setSpawned(prev => new Set(prev).add(templateId));
         onRefresh();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setSpawnError(d.error || "Failed to add quest. Try again.");
       }
-    } catch { /* ignore */ } finally {
+    } catch { setSpawnError("Network error. Could not add quest."); } finally {
       setSpawning(null);
     }
   };
@@ -133,6 +138,9 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
           {collapsed ? "▸" : "▾"}
         </span>
       </button>
+      {spawnError && (
+        <p className="text-xs mb-2" style={{ color: "#ef4444" }}>{spawnError}</p>
+      )}
       {!collapsed && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {templates.map(t => {
@@ -208,6 +216,7 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   const [challenges, setChallenges] = useState<ForgeChallengeTemplate[]>([]);
   const [joining, setJoining] = useState<string | null>(null);
   const [joinUserId, setJoinUserId] = useState<string>(() => users[0]?.id ?? "");
+  const [joinError, setJoinError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/challenges").then(r => r.ok ? r.json() : []).then(setChallenges).catch(e => console.error('[quest-modals]', e));
@@ -216,16 +225,22 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   const handleJoin = async (challengeId: string) => {
     if (!joinUserId) return;
     setJoining(challengeId);
+    setJoinError(null);
     try {
-      await fetch("/api/challenges/join", {
+      const r = await fetch("/api/challenges/join", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ userId: joinUserId, challengeId }),
       });
-      const updated = await fetch("/api/challenges").then(r => r.ok ? r.json() : challenges);
-      setChallenges(updated);
-      onRefresh();
-    } catch { /* ignore */ } finally {
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        setJoinError(d.error || "Failed to join challenge. Try again.");
+      } else {
+        const updated = await fetch("/api/challenges").then(r2 => r2.ok ? r2.json() : challenges);
+        setChallenges(updated);
+        onRefresh();
+      }
+    } catch { setJoinError("Network error. Could not join challenge."); } finally {
       setJoining(null);
     }
   };
@@ -252,6 +267,9 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
           </select>
         )}
       </div>
+      {joinError && (
+        <p className="text-xs mb-2" style={{ color: "#ef4444" }}>{joinError}</p>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {challenges.map(c => {
           const joined = users.find(u => u.id === joinUserId) && c.participants.some(p => p.id === joinUserId);

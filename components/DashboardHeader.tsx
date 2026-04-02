@@ -395,8 +395,12 @@ export default function DashboardHeader({
                               onClick={async () => {
                                 try {
                                   const r = await fetch("/api/auth/forgot-password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: forgotEmail }) });
-                                  const d = await r.json();
-                                  setForgotMsg(d.message || "Check your email.");
+                                  const d = await r.json().catch(() => ({}));
+                                  if (!r.ok) {
+                                    setForgotMsg(d.error || "Failed to send reset link.");
+                                  } else {
+                                    setForgotMsg(d.message || "Check your email.");
+                                  }
                                 } catch { setForgotMsg("Network error"); }
                               }}
                               disabled={!forgotEmail.includes("@")}
