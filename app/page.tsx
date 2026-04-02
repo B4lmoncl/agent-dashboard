@@ -1025,6 +1025,21 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Player Card — skeleton while playerName is set but user data hasn't loaded yet */}
+        {playerName && !loggedInUser && (
+          <div className="skeleton-card" style={{ minHeight: 120 }}>
+            <div className="flex items-center gap-4">
+              <div className="skeleton w-28 h-28 rounded-xl flex-shrink-0" />
+              <div className="flex-1 min-w-0 space-y-2">
+                <div className="skeleton skeleton-text w-32" />
+                <div className="skeleton skeleton-text w-24" style={{ height: 8 }} />
+                <div className="skeleton rounded w-full" style={{ height: 6, marginTop: 8 }} />
+                <div className="skeleton skeleton-text w-20" style={{ height: 8 }} />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Player Card — shown when logged in */}
         {playerName && loggedInUser && (
           <div data-feedback-id="player-card" className={`rounded-xl p-4 bg-w3${levelUpCelebration ? " levelup-glow-header" : ""}`} style={{ border: "1px solid rgba(255,255,255,0.09)" }}>

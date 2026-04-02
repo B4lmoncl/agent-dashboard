@@ -121,6 +121,11 @@ router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Unknown effect type: ${effectType}` });
   }
 
+  // Check library capacity cap
+  if (cube.library.length >= 50) {
+    return res.status(400).json({ error: 'Library full (max 50 effects). Remove an effect to make room.' });
+  }
+
   // Check if already in library
   if (cube.library.some(e => e.type === effectType)) {
     return res.status(400).json({ error: `Effect "${effectType}" already extracted` });
