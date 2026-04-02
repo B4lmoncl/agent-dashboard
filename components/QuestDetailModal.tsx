@@ -164,6 +164,27 @@ export default function QuestDetailModal({
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{q.description}</p>
             </div>
           )}
+          {/* Requirements */}
+          {((q.minLevel != null && q.minLevel > 1) || q.classRequired) && (
+            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Voraussetzungen</p>
+              <div className="flex flex-wrap gap-x-4 gap-y-1">
+                {q.minLevel != null && q.minLevel > 1 && (() => {
+                  const meets = playerLevel >= q.minLevel;
+                  return (
+                    <span className="text-xs font-mono" style={{ color: meets ? "#22c55e" : "#ef4444" }}>
+                      Requires: Level {q.minLevel}
+                    </span>
+                  );
+                })()}
+                {q.classRequired && (
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.55)" }}>
+                    Klasse: {q.classRequired}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
           {/* Rewards */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Reward</p>

@@ -37,10 +37,21 @@ export function HumanInputBadge() {
   );
 }
 
+const TYPE_SYMBOLS: Record<string, string> = {
+  development: "◆",
+  personal:    "●",
+  learning:    "◇",
+  social:      "◈",
+  fitness:     "▲",
+  companion:   "♦",
+  boss:        "★",
+};
+
 export function TypeBadge({ type }: { type?: string }) {
   const cfg = typeConfig[type ?? "development"] ?? typeConfig.development;
   if (!type || type === "development") return null;
   const iconSrc = `/images/icons/cat-${type}.png`;
+  const symbol = TYPE_SYMBOLS[type] ?? null;
   return (
     <span
       className="text-xs px-1.5 py-0.5 rounded flex-shrink-0 inline-flex items-center gap-1"
@@ -55,7 +66,7 @@ export function TypeBadge({ type }: { type?: string }) {
         onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const s = t.nextElementSibling as HTMLElement | null; if (s) s.style.display = "inline"; }}
       />
       <span style={{ display: "none" }}>{cfg.icon?.startsWith("/") ? cfg.label : cfg.icon}</span>
-      {cfg.label}
+      {symbol && <span style={{ fontStyle: "normal", lineHeight: 1 }}>{symbol}</span>}{cfg.label}
     </span>
   );
 }
