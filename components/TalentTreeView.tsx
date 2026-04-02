@@ -5,6 +5,7 @@ import { getAuthHeaders } from "@/lib/auth-client";
 import { useDashboard } from "@/app/DashboardContext";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { TipCustom } from "@/components/GameTooltip";
+import { SFX } from "@/lib/sounds";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
 
@@ -137,7 +138,8 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "flavor", icon: "◆", message: `${d.node.name} freigeschaltet!` });
+        SFX.craftSkillUp(); // ascending ping for talent unlock
+        _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet!" });
         fetchTalents();
       } else {
         _toast({ type: "error", message: d.error || "Fehler" });
