@@ -514,9 +514,8 @@ All pixel art assets are generated via the Pixellab API v2 (`https://api.pixella
 - `LYRA-PLAYBOOK.md` — Content creation schemas + **Lore Bible**. Read when adding content to `public/data/*.json`. Contains JSON field schemas for all content types + backend formulas. **IMPORTANT: The "Lore Bible" section at the end is READ-ONLY — do NOT modify it unless the user explicitly asks. It defines world-building, tone, NPC personalities, easter egg rules, and flavor guidelines.**
 - `AUDIT_REPORT.md` — Fix history + Appendix A (verified non-issues, features that exist, agent traps). MUST read Appendix A before any audit.
 - `AUDIT_PROMPT.md` — Reusable audit prompt. User pastes this to start audit sessions.
-- `README.md` — API endpoint docs, deployment, agent setup.
+- `README.md` — Project overview, quick start, tech stack, game systems summary.
 - `BACKLOG.md` — Planned features, known bugs, tech debt.
 - `ITEM-SYSTEM-SPEC.md` — Gear/equipment design spec (affix pools, rarity, slots).
 - `WOW-PROFESSION-REFACTOR.md` — **Definitive Profession Refactor Plan.** WoW Classic style: 300 max skill, 6 professions (incl. Lederverarbeiter), ~150 recipes per gear prof / ~80-100 per consumable prof (~850 total), every recipe = unique named item template, intermediate materials (bars/bolts/cured leather), material specialization, BoE trading, WoW source distribution (40/30/20/10). Contains all design decisions + session-based implementation order. **READ THIS before any profession/crafting work.**
-- `SCALABILITY-AUDIT.md` — Performance analysis.
 - `TEMPLATES.md` — Quest template format reference.
