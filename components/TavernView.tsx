@@ -258,6 +258,11 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </div>
           </div>
 
+          {/* Preview what gets frozen */}
+          <div className="rounded-lg px-3 py-2" style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.1)" }}>
+            <p className="text-xs text-w30">For {selectedDays} day{selectedDays !== 1 ? "s" : ""}, your <span style={{ color: "#fbbf24" }}>Streak</span> and <span style={{ color: "#f97316" }}>Forge Temp</span> will be frozen. No daily quests needed. 30-day cooldown after leaving.</p>
+          </div>
+
           {/* Reason (optional) */}
           <div>
             <p className="text-xs font-semibold mb-1 text-w40">Reason (optional)</p>
