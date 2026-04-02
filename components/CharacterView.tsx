@@ -214,7 +214,7 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
             ? <img src={`/images/portraits/companion-${companion.type}.png`} alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             : companion.type === "cat" && companion.name?.toLowerCase() === "dobbie"
               ? <img src="/images/portraits/companion-dobbie.png" alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xl">{companion.emoji}</span>
+              : <span className="text-xl" style={{ color: "rgba(255,255,255,0.3)" }}>◆</span>
           }
           <span className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{companion.name}</span>
         </div>
@@ -532,29 +532,36 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
       style={{ left: 0, top: 0, minWidth: "min(260px, 90vw)", maxWidth: 340, willChange: "transform" }}
     >
       <div
-        className="rounded-lg p-3 space-y-2"
+        className="rounded-lg overflow-hidden"
         style={{
-          background: "#1a1a1a",
-          borderTop: `3px solid ${rarityColor}`,
-          border: `1px solid rgba(255,255,255,0.12)`,
-          borderTopColor: rarityColor,
-          borderTopWidth: 3,
-          boxShadow: "0 8px 32px rgba(0,0,0,0.7)",
+          background: "linear-gradient(180deg, #1e1e22 0%, #141417 100%)",
+          border: `2px solid ${rarityColor}60`,
+          boxShadow: `0 0 20px ${rarityColor}25, 0 8px 32px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06)`,
         }}
       >
-        {/* Icon + Name */}
-        <div className="flex items-center gap-2.5">
-          <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 160, height: 160, background: "rgba(255,255,255,0.04)", borderRadius: 8, border: `1px solid ${rarityColor}40` }}>
-            {item.icon
-              ? <img src={item.icon} alt={item.name} width={148} height={148} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-6xl" style={{ color: rarityColor }}>◆</span>
-            }
-          </div>
-          <div className="min-w-0">
-            <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
-            <p className="text-xs font-semibold" style={{ color: rarityColor }}>{RARITY_LABELS[dRarity] || item.rarity}</p>
+        {/* D3-style rarity header bar */}
+        <div style={{
+          background: `linear-gradient(90deg, transparent 0%, ${rarityColor}20 50%, transparent 100%)`,
+          borderBottom: `1px solid ${rarityColor}40`,
+          padding: "10px 14px",
+        }}>
+          <p className="text-sm font-bold" style={{ color: rarityColor, textShadow: `0 0 12px ${rarityColor}40` }}>{item.name}</p>
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: `${rarityColor}cc` }}>{RARITY_LABELS[dRarity] || item.rarity}</span>
+            {item.slot && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{item.slot.charAt(0).toUpperCase() + item.slot.slice(1)}</span>}
+            {(() => { const rl = (item as Record<string, unknown>).reqLevel as number | undefined; return rl ? <span className="text-xs" style={{ color: playerLevel && playerLevel < rl ? "#ef4444" : "rgba(255,255,255,0.25)" }}>Req. Lv {rl}</span> : null; })()}
           </div>
         </div>
+
+        <div className="p-3 space-y-2">
+        {/* Icon */}
+        {item.icon && (
+          <div className="flex justify-center mb-1">
+            <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 80, height: 80, background: `radial-gradient(circle, ${rarityColor}10 0%, transparent 70%)`, borderRadius: 8 }}>
+              <img src={item.icon} alt={item.name} width={72} height={72} style={{ imageRendering: "auto", filter: `drop-shadow(0 0 8px ${rarityColor}40)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            </div>
+          </div>
+        )}
 
         {/* Binding badge */}
         {item.bound ? (
@@ -575,11 +582,13 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
         )}
 
-        {/* Legendary effect */}
+        {/* Legendary effect — D3-style golden highlight box */}
         {item.legendaryEffect && (
-          <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
-            {formatLegendaryLabel(item.legendaryEffect)}
-          </p>
+          <div className="rounded px-2.5 py-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.2)", boxShadow: "inset 0 0 12px rgba(245,158,11,0.05)" }}>
+            <p className="text-xs font-bold" style={{ color: "#f59e0b", textShadow: "0 0 8px rgba(245,158,11,0.3)" }}>
+              {formatLegendaryLabel(item.legendaryEffect)}
+            </p>
+          </div>
         )}
 
         {/* Stats with comparison */}
@@ -589,16 +598,17 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
               const itemAny = item as Record<string, unknown>;
               const affixes = (itemAny.affixes && typeof itemAny.affixes === "object") ? itemAny.affixes as { primary?: { pool: { stat: string; min: number; max: number }[] }; minor?: { pool: { stat: string; min: number; max: number }[] } } : null;
               const rangeMap: Record<string, { min: number; max: number }> = {};
+              const primaryStats = new Set<string>();
+              const minorStats = new Set<string>();
               if (affixes) {
-                for (const p of [...(affixes.primary?.pool || []), ...(affixes.minor?.pool || [])]) {
-                  rangeMap[p.stat] = { min: p.min, max: p.max };
-                }
+                for (const p of (affixes.primary?.pool || [])) { rangeMap[p.stat] = { min: p.min, max: p.max }; primaryStats.add(p.stat); }
+                for (const p of (affixes.minor?.pool || [])) { rangeMap[p.stat] = { min: p.min, max: p.max }; minorStats.add(p.stat); }
               }
-              return [...allStatKeys].map(stat => {
+              const showDiff = equippedItem && equippedItem.id !== item.id;
+              const renderStat = (stat: string) => {
                 const val = (item.stats?.[stat] as number) || 0;
                 const eqVal = (eqStats[stat] as number) || 0;
                 const diff = val - eqVal;
-                const showDiff = equippedItem && equippedItem.id !== item.id;
                 const range = rangeMap[stat];
                 return (
                   <div key={stat} className="flex items-center justify-between text-xs">
@@ -616,7 +626,19 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
                     </span>
                   </div>
                 );
-              });
+              };
+              // D3-style: separate primary and minor affixes with section headers
+              const hasSections = primaryStats.size > 0 || minorStats.size > 0;
+              const primaryEntries = [...allStatKeys].filter(s => primaryStats.has(s));
+              const minorEntries = [...allStatKeys].filter(s => minorStats.has(s));
+              const otherEntries = [...allStatKeys].filter(s => !primaryStats.has(s) && !minorStats.has(s));
+              return (<>
+                {hasSections && primaryEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.25)", marginBottom: 2 }}>Primary</p>}
+                {primaryEntries.map(renderStat)}
+                {hasSections && minorEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.2)", marginTop: 4, marginBottom: 2 }}>Minor</p>}
+                {minorEntries.map(renderStat)}
+                {otherEntries.map(renderStat)}
+              </>);
             })()}
           </div>
         )}
@@ -646,6 +668,25 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
               <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
                 <div className="h-full rounded-full" style={{ width: `${quality}%`, background: qColor }} />
               </div>
+            </div>
+          );
+        })()}
+
+        {/* Socket display */}
+        {(() => {
+          const sockets = (item as Record<string, unknown>).sockets as (string | null)[] | undefined;
+          if (!sockets || sockets.length === 0) return null;
+          const GEM_COLORS: Record<string, string> = { ruby: "#ef4444", sapphire: "#3b82f6", emerald: "#22c55e", topaz: "#f59e0b", amethyst: "#a855f7", diamond: "#e0e7ff" };
+          return (
+            <div className="pt-1 flex items-center gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Sockets:</span>
+              {sockets.map((s, idx) => (
+                <div key={idx} className="w-4 h-4 rounded-sm" style={{
+                  background: s ? (GEM_COLORS[s.split("-")[0] || ""] || "#888") : "rgba(255,255,255,0.06)",
+                  border: `1px solid ${s ? (GEM_COLORS[s.split("-")[0] || ""] || "#888") + "60" : "rgba(255,255,255,0.1)"}`,
+                  boxShadow: s ? `0 0 4px ${GEM_COLORS[s.split("-")[0] || ""] || "#888"}40` : "none",
+                }} title={s || "Empty socket"} />
+              ))}
             </div>
           );
         })()}
@@ -711,6 +752,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
             </p>
           )}
         </div>
+        </div>{/* close p-3 space-y-2 inner content */}
       </div>
     </div>
   );
@@ -757,6 +799,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
   if (!item) {
     return (
       <div
+        className="cv-auto"
         onDragOver={(e) => { e.preventDefault(); onDragOver(idx); }}
         onDrop={(e) => { e.preventDefault(); onDrop(); }}
         style={{
@@ -800,7 +843,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
-        className={(item as Record<string, unknown>).isUnique ? "legendary-shimmer" : item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
+        className={`cv-auto${(item as Record<string, unknown>).isUnique ? " legendary-shimmer" : item.rarity === "legendary" ? " legendary-shimmer" : item.rarity === "epic" ? " epic-glow" : ""}`}
         style={{
           width: 56,
           height: 56,
@@ -973,6 +1016,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   // Scroll lock + ESC for title and collection modals
   useModalBehavior(titlesOpen, useCallback(() => setTitlesOpen(false), []));
   useModalBehavior(collectionOpen, useCallback(() => setCollectionOpen(false), []));
+  useModalBehavior(!!confirmAction, useCallback(() => { setConfirmAction(null); setConfirmMessage(""); }, []));
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -1994,7 +2038,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <Tip k="classes">
                     <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
                       <div className="flex items-center gap-2">
-                        <span className="text-base">{cls.icon}</span>
+                        {cls.icon?.startsWith("/") ? <img src={cls.icon} alt="" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-base" style={{ color: "#c4b5fd" }}>✦</span>}
                         <div>
                           <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
                           {charData.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>{charData.classTier}</p>}
@@ -2166,7 +2210,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <button
                               className="text-xs px-2 py-1 rounded"
                               style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: titleEquipping ? "not-allowed" : "pointer" }}
-                              title="Unequip title"
+                              title={titleEquipping ? "Action in progress..." : "Unequip title"}
                               disabled={!!titleEquipping}
                               onClick={() => handleEquip(null)}
                             >
@@ -2217,7 +2261,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 className="w-full text-left rounded-lg flex items-stretch"
                                 style={{
                                   opacity: isEarned ? 1 : 0.4,
-                                  cursor: isEarned ? (isEquipped ? "default" : "pointer") : "not-allowed",
+                                  cursor: !isEarned || titleEquipping ? "not-allowed" : isEquipped ? "default" : "pointer",
                                   border: isEquipped ? `1px solid ${c}60` : "1px solid rgba(255,255,255,0.06)",
                                   background: isEquipped
                                     ? `linear-gradient(90deg, ${c}14 0%, transparent 100%)`
@@ -2515,7 +2559,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       </div>
       {cls && (
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-lg">{cls.icon}</span>
+          {cls.icon?.startsWith("/") ? <img src={cls.icon} alt="" width={24} height={24} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-lg" style={{ color: "#c4b5fd" }}>✦</span>}
           <div className="text-center">
             <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
             {charData?.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.45)" }}>{charData.classTier}</p>}
@@ -2575,7 +2619,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               ? <img src={`/images/portraits/companion-${comp.type}.png`} alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
               : comp.type === "cat" && comp.name?.toLowerCase() === "dobbie"
                 ? <img src="/images/portraits/companion-dobbie.png" alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                : <span className="text-xl">{comp.emoji}</span>
+                : <span className="text-xl" style={{ color: "rgba(255,255,255,0.3)" }}>◆</span>
             }
             <div>
               <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>{comp.name}</p>
@@ -2696,10 +2740,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 if (sourceDisplayNames[source]) return sourceDisplayNames[source];
                 const [type, id] = source.split(":");
                 const name = (id || "").split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-                if (type === "world_boss") return `\ud83d\udc09 ${name}`;
-                if (type === "dungeon") return `\ud83c\udff0 ${name}`;
-                if (type === "gacha") return `\u2728 ${name}`;
-                if (type === "rift") return `\ud83c\udf00 ${name}`;
+                if (type === "world_boss") return `◆ ${name}`;
+                if (type === "dungeon") return `▣ ${name}`;
+                if (type === "gacha") return `★ ${name}`;
+                if (type === "rift") return `◇ ${name}`;
                 return source;
               };
               const getSourceLabel = (source: string) => {

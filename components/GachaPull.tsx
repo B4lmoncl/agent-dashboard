@@ -280,21 +280,21 @@ function SinglePullReveal({ result, onDone, onNavigate }: { result: GachaPullRes
           <BurstParticles rarity={rarity} count={isLegendary ? 30 : 12} />
           <ItemRevealCard result={result} />
 
-          {/* Claim button with pulse */}
+          {/* Claim button — rarity-colored glow */}
           <button
             data-feedback-id="gacha-pull.single.collect"
             onClick={onDone}
             className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
-              background: "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)",
-              color: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(129,140,248,0.4)",
-              boxShadow: "0 0 15px rgba(129,140,248,0.15)",
+              background: `linear-gradient(135deg, ${cfg.bg} 0%, ${cfg.glow} 100%)`,
+              color: cfg.color,
+              border: `1px solid ${cfg.border}`,
+              boxShadow: `0 0 15px ${cfg.glow}`,
               animation: "gacha-weiter-pulse 2s ease-in-out infinite",
               cursor: "pointer",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 0 25px ${cfg.glow}`; e.currentTarget.style.filter = "brightness(1.2)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.boxShadow = `0 0 15px ${cfg.glow}`; e.currentTarget.style.filter = "brightness(1)"; }}
           >
             Claim
           </button>
@@ -321,8 +321,17 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
   const [phase, setPhase] = useState<"charge" | "flash" | "sequential" | "black" | "summary">("charge");
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  // Fisher-Yates shuffle order
-  const shuffledResults = useMemo(() => fisherYatesShuffle(results), [results]);
+  // Sort ascending by rarity — save the best for last (WoW/Genshin suspense)
+  // Within the same rarity tier, shuffle randomly for variety
+  const shuffledResults = useMemo(() => {
+    const sorted = [...results].sort((a, b) => {
+      const ra = RARITY_ORDER.indexOf(a.item.rarity);
+      const rb = RARITY_ORDER.indexOf(b.item.rarity);
+      if (ra !== rb) return ra - rb;
+      return Math.random() - 0.5; // shuffle within same rarity
+    });
+    return sorted;
+  }, [results]);
 
   // Best rarity in batch (for flash color)
   const bestRarity = useMemo(() => {
@@ -422,24 +431,29 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
 
           <ItemRevealCard result={currentResult} />
 
-          {/* Claim button */}
-          <button
-            data-feedback-id="gacha-pull.multi.collect"
-            onClick={handleClaim}
-            className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{
-              background: "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)",
-              color: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(129,140,248,0.4)",
-              boxShadow: "0 0 15px rgba(129,140,248,0.15)",
-              animation: "gacha-weiter-pulse 2s ease-in-out infinite",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; }}
-          >
-            Claim
-          </button>
+          {/* Claim button — rarity-colored */}
+          {(() => {
+            const curCfg = RARITY_CONFIG[currentResult.item.rarity] || RARITY_CONFIG.common;
+            return (
+              <button
+                data-feedback-id="gacha-pull.multi.collect"
+                onClick={handleClaim}
+                className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
+                style={{
+                  background: `linear-gradient(135deg, ${curCfg.bg} 0%, ${curCfg.glow} 100%)`,
+                  color: curCfg.color,
+                  border: `1px solid ${curCfg.border}`,
+                  boxShadow: `0 0 15px ${curCfg.glow}`,
+                  animation: "gacha-weiter-pulse 2s ease-in-out infinite",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 0 25px ${curCfg.glow}`; e.currentTarget.style.filter = "brightness(1.2)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = `0 0 15px ${curCfg.glow}`; e.currentTarget.style.filter = "brightness(1)"; }}
+              >
+                {currentIdx + 1 < shuffledResults.length ? "Next" : "Claim"}
+              </button>
+            );
+          })()}
         </div>
       )}
 
@@ -449,9 +463,14 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
       {/* Summary after all items revealed */}
       {phase === "summary" && (
         <div data-feedback-id="gacha-pull.multi.summary" className="flex flex-col items-center gap-5 w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
-          <h2 className="text-lg font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
-            10× Arcane Pull — Zusammenfassung
-          </h2>
+          {(() => {
+            const bestCfg = RARITY_CONFIG[bestRarity ?? "common"] || RARITY_CONFIG.common;
+            return (
+              <h2 className="text-lg font-bold uppercase tracking-widest" style={{ color: bestCfg.color, textShadow: `0 0 20px ${bestCfg.glow}` }}>
+                10× Arcane Pull — Zusammenfassung
+              </h2>
+            );
+          })()}
 
           {/* Card grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 w-full max-w-3xl">

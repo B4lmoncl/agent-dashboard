@@ -42,9 +42,10 @@ interface RitualChamberProps {
   rituals: Ritual[];
   setRituals: (rituals: Ritual[]) => void;
   setRewardCelebration: (data: RewardCelebrationData | null) => void;
+  addToast?: (t: { type: "error"; message: string; onRetry?: () => void }) => void;
 }
 
-export default function RitualChamber({ rituals, setRituals, setRewardCelebration }: RitualChamberProps) {
+export default function RitualChamber({ rituals, setRituals, setRewardCelebration, addToast }: RitualChamberProps) {
   const { playerName, reviewApiKey, refresh, loggedInUser } = useDashboard();
   const isResting = !!loggedInUser?.tavernRest?.active;
   const [loading, setLoading] = useState(true);
@@ -95,7 +96,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         body: JSON.stringify({ title: newHabitTitle.trim(), positive: true, negative: true, playerId: playerName }),
       });
       if (r.ok) { setNewHabitTitle(""); fetchHabits(); }
-    } catch { /* network error — habit not created */ }
+      else { addToast?.({ type: "error", message: "Failed to create habit" }); }
+    } catch { addToast?.({ type: "error", message: "Network error — habit not created" }); }
   };
 
   const [habitFlash, setHabitFlash] = useState<{ id: string; dir: "up" | "down" } | null>(null);

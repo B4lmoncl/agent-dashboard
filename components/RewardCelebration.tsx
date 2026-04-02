@@ -5,7 +5,7 @@ import { SFX } from "@/lib/sounds";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon" | "levelUp";
+export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon" | "rift" | "levelUp";
 
 export interface RewardCelebrationData {
   type: RewardType;
@@ -210,6 +210,20 @@ const THEMES: Record<RewardType, ThemeConfig> = {
       "The dungeon bows before you!",
       "Riches from the deep!",
       "A dungeon well plundered!",
+    ],
+  },
+  rift: {
+    accent: "#818cf8",
+    accentRgb: "129,140,248",
+    gradientTop: "#0d0d1a",
+    label: "Rift Stage Cleared!",
+    icon: "◇",
+    flavorMessages: [
+      "The Rift yields to your will!",
+      "Reality bends — and rewards.",
+      "Another tear in the veil, sealed.",
+      "The Aetherstream whispers approval.",
+      "Deeper still, the Rift beckons...",
     ],
   },
   levelUp: {

@@ -29,7 +29,7 @@ const TOAST_DURATION: Record<ToastItem["type"], number> = {
   chain: 8000,
   purchase: 3000,
   item: 3000,
-  companionBond: 4500,
+  companionBond: 5500,
   error: 5000,
 };
 
@@ -196,17 +196,42 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
 }
 
 function CompanionBondToastContent({ toast, onClose }: { toast: { companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }; onClose: () => void }) {
+  if (toast.bondLevelUp) {
+    // Dramatic bond level-up toast — larger, animated, celebration feel
+    return (
+      <div
+        className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #2a1028 0%, #1e0a20 50%, #2a1028 100%)",
+          border: "1px solid rgba(255,107,157,0.6)",
+          boxShadow: "0 0 24px rgba(255,107,157,0.35), 0 8px 32px rgba(255,107,157,0.2), inset 0 0 20px rgba(255,107,157,0.05)",
+          maxWidth: "min(380px, calc(100vw - 48px))",
+          width: "100%",
+          animation: "reward-burst-enter 0.4s ease-out",
+        }}
+      >
+        {/* Subtle pulse glow behind emoji */}
+        <div className="relative flex-shrink-0">
+          <span className="absolute inset-0 rounded-full" style={{ background: "rgba(255,107,157,0.2)", filter: "blur(12px)", animation: "pulse 2s ease-in-out infinite" }} />
+          <span className="text-3xl relative" style={{ filter: "drop-shadow(0 0 8px rgba(255,107,157,0.5))" }}>{toast.companionEmoji}</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-bold tracking-wide" style={{ color: "#ff6b9d", textShadow: "0 0 10px rgba(255,107,157,0.3)" }}>Bond Level Up!</p>
+          <p className="text-base font-bold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
+          <p className="text-xs font-semibold" style={{ color: "rgba(255,107,157,0.7)" }}>{toast.bondTitle}</p>
+        </div>
+        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      </div>
+    );
+  }
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: toast.bondLevelUp ? "#2a1e2e" : "#1e1a2e", border: `1px solid ${toast.bondLevelUp ? "rgba(255,107,157,0.5)" : "rgba(255,107,157,0.3)"}`, boxShadow: `0 8px 32px rgba(255,107,157,${toast.bondLevelUp ? "0.25" : "0.1"})`, maxWidth: "min(340px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: "#1e1a2e", border: "1px solid rgba(255,107,157,0.3)", boxShadow: "0 8px 32px rgba(255,107,157,0.1)", maxWidth: "min(340px, calc(100vw - 48px))", width: "100%" }}
     >
       <span className="text-2xl flex-shrink-0">{toast.companionEmoji}</span>
       <div className="flex-1 min-w-0">
-        {toast.bondLevelUp
-          ? <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>Bond Level Up!</p>
-          : <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>+{toast.bondXpGained} Bond XP</p>
-        }
+        <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>+{toast.bondXpGained} Bond XP</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{toast.bondTitle}</p>
       </div>

@@ -222,7 +222,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
           <button
             onClick={() => {
-              setConfirmMessage("Taverne verlassen? Der 30-Tage-Cooldown startet erneut. Dein Streak und Forge Temp werden wiederhergestellt.");
+              setConfirmMessage("Leave the Hearth? The 30-day cooldown restarts. Your streak and forge temperature will resume.");
               setConfirmAction(() => () => leaveTavern());
             }}
             disabled={actionLoading}
@@ -311,13 +311,29 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         <div className="rounded-xl p-5 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-sm font-semibold text-w40 mb-2">Rest on Cooldown</p>
           <p className="text-xs text-w25">You recently rested. Next rest available:</p>
-          <p className="text-sm font-mono font-bold mt-1" style={{ color: "#d97706" }}>
-            {(() => {
-              const ms = new Date(status.cooldownEndsAt).getTime() - Date.now();
-              const days = Math.max(0, Math.ceil(ms / 86400000));
-              return days > 0 ? `in ${days} day${days !== 1 ? "s" : ""}` : "Available now";
-            })()}
-          </p>
+          {(() => {
+            const cdEnd = new Date(status.cooldownEndsAt!).getTime();
+            const ms = cdEnd - Date.now();
+            const days = Math.max(0, Math.ceil(ms / 86400000));
+            const totalCooldownMs = 30 * 86400000;
+            const elapsed = totalCooldownMs - ms;
+            const pct = Math.max(0, Math.min(100, (elapsed / totalCooldownMs) * 100));
+            return (
+              <>
+                <p className="text-sm font-mono font-bold mt-1" style={{ color: "#d97706" }}>
+                  {days > 0 ? `in ${days} day${days !== 1 ? "s" : ""}` : "Available now"}
+                </p>
+                {days > 0 && (
+                  <div className="mt-3 max-w-xs mx-auto">
+                    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(217,119,6,0.08)" }}>
+                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: "linear-gradient(90deg, #d97706, #f59e0b)" }} />
+                    </div>
+                    <p className="text-xs mt-1 text-w20">{Math.round(pct)}% of 30-day cooldown elapsed</p>
+                  </div>
+                )}
+              </>
+            );
+          })()}
         </div>
       )}
 
@@ -355,14 +371,14 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
                 className="text-xs px-4 py-2 rounded-lg font-semibold"
                 style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
               >
-                Abbrechen
+                Cancel
               </button>
               <button
                 onClick={() => { confirmAction(); setConfirmAction(null); }}
                 className="text-xs px-4 py-2 rounded-lg font-semibold"
                 style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
               >
-                Bestätigen
+                Confirm
               </button>
             </div>
           </div>

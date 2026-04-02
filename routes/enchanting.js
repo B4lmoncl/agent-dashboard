@@ -163,7 +163,7 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
   const chosenVal = eq.rerollPending.options[idx];
   const oldVal = eq.stats[lockedStat];
   eq.stats[lockedStat] = chosenVal;
-  eq.rerollCount = (eq.rerollCount || 0) + 1;
+  // rerollCount already incremented on payment (line 121) — don't double-increment
   delete eq.rerollPending;
 
   saveUsers();

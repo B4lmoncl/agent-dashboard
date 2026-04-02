@@ -6,6 +6,7 @@ import { createStarterQuestsIfNew, CURRENT_SEASON } from "@/app/utils";
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
 import { TipCustom } from "@/components/GameTooltip";
+import NotificationCenter from "@/components/NotificationCenter";
 
 interface DashboardHeaderProps {
   dashView: string;
@@ -68,7 +69,7 @@ export default function DashboardHeader({
   const [authLoading, setAuthLoading] = useState(false);
   const [forgotOpen, setForgotOpen] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
-  const [forgotMsg, setForgotMsg] = useState("");
+  const [forgotMsg, setForgotMsg] = useState<{ text: string; ok: boolean } | null>(null);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [emailStatus, setEmailStatus] = useState<{ hasEmail: boolean; email: string | null; emailVerified: boolean } | null>(null);
   const [settingsMsg, setSettingsMsg] = useState("");
@@ -221,13 +222,13 @@ export default function DashboardHeader({
           <button
             data-feedback-id="header.guild-gate"
             className="flex items-center gap-2"
-            style={{ background: "none", border: "none", padding: 0, cursor: "pointer", transition: "opacity 0.15s", alignSelf: "flex-start" }}
+            style={{ background: "none", border: "none", padding: 0, cursor: "pointer", transition: "opacity 0.15s" }}
             onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.opacity = "0.75"}
             onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.opacity = "1"}
             onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             title="Home — Quest Hall"
           >
-            <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "auto", display: "block", marginBottom: "-8px", marginTop: "4px" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            <img src="/guild-gate.png" alt="Quest Hall" style={{ width: 48, height: 48, imageRendering: "auto", display: "block" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <span className="font-semibold text-sm tracking-tight text-primary">
               Quest Hall
             </span>
@@ -245,6 +246,8 @@ export default function DashboardHeader({
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Notification Center */}
+          <NotificationCenter onNavigate={(v) => setDashView(v)} />
           <div className="flex items-center gap-1.5">
             <button
               data-feedback-id="header.sound-toggle"
@@ -397,17 +400,17 @@ export default function DashboardHeader({
                                   const r = await fetch("/api/auth/forgot-password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: forgotEmail }) });
                                   const d = await r.json().catch(() => ({}));
                                   if (!r.ok) {
-                                    setForgotMsg(d.error || "Failed to send reset link.");
+                                    setForgotMsg({ text: d.error || "Failed to send reset link.", ok: false });
                                   } else {
-                                    setForgotMsg(d.message || "Check your email.");
+                                    setForgotMsg({ text: d.message || "Check your email.", ok: true });
                                   }
-                                } catch { setForgotMsg("Network error"); }
+                                } catch { setForgotMsg({ text: "Network error", ok: false }); }
                               }}
                               disabled={!forgotEmail.includes("@")}
                               className="text-xs px-3 py-1 rounded font-medium w-full"
                               style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: forgotEmail.includes("@") ? "pointer" : "not-allowed" }}
                             >Send Reset Link</button>
-                            {forgotMsg && <p className="text-xs" style={{ color: "#22c55e" }}>{forgotMsg}</p>}
+                            {forgotMsg && <p className="text-xs" style={{ color: forgotMsg.ok ? "#22c55e" : "#ef4444" }}>{forgotMsg.text}</p>}
                           </div>
                         )}
                       </>

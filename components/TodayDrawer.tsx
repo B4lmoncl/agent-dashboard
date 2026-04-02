@@ -339,7 +339,7 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
         <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src="/images/icons/equip-weapon.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>Quests</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Quests</span>
           </div>
           <span className="text-base font-bold font-mono" style={{ color: "#e8e8e8" }}>{questsToday}</span>
           <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>today</span>
@@ -348,8 +348,8 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
         {/* DR Tier */}
         <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>◆</span>
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>DR Tier</span>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>◆</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>DR Tier</span>
           </div>
           <span className="text-xs font-semibold" style={{ color: drTier.color, fontSize: 12 }}>{drTier.label}</span>
         </div>
@@ -358,7 +358,7 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
         <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src="/images/icons/currency-essenz.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>XP</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>XP</span>
           </div>
           <span className="text-base font-bold font-mono" style={{ color: "#818cf8" }}>~{xpEarned}</span>
           <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>earned</span>
@@ -368,7 +368,7 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
         <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src="/images/icons/currency-gold.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>Gold</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Gold</span>
           </div>
           <span className="text-base font-bold font-mono" style={{ color: "#fbbf24" }}>~{goldEarned}</span>
           <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>earned</span>

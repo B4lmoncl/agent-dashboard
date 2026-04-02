@@ -92,8 +92,7 @@ const TYPE_ICON_IMAGES: Record<string, string> = { personal: "/images/icons/cat-
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: any) => void }) {
+export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [tiers, setTiers] = useState<Record<string, RiftTier>>({});
   const [activeRift, setActiveRift] = useState<ActiveRift | null>(null);
@@ -169,6 +168,9 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
+        // Screen shake on stage clear
+        document.body.classList.add("screenshake");
+        setTimeout(() => document.body.classList.remove("screenshake"), 300);
         if (onRewardCelebration) {
           onRewardCelebration({
             type: "rift",
@@ -271,9 +273,9 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             </div>
             <div className="text-right">
               <p className={`text-sm font-mono font-bold${!activeRift.completed && new Date(activeRift.expiresAt).getTime() - Date.now() < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 ? " bar-pulse" : ""}`} style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
-                {activeRift.completed ? "✓ Complete!" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
+                {activeRift.completed ? "✓ Rift Conquered!" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
               </p>
-              <p className="text-xs text-w20">{activeRift.completed ? "All stages cleared" : "Time remaining"}</p>
+              <p className="text-xs" style={{ color: activeRift.completed ? "rgba(34,197,94,0.5)" : "rgba(255,255,255,0.2)" }}>{activeRift.completed ? "All stages cleared — rewards granted" : "Time remaining"}</p>
             </div>
           </div>
 
@@ -416,6 +418,44 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         </div>
       )}
 
+      {/* Failed Rift — show failure panel with cooldown */}
+      {activeRift?.failed && (
+        <div className="rounded-xl p-5 space-y-3 tab-content-enter" style={{ background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.2)" }}>
+          <div className="flex items-center gap-3">
+            {activeRift.tierIcon?.startsWith("/") ? <img src={activeRift.tierIcon} alt="" width={36} height={36} className="img-render-auto rounded-lg" style={{ opacity: 0.5, border: "1px solid rgba(239,68,68,0.2)" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl" style={{ opacity: 0.5 }}>{activeRift.tierIcon}</span>}
+            <div>
+              <p className="text-sm font-bold" style={{ color: "#ef4444" }}>Rift Failed</p>
+              <p className="text-xs text-w30">
+                {activeRift.tierName} — Reached stage {activeRift.reachedStage ?? activeRift.currentStage} of {activeRift.totalStages}
+              </p>
+            </div>
+          </div>
+          <p className="text-xs italic" style={{ color: "rgba(239,68,68,0.5)" }}>
+            The Rift has sealed itself. Time ran out before all stages could be cleared.
+          </p>
+          {activeRift.failedAt && (() => {
+            const tier = tiers[activeRift.tier];
+            if (!tier?.failCooldownDays) return null;
+            const cdEnd = new Date(activeRift.failedAt).getTime() + tier.failCooldownDays * 86400000;
+            const remaining = cdEnd - Date.now();
+            if (remaining <= 0) return <p className="text-xs" style={{ color: "#22c55e" }}>Cooldown expired — you may enter again.</p>;
+            const daysLeft = Math.ceil(remaining / 86400000);
+            const pct = Math.max(0, Math.min(100, ((tier.failCooldownDays * 86400000 - remaining) / (tier.failCooldownDays * 86400000)) * 100));
+            return (
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span style={{ color: "rgba(239,68,68,0.6)" }}>Cooldown</span>
+                  <span className="font-mono" style={{ color: "rgba(239,68,68,0.5)" }}>{daysLeft}d remaining</span>
+                </div>
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(239,68,68,0.08)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: "rgba(239,68,68,0.4)" }} />
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
       {/* Tier selection — shown when no active rift */}
       {!activeRift && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -495,11 +535,22 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     ))}
                   </div>
                 )}
-                {onCd && tier.cooldownEndsAt && (
-                  <p className="text-xs text-center" style={{ color: "#ef4444" }}>
-                    Cooldown: {timeLeft(new Date(tier.cooldownEndsAt).getTime() - Date.now())} remaining
-                  </p>
-                )}
+                {onCd && tier.cooldownEndsAt && (() => {
+                  const cdEnd = new Date(tier.cooldownEndsAt).getTime();
+                  const remaining = cdEnd - Date.now();
+                  const totalCd = tier.failCooldownDays * 86400000;
+                  const pct = totalCd > 0 ? Math.max(0, Math.min(100, ((totalCd - remaining) / totalCd) * 100)) : 0;
+                  return (
+                    <div className="space-y-1">
+                      <p className="text-xs text-center" style={{ color: "#ef4444" }}>
+                        Cooldown: {timeLeft(remaining)} remaining
+                      </p>
+                      <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(239,68,68,0.08)" }}>
+                        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: "rgba(239,68,68,0.4)" }} />
+                      </div>
+                    </div>
+                  );
+                })()}
                 <button
                   onClick={() => canEnter && enterRift(id)}
                   disabled={!canEnter || actionLoading}

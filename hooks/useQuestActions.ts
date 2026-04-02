@@ -170,7 +170,7 @@ export function useQuestActions({
         addToast({ type: "error", message: d.error || "Failed to claim quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not claim quest" });
+      addToast({ type: "error", message: "Network error — could not claim quest", onRetry: () => handleClaim(questId) });
     } finally {
       setLoadingAction(null);
     }
@@ -192,7 +192,7 @@ export function useQuestActions({
         addToast({ type: "error", message: "Failed to unclaim quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not unclaim quest" });
+      addToast({ type: "error", message: "Network error — could not unclaim quest", onRetry: () => handleUnclaim(questId) });
     } finally {
       setLoadingAction(null);
     }
@@ -229,12 +229,23 @@ export function useQuestActions({
         body: JSON.stringify({ userId: playerName }),
       });
       if (r.ok) {
+        const data = await r.json().catch(() => ({}));
+        if (data.allDone) {
+          addToast({ type: "flavor", message: "Co-op quest complete! All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
+        } else {
+          addToast({ type: "flavor", message: "Your part is done! Waiting for partners...", icon: "/images/icons/cat-coop.png" });
+        }
+        if (data.newAchievements?.length > 0) {
+          for (const ach of data.newAchievements) {
+            addToast({ type: "achievement", achievement: ach });
+          }
+        }
         await refresh();
       } else {
         addToast({ type: "error", message: "Failed to complete co-op quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not complete co-op quest" });
+      addToast({ type: "error", message: "Network error — could not complete co-op quest", onRetry: () => handleCoopComplete(questId) });
     } finally {
       setLoadingAction(null);
     }
@@ -346,7 +357,7 @@ export function useQuestActions({
         addToast({ type: "error", message: d.error || "Failed to complete quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not complete quest" });
+      addToast({ type: "error", message: "Network error — could not complete quest", onRetry: () => handleComplete(questId, questTitle) });
     } finally {
       setLoadingAction(null);
     }

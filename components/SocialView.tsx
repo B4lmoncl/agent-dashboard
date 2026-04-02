@@ -61,11 +61,26 @@ function ReadCheck({ read }: { read: boolean }) {
   );
 }
 
-// Activity event icons
+// Activity event icons — image paths for visual consistency with game UI
+const EVENT_ICON_SRCS: Record<string, string> = {
+  quest_complete: "/images/icons/nav-great-hall.png",
+  level_up: "/images/icons/reward-xp.png",
+  achievement: "/images/icons/nav-honors.png",
+  gacha_pull: "/images/icons/vault-of-fate.png",
+  rare_drop: "/images/icons/equip-weapon.png",
+  trade_complete: "/images/icons/currency-gold.png",
+  streak_milestone: "/images/icons/ui-ritual-rune.png",
+  world_boss_spawn: "/images/icons/nav-worldboss.png",
+  world_boss_defeat: "/images/icons/nav-worldboss.png",
+  dungeon_complete: "/images/icons/nav-dungeons.png",
+  rift_complete: "/images/icons/nav-rift.png",
+  expedition_complete: "/images/icons/currency-essenz.png",
+};
+// Fallback unicode for missing images
 const EVENT_ICONS: Record<string, string> = {
   quest_complete: "◆", level_up: "▲", achievement: "★",
-  gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "🔥",
-  world_boss_spawn: "⚔", world_boss_defeat: "⚔", dungeon_complete: "▼",
+  gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "◇",
+  world_boss_spawn: "◆", world_boss_defeat: "◆", dungeon_complete: "▼",
   rift_complete: "◈", expedition_complete: "↗",
 };
 
@@ -331,9 +346,9 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                       } catch { setSuccessMsg("Network error"); }
                     })();
                   }}
-                  className="text-xs px-2 py-0.5 rounded mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="text-xs px-2 py-0.5 rounded mt-1 opacity-0 group-hover:opacity-100 transition-opacity sm:opacity-100"
                   style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer", fontSize: 12 }}
-                  title="Challenge this friend — who completes more quests this week? 100g wager"
+                  title="Challenge this friend — who completes more quests this week? 100g wager. Click twice to confirm."
                 >
                   Challenge
                 </button>
@@ -1327,6 +1342,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
         </button>
       </div>
       {feed.map(event => {
+        const iconSrc = EVENT_ICON_SRCS[event.type];
         const icon = EVENT_ICONS[event.type] || "●";
         const isOwn = event.player === playerName.toLowerCase();
         const name = isOwn ? "You" : event.playerName;
@@ -1380,7 +1396,8 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
         if (compactView) {
           return (
             <div key={event.id} className="cv-auto flex items-center gap-2 text-xs px-2 py-1 rounded" style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : "rgba(255,255,255,0.015)", borderLeft: `2px solid ${d.rarity ? (RARITY_COLORS[d.rarity] || "rgba(255,255,255,0.06)") : "rgba(255,255,255,0.06)"}` }}>
-              <span style={{ fontSize: 12 }}>{icon}</span>
+              {iconSrc ? <img src={iconSrc} alt="" width={14} height={14} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} /> : null}
+              <span style={{ fontSize: 12, display: iconSrc ? "none" : "inline" }}>{icon}</span>
               <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>
               <span className="text-w30 truncate flex-1">{descriptionNode}</span>
               <span className="text-w15 flex-shrink-0">{timeAgo(event.at)}</span>
@@ -1391,7 +1408,8 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
 
         return (
           <div key={event.id} className={`cv-auto flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-            <span className="text-sm flex-shrink-0 mt-0.5">{icon}</span>
+            {iconSrc ? <img src={iconSrc} alt="" width={18} height={18} className="img-render-auto flex-shrink-0 mt-0.5" onError={e => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} /> : null}
+            <span className="text-sm flex-shrink-0 mt-0.5" style={{ display: iconSrc ? "none" : "inline" }}>{icon}</span>
             <div className="flex-1 min-w-0">
               <p className="text-xs">
                 <span className="font-semibold" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>

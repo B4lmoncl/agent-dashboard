@@ -43,6 +43,7 @@ import { RoadmapView } from "@/components/RoadmapView";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
+import FloorAmbientParticles from "@/components/FloorAmbientParticles";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
 import { ModalPortal, useModalBehavior, ModalOverlay } from "@/components/ModalPortal";
 import DashboardHeader from "@/components/DashboardHeader";
@@ -116,8 +117,17 @@ const MAT_SOURCES: Record<string, string> = {
   legendary: "Legendary quest drops · Dismantling legendary gear",
 };
 
-// Suspense fallback for lazy-loaded views
-const ViewFallback = () => <div className="flex items-center justify-center py-20 text-w30 text-sm font-mono">Loading...</div>;
+// Suspense fallback for lazy-loaded views — skeleton cards matching view layout
+const ViewFallback = () => (
+  <div className="space-y-3 tab-content-enter">
+    <div className="skeleton-pulse rounded-xl" style={{ height: 48, background: "rgba(255,255,255,0.03)" }} />
+    <div className="skeleton-pulse rounded-xl" style={{ height: 120, background: "rgba(255,255,255,0.02)" }} />
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
+    </div>
+  </div>
+);
 
 export default function Dashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);
@@ -217,7 +227,7 @@ export default function Dashboard() {
     setDashView("honors");
     setHighlightedAchievementId(achievementId);
   }, [setDashView]);
-  const [, setCampaigns] = useState<Campaign[]>([]);
+  // campaigns + habits removed — were dead state (set every 30s, never read)
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
   });
@@ -253,7 +263,7 @@ export default function Dashboard() {
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
-  const [, setHabits] = useState<Habit[]>([]);
+  // habits state removed — was dead (set but never read)
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
   const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
@@ -441,7 +451,7 @@ export default function Dashboard() {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
             // Don't show version popup if What's New popup already handled it
-            try { if (localStorage.getItem("whatsNewSeen") === "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
+            try { if (localStorage.getItem("whatsNewSeen") !== "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
           }
         }
       } catch { /* ignore */ }
@@ -498,9 +508,7 @@ export default function Dashboard() {
       const rawAchs = batch.achievements as AchievementDef[] | { achievements: AchievementDef[] } | undefined;
       const batchAchs = Array.isArray(rawAchs) ? rawAchs : rawAchs?.achievements;
       if (Array.isArray(batchAchs) && batchAchs.length > 0) setAchievementCatalogue(batchAchs);
-      setCampaigns(batch.campaigns || []);
       setRituals(batch.rituals || []);
-      setHabits(batch.habits || []);
       setFavorites(batch.favorites || []);
       setActiveNpcs(batch.activeNpcs || []);
       setApiLive(!!batch.apiLive);
@@ -541,10 +549,8 @@ export default function Dashboard() {
       setUsers(u);
       if (lb.length > 0) setLeaderboard(lb);
       if (ac.achievements.length > 0) setAchievementCatalogue(ac.achievements);
-      setCampaigns(camps);
       if (pName) {
         fetchRituals(pName).then(setRituals).catch(() => {});
-        fetchHabits(pName).then(setHabits).catch(() => {});
       }
       try { const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) }); setApiLive(r.ok); } catch { setApiLive(false); }
       try {
@@ -721,7 +727,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (dashView === "changelog" && changelog.length === 0 && !changelogLoading) {
       setChangelogLoading(true);
-      fetchChangelog().then(entries => { setChangelog(entries); setChangelogLoading(false); });
+      fetchChangelog().then(entries => { setChangelog(entries.length > 0 ? entries : [{ date: "—", commits: [] }] as ChangelogEntry[]); }).catch(() => { setChangelog([{ date: "error", commits: [] }] as ChangelogEntry[]); }).finally(() => setChangelogLoading(false));
     }
   }, [dashView, changelog.length, changelogLoading]);
 
@@ -729,7 +735,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (infoOverlayTab === "changelog" && infoOverlayOpen && changelog.length === 0 && !changelogLoading) {
       setChangelogLoading(true);
-      fetchChangelog().then(entries => { setChangelog(entries); setChangelogLoading(false); });
+      fetchChangelog().then(entries => { setChangelog(entries.length > 0 ? entries : [{ date: "—", commits: [] }] as ChangelogEntry[]); }).catch(() => { setChangelog([{ date: "error", commits: [] }] as ChangelogEntry[]); }).finally(() => setChangelogLoading(false));
     }
   }, [infoOverlayTab, infoOverlayOpen, changelog.length, changelogLoading]);
 
@@ -910,6 +916,7 @@ export default function Dashboard() {
     <DashboardProvider value={ctxValue}>
     <div className="min-h-screen text-primary" style={{ background: "transparent", position: "relative" }}>
       <GuildHallBackground />
+      <FloorAmbientParticles floorId={activeFloor} />
       <DashboardHeader
         dashView={dashView}
         setDashView={(v) => setDashView(v as typeof dashView)}
@@ -1265,7 +1272,7 @@ export default function Dashboard() {
                             title={getTooltip(b)}
                             className="flex items-center gap-0.5 rounded px-1.5 py-0.5 shrink-0 cursor-default select-none"
                             style={{
-                              fontSize: 11,
+                              fontSize: 12,
                               background: `${meta.color}1a`,
                               border: `1px solid ${meta.color}40`,
                               color: meta.color,
@@ -1273,7 +1280,7 @@ export default function Dashboard() {
                               maxWidth: 110,
                             }}
                           >
-                            <span style={{ fontSize: 9, opacity: 0.8 }}>{meta.icon}</span>
+                            <span style={{ fontSize: 12, opacity: 0.8 }}>{meta.icon}</span>
                             <span className="truncate font-medium">{meta.label}</span>
                             {rem && (
                               <span style={{ opacity: 0.65, marginLeft: 2, fontVariantNumeric: "tabular-nums" }}>· {rem}</span>
@@ -1284,7 +1291,7 @@ export default function Dashboard() {
                       {overflow > 0 && (
                         <div
                           className="flex items-center rounded px-1.5 py-0.5 shrink-0 cursor-default"
-                          style={{ fontSize: 11, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}
+                          style={{ fontSize: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}
                           title={buffs.slice(4).map(b => getTooltip(b)).join("\n")}
                         >
                           +{overflow} more
@@ -1558,7 +1565,22 @@ export default function Dashboard() {
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />
                 {/* Ambient particles */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {Array.from({ length: 12 }, (_, i) => {
+                  {/* Ambient glow orbs — large, blurred, slow-moving background lights */}
+                  {Array.from({ length: 3 }, (_, i) => {
+                    const x = 20 + i * 30;
+                    const y = 30 + (i % 2) * 30;
+                    const floorGlowColor = currentFloor.id === "turmspitze" ? "#fbbf24" : currentFloor.id === "haupthalle" ? "#f97316" : currentFloor.id === "gewerbeviertel" ? "#a855f7" : currentFloor.id === "charakterturm" ? "#3b82f6" : "#ec4899";
+                    return <div key={`glow-${i}`} className="absolute rounded-full" style={{
+                      left: `${x}%`, top: `${y}%`,
+                      width: 60 + i * 20, height: 60 + i * 20,
+                      background: `radial-gradient(circle, ${floorGlowColor}15 0%, transparent 70%)`,
+                      filter: "blur(20px)",
+                      animation: `banner-drift ${12 + i * 3}s ease-in-out ${i * 2}s infinite alternate`,
+                      "--drift-x": `${30 - i * 20}px`, "--drift-y": `${-15 + i * 10}px`,
+                    } as React.CSSProperties} />;
+                  })}
+                  {/* Foreground particles — thematic per floor */}
+                  {Array.from({ length: 18 }, (_, i) => {
                     const seed = i * 137.5;
                     const left = `${(seed % 100)}%`;
                     const top = `${((seed * 2.3) % 80) + 10}%`;
@@ -2034,7 +2056,10 @@ export default function Dashboard() {
                     </div>
                     {/* Search + Sort row */}
                     <div className="flex gap-1 mb-2">
-                      <input data-feedback-id="quest-board.search" type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="flex-1 text-xs px-2 py-1.5 rounded input-dark border-w8" />
+                      <div className="flex-1 relative">
+                        <input data-feedback-id="quest-board.search" type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded input-dark border-w8" style={{ paddingRight: searchFilter ? 24 : 8 }} onKeyDown={e => { if (e.key === "Escape") { setSearchFilter(""); (e.target as HTMLInputElement).blur(); } }} />
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="absolute right-1.5 top-1/2 -translate-y-1/2" style={{ color: "rgba(255,255,255,0.3)", fontSize: 14, cursor: "pointer", lineHeight: 1, background: "none", border: "none", padding: 0 }} title="Clear search">×</button>}
+                      </div>
                       <button
                         data-feedback-id="quest-board.sort"
                         onClick={() => setSortMode(s => s === "rarity" ? "newest" : "rarity")}
@@ -2088,10 +2113,12 @@ export default function Dashboard() {
                     ) :
                     loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse bg-card" style={{ border: "1px solid rgba(255,255,255,0.05)" }} />) :
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
-                      <div className="rounded-xl p-5 text-center bg-card border-w6">
-                        <p className="text-xs text-w20">{searchFilter ? `No quests match "${searchFilter}"` : "No player quests open"}</p>
-                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive mt-2 text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button>}
-                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-semibold">Load Quests</span></button>}
+                      <div className="rounded-xl p-6 text-center bg-card border-w6 space-y-3">
+                        <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                        <p className="text-sm font-semibold text-w30">{searchFilter ? `No quests match "${searchFilter}"` : "The Quest Board is empty"}</p>
+                        {!searchFilter && <p className="text-xs text-w15 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button>}
+                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive btn-press px-4 py-2 rounded-lg inline-flex items-center gap-2" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-bold">Summon Quests</span></button>}
                       </div>
                     ) : (
                       <>
@@ -2206,7 +2233,7 @@ export default function Dashboard() {
 
         {/* ── RITUAL CHAMBER (standalone view) ── */}
         {dashView === "rituals" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} addToast={addToast} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── VOW SHRINE (standalone view) ── */}
@@ -2585,7 +2612,7 @@ export default function Dashboard() {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div style={{ width: 100, height: 100, borderRadius: "50%", border: "2px solid rgba(255,215,0,0.6)", animation: "levelup-ring 2s ease-out infinite" }} />
             </div>
-            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "auto", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} />
+            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "auto", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <div className="text-xs font-bold uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(255,215,0,0.6)" }}>Level Up!</div>
             <div className="levelup-title text-3xl font-black mb-1" style={{ color: "#FFD700" }}>Level {levelUpCelebration.level}</div>
             <div className="text-sm font-semibold mb-5" style={{ color: "rgba(255,215,0,0.7)" }}>{levelUpCelebration.title}</div>

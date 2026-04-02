@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import type { User, ClassDef } from "@/app/types";
 import { getUserLevel, getUserXpProgress, GUILD_LEVELS } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -78,7 +79,7 @@ function SmartIcon({ src, alt, size = 16, style }: { src: string; alt?: string; 
 
 // ─── UserCard Component ──────────────────────────────────────────────────────
 
-export function UserCard({ user, classes = [], onClick, onNavigate }: { user: User; classes?: ClassDef[]; onClick?: () => void; onNavigate?: (view: string) => void }) {
+export const UserCard = memo(function UserCard({ user, classes = [], onClick, onNavigate }: { user: User; classes?: ClassDef[]; onClick?: () => void; onNavigate?: (view: string) => void }) {
   const xp = user.xp ?? 0;
   const lvl = getUserLevel(xp);
   const progress = getUserXpProgress(xp);
@@ -321,7 +322,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
             }
           >
             <div className="flex items-center gap-1.5 pt-2 cursor-help">
-              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
                 Next unlock
               </span>
               <span className="text-xs font-bold font-mono" style={{ color: nextUnlock.color }}>
@@ -336,7 +337,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
       ) : (
         currentLevel >= 15 && (
           <div className="px-3 pb-2.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
               All features unlocked
             </p>
           </div>
@@ -380,4 +381,4 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
       )}
     </div>
   );
-}
+});

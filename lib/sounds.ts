@@ -212,6 +212,18 @@ function gachaReveal(rarity: string) {
   }
 }
 
+/** Crafting skill-up — bright ascending WoW-style ping */
+function craftSkillUp() {
+  playNotes([
+    { freq: 880,  duration: 0.06, delay: 0,    type: "square",   volume: 0.3  },
+    { freq: 1109, duration: 0.06, delay: 0.07, type: "square",   volume: 0.32 },
+    { freq: 1319, duration: 0.06, delay: 0.14, type: "square",   volume: 0.35 },
+    { freq: 1760, duration: 0.18, delay: 0.22, type: "square",   volume: 0.4  },
+    // Soft shimmer tail
+    { freq: 2637, duration: 0.12, delay: 0.28, type: "sine",     volume: 0.1  },
+  ]);
+}
+
 /** Companion pet / interact */
 function companionPet() {
   playNotes([
@@ -298,6 +310,7 @@ export const SFX = {
   navigate,
   modalOpen,
   modalClose,
+  craftSkillUp,
   setMuted,
   isMuted,
   setVolume,

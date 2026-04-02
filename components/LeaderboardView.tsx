@@ -60,7 +60,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const { users, classesList: classes, playerName } = useDashboard();
   const classMap = new Map(classes.map(c => [c.id, c]));
   const agentIdSet = new Set(agents.map(a => a.id));
-  const prevRankRef = useRef<number | null>(null);
+  // Persist rank across tab switches so rank-up flash actually fires
+  const prevRankRef = useRef<number | null>((() => { try { const v = sessionStorage.getItem("qh_lb_prevRank"); return v ? parseInt(v, 10) : null; } catch { return null; } })());
   const [seasonal, setSeasonal] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -194,18 +195,28 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           Ranked by {seasonal ? "Season " : ""}XP · Ties broken by Quests
         </p></Tip>
         {mode === "players" && (
-          <button
-            onClick={() => setSeasonal(s => !s)}
-            className="text-xs px-2 py-1 rounded-lg font-semibold"
-            style={{
-              background: seasonal ? "rgba(251,191,36,0.12)" : "rgba(255,255,255,0.04)",
-              color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
-              border: `1px solid ${seasonal ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
-              cursor: "pointer",
-            }}
-          >
-            {seasonal ? "Season" : "All-Time"}
-          </button>
+          <div className="flex gap-1">
+            <button
+              onClick={() => setSeasonal(false)}
+              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              style={{
+                background: !seasonal ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.03)",
+                color: !seasonal ? "#a78bfa" : "rgba(255,255,255,0.25)",
+                border: `1px solid ${!seasonal ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
+            >All-Time</button>
+            <button
+              onClick={() => setSeasonal(true)}
+              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              style={{
+                background: seasonal ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
+                color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
+                border: `1px solid ${seasonal ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
+            >Season</button>
+          </div>
         )}
       </div>
 
@@ -225,6 +236,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           if (isMe) {
             if (prevRankRef.current !== null && entry.rank < prevRankRef.current) rankImproved = true;
             prevRankRef.current = entry.rank;
+            try { sessionStorage.setItem("qh_lb_prevRank", String(entry.rank)); } catch { /* ignore */ }
           }
           const maxXp = merged[0]?.xp ?? 1;
           const barPct = maxXp > 0 ? (entry.xp / maxXp) * 100 : 0;
@@ -237,9 +249,9 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               style={{
                 gridTemplateColumns: "32px 1fr 60px 60px 60px",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
-                background: isMe ? (rankImproved ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.06)") : isTop ? `${color}08` : "transparent",
-                borderLeft: isMe ? `2px solid ${rankImproved ? "rgba(34,197,94,0.5)" : "rgba(167,139,250,0.3)"}` : isTop ? `2px solid ${color}30` : "2px solid transparent",
-                boxShadow: rankImproved ? "inset 0 0 16px rgba(34,197,94,0.06)" : isTop ? `inset 0 0 20px ${color}06` : "none",
+                background: isMe ? (rankImproved ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.06)") : entry.rank === 1 ? "rgba(245,158,11,0.06)" : isTop ? `${color}08` : "transparent",
+                borderLeft: isMe ? `2px solid ${rankImproved ? "rgba(34,197,94,0.5)" : "rgba(167,139,250,0.3)"}` : entry.rank === 1 ? "2px solid rgba(245,158,11,0.5)" : isTop ? `2px solid ${color}30` : "2px solid transparent",
+                boxShadow: rankImproved ? "inset 0 0 16px rgba(34,197,94,0.06)" : entry.rank === 1 ? "inset 0 0 24px rgba(245,158,11,0.08), 0 0 12px rgba(245,158,11,0.04)" : isTop ? `inset 0 0 20px ${color}06` : "none",
               }}
             >
               <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>

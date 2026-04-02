@@ -153,6 +153,120 @@ router.get('/api/player/:name/notifications', requireAuth, requireSelf('name'), 
   res.json({ notifications });
 });
 
+// ─── Notification Center ────────────────────────────────────────────────────
+// Aggregates recent events into a unified notification timeline
+
+// GET /api/player/:name/notification-center — unified notification feed
+router.get('/api/player/:name/notification-center', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const notifications = [];
+  const now = Date.now();
+  const cutoff = now - 7 * 86400000; // Last 7 days
+  const readSet = new Set(u._notifCenterRead || []);
+
+  // Recent achievements
+  if (u.achievements) {
+    for (const ach of u.achievements) {
+      if (!ach.earnedAt || new Date(ach.earnedAt).getTime() < cutoff) continue;
+      notifications.push({
+        id: `ach-${ach.id}`, type: "achievement",
+        title: ach.name || "Achievement Unlocked",
+        message: ach.description || "",
+        icon: ach.icon || "/images/icons/nav-honors.png",
+        color: "#a855f7",
+        at: ach.earnedAt,
+        read: readSet.has(`ach-${ach.id}`),
+      });
+    }
+  }
+
+  // Recent quest completions (last 10)
+  const completedQuests = state.quests
+    .filter(q => q.status === "completed" && q.completedBy?.toLowerCase() === uid && q.completedAt && new Date(q.completedAt).getTime() > cutoff)
+    .sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime())
+    .slice(0, 10);
+  for (const q of completedQuests) {
+    const rarityColor = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" }[q.rarity || "common"] || "#9ca3af";
+    notifications.push({
+      id: `quest-${q.id}`, type: "quest_milestone",
+      title: `Quest Complete: ${q.title}`,
+      message: `+${q.rewards?.xp || 0} XP, +${q.rewards?.gold || 0} Gold`,
+      icon: "/images/icons/nav-great-hall.png",
+      color: rarityColor,
+      at: q.completedAt,
+      read: readSet.has(`quest-${q.id}`),
+    });
+  }
+
+  // World boss status
+  if (state.store.worldBoss?.active && state.store.worldBoss.boss) {
+    const wb = state.store.worldBoss.boss;
+    if (!wb.defeated) {
+      notifications.push({
+        id: `wb-active-${wb.bossId || "current"}`, type: "world_boss_spawn",
+        title: `World Boss: ${wb.name || "Unknown"}`,
+        message: `HP: ${Math.round((wb.currentHp / wb.maxHp) * 100)}% — Join the fight!`,
+        icon: "/images/icons/nav-worldboss.png",
+        color: "#ef4444",
+        at: wb.spawnedAt || new Date().toISOString(),
+        read: readSet.has(`wb-active-${wb.bossId || "current"}`),
+      });
+    }
+  }
+
+  // Active rift cooldowns ending soon
+  const riftState = u.riftState || {};
+  for (const [tier, data] of Object.entries(riftState)) {
+    if (data && typeof data === "object" && (data as { cooldownEndsAt?: string }).cooldownEndsAt) {
+      const cdEnd = new Date((data as { cooldownEndsAt: string }).cooldownEndsAt).getTime();
+      if (cdEnd > now && cdEnd - now < 24 * 3600000) {
+        notifications.push({
+          id: `rift-cd-${tier}`, type: "rift_cooldown",
+          title: `Rift ${tier.charAt(0).toUpperCase() + tier.slice(1)} Ready Soon`,
+          message: `Cooldown expires in ${Math.ceil((cdEnd - now) / 3600000)}h`,
+          icon: "/images/icons/nav-rift.png",
+          color: "#818cf8",
+          at: (data as { cooldownEndsAt: string }).cooldownEndsAt,
+          read: readSet.has(`rift-cd-${tier}`),
+        });
+      }
+    }
+  }
+
+  // Sort by date descending, cap at 30
+  notifications.sort((a, b) => new Date(b.at).getTime() - new Date(a.at).getTime());
+  const capped = notifications.slice(0, 30);
+  const unreadCount = capped.filter(n => !n.read).length;
+
+  res.json({ notifications: capped, unreadCount });
+});
+
+// POST /api/player/:name/notification-center/read — mark all as read
+router.post('/api/player/:name/notification-center/read', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  // Store all current notification IDs as read
+  const allIds = [];
+  // Achievements
+  if (u.achievements) for (const ach of u.achievements) allIds.push(`ach-${ach.id}`);
+  // Quests
+  const completedQuests = state.quests.filter(q => q.status === "completed" && q.completedBy?.toLowerCase() === uid);
+  for (const q of completedQuests) allIds.push(`quest-${q.id}`);
+  // World boss
+  if (state.store.worldBoss?.active && state.store.worldBoss.boss) allIds.push(`wb-active-${state.store.worldBoss.boss.bossId || "current"}`);
+  // Rift
+  for (const tier of Object.keys(u.riftState || {})) allIds.push(`rift-cd-${tier}`);
+
+  u._notifCenterRead = allIds;
+  saveUsers();
+  res.json({ ok: true });
+});
+
 // GET /api/users/:id/achievements — get earned achievements for a user
 router.get('/api/users/:id/achievements', (req, res) => {
   const u = state.users[req.params.id.toLowerCase()];

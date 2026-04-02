@@ -263,7 +263,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
               <button
                 key={shop.key}
                 onClick={() => setActiveCurrencyTab(shop.key)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
                 style={{
                   background: active ? `${shop.color}15` : "rgba(255,255,255,0.03)",
                   color: active ? shop.color : "rgba(255,255,255,0.3)",

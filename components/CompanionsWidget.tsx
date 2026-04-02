@@ -553,17 +553,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           ))}
                         </div>
                       )}
-                      <button onClick={handlePet} disabled={petting || (petsToday !== null && petsToday >= 2)} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
-                        title={petting ? "Petting in progress…" : (petsToday !== null && petsToday >= 2) ? "Daily belly rub limit reached (2/2)" : "Give a belly rub (+0.5 Bond XP)"}
+                      <button onClick={handlePet} disabled={petting} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
+                        title={petting ? "Petting in progress…" : (petsToday !== null && petsToday >= 2) ? "Your companion purrs contentedly (no bond XP — limit 2/day)" : "Give a belly rub (+0.5 Bond XP)"}
                         style={{
                         background: heartAnim ? "linear-gradient(135deg, rgba(255,107,157,0.3), rgba(255,107,157,0.15))" : "linear-gradient(135deg, rgba(255,107,157,0.12), rgba(255,107,157,0.06))",
                         color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)",
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
-                        cursor: (petting || (petsToday !== null && petsToday >= 2)) ? "not-allowed" : "pointer",
-                        opacity: (petsToday !== null && petsToday >= 2) ? 0.4 : 1,
+                        cursor: petting ? "not-allowed" : "pointer",
                       }}>
-                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
-                          <span>Pet</span>
+                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.{petsToday != null && <> Today: {petsToday}/2</>}{petsToday !== null && petsToday >= 2 && <br />}<em>{petsToday !== null && petsToday >= 2 ? "You can still pet — your companion loves it!" : ""}</em></p>}>
+                          <span>{petting ? "..." : `Pet${petsToday != null && petsToday < 2 && petsToday > 0 ? ` (${2 - petsToday})` : ""}`}</span>
                         </TipCustom>
                       </button>
                       <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", whiteSpace: "nowrap" }}>
@@ -648,6 +647,25 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       {ultimateUsing === ult.id ? "..." : ult.label}
                     </button>
                   ))}
+                </div>
+              </div>
+            )}
+            {/* Locked ultimate teaser for players below bond level 5 */}
+            {bondLevel < 5 && (
+              <div style={{
+                background: "#0e1018",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: 2,
+                padding: "8px 10px",
+                marginBottom: 10,
+                opacity: 0.45,
+              }}>
+                <div className="flex items-center gap-2">
+                  <span style={{ fontSize: 16, filter: "grayscale(1)" }}>◆</span>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Ultimate Ability</span>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Unlocks at Bond Level 5 ({5 - bondLevel} levels away)</p>
+                  </div>
                 </div>
               </div>
             )}
@@ -796,9 +814,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     </span>
                   </Tip>
                   {expeditionData.bondMultiplier > 1 && (
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
-                      Bond x{expeditionData.bondMultiplier.toFixed(1)}
-                    </span>
+                    <TipCustom title="Bond Multiplier" accent={cColor.accent} body={<p className="text-xs">Your companion&apos;s bond level boosts expedition gold rewards by <strong>{Math.round((expeditionData.bondMultiplier - 1) * 100)}%</strong>. Increase bond level for bigger bonuses.</p>}>
+                      <span className="text-xs font-mono cursor-help px-1.5 py-0.5 rounded" style={{ color: cColor.accent, background: `${cColor.accent}12`, border: `1px solid ${cColor.accent}25` }}>
+                        Bond x{expeditionData.bondMultiplier.toFixed(1)}
+                      </span>
+                    </TipCustom>
                   )}
                 </div>
 

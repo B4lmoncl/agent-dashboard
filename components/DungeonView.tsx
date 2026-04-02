@@ -305,7 +305,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-2xl mb-2">◆</p>
+        <img src="/images/icons/nav-dungeons.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-2" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
         <p className="text-xs text-w15">Log in to enter the dungeons.</p>
       </div>
@@ -364,12 +364,13 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
       {/* Collect Result */}
       {collectResult && (
-        <div className="rounded-xl p-5 space-y-3 tab-content-enter" style={{
+        <div className={`rounded-xl p-5 space-y-3 relative overflow-hidden${collectResult.success ? " reward-burst-enter" : " tab-content-enter"}`} style={{
           background: collectResult.success ? "rgba(34,197,94,0.06)" : "rgba(239,68,68,0.06)",
           border: `1px solid ${collectResult.success ? "rgba(34,197,94,0.25)" : "rgba(239,68,68,0.25)"}`,
+          boxShadow: collectResult.success ? "0 0 30px rgba(34,197,94,0.1)" : "none",
         }}>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">{collectResult.success ? "★" : "—"}</span>
+            <span className="text-xl" style={collectResult.success ? { filter: "drop-shadow(0 0 6px rgba(34,197,94,0.5))" } : undefined}>{collectResult.success ? "★" : "—"}</span>
             <div>
               <p className="text-sm font-bold" style={{ color: collectResult.success ? "#22c55e" : "#ef4444" }}>
                 {collectResult.success ? "Dungeon Cleared!" : "Dungeon Failed"}
@@ -504,7 +505,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     {p.avatar || p.name.charAt(0).toUpperCase()}
                   </div>
                   <p className="text-xs font-semibold truncate" style={{ color: p.color }}>{p.name}</p>
-                  <p className="text-xs text-w20">GS: {p.gearScore}</p>
+                  <p className="text-xs" style={{ color: p.gearScore >= activeRun.gearScoreThreshold ? "rgba(34,197,94,0.5)" : "rgba(239,68,68,0.6)" }}>GS: {p.gearScore}{p.gearScore < activeRun.gearScoreThreshold ? " !" : ""}</p>
                   {p.bondLevel > 0 && <p className="text-xs text-w15">Bond: {p.bondLevel}</p>}
                 </div>
               ))}
@@ -600,7 +601,23 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
             {/* Already collected */}
             {activeRun.collected.some(c => c.toLowerCase() === playerName?.toLowerCase()) && (
-              <p className="text-xs text-w25 py-2.5">Rewards collected. Waiting for other party members.</p>
+              <div className="py-2.5">
+                <p className="text-xs text-w25">Rewards collected. Waiting for party members:</p>
+                <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                  {activeRun.participants.map(p => {
+                    const hasCollected = activeRun.collected.some(c => c.toLowerCase() === p.name.toLowerCase());
+                    return (
+                      <span key={p.name} className="text-xs px-2 py-0.5 rounded" style={{
+                        background: hasCollected ? "rgba(34,197,94,0.08)" : "rgba(255,255,255,0.03)",
+                        color: hasCollected ? "#22c55e" : "rgba(255,255,255,0.3)",
+                        border: `1px solid ${hasCollected ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.06)"}`,
+                      }}>
+                        {hasCollected ? "✓" : "..."} {p.name}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
             )}
 
             {/* Waiting status */}

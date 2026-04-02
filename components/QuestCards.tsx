@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, memo } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import type { Quest } from "@/app/types";
 import { timeAgo, getQuestRarity } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -122,7 +122,20 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
 }) {
   const [expanded, setExpanded] = useState(false);
   const [starAnimating, setStarAnimating] = useState(false);
+  const [actionAnim, setActionAnim] = useState<"claim" | "complete" | null>(null);
   const isLoading = loadingAction?.questId === quest.id;
+  // Trigger animation on successful action (loading stops = action completed)
+  const prevLoadingRef = useRef(false);
+  useEffect(() => {
+    if (prevLoadingRef.current && !isLoading && loadingAction === null) {
+      // Determine which action just completed
+      const action = quest.status === "in_progress" && quest.claimedBy ? "claim" : "complete";
+      setActionAnim(action);
+      const t = setTimeout(() => setActionAnim(null), 600);
+      return () => clearTimeout(t);
+    }
+    prevLoadingRef.current = isLoading;
+  }, [isLoading, loadingAction, quest.status, quest.claimedBy]);
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
@@ -141,7 +154,13 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   const rarity = getQuestRarity(quest);
   const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
   const isLegendary = rarity === "legendary";
+  const isEpic = rarity === "epic";
   const isEpicPlus = rarity === "epic" || rarity === "legendary";
+  const isRarePlus = rarity === "rare" || rarity === "epic" || rarity === "legendary";
+  // Border opacity: legendary/epic brighter, rare slightly elevated, common/uncommon default
+  const borderAlpha = isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "66";
+  // Top glow for rare+ cards: a subtle inward shadow from the top edge using the rarity color
+  const topGlow = isRarePlus ? `, 0 -1px 8px ${rarityColor}${isLegendary ? "55" : isEpic ? "44" : "33"} inset` : "";
   const hasMinLevel = quest.minLevel != null && quest.minLevel > 0;
   const meetsLevel = !hasMinLevel || (playerLevel != null && playerLevel >= quest.minLevel!);
 
@@ -150,35 +169,47 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
-        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden quest-card-emboss card-hover-depth card-hover-lift"
+        className={`cv-auto rounded-xl flex flex-col${onDetails ? " cursor-pointer" : ""} relative overflow-hidden quest-card-emboss card-hover-depth card-hover-lift${isLegendary ? " crystal-breathe-card" : isEpic ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}`}
         title={`${quest.title}${quest.npcName ? ` — from ${quest.npcName}` : ""}${quest.checklist ? ` (${quest.checklist.filter(c => c.done).length}/${quest.checklist.length} steps)` : ""}${QUEST_TYPE_FACTION[quest.type ?? ""] ? ` · +Rep ${QUEST_TYPE_FACTION[quest.type ?? ""].name}` : ""}`}
         style={{
           background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",
-          border: `2px solid ${rarityColor}88`,
-          boxShadow: `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)`,
+          border: `2px solid ${rarityColor}${borderAlpha}`,
+          boxShadow: `0 0 ${isLegendary ? 20 : isEpic ? 12 : isRarePlus ? 6 : 4}px ${rarityColor}${isLegendary ? "55" : isEpic ? "44" : isRarePlus ? "22" : "12"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}`,
           transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
           transform: "translateY(0)",
           minHeight: 110,
+          ...(isLegendary ? { "--glow-color": `${rarityColor}55`, "--card-base-shadow": `0 0 20px ${rarityColor}55, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}` } as React.CSSProperties : isEpic ? { "--glow-color": `${rarityColor}44` } as React.CSSProperties : {}),
         }}
-        onClick={() => onDetails ? onDetails(quest) : undefined}
+        onClick={onDetails ? () => onDetails(quest) : undefined}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = `${rarityColor}cc`;
-          el.style.boxShadow = `0 6px 20px ${rarityColor}40, 0 0 ${isLegendary ? 24 : 12}px ${rarityColor}30`;
+          el.style.borderColor = `${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "cc"}`;
+          el.style.boxShadow = `0 6px 20px ${rarityColor}${isLegendary ? "60" : isEpic ? "50" : "30"}, 0 0 ${isLegendary ? 28 : isEpic ? 18 : isRarePlus ? 10 : 8}px ${rarityColor}${isLegendary ? "50" : isEpic ? "40" : "22"}${topGlow}`;
           el.style.transform = "translateY(-2px)";
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = `${rarityColor}88`;
-          el.style.boxShadow = `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}`;
+          el.style.borderColor = `${rarityColor}${borderAlpha}`;
+          el.style.boxShadow = `0 0 ${isLegendary ? 20 : isEpic ? 12 : isRarePlus ? 6 : 4}px ${rarityColor}${isLegendary ? "55" : isEpic ? "44" : isRarePlus ? "22" : "12"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}`;
           el.style.transform = "translateY(0)";
         }}
       >
-        {/* Rarity top strip */}
-        <div className={isEpicPlus ? "crystal-breathe" : ""} style={{ height: 4, background: `linear-gradient(90deg, transparent 5%, ${rarityColor}cc 30%, ${rarityColor}dd 50%, ${rarityColor}cc 70%, transparent 95%)`, borderRadius: "10px 10px 0 0", boxShadow: `0 2px 8px ${rarityColor}44`, position: "relative", zIndex: 1, ...(isEpicPlus ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}) }} />
+        {/* Rarity top strip — height and glow scale with rarity */}
+        <div
+          className={isLegendary ? "crystal-breathe" : isEpic ? "crystal-breathe-epic" : ""}
+          style={{
+            height: isLegendary ? 5 : isEpic ? 4 : isRarePlus ? 3 : 3,
+            background: `linear-gradient(90deg, transparent 5%, ${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "bb"} 30%, ${rarityColor}ff 50%, ${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "bb"} 70%, transparent 95%)`,
+            borderRadius: "10px 10px 0 0",
+            boxShadow: isLegendary ? `0 2px 14px ${rarityColor}77` : isEpic ? `0 2px 10px ${rarityColor}66` : isRarePlus ? `0 2px 6px ${rarityColor}44` : `0 1px 4px ${rarityColor}22`,
+            position: "relative",
+            zIndex: 1,
+            ...(isLegendary ? { "--glow-color": `${rarityColor}99` } as React.CSSProperties : isEpic ? { "--glow-color": `${rarityColor}77` } as React.CSSProperties : {}),
+          }}
+        />
         {/* Rarity gem + Favorite star — top right, same horizontal line */}
         <div style={{ position: "absolute", top: 8, right: 6, display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88, flexShrink: 0 }} />
+          <div style={{ width: isLegendary ? 10 : isEpic ? 9 : 8, height: isLegendary ? 10 : isEpic ? 9 : 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 ${isLegendary ? 10 : isEpic ? 8 : 6}px ${rarityColor}`, opacity: isRarePlus ? 1 : 0.88, flexShrink: 0 }} />
           {onToggleFavorite && (
             <button
               onClick={e => { e.stopPropagation(); onToggleFavorite(quest.id); setStarAnimating(true); setTimeout(() => setStarAnimating(false), 350); }}
@@ -217,6 +248,20 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           ) : (
             <p className="text-xs italic" style={{ color: "rgba(220,185,120,0.35)" }}>{flavorText}</p>
           )}
+          {/* Mini checklist progress for grid cards */}
+          {quest.checklist && quest.checklist.length > 1 && (() => {
+            const done = quest.checklist.filter(c => c.done).length;
+            const total = quest.checklist.length;
+            const pct = (done / total) * 100;
+            return (
+              <div className="flex items-center gap-2 mt-1.5">
+                <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: done === total ? "#22c55e" : `${rarityColor}cc` }} />
+                </div>
+                <span className="text-xs font-mono flex-shrink-0" style={{ color: done === total ? "#22c55e" : "rgba(255,255,255,0.3)", fontSize: 12 }}>{done}/{total}</span>
+              </div>
+            );
+          })()}
         </div>
         {/* Card footer — rewards */}
         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
@@ -247,30 +292,45 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   return (
     <div
       data-feedback-id={`quest-board.quest-card.${quest.id}`}
-      className="cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden"
+      className={`cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden${isLegendary && !selected ? " crystal-breathe-card" : isEpic && !selected ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}${quest.npcGiverId && !isLoading ? " npc-quest-pulse" : ""}${actionAnim === "claim" ? " quest-card-claimed" : actionAnim === "complete" ? " quest-card-completing" : ""}`}
       style={{
         background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
-        border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`}`,
-        boxShadow: isInProgress ? `0 0 10px ${rarityColor}22` : isLegendary ? `0 0 12px ${rarityColor}30` : "none",
+        border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}${borderAlpha}` : `${rarityColor}${isRarePlus ? "66" : "44"}`}`,
+        boxShadow: selected ? "none" : isLegendary ? `0 0 18px ${rarityColor}44${topGlow}` : isEpic ? `0 0 10px ${rarityColor}33${topGlow}` : isRarePlus ? `0 0 5px ${rarityColor}18${topGlow}` : isInProgress ? `0 0 8px ${rarityColor}1a` : "none",
         transform: "translateY(0)",
         transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
+        ...(isLegendary && !selected ? { "--glow-color": `${rarityColor}55`, "--card-base-shadow": `0 0 18px ${rarityColor}44${topGlow}` } as React.CSSProperties : isEpic && !selected ? { "--glow-color": `${rarityColor}44` } as React.CSSProperties : {}),
       }}
       onClick={() => setExpanded(v => !v)}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}88`;
-        el.style.boxShadow = `0 6px 18px ${rarityColor}30`;
+        el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}${isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "77"}`;
+        el.style.boxShadow = `0 6px 18px ${rarityColor}${isLegendary ? "50" : isEpic ? "40" : "22"}${topGlow}`;
         el.style.transform = "translateY(-1px)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.borderColor = selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`;
-        el.style.boxShadow = isInProgress ? `0 0 10px ${rarityColor}22` : isLegendary ? `0 0 12px ${rarityColor}30` : "none";
+        el.style.borderColor = selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}${borderAlpha}` : `${rarityColor}${isRarePlus ? "66" : "44"}`;
+        el.style.boxShadow = selected ? "none" : isLegendary ? `0 0 18px ${rarityColor}44${topGlow}` : isEpic ? `0 0 10px ${rarityColor}33${topGlow}` : isRarePlus ? `0 0 5px ${rarityColor}18${topGlow}` : isInProgress ? `0 0 8px ${rarityColor}1a` : "none";
         el.style.transform = "translateY(0)";
       }}
     >
-      {/* Rarity left accent line */}
-      <div className={isEpicPlus ? "crystal-breathe" : ""} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: `linear-gradient(180deg, ${rarityColor}cc, ${rarityColor}44)`, borderRadius: "8px 0 0 8px", ...(isEpicPlus ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}) }} />
+      {/* Rarity left accent line — width and brightness scale with rarity */}
+      <div
+        className={isLegendary ? "crystal-breathe" : isEpic ? "crystal-breathe-epic" : ""}
+        style={{
+          position: "absolute", left: 0, top: 0, bottom: 0,
+          width: isLegendary ? 4 : isEpic ? 4 : 3,
+          background: isLegendary
+            ? `linear-gradient(180deg, ${rarityColor}ee, ${rarityColor}99, ${rarityColor}55)`
+            : isEpic
+            ? `linear-gradient(180deg, ${rarityColor}dd, ${rarityColor}99, ${rarityColor}44)`
+            : `linear-gradient(180deg, ${rarityColor}99, ${rarityColor}33)`,
+          borderRadius: "8px 0 0 8px",
+          boxShadow: isLegendary ? `2px 0 10px ${rarityColor}55` : isEpic ? `2px 0 7px ${rarityColor}44` : isRarePlus ? `2px 0 3px ${rarityColor}22` : "none",
+          ...(isLegendary ? { "--glow-color": `${rarityColor}99` } as React.CSSProperties : isEpic ? { "--glow-color": `${rarityColor}77` } as React.CSSProperties : {}),
+        }}
+      />
       {/* Favorite star — top right */}
       {onToggleFavorite && (
         <button
@@ -369,6 +429,20 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           ) : !expanded ? (
             <p className="text-xs mt-0.5 italic truncate" style={{ color: "rgba(220,185,120,0.45)" }}>{flavorText}</p>
           ) : null}
+          {/* Mini checklist progress — visible when collapsed */}
+          {!expanded && quest.checklist && quest.checklist.length > 1 && (() => {
+            const done = quest.checklist.filter(c => c.done).length;
+            const total = quest.checklist.length;
+            const pct = (done / total) * 100;
+            return (
+              <div className="flex items-center gap-2 mt-1.5">
+                <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: done === total ? "#22c55e" : `${rarityColor}cc` }} />
+                </div>
+                <span className="text-xs font-mono flex-shrink-0" style={{ color: done === total ? "#22c55e" : "rgba(255,255,255,0.3)", fontSize: 12 }}>{done}/{total}</span>
+              </div>
+            );
+          })()}
           {expanded && quest.description && (
             <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(220,195,140,0.6)", fontStyle: "italic", borderLeft: `2px solid ${rarityColor}44`, paddingLeft: 8 }}>{quest.description}</p>
           )}
@@ -407,13 +481,13 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
             </div>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onClaim(quest.id); }} disabled={isLoading} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }} title={isLoading ? "Action in progress..." : "Claim quest"}>{isLoading ? "..." : "!"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onClaim(quest.id); }} disabled={isLoading} className="text-xs font-bold quest-seal-btn" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }} title={isLoading ? "Action in progress..." : "Claim quest"}>{isLoading ? "..." : "!"}</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Unclaim"}</button>
               )}
               {!isCoop && onComplete && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-2 py-1.5 rounded font-medium quest-done-btn" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
               )}
               {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Join co-op quest"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Join"}</button>

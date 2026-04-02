@@ -94,7 +94,13 @@ interface HistoryEntry {
   defeated?: boolean;
   expired?: boolean;
   maxHp?: number;
+  contributorCount?: number;
   contributions?: Record<string, PlayerContribution>;
+  // Enriched fields from /api/world-boss/history
+  name?: string;
+  title?: string;
+  icon?: string;
+  accent?: string;
 }
 
 type BossData = ActiveBossData | InactiveBossData;
@@ -201,7 +207,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
     prevHpRef.current = currentHp;
   }, [data]);
 
-  // Fetch boss history when section is opened
+  // Fetch boss history — always loaded upfront for inactive screen, also on manual open
   const fetchHistory = useCallback(async () => {
     try {
       const r = await fetch("/api/world-boss/history");
@@ -213,6 +219,11 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       }
     } catch { /* endpoint may not exist yet */ }
   }, []);
+
+  // Load history once boss data is known to be inactive (for Hall of Fallen Titans)
+  useEffect(() => {
+    if (data && !data.active && bossHistory.length === 0) fetchHistory();
+  }, [data, bossHistory.length, fetchHistory]);
 
   useEffect(() => {
     if (historyOpen && bossHistory.length === 0) fetchHistory();
@@ -285,29 +296,147 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
   if (!data || !data.active) {
     const inactive = data as InactiveBossData | null;
+    const hallEntries = bossHistory.filter(h => h.defeated).slice(0, 3);
+
     return (
-      <div className="space-y-5 tab-content-enter">
+      <div className="space-y-5 tab-content-enter relative">
+        {/* Ambient ember particles — dark gold/amber for the graveyard of titans */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 8 }, (_, i) => (
+            <div key={`hall-ember-${i}`} className="absolute rounded-full" style={{
+              width: 2,
+              height: 2,
+              left: `${5 + (i * 12) % 85}%`,
+              top: `${10 + (i * 17) % 75}%`,
+              background: i % 3 === 0 ? "rgba(245,158,11,0.45)" : i % 3 === 1 ? "rgba(217,119,6,0.35)" : "rgba(180,83,9,0.3)",
+              boxShadow: `0 0 3px ${i % 2 === 0 ? "rgba(245,158,11,0.3)" : "rgba(217,119,6,0.25)"}`,
+              animation: `ember-float ${4 + (i % 4) * 0.9}s ease-in-out ${i * 0.7}s infinite`,
+              opacity: 0,
+            }} />
+          ))}
+        </div>
+
         {/* Header */}
         <div className="text-center space-y-2">
-          <img src="/images/icons/nav-worldboss.png" alt="" width={96} height={96} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+          <img src="/images/icons/nav-worldboss.png" alt="" width={96} height={96} className="mx-auto img-render-auto" style={{ opacity: 0.5, filter: "sepia(0.4) brightness(0.8)" }} onError={e => { e.currentTarget.style.display = "none"; }} />
           <Tip k="world_boss" heading>
             <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
           </Tip>
-        </div>
-
-        <div className="rounded-xl p-8 text-center space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <img src="/images/icons/nav-worldboss.png" alt="" width={96} height={96} className="mx-auto img-render-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-          <p className="text-sm font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>No World Boss Active</p>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: "min(360px, 100%)", margin: "0 auto" }}>
-            The land rests in uneasy peace. A new threat will emerge from the darkness when the time is right.
-          </p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No World Boss Active</p>
           {inactive?.nextSpawnEstimate && (
-            <div className="rounded-lg px-4 py-2 inline-block" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                Next spawn in <span className="font-mono font-bold" style={{ color: "rgba(255,255,255,0.5)" }}>{daysUntil(inactive.nextSpawnEstimate)}</span>
+            <div className="rounded-lg px-3 py-1.5 inline-block" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)" }}>
+              <p className="text-xs" style={{ color: "rgba(245,158,11,0.7)" }}>
+                Next spawn in{" "}
+                <span className="font-mono font-bold" style={{ color: "#f59e0b" }}>{daysUntil(inactive.nextSpawnEstimate)}</span>
               </p>
             </div>
           )}
+        </div>
+
+        {/* Hall of Fallen Titans */}
+        <div className="rounded-xl overflow-hidden" style={{
+          background: "linear-gradient(160deg, rgba(120,53,15,0.08) 0%, rgba(14,14,18,0.95) 100%)",
+          border: "1px solid rgba(245,158,11,0.18)",
+        }}>
+          {/* Gold accent bar */}
+          <div style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(245,158,11,0.6), rgba(217,119,6,0.4), transparent)" }} />
+
+          <div className="p-5 pb-4">
+            <div className="flex items-center gap-3 mb-1">
+              <div style={{ width: 3, height: 18, background: "linear-gradient(180deg, #f59e0b, #92400e)", borderRadius: 1 }} />
+              <h3 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#f59e0b" }}>Hall of Fallen Titans</h3>
+            </div>
+            <p className="text-xs mb-5" style={{ color: "rgba(255,255,255,0.25)", paddingLeft: 6 }}>
+              The land rests in uneasy peace. These are the threats that were vanquished.
+            </p>
+
+            {hallEntries.length === 0 && bossHistory.length === 0 && (
+              <p className="text-xs text-center py-6" style={{ color: "rgba(255,255,255,0.2)" }}>
+                No titans have fallen yet. The chronicle is empty.
+              </p>
+            )}
+
+            {hallEntries.length === 0 && bossHistory.length > 0 && (
+              <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
+                No defeated bosses on record. Some slipped away.
+              </p>
+            )}
+
+            <div className="space-y-3">
+              {hallEntries.map((entry, i) => {
+                const accent = entry.accent || "#f59e0b";
+                const defeatedDate = entry.defeatedAt
+                  ? new Date(entry.defeatedAt).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })
+                  : "Unknown date";
+                const bossName = entry.name || entry.bossId.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+                const bossTitle = entry.title || "";
+
+                return (
+                  <div key={`hall-${i}`} className="rounded-xl overflow-hidden" style={{
+                    background: `linear-gradient(135deg, ${accent}06 0%, rgba(14,14,18,0.9) 100%)`,
+                    border: `1px solid ${accent}22`,
+                  }}>
+                    {/* Thin rarity-style top bar */}
+                    <div style={{ height: 2, background: `linear-gradient(90deg, transparent, ${accent}88, transparent)` }} />
+
+                    <div className="flex items-center gap-3 p-3">
+                      {/* Portrait */}
+                      {entry.icon ? (
+                        <div className="relative flex-shrink-0" style={{ width: 52, height: 52, borderRadius: 8, overflow: "hidden", border: `1px solid ${accent}30` }}>
+                          <img
+                            src={entry.icon}
+                            alt={bossName}
+                            className="w-full h-full object-cover"
+                            style={{ imageRendering: "auto", objectPosition: "center top", filter: "sepia(0.3) brightness(0.85)" }}
+                            onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }}
+                          />
+                          <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 40%, ${accent}18 100%)` }} />
+                        </div>
+                      ) : (
+                        <div className="flex-shrink-0 flex items-center justify-center" style={{
+                          width: 52, height: 52, borderRadius: 8,
+                          background: `${accent}10`, border: `1px solid ${accent}25`,
+                          color: `${accent}60`, fontSize: 22,
+                        }}>
+                          ◆
+                        </div>
+                      )}
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-bold truncate" style={{ color: accent }}>{bossName}</p>
+                        {bossTitle && <p className="text-xs truncate" style={{ color: `${accent}70` }}>{bossTitle}</p>}
+                        <div className="flex items-center gap-3 mt-1">
+                          <span className="text-xs font-semibold" style={{ color: "#22c55e" }}>Slain</span>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{defeatedDate}</span>
+                          {entry.contributorCount != null && entry.contributorCount > 0 && (
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                              {entry.contributorCount} contributor{entry.contributorCount !== 1 ? "s" : ""}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Rank badge */}
+                      <div className="flex-shrink-0 text-right">
+                        <span className="text-xs font-mono font-bold" style={{ color: i === 0 ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
+                          {i === 0 ? "Latest" : `#${i + 1}`}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom gold shimmer border */}
+          <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(245,158,11,0.15), transparent)", margin: "0 20px" }} />
+          <div className="px-5 py-3">
+            <p className="text-xs italic" style={{ color: "rgba(245,158,11,0.3)" }}>
+              Der Turm ruht. Aber nicht lange.
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -657,12 +786,13 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   key={entry.playerId}
                   className="flex items-center gap-3 px-4 py-2.5"
                   style={{
-                    background: isPlayer ? "rgba(255,255,255,0.03)" : "transparent",
+                    background: isPlayer ? "rgba(255,255,255,0.03)" : i < 3 ? `${rankColor}06` : "transparent",
                     borderBottom: "1px solid rgba(255,255,255,0.03)",
+                    boxShadow: i === 0 ? `inset 0 0 20px ${rankColor}08` : "none",
                   }}
                 >
-                  <span className="text-xs font-bold font-mono w-6 text-right" style={{ color: rankColor }}>
-                    {i + 1}
+                  <span className="text-xs font-bold font-mono w-6 text-right" style={{ color: rankColor, textShadow: i < 3 ? `0 0 6px ${rankColor}60` : "none" }}>
+                    {i === 0 ? "★" : i === 1 ? "▲" : i === 2 ? "●" : i + 1}
                   </span>
                   <span className="flex-1 text-xs font-semibold truncate" style={{ color: isPlayer ? "#e8e8e8" : "rgba(255,255,255,0.5)" }}>
                     {entry.name}
