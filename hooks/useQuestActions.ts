@@ -272,6 +272,8 @@ export function useQuestActions({
             companionEmoji: data.companionReward.companionType === "ember_sprite" ? "🔥" : data.companionReward.companionType === "lore_owl" ? "🦉" : data.companionReward.companionType === "gear_golem" ? "⚙️" : "🐾",
             companionAccent: data.companionReward.companionType === "ember_sprite" ? "#f97316" : data.companionReward.companionType === "lore_owl" ? "#a78bfa" : data.companionReward.companionType === "gear_golem" ? "#60a5fa" : "#ff6b9d",
           } : {}),
+          chainQuestTemplate: data.chainQuestTemplate || null,
+          levelUp: data.levelUp || null,
         });
         // Fire toasts for additional achievements beyond the first (which is shown in celebration)
         if (data.newAchievements?.length > 1) {

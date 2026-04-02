@@ -179,7 +179,7 @@ export interface User {
   workshopUpgrades?: Record<string, number>;
   tavernRest?: { active: boolean; frozenAt: string; forgeFrozenAt: number; unfreezeAt: string; reason?: string } | null;
   companionExpedition?: { tier: string; startedAt: string; dueAt: string } | null;
-  activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number }[];
+  activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number; chargesRemaining?: number; label?: string; activatedAt?: string; value?: number; xpPercent?: number; goldPercent?: number }[];
   _restedXpPool?: number;
   _dailyCompletions?: { date: string; count: number };
 }

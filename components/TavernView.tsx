@@ -50,6 +50,8 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   const [reason, setReason] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [confirmAction, setConfirmAction] = useState<(() => void) | null>(null);
+  const [confirmMessage, setConfirmMessage] = useState("");
 
   const fetchStatus = useCallback(async () => {
     if (!playerName) return;
@@ -219,7 +221,10 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           </div>
 
           <button
-            onClick={() => { if (window.confirm("Taverne verlassen? Der 30-Tage-Cooldown startet erneut. Dein Streak und Forge Temp werden wiederhergestellt.")) leaveTavern(); }}
+            onClick={() => {
+              setConfirmMessage("Taverne verlassen? Der 30-Tage-Cooldown startet erneut. Dein Streak und Forge Temp werden wiederhergestellt.");
+              setConfirmAction(() => () => leaveTavern());
+            }}
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
             style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
@@ -327,6 +332,39 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
                 <span className="text-w20">{timeAgo(h.endedAt)}</span>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Confirmation Modal ── */}
+      {confirmAction && (
+        <div
+          className="fixed inset-0 z-[150] flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.7)" }}
+          onClick={() => setConfirmAction(null)}
+        >
+          <div
+            className="rounded-xl p-5 max-w-sm w-full mx-4"
+            style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            <p className="text-sm mb-4" style={{ color: "#e8e8e8" }}>{confirmMessage}</p>
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => setConfirmAction(null)}
+                className="text-xs px-4 py-2 rounded-lg font-semibold"
+                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+              >
+                Abbrechen
+              </button>
+              <button
+                onClick={() => { confirmAction(); setConfirmAction(null); }}
+                className="text-xs px-4 py-2 rounded-lg font-semibold"
+                style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+              >
+                Bestätigen
+              </button>
+            </div>
           </div>
         </div>
       )}

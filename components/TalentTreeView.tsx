@@ -104,6 +104,8 @@ export default function TalentTreeView({
   const [allocating, setAllocating] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<(() => void) | null>(null);
+  const [confirmMessage, setConfirmMessage] = useState("");
   useModalBehavior(confirmReset, () => setConfirmReset(false));
 
   // ─── Fetch ──────────────────────────────────────────────────────────────
@@ -735,32 +737,32 @@ export default function TalentTreeView({
                   </p>
                   {(data.bonusPoints || 0) < (selected.effect.maxTotal || 3) ? (
                     <button
-                      onClick={async () => {
-                        // Find first legendary in inventory (simplified — user picks via confirm)
-                        const confirm = window.confirm("Ein Legendary Item aus deinem Inventar opfern für +1 Talentpunkt?\n\nDas erste nicht-ausgerüstete, nicht-gesperrte Legendary wird geopfert.");
-                        if (!confirm) return;
-                        try {
-                          // Fetch inventory to find a legendary
-                          const invR = await fetch(`/api/player/${encodeURIComponent(playerName || "")}/character`, { headers: getAuthHeaders() });
-                          const invD = await invR.json();
-                          const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
-                          if (legendaries.length === 0) {
-                            _toast({ type: "error", message: "Kein Legendary Item verfügbar" });
-                            return;
-                          }
-                          const item = legendaries[0];
-                          const r = await fetch("/api/talents/sacrifice", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-                            body: JSON.stringify({ instanceId: item.instanceId || item.id }),
-                          });
-                          const d = await r.json();
-                          if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
-                          else {
-                            _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert! +1 Talentpunkt` });
-                            fetchTalents();
-                          }
-                        } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }
+                      onClick={() => {
+                        setConfirmMessage("Ein Legendary Item aus deinem Inventar opfern für +1 Talentpunkt?\n\nDas erste nicht-ausgerüstete, nicht-gesperrte Legendary wird geopfert.");
+                        setConfirmAction(() => async () => {
+                          try {
+                            // Fetch inventory to find a legendary
+                            const invR = await fetch(`/api/player/${encodeURIComponent(playerName || "")}/character`, { headers: getAuthHeaders() });
+                            const invD = await invR.json();
+                            const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
+                            if (legendaries.length === 0) {
+                              _toast({ type: "error", message: "Kein Legendary Item verfügbar" });
+                              return;
+                            }
+                            const item = legendaries[0];
+                            const r = await fetch("/api/talents/sacrifice", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+                              body: JSON.stringify({ instanceId: item.instanceId || item.id }),
+                            });
+                            const d = await r.json();
+                            if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
+                            else {
+                              _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert! +1 Talentpunkt` });
+                              fetchTalents();
+                            }
+                          } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }
+                        });
                       }}
                       className="text-xs px-3 py-1.5 rounded font-semibold"
                       style={{ background: "rgba(249,115,22,0.15)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)", cursor: "pointer" }}
@@ -849,6 +851,39 @@ export default function TalentTreeView({
                 style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
               >
                 Abbrechen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Confirmation Modal ── */}
+      {confirmAction && (
+        <div
+          className="fixed inset-0 z-[150] flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.7)" }}
+          onClick={() => setConfirmAction(null)}
+        >
+          <div
+            className="rounded-xl p-5 max-w-sm w-full mx-4"
+            style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            <p className="text-sm mb-4 whitespace-pre-line" style={{ color: "#e8e8e8" }}>{confirmMessage}</p>
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => setConfirmAction(null)}
+                className="text-xs px-4 py-2 rounded-lg font-semibold"
+                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+              >
+                Abbrechen
+              </button>
+              <button
+                onClick={() => { confirmAction(); setConfirmAction(null); }}
+                className="text-xs px-4 py-2 rounded-lg font-semibold"
+                style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+              >
+                Opfern
               </button>
             </div>
           </div>

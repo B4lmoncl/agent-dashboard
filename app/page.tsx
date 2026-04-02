@@ -1168,17 +1168,113 @@ export default function Dashboard() {
                     />
                   </div>
                 </div>
-                {/* Active Buffs Indicator */}
+                {/* Active Buffs Indicator — D3-style buff bar */}
                 {(() => {
-                  const buffs = (loggedInUser?.activeBuffs || []).filter((b: { questsRemaining?: number; expiresAt?: string }) => (b.questsRemaining ?? 0) > 0 || (b.expiresAt && new Date(b.expiresAt).getTime() > Date.now()));
+                  type ActiveBuff = NonNullable<User["activeBuffs"]>[number];
+                  const now = Date.now();
+                  const buffs: ActiveBuff[] = (loggedInUser?.activeBuffs || []).filter((b: ActiveBuff) => {
+                    if (b.expiresAt && new Date(b.expiresAt).getTime() <= now) return false;
+                    if (b.questsRemaining !== undefined && b.questsRemaining !== null && b.questsRemaining <= 0) return false;
+                    if (b.chargesRemaining !== undefined && b.chargesRemaining !== null && b.chargesRemaining <= 0) return false;
+                    return true;
+                  });
                   if (buffs.length === 0) return null;
-                  const BUFF_COLORS: Record<string, string> = { xp_boost_10: "#a855f7", xp_boost_15: "#a855f7", xp_boost_25: "#c084fc", gold_boost_10: "#fbbf24", gold_boost_15: "#fbbf24", luck_boost_20: "#22c55e", streak_shield: "#3b82f6", material_double: "#f97316", warding_8: "#60a5fa" };
+
+                  // Color + icon per buff category
+                  const BUFF_META: Record<string, { color: string; icon: string; label: string }> = {
+                    xp_boost_5:          { color: "#a855f7", icon: "★", label: "+5% XP" },
+                    xp_boost_10:         { color: "#a855f7", icon: "★", label: "+10% XP" },
+                    xp_boost_15:         { color: "#a855f7", icon: "★", label: "+15% XP" },
+                    xp_boost_25:         { color: "#c084fc", icon: "★", label: "+25% XP" },
+                    xp_boost_25_return:  { color: "#c084fc", icon: "★", label: "+25% XP" },
+                    xp_boost_50_perfect: { color: "#e879f9", icon: "★", label: "+50% XP" },
+                    xp_gold_boost:       { color: "#a855f7", icon: "★", label: "XP+Gold" },
+                    gold_boost_10:       { color: "#fbbf24", icon: "◆", label: "+10% Gold" },
+                    gold_boost_15:       { color: "#fbbf24", icon: "◆", label: "+15% Gold" },
+                    gold_boost_20:       { color: "#f59e0b", icon: "◆", label: "+20% Gold" },
+                    luck_boost:          { color: "#22c55e", icon: "◉", label: "Luck+" },
+                    luck_boost_20:       { color: "#22c55e", icon: "◉", label: "+20% Luck" },
+                    streak_shield:       { color: "#3b82f6", icon: "◈", label: "Shield" },
+                    material_double:     { color: "#f97316", icon: "◈", label: "2× Mats" },
+                    double_reward:       { color: "#f97316", icon: "◈", label: "2× Reward" },
+                    warding_8:           { color: "#60a5fa", icon: "◈", label: "+8% Ward" },
+                    feast_buff:          { color: "#f97316", icon: "◆", label: "Feast" },
+                    meal_hearty_buff:    { color: "#f97316", icon: "◆", label: "Hearty" },
+                    meal_golden_buff:    { color: "#fbbf24", icon: "◆", label: "Golden" },
+                    craft_discount:      { color: "#10b981", icon: "◈", label: "Craft -%" },
+                    craft_xp_boost:      { color: "#a855f7", icon: "★", label: "Craft XP+" },
+                    expedition_speed:    { color: "#38bdf8", icon: "◉", label: "Exp. Speed" },
+                    companion_bond_boost:{ color: "#f472b6", icon: "◉", label: "Bond+" },
+                    world_boss_damage_boost: { color: "#ef4444", icon: "◈", label: "Boss Dmg+" },
+                  };
+                  const getBuffMeta = (b: ActiveBuff) => {
+                    if (BUFF_META[b.type]) return BUFF_META[b.type];
+                    if (b.type.startsWith("xp_boost")) return { color: "#a855f7", icon: "★", label: "XP+" };
+                    if (b.type.startsWith("gold_boost")) return { color: "#fbbf24", icon: "◆", label: "Gold+" };
+                    if (b.type.startsWith("enchant_")) return { color: "#818cf8", icon: "◈", label: `+${b.value ?? "?"}${b.type.replace("enchant_", " ").replace(/_/g, " ")}` };
+                    if (b.label) return { color: "#818cf8", icon: "◈", label: b.label };
+                    return { color: "#818cf8", icon: "◈", label: b.type.replace(/_/g, " ") };
+                  };
+                  const getRemaining = (b: ActiveBuff): string => {
+                    if (b.questsRemaining !== undefined && b.questsRemaining !== null) return `${b.questsRemaining}q`;
+                    if (b.chargesRemaining !== undefined && b.chargesRemaining !== null) return `${b.chargesRemaining}×`;
+                    if (b.expiresAt) {
+                      const ms = new Date(b.expiresAt).getTime() - now;
+                      const h = Math.ceil(ms / 3600000);
+                      return h >= 24 ? `${Math.ceil(h / 24)}d` : `${h}h`;
+                    }
+                    return "";
+                  };
+                  const getTooltip = (b: ActiveBuff): string => {
+                    const meta = getBuffMeta(b);
+                    const rem = getRemaining(b);
+                    const parts = [`${meta.label}`];
+                    if (b.xpPercent) parts[0] = `+${b.xpPercent}% XP`;
+                    if (b.goldPercent) parts.push(`+${b.goldPercent}% Gold`);
+                    if (b.value && b.type.startsWith("enchant_")) parts[0] = `+${b.value} ${b.type.replace("enchant_", "").replace(/_/g, " ")} (Enchant)`;
+                    if (rem) parts.push(`· ${rem} remaining`);
+                    if (b.activatedAt) parts.push(`· since ${new Date(b.activatedAt).toLocaleDateString()}`);
+                    return parts.join(" ");
+                  };
+
+                  const visible = buffs.slice(0, 4);
+                  const overflow = buffs.length - 4;
                   return (
-                    <div className="flex items-center gap-1 mt-0.5" title={`${buffs.length} active buff${buffs.length !== 1 ? "s" : ""}`}>
-                      {buffs.slice(0, 6).map((b: { type: string }, i: number) => (
-                        <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: BUFF_COLORS[b.type] || "#818cf8", boxShadow: `0 0 3px ${BUFF_COLORS[b.type] || "#818cf8"}` }} />
-                      ))}
-                      {buffs.length > 6 && <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>+{buffs.length - 6}</span>}
+                    <div className="mt-1.5 flex items-center gap-1 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+                      {visible.map((b: ActiveBuff, i: number) => {
+                        const meta = getBuffMeta(b);
+                        const rem = getRemaining(b);
+                        return (
+                          <div
+                            key={i}
+                            title={getTooltip(b)}
+                            className="flex items-center gap-0.5 rounded px-1.5 py-0.5 shrink-0 cursor-default select-none"
+                            style={{
+                              fontSize: 11,
+                              background: `${meta.color}1a`,
+                              border: `1px solid ${meta.color}40`,
+                              color: meta.color,
+                              lineHeight: 1.3,
+                              maxWidth: 110,
+                            }}
+                          >
+                            <span style={{ fontSize: 9, opacity: 0.8 }}>{meta.icon}</span>
+                            <span className="truncate font-medium">{meta.label}</span>
+                            {rem && (
+                              <span style={{ opacity: 0.65, marginLeft: 2, fontVariantNumeric: "tabular-nums" }}>· {rem}</span>
+                            )}
+                          </div>
+                        );
+                      })}
+                      {overflow > 0 && (
+                        <div
+                          className="flex items-center rounded px-1.5 py-0.5 shrink-0 cursor-default"
+                          style={{ fontSize: 11, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}
+                          title={buffs.slice(4).map(b => getTooltip(b)).join("\n")}
+                        >
+                          +{overflow} more
+                        </div>
+                      )}
                     </div>
                   );
                 })()}
