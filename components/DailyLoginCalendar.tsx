@@ -96,7 +96,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{claimedThisMonth}/{daysInMonth} this month</p>
               </TipCustom>
             </div>
-            <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
+            <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg transition-all hover:bg-w8" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
           </div>
         </div>
         <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>

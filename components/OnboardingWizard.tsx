@@ -389,7 +389,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   <button
                     key={opt.value}
                     onClick={() => setPronouns(pronouns === opt.value ? null : opt.value)}
-                    className="text-xs px-2.5 py-1.5 rounded-lg"
+                    className="text-xs px-2.5 py-1.5 rounded-lg transition-all"
                     style={{
                       background: pronouns === opt.value ? "rgba(167,139,250,0.12)" : "rgba(255,255,255,0.04)",
                       color: pronouns === opt.value ? "#a78bfa" : "rgba(255,255,255,0.5)",
@@ -582,7 +582,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 <button
                   key={opt.value}
                   onClick={() => setRelationshipStatus(opt.value)}
-                  className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium"
+                  className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all"
                   style={{
                     background: relationshipStatus === opt.value ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
                     border: `1px solid ${relationshipStatus === opt.value ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.08)"}`,
