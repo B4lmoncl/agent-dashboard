@@ -6,6 +6,7 @@ import { createStarterQuestsIfNew, CURRENT_SEASON } from "@/app/utils";
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
 import { TipCustom } from "@/components/GameTooltip";
+import NotificationCenter from "@/components/NotificationCenter";
 
 interface DashboardHeaderProps {
   dashView: string;
@@ -245,6 +246,8 @@ export default function DashboardHeader({
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Notification Center */}
+          <NotificationCenter onNavigate={(v) => setDashView(v)} />
           <div className="flex items-center gap-1.5">
             <button
               data-feedback-id="header.sound-toggle"
