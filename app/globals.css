@@ -807,6 +807,59 @@ button[disabled] {
   100% { opacity: 0; transform: translate(var(--ff3x), var(--ff3y)) scale(0.3); }
 }
 
+/* ─── Floor Ambient Particles (full-page, per-floor) ───────────────────── */
+/* Rising ember (Great Halls) — floats upward with slight sway            */
+@keyframes floor-ember-anim {
+  0%   { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  15%  { opacity: var(--max-opacity); transform: translate(calc(var(--drift-x) * 0.2), calc(var(--drift-y) * 0.3)) scale(1); }
+  50%  { opacity: calc(var(--max-opacity) * 0.7); }
+  85%  { opacity: calc(var(--max-opacity) * 0.3); }
+  100% { transform: translate(var(--drift-x), var(--drift-y)) scale(0.2); opacity: 0; }
+}
+.floor-ember { animation-name: floor-ember-anim; }
+
+/* Drifting petal (Breakaway) — gentle fall with rotation                  */
+@keyframes floor-petal-anim {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(0); opacity: 0; }
+  10%  { opacity: var(--max-opacity); transform: translate(calc(var(--drift-x) * 0.1), calc(var(--drift-y) * 0.1)) rotate(30deg) scale(1); }
+  50%  { opacity: calc(var(--max-opacity) * 0.6); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.5)) rotate(120deg) scale(0.9); }
+  100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) rotate(220deg) scale(0.4); }
+}
+.floor-petal { animation-name: floor-petal-anim; }
+
+/* Arcane rune mote (Inner Sanctum) — pulse in place with slight drift    */
+@keyframes floor-rune-anim {
+  0%   { transform: translate(0, 0) scale(0); opacity: 0; }
+  20%  { opacity: var(--max-opacity); transform: translate(calc(var(--drift-x) * 0.15), calc(var(--drift-y) * 0.15)) scale(1.2); }
+  40%  { opacity: calc(var(--max-opacity) * 0.4); transform: translate(calc(var(--drift-x) * 0.3), calc(var(--drift-y) * 0.3)) scale(0.8); }
+  60%  { opacity: var(--max-opacity); transform: translate(calc(var(--drift-x) * 0.6), calc(var(--drift-y) * 0.6)) scale(1.1); }
+  80%  { opacity: calc(var(--max-opacity) * 0.3); }
+  100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0); }
+}
+.floor-rune { animation-name: floor-rune-anim; }
+
+/* Forge spark (Trading District) — fast upward spark with flicker        */
+@keyframes floor-spark-anim {
+  0%   { transform: translate(0, 0) scale(0); opacity: 0; }
+  5%   { opacity: var(--max-opacity); transform: scale(1.5); }
+  15%  { opacity: calc(var(--max-opacity) * 0.5); transform: translate(calc(var(--drift-x) * 0.2), calc(var(--drift-y) * 0.3)) scale(1); }
+  30%  { opacity: var(--max-opacity); }
+  50%  { opacity: calc(var(--max-opacity) * 0.3); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.6)) scale(0.8); }
+  100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0.1); }
+}
+.floor-spark { animation-name: floor-spark-anim; }
+
+/* Golden stardust (Pinnacle) — gentle shimmer drift with size pulse      */
+@keyframes floor-stardust-anim {
+  0%   { transform: translate(0, 0) scale(0); opacity: 0; }
+  10%  { opacity: var(--max-opacity); transform: translate(calc(var(--drift-x) * 0.1), calc(var(--drift-y) * 0.1)) scale(1); }
+  25%  { opacity: calc(var(--max-opacity) * 0.5); transform: translate(calc(var(--drift-x) * 0.25), calc(var(--drift-y) * 0.25)) scale(1.4); }
+  50%  { opacity: var(--max-opacity); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.5)) scale(0.8); }
+  75%  { opacity: calc(var(--max-opacity) * 0.4); transform: translate(calc(var(--drift-x) * 0.75), calc(var(--drift-y) * 0.75)) scale(1.2); }
+  100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0); }
+}
+.floor-stardust { animation-name: floor-stardust-anim; }
+
 /* ─── Skeleton Loading ──────────────────────────────────────────────────── */
 @keyframes skeleton-pulse {
   0%, 100% { opacity: 0.04; }

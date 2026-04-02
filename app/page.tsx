@@ -43,6 +43,7 @@ import { RoadmapView } from "@/components/RoadmapView";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
+import FloorAmbientParticles from "@/components/FloorAmbientParticles";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
 import { ModalPortal, useModalBehavior, ModalOverlay } from "@/components/ModalPortal";
 import DashboardHeader from "@/components/DashboardHeader";
@@ -906,6 +907,7 @@ export default function Dashboard() {
     <DashboardProvider value={ctxValue}>
     <div className="min-h-screen text-primary" style={{ background: "transparent", position: "relative" }}>
       <GuildHallBackground />
+      <FloorAmbientParticles floorId={activeFloor} />
       <DashboardHeader
         dashView={dashView}
         setDashView={(v) => setDashView(v as typeof dashView)}
