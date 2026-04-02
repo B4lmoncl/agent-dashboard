@@ -441,7 +441,7 @@ export default function Dashboard() {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
             // Don't show version popup if What's New popup already handled it
-            try { if (localStorage.getItem("whatsNewSeen") === "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
+            try { if (localStorage.getItem("whatsNewSeen") !== "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
           }
         }
       } catch { /* ignore */ }
