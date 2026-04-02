@@ -1554,7 +1554,22 @@ export default function Dashboard() {
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />
                 {/* Ambient particles */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {Array.from({ length: 12 }, (_, i) => {
+                  {/* Ambient glow orbs — large, blurred, slow-moving background lights */}
+                  {Array.from({ length: 3 }, (_, i) => {
+                    const x = 20 + i * 30;
+                    const y = 30 + (i % 2) * 30;
+                    const floorGlowColor = currentFloor.id === "turmspitze" ? "#fbbf24" : currentFloor.id === "haupthalle" ? "#f97316" : currentFloor.id === "gewerbeviertel" ? "#a855f7" : currentFloor.id === "charakterturm" ? "#3b82f6" : "#ec4899";
+                    return <div key={`glow-${i}`} className="absolute rounded-full" style={{
+                      left: `${x}%`, top: `${y}%`,
+                      width: 60 + i * 20, height: 60 + i * 20,
+                      background: `radial-gradient(circle, ${floorGlowColor}15 0%, transparent 70%)`,
+                      filter: "blur(20px)",
+                      animation: `banner-drift ${12 + i * 3}s ease-in-out ${i * 2}s infinite alternate`,
+                      "--drift-x": `${30 - i * 20}px`, "--drift-y": `${-15 + i * 10}px`,
+                    } as React.CSSProperties} />;
+                  })}
+                  {/* Foreground particles — thematic per floor */}
+                  {Array.from({ length: 18 }, (_, i) => {
                     const seed = i * 137.5;
                     const left = `${(seed % 100)}%`;
                     const top = `${((seed * 2.3) % 80) + 10}%`;
