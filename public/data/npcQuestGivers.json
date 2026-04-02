@@ -21,7 +21,6 @@
             "template": "npc-quest",
             "title": "Oma Ilses Kekse",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Oma Ilse · Kette 1/3 · 1/2",
             "rewards": {
               "xp": 25,
@@ -39,7 +38,6 @@
             "template": "npc-quest",
             "title": "Oma Ilses Geschichten",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Oma Ilse · Kette 1/3 · 2/2",
             "rewards": {
               "xp": 30,
@@ -59,7 +57,6 @@
             "template": "npc-quest",
             "title": "Oma Ilses Rezept",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Oma Ilse · Kette 2/3 · 1/2",
             "vars": {
               "quote": "Dieses Rezept hab ich von meiner Großmutter — und jetzt geb ich es dir weiter.",
@@ -77,7 +74,6 @@
             "template": "npc-quest",
             "title": "Frühjahrsputz",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Oma Ilse · Kette 2/3 · 2/2",
             "rewards": {
               "xp": 30,
@@ -97,7 +93,6 @@
             "template": "npc-quest",
             "title": "Omas Garten",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Oma Ilse · Kette 3/3 · 1/2",
             "vars": {
               "quote": "Sieh nur, wie die Rosen blühen! Die Natur heilt jede Seele.",
@@ -115,7 +110,6 @@
             "template": "npc-quest",
             "title": "Ein Brief an jemanden",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Oma Ilse · Kette 3/3 · 2/2",
             "vars": {
               "quote": "Worte aus dem Herzen — die schönsten Geschenke kosten nichts.",
@@ -172,7 +166,6 @@
             "template": "npc-quest",
             "title": "Karims Lieferung",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 1/3",
             "rewards": {
               "xp": 20,
@@ -190,7 +183,6 @@
             "template": "npc-quest",
             "title": "Karims Geheimnis",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -208,7 +200,6 @@
             "template": "npc-quest",
             "title": "Ein fairer Handel",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -228,7 +219,6 @@
             "template": "npc-quest",
             "title": "Marktanalyse",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Karim der Wanderhändler · Kette 2/3 · 1/2",
             "rewards": {
               "xp": 20,
@@ -246,7 +236,6 @@
             "template": "npc-quest",
             "title": "Die Handelsroute",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Karim der Wanderhändler · Kette 2/3 · 2/2",
             "vars": {
               "quote": "Jede große Reise beginnt mit einem einzigen Plan auf Pergament.",
@@ -266,7 +255,6 @@
             "template": "npc-quest",
             "title": "Kulturen der Welt",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 1/3",
             "rewards": {
               "xp": 25,
@@ -284,7 +272,6 @@
             "template": "npc-quest",
             "title": "Das Angebot",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 30,
@@ -302,7 +289,6 @@
             "template": "npc-quest",
             "title": "Das Geschenk",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -359,7 +345,6 @@
             "template": "npc-quest",
             "title": "Die erste Lektion",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Meister Tanaka · Kette 1/3 · 1/3",
             "vars": {
               "quote": "Der Geist, der nicht zur Ruhe kommt, kann keine Stärke entwickeln.",
@@ -377,7 +362,6 @@
             "template": "npc-quest",
             "title": "Die Prüfung des Körpers",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Meister Tanaka · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 35,
@@ -395,7 +379,6 @@
             "template": "npc-quest",
             "title": "Die Prüfung des Geistes",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Meister Tanaka · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -415,7 +398,6 @@
             "template": "npc-quest",
             "title": "Der Atem",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Meister Tanaka · Kette 2/3 · 1/3",
             "vars": {
               "quote": "Beherrsche den Atem — und du beherrschst den Moment.",
@@ -433,7 +415,6 @@
             "template": "npc-quest",
             "title": "Die Balance",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Meister Tanaka · Kette 2/3 · 2/3",
             "rewards": {
               "xp": 30,
@@ -451,7 +432,6 @@
             "template": "npc-quest",
             "title": "Der Fokus",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Meister Tanaka · Kette 2/3 · 3/3",
             "rewards": {
               "xp": 45,
@@ -471,7 +451,6 @@
             "template": "npc-quest",
             "title": "Der frühe Vogel",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Meister Tanaka · Kette 3/3 · 1/2",
             "rewards": {
               "xp": 25,
@@ -489,7 +468,6 @@
             "template": "npc-quest",
             "title": "Die Technik",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Meister Tanaka · Kette 3/3 · 2/2",
             "rewards": {
               "xp": 35,
@@ -546,7 +524,6 @@
             "template": "npc-quest",
             "title": "Kräuter sammeln",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Mirael die Waldwächterin · Kette 1/3 · 1/2",
             "vars": {
               "quote": "Die Erde spricht zu denen, die zuhören. Geh hinaus und lausche.",
@@ -564,7 +541,6 @@
             "template": "npc-quest",
             "title": "Der Heiltrank",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Mirael die Waldwächterin · Kette 1/3 · 2/2",
             "vars": {
               "quote": "Jede Pflanze trägt eine Medizin in sich — man muss nur wissen, wie man fragt.",
@@ -584,7 +560,6 @@
             "template": "npc-quest",
             "title": "Mondlicht-Meditation",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 1/3",
             "vars": {
               "quote": "In der Stille der Nacht findest du, was der Tag dir verbirgt.",
@@ -602,7 +577,6 @@
             "template": "npc-quest",
             "title": "Die verborgenen Zutaten",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 2/3",
             "vars": {
               "quote": "Das wertvollste Kraut wächst nicht im Garten — es wächst dort, wo niemand sucht.",
@@ -620,7 +594,6 @@
             "template": "npc-quest",
             "title": "Das Ritual",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 3/3",
             "vars": {
               "quote": "Ein Ritual ist kein Zauber — es ist Disziplin, die wie Magie wirkt.",
@@ -640,7 +613,6 @@
             "template": "npc-quest",
             "title": "Baumgespräch",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Mirael die Waldwächterin · Kette 3/3 · 1/2",
             "vars": {
               "quote": "Ein alter Baum hat mehr gesehen als du dir vorstellen kannst. Sitz bei ihm und schweig.",
@@ -658,7 +630,6 @@
             "template": "npc-quest",
             "title": "Körperpflege",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Mirael die Waldwächterin · Kette 3/3 · 2/2",
             "rewards": {
               "xp": 30,
@@ -716,7 +687,6 @@
             "template": "npc-quest",
             "title": "Das Lied der Freundschaft",
             "type": "social",
-            "priority": "low",
             "lore": "Quest von Finnegan der Barde · Kette 1/3 · 1/3",
             "vars": {
               "quote": "Ein Lied ist ein Geschenk, das man teilen muss — sonst verliert es seinen Klang!",
@@ -734,7 +704,6 @@
             "template": "npc-quest",
             "title": "Die eigene Geschichte",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Finnegan der Barde · Kette 1/3 · 2/3",
             "vars": {
               "quote": "Ich habe tausend Geschichten gehört — aber deine kenne ich noch nicht. Schreib sie auf!",
@@ -752,7 +721,6 @@
             "template": "npc-quest",
             "title": "Der große Auftritt",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Finnegan der Barde · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 40,
@@ -772,7 +740,6 @@
             "template": "npc-quest",
             "title": "Die Melodie",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Finnegan der Barde · Kette 2/3 · 1/2",
             "vars": {
               "quote": "Musik, die man wirklich hört, verändert etwas in einem. Probier es aus!",
@@ -790,7 +757,6 @@
             "template": "npc-quest",
             "title": "Das Gedicht",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Finnegan der Barde · Kette 2/3 · 2/2",
             "rewards": {
               "xp": 30,
@@ -810,7 +776,6 @@
             "template": "npc-quest",
             "title": "Der Zuhörer",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Finnegan der Barde · Kette 3/3 · 1/3",
             "vars": {
               "quote": "Die besten Geschichten bekommt man nicht, wenn man redet — sondern wenn man zuhört.",
@@ -828,7 +793,6 @@
             "template": "npc-quest",
             "title": "Die Inspiration",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Finnegan der Barde · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -846,7 +810,6 @@
             "template": "npc-quest",
             "title": "Das Finale",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Finnegan der Barde · Kette 3/3 · 3/3",
             "vars": {
               "quote": "Und nun — das Finale! Zeig der Welt was du erschaffen hast. Sie wartet darauf!",
@@ -898,7 +861,6 @@
             "template": "npc-quest",
             "title": "Der erste Atemzug",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Bruder Tomas · Kette 1/3 · 1/2",
             "rewards": {
               "xp": 15,
@@ -916,7 +878,6 @@
             "template": "npc-quest",
             "title": "Das Fasten des Geistes",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Bruder Tomas · Kette 1/3 · 2/2",
             "rewards": {
               "xp": 25,
@@ -936,7 +897,6 @@
             "template": "npc-quest",
             "title": "Der beständige Schritt",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Bruder Tomas · Kette 2/3 · 1/2",
             "rewards": {
               "xp": 15,
@@ -954,7 +914,6 @@
             "template": "npc-quest",
             "title": "Eisen und Wille",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Bruder Tomas · Kette 2/3 · 2/2",
             "rewards": {
               "xp": 25,
@@ -974,7 +933,6 @@
             "template": "npc-quest",
             "title": "Die Tugend benennen",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Bruder Tomas · Kette 3/3 · 1/3",
             "rewards": {
               "xp": 15,
@@ -992,7 +950,6 @@
             "template": "npc-quest",
             "title": "Die schwache Stelle",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Bruder Tomas · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -1010,7 +967,6 @@
             "template": "npc-quest",
             "title": "Die vollständige Stille",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Bruder Tomas · Kette 3/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1064,7 +1020,6 @@
             "template": "npc-quest",
             "title": "Die Zutaten des Alltags",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Zara Funkenwind · Kette 1/3 · 1/3",
             "rewards": {
               "xp": 15,
@@ -1082,7 +1037,6 @@
             "template": "npc-quest",
             "title": "Das erste Experiment",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -1100,7 +1054,6 @@
             "template": "npc-quest",
             "title": "Die Reaktion",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1120,7 +1073,6 @@
             "template": "npc-quest",
             "title": "Rohstoff-Suche",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Zara Funkenwind · Kette 2/3 · 1/3",
             "rewards": {
               "xp": 15,
@@ -1138,7 +1090,6 @@
             "template": "npc-quest",
             "title": "Destillation",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 2/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -1156,7 +1107,6 @@
             "template": "npc-quest",
             "title": "Die Synthese",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 2/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1176,7 +1126,6 @@
             "template": "npc-quest",
             "title": "Die Hypothese",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 3/3 · 1/3",
             "rewards": {
               "xp": 25,
@@ -1194,7 +1143,6 @@
             "template": "npc-quest",
             "title": "Der Rückschlag",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 35,
@@ -1212,7 +1160,6 @@
             "template": "npc-quest",
             "title": "Die Entdeckung",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Zara Funkenwind · Kette 3/3 · 3/3",
             "rewards": {
               "xp": 50,
@@ -1266,7 +1213,6 @@
             "template": "npc-quest",
             "title": "Der Morgenwald",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 1/3 · 1/2",
             "rewards": {
               "xp": 15,
@@ -1284,7 +1230,6 @@
             "template": "npc-quest",
             "title": "Das geduldige Auge",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 1/3 · 2/2",
             "rewards": {
               "xp": 25,
@@ -1304,7 +1249,6 @@
             "template": "npc-quest",
             "title": "Das Schweigen",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 2/3 · 1/2",
             "rewards": {
               "xp": 15,
@@ -1322,7 +1266,6 @@
             "template": "npc-quest",
             "title": "Die Jahresringe",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Alter Henrik · Kette 2/3 · 2/2",
             "rewards": {
               "xp": 25,
@@ -1342,7 +1285,6 @@
             "template": "npc-quest",
             "title": "Der Umweg",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 3/3 · 1/3",
             "rewards": {
               "xp": 25,
@@ -1360,7 +1302,6 @@
             "template": "npc-quest",
             "title": "Was bleibt",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Alter Henrik · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 35,
@@ -1378,7 +1319,6 @@
             "template": "npc-quest",
             "title": "Das Gespräch der Alten",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Alter Henrik · Kette 3/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1432,7 +1372,6 @@
             "template": "npc-quest",
             "title": "Erste Sterne",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Lumi · Kette 1/3 · 1/3",
             "rewards": {
               "xp": 15,
@@ -1450,7 +1389,6 @@
             "template": "npc-quest",
             "title": "Die Nachtarbeit",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Lumi · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -1468,7 +1406,6 @@
             "template": "npc-quest",
             "title": "Der Mondgedanke",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Lumi · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1488,7 +1425,6 @@
             "template": "npc-quest",
             "title": "Die Zwischenräume",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Lumi · Kette 2/3 · 1/4",
             "rewards": {
               "xp": 15,
@@ -1506,7 +1442,6 @@
             "template": "npc-quest",
             "title": "Der vergessene Traum",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Lumi · Kette 2/3 · 2/4",
             "rewards": {
               "xp": 25,
@@ -1524,7 +1459,6 @@
             "template": "npc-quest",
             "title": "Das Unsichtbare",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Lumi · Kette 2/3 · 3/4",
             "rewards": {
               "xp": 35,
@@ -1542,7 +1476,6 @@
             "template": "npc-quest",
             "title": "Die alte Sprache",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Lumi · Kette 2/3 · 4/4",
             "rewards": {
               "xp": 50,
@@ -1562,7 +1495,6 @@
             "template": "npc-quest",
             "title": "Der Abendspaziergang",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Lumi · Kette 3/3 · 1/4",
             "rewards": {
               "xp": 25,
@@ -1580,7 +1512,6 @@
             "template": "npc-quest",
             "title": "Die Hüter der Erinnerung",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Lumi · Kette 3/3 · 2/4",
             "rewards": {
               "xp": 25,
@@ -1598,7 +1529,6 @@
             "template": "npc-quest",
             "title": "Was nach uns bleibt",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Lumi · Kette 3/3 · 3/4",
             "rewards": {
               "xp": 35,
@@ -1616,7 +1546,6 @@
             "template": "npc-quest",
             "title": "Das letzte Licht",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Lumi · Kette 3/3 · 4/4",
             "rewards": {
               "xp": 50,
@@ -1671,7 +1600,6 @@
             "template": "npc-quest",
             "title": "Direkt loslegen",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 1/3 · 1/3",
             "rewards": {
               "xp": 15,
@@ -1689,7 +1617,6 @@
             "template": "npc-quest",
             "title": "Der Rhythmus",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -1707,7 +1634,6 @@
             "template": "npc-quest",
             "title": "Qualität oder nichts",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1727,7 +1653,6 @@
             "template": "npc-quest",
             "title": "Das richtige Werkzeug",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Rogar Amboss · Kette 2/3 · 1/3",
             "rewards": {
               "xp": 15,
@@ -1745,7 +1670,6 @@
             "template": "npc-quest",
             "title": "Der heiße Stahl",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 2/3 · 2/3",
             "rewards": {
               "xp": 25,
@@ -1763,7 +1687,6 @@
             "template": "npc-quest",
             "title": "Tausend Schläge",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 2/3 · 3/3",
             "rewards": {
               "xp": 35,
@@ -1783,7 +1706,6 @@
             "template": "npc-quest",
             "title": "Der Plan auf Stein",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 3/3 · 1/3",
             "rewards": {
               "xp": 25,
@@ -1801,7 +1723,6 @@
             "template": "npc-quest",
             "title": "Die schwere Prüfung",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 35,
@@ -1819,7 +1740,6 @@
             "template": "npc-quest",
             "title": "Das Meisterstück",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 3/3 · 3/3",
             "rewards": {
               "xp": 50,
@@ -1877,7 +1797,6 @@
             "type": "personal",
             "description": "Zieh dich heute besonders gut an. Erste Eindrücke sind alles. Besonders wenn man keinen zweiten machen kann.",
             "lore": "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge.",
-            "priority": "medium",
             "rewards": {
               "xp": 20,
               "gold": 15
@@ -1893,7 +1812,6 @@
             "type": "learning",
             "description": "Beobachte heute bewusst Details die du sonst übersiehst. Schreib 5 Dinge auf die dir auffallen.",
             "lore": "Jeder sieht. Wenige beobachten. Und noch weniger ziehen die richtigen Schlüsse.",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -1909,7 +1827,6 @@
             "type": "learning",
             "description": "Löse drei Rätsel oder Puzzles. Sudoku, Kreuzworträtsel, Programm-Bug — alles zählt.",
             "lore": "Rätsel sind wie Schlösser. Man braucht entweder den richtigen Schlüssel oder genug Dynamit.",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -1925,7 +1842,6 @@
             "type": "social",
             "description": "Überzeug heute drei verschiedene Leute von etwas. Restaurantwahl, Filmabend, egal was.",
             "lore": "Die besten Detektive arbeiten nicht allein. Sie lassen nur alle glauben, sie würden es tun.",
-            "priority": "high",
             "rewards": {
               "xp": 30,
               "gold": 25
@@ -1941,7 +1857,6 @@
             "type": "personal",
             "description": "Schließ eine Sache ab die du angefangen aber nie beendet hast. Der elegante Herr duldet keine losen Enden.",
             "lore": "Jede Geschichte verdient ein Ende. Auch die mittelmäßigen.",
-            "priority": "high",
             "rewards": {
               "xp": 40,
               "gold": 30
@@ -2007,7 +1922,6 @@
             "type": "personal",
             "description": "Räum etwas auf das schon zu lange liegen geblieben ist. Wäsche, Papierkram, Downloads-Ordner.",
             "lore": "Wissen Sie wie lange das letzte überfällige Buch war? 340 Jahre.",
-            "priority": "medium",
             "rewards": {
               "xp": 20,
               "gold": 15
@@ -2023,7 +1937,6 @@
             "type": "learning",
             "description": "Lies 30 Minuten ohne Unterbrechung. Kein Handy, keine Musik, nur du und der Text.",
             "lore": "Die Bücher rascheln nachts. Nicht weil sie lebendig sind — sie wollen gelesen werden.",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -2039,7 +1952,6 @@
             "type": "learning",
             "description": "Organisiere einen Teil deines digitalen Lebens. Bookmarks, Dateien, Notizen — strukturiere es.",
             "lore": "Ohne System ist Wissen nur Lärm. Und Lärm ist in meiner Bibliothek tödlich.",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -2055,7 +1967,6 @@
             "type": "social",
             "description": "Teile etwas Interessantes das du gelesen/gelernt hast mit jemandem.",
             "lore": "Bücher die nicht geteilt werden, verstauben. Und verstaubte Bücher werden schwierig.",
-            "priority": "medium",
             "rewards": {
               "xp": 20,
               "gold": 15
@@ -2110,7 +2021,6 @@
             "type": "learning",
             "description": "Lerne etwas Neues über ein Thema das dich schon immer interessiert hat. Tiefer eintauchen als üblich.",
             "lore": "Die besten Seekarten zeigen was hinter dem Rand liegt.",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -2126,7 +2036,6 @@
             "type": "fitness",
             "description": "Mach ein intensives 20-Minuten Workout. Schnell, hart, fertig.",
             "lore": "Auf See hat man zwanzig Minuten zwischen zwei Wellen — die muss man nutzen.",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -2142,7 +2051,6 @@
             "type": "personal",
             "description": "Kauf gesunde Lebensmittel ein und meal-prep für mindestens 3 Tage.",
             "lore": "Eine Crew ohne Proviant ist keine Crew — sie ist eine Versammlung zukünftiger Kannibalen.",
-            "priority": "high",
             "rewards": {
               "xp": 30,
               "gold": 25
@@ -2158,7 +2066,6 @@
             "type": "personal",
             "description": "Hör ein komplett neues Album das du normalerweise nicht hören würdest.",
             "lore": "Das Meer singt in Frequenzen die die meisten nicht hören wollen.",
-            "priority": "low",
             "rewards": {
               "xp": 15,
               "gold": 10
@@ -2174,7 +2081,6 @@
             "type": "personal",
             "description": "Triff eine Entscheidung die du seit langem vor dir herschiebst. Einfach entscheiden.",
             "lore": "Der schwierigste Moment ist wenn man den Anker lichtet und weiß: kein Zurück.",
-            "priority": "high",
             "rewards": {
               "xp": 35,
               "gold": 30
@@ -2190,7 +2096,6 @@
             "type": "social",
             "description": "Plane etwas Neues mit jemandem. Trip, Projekt, Event — etwas das ihr noch nie gemacht habt.",
             "lore": "Die aufregendsten Reisen beginnen mit 'Ich hab da eine Idee.'",
-            "priority": "medium",
             "rewards": {
               "xp": 25,
               "gold": 20
@@ -2246,7 +2151,6 @@
             "template": "npc-quest",
             "title": "Der stille Tausch",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Sable Nachtwind · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 30,
@@ -2264,7 +2168,6 @@
             "template": "npc-quest",
             "title": "Schatten tragen",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Sable Nachtwind · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 45,
@@ -2302,7 +2205,6 @@
             "template": "npc-quest",
             "title": "Die vergessene Lektion",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Professor Quill · Kette 1/2 · 1/2",
             "rewards": {
               "xp": 25,
@@ -2320,7 +2222,6 @@
             "template": "npc-quest",
             "title": "Quills Quizz",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Professor Quill · Kette 1/2 · 2/2",
             "rewards": {
               "xp": 35,
@@ -2340,7 +2241,6 @@
             "template": "npc-quest",
             "title": "Das verlorene Notizbuch",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Professor Quill · Kette 2/2 · 1/2",
             "rewards": {
               "xp": 15,
@@ -2358,7 +2258,6 @@
             "template": "npc-quest",
             "title": "Dokumentation des Chaos",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Professor Quill · Kette 2/2 · 2/2",
             "rewards": {
               "xp": 30,
@@ -2396,7 +2295,6 @@
             "template": "npc-quest",
             "title": "Maras Morgenappell",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Eiserne Mara · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 25,
@@ -2414,7 +2312,6 @@
             "template": "npc-quest",
             "title": "Die Brücke tragen",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Eiserne Mara · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 40,
@@ -2432,7 +2329,6 @@
             "template": "npc-quest",
             "title": "Der nächste Schritt",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Eiserne Mara · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 50,
@@ -2470,7 +2366,6 @@
             "template": "npc-quest",
             "title": "Giovannis Grundlagen",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Giovanni · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 15,
@@ -2488,7 +2383,6 @@
             "template": "npc-quest",
             "title": "Das perfekte Gericht",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Giovanni · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -2526,7 +2420,6 @@
             "template": "npc-quest",
             "title": "Seras Maßstab",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Meisterin Sera · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 45,
@@ -2544,7 +2437,6 @@
             "template": "npc-quest",
             "title": "Das Geschenk der Perspektive",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Meisterin Sera · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 55,
@@ -2582,7 +2474,6 @@
             "template": "npc-quest",
             "title": "Pips Prototyp",
             "type": "development",
-            "priority": "medium",
             "lore": "Quest von Pip Zahnrad · Kette 1/2 · 1/2",
             "rewards": {
               "xp": 25,
@@ -2600,7 +2491,6 @@
             "template": "npc-quest",
             "title": "Iteration Sieben",
             "type": "development",
-            "priority": "medium",
             "lore": "Quest von Pip Zahnrad · Kette 1/2 · 2/2",
             "rewards": {
               "xp": 35,
@@ -2620,7 +2510,6 @@
             "template": "npc-quest",
             "title": "Das Gadget",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Pip Zahnrad · Kette 2/2 · 1/1",
             "rewards": {
               "xp": 20,
@@ -2658,7 +2547,6 @@
             "template": "npc-quest",
             "title": "Kräuter für den Winter",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Alte Martha · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 15,
@@ -2676,7 +2564,6 @@
             "template": "npc-quest",
             "title": "Marthas Tinktur",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Alte Martha · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 25,
@@ -2714,7 +2601,6 @@
             "template": "npc-quest",
             "title": "Reparaturdienst",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Hans Holzfuß · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 15,
@@ -2732,7 +2618,6 @@
             "template": "npc-quest",
             "title": "Inspektion",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Hans Holzfuß · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 25,
@@ -2770,7 +2655,6 @@
             "template": "npc-quest",
             "title": "Ungelesene Post",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Briefträger Emil · Kette 1/1 · 1/1",
             "rewards": {
               "xp": 12,
@@ -2808,7 +2692,6 @@
             "template": "npc-quest",
             "title": "Grüne Pflicht",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Gärtnerin Rose · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 12,
@@ -2826,7 +2709,6 @@
             "template": "npc-quest",
             "title": "Gartenarbeit",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Gärtnerin Rose · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 22,
@@ -2864,7 +2746,6 @@
             "template": "npc-quest",
             "title": "Garderobencheck",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Schneider Lin · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 12,
@@ -2882,7 +2763,6 @@
             "template": "npc-quest",
             "title": "Neuanfang",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Schneider Lin · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 22,
@@ -2920,7 +2800,6 @@
             "template": "npc-quest",
             "title": "Sicherheitsrunde",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Wachmann Kurt · Kette 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -2958,7 +2837,6 @@
             "template": "npc-quest",
             "title": "Großreinemachen",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Helga Saubermann · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 20,
@@ -2976,7 +2854,6 @@
             "template": "npc-quest",
             "title": "Der letzte Winkel",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Helga Saubermann · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 28,
@@ -3014,7 +2891,6 @@
             "template": "npc-quest",
             "title": "Deine Geschichte",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Nadia Silberzunge · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 15,
@@ -3032,7 +2908,6 @@
             "template": "npc-quest",
             "title": "Die unerzählte Geschichte",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Nadia Silberzunge · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 25,
@@ -3070,7 +2945,6 @@
             "template": "npc-quest",
             "title": "Bestandsaufnahme",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Zahlmeister Otto · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 20,
@@ -3088,7 +2962,6 @@
             "template": "npc-quest",
             "title": "Sparplan",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Zahlmeister Otto · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -3126,7 +2999,6 @@
             "template": "npc-quest",
             "title": "Schnellauftrag",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Laufbursche Felix · Kette 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -3164,7 +3036,6 @@
             "template": "npc-quest",
             "title": "Archivarbeit",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Bibliothekarin Ada · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -3182,7 +3053,6 @@
             "template": "npc-quest",
             "title": "Das vergessene Kapitel",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Bibliothekarin Ada · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -3220,7 +3090,6 @@
             "template": "npc-quest",
             "title": "Grundlagentraining",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Trainer Rex · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 22,
@@ -3238,7 +3107,6 @@
             "template": "npc-quest",
             "title": "Steigerung",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Trainer Rex · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 35,
@@ -3256,7 +3124,6 @@
             "template": "npc-quest",
             "title": "Der Test",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Trainer Rex · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 45,
@@ -3294,7 +3161,6 @@
             "template": "npc-quest",
             "title": "Yaras Rezeptur",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Apothekerin Yara · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 22,
@@ -3312,7 +3178,6 @@
             "template": "npc-quest",
             "title": "Vorsorge",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Apothekerin Yara · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -3350,7 +3215,6 @@
             "template": "npc-quest",
             "title": "Die Bestandsaufnahme",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Kartograph Werner · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -3368,7 +3232,6 @@
             "template": "npc-quest",
             "title": "Die Route",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Kartograph Werner · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 35,
@@ -3406,7 +3269,6 @@
             "template": "npc-quest",
             "title": "Zeitinventur",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Uhrmacher Tick · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 22,
@@ -3424,7 +3286,6 @@
             "template": "npc-quest",
             "title": "Zeitoptimierung",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Uhrmacher Tick · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 35,
@@ -3462,7 +3323,6 @@
             "template": "npc-quest",
             "title": "Kontaktpflege",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Netzwerkerin Luna · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -3480,7 +3340,6 @@
             "template": "npc-quest",
             "title": "Neue Verbindungen",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Netzwerkerin Luna · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -3518,7 +3377,6 @@
             "template": "npc-quest",
             "title": "Süße Pflicht",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Imker Boris · Kette 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -3556,7 +3414,6 @@
             "template": "npc-quest",
             "title": "Meis Schreibstunde",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Schreiberin Mei · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -3574,7 +3431,6 @@
             "template": "npc-quest",
             "title": "Revision",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Schreiberin Mei · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -3612,7 +3468,6 @@
             "template": "npc-quest",
             "title": "Passwortschloss",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Schlosser Grim · Kette 1/2 · 1/1",
             "rewards": {
               "xp": 22,
@@ -3632,7 +3487,6 @@
             "template": "npc-quest",
             "title": "Der sichere Hafen",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Schlosser Grim · Kette 2/2 · 1/1",
             "rewards": {
               "xp": 25,
@@ -3670,7 +3524,6 @@
             "template": "npc-quest",
             "title": "Sternenbeobachtung",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Astrologe Celes · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 15,
@@ -3688,7 +3541,6 @@
             "template": "npc-quest",
             "title": "Reflexion der Sterne",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Astrologe Celes · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 25,
@@ -3726,7 +3578,6 @@
             "template": "npc-quest",
             "title": "Dantes Gefallen",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Schmuggler Dante · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 30,
@@ -3744,7 +3595,6 @@
             "template": "npc-quest",
             "title": "Der Transport",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Schmuggler Dante · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 40,
@@ -3762,7 +3612,6 @@
             "template": "npc-quest",
             "title": "Der Deal",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Schmuggler Dante · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 45,
@@ -3800,7 +3649,6 @@
             "template": "npc-quest",
             "title": "Stellas Hypothese",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Astronomin Stella · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -3818,7 +3666,6 @@
             "template": "npc-quest",
             "title": "Die Präsentation",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Astronomin Stella · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -3856,7 +3703,6 @@
             "template": "npc-quest",
             "title": "Gus' Gastmahl",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Wirt Gus · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 28,
@@ -3874,7 +3720,6 @@
             "template": "npc-quest",
             "title": "Die beste Zutat",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Wirt Gus · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 38,
@@ -3912,7 +3757,6 @@
             "template": "npc-quest",
             "title": "Basislager",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Bergsteigerin Kaya · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 28,
@@ -3930,7 +3774,6 @@
             "template": "npc-quest",
             "title": "Der Aufstieg",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Bergsteigerin Kaya · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 40,
@@ -3948,7 +3791,6 @@
             "template": "npc-quest",
             "title": "Gipfelblick",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Bergsteigerin Kaya · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 45,
@@ -3986,7 +3828,6 @@
             "template": "npc-quest",
             "title": "Simons Fundstück",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Antiquar Simon · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 30,
@@ -4004,7 +3845,6 @@
             "template": "npc-quest",
             "title": "Das Album",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Antiquar Simon · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 35,
@@ -4042,7 +3882,6 @@
             "template": "npc-quest",
             "title": "Parade",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Fechtmeisterin Ines · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 30,
@@ -4060,7 +3899,6 @@
             "template": "npc-quest",
             "title": "Riposte",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Fechtmeisterin Ines · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 40,
@@ -4098,7 +3936,6 @@
             "template": "npc-quest",
             "title": "Kaspars Diagnose",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Heiler Kaspar · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 28,
@@ -4116,7 +3953,6 @@
             "template": "npc-quest",
             "title": "Die Kur",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Heiler Kaspar · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 38,
@@ -4154,7 +3990,6 @@
             "template": "npc-quest",
             "title": "Die Rolle",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Puppenspieler Marco · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -4172,7 +4007,6 @@
             "template": "npc-quest",
             "title": "Ohne Maske",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Puppenspieler Marco · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -4210,7 +4044,6 @@
             "template": "npc-quest",
             "title": "Der erste Schritt",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Navigatorin Compass · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 28,
@@ -4228,7 +4061,6 @@
             "template": "npc-quest",
             "title": "Neue Wege",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Navigatorin Compass · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 35,
@@ -4266,7 +4098,6 @@
             "template": "npc-quest",
             "title": "Noras Challenge",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Spieleerfinderin Nora · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -4284,7 +4115,6 @@
             "template": "npc-quest",
             "title": "Game Night",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Spieleerfinderin Nora · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 32,
@@ -4322,7 +4152,6 @@
             "template": "npc-quest",
             "title": "Valkas Disziplin",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest von Kriegsmeisterin Valka · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 40,
@@ -4340,7 +4169,6 @@
             "template": "npc-quest",
             "title": "Kampfplan",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Kriegsmeisterin Valka · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 48,
@@ -4358,7 +4186,6 @@
             "template": "npc-quest",
             "title": "Der Feldtest",
             "type": "boss",
-            "priority": "high",
             "lore": "Quest von Kriegsmeisterin Valka · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 60,
@@ -4396,7 +4223,6 @@
             "template": "npc-quest",
             "title": "Fayes Hypothese",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Alchemistin Faye · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 42,
@@ -4414,7 +4240,6 @@
             "template": "npc-quest",
             "title": "Iteration",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Alchemistin Faye · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 50,
@@ -4452,7 +4277,6 @@
             "template": "npc-quest",
             "title": "Die Kunst des Zuhörens",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Diplomat Aurelius · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 40,
@@ -4470,7 +4294,6 @@
             "template": "npc-quest",
             "title": "Die Brücke",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Diplomat Aurelius · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 55,
@@ -4508,7 +4331,6 @@
             "template": "npc-quest",
             "title": "Feuerprobe",
             "type": "boss",
-            "priority": "high",
             "lore": "Quest von Schmiedin Ignis · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 50,
@@ -4526,7 +4348,6 @@
             "template": "npc-quest",
             "title": "Meisterwerk",
             "type": "boss",
-            "priority": "high",
             "lore": "Quest von Schmiedin Ignis · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 60,
@@ -4564,7 +4385,6 @@
             "template": "npc-quest",
             "title": "Ravens Inventur",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Geisterjägerin Raven · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 45,
@@ -4582,7 +4402,6 @@
             "template": "npc-quest",
             "title": "Exorzismus",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Geisterjägerin Raven · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 55,
@@ -4620,7 +4439,6 @@
             "template": "npc-quest",
             "title": "Aeons Frage",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Chronist Aeon · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 55,
@@ -4638,7 +4456,6 @@
             "template": "npc-quest",
             "title": "Die Lektion der Ewigkeit",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Chronist Aeon · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 65,
@@ -4656,7 +4473,6 @@
             "template": "npc-quest",
             "title": "Das Vermächtnis",
             "type": "boss",
-            "priority": "high",
             "lore": "Quest von Chronist Aeon · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 80,
@@ -4694,7 +4510,6 @@
             "template": "npc-quest",
             "title": "Eine höfliche Frage",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest vom Höflichen Besucher · Kette 1/1 · 1/2",
             "rewards": {
               "xp": 60,
@@ -4712,7 +4527,6 @@
             "template": "npc-quest",
             "title": "Das Versprechen",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest vom Höflichen Besucher · Kette 1/1 · 2/2",
             "rewards": {
               "xp": 75,
@@ -4750,7 +4564,6 @@
             "template": "npc-quest",
             "title": "Die erste Stille",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest der Stillen · Kette 1/1 · 1/3",
             "rewards": {
               "xp": 50,
@@ -4768,7 +4581,6 @@
             "template": "npc-quest",
             "title": "Die zweite Stille",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest der Stillen · Kette 1/1 · 2/3",
             "rewards": {
               "xp": 60,
@@ -4786,7 +4598,6 @@
             "template": "npc-quest",
             "title": "Die dritte Stille",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest der Stillen · Kette 1/1 · 3/3",
             "rewards": {
               "xp": 75,
@@ -4824,7 +4635,6 @@
             "template": "npc-quest",
             "title": "Ernsts Tageswerk",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Bauer Ernst · 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -4862,7 +4672,6 @@
             "template": "npc-quest",
             "title": "Viviennes Rhythmus",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Vivienne · 1/1 · 1/2",
             "rewards": {
               "xp": 18,
@@ -4880,7 +4689,6 @@
             "template": "npc-quest",
             "title": "Der Flow",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Vivienne · 1/1 · 2/2",
             "rewards": {
               "xp": 28,
@@ -4918,7 +4726,6 @@
             "template": "npc-quest",
             "title": "Ashs Ermittlung",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Detektiv Ash · 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -4936,7 +4743,6 @@
             "template": "npc-quest",
             "title": "Der Beweis",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Detektiv Ash · 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -4974,7 +4780,6 @@
             "template": "npc-quest",
             "title": "Helens Paradox",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Philosophin Helen · 1/1 · 1/1",
             "rewards": {
               "xp": 25,
@@ -5012,7 +4817,6 @@
             "template": "npc-quest",
             "title": "Finns Fütterung",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Tierpfleger Finn · 1/1 · 1/1",
             "rewards": {
               "xp": 12,
@@ -5050,7 +4854,6 @@
             "template": "npc-quest",
             "title": "Claudes Skizze",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Maler Claude · 1/1 · 1/2",
             "rewards": {
               "xp": 22,
@@ -5068,7 +4871,6 @@
             "template": "npc-quest",
             "title": "Die Ausstellung",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Maler Claude · 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -5106,7 +4908,6 @@
             "template": "npc-quest",
             "title": "Echos Briefing",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Agent Echo · 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -5124,7 +4925,6 @@
             "template": "npc-quest",
             "title": "Die Aktion",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Agent Echo · 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -5162,7 +4962,6 @@
             "template": "npc-quest",
             "title": "Arias Melodie",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Musikerin Aria · 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -5180,7 +4979,6 @@
             "template": "npc-quest",
             "title": "Dein Lied",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Musikerin Aria · 1/1 · 2/2",
             "rewards": {
               "xp": 32,
@@ -5218,7 +5016,6 @@
             "template": "npc-quest",
             "title": "Petras Werkstatt",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Handwerkerin Petra · 1/1 · 1/2",
             "rewards": {
               "xp": 20,
@@ -5236,7 +5033,6 @@
             "template": "npc-quest",
             "title": "Das eigene Projekt",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Handwerkerin Petra · 1/1 · 2/2",
             "rewards": {
               "xp": 28,
@@ -5274,7 +5070,6 @@
             "template": "npc-quest",
             "title": "Dominiks Spiegel",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Coach Dominik · 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -5292,7 +5087,6 @@
             "template": "npc-quest",
             "title": "Der Erste Schritt",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Coach Dominik · 1/1 · 2/2",
             "rewards": {
               "xp": 35,
@@ -5330,7 +5124,6 @@
             "template": "npc-quest",
             "title": "Björns Braukunst",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Björn · 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -5368,7 +5161,6 @@
             "template": "npc-quest",
             "title": "Claras Mahnungen",
             "type": "social",
-            "priority": "low",
             "lore": "Quest von Clara · 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -5406,7 +5198,6 @@
             "template": "npc-quest",
             "title": "Thorns Unkraut",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Thorn · 1/1 · 1/1",
             "rewards": {
               "xp": 20,
@@ -5444,7 +5235,6 @@
             "template": "npc-quest",
             "title": "Swifts Sprint",
             "type": "fitness",
-            "priority": "low",
             "lore": "Quest von Swift · 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -5482,7 +5272,6 @@
             "template": "npc-quest",
             "title": "Agnes' Waschtag",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Agnes · 1/1 · 1/1",
             "rewards": {
               "xp": 12,
@@ -5520,7 +5309,6 @@
             "template": "npc-quest",
             "title": "Vulkans Esse",
             "type": "fitness",
-            "priority": "medium",
             "lore": "Quest von Vulkan · 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -5538,7 +5326,6 @@
             "template": "npc-quest",
             "title": "Gehärteter Stahl",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Vulkan · 1/1 · 2/2",
             "rewards": {
               "xp": 35,
@@ -5576,7 +5363,6 @@
             "template": "npc-quest",
             "title": "Novas Vorhersage",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Nova · 1/1 · 1/1",
             "rewards": {
               "xp": 25,
@@ -5614,7 +5400,6 @@
             "template": "npc-quest",
             "title": "Magpies Fundgrube",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Magpie · 1/1 · 1/1",
             "rewards": {
               "xp": 18,
@@ -5652,7 +5437,6 @@
             "template": "npc-quest",
             "title": "Ferns Lektion",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Fern · 1/1 · 1/2",
             "rewards": {
               "xp": 30,
@@ -5670,7 +5454,6 @@
             "template": "npc-quest",
             "title": "Die Wurzeln",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Fern · 1/1 · 2/2",
             "rewards": {
               "xp": 40,
@@ -5708,7 +5491,6 @@
             "template": "npc-quest",
             "title": "Teslas Prototyp",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Tesla · 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -5726,7 +5508,6 @@
             "template": "npc-quest",
             "title": "Version 2.0",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Tesla · 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -5764,7 +5545,6 @@
             "template": "npc-quest",
             "title": "Justinas Urteil",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Justina · 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -5782,7 +5562,6 @@
             "template": "npc-quest",
             "title": "Das Urteil",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Justina · 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -5820,7 +5599,6 @@
             "template": "npc-quest",
             "title": "Sols Wache",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Sol · 1/1 · 1/3",
             "rewards": {
               "xp": 42,
@@ -5838,7 +5616,6 @@
             "template": "npc-quest",
             "title": "Das Signal",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Sol · 1/1 · 2/3",
             "rewards": {
               "xp": 50,
@@ -5856,7 +5633,6 @@
             "template": "npc-quest",
             "title": "Morgengrauen",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Sol · 1/1 · 3/3",
             "rewards": {
               "xp": 58,
@@ -5894,7 +5670,6 @@
             "template": "npc-quest",
             "title": "Elaras Fäden",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Elara · 1/1 · 1/2",
             "rewards": {
               "xp": 45,
@@ -5912,7 +5687,6 @@
             "template": "npc-quest",
             "title": "Die eigenen Fäden",
             "type": "boss",
-            "priority": "high",
             "lore": "Quest von Elara · 1/1 · 2/2",
             "rewards": {
               "xp": 60,
@@ -5950,7 +5724,6 @@
             "template": "npc-quest",
             "title": "Die erste Wahrheit",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest des Namenlosen · 1/1 · 1/3",
             "rewards": {
               "xp": 55,
@@ -5968,7 +5741,6 @@
             "template": "npc-quest",
             "title": "Der Weg",
             "type": "fitness",
-            "priority": "high",
             "lore": "Quest des Namenlosen · 1/1 · 2/3",
             "rewards": {
               "xp": 65,
@@ -5986,7 +5758,6 @@
             "template": "npc-quest",
             "title": "Das Geschenk",
             "type": "social",
-            "priority": "high",
             "lore": "Quest des Namenlosen · 1/1 · 3/3",
             "rewards": {
               "xp": 80,
@@ -6024,7 +5795,6 @@
             "template": "npc-quest",
             "title": "Frühaufsteher",
             "type": "personal",
-            "priority": "low",
             "lore": "Quest von Fritz · 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -6062,7 +5832,6 @@
             "template": "npc-quest",
             "title": "Magdas Inspektion",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Magda · 1/1 · 1/1",
             "rewards": {
               "xp": 20,
@@ -6100,7 +5869,6 @@
             "template": "npc-quest",
             "title": "Ein Licht für jemanden",
             "type": "social",
-            "priority": "low",
             "lore": "Quest von Pip · 1/1 · 1/1",
             "rewards": {
               "xp": 15,
@@ -6138,7 +5906,6 @@
             "template": "npc-quest",
             "title": "Das Fundament",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Iris · 1/1 · 1/2",
             "rewards": {
               "xp": 22,
@@ -6156,7 +5923,6 @@
             "template": "npc-quest",
             "title": "Der Grundriss",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Iris · 1/1 · 2/2",
             "rewards": {
               "xp": 32,
@@ -6194,7 +5960,6 @@
             "template": "npc-quest",
             "title": "Jests Auftrag",
             "type": "social",
-            "priority": "low",
             "lore": "Quest von Jest · 1/1 · 1/1",
             "rewards": {
               "xp": 18,
@@ -6232,7 +5997,6 @@
             "template": "npc-quest",
             "title": "Graus Rat",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Grau · 1/1 · 1/2",
             "rewards": {
               "xp": 25,
@@ -6250,7 +6014,6 @@
             "template": "npc-quest",
             "title": "Weitergeben",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Grau · 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -6288,7 +6051,6 @@
             "template": "npc-quest",
             "title": "Lunas Balance",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Luna · 1/1 · 1/1",
             "rewards": {
               "xp": 22,
@@ -6326,7 +6088,6 @@
             "template": "npc-quest",
             "title": "Golds Transmutation",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Gold · 1/1 · 1/2",
             "rewards": {
               "xp": 35,
@@ -6344,7 +6105,6 @@
             "template": "npc-quest",
             "title": "Das neue Element",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Gold · 1/1 · 2/2",
             "rewards": {
               "xp": 42,
@@ -6382,7 +6142,6 @@
             "template": "npc-quest",
             "title": "Morpheas Vision",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Morphea · 1/1 · 1/2",
             "rewards": {
               "xp": 30,
@@ -6400,7 +6159,6 @@
             "template": "npc-quest",
             "title": "Der wache Traum",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Morphea · 1/1 · 2/2",
             "rewards": {
               "xp": 38,
@@ -6438,7 +6196,6 @@
             "template": "npc-quest",
             "title": "Granites Aufgabe",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Granite · 1/1 · 1/2",
             "rewards": {
               "xp": 28,
@@ -6456,7 +6213,6 @@
             "template": "npc-quest",
             "title": "Die Form",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Granite · 1/1 · 2/2",
             "rewards": {
               "xp": 38,
@@ -6494,7 +6250,6 @@
             "template": "npc-quest",
             "title": "Mappes Zukunft",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Mappe · 1/1 · 1/1",
             "rewards": {
               "xp": 35,
@@ -6532,7 +6287,6 @@
             "template": "npc-quest",
             "title": "Athenas Schachzug",
             "type": "learning",
-            "priority": "high",
             "lore": "Quest von Athena · 1/1 · 1/2",
             "rewards": {
               "xp": 45,
@@ -6550,7 +6304,6 @@
             "template": "npc-quest",
             "title": "Der Gegenzug",
             "type": "boss",
-            "priority": "high",
             "lore": "Quest von Athena · 1/1 · 2/2",
             "rewards": {
               "xp": 58,
@@ -6588,7 +6341,6 @@
             "template": "npc-quest",
             "title": "Chronos' Muster",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Chronos · 1/1 · 1/2",
             "rewards": {
               "xp": 42,
@@ -6606,7 +6358,6 @@
             "template": "npc-quest",
             "title": "Neues Kapitel",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Chronos · 1/1 · 2/2",
             "rewards": {
               "xp": 55,
@@ -6644,7 +6395,6 @@
             "template": "npc-quest",
             "title": "Graces Diagnose",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Grace · 1/1 · 1/2",
             "rewards": {
               "xp": 40,
@@ -6662,7 +6412,6 @@
             "template": "npc-quest",
             "title": "Die Heilung",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Grace · 1/1 · 2/2",
             "rewards": {
               "xp": 55,
@@ -6700,7 +6449,6 @@
             "template": "npc-quest",
             "title": "Informiert bleiben",
             "type": "learning",
-            "priority": "low",
             "lore": "Quest von Max · 1/1 · 1/1",
             "rewards": {
               "xp": 12,
@@ -6738,7 +6486,6 @@
             "template": "npc-quest",
             "title": "Der Anruf",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Mutter Erde · 1/1 · 1/3",
             "rewards": {
               "xp": 55,
@@ -6756,7 +6503,6 @@
             "template": "npc-quest",
             "title": "Das Familienessen",
             "type": "social",
-            "priority": "high",
             "lore": "Quest von Mutter Erde · 1/1 · 2/3",
             "rewards": {
               "xp": 65,
@@ -6774,7 +6520,6 @@
             "template": "npc-quest",
             "title": "Das Erbe",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Mutter Erde · 1/1 · 3/3",
             "rewards": {
               "xp": 80,
@@ -6812,7 +6557,6 @@
             "template": "npc-quest",
             "title": "Umamis Lehre",
             "type": "personal",
-            "priority": "medium",
             "lore": "Quest von Umami · 1/1 · 1/2",
             "rewards": {
               "xp": 22,
@@ -6830,7 +6574,6 @@
             "template": "npc-quest",
             "title": "Das Menü",
             "type": "social",
-            "priority": "medium",
             "lore": "Quest von Umami · 1/1 · 2/2",
             "rewards": {
               "xp": 30,
@@ -6868,7 +6611,6 @@
             "template": "npc-quest",
             "title": "Grubers Mine",
             "type": "learning",
-            "priority": "medium",
             "lore": "Quest von Gruber · 1/1 · 1/1",
             "rewards": {
               "xp": 22,
@@ -6906,7 +6648,6 @@
             "template": "npc-quest",
             "title": "Erins Grenze",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Erin · 1/1 · 1/2",
             "rewards": {
               "xp": 42,
@@ -6924,7 +6665,6 @@
             "template": "npc-quest",
             "title": "Der geschützte Raum",
             "type": "personal",
-            "priority": "high",
             "lore": "Quest von Erin · 1/1 · 2/2",
             "rewards": {
               "xp": 55,

@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import { Campaign, CampaignQuest, Quest, QuestsData } from "@/app/types";
 import { timeAgo } from "@/app/utils";
-import { priorityConfig } from "@/app/config";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
@@ -69,11 +68,6 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               )}
               {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>(quest deleted)</p>}
             </div>
-            {q.priority && (
-              <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: priorityConfig[q.priority as keyof typeof priorityConfig]?.bg ?? "rgba(255,255,255,0.05)", color: priorityConfig[q.priority as keyof typeof priorityConfig]?.color ?? "#aaa", border: `1px solid ${priorityConfig[q.priority as keyof typeof priorityConfig]?.border ?? "transparent"}` }}>
-                {priorityConfig[q.priority as keyof typeof priorityConfig]?.label ?? q.priority}
-              </span>
-            )}
           </div>
         </div>
       </div>

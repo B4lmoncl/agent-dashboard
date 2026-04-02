@@ -21,7 +21,7 @@ export interface Quest {
   id: string;
   title: string;
   description: string;
-  priority: "low" | "medium" | "high";
+  priority?: string;
   type?: "development" | "personal" | "learning" | "fitness" | "social" | "boss" | "relationship-coop";
   category: string | null;
   categories: string[];
@@ -39,7 +39,7 @@ export interface Quest {
   recurrence?: string | null;
   proof?: string | null;
   checklist?: { text: string; done: boolean }[] | null;
-  nextQuestTemplate?: { title: string; description?: string | null; type?: string; priority?: string } | null;
+  nextQuestTemplate?: { title: string; description?: string | null; type?: string } | null;
   coopPartners?: string[] | null;
   coopClaimed?: string[];
   coopCompletions?: string[];
@@ -67,7 +67,6 @@ export interface NpcQuestChainEntry {
   title: string;
   description: string;
   type: string;
-  priority: string;
   status: string;
   claimedBy: string | null;
   completedBy: string | null;
@@ -188,7 +187,6 @@ export interface CampaignQuest {
   id: string;
   title: string;
   status: string;
-  priority?: string;
   type?: string;
   completedBy?: string | null;
   completedAt?: string | null;
@@ -319,7 +317,6 @@ export interface PersonalTemplate {
   icon: string;
   desc: string;
   type: string;
-  priority: "low" | "medium" | "high";
   recurrence: string | null;
   checklist: { text: string; done: boolean }[] | null;
 }

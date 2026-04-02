@@ -780,7 +780,7 @@ export function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestio
 
 import companionProfiles from "../public/data/companionProfiles.json";
 
-type CompanionProfile = { quests: { id: string; title: string; description: string; priority: "high" | "medium" | "low" }[]; moodQuotes: Record<string, string> };
+type CompanionProfile = { quests: { id: string; title: string; description: string; rarity: string }[]; moodQuotes: Record<string, string> };
 
 export function getCompanionProfile(companion?: { isReal?: boolean; type?: string; name?: string } | null): CompanionProfile {
   if (!companion) return companionProfiles.real_pet as CompanionProfile;
@@ -861,7 +861,6 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
         body: JSON.stringify({
           title: q.title,
           description: q.description,
-          priority: q.priority,
           type: "personal",
           createdBy: "companion",
           recurrence: "daily",

@@ -1,11 +1,36 @@
 {
   "real_pet": {
     "quests": [
-      { "id": "feed_pet", "title": "{name} füttern", "description": "Dein Begleiter wartet auf sein Mahl. Frisch und pünktlich — so wie es sich gehört.", "priority": "high" },
-      { "id": "play_pet", "title": "Mit {name} spielen", "description": "15 Minuten volle Aufmerksamkeit. {name} hat es verdient.", "priority": "medium" },
-      { "id": "care_pet", "title": "Für {name} sorgen", "description": "Wasser, Sauberkeit, Zuneigung — die drei Säulen der Begleiterpflege.", "priority": "medium" },
-      { "id": "cuddle_pet", "title": "Kuschelzeit mit {name}", "description": "Manchmal ist Nähe die beste Medizin. Für euch beide.", "priority": "low" },
-      { "id": "walk_pet", "title": "Raus mit {name}", "description": "Frische Luft tut gut — dir und deinem Begleiter.", "priority": "low" }
+      {
+        "id": "feed_pet",
+        "title": "{name} füttern",
+        "description": "Dein Begleiter wartet auf sein Mahl. Frisch und pünktlich — so wie es sich gehört.",
+        "rarity": "rare"
+      },
+      {
+        "id": "play_pet",
+        "title": "Mit {name} spielen",
+        "description": "15 Minuten volle Aufmerksamkeit. {name} hat es verdient.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "care_pet",
+        "title": "Für {name} sorgen",
+        "description": "Wasser, Sauberkeit, Zuneigung — die drei Säulen der Begleiterpflege.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "cuddle_pet",
+        "title": "Kuschelzeit mit {name}",
+        "description": "Manchmal ist Nähe die beste Medizin. Für euch beide.",
+        "rarity": "common"
+      },
+      {
+        "id": "walk_pet",
+        "title": "Raus mit {name}",
+        "description": "Frische Luft tut gut — dir und deinem Begleiter.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "{name} schläft friedlich. Leise sein.",
@@ -18,11 +43,36 @@
   },
   "dobbie": {
     "quests": [
-      { "id": "feed_dobbie", "title": "Feed Dobbie Before 18:00", "description": "His Highness demands his meal on time. No excuses.", "priority": "high" },
-      { "id": "clean_litter", "title": "Clean the Litter Box", "description": "The sacred ritual must be performed. Dobbie demands cleanliness.", "priority": "medium" },
-      { "id": "pet_dobbie", "title": "Pet Dobbie for 5 Minutes", "description": "Five minutes of undivided attention. The minimum acceptable tribute.", "priority": "low" },
-      { "id": "play_time", "title": "Interactive Play Session", "description": "10 minutes with the wand toy. Dobbie requires stimulation.", "priority": "low" },
-      { "id": "window_watch", "title": "Open Window for Bird Watching", "description": "Allow access to the window ledge for prime bird surveillance.", "priority": "low" }
+      {
+        "id": "feed_dobbie",
+        "title": "Feed Dobbie Before 18:00",
+        "description": "His Highness demands his meal on time. No excuses.",
+        "rarity": "rare"
+      },
+      {
+        "id": "clean_litter",
+        "title": "Clean the Litter Box",
+        "description": "The sacred ritual must be performed. Dobbie demands cleanliness.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "pet_dobbie",
+        "title": "Pet Dobbie for 5 Minutes",
+        "description": "Five minutes of undivided attention. The minimum acceptable tribute.",
+        "rarity": "common"
+      },
+      {
+        "id": "play_time",
+        "title": "Interactive Play Session",
+        "description": "10 minutes with the wand toy. Dobbie requires stimulation.",
+        "rarity": "common"
+      },
+      {
+        "id": "window_watch",
+        "title": "Open Window for Bird Watching",
+        "description": "Allow access to the window ledge for prime bird surveillance.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Zzz... Do not disturb. Consequences will be severe.",
@@ -35,11 +85,36 @@
   },
   "dragon": {
     "quests": [
-      { "id": "dragon_challenge", "title": "{name} fordert dich heraus", "description": "Dein Drache will sehen was du drauf hast. Erledige heute 3 Quests — oder Ember zweifelt an deinem Mut.", "priority": "high" },
-      { "id": "dragon_flame", "title": "Flamme am Brennen halten", "description": "Die innere Flamme erlischt nicht von allein, aber sie braucht Nahrung. Tue heute etwas das dich antreibt.", "priority": "medium" },
-      { "id": "dragon_hoard", "title": "Für den Hort sammeln", "description": "Jeder Drache braucht seinen Schatz. Spare Gold oder verdiene Bonus-Rewards.", "priority": "medium" },
-      { "id": "dragon_roar", "title": "Zeig Stärke", "description": "Stell dich heute einer Aufgabe die dir Respekt einflößt. Ember wartet.", "priority": "low" },
-      { "id": "dragon_rest", "title": "Vulkanische Ruhe", "description": "Selbst Drachen ruhen. Nimm dir 10 Minuten bewusste Pause. Ember bewacht deinen Schlaf.", "priority": "low" }
+      {
+        "id": "dragon_challenge",
+        "title": "{name} fordert dich heraus",
+        "description": "Dein Drache will sehen was du drauf hast. Erledige heute 3 Quests — oder Ember zweifelt an deinem Mut.",
+        "rarity": "rare"
+      },
+      {
+        "id": "dragon_flame",
+        "title": "Flamme am Brennen halten",
+        "description": "Die innere Flamme erlischt nicht von allein, aber sie braucht Nahrung. Tue heute etwas das dich antreibt.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "dragon_hoard",
+        "title": "Für den Hort sammeln",
+        "description": "Jeder Drache braucht seinen Schatz. Spare Gold oder verdiene Bonus-Rewards.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "dragon_roar",
+        "title": "Zeig Stärke",
+        "description": "Stell dich heute einer Aufgabe die dir Respekt einflößt. Ember wartet.",
+        "rarity": "common"
+      },
+      {
+        "id": "dragon_rest",
+        "title": "Vulkanische Ruhe",
+        "description": "Selbst Drachen ruhen. Nimm dir 10 Minuten bewusste Pause. Ember bewacht deinen Schlaf.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Ember ruht auf einem Haufen warmer Asche. Die Glut glimmt noch.",
@@ -52,11 +127,36 @@
   },
   "owl": {
     "quests": [
-      { "id": "owl_learn", "title": "{name} empfiehlt: Lerne etwas Neues", "description": "Die Eule der Weisheit nickt zufrieden wenn du deinen Horizont erweiterst. Lies einen Artikel, schau ein Tutorial, lerne ein Wort.", "priority": "high" },
-      { "id": "owl_observe", "title": "Beobachte aufmerksam", "description": "Sages Augen sehen alles. Achte heute auf ein Detail das dir sonst entgeht.", "priority": "medium" },
-      { "id": "owl_wisdom", "title": "Wissen teilen", "description": "Weisheit wächst wenn man sie teilt. Erkläre jemandem etwas das du gut kannst.", "priority": "medium" },
-      { "id": "owl_silence", "title": "Stunde der Stille", "description": "Sage weiß: In der Stille liegt Erkenntnis. 15 Minuten ohne Bildschirm, nur Gedanken.", "priority": "low" },
-      { "id": "owl_journal", "title": "Gedanken festhalten", "description": "Schreib auf was dich heute bewegt hat. Sage archiviert es in der großen Bibliothek.", "priority": "low" }
+      {
+        "id": "owl_learn",
+        "title": "{name} empfiehlt: Lerne etwas Neues",
+        "description": "Die Eule der Weisheit nickt zufrieden wenn du deinen Horizont erweiterst. Lies einen Artikel, schau ein Tutorial, lerne ein Wort.",
+        "rarity": "rare"
+      },
+      {
+        "id": "owl_observe",
+        "title": "Beobachte aufmerksam",
+        "description": "Sages Augen sehen alles. Achte heute auf ein Detail das dir sonst entgeht.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "owl_wisdom",
+        "title": "Wissen teilen",
+        "description": "Weisheit wächst wenn man sie teilt. Erkläre jemandem etwas das du gut kannst.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "owl_silence",
+        "title": "Stunde der Stille",
+        "description": "Sage weiß: In der Stille liegt Erkenntnis. 15 Minuten ohne Bildschirm, nur Gedanken.",
+        "rarity": "common"
+      },
+      {
+        "id": "owl_journal",
+        "title": "Gedanken festhalten",
+        "description": "Schreib auf was dich heute bewegt hat. Sage archiviert es in der großen Bibliothek.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Sage schläft mit einem Auge offen. Eulen sind so.",
@@ -69,11 +169,36 @@
   },
   "phoenix": {
     "quests": [
-      { "id": "phoenix_rise", "title": "{name} erinnert: Steh wieder auf", "description": "Blaze kennt das Fallen. Und das Aufstehen. Mach heute etwas das du gestern aufgegeben hast.", "priority": "high" },
-      { "id": "phoenix_heal", "title": "Asche zu Kraft", "description": "Aus Rückschlägen wird Stärke. Reflektiere über etwas das nicht geklappt hat und finde die Lektion.", "priority": "medium" },
-      { "id": "phoenix_burn", "title": "Altes verbrennen", "description": "Blaze verbrennt was nicht mehr dient. Räume etwas auf das dich belastet — physisch oder mental.", "priority": "medium" },
-      { "id": "phoenix_warmth", "title": "Wärme weitergeben", "description": "Die Flamme des Phoenix wärmt auch andere. Tu jemandem etwas Gutes.", "priority": "low" },
-      { "id": "phoenix_dawn", "title": "Neuer Morgen", "description": "Jeder Tag ist eine Wiedergeburt. Starte morgen früh mit einer bewussten Routine.", "priority": "low" }
+      {
+        "id": "phoenix_rise",
+        "title": "{name} erinnert: Steh wieder auf",
+        "description": "Blaze kennt das Fallen. Und das Aufstehen. Mach heute etwas das du gestern aufgegeben hast.",
+        "rarity": "rare"
+      },
+      {
+        "id": "phoenix_heal",
+        "title": "Asche zu Kraft",
+        "description": "Aus Rückschlägen wird Stärke. Reflektiere über etwas das nicht geklappt hat und finde die Lektion.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "phoenix_burn",
+        "title": "Altes verbrennen",
+        "description": "Blaze verbrennt was nicht mehr dient. Räume etwas auf das dich belastet — physisch oder mental.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "phoenix_warmth",
+        "title": "Wärme weitergeben",
+        "description": "Die Flamme des Phoenix wärmt auch andere. Tu jemandem etwas Gutes.",
+        "rarity": "common"
+      },
+      {
+        "id": "phoenix_dawn",
+        "title": "Neuer Morgen",
+        "description": "Jeder Tag ist eine Wiedergeburt. Starte morgen früh mit einer bewussten Routine.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Blaze glüht leise in der Asche. Die Wiedergeburt kommt mit dem Morgen.",
@@ -86,11 +211,36 @@
   },
   "wolf": {
     "quests": [
-      { "id": "wolf_pack", "title": "{name} ruft das Rudel", "description": "Kein Wolf jagt allein. Verbringe heute Zeit mit jemandem der dir wichtig ist.", "priority": "high" },
-      { "id": "wolf_hunt", "title": "Auf der Jagd", "description": "Shadow wittert Beute. Setz dir ein konkretes Ziel für heute und verfolge es bis zum Ende.", "priority": "medium" },
-      { "id": "wolf_patrol", "title": "Revier patrouillieren", "description": "Ordnung im eigenen Territorium. Räum deinen Schreibtisch auf, check deine Mails, schaff Klarheit.", "priority": "medium" },
-      { "id": "wolf_howl", "title": "Den Mond anheulen", "description": "Manchmal muss man laut sein. Sag heute klar was du willst oder brauchst.", "priority": "low" },
-      { "id": "wolf_rest", "title": "Im Rudel ruhen", "description": "Shadow legt sich neben dich. 10 Minuten Pause, bewusst und ohne Schuldgefühle.", "priority": "low" }
+      {
+        "id": "wolf_pack",
+        "title": "{name} ruft das Rudel",
+        "description": "Kein Wolf jagt allein. Verbringe heute Zeit mit jemandem der dir wichtig ist.",
+        "rarity": "rare"
+      },
+      {
+        "id": "wolf_hunt",
+        "title": "Auf der Jagd",
+        "description": "Shadow wittert Beute. Setz dir ein konkretes Ziel für heute und verfolge es bis zum Ende.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "wolf_patrol",
+        "title": "Revier patrouillieren",
+        "description": "Ordnung im eigenen Territorium. Räum deinen Schreibtisch auf, check deine Mails, schaff Klarheit.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "wolf_howl",
+        "title": "Den Mond anheulen",
+        "description": "Manchmal muss man laut sein. Sag heute klar was du willst oder brauchst.",
+        "rarity": "common"
+      },
+      {
+        "id": "wolf_rest",
+        "title": "Im Rudel ruhen",
+        "description": "Shadow legt sich neben dich. 10 Minuten Pause, bewusst und ohne Schuldgefühle.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Shadow schläft mit einem Ohr am Boden. Wölfe schlafen nie ganz.",
@@ -103,11 +253,36 @@
   },
   "fox": {
     "quests": [
-      { "id": "fox_trick", "title": "{name} hat eine Idee", "description": "Trick grinst. Tu heute etwas auf eine ungewöhnliche Art. Routine brechen, neuer Ansatz.", "priority": "high" },
-      { "id": "fox_explore", "title": "Neue Pfade", "description": "Der Fuchs kennt keine ausgetretenen Wege. Entdecke heute etwas Neues — einen Ort, ein Rezept, ein Hobby.", "priority": "medium" },
-      { "id": "fox_solve", "title": "Rätsel des Tages", "description": "Trick liebt Puzzles. Löse ein Problem das du vor dir hergeschoben hast.", "priority": "medium" },
-      { "id": "fox_laugh", "title": "Lachen ist Medizin", "description": "Der Fuchs findet überall etwas zum Schmunzeln. Schau etwas Lustiges oder erzähl einen Witz.", "priority": "low" },
-      { "id": "fox_hide", "title": "Strategischer Rückzug", "description": "Trick weiß wann man sich zurückziehen muss. Nimm dir eine Auszeit wenn du sie brauchst.", "priority": "low" }
+      {
+        "id": "fox_trick",
+        "title": "{name} hat eine Idee",
+        "description": "Trick grinst. Tu heute etwas auf eine ungewöhnliche Art. Routine brechen, neuer Ansatz.",
+        "rarity": "rare"
+      },
+      {
+        "id": "fox_explore",
+        "title": "Neue Pfade",
+        "description": "Der Fuchs kennt keine ausgetretenen Wege. Entdecke heute etwas Neues — einen Ort, ein Rezept, ein Hobby.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "fox_solve",
+        "title": "Rätsel des Tages",
+        "description": "Trick liebt Puzzles. Löse ein Problem das du vor dir hergeschoben hast.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "fox_laugh",
+        "title": "Lachen ist Medizin",
+        "description": "Der Fuchs findet überall etwas zum Schmunzeln. Schau etwas Lustiges oder erzähl einen Witz.",
+        "rarity": "common"
+      },
+      {
+        "id": "fox_hide",
+        "title": "Strategischer Rückzug",
+        "description": "Trick weiß wann man sich zurückziehen muss. Nimm dir eine Auszeit wenn du sie brauchst.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Trick schläft eingerollt in seinem buschigen Schwanz. Süß, aber trau ihm nicht.",
@@ -120,11 +295,36 @@
   },
   "bear": {
     "quests": [
-      { "id": "bear_strength", "title": "{name} sagt: Zeig Stärke", "description": "Bjorn glaubt an dich. Mach heute Sport, Training, oder fordere deinen Körper heraus.", "priority": "high" },
-      { "id": "bear_feast", "title": "Ordentlich essen", "description": "Bären fressen nicht irgendwas. Koch dir heute eine richtige Mahlzeit.", "priority": "medium" },
-      { "id": "bear_protect", "title": "Jemanden beschützen", "description": "Bjorn beschützt die Schwachen. Tu heute etwas für jemanden der Hilfe braucht.", "priority": "medium" },
-      { "id": "bear_cave", "title": "Höhlenzeit", "description": "Jeder Bär braucht seine Höhle. Mach es dir gemütlich und lade auf.", "priority": "low" },
-      { "id": "bear_nature", "title": "Raus in die Natur", "description": "Bjorn gehört in den Wald, du auch. Spaziergang, Luft, Grün.", "priority": "low" }
+      {
+        "id": "bear_strength",
+        "title": "{name} sagt: Zeig Stärke",
+        "description": "Bjorn glaubt an dich. Mach heute Sport, Training, oder fordere deinen Körper heraus.",
+        "rarity": "rare"
+      },
+      {
+        "id": "bear_feast",
+        "title": "Ordentlich essen",
+        "description": "Bären fressen nicht irgendwas. Koch dir heute eine richtige Mahlzeit.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "bear_protect",
+        "title": "Jemanden beschützen",
+        "description": "Bjorn beschützt die Schwachen. Tu heute etwas für jemanden der Hilfe braucht.",
+        "rarity": "uncommon"
+      },
+      {
+        "id": "bear_cave",
+        "title": "Höhlenzeit",
+        "description": "Jeder Bär braucht seine Höhle. Mach es dir gemütlich und lade auf.",
+        "rarity": "common"
+      },
+      {
+        "id": "bear_nature",
+        "title": "Raus in die Natur",
+        "description": "Bjorn gehört in den Wald, du auch. Spaziergang, Luft, Grün.",
+        "rarity": "common"
+      }
     ],
     "moodQuotes": {
       "Sleeping": "Bjorn hält Winterschlaf. Drei Monate wäre okay, aber du brauchst ihn vorher.",

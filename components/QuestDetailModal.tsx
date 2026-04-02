@@ -68,11 +68,9 @@ export default function QuestDetailModal({
 
   const XP_BY_RARITY: Record<string, number> = { common: 10, uncommon: 18, rare: 30, epic: 50, legendary: 80 };
   const GOLD_BY_RARITY: Record<string, [number, number]> = { common: [5, 10], uncommon: [10, 18], rare: [18, 30], epic: [30, 50], legendary: [50, 80] };
-  const XP_FALLBACK: Record<string, number> = { high: 30, medium: 20, low: 10 };
-  const GOLD_FALLBACK: Record<string, number> = { high: 25, medium: 15, low: 9 };
-  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (q.rarity ? (XP_BY_RARITY[q.rarity] ?? XP_FALLBACK[q.priority] ?? 10) : (XP_FALLBACK[q.priority] ?? 10));
-  const goldRange = q.rarity ? GOLD_BY_RARITY[q.rarity] : null;
-  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? String(q.rewards.gold) : (goldRange ? `${goldRange[0]}–${goldRange[1]}` : String(GOLD_FALLBACK[q.priority] ?? 9));
+  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (XP_BY_RARITY[q.rarity || "common"] ?? 10);
+  const goldRange = GOLD_BY_RARITY[q.rarity || "common"] || null;
+  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? String(q.rewards.gold) : (goldRange ? `${goldRange[0]}–${goldRange[1]}` : "9");
 
   return (
     <ModalPortal>
