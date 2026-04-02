@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, memo } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import type { Quest } from "@/app/types";
 import { timeAgo, getQuestRarity } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -122,7 +122,20 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
 }) {
   const [expanded, setExpanded] = useState(false);
   const [starAnimating, setStarAnimating] = useState(false);
+  const [actionAnim, setActionAnim] = useState<"claim" | "complete" | null>(null);
   const isLoading = loadingAction?.questId === quest.id;
+  // Trigger animation on successful action (loading stops = action completed)
+  const prevLoadingRef = useRef(false);
+  useEffect(() => {
+    if (prevLoadingRef.current && !isLoading && loadingAction === null) {
+      // Determine which action just completed
+      const action = quest.status === "in_progress" && quest.claimedBy ? "claim" : "complete";
+      setActionAnim(action);
+      const t = setTimeout(() => setActionAnim(null), 600);
+      return () => clearTimeout(t);
+    }
+    prevLoadingRef.current = isLoading;
+  }, [isLoading, loadingAction, quest.status, quest.claimedBy]);
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
@@ -279,7 +292,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   return (
     <div
       data-feedback-id={`quest-board.quest-card.${quest.id}`}
-      className={`cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden${isLegendary && !selected ? " crystal-breathe-card" : isEpic && !selected ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}`}
+      className={`cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden${isLegendary && !selected ? " crystal-breathe-card" : isEpic && !selected ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}${quest.npcGiverId && !isLoading ? " npc-quest-pulse" : ""}${actionAnim === "claim" ? " quest-card-claimed" : actionAnim === "complete" ? " quest-card-completing" : ""}`}
       style={{
         background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
         border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}${borderAlpha}` : `${rarityColor}${isRarePlus ? "66" : "44"}`}`,
