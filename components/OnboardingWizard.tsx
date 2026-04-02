@@ -811,6 +811,29 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               <p className="text-xs" style={{ color: "#22c55e" }}>You are now logged in. Your password has been securely saved.</p>
             </div>
 
+            {/* Quick Guide — Core Systems Overview */}
+            <div className="rounded-xl p-4 space-y-2.5" style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.12)" }}>
+              <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(251,191,36,0.6)" }}>How Quest Hall Works</p>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <p className="text-xs font-bold" style={{ color: "#a78bfa" }}>Quests</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Real tasks become quests. Complete them for XP + Gold.</p>
+                </div>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <p className="text-xs font-bold" style={{ color: "#f97316" }}>Forge Temp</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Stay active to keep the forge hot. Higher temp = more XP.</p>
+                </div>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Streaks</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Complete 1 quest daily. Longer streak = better Gold bonus.</p>
+                </div>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <p className="text-xs font-bold" style={{ color: "#3b82f6" }}>The Tower</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>5 floors with rooms. New features unlock as you level up.</p>
+                </div>
+              </div>
+            </div>
+
             <button
               onClick={handleDone}
               className="w-full py-3 rounded-xl font-bold text-sm"
