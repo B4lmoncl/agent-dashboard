@@ -1511,6 +1511,16 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 }
 .craft-result-celebrate { animation: craft-result-enter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
+/* Skill-up result toast — dramatic flash when a skill-up was gained */
+@keyframes skill-up-result-flash-anim {
+  0%   { opacity: 0; transform: translateY(6px) scale(0.97); }
+  15%  { opacity: 1; transform: translateY(0) scale(1.04); }
+  40%  { transform: scale(1); }
+  60%  { filter: brightness(1.4); }
+  100% { filter: brightness(1); transform: scale(1); }
+}
+.skill-up-result-flash { animation: skill-up-result-flash-anim 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
 /* 5. Skill-Up Flash + Float */
 @keyframes skill-up-flash {
   0%, 100% { background: transparent; }
@@ -1707,6 +1717,53 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .btn-press:active:not(:disabled) {
   transform: scale(0.97);
   filter: brightness(0.88);
+}
+
+/* ─── Quest Seal Claim Button ────────────────────────────────────────── */
+/* The red wax seal "!" button for claiming quests                         */
+.quest-seal-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.quest-seal-btn:hover:not(:disabled) {
+  transform: scale(1.12) rotate(-5deg);
+  box-shadow: 0 0 16px rgba(192,57,43,0.6), 0 4px 12px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.3) !important;
+  filter: brightness(1.15);
+}
+.quest-seal-btn:active:not(:disabled) {
+  transform: scale(0.95) rotate(0deg);
+  filter: brightness(0.85);
+}
+
+/* ─── Quest Complete Button ──────────────────────────────────────────── */
+/* The golden "✓ Done" button for completing quests                        */
+.quest-done-btn {
+  transition: all 0.15s ease;
+  position: relative;
+}
+.quest-done-btn:hover:not(:disabled) {
+  background: rgba(251,191,36,0.2) !important;
+  box-shadow: 0 0 12px rgba(251,191,36,0.3), 0 0 24px rgba(251,191,36,0.1);
+  transform: translateY(-1px);
+}
+.quest-done-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+  filter: brightness(0.9);
+}
+
+/* ─── Quest Card Action Loading Shimmer ──────────────────────────────── */
+/* Subtle golden shimmer along the top border during async actions         */
+@keyframes quest-action-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.quest-card-loading::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(251,191,36,0.6) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: quest-action-shimmer 1.2s ease-in-out infinite;
 }
 
 /* ─── Number Counter Bounce Animation ─────────────────────────────────── */

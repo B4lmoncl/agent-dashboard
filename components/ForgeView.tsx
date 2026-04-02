@@ -8,6 +8,7 @@ import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { RARITY_COLORS, RARITY_ORDER, RARITY_LABELS } from "@/app/constants";
+import { SFX } from "@/lib/sounds";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 interface ProfessionDef {
@@ -200,6 +201,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [maxProfSlots, setMaxProfSlots] = useState(2);
   const [selectedNpc, setSelectedNpc] = useState<ProfessionDef | null>(null);
   const [craftResult, setCraftResult] = useState<string | null>(null);
+  const [craftResultSkillUpColor, setCraftResultSkillUpColor] = useState<string | null>(null);
+  const [craftResultHadSkillUp, setCraftResultHadSkillUp] = useState(false);
   const [crafting, setCrafting] = useState(false);
   const [craftProgress, setCraftProgress] = useState<{ recipeId: string; current: number; total: number; startTime: number } | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string>("weapon");
@@ -427,6 +430,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     const prevSkill = selectedNpc?.skill || selectedNpc?.playerXp || 0;
     setCrafting(true);
     setCraftResult(null);
+    setCraftResultSkillUpColor(null);
+    setCraftResultHadSkillUp(false);
     try {
       const body: Record<string, unknown> = { recipeId, targetSlot: selectedSlot, count };
       const r = await fetch("/api/professions/craft", {
@@ -436,11 +441,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) {
+        const hadSkillUp = (data.skillGained ?? 0) > 0;
+        const resultSkillUpColor = data.skillUpColor || null;
         let msg = data.message || "Success!";
         if (data.atSkillCap && data.nextRankNeeded) msg += ` — Skill Cap reached! Train ${data.nextRankNeeded} to continue.`;
-        else if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
-        else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
+        else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
+        else if (!hadSkillUp && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 300}]`;
+        setCraftResultSkillUpColor(resultSkillUpColor);
+        setCraftResultHadSkillUp(hadSkillUp);
         // Batch craft: sequential tick animation with progress indicator
         if (count > 1 && (data.craftCount || count) > 1) {
           const total = data.craftCount || count;
@@ -459,7 +468,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         } else {
           setCraftResult(msg);
         }
-        if (data.skillGained > 0) { setSkillUpFlash(true); setTimeout(() => setSkillUpFlash(false), 1000); }
+        if (hadSkillUp) { setSkillUpFlash(true); setTimeout(() => setSkillUpFlash(false), 1200); SFX.craftSkillUp(); }
         // Rank milestone celebration
         if (data.newSkill) {
           const ns = data.newSkill;
@@ -2084,6 +2093,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <div className="h-full rounded-full progress-shimmer" style={{
                                 background: `linear-gradient(90deg, ${selectedNpc.color}80, ${selectedNpc.color})`,
                                 animation: `craft-cast-fill ${craftCastMsRef.current}ms linear forwards`,
+                                transformOrigin: "left",
                                 boxShadow: `0 0 12px ${selectedNpc.color}60, 0 0 4px ${selectedNpc.color}, inset 0 1px 0 rgba(255,255,255,0.2)`,
                               }} />
                             </div>
@@ -2106,22 +2116,45 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 </div>
 
                 {/* Craft result toast */}
-                {craftResult && (
-                  <div className="relative mx-5 mb-4">
-                    <div id="forge-craft-result" className="craft-result-celebrate px-3 py-2 rounded-lg text-xs font-semibold text-center" style={{ background: `${selectedNpc.color}15`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}30` }}>
-                      {craftResult}
+                {craftResult && (() => {
+                  const skillUpInfo = craftResultSkillUpColor ? SKILL_UP_COLORS[craftResultSkillUpColor] : null;
+                  const toastColor = craftResultHadSkillUp && skillUpInfo ? skillUpInfo.color : selectedNpc.color;
+                  const sparkleColor = craftResultHadSkillUp && skillUpInfo ? skillUpInfo.color : (selectedNpc.color || '#fbbf24');
+                  return (
+                    <div className="relative mx-5 mb-4">
+                      <div
+                        id="forge-craft-result"
+                        className={`craft-result-celebrate px-3 py-2 rounded-lg text-xs font-semibold text-center${craftResultHadSkillUp ? " skill-up-result-flash" : ""}`}
+                        style={{
+                          background: `${toastColor}18`,
+                          color: toastColor,
+                          border: `1px solid ${toastColor}40`,
+                          boxShadow: craftResultHadSkillUp ? `0 0 16px ${toastColor}50, inset 0 0 8px ${toastColor}15` : undefined,
+                        }}
+                      >
+                        {craftResultHadSkillUp && skillUpInfo && (
+                          <span
+                            className="inline-flex items-center gap-1 mr-2 px-1.5 py-0.5 rounded font-bold"
+                            style={{ background: `${skillUpInfo.color}20`, color: skillUpInfo.color, border: `1px solid ${skillUpInfo.color}40`, fontSize: 11, letterSpacing: "0.04em" }}
+                          >
+                            <span className="w-2 h-2 rounded-full inline-block flex-shrink-0" style={{ background: skillUpInfo.color }} />
+                            {craftResultSkillUpColor ? craftResultSkillUpColor.charAt(0).toUpperCase() + craftResultSkillUpColor.slice(1) : ""} Skill-Up!
+                          </span>
+                        )}
+                        {craftResult}
+                      </div>
+                      {craftResultHadSkillUp && [0,1,2,3,4,5].map(i => (
+                        <span key={i} className="absolute pointer-events-none" style={{
+                          left: `${10 + i * 16}%`, bottom: '100%',
+                          width: i % 2 === 0 ? 5 : 3, height: i % 2 === 0 ? 5 : 3, borderRadius: '50%',
+                          background: sparkleColor,
+                          animation: `craft-sparkle-rise 1s ease-out ${i * 0.08}s forwards`,
+                          opacity: 0,
+                        }} />
+                      ))}
                     </div>
-                    {craftResult.includes("+") && [0,1,2,3].map(i => (
-                      <span key={i} className="absolute pointer-events-none" style={{
-                        left: `${20 + i * 20}%`, bottom: '100%',
-                        width: 4, height: 4, borderRadius: '50%',
-                        background: selectedNpc.color || '#fbbf24',
-                        animation: `craft-sparkle-rise 0.8s ease-out ${i * 0.1}s forwards`,
-                        opacity: 0,
-                      }} />
-                    ))}
-                  </div>
-                )}
+                  );
+                })()}
               </div>
             )}
 

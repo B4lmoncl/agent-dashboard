@@ -170,7 +170,7 @@ export function useQuestActions({
         addToast({ type: "error", message: d.error || "Failed to claim quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not claim quest" });
+      addToast({ type: "error", message: "Network error — could not claim quest", onRetry: () => handleClaim(questId) });
     } finally {
       setLoadingAction(null);
     }
@@ -192,7 +192,7 @@ export function useQuestActions({
         addToast({ type: "error", message: "Failed to unclaim quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not unclaim quest" });
+      addToast({ type: "error", message: "Network error — could not unclaim quest", onRetry: () => handleUnclaim(questId) });
     } finally {
       setLoadingAction(null);
     }
@@ -346,7 +346,7 @@ export function useQuestActions({
         addToast({ type: "error", message: d.error || "Failed to complete quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not complete quest" });
+      addToast({ type: "error", message: "Network error — could not complete quest", onRetry: () => handleComplete(questId, questTitle) });
     } finally {
       setLoadingAction(null);
     }
