@@ -11,7 +11,7 @@ router.get('/api/campaigns', (req, res) => {
     const questDetails = c.questIds.map(id => {
       const q = state.questsById.get(id);
       if (!q) return { id, title: '(deleted)', status: 'deleted' };
-      return { id: q.id, title: q.title, status: q.status, priority: q.priority, type: q.type,
+      return { id: q.id, title: q.title, status: q.status, type: q.type,
                completedBy: q.completedBy, completedAt: q.completedAt, claimedBy: q.claimedBy,
                lore: q.lore || null, description: q.description };
     });

@@ -106,20 +106,6 @@ export function useQuestActions({
     }
   }, [reviewApiKey, loadingAction, refresh, addToast]);
 
-  const handleChangePriority = useCallback(async (id: string, priority: Quest["priority"]) => {
-    if (!reviewApiKey) return;
-    try {
-      const r = await fetch(`/api/quest/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-        body: JSON.stringify({ priority }),
-      });
-      if (!r.ok) addToast({ type: "error", message: "Failed to change priority" });
-    } catch {
-      addToast({ type: "error", message: "Network error — could not change priority" });
-    }
-  }, [reviewApiKey, addToast]);
-
   const toggleSelect = useCallback((id: string) => {
     setSelectedIds(prev => {
       const next = new Set(prev);
@@ -477,7 +463,6 @@ export function useQuestActions({
     // Handlers
     handleApprove,
     handleReject,
-    handleChangePriority,
     toggleSelect,
     handleBulkUpdate,
     handleToggleFavorite,

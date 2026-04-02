@@ -573,7 +573,7 @@ export default function Dashboard() {
     reviewComments, setReviewComments,
     poolRefreshing, loadingAction,
     shopUserId, setShopUserId,
-    handleApprove, handleReject, handleChangePriority,
+    handleApprove, handleReject,
     toggleSelect, handleBulkUpdate,
     handleToggleFavorite: _handleToggleFavorite,
     handleClaim, handleUnclaim, handleCoopClaim, handleCoopComplete,
@@ -635,15 +635,6 @@ export default function Dashboard() {
   const handleChainAccept = useCallback(async () => {
     await _handleChainAccept(chainOffer);
   }, [_handleChainAccept, chainOffer]);
-
-  // Wrap handleChangePriority to also update local quests state
-  const handleChangePriorityWithState = useCallback(async (id: string, priority: Quest["priority"]) => {
-    await handleChangePriority(id, priority);
-    setQuests(prev => ({
-      ...prev,
-      suggested: prev.suggested.map(q => q.id === id ? { ...q, priority } : q),
-    }));
-  }, [handleChangePriority]);
 
   // Toast auto-dismiss is handled by ToastStack
 
@@ -2132,7 +2123,6 @@ export default function Dashboard() {
               setDevInProgressCollapsed={setDevInProgressCollapsed}
               handleApprove={handleApprove}
               handleReject={handleReject}
-              handleChangePriority={handleChangePriorityWithState}
               reviewComments={reviewComments}
               setReviewComments={setReviewComments}
               dobbieOpen={dobbieOpen}

@@ -77,7 +77,6 @@ router.get('/api/npcs/active', (req, res) => {
             title: q.title,
             description: q.description,
             type: q.type,
-            priority: q.priority,
             status,
             claimedBy,
             completedBy,

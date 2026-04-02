@@ -402,7 +402,6 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     id: `rift-${rift.tier}-stage-${nextStage.stage}`,
     title: `${rift.mythicLevel ? `Mythic Rift +${rift.mythicLevel}` : (RIFT_TIERS[rift.tier]?.name || 'Rift')}: ${nextStage.name}`,
     type: nextStage.type,
-    priority: nextStage.difficulty >= 2.5 ? 'high' : nextStage.difficulty >= 1.5 ? 'medium' : 'low',
     rarity: stageRarity,
     status: 'completed',
     rewards: { xp: nextStage.xpReward, gold: nextStage.goldReward },

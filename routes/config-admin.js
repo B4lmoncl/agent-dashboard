@@ -153,7 +153,7 @@ router.get('/api/dashboard', (req, res) => {
     const questDetails = c.questIds.map(id => {
       const q = state.questsById.get(id);
       if (!q) return { id, title: '(deleted)', status: 'deleted' };
-      return { id: q.id, title: q.title, status: q.status, priority: q.priority, type: q.type,
+      return { id: q.id, title: q.title, status: q.status, type: q.type,
                completedBy: q.completedBy, completedAt: q.completedAt, claimedBy: q.claimedBy,
                lore: q.lore || null, description: q.description };
     });
@@ -222,7 +222,6 @@ router.get('/api/dashboard', (req, res) => {
             title: q.title,
             description: q.description,
             type: q.type,
-            priority: q.priority,
             status,
             claimedBy,
             completedBy,
@@ -695,7 +694,6 @@ function generatePlayerQuests(playerName, playerLevel) {
     daySeed,
   });
 
-  const priorityMap = { starter: 'low', intermediate: 'medium', advanced: 'high', expert: 'high' };
   const REWARDS_BY_RARITY = {
     common:    { xp: 10, gold: 8  },
     uncommon:  { xp: 18, gold: 14 },
@@ -710,7 +708,6 @@ function generatePlayerQuests(playerName, playerLevel) {
       id: `quest-${uid}-${Date.now()}-${String(i + 1).padStart(3, '0')}`,
       title: resolved.title || t.title,
       description: resolved.description || t.description,
-      priority: priorityMap[t.difficulty] || t.priority || 'medium',
       type: resolved.type || t.type || 'personal',
       categories: t.category ? [t.category] : [],
       product: null, humanInputRequired: false,
