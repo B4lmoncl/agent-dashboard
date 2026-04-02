@@ -532,29 +532,36 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
       style={{ left: 0, top: 0, minWidth: "min(260px, 90vw)", maxWidth: 340, willChange: "transform" }}
     >
       <div
-        className="rounded-lg p-3 space-y-2"
+        className="rounded-lg overflow-hidden"
         style={{
-          background: "#1a1a1a",
-          borderTop: `3px solid ${rarityColor}`,
-          border: `1px solid rgba(255,255,255,0.12)`,
-          borderTopColor: rarityColor,
-          borderTopWidth: 3,
-          boxShadow: "0 8px 32px rgba(0,0,0,0.7)",
+          background: "linear-gradient(180deg, #1e1e22 0%, #141417 100%)",
+          border: `2px solid ${rarityColor}60`,
+          boxShadow: `0 0 20px ${rarityColor}25, 0 8px 32px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06)`,
         }}
       >
-        {/* Icon + Name */}
-        <div className="flex items-center gap-2.5">
-          <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 160, height: 160, background: "rgba(255,255,255,0.04)", borderRadius: 8, border: `1px solid ${rarityColor}40` }}>
-            {item.icon
-              ? <img src={item.icon} alt={item.name} width={148} height={148} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-6xl" style={{ color: rarityColor }}>◆</span>
-            }
-          </div>
-          <div className="min-w-0">
-            <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
-            <p className="text-xs font-semibold" style={{ color: rarityColor }}>{RARITY_LABELS[dRarity] || item.rarity}</p>
+        {/* D3-style rarity header bar */}
+        <div style={{
+          background: `linear-gradient(90deg, transparent 0%, ${rarityColor}20 50%, transparent 100%)`,
+          borderBottom: `1px solid ${rarityColor}40`,
+          padding: "10px 14px",
+        }}>
+          <p className="text-sm font-bold" style={{ color: rarityColor, textShadow: `0 0 12px ${rarityColor}40` }}>{item.name}</p>
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: `${rarityColor}cc` }}>{RARITY_LABELS[dRarity] || item.rarity}</span>
+            {item.slot && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{item.slot.charAt(0).toUpperCase() + item.slot.slice(1)}</span>}
+            {(() => { const rl = (item as Record<string, unknown>).reqLevel as number | undefined; return rl ? <span className="text-xs" style={{ color: playerLevel && playerLevel < rl ? "#ef4444" : "rgba(255,255,255,0.25)" }}>Req. Lv {rl}</span> : null; })()}
           </div>
         </div>
+
+        <div className="p-3 space-y-2">
+        {/* Icon */}
+        {item.icon && (
+          <div className="flex justify-center mb-1">
+            <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 80, height: 80, background: `radial-gradient(circle, ${rarityColor}10 0%, transparent 70%)`, borderRadius: 8 }}>
+              <img src={item.icon} alt={item.name} width={72} height={72} style={{ imageRendering: "auto", filter: `drop-shadow(0 0 8px ${rarityColor}40)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            </div>
+          </div>
+        )}
 
         {/* Binding badge */}
         {item.bound ? (
@@ -575,11 +582,13 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
         )}
 
-        {/* Legendary effect */}
+        {/* Legendary effect — D3-style golden highlight box */}
         {item.legendaryEffect && (
-          <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
-            {formatLegendaryLabel(item.legendaryEffect)}
-          </p>
+          <div className="rounded px-2.5 py-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.2)", boxShadow: "inset 0 0 12px rgba(245,158,11,0.05)" }}>
+            <p className="text-xs font-bold" style={{ color: "#f59e0b", textShadow: "0 0 8px rgba(245,158,11,0.3)" }}>
+              {formatLegendaryLabel(item.legendaryEffect)}
+            </p>
+          </div>
         )}
 
         {/* Stats with comparison */}
@@ -650,6 +659,25 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           );
         })()}
 
+        {/* Socket display */}
+        {(() => {
+          const sockets = (item as Record<string, unknown>).sockets as (string | null)[] | undefined;
+          if (!sockets || sockets.length === 0) return null;
+          const GEM_COLORS: Record<string, string> = { ruby: "#ef4444", sapphire: "#3b82f6", emerald: "#22c55e", topaz: "#f59e0b", amethyst: "#a855f7", diamond: "#e0e7ff" };
+          return (
+            <div className="pt-1 flex items-center gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Sockets:</span>
+              {sockets.map((s, idx) => (
+                <div key={idx} className="w-4 h-4 rounded-sm" style={{
+                  background: s ? (GEM_COLORS[s.split("-")[0] || ""] || "#888") : "rgba(255,255,255,0.06)",
+                  border: `1px solid ${s ? (GEM_COLORS[s.split("-")[0] || ""] || "#888") + "60" : "rgba(255,255,255,0.1)"}`,
+                  boxShadow: s ? `0 0 4px ${GEM_COLORS[s.split("-")[0] || ""] || "#888"}40` : "none",
+                }} title={s || "Empty socket"} />
+              ))}
+            </div>
+          );
+        })()}
+
         {/* Salvage Preview */}
         {(() => {
           const ESSENZ_BY_RARITY: Record<string, number> = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
@@ -711,6 +739,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
             </p>
           )}
         </div>
+        </div>{/* close p-3 space-y-2 inner content */}
       </div>
     </div>
   );
