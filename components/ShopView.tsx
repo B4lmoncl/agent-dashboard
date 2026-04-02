@@ -297,15 +297,20 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
           if (!shopConf) return null;
           if (items.length === 0) return <p className="text-xs text-w20">No items available in this shop.</p>;
           const bal = currencyBalances[activeCurrencyTab] ?? 0;
+          const ownedFrameIds = new Set((user?.unlockedFrames || []).map(f => f.id));
+          const ownedTitleIds = new Set((user?.earnedTitles || []).map(t => t.id));
           return (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {items.map(item => {
-                const canAfford = bal >= item.cost;
+                const isOwned =
+                  (item.type === "frame" && item.frameId ? ownedFrameIds.has(item.frameId) : false) ||
+                  (item.type === "title" && item.titleId ? ownedTitleIds.has(item.titleId) : false);
+                const canAfford = !isOwned && bal >= item.cost;
                 return (
                   <div
                     key={item.id}
                     className="flex items-center gap-3 p-3 rounded-xl"
-                    style={{ background: `${shopConf.color}06`, border: `1px solid ${shopConf.color}18` }}
+                    style={{ background: `${shopConf.color}06`, border: `1px solid ${isOwned ? `${shopConf.color}30` : `${shopConf.color}18`}`, opacity: isOwned ? 0.7 : 1 }}
                   >
                     {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 36, height: 36, imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl flex-shrink-0" style={{ color: shopConf.color }}>◆</span>}
                     <div className="flex-1 min-w-0">
@@ -315,21 +320,31 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                         {item.type === "frame" ? "Frame" : item.type === "title" ? "Title" : item.type === "boost" ? "Boost" : item.type === "cosmetic" ? "Cosmetic" : "Item"}
                       </p>
                     </div>
-                    <button
-                      onClick={() => canAfford && buyCurrencyItem(item.id, activeCurrencyTab)}
-                      disabled={!canAfford || currencyBuying === item.id}
-                      title={canAfford ? `Buy for ${item.cost} ${shopConf.label}` : `Need ${item.cost} ${shopConf.label}, have ${bal}`}
-                      className="text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
-                      style={{
-                        background: canAfford ? `${shopConf.color}20` : "rgba(255,255,255,0.04)",
-                        color: canAfford ? shopConf.color : "rgba(255,255,255,0.2)",
-                        border: `1px solid ${canAfford ? `${shopConf.color}40` : "rgba(255,255,255,0.08)"}`,
-                        cursor: canAfford && currencyBuying !== item.id ? "pointer" : "not-allowed",
-                        opacity: currencyBuying === item.id ? 0.5 : 1,
-                      }}
-                    >
-                      {currencyBuying === item.id ? "..." : item.cost}
-                    </button>
+                    {isOwned ? (
+                      <span
+                        className="text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                        style={{ background: "rgba(34,197,94,0.08)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)" }}
+                        title="Already owned"
+                      >
+                        Owned
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => canAfford && buyCurrencyItem(item.id, activeCurrencyTab)}
+                        disabled={!canAfford || currencyBuying === item.id}
+                        title={canAfford ? `Buy for ${item.cost} ${shopConf.label}` : `Need ${item.cost} ${shopConf.label}, have ${bal}`}
+                        className="text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                        style={{
+                          background: canAfford ? `${shopConf.color}20` : "rgba(255,255,255,0.04)",
+                          color: canAfford ? shopConf.color : "rgba(255,255,255,0.2)",
+                          border: `1px solid ${canAfford ? `${shopConf.color}40` : "rgba(255,255,255,0.08)"}`,
+                          cursor: canAfford && currencyBuying !== item.id ? "pointer" : "not-allowed",
+                          opacity: currencyBuying === item.id ? 0.5 : 1,
+                        }}
+                      >
+                        {currencyBuying === item.id ? "..." : item.cost}
+                      </button>
+                    )}
                   </div>
                 );
               })}

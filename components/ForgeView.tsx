@@ -66,6 +66,7 @@ interface MaterialDef {
   icon: string;
   rarity: string;
   desc: string;
+  source?: string;
 }
 
 interface VendorReagentDef {
@@ -1957,6 +1958,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 {!has && <span style={{ color: "#f44", fontSize: 12, lineHeight: 1 }}>●</span>}
                                 {mat?.icon ? <img src={mat.icon} alt="" width={28} height={28} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-3.5 h-3.5 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
                                 {owned}/{needed} {mat?.name || matId}
+                                {mat?.source && (
+                                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", fontWeight: "normal", marginLeft: 2 }}>
+                                    {mat.source === "vendor" ? "Vendor" : mat.source === "crafted" ? "Crafted" : mat.source === "disenchant" ? "Disenchant" : null}
+                                  </span>
+                                )}
+                                {!mat?.source && mat && (
+                                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", fontWeight: "normal", marginLeft: 2 }}>Quest Drops</span>
+                                )}
                               </span>
                             );
                           })}

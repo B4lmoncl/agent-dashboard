@@ -1852,7 +1852,7 @@ export default function Dashboard() {
                         </div>
                         <p className="text-xs mt-0.5 text-w25">
                           {playerName
-                            ? `${boardOpen.length + playerVisibleInProgress.length} active quests`
+                            ? `${boardOpen.length} open · ${playerVisibleInProgress.length} in progress`
                             : "Log in · 0 available"}
                         </p>
                       </div>

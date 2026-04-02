@@ -174,6 +174,7 @@ export interface User {
   };
   craftingMaterials?: Record<string, number>;
   equippedTitle?: { id: string; name: string; rarity: string } | null;
+  earnedTitles?: { id: string; name: string; rarity: string; earnedAt?: string; source?: string }[];
   chosenProfessions?: string[];
   inventory?: { id: string; name: string; rarity: string; slot?: string; emoji?: string; effect?: { type: string; amount?: number } }[];
   workshopUpgrades?: Record<string, number>;
