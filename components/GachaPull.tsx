@@ -321,8 +321,17 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
   const [phase, setPhase] = useState<"charge" | "flash" | "sequential" | "black" | "summary">("charge");
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  // Fisher-Yates shuffle order
-  const shuffledResults = useMemo(() => fisherYatesShuffle(results), [results]);
+  // Sort ascending by rarity — save the best for last (WoW/Genshin suspense)
+  // Within the same rarity tier, shuffle randomly for variety
+  const shuffledResults = useMemo(() => {
+    const sorted = [...results].sort((a, b) => {
+      const ra = RARITY_ORDER.indexOf(a.item.rarity);
+      const rb = RARITY_ORDER.indexOf(b.item.rarity);
+      if (ra !== rb) return ra - rb;
+      return Math.random() - 0.5; // shuffle within same rarity
+    });
+    return sorted;
+  }, [results]);
 
   // Best rarity in batch (for flash color)
   const bestRarity = useMemo(() => {

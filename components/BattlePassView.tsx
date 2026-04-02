@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -139,6 +139,18 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   const daysLeft = Math.max(0, Math.ceil((new Date(player.seasonEnd).getTime() - Date.now()) / 86400000));
   const unclaimedCount = rewards.filter(r => player.level >= r.level && !player.claimedLevels.includes(r.level)).length;
+  const firstUnclaimedRef = useRef<HTMLDivElement | null>(null);
+  const didScrollRef = useRef(false);
+
+  // Auto-scroll to first unclaimed reward on mount
+  useEffect(() => {
+    if (!didScrollRef.current && firstUnclaimedRef.current && unclaimedCount > 0) {
+      didScrollRef.current = true;
+      setTimeout(() => {
+        firstUnclaimedRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300); // slight delay for layout settle
+    }
+  }, [unclaimedCount]);
 
   return (
     <div className="space-y-5 tab-content-enter">
@@ -283,6 +295,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           return (
             <div
               key={r.level}
+              ref={canClaim ? (el) => { if (el && !firstUnclaimedRef.current) firstUnclaimedRef.current = el; } : undefined}
               className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
               style={{
                 background: isMilestone

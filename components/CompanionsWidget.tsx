@@ -796,9 +796,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     </span>
                   </Tip>
                   {expeditionData.bondMultiplier > 1 && (
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
-                      Bond x{expeditionData.bondMultiplier.toFixed(1)}
-                    </span>
+                    <TipCustom title="Bond Multiplier" accent={cColor.accent} body={<p className="text-xs">Your companion&apos;s bond level boosts expedition gold rewards by <strong>{Math.round((expeditionData.bondMultiplier - 1) * 100)}%</strong>. Increase bond level for bigger bonuses.</p>}>
+                      <span className="text-xs font-mono cursor-help px-1.5 py-0.5 rounded" style={{ color: cColor.accent, background: `${cColor.accent}12`, border: `1px solid ${cColor.accent}25` }}>
+                        Bond x{expeditionData.bondMultiplier.toFixed(1)}
+                      </span>
+                    </TipCustom>
                   )}
                 </div>
 

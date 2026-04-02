@@ -229,12 +229,23 @@ export function useQuestActions({
         body: JSON.stringify({ userId: playerName }),
       });
       if (r.ok) {
+        const data = await r.json().catch(() => ({}));
+        if (data.allDone) {
+          addToast({ type: "flavor", message: "Co-op quest complete! All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
+        } else {
+          addToast({ type: "flavor", message: "Your part is done! Waiting for partners...", icon: "/images/icons/cat-coop.png" });
+        }
+        if (data.newAchievements?.length > 0) {
+          for (const ach of data.newAchievements) {
+            addToast({ type: "achievement", achievement: ach });
+          }
+        }
         await refresh();
       } else {
         addToast({ type: "error", message: "Failed to complete co-op quest" });
       }
     } catch {
-      addToast({ type: "error", message: "Network error — could not complete co-op quest" });
+      addToast({ type: "error", message: "Network error — could not complete co-op quest", onRetry: () => handleCoopComplete(questId) });
     } finally {
       setLoadingAction(null);
     }

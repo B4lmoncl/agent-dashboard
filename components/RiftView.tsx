@@ -92,8 +92,7 @@ const TYPE_ICON_IMAGES: Record<string, string> = { personal: "/images/icons/cat-
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: any) => void }) {
+export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [tiers, setTiers] = useState<Record<string, RiftTier>>({});
   const [activeRift, setActiveRift] = useState<ActiveRift | null>(null);
