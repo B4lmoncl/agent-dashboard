@@ -305,7 +305,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                   ? `1px solid ${isReached ? `${config.seasonAccent}35` : "rgba(255,255,255,0.06)"}`
                   : "1px solid transparent",
                 borderLeft: isMilestone && isReached ? `3px solid ${config.seasonAccent}60` : undefined,
-                opacity: isReached ? 1 : 0.4,
+                opacity: isClaimed ? 0.55 : isReached ? 1 : 0.4,
                 boxShadow: isMilestone && canClaim ? `0 0 12px ${config.seasonAccent}10` : "none",
               }}
             >
