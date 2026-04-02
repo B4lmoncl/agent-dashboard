@@ -47,6 +47,7 @@ interface RitualChamberProps {
 export default function RitualChamber({ rituals, setRituals, setRewardCelebration }: RitualChamberProps) {
   const { playerName, reviewApiKey, refresh, loggedInUser } = useDashboard();
   const isResting = !!loggedInUser?.tavernRest?.active;
+  const [loading, setLoading] = useState(true);
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
   const [ritualNameError, setRitualNameError] = useState(false);
@@ -78,6 +79,11 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   }, [playerName]);
 
   useEffect(() => { fetchHabits(); }, [fetchHabits]);
+
+  // Clear loading once rituals prop arrives or when no player is logged in
+  useEffect(() => {
+    if (!playerName || rituals.length > 0) setLoading(false);
+  }, [playerName, rituals.length]);
 
   const createHabit = async () => {
     if (!newHabitTitle.trim() || !reviewApiKey || !playerName) return;
@@ -299,6 +305,16 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
       </div>
     );
   };
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>

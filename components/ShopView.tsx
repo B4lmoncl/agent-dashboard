@@ -78,6 +78,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   const [goldBuying, setGoldBuying] = useState<string | null>(null);
   const [currencyMsg, setCurrencyMsg] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [activeCurrencyTab, setActiveCurrencyTab] = useState<string>("sternentaler");
+  const [loading, setLoading] = useState(true);
 
   const fetchCurrencyShop = useCallback(async () => {
     try {
@@ -91,9 +92,16 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
         setCurrencyBalances(d.currencies || {});
       }
     } catch { /* ignore */ }
+    setLoading(false);
   }, [playerName]);
 
-  useEffect(() => { if (loggedIn) fetchCurrencyShop(); }, [loggedIn, fetchCurrencyShop]);
+  useEffect(() => {
+    if (loggedIn) {
+      fetchCurrencyShop();
+    } else {
+      setLoading(false);
+    }
+  }, [loggedIn, fetchCurrencyShop]);
 
   const buyCurrencyItem = async (itemId: string, shopType: string) => {
     if (!user || currencyBuying) return;
@@ -120,6 +128,16 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
     setCurrencyBuying(null);
     setTimeout(() => setCurrencyMsg(null), 3000);
   };
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   if (!loggedIn || !user) {
     return (

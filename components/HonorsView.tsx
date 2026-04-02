@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useEffect, useRef } from "react";
+import { useMemo, useEffect, useRef, useState } from "react";
 import type { AchievementDef } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -33,6 +33,11 @@ function conditionToText(cond: Record<string, unknown> | undefined): string {
 
 export default function HonorsView({ catalogue, highlightedAchievementId, onHighlightClear }: { catalogue: AchievementDef[]; highlightedAchievementId?: string | null; onHighlightClear?: () => void }) {
   const highlightRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (catalogue.length > 0) setLoading(false);
+  }, [catalogue.length]);
 
   useEffect(() => {
     if (highlightedAchievementId && highlightRef.current) {
@@ -72,6 +77,16 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
     if (pct <= 50) return { label: "Uncommon", color: "#3b82f6" };
     return { label: "Common", color: "#22c55e" };
   };
+
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div key={i} className="skeleton-card h-20 rounded-lg" />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6 tab-content-enter">
