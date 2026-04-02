@@ -181,6 +181,7 @@ export interface User {
   companionExpedition?: { tier: string; startedAt: string; dueAt: string } | null;
   activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number }[];
   _restedXpPool?: number;
+  _dailyCompletions?: { date: string; count: number };
 }
 
 export interface CampaignQuest {
