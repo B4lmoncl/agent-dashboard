@@ -2603,7 +2603,7 @@ export default function Dashboard() {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div style={{ width: 100, height: 100, borderRadius: "50%", border: "2px solid rgba(255,215,0,0.6)", animation: "levelup-ring 2s ease-out infinite" }} />
             </div>
-            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "auto", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} />
+            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "auto", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <div className="text-xs font-bold uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(255,215,0,0.6)" }}>Level Up!</div>
             <div className="levelup-title text-3xl font-black mb-1" style={{ color: "#FFD700" }}>Level {levelUpCelebration.level}</div>
             <div className="text-sm font-semibold mb-5" style={{ color: "rgba(255,215,0,0.7)" }}>{levelUpCelebration.title}</div>

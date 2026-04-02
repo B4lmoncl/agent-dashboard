@@ -553,17 +553,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           ))}
                         </div>
                       )}
-                      <button onClick={handlePet} disabled={petting || (petsToday !== null && petsToday >= 2)} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
-                        title={petting ? "Petting in progress…" : (petsToday !== null && petsToday >= 2) ? "Daily belly rub limit reached (2/2)" : "Give a belly rub (+0.5 Bond XP)"}
+                      <button onClick={handlePet} disabled={petting} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
+                        title={petting ? "Petting in progress…" : (petsToday !== null && petsToday >= 2) ? "Your companion purrs contentedly (no bond XP — limit 2/day)" : "Give a belly rub (+0.5 Bond XP)"}
                         style={{
                         background: heartAnim ? "linear-gradient(135deg, rgba(255,107,157,0.3), rgba(255,107,157,0.15))" : "linear-gradient(135deg, rgba(255,107,157,0.12), rgba(255,107,157,0.06))",
                         color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)",
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
-                        cursor: (petting || (petsToday !== null && petsToday >= 2)) ? "not-allowed" : "pointer",
-                        opacity: (petsToday !== null && petsToday >= 2) ? 0.4 : 1,
+                        cursor: petting ? "not-allowed" : "pointer",
                       }}>
-                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.{petsToday != null && <> Today: {petsToday}/2</>}</p>}>
-                          <span>{petsToday !== null && petsToday >= 2 ? "Tomorrow!" : petting ? "..." : `Pet${petsToday ? ` (${2 - petsToday})` : ""}`}</span>
+                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.{petsToday != null && <> Today: {petsToday}/2</>}{petsToday !== null && petsToday >= 2 && <br />}<em>{petsToday !== null && petsToday >= 2 ? "You can still pet — your companion loves it!" : ""}</em></p>}>
+                          <span>{petting ? "..." : `Pet${petsToday != null && petsToday < 2 && petsToday > 0 ? ` (${2 - petsToday})` : ""}`}</span>
                         </TipCustom>
                       </button>
                       <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", whiteSpace: "nowrap" }}>
