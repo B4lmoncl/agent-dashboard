@@ -489,7 +489,7 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
                     {cfg.label}
                   </span>
                   {result.isDuplicate && (
-                    <span className="text-xs font-mono inline-flex items-center gap-1" style={{ color: "#a78bfa" }}>DUP +{result.duplicateRefund} <img src="/images/icons/currency-runensplitter.png" width={14} height={14} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span>
+                    <span className="text-xs font-mono inline-flex items-center gap-1" style={{ color: "#a78bfa" }}>DUP +{result.duplicateRefund} <img src="/images/icons/currency-runensplitter.png" alt="" width={14} height={14} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span>
                   )}
                   {result.isNew && (
                     <div className="absolute -top-1.5 -right-1.5 text-xs font-bold px-1.5 py-0.5 rounded-full"
