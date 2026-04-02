@@ -528,8 +528,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <Tip k="bond_level"><span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.65)`, cursor: "help" }}>Bond Lv.{bondLevel} — {bondTitle}</span></Tip>
                       {bondXpBonus > 0 && <span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.45)` }}>+{bondXpBonus}% XP</span>}
                     </div>
-                    <div className="mt-1 rounded-full overflow-hidden" style={{ height: 4, background: `rgba(${cColor.accentRgb},0.1)` }}>
-                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${bondProgress * 100}%`, background: `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)` }} />
+                    <div className="progress-bar-diablo mt-1" style={{ height: 3, borderRadius: 2 }}>
+                      <div className="progress-bar-diablo-fill" style={{ width: `${bondProgress * 100}%`, background: `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)` }} />
                     </div>
                   </div>
                   {playerName && apiKey && (

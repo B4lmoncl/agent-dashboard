@@ -5,7 +5,7 @@ import { SFX } from "@/lib/sounds";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon";
+export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon" | "levelUp";
 
 export interface RewardCelebrationData {
   type: RewardType;
@@ -208,6 +208,20 @@ const THEMES: Record<RewardType, ThemeConfig> = {
       "A dungeon well plundered!",
     ],
   },
+  levelUp: {
+    accent: "#fbbf24",
+    accentRgb: "251,191,36",
+    gradientTop: "#1a1400",
+    label: "Level Up!",
+    icon: "★",
+    flavorMessages: [
+      "A new level of power unlocked!",
+      "The Hall of Records grows!",
+      "Greater strength, greater purpose.",
+      "Ascension. The forge burns hotter.",
+      "Power, earned through deeds.",
+    ],
+  },
 };
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -228,7 +242,8 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
 
   // Play reward sound on mount
   useEffect(() => {
-    if (data.type === "ritual") SFX.ritualComplete();
+    if (data.type === "levelUp") SFX.levelUp();
+    else if (data.type === "ritual") SFX.ritualComplete();
     else if (data.type === "vow") SFX.ritualComplete();
     else SFX.questComplete();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
