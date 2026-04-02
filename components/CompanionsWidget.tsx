@@ -123,6 +123,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     bondMultiplier: number;
   } | null>(null);
   const [expeditionLoading, setExpeditionLoading] = useState(false);
+  const [expeditionInitialLoading, setExpeditionInitialLoading] = useState(true);
   const [expeditionTimer, setExpeditionTimer] = useState<string | null>(null);
   const [expeditionTimerProgress, setExpeditionTimerProgress] = useState(0);
   const [expeditionSending, setExpeditionSending] = useState<string | null>(null);
@@ -132,7 +133,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [lastExpeditionTier, setLastExpeditionTier] = useState<string | null>(null);
 
   const fetchExpeditions = useCallback(async () => {
-    if (!playerName || !apiKey || !user?.companion) return;
+    if (!playerName || !apiKey || !user?.companion) { setExpeditionInitialLoading(false); return; }
     try {
       const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/expeditions`, {
         headers: { ...getAuthHeaders(apiKey) },
@@ -141,7 +142,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         const data = await r.json();
         setExpeditionData(data);
       }
-    } catch { /* silent */ }
+    } catch { /* silent */ } finally {
+      setExpeditionInitialLoading(false);
+    }
   }, [playerName, apiKey, user?.companion]);
 
   // Fetch expedition data on mount and when companion changes
@@ -768,8 +771,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               </p>
             )}
 
+            {/* ─── Companion Expeditions skeleton ─── */}
+            {user?.companion && playerName && apiKey && expeditionInitialLoading && (
+              <div style={{ background: "#0e1018", border: "1px solid #1a1c28", borderRadius: 2, padding: "8px 10px", marginTop: 10 }}>
+                <div className="skeleton-pulse h-3 w-32 rounded mb-3" style={{ background: "rgba(255,255,255,0.06)" }} />
+                <div className="skeleton-pulse h-12 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+              </div>
+            )}
+
             {/* ─── Companion Expeditions ─── */}
-            {user?.companion && playerName && apiKey && expeditionData && (
+            {user?.companion && playerName && apiKey && !expeditionInitialLoading && expeditionData && (
               <div className="tab-content-enter" style={{
                 background: "#0e1018",
                 border: "1px solid #1a1c28",

@@ -258,8 +258,18 @@ export default function TalentTreeView({
 
   if (loading) {
     return (
-      <div className="tab-content-enter flex items-center justify-center py-20">
-        <div className="text-sm text-w30">Lade Talent-Baum...</div>
+      <div className="tab-content-enter p-4 space-y-4">
+        {/* Header skeleton */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="skeleton-pulse h-5 w-36 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
+          <div className="skeleton-pulse h-4 w-24 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+        </div>
+        {/* SVG circle skeleton */}
+        <div className="flex justify-center">
+          <div className="skeleton-pulse rounded-full" style={{ width: 320, height: 320, background: "rgba(255,255,255,0.04)" }} />
+        </div>
+        {/* Node detail panel skeleton */}
+        <div className="skeleton-pulse rounded-lg h-24" style={{ background: "rgba(255,255,255,0.04)" }} />
       </div>
     );
   }
