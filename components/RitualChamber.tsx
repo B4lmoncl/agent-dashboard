@@ -69,6 +69,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [habitsOpen, setHabitsOpen] = useState(false);
   const [newHabitTitle, setNewHabitTitle] = useState("");
   const [habitScoring, setHabitScoring] = useState<string | null>(null);
+  const [confirmDeleteHabitId, setConfirmDeleteHabitId] = useState<string | null>(null);
 
   const fetchHabits = useCallback(async () => {
     if (!playerName) return;
@@ -438,7 +439,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: habitScoring === h.id ? "not-allowed" : "pointer" }}
                       >-</button>
                       <button
-                        onClick={() => { if (window.confirm("Delete this habit? Score history will be lost.")) deleteHabit(h.id); }}
+                        onClick={() => setConfirmDeleteHabitId(h.id)}
                         title="Delete habit (permanent)"
                         className="text-xs w-7 h-7 rounded flex items-center justify-center"
                         style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
@@ -741,6 +742,36 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           </ModalPortal>
         );
       })()}
+
+      {/* Delete Habit Confirmation Modal */}
+      {confirmDeleteHabitId && (
+        <div
+          className="fixed inset-0 z-[150] flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.7)" }}
+          onClick={() => setConfirmDeleteHabitId(null)}
+        >
+          <div
+            className="rounded-xl p-5 max-w-sm w-full mx-4"
+            style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            <p className="text-sm font-bold mb-1" style={{ color: "#e8e8e8" }}>Habit löschen?</p>
+            <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>Die Score-Historie geht dauerhaft verloren.</p>
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => setConfirmDeleteHabitId(null)}
+                className="text-xs px-4 py-2 rounded-lg"
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+              >Abbrechen</button>
+              <button
+                onClick={() => { deleteHabit(confirmDeleteHabitId); setConfirmDeleteHabitId(null); }}
+                className="text-xs px-4 py-2 rounded-lg font-bold"
+                style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+              >Löschen</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
