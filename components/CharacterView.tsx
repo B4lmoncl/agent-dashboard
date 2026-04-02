@@ -598,16 +598,17 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
               const itemAny = item as Record<string, unknown>;
               const affixes = (itemAny.affixes && typeof itemAny.affixes === "object") ? itemAny.affixes as { primary?: { pool: { stat: string; min: number; max: number }[] }; minor?: { pool: { stat: string; min: number; max: number }[] } } : null;
               const rangeMap: Record<string, { min: number; max: number }> = {};
+              const primaryStats = new Set<string>();
+              const minorStats = new Set<string>();
               if (affixes) {
-                for (const p of [...(affixes.primary?.pool || []), ...(affixes.minor?.pool || [])]) {
-                  rangeMap[p.stat] = { min: p.min, max: p.max };
-                }
+                for (const p of (affixes.primary?.pool || [])) { rangeMap[p.stat] = { min: p.min, max: p.max }; primaryStats.add(p.stat); }
+                for (const p of (affixes.minor?.pool || [])) { rangeMap[p.stat] = { min: p.min, max: p.max }; minorStats.add(p.stat); }
               }
-              return [...allStatKeys].map(stat => {
+              const showDiff = equippedItem && equippedItem.id !== item.id;
+              const renderStat = (stat: string) => {
                 const val = (item.stats?.[stat] as number) || 0;
                 const eqVal = (eqStats[stat] as number) || 0;
                 const diff = val - eqVal;
-                const showDiff = equippedItem && equippedItem.id !== item.id;
                 const range = rangeMap[stat];
                 return (
                   <div key={stat} className="flex items-center justify-between text-xs">
@@ -625,7 +626,19 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
                     </span>
                   </div>
                 );
-              });
+              };
+              // D3-style: separate primary and minor affixes with section headers
+              const hasSections = primaryStats.size > 0 || minorStats.size > 0;
+              const primaryEntries = [...allStatKeys].filter(s => primaryStats.has(s));
+              const minorEntries = [...allStatKeys].filter(s => minorStats.has(s));
+              const otherEntries = [...allStatKeys].filter(s => !primaryStats.has(s) && !minorStats.has(s));
+              return (<>
+                {hasSections && primaryEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.25)", marginBottom: 2 }}>Primary</p>}
+                {primaryEntries.map(renderStat)}
+                {hasSections && minorEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.2)", marginTop: 4, marginBottom: 2 }}>Minor</p>}
+                {minorEntries.map(renderStat)}
+                {otherEntries.map(renderStat)}
+              </>);
             })()}
           </div>
         )}
@@ -786,6 +799,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
   if (!item) {
     return (
       <div
+        className="cv-auto"
         onDragOver={(e) => { e.preventDefault(); onDragOver(idx); }}
         onDrop={(e) => { e.preventDefault(); onDrop(); }}
         style={{
@@ -829,7 +843,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
-        className={(item as Record<string, unknown>).isUnique ? "legendary-shimmer" : item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
+        className={`cv-auto${(item as Record<string, unknown>).isUnique ? " legendary-shimmer" : item.rarity === "legendary" ? " legendary-shimmer" : item.rarity === "epic" ? " epic-glow" : ""}`}
         style={{
           width: 56,
           height: 56,
@@ -1002,6 +1016,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   // Scroll lock + ESC for title and collection modals
   useModalBehavior(titlesOpen, useCallback(() => setTitlesOpen(false), []));
   useModalBehavior(collectionOpen, useCallback(() => setCollectionOpen(false), []));
+  useModalBehavior(!!confirmAction, useCallback(() => { setConfirmAction(null); setConfirmMessage(""); }, []));
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -2195,7 +2210,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <button
                               className="text-xs px-2 py-1 rounded"
                               style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: titleEquipping ? "not-allowed" : "pointer" }}
-                              title="Unequip title"
+                              title={titleEquipping ? "Action in progress..." : "Unequip title"}
                               disabled={!!titleEquipping}
                               onClick={() => handleEquip(null)}
                             >
@@ -2246,7 +2261,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 className="w-full text-left rounded-lg flex items-stretch"
                                 style={{
                                   opacity: isEarned ? 1 : 0.4,
-                                  cursor: isEarned ? (isEquipped ? "default" : "pointer") : "not-allowed",
+                                  cursor: !isEarned || titleEquipping ? "not-allowed" : isEquipped ? "default" : "pointer",
                                   border: isEquipped ? `1px solid ${c}60` : "1px solid rgba(255,255,255,0.06)",
                                   background: isEquipped
                                     ? `linear-gradient(90deg, ${c}14 0%, transparent 100%)`
@@ -2725,10 +2740,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 if (sourceDisplayNames[source]) return sourceDisplayNames[source];
                 const [type, id] = source.split(":");
                 const name = (id || "").split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-                if (type === "world_boss") return `\ud83d\udc09 ${name}`;
-                if (type === "dungeon") return `\ud83c\udff0 ${name}`;
-                if (type === "gacha") return `\u2728 ${name}`;
-                if (type === "rift") return `\ud83c\udf00 ${name}`;
+                if (type === "world_boss") return `◆ ${name}`;
+                if (type === "dungeon") return `▣ ${name}`;
+                if (type === "gacha") return `★ ${name}`;
+                if (type === "rift") return `◇ ${name}`;
                 return source;
               };
               const getSourceLabel = (source: string) => {
