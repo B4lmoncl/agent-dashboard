@@ -532,11 +532,22 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     ))}
                   </div>
                 )}
-                {onCd && tier.cooldownEndsAt && (
-                  <p className="text-xs text-center" style={{ color: "#ef4444" }}>
-                    Cooldown: {timeLeft(new Date(tier.cooldownEndsAt).getTime() - Date.now())} remaining
-                  </p>
-                )}
+                {onCd && tier.cooldownEndsAt && (() => {
+                  const cdEnd = new Date(tier.cooldownEndsAt).getTime();
+                  const remaining = cdEnd - Date.now();
+                  const totalCd = tier.failCooldownDays * 86400000;
+                  const pct = totalCd > 0 ? Math.max(0, Math.min(100, ((totalCd - remaining) / totalCd) * 100)) : 0;
+                  return (
+                    <div className="space-y-1">
+                      <p className="text-xs text-center" style={{ color: "#ef4444" }}>
+                        Cooldown: {timeLeft(remaining)} remaining
+                      </p>
+                      <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(239,68,68,0.08)" }}>
+                        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: "rgba(239,68,68,0.4)" }} />
+                      </div>
+                    </div>
+                  );
+                })()}
                 <button
                   onClick={() => canEnter && enterRift(id)}
                   disabled={!canEnter || actionLoading}

@@ -278,10 +278,10 @@ function BannerPreviewCard({
 
         {/* Enter prompt */}
         <div className="flex items-center gap-2 pt-2">
-          <span className="text-xs font-semibold uppercase tracking-wider group-hover:tracking-widest transition-all duration-500" style={{ color: `${accentColor}99` }}>
+          <span className="text-xs font-bold uppercase tracking-wider group-hover:tracking-widest transition-all duration-500" style={{ color: `${accentColor}cc`, textShadow: `0 0 10px ${accentColor}30` }}>
             Enter the Chamber
           </span>
-          <span className="text-xs transition-transform duration-300 group-hover:translate-x-1" style={{ color: `${accentColor}60` }}>&rarr;</span>
+          <span className="text-xs font-bold transition-transform duration-300 group-hover:translate-x-1" style={{ color: `${accentColor}88` }}>&rarr;</span>
         </div>
       </div>
     </button>
