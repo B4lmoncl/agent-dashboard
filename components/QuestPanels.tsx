@@ -52,6 +52,7 @@ const ANTI_RITUAL_MILESTONES = [
 export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?: (data: { type: "vow"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string; rarityColor?: string } | null; streak?: number; pactBonus?: { xp: number; gold: number } | null }) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [antiRituals, setAntiRituals] = useState<AntiRitual[]>([]);
+  const [vowsLoading, setVowsLoading] = useState(true);
   const [createOpen, setCreateOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newVowCategory, setNewVowCategory] = useState("personal");
@@ -82,7 +83,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
   }, [createOpen]);
 
   const loadAntiRituals = useCallback(async () => {
-    if (!playerName) return;
+    if (!playerName) { setVowsLoading(false); return; }
     try {
       const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}&type=anti`, { cache: "no-store" });
       if (r.ok) {
@@ -102,7 +103,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
           status: r.status ?? "active",
         })));
       }
-    } catch { /* ignore */ }
+    } catch { /* ignore */ } finally {
+      setVowsLoading(false);
+    }
   }, [playerName]);
 
   useEffect(() => { loadAntiRituals(); }, [loadAntiRituals]);
@@ -366,7 +369,13 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               </button>
             )}
           </div>
-          {antiRituals.length === 0 ? (
+          {vowsLoading ? (
+            <div className="space-y-2">
+              {[0, 1].map(i => (
+                <div key={i} className="skeleton-pulse rounded-xl" style={{ height: 64, background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.1)" }} />
+              ))}
+            </div>
+          ) : antiRituals.length === 0 ? (
             <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-2xl mb-2">×</p>
               <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>

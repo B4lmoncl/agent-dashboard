@@ -737,7 +737,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTransmuteResult(data.message || data.error || "Something went wrong. Try again.");
       setSelectedTransmute([]);
       setTimeout(() => setTransmuteResult(null), 5000);
-      if (data.created) {
+      if (r.ok && data.created) {
         setCraftedItemCelebration({
           name: data.created.name,
           rarity: data.created.rarity || "legendary",
@@ -749,8 +749,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         });
         setTimeout(() => setCraftedItemCelebration(null), 4000);
       }
-      fetchData();
-      onRefresh?.();
+      if (r.ok) { fetchData(); onRefresh?.(); }
     } catch (err) { console.error('[forge] transmute error:', err); setTransmuteResult("Network error"); }
   };
 
