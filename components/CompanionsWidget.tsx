@@ -562,8 +562,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         cursor: (petting || (petsToday !== null && petsToday >= 2)) ? "not-allowed" : "pointer",
                         opacity: (petsToday !== null && petsToday >= 2) ? 0.4 : 1,
                       }}>
-                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
-                          <span>Pet</span>
+                        <TipCustom title="Pet Companion" icon="●" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.{petsToday != null && <> Today: {petsToday}/2</>}</p>}>
+                          <span>{petsToday !== null && petsToday >= 2 ? "Tomorrow!" : petting ? "..." : `Pet${petsToday ? ` (${2 - petsToday})` : ""}`}</span>
                         </TipCustom>
                       </button>
                       <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", whiteSpace: "nowrap" }}>
