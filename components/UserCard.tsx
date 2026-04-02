@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import type { User, ClassDef } from "@/app/types";
 import { getUserLevel, getUserXpProgress, GUILD_LEVELS } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -78,7 +79,7 @@ function SmartIcon({ src, alt, size = 16, style }: { src: string; alt?: string; 
 
 // ─── UserCard Component ──────────────────────────────────────────────────────
 
-export function UserCard({ user, classes = [], onClick, onNavigate }: { user: User; classes?: ClassDef[]; onClick?: () => void; onNavigate?: (view: string) => void }) {
+export const UserCard = memo(function UserCard({ user, classes = [], onClick, onNavigate }: { user: User; classes?: ClassDef[]; onClick?: () => void; onNavigate?: (view: string) => void }) {
   const xp = user.xp ?? 0;
   const lvl = getUserLevel(xp);
   const progress = getUserXpProgress(xp);
@@ -380,4 +381,4 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
       )}
     </div>
   );
-}
+});
