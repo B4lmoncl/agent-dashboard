@@ -796,6 +796,17 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const proposeTrade = async () => {
     if (!newTradeTarget.trim()) return;
     setError(null);
+
+    // FI-052: Validate selected items still exist in inventory before sending
+    if (newTradeItems.length > 0) {
+      const inventoryIds = new Set((loggedInUser?.inventory || []).map(item => item.id));
+      const missingItems = newTradeItems.filter(id => !inventoryIds.has(id));
+      if (missingItems.length > 0) {
+        setError(`${missingItems.length === 1 ? "An item" : `${missingItems.length} items`} you selected no longer exist${missingItems.length === 1 ? "s" : ""} in your inventory. Please refresh and try again.`);
+        return;
+      }
+    }
+
     setActionLoading(true);
     try {
       const r = await fetch("/api/social/trade/propose", {
@@ -1045,11 +1056,21 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
                       <span className="text-xs text-w15">{timeAgo(round.at)}</span>
                     </div>
                     {round.message && <p className="text-xs text-w40 italic">&ldquo;{round.message}&rdquo;</p>}
-                    <div className="flex gap-3 mt-1 text-xs text-w20">
+                    <div className="flex gap-3 mt-1 text-xs text-w20 flex-wrap">
                       {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: {round.initiatorOffer.gold}g</span>}
                       {round.recipientOffer.gold > 0 && <span>{t.recipientName}: {round.recipientOffer.gold}g</span>}
-                      {round.initiatorOffer.items.length > 0 && <span>+{round.initiatorOffer.items.length} items</span>}
-                      {round.recipientOffer.items.length > 0 && <span>+{round.recipientOffer.items.length} items</span>}
+                      {round.initiatorOffer.items.length > 0 && (() => {
+                        const names = round.initiatorOffer.items.map(it => it.name);
+                        const preview = names.slice(0, 2).join(", ");
+                        const overflow = names.length - 2;
+                        return <span>{preview}{overflow > 0 ? ` +${overflow} more` : ""}</span>;
+                      })()}
+                      {round.recipientOffer.items.length > 0 && (() => {
+                        const names = round.recipientOffer.items.map(it => it.name);
+                        const preview = names.slice(0, 2).join(", ");
+                        const overflow = names.length - 2;
+                        return <span>{preview}{overflow > 0 ? ` +${overflow} more` : ""}</span>;
+                      })()}
                     </div>
                   </div>
                 );
