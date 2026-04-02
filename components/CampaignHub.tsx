@@ -123,7 +123,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 
   // ── Expanded campaign timeline view ──────────────────────────────────────────
   if (expandedId && expandedCampaign) {
-    const cq = expandedCampaign.quests ?? [];
+    const cq = [...(expandedCampaign.quests ?? [])].sort((a, b) => (a.chainIndex || 0) - (b.chainIndex || 0));
     const firstIncompleteIdx = cq.findIndex(q => q.status !== "completed");
     const completedCount = expandedCampaign.progress?.completed ?? 0;
     const totalCount = expandedCampaign.progress?.total ?? cq.length;

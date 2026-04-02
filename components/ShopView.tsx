@@ -75,6 +75,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   const [currencyItems, setCurrencyItems] = useState<Record<string, CurrencyShopItem[]>>({});
   const [currencyBalances, setCurrencyBalances] = useState<Record<string, number>>({});
   const [currencyBuying, setCurrencyBuying] = useState<string | null>(null);
+  const [goldBuying, setGoldBuying] = useState<string | null>(null);
   const [currencyMsg, setCurrencyMsg] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [activeCurrencyTab, setActiveCurrencyTab] = useState<string>("sternentaler");
 
@@ -172,18 +173,19 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                     })()}
                   </div>
                   <button
-                    onClick={() => canAfford && onBuy(user.id, item.id)}
-                    disabled={!canAfford}
+                    onClick={() => { if (canAfford && !goldBuying) { setGoldBuying(item.id); Promise.resolve(onBuy(user.id, item.id)).finally(() => setGoldBuying(null)); } }}
+                    disabled={!canAfford || goldBuying === item.id}
                     className="shop-buy-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
                     title={canAfford ? `Buy for ${item.cost} gold` : `Insufficient gold (need ${item.cost}, have ${gold})`}
                     style={{
-                      background: canAfford ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.04)",
-                      color: canAfford ? "#a78bfa" : "rgba(255,255,255,0.2)",
-                      border: `1px solid ${canAfford ? "rgba(139,92,246,0.4)" : "rgba(255,255,255,0.08)"}`,
-                      cursor: canAfford ? "pointer" : "not-allowed",
+                      background: canAfford && goldBuying !== item.id ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.04)",
+                      color: canAfford && goldBuying !== item.id ? "#a78bfa" : "rgba(255,255,255,0.2)",
+                      border: `1px solid ${canAfford && goldBuying !== item.id ? "rgba(139,92,246,0.4)" : "rgba(255,255,255,0.08)"}`,
+                      cursor: canAfford && goldBuying !== item.id ? "pointer" : "not-allowed",
+                      opacity: goldBuying === item.id ? 0.5 : 1,
                     }}
                   >
-                    <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}
+                    {goldBuying === item.id ? "..." : <><img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}</>}
                   </button>
                 </div>
               );
@@ -211,18 +213,19 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{item.desc}</p>
                 </div>
                 <button
-                  onClick={() => canAfford && onBuy(user.id, item.id)}
-                  disabled={!canAfford}
+                  onClick={() => { if (canAfford && !goldBuying) { setGoldBuying(item.id); Promise.resolve(onBuy(user.id, item.id)).finally(() => setGoldBuying(null)); } }}
+                  disabled={!canAfford || goldBuying === item.id}
                   className="shop-buy-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
                   title={canAfford ? `Buy for ${item.cost} gold` : `Insufficient gold (need ${item.cost}, have ${gold})`}
                   style={{
-                    background: canAfford ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.04)",
-                    color: canAfford ? "#f59e0b" : "rgba(255,255,255,0.2)",
-                    border: `1px solid ${canAfford ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
-                    cursor: canAfford ? "pointer" : "not-allowed",
+                    background: canAfford && goldBuying !== item.id ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.04)",
+                    color: canAfford && goldBuying !== item.id ? "#f59e0b" : "rgba(255,255,255,0.2)",
+                    border: `1px solid ${canAfford && goldBuying !== item.id ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
+                    cursor: canAfford && goldBuying !== item.id ? "pointer" : "not-allowed",
+                    opacity: goldBuying === item.id ? 0.5 : 1,
                   }}
                 >
-                  <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}
+                  {goldBuying === item.id ? "..." : <><img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}</>}
                 </button>
               </div>
             );

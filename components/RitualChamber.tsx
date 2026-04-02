@@ -57,6 +57,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [newRitualBloodPact, setNewRitualBloodPact] = useState(false);
   const [newRitualDifficulty, setNewRitualDifficulty] = useState("medium");
   const [deleteRitualConfirmId, setDeleteRitualConfirmId] = useState<string | null>(null);
+  const [completingRitualId, setCompletingRitualId] = useState<string | null>(null);
   const [extendRitualId, setExtendRitualId] = useState<string | null>(null);
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
   const [recommitRitualId, setRecommitRitualId] = useState<string | null>(null);
@@ -237,9 +238,10 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             ) : (
               <>
                 <button
-                  disabled={doneToday || !reviewApiKey}
+                  disabled={doneToday || !reviewApiKey || completingRitualId === ritual.id}
                   onClick={async () => {
-                    if (!reviewApiKey || !playerName) return;
+                    if (!reviewApiKey || !playerName || completingRitualId) return;
+                    setCompletingRitualId(ritual.id);
                     try {
                       const r = await fetch(`/api/rituals/${ritual.id}/complete`, {
                         method: 'POST',
@@ -262,18 +264,20 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         refresh();
                       }
                     } catch { /* network error — retry silently */ }
+                    setCompletingRitualId(null);
                   }}
                   className="text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all"
                   style={{
-                    background: doneToday ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.15)",
+                    background: doneToday ? "rgba(34,197,94,0.08)" : completingRitualId === ritual.id ? "rgba(167,139,250,0.08)" : "rgba(167,139,250,0.15)",
                     color: doneToday ? "rgba(34,197,94,0.5)" : "#a78bfa",
                     border: `1px solid ${doneToday ? "rgba(34,197,94,0.2)" : "rgba(167,139,250,0.3)"}`,
-                    cursor: doneToday ? 'default' : 'pointer',
+                    cursor: (doneToday || completingRitualId === ritual.id) ? 'not-allowed' : 'pointer',
+                    opacity: completingRitualId === ritual.id ? 0.5 : 1,
                   }}
                   onMouseEnter={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.28)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(167,139,250,0.2)"; } }}
                   onMouseLeave={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.15)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; } }}
                 >
-                  {doneToday ? "✓ Done" : "Check off"}
+                  {doneToday ? "✓ Done" : completingRitualId === ritual.id ? "..." : "Check off"}
                 </button>
                 {reviewApiKey && !ritual.bloodPact && (
                   <button

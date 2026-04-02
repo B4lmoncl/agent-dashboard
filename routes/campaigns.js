@@ -115,4 +115,34 @@ router.get('/api/agent/:name/quests', (req, res) => {
   res.json(active);
 });
 
+// POST /api/campaigns/:id/claim — claim campaign completion rewards
+router.post('/api/campaigns/:id/claim', requireApiKey, (req, res) => {
+  const campaign = state.campaigns.find(c => c.id === req.params.id);
+  if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+  if (campaign.status !== 'completed') return res.status(400).json({ error: 'Campaign not completed yet' });
+
+  const uid = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  if (!uid) return res.status(401).json({ error: 'Auth required' });
+
+  campaign.rewardsClaimed = campaign.rewardsClaimed || [];
+  if (campaign.rewardsClaimed.includes(uid)) {
+    return res.status(409).json({ error: 'Rewards already claimed' });
+  }
+
+  const rewards = campaign.rewards || {};
+  const u = state.users[uid];
+  if (u) {
+    const { awardCurrency, ensureUserCurrencies } = require('../lib/state');
+    ensureUserCurrencies(u);
+    if (rewards.gold) { u.currencies.gold = (u.currencies.gold || 0) + rewards.gold; u.gold = u.currencies.gold; }
+    if (rewards.xp) { u.xp = (u.xp || 0) + rewards.xp; }
+  }
+
+  campaign.rewardsClaimed.push(uid);
+  saveCampaigns();
+  const { saveUsers } = require('../lib/state');
+  saveUsers();
+  res.json({ ok: true, rewards, campaign: { id: campaign.id, status: campaign.status } });
+});
+
 module.exports = router;

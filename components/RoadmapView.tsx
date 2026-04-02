@@ -22,12 +22,14 @@ export function RoadmapView() {
   const [newStatus, setNewStatus] = useState("planned");
   const [newEta, setNewEta] = useState("");
   const [newCategory, setNewCategory] = useState("feature");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/roadmap", { signal: AbortSignal.timeout(2000) })
       .then(r => r.ok ? r.json() : [])
       .then(setItems)
-      .catch((err) => { console.error('Failed to fetch roadmap:', err); });
+      .catch((err) => { console.error('Failed to fetch roadmap:', err); })
+      .finally(() => setLoading(false));
   }, []);
 
   const handleAdd = async () => {
@@ -195,7 +197,10 @@ export function RoadmapView() {
         );
       })}
 
-      {items.length === 0 && (
+      {loading && items.length === 0 && (
+        <div className="space-y-3"><div className="skeleton-card h-16 rounded-lg" /><div className="skeleton-card h-16 rounded-lg" /><div className="skeleton-card h-16 rounded-lg" /></div>
+      )}
+      {!loading && items.length === 0 && (
         <div className="flex flex-col items-center py-12" style={{ color: "rgba(255,255,255,0.3)" }}>
           <span className="text-3xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>◇</span>
           <p className="text-sm font-medium mb-1">The road ahead is uncharted</p>
