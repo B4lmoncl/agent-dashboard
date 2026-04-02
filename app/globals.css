@@ -860,6 +860,25 @@ button[disabled] {
 }
 .floor-stardust { animation-name: floor-stardust-anim; }
 
+/* ─── Codex Discovery Reveal ──────────────────────────────────────────── */
+@keyframes discovery-reveal {
+  from { transform: scale(0.85) translateY(8px); opacity: 0; filter: brightness(1.3); }
+  to   { transform: scale(1) translateY(0); opacity: 1; filter: brightness(1); }
+}
+.discovery-reveal {
+  animation: discovery-reveal 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Milestone Claim Glow Pulse ─────────────────────────────────────── */
+@keyframes milestone-claim-glow {
+  0%   { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
+  30%  { box-shadow: 0 0 20px rgba(251,191,36,0.4), 0 0 40px rgba(251,191,36,0.1); }
+  100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
+}
+.milestone-claimed {
+  animation: milestone-claim-glow 0.8s ease-out;
+}
+
 /* ─── Skeleton Loading ──────────────────────────────────────────────────── */
 @keyframes skeleton-pulse {
   0%, 100% { opacity: 0.04; }

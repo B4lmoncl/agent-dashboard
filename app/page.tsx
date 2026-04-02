@@ -2224,7 +2224,7 @@ export default function Dashboard() {
 
         {/* ── RITUAL CHAMBER (standalone view) ── */}
         {dashView === "rituals" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} addToast={addToast} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── VOW SHRINE (standalone view) ── */}

@@ -241,7 +241,7 @@ export default function CodexView() {
           onClick={() => setSelectedEntry(null)}
         >
           <div
-            className="rounded-xl overflow-hidden w-full max-w-lg max-h-[80vh] overflow-y-auto tab-content-enter"
+            className="rounded-xl overflow-hidden w-full max-w-lg max-h-[80vh] overflow-y-auto discovery-reveal"
             style={{
               background: "#111318",
               border: `1px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}30`,

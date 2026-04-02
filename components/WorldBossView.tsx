@@ -786,12 +786,13 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   key={entry.playerId}
                   className="flex items-center gap-3 px-4 py-2.5"
                   style={{
-                    background: isPlayer ? "rgba(255,255,255,0.03)" : "transparent",
+                    background: isPlayer ? "rgba(255,255,255,0.03)" : i < 3 ? `${rankColor}06` : "transparent",
                     borderBottom: "1px solid rgba(255,255,255,0.03)",
+                    boxShadow: i === 0 ? `inset 0 0 20px ${rankColor}08` : "none",
                   }}
                 >
-                  <span className="text-xs font-bold font-mono w-6 text-right" style={{ color: rankColor }}>
-                    {i + 1}
+                  <span className="text-xs font-bold font-mono w-6 text-right" style={{ color: rankColor, textShadow: i < 3 ? `0 0 6px ${rankColor}60` : "none" }}>
+                    {i === 0 ? "★" : i === 1 ? "▲" : i === 2 ? "●" : i + 1}
                   </span>
                   <span className="flex-1 text-xs font-semibold truncate" style={{ color: isPlayer ? "#e8e8e8" : "rgba(255,255,255,0.5)" }}>
                     {entry.name}
