@@ -294,6 +294,20 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     return res.status(400).json({ error: 'Cannot complete quests while resting in The Hearth. Leave rest mode first.' });
   }
 
+  // Campaign sequential ordering: block if previous quest in campaign is not completed
+  const parentCampaign = state.campaigns.find(c => c.questIds.includes(quest.id));
+  if (parentCampaign) {
+    const idx = parentCampaign.questIds.indexOf(quest.id);
+    if (idx > 0) {
+      const prevQuestId = parentCampaign.questIds[idx - 1];
+      const prevQuest = state.questsById.get(prevQuestId);
+      if (prevQuest && prevQuest.status !== 'completed') {
+        questCompleteLock.release(agentKey);
+        return res.status(400).json({ error: 'Complete the previous campaign quest first', prevQuestId });
+      }
+    }
+  }
+
   // NPC quests: per-player completion (quest stays globally available for others)
   if (quest.npcGiverId && state.users[agentKey]) {
     const pp = getPlayerProgress(agentKey);
