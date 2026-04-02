@@ -543,6 +543,20 @@ export default function TodayDrawer({
       });
     }
 
+    // World Boss in active content (Lv15+) — also shown in urgent if active
+    if (worldBossActive && (playerLevel ?? 1) >= 15) {
+      content.push({
+        id: "world-boss-content",
+        icon: "/images/icons/ach-boss-slayer.png",
+        label: "World Boss Active",
+        done: false,
+        sub: "Deal damage now",
+        reward: "Unique drops",
+        tooltipKey: "world_boss",
+        onClick: () => { onNavigate("worldboss"); onClose(); },
+      });
+    }
+
     // Rift (Lv8+)
     if (riftActive && (playerLevel ?? 1) >= 8) {
       content.push({

@@ -817,6 +817,16 @@ export default function Dashboard() {
     }
   }, [currentPlayerLevel, dashView]);
 
+  // Redirect player-required views to questBoard when no player is logged in
+  useEffect(() => {
+    const playerRequiredViews = ["codex", "talents", "tome", "character"];
+    if (!playerName && playerRequiredViews.includes(dashView)) {
+      setDashViewRaw("questBoard");
+      const floor = getFloorForRoom("questBoard");
+      if (floor) setActiveFloor(floor.id);
+    }
+  }, [playerName, dashView]);
+
   const playerTypes = PLAYER_QUEST_TYPES;
   const playerActiveQuests = useMemo(() => quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === playerNameLower), [quests.inProgress, playerTypes, playerNameLower]);
   const playerCompletedQuests = useMemo(() => quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === playerNameLower), [quests.completed, playerTypes, playerNameLower]);
