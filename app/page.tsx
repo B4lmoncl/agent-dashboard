@@ -217,7 +217,7 @@ export default function Dashboard() {
     setDashView("honors");
     setHighlightedAchievementId(achievementId);
   }, [setDashView]);
-  const [, setCampaigns] = useState<Campaign[]>([]);
+  // campaigns + habits removed — were dead state (set every 30s, never read)
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
   });
@@ -253,7 +253,7 @@ export default function Dashboard() {
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
-  const [, setHabits] = useState<Habit[]>([]);
+  // habits state removed — was dead (set but never read)
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
   const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
@@ -498,9 +498,7 @@ export default function Dashboard() {
       const rawAchs = batch.achievements as AchievementDef[] | { achievements: AchievementDef[] } | undefined;
       const batchAchs = Array.isArray(rawAchs) ? rawAchs : rawAchs?.achievements;
       if (Array.isArray(batchAchs) && batchAchs.length > 0) setAchievementCatalogue(batchAchs);
-      setCampaigns(batch.campaigns || []);
       setRituals(batch.rituals || []);
-      setHabits(batch.habits || []);
       setFavorites(batch.favorites || []);
       setActiveNpcs(batch.activeNpcs || []);
       setApiLive(!!batch.apiLive);
@@ -541,10 +539,8 @@ export default function Dashboard() {
       setUsers(u);
       if (lb.length > 0) setLeaderboard(lb);
       if (ac.achievements.length > 0) setAchievementCatalogue(ac.achievements);
-      setCampaigns(camps);
       if (pName) {
         fetchRituals(pName).then(setRituals).catch(() => {});
-        fetchHabits(pName).then(setHabits).catch(() => {});
       }
       try { const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) }); setApiLive(r.ok); } catch { setApiLive(false); }
       try {
@@ -721,7 +717,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (dashView === "changelog" && changelog.length === 0 && !changelogLoading) {
       setChangelogLoading(true);
-      fetchChangelog().then(entries => { setChangelog(entries); setChangelogLoading(false); });
+      fetchChangelog().then(entries => { setChangelog(entries.length > 0 ? entries : [{ date: "—", commits: [] }] as ChangelogEntry[]); }).catch(() => { setChangelog([{ date: "error", commits: [] }] as ChangelogEntry[]); }).finally(() => setChangelogLoading(false));
     }
   }, [dashView, changelog.length, changelogLoading]);
 
@@ -729,7 +725,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (infoOverlayTab === "changelog" && infoOverlayOpen && changelog.length === 0 && !changelogLoading) {
       setChangelogLoading(true);
-      fetchChangelog().then(entries => { setChangelog(entries); setChangelogLoading(false); });
+      fetchChangelog().then(entries => { setChangelog(entries.length > 0 ? entries : [{ date: "—", commits: [] }] as ChangelogEntry[]); }).catch(() => { setChangelog([{ date: "error", commits: [] }] as ChangelogEntry[]); }).finally(() => setChangelogLoading(false));
     }
   }, [infoOverlayTab, infoOverlayOpen, changelog.length, changelogLoading]);
 
