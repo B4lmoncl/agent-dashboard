@@ -397,6 +397,9 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
               {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
               <span style={{ fontSize: "0.75rem", color: "rgba(179,157,219,0.6)" }}>{(quest.rewards?.xp != null && quest.rewards.xp > 0) ? quest.rewards.xp : ({ high: 30, medium: 20, low: 10 }[quest.priority] ?? 10)} XP</span>
               <span style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.6)" }}><img src="/images/icons/currency-gold.png" alt="" style={{width:14,height:14,display:"inline",verticalAlign:"middle",marginRight:2}} onError={e => { e.currentTarget.style.display = "none"; }} /> {(quest.rewards?.gold != null && quest.rewards.gold > 0) ? quest.rewards.gold : ({ high: 25, medium: 15, low: 9 }[quest.priority] ?? 9)}</span>
+              {quest.estimatedMinutes != null && quest.estimatedMinutes > 0 && (
+                <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.25)" }} title="Estimated time">~{quest.estimatedMinutes} min</span>
+              )}
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
             </div>
             <div className="flex items-center gap-1.5">

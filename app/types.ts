@@ -59,6 +59,7 @@ export interface Quest {
   flavorText?: string | null;
   chainIndex?: number | null;
   chainTotal?: number | null;
+  estimatedMinutes?: number | null;
 }
 
 export interface NpcQuestChainEntry {

@@ -56,7 +56,7 @@ interface Recipe {
   trainerCost?: number;
   skillUpColor?: string;
   cooldownRemaining?: number;
-  result?: { type?: string; templateId?: string };
+  result?: { type?: string; templateId?: string; buffType?: string; duration?: string };
   vendorReagents?: Record<string, number>;
 }
 
@@ -131,6 +131,38 @@ const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string
   waffenschmied: { label: "Waffenkammer", color: "#dc2626", desc: "Weapons & shields" },
   juwelier: { label: "Edelsteinkammer", color: "#ec4899", desc: "Rings, amulets & gem cutting" },
 };
+
+// ─── FI-056: Buff type → human-readable effect label ────────────────────────
+const BUFF_EFFECT_LABELS: Record<string, string> = {
+  xp_boost_10: "+10% XP",
+  xp_boost_5: "+5% XP",
+  gold_boost_5: "+5% Gold",
+  gold_boost_10: "+10% Gold",
+  gold_boost_15: "+15% Gold",
+  gold_boost_20: "+20% Gold",
+  xp_gold_boost: "+5% XP & Gold",
+  double_reward: "+100% Quest Rewards",
+  luck_boost_20: "+20% Luck",
+  kraft_boost: "+Kraft",
+  ausdauer_boost: "+Ausdauer",
+  glueck_boost: "+Glueck",
+  vitalitaet_boost: "+Vitalitaet",
+  weisheit_boost: "+Weisheit",
+  fokus_boost: "+Fokus",
+  charisma_boost: "+Charisma",
+  tempo_boost: "+Tempo",
+  craft_xp_boost: "+1 Craft-XP",
+  companion_bond_boost: "+Bond XP",
+  feast_buff: "+XP & Stats",
+  forge_temp: "+Forge Temp",
+};
+function formatBuffDuration(duration?: string): string {
+  if (!duration) return "";
+  // "3_quests" → "3 Quests", "1_day" → "1 Day", etc.
+  const parts = duration.split("_");
+  if (parts.length === 2) return `${parts[0]} ${parts[1].charAt(0).toUpperCase()}${parts[1].slice(1)}`;
+  return duration;
+}
 
 // ─── WoW-style recipe type names per profession ────────────────────────────
 const RECIPE_TYPE_NAME: Record<string, string> = {
@@ -992,6 +1024,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     if (isChosen && synergyChosen) {
                       return <p className="text-xs mt-0.5" style={{ color: `${prof.color}80` }}>&#9733; {synergy.label} synergy active with {partnerProf?.npcName || synergy.partner}</p>;
                     }
+                    // FI-045: When choosing 2nd profession, highlight synergy with the already-chosen partner
+                    const partnerIsChosen = partnerProf?.chosen;
+                    if (!isChosen && canChoose && partnerProf && chosenCount === 1 && partnerIsChosen) {
+                      return (
+                        <span className="inline-flex items-center gap-1 mt-0.5 px-1.5 py-0.5 rounded text-xs font-semibold" style={{ background: `${prof.color}18`, color: prof.color, border: `1px solid ${prof.color}40` }}>
+                          &#9670; Synergy: {synergy.label}
+                        </span>
+                      );
+                    }
                     if (!isChosen && canChoose && partnerProf) {
                       return <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Pairs well with {partnerProf.name} ({synergy.label})</p>;
                     }
@@ -1803,6 +1844,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
                             <p className="text-sm mt-0.5 line-clamp-2" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
+                            {/* FI-056: Buff effect preview for buff-type recipes */}
+                            {recipe.result?.type === "buff" && recipe.result?.buffType && (() => {
+                              const effectLabel = BUFF_EFFECT_LABELS[recipe.result.buffType as string] || recipe.result.buffType as string;
+                              const durationLabel = formatBuffDuration(recipe.result.duration as string | undefined);
+                              return (
+                                <p className="text-xs mt-0.5 font-semibold" style={{ color: "#22c55e" }}>
+                                  {effectLabel}{durationLabel ? ` for ${durationLabel}` : ""}
+                                </p>
+                              );
+                            })()}
                             {/* Stat preview for slot-targeting recipes */}
                             {meetsLevel && (recipe.id === "reinforce_armor" || recipe.id === "enchant_socket" || recipe.id === "sharpen_blade" || recipe.id === "permanent_enchant") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
                               const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
