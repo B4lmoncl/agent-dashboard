@@ -16,7 +16,7 @@ const QUEST_TYPE_FACTION: Record<string, { name: string; icon: string; color: st
 import { typeConfig } from "@/app/config";
 import {
   CategoryBadge, ProductBadge, HumanInputBadge, TypeBadge,
-  AgentBadge, RecurringBadge, PriorityBadge,
+  AgentBadge, RecurringBadge,
 } from "./QuestBadges";
 import { RARITY_COLORS } from "@/app/constants";
 

@@ -31,7 +31,7 @@ const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"))
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, AntiRitualePanel,
-  CompletedQuestRow, PriorityBadge, EpicQuestCard, QuestCard,
+  CompletedQuestRow, EpicQuestCard, QuestCard,
   ChainQuestToast,
   UserCard, ShopModal,
 } from "@/components/QuestBoard";
@@ -2173,7 +2173,7 @@ export default function Dashboard() {
                       <p className="text-xs truncate text-w25" style={{ textDecoration: "line-through" }}>{q.title}</p>
                       <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>by {q.createdBy ?? "unknown"}</span>
                     </div>
-                    <PriorityBadge priority={q.priority} />
+                    {q.rarity && <span className="text-xs px-1 rounded" style={{ color: ({ common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" } as Record<string, string>)[q.rarity] || "#9ca3af" }}>{q.rarity}</span>}
                   </div>
                 ))}
               </div>

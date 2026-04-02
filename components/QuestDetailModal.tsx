@@ -106,7 +106,6 @@ export default function QuestDetailModal({
                   <span className="text-xs font-mono px-1.5 py-0.5 rounded capitalize text-w50" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>{q.difficulty}</span>
                 )}
                 <span className="text-xs capitalize text-w35">{q.type ?? "personal"}</span>
-                {/* priority hidden from modal header */}
                 {q.minLevel != null && q.minLevel > 0 && (() => {
                   const meets = playerLevel >= q.minLevel;
                   return (

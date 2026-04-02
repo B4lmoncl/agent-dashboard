@@ -27,7 +27,7 @@ interface Agent {
 interface Quest {
   id: string;
   title: string;
-  priority: "low" | "medium" | "high";
+  rarity?: string;
   status: "open" | "in_progress" | "completed" | "suggested" | "rejected";
 }
 
@@ -82,10 +82,12 @@ const healthConfig: Record<string, { label: string; color: string; bg: string; p
   stale:         { label: "Health: Stale",         color: "#6b7280", bg: "rgba(107,114,128,0.1)"  },
 };
 
-const priorityDot: Record<string, string> = {
-  low: "#22c55e",
-  medium: "#eab308",
-  high: "#ef4444",
+const rarityDot: Record<string, string> = {
+  common:    "#9ca3af",
+  uncommon:  "#22c55e",
+  rare:      "#3b82f6",
+  epic:      "#a855f7",
+  legendary: "#f97316",
 };
 
 const agentMeta: Record<string, { avatar: string; color: string; role: string; description: string }> = {
@@ -299,7 +301,7 @@ const AgentCard = memo(function AgentCard({ agent, activeQuests = [], isWide = f
               >
                 <span
                   className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: priorityDot[q.priority] ?? "#888" }}
+                  style={{ background: rarityDot[q.rarity ?? ""] ?? "#888" }}
                 />
                 <span className="truncate" style={{ maxWidth: "120px" }}>{q.title}</span>
               </div>

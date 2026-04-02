@@ -713,13 +713,13 @@ export function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestio
     }
   }
 
-  // 3. High-priority pile — 3+ high-priority open quests unclaimed
-  const highOpen = quests.open.filter(q => q.priority === "high" && !q.claimedBy);
+  // 3. High-rarity pile — 3+ rare/epic/legendary open quests unclaimed
+  const highOpen = quests.open.filter(q => (q.rarity === "rare" || q.rarity === "epic" || q.rarity === "legendary") && !q.claimedBy);
   if (highOpen.length >= 3) {
     suggestions.push({
       id: "high-pile",
       icon: "",
-      title: `${highOpen.length} high-priority quests unclaimed`,
+      title: `${highOpen.length} high-rarity quests unclaimed`,
       body: `High-value work is piling up: ${highOpen.slice(0, 2).map(q => `"${q.title}"`).join(", ")}${highOpen.length > 2 ? ` +${highOpen.length - 2} more` : ""}. Consider assigning them.`,
       accent: "#ef4444",
       accentBg: "rgba(239,68,68,0.08)",

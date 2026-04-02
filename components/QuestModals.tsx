@@ -120,7 +120,6 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
     social:      { color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
   };
   const typeIcons: Record<string, string> = { personal: "·", learning: "·", fitness: "·", social: "·" };
-  const priorityBadge: Record<string, string> = { high: "#ef4444", medium: "#eab308", low: "#22c55e" };
 
   return (
     <section className="mb-6">
@@ -349,7 +348,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
         body: JSON.stringify({
           title: template.title,
           description: template.description,
-          priority: "medium",
+          rarity: "uncommon",
           type: "relationship-coop",
           createdBy: "leon",
           coopPartners: [partner1.toLowerCase(), partner2.toLowerCase()],
@@ -477,7 +476,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
         body: JSON.stringify({
           title: template.name,
           description: `Learning quest chain: ${template.name}`,
-          priority: "medium",
+          rarity: "uncommon",
           type: "learning",
           createdBy: "leon",
         }),
@@ -490,7 +489,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
           headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
           body: JSON.stringify({
             title: step,
-            priority: "low",
+            rarity: "common",
             type: "learning",
             parentQuestId: parent.id,
             createdBy: "leon",
@@ -577,12 +576,12 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
 // ─── Household Quest Board ────────────────────────────────────────────────────
 
 const CHORE_TEMPLATES = [
-  { title: "Vacuum the apartment", recurrence: "weekly", priority: "low"    as Quest["priority"] },
-  { title: "Clean bathroom",       recurrence: "weekly", priority: "medium" as Quest["priority"] },
-  { title: "Do laundry",           recurrence: "weekly", priority: "medium" as Quest["priority"] },
-  { title: "Wash dishes",          recurrence: "daily",  priority: "low"    as Quest["priority"] },
-  { title: "Take out trash",       recurrence: "weekly", priority: "low"    as Quest["priority"] },
-  { title: "Grocery shopping",     recurrence: "weekly", priority: "medium" as Quest["priority"] },
+  { title: "Vacuum the apartment", recurrence: "weekly", rarity: "common"   },
+  { title: "Clean bathroom",       recurrence: "weekly", rarity: "uncommon" },
+  { title: "Do laundry",           recurrence: "weekly", rarity: "uncommon" },
+  { title: "Wash dishes",          recurrence: "daily",  rarity: "common"   },
+  { title: "Take out trash",       recurrence: "weekly", rarity: "common"   },
+  { title: "Grocery shopping",     recurrence: "weekly", rarity: "uncommon" },
 ];
 
 export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: {
@@ -623,7 +622,7 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
         body: JSON.stringify({
           title: chore.title,
           type: "personal",
-          priority: chore.priority,
+          rarity: chore.rarity,
           recurrence: chore.recurrence,
           createdBy: "leon",
         }),
@@ -707,12 +706,12 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
 // ─── Thoughtful Hero Panel ─────────────────────────────────────────────────────
 
 const THOUGHTFUL_PROMPTS = [
-  { icon: "/images/icons/cat-social.png", title: "Gift Idea Reminder",  desc: "Note a gift idea for someone special",                 priority: "low"    as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Call Reminder",        desc: "Schedule a call with someone you care about",          priority: "medium" as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Plan Date Night",      desc: "Plan a special date or quality time together",         priority: "high"   as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Send a Kind Message",  desc: "Reach out and say something thoughtful",               priority: "low"    as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Celebrate Someone",    desc: "Celebrate an achievement or milestone in their life",  priority: "medium" as Quest["priority"] },
-  { icon: "/images/icons/cat-social.png", title: "Check In",             desc: "Check in on a friend or family member",                priority: "low"    as Quest["priority"] },
+  { icon: "/images/icons/cat-social.png", title: "Gift Idea Reminder",  desc: "Note a gift idea for someone special",                 rarity: "common"   },
+  { icon: "/images/icons/cat-social.png", title: "Call Reminder",        desc: "Schedule a call with someone you care about",          rarity: "uncommon" },
+  { icon: "/images/icons/cat-social.png", title: "Plan Date Night",      desc: "Plan a special date or quality time together",         rarity: "rare"     },
+  { icon: "/images/icons/cat-social.png", title: "Send a Kind Message",  desc: "Reach out and say something thoughtful",               rarity: "common"   },
+  { icon: "/images/icons/cat-social.png", title: "Celebrate Someone",    desc: "Celebrate an achievement or milestone in their life",  rarity: "uncommon" },
+  { icon: "/images/icons/cat-social.png", title: "Check In",             desc: "Check in on a friend or family member",                rarity: "common"   },
 ];
 
 export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
@@ -735,7 +734,7 @@ export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
           title: prompt.title,
           description: prompt.desc,
           type: "social",
-          priority: prompt.priority,
+          rarity: prompt.rarity,
           createdBy: "leon",
         }),
       });

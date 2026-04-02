@@ -151,10 +151,10 @@ export async function createStarterQuestsIfNew(playerName: string, apiKey: strin
     localStorage.setItem(key, "true");
     const headers = { "Content-Type": "application/json", ...getAuthHeaders(apiKey) };
     const starterQuests = [
-      { title: "x Welcome to the Guild!", description: "Complete this quest to earn your first companion — Dobbie the Cat! Just click 'Complete' to claim your reward. This teaches you the claim → complete flow.", type: "personal", priority: "high", createdBy: "system" },
-      { title: "x Organize Your Desk", description: "Tidy up your workspace. A clear desk leads to a clear mind!", type: "personal", priority: "low", createdBy: "system" },
-      { title: "x Read for 30 Minutes", description: "Pick any book, article, or topic you're curious about and read for 30 minutes.", type: "learning", priority: "low", createdBy: "system" },
-      { title: "x 10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving!", type: "fitness", priority: "low", createdBy: "system" },
+      { title: "x Welcome to the Guild!", description: "Complete this quest to earn your first companion — Dobbie the Cat! Just click 'Complete' to claim your reward. This teaches you the claim → complete flow.", type: "personal", rarity: "rare", createdBy: "system" },
+      { title: "x Organize Your Desk", description: "Tidy up your workspace. A clear desk leads to a clear mind!", type: "personal", rarity: "common", createdBy: "system" },
+      { title: "x Read for 30 Minutes", description: "Pick any book, article, or topic you're curious about and read for 30 minutes.", type: "learning", rarity: "common", createdBy: "system" },
+      { title: "x 10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving!", type: "fitness", rarity: "common", createdBy: "system" },
     ];
     await Promise.all(starterQuests.map(q =>
       fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(5000) })
@@ -323,8 +323,8 @@ export function getQuestRarity(quest: Quest): string {
   const xp = quest.rewards?.xp ?? 0;
   if (xp >= 60) return "legendary";
   if (xp >= 40) return "epic";
-  if (quest.priority === "high") return "rare";
-  if (quest.priority === "medium") return "uncommon";
+  if (xp >= 25) return "rare";
+  if (xp >= 15) return "uncommon";
   return "common";
 }
 

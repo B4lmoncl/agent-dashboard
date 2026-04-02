@@ -106,41 +106,5 @@ export function RecurringBadge({ recurrence }: { recurrence: string }) {
   );
 }
 
-/** @deprecated Priority system removed — kept for backward compatibility with existing quest data */
-const _priorityFallback: Record<string, { label: string; color: string; bg: string; border: string }> = {
-  low:    { label: "Low",  color: "#22c55e", bg: "rgba(34,197,94,0.12)",  border: "rgba(34,197,94,0.3)"  },
-  medium: { label: "Med",  color: "#eab308", bg: "rgba(234,179,8,0.12)", border: "rgba(234,179,8,0.3)"  },
-  high:   { label: "High", color: "#ef4444", bg: "rgba(239,68,68,0.12)", border: "rgba(239,68,68,0.3)"  },
-};
-
-/** @deprecated Will be removed in Stage 2 */
-export function PriorityBadge({ priority }: { priority?: string }) {
-  if (!priority) return null;
-  const cfg = _priorityFallback[priority] ?? _priorityFallback.medium;
-  return (
-    <span
-      className="text-xs px-1.5 py-0.5 rounded font-semibold flex-shrink-0"
-      style={{ color: cfg.color, background: cfg.bg, border: `1px solid ${cfg.border}` }}
-    >
-      {cfg.label}
-    </span>
-  );
-}
-
-/** @deprecated Will be removed in Stage 2 */
-export function ClickablePriorityBadge({ priority, onClick }: { priority?: string; onClick: () => void }) {
-  if (!priority) return null;
-  const cfg = _priorityFallback[priority] ?? _priorityFallback.medium;
-  return (
-    <button
-      onClick={e => { e.stopPropagation(); onClick(); }}
-      title="Click to cycle priority"
-      className="text-xs px-1.5 py-0.5 rounded font-semibold flex-shrink-0"
-      style={{ color: cfg.color, background: cfg.bg, border: `1px solid ${cfg.border}`, cursor: "pointer" }}
-    >
-      {cfg.label} ↑
-    </button>
-  );
-}
 
 export { RARITY_COLORS } from "@/app/constants";
