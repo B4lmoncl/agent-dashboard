@@ -1585,16 +1585,15 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           })()}
         </div>
 
-        {/* CENTER: Character Pixel Art */}
+        {/* CENTER: Character Area */}
         <div className="flex-1 flex flex-col items-center justify-center relative" style={{ minHeight: 360 }}>
-          <PixelCharacter
-            appearance={charData?.appearance || {}}
-            equipment={Object.fromEntries(Object.entries(charData?.equipment || {}).map(([k, v]) => [k, typeof v === 'object' && v ? (v as { id?: string }).id || null : v])) as Record<string, string | null>}
-            companion={charData?.companion || null}
-          />
-          {charData?.name && (
-            <p className="text-sm font-bold mt-2" style={{ color: "rgba(167,139,250,0.7)" }}>{charData.name}</p>
-          )}
+          <div className="flex flex-col items-center justify-center gap-3" style={{ minHeight: 200 }}>
+            <div className="flex items-center justify-center" style={{ width: 160, height: 160, borderRadius: 16, background: "rgba(167,139,250,0.06)", border: "2px dashed rgba(167,139,250,0.2)" }}>
+              <span className="text-4xl" style={{ opacity: 0.3 }}>?</span>
+            </div>
+            <p className="text-sm font-bold" style={{ color: "rgba(167,139,250,0.5)" }}>Hero Spawning...</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Pixel art coming soon</p>
+          </div>
         </div>
 
         {/* RIGHT: Stats / Gear Panel */}
