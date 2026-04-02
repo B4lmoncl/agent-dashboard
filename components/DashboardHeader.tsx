@@ -545,7 +545,7 @@ export default function DashboardHeader({
                           cursor: "pointer",
                         }}
                       >
-                        <img src={`/images/portraits/hero-${style}.png`} alt={style} className="w-10 h-10 rounded-lg object-cover" style={{ imageRendering: "auto" }} />
+                        <img src={`/images/portraits/hero-${style}.png`} alt={style} className="w-10 h-10 rounded-lg object-cover" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                         <span className="text-xs capitalize" style={{ color: (loggedInUser?.avatarStyle || "male") === style ? "#a78bfa" : "rgba(255,255,255,0.3)" }}>{style === "male" ? "Male" : "Female"}</span>
                       </button>
                     ))}

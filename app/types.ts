@@ -194,6 +194,7 @@ export interface CampaignQuest {
   claimedBy?: string | null;
   lore?: string | null;
   description?: string;
+  chainIndex?: number;
 }
 
 export interface Campaign {

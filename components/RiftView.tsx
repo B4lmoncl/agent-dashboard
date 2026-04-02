@@ -206,7 +206,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" />
+        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Rift</p>
         <p className="text-xs text-w15">Log in to enter The Rift.</p>
       </div>
@@ -239,7 +239,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       </div>
       {/* Header */}
       <div className="flex items-center gap-3">
-        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto" />
+        <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <div>
           <Tip k="rift" heading><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>The Rift</h2></Tip>
           <p className="text-xs text-w25">Timed quest chains with escalating difficulty. Complete all stages before time runs out.</p>
@@ -524,7 +524,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       {!activeRift && mythicUnlocked && (
         <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.2)" }}>
           <div className="flex items-center gap-3">
-            <img src="/images/icons/rift-mythic.png" alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: "1px solid rgba(255,68,68,0.3)" }} />
+            <img src="/images/icons/rift-mythic.png" alt="" width={40} height={40} className="img-render-auto rounded-lg" style={{ border: "1px solid rgba(255,68,68,0.3)" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <div className="flex-1">
               <p className="text-sm font-bold" style={{ color: "#ff4444" }}>Mythic Rift</p>
               <p className="text-xs text-w25">Endless scaling difficulty. How deep can you go?</p>
@@ -626,7 +626,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               cursor: (actionLoading || tiers.mythic?.onCooldown) ? "not-allowed" : "pointer",
             }}
           >
-            {tiers.mythic?.onCooldown ? "On Cooldown" : actionLoading ? "..." : <><img src="/images/icons/rift-mythic.png" alt="" width={16} height={16} className="img-render-auto inline-block mr-1 -mt-0.5" /> Enter Mythic +{selectedMythicLevel}</>}
+            {tiers.mythic?.onCooldown ? "On Cooldown" : actionLoading ? "..." : <><img src="/images/icons/rift-mythic.png" alt="" width={16} height={16} className="img-render-auto inline-block mr-1 -mt-0.5" onError={e => { e.currentTarget.style.display = "none"; }} /> Enter Mythic +{selectedMythicLevel}</>}
           </button>
           {tiers.mythic?.onCooldown && tiers.mythic.cooldownEndsAt && (
             <p className="text-xs text-center" style={{ color: "#ef4444" }}>
@@ -637,7 +637,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           {/* Mythic Leaderboard */}
           {mythicLeaderboard.length > 0 && (
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2 flex items-center gap-1"><img src="/images/icons/rift-mythic.png" alt="" width={14} height={14} className="img-render-auto" /> Mythic Leaderboard</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2 flex items-center gap-1"><img src="/images/icons/rift-mythic.png" alt="" width={14} height={14} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> Mythic Leaderboard</p>
               <div className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,68,68,0.12)" }}>
                 <table className="w-full text-xs">
                   <thead>

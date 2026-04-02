@@ -40,6 +40,7 @@ export default function QuestDetailModal({
   // NOTE: useModalBehavior is called in page.tsx (line 248) — do NOT duplicate here
   // or body scroll lock will break on close (double-lock restores "hidden" instead of "")
   const [modalStarAnimating, setModalStarAnimating] = useState(false);
+  const [actionLoading, setActionLoading] = useState(false);
 
   const rarity = getQuestRarity(q);
   const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
@@ -192,29 +193,46 @@ export default function QuestDetailModal({
         <div className="px-5 py-4 flex items-center justify-end gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
-              onClick={() => { handleClaim(q.id); onClose(); }}
-              style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: "pointer", transition: "background 0.15s, color 0.15s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; }}
+              disabled={actionLoading}
+              onClick={async () => { setActionLoading(true); try { await handleClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
+              style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
+              onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(180deg, #2a2a2a, #1a1a1a)"; (e.currentTarget as HTMLButtonElement).style.color = "#FFD700"; }}
-            >Claim Quest</button>
+            >{actionLoading ? "Claiming…" : "Claim Quest"}</button>
           )}
           {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
             <>
-              <button onClick={() => { handleUnclaim(q.id); onClose(); }} className="text-xs px-3 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}>Unclaim</button>
               <button
-                onClick={() => { handleComplete(q.id, q.title); onClose(); }}
+                disabled={actionLoading}
+                onClick={async () => { setActionLoading(true); try { await handleUnclaim(q.id); onClose(); } finally { setActionLoading(false); } }}
+                className="text-xs px-3 py-1.5 rounded font-medium"
+                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+              >{actionLoading ? "…" : "Unclaim"}</button>
+              <button
+                disabled={actionLoading}
+                onClick={async () => { setActionLoading(true); try { await handleComplete(q.id, q.title); onClose(); } finally { setActionLoading(false); } }}
                 className="text-sm px-4 py-1.5 rounded font-semibold"
-                style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.35)", cursor: "pointer", transition: "background 0.15s, color 0.15s" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#22c55e"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; }}
+                style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.35)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
+                onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#22c55e"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,197,94,0.15)"; (e.currentTarget as HTMLButtonElement).style.color = "#22c55e"; }}
-              >Abgeschlossen</button>
+              >{actionLoading ? "Completing…" : "Abgeschlossen"}</button>
             </>
           )}
           {isCoop && isCoopPartner && !hasCoopClaimed && q.status !== "completed" && reviewApiKey && playerName && (
-            <button onClick={() => { handleCoopClaim(q.id); onClose(); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: "pointer" }}>Join Coop</button>
+            <button
+              disabled={actionLoading}
+              onClick={async () => { setActionLoading(true); try { await handleCoopClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
+              className="text-sm px-4 py-1.5 rounded font-semibold"
+              style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+            >{actionLoading ? "Joining…" : "Join Coop"}</button>
           )}
           {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && q.status !== "completed" && reviewApiKey && playerName && (
-            <button onClick={() => { handleCoopComplete(q.id); onClose(); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>My Part Done</button>
+            <button
+              disabled={actionLoading}
+              onClick={async () => { setActionLoading(true); try { await handleCoopComplete(q.id); onClose(); } finally { setActionLoading(false); } }}
+              className="text-sm px-4 py-1.5 rounded font-semibold"
+              style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+            >{actionLoading ? "Completing…" : "My Part Done"}</button>
           )}
         </div>
       </div>

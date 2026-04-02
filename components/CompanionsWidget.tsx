@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { User, Quest } from "@/app/types";
@@ -103,6 +103,17 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const closeRewardPopup = useCallback(() => setRewardPopup(null), []);
   useModalBehavior(!!rewardPopup, closeRewardPopup);
 
+  // ─── Timeout refs for cleanup on unmount ─────────────────────────────────
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const safeTimeout = useCallback((fn: () => void, delay: number) => {
+    const id = setTimeout(fn, delay);
+    timeoutRefs.current.push(id);
+    return id;
+  }, []);
+  useEffect(() => {
+    return () => { timeoutRefs.current.forEach(clearTimeout); };
+  }, []);
+
   // ─── Companion Expedition State ───────────────────────────────────────────
   const [expeditionData, setExpeditionData] = useState<{
     active: { expeditionId: string; name: string; icon: string; sentAt: string; completesAt: string; remainingMs: number; completed: boolean } | null;
@@ -181,11 +192,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         if (onUserRefresh) onUserRefresh();
       } else {
         setExpeditionError(d.error || "Failed to send companion");
-        setTimeout(() => setExpeditionError(null), 5000);
+        safeTimeout(() => setExpeditionError(null), 5000);
       }
     } catch {
       setExpeditionError("Network error");
-      setTimeout(() => setExpeditionError(null), 5000);
+      safeTimeout(() => setExpeditionError(null), 5000);
     }
     setExpeditionSending(null);
   };
@@ -222,16 +233,16 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           });
         }
         setCompanionGlow(true);
-        setTimeout(() => setCompanionGlow(false), 2000);
+        safeTimeout(() => setCompanionGlow(false), 2000);
         await fetchExpeditions();
         if (onUserRefresh) onUserRefresh();
       } else {
         setExpeditionError(d.error || "Failed to collect");
-        setTimeout(() => setExpeditionError(null), 5000);
+        safeTimeout(() => setExpeditionError(null), 5000);
       }
     } catch {
       setExpeditionError("Network error");
-      setTimeout(() => setExpeditionError(null), 5000);
+      safeTimeout(() => setExpeditionError(null), 5000);
     }
     setExpeditionCollecting(false);
   };
@@ -250,7 +261,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         setCompletedIds(prev => new Set([...prev, questId]));
         // Success animation on button for 1.5s
         setCompletingSuccessId(questId);
-        setTimeout(() => setCompletingSuccessId(null), 1500);
+        safeTimeout(() => setCompletingSuccessId(null), 1500);
         // Show reward celebration via unified popup
         if (onRewardCelebration) {
           const cColor = getCompanionColor(user?.companion?.type || user?.companion?.species);
@@ -277,8 +288,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         }
         // Companion glow effect
         setCompanionGlow(true);
-        setTimeout(() => setCompanionGlow(false), 2000);
-        setTimeout(() => {
+        safeTimeout(() => setCompanionGlow(false), 2000);
+        safeTimeout(() => {
           setCompletedIds(prev => { const s = new Set(prev); s.delete(questId); return s; });
           if (onUserRefresh) onUserRefresh();
         }, 2000);
@@ -331,7 +342,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     SFX.companionPet();
     // Always play heart animation
     setHeartAnim(true);
-    setTimeout(() => setHeartAnim(false), 1200);
+    safeTimeout(() => setHeartAnim(false), 1200);
     try {
       const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/pet`, {
         method: "POST",
@@ -344,9 +355,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         if (onUserRefresh) onUserRefresh();
       } else {
         setPetError(d.error || "Error");
-        setTimeout(() => setPetError(""), 3000);
+        safeTimeout(() => setPetError(""), 3000);
       }
-    } catch { setPetError("Error"); setTimeout(() => setPetError(""), 3000); }
+    } catch { setPetError("Error"); safeTimeout(() => setPetError(""), 3000); }
     setPetting(false);
   };
 
@@ -366,14 +377,14 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         setUltimatePickQuest(false);
         setUltimateGlow(true);
         SFX.companionPet();
-        setTimeout(() => setUltimateResult(null), 5000);
-        setTimeout(() => setUltimateGlow(false), 4000);
+        safeTimeout(() => setUltimateResult(null), 5000);
+        safeTimeout(() => setUltimateGlow(false), 4000);
         if (onUserRefresh) onUserRefresh();
       } else {
         setUltimateResult(d.error || "Error");
-        setTimeout(() => setUltimateResult(null), 4000);
+        safeTimeout(() => setUltimateResult(null), 4000);
       }
-    } catch { setUltimateResult("Network error"); setTimeout(() => setUltimateResult(null), 3000); }
+    } catch { setUltimateResult("Network error"); safeTimeout(() => setUltimateResult(null), 3000); }
     setUltimateUsing(null);
   };
 

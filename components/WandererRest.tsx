@@ -43,9 +43,9 @@ interface WandererRestProps {
   lyraQuestsInProgress: Quest[];
   lyraAllQuests: Quest[];
   // Quest actions
-  handleClaim?: (questId: string) => void;
-  handleUnclaim?: (questId: string) => void;
-  handleComplete?: (questId: string, questTitle: string) => void;
+  handleClaim?: (questId: string) => void | Promise<void>;
+  handleUnclaim?: (questId: string) => void | Promise<void>;
+  handleComplete?: (questId: string, questTitle: string) => void | Promise<void>;
   // For mood unification
   streak?: number;
   user?: { companion?: { bondLevel?: number; lastPetted?: string | null; type?: string; emoji?: string; name?: string } | null } | null;
@@ -132,6 +132,7 @@ export function WandererRest({
   }, [activeNpcs, selectedNpc, setSelectedNpc]);
 
   const [npcInfoOpen, setNpcInfoOpen] = useState(false);
+  const [claimingQuestId, setClaimingQuestId] = useState<string | null>(null);
 
   // ESC + scroll lock for NPC popup handled by useModalBehavior in page.tsx
   // ESC + scroll lock for NPC info popup
@@ -511,24 +512,33 @@ export function WandererRest({
                           )}
                           {currentQuest.status === "open" && handleClaim && playerName && (
                             <button
-                              onClick={(e) => {
+                              disabled={claimingQuestId === currentQuest.questId}
+                              onClick={async (e) => {
                                 e.stopPropagation();
-                                handleClaim(currentQuest.questId);
+                                if (claimingQuestId) return;
+                                setClaimingQuestId(currentQuest.questId);
+                                try { await handleClaim(currentQuest.questId); } finally { setClaimingQuestId(null); }
                               }}
                               className="text-xs px-3 py-1 rounded-lg font-semibold ml-auto"
-                              style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)", cursor: "pointer", transition: "all 0.2s" }}
-                              onMouseEnter={e => { (e.currentTarget).style.background = "rgba(245,158,11,0.35)"; }}
-                              onMouseLeave={e => { (e.currentTarget).style.background = "rgba(245,158,11,0.2)"; }}
-                            >Accept Quest</button>
+                              style={{ background: claimingQuestId === currentQuest.questId ? "rgba(245,158,11,0.1)" : "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)", cursor: claimingQuestId === currentQuest.questId ? "not-allowed" : "pointer", opacity: claimingQuestId === currentQuest.questId ? 0.6 : 1, transition: "all 0.2s" }}
+                              onMouseEnter={e => { if (!claimingQuestId) (e.currentTarget).style.background = "rgba(245,158,11,0.35)"; }}
+                              onMouseLeave={e => { (e.currentTarget).style.background = claimingQuestId === currentQuest.questId ? "rgba(245,158,11,0.1)" : "rgba(245,158,11,0.2)"; }}
+                            >{claimingQuestId === currentQuest.questId ? "Accepting…" : "Accept Quest"}</button>
                           )}
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && currentQuest.claimedBy?.toLowerCase() === playerName?.toLowerCase() && handleComplete && (
                             <button
-                              onClick={(e) => { e.stopPropagation(); handleComplete(currentQuest.questId, currentQuest.title); }}
+                              disabled={claimingQuestId === currentQuest.questId}
+                              onClick={async (e) => {
+                                e.stopPropagation();
+                                if (claimingQuestId) return;
+                                setClaimingQuestId(currentQuest.questId);
+                                try { await handleComplete(currentQuest.questId, currentQuest.title); } finally { setClaimingQuestId(null); }
+                              }}
                               className="text-xs px-3 py-1 rounded-lg font-semibold ml-auto"
-                              style={{ background: "rgba(34,197,94,0.2)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)", cursor: "pointer", transition: "all 0.2s" }}
-                              onMouseEnter={e => { (e.currentTarget).style.background = "rgba(34,197,94,0.35)"; }}
-                              onMouseLeave={e => { (e.currentTarget).style.background = "rgba(34,197,94,0.2)"; }}
-                            >Complete</button>
+                              style={{ background: claimingQuestId === currentQuest.questId ? "rgba(34,197,94,0.1)" : "rgba(34,197,94,0.2)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)", cursor: claimingQuestId === currentQuest.questId ? "not-allowed" : "pointer", opacity: claimingQuestId === currentQuest.questId ? 0.6 : 1, transition: "all 0.2s" }}
+                              onMouseEnter={e => { if (!claimingQuestId) (e.currentTarget).style.background = "rgba(34,197,94,0.35)"; }}
+                              onMouseLeave={e => { (e.currentTarget).style.background = claimingQuestId === currentQuest.questId ? "rgba(34,197,94,0.1)" : "rgba(34,197,94,0.2)"; }}
+                            >{claimingQuestId === currentQuest.questId ? "Completing…" : "Complete"}</button>
                           )}
                         </div>
                       </div>
