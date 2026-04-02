@@ -909,6 +909,20 @@ button[disabled] {
 }
 .crystal-breathe { animation: crystal-breathe 6s ease-in-out infinite; will-change: box-shadow; }
 
+/* Epic card ambient pulse — slower, dimmer than legendary */
+@keyframes crystal-breathe-epic {
+  0%, 100% { box-shadow: 0 0 6px var(--glow-color, rgba(168,85,247,0.08)); }
+  50% { box-shadow: 0 0 16px var(--glow-color, rgba(168,85,247,0.18)), 0 0 28px var(--glow-color, rgba(168,85,247,0.06)); }
+}
+.crystal-breathe-epic { animation: crystal-breathe-epic 8s ease-in-out infinite; will-change: box-shadow; }
+
+/* Legendary card ambient pulse — applied to the full card wrapper */
+@keyframes crystal-breathe-card {
+  0%, 100% { box-shadow: var(--card-base-shadow, none), 0 0 10px var(--glow-color, rgba(249,115,22,0.15)); }
+  50% { box-shadow: var(--card-base-shadow, none), 0 0 22px var(--glow-color, rgba(249,115,22,0.32)), 0 0 40px var(--glow-color, rgba(249,115,22,0.08)); }
+}
+.crystal-breathe-card { animation: crystal-breathe-card 5s ease-in-out infinite; will-change: box-shadow; }
+
 
 
 /* HP/progress bar pulse — for boss HP, rep bars, BP XP bar */

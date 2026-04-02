@@ -195,18 +195,28 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           Ranked by {seasonal ? "Season " : ""}XP · Ties broken by Quests
         </p></Tip>
         {mode === "players" && (
-          <button
-            onClick={() => setSeasonal(s => !s)}
-            className="text-xs px-2 py-1 rounded-lg font-semibold"
-            style={{
-              background: seasonal ? "rgba(251,191,36,0.12)" : "rgba(255,255,255,0.04)",
-              color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
-              border: `1px solid ${seasonal ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
-              cursor: "pointer",
-            }}
-          >
-            {seasonal ? "Season" : "All-Time"}
-          </button>
+          <div className="flex gap-1">
+            <button
+              onClick={() => setSeasonal(false)}
+              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              style={{
+                background: !seasonal ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.03)",
+                color: !seasonal ? "#a78bfa" : "rgba(255,255,255,0.25)",
+                border: `1px solid ${!seasonal ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
+            >All-Time</button>
+            <button
+              onClick={() => setSeasonal(true)}
+              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              style={{
+                background: seasonal ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
+                color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
+                border: `1px solid ${seasonal ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
+            >Season</button>
+          </div>
         )}
       </div>
 

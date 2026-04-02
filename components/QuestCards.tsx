@@ -141,7 +141,13 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   const rarity = getQuestRarity(quest);
   const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
   const isLegendary = rarity === "legendary";
+  const isEpic = rarity === "epic";
   const isEpicPlus = rarity === "epic" || rarity === "legendary";
+  const isRarePlus = rarity === "rare" || rarity === "epic" || rarity === "legendary";
+  // Border opacity: legendary/epic brighter, rare slightly elevated, common/uncommon default
+  const borderAlpha = isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "66";
+  // Top glow for rare+ cards: a subtle inward shadow from the top edge using the rarity color
+  const topGlow = isRarePlus ? `, 0 -1px 8px ${rarityColor}${isLegendary ? "55" : isEpic ? "44" : "33"} inset` : "";
   const hasMinLevel = quest.minLevel != null && quest.minLevel > 0;
   const meetsLevel = !hasMinLevel || (playerLevel != null && playerLevel >= quest.minLevel!);
 
@@ -154,8 +160,8 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         title={`${quest.title}${quest.npcName ? ` — from ${quest.npcName}` : ""}${quest.checklist ? ` (${quest.checklist.filter(c => c.done).length}/${quest.checklist.length} steps)` : ""}${QUEST_TYPE_FACTION[quest.type ?? ""] ? ` · +Rep ${QUEST_TYPE_FACTION[quest.type ?? ""].name}` : ""}`}
         style={{
           background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",
-          border: `2px solid ${rarityColor}88`,
-          boxShadow: `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)`,
+          border: `2px solid ${rarityColor}${borderAlpha}`,
+          boxShadow: `0 0 ${isLegendary ? 16 : isEpic ? 10 : isRarePlus ? 6 : 4}px ${rarityColor}${isLegendary ? "44" : isEpic ? "33" : isRarePlus ? "22" : "12"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}`,
           transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
           transform: "translateY(0)",
           minHeight: 110,
@@ -163,22 +169,33 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         onClick={() => onDetails ? onDetails(quest) : undefined}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = `${rarityColor}cc`;
-          el.style.boxShadow = `0 6px 20px ${rarityColor}40, 0 0 ${isLegendary ? 24 : 12}px ${rarityColor}30`;
+          el.style.borderColor = `${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "cc"}`;
+          el.style.boxShadow = `0 6px 20px ${rarityColor}${isLegendary ? "50" : isEpic ? "40" : "30"}, 0 0 ${isLegendary ? 24 : isEpic ? 16 : isRarePlus ? 10 : 8}px ${rarityColor}${isLegendary ? "40" : isEpic ? "30" : "22"}${topGlow}`;
           el.style.transform = "translateY(-2px)";
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = `${rarityColor}88`;
-          el.style.boxShadow = `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}`;
+          el.style.borderColor = `${rarityColor}${borderAlpha}`;
+          el.style.boxShadow = `0 0 ${isLegendary ? 16 : isEpic ? 10 : isRarePlus ? 6 : 4}px ${rarityColor}${isLegendary ? "44" : isEpic ? "33" : isRarePlus ? "22" : "12"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}`;
           el.style.transform = "translateY(0)";
         }}
       >
-        {/* Rarity top strip */}
-        <div className={isEpicPlus ? "crystal-breathe" : ""} style={{ height: 4, background: `linear-gradient(90deg, transparent 5%, ${rarityColor}cc 30%, ${rarityColor}dd 50%, ${rarityColor}cc 70%, transparent 95%)`, borderRadius: "10px 10px 0 0", boxShadow: `0 2px 8px ${rarityColor}44`, position: "relative", zIndex: 1, ...(isEpicPlus ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}) }} />
+        {/* Rarity top strip — height and glow scale with rarity */}
+        <div
+          className={isLegendary ? "crystal-breathe" : ""}
+          style={{
+            height: isLegendary ? 5 : isEpic ? 4 : isRarePlus ? 3 : 3,
+            background: `linear-gradient(90deg, transparent 5%, ${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "bb"} 30%, ${rarityColor}ff 50%, ${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "bb"} 70%, transparent 95%)`,
+            borderRadius: "10px 10px 0 0",
+            boxShadow: isLegendary ? `0 2px 12px ${rarityColor}66` : isEpic ? `0 2px 8px ${rarityColor}55` : isRarePlus ? `0 2px 6px ${rarityColor}44` : `0 1px 4px ${rarityColor}22`,
+            position: "relative",
+            zIndex: 1,
+            ...(isLegendary ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}),
+          }}
+        />
         {/* Rarity gem + Favorite star — top right, same horizontal line */}
         <div style={{ position: "absolute", top: 8, right: 6, display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88, flexShrink: 0 }} />
+          <div style={{ width: isLegendary ? 10 : isEpic ? 9 : 8, height: isLegendary ? 10 : isEpic ? 9 : 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 ${isLegendary ? 10 : isEpic ? 8 : 6}px ${rarityColor}`, opacity: isRarePlus ? 1 : 0.88, flexShrink: 0 }} />
           {onToggleFavorite && (
             <button
               onClick={e => { e.stopPropagation(); onToggleFavorite(quest.id); setStarAnimating(true); setTimeout(() => setStarAnimating(false), 350); }}
@@ -250,27 +267,41 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
       className="cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden"
       style={{
         background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
-        border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`}`,
-        boxShadow: isInProgress ? `0 0 10px ${rarityColor}22` : isLegendary ? `0 0 12px ${rarityColor}30` : "none",
+        border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}${borderAlpha}` : `${rarityColor}${isRarePlus ? "66" : "44"}`}`,
+        boxShadow: selected ? "none" : isLegendary ? `0 0 14px ${rarityColor}33${topGlow}` : isEpic ? `0 0 8px ${rarityColor}22${topGlow}` : isRarePlus ? `0 0 5px ${rarityColor}18${topGlow}` : isInProgress ? `0 0 8px ${rarityColor}1a` : "none",
         transform: "translateY(0)",
         transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
       }}
       onClick={() => setExpanded(v => !v)}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}88`;
-        el.style.boxShadow = `0 6px 18px ${rarityColor}30`;
+        el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}${isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "77"}`;
+        el.style.boxShadow = `0 6px 18px ${rarityColor}${isLegendary ? "40" : isEpic ? "30" : "22"}${topGlow}`;
         el.style.transform = "translateY(-1px)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.borderColor = selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`;
-        el.style.boxShadow = isInProgress ? `0 0 10px ${rarityColor}22` : isLegendary ? `0 0 12px ${rarityColor}30` : "none";
+        el.style.borderColor = selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}${borderAlpha}` : `${rarityColor}${isRarePlus ? "66" : "44"}`;
+        el.style.boxShadow = selected ? "none" : isLegendary ? `0 0 14px ${rarityColor}33${topGlow}` : isEpic ? `0 0 8px ${rarityColor}22${topGlow}` : isRarePlus ? `0 0 5px ${rarityColor}18${topGlow}` : isInProgress ? `0 0 8px ${rarityColor}1a` : "none";
         el.style.transform = "translateY(0)";
       }}
     >
-      {/* Rarity left accent line */}
-      <div className={isEpicPlus ? "crystal-breathe" : ""} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: `linear-gradient(180deg, ${rarityColor}cc, ${rarityColor}44)`, borderRadius: "8px 0 0 8px", ...(isEpicPlus ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}) }} />
+      {/* Rarity left accent line — width and brightness scale with rarity */}
+      <div
+        className={isLegendary ? "crystal-breathe" : ""}
+        style={{
+          position: "absolute", left: 0, top: 0, bottom: 0,
+          width: isLegendary ? 4 : isEpic ? 3 : 3,
+          background: isLegendary
+            ? `linear-gradient(180deg, ${rarityColor}ee, ${rarityColor}99, ${rarityColor}55)`
+            : isEpic
+            ? `linear-gradient(180deg, ${rarityColor}cc, ${rarityColor}77)`
+            : `linear-gradient(180deg, ${rarityColor}99, ${rarityColor}33)`,
+          borderRadius: "8px 0 0 8px",
+          boxShadow: isLegendary ? `2px 0 8px ${rarityColor}44` : isEpic ? `2px 0 5px ${rarityColor}33` : isRarePlus ? `2px 0 3px ${rarityColor}22` : "none",
+          ...(isLegendary ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}),
+        }}
+      />
       {/* Favorite star — top right */}
       {onToggleFavorite && (
         <button
