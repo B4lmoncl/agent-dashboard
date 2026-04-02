@@ -214,7 +214,7 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
             ? <img src={`/images/portraits/companion-${companion.type}.png`} alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             : companion.type === "cat" && companion.name?.toLowerCase() === "dobbie"
               ? <img src="/images/portraits/companion-dobbie.png" alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xl">{companion.emoji}</span>
+              : <span className="text-xl" style={{ color: "rgba(255,255,255,0.3)" }}>◆</span>
           }
           <span className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{companion.name}</span>
         </div>
@@ -2038,7 +2038,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <Tip k="classes">
                     <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
                       <div className="flex items-center gap-2">
-                        <span className="text-base">{cls.icon}</span>
+                        {cls.icon?.startsWith("/") ? <img src={cls.icon} alt="" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-base" style={{ color: "#c4b5fd" }}>✦</span>}
                         <div>
                           <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
                           {charData.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>{charData.classTier}</p>}
@@ -2559,7 +2559,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       </div>
       {cls && (
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-lg">{cls.icon}</span>
+          {cls.icon?.startsWith("/") ? <img src={cls.icon} alt="" width={24} height={24} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-lg" style={{ color: "#c4b5fd" }}>✦</span>}
           <div className="text-center">
             <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
             {charData?.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.45)" }}>{charData.classTier}</p>}
@@ -2619,7 +2619,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               ? <img src={`/images/portraits/companion-${comp.type}.png`} alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
               : comp.type === "cat" && comp.name?.toLowerCase() === "dobbie"
                 ? <img src="/images/portraits/companion-dobbie.png" alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                : <span className="text-xl">{comp.emoji}</span>
+                : <span className="text-xl" style={{ color: "rgba(255,255,255,0.3)" }}>◆</span>
             }
             <div>
               <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>{comp.name}</p>
