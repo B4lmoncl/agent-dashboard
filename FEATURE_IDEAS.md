@@ -131,20 +131,6 @@
 - **Beschreibung:** TodayDrawer.tsx: today-Variable und timeInfo sind einmal beim Mount berechnet und werden nie aktualisiert. Ritual/Pet-Resets, Tagesgruesse und Daily-Status gehen bei langen Sessions stale.
 - **Warum:** Spieler die den Drawer ueber Mitternacht offen haben sehen veraltete Daten.
 
-### [FI-017] Public Profile Gold Privacy
-- **Quelle:** Diablo 3 (Profile Privacy)
-- **Aufwand:** S (fertig — gefixt in Runde 85)
-- **Bereich:** Backend
-- **Beschreibung:** Gold-Balance war im Public Profile sichtbar. Entfernt.
-- **Warum:** Spieler-Vermoegen ist privat. D3 zeigt nur Paragon Level, nicht Gold.
-
-### [FI-018] Custom Class Onboarding Fix
-- **Quelle:** Original (Bug Fix)
-- **Aufwand:** S (fertig — gefixt in Runde 85)
-- **Bereich:** Frontend
-- **Beschreibung:** Custom Class ID wurde beim Onboarding verworfen.
-- **Warum:** Spieler die eine Custom-Klasse erstellen hatten danach keine Klasse zugewiesen.
-
 ### [FI-019] World Boss in Active Content Section
 - **Quelle:** Original (UX Completeness)
 - **Aufwand:** S (1h)
@@ -200,13 +186,6 @@
 - **Bereich:** Frontend
 - **Beschreibung:** 22 von 152 img-Tags haben kein alt-Attribut. CLAUDE.md: "Alt text: Required for meaningful images; empty alt='' for decorative icons."
 - **Warum:** Accessibility + CLAUDE.md Compliance.
-
-### [FI-027] Expired Boss Claim Window
-- **Quelle:** Original (Bug Fix — bereits gefixt)
-- **Aufwand:** S (fertig)
-- **Bereich:** Backend
-- **Beschreibung:** World Boss Claim Endpoint rief getActiveBoss() nicht auf — abgelaufene Bosse konnten noch claimed werden.
-- **Warum:** Gefixt in Runde 85+.
 
 ### [FI-028] Systematic Fetch Error Handling
 - **Quelle:** Original (UX Robustness)
@@ -452,13 +431,6 @@
 - **Bereich:** Frontend
 - **Beschreibung:** QuestDetailModal zeigt keine Quest-Requirements (Items, Level, Vorbedingungen). Nur minLevel wird als Badge angezeigt. WoW zeigt immer "Required Items: X" und "Required Level: Y".
 - **Warum:** Spieler sieht nicht was er braucht um eine Quest abzuschliessen.
-
-### [FI-063] Vow Frequency "On Trigger" Backend Support
-- **Quelle:** Original (Bug adjacend — gefixt in letztem Commit)
-- **Aufwand:** M (2-4h)
-- **Bereich:** Backend
-- **Beschreibung:** Das Frontend sendet jetzt die gewählte Vow-Frequency (daily/trigger), aber der Backend-Handler in game.js prüft nur schedule.type === "daily" für den Completion-Check. "On Trigger" Vows brauchen einen eigenen Completion-Flow (manueller Trigger statt täglichem Check-In).
-- **Warum:** Fix FI-063 machte das Frontend korrekt, aber der Backend-Support für non-daily Schedules ist noch nicht implementiert.
 
 ### [FI-064] Cache Version.json at Startup
 - **Quelle:** Performance Best Practice
