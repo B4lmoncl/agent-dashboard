@@ -2084,10 +2084,12 @@ export default function Dashboard() {
                     ) :
                     loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse bg-card" style={{ border: "1px solid rgba(255,255,255,0.05)" }} />) :
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
-                      <div className="rounded-xl p-5 text-center bg-card border-w6">
-                        <p className="text-xs text-w20">{searchFilter ? `No quests match "${searchFilter}"` : "No player quests open"}</p>
-                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive mt-2 text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button>}
-                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-semibold">Load Quests</span></button>}
+                      <div className="rounded-xl p-6 text-center bg-card border-w6 space-y-3">
+                        <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                        <p className="text-sm font-semibold text-w30">{searchFilter ? `No quests match "${searchFilter}"` : "The Quest Board is empty"}</p>
+                        {!searchFilter && <p className="text-xs text-w15 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button>}
+                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive btn-press px-4 py-2 rounded-lg inline-flex items-center gap-2" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-bold">Summon Quests</span></button>}
                       </div>
                     ) : (
                       <>
