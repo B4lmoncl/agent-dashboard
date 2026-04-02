@@ -24,7 +24,7 @@
 
 ## Tech Debt
 
-- [ ] **REMOVE PRIORITY SYSTEM** — Quest priority (Low/Med/High) replaced by Rarity. ~139 refs in 30 files.
+- [x] **REMOVE PRIORITY SYSTEM** — Completed 2026-04-02. ~139 refs in 30+ files replaced with rarity.
 - [ ] page.tsx monolith (~2350 lines) — extract into feature modules
 - [ ] Missing JSON Schema validation for template files
 
