@@ -1,12 +1,29 @@
 const router = require('express').Router();
-const { state, saveCampaigns, rebuildCampaignsById } = require('../lib/state');
-const { now } = require('../lib/helpers');
+const { state, saveCampaigns, saveUsers, ensureUserCurrencies, rebuildCampaignsById } = require('../lib/state');
+const { now, createPlayerLock } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
+
+const campaignClaimLock = createPlayerLock('campaign-claim');
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+/** Returns true if every non-deleted quest in the campaign is completed. */
+function isCampaignFullyCompleted(campaign) {
+  if (!campaign.questIds.length) return false;
+  return campaign.questIds.every(id => {
+    const q = state.questsById.get(id);
+    return !q || q.status === 'completed'; // deleted quests count as done
+  });
+}
 
 // ─── Campaign Endpoints ──────────────────────────────────────────────────────────
 
 // GET /api/campaigns — list all campaigns with enriched quest details
 router.get('/api/campaigns', (req, res) => {
+  const playerName = (req.query.player || '').toLowerCase();
+  const u = playerName ? state.users[playerName] : null;
+  const claimedSet = new Set(u?.campaignRewardsClaimed || []);
+
   const enriched = state.campaigns.map(c => {
     const questDetails = c.questIds.map(id => {
       const q = state.questsById.get(id);
@@ -16,7 +33,12 @@ router.get('/api/campaigns', (req, res) => {
                lore: q.lore || null, description: q.description };
     });
     const completed = questDetails.filter(q => q.status === 'completed').length;
-    return { ...c, quests: questDetails, progress: { completed, total: questDetails.length } };
+    return {
+      ...c,
+      quests: questDetails,
+      progress: { completed, total: questDetails.length },
+      rewardClaimed: claimedSet.has(c.id),
+    };
   });
   res.json(enriched);
 });
@@ -54,7 +76,10 @@ router.get('/api/campaigns/:id', (req, res) => {
     return q || { id, title: '(deleted)', status: 'deleted' };
   });
   const completed = questDetails.filter(q => q.status === 'completed').length;
-  res.json({ ...campaign, quests: questDetails, progress: { completed, total: questDetails.length } });
+  const playerName = (req.query.player || '').toLowerCase();
+  const u = playerName ? state.users[playerName] : null;
+  const rewardClaimed = (u?.campaignRewardsClaimed || []).includes(campaign.id);
+  res.json({ ...campaign, quests: questDetails, progress: { completed, total: questDetails.length }, rewardClaimed });
 });
 
 // PATCH /api/campaigns/:id — update campaign fields
@@ -116,33 +141,63 @@ router.get('/api/agent/:name/quests', (req, res) => {
 });
 
 // POST /api/campaigns/:id/claim — claim campaign completion rewards
+// Awards gold + XP based on campaign length (50g + 30xp per quest in chain).
+// Overrides by campaign.rewards if set explicitly.
 router.post('/api/campaigns/:id/claim', requireApiKey, (req, res) => {
-  const campaign = state.campaigns.find(c => c.id === req.params.id);
+  const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
-  if (campaign.status !== 'completed') return res.status(400).json({ error: 'Campaign not completed yet' });
 
   const uid = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
   if (!uid) return res.status(401).json({ error: 'Auth required' });
 
-  campaign.rewardsClaimed = campaign.rewardsClaimed || [];
-  if (campaign.rewardsClaimed.includes(uid)) {
-    return res.status(409).json({ error: 'Rewards already claimed' });
+  // Player lock — prevent concurrent double-claims
+  if (!campaignClaimLock.acquire(uid)) {
+    return res.status(429).json({ error: 'Request already in progress' });
   }
 
-  const rewards = campaign.rewards || {};
-  const u = state.users[uid];
-  if (u) {
-    const { awardCurrency, ensureUserCurrencies } = require('../lib/state');
+  try {
+    const u = state.users[uid];
+    if (!u) return res.status(404).json({ error: 'Player not found' });
+
+    // Double-claim guard stored per-user
+    u.campaignRewardsClaimed = u.campaignRewardsClaimed || [];
+    if (u.campaignRewardsClaimed.includes(campaign.id)) {
+      return res.status(409).json({ error: 'Reward already claimed' });
+    }
+
+    // All quests must be completed before claiming
+    if (!isCampaignFullyCompleted(campaign)) {
+      return res.status(400).json({ error: 'Campaign not fully completed yet' });
+    }
+
+    // Compute rewards: use explicit campaign.rewards if set, else derive from length
+    const questCount = campaign.questIds.length || 1;
+    const baseGold = (campaign.rewards?.gold > 0) ? campaign.rewards.gold : questCount * 50;
+    const baseXp   = (campaign.rewards?.xp   > 0) ? campaign.rewards.xp   : questCount * 30;
+    const titleReward = campaign.rewards?.title || null;
+
+    // Apply rewards
     ensureUserCurrencies(u);
-    if (rewards.gold) { u.currencies.gold = (u.currencies.gold || 0) + rewards.gold; u.gold = u.currencies.gold; }
-    if (rewards.xp) { u.xp = (u.xp || 0) + rewards.xp; }
-  }
+    u.currencies.gold = (u.currencies.gold || 0) + baseGold;
+    u.gold = u.currencies.gold;
+    u.xp = (u.xp || 0) + baseXp;
 
-  campaign.rewardsClaimed.push(uid);
-  saveCampaigns();
-  const { saveUsers } = require('../lib/state');
-  saveUsers();
-  res.json({ ok: true, rewards, campaign: { id: campaign.id, status: campaign.status } });
+    if (titleReward && !u.unlockedTitles?.includes(titleReward)) {
+      u.unlockedTitles = u.unlockedTitles || [];
+      u.unlockedTitles.push(titleReward);
+    }
+
+    // Mark as claimed
+    u.campaignRewardsClaimed.push(campaign.id);
+
+    saveUsers();
+
+    const awarded = { gold: baseGold, xp: baseXp, title: titleReward || undefined };
+    console.log(`[campaigns] ${uid} claimed reward for campaign ${campaign.id}: +${baseGold}g +${baseXp}xp`);
+    res.json({ ok: true, awarded, campaign: { id: campaign.id, title: campaign.title } });
+  } finally {
+    campaignClaimLock.release(uid);
+  }
 });
 
 module.exports = router;
