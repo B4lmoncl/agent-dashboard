@@ -505,7 +505,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     {p.avatar || p.name.charAt(0).toUpperCase()}
                   </div>
                   <p className="text-xs font-semibold truncate" style={{ color: p.color }}>{p.name}</p>
-                  <p className="text-xs text-w20">GS: {p.gearScore}</p>
+                  <p className="text-xs" style={{ color: p.gearScore >= activeRun.gearScoreThreshold ? "rgba(34,197,94,0.5)" : "rgba(239,68,68,0.6)" }}>GS: {p.gearScore}{p.gearScore < activeRun.gearScoreThreshold ? " !" : ""}</p>
                   {p.bondLevel > 0 && <p className="text-xs text-w15">Bond: {p.bondLevel}</p>}
                 </div>
               ))}
