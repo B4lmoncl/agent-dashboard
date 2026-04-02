@@ -317,6 +317,17 @@ export default function GuildHallBackground() {
         ctx.fillRect(0, 0, w, h);
       }
 
+      // ── Daytime horizon haze — warm golden atmosphere at ground level ──
+      if (tod === "day") {
+        const dayPulse = Math.sin(t * 0.003) * 0.02 + 0.98;
+        const dayGlow = ctx.createRadialGradient(w * 0.5, h * 0.92, 0, w * 0.5, h * 0.92, h * 0.5 * dayPulse);
+        dayGlow.addColorStop(0, "rgba(255,220,160,0.08)");
+        dayGlow.addColorStop(0.4, "rgba(255,200,120,0.04)");
+        dayGlow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = dayGlow;
+        ctx.fillRect(0, 0, w, h);
+      }
+
       // ── Milky Way & nebulae (night only) ──────────────────────────────
       if (tod === "night") {
         // Milky Way — diagonal band of diffuse light across the sky
