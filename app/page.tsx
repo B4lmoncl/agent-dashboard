@@ -117,8 +117,17 @@ const MAT_SOURCES: Record<string, string> = {
   legendary: "Legendary quest drops · Dismantling legendary gear",
 };
 
-// Suspense fallback for lazy-loaded views
-const ViewFallback = () => <div className="flex items-center justify-center py-20 text-w30 text-sm font-mono">Loading...</div>;
+// Suspense fallback for lazy-loaded views — skeleton cards matching view layout
+const ViewFallback = () => (
+  <div className="space-y-3 tab-content-enter">
+    <div className="skeleton-pulse rounded-xl" style={{ height: 48, background: "rgba(255,255,255,0.03)" }} />
+    <div className="skeleton-pulse rounded-xl" style={{ height: 120, background: "rgba(255,255,255,0.02)" }} />
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
+    </div>
+  </div>
+);
 
 export default function Dashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);

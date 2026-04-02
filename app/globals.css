@@ -860,6 +860,19 @@ button[disabled] {
 }
 .floor-stardust { animation-name: floor-stardust-anim; }
 
+/* ─── Screen Shake (Rift stage clear, boss events) ───────────────────── */
+@keyframes screenshake {
+  0%, 100% { transform: translate(0, 0); }
+  10%      { transform: translate(-3px, 1px); }
+  30%      { transform: translate(3px, -2px); }
+  50%      { transform: translate(-2px, 2px); }
+  70%      { transform: translate(2px, -1px); }
+  90%      { transform: translate(-1px, 1px); }
+}
+.screenshake {
+  animation: screenshake 0.25s ease-in-out;
+}
+
 /* ─── Codex Discovery Reveal ──────────────────────────────────────────── */
 @keyframes discovery-reveal {
   from { transform: scale(0.85) translateY(8px); opacity: 0; filter: brightness(1.3); }
@@ -899,8 +912,8 @@ button[disabled] {
 
 /* ─── Tab Content Transitions ───────────────────────────────────────────── */
 @keyframes tab-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .tab-content-enter {
   animation: tab-fade-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);

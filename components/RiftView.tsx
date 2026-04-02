@@ -168,6 +168,9 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
+        // Screen shake on stage clear
+        document.body.classList.add("screenshake");
+        setTimeout(() => document.body.classList.remove("screenshake"), 300);
         if (onRewardCelebration) {
           onRewardCelebration({
             type: "rift",
