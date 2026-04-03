@@ -17,6 +17,10 @@
   outline-offset: 2px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(180deg, #111318 0%, #2a1530 50%, #111318 100%);
   background-size: 100% 200%;
@@ -772,6 +776,8 @@ button[disabled] {
   pointer-events: none;
   border-radius: 50%;
   will-change: transform, opacity;
+  animation-fill-mode: both;
+  opacity: 0;
 }
 
 /* Sparkle / star drift (Pinnacle) */
@@ -816,7 +822,7 @@ button[disabled] {
   85%  { opacity: calc(var(--max-opacity) * 0.3); }
   100% { transform: translate(var(--drift-x), var(--drift-y)) scale(0.2); opacity: 0; }
 }
-.floor-ember { animation-name: floor-ember-anim; }
+.floor-ember { animation-name: floor-ember-anim; animation-fill-mode: both; }
 
 /* Drifting petal (Breakaway) — gentle fall with rotation                  */
 @keyframes floor-petal-anim {
@@ -825,7 +831,7 @@ button[disabled] {
   50%  { opacity: calc(var(--max-opacity) * 0.6); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.5)) rotate(120deg) scale(0.9); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) rotate(220deg) scale(0.4); }
 }
-.floor-petal { animation-name: floor-petal-anim; }
+.floor-petal { animation-name: floor-petal-anim; animation-fill-mode: both; }
 
 /* Arcane rune mote (Inner Sanctum) — pulse in place with slight drift    */
 @keyframes floor-rune-anim {
@@ -836,7 +842,7 @@ button[disabled] {
   80%  { opacity: calc(var(--max-opacity) * 0.3); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0); }
 }
-.floor-rune { animation-name: floor-rune-anim; }
+.floor-rune { animation-name: floor-rune-anim; animation-fill-mode: both; }
 
 /* Forge spark (Trading District) — fast upward spark with flicker        */
 @keyframes floor-spark-anim {
@@ -847,7 +853,7 @@ button[disabled] {
   50%  { opacity: calc(var(--max-opacity) * 0.3); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.6)) scale(0.8); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0.1); }
 }
-.floor-spark { animation-name: floor-spark-anim; }
+.floor-spark { animation-name: floor-spark-anim; animation-fill-mode: both; }
 
 /* Golden stardust (Pinnacle) — gentle shimmer drift with size pulse      */
 @keyframes floor-stardust-anim {
@@ -858,7 +864,7 @@ button[disabled] {
   75%  { opacity: calc(var(--max-opacity) * 0.4); transform: translate(calc(var(--drift-x) * 0.75), calc(var(--drift-y) * 0.75)) scale(1.2); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0); }
 }
-.floor-stardust { animation-name: floor-stardust-anim; }
+.floor-stardust { animation-name: floor-stardust-anim; animation-fill-mode: both; }
 
 /* ─── Screen Shake (Rift stage clear, boss events) ───────────────────── */
 @keyframes screenshake {
@@ -1731,6 +1737,34 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   border-radius: inherit;
 }
 
+/* ─── Gacha Pull Button Glow + Portrait Shimmer ─────────────────────── */
+@keyframes gacha-pull-glow {
+  0%, 100% { box-shadow: inherit; }
+  50%      { box-shadow: 0 0 20px rgba(167,139,250,0.35), 0 0 40px rgba(167,139,250,0.15); }
+}
+.gacha-portrait-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255,255,255,0.12) 45%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0.12) 55%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.group:hover .gacha-portrait-shimmer {
+  animation: gacha-shimmer-sweep 0.8s ease-out forwards;
+}
+@keyframes gacha-shimmer-sweep {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
 /* Pulse at 100% — apply when bar is full */
 @keyframes progress-complete-pulse {
   0%, 100% { filter: brightness(1); box-shadow: 0 0 4px var(--bar-color, rgba(74,222,128,0.3)); }
@@ -1772,6 +1806,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .scrollbar-rpg {
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.06) transparent;
+  scroll-behavior: smooth;
 }
 .scrollbar-rpg::-webkit-scrollbar {
   width: 6px;

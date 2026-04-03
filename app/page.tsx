@@ -1049,10 +1049,10 @@ export default function Dashboard() {
 
         {/* Player Card — shown when logged in */}
         {playerName && loggedInUser && (
-          <div data-feedback-id="player-card" className={`rounded-xl p-4 bg-w3${levelUpCelebration ? " levelup-glow-header" : ""}`} style={{ border: "1px solid rgba(255,255,255,0.09)" }}>
+          <div data-feedback-id="player-card" className={`rounded-xl p-4${levelUpCelebration ? " levelup-glow-header" : ""}`} style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(50,50,60,0.3) 0%, #181818 65%)", border: "1px solid rgba(255,255,255,0.09)", boxShadow: "inset 0 1px 2px rgba(255,255,255,0.06), inset 0 -2px 4px rgba(0,0,0,0.3)" }}>
             <div className="flex items-center gap-4">
               {/* Portrait */}
-              <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character">
+              <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character" style={{ transition: "filter 0.15s" }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.filter = `drop-shadow(0 0 8px ${loggedInUser.color ?? "#a78bfa"}60)`; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.filter = "none"; }}>
                 <img
                   src={`/images/portraits/hero-${loggedInUser.avatarStyle || "male"}.png`}
                   alt={playerName}
@@ -1099,7 +1099,7 @@ export default function Dashboard() {
                 {/* XP progress bar — Diablo style */}
                 <div className={`progress-bar-diablo${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className="progress-bar-diablo-fill"
+                    className="progress-bar-diablo-fill progress-shimmer"
                     style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)` }}
                   />
                 </div>
@@ -1150,7 +1150,7 @@ export default function Dashboard() {
               {/* Right side: Currencies + Forge */}
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
                 {/* Currency bar */}
-                <div className="flex items-center gap-3 rounded-xl px-3 py-2 bg-w4 border-w8">
+                <div className="flex items-center gap-3 rounded-xl px-3 py-2 bg-w4 border-w8 transition-colors" style={{ cursor: "pointer" }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.06)"; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = ""; }}>
                   {[
                     { emoji: "", key: "gold" as const, value: Number(loggedInUser?.currencies?.gold ?? animGold), color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
                     { emoji: "", key: "stardust" as const, value: Number(loggedInUser?.currencies?.stardust ?? 0), color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
@@ -1302,7 +1302,7 @@ export default function Dashboard() {
                 })()}
                 {/* Tavern Rest Indicator */}
                 {loggedInUser?.tavernRest?.active && (
-                  <div className="mt-1 text-xs px-2 py-0.5 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706", border: "1px solid rgba(217,119,6,0.25)" }} title="Resting — quests and rituals are paused">
+                  <div className="mt-1 text-xs px-2 py-0.5 rounded crystal-breathe" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706", border: "1px solid rgba(217,119,6,0.25)", ["--glow-color" as string]: "rgba(217,119,6,0.3)" }} title="Resting — quests and rituals are paused">
                     Resting
                   </div>
                 )}
@@ -1575,7 +1575,9 @@ export default function Dashboard() {
                       width: 60 + i * 20, height: 60 + i * 20,
                       background: `radial-gradient(circle, ${floorGlowColor}15 0%, transparent 70%)`,
                       filter: "blur(20px)",
+                      opacity: 0,
                       animation: `banner-drift ${12 + i * 3}s ease-in-out ${i * 2}s infinite alternate`,
+                      animationFillMode: "both",
                       "--drift-x": `${30 - i * 20}px`, "--drift-y": `${-15 + i * 10}px`,
                     } as React.CSSProperties} />;
                   })}
@@ -1710,10 +1712,11 @@ export default function Dashboard() {
             <div className="flex items-center gap-2">
               <Tip k="campaigns" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Observatory</span></Tip>
             </div>
-            <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-              <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.15)" }}>The Observatory will open soon. Watch for the stars.</p>
-              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
+            <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#f97316" ? "249,115,22" : "251,191,36"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
+              <img src="/images/icons/nav-observatory.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+              <p className="text-lg font-bold mb-2" style={{ color: `${currentFloorColor}88` }}>Coming Soon</p>
+              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.2)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg btn-press" style={{ background: `${currentFloorColor}10`, color: `${currentFloorColor}80`, border: `1px solid ${currentFloorColor}25`, cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
         )}
@@ -1935,9 +1938,14 @@ export default function Dashboard() {
                     <div id="daily-missions-section" className="rounded-xl p-3 mb-3" style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)", border: "1px solid rgba(99,102,241,0.15)" }}>
                       <div className="flex items-center justify-between mb-2">
                         <Tip k="daily_missions" heading><span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)", cursor: "help" }}>Daily Missions</span></Tip>
-                        <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
-                          {dailyMissions.earned}/{dailyMissions.total}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                            {(() => { const ms = new Date().setHours(24,0,0,0) - Date.now(); const h = Math.floor(ms / 3600000); const m = Math.floor((ms % 3600000) / 60000); return `${h}h ${m}m`; })()}
+                          </span>
+                          <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
+                            {dailyMissions.earned}/{dailyMissions.total}
+                          </span>
+                        </div>
                       </div>
                       {/* Milestone reward track */}
                       <div className="relative mb-3">
@@ -2125,7 +2133,7 @@ export default function Dashboard() {
                         {playerVisibleInProgress.length > 0 && (
                           <>
                             <button data-feedback-id="quest-board.in-progress" onClick={() => { const next = !inProgressSectionCollapsed; setInProgressSectionCollapsed(next); try { localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
-                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-md" style={{ color: "#a78bfa", background: "linear-gradient(90deg, rgba(139,92,246,0.18), rgba(139,92,246,0.1) 60%, transparent 100%)", minWidth: 180 }}>In Progress</span>
+                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-md" style={{ color: "#a78bfa", background: "linear-gradient(90deg, rgba(139,92,246,0.18), rgba(139,92,246,0.1) 60%, transparent 100%)", minWidth: 180, borderLeft: "2px solid rgba(139,92,246,0.5)", boxShadow: "0 1px 0 rgba(139,92,246,0.08)" }}>In Progress</span>
                               <span className="text-xs px-2 py-0.5 rounded-md font-mono font-bold relative group" style={{ background: playerVisibleInProgress.length >= 20 ? "rgba(239,68,68,0.18)" : "rgba(139,92,246,0.18)", color: playerVisibleInProgress.length >= 20 ? "#ef4444" : "#a78bfa", border: playerVisibleInProgress.length >= 20 ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(139,92,246,0.3)" }}>{playerVisibleInProgress.length}{playerVisibleInProgress.length > 20 && <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 whitespace-nowrap rounded-md px-2.5 py-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity z-50" style={{ background: "#1c1c1c", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", boxShadow: "0 4px 12px rgba(0,0,0,0.5)" }}>Too many quests in progress! XP malus: -{playerVisibleInProgress.length >= 30 ? 80 : Math.min(50, (playerVisibleInProgress.length - 20) * 10)}%</span>}</span>
                               <span className="ml-auto text-xs text-w25">{inProgressSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
@@ -2159,7 +2167,7 @@ export default function Dashboard() {
                               </div>
                             )}
                             <button data-feedback-id="quest-board.open" onClick={() => { const next = !openSectionCollapsed; setOpenSectionCollapsed(next); try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
-                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-md" style={{ color: "#94a3b8", background: "linear-gradient(90deg, rgba(148,163,184,0.15), rgba(148,163,184,0.08) 60%, transparent 100%)", minWidth: 180 }}>Open</span>
+                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-md" style={{ color: "#94a3b8", background: "linear-gradient(90deg, rgba(148,163,184,0.15), rgba(148,163,184,0.08) 60%, transparent 100%)", minWidth: 180, borderLeft: "2px solid rgba(148,163,184,0.4)", boxShadow: "0 1px 0 rgba(148,163,184,0.06)" }}>Open</span>
                               <span className="ml-auto text-xs text-w25">{openSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
                             {!openSectionCollapsed && (
@@ -2208,10 +2216,11 @@ export default function Dashboard() {
             <div className="flex items-center gap-2 mb-4">
               <Tip k="classes" heading><h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2></Tip>
             </div>
-            <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-              <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.15)" }}>The Arcanum gathers its scrolls. Class quests and skill trees coming soon.</p>
-              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
+            <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#3b82f6" ? "59,130,246" : "96,165,250"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
+              <img src="/images/icons/nav-arcanum.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+              <p className="text-lg font-bold mb-2" style={{ color: `${currentFloorColor}88` }}>Coming Soon</p>
+              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.2)" }}>The Arcanum gathers its scrolls. Class quests and skill trees await.</p>
+              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg btn-press" style={{ background: `${currentFloorColor}10`, color: `${currentFloorColor}80`, border: `1px solid ${currentFloorColor}25`, cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
         )}
@@ -2383,9 +2392,11 @@ export default function Dashboard() {
                   />
                   <div className="rounded-xl overflow-hidden bg-surface-alt border-w6">
                     {journalQuests.length === 0 ? (
-                      <p className="text-xs p-4 text-center text-w20">
-                        {dashView === "questBoard" && !playerName ? "Login to see your completed quests" : "No completed quests yet"}
-                      </p>
+                      <div className="p-6 text-center space-y-2">
+                        <img src="/images/icons/nav-great-hall.png" alt="" width={36} height={36} className="img-render-auto mx-auto" style={{ opacity: 0.2 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                        <p className="text-xs text-w25">{dashView === "questBoard" && !playerName ? "Login to see your completed quests" : "No completed quests yet"}</p>
+                        {!playerName && <p className="text-xs text-w10 italic">Your quest journal awaits its first entry.</p>}
+                      </div>
                     ) : (() => {
                       const filtered = completedSearch
                         ? journalQuests.filter(q =>
@@ -2646,9 +2657,13 @@ export default function Dashboard() {
         </div>
       )}
 
-      <footer data-feedback-id="footer" className="mt-12 py-4" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 2 }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+      <footer data-feedback-id="footer" className="mt-12 py-4" style={{ position: "relative", zIndex: 2 }}>
+        {/* Gradient separator */}
+        <div style={{ height: 1, background: `linear-gradient(90deg, transparent 0%, ${currentFloorColor}18 30%, ${currentFloorColor}25 50%, ${currentFloorColor}18 70%, transparent 100%)`, marginBottom: 16 }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
           <span>Quest Hall v{gameVersion}</span>
+          <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+          <span style={{ color: `${currentFloorColor}40` }}>{CURRENT_SEASON.name}</span>
           {reviewApiKey && playerName && (
             <>
               <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>

@@ -221,10 +221,11 @@ function BannerPreviewCard({
             boxShadow: `0 0 8px ${accentColor}50`,
           }} />
           {/* Full image clipped to arch shape */}
-          <div style={{
+          <div className="gacha-portrait-arch" style={{
             width: "100%", height: "100%",
             borderRadius: "45% 45% 4px 4px",
             overflow: "hidden",
+            position: "relative",
           }}>
             <img
               src={portraitSrc}
@@ -239,6 +240,8 @@ function BannerPreviewCard({
               }}
               onError={e => { e.currentTarget.style.display = "none"; }}
             />
+            {/* Shimmer sweep on card hover */}
+            <div className="gacha-portrait-shimmer" />
           </div>
         </div>
       )}
@@ -554,7 +557,7 @@ function BannerPullModal({
                 </span>
               </div>
               <div className="progress-bar-diablo" style={{ height: 5 }}>
-                <div className="progress-bar-diablo-fill" style={{
+                <div className={`progress-bar-diablo-fill${inSoftPity ? " progress-shimmer" : ""}`} style={{
                   width: `${Math.min(100, (pity.pityCounter / (pity.hardPity || getBalance().gacha.hardPity)) * 100)}%`,
                   background: inSoftPity ? "linear-gradient(90deg, #f97316, #ef4444)" : "linear-gradient(90deg, rgba(167,139,250,0.4), rgba(167,139,250,0.7))",
                 }} />
@@ -582,6 +585,7 @@ function BannerPullModal({
                 color: canPull1 ? (isFeatured ? "#d4c4fb" : "#c7d2fe") : "rgba(255,255,255,0.2)",
                 border: `1px solid ${canPull1 ? (isFeatured ? "rgba(167,139,250,0.5)" : "rgba(129,140,248,0.5)") : "rgba(255,255,255,0.08)"}`,
                 boxShadow: canPull1 ? `0 0 20px ${isFeatured ? "rgba(167,139,250,0.2)" : "rgba(129,140,248,0.2)"}` : "none",
+                animation: canPull1 && !pulling ? "gacha-pull-glow 2s ease-in-out infinite" : "none",
                 opacity: !canPull1 ? 0.5 : pulling ? 0.7 : 1,
                 cursor: canPull1 && !pulling ? "pointer" : !canPull1 ? "not-allowed" : "default",
                 transform: "scale(1)",
@@ -618,6 +622,7 @@ function BannerPullModal({
                 color: canPull10 ? (isFeatured ? "#d4c4fb" : "#c7d2fe") : "rgba(255,255,255,0.2)",
                 border: `2px solid ${canPull10 ? (isFeatured ? "rgba(167,139,250,0.8)" : "rgba(129,140,248,0.8)") : "rgba(255,255,255,0.08)"}`,
                 boxShadow: canPull10 ? `0 0 15px ${isFeatured ? "rgba(167,139,250,0.4)" : "rgba(129,140,248,0.4)"}, 0 0 35px ${isFeatured ? "rgba(167,139,250,0.25)" : "rgba(129,140,248,0.25)"}, inset 0 0 15px ${isFeatured ? "rgba(167,139,250,0.1)" : "rgba(129,140,248,0.1)"}` : "none",
+                animation: canPull10 && !pulling ? "gacha-pull-glow 2s ease-in-out infinite" : "none",
                 opacity: !canPull10 ? 0.5 : pulling ? 0.7 : 1,
                 cursor: canPull10 && !pulling ? "pointer" : !canPull10 ? "not-allowed" : "default",
                 transform: "scale(1)",

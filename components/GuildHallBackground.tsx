@@ -196,12 +196,22 @@ function mkCloud(w: number, h: number, tod: TOD, scatter = false): CloudWisp {
 export default function GuildHallBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [tod, setTod] = useState<TOD>(getTOD);
+  const prevTodRef = useRef<TOD>(tod);
+  const todTransitionRef = useRef(0); // 0 = no transition, >0 = frames remaining
 
   // Re-check TOD every 60s for live transitions
   useEffect(() => {
     const iv = setInterval(() => setTod(getTOD()), 60_000);
     return () => clearInterval(iv);
   }, []);
+
+  // Track TOD changes for crossfade
+  useEffect(() => {
+    if (prevTodRef.current !== tod) {
+      todTransitionRef.current = 120; // ~2 seconds at 60fps
+      // prevTodRef updates AFTER transition completes (in render loop)
+    }
+  }, [tod]);
 
   // Canvas: sky gradient + stars + moon/sun + fog + clouds + shooting stars + particles
   useEffect(() => {
@@ -276,7 +286,23 @@ export default function GuildHallBackground() {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      // ── Sky gradient ─────────────────────────────────────────────────────
+      // ── Sky gradient with crossfade on TOD change ────────────────────────
+      // If transitioning, draw old sky first, then new sky with increasing alpha
+      if (todTransitionRef.current > 0) {
+        const prevSky = SKY[prevTodRef.current];
+        const oldGrad = ctx.createLinearGradient(0, 0, 0, h);
+        oldGrad.addColorStop(0, prevSky[0]); oldGrad.addColorStop(0.33, prevSky[1]);
+        oldGrad.addColorStop(0.70, prevSky[2]); oldGrad.addColorStop(1, prevSky[3]);
+        ctx.fillStyle = oldGrad;
+        ctx.fillRect(0, 0, w, h);
+        // New sky fades in
+        const progress = 1 - (todTransitionRef.current / 120);
+        ctx.globalAlpha = progress;
+        todTransitionRef.current--;
+        if (todTransitionRef.current <= 0) {
+          prevTodRef.current = tod; // transition done
+        }
+      }
       const [c0, c1, c2, c3] = SKY[tod];
       const skyGrad = ctx.createLinearGradient(0, 0, 0, h);
       skyGrad.addColorStop(0,    c0);
@@ -285,6 +311,7 @@ export default function GuildHallBackground() {
       skyGrad.addColorStop(1,    c3);
       ctx.fillStyle = skyGrad;
       ctx.fillRect(0, 0, w, h);
+      ctx.globalAlpha = 1;
 
       // ── Animated horizon glow (dawn/sunset) ────────────────────────────
       if (tod === "dawn" || tod === "sunset") {
@@ -520,6 +547,16 @@ export default function GuildHallBackground() {
         sg.addColorStop(0, "rgba(255,190,80,0.10)"); sg.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = sg; ctx.fillRect(0, 0, w, h);
 
+        // Solid sun disc
+        const sunR = mobile() ? 10 : 16;
+        const sunGlow = ctx.createRadialGradient(sx, sy, 0, sx, sy, sunR * 3);
+        sunGlow.addColorStop(0, "rgba(255,245,200,0.35)");
+        sunGlow.addColorStop(0.3, "rgba(255,230,160,0.15)");
+        sunGlow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = sunGlow; ctx.fillRect(sx - sunR * 3, sy - sunR * 3, sunR * 6, sunR * 6);
+        ctx.fillStyle = "rgba(255,250,220,0.9)";
+        ctx.beginPath(); ctx.arc(sx, sy, sunR, 0, Math.PI * 2); ctx.fill();
+
         // Light rays
         ctx.globalAlpha = 0.025 + Math.sin(t * 0.004) * 0.008;
         for (let i = 0; i < 5; i++) {
@@ -557,20 +594,27 @@ export default function GuildHallBackground() {
           Object.assign(c, mkCloud(w, h, tod));
         }
 
-        // Soft elliptical cloud
+        // Multi-ellipse cloud for natural lumpy edges
         ctx.globalAlpha = c.opacity;
-        const cg = ctx.createRadialGradient(
-          c.x + c.width * 0.5, c.y + c.height * 0.5, 0,
-          c.x + c.width * 0.5, c.y + c.height * 0.5, c.width * 0.5
-        );
         const cloudColor = tod === "night" ? "rgba(80,60,130," : tod === "sunset" ? "rgba(180,80,40," : tod === "dawn" ? "rgba(200,120,60," : "rgba(140,120,180,";
-        cg.addColorStop(0, cloudColor + "1)");
-        cg.addColorStop(0.5, cloudColor + "0.5)");
-        cg.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = cg;
-        ctx.beginPath();
-        ctx.ellipse(c.x + c.width * 0.5, c.y + c.height * 0.5, c.width * 0.5, c.height * 0.5, 0, 0, Math.PI * 2);
-        ctx.fill();
+        const cx = c.x + c.width * 0.5, cy = c.y + c.height * 0.5;
+        // Sub-ellipses: 3 overlapping ovals for lumpy structure
+        const subClouds = [
+          { ox: 0, oy: 0, rx: c.width * 0.5, ry: c.height * 0.5, a: 1 },
+          { ox: -c.width * 0.22, oy: -c.height * 0.12, rx: c.width * 0.35, ry: c.height * 0.4, a: 0.6 },
+          { ox: c.width * 0.2, oy: c.height * 0.1, rx: c.width * 0.3, ry: c.height * 0.35, a: 0.55 },
+        ];
+        for (const sc of subClouds) {
+          const scx = cx + sc.ox, scy = cy + sc.oy;
+          const scg = ctx.createRadialGradient(scx, scy, 0, scx, scy, sc.rx);
+          scg.addColorStop(0, cloudColor + String(sc.a) + ")");
+          scg.addColorStop(0.5, cloudColor + String(sc.a * 0.5) + ")");
+          scg.addColorStop(1, "rgba(0,0,0,0)");
+          ctx.fillStyle = scg;
+          ctx.beginPath();
+          ctx.ellipse(scx, scy, sc.rx, sc.ry, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
         ctx.globalAlpha = 1;
       }
 
@@ -578,9 +622,9 @@ export default function GuildHallBackground() {
       if (tod !== "day") {
         const fy = h * 0.63 + Math.sin(t * 0.00038) * 7;
         const fc: Record<TOD, string> = {
-          dawn:   "rgba(255,136,62,0.055)",
+          dawn:   "rgba(255,170,120,0.06)",
           day:    "rgba(0,0,0,0)",
-          sunset: "rgba(195,65,20,0.055)",
+          sunset: "rgba(180,50,15,0.06)",
           night:  "rgba(38,22,72,0.065)",
         };
         const fg = ctx.createLinearGradient(0, fy, 0, fy + h * 0.20);
