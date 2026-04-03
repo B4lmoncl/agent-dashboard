@@ -301,7 +301,7 @@ export default function DashboardHeader({
                   <div style={{ display: "none", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff", fontSize: 13, fontWeight: "bold" }}>{playerName.slice(0, 1).toUpperCase()}</div>
                 </button>
                 {settingsPopupOpen && (
-                  <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col bg-surface-alt border-w10" style={{ minWidth: 200, overflow: "hidden" }}>
+                  <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col bg-surface-alt border-w10 tab-content-enter" style={{ minWidth: 200, overflow: "hidden" }}>
                     <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
@@ -352,7 +352,7 @@ export default function DashboardHeader({
                   Login
                 </button>
                 {loginOpen && (
-                  <div ref={loginRef} className="absolute right-0 top-7 z-50 rounded-xl p-3 shadow-xl flex flex-col gap-2 bg-surface-alt" style={{ border: "1px solid rgba(139,92,246,0.3)", minWidth: "min(220px, calc(100vw - 2rem))" }}>
+                  <div ref={loginRef} className="absolute right-0 top-7 z-50 rounded-xl p-3 shadow-xl flex flex-col gap-2 bg-surface-alt tab-content-enter" style={{ border: "1px solid rgba(139,92,246,0.3)", minWidth: "min(220px, calc(100vw - 2rem))" }}>
                     {!registerOpen ? (
                       <>
                         <input

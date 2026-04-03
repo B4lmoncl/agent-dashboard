@@ -2657,9 +2657,13 @@ export default function Dashboard() {
         </div>
       )}
 
-      <footer data-feedback-id="footer" className="mt-12 py-4" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 2 }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+      <footer data-feedback-id="footer" className="mt-12 py-4" style={{ position: "relative", zIndex: 2 }}>
+        {/* Gradient separator */}
+        <div style={{ height: 1, background: `linear-gradient(90deg, transparent 0%, ${currentFloorColor}18 30%, ${currentFloorColor}25 50%, ${currentFloorColor}18 70%, transparent 100%)`, marginBottom: 16 }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
           <span>Quest Hall v{gameVersion}</span>
+          <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+          <span style={{ color: `${currentFloorColor}40` }}>{CURRENT_SEASON.name}</span>
           {reviewApiKey && playerName && (
             <>
               <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
