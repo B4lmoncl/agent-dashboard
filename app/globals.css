@@ -1737,6 +1737,34 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   border-radius: inherit;
 }
 
+/* ─── Gacha Pull Button Glow + Portrait Shimmer ─────────────────────── */
+@keyframes gacha-pull-glow {
+  0%, 100% { box-shadow: inherit; }
+  50%      { box-shadow: 0 0 20px rgba(167,139,250,0.35), 0 0 40px rgba(167,139,250,0.15); }
+}
+.gacha-portrait-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255,255,255,0.12) 45%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0.12) 55%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.group:hover .gacha-portrait-shimmer {
+  animation: gacha-shimmer-sweep 0.8s ease-out forwards;
+}
+@keyframes gacha-shimmer-sweep {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
 /* Pulse at 100% — apply when bar is full */
 @keyframes progress-complete-pulse {
   0%, 100% { filter: brightness(1); box-shadow: 0 0 4px var(--bar-color, rgba(74,222,128,0.3)); }

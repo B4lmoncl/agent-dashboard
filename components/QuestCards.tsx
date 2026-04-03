@@ -184,7 +184,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
           el.style.borderColor = `${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "cc"}`;
-          el.style.boxShadow = `0 6px 20px ${rarityColor}${isLegendary ? "60" : isEpic ? "50" : "30"}, 0 0 ${isLegendary ? 28 : isEpic ? 18 : isRarePlus ? 10 : 8}px ${rarityColor}${isLegendary ? "50" : isEpic ? "40" : "22"}${topGlow}`;
+          el.style.boxShadow = `0 6px 24px ${rarityColor}${isLegendary ? "60" : isEpic ? "50" : "38"}, 0 0 ${isLegendary ? 28 : isEpic ? 18 : isRarePlus ? 12 : 10}px ${rarityColor}${isLegendary ? "50" : isEpic ? "40" : "28"}, inset 0 1px 3px rgba(255,255,255,0.06)${topGlow}`;
           el.style.transform = "translateY(-2px)";
         }}
         onMouseLeave={(e) => {
@@ -380,7 +380,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
             {cats.map(c => <CategoryBadge key={c} category={c} />)}
             {quest.product && <ProductBadge product={quest.product} />}
             {isInProgress && quest.claimedBy && !isCoop && (
-              <span className="text-xs" style={{ color: "rgba(139,92,246,0.7)" }}>→ {quest.claimedBy}</span>
+              <span className={`text-xs${actionAnim === "claim" ? " badge-enter" : ""}`} style={{ color: "rgba(139,92,246,0.7)" }}>→ {quest.claimedBy}</span>
             )}
           </div>
           {isCoop && coopPartners.length > 0 && (

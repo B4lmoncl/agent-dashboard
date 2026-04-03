@@ -255,7 +255,7 @@ export default function DashboardHeader({
               className="btn-interactive text-xs px-2 py-1.5 sm:py-0.5 rounded text-w40 bg-w5 border-w10"
               title={soundMuted ? "Enable sound" : "Mute sound"}
               aria-label={soundMuted ? "Unmute sound effects" : "Mute sound effects"}
-              style={{ minWidth: 28, textAlign: "center", fontFamily: "monospace" }}
+              style={{ minWidth: 36, textAlign: "center", fontFamily: "monospace", transition: "background 0.15s, color 0.15s" }}
             >
               {soundMuted ? "×" : "♪"}
             </button>
