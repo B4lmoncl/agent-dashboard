@@ -220,8 +220,8 @@ router.get('/api/player/:name/notification-center', requireAuth, requireSelf('na
   // Active rift cooldowns ending soon
   const riftState = u.riftState || {};
   for (const [tier, data] of Object.entries(riftState)) {
-    if (data && typeof data === "object" && (data as { cooldownEndsAt?: string }).cooldownEndsAt) {
-      const cdEnd = new Date((data as { cooldownEndsAt: string }).cooldownEndsAt).getTime();
+    if (data && typeof data === "object" && data.cooldownEndsAt) {
+      const cdEnd = new Date(data.cooldownEndsAt).getTime();
       if (cdEnd > now && cdEnd - now < 24 * 3600000) {
         notifications.push({
           id: `rift-cd-${tier}`, type: "rift_cooldown",
@@ -229,7 +229,7 @@ router.get('/api/player/:name/notification-center', requireAuth, requireSelf('na
           message: `Cooldown expires in ${Math.ceil((cdEnd - now) / 3600000)}h`,
           icon: "/images/icons/nav-rift.png",
           color: "#818cf8",
-          at: (data as { cooldownEndsAt: string }).cooldownEndsAt,
+          at: data.cooldownEndsAt,
           read: readSet.has(`rift-cd-${tier}`),
         });
       }
