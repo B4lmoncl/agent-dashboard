@@ -772,6 +772,8 @@ button[disabled] {
   pointer-events: none;
   border-radius: 50%;
   will-change: transform, opacity;
+  animation-fill-mode: both;
+  opacity: 0;
 }
 
 /* Sparkle / star drift (Pinnacle) */
@@ -816,7 +818,7 @@ button[disabled] {
   85%  { opacity: calc(var(--max-opacity) * 0.3); }
   100% { transform: translate(var(--drift-x), var(--drift-y)) scale(0.2); opacity: 0; }
 }
-.floor-ember { animation-name: floor-ember-anim; }
+.floor-ember { animation-name: floor-ember-anim; animation-fill-mode: both; }
 
 /* Drifting petal (Breakaway) — gentle fall with rotation                  */
 @keyframes floor-petal-anim {
@@ -825,7 +827,7 @@ button[disabled] {
   50%  { opacity: calc(var(--max-opacity) * 0.6); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.5)) rotate(120deg) scale(0.9); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) rotate(220deg) scale(0.4); }
 }
-.floor-petal { animation-name: floor-petal-anim; }
+.floor-petal { animation-name: floor-petal-anim; animation-fill-mode: both; }
 
 /* Arcane rune mote (Inner Sanctum) — pulse in place with slight drift    */
 @keyframes floor-rune-anim {
@@ -836,7 +838,7 @@ button[disabled] {
   80%  { opacity: calc(var(--max-opacity) * 0.3); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0); }
 }
-.floor-rune { animation-name: floor-rune-anim; }
+.floor-rune { animation-name: floor-rune-anim; animation-fill-mode: both; }
 
 /* Forge spark (Trading District) — fast upward spark with flicker        */
 @keyframes floor-spark-anim {
@@ -847,7 +849,7 @@ button[disabled] {
   50%  { opacity: calc(var(--max-opacity) * 0.3); transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.6)) scale(0.8); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0.1); }
 }
-.floor-spark { animation-name: floor-spark-anim; }
+.floor-spark { animation-name: floor-spark-anim; animation-fill-mode: both; }
 
 /* Golden stardust (Pinnacle) — gentle shimmer drift with size pulse      */
 @keyframes floor-stardust-anim {
@@ -858,7 +860,7 @@ button[disabled] {
   75%  { opacity: calc(var(--max-opacity) * 0.4); transform: translate(calc(var(--drift-x) * 0.75), calc(var(--drift-y) * 0.75)) scale(1.2); }
   100% { opacity: 0; transform: translate(var(--drift-x), var(--drift-y)) scale(0); }
 }
-.floor-stardust { animation-name: floor-stardust-anim; }
+.floor-stardust { animation-name: floor-stardust-anim; animation-fill-mode: both; }
 
 /* ─── Screen Shake (Rift stage clear, boss events) ───────────────────── */
 @keyframes screenshake {

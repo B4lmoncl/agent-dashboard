@@ -1575,7 +1575,9 @@ export default function Dashboard() {
                       width: 60 + i * 20, height: 60 + i * 20,
                       background: `radial-gradient(circle, ${floorGlowColor}15 0%, transparent 70%)`,
                       filter: "blur(20px)",
+                      opacity: 0,
                       animation: `banner-drift ${12 + i * 3}s ease-in-out ${i * 2}s infinite alternate`,
+                      animationFillMode: "both",
                       "--drift-x": `${30 - i * 20}px`, "--drift-y": `${-15 + i * 10}px`,
                     } as React.CSSProperties} />;
                   })}

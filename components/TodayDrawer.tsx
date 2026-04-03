@@ -136,7 +136,9 @@ function FloatingMotes({ color }: { color: string }) {
             width: m.size, height: m.size,
             background: color,
             boxShadow: `0 0 ${m.size * 2}px ${color}`,
+            opacity: 0,
             animation: `today-particle-drift ${m.duration} ease-in-out ${m.delay} infinite`,
+            animationFillMode: "both",
             "--p-dx": m.dx, "--p-dy": m.dy, "--p-max-opacity": "0.5",
           } as React.CSSProperties}
         />
@@ -827,8 +829,6 @@ export default function TodayDrawer({
     return "";
   }, [comp]);
 
-  if (!open) return null;
-
   // ─── Level ring SVG params ─────────────────────────────────────────────
 
   const ringRadius = 28;
@@ -838,7 +838,7 @@ export default function TodayDrawer({
   const isNight = new Date().getHours() < 6 || new Date().getHours() >= 21;
 
   return (
-    <>
+    <div style={{ display: open ? "contents" : "none" }}>
       {/* Backdrop */}
       <div
         className="fixed inset-0 z-[90]"
@@ -854,7 +854,7 @@ export default function TodayDrawer({
           background: timeInfo.bg,
           borderLeft: "1px solid rgba(255,255,255,0.06)",
           boxShadow: "-12px 0 40px rgba(0,0,0,0.7)",
-          animation: "today-drawer-in 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+          animation: open ? "today-drawer-in 0.3s cubic-bezier(0.34,1.56,0.64,1)" : "none",
         }}
       >
         {/* Ambient particles layer */}
@@ -1223,6 +1223,6 @@ export default function TodayDrawer({
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
