@@ -246,6 +246,7 @@ export default function CodexView() {
               background: "#111318",
               border: `1px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}30`,
               boxShadow: `0 20px 60px rgba(0,0,0,0.7)`,
+              overscrollBehavior: "contain",
             }}
             onClick={e => e.stopPropagation()}
           >
