@@ -2136,7 +2136,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {craftResultHadSkillUp && skillUpInfo && (
                           <span
                             className="inline-flex items-center gap-1 mr-2 px-1.5 py-0.5 rounded font-bold"
-                            style={{ background: `${skillUpInfo.color}20`, color: skillUpInfo.color, border: `1px solid ${skillUpInfo.color}40`, fontSize: 11, letterSpacing: "0.04em" }}
+                            style={{ background: `${skillUpInfo.color}20`, color: skillUpInfo.color, border: `1px solid ${skillUpInfo.color}40`, fontSize: 12, letterSpacing: "0.04em" }}
                           >
                             <span className="w-2 h-2 rounded-full inline-block flex-shrink-0" style={{ background: skillUpInfo.color }} />
                             {craftResultSkillUpColor ? craftResultSkillUpColor.charAt(0).toUpperCase() + craftResultSkillUpColor.slice(1) : ""} Skill-Up!
