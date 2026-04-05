@@ -2,6 +2,24 @@
 
 import { useState, useEffect, useMemo, memo } from "react";
 import type { User } from "@/app/types";
+import { getUserLevel } from "@/app/utils";
+import { FLOORS } from "@/app/config";
+
+// ─── Next Feature Unlock ────────────────────────────────────────────────────
+function getNextUnlock(level: number): { level: number; features: string[]; color: string } | null {
+  for (const floor of FLOORS) {
+    if (floor.minLevel && floor.minLevel > level) {
+      return { level: floor.minLevel, features: [floor.name], color: floor.color };
+    }
+    for (const room of floor.rooms) {
+      const roomLevel = room.minLevel ?? floor.minLevel ?? 1;
+      if (roomLevel > level) {
+        return { level: roomLevel, features: [room.label], color: floor.color };
+      }
+    }
+  }
+  return null;
+}
 
 // ─── Companion daily quotes (Skulduggery-humor) ─────────────────────────────
 const COMPANION_DAILY_QUOTES: Record<string, string[]> = {
@@ -109,6 +127,8 @@ export const DailyHub = memo(function DailyHub({
   const missionProgress = missionsTotal > 0 ? missionsCompleted / missionsTotal : 0;
   const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
   const forgeTemp = Math.min(user.forgeTemp ?? 0, 100);
+  const playerLevel = getUserLevel(user.xp ?? 0).level;
+  const nextUnlock = playerLevel < 15 ? getNextUnlock(playerLevel) : null;
 
   // Companion daily quote (deterministic per day)
   const companionQuote = useMemo(() => {
@@ -238,11 +258,16 @@ export const DailyHub = memo(function DailyHub({
           </div>
         )}
       </div>
-      {/* Bottom row: Rested XP + Companion message */}
+      {/* Bottom row: Rested XP + Next Unlock + Companion message */}
       <div className="px-4 pb-2.5 -mt-1 flex items-center gap-3 flex-wrap">
         {(user._restedXpPool ?? 0) > 0 && (
           <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: "rgba(59,130,246,0.1)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.2)" }}>
             ★ {Math.round(user._restedXpPool!)} Rested XP
+          </span>
+        )}
+        {nextUnlock && (
+          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: `${nextUnlock.color}10`, color: `${nextUnlock.color}99`, border: `1px solid ${nextUnlock.color}25` }}>
+            Lv.{nextUnlock.level}: {nextUnlock.features.join(", ")}
           </span>
         )}
         {companionQuote && (
