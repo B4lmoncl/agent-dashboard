@@ -112,6 +112,7 @@ export const FLOORS: Floor[] = [
       { key: "character",     label: "Character",      iconSrc: "/images/icons/nav-character.png",    requiresLogin: true, tutorialKey: "character-tab" },
       { key: "rituals",       label: "Ritual Chamber", iconSrc: "/images/icons/ui-ritual-rune.png",   requiresLogin: true, tutorialKey: "rituals-tab" },
       { key: "vows",          label: "Vow Shrine",     iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
+      { key: "talents",        label: "Schicksalsbaum", iconSrc: "/images/icons/nav-talents.png",      requiresLogin: true, tutorialKey: null, minLevel: 5 },
       { key: "codex",          label: "Codex",          iconSrc: "/images/icons/nav-codex.png",        requiresLogin: true, tutorialKey: null },
       { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
