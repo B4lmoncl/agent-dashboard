@@ -371,6 +371,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   };
   const craftTimerRef = useRef<number | null>(null);
   const craftCastMsRef = useRef(3000);
+  const batchIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  // Cleanup batch interval on unmount
+  useEffect(() => () => { if (batchIntervalRef.current) clearInterval(batchIntervalRef.current); }, []);
 
   const startCraftCast = (recipeId: string, count = 1) => {
     if (crafting || craftProgress || !reviewApiKey) return;
@@ -455,10 +458,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           const total = data.craftCount || count;
           setCraftResult(`◆ Crafting 1/${total}...`);
           let tick = 1;
-          const interval = setInterval(() => {
+          if (batchIntervalRef.current) clearInterval(batchIntervalRef.current);
+          batchIntervalRef.current = setInterval(() => {
             tick++;
             if (tick >= total) {
-              clearInterval(interval);
+              if (batchIntervalRef.current) clearInterval(batchIntervalRef.current);
+              batchIntervalRef.current = null;
               setCraftResult(msg);
             } else {
               const bar = "█".repeat(tick) + "░".repeat(total - tick);
