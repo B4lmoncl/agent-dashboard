@@ -190,7 +190,7 @@ export const DailyHub = memo(function DailyHub({
 
         {/* Unclaimed milestone nudge */}
         {nextMilestone && !dailyBonusAvailable && (
-          <button onClick={onTodayOpen} className="text-xs font-mono px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer" }} title="Claim milestone in Today's Overview">
+          <button onClick={onTodayOpen} className="text-xs font-mono px-2 py-1.5 rounded flex-shrink-0" style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer" }} title="Claim milestone in Today's Overview">
             Claim ★
           </button>
         )}
