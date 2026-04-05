@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo, memo } from "react";
 import type { User } from "@/app/types";
-import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Companion daily quotes (Skulduggery-humor) ─────────────────────────────
 const COMPANION_DAILY_QUOTES: Record<string, string[]> = {
