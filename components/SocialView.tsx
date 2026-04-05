@@ -1551,6 +1551,18 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                 try {
                   const r = await fetch("/api/mail/collect-all", { method: "POST", headers: getAuthHeaders(apiKey) });
                   const data = await r.json();
+                  if (r.ok && onRewardCelebration && (data.goldCollected > 0 || data.itemsCollected > 0)) {
+                    const currencies: { name: string; amount: number; color: string }[] = [];
+                    if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
+                    onRewardCelebration({
+                      type: "daily-bonus",
+                      title: `${data.mailsCollected} Mail${data.mailsCollected > 1 ? "s" : ""} Collected!`,
+                      xpEarned: 0,
+                      goldEarned: data.goldCollected || 0,
+                      loot: data.itemsCollected > 0 ? { name: `${data.itemsCollected} item${data.itemsCollected > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
+                      currencies: currencies.length > 0 ? currencies : undefined,
+                    });
+                  }
                   setActionMsg(data.message || data.error || "Done");
                   setTimeout(() => setActionMsg(null), 4000);
                   fetchMail();
