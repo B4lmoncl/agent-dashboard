@@ -1,7 +1,14 @@
 # Feature Ideas — Autopilot Generated
 
 > Gesammelt waehrend des Autopilot Audits. Markiert mit Quelle (WoW/D3/HSR/Original) und geschaetztem Aufwand.
-> **Nichts hier ist implementiert** — nur Vorschlaege zur Diskussion.
+> **Stand 2026-04-05:** ~25 von 65 Items sind bereits implementiert (markiert mit ~~strikethrough~~).
+> Triage: Session 2026-04-05 Autopilot Audit verifizierte alle Items gegen die aktuelle Codebase.
+>
+> **Implementiert:** FI-001 (DailyHub), FI-005/013 (Bolstering), FI-009 (47 Uniques), FI-011 (WandererRest guards),
+> FI-014 (Agent auth), FI-020 (Variety bonus), FI-021 (ShopView gold-buy), FI-022 (Currency shop owned),
+> FI-034 (Recipes), FI-037 (window.confirm), FI-038 (setTimeout cleanup), FI-040 (Achievement points),
+> FI-041 (Ritual loading), FI-043 (Material sources), FI-047 (RoadmapView loading), FI-050 (Bond progress),
+> FI-056 (Buff preview), FI-057 (Buff indicator), FI-061 (QuestDetail loading)
 
 ---
 
