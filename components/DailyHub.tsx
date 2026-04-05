@@ -70,29 +70,22 @@ const COMPANION_DAILY_QUOTES: Record<string, string[]> = {
   ],
 };
 
-// ─── Streak urgency thresholds ──────────────────────────────────────────────
-function getStreakStatus(streak: number, streakLastDate?: string | null): {
-  label: string; color: string; urgent: boolean; message: string;
+// ─── Streak urgency (only shows when at-risk) ──────────────────────────────
+function getStreakUrgency(streak: number, streakLastDate?: string | null): {
+  show: boolean; label: string; color: string;
 } {
-  if (streak === 0) return { label: "No Streak", color: "#4b5563", urgent: false, message: "Complete a quest to start your streak" };
-
-  // Check if streak was already updated today (Berlin timezone)
+  if (streak < 3) return { show: false, label: "", color: "" };
   const now = new Date();
   const berlinNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
   const todayStr = `${berlinNow.getFullYear()}-${String(berlinNow.getMonth() + 1).padStart(2, "0")}-${String(berlinNow.getDate()).padStart(2, "0")}`;
-
-  if (streakLastDate === todayStr) {
-    return { label: "Streak Safe", color: "#22c55e", urgent: false, message: `${streak}-day streak secured for today` };
-  }
-
-  // Streak exists but no activity today
-  if (streak >= 7) {
-    return { label: "Streak at Risk!", color: "#ef4444", urgent: true, message: `${streak}-day streak needs a quest today!` };
-  }
-  return { label: "Keep Going", color: "#f59e0b", urgent: false, message: `${streak}-day streak — complete a quest to extend it` };
+  if (streakLastDate === todayStr) return { show: false, label: "", color: "" }; // Safe today
+  // At risk — show warning
+  return { show: true, label: `${streak}d streak at risk!`, color: "#ef4444" };
 }
 
 // ─── DailyHub Component ─────────────────────────────────────────────────────
+// Slim action bar: Daily Bonus + Streak Warning + Today Drawer trigger.
+// Detail lives in TodayDrawer — DailyHub is the quick-glance + quick-act layer.
 
 interface DailyHubProps {
   user: User;
@@ -121,14 +114,10 @@ export const DailyHub = memo(function DailyHub({
   onTodayOpen,
 }: DailyHubProps) {
   const streak = user.streakDays ?? 0;
-  const streakStatus = getStreakStatus(streak, user.streakLastDate);
-  const missionsCompleted = dailyMissions?.missions.filter(m => m.done).length ?? 0;
-  const missionsTotal = dailyMissions?.missions.length ?? 6;
-  const missionProgress = missionsTotal > 0 ? missionsCompleted / missionsTotal : 0;
-  const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
-  const forgeTemp = Math.min(user.forgeTemp ?? 0, 100);
+  const streakUrgency = getStreakUrgency(streak, user.streakLastDate);
   const playerLevel = getUserLevel(user.xp ?? 0).level;
   const nextUnlock = playerLevel < 15 ? getNextUnlock(playerLevel) : null;
+  const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
 
   // Companion daily quote (deterministic per day)
   const companionQuote = useMemo(() => {
@@ -137,7 +126,6 @@ export const DailyHub = memo(function DailyHub({
     const type = comp.type ?? "default";
     const name = comp.name ?? "Companion";
     const quotes = COMPANION_DAILY_QUOTES[type] ?? COMPANION_DAILY_QUOTES.default;
-    // Use date as seed for deterministic daily rotation
     const today = new Date();
     const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
     const idx = dayOfYear % quotes.length;
@@ -154,92 +142,77 @@ export const DailyHub = memo(function DailyHub({
     else setGreeting("Night owl mode");
   }, []);
 
+  // Only render if there's something actionable to show
+  const hasAction = dailyBonusAvailable || streakUrgency.show || nextMilestone || (user._restedXpPool ?? 0) > 50;
+  // Always show for new players (< Lv5) or when companion has a quote
+  const showHub = hasAction || playerLevel < 5 || !!companionQuote;
+  if (!showHub) return null;
+
   return (
     <div
       className="rounded-xl overflow-hidden tab-content-enter"
       style={{
         background: "linear-gradient(135deg, rgba(17,19,24,0.95), rgba(26,28,35,0.9))",
-        border: `1px solid ${streakStatus.urgent ? "rgba(239,68,68,0.3)" : "rgba(255,255,255,0.06)"}`,
-        boxShadow: streakStatus.urgent ? "0 0 20px rgba(239,68,68,0.1)" : "none",
+        border: `1px solid ${streakUrgency.show ? "rgba(239,68,68,0.3)" : "rgba(255,255,255,0.06)"}`,
+        boxShadow: streakUrgency.show ? "0 0 20px rgba(239,68,68,0.1)" : "none",
         transition: "border-color 0.3s, box-shadow 0.3s",
       }}
     >
-      <div className="px-4 py-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-        {/* Greeting + Streak */}
-        <div className="flex-1 min-w-[180px]">
-          <p className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>
-            {greeting}, <span style={{ color: user.color ?? "#a78bfa" }}>{user.name}</span>
-          </p>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span
-              className={`text-xs font-semibold px-1.5 py-0.5 rounded${streakStatus.urgent ? " streak-urgent-pulse" : ""}`}
-              style={{
-                color: streakStatus.color,
-                background: `${streakStatus.color}15`,
-                border: `1px solid ${streakStatus.color}30`,
-              }}
-            >
-              {streak > 0 && <span style={{ marginRight: 3 }}>🔥</span>}
-              {streakStatus.label}
-            </span>
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-              {streakStatus.message}
-            </span>
-          </div>
-        </div>
+      <div className="px-4 py-2.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+        {/* Greeting (compact) */}
+        <p className="text-sm font-semibold flex-shrink-0" style={{ color: "#e8e8e8" }}>
+          {greeting}, <span style={{ color: user.color ?? "#a78bfa" }}>{user.name}</span>
+        </p>
 
-        {/* Daily Missions Mini-Bar */}
+        {/* Streak Warning — only when at risk */}
+        {streakUrgency.show && (
+          <span className="text-xs font-semibold px-1.5 py-0.5 rounded streak-urgent-pulse flex-shrink-0" style={{ color: streakUrgency.color, background: `${streakUrgency.color}15`, border: `1px solid ${streakUrgency.color}30` }}>
+            🔥 {streakUrgency.label}
+          </span>
+        )}
+
+        {/* Spacer */}
+        <span className="flex-1" />
+
+        {/* Rested XP badge */}
+        {(user._restedXpPool ?? 0) > 50 && (
+          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: "rgba(59,130,246,0.1)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.2)" }}>
+            ★ {Math.round(user._restedXpPool!)} Rested XP
+          </span>
+        )}
+
+        {/* Next unlock badge */}
+        {nextUnlock && (
+          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: `${nextUnlock.color}10`, color: `${nextUnlock.color}99`, border: `1px solid ${nextUnlock.color}25` }}>
+            Lv.{nextUnlock.level}: {nextUnlock.features.join(", ")}
+          </span>
+        )}
+
+        {/* Unclaimed milestone nudge */}
+        {nextMilestone && !dailyBonusAvailable && (
+          <button onClick={onTodayOpen} className="text-xs font-mono px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer" }} title="Claim milestone in Today's Overview">
+            Claim ★
+          </button>
+        )}
+
+        {/* Today Drawer trigger */}
         <button
           onClick={onTodayOpen}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg"
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            cursor: "pointer",
-            transition: "background 0.15s",
-          }}
+          className="text-xs px-2 py-1 rounded-lg flex-shrink-0"
+          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)", cursor: "pointer", transition: "background 0.15s" }}
           onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
           onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.03)")}
-          title="Open Today's Overview"
+          title="Open detailed Today overview"
         >
-          <div className="flex flex-col items-start gap-0.5">
-            <span className="text-xs font-semibold" style={{ color: missionProgress >= 1 ? "#22c55e" : "rgba(255,255,255,0.5)" }}>
-              Daily {missionsCompleted}/{missionsTotal}
-            </span>
-            <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
-              <div
-                className="h-full rounded-full transition-all duration-500"
-                style={{
-                  width: `${missionProgress * 100}%`,
-                  background: missionProgress >= 1
-                    ? "linear-gradient(90deg, #22c55e, #4ade80)"
-                    : "linear-gradient(90deg, rgba(129,140,248,0.6), rgba(167,139,250,0.8))",
-                }}
-              />
-            </div>
-          </div>
-          {nextMilestone && (
-            <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)" }}>
-              Claim
-            </span>
-          )}
+          Today ↗
         </button>
 
-        {/* Quests Today Counter */}
-        <div className="flex items-center gap-1.5 px-2 py-1" title={`${questsCompletedToday} quests completed today`}>
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Today:</span>
-          <span className="text-sm font-bold font-mono" style={{ color: questsCompletedToday > 0 ? "#22c55e" : "rgba(255,255,255,0.2)" }}>
-            {questsCompletedToday}
-          </span>
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>quests</span>
-        </div>
-
-        {/* Daily Bonus Claim */}
-        {dailyBonusAvailable ? (
+        {/* Daily Bonus Claim — the primary action */}
+        {dailyBonusAvailable && (
           <button
             onClick={onClaimDailyBonus}
             disabled={claimingDailyBonus}
-            className="px-4 py-2 rounded-lg text-xs font-bold daily-bonus-glow"
+            className="px-4 py-1.5 rounded-lg text-xs font-bold daily-bonus-glow flex-shrink-0"
             style={{
               background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.15))",
               color: "#fbbf24",
@@ -252,30 +225,16 @@ export const DailyHub = memo(function DailyHub({
           >
             {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
           </button>
-        ) : (
-          <div className="px-3 py-1.5 rounded-lg text-xs" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)", color: "rgba(34,197,94,0.5)" }}>
-            ✓ Bonus claimed
-          </div>
         )}
       </div>
-      {/* Bottom row: Rested XP + Next Unlock + Companion message */}
-      <div className="px-4 pb-2.5 -mt-1 flex items-center gap-3 flex-wrap">
-        {(user._restedXpPool ?? 0) > 0 && (
-          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: "rgba(59,130,246,0.1)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.2)" }}>
-            ★ {Math.round(user._restedXpPool!)} Rested XP
-          </span>
-        )}
-        {nextUnlock && (
-          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: `${nextUnlock.color}10`, color: `${nextUnlock.color}99`, border: `1px solid ${nextUnlock.color}25` }}>
-            Lv.{nextUnlock.level}: {nextUnlock.features.join(", ")}
-          </span>
-        )}
-        {companionQuote && (
-          <p className="text-xs italic flex-1 min-w-0" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.5 }}>
+      {/* Companion message — unique to DailyHub, not in TodayDrawer */}
+      {companionQuote && (
+        <div className="px-4 pb-2 -mt-0.5">
+          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.22)", lineHeight: 1.5 }}>
             &ldquo;{companionQuote}&rdquo;
           </p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 });
