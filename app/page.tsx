@@ -2145,14 +2145,31 @@ export default function Dashboard() {
                       const today = new Date().toISOString().slice(0, 10);
                       const dc = loggedInUser?._dailyCompletions;
                       const dailyCount = dc && dc.date === today ? dc.count : 0;
-                      if (dailyCount < 5) return null;
+                      if (dailyCount < 4) return null;
+                      // Proactive warning at quest 4-5 (before DR kicks in)
+                      if (dailyCount === 4) return (
+                        <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.12)" }}>
+                          <span style={{ color: "#60a5fa", fontSize: 12, flexShrink: 0 }}>◆</span>
+                          <p className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>
+                            <span className="font-semibold" style={{ color: "#60a5fa" }}>1 quest left</span> at full rewards today. After 5, rewards scale down.
+                          </p>
+                        </div>
+                      );
+                      if (dailyCount === 5) return (
+                        <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.12)" }}>
+                          <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
+                          <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>
+                            Full rewards reached for today. Next quests earn <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>75%</span> rewards.
+                          </p>
+                        </div>
+                      );
                       const rate = dailyCount >= 21 ? 25 : dailyCount >= 11 ? 50 : 75;
                       const label = dailyCount >= 21 ? "25%" : dailyCount >= 11 ? "50%" : "75%";
                       return (
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)" }}>
                           <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
                           <p className="text-xs" style={{ color: "rgba(245,158,11,0.7)" }}>
-                            Rewards reduced to <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>{label}</span> — {dailyCount} quests completed today. First 5 give full rewards.
+                            Rewards at <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>{label}</span> — {dailyCount} quests completed today. First 5 give full rewards.
                           </p>
                           <span className="ml-auto font-mono text-xs" style={{ color: `rgba(${rate === 25 ? "239,68,68" : rate === 50 ? "245,158,11" : "163,163,163"},0.5)` }}>{rate}%</span>
                         </div>
