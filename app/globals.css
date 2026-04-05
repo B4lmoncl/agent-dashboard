@@ -1765,6 +1765,23 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   100% { transform: translateX(120%); }
 }
 
+/* ─── Daily Hub: Bonus Pulse + Streak Urgency ─────────────────────── */
+@keyframes daily-bonus-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(251,191,36,0.15); }
+  50%      { box-shadow: 0 0 20px rgba(251,191,36,0.3), 0 0 40px rgba(251,191,36,0.1); }
+}
+.daily-bonus-glow:hover {
+  background: linear-gradient(135deg, rgba(251,191,36,0.3), rgba(245,158,11,0.25)) !important;
+  transform: translateY(-1px);
+}
+.streak-urgent-pulse {
+  animation: streak-danger 1.5s ease-in-out infinite;
+}
+@keyframes streak-danger {
+  0%, 100% { box-shadow: none; }
+  50%      { box-shadow: 0 0 12px rgba(239,68,68,0.3); }
+}
+
 /* Pulse at 100% — apply when bar is full */
 @keyframes progress-complete-pulse {
   0%, 100% { filter: brightness(1); box-shadow: 0 0 4px var(--bar-color, rgba(74,222,128,0.3)); }

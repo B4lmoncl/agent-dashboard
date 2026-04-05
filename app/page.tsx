@@ -27,6 +27,7 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
+import { DailyHub } from "@/components/DailyHub";
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -858,6 +859,11 @@ export default function Dashboard() {
 
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedTotal;
+  const questsCompletedToday = useMemo(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    const dc = loggedInUser?._dailyCompletions;
+    return dc && dc.date === today ? dc.count : 0;
+  }, [loggedInUser]);
 
   const openQuestsCount = useMemo(() => quests.open.filter(q => playerTypes.includes(q.type ?? "")).length, [quests.open, playerTypes]);
 
@@ -951,6 +957,19 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
+        {/* Daily Hub — prominent daily engagement banner */}
+        {loggedInUser && dashView === "questBoard" && (
+          <DailyHub
+            user={loggedInUser}
+            dailyBonusAvailable={dailyBonusAvailable}
+            onClaimDailyBonus={handleClaimDailyBonus}
+            claimingDailyBonus={claimingDailyBonus}
+            dailyMissions={dailyMissions}
+            questsCompletedToday={questsCompletedToday}
+            onNavigate={(v) => setDashView(v as typeof dashView)}
+            onTodayOpen={() => setTodayOpen(true)}
+          />
+        )}
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
