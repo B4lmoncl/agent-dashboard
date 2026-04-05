@@ -463,9 +463,14 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             if (!reviewApiKey || !playerName) return;
             const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
             const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
-            await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
-            closeRitualModal();
-            fetchRituals(playerName).then(setRituals);
+            const ritualRes = await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
+            if (ritualRes.ok) {
+              closeRitualModal();
+              fetchRituals(playerName).then(setRituals);
+            } else {
+              const d = await ritualRes.json().catch(() => ({}));
+              if (addToast) addToast({ type: "error", message: d.error || "Failed to create ritual" });
+            }
           };
           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
           const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
