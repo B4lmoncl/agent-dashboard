@@ -512,6 +512,7 @@ export function WandererRest({
                           {currentQuest.status === "open" && handleClaim && playerName && (
                             <button
                               disabled={claimingQuestId === currentQuest.questId}
+                              title={claimingQuestId === currentQuest.questId ? "Claiming..." : "Claim this NPC quest"}
                               onClick={async (e) => {
                                 e.stopPropagation();
                                 if (claimingQuestId) return;
@@ -527,6 +528,7 @@ export function WandererRest({
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && currentQuest.claimedBy?.toLowerCase() === playerName?.toLowerCase() && handleComplete && (
                             <button
                               disabled={claimingQuestId === currentQuest.questId}
+                              title={claimingQuestId === currentQuest.questId ? "Completing..." : "Mark this quest as complete"}
                               onClick={async (e) => {
                                 e.stopPropagation();
                                 if (claimingQuestId) return;
