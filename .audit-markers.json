@@ -1,124 +1,709 @@
 {
   "_meta": {
-    "description": "Audit markers — tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
+    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
     "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
     "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
   },
-  "components/OnboardingWizard.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "disabled tooltips added, step5 rewrite, password guide fix", "status": "clean" },
-  "components/DashboardHeader.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "sound toggle width, silent catch fix", "status": "clean" },
-  "components/QuestCards.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "hover shadow boost, claimed badge bounce, flavor rewrite", "status": "clean" },
-  "components/QuestDetailModal.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "flavor rewrite, checklist display, faction rep, button text", "status": "clean" },
-  "components/GachaView.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "shimmer, pull glow, pity shimmer", "status": "clean" },
-  "components/TutorialModal.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "password fix, emoji fix, 3 new guide tabs", "status": "clean" },
-  "components/CompanionsWidget.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "quote rewrite, safeTimeout cleanup verified", "status": "clean" },
-  "components/ForgeView.tsx": { "auditCount": 3, "lastAuditDate": "2026-04-05", "findings": "font 11→12, batch interval cleanup, buy cursor fix", "status": "clean" },
-  "components/RitualChamber.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "difficulty flavor rewrite, loading guard verified", "status": "clean" },
-  "components/QuestPanels.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "milestone labels + difficulty flavors rewritten", "status": "clean" },
-  "components/WandererRest.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "button tooltips added", "status": "clean" },
-  "components/BattlePassView.tsx": { "auditCount": 3, "lastAuditDate": "2026-04-05", "findings": "CRIT: useRef+useEffect moved before early return (hook ordering crash)", "status": "clean" },
-  "components/TavernView.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "card alignment mx-auto maxWidth:600", "status": "clean" },
-  "components/DailyHub.tsx": { "auditCount": 3, "lastAuditDate": "2026-04-05", "findings": "created, slimmed to avoid TodayDrawer dupe, unlock hint added", "status": "clean" },
-  "components/CharacterView.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "bg cover fix, NEW badge persistent, collection log OK", "status": "clean" },
-  "components/SocialView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "overflow handling OK, online status OK, read receipts OK", "status": "clean" },
-  "components/ShopView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "deficit tooltips OK, owned state OK, loading guards OK", "status": "clean" },
-  "components/FactionsView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "disabled buttons OK, celebrations OK", "status": "clean" },
-  "components/WorldBossView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "types OK, formatting OK", "status": "clean" },
-  "components/DungeonView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "2-step cancel OK, error handling OK", "status": "clean" },
-  "components/RiftView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "no hooks after return, loading OK", "status": "clean" },
-  "components/ChallengesView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "sub-components OK, reset timer OK", "status": "clean" },
-  "components/LeaderboardView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "skeleton loading OK, seasonal toggle OK", "status": "clean" },
-  "components/HonorsView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "points display exists, categories OK", "status": "clean" },
-  "components/CodexView.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "read state persistent, overscroll-contain added", "status": "clean" },
-  "components/CampaignHub.tsx": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "error handling OK, overscroll-contain added", "status": "clean" },
-  "components/TalentTreeView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "toast feedback OK", "status": "clean" },
-  "components/AdventureTomeView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "celebration OK", "status": "clean" },
-  "components/StatBar.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "flash animation OK", "status": "clean" },
-  "components/UserCard.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "unlock milestones OK, rested XP bar OK", "status": "clean" },
-  "components/TodayDrawer.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "no font violations, no empty catches", "status": "clean" },
-  "components/DailyLoginCalendar.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "modal behavior OK, streak milestones OK", "status": "clean" },
-  "components/GachaPull.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "screen shake OK, charge orb OK", "status": "clean" },
-  "components/ModalPortal.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "ESC stopPropagation, focus trap, ref-counted scroll lock", "status": "clean" },
-  "components/ErrorBoundary.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "retry button, console.error logging", "status": "clean" },
-  "components/RewardCelebration.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "cross-nav links OK, 613 lines", "status": "clean" },
-  "components/ToastStack.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "error 5s auto-dismiss OK", "status": "clean" },
-  "components/NotificationCenter.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "useModalBehavior OK, badge-enter animation", "status": "clean" },
-  "components/ItemActionPopup.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "2-step discard confirm, lock system OK", "status": "clean" },
-  "components/PlayerProfileModal.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/ShopModal.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "deficit tooltips OK, cursor not-allowed OK", "status": "clean" },
-  "components/QuestModals.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "tabs OK, icon onError OK", "status": "clean" },
-  "components/QuestBadges.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/GuildHallBackground.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "sky canvas, weather effects — visual only", "status": "clean" },
-  "components/FloorAmbientParticles.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/CrystalVeins.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/TowerMap.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "modal-backdrop OK, ESC OK", "status": "clean" },
-  "components/FloatingRewards.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/FeedbackOverlay.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/FeedbackModal.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/RoadmapView.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "skeleton loading OK", "status": "clean" },
-  "components/CVBuilderPanel.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/InfoTooltip.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/QuestToasts.tsx": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "components/GameTooltip.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "110 tooltip entries, cross-refs OK", "status": "clean" },
-  "routes/crafting.js": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "lock, auth, gold sync, material check before deduction", "status": "clean" },
-  "routes/shop.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, self-check", "status": "clean" },
-  "routes/gems.js": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "lock, auth, gold sync OK", "status": "clean" },
-  "routes/enchanting.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, gold sync OK", "status": "clean" },
-  "routes/schmiedekunst.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "gold sync OK on both paths", "status": "clean" },
-  "routes/social.js": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "trade gold desync FIXED, friendship index OK", "status": "clean" },
-  "routes/quests.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, tavern check, campaign ordering", "status": "clean" },
-  "routes/gacha.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "pull lock, self-check, pity system OK", "status": "clean" },
-  "routes/battlepass.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, double-claim guard, season rotation", "status": "clean" },
-  "routes/factions.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, daily quest check", "status": "clean" },
-  "routes/expedition.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, contribution check, double-claim guard", "status": "clean" },
-  "routes/challenges-weekly.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, star calculation, modifier system", "status": "clean" },
-  "routes/dungeons.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, group success once, gear/unique drops OK", "status": "clean" },
-  "routes/world-boss.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, unique drop ownership check", "status": "clean" },
-  "routes/mail.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, self-check, capacity limit", "status": "clean" },
-  "routes/kanais-cube.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, locked-item check, escalating cost", "status": "clean" },
-  "routes/talent-tree.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "lock, auth, canAllocate validation", "status": "clean" },
-  "routes/adventure-tome.js": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "FIXED: race condition lock + gold desync", "status": "clean" },
-  "routes/players.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "requireSelf on all player mutations, tavern lock", "status": "clean" },
-  "routes/users.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "bcrypt, rate limit, input validation, password stripped from API", "status": "clean" },
-  "routes/currency.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "self-check, daily lock, Berlin timezone", "status": "clean" },
-  "routes/game.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "ritual self-check, gold sync OK, blood pact logic", "status": "clean" },
-  "routes/habits-inventory.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "requireSelf, gold sync OK", "status": "clean" },
-  "routes/agents.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "requireApiKey on commands", "status": "clean" },
-  "routes/integrations.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "HMAC fail-closed, timing-safe compare", "status": "clean" },
-  "routes/codex.js": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" },
-  "lib/state.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "atomic writes, debounced saves, Maps OK", "status": "clean" },
-  "lib/helpers.js": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "gold sync centralized, variety bonus OK, rested XP OK", "status": "clean" },
-  "lib/auth.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "separate secrets, fail-closed, revoked token pruning", "status": "clean" },
-  "lib/middleware.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "requireSelf, requireMasterKey, lastActiveAt tracking", "status": "clean" },
-  "lib/npc-engine.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "weighted spawn, timezone handling", "status": "clean" },
-  "lib/rotation.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "seeded random, rarity assignment", "status": "clean" },
-  "lib/quest-templates.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "interpolation, no eval", "status": "clean" },
-  "server.js": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "security headers, rate limit, graceful shutdown", "status": "clean" },
-  "app/page.tsx": { "auditCount": 3, "lastAuditDate": "2026-04-05", "findings": "welcome back toast, DR warning, pool refresh cursor, bulk update cursor+title", "status": "clean" },
-  "app/types.ts": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "717 lines, comprehensive", "status": "clean" },
-  "app/utils.ts": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "getUserLevel OK, countUp OK", "status": "clean" },
-  "app/config.ts": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "talents room added to nav", "status": "clean" },
-  "app/constants.ts": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "single source rarity colors", "status": "clean" },
-  "app/DashboardContext.tsx": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "minimal context, throw on missing provider", "status": "clean" },
-  "app/globals.css": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "152 keyframes, no duplicates, new animations added", "status": "clean" },
-  "hooks/useQuestActions.ts": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "loading guard, NPC sync", "status": "clean" },
-  "lib/sounds.ts": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "Web Audio API, no external deps", "status": "clean" },
-  "lib/balance-cache.ts": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "defaults match backend, timeout fetch", "status": "clean" },
-  "public/data/uniqueItems.json": { "auditCount": 2, "lastAuditDate": "2026-04-05", "findings": "47 items, all WB drops resolved, enriched flavor", "status": "clean" },
-  "public/data/codex.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "60+ entries, excellent Skulduggery humor", "status": "clean" },
-  "public/data/questCatalog.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "600 templates, good type distribution", "status": "clean" },
-  "public/data/gearTemplates.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "named sets valid, affix counts OK", "status": "clean" },
-  "public/data/achievementTemplates.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "165 achievements, Skulduggery tone OK", "status": "clean" },
-  "public/data/professions.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "881 recipes, 91 materials, faction recipes exist", "status": "clean" },
-  "public/data/factions.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "4 factions, recipe refs valid", "status": "clean" },
-  "public/data/worldBosses.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "15 bosses, all uniqueDrops now in uniqueItems.json", "status": "clean" },
-  "public/data/gems.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "6 types × 5 tiers = 30 gems", "status": "clean" },
-  "public/data/talentTree.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "44 nodes, all connections valid, 3 choice groups", "status": "clean" },
-  "public/data/npcQuestGivers.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "100 NPCs, 0 generic greetings", "status": "clean" },
-  "public/data/battlePass.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "5 seasons × 40 rewards", "status": "clean" },
-  "public/data/weeklyChallenges.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "52 templates, 18 modifiers", "status": "clean" },
-  "public/data/expeditions.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "20 expedition templates", "status": "clean" },
-  "public/data/companionExpeditions.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "4 tiers (4-24h)", "status": "clean" },
-  "public/data/dungeons.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "3 tiers", "status": "clean" },
-  "public/data/titles.json": { "auditCount": 1, "lastAuditDate": "2026-04-05", "findings": "139 titles", "status": "clean" },
-  "public/data/shopItems.json": { "auditCount": 0, "lastAuditDate": null, "findings": null, "status": "unaudited" }
+  "components/OnboardingWizard.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "disabled tooltips added, step5 rewrite, password guide fix",
+    "status": "clean"
+  },
+  "components/DashboardHeader.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "sound toggle width, silent catch fix",
+    "status": "clean"
+  },
+  "components/QuestCards.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "hover shadow boost, claimed badge bounce, flavor rewrite",
+    "status": "clean"
+  },
+  "components/QuestDetailModal.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "flavor rewrite, checklist display, faction rep, button text",
+    "status": "clean"
+  },
+  "components/GachaView.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "shimmer, pull glow, pity shimmer",
+    "status": "clean"
+  },
+  "components/TutorialModal.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "password fix, emoji fix, 3 new guide tabs",
+    "status": "clean"
+  },
+  "components/CompanionsWidget.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "quote rewrite, safeTimeout cleanup verified",
+    "status": "clean"
+  },
+  "components/ForgeView.tsx": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-05",
+    "findings": "font 11\u219212, batch interval cleanup, buy cursor fix",
+    "status": "clean"
+  },
+  "components/RitualChamber.tsx": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-05",
+    "findings": "FIXED: ritual create silent failure, difficulty flavor rewrite",
+    "status": "clean"
+  },
+  "components/QuestPanels.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "milestone labels + difficulty flavors rewritten",
+    "status": "clean"
+  },
+  "components/WandererRest.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "button tooltips added",
+    "status": "clean"
+  },
+  "components/BattlePassView.tsx": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-05",
+    "findings": "CRIT: useRef+useEffect moved before early return (hook ordering crash)",
+    "status": "clean"
+  },
+  "components/TavernView.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "card alignment mx-auto maxWidth:600",
+    "status": "clean"
+  },
+  "components/DailyHub.tsx": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-05",
+    "findings": "created, slimmed to avoid TodayDrawer dupe, unlock hint added",
+    "status": "clean"
+  },
+  "components/CharacterView.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "bg cover fix, NEW badge persistent, collection log OK",
+    "status": "clean"
+  },
+  "components/SocialView.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "FIXED: mail collect + collect-all celebrations",
+    "status": "clean"
+  },
+  "components/ShopView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "deficit tooltips OK, owned state OK, loading guards OK",
+    "status": "clean"
+  },
+  "components/FactionsView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "disabled buttons OK, celebrations OK",
+    "status": "clean"
+  },
+  "components/WorldBossView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "types OK, formatting OK",
+    "status": "clean"
+  },
+  "components/DungeonView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "2-step cancel OK, error handling OK",
+    "status": "clean"
+  },
+  "components/RiftView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "no hooks after return, loading OK",
+    "status": "clean"
+  },
+  "components/ChallengesView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "sub-components OK, reset timer OK",
+    "status": "clean"
+  },
+  "components/LeaderboardView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "skeleton loading OK, seasonal toggle OK",
+    "status": "clean"
+  },
+  "components/HonorsView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "points display exists, categories OK",
+    "status": "clean"
+  },
+  "components/CodexView.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "read state persistent, overscroll-contain added",
+    "status": "clean"
+  },
+  "components/CampaignHub.tsx": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "error handling OK, overscroll-contain added",
+    "status": "clean"
+  },
+  "components/TalentTreeView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "toast feedback OK",
+    "status": "clean"
+  },
+  "components/AdventureTomeView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "celebration OK",
+    "status": "clean"
+  },
+  "components/StatBar.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "flash animation OK",
+    "status": "clean"
+  },
+  "components/UserCard.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "unlock milestones OK, rested XP bar OK",
+    "status": "clean"
+  },
+  "components/TodayDrawer.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "no font violations, no empty catches",
+    "status": "clean"
+  },
+  "components/DailyLoginCalendar.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "modal behavior OK, streak milestones OK",
+    "status": "clean"
+  },
+  "components/GachaPull.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "screen shake OK, charge orb OK",
+    "status": "clean"
+  },
+  "components/ModalPortal.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "ESC stopPropagation, focus trap, ref-counted scroll lock",
+    "status": "clean"
+  },
+  "components/ErrorBoundary.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "retry button, console.error logging",
+    "status": "clean"
+  },
+  "components/RewardCelebration.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "cross-nav links OK, 613 lines",
+    "status": "clean"
+  },
+  "components/ToastStack.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "error 5s auto-dismiss OK",
+    "status": "clean"
+  },
+  "components/NotificationCenter.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "useModalBehavior OK, badge-enter animation",
+    "status": "clean"
+  },
+  "components/ItemActionPopup.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "2-step discard confirm, lock system OK",
+    "status": "clean"
+  },
+  "components/PlayerProfileModal.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "FIXED: ring slot missing, 4 professions missing",
+    "status": "clean"
+  },
+  "components/ShopModal.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "deficit tooltips OK, cursor not-allowed OK",
+    "status": "clean"
+  },
+  "components/QuestModals.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "tabs OK, icon onError OK",
+    "status": "clean"
+  },
+  "components/QuestBadges.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "config-driven colors, onError handlers OK",
+    "status": "clean"
+  },
+  "components/GuildHallBackground.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "sky canvas, weather effects \u2014 visual only",
+    "status": "clean"
+  },
+  "components/FloorAmbientParticles.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "decorative, golden-ratio positioning, useMemo",
+    "status": "clean"
+  },
+  "components/CrystalVeins.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "decorative canvas, seeded random",
+    "status": "clean"
+  },
+  "components/TowerMap.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "modal-backdrop OK, ESC OK",
+    "status": "clean"
+  },
+  "components/FloatingRewards.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "timer cleanup OK, portal z-index OK",
+    "status": "clean"
+  },
+  "components/FeedbackOverlay.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "admin tool, data-feedback-id traversal",
+    "status": "clean"
+  },
+  "components/FeedbackModal.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "ModalOverlay, loading state, error handling",
+    "status": "clean"
+  },
+  "components/RoadmapView.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "skeleton loading OK",
+    "status": "clean"
+  },
+  "components/CVBuilderPanel.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "niche admin feature, silent catch acceptable",
+    "status": "clean"
+  },
+  "components/InfoTooltip.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "thin alias for GameTooltip",
+    "status": "clean"
+  },
+  "components/QuestToasts.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "timer cleanup OK, onError handlers OK",
+    "status": "clean"
+  },
+  "components/GameTooltip.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "110 tooltip entries, cross-refs OK",
+    "status": "clean"
+  },
+  "routes/crafting.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, gold sync, material check before deduction",
+    "status": "clean"
+  },
+  "routes/shop.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, self-check",
+    "status": "clean"
+  },
+  "routes/gems.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, gold sync OK",
+    "status": "clean"
+  },
+  "routes/enchanting.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, gold sync OK",
+    "status": "clean"
+  },
+  "routes/schmiedekunst.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "gold sync OK on both paths",
+    "status": "clean"
+  },
+  "routes/social.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "trade gold desync FIXED, friendship index OK",
+    "status": "clean"
+  },
+  "routes/quests.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, tavern check, campaign ordering",
+    "status": "clean"
+  },
+  "routes/gacha.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "pull lock, self-check, pity system OK",
+    "status": "clean"
+  },
+  "routes/battlepass.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, double-claim guard, season rotation",
+    "status": "clean"
+  },
+  "routes/factions.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, daily quest check",
+    "status": "clean"
+  },
+  "routes/expedition.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, contribution check, double-claim guard",
+    "status": "clean"
+  },
+  "routes/challenges-weekly.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, star calculation, modifier system",
+    "status": "clean"
+  },
+  "routes/dungeons.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, group success once, gear/unique drops OK",
+    "status": "clean"
+  },
+  "routes/world-boss.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, unique drop ownership check",
+    "status": "clean"
+  },
+  "routes/mail.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, self-check, capacity limit",
+    "status": "clean"
+  },
+  "routes/kanais-cube.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, locked-item check, escalating cost",
+    "status": "clean"
+  },
+  "routes/talent-tree.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "lock, auth, canAllocate validation",
+    "status": "clean"
+  },
+  "routes/adventure-tome.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "FIXED: race condition lock + gold desync",
+    "status": "clean"
+  },
+  "routes/players.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "requireSelf on all player mutations, tavern lock",
+    "status": "clean"
+  },
+  "routes/users.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "bcrypt, rate limit, input validation, password stripped from API",
+    "status": "clean"
+  },
+  "routes/currency.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "self-check, daily lock, Berlin timezone",
+    "status": "clean"
+  },
+  "routes/game.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "ritual self-check, gold sync OK, blood pact logic",
+    "status": "clean"
+  },
+  "routes/habits-inventory.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "requireSelf, gold sync OK",
+    "status": "clean"
+  },
+  "routes/agents.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "requireApiKey on commands",
+    "status": "clean"
+  },
+  "routes/integrations.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "HMAC fail-closed, timing-safe compare",
+    "status": "clean"
+  },
+  "routes/codex.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "discovery logic OK, O(n) scan low-impact",
+    "status": "clean"
+  },
+  "lib/state.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "atomic writes, debounced saves, Maps OK",
+    "status": "clean"
+  },
+  "lib/helpers.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "gold sync centralized, variety bonus OK, rested XP OK",
+    "status": "clean"
+  },
+  "lib/auth.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "separate secrets, fail-closed, revoked token pruning",
+    "status": "clean"
+  },
+  "lib/middleware.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "requireSelf, requireMasterKey, lastActiveAt tracking",
+    "status": "clean"
+  },
+  "lib/npc-engine.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "weighted spawn, timezone handling",
+    "status": "clean"
+  },
+  "lib/rotation.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "seeded random, rarity assignment",
+    "status": "clean"
+  },
+  "lib/quest-templates.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "interpolation, no eval",
+    "status": "clean"
+  },
+  "server.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "security headers, rate limit, graceful shutdown",
+    "status": "clean"
+  },
+  "app/page.tsx": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-05",
+    "findings": "welcome back toast, DR warning, pool refresh cursor, bulk update cursor+title",
+    "status": "clean"
+  },
+  "app/types.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "717 lines, comprehensive",
+    "status": "clean"
+  },
+  "app/utils.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "getUserLevel OK, countUp OK",
+    "status": "clean"
+  },
+  "app/config.ts": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "talents room added to nav",
+    "status": "clean"
+  },
+  "app/constants.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "single source rarity colors",
+    "status": "clean"
+  },
+  "app/DashboardContext.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "minimal context, throw on missing provider",
+    "status": "clean"
+  },
+  "app/globals.css": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "152 keyframes, no duplicates, new animations added",
+    "status": "clean"
+  },
+  "hooks/useQuestActions.ts": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "FIXED: DR toast message at quest 5",
+    "status": "clean"
+  },
+  "lib/sounds.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "Web Audio API, no external deps",
+    "status": "clean"
+  },
+  "lib/balance-cache.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "defaults match backend, timeout fetch",
+    "status": "clean"
+  },
+  "public/data/uniqueItems.json": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-05",
+    "findings": "47 items, all WB drops resolved, enriched flavor",
+    "status": "clean"
+  },
+  "public/data/codex.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "60+ entries, excellent Skulduggery humor",
+    "status": "clean"
+  },
+  "public/data/questCatalog.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "600 templates, good type distribution",
+    "status": "clean"
+  },
+  "public/data/gearTemplates.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "named sets valid, affix counts OK",
+    "status": "clean"
+  },
+  "public/data/achievementTemplates.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "165 achievements, Skulduggery tone OK",
+    "status": "clean"
+  },
+  "public/data/professions.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "881 recipes, 91 materials, faction recipes exist",
+    "status": "clean"
+  },
+  "public/data/factions.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "4 factions, recipe refs valid",
+    "status": "clean"
+  },
+  "public/data/worldBosses.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "15 bosses, all uniqueDrops now in uniqueItems.json",
+    "status": "clean"
+  },
+  "public/data/gems.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "6 types \u00d7 5 tiers = 30 gems",
+    "status": "clean"
+  },
+  "public/data/talentTree.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "44 nodes, all connections valid, 3 choice groups",
+    "status": "clean"
+  },
+  "public/data/npcQuestGivers.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "100 NPCs, 0 generic greetings",
+    "status": "clean"
+  },
+  "public/data/battlePass.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "5 seasons \u00d7 40 rewards",
+    "status": "clean"
+  },
+  "public/data/weeklyChallenges.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "52 templates, 18 modifiers",
+    "status": "clean"
+  },
+  "public/data/expeditions.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "20 expedition templates",
+    "status": "clean"
+  },
+  "public/data/companionExpeditions.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "4 tiers (4-24h)",
+    "status": "clean"
+  },
+  "public/data/dungeons.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "3 tiers",
+    "status": "clean"
+  },
+  "public/data/titles.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "139 titles",
+    "status": "clean"
+  },
+  "public/data/shopItems.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-05",
+    "findings": "19 items all with descriptions",
+    "status": "clean"
+  }
 }
