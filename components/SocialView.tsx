@@ -1446,7 +1446,7 @@ interface MailItem {
   collected: boolean;
 }
 
-function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; playerName: string; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { users } = useDashboard();
   const [inbox, setInbox] = useState<MailItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -1480,6 +1480,18 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
         headers: getAuthHeaders(apiKey),
       });
       const data = await r.json();
+      if (r.ok && onRewardCelebration && (data.goldCollected > 0 || data.itemsCollected?.length > 0)) {
+        const currencies: { name: string; amount: number; color: string }[] = [];
+        if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
+        onRewardCelebration({
+          type: "daily-bonus",
+          title: "Mail Collected!",
+          xpEarned: 0,
+          goldEarned: data.goldCollected || 0,
+          loot: data.itemsCollected?.length ? { name: `${data.itemsCollected.length} item${data.itemsCollected.length > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
+          currencies: currencies.length > 0 ? currencies : undefined,
+        });
+      }
       setActionMsg(data.message || data.error || "Done");
       setTimeout(() => setActionMsg(null), 4000);
       fetchMail();
@@ -1956,7 +1968,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
-        {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "challenges" && <ChallengesTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
 
