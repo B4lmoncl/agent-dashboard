@@ -1542,14 +1542,16 @@ export default function Dashboard() {
             <div data-tutorial="nav-bar" className="space-y-0">
               {/* Floor tabs */}
               <div className="flex gap-1" style={{ background: "#0d0d0d", borderRadius: "10px 10px 0 0", padding: "4px 4px 0 4px" }}>
-                {/* Tower Map button */}
+                {/* Tower Map button — made more visible */}
                 <button
                   onClick={() => setTowerMapOpen(true)}
-                  className="px-2 py-1.5 rounded-t-lg text-xs flex-shrink-0"
-                  style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.05)", borderBottom: "none" }}
+                  className="px-2.5 py-1.5 rounded-t-lg text-xs flex-shrink-0 inline-flex items-center gap-1"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", transition: "background 0.15s, color 0.15s" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
                   title="Tower Map — Navigate all floors and rooms"
                 >
-                  ◈
+                  ◈ <span className="hidden sm:inline">Map</span>
                 </button>
                 {FLOORS.filter(f => !f.minLevel || (currentPlayerLevel ?? 1) >= f.minLevel).map(floor => {
                   const isActive = floor.id === activeFloor;
