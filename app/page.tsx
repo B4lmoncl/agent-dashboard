@@ -1964,7 +1964,8 @@ export default function Dashboard() {
                             onClick={handlePoolRefresh}
                             disabled={poolRefreshing}
                             className={`btn-interactive px-2 py-1 rounded${(() => { const ready = !poolRefreshing && (!lastPoolRefresh || Date.now() - lastPoolRefresh.getTime() >= 6 * 3600 * 1000); return poolRefreshing ? "" : ready ? " quest-refresh-ready" : " quest-refresh-cooldown"; })()}`}
-                            style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1 }}
+                            style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1, cursor: poolRefreshing ? "not-allowed" : "pointer" }}
+                            title={poolRefreshing ? "Refreshing quest pool..." : undefined}
                           >
                             <TipCustom title="Refresh Quest Pool" icon="🔄" accent="#22c55e" body={<p>Refreshes the available quest pool. Limited to once every 6 hours.</p>}>
                               {poolRefreshing ? (
@@ -2515,10 +2516,12 @@ export default function Dashboard() {
               onClick={() => handleBulkUpdate(s)}
               disabled={bulkLoading}
               className="text-xs px-2.5 py-1 rounded-lg font-medium"
+              title={bulkLoading ? "Updating..." : `Set selected quests to ${s}`}
               style={{
                 background: s === "completed" ? "rgba(34,197,94,0.15)" : s === "rejected" ? "rgba(239,68,68,0.12)" : "rgba(255,255,255,0.07)",
                 color: s === "completed" ? "#22c55e" : s === "rejected" ? "#ef4444" : "rgba(255,255,255,0.6)",
                 border: `1px solid ${s === "completed" ? "rgba(34,197,94,0.3)" : s === "rejected" ? "rgba(239,68,68,0.25)" : "rgba(255,255,255,0.12)"}`,
+                cursor: bulkLoading ? "not-allowed" : "pointer",
                 opacity: bulkLoading ? 0.5 : 1,
               }}
             >

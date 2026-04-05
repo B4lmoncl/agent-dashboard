@@ -1300,6 +1300,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           background: canBuy ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.03)",
                           color: canBuy ? "#818cf8" : "rgba(255,255,255,0.2)",
                           border: `1px solid ${canBuy ? "rgba(99,102,241,0.4)" : "rgba(255,255,255,0.06)"}`,
+                          cursor: !canBuy || buyingTool === gear.id ? "not-allowed" : "pointer",
                         }}
                       >
                         {buyingTool === gear.id ? "..." : (<>
