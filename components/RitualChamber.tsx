@@ -120,9 +120,15 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const deleteHabit = async (habitId: string) => {
     if (!reviewApiKey) return;
     try {
-      await fetch(`/api/habits/${habitId}`, { method: "DELETE", headers: getAuthHeaders(reviewApiKey) });
-      fetchHabits();
-    } catch { /* ignore */ }
+      const r = await fetch(`/api/habits/${habitId}`, { method: "DELETE", headers: getAuthHeaders(reviewApiKey) });
+      if (r.ok) {
+        fetchHabits();
+      } else {
+        if (addToast) addToast({ type: "error", message: "Failed to delete habit" });
+      }
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Network error" });
+    }
   };
 
   const HABIT_COLORS: Record<string, string> = { red: "#ef4444", orange: "#f97316", gray: "#6b7280", yellow: "#eab308", green: "#22c55e", blue: "#3b82f6" };
