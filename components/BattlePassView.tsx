@@ -70,6 +70,18 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const firstUnclaimedRef = useRef<HTMLDivElement | null>(null);
   const didScrollRef = useRef(false);
+  // Auto-scroll to first unclaimed reward — must be before early return (Rules of Hooks)
+  useEffect(() => {
+    if (loading || !config || !player) return;
+    if (didScrollRef.current) return;
+    const unclaimed = rewards.filter(r => (player?.level ?? 0) >= r.level && !(player?.claimedLevels ?? []).includes(r.level));
+    if (unclaimed.length > 0 && firstUnclaimedRef.current) {
+      didScrollRef.current = true;
+      setTimeout(() => {
+        firstUnclaimedRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  }, [loading, config, player, rewards]);
 
   const fetchBP = useCallback(async () => {
     try {
@@ -142,15 +154,6 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
   const daysLeft = Math.max(0, Math.ceil((new Date(player.seasonEnd).getTime() - Date.now()) / 86400000));
   const unclaimedCount = rewards.filter(r => player.level >= r.level && !player.claimedLevels.includes(r.level)).length;
 
-  // Auto-scroll to first unclaimed reward on mount
-  useEffect(() => {
-    if (!didScrollRef.current && firstUnclaimedRef.current && unclaimedCount > 0) {
-      didScrollRef.current = true;
-      setTimeout(() => {
-        firstUnclaimedRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 300); // slight delay for layout settle
-    }
-  }, [unclaimedCount]);
 
   return (
     <div className="space-y-5 tab-content-enter">
