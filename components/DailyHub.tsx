@@ -239,14 +239,19 @@ export const DailyHub = memo(function DailyHub({
           </div>
         )}
       </div>
-      {/* Companion daily message */}
-      {companionQuote && (
-        <div className="px-4 pb-2.5 -mt-1">
-          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.5 }}>
+      {/* Bottom row: Rested XP + Companion message */}
+      <div className="px-4 pb-2.5 -mt-1 flex items-center gap-3 flex-wrap">
+        {(user._restedXpPool ?? 0) > 0 && (
+          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: "rgba(59,130,246,0.1)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.2)" }}>
+            ★ {Math.round(user._restedXpPool!)} Rested XP
+          </span>
+        )}
+        {companionQuote && (
+          <p className="text-xs italic flex-1 min-w-0" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.5 }}>
             &ldquo;{companionQuote}&rdquo;
           </p>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 });

@@ -798,6 +798,36 @@ export default function Dashboard() {
   const currentFloorColor = useMemo(() => (FLOORS.find(f => f.id === activeFloor) || FLOORS[1]).color, [activeFloor]);
   useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
 
+  // ─── Welcome Back toast: show when returning after >6h absence ──────────
+  const welcomeBackShownRef = useRef(false);
+  useEffect(() => {
+    if (!playerName || !loggedInUser || welcomeBackShownRef.current) return;
+    welcomeBackShownRef.current = true;
+    try {
+      const lastVisit = localStorage.getItem("qh_last_visit");
+      const now = Date.now();
+      localStorage.setItem("qh_last_visit", String(now));
+      if (!lastVisit) return; // First visit ever
+      const hoursSince = (now - parseInt(lastVisit, 10)) / 3600000;
+      if (hoursSince < 6) return; // Only show after 6h+ absence
+
+      const parts: string[] = [];
+      const restedPool = loggedInUser._restedXpPool ?? 0;
+      if (restedPool > 50) parts.push(`${Math.round(restedPool)} Rested XP waiting`);
+      if (dailyBonusAvailable) parts.push("Daily Bonus ready");
+      const streak = loggedInUser.streakDays ?? 0;
+      if (streak > 0) parts.push(`${streak}-day streak`);
+
+      const greeting = hoursSince >= 48 ? "Long time no see!" : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
+      const sub = parts.length > 0 ? parts.join(" · ") : undefined;
+
+      setTimeout(() => {
+        addToast({ type: "flavor", message: greeting, sub, icon: "/images/icons/nav-great-hall.png" });
+      }, 1500);
+    } catch { /* private browsing */ }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playerName, loggedInUser]);
+
   // Validate current view is accessible at player's level — fallback to questBoard if locked
   useEffect(() => {
     if (currentPlayerLevel === undefined) return;
