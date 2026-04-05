@@ -574,7 +574,7 @@ export default function DashboardHeader({
                               body: JSON.stringify({ relationshipStatus: s }),
                             });
                             refresh();
-                          } catch {}
+                          } catch (err) { console.error('[settings] relationship update failed:', err); }
                         }}
                         className="text-xs px-2 py-1 rounded"
                         style={{

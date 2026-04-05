@@ -43,7 +43,7 @@ function Stat({ color, children }: { color: string; children: React.ReactNode })
 // ─── GuideContent ─────────────────────────────────────────────────────────────
 
 export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => void }) {
-  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "character" | "gacha" | "crafting" | "rituals" | "challenges" | "social" | "progression" | "honors">("start");
+  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "character" | "gacha" | "crafting" | "rituals" | "challenges" | "social" | "progression" | "honors" | "combat" | "factions" | "battlepass">("start");
   return (
     <div>
       {/* Tabs */}
@@ -60,6 +60,9 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           { key: "social",      label: "Social" },
           { key: "progression", label: "Progression" },
           { key: "honors",      label: "Honors" },
+          { key: "combat",      label: "Combat" },
+          { key: "factions",    label: "Factions" },
+          { key: "battlepass",  label: "Season" },
         ] as { key: typeof tab; label: string }[]).map(t => (
           <button
             key={t.key}
@@ -94,7 +97,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Registrierung" icon="▣" accent="rgba(255,140,68,0.4)">
                 Klicke auf <strong>Login → Register</strong> in der Kopfleiste. Der Charakter-Creator führt dich in 6 Schritten:
                 <ol className="space-y-1.5 mt-2 ml-3" style={{ listStyleType: "decimal" }}>
-                  <li><Stat color="#f0f0f0">Name &amp; Passwort</Stat> — Wähle deinen Heldennamen (min. 6 Zeichen Passwort).</li>
+                  <li><Stat color="#f0f0f0">Name &amp; Passwort</Stat> — Wähle deinen Heldennamen (min. 8 Zeichen Passwort, 1 Großbuchstabe, 1 Zahl).</li>
                   <li><Stat color="#f0f0f0">Über dich</Stat> — Optional: Alter, Pronomen, persönliche Ziele.</li>
                   <li><Stat color="#a78bfa">Klasse wählen</Stat> — Dein Berufspfad. Bestimmt Klassen-Quests und Tier-Stufen.</li>
                   <li><Stat color="#ec4899">Beziehungsstatus</Stat> — Optional: Partner-Name schaltet Coop-Quests frei.</li>
@@ -144,7 +147,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f97316">Drache</Stat> — Fordernd</div>
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#a78bfa">Eule</Stat> — Weise</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🔥 <Stat color="#ef4444">Phoenix</Stat> — Resilient</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#ef4444">Phoenix</Stat> — Resilient</div>
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#6b7280">Wolf</Stat> — Loyal</div>
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f59e0b">Fuchs</Stat> — Clever</div>
                 </div>
@@ -807,6 +810,144 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#fbbf24">Leaderboard</Stat> — Rangliste nach XP. Top 3: Gold/Silber/Bronze-Podium.</li>
                   <li>• <Stat color="#f97316">Forge Companions</Stat> — Achievement-Unlocks: Ember Sprite, Lore Owl, Gear Golem → je +2% XP (bis +6%).</li>
+                </ul>
+              </GuideSection>
+            </>
+          )}
+          {tab === "combat" && (
+            <>
+              <GuideSection title="The Rift — Zeitgebundene Dungeon-Ketten" icon="◆" accent="rgba(239,68,68,0.4)">
+                Der Riss öffnete sich ohne Vorwarnung, mitten im Hauptsaal. Drei Schwierigkeitsstufen, jede mit eigenem Zeitdruck:
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                    <span>Tier</span><span>Stages</span><span>Time</span><span>Cooldown</span>
+                  </div>
+                  {([["Normal","3","72h","3d"],["Hard","5","48h","5d"],["Legendary","7","36h","7d"]] as const).map(([tier,stages,time,cd]) => (
+                    <div key={tier} className="grid grid-cols-4 gap-0 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                      <Stat color={tier === "Legendary" ? "#f97316" : tier === "Hard" ? "#a855f7" : "#9ca3af"}>{tier}</Stat>
+                      <span>{stages}</span><span>{time}</span><span>{cd}</span>
+                    </div>
+                  ))}
+                </div>
+                <GuideTip>Difficulty skaliert mit jedem Stage (1x → 3.5x). Scheitern startet den Cooldown — plane voraus.</GuideTip>
+              </GuideSection>
+
+              <GuideSection title="Mythic+ Endloser Riss" icon="◇" accent="rgba(249,115,22,0.3)">
+                Nach Legendary-Clear öffnet sich der <Stat color="#f97316">Mythic+ Rift</Stat> — unendlich skalierende Level:
+                <ul className="space-y-1 mt-2">
+                  <li>• Startet bei <Stat color="#f97316">M+1</Stat>, jedes Level +0.3x Schwierigkeit und mehr Zeitdruck.</li>
+                  <li>• <Stat color="#fbbf24">Leaderboard</Stat> trackt das höchste M+ Level pro Spieler.</li>
+                  <li>• Bonus-Loot bei M+5, M+10, M+15, M+20 mit exklusiven Titeln.</li>
+                  <li>• Wöchentliche <Stat color="#a855f7">Affixes</Stat> ab M+2 — 10 verschiedene Modifikatoren.</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="The Undercroft — Kooperative Dungeons" icon="◆" accent="rgba(59,130,246,0.4)">
+                Asynchrone Gruppen-Dungeons für 2-4 Freunde. Erstelle einen Run, lade Freunde ein, und sammle Beute:
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                    <span>Dungeon</span><span>Level</span><span>GS</span><span>Players</span>
+                  </div>
+                  {([["Sunken Archive","10","100","2-4"],["Shattered Spire","20","250","2-4"],["Hollow Core","35","500","2-4"]] as const).map(([name,lv,gs,pl]) => (
+                    <div key={name} className="grid grid-cols-4 gap-0 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                      <span>{name}</span><span>Lv.{lv}</span><span>{gs}</span><span>{pl}</span>
+                    </div>
+                  ))}
+                </div>
+                <GuideTip>Erfolg basiert auf dem kombinierten Gear Score + Bond Bonus der Gruppe. 7 Tage Cooldown pro Dungeon.</GuideTip>
+              </GuideSection>
+
+              <GuideSection title="World Boss — Gemeinschafts-Bosskämpfe" icon="◇" accent="rgba(245,158,11,0.3)">
+                Community-weite Boss-Encounters — alle Spieler teilen sich den Schaden:
+                <ul className="space-y-1 mt-2">
+                  <li>• 3 Boss-Stufen: <Stat color="#22c55e">Champion</Stat>, <Stat color="#a855f7">Titan</Stat>, <Stat color="#f97316">Colossus</Stat> — steigender HP-Pool.</li>
+                  <li>• Jede abgeschlossene Quest schadet dem Boss (skaliert mit Level + Gear Score).</li>
+                  <li>• <Stat color="#fbbf24">Contribution-Ranking</Stat> — Top-Beiträger erhalten Bonus-Loot und exklusive Titel.</li>
+                  <li>• Boss-exklusive Drops inkl. <Rarity r="unique">Unique Named Items</Rarity>.</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Gem/Socket-System" icon="◆" accent="rgba(168,85,247,0.3)">
+                6 Edelsteintypen, 5 Qualitätsstufen — sockle sie in deine Ausrüstung:
+                <div className="grid grid-cols-3 gap-1 mt-2">
+                  <div className="rounded px-2 py-1" style={{ background: "rgba(239,68,68,0.06)" }}><Stat color="#ef4444">Rubin</Stat> — Kraft</div>
+                  <div className="rounded px-2 py-1" style={{ background: "rgba(59,130,246,0.06)" }}><Stat color="#3b82f6">Saphir</Stat> — Weisheit</div>
+                  <div className="rounded px-2 py-1" style={{ background: "rgba(34,197,94,0.06)" }}><Stat color="#22c55e">Smaragd</Stat> — Glück</div>
+                  <div className="rounded px-2 py-1" style={{ background: "rgba(245,158,11,0.06)" }}><Stat color="#f59e0b">Topas</Stat> — Ausdauer</div>
+                  <div className="rounded px-2 py-1" style={{ background: "rgba(168,85,247,0.06)" }}><Stat color="#a855f7">Amethyst</Stat> — Vitalität</div>
+                  <div className="rounded px-2 py-1" style={{ background: "rgba(255,255,255,0.06)" }}><Stat color="#e8e8e8">Diamant</Stat> — Fokus</div>
+                </div>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Stufen: Chipped → Flawed → Normal → Flawless → Royal. Upgrade kosten Gold + 3 Gems der Vorstufe.</p>
+              </GuideSection>
+            </>
+          )}
+          {tab === "factions" && (
+            <>
+              <GuideSection title="Die Vier Zirkel — Fraktionssystem" icon="◆" accent="rgba(129,140,248,0.4)">
+                Vier Fraktionen mit eigenen Reputationsstufen. Rep wird automatisch durch Quest-Abschlüsse vergeben:
+                <div className="grid gap-1.5 mt-2">
+                  <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(239,68,68,0.06)" }}>
+                    <Stat color="#ef4444">Orden der Klinge</Stat> — Kampf &amp; Fitness-Quests → +30 Rep
+                  </div>
+                  <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(59,130,246,0.06)" }}>
+                    <Stat color="#3b82f6">Zirkel der Sterne</Stat> — Wissen &amp; Lern-Quests → +20 Rep
+                  </div>
+                  <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(34,197,94,0.06)" }}>
+                    <Stat color="#22c55e">Pakt der Wildnis</Stat> — Natur &amp; Pflege-Quests → +20 Rep
+                  </div>
+                  <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(168,85,247,0.06)" }}>
+                    <Stat color="#a855f7">Bund der Schatten</Stat> — Stealth &amp; Sozial-Quests → +10 Rep
+                  </div>
+                </div>
+              </GuideSection>
+
+              <GuideSection title="Reputationsstufen" icon="◇">
+                6 Stufen pro Fraktion, jede mit besseren Belohnungen:
+                <div className="mt-2 space-y-0.5">
+                  {([["Neutral","0","—"],["Friendly","100","Titel"],["Honored","500","Rahmen"],["Revered","1500","Rezepte"],["Exalted","4000","Legendary Effect"],["Paragon","8000","Exklusive Belohnungen"]] as const).map(([tier,rep,reward]) => (
+                    <div key={tier} className="flex justify-between text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.02)" }}>
+                      <Stat color="#818cf8">{tier}</Stat><span>{rep} Rep</span><span style={{ color: "rgba(255,255,255,0.35)" }}>{reward}</span>
+                    </div>
+                  ))}
+                </div>
+                <GuideTip>Höhere Rep-Stufen schalten Shop-Rabatte, exklusive Rezepte und Legendary-Effekte frei.</GuideTip>
+              </GuideSection>
+            </>
+          )}
+          {tab === "battlepass" && (
+            <>
+              <GuideSection title="Season Pass — 40-Stufen Belohnungspfad" icon="◆" accent="rgba(251,191,36,0.4)">
+                Verdiene Season-XP durch Quests, Rituale, Gelübde und tägliche Missionen:
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="grid grid-cols-2 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                    <span>XP-Quelle</span><span>XP pro Aktion</span>
+                  </div>
+                  {([["Quest (Common)","10"],["Quest (Epic)","40"],["Quest (Legendary)","50"],["Ritual abschließen","8"],["Gelübde (pro Tag)","5"],["Daily Mission Milestone","10-25"]] as const).map(([src,xp]) => (
+                    <div key={src} className="grid grid-cols-2 gap-0 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                      <span>{src}</span><span>{xp}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Belohnungen: Gold, Essenz, Runensplitter, Stardust, exklusive Titel und Rahmen.</p>
+              </GuideSection>
+
+              <GuideSection title="Schicksalsbaum — Passiver Talentbaum" icon="◇" accent="rgba(167,139,250,0.3)">
+                Kreisförmiger Skill-Tree mit 26 Knoten in 3 Ringen — inspiriert von Wolcen:
+                <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 8 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
+                  <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 10 Spezialisierungen mit Tradeoffs.</li>
+                  <li>• <Stat color="#f97316">Aszension</Stat> (Außen) — 8 Capstone-Boni: Mythic+ Skip, Friend XP Echo, Passive Gold.</li>
+                  <li>• Freischaltung ab <Stat color="#f0f0f0">Level 5</Stat>, 1 Punkt pro 2 Level, max 25 Punkte.</li>
+                  <li>• Respec: 500 Gold + 50 Essenz.</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Abenteuerbuch — Per-Stockwerk Komplettierer" icon="◆" accent="rgba(245,158,11,0.3)">
+                Lost-Ark-inspirierter Tracker mit Zielen pro Stockwerk:
+                <ul className="space-y-1 mt-2">
+                  <li>• 5 Stockwerke mit je 8-12 Zielen (Quests, Rifts, Dungeons, Crafts, etc.).</li>
+                  <li>• Meilenstein-Belohnungen bei 25%, 50%, 75% und 100% pro Stockwerk.</li>
+                  <li>• Exklusive Titel und Rahmen bei vollständiger Erledigung.</li>
                 </ul>
               </GuideSection>
             </>

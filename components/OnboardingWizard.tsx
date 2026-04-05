@@ -350,6 +350,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 onClick={() => { setError(""); setStep(1); }}
                 disabled={!canProceedStep0}
                 style={canProceedStep0 ? btnPrimary : btnDisabled}
+                title={!canProceedStep0 ? (name.trim().length < 2 ? "Name must be at least 2 characters" : !emailValid ? "Please enter a valid email" : !pwValid ? "Password needs 8+ characters, 1 uppercase letter, 1 number" : password !== passwordConfirm ? "Passwords don't match" : "") : ""}
               >
                 Next →
               </button>
@@ -556,6 +557,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 onClick={() => setStep(3)}
                 disabled={!canProceedStep2}
                 style={canProceedStep2 ? btnPrimary : btnDisabled}
+                title={!canProceedStep2 ? "Select a class or submit a custom one" : ""}
               >
                 Next →
               </button>
@@ -750,8 +752,9 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 onClick={handleFinalSubmit}
                 disabled={!canProceedStep3 || loading}
                 style={canProceedStep3 && !loading ? btnPrimary : btnDisabled}
+                title={!canProceedStep3 ? (hasRealPet === null ? "Choose real pet or virtual companion" : hasRealPet ? "Enter your pet's name" : "Select a virtual companion") : ""}
               >
-                {loading ? "Forging..." : "Next →"}
+                {loading ? "Creating Hero..." : "Create Hero"}
               </button>
             </div>
           </div>
