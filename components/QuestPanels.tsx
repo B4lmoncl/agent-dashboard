@@ -14,10 +14,10 @@ import { Tip } from "@/components/GameTooltip";
 // ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
 
 const DIFFICULTY_TIERS_VOW = [
-  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
-  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
-  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
-  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
+  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "Manageable. Probably.",   bondScale: 0.5 },
+  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Uncomfortable but fair",  bondScale: 1.0 },
+  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "The kind you regret",     bondScale: 1.5 },
+  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Nobody asked for this",   bondScale: 2.0 },
 ];
 
 const BLOOD_PACT_MULTIPLIER_VOW: Record<string, number> = {
@@ -41,12 +41,12 @@ function getVaelSpeech(commitment: string, bloodPact: boolean): string {
 }
 
 const ANTI_RITUAL_MILESTONES = [
-  { days: 7,   badge: "Bronze",  label: "1 week of resilience!" },
-  { days: 14,  badge: "Silver",  label: "2 weeks strong!" },
-  { days: 21,  badge: "Gold",    label: "21 days — The habit breaks!" },
-  { days: 30,  badge: "Titan",   label: "1 month of consistency!" },
-  { days: 60,  badge: "Diamond", label: "60 days — Diamond will!" },
-  { days: 90,  badge: "Legend",  label: "90 days — Unyielding!" },
+  { days: 7,   badge: "Bronze",  label: "7 days. The old habit filed a complaint." },
+  { days: 14,  badge: "Silver",  label: "14 days. It stopped calling." },
+  { days: 21,  badge: "Gold",    label: "21 days. Officially a stranger." },
+  { days: 30,  badge: "Titan",   label: "30 days. You forgot what it looked like." },
+  { days: 60,  badge: "Diamond", label: "60 days. It forgot what YOU looked like." },
+  { days: 90,  badge: "Legend",  label: "90 days. At this point, it's personal history." },
 ];
 
 export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?: (data: { type: "vow"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string; rarityColor?: string } | null; streak?: number; pactBonus?: { xp: number; gold: number } | null }) => void }) {

@@ -21,10 +21,10 @@ const COMMITMENT_TIERS = [
 ];
 
 const DIFFICULTY_TIERS = [
-  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
-  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
-  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
-  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
+  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "Manageable. Probably.",   bondScale: 0.5 },
+  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Uncomfortable but fair",  bondScale: 1.0 },
+  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "The kind you regret",     bondScale: 1.5 },
+  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Nobody asked for this",   bondScale: 2.0 },
 ];
 
 const BLOOD_PACT_MULTIPLIER: Record<string, number> = {
