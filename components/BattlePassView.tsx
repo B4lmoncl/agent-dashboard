@@ -68,6 +68,8 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
   const [claiming, setClaiming] = useState<number | null>(null);
   const [claimingAll, setClaimingAll] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
+  const firstUnclaimedRef = useRef<HTMLDivElement | null>(null);
+  const didScrollRef = useRef(false);
 
   const fetchBP = useCallback(async () => {
     try {
@@ -139,8 +141,6 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   const daysLeft = Math.max(0, Math.ceil((new Date(player.seasonEnd).getTime() - Date.now()) / 86400000));
   const unclaimedCount = rewards.filter(r => player.level >= r.level && !player.claimedLevels.includes(r.level)).length;
-  const firstUnclaimedRef = useRef<HTMLDivElement | null>(null);
-  const didScrollRef = useRef(false);
 
   // Auto-scroll to first unclaimed reward on mount
   useEffect(() => {

@@ -175,7 +175,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* Currently resting */}
       {status?.resting && (
-        <div className="rounded-xl p-5 space-y-4" style={{ background: "linear-gradient(135deg, rgba(217,119,6,0.08) 0%, rgba(245,158,11,0.04) 100%)", border: "1px solid rgba(217,119,6,0.25)" }}>
+        <div className="rounded-xl p-5 space-y-4 mx-auto" style={{ background: "linear-gradient(135deg, rgba(217,119,6,0.08) 0%, rgba(245,158,11,0.04) 100%)", border: "1px solid rgba(217,119,6,0.25)", maxWidth: 600 }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-bold" style={{ color: "#d97706" }}>Currently Resting</p>
@@ -237,7 +237,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* Not resting — can enter */}
       {!status?.resting && status?.canRest && (
-        <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="rounded-xl p-5 space-y-4 mx-auto" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", maxWidth: 600 }}>
           <p className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Take a Rest</p>
           <p className="text-xs text-w35">Going on vacation? Feeling burned out? Rest at the Hearth to freeze your progress. No quests will be generated, no streaks will decay, and your forge temperature stays locked.</p>
 
@@ -339,7 +339,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* Rest history */}
       {status?.history && status.history.length > 0 && (
-        <div>
+        <div className="mx-auto" style={{ maxWidth: 600 }}>
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Rest History</p>
           <div className="space-y-1">
             {status.history.map((h, i) => (
