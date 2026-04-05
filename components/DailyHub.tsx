@@ -1,8 +1,57 @@
 "use client";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import type { User } from "@/app/types";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+
+// ─── Companion daily quotes (Skulduggery-humor) ─────────────────────────────
+const COMPANION_DAILY_QUOTES: Record<string, string[]> = {
+  cat: [
+    "{name} stares at you. Then at the quest board. The message is clear.",
+    "{name} yawns. Not boredom — judging you is exhausting work.",
+    "{name} is asleep on your quest list. This is either a statement or a nap.",
+  ],
+  dog: [
+    "{name} brought you a quest. It's slightly chewed, but the intent is pure.",
+    "{name} has faith in you. Unconditional, unearned, and slightly suspicious.",
+    "{name} sat by the door. Someone has to guard against procrastination.",
+  ],
+  dragon: [
+    "{name} breathed on your coffee. It's warm now. You're welcome.",
+    "{name} burned your excuses. Literally. The desk is fine. Mostly.",
+    "{name} is not impressed. {name} is never impressed. That's the point.",
+  ],
+  owl: [
+    "{name} read three books while you slept. {name} has thoughts.",
+    "{name} hooted at 3 AM. It was wisdom. You weren't listening.",
+    "{name} arranged your quests by priority. Silently. Judgmentally.",
+  ],
+  phoenix: [
+    "{name} died yesterday. {name} got better. Your excuses can too.",
+    "{name} is on fire. As usual. It's a lifestyle, not a problem.",
+    "Yesterday was yesterday. {name} already forgot it. Literally.",
+  ],
+  wolf: [
+    "{name} howled at the moon. It was motivational. The neighbors disagree.",
+    "{name} is tracking your progress. {name} is a very patient hunter.",
+    "{name} doesn't do pep talks. {name} does silent, intense staring.",
+  ],
+  fox: [
+    "{name} found a shortcut. It's probably a trap. {name} took it anyway.",
+    "{name} suggests a creative approach. 'Creative' is doing a lot of work there.",
+    "{name} grinned. In {name}'s defense, foxes always grin. It's unsettling.",
+  ],
+  bear: [
+    "{name} woke up. This is a bigger deal than you think.",
+    "{name} punched a tree. For motivation. The tree had it coming.",
+    "{name} is here. {name} is large. {name} believes in you. Aggressively.",
+  ],
+  default: [
+    "Your companion watches. Patiently. The patience is aggressive.",
+    "Today is a day. That's all the motivation you're getting.",
+    "Your companion made a list. It's longer than yours.",
+  ],
+};
 
 // ─── Streak urgency thresholds ──────────────────────────────────────────────
 function getStreakStatus(streak: number, streakLastDate?: string | null): {
@@ -61,6 +110,20 @@ export const DailyHub = memo(function DailyHub({
   const missionProgress = missionsTotal > 0 ? missionsCompleted / missionsTotal : 0;
   const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
   const forgeTemp = Math.min(user.forgeTemp ?? 0, 100);
+
+  // Companion daily quote (deterministic per day)
+  const companionQuote = useMemo(() => {
+    const comp = user.companion;
+    if (!comp) return null;
+    const type = comp.type ?? "default";
+    const name = comp.name ?? "Companion";
+    const quotes = COMPANION_DAILY_QUOTES[type] ?? COMPANION_DAILY_QUOTES.default;
+    // Use date as seed for deterministic daily rotation
+    const today = new Date();
+    const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
+    const idx = dayOfYear % quotes.length;
+    return quotes[idx].replace(/\{name\}/g, name);
+  }, [user.companion]);
 
   // Greeting based on time of day (Berlin)
   const [greeting, setGreeting] = useState("");
@@ -176,6 +239,14 @@ export const DailyHub = memo(function DailyHub({
           </div>
         )}
       </div>
+      {/* Companion daily message */}
+      {companionQuote && (
+        <div className="px-4 pb-2.5 -mt-1">
+          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.5 }}>
+            &ldquo;{companionQuote}&rdquo;
+          </p>
+        </div>
+      )}
     </div>
   );
 });
