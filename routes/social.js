@@ -889,7 +889,7 @@ function executeTrade(trade) {
 
   // ─── Execute transfers atomically ─────────────────────────────────────
 
-  // Transfer gold
+  // Transfer gold (sync both u.currencies.gold + u.gold)
   if (gold1 > 0) {
     u1.currencies.gold -= gold1;
     u2.currencies.gold += gold1;
@@ -898,6 +898,8 @@ function executeTrade(trade) {
     u2.currencies.gold -= gold2;
     u1.currencies.gold += gold2;
   }
+  u1.gold = u1.currencies.gold;
+  u2.gold = u2.currencies.gold;
 
   // Transfer items: initiator → recipient
   for (const instanceId of items1) {
