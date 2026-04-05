@@ -3,13 +3,14 @@
 ## Required Reading (BEFORE any action)
 Read these files completely before starting work:
 1. `CLAUDE.md` (inkl. UI Design Guidelines)
-2. `ARCHITECTURE.md`
-3. `AUDIT_REPORT.md` (Appendix A is mandatory)
-4. `REJECTED.md` (blocklist — never propose items listed there)
-5. `LYRA-PLAYBOOK.md` (Content creation schemas, Tone & Voice Guide, Lore Bible)
-6. UI Design Guidelines section below
+2. `.audit-markers.json` — **Audit Tracker.** Shows which files have been audited and how many times. Prioritize `status: "unaudited"` files first, then lowest `auditCount`. After auditing a file: increment `auditCount`, update `lastAuditDate`, document `findings`, set `status`.
+3. `ARCHITECTURE.md`
+4. `AUDIT_REPORT.md` (Appendix A is mandatory)
+5. `REJECTED.md` (blocklist — never propose items listed there)
+6. `LYRA-PLAYBOOK.md` (Content creation schemas, Tone & Voice Guide, Lore Bible)
+7. UI Design Guidelines section below
 
-> **If you have not read all 5 files, you are not ready to work. Stop.**
+> **If you have not read all 6 files + .audit-markers.json, you are not ready to work. Stop.**
 
 ---
 

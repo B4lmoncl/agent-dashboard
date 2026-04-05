@@ -512,6 +512,7 @@ All pixel art assets are generated via the Pixellab API v2 (`https://api.pixella
 - `CLAUDE.md` — THIS FILE. Primary reference. Read first. Tech stack, code rules, UI design guidelines, game systems.
 - `ARCHITECTURE.md` — Technical architecture: data flow, component tree, route structure, state management.
 - `LYRA-PLAYBOOK.md` — Content creation schemas + **Lore Bible**. Read when adding content to `public/data/*.json`. Contains JSON field schemas for all content types + backend formulas. **IMPORTANT: The "Lore Bible" section at the end is READ-ONLY — do NOT modify it unless the user explicitly asks. It defines world-building, tone, NPC personalities, easter egg rules, and flavor guidelines.**
+- `.audit-markers.json` — **Audit Tracker.** Tracks which files have been audited, how many times, when, and what was found. **MUST read before any audit session.** Audit "unaudited" files first, then lowest auditCount. Increment auditCount after each audit pass. Format: `{ filepath: { auditCount, lastAuditDate, findings, status } }`.
 - `AUDIT_REPORT.md` — Fix history + Appendix A (verified non-issues, features that exist, agent traps). MUST read Appendix A before any audit.
 - `AUDIT_PROMPT.md` — Reusable audit prompt. User pastes this to start audit sessions.
 - `README.md` — Project overview, quick start, tech stack, game systems summary.
