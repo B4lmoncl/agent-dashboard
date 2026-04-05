@@ -2703,7 +2703,7 @@ export default function Dashboard() {
               const lvl = levelUpCelebration.level;
               const unlocks: string[] = [];
               if (lvl === 3) { unlocks.push("Challenges", "Bazaar"); }
-              if (lvl === 5) { unlocks.push("Artisan's Quarter", "Vault of Fate"); }
+              if (lvl === 5) { unlocks.push("Artisan's Quarter", "Vault of Fate", "Schicksalsbaum", "Abenteuerbuch"); }
               if (lvl === 8) { unlocks.push("The Pinnacle", "Rift", "Proving Grounds"); }
               if (lvl === 10) { unlocks.push("Four Circles", "Season Pass", "Arcanum"); }
               if (lvl === 12) { unlocks.push("The Undercroft (Dungeons)"); }
