@@ -318,6 +318,18 @@ export const DailyHub = memo(function DailyHub({
           {greeting}, <span style={{ color: user.color ?? "#a78bfa" }}>{user.name}</span>
         </p>
 
+        {/* Daily mission mini-progress (click opens Today Drawer) */}
+        {dailyMissions && (() => {
+          const done = dailyMissions.missions.filter(m => m.done).length;
+          const total = dailyMissions.missions.length;
+          const allDone = done >= total;
+          return (
+            <button onClick={onTodayOpen} className="text-xs px-2 py-0.5 rounded-md flex-shrink-0 inline-flex items-center gap-1" style={{ background: allDone ? "rgba(34,197,94,0.08)" : "rgba(255,255,255,0.03)", color: allDone ? "#22c55e" : "rgba(255,255,255,0.3)", border: `1px solid ${allDone ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title={`Daily missions: ${done}/${total} — click to open Today`}>
+              {allDone ? "✓" : `${done}/${total}`} Daily
+            </button>
+          );
+        })()}
+
         {/* Streak Warning — only when at risk */}
         {streakUrgency.show && (
           <span className="text-xs font-semibold px-1.5 py-0.5 rounded streak-urgent-pulse flex-shrink-0" style={{ color: streakUrgency.color, background: `${streakUrgency.color}15`, border: `1px solid ${streakUrgency.color}30` }}>
