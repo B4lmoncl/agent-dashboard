@@ -20,9 +20,11 @@ interface CalendarDay {
 // ─── Streak milestone rewards preview ────────────────────────────────────────
 
 const MILESTONES = [
-  { days: 7,  label: "7-Day Bonus",  reward: "+1 Runensplitter, +1 Essenz" },
-  { days: 14, label: "14-Day Bonus", reward: "+2 Runensplitter, +2 Essenz" },
-  { days: 30, label: "30-Day Bonus", reward: "+3 Runensplitter, +5 Essenz" },
+  { days: 7,   label: "7-Day",   reward: "+1 Rune, +1 Essenz",    cosmetic: "Title: Flammenhüter",      color: "#22c55e" },
+  { days: 14,  label: "14-Day",  reward: "+2 Rune, +2 Essenz",    cosmetic: null,                        color: "#3b82f6" },
+  { days: 30,  label: "30-Day",  reward: "+3 Rune, +5 Essenz",    cosmetic: "Title + Frame: Unerschütterlich", color: "#a855f7" },
+  { days: 90,  label: "90-Day",  reward: "XP Bonus + Epic Loot",  cosmetic: "Title + Frame: Eiserner Wille",   color: "#ef4444" },
+  { days: 365, label: "365-Day", reward: "Legendary Loot",        cosmetic: "Title + Frame: Die Ewige Flamme", color: "#f97316" },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -175,19 +177,24 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               </TipCustom>
               {MILESTONES.map(m => {
                 const reached = streakDays >= m.days;
+                const mc = m.color || "#fbbf24";
                 return (
-                  <div key={m.days} className="flex items-center justify-between text-xs px-2 py-1.5 rounded-lg" style={{
-                    background: reached ? "rgba(251,191,36,0.08)" : "rgba(255,255,255,0.02)",
-                    border: `1px solid ${reached ? "rgba(251,191,36,0.25)" : "rgba(255,255,255,0.05)"}`,
+                  <div key={m.days} className="flex items-center justify-between gap-2 text-xs px-2 py-1.5 rounded-lg" style={{
+                    background: reached ? `${mc}12` : "rgba(255,255,255,0.02)",
+                    border: `1px solid ${reached ? `${mc}40` : "rgba(255,255,255,0.05)"}`,
                   }}>
-                    <span style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.3)" }}>
-                      {reached ? "✓ " : ""}{m.label}
-                    </span>
-                    <span style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
-                      {m.reward.split(", ").map((part, i) => {
-                        const tipKey = part.includes("Runensplitter") ? "runensplitter" : part.includes("Essenz") ? "essenz" : null;
-                        return <span key={i}>{i > 0 ? ", " : ""}{tipKey ? <Tip k={tipKey}><span style={{ cursor: "help" }}>{part}</span></Tip> : part}</span>;
-                      })}
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="font-bold" style={{ color: reached ? mc : "rgba(255,255,255,0.3)" }}>
+                        {reached ? "✓" : "○"} {m.label}
+                      </span>
+                      {m.cosmetic && (
+                        <span className="text-xs truncate" style={{ color: reached ? `${mc}bb` : "rgba(255,255,255,0.15)", fontSize: 11 }}>
+                          {m.cosmetic}
+                        </span>
+                      )}
+                    </div>
+                    <span className="flex-shrink-0" style={{ color: reached ? mc : "rgba(255,255,255,0.2)" }}>
+                      {m.reward}
                     </span>
                   </div>
                 );
