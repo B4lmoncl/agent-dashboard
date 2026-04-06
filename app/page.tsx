@@ -612,10 +612,15 @@ export default function Dashboard() {
         if (data.rewards?.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
         if (data.rewards?.runensplitter) currencies.push({ name: "Runensplitter", amount: data.rewards.runensplitter, color: "#818cf8" });
         if (data.rewards?.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
+        if (data.rewards?.stardust) currencies.push({ name: "Stardust", amount: data.rewards.stardust, color: "#c084fc" });
+        if (data.rewards?.gold) currencies.push({ name: "Gold", amount: data.rewards.gold, color: "#fbbf24" });
+        const fortune = data.dailyFortune;
         setRewardCelebration({
           type: "daily-bonus",
-          title: "Daily Bonus Claimed!",
-          flavor: data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
+          title: fortune ? `Daily Bonus — ${fortune.label}` : "Daily Bonus Claimed!",
+          flavor: fortune
+            ? `Fortune smiled on you today. +${fortune.amount} bonus ${fortune.type}.`
+            : data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
           xpEarned: 0,
           goldEarned: 0,
           currencies,

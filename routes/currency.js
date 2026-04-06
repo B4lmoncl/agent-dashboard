@@ -166,7 +166,25 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
     runensplitter: 2,
   };
 
-  // Sternentaler are ONLY earned from weekly challenges — not from daily bonus
+  // Daily Fortune: small chance for bonus rewards (variable reward = dopamine)
+  // 20% chance for bonus gold, 10% for bonus stardust, 5% for bonus sternentaler
+  // Fortune rewards are tracked separately and awarded via the main loop below.
+  const fortuneRoll = Math.random();
+  let dailyFortune = null;
+  if (fortuneRoll < 0.05) {
+    rewards.sternentaler = 1;
+    dailyFortune = { type: "sternentaler", amount: 1, label: "Lucky Star!" };
+  } else if (fortuneRoll < 0.15) {
+    const stardustAmt = 3 + Math.floor(Math.random() * 5); // 3-7
+    rewards.stardust = stardustAmt;
+    dailyFortune = { type: "stardust", amount: stardustAmt, label: "Starfall!" };
+  } else if (fortuneRoll < 0.35) {
+    const goldAmt = 10 + Math.floor(Math.random() * 20); // 10-29
+    rewards.gold = goldAmt;
+    dailyFortune = { type: "gold", amount: goldAmt, label: "Gold Rush!" };
+  }
+
+  // Sternentaler are ONLY earned from weekly challenges — not from daily bonus (except fortune)
 
   // Streak milestone bonus rewards
   let milestoneBonus = null;
@@ -191,6 +209,7 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
     rewards,
     streakDays,
     milestone: milestoneBonus,
+    dailyFortune,
     currencies: u.currencies,
     claimedAt: now(),
   });
