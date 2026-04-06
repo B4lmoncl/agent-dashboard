@@ -217,6 +217,28 @@ router.get('/api/player/:name/notification-center', requireAuth, requireSelf('na
     }
   }
 
+  // Pending dungeon invites — social urgency hook
+  try {
+    const { getActiveDungeons } = require('./dungeons');
+    const activeDungeons = getActiveDungeons();
+    if (activeDungeons) {
+      for (const [runId, run] of Object.entries(activeDungeons)) {
+        if (run && run.status === 'forming' && run.invitedPlayers && run.invitedPlayers.includes(uid) && !run.participants.includes(uid)) {
+          const creator = state.users[run.createdBy];
+          notifications.push({
+            id: `dungeon-invite-${runId}`, type: "dungeon_invite",
+            title: "Dungeon Invite!",
+            message: `${creator?.name || run.createdBy} invited you to a dungeon run`,
+            icon: "/images/icons/nav-dungeons.png",
+            color: "#60a5fa",
+            at: run.createdAt,
+            read: readSet.has(`dungeon-invite-${runId}`),
+          });
+        }
+      }
+    }
+  } catch { /* dungeons module may not be loaded yet */ }
+
   // Active rift cooldowns ending soon
   const riftState = u.riftState || {};
   for (const [tier, data] of Object.entries(riftState)) {
