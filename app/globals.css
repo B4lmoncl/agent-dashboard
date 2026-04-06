@@ -1839,6 +1839,15 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   animation: unique-shimmer 4s ease-in-out infinite;
 }
 
+/* ─── Forge Bar Blazing (80%+ forge temp) ────────────────────── */
+@keyframes forge-bar-blaze {
+  0%, 100% { filter: brightness(1); box-shadow: 0 0 6px currentColor; }
+  50%      { filter: brightness(1.3); box-shadow: 0 0 14px currentColor, 0 0 24px rgba(249,115,22,0.3); }
+}
+.forge-bar-blazing {
+  animation: forge-bar-blaze 2s ease-in-out infinite;
+}
+
 /* ─── XP Bar Fill Animation (smooth counting up) ──────────────── */
 @keyframes xp-fill-glow {
   0%   { filter: brightness(1); }

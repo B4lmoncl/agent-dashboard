@@ -1232,10 +1232,10 @@ export default function Dashboard() {
                     </Tip>
                   </div>
                   {/* Forge bar */}
-                  <div className="mt-1 rounded-full overflow-hidden bg-w6" style={{ height: 3, width: 120 }}>
+                  <div className="mt-1 rounded-full overflow-hidden bg-w6" style={{ height: 4, width: 120 }}>
                     <div
-                      className="h-full rounded-full transition-all duration-700"
-                      style={{ width: `${forgeTemp}%`, background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`, boxShadow: forgeTemp > 60 ? `0 0 6px ${forgeTempColor}80` : "none" }}
+                      className={`h-full rounded-full transition-all duration-700${forgeTemp >= 80 ? " forge-bar-blazing" : ""}`}
+                      style={{ width: `${forgeTemp}%`, background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`, boxShadow: forgeTemp > 60 ? `0 0 8px ${forgeTempColor}80` : "none" }}
                     />
                   </div>
                 </div>
