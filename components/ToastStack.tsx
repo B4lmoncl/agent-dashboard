@@ -95,10 +95,12 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
 function AchievementToastContent({ achievement, onClose, onAchievementClick }: { achievement: EarnedAchievement; onClose: () => void; onAchievementClick?: (id: string) => void }) {
   return (
     <div
-      className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: "min(360px, calc(100vw - 48px))", width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
+      className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl relative overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #252525, #1a1a08)", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3), 0 0 20px rgba(245,158,11,0.1)", maxWidth: "min(360px, calc(100vw - 48px))", width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
       onClick={() => { if (onAchievementClick && achievement.id) { onAchievementClick(achievement.id); onClose(); } }}
     >
+      {/* Achievement shimmer sweep */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(251,191,36,0.08) 45%, rgba(251,191,36,0.15) 50%, rgba(251,191,36,0.08) 55%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.5s ease-in-out infinite" }} />
       {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
