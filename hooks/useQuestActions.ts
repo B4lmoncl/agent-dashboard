@@ -325,8 +325,8 @@ export function useQuestActions({
           }
         }
         // Diminishing returns notification — warn early, then each tier
-        if (data.dailyQuestCount === 5) addToast({ type: "flavor", message: "1 more quest at full rewards today!", icon: "◆", sub: "After quest 6 rewards drop to 75%" });
-        else if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Daily rewards reduced to 75%", icon: "◆", sub: "Complete 5 quests early for full value" });
+        if (data.dailyQuestCount === 5) addToast({ type: "flavor", message: "Full rewards reached for today", icon: "◆", sub: "Next quests earn 75% — the forge cools" });
+        else if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Rewards at 75%", icon: "◆", sub: `Quest ${data.dailyQuestCount} — first 5 were full value` });
         else if (data.dailyQuestCount === 11) addToast({ type: "flavor", message: "Daily rewards reduced to 50%", icon: "◆", sub: "Consider resting until tomorrow" });
         else if (data.dailyQuestCount === 21) addToast({ type: "flavor", message: "Daily rewards at minimum (25%)", icon: "◆", sub: "Your forge burns low — rest and return stronger" });
 

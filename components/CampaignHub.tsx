@@ -316,7 +316,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       {/* Create Campaign Modal */}
       {createOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setCreateOpen(false)}>
-          <div className="rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto" style={{ background: "#0d1017", border: "1px solid rgba(139,92,246,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)", scrollbarWidth: "thin" as const }} onClick={e => e.stopPropagation()}>
+          <div className="rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto" style={{ background: "#0d1017", border: "1px solid rgba(139,92,246,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)", scrollbarWidth: "thin" as const, overscrollBehavior: "contain" }} onClick={e => e.stopPropagation()}>
             <h3 className="text-base font-bold mb-4" style={{ color: "#e9d5ff" }}>New Campaign</h3>
             <div className="space-y-3">
               {/* Icon picker */}

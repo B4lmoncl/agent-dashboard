@@ -371,6 +371,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   };
   const craftTimerRef = useRef<number | null>(null);
   const craftCastMsRef = useRef(3000);
+  const batchIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  // Cleanup batch interval on unmount
+  useEffect(() => () => { if (batchIntervalRef.current) clearInterval(batchIntervalRef.current); }, []);
 
   const startCraftCast = (recipeId: string, count = 1) => {
     if (crafting || craftProgress || !reviewApiKey) return;
@@ -455,10 +458,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           const total = data.craftCount || count;
           setCraftResult(`◆ Crafting 1/${total}...`);
           let tick = 1;
-          const interval = setInterval(() => {
+          if (batchIntervalRef.current) clearInterval(batchIntervalRef.current);
+          batchIntervalRef.current = setInterval(() => {
             tick++;
             if (tick >= total) {
-              clearInterval(interval);
+              if (batchIntervalRef.current) clearInterval(batchIntervalRef.current);
+              batchIntervalRef.current = null;
               setCraftResult(msg);
             } else {
               const bar = "█".repeat(tick) + "░".repeat(total - tick);
@@ -1295,6 +1300,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           background: canBuy ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.03)",
                           color: canBuy ? "#818cf8" : "rgba(255,255,255,0.2)",
                           border: `1px solid ${canBuy ? "rgba(99,102,241,0.4)" : "rgba(255,255,255,0.06)"}`,
+                          cursor: !canBuy || buyingTool === gear.id ? "not-allowed" : "pointer",
                         }}
                       >
                         {buyingTool === gear.id ? "..." : (<>
@@ -2136,7 +2142,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {craftResultHadSkillUp && skillUpInfo && (
                           <span
                             className="inline-flex items-center gap-1 mr-2 px-1.5 py-0.5 rounded font-bold"
-                            style={{ background: `${skillUpInfo.color}20`, color: skillUpInfo.color, border: `1px solid ${skillUpInfo.color}40`, fontSize: 11, letterSpacing: "0.04em" }}
+                            style={{ background: `${skillUpInfo.color}20`, color: skillUpInfo.color, border: `1px solid ${skillUpInfo.color}40`, fontSize: 12, letterSpacing: "0.04em" }}
                           >
                             <span className="w-2 h-2 rounded-full inline-block flex-shrink-0" style={{ background: skillUpInfo.color }} />
                             {craftResultSkillUpColor ? craftResultSkillUpColor.charAt(0).toUpperCase() + craftResultSkillUpColor.slice(1) : ""} Skill-Up!

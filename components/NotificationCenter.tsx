@@ -87,12 +87,14 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
   const markAllRead = useCallback(async () => {
     if (!playerName || !reviewApiKey || unreadCount === 0) return;
     try {
-      await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/notification-center/read`, {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/notification-center/read`, {
         method: "POST",
         headers: getAuthHeaders(reviewApiKey),
       });
-      setUnreadCount(0);
-      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+      if (r.ok) {
+        setUnreadCount(0);
+        setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+      }
     } catch { /* ignore */ }
   }, [playerName, reviewApiKey, unreadCount]);
 

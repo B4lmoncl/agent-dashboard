@@ -56,13 +56,13 @@ export default function QuestDetailModal({
   const hasCoopCompleted = playerName ? coopCompletions.includes(playerName.toLowerCase()) : false;
 
   const FLAVOR_BY_TYPE: Record<string, string> = {
-    personal:           "Eine persönliche Herausforderung, die dein Wesen stärkt und deinen Charakter formt.",
-    learning:           "Das Wissen der Alten wartet darauf, entdeckt zu werden. Nur wer sucht, wird finden.",
-    fitness:            "Nur durch körperliche Ertüchtigung wird der Geist wahrhaft frei. Stähle deinen Körper.",
-    social:             "Verbindungen sind die stärkste Magie in dieser Welt. Knüpfe Bande, die den Sturm überdauern.",
-    "relationship-coop":"Gemeinsam seid ihr stärker als ihr es alleine je sein könntet. Schulter an Schulter.",
-    development:        "Der Code ist die neue Magie — und du bist der Zauberer. Erschaffe etwas Bleibendes.",
-    boss:               "Eine dunkle Macht erhebt sich. Nur die Mutigsten können bestehen. Rüste dich gut.",
+    personal:           "Jemand muss es tun. Laut Zettel bist du dieser Jemand. Der Zettel lügt selten.",
+    learning:           "Ein Buch. Oder drei. Der Bibliothekar sagt, Wissen sei Macht. Er sagt auch, er brauche einen neuen Stuhl. Beides stimmt vermutlich.",
+    fitness:            "Der Körper beschwert sich. Das ist normal. Er beschwert sich auch wenn man nichts tut, also kann man es genauso gut versuchen.",
+    social:             "Andere Menschen. Unvorhersehbar, gelegentlich nützlich, manchmal sogar angenehm. Die Gilde empfiehlt Kontakt in moderaten Dosen.",
+    "relationship-coop":"Zu zweit ist alles einfacher. Oder doppelt so kompliziert. Die Statistik ist da uneindeutig, aber optimistisch.",
+    development:        "Code schreibt sich nicht von allein. Technisch gesehen schon, aber das Ergebnis ist dann meistens beleidigt.",
+    boss:               "Das hier wird unangenehm. Nicht unmöglich — unangenehm. Ein feiner Unterschied, den der vorherige Auftragnehmer leider zu spät verstand.",
   };
   const flavorText = q.flavorText || FLAVOR_BY_TYPE[q.type ?? "personal"] || "Eine Herausforderung wartet. Beweise dein Können.";
 
@@ -164,6 +164,38 @@ export default function QuestDetailModal({
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{q.description}</p>
             </div>
           )}
+          {/* Checklist */}
+          {q.checklist && q.checklist.length > 0 && (
+            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Checklist ({q.checklist.filter(c => c.done).length}/{q.checklist.length})</p>
+              <div className="space-y-1">
+                {q.checklist.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-xs">
+                    <span style={{ color: item.done ? "#22c55e" : "rgba(255,255,255,0.2)", fontSize: 12 }}>{item.done ? "✓" : "○"}</span>
+                    <span style={{ color: item.done ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.6)", textDecoration: item.done ? "line-through" : "none" }}>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* Faction rep indicator */}
+          {q.type && ["fitness", "learning", "development", "personal", "social"].includes(q.type) && (() => {
+            const FACTION_BY_TYPE: Record<string, { name: string; symbol: string; color: string }> = {
+              fitness: { name: "Orden der Klinge", symbol: "🜂", color: "#ef4444" },
+              learning: { name: "Zirkel der Sterne", symbol: "🜄", color: "#3b82f6" },
+              development: { name: "Zirkel des Amboss", symbol: "🜁", color: "#f59e0b" },
+              personal: { name: "Zirkel des Amboss", symbol: "🜁", color: "#f59e0b" },
+              social: { name: "Zirkel des Echos", symbol: "🜃", color: "#ec4899" },
+            };
+            const f = FACTION_BY_TYPE[q.type!];
+            if (!f) return null;
+            return (
+              <div className="flex items-center gap-2 text-xs" style={{ color: f.color }}>
+                <span>{f.symbol}</span>
+                <span>+Rep {f.name}</span>
+              </div>
+            );
+          })()}
           {/* Requirements */}
           {((q.minLevel != null && q.minLevel > 1) || q.classRequired) && (
             <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -233,7 +265,7 @@ export default function QuestDetailModal({
                 style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.35)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
                 onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#22c55e"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,197,94,0.15)"; (e.currentTarget as HTMLButtonElement).style.color = "#22c55e"; }}
-              >{actionLoading ? "Completing…" : "Abgeschlossen"}</button>
+              >{actionLoading ? "Completing…" : "Complete"}</button>
             </>
           )}
           {isCoop && isCoopPartner && !hasCoopClaimed && q.status !== "completed" && reviewApiKey && playerName && (

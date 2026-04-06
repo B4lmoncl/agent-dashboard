@@ -21,12 +21,12 @@ import {
 import { RARITY_COLORS } from "@/app/constants";
 
 const QUEST_BOARD_FLAVORS = [
-  "Gefunden am schwarzen Brett",
-  "Ein Flüstern im Wind",
-  "Die Gilde bittet um Hilfe",
-  "Eine alte Schriftrolle",
-  "Ein dringender Auftrag",
-  "Vom Schicksal bestimmt",
+  "Jemand hat das ans Brett genagelt. Mit Nachdruck.",
+  "Lag auf dem Boden. Niemand weiß wer es dort hingelegt hat. Niemand fragt.",
+  "Der Gildenmeister hat diesen Zettel dreimal umgedreht, bevor er ihn aufgehängt hat.",
+  "Die Tinte ist noch feucht. Das Papier zittert leicht.",
+  "Stand auf der Prioritätenliste. Ganz unten. Bis heute.",
+  "Ein Auftrag, den niemand übernehmen wollte. Jetzt bist du da.",
 ];
 
 function ChainDots({ chainIndex, chainTotal, color }: { chainIndex: number; chainTotal: number; color: string }) {

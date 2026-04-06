@@ -1297,6 +1297,1024 @@
         "label": "+5% Quest XP"
       },
       "source": "world_boss:apathy-sovereign"
+    },
+    {
+      "id": "wb-kraken-tentakelring",
+      "name": "Tentakelring des Aufschubs",
+      "slot": "ring",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 38,
+      "desc": "Der Kraken hat diesen Ring 47 Jahre lang \"fast fertig\" gehabt. Er lag auf seinem Schreibtisch. Neben dem Ring lagen 340 andere angefangene Projekte. Der Ring war tatsächlich fertig — der Kraken hat es nur nie überprüft.",
+      "flavorText": "Auf der Innenseite ist \"Morgen\" eingraviert. Die Gravur ist dreihundert Jahre alt.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "cooldown_reduction",
+        "min": 2,
+        "max": 5,
+        "label": "Tentakelgriff: -{value}% Craft Cooldown",
+        "value": 3
+      },
+      "source": "world_boss:aufschub-kraken",
+      "isUnique": true
+    },
+    {
+      "id": "wb-kraken-zeitstiefel",
+      "name": "Zeitverschlinger-Stiefel",
+      "slot": "boots",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 40,
+      "desc": "Gefertigt aus der Haut eines Krakentakels, das sich um die Zeiger einer Turmuhr gewickelt hatte. Die Uhr ging danach drei Jahre nach. Die Stiefel gehen dafür erstaunlich pünktlich. Relativ gesehen.",
+      "flavorText": "Der Träger bewegt sich schneller. Leider hauptsächlich in Richtung Kühlschrank.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "expedition_speed",
+        "min": 3,
+        "max": 5,
+        "label": "Zeitfresser: -{value}% Expedition Time",
+        "value": 4
+      },
+      "source": "world_boss:aufschub-kraken",
+      "isUnique": true
+    },
+    {
+      "id": "wb-kraken-tintenhelm",
+      "name": "Tintenhelm der Ausreden",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 37,
+      "desc": "Wenn der Kraken in Bedrängnis geriet, spritzte er Tinte und verschwand. Der Helm hat dieses Prinzip perfektioniert: Er verdunkelt das Sichtfeld des Trägers, sobald eine Deadline naht. Problem gelöst. Technisch gesehen.",
+      "flavorText": "Die Tinte riecht nach Kaffee und verpassten Chancen. Zwei Substanzen, die in der Quest Hall praktisch identisch sind.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "streak_protection",
+        "min": 2,
+        "max": 5,
+        "label": "Tintenwolke: +{value}% Streak Protection",
+        "value": 3
+      },
+      "source": "world_boss:aufschub-kraken",
+      "isUnique": true
+    },
+    {
+      "id": "wb-sphinx-weisheitshelm",
+      "name": "Helm der ewigen Wiederholung",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 40,
+      "desc": "Die Sphinx stellte jedem Besucher dasselbe Rätsel. Dreihundert Jahre lang. Dasselbe. Rätsel. Die Antwort war übrigens \"Dienstag\". Keiner hat je gefragt warum.",
+      "flavorText": "Der Helm flüstert Rätsel. Immer dasselbe. Wenn du die Antwort sagst, stellt er es erneut. Er ist im Grunde ein Kollege, der seine Lieblingsanekdote nicht loslassen kann.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "ritual_streak_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Ewige Routine: +{value}% XP per Streak Day",
+        "value": 4
+      },
+      "source": "world_boss:routine-sphinx",
+      "isUnique": true
+    },
+    {
+      "id": "wb-sphinx-raetselamulett",
+      "name": "Sphinx-Amulett der Monotonie",
+      "slot": "amulet",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 38,
+      "desc": "Die Sphinx trug dieses Amulett jeden einzelnen Tag. Nicht aus Sentimentalität, sondern weil sie vergessen hat, dass sie andere Schmuckstücke besitzt. Ihre Sammlung umfasst 4.000 Stück. Sie hat sie alle in einer Schublade. Derselben Schublade.",
+      "flavorText": "Das Amulett hört nicht auf zu summen. Immer derselbe Ton. Man gewöhnt sich daran. Man gewöhnt sich an alles. Das ist das Problem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "variety_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Routinebrecher: +{value}% Variety Bonus",
+        "value": 3
+      },
+      "source": "world_boss:routine-sphinx",
+      "isUnique": true
+    },
+    {
+      "id": "wb-spiegel-schild",
+      "name": "Splitterschild des Vergleichs",
+      "slot": "shield",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 40,
+      "desc": "Der Spiegel zerbrach, als jemand sagte: \"Ich bin gut genug.\" Aus den Scherben wurde dieses Schild. Es reflektiert Angriffe, aber auch Unsicherheiten. Und gelegentlich das Gesicht des Trägers, was laut Grimvar \"ein Feature, kein Bug\" ist.",
+      "flavorText": "Das Schild zeigt dir immer die bessere Version von dir. Die, die um 5 Uhr aufsteht und meditiert. Sie existiert nicht, aber der Spiegel besteht darauf.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 6,
+        "label": "Spiegelwehr: -{value}% Forge Decay",
+        "value": 4
+      },
+      "source": "world_boss:vergleichs-spiegel",
+      "isUnique": true
+    },
+    {
+      "id": "wb-spiegel-ring",
+      "name": "Ring der Selbsterkenntnis",
+      "slot": "ring",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 38,
+      "desc": "Geschliffen aus dem Rahmen des Spiegels. Der Ring zeigt dem Träger, was er wirklich kann — nicht was andere können. Das klingt therapeutisch. Es ist hauptsächlich ernüchternd.",
+      "flavorText": "Ysolde hat ihn analysiert und gesagt: \"Er funktioniert perfekt.\" Dann hat sie ihn abgelegt und drei Stunden aus dem Fenster gestarrt. Sie hat nie gesagt, was er ihr gezeigt hat.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Wahres Selbst: +{value}% XP",
+        "value": 4
+      },
+      "source": "world_boss:vergleichs-spiegel",
+      "isUnique": true
+    },
+    {
+      "id": "wb-imposter-maske",
+      "name": "Maske des Hochstaplers",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 42,
+      "desc": "Das Phantom trug 99 Masken übereinander. Darunter war — nichts. Keine Überraschung für das Phantom. Große Überraschung für alle anderen. Diese Maske ist Nummer 47. Sie verleiht dem Träger das Gefühl, nicht hierher zu gehören. Also Dienstag.",
+      "flavorText": "Die Maske passt jedem perfekt. Jeder Träger ist überzeugt, dass sie eigentlich für jemand Kompetenteres gedacht war.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 3,
+        "max": 6,
+        "label": "Echtes Gesicht: +{value}% Companion Bond XP",
+        "value": 4
+      },
+      "source": "world_boss:imposter-phantom",
+      "isUnique": true
+    },
+    {
+      "id": "wb-imposter-umhang",
+      "name": "Umhang der falschen Bescheidenheit",
+      "slot": "armor",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 40,
+      "desc": "Das Phantom hüllte sich in Bescheidenheit wie andere sich in Decken hüllen: nicht aus Überzeugung, sondern aus Angst vor der Kälte. Der Umhang macht den Träger unsichtbar. Nicht physisch. Emotional. Wie auf einer Firmenfeier.",
+      "flavorText": "Eldric hat den Umhang untersucht und festgestellt, dass er aus reiner Selbsttäuschung gewebt ist. Das haltbarste Material, das er je gesehen hat.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "challenge_score_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Maskerade: +{value}% Challenge Score",
+        "value": 4
+      },
+      "source": "world_boss:imposter-phantom",
+      "isUnique": true
+    },
+    {
+      "id": "wb-imposter-stiefel",
+      "name": "Stiefel des leisen Zweifels",
+      "slot": "boots",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 39,
+      "desc": "Das Phantom machte nie Geräusche beim Gehen. Nicht aus Geschick — es war sich nicht sicher, ob es das Recht hatte, Geräusche zu machen. Diese Stiefel sind ebenso leise. Der Boden beschwert sich trotzdem nicht.",
+      "flavorText": "Die Stiefel passen perfekt. Der Träger ist sich sicher, dass das ein Fehler ist.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Phantom-Schritt: +{value}% Drop Chance",
+        "value": 3
+      },
+      "source": "world_boss:imposter-phantom",
+      "isUnique": true
+    },
+    {
+      "id": "wb-komfort-ruestung",
+      "name": "Rüstung der gemütlichen Stagnation",
+      "slot": "armor",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 42,
+      "desc": "Die Komfortzone war warm, weich und absolut tödlich. Diese Rüstung fühlt sich an wie eine gewichtete Decke, die beschlossen hat, Schutzausrüstung zu werden. Sie flüstert: \"Bleib doch einfach hier.\" Sie meint es gut. Wahrscheinlich.",
+      "flavorText": "Grimvar hat beim Schmieden geweint. Nicht vor Schmerz. Die Rüstung war einfach so gemütlich, dass er sich hinlegen wollte. Mitten in der Schmiede. Auf dem Amboss.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "forge_temp_flat",
+        "min": 2,
+        "max": 4,
+        "label": "Gemütsherd: +{value} Forge Temperature per Quest",
+        "value": 3
+      },
+      "source": "world_boss:komfortzone",
+      "isUnique": true
+    },
+    {
+      "id": "wb-komfort-amulett",
+      "name": "Amulett des \"Reicht doch\"",
+      "slot": "amulet",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 40,
+      "desc": "Die Komfortzone trug dieses Amulett als Beweis, dass Stillstand eine Kunstform ist. Es strahlt eine Aura der Zufriedenheit aus. Nicht der guten Art. Der Art, die sagt: \"Netflix und die dritte Tüte Chips sind auch ein Lebensentwurf.\"",
+      "flavorText": "Das Amulett hat eine Inschrift: \"Gut genug.\" Auf der Rückseite steht: \"Wirklich?\" Das wurde durchgestrichen. Darunter steht wieder: \"Ja. Gut genug.\"",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "salvage_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Recycling-Gemüt: +{value}% Salvage Materials",
+        "value": 4
+      },
+      "source": "world_boss:komfortzone",
+      "isUnique": true
+    },
+    {
+      "id": "wb-komfort-stiefel",
+      "name": "Pantoffeln der Bequemlichkeit",
+      "slot": "boots",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 38,
+      "desc": "Die Komfortzone hatte keine Füße. Sie hatte Pantoffeln. Das ist ein wichtiger Unterschied, den die Forscher der Quest Hall bis heute nicht erklären können. Die Pantoffeln bewegen sich von selbst. Langsam. Sehr, sehr langsam. In Richtung Sofa.",
+      "flavorText": "Bruna hat sie anprobiert und wurde sofort müde. Sie hat 14 Stunden geschlafen. Ihr bestes Kräuter-Soufflé hat sie danach gemacht. Korrelation ist keine Kausalität. Aber trotzdem.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Gemütlichkeit zahlt sich aus: +{value}% Gold",
+        "value": 4
+      },
+      "source": "world_boss:komfortzone",
+      "isUnique": true
+    },
+    {
+      "id": "wb-drache-klinge",
+      "name": "Klinge der letzten Minute",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 45,
+      "desc": "Geschmiedet in den letzten 30 Sekunden bevor der Deadline-Drache den Turm niederbrannte. Grimvar sagt, Druck erzeugt Diamanten. In diesem Fall erzeugte er eine Klinge, die permanent brennt. Und einen Grimvar mit deutlich weniger Augenbrauen.",
+      "flavorText": "Die Klinge wird heißer, je näher eine Deadline rückt. Bei verpassten Deadlines schmilzt sie ein wenig. Sie ist schon deutlich kürzer als bei der Herstellung.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 6,
+        "label": "Deadline-Fieber: +{value}% Double Rewards",
+        "value": 4
+      },
+      "source": "world_boss:deadline-drache",
+      "isUnique": true
+    },
+    {
+      "id": "wb-drache-helm",
+      "name": "Drachenschädel-Krone",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 43,
+      "desc": "Aus einem Zahn des Deadline-Drachen geschnitzt. Der Drache hatte 200 Zähne und benutzte jeden einzelnen, um Ausreden zu zerkauen. Dieser Zahn war für \"Ich fang morgen an\" zuständig. Er ist entsprechend abgenutzt.",
+      "flavorText": "Die Krone brennt nicht. Sie tut nur so. Wie der Drache selbst, der hauptsächlich deshalb furchterregend war, weil alle zu beschäftigt mit Panik waren, um seine tatsächliche Größe zu bemerken. Er war mittelgroß.",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "dungeon_loot_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Feueratem: +{value}% Dungeon Rewards",
+        "value": 4
+      },
+      "source": "world_boss:deadline-drache",
+      "isUnique": true
+    },
+    {
+      "id": "wb-drache-flammenring",
+      "name": "Flammenring der Dringlichkeit",
+      "slot": "ring",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 41,
+      "desc": "Der Ring glüht rot, wenn eine Aufgabe überfällig ist. Er glüht orange bei nahender Deadline. Er glüht grün bei Freizeit. Letzteres ist in der Quest Hall noch nie beobachtet worden.",
+      "flavorText": "Eldric hat den Ring verzaubert und ihm drei Farben gegeben. Dann hat er eine vierte hinzugefügt: ein pulsierendes Violett für \"Es ist zu spät, aber tu wenigstens so, als würdest du es versuchen.\"",
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "material_double",
+        "min": 3,
+        "max": 5,
+        "label": "Drachen-Eifer: +{value}% Double Materials",
+        "value": 4
+      },
+      "source": "world_boss:deadline-drache",
+      "isUnique": true
     }
   ]
 }

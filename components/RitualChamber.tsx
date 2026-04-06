@@ -21,10 +21,10 @@ const COMMITMENT_TIERS = [
 ];
 
 const DIFFICULTY_TIERS = [
-  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
-  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
-  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
-  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
+  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "Manageable. Probably.",   bondScale: 0.5 },
+  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Uncomfortable but fair",  bondScale: 1.0 },
+  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "The kind you regret",     bondScale: 1.5 },
+  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Nobody asked for this",   bondScale: 2.0 },
 ];
 
 const BLOOD_PACT_MULTIPLIER: Record<string, number> = {
@@ -120,9 +120,15 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const deleteHabit = async (habitId: string) => {
     if (!reviewApiKey) return;
     try {
-      await fetch(`/api/habits/${habitId}`, { method: "DELETE", headers: getAuthHeaders(reviewApiKey) });
-      fetchHabits();
-    } catch { /* ignore */ }
+      const r = await fetch(`/api/habits/${habitId}`, { method: "DELETE", headers: getAuthHeaders(reviewApiKey) });
+      if (r.ok) {
+        fetchHabits();
+      } else {
+        if (addToast) addToast({ type: "error", message: "Failed to delete habit" });
+      }
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Network error" });
+    }
   };
 
   const HABIT_COLORS: Record<string, string> = { red: "#ef4444", orange: "#f97316", gray: "#6b7280", yellow: "#eab308", green: "#22c55e", blue: "#3b82f6" };
@@ -463,9 +469,14 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             if (!reviewApiKey || !playerName) return;
             const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
             const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];
-            await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
-            closeRitualModal();
-            fetchRituals(playerName).then(setRituals);
+            const ritualRes = await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
+            if (ritualRes.ok) {
+              closeRitualModal();
+              fetchRituals(playerName).then(setRituals);
+            } else {
+              const d = await ritualRes.json().catch(() => ({}));
+              if (addToast) addToast({ type: "error", message: d.error || "Failed to create ritual" });
+            }
           };
           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
           const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty) ?? DIFFICULTY_TIERS[1];

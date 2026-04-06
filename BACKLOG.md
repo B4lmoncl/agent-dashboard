@@ -3,15 +3,18 @@
 
 ## Open Bugs
 
-1. Character Screen: Background image clipped at top
+*(none currently known — last audit: 2026-04-05)*
 
 ## Open Features
 
 ### Near-Term
-- CharacterView: Ring slot in equipment UI (from WOW-PROFESSION-REFACTOR Session 9)
 - ForgeView: BoE badge, gem-cut/gem-merge recipe display
-- Profession synergy hints for 8 professions (FI-045)
 - Mail system: decide keep or remove (overlaps messaging + trading, but enables NPC/system mail)
+
+### Resolved (from previous backlog)
+- ~~Character Screen: Background image clipped at top~~ → Fixed (backgroundSize: cover)
+- ~~CharacterView: Ring slot~~ → Already exists in EQUIP_SLOT_LABELS
+- ~~Profession synergy hints~~ → professions.json has synergies field, ForgeView shows them
 
 ### Medium-Term (Phase 2)
 - Season System v2 — Battle Pass expanded rewards

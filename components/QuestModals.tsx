@@ -358,6 +358,8 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
         setSuccess(template.id);
         setTimeout(() => setSuccess(null), 3000);
         onRefresh();
+      } else {
+        console.error("[coop] create failed:", await res.json().catch(() => ({})));
       }
     } catch { /* ignore */ } finally { setCreating(null); }
   };

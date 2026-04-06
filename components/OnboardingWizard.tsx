@@ -350,6 +350,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 onClick={() => { setError(""); setStep(1); }}
                 disabled={!canProceedStep0}
                 style={canProceedStep0 ? btnPrimary : btnDisabled}
+                title={!canProceedStep0 ? (name.trim().length < 2 ? "Name must be at least 2 characters" : !emailValid ? "Please enter a valid email" : !pwValid ? "Password needs 8+ characters, 1 uppercase letter, 1 number" : password !== passwordConfirm ? "Passwords don't match" : "") : ""}
               >
                 Next →
               </button>
@@ -556,6 +557,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 onClick={() => setStep(3)}
                 disabled={!canProceedStep2}
                 style={canProceedStep2 ? btnPrimary : btnDisabled}
+                title={!canProceedStep2 ? "Select a class or submit a custom one" : ""}
               >
                 Next →
               </button>
@@ -750,8 +752,9 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 onClick={handleFinalSubmit}
                 disabled={!canProceedStep3 || loading}
                 style={canProceedStep3 && !loading ? btnPrimary : btnDisabled}
+                title={!canProceedStep3 ? (hasRealPet === null ? "Choose real pet or virtual companion" : hasRealPet ? "Enter your pet's name" : "Select a virtual companion") : ""}
               >
-                {loading ? "Forging..." : "Next →"}
+                {loading ? "Creating Hero..." : "Create Hero"}
               </button>
             </div>
           </div>
@@ -760,10 +763,12 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {/* ── Step 5: Summary + API key ── */}
         {step === 5 && (
           <div className="p-6 space-y-5">
-            <div className="text-center space-y-1">
-              <div className="text-4xl">★</div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Your adventure begins!</h2>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Your hero has been inscribed in the Quest Hall records.</p>
+            <div className="text-center space-y-2">
+              <div className="text-4xl" style={{ animation: "star-earn 0.6s ease-out" }}>★</div>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>The Hall awaits, {name}.</h2>
+              <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.35)", lineHeight: 1.6 }}>
+                The door opened easier than expected. It always does, for the ones who actually show up.
+              </p>
             </div>
 
             {/* Summary card */}
@@ -808,28 +813,28 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             </div>
 
             <div className="rounded-xl p-3 text-center" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
-              <p className="text-xs" style={{ color: "#22c55e" }}>You are now logged in. Your password has been securely saved.</p>
+              <p className="text-xs" style={{ color: "#22c55e" }}>Logged in. The tower remembers your name now.</p>
             </div>
 
             {/* Quick Guide — Core Systems Overview */}
             <div className="rounded-xl p-4 space-y-2.5" style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.12)" }}>
-              <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(251,191,36,0.6)" }}>How Quest Hall Works</p>
+              <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(251,191,36,0.6)" }}>The Basics</p>
               <div className="grid grid-cols-2 gap-2">
                 <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
                   <p className="text-xs font-bold" style={{ color: "#a78bfa" }}>Quests</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Real tasks become quests. Complete them for XP + Gold.</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Your real tasks, gamified. Claim, do, complete. XP and Gold follow.</p>
                 </div>
                 <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
-                  <p className="text-xs font-bold" style={{ color: "#f97316" }}>Forge Temp</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Stay active to keep the forge hot. Higher temp = more XP.</p>
+                  <p className="text-xs font-bold" style={{ color: "#f97316" }}>The Forge</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Complete quests to heat the forge. Hotter forge = better rewards. Cold forge judges you.</p>
                 </div>
                 <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
                   <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Streaks</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Complete 1 quest daily. Longer streak = better Gold bonus.</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>One quest a day keeps the streak alive. Miss a day and the flame remembers.</p>
                 </div>
                 <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
                   <p className="text-xs font-bold" style={{ color: "#3b82f6" }}>The Tower</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>5 floors with rooms. New features unlock as you level up.</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Five floors, each with its own rooms. The higher you climb, the more opens up.</p>
                 </div>
               </div>
             </div>
@@ -837,9 +842,11 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             <button
               onClick={handleDone}
               className="w-full py-3 rounded-xl font-bold text-sm"
-              style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", boxShadow: "0 4px 20px rgba(139,92,246,0.3)" }}
+              style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", boxShadow: "0 4px 20px rgba(139,92,246,0.3)", transition: "transform 0.15s, box-shadow 0.15s" }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(139,92,246,0.4)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 20px rgba(139,92,246,0.3)"; }}
             >
-              Begin Your Journey!
+              Enter the Hall
             </button>
           </div>
         )}

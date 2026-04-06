@@ -1214,7 +1214,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         className="absolute inset-0"
         style={{
           backgroundImage: "url('/images/bg-character-spring.png')",
-          backgroundSize: "100% auto",
+          backgroundSize: "cover",
           backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
           imageRendering: "auto",

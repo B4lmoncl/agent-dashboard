@@ -40,9 +40,13 @@ interface ProfileData {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const SLOT_LABELS: Record<string, string> = { weapon: "Weapon", shield: "Shield", helm: "Helm", armor: "Armor", amulet: "Amulet", boots: "Boots" };
+const SLOT_LABELS: Record<string, string> = { weapon: "Weapon", shield: "Shield", helm: "Helm", armor: "Armor", amulet: "Amulet", ring: "Ring", boots: "Boots" };
 const PROF_META: Record<string, { name: string; color: string; icon: string }> = {
   schmied: { name: "Blacksmith", color: "#f59e0b", icon: "/images/icons/prof-schmied.png" },
+  schneider: { name: "Tailor", color: "#c084fc", icon: "/images/icons/prof-schneider.png" },
+  lederverarbeiter: { name: "Leatherworker", color: "#b45309", icon: "/images/icons/prof-lederverarbeiter.png" },
+  waffenschmied: { name: "Weaponsmith", color: "#dc2626", icon: "/images/icons/prof-waffenschmied.png" },
+  juwelier: { name: "Jeweler", color: "#ec4899", icon: "/images/icons/prof-juwelier.png" },
   alchemist: { name: "Alchemist", color: "#22c55e", icon: "/images/icons/prof-alchemist.png" },
   verzauberer: { name: "Enchanter", color: "#a78bfa", icon: "/images/icons/prof-verzauberer.png" },
   koch: { name: "Cook", color: "#e87b35", icon: "/images/icons/prof-koch.png" },

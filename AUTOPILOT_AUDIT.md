@@ -18,10 +18,11 @@ Du bist befugt, Bugs zu fixen, fehlende Features nach Referenzspielen (WoW Class
 Lies diese Dateien **komplett und gruendlich** bevor du irgendetwas tust:
 
 1. **`CLAUDE.md`** — Gesamtes Projekt, Tech Stack, Code-Konventionen, UI Design Guidelines, Item Balancing Rules, alle Game Systems. Das ist deine Bibel.
-2. **`AUDIT_PROMPT.md`** — Audit-Protokoll, Checklisten, Severity-Klassifizierung, Fix-Reihenfolge.
-3. **`LYRA-PLAYBOOK.md`** — Content-Schemas, Lore Bible (READ-ONLY Lore-Sektion nicht aendern!), Ton & Stimme.
-4. **`REJECTED.md`** — Blockliste. Alles was hier steht, darfst du NICHT vorschlagen oder implementieren.
-5. **`ARCHITECTURE.md`** — Technische Architektur, Datenfluesse, Component Tree.
+2. **`.audit-markers.json`** — **Audit Tracker.** Zeigt welche Dateien wie oft auditiert wurden. Unauditierte Dateien (`status: "unaudited"`) ZUERST pruefen. Nach jedem Audit: `auditCount` erhoehen, `lastAuditDate` aktualisieren, `findings` dokumentieren.
+3. **`AUDIT_PROMPT.md`** — Audit-Protokoll, Checklisten, Severity-Klassifizierung, Fix-Reihenfolge.
+4. **`LYRA-PLAYBOOK.md`** — Content-Schemas, Lore Bible (READ-ONLY Lore-Sektion nicht aendern!), Ton & Stimme.
+5. **`REJECTED.md`** — Blockliste. Alles was hier steht, darfst du NICHT vorschlagen oder implementieren.
+6. **`ARCHITECTURE.md`** — Technische Architektur, Datenfluesse, Component Tree.
 6. **`AUDIT_REPORT.md`** — Bestehende Audit-Ergebnisse. Appendix A lesen (verified non-issues).
 
 > **Wenn du nicht alle 6 Dateien gelesen hast, darfst du nicht anfangen. Punkt.**
@@ -35,13 +36,15 @@ Du arbeitest in Zyklen. Jeder Zyklus hat einen eigenen **Scope** und **Fokus**. 
 ### Zyklus-Ablauf
 
 ```
-1. SCOPE waehlen (z.B. "routes/gems.js + components/CharacterView.tsx")
-2. FOKUS waehlen (z.B. "Race Conditions & Player Locks")
-3. Code TIEF LESEN (nicht greppen — Zeile fuer Zeile lesen und verstehen)
-4. Probleme identifizieren und klassifizieren (CRIT/HIGH/MED/LOW)
-5. Fixes implementieren (Code schreiben, nicht nur beschreiben)
-6. Kurze Zusammenfassung an den User (was gefunden, was gefixt)
-7. Naechsten Zyklus starten → zurueck zu 1
+1. `.audit-markers.json` LESEN → Dateien mit niedrigstem auditCount / status "unaudited" priorisieren
+2. SCOPE waehlen (z.B. "routes/gems.js + components/CharacterView.tsx")
+3. FOKUS waehlen (z.B. "Race Conditions & Player Locks")
+4. Code TIEF LESEN (nicht greppen — Zeile fuer Zeile lesen und verstehen)
+5. Probleme identifizieren und klassifizieren (CRIT/HIGH/MED/LOW)
+6. Fixes implementieren (Code schreiben, nicht nur beschreiben)
+7. `.audit-markers.json` AKTUALISIEREN → auditCount++, lastAuditDate, findings, status
+8. Kurze Zusammenfassung an den User (was gefunden, was gefixt)
+9. Naechsten Zyklus starten → zurueck zu 1
 ```
 
 ### Scope-Rotation

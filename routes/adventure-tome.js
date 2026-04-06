@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { state, saveUsers, ensureUserCurrencies } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
-const { getLevelInfo } = require("../lib/helpers");
+const { getLevelInfo, createPlayerLock } = require("../lib/helpers");
+const tomeClaimLock = createPlayerLock('tome-claim');
 
 // ─── Adventure Tome: Per-floor completionist tracker ───────────────────────
 // Inspired by Lost Ark's Adventure Tome. Tracks completion % per tower floor
@@ -352,6 +353,8 @@ router.get('/api/adventure-tome', requireAuth, (req, res) => {
 // ─── POST /api/adventure-tome/claim — claim a milestone reward ─────────────
 router.post('/api/adventure-tome/claim', requireAuth, (req, res) => {
   const uid = req.auth.userId;
+  if (!tomeClaimLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = state.users[uid];
   if (!user) return res.status(404).json({ error: 'User not found' });
 
@@ -379,7 +382,7 @@ router.post('/api/adventure-tome/claim', requireAuth, (req, res) => {
   // Grant rewards
   const reward = milestone.reward;
   const granted = [];
-  if (reward.gold) { user.gold = (user.gold || 0) + reward.gold; granted.push(`${reward.gold} Gold`); }
+  if (reward.gold) { ensureUserCurrencies(user); user.currencies.gold = (user.currencies.gold || 0) + reward.gold; user.gold = user.currencies.gold; granted.push(`${reward.gold} Gold`); }
   if (reward.essenz) {
     ensureUserCurrencies(user);
     user.currencies.essenz = (user.currencies.essenz || 0) + reward.essenz;
@@ -424,6 +427,7 @@ router.post('/api/adventure-tome/claim', requireAuth, (req, res) => {
     milestone: pct,
     granted,
   });
+  } finally { tomeClaimLock.release(uid); }
 });
 
 module.exports = router;

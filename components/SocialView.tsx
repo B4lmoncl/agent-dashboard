@@ -783,13 +783,20 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
 
   // Get unequipped inventory items for trade
   const tradeableItems = (loggedInUser?.inventory || []).filter(item => {
-    if (!loggedInUser?.equipment) return true;
-    const eq = loggedInUser.equipment;
-    for (const slot of Object.keys(eq)) {
-      const eqItem = eq[slot as keyof typeof eq];
-      if (typeof eqItem === "object" && eqItem && ("instanceId" in eqItem ? eqItem.instanceId === item.id : (eqItem as { id?: string }).id === item.id)) return false;
-      if (typeof eqItem === "string" && eqItem === item.id) return false;
+    // Exclude equipped items
+    if (loggedInUser?.equipment) {
+      const eq = loggedInUser.equipment;
+      for (const slot of Object.keys(eq)) {
+        const eqItem = eq[slot as keyof typeof eq];
+        if (typeof eqItem === "object" && eqItem && ("instanceId" in eqItem ? eqItem.instanceId === item.id : (eqItem as { id?: string }).id === item.id)) return false;
+        if (typeof eqItem === "string" && eqItem === item.id) return false;
+      }
     }
+    // Exclude soulbound items (BoP or bound BoE)
+    const ext = item as unknown as Record<string, unknown>;
+    if (ext.bound || ext.binding === "bop") return false;
+    // Exclude locked items
+    if (ext.locked) return false;
     return true;
   });
 
@@ -1446,7 +1453,7 @@ interface MailItem {
   collected: boolean;
 }
 
-function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; playerName: string; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { users } = useDashboard();
   const [inbox, setInbox] = useState<MailItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -1480,6 +1487,18 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
         headers: getAuthHeaders(apiKey),
       });
       const data = await r.json();
+      if (r.ok && onRewardCelebration && (data.goldCollected > 0 || data.itemsCollected?.length > 0)) {
+        const currencies: { name: string; amount: number; color: string }[] = [];
+        if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
+        onRewardCelebration({
+          type: "daily-bonus",
+          title: "Mail Collected!",
+          xpEarned: 0,
+          goldEarned: data.goldCollected || 0,
+          loot: data.itemsCollected?.length ? { name: `${data.itemsCollected.length} item${data.itemsCollected.length > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
+          currencies: currencies.length > 0 ? currencies : undefined,
+        });
+      }
       setActionMsg(data.message || data.error || "Done");
       setTimeout(() => setActionMsg(null), 4000);
       fetchMail();
@@ -1539,6 +1558,18 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
                 try {
                   const r = await fetch("/api/mail/collect-all", { method: "POST", headers: getAuthHeaders(apiKey) });
                   const data = await r.json();
+                  if (r.ok && onRewardCelebration && (data.goldCollected > 0 || data.itemsCollected > 0)) {
+                    const currencies: { name: string; amount: number; color: string }[] = [];
+                    if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
+                    onRewardCelebration({
+                      type: "daily-bonus",
+                      title: `${data.mailsCollected} Mail${data.mailsCollected > 1 ? "s" : ""} Collected!`,
+                      xpEarned: 0,
+                      goldEarned: data.goldCollected || 0,
+                      loot: data.itemsCollected > 0 ? { name: `${data.itemsCollected} item${data.itemsCollected > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
+                      currencies: currencies.length > 0 ? currencies : undefined,
+                    });
+                  }
                   setActionMsg(data.message || data.error || "Done");
                   setTimeout(() => setActionMsg(null), 4000);
                   fetchMail();
@@ -1956,7 +1987,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
-        {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "challenges" && <ChallengesTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
 

@@ -27,6 +27,7 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
+import { DailyHub } from "@/components/DailyHub";
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -797,6 +798,36 @@ export default function Dashboard() {
   const currentFloorColor = useMemo(() => (FLOORS.find(f => f.id === activeFloor) || FLOORS[1]).color, [activeFloor]);
   useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
 
+  // ─── Welcome Back toast: show when returning after >6h absence ──────────
+  const welcomeBackShownRef = useRef(false);
+  useEffect(() => {
+    if (!playerName || !loggedInUser || welcomeBackShownRef.current) return;
+    welcomeBackShownRef.current = true;
+    try {
+      const lastVisit = localStorage.getItem("qh_last_visit");
+      const now = Date.now();
+      localStorage.setItem("qh_last_visit", String(now));
+      if (!lastVisit) return; // First visit ever
+      const hoursSince = (now - parseInt(lastVisit, 10)) / 3600000;
+      if (hoursSince < 6) return; // Only show after 6h+ absence
+
+      const parts: string[] = [];
+      const restedPool = loggedInUser._restedXpPool ?? 0;
+      if (restedPool > 50) parts.push(`${Math.round(restedPool)} Rested XP waiting`);
+      if (dailyBonusAvailable) parts.push("Daily Bonus ready");
+      const streak = loggedInUser.streakDays ?? 0;
+      if (streak > 0) parts.push(`${streak}-day streak`);
+
+      const greeting = hoursSince >= 48 ? "Long time no see!" : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
+      const sub = parts.length > 0 ? parts.join(" · ") : undefined;
+
+      setTimeout(() => {
+        addToast({ type: "flavor", message: greeting, sub, icon: "/images/icons/nav-great-hall.png" });
+      }, 1500);
+    } catch { /* private browsing */ }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playerName, loggedInUser]);
+
   // Validate current view is accessible at player's level — fallback to questBoard if locked
   useEffect(() => {
     if (currentPlayerLevel === undefined) return;
@@ -858,6 +889,11 @@ export default function Dashboard() {
 
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedTotal;
+  const questsCompletedToday = useMemo(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    const dc = loggedInUser?._dailyCompletions;
+    return dc && dc.date === today ? dc.count : 0;
+  }, [loggedInUser]);
 
   const openQuestsCount = useMemo(() => quests.open.filter(q => playerTypes.includes(q.type ?? "")).length, [quests.open, playerTypes]);
 
@@ -951,6 +987,19 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
+        {/* Daily Hub — prominent daily engagement banner */}
+        {loggedInUser && dashView === "questBoard" && (
+          <DailyHub
+            user={loggedInUser}
+            dailyBonusAvailable={dailyBonusAvailable}
+            onClaimDailyBonus={handleClaimDailyBonus}
+            claimingDailyBonus={claimingDailyBonus}
+            dailyMissions={dailyMissions}
+            questsCompletedToday={questsCompletedToday}
+            onNavigate={(v) => setDashView(v as typeof dashView)}
+            onTodayOpen={() => setTodayOpen(true)}
+          />
+        )}
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -1493,14 +1542,16 @@ export default function Dashboard() {
             <div data-tutorial="nav-bar" className="space-y-0">
               {/* Floor tabs */}
               <div className="flex gap-1" style={{ background: "#0d0d0d", borderRadius: "10px 10px 0 0", padding: "4px 4px 0 4px" }}>
-                {/* Tower Map button */}
+                {/* Tower Map button — made more visible */}
                 <button
                   onClick={() => setTowerMapOpen(true)}
-                  className="px-2 py-1.5 rounded-t-lg text-xs flex-shrink-0"
-                  style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.05)", borderBottom: "none" }}
+                  className="px-2.5 py-1.5 rounded-t-lg text-xs flex-shrink-0 inline-flex items-center gap-1"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", transition: "background 0.15s, color 0.15s" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
                   title="Tower Map — Navigate all floors and rooms"
                 >
-                  ◈
+                  ◈ <span className="hidden sm:inline">Map</span>
                 </button>
                 {FLOORS.filter(f => !f.minLevel || (currentPlayerLevel ?? 1) >= f.minLevel).map(floor => {
                   const isActive = floor.id === activeFloor;
@@ -1913,7 +1964,8 @@ export default function Dashboard() {
                             onClick={handlePoolRefresh}
                             disabled={poolRefreshing}
                             className={`btn-interactive px-2 py-1 rounded${(() => { const ready = !poolRefreshing && (!lastPoolRefresh || Date.now() - lastPoolRefresh.getTime() >= 6 * 3600 * 1000); return poolRefreshing ? "" : ready ? " quest-refresh-ready" : " quest-refresh-cooldown"; })()}`}
-                            style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1 }}
+                            style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1, cursor: poolRefreshing ? "not-allowed" : "pointer" }}
+                            title={poolRefreshing ? "Refreshing quest pool..." : undefined}
                           >
                             <TipCustom title="Refresh Quest Pool" icon="🔄" accent="#22c55e" body={<p>Refreshes the available quest pool. Limited to once every 6 hours.</p>}>
                               {poolRefreshing ? (
@@ -2096,14 +2148,31 @@ export default function Dashboard() {
                       const today = new Date().toISOString().slice(0, 10);
                       const dc = loggedInUser?._dailyCompletions;
                       const dailyCount = dc && dc.date === today ? dc.count : 0;
-                      if (dailyCount < 5) return null;
+                      if (dailyCount < 4) return null;
+                      // Proactive warning at quest 4-5 (before DR kicks in)
+                      if (dailyCount === 4) return (
+                        <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.12)" }}>
+                          <span style={{ color: "#60a5fa", fontSize: 12, flexShrink: 0 }}>◆</span>
+                          <p className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>
+                            <span className="font-semibold" style={{ color: "#60a5fa" }}>1 quest left</span> at full rewards today. After 5, rewards scale down.
+                          </p>
+                        </div>
+                      );
+                      if (dailyCount === 5) return (
+                        <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.12)" }}>
+                          <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
+                          <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>
+                            Full rewards reached for today. Next quests earn <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>75%</span> rewards.
+                          </p>
+                        </div>
+                      );
                       const rate = dailyCount >= 21 ? 25 : dailyCount >= 11 ? 50 : 75;
                       const label = dailyCount >= 21 ? "25%" : dailyCount >= 11 ? "50%" : "75%";
                       return (
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)" }}>
                           <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
                           <p className="text-xs" style={{ color: "rgba(245,158,11,0.7)" }}>
-                            Rewards reduced to <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>{label}</span> — {dailyCount} quests completed today. First 5 give full rewards.
+                            Rewards at <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>{label}</span> — {dailyCount} quests completed today. First 5 give full rewards.
                           </p>
                           <span className="ml-auto font-mono text-xs" style={{ color: `rgba(${rate === 25 ? "239,68,68" : rate === 50 ? "245,158,11" : "163,163,163"},0.5)` }}>{rate}%</span>
                         </div>
@@ -2447,10 +2516,12 @@ export default function Dashboard() {
               onClick={() => handleBulkUpdate(s)}
               disabled={bulkLoading}
               className="text-xs px-2.5 py-1 rounded-lg font-medium"
+              title={bulkLoading ? "Updating..." : `Set selected quests to ${s}`}
               style={{
                 background: s === "completed" ? "rgba(34,197,94,0.15)" : s === "rejected" ? "rgba(239,68,68,0.12)" : "rgba(255,255,255,0.07)",
                 color: s === "completed" ? "#22c55e" : s === "rejected" ? "#ef4444" : "rgba(255,255,255,0.6)",
                 border: `1px solid ${s === "completed" ? "rgba(34,197,94,0.3)" : s === "rejected" ? "rgba(239,68,68,0.25)" : "rgba(255,255,255,0.12)"}`,
+                cursor: bulkLoading ? "not-allowed" : "pointer",
                 opacity: bulkLoading ? 0.5 : 1,
               }}
             >
@@ -2632,7 +2703,7 @@ export default function Dashboard() {
               const lvl = levelUpCelebration.level;
               const unlocks: string[] = [];
               if (lvl === 3) { unlocks.push("Challenges", "Bazaar"); }
-              if (lvl === 5) { unlocks.push("Artisan's Quarter", "Vault of Fate"); }
+              if (lvl === 5) { unlocks.push("Artisan's Quarter", "Vault of Fate", "Schicksalsbaum", "Abenteuerbuch"); }
               if (lvl === 8) { unlocks.push("The Pinnacle", "Rift", "Proving Grounds"); }
               if (lvl === 10) { unlocks.push("Four Circles", "Season Pass", "Arcanum"); }
               if (lvl === 12) { unlocks.push("The Undercroft (Dungeons)"); }
