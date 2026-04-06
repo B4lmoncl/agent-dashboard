@@ -219,7 +219,7 @@ const COMPANION_DAILY_QUOTES: Record<string, string[]> = {
 };
 
 // ─── Streak urgency (only shows when at-risk) ──────────────────────────────
-function getStreakUrgency(streak: number, streakLastDate?: string | null): {
+function getStreakUrgency(streak: number, streakLastDate?: string | null, user?: User | null): {
   show: boolean; label: string; color: string;
 } {
   if (streak < 3) return { show: false, label: "", color: "" };
@@ -227,6 +227,12 @@ function getStreakUrgency(streak: number, streakLastDate?: string | null): {
   const berlinNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
   const todayStr = `${berlinNow.getFullYear()}-${String(berlinNow.getMonth() + 1).padStart(2, "0")}-${String(berlinNow.getDate()).padStart(2, "0")}`;
   if (streakLastDate === todayStr) return { show: false, label: "", color: "" }; // Safe today
+  // Check if streak is protected (shield or charm)
+  const ext = (user ?? {}) as unknown as Record<string, unknown>;
+  const shields = (ext.streakShields as number) || 0;
+  if (shields > 0) {
+    return { show: true, label: `${streak}d streak — ${shields} shield${shields > 1 ? "s" : ""} armed`, color: "#3b82f6" };
+  }
   // At risk — show warning
   return { show: true, label: `${streak}d streak at risk!`, color: "#ef4444" };
 }
@@ -262,7 +268,7 @@ export const DailyHub = memo(function DailyHub({
   onTodayOpen,
 }: DailyHubProps) {
   const streak = user.streakDays ?? 0;
-  const streakUrgency = getStreakUrgency(streak, user.streakLastDate);
+  const streakUrgency = getStreakUrgency(streak, user.streakLastDate, user);
   const playerLevel = getUserLevel(user.xp ?? 0).level;
   const nextUnlock = playerLevel < 15 ? getNextUnlock(playerLevel) : null;
   const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
