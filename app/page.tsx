@@ -822,8 +822,9 @@ export default function Dashboard() {
       if (dailyBonusAvailable) parts.push("Daily Bonus ready");
       const streak = loggedInUser.streakDays ?? 0;
       if (streak > 0) parts.push(`${streak}-day streak`);
+      else if (hoursSince >= 48) parts.push("Fresh start — new streak begins today");
 
-      const greeting = hoursSince >= 48 ? "Long time no see!" : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
+      const greeting = hoursSince >= 48 ? "The Hall remembers you." : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
       const sub = parts.length > 0 ? parts.join(" · ") : undefined;
 
       setTimeout(() => {
