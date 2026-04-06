@@ -336,8 +336,9 @@ export const DailyHub = memo(function DailyHub({
 
         {/* Streak Warning — only when at risk */}
         {streakUrgency.show && (
-          <span className="text-xs font-semibold px-1.5 py-0.5 rounded streak-urgent-pulse flex-shrink-0" style={{ color: streakUrgency.color, background: `${streakUrgency.color}15`, border: `1px solid ${streakUrgency.color}30` }}>
-            🔥 {streakUrgency.label}
+          <span className="text-xs font-semibold px-1.5 py-0.5 rounded streak-urgent-pulse flex-shrink-0 inline-flex items-center gap-1" style={{ color: streakUrgency.color, background: `${streakUrgency.color}15`, border: `1px solid ${streakUrgency.color}30` }}>
+            <span className={`streak-mini-flame${streak >= 30 ? " epic" : ""}`} />
+            {streakUrgency.label}
           </span>
         )}
 

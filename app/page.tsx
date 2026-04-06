@@ -1015,7 +1015,7 @@ export default function Dashboard() {
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
             sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : "login to view"}
             subColor={playerName && playerStreak > 0 ? "#fbbf24" : undefined}
-            accent="#f97316"
+            accent={playerStreak >= 90 ? "#a78bfa" : playerStreak >= 30 ? "#818cf8" : "#f97316"}
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
           /></Tip>
           </div>
