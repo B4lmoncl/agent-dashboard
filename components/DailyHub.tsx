@@ -355,25 +355,37 @@ export const DailyHub = memo(function DailyHub({
           Today ↗
         </button>
 
-        {/* Daily Bonus Claim — the primary action */}
-        {dailyBonusAvailable && (
-          <button
-            onClick={onClaimDailyBonus}
-            disabled={claimingDailyBonus}
-            className="px-4 py-1.5 rounded-lg text-xs font-bold daily-bonus-glow flex-shrink-0"
-            style={{
-              background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.15))",
-              color: "#fbbf24",
-              border: "1px solid rgba(251,191,36,0.4)",
-              cursor: claimingDailyBonus ? "not-allowed" : "pointer",
-              opacity: claimingDailyBonus ? 0.6 : 1,
-              animation: !claimingDailyBonus ? "daily-bonus-pulse 2s ease-in-out infinite" : "none",
-            }}
-            title="Claim your daily login bonus"
-          >
-            {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
-          </button>
-        )}
+        {/* Daily Bonus Claim — the primary action with streak tier preview */}
+        {dailyBonusAvailable && (() => {
+          const streak = user.streakDays ?? 0;
+          const tier = streak >= 30 ? { label: "30d+", extra: "+3 Rune +5 Essenz", color: "#f97316" }
+            : streak >= 14 ? { label: "14d+", extra: "+2 Rune +2 Essenz", color: "#a855f7" }
+            : streak >= 7 ? { label: "7d+", extra: "+1 Rune +1 Essenz", color: "#3b82f6" }
+            : null;
+          return (
+            <button
+              onClick={onClaimDailyBonus}
+              disabled={claimingDailyBonus}
+              className="px-4 py-1.5 rounded-lg text-xs font-bold daily-bonus-glow flex-shrink-0 inline-flex items-center gap-2"
+              style={{
+                background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.15))",
+                color: "#fbbf24",
+                border: "1px solid rgba(251,191,36,0.4)",
+                cursor: claimingDailyBonus ? "not-allowed" : "pointer",
+                opacity: claimingDailyBonus ? 0.6 : 1,
+                animation: !claimingDailyBonus ? "daily-bonus-pulse 2s ease-in-out infinite" : "none",
+              }}
+              title={tier ? `Daily Bonus — streak tier ${tier.label}: base + ${tier.extra}` : "Claim your daily login bonus (2 Rune + 3 Essenz)"}
+            >
+              {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
+              {tier && !claimingDailyBonus && (
+                <span className="text-xs font-normal px-1 py-0.5 rounded" style={{ background: `${tier.color}20`, color: tier.color, fontSize: 10 }}>
+                  {tier.label}
+                </span>
+              )}
+            </button>
+          );
+        })()}
       </div>
       {/* Companion message — unique to DailyHub, not in TodayDrawer */}
       {companionQuote && (
