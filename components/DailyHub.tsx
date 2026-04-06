@@ -424,6 +424,8 @@ export const DailyHub = memo(function DailyHub({
   const playerLevel = getUserLevel(user.xp ?? 0).level;
   const nextUnlock = playerLevel < 15 ? getNextUnlock(playerLevel) : null;
   const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
+  const forgeTemp = Math.min(user.forgeTemp ?? 0, 100);
+  const forgeCold = forgeTemp < 40 && forgeTemp > 0; // Forge is cooling — loss prevention trigger
 
   // Companion daily quote (deterministic per day)
   const companionQuote = useMemo(() => {
@@ -453,7 +455,7 @@ export const DailyHub = memo(function DailyHub({
   }, []);
 
   // Only render if there's something actionable to show
-  const hasAction = dailyBonusAvailable || streakUrgency.show || nextMilestone || (user._restedXpPool ?? 0) > 50;
+  const hasAction = dailyBonusAvailable || streakUrgency.show || forgeCold || nextMilestone || (user._restedXpPool ?? 0) > 50;
   // Always show for new players (< Lv5) or when companion has a quote
   const showHub = hasAction || playerLevel < 5 || !!companionQuote;
   if (!showHub) return null;
@@ -491,6 +493,13 @@ export const DailyHub = memo(function DailyHub({
           <span className="text-xs font-semibold px-1.5 py-0.5 rounded streak-urgent-pulse flex-shrink-0 inline-flex items-center gap-1" style={{ color: streakUrgency.color, background: `${streakUrgency.color}15`, border: `1px solid ${streakUrgency.color}30` }}>
             <span className={`streak-mini-flame${streak >= 30 ? " epic" : ""}`} />
             {streakUrgency.label}
+          </span>
+        )}
+
+        {/* Forge Cold Warning — loss prevention */}
+        {forgeCold && !streakUrgency.show && (
+          <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={{ color: "#78716c", background: "rgba(120,113,108,0.1)", border: "1px solid rgba(120,113,108,0.2)" }}>
+            Forge cooling ({forgeTemp}%)
           </span>
         )}
 
