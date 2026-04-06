@@ -27,6 +27,11 @@ const COMPANION_QUOTES: Record<string, string[]> = {
     "{name} is asleep on your quest list. This is either a statement or a nap. Possibly both.",
     "{name} approves of your progress. {name} also approves of snacks. The priorities are unclear.",
     "{name} yawns. Not because you're boring — because judging you is exhausting work.",
+    "{name} pushed your water glass to the edge of the table. A reminder that everything is temporary.",
+    "{name} sat on your keyboard. The result was more productive than yesterday.",
+    "{name} brought you a dead mouse. As a metaphor.",
+    "{name} purrs when you're trying to focus. Coincidence is for amateurs.",
+    "{name} claims the sunny spot. Strategy, not laziness. There's a difference. Apparently.",
   ],
   dog: [
     "{name} brought you a quest. It's slightly chewed, but the intent is pure.",
@@ -34,6 +39,11 @@ const COMPANION_QUOTES: Record<string, string[]> = {
     "{name} has faith in you. Unconditional, unearned, and frankly a little suspicious.",
     "{name} sat down next to your quest board. Someone has to guard it from procrastination.",
     "{name} tilts head. The head-tilt is not confusion — it's polite disappointment.",
+    "{name} fetched your to-do list. It came back wetter. Some items are illegible. Probably the hard ones.",
+    "{name} barked at the screen. Not a bug report. More of a general protest.",
+    "{name} rolled over. Not for belly rubs — for dramatic emphasis.",
+    "{name} dug a hole in the garden. For your excuses. It's quite deep now.",
+    "{name} put a paw on your hand. Not affection. Intervention.",
   ],
   digital: [
     "{name} ran the numbers. The numbers suggest more quests.",
@@ -41,6 +51,11 @@ const COMPANION_QUOTES: Record<string, string[]> = {
     "{name} scanned the horizon. Found problems. Also solutions. Mostly problems.",
     "Systems nominal. Motivation levels... {name} declines to comment.",
     "{name} calculated the optimal path forward. It starts with standing up.",
+    "{name} compiled your excuses into a report. The report is 47 pages. Single-spaced.",
+    "{name} ran a diagnostic on your productivity. Results: inconclusive. Charitably.",
+    "{name} updated its firmware overnight. You updated nothing. Correlation is not causation, but still.",
+    "{name} has a 99.7% success rate. You are the 0.3%. Statistically speaking.",
+    "{name} generated a motivational message, analyzed it for accuracy, and deleted it.",
   ],
   default: [
     "{name} watches you with an expression that's somewhere between hope and concern.",
@@ -48,6 +63,11 @@ const COMPANION_QUOTES: Record<string, string[]> = {
     "{name} made a list of things you should do today. It's longer than yours.",
     "{name} is waiting. Patiently. The patience is aggressive.",
     "{name} looked at your streak counter and said nothing. The silence was deafening.",
+    "{name} is here. Your excuses are not. One of you showed up.",
+    "{name} tilted its head. Not curiosity. Slow, theatrical disbelief.",
+    "{name} glanced at the clock. Then at you. The math was unflattering.",
+    "{name} made a sound. Not words. Something between a sigh and a verdict.",
+    "{name} moved closer. Not for comfort. For accountability. Proximity is a tactic.",
   ],
 };
 
