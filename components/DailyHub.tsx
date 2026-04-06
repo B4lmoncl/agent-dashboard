@@ -286,10 +286,14 @@ export const DailyHub = memo(function DailyHub({
     return quotes[idx].replace(/\{name\}/g, name);
   }, [user.companion]);
 
-  // Greeting based on time of day (Berlin)
+  // Greeting based on time of day + streak status (Berlin)
   const [greeting, setGreeting] = useState("");
   useEffect(() => {
     const h = parseInt(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin", hour: "numeric", hour12: false }), 10);
+    const s = user.streakDays ?? 0;
+    // Streak-aware greetings (Skulduggery tone)
+    if (s >= 100) { setGreeting(h >= 22 || h < 6 ? "Still here?" : "The usual"); return; }
+    if (s >= 30) { setGreeting(h >= 22 || h < 6 ? "Night shift" : "Day " + s); return; }
     if (h >= 5 && h < 12) setGreeting("Good morning");
     else if (h >= 12 && h < 18) setGreeting("Good afternoon");
     else if (h >= 18 && h < 22) setGreeting("Good evening");
