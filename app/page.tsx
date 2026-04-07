@@ -612,10 +612,15 @@ export default function Dashboard() {
         if (data.rewards?.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
         if (data.rewards?.runensplitter) currencies.push({ name: "Runensplitter", amount: data.rewards.runensplitter, color: "#818cf8" });
         if (data.rewards?.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
+        if (data.rewards?.stardust) currencies.push({ name: "Stardust", amount: data.rewards.stardust, color: "#c084fc" });
+        if (data.rewards?.gold) currencies.push({ name: "Gold", amount: data.rewards.gold, color: "#fbbf24" });
+        const fortune = data.dailyFortune;
         setRewardCelebration({
           type: "daily-bonus",
-          title: "Daily Bonus Claimed!",
-          flavor: data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
+          title: fortune ? `Daily Bonus — ${fortune.label}` : "Daily Bonus Claimed!",
+          flavor: fortune
+            ? `Fortune smiled on you today. +${fortune.amount} bonus ${fortune.type}.`
+            : data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
           xpEarned: 0,
           goldEarned: 0,
           currencies,
@@ -817,8 +822,9 @@ export default function Dashboard() {
       if (dailyBonusAvailable) parts.push("Daily Bonus ready");
       const streak = loggedInUser.streakDays ?? 0;
       if (streak > 0) parts.push(`${streak}-day streak`);
+      else if (hoursSince >= 48) parts.push("Fresh start — new streak begins today");
 
-      const greeting = hoursSince >= 48 ? "Long time no see!" : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
+      const greeting = hoursSince >= 48 ? "The Hall remembers you." : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
       const sub = parts.length > 0 ? parts.join(" · ") : undefined;
 
       setTimeout(() => {
@@ -1015,7 +1021,7 @@ export default function Dashboard() {
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
             sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : "login to view"}
             subColor={playerName && playerStreak > 0 ? "#fbbf24" : undefined}
-            accent="#f97316"
+            accent={playerStreak >= 90 ? "#a78bfa" : playerStreak >= 30 ? "#818cf8" : "#f97316"}
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
           /></Tip>
           </div>
@@ -1232,10 +1238,10 @@ export default function Dashboard() {
                     </Tip>
                   </div>
                   {/* Forge bar */}
-                  <div className="mt-1 rounded-full overflow-hidden bg-w6" style={{ height: 3, width: 120 }}>
+                  <div className="mt-1 rounded-full overflow-hidden bg-w6" style={{ height: 4, width: 120 }}>
                     <div
-                      className="h-full rounded-full transition-all duration-700"
-                      style={{ width: `${forgeTemp}%`, background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`, boxShadow: forgeTemp > 60 ? `0 0 6px ${forgeTempColor}80` : "none" }}
+                      className={`h-full rounded-full transition-all duration-700${forgeTemp >= 80 ? " forge-bar-blazing" : ""}`}
+                      style={{ width: `${forgeTemp}%`, background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`, boxShadow: forgeTemp > 60 ? `0 0 8px ${forgeTempColor}80` : "none" }}
                     />
                   </div>
                 </div>

@@ -843,7 +843,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
-        className={`cv-auto${(item as Record<string, unknown>).isUnique ? " legendary-shimmer" : item.rarity === "legendary" ? " legendary-shimmer" : item.rarity === "epic" ? " epic-glow" : ""}`}
+        className={`cv-auto${(item as Record<string, unknown>).isUnique ? " legendary-shimmer unique-item-glow" : item.rarity === "legendary" ? " legendary-shimmer legendary-item-glow" : item.rarity === "epic" ? " epic-glow" : ""}`}
         style={{
           width: 56,
           height: 56,

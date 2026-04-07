@@ -277,7 +277,14 @@ export function useQuestActions({
           loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6", icon: data.npcFinalReward.icon } : data.lootDrop || null,
           achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
           ...(currencies.length > 0 ? { currencies } : {}),
-          ...(data.npcFinalReward ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` } : data.dailyDiminishing != null && data.dailyDiminishing < 1 ? { flavor: `Daily quest ${data.dailyQuestCount || "?"} — Rewards at ${Math.round(data.dailyDiminishing * 100)}%` } : {}),
+          ...(data.npcFinalReward
+            ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` }
+            : data.dailyDiminishing != null && data.dailyDiminishing < 1
+              ? { flavor: `Quest ${data.dailyQuestCount || "?"} today — rewards at ${Math.round(data.dailyDiminishing * 100)}%` }
+              : data.dailyQuestCount != null && data.dailyQuestCount <= 5
+                ? { flavor: `Quest ${data.dailyQuestCount} of 5 at full rewards today` }
+                : {}
+          ),
           ...(data.companionReward ? {
             bondXp: data.companionReward.bondXpGained || 0,
             companionEmoji: data.companionReward.companionType === "ember_sprite" ? "🔥" : data.companionReward.companionType === "lore_owl" ? "🦉" : data.companionReward.companionType === "gear_golem" ? "⚙️" : "🐾",

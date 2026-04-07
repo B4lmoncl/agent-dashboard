@@ -305,18 +305,18 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Sparkle particles */}
-        {Array.from({ length: 10 }).map((_, i) => (
+        {/* Sparkle particles — more for higher-value rewards */}
+        {Array.from({ length: data.loot?.rarity === "legendary" || data.loot?.rarity === "unique" ? 18 : data.loot ? 14 : 10 }).map((_, i) => (
           <div key={i} className="absolute rounded-full pointer-events-none" style={{
-            width: 4 + (i % 3) * 2,
-            height: 4 + (i % 3) * 2,
-            background: i % 2 === 0 ? accent : lighten(accent, 0.3),
+            width: 3 + (i % 4) * 2,
+            height: 3 + (i % 4) * 2,
+            background: i % 3 === 0 ? accent : i % 3 === 1 ? lighten(accent, 0.3) : lighten(accent, 0.5),
             top: "50%",
             left: "50%",
-            animation: `reward-sparkle ${1.5 + (i % 4) * 0.3}s ease-out ${i * 0.08}s infinite`,
-            "--sx": `${Math.cos(i * Math.PI / 5) * (70 + i * 8)}px`,
-            "--sy": `${Math.sin(i * Math.PI / 5) * (70 + i * 8)}px`,
-            boxShadow: `0 0 6px rgba(${accentRgb},0.8)`,
+            animation: `reward-sparkle ${1.2 + (i % 5) * 0.3}s ease-out ${i * 0.06}s infinite`,
+            "--sx": `${Math.cos(i * Math.PI * 2 / (data.loot ? 14 : 10)) * (60 + i * 7)}px`,
+            "--sy": `${Math.sin(i * Math.PI * 2 / (data.loot ? 14 : 10)) * (60 + i * 7)}px`,
+            boxShadow: `0 0 ${4 + (i % 3) * 3}px rgba(${accentRgb},0.8)`,
           } as React.CSSProperties} />
         ))}
 

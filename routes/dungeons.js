@@ -814,3 +814,4 @@ module.exports = router;
 module.exports.loadDungeonTemplates = loadDungeonTemplates;
 module.exports.loadDungeonState = loadDungeonState;
 module.exports.isDungeonActiveForPlayer = isDungeonActiveForPlayer;
+module.exports.getActiveDungeons = () => dungeonState.activeRuns;
