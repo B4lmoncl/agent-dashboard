@@ -361,7 +361,7 @@ router.get('/api/professions', (req, res) => {
   }
   const favoriteRecipes = u?.favoriteRecipes || [];
   // Apply vendor reagent discount from talent tree
-  const talentReagentDiscount = uid ? (require('./talent-tree').getUserTalentEffects(uid)).vendor_reagent_discount || 0 : 0;
+  const talentReagentDiscount = u ? (require('./talent-tree').getUserTalentEffects(u.id)).vendor_reagent_discount || 0 : 0;
   const vendorReagents = (PROFESSIONS_DATA.vendorReagents || []).map(r => ({
     ...r,
     discountedPrice: talentReagentDiscount > 0 ? Math.max(1, Math.round(r.price * (1 - talentReagentDiscount))) : null,
