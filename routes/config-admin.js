@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const crypto = require('crypto');
 const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, XP_BY_RARITY, GOLD_BY_RARITY, RUNENSPLITTER_BY_RARITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, saveUsers, savePlayerProgress, saveManagedKeys, rebuildQuestsById, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency, sanitizeAgent, calcDynamicForgeTemp, getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency, sanitizeAgent, calcDynamicForgeTemp, calcRestedXpPool, getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers } = require('../lib/helpers');
 const { requireApiKey, requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');
@@ -120,6 +120,8 @@ router.get('/api/dashboard', (req, res) => {
     };
     // Only compute expensive modifiers for the requesting player (not all users)
     if (isRequestingPlayer) {
+      // Live rested XP pool (stale snapshot → live calculation, like calcDynamicForgeTemp)
+      result._restedXpPool = calcRestedXpPool(u.id);
       const forgeXpPure = getForgeXpBase(u.id);
       const kraftBonus = getKraftBonus(u.id);
       const forgeXp = getXpMultiplier(u.id);
