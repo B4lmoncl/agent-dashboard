@@ -1262,7 +1262,8 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
   }
 
   // Talent: companion_expedition_bond_xp — earn reduced bond XP while companion is on expedition
-  const talentExpBondXp = getUserTalentEffects(uid).companion_expedition_bond_xp;
+  const { getUserTalentEffects: getTalentFx } = require('./talent-tree');
+  const talentExpBondXp = getTalentFx(uid).companion_expedition_bond_xp;
   if (talentExpBondXp && u.companion) {
     const rate = talentExpBondXp.rate || 0.5;
     const hours = (Date.now() - new Date(expedition.startedAt).getTime()) / 3600000;
