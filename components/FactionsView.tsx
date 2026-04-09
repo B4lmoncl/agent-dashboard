@@ -348,7 +348,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 <div className="flex gap-1 mt-2">
                   {standings.filter(s => s.id !== "neutral").map(s => {
                     const isReached = f.playerRep >= s.minRep;
-                    const isClaimed = f.claimedRewards.includes(s.id);
+                    const isClaimed = (f.claimedRewards || []).includes(s.id);
                     const isCurrent = f.standing === s.id;
                     const sReward = f.rewards?.[s.id];
                     const rewardDesc = sReward ? (sReward.title || sReward.recipeDesc || sReward.frameDesc || sReward.effectDesc || "") : "";

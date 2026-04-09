@@ -151,8 +151,8 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
     </div>
   );
 
-  const daysLeft = Math.max(0, Math.ceil((new Date(player.seasonEnd).getTime() - Date.now()) / 86400000));
-  const unclaimedCount = rewards.filter(r => player.level >= r.level && !player.claimedLevels.includes(r.level)).length;
+  const daysLeft = player.seasonEnd ? Math.max(0, Math.ceil((new Date(player.seasonEnd).getTime() - Date.now()) / 86400000)) : 0;
+  const unclaimedCount = rewards.filter(r => player.level >= r.level && !(player.claimedLevels || []).includes(r.level)).length;
 
 
   return (
@@ -291,7 +291,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         {rewards.map(r => {
           const rc = REWARD_CONFIG[r.type] || { icon: "/images/icons/currency-gold.png", color: "#888", label: r.type };
           const isReached = player.level >= r.level;
-          const isClaimed = player.claimedLevels.includes(r.level);
+          const isClaimed = (player.claimedLevels || []).includes(r.level);
           const canClaim = isReached && !isClaimed;
           const isMilestone = r.milestone;
 
