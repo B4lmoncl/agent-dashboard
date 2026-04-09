@@ -1499,6 +1499,19 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   50% { opacity: 1; }
 }
 
+/* "Next Up" card breathing glow — subtle pulse that draws the eye */
+@keyframes today-next-breathe {
+  0%, 100% { box-shadow: 0 0 12px var(--glow, rgba(129,140,248,0.1)), 0 0 40px var(--glow, rgba(129,140,248,0.05)), inset 0 1px 0 rgba(255,255,255,0.05); }
+  50% { box-shadow: 0 0 18px var(--glow, rgba(129,140,248,0.18)), 0 0 50px var(--glow, rgba(129,140,248,0.08)), inset 0 1px 0 rgba(255,255,255,0.08); }
+}
+
+/* Ring pulse when all tasks complete */
+@keyframes today-ring-complete {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
 /* Star night particles for nighttime */
 @keyframes today-star-twinkle {
   0%, 100% { opacity: 0.2; transform: scale(0.8); }

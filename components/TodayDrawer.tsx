@@ -862,14 +862,20 @@ export default function TodayDrawer({
                 ))}
               </>}
             >
-              <svg width="160" height="80" viewBox="0 0 160 80" className="cursor-help">
+              <svg width="160" height="80" viewBox="0 0 160 80" className="cursor-help" style={{ animation: allDone ? "today-ring-complete 0.6s cubic-bezier(0.34,1.56,0.64,1)" : "none" }}>
+                <defs>
+                  <linearGradient id="today-arc-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor={allDone ? "#22c55e" : "#818cf8"} />
+                    <stop offset="100%" stopColor={allDone ? "#4ade80" : "#a78bfa"} />
+                  </linearGradient>
+                </defs>
                 <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="5" strokeLinecap="round" />
-                <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke={allDone ? "#4ade80" : "#818cf8"} strokeWidth="5" strokeLinecap="round"
+                <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke="url(#today-arc-grad)" strokeWidth="5" strokeLinecap="round"
                   strokeDasharray="201" strokeDashoffset={201 * (1 - (totalCount > 0 ? doneCount / totalCount : 0))}
-                  style={{ transition: "stroke-dashoffset 0.8s ease-out", filter: `drop-shadow(0 0 3px ${allDone ? "rgba(74,222,128,0.4)" : "rgba(129,140,248,0.3)"})` }}
+                  style={{ transition: "stroke-dashoffset 1.2s ease-out", filter: `drop-shadow(0 0 4px ${allDone ? "rgba(74,222,128,0.5)" : "rgba(129,140,248,0.35)"})` }}
                 />
-                <text x="80" y="55" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="14" fontWeight="bold" fontFamily="monospace">{doneCount}/{totalCount}</text>
-                <text x="80" y="68" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="9">{allDone ? "ALL COMPLETE" : "tasks today"}</text>
+                <text x="80" y="53" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace" style={{ fontVariantNumeric: "tabular-nums" }}>{doneCount}/{totalCount}</text>
+                <text x="80" y="68" textAnchor="middle" fill={allDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.25)"} fontSize="9" fontWeight={allDone ? "600" : "400"}>{allDone ? "ALL COMPLETE" : "tasks today"}</text>
                 {categories.map((cat, ci) => {
                   const catDone = cat.items.filter(i => i.done).length === cat.items.length;
                   const angle = -180 + ((ci + 0.5) / categories.length) * 180;
@@ -1038,11 +1044,11 @@ export default function TodayDrawer({
                     </div>
 
                     {/* Horizontal milestone bar with reward nodes */}
-                    <div className="relative" style={{ height: 28 }}>
+                    <div className="relative" style={{ height: 32 }}>
                       {/* Track background */}
-                      <div className="absolute" style={{ left: 0, right: 0, top: 12, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)" }} />
+                      <div className="absolute" style={{ left: 0, right: 0, top: 14, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)" }} />
                       {/* Fill bar */}
-                      <div className="absolute" style={{ left: 0, top: 12, height: 4, borderRadius: 2, width: `${pct}%`, background: allDone ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #fbbf24, #f59e0b)", transition: "width 0.5s ease-out", boxShadow: allDone ? "0 0 8px rgba(34,197,94,0.3)" : "0 0 6px rgba(251,191,36,0.2)" }} />
+                      <div className="absolute" style={{ left: 0, top: 14, height: 4, borderRadius: 2, width: `${pct}%`, background: allDone ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #fbbf24, #f59e0b)", transition: "width 0.5s ease-out", boxShadow: allDone ? "0 0 8px rgba(34,197,94,0.3)" : "0 0 6px rgba(251,191,36,0.2)" }} />
                       {/* Milestone nodes */}
                       {milestones.map((m, i) => {
                         const nodePos = maxPts > 0 ? (m.threshold / maxPts) * 100 : 0;
@@ -1055,17 +1061,18 @@ export default function TodayDrawer({
                               disabled={!canClaim}
                               className="relative flex items-center justify-center rounded-full"
                               style={{
-                                width: 20, height: 20,
-                                background: m.claimed ? "#22c55e" : reached ? "#fbbf24" : "rgba(255,255,255,0.08)",
-                                border: `2px solid ${m.claimed ? "#16a34a" : reached ? "#d97706" : "rgba(255,255,255,0.1)"}`,
-                                boxShadow: canClaim ? "0 0 10px rgba(251,191,36,0.5)" : m.claimed ? "0 0 6px rgba(34,197,94,0.3)" : "none",
+                                width: 26, height: 26,
+                                background: m.claimed ? "#22c55e" : reached ? "linear-gradient(135deg, #fbbf24, #f59e0b)" : "rgba(255,255,255,0.06)",
+                                border: `2px solid ${m.claimed ? "#16a34a" : reached ? "#d97706" : "rgba(255,255,255,0.08)"}`,
+                                boxShadow: canClaim ? "0 0 8px rgba(251,191,36,0.4), 0 0 24px rgba(251,191,36,0.15)" : m.claimed ? "0 0 6px rgba(34,197,94,0.3)" : "none",
                                 cursor: canClaim ? "pointer" : "default",
                                 animation: canClaim ? "daily-bonus-pulse 2s ease-in-out infinite" : "none",
                                 zIndex: 2,
+                                transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
                               }}
                               title={m.claimed ? `Claimed: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}` : reached ? `Claim: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}` : `${m.threshold} pts: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}`}
                             >
-                              {m.claimed ? <span style={{ fontSize: 10, color: "#fff" }}>✓</span> : <span style={{ fontSize: 10, color: reached ? "#000" : "rgba(255,255,255,0.3)" }}>★</span>}
+                              {m.claimed ? <span style={{ fontSize: 12, color: "#fff", fontWeight: 700 }}>✓</span> : <span style={{ fontSize: 12, color: reached ? "#000" : "rgba(255,255,255,0.25)", fontWeight: 700 }}>★</span>}
                             </button>
                           </div>
                         );
@@ -1102,39 +1109,41 @@ export default function TodayDrawer({
             const nextFallback = nextAction || allItems.find(i => !i.done && i.onClick);
             if (!nextFallback || allDone) return null;
             const item = nextFallback;
+            const accentColor = item.urgent ? "#fbbf24" : "#818cf8";
             return (
-              <div className="mb-3" style={{ animation: entered ? "today-card-enter 0.3s ease-out 50ms both" : "none" }}>
-                <span className="text-xs font-bold uppercase tracking-widest px-1 mb-1.5 block" style={{ color: "rgba(129,140,248,0.6)" }}>Next Up</span>
+              <div className="mb-3 pt-2" style={{ animation: entered ? "today-card-enter 0.3s cubic-bezier(0.34,1.56,0.64,1) 50ms both" : "none" }}>
+                <span className="text-xs font-bold uppercase tracking-widest px-1 mb-2 block" style={{ color: `${accentColor}99` }}>Next Up</span>
                 <button
                   onClick={() => item.onClick?.()}
-                  className="w-full rounded-xl p-4 text-left flex items-center gap-3"
+                  className="w-full rounded-xl p-4 text-left flex items-center gap-3.5 relative overflow-hidden"
                   style={{
-                    background: item.urgent
-                      ? "linear-gradient(135deg, rgba(251,191,36,0.08) 0%, rgba(251,191,36,0.03) 100%)"
-                      : "linear-gradient(135deg, rgba(129,140,248,0.08) 0%, rgba(129,140,248,0.03) 100%)",
-                    border: `1px solid ${item.urgent ? "rgba(251,191,36,0.25)" : "rgba(129,140,248,0.2)"}`,
+                    background: `linear-gradient(135deg, ${accentColor}0D 0%, ${accentColor}05 100%)`,
+                    border: `1px solid ${accentColor}35`,
+                    borderLeft: `3px solid ${accentColor}80`,
                     cursor: "pointer",
-                    boxShadow: item.urgent ? "0 0 12px rgba(251,191,36,0.08)" : "0 0 12px rgba(129,140,248,0.06)",
+                    boxShadow: `0 0 12px ${accentColor}15, 0 0 40px ${accentColor}08, inset 0 1px 0 ${accentColor}10`,
+                    animation: `today-next-breathe 3s ease-in-out infinite`,
                   }}
                 >
                   {item.icon.startsWith("/") ? (
-                    <img src={item.icon} alt="" width={28} height={28} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                    <img src={item.icon} alt="" width={32} height={32} className="img-render-auto flex-shrink-0" style={{ filter: `drop-shadow(0 0 6px ${accentColor}40)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
                   ) : (
-                    <span style={{ fontSize: 22, lineHeight: 1 }}>{item.icon}</span>
+                    <span style={{ fontSize: 24, lineHeight: 1, filter: `drop-shadow(0 0 6px ${accentColor}40)` }}>{item.icon}</span>
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold" style={{ color: item.urgent ? "#fbbf24" : "#e8e8e8" }}>{item.label}</p>
-                    {item.sub && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{item.sub}</p>}
+                    <p className="text-sm font-bold" style={{ color: accentColor }}>{item.label}</p>
+                    {item.sub && <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{item.sub}</p>}
                   </div>
-                  {item.reward && (
-                    <span className="text-xs font-mono px-2 py-1 rounded-lg flex-shrink-0" style={{ background: "rgba(167,139,250,0.1)", color: "rgba(167,139,250,0.8)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                      {item.reward}
-                    </span>
-                  )}
-                  {item.onClaim && (
-                    <button onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }} className="text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0" style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", cursor: "pointer" }}>
+                  {item.onClaim ? (
+                    <button onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }} className="text-xs font-bold px-4 py-2 rounded-lg flex-shrink-0" style={{ background: `linear-gradient(135deg, ${accentColor}30, ${accentColor}18)`, color: accentColor, border: `1px solid ${accentColor}50`, cursor: "pointer", boxShadow: `0 0 12px ${accentColor}20` }}>
                       Claim
                     </button>
+                  ) : item.reward ? (
+                    <span className="text-xs font-mono px-2.5 py-1 rounded-lg flex-shrink-0" style={{ background: `${accentColor}12`, color: `${accentColor}cc`, border: `1px solid ${accentColor}20` }}>
+                      {item.reward}
+                    </span>
+                  ) : (
+                    <span style={{ color: `${accentColor}50`, fontSize: 16 }}>→</span>
                   )}
                 </button>
               </div>
@@ -1182,7 +1191,7 @@ export default function TodayDrawer({
                       key={item.id}
                       onClick={() => item.onClick?.()}
                       disabled={!item.onClick && item.done}
-                      className="today-item-card w-full rounded-xl px-3.5 py-2.5 text-left flex items-center gap-3"
+                      className="today-item-card w-full rounded-xl px-3.5 py-2.5 text-left flex items-center gap-3 transition-all"
                       style={{
                         background: item.urgent
                           ? "linear-gradient(135deg, rgba(251,191,36,0.06) 0%, rgba(251,191,36,0.02) 100%)"
@@ -1190,8 +1199,9 @@ export default function TodayDrawer({
                           ? "linear-gradient(135deg, rgba(74,222,128,0.03) 0%, rgba(74,222,128,0.01) 100%)"
                           : "linear-gradient(135deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%)",
                         border: `1px solid ${item.urgent ? "rgba(251,191,36,0.18)" : item.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.06)"}`,
+                        borderLeft: `3px solid ${item.urgent ? "rgba(251,191,36,0.5)" : item.done ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.08)"}`,
                         boxShadow: item.urgent
-                          ? "inset 0 1px 0 rgba(251,191,36,0.06), 0 2px 6px rgba(0,0,0,0.15)"
+                          ? "inset 0 1px 0 rgba(251,191,36,0.06), 0 2px 8px rgba(0,0,0,0.15)"
                           : item.done
                           ? "inset 0 1px 0 rgba(74,222,128,0.03)"
                           : "inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 6px rgba(0,0,0,0.1)",
@@ -1287,8 +1297,11 @@ export default function TodayDrawer({
                 } as React.CSSProperties}
               />
             ))}
-            <p className="relative text-xs font-bold" style={{ color: "#4ade80" }}>
-              All done for today! The forge rests.
+            <p className="relative text-sm font-bold" style={{ color: "#4ade80", textShadow: "0 0 12px rgba(74,222,128,0.4)" }}>
+              All tasks complete.
+            </p>
+            <p className="relative text-xs mt-0.5" style={{ color: "rgba(74,222,128,0.4)" }}>
+              The forge rests. You&apos;ve earned it.
             </p>
           </div>
         )}
