@@ -43,7 +43,7 @@ const CAT_COLORS: Record<string, string> = {
 };
 
 function getCatColor(cat: string): string {
-  return CAT_COLORS[cat.toLowerCase()] ?? "#a0a0a0";
+  return CAT_COLORS[(cat || "").toLowerCase()] ?? "#a0a0a0";
 }
 
 export default function HonorsView({ catalogue, highlightedAchievementId, onHighlightClear }: { catalogue: AchievementDef[]; highlightedAchievementId?: string | null; onHighlightClear?: () => void }) {
@@ -75,8 +75,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
   const { users, playerName: ctxPlayerName } = useDashboard();
   const playerName = ctxPlayerName || "";
-  const allCategories = Array.from(new Set(catalogue.map(a => a.category)));
-  const loggedInUser = playerName ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
+  const allCategories = Array.from(new Set(catalogue.map(a => a.category).filter(Boolean)));
+  const loggedInUser = playerName ? users.find(u => (u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) : null;
   const playerEarnedIds = new Set((loggedInUser?.earnedAchievements ?? []).map(a => a.id));
   const playerEarnedMap = new Map((loggedInUser?.earnedAchievements ?? []).map(a => [a.id, a]));
 
@@ -409,7 +409,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                                   color: `${u.color}cc`,
                                   border: `1px solid ${u.color}30`,
                                   fontSize: 12,
-                                  fontWeight: playerName && (u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) ? 700 : 400,
+                                  fontWeight: playerName && ((u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) ? 700 : 400,
                                 }}
                               >
                                 {u.name}

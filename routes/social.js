@@ -1007,14 +1007,15 @@ router.post('/api/social/challenge', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
-  const { targetId, type, duration, wager } = req.body;
+  const { targetId, type, duration, wager, rules } = req.body;
   if (!targetId || !type) return res.status(400).json({ error: 'targetId and type required' });
   const target = state.usersByName.get(targetId.toLowerCase()) || state.users[targetId.toLowerCase()];
   if (!target) return res.status(404).json({ error: 'Target player not found' });
   if (uid === (target.id || targetId).toLowerCase()) return res.status(400).json({ error: 'Cannot challenge yourself' });
 
-  const validTypes = ['quests_week', 'xp_week', 'streak_week'];
+  const validTypes = ['quests_week', 'xp_week', 'streak_week', 'custom'];
   if (!validTypes.includes(type)) return res.status(400).json({ error: 'Invalid challenge type' });
+  if (type === 'custom' && (!rules || !rules.trim())) return res.status(400).json({ error: 'Custom challenges require rules' });
 
   // Max 3 active/pending challenges per player
   const activeCount = (u.challenges || []).filter(c => c.status === 'pending' || c.status === 'active').length;
@@ -1035,9 +1036,10 @@ router.post('/api/social/challenge', requireAuth, (req, res) => {
     targetId: (target.id || targetId).toLowerCase(),
     targetName: target.name,
     type,
-    wager: Math.min(Math.max(0, parseInt(wager) || 100), 500),
+    wager: Math.min(Math.max(0, parseInt(wager) || 0), 1000),
+    rules: type === 'custom' ? String(rules).slice(0, 300) : null,
     duration: duration || '7d',
-    status: 'pending', // pending → accepted → active → completed
+    status: 'pending', // pending → accepted → active → completed/forfeited/cancelled
     createdAt: new Date().toISOString(),
     startedAt: null,
     expiresAt: null,
@@ -1088,5 +1090,94 @@ router.get('/api/social/challenges', requireAuth, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   res.json({ challenges: u.challenges || [] });
+});
+
+// POST /api/social/challenge/:id/cancel — cancel a pending challenge (challenger only)
+router.post('/api/social/challenge/:id/cancel', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const challenge = (u.challenges || []).find(c => c.id === req.params.id);
+  if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
+  if (challenge.status !== 'pending') return res.status(400).json({ error: 'Can only cancel pending challenges' });
+  if (challenge.challengerId !== uid && challenge.targetId !== uid) return res.status(403).json({ error: 'Not your challenge' });
+
+  // Remove from both players
+  u.challenges = (u.challenges || []).filter(c => c.id !== req.params.id);
+  const otherId = challenge.challengerId === uid ? challenge.targetId : challenge.challengerId;
+  const other = state.users[otherId];
+  if (other) {
+    other.challenges = (other.challenges || []).filter(c => c.id !== req.params.id);
+  }
+
+  saveUsers();
+  res.json({ ok: true, message: 'Challenge cancelled' });
+});
+
+// POST /api/social/challenge/:id/decline — decline a pending challenge (target only)
+router.post('/api/social/challenge/:id/decline', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const challenge = (u.challenges || []).find(c => c.id === req.params.id);
+  if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
+  if (challenge.targetId !== uid) return res.status(403).json({ error: 'Only the challenged player can decline' });
+  if (challenge.status !== 'pending') return res.status(400).json({ error: 'Can only decline pending challenges' });
+
+  // Remove from both players
+  u.challenges = (u.challenges || []).filter(c => c.id !== req.params.id);
+  const challenger = state.users[challenge.challengerId];
+  if (challenger) {
+    challenger.challenges = (challenger.challenges || []).filter(c => c.id !== req.params.id);
+  }
+
+  saveUsers();
+  res.json({ ok: true, message: 'Challenge declined' });
+});
+
+// POST /api/social/challenge/:id/forfeit — forfeit an active challenge (auto-lose)
+router.post('/api/social/challenge/:id/forfeit', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const challenge = (u.challenges || []).find(c => c.id === req.params.id);
+  if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
+  if (challenge.status !== 'active') return res.status(400).json({ error: 'Can only forfeit active challenges' });
+  if (challenge.challengerId !== uid && challenge.targetId !== uid) return res.status(403).json({ error: 'Not your challenge' });
+
+  const winnerId = challenge.challengerId === uid ? challenge.targetId : challenge.challengerId;
+
+  challenge.status = 'completed';
+  challenge.winner = winnerId;
+  challenge.forfeitedBy = uid;
+  challenge.completedAt = new Date().toISOString();
+
+  // Transfer wager gold
+  if (challenge.wager > 0) {
+    const loser = state.users[uid];
+    const winner = state.users[winnerId];
+    if (loser && winner) {
+      const actualWager = Math.min(challenge.wager, loser.currencies?.gold ?? loser.gold ?? 0);
+      if (actualWager > 0) {
+        ensureUserCurrencies(uid);
+        ensureUserCurrencies(winnerId);
+        loser.currencies.gold = (loser.currencies.gold || 0) - actualWager;
+        winner.currencies.gold = (winner.currencies.gold || 0) + actualWager;
+      }
+    }
+  }
+
+  // Sync to other player
+  const other = state.users[winnerId];
+  if (other) {
+    const oc = (other.challenges || []).find(c => c.id === challenge.id);
+    if (oc) { oc.status = 'completed'; oc.winner = winnerId; oc.forfeitedBy = uid; oc.completedAt = challenge.completedAt; }
+  }
+
+  saveUsers();
+  res.json({ ok: true, message: 'Challenge forfeited — you lose', winner: winnerId });
 });
 

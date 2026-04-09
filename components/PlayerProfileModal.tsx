@@ -85,6 +85,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
   useModalBehavior(true, onClose);
 
   const fetchProfile = useCallback(async () => {
+    if (!playerId) { setError("No player ID"); setLoading(false); return; }
     try {
       const headers = reviewApiKey ? getAuthHeaders(reviewApiKey) : {};
       const r = await fetch(`/api/player/${encodeURIComponent(playerId)}/public-profile`, { headers });
@@ -101,7 +102,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
 
   useEffect(() => { fetchProfile(); }, [fetchProfile]);
 
-  const isSelf = playerName?.toLowerCase() === playerId.toLowerCase();
+  const isSelf = playerName?.toLowerCase() === playerId?.toLowerCase();
 
   const handleAddFriend = async () => {
     if (!reviewApiKey || !playerName || isSelf) return;

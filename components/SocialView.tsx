@@ -328,27 +328,12 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                 <span className="text-xs font-semibold truncate w-full" style={{ color: "#e8e8e8" }}>{f.name}</span>
                 <span className="text-xs text-w25">Lv.{f.level}</span>
                 <OnlineDot status={f.onlineStatus || (f.isOnline ? "online" : "offline")} lastActiveAt={f.lastActiveAt} />
-                {/* Challenge button */}
+                {/* Challenge button — opens config modal */}
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    (async () => {
-                      try {
-                        const r = await fetch("/api/social/challenge", {
-                          method: "POST",
-                          headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
-                          body: JSON.stringify({ targetId: f.id, type: "quests_week", wager: 100 }),
-                        });
-                        const d = await r.json();
-                        if (r.ok) setSuccessMsg("Challenge sent to " + f.name + "!");
-                        else setSuccessMsg(d.error || "Failed");
-                        setTimeout(() => setSuccessMsg(null), 4000);
-                      } catch { setSuccessMsg("Network error"); }
-                    })();
-                  }}
+                  onClick={(e) => { e.stopPropagation(); setChallengeTarget({ id: f.id, name: f.name }); }}
                   className="text-xs px-2 py-0.5 rounded mt-1 opacity-0 group-hover:opacity-100 transition-opacity sm:opacity-100"
                   style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer", fontSize: 12 }}
-                  title="Challenge this friend — who completes more quests this week? 100g wager. Click twice to confirm."
+                  title="Challenge this friend to a wager"
                 >
                   Challenge
                 </button>
@@ -1764,10 +1749,12 @@ interface PlayerChallenge {
   targetName: string;
   type: string;
   wager: number;
+  rules: string | null;
   duration: string;
   status: string;
   createdAt: string;
   startedAt: string | null;
+  forfeitedBy?: string | null;
   expiresAt: string | null;
   challengerScore: number;
   targetScore: number;
@@ -1778,6 +1765,7 @@ const CHALLENGE_TYPE_LABELS: Record<string, string> = {
   quests_week: "Most Quests This Week",
   xp_week: "Most XP This Week",
   streak_week: "Longest Streak This Week",
+  custom: "Custom Rules",
 };
 
 function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
