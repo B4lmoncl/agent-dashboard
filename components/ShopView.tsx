@@ -84,7 +84,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
     try {
       const [itemsR, balR] = await Promise.all([
         fetch("/api/shop/currency-items"),
-        playerName ? fetch(`/api/currency/${playerName}`, { headers: getAuthHeaders() }) : null,
+        playerName ? fetch(`/api/currency/${playerName}`, { headers: getAuthHeaders(reviewApiKey) }) : null,
       ]);
       if (itemsR.ok) setCurrencyItems(await itemsR.json());
       if (balR?.ok) {
@@ -109,7 +109,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
     try {
       const r = await fetch("/api/shop/currency-buy", {
         method: "POST",
-        headers: { ...getAuthHeaders(), "Content-Type": "application/json" },
+        headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, itemId, shopType }),
       });
       const d = await r.json();

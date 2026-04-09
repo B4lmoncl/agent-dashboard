@@ -36,8 +36,8 @@ export default function CodexView() {
   const fetchCodex = useCallback(async () => {
     try {
       const [codexR, seenR] = await Promise.all([
-        fetch("/api/codex", { headers: getAuthHeaders() }),
-        playerName ? fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, { headers: getAuthHeaders() }) : null,
+        fetch("/api/codex", { headers: getAuthHeaders(reviewApiKey) }),
+        playerName ? fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, { headers: getAuthHeaders(reviewApiKey) }) : null,
       ]);
       if (codexR.ok) {
         const data = await codexR.json();
@@ -62,7 +62,7 @@ export default function CodexView() {
       if (playerName) {
         fetch(`/api/player/${encodeURIComponent(playerName)}/seen`, {
           method: "POST",
-          headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+          headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
           body: JSON.stringify({ category: "codex", ids: [id] }),
         }).catch(() => {});
       }

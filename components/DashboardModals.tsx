@@ -6,6 +6,7 @@ import type { User } from "@/app/types";
 import { ModalPortal } from "@/components/ModalPortal";
 import { Tip } from "@/components/GameTooltip";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useDashboard } from "@/app/DashboardContext";
 
 interface DashboardModalsProps {
   loggedInUser: User | null;
@@ -48,6 +49,7 @@ export default function DashboardModals({
   inProgressCount,
   onNavigate,
 }: DashboardModalsProps) {
+  const { reviewApiKey } = useDashboard();
   // Unified ESC key handler for all modals
   useEffect(() => {
     const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
@@ -94,7 +96,7 @@ export default function DashboardModals({
     try {
       const r = await fetch(`/api/currency/${loggedInUser.id}/convert`, {
         method: "POST",
-        headers: { ...getAuthHeaders(), "Content-Type": "application/json" },
+        headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
         body: JSON.stringify({ from: convFrom, to: convTo, amount: convAmtNum }),
       });
       const d = await r.json();

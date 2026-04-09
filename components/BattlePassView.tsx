@@ -60,7 +60,7 @@ const REWARD_CONFIG: Record<string, { icon: string; color: string; label: string
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function BattlePassView({ onRewardCelebration, onNavigate }: { onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void } = {}) {
-  const { playerName } = useDashboard();
+  const { playerName, reviewApiKey } = useDashboard();
   const [config, setConfig] = useState<BPConfig | null>(null);
   const [rewards, setRewards] = useState<BPReward[]>([]);
   const [player, setPlayer] = useState<BPPlayer | null>(null);
@@ -85,7 +85,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   const fetchBP = useCallback(async () => {
     try {
-      const r = await fetch("/api/battlepass", { headers: getAuthHeaders() });
+      const r = await fetch("/api/battlepass", { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) {
         const data = await r.json();
         setConfig(data.config);
@@ -103,7 +103,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
     try {
       const r = await fetch(`/api/battlepass/claim/${level}`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: getAuthHeaders(reviewApiKey),
       });
       const data = await r.json();
       if (r.ok) {
@@ -211,7 +211,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
             onClick={async () => {
               setClaimingAll(true);
               try {
-                const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders() });
+                const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders(reviewApiKey) });
                 const data = await r.json();
                 if (r.ok) {
                   setMessage({ type: "success", text: `Claimed ${data.count} rewards!` });

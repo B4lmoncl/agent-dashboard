@@ -2972,7 +2972,7 @@ export default function Dashboard() {
                   setMigLoading(true);
                   try {
                     const { getAuthHeaders } = await import("@/lib/auth-client");
-                    const r = await fetch("/api/auth/add-email", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders() }, body: JSON.stringify({ email: migEmail }) });
+                    const r = await fetch("/api/auth/add-email", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ email: migEmail }) });
                     const d = await r.json();
                     if (r.ok) { setMigMsg(d.message || "Email added!"); setTimeout(() => setEmailMigrationOpen(false), 1500); }
                     else setMigMsg(d.error || "Failed");
