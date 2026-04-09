@@ -562,7 +562,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           {/* Actions */}
           <div className="flex gap-2">
             {/* Join button — for invited players who haven't joined */}
-            {activeRun.status === "forming" && activeRun.invitedPlayers.some(p => p.name.toLowerCase() === playerName?.toLowerCase()) && (
+            {activeRun.status === "forming" && activeRun.invitedPlayers.some(p => (p.name || "").toLowerCase() === playerName?.toLowerCase()) && (
               <button
                 onClick={() => joinRun(activeRun.runId)}
                 disabled={actionLoading}
@@ -582,7 +582,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             {/* Collect button — when dungeon is done */}
             {activeRun.status === "active" && activeRun.completesAt &&
               new Date(activeRun.completesAt).getTime() - Date.now() <= 0 &&
-              !activeRun.collected.some(c => c.toLowerCase() === playerName?.toLowerCase()) && (
+              !activeRun.collected.some(c => (c || "").toLowerCase() === playerName?.toLowerCase()) && (
               <button
                 onClick={() => collectRewards(activeRun.runId)}
                 disabled={actionLoading}
@@ -600,12 +600,12 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             )}
 
             {/* Already collected */}
-            {activeRun.collected.some(c => c.toLowerCase() === playerName?.toLowerCase()) && (
+            {activeRun.collected.some(c => (c || "").toLowerCase() === playerName?.toLowerCase()) && (
               <div className="py-2.5">
                 <p className="text-xs text-w25">Rewards collected. Waiting for party members:</p>
                 <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                   {activeRun.participants.map(p => {
-                    const hasCollected = activeRun.collected.some(c => c.toLowerCase() === p.name.toLowerCase());
+                    const hasCollected = activeRun.collected.some(c => (c || "").toLowerCase() === (p.name || "").toLowerCase());
                     return (
                       <span key={p.name} className="text-xs px-2 py-0.5 rounded" style={{
                         background: hasCollected ? "rgba(34,197,94,0.08)" : "rgba(255,255,255,0.03)",

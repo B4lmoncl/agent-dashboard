@@ -263,7 +263,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                     ));
                     const tooltipBody = (
                       <div className="space-y-1">
-                        <p className="text-xs font-semibold" style={{ color: rc }}>{item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1)} · {SLOT_LABELS[slot]}</p>
+                        <p className="text-xs font-semibold" style={{ color: rc }}>{(item.rarity || "common").charAt(0).toUpperCase() + (item.rarity || "common").slice(1)} · {SLOT_LABELS[slot]}</p>
                         {statLines.length > 0 && <div>{statLines}</div>}
                         {item.setId && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setId}</p>}
                         {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {formatLegendaryLabel(item.legendaryEffect)}</p>}
@@ -349,7 +349,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                       <TipCustom key={a.id} title={a.name} icon={a.icon?.startsWith("/") ? undefined : a.icon || "★"} accent={achColor} body={
                         <div>
                           <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{a.desc}</p>
-                          <p className="text-xs mt-1" style={{ color: achColor }}>{a.rarity.charAt(0).toUpperCase() + a.rarity.slice(1)} · {a.points} pts</p>
+                          <p className="text-xs mt-1" style={{ color: achColor }}>{(a.rarity || "common").charAt(0).toUpperCase() + (a.rarity || "common").slice(1)} · {a.points} pts</p>
                         </div>
                       }>
                         <span className="inline-flex cursor-help">

@@ -368,7 +368,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                 const defeatedDate = entry.defeatedAt
                   ? new Date(entry.defeatedAt).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })
                   : "Unknown date";
-                const bossName = entry.name || entry.bossId.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+                const bossName = entry.name || (entry.bossId || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
                 const bossTitle = entry.title || "";
 
                 return (
@@ -831,7 +831,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
                     <div className="flex items-center gap-2">
                       <span style={{ color: h.defeated ? "#22c55e" : "#ef4444" }}>{h.defeated ? "Slain" : "Escaped"}</span>
-                      <span className="text-w40">{h.bossId.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
+                      <span className="text-w40">{(h.bossId || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
                       {contributorCount > 0 && (
                         <span className="text-w20">{contributorCount} contributors</span>
                       )}
