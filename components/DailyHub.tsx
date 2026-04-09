@@ -422,10 +422,6 @@ export const DailyHub = memo(function DailyHub({
   const streak = user.streakDays ?? 0;
   const streakUrgency = getStreakUrgency(streak, user.streakLastDate, user);
   const playerLevel = getUserLevel(user.xp ?? 0).level;
-  const nextUnlock = playerLevel < 15 ? getNextUnlock(playerLevel) : null;
-  const nextMilestone = dailyMissions?.milestones.find(m => !m.claimed && dailyMissions.earned >= m.threshold);
-  const forgeTemp = Math.min(user.forgeTemp ?? 0, 100);
-  const forgeCold = forgeTemp < 40 && forgeTemp > 0; // Forge is cooling — loss prevention trigger
 
   // Companion daily quote (deterministic per day)
   const companionQuote = useMemo(() => {
@@ -454,10 +450,8 @@ export const DailyHub = memo(function DailyHub({
     else setGreeting("Night owl mode");
   }, []);
 
-  // Only render if there's something actionable to show
-  const hasAction = dailyBonusAvailable || streakUrgency.show || forgeCold || nextMilestone || (user._restedXpPool ?? 0) > 50;
-  // Always show for new players (< Lv5) or when companion has a quote
-  const showHub = hasAction || playerLevel < 5 || !!companionQuote;
+  // Always show — it's the primary engagement bar
+  const showHub = true; void dailyBonusAvailable; void streakUrgency;
   if (!showHub) return null;
 
   return (
@@ -476,14 +470,21 @@ export const DailyHub = memo(function DailyHub({
           {greeting}, <span style={{ color: user.color ?? "#a78bfa" }}>{user.name}</span>
         </p>
 
-        {/* Daily mission mini-progress (click opens Today Drawer) */}
+        {/* Daily mission dots — HSR-style mini progress (click opens Today Drawer) */}
         {dailyMissions && (() => {
-          const done = dailyMissions.missions.filter(m => m.done).length;
-          const total = dailyMissions.missions.length;
-          const allDone = done >= total;
+          const missions = dailyMissions.missions;
+          const done = missions.filter(m => m.done).length;
+          const allDone = done >= missions.length;
           return (
-            <button onClick={onTodayOpen} className="text-xs px-2 py-0.5 rounded-md flex-shrink-0 inline-flex items-center gap-1" style={{ background: allDone ? "rgba(34,197,94,0.08)" : "rgba(255,255,255,0.03)", color: allDone ? "#22c55e" : "rgba(255,255,255,0.3)", border: `1px solid ${allDone ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title={`Daily missions: ${done}/${total} — click to open Today`}>
-              {allDone ? "✓" : `${done}/${total}`} Daily
+            <button onClick={onTodayOpen} className="flex-shrink-0 inline-flex items-center gap-1.5 px-2 py-1 rounded-md" style={{ background: allDone ? "rgba(34,197,94,0.06)" : "rgba(255,255,255,0.02)", border: `1px solid ${allDone ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.05)"}`, cursor: "pointer" }} title={`Daily missions: ${done}/${missions.length}\n${missions.map(m => `${m.done ? "✓" : "○"} ${m.label}`).join("\n")}`}>
+              <span className="inline-flex gap-0.5">
+                {missions.map((m, i) => (
+                  <span key={i} className="block rounded-full" style={{ width: 6, height: 6, background: m.done ? "#22c55e" : "rgba(255,255,255,0.12)", transition: "background 0.3s" }} />
+                ))}
+              </span>
+              <span className="text-xs" style={{ color: allDone ? "#22c55e" : "rgba(255,255,255,0.25)", fontSize: 11 }}>
+                {allDone ? "Done" : `${done}/${missions.length}`}
+              </span>
             </button>
           );
         })()}
@@ -496,36 +497,8 @@ export const DailyHub = memo(function DailyHub({
           </span>
         )}
 
-        {/* Forge Cold Warning — loss prevention */}
-        {forgeCold && !streakUrgency.show && (
-          <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={{ color: "#78716c", background: "rgba(120,113,108,0.1)", border: "1px solid rgba(120,113,108,0.2)" }}>
-            Forge cooling ({forgeTemp}%)
-          </span>
-        )}
-
         {/* Spacer */}
         <span className="flex-1" />
-
-        {/* Rested XP badge */}
-        {(user._restedXpPool ?? 0) > 50 && (
-          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: "rgba(59,130,246,0.1)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.2)" }}>
-            ★ {Math.round(user._restedXpPool!)} Rested XP
-          </span>
-        )}
-
-        {/* Next unlock badge */}
-        {nextUnlock && (
-          <span className="text-xs px-2 py-0.5 rounded-md flex-shrink-0" style={{ background: `${nextUnlock.color}10`, color: `${nextUnlock.color}99`, border: `1px solid ${nextUnlock.color}25` }}>
-            Lv.{nextUnlock.level}: {nextUnlock.features.join(", ")}
-          </span>
-        )}
-
-        {/* Unclaimed milestone nudge */}
-        {nextMilestone && !dailyBonusAvailable && (
-          <button onClick={onTodayOpen} className="text-xs font-mono px-2 py-1.5 rounded flex-shrink-0" style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer" }} title="Claim milestone in Today's Overview">
-            Claim ★
-          </button>
-        )}
 
         {/* Today Drawer trigger */}
         <button
@@ -571,10 +544,10 @@ export const DailyHub = memo(function DailyHub({
           );
         })()}
       </div>
-      {/* Companion message — unique to DailyHub, not in TodayDrawer */}
+      {/* Companion quote — compact one-liner below action bar */}
       {companionQuote && (
         <div className="px-4 pb-2 -mt-0.5">
-          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.22)", lineHeight: 1.5 }}>
+          <p className="text-xs italic truncate" style={{ color: "rgba(255,255,255,0.18)", lineHeight: 1.4, maxWidth: "100%" }}>
             &ldquo;{companionQuote}&rdquo;
           </p>
         </div>

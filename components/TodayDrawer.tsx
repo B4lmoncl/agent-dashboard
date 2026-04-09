@@ -1055,6 +1055,83 @@ export default function TodayDrawer({
                   streakDays={loggedInUser.streakDays ?? 0}
                 />
               </div>
+
+              {/* ─── HSR-style Daily Missions Milestone Bar ─────────────────── */}
+              {dailyMissions && (() => {
+                const missions = dailyMissions.missions;
+                const milestones = dailyMissions.milestones;
+                const earned = dailyMissions.earned;
+                const maxPts = milestones.length > 0 ? milestones[milestones.length - 1].threshold : dailyMissions.total;
+                const pct = maxPts > 0 ? Math.min(100, (earned / maxPts) * 100) : 0;
+                const allDone = missions.every(m => m.done);
+
+                return (
+                  <div className="rounded-xl p-3 mt-2 mb-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    {/* Milestone bar header */}
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold uppercase tracking-widest" style={{ color: allDone ? "rgba(34,197,94,0.6)" : "rgba(251,191,36,0.6)" }}>
+                        Daily Missions
+                      </span>
+                      <span className="text-xs font-mono" style={{ color: allDone ? "#22c55e" : "rgba(255,255,255,0.3)" }}>
+                        {earned}/{maxPts} pts
+                      </span>
+                    </div>
+
+                    {/* Horizontal milestone bar with reward nodes */}
+                    <div className="relative" style={{ height: 28 }}>
+                      {/* Track background */}
+                      <div className="absolute" style={{ left: 0, right: 0, top: 12, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)" }} />
+                      {/* Fill bar */}
+                      <div className="absolute" style={{ left: 0, top: 12, height: 4, borderRadius: 2, width: `${pct}%`, background: allDone ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #fbbf24, #f59e0b)", transition: "width 0.5s ease-out", boxShadow: allDone ? "0 0 8px rgba(34,197,94,0.3)" : "0 0 6px rgba(251,191,36,0.2)" }} />
+                      {/* Milestone nodes */}
+                      {milestones.map((m, i) => {
+                        const nodePos = maxPts > 0 ? (m.threshold / maxPts) * 100 : 0;
+                        const reached = earned >= m.threshold;
+                        const canClaim = reached && !m.claimed;
+                        return (
+                          <div key={i} className="absolute flex flex-col items-center" style={{ left: `${nodePos}%`, top: 0, transform: "translateX(-50%)" }}>
+                            <button
+                              onClick={canClaim && onClaimMilestone ? () => onClaimMilestone(m.threshold) : undefined}
+                              disabled={!canClaim}
+                              className="relative flex items-center justify-center rounded-full"
+                              style={{
+                                width: 20, height: 20,
+                                background: m.claimed ? "#22c55e" : reached ? "#fbbf24" : "rgba(255,255,255,0.08)",
+                                border: `2px solid ${m.claimed ? "#16a34a" : reached ? "#d97706" : "rgba(255,255,255,0.1)"}`,
+                                boxShadow: canClaim ? "0 0 10px rgba(251,191,36,0.5)" : m.claimed ? "0 0 6px rgba(34,197,94,0.3)" : "none",
+                                cursor: canClaim ? "pointer" : "default",
+                                animation: canClaim ? "daily-bonus-pulse 2s ease-in-out infinite" : "none",
+                                zIndex: 2,
+                              }}
+                              title={m.claimed ? `Claimed: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}` : reached ? `Claim: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}` : `${m.threshold} pts: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}`}
+                            >
+                              {m.claimed ? <span style={{ fontSize: 10, color: "#fff" }}>✓</span> : <span style={{ fontSize: 10, color: reached ? "#000" : "rgba(255,255,255,0.3)" }}>★</span>}
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Mission checklist — compact flat list */}
+                    <div className="mt-3 space-y-1">
+                      {missions.map(m => (
+                        <div key={m.id} className="flex items-center gap-2 py-0.5 px-1 rounded" style={{ opacity: m.done ? 0.45 : 1 }}>
+                          <span className="flex-shrink-0 w-3.5 h-3.5 rounded-sm flex items-center justify-center" style={{ background: m.done ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.04)", border: `1px solid ${m.done ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}` }}>
+                            {m.done && <span style={{ fontSize: 9, color: "#22c55e" }}>✓</span>}
+                          </span>
+                          <span className="text-xs flex-1" style={{ color: m.done ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.6)", textDecoration: m.done ? "line-through" : "none" }}>
+                            {m.label}
+                          </span>
+                          <span className="text-xs font-mono flex-shrink-0" style={{ color: m.done ? "rgba(255,255,255,0.2)" : "rgba(251,191,36,0.5)", fontSize: 11 }}>
+                            +{m.points}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+
               <MagicDivider />
             </>
           )}
