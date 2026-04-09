@@ -1175,67 +1175,82 @@ export default function TodayDrawer({
                   {catAllDone && <span className="text-xs" style={{ color: "#4ade80" }}>✓</span>}
                 </div>
 
-                {/* Flat checklist rows */}
-                <div className="space-y-0.5 mb-2">
+                {/* Row cards — full-width cards with depth, arranged vertically */}
+                <div className="space-y-1.5 mb-2">
                   {cat.items.map((item, itemIdx) => (
                     <button
                       key={item.id}
                       onClick={() => item.onClick?.()}
                       disabled={!item.onClick && item.done}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-left transition-colors"
+                      className="today-item-card w-full rounded-xl px-3.5 py-2.5 text-left flex items-center gap-3"
                       style={{
-                        background: item.urgent ? "rgba(251,191,36,0.04)" : "transparent",
+                        background: item.urgent
+                          ? "linear-gradient(135deg, rgba(251,191,36,0.06) 0%, rgba(251,191,36,0.02) 100%)"
+                          : item.done
+                          ? "linear-gradient(135deg, rgba(74,222,128,0.03) 0%, rgba(74,222,128,0.01) 100%)"
+                          : "linear-gradient(135deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%)",
+                        border: `1px solid ${item.urgent ? "rgba(251,191,36,0.18)" : item.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.06)"}`,
+                        boxShadow: item.urgent
+                          ? "inset 0 1px 0 rgba(251,191,36,0.06), 0 2px 6px rgba(0,0,0,0.15)"
+                          : item.done
+                          ? "inset 0 1px 0 rgba(74,222,128,0.03)"
+                          : "inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 6px rgba(0,0,0,0.1)",
                         cursor: item.onClick ? "pointer" : "default",
-                        opacity: item.done ? 0.5 : 1,
+                        opacity: item.done ? 0.55 : 1,
                         animation: entered
                           ? `today-card-enter 0.3s ease-out ${catIdx * 80 + (itemIdx + 1) * 40}ms both${item.urgent ? ", today-urgent-pulse 2.5s ease-in-out infinite" : ""}`
                           : item.urgent ? "today-urgent-pulse 2.5s ease-in-out infinite" : "none",
                       }}
-                      onMouseEnter={item.onClick ? (e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)"; } : undefined}
-                      onMouseLeave={item.onClick ? (e) => { (e.currentTarget as HTMLElement).style.background = item.urgent ? "rgba(251,191,36,0.04)" : "transparent"; } : undefined}
                     >
-                      {/* Status indicator */}
-                      <span className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style={{
-                        background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.04)",
+                      {/* Status dot */}
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style={{
+                        background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
+                        color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
                         border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
-                        fontSize: 10, fontWeight: 700,
-                        color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.25)",
+                        fontSize: 11, fontWeight: 700,
+                        animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
                       }}>
-                        {item.done ? "✓" : item.urgent ? "!" : ""}
+                        {item.done ? "✓" : item.urgent ? "!" : "○"}
                       </span>
 
                       {/* Icon */}
                       {item.icon.startsWith("/") ? (
-                        <img src={item.icon} alt="" width={18} height={18} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                        <img src={item.icon} alt="" width={22} height={22} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
                       ) : (
-                        <span className="flex-shrink-0" style={{ fontSize: 14, lineHeight: 1, width: 18, textAlign: "center" }}>{item.icon}</span>
+                        <span className="flex-shrink-0" style={{ fontSize: 16, lineHeight: 1, width: 22, textAlign: "center" }}>{item.icon}</span>
                       )}
 
                       {/* Label + sub */}
                       <div className="flex-1 min-w-0">
-                        <span className="text-xs font-semibold" style={{
-                          color: item.done ? "rgba(255,255,255,0.35)" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.75)",
+                        <p className="text-xs font-semibold leading-tight" style={{
+                          color: item.done ? "rgba(255,255,255,0.35)" : item.urgent ? "#fbbf24" : "#e8e8e8",
                           textDecoration: item.done ? "line-through" : "none",
                           textDecorationColor: "rgba(74,222,128,0.3)",
                         }}>
-                          {item.label}
-                        </span>
+                          {item.tooltipKey ? <Tip k={item.tooltipKey}>{item.label}</Tip> : item.label}
+                        </p>
                         {item.sub && (
-                          <span className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 11 }}>{item.sub}</span>
+                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)", fontSize: 11 }}>{item.sub}</p>
                         )}
                       </div>
 
-                      {/* Reward badge OR Claim button */}
+                      {/* Right side: Claim button OR reward badge OR arrow */}
                       {item.onClaim && !item.done ? (
-                        <button onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }} className="text-xs font-bold px-2.5 py-1 rounded-lg flex-shrink-0" style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", cursor: "pointer" }}>
-                          Claim
+                        <button onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }} className="text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0" style={{ background: item.urgent ? "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.1))" : "linear-gradient(135deg, rgba(255,68,68,0.2), rgba(255,68,68,0.1))", color: item.urgent ? "#fbbf24" : "#ff4444", border: `1px solid ${item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,68,68,0.3)"}`, cursor: "pointer" }}>
+                          {item.urgent ? "Claim!" : "Claim"}
                         </button>
                       ) : item.reward && !item.done ? (
-                        <span className="text-xs font-mono px-1.5 py-0.5 rounded flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)", fontSize: 11 }}>
+                        <span className="text-xs font-mono flex items-center gap-1 px-2 py-1 rounded-lg flex-shrink-0" style={{
+                          background: "rgba(167,139,250,0.08)",
+                          color: "rgba(167,139,250,0.7)",
+                          fontSize: 11,
+                          border: "1px solid rgba(167,139,250,0.1)",
+                        }}>
+                          {item.rewardIcon && <img src={item.rewardIcon} alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />}
                           {item.reward}
                         </span>
-                      ) : item.onClick ? (
-                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.15)" }}>→</span>
+                      ) : item.onClick && !item.done ? (
+                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>→</span>
                       ) : null}
                     </button>
                   ))}
