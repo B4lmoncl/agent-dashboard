@@ -327,7 +327,7 @@ export default function Dashboard() {
   const playerXpForLevelWatch = useMemo(() => {
     if (!playerName) return 0;
     const pn = (playerName || "").toLowerCase();
-    const u = users.find(usr => usr.id.toLowerCase() === pn || usr.name.toLowerCase() === pn);
+    const u = users.find(usr => (usr.id || "").toLowerCase() === pn || (usr.name || "").toLowerCase() === pn);
     return u?.xp ?? 0;
   }, [users, playerName]);
   useEffect(() => {
@@ -798,7 +798,7 @@ export default function Dashboard() {
 
   // Player-specific stats (logged-in player)
   const playerNameLower = useMemo(() => (playerName || "").toLowerCase(), [playerName]);
-  const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
+  const loggedInUser = useMemo(() => playerName ? users.find(u => (u.id || "").toLowerCase() === playerNameLower || (u.name || "").toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
   const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
   const currentFloorColor = useMemo(() => (FLOORS.find(f => f.id === activeFloor) || FLOORS[1]).color, [activeFloor]);
   useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
@@ -924,7 +924,7 @@ export default function Dashboard() {
     }
     // Class-specific quest filter
     if (playerName) {
-      const currentUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
+      const currentUser = users.find(u => (u.name || "").toLowerCase() === playerName.toLowerCase());
       const playerClassId = currentUser?.classId ?? null;
       result = result.filter(q => !q.classRequired || q.classRequired === playerClassId);
       // Relationship quest filter
@@ -993,19 +993,7 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
-        {/* Daily Hub — prominent daily engagement banner */}
-        {loggedInUser && dashView === "questBoard" && (
-          <DailyHub
-            user={loggedInUser}
-            dailyBonusAvailable={dailyBonusAvailable}
-            onClaimDailyBonus={handleClaimDailyBonus}
-            claimingDailyBonus={claimingDailyBonus}
-            dailyMissions={dailyMissions}
-            questsCompletedToday={questsCompletedToday}
-            onNavigate={(v) => setDashView(v as typeof dashView)}
-            onTodayOpen={() => setTodayOpen(true)}
-          />
-        )}
+        {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -2972,7 +2960,7 @@ export default function Dashboard() {
                   setMigLoading(true);
                   try {
                     const { getAuthHeaders } = await import("@/lib/auth-client");
-                    const r = await fetch("/api/auth/add-email", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders() }, body: JSON.stringify({ email: migEmail }) });
+                    const r = await fetch("/api/auth/add-email", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ email: migEmail }) });
                     const d = await r.json();
                     if (r.ok) { setMigMsg(d.message || "Email added!"); setTimeout(() => setEmailMigrationOpen(false), 1500); }
                     else setMigMsg(d.error || "Failed");

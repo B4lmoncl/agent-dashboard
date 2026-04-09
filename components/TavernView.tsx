@@ -163,10 +163,10 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           ))}
         </div>
         <Tip k="hearth" heading><h2 className="text-lg font-bold" style={{ color: "#d97706", cursor: "help" }}>The Hearth</h2></Tip>
-        <p className="text-xs text-w35" style={{ maxWidth: "min(400px, 100%)", margin: "0 auto" }}>
+        <p className="text-xs text-w35" style={{ maxWidth: "min(500px, 100%)", margin: "0 auto" }}>
           A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: "min(400px, 100%)", margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
+        <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: "min(500px, 100%)", margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
       </div>
 
       {/* Status messages */}
@@ -175,7 +175,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* Currently resting */}
       {status?.resting && (
-        <div className="rounded-xl p-5 space-y-4 mx-auto" style={{ background: "linear-gradient(135deg, rgba(217,119,6,0.08) 0%, rgba(245,158,11,0.04) 100%)", border: "1px solid rgba(217,119,6,0.25)", maxWidth: 600 }}>
+        <div className="rounded-xl p-5 space-y-4" style={{ background: "linear-gradient(135deg, rgba(217,119,6,0.08) 0%, rgba(245,158,11,0.04) 100%)", border: "1px solid rgba(217,119,6,0.25)" }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-bold" style={{ color: "#d97706" }}>Currently Resting</p>
@@ -237,7 +237,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* Not resting — can enter */}
       {!status?.resting && status?.canRest && (
-        <div className="rounded-xl p-5 space-y-4 mx-auto" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", maxWidth: 600 }}>
+        <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
           <p className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Take a Rest</p>
           <p className="text-xs text-w35">Going on vacation? Feeling burned out? Rest at the Hearth to freeze your progress. No quests will be generated, no streaks will decay, and your forge temperature stays locked.</p>
 

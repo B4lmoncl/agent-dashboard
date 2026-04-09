@@ -59,12 +59,31 @@ export async function getValidToken(): Promise<string | null> {
 }
 
 /**
+ * Check if a JWT is expired (or nearly expired — 30s buffer).
+ */
+function isTokenExpired(token: string): boolean {
+  try {
+    const parts = token.split(".");
+    if (parts.length !== 3) return true;
+    const payload = JSON.parse(atob(parts[1]));
+    if (!payload.exp) return false;
+    return payload.exp * 1000 < Date.now() + 30_000; // 30s buffer
+  } catch {
+    return true;
+  }
+}
+
+/**
  * Build auth headers for API calls.
- * Uses JWT Bearer token if available, falls back to API key from localStorage.
+ * Uses JWT Bearer token if available and not expired, falls back to API key.
  */
 export function getAuthHeaders(apiKeyFallback?: string): Record<string, string> {
-  if (accessToken) {
+  if (accessToken && !isTokenExpired(accessToken)) {
     return { "Authorization": `Bearer ${accessToken}` };
+  }
+  // Token expired — clear it so refresh can happen on next getValidToken() call
+  if (accessToken && isTokenExpired(accessToken)) {
+    accessToken = null;
   }
   // Fallback: legacy API key
   const key = apiKeyFallback || localStorage.getItem("dash_api_key") || "";

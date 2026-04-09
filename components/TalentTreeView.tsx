@@ -98,7 +98,7 @@ export default function TalentTreeView({
   addToast?: (t: ToastInput) => void;
 }) {
   const _toast = addToast || (() => {});
-  const { playerName } = useDashboard();
+  const { playerName, reviewApiKey } = useDashboard();
   const [data, setData] = useState<TalentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
@@ -112,7 +112,7 @@ export default function TalentTreeView({
   // ─── Fetch ──────────────────────────────────────────────────────────────
   const fetchTalents = useCallback(async () => {
     try {
-      const r = await fetch("/api/talents", { headers: getAuthHeaders() });
+      const r = await fetch("/api/talents", { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) {
         const d = await r.json();
         setData(d);
@@ -133,7 +133,7 @@ export default function TalentTreeView({
     try {
       const r = await fetch("/api/talents/allocate", {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ nodeId }),
       });
       const d = await r.json();
@@ -158,7 +158,7 @@ export default function TalentTreeView({
     try {
       const r = await fetch("/api/talents/deallocate", {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ nodeId }),
       });
       const d = await r.json();
@@ -182,7 +182,7 @@ export default function TalentTreeView({
     try {
       const r = await fetch("/api/talents/reset", {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
       });
       const d = await r.json();
       if (r.ok && d.success) {
@@ -754,7 +754,7 @@ export default function TalentTreeView({
                         setConfirmAction(() => async () => {
                           try {
                             // Fetch inventory to find a legendary
-                            const invR = await fetch(`/api/player/${encodeURIComponent(playerName || "")}/character`, { headers: getAuthHeaders() });
+                            const invR = await fetch(`/api/player/${encodeURIComponent(playerName || "")}/character`, { headers: getAuthHeaders(reviewApiKey) });
                             const invD = await invR.json();
                             const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
                             if (legendaries.length === 0) {
@@ -764,7 +764,7 @@ export default function TalentTreeView({
                             const item = legendaries[0];
                             const r = await fetch("/api/talents/sacrifice", {
                               method: "POST",
-                              headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+                              headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                               body: JSON.stringify({ instanceId: item.instanceId || item.id }),
                             });
                             const d = await r.json();

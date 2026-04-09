@@ -63,7 +63,7 @@ interface Faction {
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function FactionsView({ onRewardCelebration, onNavigate }: { onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void } = {}) {
-  const { playerName } = useDashboard();
+  const { playerName, reviewApiKey } = useDashboard();
   const [factions, setFactions] = useState<Faction[]>([]);
   const [standings, setStandings] = useState<FactionStanding[]>([]);
   const [dailyQuests, setDailyQuests] = useState<Record<string, FactionDaily[]>>({});
@@ -74,7 +74,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   const fetchFactions = useCallback(async () => {
     try {
-      const r = await fetch("/api/factions", { headers: getAuthHeaders() });
+      const r = await fetch("/api/factions", { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) {
         const data = await r.json();
         setFactions(data.factions || []);
@@ -92,7 +92,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
     try {
       const r = await fetch(`/api/factions/${factionId}/claim-daily/${dailyId}`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: getAuthHeaders(reviewApiKey),
       });
       const data = await r.json();
       if (r.ok) {
@@ -123,7 +123,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
     try {
       const r = await fetch(`/api/factions/${factionId}/claim`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: getAuthHeaders(reviewApiKey),
       });
       const data = await r.json();
       if (r.ok) {
@@ -348,7 +348,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 <div className="flex gap-1 mt-2">
                   {standings.filter(s => s.id !== "neutral").map(s => {
                     const isReached = f.playerRep >= s.minRep;
-                    const isClaimed = f.claimedRewards.includes(s.id);
+                    const isClaimed = (f.claimedRewards || []).includes(s.id);
                     const isCurrent = f.standing === s.id;
                     const sReward = f.rewards?.[s.id];
                     const rewardDesc = sReward ? (sReward.title || sReward.recipeDesc || sReward.frameDesc || sReward.effectDesc || "") : "";

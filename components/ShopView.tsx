@@ -66,7 +66,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
 }) {
   const { users, playerName, reviewApiKey } = useDashboard();
   const loggedIn = playerName && reviewApiKey;
-  const user = loggedIn ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
+  const user = loggedIn ? users.find(u => (u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) : null;
   const gold = user?.gold ?? 0;
   const currentGear = user?.gear;
   const currentTier = GEAR_TIERS_CLIENT.find(g => g.id === (currentGear || "worn"))?.tier ?? 0;
@@ -84,7 +84,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
     try {
       const [itemsR, balR] = await Promise.all([
         fetch("/api/shop/currency-items"),
-        playerName ? fetch(`/api/currency/${playerName}`, { headers: getAuthHeaders() }) : null,
+        playerName ? fetch(`/api/currency/${playerName}`, { headers: getAuthHeaders(reviewApiKey) }) : null,
       ]);
       if (itemsR.ok) setCurrencyItems(await itemsR.json());
       if (balR?.ok) {
@@ -109,7 +109,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
     try {
       const r = await fetch("/api/shop/currency-buy", {
         method: "POST",
-        headers: { ...getAuthHeaders(), "Content-Type": "application/json" },
+        headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, itemId, shopType }),
       });
       const d = await r.json();

@@ -528,56 +528,23 @@ export default function TodayDrawer({
       onClick: () => { onNavigate("rituals"); onClose(); },
     });
 
-    // Daily Missions — individual mission cards with cross-navigation
+    // Daily Missions — individual cards removed (HSR milestone bar handles this)
+    // Only keep unclaimed milestones as URGENT items
     if (dailyMissions) {
-      const missionNav: Record<string, { view: string; icon: string; title: string }> = {
-        login:  { view: "", icon: "/images/icons/currency-gold.png", title: "" },
-        quest1: { view: "questBoard", icon: "/images/icons/equip-weapon.png", title: "Go to Quest Board" },
-        quest3: { view: "questBoard", icon: "/images/icons/equip-weapon.png", title: "Go to Quest Board" },
-        ritual: { view: "rituals", icon: "/images/icons/currency-essenz.png", title: "Go to Rituals" },
-        pet:    { view: "character", icon: "/images/icons/currency-essenz.png", title: "Go to Character" },
-        craft:  { view: "forge", icon: "/images/icons/equip-weapon.png", title: "Go to Forge" },
-      };
-      for (const m of dailyMissions.missions) {
-        const nav = missionNav[m.id];
-        const item: TodayItem = {
-          id: `dm-${m.id}`,
-          icon: nav?.icon ?? "/images/icons/currency-stardust.png",
-          label: m.label,
-          done: m.done,
-          sub: `${m.points} pts`,
-          reward: m.done ? undefined : `+${m.points}`,
-          rewardIcon: "/images/icons/currency-stardust.png",
-          tooltipKey: "daily_missions",
-          onClick: nav?.view
-            ? () => { onNavigate(nav.view); onClose(); }
-            : () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
-        };
-        // Login mission gets a separate claim button when daily bonus is available
-        if (m.id === "login" && dailyBonusAvailable) {
-          item.onClaim = onClaimDailyBonus;
-        }
-        daily.push(item);
-      }
-
-      // Unclaimed milestones → URGENT
       const unclaimedMilestones = dailyMissions.milestones.filter(m => !m.claimed && dailyMissions.earned >= m.threshold);
-      if (unclaimedMilestones.length > 0) {
-        // Add one card per unclaimed milestone so user can claim directly
-        for (const ms of unclaimedMilestones) {
-          urgent.push({
-            id: `milestone-claim-${ms.threshold}`,
-            icon: "/images/icons/currency-stardust.png",
-            label: `Claim ${ms.threshold} Milestone`,
-            done: false,
-            urgent: true,
-            sub: Object.entries(ms.reward).map(([k, v]) => `+${v} ${k}`).join(", "),
-            reward: "Claim now",
-            tooltipKey: "daily_missions",
-            onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
-            onClaim: onClaimMilestone ? () => onClaimMilestone(ms.threshold) : undefined,
-          });
-        }
+      for (const ms of unclaimedMilestones) {
+        urgent.push({
+          id: `milestone-claim-${ms.threshold}`,
+          icon: "/images/icons/currency-stardust.png",
+          label: `Claim ${ms.threshold} Milestone`,
+          done: false,
+          urgent: true,
+          sub: Object.entries(ms.reward).map(([k, v]) => `+${v} ${k}`).join(", "),
+          reward: "Claim now",
+          tooltipKey: "daily_missions",
+          onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
+          onClaim: onClaimMilestone ? () => onClaimMilestone(ms.threshold) : undefined,
+        });
       }
     }
 
@@ -895,14 +862,20 @@ export default function TodayDrawer({
                 ))}
               </>}
             >
-              <svg width="160" height="80" viewBox="0 0 160 80" className="cursor-help">
+              <svg width="160" height="80" viewBox="0 0 160 80" className="cursor-help" style={{ animation: allDone ? "today-ring-complete 0.6s cubic-bezier(0.34,1.56,0.64,1)" : "none" }}>
+                <defs>
+                  <linearGradient id="today-arc-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor={allDone ? "#22c55e" : "#818cf8"} />
+                    <stop offset="100%" stopColor={allDone ? "#4ade80" : "#a78bfa"} />
+                  </linearGradient>
+                </defs>
                 <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="5" strokeLinecap="round" />
-                <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke={allDone ? "#4ade80" : "#818cf8"} strokeWidth="5" strokeLinecap="round"
+                <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke="url(#today-arc-grad)" strokeWidth="5" strokeLinecap="round"
                   strokeDasharray="201" strokeDashoffset={201 * (1 - (totalCount > 0 ? doneCount / totalCount : 0))}
-                  style={{ transition: "stroke-dashoffset 0.8s ease-out", filter: `drop-shadow(0 0 3px ${allDone ? "rgba(74,222,128,0.4)" : "rgba(129,140,248,0.3)"})` }}
+                  style={{ transition: "stroke-dashoffset 1.2s ease-out", filter: `drop-shadow(0 0 4px ${allDone ? "rgba(74,222,128,0.5)" : "rgba(129,140,248,0.35)"})` }}
                 />
-                <text x="80" y="55" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="14" fontWeight="bold" fontFamily="monospace">{doneCount}/{totalCount}</text>
-                <text x="80" y="68" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="9">{allDone ? "ALL COMPLETE" : "tasks today"}</text>
+                <text x="80" y="53" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace" style={{ fontVariantNumeric: "tabular-nums" }}>{doneCount}/{totalCount}</text>
+                <text x="80" y="68" textAnchor="middle" fill={allDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.25)"} fontSize="9" fontWeight={allDone ? "600" : "400"}>{allDone ? "ALL COMPLETE" : "tasks today"}</text>
                 {categories.map((cat, ci) => {
                   const catDone = cat.items.filter(i => i.done).length === cat.items.length;
                   const angle = -180 + ((ci + 0.5) / categories.length) * 180;
@@ -1046,19 +1019,138 @@ export default function TodayDrawer({
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
         <div className="flex-1 overflow-y-auto px-4 pb-3 relative today-scroll" style={{ zIndex: 1 }}>
 
-          {/* Today's Progress — top of drawer, only when logged in */}
+          {/* Daily Missions + Checklist — top of scrollable area */}
           {loggedInUser && (
             <>
-              <div className="pt-3 pb-1">
-                <TodayProgressWidget
-                  questsToday={loggedInUser._dailyCompletions?.count ?? 0}
-                  streakDays={loggedInUser.streakDays ?? 0}
-                />
-              </div>
+              {/* ─── HSR-style Daily Missions Milestone Bar ─────────────────── */}
+              {dailyMissions && (() => {
+                const missions = dailyMissions.missions;
+                const milestones = dailyMissions.milestones;
+                const earned = dailyMissions.earned;
+                const maxPts = milestones.length > 0 ? milestones[milestones.length - 1].threshold : dailyMissions.total;
+                const pct = maxPts > 0 ? Math.min(100, (earned / maxPts) * 100) : 0;
+                const allDone = missions.every(m => m.done);
+
+                return (
+                  <div className="rounded-xl p-3 mt-2 mb-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    {/* Milestone bar header */}
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold uppercase tracking-widest" style={{ color: allDone ? "rgba(34,197,94,0.6)" : "rgba(251,191,36,0.6)" }}>
+                        Daily Missions
+                      </span>
+                      <span className="text-xs font-mono" style={{ color: allDone ? "#22c55e" : "rgba(255,255,255,0.3)" }}>
+                        {earned}/{maxPts} pts
+                      </span>
+                    </div>
+
+                    {/* Horizontal milestone bar with reward nodes */}
+                    <div className="relative" style={{ height: 32 }}>
+                      {/* Track background */}
+                      <div className="absolute" style={{ left: 0, right: 0, top: 14, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)" }} />
+                      {/* Fill bar */}
+                      <div className="absolute" style={{ left: 0, top: 14, height: 4, borderRadius: 2, width: `${pct}%`, background: allDone ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #fbbf24, #f59e0b)", transition: "width 0.5s ease-out", boxShadow: allDone ? "0 0 8px rgba(34,197,94,0.3)" : "0 0 6px rgba(251,191,36,0.2)" }} />
+                      {/* Milestone nodes */}
+                      {milestones.map((m, i) => {
+                        const nodePos = maxPts > 0 ? (m.threshold / maxPts) * 100 : 0;
+                        const reached = earned >= m.threshold;
+                        const canClaim = reached && !m.claimed;
+                        return (
+                          <div key={i} className="absolute flex flex-col items-center" style={{ left: `${nodePos}%`, top: 0, transform: "translateX(-50%)" }}>
+                            <button
+                              onClick={canClaim && onClaimMilestone ? () => onClaimMilestone(m.threshold) : undefined}
+                              disabled={!canClaim}
+                              className="relative flex items-center justify-center rounded-full"
+                              style={{
+                                width: 26, height: 26,
+                                background: m.claimed ? "#22c55e" : reached ? "linear-gradient(135deg, #fbbf24, #f59e0b)" : "rgba(255,255,255,0.06)",
+                                border: `2px solid ${m.claimed ? "#16a34a" : reached ? "#d97706" : "rgba(255,255,255,0.08)"}`,
+                                boxShadow: canClaim ? "0 0 8px rgba(251,191,36,0.4), 0 0 24px rgba(251,191,36,0.15)" : m.claimed ? "0 0 6px rgba(34,197,94,0.3)" : "none",
+                                cursor: canClaim ? "pointer" : "default",
+                                animation: canClaim ? "daily-bonus-pulse 2s ease-in-out infinite" : "none",
+                                zIndex: 2,
+                                transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+                              }}
+                              title={m.claimed ? `Claimed: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}` : reached ? `Claim: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}` : `${m.threshold} pts: ${Object.entries(m.reward).map(([k,v]) => `${v} ${k}`).join(", ")}`}
+                            >
+                              {m.claimed ? <span style={{ fontSize: 12, color: "#fff", fontWeight: 700 }}>✓</span> : <span style={{ fontSize: 12, color: reached ? "#000" : "rgba(255,255,255,0.25)", fontWeight: 700 }}>★</span>}
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Mission checklist — compact flat list */}
+                    <div className="mt-3 space-y-1">
+                      {missions.map(m => (
+                        <div key={m.id} className="flex items-center gap-2 py-0.5 px-1 rounded" style={{ opacity: m.done ? 0.45 : 1 }}>
+                          <span className="flex-shrink-0 w-3.5 h-3.5 rounded-sm flex items-center justify-center" style={{ background: m.done ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.04)", border: `1px solid ${m.done ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}` }}>
+                            {m.done && <span style={{ fontSize: 9, color: "#22c55e" }}>✓</span>}
+                          </span>
+                          <span className="text-xs flex-1" style={{ color: m.done ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.6)", textDecoration: m.done ? "line-through" : "none" }}>
+                            {m.label}
+                          </span>
+                          <span className="text-xs font-mono flex-shrink-0" style={{ color: m.done ? "rgba(255,255,255,0.2)" : "rgba(251,191,36,0.5)", fontSize: 11 }}>
+                            +{m.points}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+
               <MagicDivider />
             </>
           )}
 
+          {/* ─── "What's Next" — single highlighted action ─────────── */}
+          {(() => {
+            const nextAction = allItems.find(i => !i.done && (i.urgent || i.onClaim));
+            const nextFallback = nextAction || allItems.find(i => !i.done && i.onClick);
+            if (!nextFallback || allDone) return null;
+            const item = nextFallback;
+            const accentColor = item.urgent ? "#fbbf24" : "#818cf8";
+            return (
+              <div className="mb-3 pt-2" style={{ animation: entered ? "today-card-enter 0.3s cubic-bezier(0.34,1.56,0.64,1) 50ms both" : "none" }}>
+                <span className="text-xs font-bold uppercase tracking-widest px-1 mb-2 block" style={{ color: `${accentColor}99` }}>Next Up</span>
+                <button
+                  onClick={() => item.onClick?.()}
+                  className="w-full rounded-xl p-4 text-left flex items-center gap-3.5 relative overflow-hidden"
+                  style={{
+                    background: `linear-gradient(135deg, ${accentColor}0D 0%, ${accentColor}05 100%)`,
+                    border: `1px solid ${accentColor}35`,
+                    borderLeft: `3px solid ${accentColor}80`,
+                    cursor: "pointer",
+                    boxShadow: `0 0 12px ${accentColor}15, 0 0 40px ${accentColor}08, inset 0 1px 0 ${accentColor}10`,
+                    animation: `today-next-breathe 3s ease-in-out infinite`,
+                  }}
+                >
+                  {item.icon.startsWith("/") ? (
+                    <img src={item.icon} alt="" width={32} height={32} className="img-render-auto flex-shrink-0" style={{ filter: `drop-shadow(0 0 6px ${accentColor}40)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  ) : (
+                    <span style={{ fontSize: 24, lineHeight: 1, filter: `drop-shadow(0 0 6px ${accentColor}40)` }}>{item.icon}</span>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold" style={{ color: accentColor }}>{item.label}</p>
+                    {item.sub && <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{item.sub}</p>}
+                  </div>
+                  {item.onClaim ? (
+                    <button onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }} className="text-xs font-bold px-4 py-2 rounded-lg flex-shrink-0" style={{ background: `linear-gradient(135deg, ${accentColor}30, ${accentColor}18)`, color: accentColor, border: `1px solid ${accentColor}50`, cursor: "pointer", boxShadow: `0 0 12px ${accentColor}20` }}>
+                      Claim
+                    </button>
+                  ) : item.reward ? (
+                    <span className="text-xs font-mono px-2.5 py-1 rounded-lg flex-shrink-0" style={{ background: `${accentColor}12`, color: `${accentColor}cc`, border: `1px solid ${accentColor}20` }}>
+                      {item.reward}
+                    </span>
+                  ) : (
+                    <span style={{ color: `${accentColor}50`, fontSize: 16 }}>→</span>
+                  )}
+                </button>
+              </div>
+            );
+          })()}
+
+          {/* ─── Flat Checklist (replaces card grid) ───────────────────── */}
           {categories.map((cat, catIdx) => {
             const catAllDone = cat.items.every(i => i.done);
             return (
@@ -1066,7 +1158,7 @@ export default function TodayDrawer({
                 {catIdx > 0 && <MagicDivider />}
 
                 {/* Category header */}
-                <div className="flex items-center gap-1.5 mb-2 px-1" style={{
+                <div className="flex items-center gap-1.5 mb-1.5 px-1" style={{
                   animation: entered ? `today-card-enter 0.3s ease-out ${catIdx * 80}ms both` : "none",
                 }}>
                   <span style={{ fontSize: 13 }}>{cat.icon}</span>
@@ -1092,96 +1184,84 @@ export default function TodayDrawer({
                   {catAllDone && <span className="text-xs" style={{ color: "#4ade80" }}>✓</span>}
                 </div>
 
-                {/* 2-Column Card Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-1">
+                {/* Row cards — full-width cards with depth, arranged vertically */}
+                <div className="space-y-1.5 mb-2">
                   {cat.items.map((item, itemIdx) => (
                     <button
                       key={item.id}
-                      onClick={() => { item.onClick?.(); }}
-                      disabled={!item.onClick}
-                      className="today-item-card rounded-xl p-3 text-left flex flex-col gap-1.5"
+                      onClick={() => item.onClick?.()}
+                      disabled={!item.onClick && item.done}
+                      className="today-item-card w-full rounded-xl px-3.5 py-2.5 text-left flex items-center gap-3 transition-all"
                       style={{
                         background: item.urgent
                           ? "linear-gradient(135deg, rgba(251,191,36,0.06) 0%, rgba(251,191,36,0.02) 100%)"
                           : item.done
-                          ? "linear-gradient(135deg, rgba(74,222,128,0.04) 0%, rgba(74,222,128,0.01) 100%)"
-                          : "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
-                        border: `1px solid ${item.urgent ? "rgba(251,191,36,0.18)" : item.done ? "rgba(74,222,128,0.1)" : "rgba(255,255,255,0.05)"}`,
+                          ? "linear-gradient(135deg, rgba(74,222,128,0.03) 0%, rgba(74,222,128,0.01) 100%)"
+                          : "linear-gradient(135deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%)",
+                        border: `1px solid ${item.urgent ? "rgba(251,191,36,0.18)" : item.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.06)"}`,
+                        borderLeft: `3px solid ${item.urgent ? "rgba(251,191,36,0.5)" : item.done ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.08)"}`,
                         boxShadow: item.urgent
-                          ? "inset 0 1px 0 rgba(251,191,36,0.06)"
-                          : "inset 0 1px 0 rgba(255,255,255,0.03)",
-                        cursor: item.onClick ? "pointer" : item.done ? "default" : "not-allowed",
-                        opacity: item.done && !item.onClick ? 0.55 : 1,
+                          ? "inset 0 1px 0 rgba(251,191,36,0.06), 0 2px 8px rgba(0,0,0,0.15)"
+                          : item.done
+                          ? "inset 0 1px 0 rgba(74,222,128,0.03)"
+                          : "inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 6px rgba(0,0,0,0.1)",
+                        cursor: item.onClick ? "pointer" : "default",
+                        opacity: item.done ? 0.55 : 1,
                         animation: entered
-                          ? `today-card-enter 0.3s ease-out ${catIdx * 80 + (itemIdx + 1) * 50}ms both${item.urgent ? ", today-urgent-pulse 2.5s ease-in-out infinite" : ""}`
+                          ? `today-card-enter 0.3s ease-out ${catIdx * 80 + (itemIdx + 1) * 40}ms both${item.urgent ? ", today-urgent-pulse 2.5s ease-in-out infinite" : ""}`
                           : item.urgent ? "today-urgent-pulse 2.5s ease-in-out infinite" : "none",
                       }}
                     >
-                      {/* Top row: icon + status */}
-                      <div className="flex items-center justify-between">
-                        {item.icon.startsWith("/") ? (
-                          <img src={item.icon} alt="" width={20} height={20} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
-                        ) : (
-                          <span style={{ fontSize: 16, lineHeight: 1 }}>{item.icon}</span>
-                        )}
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style={{
-                          background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
-                          color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
-                          border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
-                          fontSize: 12, fontWeight: 700,
-                          animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
-                        }}>
-                          {item.done ? "✓" : item.urgent ? "!" : "○"}
-                        </span>
-                      </div>
-
-                      {/* Label */}
-                      <p className="text-xs font-semibold leading-tight" style={{
-                        color: item.done ? "rgba(255,255,255,0.35)" : item.urgent ? "#fbbf24" : "#e8e8e8",
-                        textDecoration: item.done ? "line-through" : "none",
-                        textDecorationColor: "rgba(74,222,128,0.3)",
+                      {/* Status dot */}
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style={{
+                        background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
+                        color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
+                        border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
+                        fontSize: 11, fontWeight: 700,
+                        animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
                       }}>
-                        {item.tooltipKey ? <Tip k={item.tooltipKey}>{item.label}</Tip> : item.label}
-                      </p>
+                        {item.done ? "✓" : item.urgent ? "!" : "○"}
+                      </span>
 
-                      {/* Sub + Reward row */}
-                      <div className="flex items-center justify-between mt-auto">
+                      {/* Icon */}
+                      {item.icon.startsWith("/") ? (
+                        <img src={item.icon} alt="" width={22} height={22} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                      ) : (
+                        <span className="flex-shrink-0" style={{ fontSize: 16, lineHeight: 1, width: 22, textAlign: "center" }}>{item.icon}</span>
+                      )}
+
+                      {/* Label + sub */}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold leading-tight" style={{
+                          color: item.done ? "rgba(255,255,255,0.35)" : item.urgent ? "#fbbf24" : "#e8e8e8",
+                          textDecoration: item.done ? "line-through" : "none",
+                          textDecorationColor: "rgba(74,222,128,0.3)",
+                        }}>
+                          {item.tooltipKey ? <Tip k={item.tooltipKey}>{item.label}</Tip> : item.label}
+                        </p>
                         {item.sub && (
-                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.sub}</span>
+                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)", fontSize: 11 }}>{item.sub}</p>
                         )}
-                        {item.reward && !item.done && !item.onClaim && (
-                          <span className="text-xs font-mono flex items-center gap-1 px-1.5 py-0.5 rounded-md" style={{
-                            background: "rgba(167,139,250,0.08)",
-                            color: "rgba(167,139,250,0.7)",
-                            fontSize: 12,
-                            border: "1px solid rgba(167,139,250,0.1)",
-                          }}>
-                            {item.rewardIcon && (
-                              <img src={item.rewardIcon} alt="" width={10} height={10} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-                            )}
-                            {item.reward}
-                          </span>
-                        )}
-                        {!item.sub && !item.reward && !item.onClaim && <span />}
                       </div>
 
-                      {/* Claim button (separate from card navigation) */}
-                      {item.onClaim && !item.done && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }}
-                          className="w-full mt-1 py-1.5 rounded-lg text-xs font-bold"
-                          style={{
-                            background: item.urgent
-                              ? "linear-gradient(135deg, rgba(251,191,36,0.2) 0%, rgba(251,191,36,0.1) 100%)"
-                              : "linear-gradient(135deg, rgba(255,68,68,0.2) 0%, rgba(255,68,68,0.1) 100%)",
-                            color: item.urgent ? "#fbbf24" : "#ff4444",
-                            border: `1px solid ${item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,68,68,0.3)"}`,
-                            cursor: "pointer",
-                          }}
-                        >
+                      {/* Right side: Claim button OR reward badge OR arrow */}
+                      {item.onClaim && !item.done ? (
+                        <button onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }} className="text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0" style={{ background: item.urgent ? "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.1))" : "linear-gradient(135deg, rgba(255,68,68,0.2), rgba(255,68,68,0.1))", color: item.urgent ? "#fbbf24" : "#ff4444", border: `1px solid ${item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,68,68,0.3)"}`, cursor: "pointer" }}>
                           {item.urgent ? "Claim!" : "Claim"}
                         </button>
-                      )}
+                      ) : item.reward && !item.done ? (
+                        <span className="text-xs font-mono flex items-center gap-1 px-2 py-1 rounded-lg flex-shrink-0" style={{
+                          background: "rgba(167,139,250,0.08)",
+                          color: "rgba(167,139,250,0.7)",
+                          fontSize: 11,
+                          border: "1px solid rgba(167,139,250,0.1)",
+                        }}>
+                          {item.rewardIcon && <img src={item.rewardIcon} alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />}
+                          {item.reward}
+                        </span>
+                      ) : item.onClick && !item.done ? (
+                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>→</span>
+                      ) : null}
                     </button>
                   ))}
                 </div>
@@ -1217,8 +1297,11 @@ export default function TodayDrawer({
                 } as React.CSSProperties}
               />
             ))}
-            <p className="relative text-xs font-bold" style={{ color: "#4ade80" }}>
-              All done for today! The forge rests.
+            <p className="relative text-sm font-bold" style={{ color: "#4ade80", textShadow: "0 0 12px rgba(74,222,128,0.4)" }}>
+              All tasks complete.
+            </p>
+            <p className="relative text-xs mt-0.5" style={{ color: "rgba(74,222,128,0.4)" }}>
+              The forge rests. You&apos;ve earned it.
             </p>
           </div>
         )}

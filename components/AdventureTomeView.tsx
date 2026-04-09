@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useDashboard } from "@/app/DashboardContext";
 import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
@@ -51,6 +52,7 @@ export default function AdventureTomeView({
   addToast?: (t: ToastInput) => void;
 } = {}) {
   const _toast = addToast || (() => {});
+  const { reviewApiKey } = useDashboard();
   const [data, setData] = useState<TomeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState<string | null>(null);
@@ -58,7 +60,7 @@ export default function AdventureTomeView({
 
   const fetchTome = useCallback(async () => {
     try {
-      const r = await fetch("/api/adventure-tome", { headers: getAuthHeaders() });
+      const r = await fetch("/api/adventure-tome", { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) {
         const d = await r.json();
         setData(d);
@@ -79,7 +81,7 @@ export default function AdventureTomeView({
     try {
       const r = await fetch("/api/adventure-tome/claim", {
         method: "POST",
-        headers: { ...getAuthHeaders(), "Content-Type": "application/json" },
+        headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
         body: JSON.stringify({ floorId, pct }),
       });
       const result = await r.json();

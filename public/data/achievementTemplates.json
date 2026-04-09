@@ -2470,7 +2470,8 @@
       "condition": {
         "type": "talent_points_spent",
         "count": 1
-      }
+      },
+      "category": "progression"
     },
     {
       "id": "talent_10",
@@ -2482,7 +2483,8 @@
       "condition": {
         "type": "talent_points_spent",
         "count": 10
-      }
+      },
+      "category": "progression"
     },
     {
       "id": "talent_respec",
@@ -2494,7 +2496,8 @@
       "condition": {
         "type": "talent_respec",
         "count": 1
-      }
+      },
+      "category": "progression"
     },
     {
       "id": "tome_first_milestone",
@@ -2506,7 +2509,8 @@
       "condition": {
         "type": "tome_milestone_claimed",
         "count": 1
-      }
+      },
+      "category": "progression"
     },
     {
       "id": "tome_50_percent",
@@ -2518,7 +2522,8 @@
       "condition": {
         "type": "tome_total_percent",
         "count": 50
-      }
+      },
+      "category": "progression"
     },
     {
       "id": "tome_floor_100",
@@ -2530,7 +2535,8 @@
       "condition": {
         "type": "tome_floor_complete",
         "count": 1
-      }
+      },
+      "category": "progression"
     },
     {
       "id": "enchant_first",
@@ -2542,7 +2548,8 @@
       "condition": {
         "type": "enchantments_done",
         "count": 1
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "enchant_10",
@@ -2554,7 +2561,8 @@
       "condition": {
         "type": "enchantments_done",
         "count": 10
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "kanai_first",
@@ -2566,7 +2574,8 @@
       "condition": {
         "type": "kanai_extractions",
         "count": 1
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "kanai_full",
@@ -2578,7 +2587,8 @@
       "condition": {
         "type": "kanai_slots_filled",
         "count": 3
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "mail_first",
@@ -2590,7 +2600,8 @@
       "condition": {
         "type": "mails_sent",
         "count": 1
-      }
+      },
+      "category": "social"
     },
     {
       "id": "mail_10",
@@ -2602,7 +2613,8 @@
       "condition": {
         "type": "mails_sent",
         "count": 10
-      }
+      },
+      "category": "social"
     },
     {
       "id": "expedition_first",
@@ -2614,7 +2626,8 @@
       "condition": {
         "type": "expedition_completions",
         "count": 1
-      }
+      },
+      "category": "exploration"
     },
     {
       "id": "expedition_10",
@@ -2626,7 +2639,8 @@
       "condition": {
         "type": "expedition_completions",
         "count": 10
-      }
+      },
+      "category": "exploration"
     },
     {
       "id": "expedition_ancient",
@@ -2638,7 +2652,8 @@
       "condition": {
         "type": "expedition_tier_ancient",
         "count": 1
-      }
+      },
+      "category": "exploration"
     },
     {
       "id": "craft_skill_100",
@@ -2650,7 +2665,8 @@
       "condition": {
         "type": "profession_skill",
         "count": 100
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "craft_skill_200",
@@ -2662,7 +2678,8 @@
       "condition": {
         "type": "profession_skill",
         "count": 200
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "craft_skill_300",
@@ -2674,7 +2691,8 @@
       "condition": {
         "type": "profession_skill",
         "count": 300
-      }
+      },
+      "category": "crafting"
     },
     {
       "id": "social_5_friends",
@@ -2686,7 +2704,8 @@
       "condition": {
         "type": "friends_count",
         "count": 5
-      }
+      },
+      "category": "social"
     },
     {
       "id": "trade_materials",
@@ -2698,7 +2717,8 @@
       "condition": {
         "type": "trades_completed",
         "count": 1
-      }
+      },
+      "category": "social"
     }
   ],
   "pointMilestones": [

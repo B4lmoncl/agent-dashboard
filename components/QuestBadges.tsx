@@ -79,7 +79,7 @@ const NPC_CONFIG: Record<string, { avatar: string; color: string; label?: string
 };
 
 export function CreatorBadge({ name }: { name: string }) {
-  const npc = NPC_CONFIG[name.toLowerCase()];
+  const npc = NPC_CONFIG[(name || "").toLowerCase()];
   if (npc) {
     return (
       <span
