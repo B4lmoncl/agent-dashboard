@@ -66,7 +66,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
 }) {
   const { users, playerName, reviewApiKey } = useDashboard();
   const loggedIn = playerName && reviewApiKey;
-  const user = loggedIn ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
+  const user = loggedIn ? users.find(u => (u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) : null;
   const gold = user?.gold ?? 0;
   const currentGear = user?.gear;
   const currentTier = GEAR_TIERS_CLIENT.find(g => g.id === (currentGear || "worn"))?.tier ?? 0;

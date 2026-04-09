@@ -1196,7 +1196,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
     }
   };
 
-  const loggedInUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
+  const loggedInUser = users.find(u => (u.name || "").toLowerCase() === (playerName || "").toLowerCase());
   void loggedInUser;
   const cls = (charData?.classId && charData.classId !== "null") ? classesList.find(c => c.id === charData.classId) : null;
 

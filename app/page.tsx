@@ -327,7 +327,7 @@ export default function Dashboard() {
   const playerXpForLevelWatch = useMemo(() => {
     if (!playerName) return 0;
     const pn = (playerName || "").toLowerCase();
-    const u = users.find(usr => usr.id.toLowerCase() === pn || usr.name.toLowerCase() === pn);
+    const u = users.find(usr => (usr.id || "").toLowerCase() === pn || (usr.name || "").toLowerCase() === pn);
     return u?.xp ?? 0;
   }, [users, playerName]);
   useEffect(() => {
@@ -798,7 +798,7 @@ export default function Dashboard() {
 
   // Player-specific stats (logged-in player)
   const playerNameLower = useMemo(() => (playerName || "").toLowerCase(), [playerName]);
-  const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
+  const loggedInUser = useMemo(() => playerName ? users.find(u => (u.id || "").toLowerCase() === playerNameLower || (u.name || "").toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
   const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
   const currentFloorColor = useMemo(() => (FLOORS.find(f => f.id === activeFloor) || FLOORS[1]).color, [activeFloor]);
   useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
@@ -924,7 +924,7 @@ export default function Dashboard() {
     }
     // Class-specific quest filter
     if (playerName) {
-      const currentUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
+      const currentUser = users.find(u => (u.name || "").toLowerCase() === playerName.toLowerCase());
       const playerClassId = currentUser?.classId ?? null;
       result = result.filter(q => !q.classRequired || q.classRequired === playerClassId);
       // Relationship quest filter

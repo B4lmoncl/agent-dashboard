@@ -673,7 +673,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const [loading, setLoading] = useState(true);
 
   const loggedIn = playerName && reviewApiKey;
-  const user = loggedIn ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
+  const user = loggedIn ? users.find(u => (u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) : null;
 
   // Load banners
   useEffect(() => {

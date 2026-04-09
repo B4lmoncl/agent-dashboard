@@ -1805,7 +1805,7 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
   const pending = challenges.filter(c => c.status === "pending");
   const active = challenges.filter(c => c.status === "active");
   const completed = challenges.filter(c => c.status === "completed").slice(0, 5);
-  const uid = playerName.toLowerCase();
+  const uid = (playerName || "").toLowerCase();
 
   return (
     <div className="space-y-4">
