@@ -855,24 +855,6 @@
       }
     },
     {
-      "id": "p-digitale-stille",
-      "template": "board-quest",
-      "title": "Digitale Stille",
-      "type": "personal",
-      "category": "personal",
-      "difficulty": "starter",
-      "minLevel": 1,
-      "vars": {
-        "description": "2 Stunden ohne Social Media. Handy auf lautlos, Apps zu. Ja, wirklich.",
-        "flavor": "Die lautesten Ablenkungen kommen aus den kleinsten Geräten.",
-        "difficulty": "starter"
-      },
-      "rewards": {
-        "xp": 12,
-        "gold": 8
-      }
-    },
-    {
       "id": "f-kalt-erwischt",
       "template": "board-quest",
       "title": "Kalt erwischt",
@@ -1271,7 +1253,7 @@
     {
       "id": "p-budget-check",
       "template": "board-quest",
-      "title": "Gold zählen",
+      "title": "Goldene Bilanz",
       "type": "personal",
       "category": "personal",
       "difficulty": "advanced",
@@ -3379,7 +3361,7 @@
     {
       "id": "p-meisterklasse",
       "template": "board-quest",
-      "title": "Meisterklasse",
+      "title": "Eigene Meisterklasse",
       "type": "personal",
       "category": "personal",
       "vars": {
@@ -3774,22 +3756,6 @@
       "rewards": {
         "xp": 12,
         "gold": 8
-      }
-    },
-    {
-      "id": "l-reverse-engineering",
-      "template": "board-quest",
-      "title": "Reverse Engineering",
-      "type": "learning",
-      "category": "learning",
-      "vars": {
-        "description": "Nimm etwas auseinander (digital oder physisch) und versteh wie es funktioniert. Router, App, Kaffeemaschine.",
-        "flavor": "Die besten Alchemisten beginnen nicht mit dem Brauen. Sie beginnen mit dem Zerlegen. Erst wer versteht was drin ist, kann verstehen was rauskommt.",
-        "difficulty": "advanced"
-      },
-      "rewards": {
-        "xp": 40,
-        "gold": 28
       }
     },
     {
@@ -5137,22 +5103,6 @@
       }
     },
     {
-      "id": "f-kalte-dusche-2",
-      "template": "board-quest",
-      "title": "Frostprüfung",
-      "type": "fitness",
-      "category": "fitness",
-      "vars": {
-        "description": "2 Minuten kalte Dusche am Ende. Atmen nicht vergessen.",
-        "flavor": "Kalt. Ja. Und? Du bist stärker als Wasser.",
-        "difficulty": "intermediate"
-      },
-      "rewards": {
-        "xp": 20,
-        "gold": 12
-      }
-    },
-    {
       "id": "f-sauna",
       "template": "board-quest",
       "title": "Feuerkammer",
@@ -5361,22 +5311,6 @@
       }
     },
     {
-      "id": "f-outdoor-training-2",
-      "template": "board-quest",
-      "title": "Unter freiem Himmel",
-      "type": "fitness",
-      "category": "fitness",
-      "vars": {
-        "description": "Training draußen: Park-Workout, Calisthenics, oder Bootcamp.",
-        "flavor": "Die beste Halle hat kein Dach. Und keinen Mitgliedsbeitrag.",
-        "difficulty": "intermediate"
-      },
-      "rewards": {
-        "xp": 25,
-        "gold": 14
-      }
-    },
-    {
       "id": "f-flextest",
       "template": "board-quest",
       "title": "Biegsamer Stahl",
@@ -5438,22 +5372,6 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
-    },
-    {
-      "id": "f-radfahren-2",
-      "template": "board-quest",
-      "title": "Windreiter",
-      "type": "fitness",
-      "category": "fitness",
-      "vars": {
-        "description": "30 Minuten Radfahren — draußen, nicht Heimtrainer.",
-        "flavor": "Navigatorin Compass: 'Der Weg ist das Ziel. Besonders bergab.'",
-        "difficulty": "intermediate"
-      },
-      "rewards": {
-        "xp": 25,
-        "gold": 14
       }
     },
     {
@@ -7315,7 +7233,7 @@
     {
       "id": "b-5am-challenge",
       "template": "board-quest",
-      "title": "Vor der Dämmerung",
+      "title": "Vor dem ersten Licht",
       "type": "boss",
       "category": "boss",
       "vars": {
@@ -8113,7 +8031,7 @@
     {
       "id": "p-tagebuch-30min",
       "template": "board-quest",
-      "title": "Tintenfluss",
+      "title": "Tintenfluss — Innere Seiten",
       "type": "personal",
       "category": "personal",
       "vars": {
@@ -8129,7 +8047,7 @@
     {
       "id": "p-altes-hobby",
       "template": "board-quest",
-      "title": "Vergessene Flamme",
+      "title": "Vergessene Glut",
       "type": "personal",
       "category": "personal",
       "vars": {
@@ -9084,22 +9002,6 @@
       "rewards": {
         "xp": 12,
         "gold": 8
-      }
-    },
-    {
-      "id": "f-neue-sportart",
-      "template": "board-quest",
-      "title": "Unbekanntes Terrain",
-      "type": "fitness",
-      "category": "fitness",
-      "vars": {
-        "description": "Probiere eine neue Sportart.",
-        "flavor": "Schlecht sein in etwas Neuem ist der erste Schritt.",
-        "difficulty": "intermediate"
-      },
-      "rewards": {
-        "xp": 28,
-        "gold": 16
       }
     },
     {
