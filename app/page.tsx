@@ -993,19 +993,7 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
-        {/* Daily Hub — prominent daily engagement banner */}
-        {loggedInUser && dashView === "questBoard" && (
-          <DailyHub
-            user={loggedInUser}
-            dailyBonusAvailable={dailyBonusAvailable}
-            onClaimDailyBonus={handleClaimDailyBonus}
-            claimingDailyBonus={claimingDailyBonus}
-            dailyMissions={dailyMissions}
-            questsCompletedToday={questsCompletedToday}
-            onNavigate={(v) => setDashView(v as typeof dashView)}
-            onTodayOpen={() => setTodayOpen(true)}
-          />
-        )}
+        {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
