@@ -683,7 +683,7 @@ router.get('/api/player/:name/public-profile', (req, res) => {
 
   // Equipped gear (public)
   const equipped = {};
-  const SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+  const SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'ring', 'boots'];
   for (const slot of SLOTS) {
     const eq = (u.equipment || {})[slot];
     if (eq && typeof eq === 'object') {
