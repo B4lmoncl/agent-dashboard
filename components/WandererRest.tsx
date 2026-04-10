@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
+import ItemTooltip from "@/components/ItemTooltip";
 import type { Quest, ActiveNpc, QuestsData } from "@/app/types";
 import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
@@ -132,6 +133,7 @@ export function WandererRest({
 
   const [npcInfoOpen, setNpcInfoOpen] = useState(false);
   const [claimingQuestId, setClaimingQuestId] = useState<string | null>(null);
+  const [tooltipItem, setTooltipItem] = useState<{ name: string; rarity?: string; icon?: string | null; desc?: string | null; slot?: string | null; stats?: Record<string, number> | null; legendaryEffect?: { type: string; label?: string; value?: number } | null } | null>(null);
 
   // ESC + scroll lock for NPC popup handled by useModalBehavior in page.tsx
   // ESC + scroll lock for NPC info popup
@@ -555,7 +557,11 @@ export function WandererRest({
 
                   {/* Final reward */}
                   {npc.finalReward?.item && (
-                    <div className="mt-4 px-4 py-3 rounded-xl flex items-start gap-3" style={{ background: "rgba(255,215,0,0.04)", border: "1px solid rgba(255,215,0,0.12)" }}>
+                    <button
+                      onClick={() => { const ri = npc.finalReward?.item; if (ri) setTooltipItem({ name: ri.name, rarity: ri.rarity || "legendary", icon: ri.icon || null, desc: ri.desc || null }); }}
+                      className="mt-4 px-4 py-3 rounded-xl flex items-start gap-3 w-full text-left"
+                      style={{ background: "rgba(255,215,0,0.04)", border: "1px solid rgba(255,215,0,0.12)", cursor: "pointer" }}
+                    >
                       {npc.finalReward.item.icon && npc.finalReward.item.icon.startsWith("/") ? <img src={npc.finalReward.item.icon} alt="" width={96} height={96} style={{ imageRendering: "auto", flexShrink: 0, marginTop: 2 }} onError={e => { e.currentTarget.style.display = "none"; if (e.currentTarget.nextElementSibling) (e.currentTarget.nextElementSibling as HTMLElement).style.display = ""; }} /> : null}
                       <span className="text-xl flex-shrink-0 mt-0.5" style={{ display: npc.finalReward.item.icon ? "none" : "" }}>{npc.finalReward.item.emoji || "◇"}</span>
                       <div className="flex-1 min-w-0">
@@ -563,7 +569,7 @@ export function WandererRest({
                         <p className="text-sm mt-0.5 font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>{npc.finalReward.item.name}</p>
                         <p className="text-xs mt-1 italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>{npc.finalReward.item.desc}</p>
                       </div>
-                    </div>
+                    </button>
                   )}
                 </div>
               )}
@@ -727,6 +733,7 @@ export function WandererRest({
           </div>
         </div>
       )}
+      {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
   );
 }

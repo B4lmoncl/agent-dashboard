@@ -1387,11 +1387,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {/* Inventory count */}
-          {charData && (
-            <p className="text-xs text-right mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-              {charData.inventory.length} / 100 slots
-            </p>
-          )}
+          {charData && (() => {
+            const count = charData.inventory.length;
+            const pct = count / 100;
+            const color = pct >= 0.95 ? "#ef4444" : pct >= 0.8 ? "#f59e0b" : "rgba(255,255,255,0.2)";
+            return (
+              <p className="text-xs text-right mb-1 font-mono" style={{ color }}>
+                {count} / 100{pct >= 0.95 ? " — FULL" : pct >= 0.8 ? " — almost full" : ""}
+              </p>
+            );
+          })()}
 
           {/* Filter Tabs */}
           <div className="flex gap-1 mb-2">
@@ -2021,9 +2026,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <div className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}>
                     <Tip k="legendary_effects"><p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Legendary Effects</p></Tip>
                     {(charData.legendaryEffects ?? []).map((e, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <span className="text-xs" style={{ color: "rgba(249,115,22,0.7)" }}>{e.label}</span>
-                        <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{e.itemName}</span>
+                      <div key={i} className="flex items-center justify-between gap-1">
+                        <span className="text-xs flex-1 truncate" style={{ color: "rgba(249,115,22,0.7)" }}>{e.label}{e.value ? ` (${e.value}%)` : ""}</span>
+                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>{e.itemName}</span>
                       </div>
                     ))}
                   </div>
@@ -2406,7 +2411,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
-                                3{"\u2192"}1
+                                Upgrade
                               </button>
                             )}
                             {tier < 5 && (

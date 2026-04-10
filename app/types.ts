@@ -484,7 +484,7 @@ export interface CharacterData {
   xpProgress: number;
   xpInLevel?: number;
   xpForLevel?: number;
-  legendaryEffects?: { label: string; itemName: string }[];
+  legendaryEffects?: { label: string; itemName: string; value?: number }[];
   gearScore?: { gearScore: number; itemLevels: Record<string, number> };
   equippedTitle?: { id: string; name: string; rarity: string; description?: string } | null;
   earnedTitleCount?: number;
