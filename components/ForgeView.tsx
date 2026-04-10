@@ -193,6 +193,7 @@ function getUserInventory(user: unknown): InventoryItem[] {
 export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () => void; onNavigate?: (tab: string) => void }) {
   const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [professions, setProfessions] = useState<ProfessionDef[]>([]);
+  const [showOnlyChosen, setShowOnlyChosen] = useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
@@ -891,6 +892,21 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         </div>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <Tip k="professions"><span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span></Tip>
+          {chosenCount > 0 && (
+            <button
+              onClick={() => setShowOnlyChosen(v => !v)}
+              className="text-xs px-2 py-1 rounded"
+              style={{
+                color: showOnlyChosen ? "#22c55e" : "rgba(255,255,255,0.3)",
+                border: `1px solid ${showOnlyChosen ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}`,
+                background: showOnlyChosen ? "rgba(34,197,94,0.08)" : "transparent",
+                cursor: "pointer",
+              }}
+              title={showOnlyChosen ? "Show all professions" : "Show only your professions"}
+            >
+              {showOnlyChosen ? "My Profs" : "All"}
+            </button>
+          )}
           {dailyBonusAvailable && (
             <TipCustom title="Daily Bonus" icon="⚡" accent="#facc15" body={<p>Your first craft today gives <strong>2x profession XP</strong>. Resets daily at midnight.</p>}>
               <span className="px-2 py-1 rounded font-bold text-xs cursor-help" style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
@@ -960,7 +976,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
         { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"] },
       ].map(cat => {
-        const catProfs = professions.filter(p => cat.ids.includes(p.id));
+        const catProfs = professions.filter(p => cat.ids.includes(p.id) && (!showOnlyChosen || p.chosen));
         if (catProfs.length === 0) return null;
         return (
           <div key={cat.label} className="mb-4">

@@ -286,28 +286,7 @@ export function WandererRest({
       )}
 
       {/* ── Companion Hearth separator ── */}
-      {playerName && (
-        <div style={{ maxWidth: 1000, margin: "0 auto", marginTop: 48, display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
-          <span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ Companion Hearth ◆</span>
-          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
-        </div>
-      )}
-
-      {/* ── Companion's Demands — Dungeon Vault ── */}
-      {playerName && (
-        <CompanionHearthPanel
-          petName={petName}
-          companionType={user?.companion?.type}
-          companionEmoji={user?.companion?.emoji}
-          reviewApiKey={reviewApiKey}
-          onRefresh={refresh}
-          playerName={playerName}
-          quests={quests}
-          streak={streak}
-          user={user}
-        />
-      )}
+      {/* Companion Hearth removed — companion quests are completed via CompanionsWidget */}
 
       {/* ── Divider: Dobbie's Demands ↔ Starweaver ── */}
       <div style={{ maxWidth: 1000, margin: "0 auto", marginTop: 48, display: "flex", alignItems: "center", gap: 12 }}>
