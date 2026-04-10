@@ -2196,7 +2196,7 @@
           },
           "slot": "armor",
           "desc": "Sable hat die Schärpe in einer Nacht gewebt die offiziell nie stattgefunden hat. Das Material stammt aus einer Quelle die sie als \"irrelevant\" bezeichnet. Die Schärpe macht keinen Laut. Genau wie Sable.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-sable-nachtwind-reward.png"
         }
       }
     },
@@ -2302,7 +2302,7 @@
           },
           "slot": "helm",
           "desc": "Professor Quill hat sieben Brillen. Diese ist die achte. Er weiß nicht mehr wo die anderen sechs sind. Die siebte trägt er auf dem Kopf.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-professor-quill-reward.png"
         }
       }
     },
@@ -2389,7 +2389,7 @@
           },
           "slot": "amulet",
           "desc": "Wenn Mara pfeift, stehen Leute stramm. Auch Leute die nicht im Militär waren. Auch Möbel. Die Pfeife hat eine Reichweite von drei Stockwerken und null Gnade.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-eiserne-mara-reward.png"
         }
       }
     },
@@ -2459,7 +2459,7 @@
           },
           "slot": "weapon",
           "desc": "Wurde in sechs Küchen verbannt. Nicht weil er schlecht kocht — weil er besser kocht als die Küchenchefs. Der Löffel hat Brandspuren von Turm zu Turm.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-koch-giovanni-reward.png"
         }
       }
     },
@@ -2530,7 +2530,7 @@
           },
           "slot": "amulet",
           "desc": "Der Sand in der Uhr fließt nicht nach unten. Er fließt nach links. Sera behauptet das sei normal. Niemand widerspricht Sera.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-meisterin-sera-reward.png"
         }
       }
     },
@@ -2619,7 +2619,7 @@
           },
           "slot": "weapon",
           "desc": "Funktioniert. Meistens. Die Prototypen 1 bis 46 tun das nicht mehr. Pip sagt, Nr. 47 sei \"stabil\". Pip sagt das über alle seine Prototypen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-pip-zahnrad-reward.png"
         }
       }
     },
@@ -2689,7 +2689,7 @@
           },
           "slot": "amulet",
           "desc": "Riecht nach Thymian, Salbei und einer leisen Drohung. Martha hat den Beutel seit vierzig Jahren. Der Beutel hat Martha seit länger.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-alte-martha-reward.png"
         }
       }
     },
@@ -2759,7 +2759,7 @@
           },
           "slot": "weapon",
           "desc": "Öffnet Türen, Fenster, Kisten und Diskussionen. Hans hat damit einmal eine Wand repariert. Die Wand steht noch. Hans beschwert sich trotzdem.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-hans-holzfuss-reward.png"
         }
       }
     },
@@ -2812,7 +2812,7 @@
           },
           "slot": "armor",
           "desc": "Regen, Schnee, Hagel — die Post bleibt trocken. Emil auch. Wie, das verrät er nicht. Dass er jede dritte Postkarte liest, verrät er auch nicht.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-brieftraeger-emil-reward.png"
         }
       }
     },
@@ -2882,7 +2882,7 @@
           },
           "slot": "weapon",
           "desc": "Rose spricht mit Pflanzen. Die Gießkanne übersetzt. Zumindest behauptet Rose das. Die Pflanzen haben sich nicht beschwert, was Rose als Zustimmung wertet.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-gaertnerin-rose-reward.png"
         }
       }
     },
@@ -2952,7 +2952,7 @@
           },
           "slot": "weapon",
           "desc": "Schneidet Stoff, Papier und Argumente. Lin hat damit einmal einem König den Saum korrigiert. Der König trug danach kürzere Roben. Freiwillig.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-schneider-lin-reward.png"
         }
       }
     },
@@ -3005,7 +3005,7 @@
           },
           "slot": "shield",
           "desc": "Dreihundertsechzig leere Seiten. Nicht weil nichts passiert ist — weil Kurt zu beschäftigt war, nichts passieren zu lassen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-wachmann-kurt-reward.png"
         }
       }
     },
@@ -3075,7 +3075,7 @@
           },
           "slot": "weapon",
           "desc": "Wurde dreimal gesegnet. Einmal von einem Priester, einmal von Helga, einmal von einem Fleck der danach verschwand. Helga zählt das als drei verschiedene Wunder.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-putzfrau-helga-reward.png"
         }
       }
     },
@@ -3145,7 +3145,7 @@
           },
           "slot": "amulet",
           "desc": "Ein silberner Faden der Geschichten aufnimmt. Oder erfindet. Nadia ist sich nicht immer sicher welches, und das ist laut Nadia \"der beste Teil\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-geschichtenerzaehlerin-nadia-reward.png"
         }
       }
     },
@@ -3215,7 +3215,7 @@
           },
           "slot": "weapon",
           "desc": "Zählt dreimal parallel. Otto vertraut dem Abakus nicht — der Abakus vertraut Otto nicht. Zusammen stimmt die Bilanz. Immer.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-zahlmeister-otto-reward.png"
         }
       }
     },
@@ -3268,7 +3268,7 @@
           },
           "slot": "boots",
           "desc": "Laut Etikett: sieben Meilen pro Schritt. Laut Felix: \"ungefähr drei, bergab\". Das Kleingedruckte erwähnt Garantieausschluss bei Regen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-laufbursche-felix-reward.png"
         }
       }
     },
@@ -3338,7 +3338,7 @@
           },
           "slot": "helm",
           "desc": "Ein Verzeichnis aller Bücher die jemals in der Bibliothek geflüstert wurden. Ada behauptet, Bücher flüstern nachts. Wer nachts in der Bibliothek war, widerspricht nicht.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-bibliothekarin-ada-reward.png"
         }
       }
     },
@@ -3425,7 +3425,7 @@
           },
           "slot": "amulet",
           "desc": "Pfeift in einer Frequenz die gleichzeitig motiviert und einschüchtert. Rex nennt das \"positive Verstärkung\". Teilnehmer nennen es \"akustische Körperverletzung\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-trainer-rex-reward.png"
         }
       }
     },
@@ -3495,7 +3495,7 @@
           },
           "slot": "amulet",
           "desc": "Inhalt: unbekannt. Farbe: wechselnd. Geschmack: \"überraschend\". Yara sagt, man soll sie \"im Ernstfall\" trinken. Was als Ernstfall zählt, definiert Yara situativ.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-apothekerin-yara-reward.png"
         }
       }
     },
@@ -3565,7 +3565,7 @@
           },
           "slot": "shield",
           "desc": "Eine detaillierte Karte eines Ortes den Werner nie besucht hat. Erstaunlich genau. Beunruhigend genau. Werner sagt, er habe \"geraten\". Niemand glaubt Werner.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-kartograph-werner-reward.png"
         }
       }
     },
@@ -3635,7 +3635,7 @@
           },
           "slot": "ring",
           "desc": "Tick trägt sieben Uhren. Diese ist die achte, die er an Freunde verschenkt. Sie geht zwei Minuten vor. Tick sagt: \"Pünktlichkeit ist eine Form der Höflichkeit.\" Die Uhr sagt: tick.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-uhrmacher-tick-reward.png"
         }
       }
     },
@@ -3705,7 +3705,7 @@
           },
           "slot": "armor",
           "desc": "Enthält mehr Namen als das Telefonbuch. Alphabetisch sortiert, nach Nützlichkeit farbcodiert. Rot heißt \"schuldet mir was\". Fast alle Einträge sind rot.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-netzwerkerin-luna-reward.png"
         }
       }
     },
@@ -3758,7 +3758,7 @@
           },
           "slot": "weapon",
           "desc": "Beruhigt Bienen ohne Rauch. Wie, das hat Boris patentiert. Dass er dreimal gestochen wurde während der Entwicklung, steht nicht im Patent.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-imker-boris-reward.png"
         }
       }
     },
@@ -3828,7 +3828,7 @@
           },
           "slot": "amulet",
           "desc": "Was Mei schreibt, bleibt geschrieben. Buchstäblich. Die Tinte lässt sich nicht entfernen. Mei dokumentiert alles. Besonders die Dinge die andere vergessen wollen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-schreiberin-mei-reward.png"
         }
       }
     },
@@ -3900,7 +3900,7 @@
           },
           "slot": "ring",
           "desc": "Öffnet jede Tür im Turm. Grim sagt, das sei \"Handwerk\". Die Bewohner sagen, das sei \"beunruhigend\". Beide haben recht.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-schlosser-grim-reward.png"
         }
       }
     },
@@ -3970,7 +3970,7 @@
           },
           "slot": "helm",
           "desc": "Zeigt den Sternenhimmel von morgen. Oder übermorgen. Celes ist sich nie ganz sicher. Die Vorhersagen stimmen trotzdem — meist rückwirkend.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-astrologe-celes-reward.png"
         }
       }
     },
@@ -4057,7 +4057,7 @@
           },
           "slot": "armor",
           "desc": "Hat einen Boden. Und darunter noch einen. Und darunter noch einen. Dante weiß selbst nicht mehr was ganz unten liegt. Das ist laut Dante \"das Geschäftsmodell\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-schmuggler-dante-reward.png"
         }
       }
     },
@@ -4127,7 +4127,7 @@
           },
           "slot": "weapon",
           "desc": "Passt in die Tasche, zeigt Sterne die mit bloßem Auge unsichtbar sind. Stella hat damit einmal eine Sonnenfinsternis vorhergesagt. Drei Minuten vorher. Ausreichend, findet Stella.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-astronomin-stella-reward.png"
         }
       }
     },
@@ -4197,7 +4197,7 @@
           },
           "slot": "weapon",
           "desc": "Der Krug ist nie leer. Nie voll. Immer genau halb. Gus nennt das Physik. Physiker nennen das unmöglich. Der Krug hat keine Meinung.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-tavernenbesitzer-gus-reward.png"
         }
       }
     },
@@ -4284,7 +4284,7 @@
           },
           "slot": "amulet",
           "desc": "Von jedem Gipfel hat Kaya einen Stein mitgenommen. Dieser ist von einem Berg der keinen Namen hat. Kaya sagt, der Berg bevorzuge es so.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-bergsteigerin-kaya-reward.png"
         }
       }
     },
@@ -4354,7 +4354,7 @@
           },
           "slot": "helm",
           "desc": "Erkennt jede Fälschung. Außer Simons eigene. Die sind laut Simon \"Neuinterpretationen\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-antiquar-simon-reward.png"
         }
       }
     },
@@ -4424,7 +4424,7 @@
           },
           "slot": "weapon",
           "desc": "Stumpf. Absichtlich. Ines sagt, wer damit gewinnt, braucht keine scharfe Klinge. Wer verliert auch nicht.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-fechtmeisterin-ines-reward.png"
         }
       }
     },
@@ -4494,7 +4494,7 @@
           },
           "slot": "shield",
           "desc": "Enthält Pflaster, Salben und einen Zettel: \"Wird schon.\" Kaspar schwört auf die heilende Wirkung des Zettels. Die Salbe hilft auch.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-heiler-kaspar-reward.png"
         }
       }
     },
@@ -4564,7 +4564,7 @@
           },
           "slot": "ring",
           "desc": "Durchsichtige Fäden die niemand sieht. Marco bewegt damit Puppen. Behauptet er. Manche Beobachter sind sich nicht sicher ob nur Puppen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-puppenspieler-marco-reward.png"
         }
       }
     },
@@ -4634,7 +4634,7 @@
           },
           "slot": "amulet",
           "desc": "Zeigt das Gegenteil von Norden. Compass sagt, das sei nützlicher als man denkt. Wenn man weiß wo man NICHT hin will, findet man den Rest.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-navigatorin-compass-reward.png"
         }
       }
     },
@@ -4704,7 +4704,7 @@
           },
           "slot": "shield",
           "desc": "Regeln: achtzehn Seiten. Testspiele: null. Nora sagt, Perfektion brauche Zeit. Das Spiel sagt: Seite 12, Paragraph 4b, Unterabsatz iii.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-spieleerfinderin-nora-reward.png"
         }
       }
     },
@@ -4791,7 +4791,7 @@
           },
           "slot": "weapon",
           "desc": "In der letzten Schlacht zerbrochen. Valka hat ihn nie repariert. Sie sagt, ein Anführer der keinen Stab braucht ist ein besserer Anführer.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-kriegsmeisterin-valka-reward.png"
         }
       }
     },
@@ -4861,7 +4861,7 @@
           },
           "slot": "weapon",
           "desc": "Das beste hat sie behalten. Dieses hier explodiert nur bei ungeraden Temperaturen. Faye nennt das \"vorhersagbar\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-alchemist-faye-reward.png"
         }
       }
     },
@@ -4931,7 +4931,7 @@
           },
           "slot": "weapon",
           "desc": "Hat mehr Verträge unterzeichnet als Schwerter. Aurelius sagt, die Feder sei mächtiger. Die Feder hat keine Meinung. Sie unterschreibt alles.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-diplomat-aurelius-reward.png"
         }
       }
     },
@@ -5001,7 +5001,7 @@
           },
           "slot": "shield",
           "desc": "Das erste Stück das Ignis je geschmiedet hat. Krumm, schwer und ungleichmäßig. Sie bewahrt es auf weil es sie daran erinnert, dass Perfektion langweilig ist.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-schmiedin-ignis-reward.png"
         }
       }
     },
@@ -5071,7 +5071,7 @@
           },
           "slot": "shield",
           "desc": "Zeigt Dinge die nicht da sind. Oder Dinge die da sind aber sich verstecken. Raven benutzt ihn um Geister zu finden. Die Geister finden das unhöflich.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-geisterjagerin-raven-reward.png"
         }
       }
     },
@@ -5158,7 +5158,7 @@
           },
           "slot": "armor",
           "desc": "Jede Seite die man beschreibt ist am nächsten Tag leer. Aeon sagt, das Buch behalte die Einträge — es zeige sie nur nicht. Das klingt nach einer Ausrede. Es ist eine.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-chronist-aeon-reward.png"
         }
       }
     },
@@ -5229,7 +5229,7 @@
           },
           "slot": "amulet",
           "desc": "Cremeweiß, geprägt, leicht kühl. Unter dem Namen steht: \"Ich komme wieder.\" Das ist keine Drohung. Es ist eine Terminankündigung.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-tod-der-hoefliche-reward.png"
         }
       }
     },
@@ -5316,7 +5316,7 @@
           },
           "slot": "amulet",
           "desc": "Macht keinen Laut. Der Träger auch nicht. Nicht weil er nicht kann — weil er nicht will. Die Stille ist ansteckend. Sie ist auch entspannend. Und ein bisschen unheimlich.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-meisterin-der-stille-reward.png"
         }
       }
     },
@@ -5369,7 +5369,7 @@
           },
           "slot": "weapon",
           "desc": "Hat drei Generationen überlebt, zwei Kriege und eine besonders hartnäckige Wurzel. Ernst sagt, der Spaten sei ein Familienmitglied. Der Spaten widerspricht nicht.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-bauer-ernst-reward.png"
         }
       }
     },
@@ -5439,7 +5439,7 @@
           },
           "slot": "boots",
           "desc": "Wer sie trägt, kann tanzen. Nicht gut — aber mit einer Überzeugung die Können überflüssig macht. Vivienne nennt das \"Charisma\". Die Zuschauer nennen es \"mutig\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-tanzlehrerin-vivienne-reward.png"
         }
       }
     },
@@ -5509,7 +5509,7 @@
           },
           "slot": "armor",
           "desc": "Jeder im Turm steht drin. Ohne Ausnahme. Ash sagt, jeder sei verdächtig bis das Gegenteil bewiesen ist. Bisher hat niemand das Gegenteil bewiesen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-detektiv-ash-reward.png"
         }
       }
     },
@@ -5562,7 +5562,7 @@
           },
           "slot": "ring",
           "desc": "Ein gewöhnlicher Stein. Helen stellt damit Fragen die niemand beantworten will. \"Warum?\" ist ihr Lieblingswort. Die zweitbeliebteste Frage ist \"Warum nicht?\"",
-          "icon": null
+          "icon": "/images/icons/unique-npc-philosophin-helen-reward.png"
         }
       }
     },
@@ -5615,7 +5615,7 @@
           },
           "slot": "shield",
           "desc": "Schützt vor Bissen, Kratzern und dem Urteil von Katzen. Finn hat den Handschuh in dreizehn Jahren nie gewaschen. Der Handschuh bevorzugt es so.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-tierpfleger-finn-reward.png"
         }
       }
     },
@@ -5685,7 +5685,7 @@
           },
           "slot": "weapon",
           "desc": "Claude hat dreiundzwanzig Pinsel besessen. Dies ist der einzige der überlebt hat. Nicht weil er besser ist — weil die anderen Claudes \"künstlerischen Prozess\" nicht überlebt haben.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-maler-claude-reward.png"
         }
       }
     },
@@ -5755,7 +5755,7 @@
           },
           "slot": "amulet",
           "desc": "Wer es trägt, wird übersehen. Nicht unsichtbar — nur unwichtig. Echo sagt, Unwichtigkeit sei die beste Tarnung. Echo wurde noch nie auf einer Party eingeladen.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-spion-echo-reward.png"
         }
       }
     },
@@ -5825,7 +5825,7 @@
           },
           "slot": "weapon",
           "desc": "Stimmt auf einen Ton der in keiner Tonleiter existiert. Aria nennt ihn \"den elften Ton\". Musiker nennen ihn \"falsch\". Das Publikum nennt ihn \"seltsam berührend\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-musikerin-aria-reward.png"
         }
       }
     },
@@ -5895,7 +5895,7 @@
           },
           "slot": "weapon",
           "desc": "Nagelt, meißelt, schraubt und hat einmal als Nussknacker gedient. Petra sagt, ein guter Hammer ersetzt zwölf Werkzeuge. Ihr Werkzeugkasten ist trotzdem voll.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-handwerkerin-petra-reward.png"
         }
       }
     },
@@ -5965,7 +5965,7 @@
           },
           "slot": "weapon",
           "desc": "Schreibt Strategien auf jede Oberfläche. Dominik hat damit einmal einen kompletten Schlachtplan auf eine Serviette gezeichnet. Die Serviette gewann.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-coach-dominik-reward.png"
         }
       }
     },
@@ -6018,7 +6018,7 @@
           },
           "slot": "shield",
           "desc": "Ein Stück vom ersten Fass das Björn je gebraut hat. Das Bier darin war laut Björn \"trinkbar\". Laut allen anderen war es \"eine Erfahrung\". Einmalig.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-braumeister-bjorn-reward.png"
         }
       }
     },
@@ -6071,7 +6071,7 @@
           },
           "slot": "armor",
           "desc": "Ein versiegelter Brief ohne Empfänger. Clara sagt, er findet seinen Weg. Der Brief liegt seit drei Jahren auf ihrem Schreibtisch. Clara sagt, das sei \"der Weg\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-postmeisterin-clara-reward.png"
         }
       }
     },
@@ -6124,7 +6124,7 @@
           },
           "slot": "ring",
           "desc": "Ein Ring aus einem echten Rosendorn. Sticht gelegentlich. Thorn sagt, das sei \"ein Feature\". Der Ring erinnert daran dass schöne Dinge wehtutn.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-gaertner-thorn-reward.png"
         }
       }
     },
@@ -6177,7 +6177,7 @@
           },
           "slot": "boots",
           "desc": "Wurde nie zugestellt. Der Inhalt ist vermutlich irrelevant. Swift bewahrt ihn als Erinnerung auf, dass manche Dinge besser ungesagt bleiben.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-bote-swift-reward.png"
         }
       }
     },
@@ -6230,7 +6230,7 @@
           },
           "slot": "armor",
           "desc": "Kein Fleck hält sich auf dieser Schürze. Wein, Tinte, Blut — alles gleitet ab. Agnes sagt, das sei Handwerk. Chemiker sagen, das sei unmöglich.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-waescherin-agnes-reward.png"
         }
       }
     },
@@ -6300,7 +6300,7 @@
           },
           "slot": "ring",
           "desc": "Ein Ring der warm ist. Immer. Auch im Winter. Vulkan hat ihn in seiner Esse gehärtet und nie abkühlen lassen. Der Ring vergisst das Feuer nicht. Wie Vulkan.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-schmied-vulkan-reward.png"
         }
       }
     },
@@ -6353,7 +6353,7 @@
           },
           "slot": "amulet",
           "desc": "Enthält echten Sternenstaub. Oder Glitzer. Nova weigert sich, den Unterschied zu klären. Beides leuchtet im Dunkeln. Beides macht glücklich.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-sterndeuterin-nova-reward.png"
         }
       }
     },
@@ -6406,7 +6406,7 @@
           },
           "slot": "ring",
           "desc": "Magpie weiß nicht was es ist. Es glänzt. Das reicht. Die Tatsache dass drei Juweliere es nicht identifizieren konnten, erhöht laut Magpie nur den Wert.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-sammler-magpie-reward.png"
         }
       }
     },
@@ -6476,7 +6476,7 @@
           },
           "slot": "ring",
           "desc": "Wächst. Langsam, aber messbar. Fern füttert ihn mit Sonnenlicht und Komplimenten. Der Armreif hat mittlerweile zwei Blätter. Fern ist stolz wie eine Mutter.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-botanikerin-fern-reward.png"
         }
       }
     },
@@ -6546,7 +6546,7 @@
           },
           "slot": "ring",
           "desc": "Gibt bei Berührung einen leichten Schlag. Tesla nennt das \"statische Begrüßung\". Andere nennen es \"den Grund warum niemand Tesla die Hand gibt\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-erfinder-tesla-reward.png"
         }
       }
     },
@@ -6616,7 +6616,7 @@
           },
           "slot": "amulet",
           "desc": "Eine Miniatur-Waage die immer leicht nach links kippt. Justina sagt, das sei die Last der Gerechtigkeit. Physiker sagen, das sei ein Fertigungsfehler.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-richterin-justina-reward.png"
         }
       }
     },
@@ -6703,7 +6703,7 @@
           },
           "slot": "weapon",
           "desc": "Brennt ohne Öl. Brennt ohne Docht. Sol hat aufgehört sich zu fragen warum. Die Laterne brennt einfach. Wie Sol.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-leuchtturmwaerter-sol-reward.png"
         }
       }
     },
@@ -6773,7 +6773,7 @@
           },
           "slot": "amulet",
           "desc": "Eine Puppe die ihrem Besitzer ähnelt. Nicht weil Elara ein Foto hatte — weil die Puppe sich \"anpasst\". Elara findet das charmant. Kunden finden das gruselig.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-puppenmacherin-elara-reward.png"
         }
       }
     },
@@ -6860,7 +6860,7 @@
           },
           "slot": "ring",
           "desc": "Hat zwei Seiten. Beide zeigen dasselbe Gesicht. Oder kein Gesicht. Es ändert sich. Der Namenlose sagt, die Münze zeige \"was man sehen will\". Das ist beunruhigend vage.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-wanderer-nobody-reward.png"
         }
       }
     },
@@ -6913,7 +6913,7 @@
           },
           "slot": "amulet",
           "desc": "Ein perfektes Croissant, konserviert in Bernstein. Fritz hat drei Tage daran gearbeitet. Am Hörnchen, nicht am Bernstein. Den Bernstein hat er in fünf Minuten gemacht.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-baecker-fritz-reward.png"
         }
       }
     },
@@ -6966,7 +6966,7 @@
           },
           "slot": "ring",
           "desc": "Öffnet jede Tür im Turm. Schließt sie auch. Magda entscheidet welches. Und Magda entscheidet schnell. Und endgültig.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-haushalterin-magda-reward.png"
         }
       }
     },
@@ -7019,7 +7019,7 @@
           },
           "slot": "weapon",
           "desc": "Die erste Laterne die Pip je angezündet hat. Sie leuchtet nicht mehr. Pip bewahrt sie trotzdem auf. Manche Dinge haben Wert jenseits von Nützlichkeit.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-laternenanzuender-pip-reward.png"
         }
       }
     },
@@ -7089,7 +7089,7 @@
           },
           "slot": "shield",
           "desc": "Ein Bauplan für ein Gebäude das nicht gebaut werden kann. Iris sagt, genau das mache ihn wertvoll. Ingenieure sagen, genau das mache ihn Papier.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-architektin-iris-reward.png"
         }
       }
     },
@@ -7142,7 +7142,7 @@
           },
           "slot": "amulet",
           "desc": "Eine Spielkarte ohne Suite und ohne Zahl. Jest sagt, sie gewinne jedes Spiel. Jest hat noch nie ein Spiel gewonnen. Jest sagt, das liege nicht an der Karte.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-gaukler-jest-reward.png"
         }
       }
     },
@@ -7212,7 +7212,7 @@
           },
           "slot": "armor",
           "desc": "Kein Abschied, sondern eine Liste. \"Dinge die ich dir nicht mehr beibringen kann.\" Sie ist leer. Nicht weil Grau fertig ist — weil der Schüler es jetzt selbst herausfinden muss.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-mentor-grau-reward.png"
         }
       }
     },
@@ -7265,7 +7265,7 @@
           },
           "slot": "weapon",
           "desc": "Luna jongliert immer mit drei Bällen. Dieser ist der dritte. Ohne ihn jongliert Luna nur mit zweien. Das nennt man dann \"werfen und fangen\". Weniger beeindruckend.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-jongleurin-luna-reward.png"
         }
       }
     },
@@ -7335,7 +7335,7 @@
           },
           "slot": "ring",
           "desc": "Verwandelt nichts in Gold. Gold hat dreißig Jahre daran gearbeitet. Das Ergebnis ist ein Stein der sehr hübsch aussieht. Gold nennt das \"Fortschritt\".",
-          "icon": null
+          "icon": "/images/icons/unique-npc-alchemist-gold-reward.png"
         }
       }
     },
@@ -7405,7 +7405,7 @@
           },
           "slot": "helm",
           "desc": "Fängt Träume. Angeblich die schlechten. Morphea gibt keine Garantie welche er fängt. \"Träume haben eigene Meinungen\", sagt Morphea. Das ist kein Trost.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-traumdeuterin-morphea-reward.png"
         }
       }
     },
@@ -7475,7 +7475,7 @@
           },
           "slot": "amulet",
           "desc": "Ein Splitter von Granites Meisterwerk. Welches Meisterwerk, weiß Granite nicht mehr. Er hat zu viele. Dieser Splitter ist der schönste. Sagt Granite über jeden Splitter.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-steinmetz-granite-reward.png"
         }
       }
     },
@@ -7528,7 +7528,7 @@
           },
           "slot": "shield",
           "desc": "Eine Karte ohne Beschriftung. Mappe sagt, das sei Absicht. \"Wer die Karte braucht, kennt den Weg nicht. Wer den Weg kennt, braucht keine Karte.\" Das hilft niemandem.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-kartografin-mappe-reward.png"
         }
       }
     },
@@ -7598,7 +7598,7 @@
           },
           "slot": "ring",
           "desc": "Ein König ohne Brett. Athena trägt ihn als Erinnerung daran, dass ein König allein nutzlos ist. Das ist entweder tiefgründig oder eine Kritik an der Monarchie.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-strategin-athena-reward.png"
         }
       }
     },
@@ -7668,7 +7668,7 @@
           },
           "slot": "armor",
           "desc": "Die letzte Seite seines letzten Buches. Noch leer. Chronos sagt, er warte auf \"das richtige Ende\". Er wartet seit sieben Jahren. Das Ende wartet auch.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-geschichtsschreiber-chronos-reward.png"
         }
       }
     },
@@ -7738,7 +7738,7 @@
           },
           "slot": "shield",
           "desc": "Immer warm. Immer feucht. Immer leicht nach Kamille riechend. Grace hat dreihundert davon gemacht. Diese ist die beste. Oder die zweitbeste. Grace verliert den Überblick.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-heilerin-grace-reward.png"
         }
       }
     },
@@ -7791,7 +7791,7 @@
           },
           "slot": "helm",
           "desc": "Eine Zeitung von morgen. Oder von gestern. Max ist sich nie sicher. Die Schlagzeilen stimmen trotzdem. Meistens. \"Meistens\" ist bei Zeitungsjungen eine gute Quote.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-zeitungsjunge-max-reward.png"
         }
       }
     },
@@ -7878,7 +7878,7 @@
           },
           "slot": "amulet",
           "desc": "Erde von einem Ort den Mutter Erde als \"den Anfang\" bezeichnet. Geologen würden widersprechen. Mutter Erde würde die Geologen eingraben. Im übertragenen Sinne. Vermutlich.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-mutter-erde-reward.png"
         }
       }
     },
@@ -7948,7 +7948,7 @@
           },
           "slot": "ring",
           "desc": "Eine Phiole mit einer Flüssigkeit die nach allem schmeckt. Gleichzeitig. Umami verrät nicht was drin ist. Nicht aus Geheimhaltung — weil er es selbst nicht weiß.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-meisterkoch-umami-reward.png"
         }
       }
     },
@@ -8001,7 +8001,7 @@
           },
           "slot": "amulet",
           "desc": "Das erste Stück Erz das Gruber je gefunden hat. Klein, unscheinbar, nicht besonders wertvoll. Gruber hat es trotzdem einrahmen lassen. Am Hals tragen ist die nächste Stufe.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-bergmann-gruber-reward.png"
         }
       }
     },
@@ -8071,7 +8071,7 @@
           },
           "slot": "amulet",
           "desc": "Ein Stück vom Grenzstein den Erin bewacht. Seit drei Jahren hat niemand die Grenze überquert. Erin ist sich nicht sicher ob das an ihr liegt oder daran dass auf der anderen Seite nichts ist.",
-          "icon": null
+          "icon": "/images/icons/unique-npc-geschuetzt-erin-reward.png"
         }
       }
     }
