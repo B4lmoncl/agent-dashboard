@@ -539,10 +539,10 @@
     "status": "clean"
   },
   "app/page.tsx": {
-    "auditCount": 2,
+    "auditCount": 3,
     "lastAuditDate": "2026-04-10",
-    "findings": "DailyHub import removed. All lazy components have Suspense+ErrorBoundary. Agent doing deep audit for stale state.",
-    "status": "in_progress"
+    "findings": "Dead lootDrop modal removed (30 lines). Dead questsCompletedToday + playerCompletedCount alias removed. Emoji violations fixed (sun, stopwatch). All lazy components have Suspense+ErrorBoundary. 4 modals without useModalBehavior noted (low impact).",
+    "status": "clean"
   },
   "app/types.ts": {
     "auditCount": 1,
