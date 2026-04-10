@@ -723,5 +723,35 @@
     "lastAuditDate": "2026-04-10",
     "findings": "Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
     "status": "clean"
+  },
+  "routes/npcs-misc.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. Feedback endpoint properly secured: server-set userId/timestamp, XSS escaping, 500-entry cap, admin-only GET/PATCH. NPC endpoints read-only. SPA fallback correct.",
+    "status": "clean"
+  },
+  "routes/docs.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Static OpenAPI spec object. No inputs, no logic. Clean.",
+    "status": "clean"
+  },
+  "components/QuestBoard.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Barrel re-export file only. No logic. Clean.",
+    "status": "clean"
+  },
+  "components/AgentCard.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Legacy agent card with useCountUp hook. Not player-critical. Clean.",
+    "status": "clean"
+  },
+  "components/DashboardModals.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
+    "status": "clean"
   }
 }
