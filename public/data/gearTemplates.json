@@ -2918,7 +2918,7 @@
       "legendaryEffect": {
         "type": "night_double_gold",
         "min": 3,
-        "max": 5,
+        "max": 3,
         "label": "Nachtschatten: +{value}% Gold bei Nacht-Quests (23-5 Uhr)"
       },
       "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht.",
@@ -2981,7 +2981,7 @@
       "legendaryEffect": {
         "type": "every_nth_bonus",
         "min": 3,
-        "max": 5,
+        "max": 3,
         "label": "Rhythmus: Jede 5. Quest gibt +{value}% Bonus-XP"
       },
       "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?",
@@ -3043,8 +3043,8 @@
       },
       "legendaryEffect": {
         "type": "auto_streak_shield",
-        "min": 30,
-        "max": 30,
+        "min": 3,
+        "max": 3,
         "label": "Ewige Wacht: Streak-Shield aktiviert sich automatisch ab {value}+ Tagen"
       },
       "flavorText": "Der letzte Wächter von Aethermoor hat nie geschlafen. Seine Rüstung auch nicht.",
@@ -44587,8 +44587,8 @@
       },
       "legendaryEffect": {
         "type": "streak_protection",
-        "min": 5,
-        "max": 15,
+        "min": 3,
+        "max": 3,
         "label": "+{value}% Streak Protection"
       },
       "setId": "legendary"

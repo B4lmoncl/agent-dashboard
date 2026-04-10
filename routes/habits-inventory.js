@@ -497,6 +497,34 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       message = `Enchant applied: +${ve.value} ${ve.stat} for ${ve.durationHours || 24}h!`;
       break;
     }
+    case 'gold_boost_next': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'gold_boost_10', questsRemaining: 1, activatedAt: now() });
+      message = 'Gold Boost aktiv! Nächste Quest gibt +10% Gold.';
+      break;
+    }
+    case 'pity_minus_5': {
+      const gs = state.gachaState?.[uid];
+      if (gs) {
+        gs.pityCounter = Math.max(0, (gs.pityCounter || 0) + 5); // +5 closer to pity
+        message = `Pity-Zähler um 5 erhöht! Aktuell: ${gs.pityCounter}/75.`;
+      } else {
+        message = 'Kein Gacha-Status gefunden.';
+      }
+      break;
+    }
+    case 'rarity_boost_15': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'rarity_boost_15', questsRemaining: 3, activatedAt: now() });
+      message = 'Rarity Boost aktiv! +15% Chance auf seltene Drops für 3 Quests.';
+      break;
+    }
+    case 'streak_recovery_50': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'streak_recovery_50', questsRemaining: 1, activatedAt: now() });
+      message = 'Streak-Rettung bereit! 50% Chance, deinen Streak zu retten falls du ihn verlierst.';
+      break;
+    }
     default: {
       // Unknown effect — consume anyway but note it
       message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
