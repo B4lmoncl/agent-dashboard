@@ -258,9 +258,8 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
     }
     pp.claimedQuests.push(quest.id);
     savePlayerProgress();
-    quest.status = 'in_progress';
-    quest.claimedBy = agentKey;
-    saveQuests();
+    // NOTE: Do NOT set quest.status globally — player quests use per-player tracking.
+    // Global status stays 'open' so other players can still see/claim it.
     console.log(`[quest] ${quest.id} claimed (per-player) by ${agentKey}`);
     return res.json({ ok: true, quest: { ...quest, status: 'in_progress', claimedBy: agentKey } });
   }
