@@ -2019,7 +2019,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-schuppenpanzer"
+        "templateId": "craft-schmied-kristall-kettenhemd"
       },
       "xp": 20,
       "description": "Schmiedet: Kristall-Kettenhemd.",
@@ -2342,7 +2342,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-drachenzahn-kettenhemd"
       },
       "xp": 28,
       "description": "Schmiedet: Drachenzahn-Kettenhemd.",
@@ -2383,7 +2383,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-aether-kettenhemd"
       },
       "xp": 30,
       "description": "Schmiedet: Aether-Kettenhemd.",
@@ -2402,7 +2402,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-seelen-kettenruestung"
       },
       "xp": 30,
       "description": "Schmiedet: Seelen-Kettenrüstung.",
@@ -3661,7 +3661,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserne-stiefel"
+        "templateId": "craft-schneider-leinengewand"
       },
       "xp": 9,
       "description": "Webt: Leinengewand.",
@@ -3801,7 +3801,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerne-marschtreters"
+        "templateId": "craft-schneider-wollgewand"
       },
       "xp": 14,
       "description": "Webt: Wollgewand.",
@@ -4166,7 +4166,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-drachenzahn-kriegsstiefel"
+        "templateId": "craft-schneider-mondschein-gewand"
       },
       "xp": 25,
       "description": "Webt: Mondschein-Gewand.",
@@ -4315,7 +4315,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-riss-geschmiedete-beinschienen"
+        "templateId": "craft-schneider-aethergewand"
       },
       "xp": 34,
       "description": "Webt: Äthergewand.",
@@ -4441,7 +4441,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-seelenstiefel-des-wanderers"
+        "templateId": "craft-schneider-runengewand"
       },
       "xp": 46,
       "description": "Webt: Runengewand.",
@@ -14171,7 +14171,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-brustpanzer"
+        "templateId": "craft-schmied-eiserner-kettenpanzer"
       },
       "xp": 8,
       "trainerCost": 60,
@@ -14191,7 +14191,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-gehaerteter-plattenpanzer"
+        "templateId": "craft-schmied-kristall-kettenpanzer"
       },
       "xp": 16,
       "trainerCost": 465,
@@ -14211,7 +14211,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-drachenschuppen-kettenhemd"
       },
       "xp": 24,
       "description": "Stellt her: Drachenschuppen-Kettenhemd.",
@@ -14547,7 +14547,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserne-stiefel"
+        "templateId": "craft-schneider-leinengewand-des-wanderers"
       },
       "xp": 8,
       "trainerCost": 40,
@@ -14567,7 +14567,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerne-marschtreters"
+        "templateId": "craft-schneider-wollrobe-des-wanderers"
       },
       "xp": 16,
       "trainerCost": 448,
@@ -19349,90 +19349,6 @@
       "xp": 25,
       "description": "Stahl, gehärtet in Drachenschuppen.",
       "desc": "Verstärkter Stahl. Zwei Barren die sich nicht mögen werden zusammengezwungen. Paartherapie am Amboss."
-    },
-    {
-      "id": "cure_leichtleder",
-      "name": "Leichtleder gerben",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "trainerCost": 0,
-      "reqSkill": 1,
-      "materials": {
-        "leichtesleder": 3,
-        "salzgerbung": 1,
-        "grober-faden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "geheiltesleichtleder",
-        "outputAmount": 1
-      },
-      "xp": 8,
-      "description": "Gerbt rohes Leichtleder zu verarbeitetem Material.",
-      "desc": "Gerben ist Geduld in flüssiger Form. Roderic hat davon genug. Von der Geduld, nicht vom Leder."
-    },
-    {
-      "id": "cure_mittleresleder",
-      "name": "Mittleres Leder gerben",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "trainerCost": 125,
-      "reqSkill": 60,
-      "materials": {
-        "mittleresleder": 3,
-        "salzgerbung": 1,
-        "naehfaden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "geheiltesmittleresleder",
-        "outputAmount": 1
-      },
-      "xp": 12,
-      "description": "Gerbt mittleres Leder zu einem geschmeidigen Material.",
-      "desc": "Mittleres Leder gerben. Braucht mehr Salz. Und mehr Stille. Beides hat Roderic."
-    },
-    {
-      "id": "prepare_gewuerzmischung",
-      "name": "Gewürzmischung herstellen",
-      "profession": "koch",
-      "source": "trainer",
-      "trainerCost": 0,
-      "reqSkill": 1,
-      "materials": {
-        "wildfleisch": 1,
-        "feuerwurz": 1,
-        "milde-gewuerze": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "gewuerzmischung",
-        "outputAmount": 2
-      },
-      "xp": 8,
-      "description": "Grundlegende Gewürze für die Küche der Halle.",
-      "desc": "Gewürze mischen. Der erste Schritt. Und der wichtigste. Und der den alle überspringen wollen."
-    },
-    {
-      "id": "prepare_kraeuterbutter",
-      "name": "Kräuterbutter herstellen",
-      "profession": "koch",
-      "source": "trainer",
-      "trainerCost": 125,
-      "reqSkill": 60,
-      "materials": {
-        "kraeuterbuendel": 2,
-        "gewuerzmischung": 1,
-        "milde-gewuerze": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "kraeuterbutter",
-        "outputAmount": 1
-      },
-      "xp": 12,
-      "description": "Verfeinert jedes Gericht. Ein Grundpfeiler der Gilde.",
-      "desc": "Kräuter in Butter. Simpler geht es nicht. Besser auch nicht. Brunas Philosophie in Butterform."
     },
     {
       "id": "recipe-koch-gap-130",
