@@ -485,7 +485,7 @@
       "flavorText": "Riecht nach drei Besitzern und keinem Gerber. Aber Leder zwischen dir und einer Klinge ist Leder.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-armor.png"
+      "icon": "/images/icons/gacha-flickenumhang.png"
     },
     {
       "id": "t1-tunic",
@@ -542,7 +542,7 @@
       "flavorText": "Die Metallplättchen klirren bei jedem Schritt. Leise Angriffe sind damit ausgeschlossen.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-tunic.png"
+      "icon": "/images/icons/gacha-lederschultern.png"
     },
     {
       "id": "t1-amulet",
@@ -691,7 +691,7 @@
       "flavorText": "Tausend Meilen beginnen mit einem Paar Stiefeln, das nicht bei hundert aufgibt.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-boots.png"
+      "icon": "/images/icons/gacha-boots-desert-wraps.png"
     },
     {
       "id": "t1-sandals",
@@ -748,7 +748,7 @@
       "flavorText": "Man hört sie nicht kommen. Man hört sie auch nicht gehen. Nur das leise Klatschen auf nassem Stein.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-sandals.png"
+      "icon": "/images/icons/gacha-boots-leather-boots.png"
     },
     {
       "id": "t2-sword",
@@ -1199,7 +1199,7 @@
       "flavorText": "Zehntausend Ringe, jeder einzeln geschmiedet. Kettenarbeit lehrt Geduld — oder Wahnsinn.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/items/icons/t2-armor.png"
+      "icon": "/images/icons/gacha-flickenumhang.png"
     },
     {
       "id": "t2-brigandine",
@@ -1256,7 +1256,7 @@
       "flavorText": "Von außen Leder, von innen Stahl. Die beste Lüge ist die, die schützt.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/items/icons/t2-brigandine.png"
+      "icon": "/images/icons/gacha-lederschultern.png"
     },
     {
       "id": "t2-amulet",
@@ -1425,7 +1425,7 @@
       "flavorText": "Auf Klingen zu treten ist unangenehm. Diese Stiefel machen es weniger unangenehm.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/items/icons/t2-boots.png"
+      "icon": "/images/icons/gacha-boots-frost-treads.png"
     },
     {
       "id": "t2-strider",
@@ -1482,7 +1482,7 @@
       "flavorText": "Die Waldläufer von Aethermoor hinterlassen keine Spuren. Nur Geschichten.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/items/icons/t2-strider.png"
+      "icon": "/images/icons/gacha-boots-iron-greaves.png"
     },
     {
       "id": "t3-sword",
@@ -1937,7 +1937,7 @@
       "flavorText": "Leicht wie ein Atemzug, hart wie ein Grundsatz. Die alten Minen gaben solches Erz nur einmal her.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/items/icons/t3-armor.png"
+      "icon": "/images/icons/gacha-flickenumhang.png"
     },
     {
       "id": "t3-plate",
@@ -1995,7 +1995,7 @@
       "armorType": "heavy",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t3-plate.png"
+      "icon": "/images/icons/gacha-lederschultern.png"
     },
     {
       "id": "t3-amulet",
@@ -2165,7 +2165,7 @@
       "flavorText": "Der Wind hat keinen Herrn, sagen die Dichter. Diese Stiefel kommen dem am nächsten.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/items/icons/t3-boots.png"
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png"
     },
     {
       "id": "t3-shadow",
@@ -2223,7 +2223,7 @@
       "armorType": "leather",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t3-shadow.png"
+      "icon": "/images/icons/gacha-boots-mage-slippers.png"
     },
     {
       "id": "t4-dawn",
@@ -2539,7 +2539,7 @@
       "armorType": "cloth",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t4-armor.png"
+      "icon": "/images/icons/gacha-flickenumhang.png"
     },
     {
       "id": "t4-heart",
@@ -2666,7 +2666,7 @@
       "armorType": "leather",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t4-boots.png"
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png"
     },
     {
       "id": "t4-excalibur",
@@ -2797,7 +2797,7 @@
       "flavorText": "Der Phoenix stirbt nicht. Er vergisst nur kurz, dass er lebt.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/items/icons/t4-phoenix.png"
+      "icon": "/images/icons/gacha-lederschultern.png"
     },
     {
       "id": "t4-oracle",
@@ -3050,7 +3050,7 @@
       "flavorText": "Der letzte Wächter von Aethermoor hat nie geschlafen. Seine Rüstung auch nicht.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/items/icons/t4-sentinel.png"
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png"
     },
     {
       "id": "t4-midas",
@@ -3336,7 +3336,7 @@
       "rarity": "common",
       "price": 35,
       "desc": "Kratzt. Schützt kaum. Aber du siehst beschäftigt aus.",
-      "icon": "/images/items/icons/gen-sackleinen-wams.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3435,7 +3435,7 @@
       "rarity": "common",
       "price": 25,
       "desc": "Besser als barfuß. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3712,7 +3712,7 @@
       "rarity": "uncommon",
       "price": 85,
       "desc": "Jede Naht erzählt von einem anderen Weg. Keiner davon war kurz.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3831,7 +3831,7 @@
       "rarity": "common",
       "price": 30,
       "desc": "Leicht, billig, und nach drei Tagen Kompost.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3940,7 +3940,7 @@
       "rarity": "uncommon",
       "price": 95,
       "desc": "Warm, weich, und es riecht nur ein bisschen nach Fuchs.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4415,7 +4415,7 @@
       "rarity": "uncommon",
       "price": 110,
       "desc": "Jede Niete einzeln eingeschlagen. Von Hand. Man sieht's.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4475,7 +4475,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Zwei Lagen Kettenglieder. Doppelt so schwer. Doppelt so sicher. Fast.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4653,7 +4653,7 @@
       "rarity": "uncommon",
       "price": 100,
       "desc": "Leise auf Laub. Laut auf Kies. Perfekt ist relativ.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4713,7 +4713,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Metallbeschläge an der Sohle. Gut auf Eis. Schlecht auf Marmor.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4773,7 +4773,7 @@
       "rarity": "uncommon",
       "price": 140,
       "desc": "Metallschuppen auf Leder. Klingt beim Gehen wie leiser Regen.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5238,7 +5238,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Drahtgeflecht zwischen Lederlagen. Federleicht, erstaunlich widerstandsfähig.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5298,7 +5298,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Gewebt aus Fäden des Aetherstroms. Flimmert im Zwielicht.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -5476,7 +5476,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wurzeln weichen dir aus. Oder du ihnen. Schwer zu sagen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5536,7 +5536,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Jeder Schritt fühlt sich an wie auf Wolken. Vielleicht, weil du schwebst. Ein bisschen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -5645,7 +5645,7 @@
       "rarity": "common",
       "price": 75,
       "desc": "Rost überall. Aber unter dem Rost ist Stahl. Unter dem Stahl bist du.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -6106,7 +6106,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Sohlen aus Eisenwurz-Holz. Härter als Stahl, leichter als Erwartungen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -6418,7 +6418,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Die Robe ist nicht schwarz. Sie ist die Abwesenheit von Licht. Ein kleiner, aber feiner Unterschied.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6542,7 +6542,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Gravitationsvorschläge. Keine Gravitationsgesetze.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6602,7 +6602,7 @@
       "rarity": "uncommon",
       "price": 180,
       "desc": "Tausend Meilen. Kein Loch. Wunder gibt es noch.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -6721,7 +6721,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kalt wie der Nordwind. Wärmt von innen, wenn man daran glaubt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -6840,7 +6840,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwer gepanzerte Beinschienen. Der Boden zittert. Oder das bist du.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7138,7 +7138,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Tropft noch. Riecht nach altem Papier und vergessenem Wissen.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7257,7 +7257,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wasserdicht. Nicht wirklich — aber das Wasser zögert kurz.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7436,7 +7436,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Jede Platte eingraviert mit Formeln. Wer sie liest, versteht die Welt besser. Oder wird verrückt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7555,7 +7555,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Nasse Fußspuren. Immer. Auch auf Sand.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7852,7 +7852,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Vibriert bei jedem Schritt. Der Spire singt durch sie hindurch.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7971,7 +7971,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Statische Aufladung bei jedem Schritt. Nicht anfassen nach dem Ausziehen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8209,7 +8209,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Kristallplatten, durchzogen von Energielinien. Pulsiert im Rhythmus des Spire.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8328,7 +8328,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Wer den Spire bestiegen hat, braucht keine Treppen mehr.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8571,7 +8571,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aus Schatten gewebt. Kein Licht dringt hindurch. Kein Schwert auch nicht.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8700,7 +8700,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Deine Schritte machen kein Geräusch. Nicht weil du leise bist — der Boden hört auf zu existieren.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8893,7 +8893,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Jemand hat sie getragen. Jemand, den alle vergessen haben. Auch die Robe.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9072,7 +9072,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Die Konturen verschwimmen. Nicht beschädigt — die Realität hier ist einfach... weicher.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9192,7 +9192,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Deine Schritte hallen nach. Sekunden nachdem du weitergegangen bist.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9489,7 +9489,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Du kommst manchmal an, bevor du losgehst. Das ist verwirrend, aber schnell.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9608,7 +9608,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Gleichzeitig schwer und leicht. Existent und nicht. Schrödingers Rüstung.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9787,7 +9787,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Zwischen den Rissen sieht man andere Orte. Andere Zeiten. Andere Schuhe.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9911,7 +9911,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Die Zeit vergeht. Die Rüstung nicht. Das ist der Deal.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10105,7 +10105,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Am Punkt der Singularität ist alles eins. Deine Schritte auch — sie sind überall gleichzeitig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10467,7 +10467,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Der Boden brennt unter dir. Oder du brennst für ihn. Beides zählt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10705,7 +10705,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jede Seite ein Kapitel. Jedes Kapitel ein Schutz. Lesen auf eigene Gefahr.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10824,7 +10824,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Leise in Bibliotheken. Laut in Schlachten. Der Archivar kennt den Unterschied.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11062,7 +11062,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Brandflecken erzählen von Nachtschichten. Jeder Fleck eine Lektion.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11181,7 +11181,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Standfest am Amboss. Standfest überall. Der Meister wankt nicht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11419,7 +11419,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Verbindet Träger und Welt. Empathie als Rüstung. Klingt sanft. Ist es nicht.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11538,7 +11538,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Deine Schritte hallen weiter als du denkst. Über Grenzen hinweg. Über Welten.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11657,7 +11657,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewebt unter dem Sternenlicht der ersten drei Prüfungen.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11895,7 +11895,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Sechs Sterne unter den Sohlen. Der Pfad leuchtet vor dir.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12014,7 +12014,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Perfekte Sterne. Perfekter Pfad. Perfekt genug.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12252,7 +12252,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Checkpoint drei. Hier trennen sich die Wanderer von den Helden.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12371,7 +12371,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Tausend Schritte zusammen. Keiner allein.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12668,7 +12668,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Zehn Level. Zehn Schritte. Der Weg ist lang, aber du gehst ihn.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12787,7 +12787,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Für die Halbzeit. Schneller jetzt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13025,7 +13025,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Fünfundzwanzig Level Durchhaltevermögen. In Stahl gegossen.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13144,7 +13144,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Dreißig Level unter den Sohlen. Die nächsten zehn werden anders.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13323,7 +13323,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Level 40. Geschafft. Der Höhepunkt der Saison, in Stahl verewigt.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13442,7 +13442,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Geschuppt wie der Wyrm selbst. Prokrastination prallt an ihnen ab.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13502,7 +13502,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Aus Magma gehärtet. Burnout kann dir nichts anhaben — dein Panzer glüht heißer.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13740,7 +13740,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Blendend weiß. Perfekt — fast. Ein einziger Makel macht sie menschlich.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13800,7 +13800,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Aus der Tiefe der Isolation. Wer sie trägt, ist nie wieder allein.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14097,7 +14097,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Jeder Schritt hinterlässt silberne Spuren. Sie verblassen. Wie Mondlicht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14216,7 +14216,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Das Schicksal hat viele Fäden. Dieser Mantel trägt sie alle.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14651,7 +14651,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Nicht aus Stoff. Aus Sternenlicht. Es wärmt dich in der kältesten Nacht.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14780,7 +14780,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Leben vor Tod. Stärke vor Schwäche. Reise vor Ziel.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14908,7 +14908,7 @@
       "source": "faction:echo",
       "shopHidden": true,
       "price": 0,
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "pool": [
@@ -15027,7 +15027,7 @@
       "source": "faction:glut",
       "shopHidden": true,
       "price": 0,
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "pool": [
@@ -15202,7 +15202,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Technisch gesehen ist es unhöflich, jemanden mit Abgrundstahl zu schlagen. Aber technisch gesehen ist es auch unhöflich, in Grüften zu wohnen.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -15261,7 +15261,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Man erkennt Rissgeschmiedetes am leichten Summen. Und daran, dass der vorherige Besitzer aufgehört hat, Fragen zu stellen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -15325,7 +15325,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Der Schneider behauptet, der Stoff habe sich freiwillig gemeldet. Der Stoff behauptet gar nichts, was irgendwie verdächtiger ist.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -15443,7 +15443,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Die Gerber weigern sich zu erzählen, woher das Leder stammt. Die Armschienen weigern sich ebenfalls, was beunruhigender ist.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -15502,7 +15502,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ausgezeichnete Traktion auf instabiler Realität. Auch gut auf nassem Kopfsteinpflaster, falls das relevanter sein sollte.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16608,7 +16608,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eiserne Brustplatte. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16836,7 +16836,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserne Stiefel. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16893,7 +16893,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Gehärtete Eisenstiefel. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16950,7 +16950,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserner Brustpanzer. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17007,7 +17007,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserne Beinschienen. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17121,7 +17121,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Gehärteter Plattenpanzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17235,7 +17235,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerne Marschtreter. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17349,7 +17349,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Beinschienen. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17463,7 +17463,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Königsrüstung. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17520,7 +17520,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerne Sturmstiefel. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17634,7 +17634,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Schuppenpanzer. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17691,7 +17691,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Stiefel. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17862,7 +17862,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Plattenpanzer. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17919,7 +17919,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Stiefel. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18033,7 +18033,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Panzerstiefel. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18147,7 +18147,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Brustplatte. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18204,7 +18204,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Plattenpanzer. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18318,7 +18318,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Königsrüstung. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18375,7 +18375,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Kriegsstiefel. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18432,7 +18432,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Beinschienen. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18603,7 +18603,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Kriegspanzer. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18965,7 +18965,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Panzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19027,7 +19027,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelengeschmiedete Platte. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19213,7 +19213,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Schulterwacht. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19275,7 +19275,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelengeschmiedete Wanderstiefel. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19337,7 +19337,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Schreitstiefel. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19399,7 +19399,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenstiefel des Wanderers. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19461,7 +19461,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelengeschmiedeter Panzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19523,7 +19523,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Marschtritt. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19761,7 +19761,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leinensandalen. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19818,7 +19818,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinenrobe. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19932,7 +19932,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinenschuhe. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19989,7 +19989,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinenpantoffeln. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20046,7 +20046,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinentunika. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20160,7 +20160,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollstiefel. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20217,7 +20217,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollsandalen. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20331,7 +20331,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollmantel. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20388,7 +20388,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollhut. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20445,7 +20445,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollrobe. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20559,7 +20559,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobene Schuhe. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20616,7 +20616,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollschleier. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20673,7 +20673,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobene Treter. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20730,7 +20730,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobene Kutte. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20787,7 +20787,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollkapuze. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20958,7 +20958,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Treter. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21015,7 +21015,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenschuhe. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21072,7 +21072,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenmantel. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21129,7 +21129,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidensandalen. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21186,7 +21186,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenschleier. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21357,7 +21357,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenrobe. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21471,7 +21471,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Pantoffeln. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21528,7 +21528,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenstiefel. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21590,7 +21590,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenrobe. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21652,7 +21652,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Runensandalen. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21776,7 +21776,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Runenschleier. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21962,7 +21962,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Sternenrobe. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22024,7 +22024,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkane Robe. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22210,7 +22210,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Ätherschuhe. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22272,7 +22272,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenwandler-Schuhe. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22396,7 +22396,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkane Schuhe. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22458,7 +22458,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leichtleder-Stiefel. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22572,7 +22572,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leichtleder-Sandalen. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22629,7 +22629,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder-Tunika. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22743,7 +22743,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder-Jacke. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22800,7 +22800,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder-Treter. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22914,7 +22914,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder-Wams. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22971,7 +22971,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jagd-Jacke. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23085,7 +23085,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jagd-Maske. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23142,7 +23142,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jäger-Stiefel. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23199,7 +23199,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder-Kapuze. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23256,7 +23256,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wildnis-Weste. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23313,7 +23313,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder-Treter. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23370,7 +23370,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jagd-Schuhe. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23484,7 +23484,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder-Harnisch. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23598,7 +23598,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wildnis-Stiefel. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23655,7 +23655,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Jacke. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23712,7 +23712,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Rüstung. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23769,7 +23769,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Harnisch. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23997,7 +23997,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Stiefel. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24054,7 +24054,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Maske. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24111,7 +24111,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Schuhe. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24168,7 +24168,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Wams. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24225,7 +24225,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Treter. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24339,7 +24339,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien-Treter. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24463,7 +24463,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenjäger-Stiefel. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24525,7 +24525,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Tritte. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24649,7 +24649,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Harnisch. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24773,7 +24773,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenjäger-Wams. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24835,7 +24835,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Stiefel. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24897,7 +24897,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenjäger-Schuhe. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24959,7 +24959,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien-Rüstung. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25021,7 +25021,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Jacke. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25083,7 +25083,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Mantel. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25839,7 +25839,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Grober Streitkolben. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26352,7 +26352,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Grobes Foliant. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31466,7 +31466,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Plattenpanzer. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31523,7 +31523,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Rüstung. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31756,7 +31756,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Marschtritt. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31818,7 +31818,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Geschmiedete Stiefel. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31875,7 +31875,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerne Treter. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31932,7 +31932,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Treter. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32051,7 +32051,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserne Marschtreters. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32108,7 +32108,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Marschtreters. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32165,7 +32165,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Kriegstiefel. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32222,7 +32222,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leinenschleier des Gelehrten. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32336,7 +32336,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenschleier des Weisen. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32512,7 +32512,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobener Wollschleier. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32626,7 +32626,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Sternenmantel. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32802,7 +32802,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenrobe der Erleuchtung. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32859,7 +32859,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkane Meisterrobe. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32921,7 +32921,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinenpantoffeln des Lesers. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32978,7 +32978,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollstiefel des Reisenden. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33092,7 +33092,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkane Meisterschuhe. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33154,7 +33154,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Einfache Leinenschuhe. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33211,7 +33211,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobene Wollschuhe. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33268,7 +33268,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Schritte. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33791,7 +33791,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Einfacher Lederpanzer. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33905,7 +33905,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Lederwams. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33962,7 +33962,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeitleder-Panzer. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34024,7 +34024,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leichtleder-Wams. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34081,7 +34081,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittleres Leder-Wams. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34138,7 +34138,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Jagdpanzer. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34195,7 +34195,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeitleder-Stiefel. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34257,7 +34257,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Einfache Lederschuhe. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34314,7 +34314,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gehärtete Lederschuhe. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34371,7 +34371,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Treter. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34428,7 +34428,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Raues Leder-Marsch. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34490,7 +34490,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leichtleder-Stiefel. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34547,7 +34547,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittlere Leder-Stiefel. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34604,7 +34604,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Jagdstiefel. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38642,7 +38642,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählern Robe II. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38699,7 +38699,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachen Marschtritt II. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38818,7 +38818,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisern Mantel II. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38875,7 +38875,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählern Stiefel II. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39051,7 +39051,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eisern Treter II. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39165,7 +39165,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachen Panzer II. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39222,7 +39222,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether Schuhe II. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39284,7 +39284,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisern Schleier III. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39341,7 +39341,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählern Wams III. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39398,7 +39398,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachen Sandalen III. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39517,7 +39517,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisern Robe III. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39574,7 +39574,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählern Marschtritt III. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39688,7 +39688,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether Mantel III. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39750,7 +39750,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eisern Stiefel III. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39864,7 +39864,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Woll Robe II. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39921,7 +39921,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seiden Marschtritt II. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40040,7 +40040,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinen Mantel II. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40097,7 +40097,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Woll Stiefel II. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40211,7 +40211,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkan Platte II. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40273,7 +40273,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leinen Treter II. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40387,7 +40387,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seiden Panzer II. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40444,7 +40444,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkan Schuhe II. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40506,7 +40506,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leinen Schleier III. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40563,7 +40563,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Woll Wams III. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40620,7 +40620,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seiden Sandalen III. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40739,7 +40739,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinen Robe III. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40796,7 +40796,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Woll Marschtritt III. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40910,7 +40910,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkan Mantel III. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40972,7 +40972,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinen Stiefel III. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41086,7 +41086,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder Robe II. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41143,7 +41143,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder Marschtritt II. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41262,7 +41262,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder Mantel II. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41319,7 +41319,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder Stiefel II. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41495,7 +41495,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder Treter II. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41666,7 +41666,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien Schuhe II. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41728,7 +41728,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder Schleier III. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41842,7 +41842,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder Sandalen III. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -42018,7 +42018,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder Marschtritt III. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -42132,7 +42132,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien Mantel III. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -42194,7 +42194,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder Stiefel III. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -44394,7 +44394,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Gewoben aus der Asche eines gefallenen Burnout-Kolosses. Riecht nach verbrannter Ambition und Entschlossenheit.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "source": "world_boss:burnout-colossus",
       "affixes": {
         "primary": {
@@ -44462,7 +44462,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Die Schuppen des Prokrastinations-Wyrms sind erstaunlich robust. Vermutlich, weil sie nie benutzt wurden.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "source": "world_boss:procrastination-wyrm",
       "affixes": {
         "primary": {
@@ -44676,7 +44676,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Er hält die Hose oben. Mehr wurde nicht versprochen.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -44835,7 +44835,7 @@
       "price": 15,
       "shopHidden": false,
       "desc": "Jeder Held fängt irgendwo an. Die meisten fangen mit schlechten Schulterpolstern an.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -44949,7 +44949,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Für den Bibliothekar, der weiß, dass manche Bücher zurückschlagen.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45006,7 +45006,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Zehntausend Meilen. Drei Kontinente. Null Blasen. Das Geheimnis? Gute Socken.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45177,7 +45177,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Man wird nicht unsichtbar. Man wird nur sehr, sehr leicht zu übersehen. Der Unterschied ist subtil aber juristisch relevant.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45405,7 +45405,7 @@
       "desc": "Drei Zentimeter Stahl zwischen dir und allem, was dich nicht mag. Der Schmied nannte es \"ausreichend\". Das ist das höchste Lob, das er vergibt.",
       "price": 0,
       "shopHidden": true,
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45462,7 +45462,7 @@
       "desc": "Für die Wache, die 247 Stufen am Tag läuft. Die Sohlen sind aus dem gleichen Material wie die Geduld der Wache: zäh, aber nicht unendlich.",
       "price": 0,
       "shopHidden": true,
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45644,7 +45644,7 @@
       "desc": "Regenfest für genau eine Pfütze. Danach: Kompostierbar.",
       "price": 5,
       "shopHidden": false,
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45792,7 +45792,7 @@
       "desc": "Hundert Meilen. Zweihundert Meilen. Diese Stiefel zählen nicht. Sie laufen einfach.",
       "price": 15,
       "shopHidden": false,
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46077,7 +46077,7 @@
       "desc": "Leise sind sie nicht. Dafür spürt man keine Steine mehr. Oder Zehen.",
       "price": 0,
       "shopHidden": true,
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46248,7 +46248,7 @@
       "desc": "Lautlos. Geruchlos. Geschmacklos, wenn man die Verzierungen betrachtet. Aber effektiv.",
       "price": 0,
       "shopHidden": true,
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46794,7 +46794,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46828,7 +46828,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46862,7 +46862,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46919,7 +46919,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47158,7 +47158,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Aus einem Material, das offiziell nicht existiert. Inoffiziell: sehr stabil.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47192,7 +47192,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47226,7 +47226,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47283,7 +47283,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48092,7 +48092,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48149,7 +48149,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48491,7 +48491,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48548,7 +48548,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48605,7 +48605,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48662,7 +48662,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49517,7 +49517,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49631,7 +49631,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49688,7 +49688,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49973,7 +49973,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50030,7 +50030,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50087,7 +50087,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50144,7 +50144,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51081,7 +51081,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51138,7 +51138,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51500,7 +51500,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51557,7 +51557,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51614,7 +51614,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51676,7 +51676,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53210,7 +53210,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53244,7 +53244,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Funktional. Wenn man großzügig definiert.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53278,7 +53278,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53346,7 +53346,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider den falschen.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53380,7 +53380,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53414,7 +53414,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53471,7 +53471,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53528,7 +53528,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53585,7 +53585,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider den falschen.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54074,7 +54074,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54108,7 +54108,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54142,7 +54142,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54176,7 +54176,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54210,7 +54210,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54244,7 +54244,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Funktional. Wenn man großzügig definiert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54278,7 +54278,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54335,7 +54335,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54392,7 +54392,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Funktional. Wenn man großzügig definiert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54449,7 +54449,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56064,7 +56064,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56132,7 +56132,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56166,7 +56166,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56280,7 +56280,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56337,7 +56337,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56758,7 +56758,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56792,7 +56792,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56826,7 +56826,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56860,7 +56860,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56894,7 +56894,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Funktional. Wenn man großzügig definiert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
           "count": [
@@ -56951,7 +56951,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57008,7 +57008,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57065,7 +57065,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58112,7 +58112,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58237,7 +58237,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58590,7 +58590,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58624,7 +58624,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58658,7 +58658,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58715,7 +58715,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58772,7 +58772,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60088,7 +60088,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60122,7 +60122,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60224,7 +60224,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60258,7 +60258,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60292,7 +60292,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60326,7 +60326,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60394,7 +60394,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60768,7 +60768,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60802,7 +60802,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Jemand hat es abgelegt. Am Straßenrand. Im Regen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60836,7 +60836,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60870,7 +60870,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60904,7 +60904,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60938,7 +60938,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60972,7 +60972,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61006,7 +61006,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61040,7 +61040,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61074,7 +61074,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62264,7 +62264,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62332,7 +62332,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62366,7 +62366,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62400,7 +62400,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62434,7 +62434,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62468,7 +62468,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62808,7 +62808,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62842,7 +62842,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62876,7 +62876,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62910,7 +62910,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62944,7 +62944,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62978,7 +62978,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63012,7 +63012,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63046,7 +63046,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63862,7 +63862,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63896,7 +63896,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63930,7 +63930,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63964,7 +63964,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63998,7 +63998,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64202,7 +64202,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64236,7 +64236,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64270,7 +64270,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64304,7 +64304,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64338,7 +64338,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64848,7 +64848,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64916,7 +64916,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65052,7 +65052,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65086,7 +65086,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65120,7 +65120,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66282,7 +66282,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66339,7 +66339,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66681,7 +66681,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66738,7 +66738,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66795,7 +66795,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66852,7 +66852,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66909,7 +66909,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67764,7 +67764,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67878,7 +67878,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68106,7 +68106,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68163,7 +68163,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68220,7 +68220,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69264,7 +69264,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Immerhin.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69298,7 +69298,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Funktioniert.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69332,7 +69332,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Naja.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69366,7 +69366,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Straßenrand. Immerhin.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69400,7 +69400,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Reicht.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69434,7 +69434,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Tut was es soll.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69468,7 +69468,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69502,7 +69502,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Reicht.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69808,7 +69808,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Straßenrand. Naja.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69842,7 +69842,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Mehr nicht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69876,7 +69876,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Keller. Geht so.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69910,7 +69910,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Händler. Tut was es soll.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69944,7 +69944,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Immerhin.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69978,7 +69978,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Funktioniert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70012,7 +70012,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Funktioniert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70046,7 +70046,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Reicht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70964,7 +70964,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus dem Keller. Tut was es soll.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71032,7 +71032,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Kiste. Funktioniert.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71066,7 +71066,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Naja.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-wanderermantel.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71100,7 +71100,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Immerhin.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71134,7 +71134,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Mehr nicht.",
-      "icon": "/images/icons/gacha-lederschultern.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71372,7 +71372,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Straßenrand. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71406,7 +71406,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Wahrscheinlich.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71440,7 +71440,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Reicht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71474,7 +71474,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Tut was es soll.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71508,7 +71508,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Straßenrand. Geht so.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71542,7 +71542,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Immerhin.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72188,7 +72188,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "vom Straßenrand. Naja.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72222,7 +72222,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Scheune. Wahrscheinlich.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72290,7 +72290,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "vom Straßenrand. Funktioniert.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72460,7 +72460,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Scheune. Naja.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72494,7 +72494,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Immerhin.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72528,7 +72528,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Mehr nicht.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72562,7 +72562,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus dem Keller. Immerhin.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72936,7 +72936,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "aus der Kiste. Mehr nicht.",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72970,7 +72970,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "vom Händler. Tut was es soll.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73072,7 +73072,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "aus der Scheune. Funktioniert.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73106,7 +73106,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Immerhin.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73892,7 +73892,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
-      "icon": "/images/icons/gacha-wanderermantel.png",
+      "icon": "/images/icons/gacha-flickenumhang.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73949,7 +73949,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/icons/gacha-lederschultern.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74006,7 +74006,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
-      "icon": "/images/icons/equip-armor.png",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74348,7 +74348,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74405,7 +74405,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74462,7 +74462,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74519,7 +74519,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
-      "icon": "/images/icons/equip-boots.png",
+      "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
           "count": [
