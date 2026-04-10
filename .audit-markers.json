@@ -125,9 +125,9 @@
     "status": "clean"
   },
   "components/RiftView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "no hooks after return, loading OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "MED: getAuthHeaders() without reviewApiKey on rift/extend (fixed). Rest clean: loading states, disabled buttons with titles, error messages, screen shake, auto-refresh timer, 2-step abandon confirmation.",
     "status": "clean"
   },
   "components/ChallengesView.tsx": {
@@ -707,9 +707,15 @@
     "status": "clean"
   },
   "routes/rift.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "MED: /api/rift/extend missing player lock — added riftExtendLock. Rest is clean: all POST endpoints have locks, tavern-rest checks, level validation, cooldown checks, mythic anti-skip, weekly replay guard.. Cycle 2: verified all frontend calls use reviewApiKey",
+    "status": "clean"
+  },
+  "routes/config-admin.js": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-10",
-    "findings": "MED: /api/rift/extend missing player lock — added riftExtendLock. Rest is clean: all POST endpoints have locks, tavern-rest checks, level validation, cooldown checks, mythic anti-skip, weekly replay guard.",
+    "findings": "Clean. GET-only batch endpoint, no mutations. Sensitive user fields correctly stripped (passwordHash, apiKey, refreshTokens, etc.). Rested XP live-calculated. Modifiers computed only for requesting player (perf optimization). NPC quest chain status correctly per-player. Weekly challenge + expedition correctly inlined.",
     "status": "clean"
   }
 }

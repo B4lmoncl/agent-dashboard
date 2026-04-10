@@ -302,7 +302,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 try {
                   const r = await fetch("/api/rift/extend", {
                     method: "POST",
-                    headers: getAuthHeaders(),
+                    headers: getAuthHeaders(reviewApiKey),
                   });
                   const d = await r.json();
                   if (r.ok) {
