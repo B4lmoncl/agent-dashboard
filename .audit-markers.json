@@ -485,9 +485,9 @@
     "status": "clean"
   },
   "routes/codex.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "discovery logic OK, O(n) scan low-impact",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Cycle 98-100: friends_count unlock added, _dungeonsCompleted→_dungeonCompletions field fix, daily_missions_completed dead condition removed. All 20 active unlock types now verified against backend tracking fields.",
     "status": "clean"
   },
   "lib/state.js": {
