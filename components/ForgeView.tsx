@@ -1023,7 +1023,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* NPC card — clickable to open modal */}
             <button
-              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("craft"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); setRecipeSlotFilter("all"); setRecipeSearch(""); } }}
+              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("craft"); setSelectedRecipeId(null); setShowAllRecipes(false); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); setRecipeSlotFilter("all"); setRecipeSearch(""); } }}
               disabled={locked}
               title={locked ? `Requires Player Level ${prof.unlockCondition?.value || "?"}` : `Open ${prof.npcName}'s workshop`}
               className="w-full p-4 pt-2 text-left"
@@ -1580,6 +1580,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               ];
               // Profession-specific special tabs as smaller buttons
               const specials: { key: typeof npcModalTab; label: string; color: string }[] = [];
+              if (selectedNpc.chosen) specials.push({ key: "reagents" as typeof npcModalTab, label: "Reagents", color: "#f59e0b" });
               if (selectedNpc.id === "schmied") specials.push({ key: "schmiedekunst", label: "Salvage", color: "#ff8c00" });
               if (selectedNpc.id === "verzauberer") {
                 specials.push({ key: "enchanting", label: "Enchant", color: "#a855f7" });
@@ -1619,7 +1620,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 {/* Not enrolled gate */}
                 {!selectedNpc.chosen && (
                   <div className="px-5 py-4 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                    <p className="text-sm font-semibold mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>You haven&apos;t learned this profession yet.</p>
+                    <p className="text-sm font-semibold mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>Du stehst vor der Werkstatt, aber die Tür ist zu.</p>
                     <button
                       onClick={() => setConfirmProf(selectedNpc)}
                       disabled={choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots}
@@ -1628,7 +1629,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     >
                       Choose {selectedNpc.name}
                     </button>
-                    <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Browse recipes below to see what this profession offers.</p>
+                    <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Du kannst schon mal reinschauen. Anfassen darfst du nichts.</p>
                   </div>
                 )}
                 {/* ─── WoW-style 2-Panel: Left=Recipe List, Right=Detail ───── */}
@@ -1640,9 +1641,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   const selectedRecipe = selectedRecipeId ? profRecipes.find(r => r.id === selectedRecipeId) : null;
 
                   return (
-                    <div className="flex" style={{ minHeight: 400, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    <div className="flex" style={{ minHeight: 350, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                       {/* ── Left Panel: Recipe List ──────────────────────── */}
-                      <div className="flex-shrink-0 overflow-y-auto border-r" style={{ width: 240, maxHeight: 500, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                      <div className="flex-shrink-0 overflow-y-auto border-r" style={{ width: "min(240px, 35%)", maxHeight: 450, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
                         {/* Header: count + toggle */}
                         <div className="sticky top-0 px-3 py-2 flex items-center justify-between" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.05)", zIndex: 2 }}>
                           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{displayRecipes.length} recipes</span>
@@ -1684,7 +1685,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <div className="flex-1 overflow-y-auto p-4" style={{ maxHeight: 500, scrollbarWidth: "thin" }}>
                         {!selectedRecipe ? (
                           <div className="flex items-center justify-center h-full">
-                            <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Select a recipe from the list</p>
+                            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.15)" }}>Wähl ein Rezept aus der Liste. Die Werkbank wartet.</p>
                           </div>
                         ) : (() => {
                           const isHidden = (selectedRecipe as unknown as Record<string, unknown>).hidden;
@@ -1716,7 +1717,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                     const enough = owned >= (needed as number);
                                     return (
                                       <div key={matId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.02)" }}>
-                                        {mat?.icon && <img src={`/images/icons/${mat.icon}`} alt="" width={18} height={18} className="img-render-auto flex-shrink-0" onError={hideOnError} />}
+                                        {mat?.icon && <img src={mat.icon.startsWith("/") ? mat.icon : `/images/icons/${mat.icon}`} alt="" width={18} height={18} className="img-render-auto flex-shrink-0" onError={hideOnError} />}
                                         <span className="text-xs flex-1" style={{ color: enough ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.4)" }}>{mat?.name || matId}</span>
                                         <span className="text-xs font-mono" style={{ color: enough ? "#22c55e" : "#ef4444" }}>{owned}/{needed as number}</span>
                                       </div>
@@ -1754,7 +1755,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                     ))}
                                   </div>
                                   <button
-                                    onClick={() => handleCraft(selectedRecipe.id)}
+                                    onClick={() => handleCraft(selectedRecipe.id, craftCount)}
                                     disabled={!canCraft || craftProgress !== null}
                                     className="flex-1 text-sm font-bold py-2.5 rounded-lg"
                                     style={{
@@ -1770,14 +1771,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 </div>
                               )}
 
-                              {/* Cast bar (reuse existing) */}
-                              {craftProgress !== null && (
-                                <div className="mt-2">
-                                  <div className="craft-cast-bar rounded-full overflow-hidden" style={{ height: 8, background: "rgba(255,255,255,0.06)" }}>
-                                    <div className="h-full rounded-full craft-cast-fill" style={{ width: `${craftProgress}%`, background: `linear-gradient(90deg, ${selectedNpc.color}88, ${selectedNpc.color})` }} />
+                              {/* Cast bar — uses CSS scaleX animation */}
+                              {craftProgress !== null && (() => {
+                                const castMs = craftProgress.total ?? 3000;
+                                return (
+                                  <div className="mt-2">
+                                    <div className="craft-cast-bar rounded-full overflow-hidden" style={{ height: 8, background: "rgba(255,255,255,0.06)" }}>
+                                      <div className="h-full rounded-full" style={{ width: "100%", background: `linear-gradient(90deg, ${selectedNpc.color}88, ${selectedNpc.color})`, transformOrigin: "left", animation: `craft-cast-fill ${castMs}ms linear forwards` }} />
+                                    </div>
+                                    <p className="text-xs text-center mt-1 font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                                      {craftProgress.current > 1 ? `${craftProgress.current - 1}/${craftProgress.total ? Math.ceil(castMs / 1000) : ""}` : "Crafting..."}
+                                    </p>
                                   </div>
-                                </div>
-                              )}
+                                );
+                              })()}
 
                               {/* Craft result */}
                               {craftResult && (
