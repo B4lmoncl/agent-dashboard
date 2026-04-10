@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import ItemTooltip from "@/components/ItemTooltip";
+import type { TooltipItem } from "@/components/ItemTooltip";
 import { useDashboard } from "@/app/DashboardContext";
 import { getUserLevel, formatLegendaryLabel } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -154,6 +156,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   // Collect result
   const [collectResult, setCollectResult] = useState<CollectResult | null>(null);
+  const [tooltipItem, setTooltipItem] = useState<TooltipItem | null>(null);
   const [confirmCancel, setConfirmCancel] = useState(false);
 
   // Reset confirmation when active run changes
@@ -421,16 +424,16 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               </span>
             )}
             {collectResult.rewards.gearDropItem && (
-              <span className="text-xs px-2 py-1 rounded font-semibold" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7" }}>
+              <button onClick={() => { const g = collectResult.rewards.gearDropItem as Record<string, unknown>; setTooltipItem({ name: (g.name as string) || "Gear", rarity: (g.rarity as string) || "common", icon: (g.icon as string) || null, slot: (g.slot as string) || null, stats: (g.stats as Record<string, number>) || null }); }} className="text-xs px-2 py-1 rounded font-semibold" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7", cursor: "pointer" }}>
                 {(collectResult.rewards.gearDropItem as { name?: string; rarity?: string }).name ?? "Gear"} ({(collectResult.rewards.gearDropItem as { rarity?: string }).rarity ?? "common"})
-              </span>
+              </button>
             )}
           </div>
 
           {collectResult.uniqueDrop && (
-            <div className="text-xs mt-1 px-3 py-2 rounded-lg font-semibold" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", color: "#fbbf24" }}>
+            <button onClick={() => { const u = collectResult.uniqueDrop as Record<string, unknown>; setTooltipItem({ name: (u.name as string) || "Unique", rarity: "unique", icon: (u.icon as string) || null, slot: (u.slot as string) || null, stats: (u.stats as Record<string, number>) || null, desc: (u.desc as string) || null, flavorText: (u.flavorText as string) || null }); }} className="text-xs mt-1 px-3 py-2 rounded-lg font-semibold w-full text-left" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", color: "#fbbf24", cursor: "pointer" }}>
               Unique Item Found: <strong>{collectResult.uniqueDrop.name}</strong> ({collectResult.uniqueDrop.slot})
-            </div>
+            </button>
           )}
 
           {collectResult.bonusAwarded && (
@@ -963,6 +966,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           </div>
         </div>
       )}
+      {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
   );
 }
