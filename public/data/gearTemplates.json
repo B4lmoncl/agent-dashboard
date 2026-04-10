@@ -16450,7 +16450,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 5,
+        "max": 3,
         "label": "+X% Chance auf doppelte Quest-Rewards"
       },
       "setId": "legendary"
@@ -16517,7 +16517,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "+X% Loot Drop Chance"
       },
       "setId": "legendary"
@@ -16594,7 +16594,7 @@
       "legendaryEffect": {
         "type": "companion_bond_boost",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "+X% Companion Bond XP"
       },
       "setId": "legendary"
@@ -43367,7 +43367,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "+{value}% Crit Chance"
       },
       "setId": "master"
@@ -43657,7 +43657,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "+{value}% Crit Chance"
       },
       "setId": "legendary"
@@ -43719,7 +43719,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "+{value}% Crit Chance"
       },
       "setId": "legendary"
@@ -44306,7 +44306,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "+{value}% XP"
       },
       "setId": "legendary"
@@ -44379,7 +44379,7 @@
       "legendaryEffect": {
         "type": "companion_bond_boost",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "+{value}% Bond XP"
       },
       "setId": "legendary"
@@ -44660,8 +44660,8 @@
       },
       "legendaryEffect": {
         "type": "decay_reduction",
-        "min": 5,
-        "max": 12,
+        "min": 3,
+        "max": 3,
         "label": "-{value}% Forge Decay"
       },
       "setId": "legendary"
@@ -50533,7 +50533,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 5,
-        "max": 12,
+        "max": 5,
         "label": "-{value}% Forge Decay"
       },
       "setId": "legendary"
@@ -50771,7 +50771,7 @@
       "legendaryEffect": {
         "type": "salvage_bonus",
         "min": 5,
-        "max": 10,
+        "max": 5,
         "label": "+{value}% Salvage"
       },
       "setId": "legendary"
@@ -50947,7 +50947,7 @@
       "legendaryEffect": {
         "type": "material_double",
         "min": 3,
-        "max": 8,
+        "max": 5,
         "label": "+{value}% Double Material"
       },
       "setId": "legendary"
@@ -51185,7 +51185,7 @@
       "legendaryEffect": {
         "type": "salvage_bonus",
         "min": 5,
-        "max": 10,
+        "max": 5,
         "label": "+{value}% Salvage"
       },
       "setId": "legendary"
@@ -51247,7 +51247,7 @@
       "legendaryEffect": {
         "type": "companion_bond_boost",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "+{value}% Bond XP"
       },
       "setId": "legendary"
@@ -51423,7 +51423,7 @@
       "legendaryEffect": {
         "type": "cooldown_reduction",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "-{value}% Cooldown"
       },
       "setId": "legendary"
@@ -51661,7 +51661,7 @@
       "legendaryEffect": {
         "type": "material_double",
         "min": 3,
-        "max": 8,
+        "max": 5,
         "label": "+{value}% Double Material"
       },
       "setId": "legendary"
@@ -51723,7 +51723,7 @@
       "legendaryEffect": {
         "type": "companion_bond_boost",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "+{value}% Bond XP"
       },
       "setId": "legendary"
