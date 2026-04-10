@@ -51,6 +51,24 @@ function getActiveModifier(weekId) {
   const modifiers = WEEKLY_DATA.weeklyChallenge?.weeklyModifiers || [];
   if (modifiers.length === 0) return null;
   const weekSeed = getWeekNumber(weekId);
+
+  // Pick modifier that matches the active template's primary quest type
+  // This prevents "Crafting modifier + Fitness stages" mismatches
+  const templates = WEEKLY_DATA.weeklyChallenge?.templates || [];
+  const template = templates.length > 0 ? templates[weekSeed % templates.length] : null;
+  if (template) {
+    const primaryType = template.stages?.[0]?.requirement?.questType;
+    if (primaryType) {
+      const matched = modifiers.find(m => m.bonusType === primaryType);
+      if (matched) return matched;
+    }
+    // For "total_quests" or "unique_types" stages, use variety/balance modifiers
+    const stageType = template.stages?.[0]?.requirement?.type;
+    if (stageType === 'total_quests' || stageType === 'unique_types') {
+      const generic = modifiers.find(m => m.bonusType === 'variety' || m.bonusType === 'balance');
+      if (generic) return generic;
+    }
+  }
   return modifiers[weekSeed % modifiers.length];
 }
 

@@ -80,7 +80,7 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: "min(320px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: "100%", width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
       <div className="flex-1 min-w-0">
@@ -96,7 +96,7 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
   return (
     <div
       className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #252525, #1a1a08)", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3), 0 0 20px rgba(245,158,11,0.1)", maxWidth: "min(360px, calc(100vw - 48px))", width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
+      style={{ background: "linear-gradient(135deg, #252525, #1a1a08)", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3), 0 0 20px rgba(245,158,11,0.1)", maxWidth: "100%", width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
       onClick={() => { if (onAchievementClick && achievement.id) { onAchievementClick(achievement.id); onClose(); } }}
     >
       {/* Achievement shimmer sweep */}
@@ -122,7 +122,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
   return (
     <div
       className="rounded-xl px-4 py-3 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 8px 32px rgba(139,92,246,0.2)", maxWidth: "min(320px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: "#252525", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 8px 32px rgba(139,92,246,0.2)", maxWidth: "100%", width: "100%" }}
     >
       <div className="flex items-start gap-3">
         <span className="text-2xl flex-shrink-0">—</span>
@@ -170,7 +170,7 @@ function ItemToastContent({ toast, onClose }: { toast: { itemName: string; messa
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: "min(340px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: "100%", width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/")
         ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -188,7 +188,7 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-2 shadow-2xl"
-      style={{ background: "#1a1a1a", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)", maxWidth: "min(280px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: "#1a1a1a", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)", maxWidth: "100%", width: "100%" }}
     >
       <span style={{ fontSize: "16px" }}>—</span>
       <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{message}</span>
@@ -207,7 +207,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
           background: "linear-gradient(135deg, #2a1028 0%, #1e0a20 50%, #2a1028 100%)",
           border: "1px solid rgba(255,107,157,0.6)",
           boxShadow: "0 0 24px rgba(255,107,157,0.35), 0 8px 32px rgba(255,107,157,0.2), inset 0 0 20px rgba(255,107,157,0.05)",
-          maxWidth: "min(380px, calc(100vw - 48px))",
+          maxWidth: "100%",
           width: "100%",
           animation: "reward-burst-enter 0.4s ease-out",
         }}
@@ -229,7 +229,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: "#1e1a2e", border: "1px solid rgba(255,107,157,0.3)", boxShadow: "0 8px 32px rgba(255,107,157,0.1)", maxWidth: "min(340px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: "#1e1a2e", border: "1px solid rgba(255,107,157,0.3)", boxShadow: "0 8px 32px rgba(255,107,157,0.1)", maxWidth: "100%", width: "100%" }}
     >
       <span className="text-2xl flex-shrink-0">{toast.companionEmoji}</span>
       <div className="flex-1 min-w-0">
@@ -246,7 +246,7 @@ function ErrorToastContent({ message, onClose, onRetry }: { message: string; onC
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: "#2a1010", border: "1px solid rgba(239,68,68,0.5)", boxShadow: "0 8px 32px rgba(239,68,68,0.15)", maxWidth: "min(320px, calc(100vw - 48px))", width: "100%" }}
+      style={{ background: "#2a1010", border: "1px solid rgba(239,68,68,0.5)", boxShadow: "0 8px 32px rgba(239,68,68,0.15)", maxWidth: "100%", width: "100%" }}
     >
       <span className="text-lg flex-shrink-0" style={{ color: "#ef4444" }}>!</span>
       <p className="text-sm font-medium flex-1" style={{ color: "#fca5a5" }}>{message}</p>
@@ -264,17 +264,17 @@ function ErrorToastContent({ message, onClose, onRetry }: { message: string; onC
 function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: ToastItem; index: number; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    // Trigger enter animation
     const enterTimer = setTimeout(() => setVisible(true), 20);
-    // Auto-dismiss
     const duration = TOAST_DURATION[toast.type];
-    const dismissTimer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setExiting(true);
       setTimeout(() => onRemove(toast.id), 300);
     }, duration);
-    return () => { clearTimeout(enterTimer); clearTimeout(dismissTimer); };
+    return () => { clearTimeout(enterTimer); if (timerRef.current) clearTimeout(timerRef.current); };
   }, [toast.id, toast.type, onRemove]);
 
   const handleClose = useCallback(() => {
@@ -282,15 +282,28 @@ function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: T
     setTimeout(() => onRemove(toast.id), 300);
   }, [toast.id, onRemove]);
 
+  const handleExpand = useCallback(() => {
+    setExpanded(e => !e);
+    // Pause auto-dismiss when expanded
+    if (!expanded && timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, [expanded]);
+
   return (
     <div
+      onClick={handleExpand}
       style={{
         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         opacity: visible && !exiting ? 1 : 0,
         transform: visible && !exiting ? "translateX(0)" : "translateX(40px)",
         marginBottom: 8,
         pointerEvents: "auto",
+        cursor: "pointer",
+        maxWidth: expanded ? "min(480px, calc(100vw - 48px))" : undefined,
       }}
+      title={expanded ? "Click to collapse" : "Click to expand"}
     >
       {toast.type === "flavor" && <FlavorToastContent toast={toast} onClose={handleClose} />}
       {toast.type === "achievement" && <AchievementToastContent achievement={toast.achievement} onClose={handleClose} onAchievementClick={onAchievementClick} />}
@@ -316,7 +329,7 @@ export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: T
         bottom: 24,
         right: 24,
         pointerEvents: "none",
-        maxWidth: "min(380px, calc(100vw - 48px))",
+        maxWidth: "100%",
       }}
     >
       {toasts.map((toast, i) => (

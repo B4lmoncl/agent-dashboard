@@ -103,15 +103,15 @@ const SLOT_LABELS: Record<string, string> = {
 };
 
 // ─── Synergy hints (profession pairing suggestions) ─────────────────────────
-const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
-  schmied: { partner: "verzauberer", label: "Gear Mastery" },
-  verzauberer: { partner: "schmied", label: "Gear Mastery" },
-  schneider: { partner: "verzauberer", label: "Arcane Mastery" },
-  alchemist: { partner: "koch", label: "Sustenance" },
-  koch: { partner: "alchemist", label: "Sustenance" },
-  lederverarbeiter: { partner: "alchemist", label: "Wilderness" },
-  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery" },
-  juwelier: { partner: "alchemist", label: "Transmutation" },
+const SYNERGY_HINTS: Record<string, { partner: string; label: string; reason: string }> = {
+  schmied: { partner: "verzauberer", label: "Gear Mastery", reason: "Du schmiedest die Rüstung, der Verzauberer verbessert sie. Permanente Enchants auf selbst geschmiedeten Plates sind der schnellste Weg zu hohem Gear Score — ohne Handelskosten." },
+  verzauberer: { partner: "schmied", label: "Gear Mastery", reason: "Deine Enchants sind nur so gut wie das Gear darunter. Ein Schmied liefert dir die Rüstung, du machst sie legendär. Permanente Verzauberungen auf frisch geschmiedeter Platte = maximaler Gear Score." },
+  schneider: { partner: "verzauberer", label: "Arcane Mastery", reason: "Stoff-Rüstung hat den besten XP-Bonus pro Piece (+1% via Cloth Trait). Der Verzauberer packt noch Enchants drauf. Zusammen: beste XP-Multiplikator-Kombi im Spiel." },
+  alchemist: { partner: "koch", label: "Sustenance", reason: "Tränke boosten einzelne Stats temporär, Mahlzeiten geben breite Buffs. Beides gleichzeitig aktiv = du stackst Alchemie-Präzision mit Koch-Breite. Kein anderes Paar gibt dir so viele aktive Buffs." },
+  koch: { partner: "alchemist", label: "Sustenance", reason: "Deine Mahlzeiten geben breite Stat-Buffs, seine Tränke präzise Einzel-Boosts. Zusammen deckst du alle 8 Stats ab. Beide Berufe sind Nebenberufe — belegen keinen der 2 Hauptslots." },
+  lederverarbeiter: { partner: "alchemist", label: "Wilderness", reason: "Leder-Rüstung hat den besten Ausdauer-Bonus (Forge-Decay-Schutz). Alchemie-Tränke kompensieren die fehlende Kraft. Beides braucht dieselben Wildnis-Materialien — du farmst einmal, profitierst doppelt." },
+  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery", reason: "Du schmiedest die Waffe, der Lederverarbeiter den Griff. Waffen + Schilde vom Waffenschmied plus Verstärkungen vom Lederverarbeiter = komplettes Offensiv-Setup aus einer Hand." },
+  juwelier: { partner: "alchemist", label: "Transmutation", reason: "Gems sockeln ist teuer — der Alchemist liefert Transmutations-Materialien billiger als der Markt. Beide Berufe teilen seltene Kristall-Reagenzien. Zusammen: Gems + Tränke aus denselben Farm-Runs." },
 };
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
@@ -193,6 +193,7 @@ function getUserInventory(user: unknown): InventoryItem[] {
 export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () => void; onNavigate?: (tab: string) => void }) {
   const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [professions, setProfessions] = useState<ProfessionDef[]>([]);
+  const [showOnlyChosen, setShowOnlyChosen] = useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
@@ -891,6 +892,21 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         </div>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <Tip k="professions"><span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span></Tip>
+          {chosenCount > 0 && (
+            <button
+              onClick={() => setShowOnlyChosen(v => !v)}
+              className="text-xs px-2 py-1 rounded"
+              style={{
+                color: showOnlyChosen ? "#22c55e" : "rgba(255,255,255,0.3)",
+                border: `1px solid ${showOnlyChosen ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}`,
+                background: showOnlyChosen ? "rgba(34,197,94,0.08)" : "transparent",
+                cursor: "pointer",
+              }}
+              title={showOnlyChosen ? "Show all professions" : "Show only your professions"}
+            >
+              {showOnlyChosen ? "My Profs" : "All"}
+            </button>
+          )}
           {dailyBonusAvailable && (
             <TipCustom title="Daily Bonus" icon="⚡" accent="#facc15" body={<p>Your first craft today gives <strong>2x profession XP</strong>. Resets daily at midnight.</p>}>
               <span className="px-2 py-1 rounded font-bold text-xs cursor-help" style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
@@ -960,7 +976,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
         { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"] },
       ].map(cat => {
-        const catProfs = professions.filter(p => cat.ids.includes(p.id));
+        const catProfs = professions.filter(p => cat.ids.includes(p.id) && (!showOnlyChosen || p.chosen));
         if (catProfs.length === 0) return null;
         return (
           <div key={cat.label} className="mb-4">
@@ -1035,23 +1051,37 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </p>
                   {synergy && (() => {
                     const partnerProf = professions.find(p => p.id === synergy.partner);
+                    const SynergyDetail = ({ active, highlight }: { active?: boolean; highlight?: boolean }) => (
+                      <TipCustom
+                        title={`${synergy.label} Synergy`}
+                        accent={active ? prof.color : highlight ? prof.color : "rgba(255,255,255,0.4)"}
+                        body={<p className="text-xs" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.5 }}>{synergy.reason}</p>}
+                      >
+                        <span className="text-xs mt-0.5 inline-block cursor-help" style={{
+                          color: active ? `${prof.color}90` : highlight ? prof.color : "rgba(255,255,255,0.25)",
+                          borderBottom: "1px dotted currentColor",
+                        }}>
+                          {active ? `★ ${synergy.label} active` : highlight ? `◆ ${synergy.label}` : `Pairs with ${partnerProf?.name || synergy.partner}`}
+                          {partnerProf && !active ? ` (${partnerProf.name})` : ""}
+                        </span>
+                      </TipCustom>
+                    );
                     if (isChosen && synergyChosen) {
-                      return <p className="text-xs mt-0.5" style={{ color: `${prof.color}80` }}>&#9733; {synergy.label} synergy active with {partnerProf?.npcName || synergy.partner}</p>;
+                      return <SynergyDetail active />;
                     }
-                    // FI-045: When choosing 2nd profession, highlight synergy with the already-chosen partner
                     const partnerIsChosen = partnerProf?.chosen;
                     if (!isChosen && canChoose && partnerProf && chosenCount === 1 && partnerIsChosen) {
                       return (
                         <span className="inline-flex items-center gap-1 mt-0.5 px-1.5 py-0.5 rounded text-xs font-semibold" style={{ background: `${prof.color}18`, color: prof.color, border: `1px solid ${prof.color}40` }}>
-                          &#9670; Synergy: {synergy.label}
+                          <SynergyDetail highlight />
                         </span>
                       );
                     }
                     if (!isChosen && canChoose && partnerProf) {
-                      return <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Pairs well with {partnerProf.name} ({synergy.label})</p>;
+                      return <SynergyDetail />;
                     }
                     if (isChosen && !synergyChosen && partnerProf) {
-                      return <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Tip: Add {partnerProf.name} for {synergy.label} synergy</p>;
+                      return <SynergyDetail />;
                     }
                     return null;
                   })()}

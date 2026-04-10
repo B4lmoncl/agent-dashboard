@@ -2019,7 +2019,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-schuppenpanzer"
+        "templateId": "craft-schmied-kristall-kettenhemd"
       },
       "xp": 20,
       "description": "Schmiedet: Kristall-Kettenhemd.",
@@ -2342,7 +2342,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-drachenzahn-kettenhemd"
       },
       "xp": 28,
       "description": "Schmiedet: Drachenzahn-Kettenhemd.",
@@ -2383,7 +2383,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-aether-kettenhemd"
       },
       "xp": 30,
       "description": "Schmiedet: Aether-Kettenhemd.",
@@ -2402,7 +2402,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-seelen-kettenruestung"
       },
       "xp": 30,
       "description": "Schmiedet: Seelen-Kettenrüstung.",
@@ -3485,78 +3485,6 @@
       "desc": "Runenstoff der beim Weben leuchtet. Selina trägt seitdem eine Sonnenbrille. Nachts."
     },
     {
-      "id": "process-leinenballen",
-      "name": "Leinenballen weben",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 1,
-      "materials": {
-        "leinenstoff": 3,
-        "grober-faden": 1
-      },
-      "vendorReagents": [
-        "grober-faden"
-      ],
-      "result": {
-        "type": "material",
-        "materialId": "leinenballen",
-        "count": 1
-      },
-      "xp": 8,
-      "cooldownMinutes": 0,
-      "description": "Drei Stoffe, ein Ballen. Mathe für Schneider.",
-      "trainerCost": 10,
-      "desc": "Drei Stoffe, ein Ballen. Der Webstuhl macht den Rest. Selina macht den Webstuhl."
-    },
-    {
-      "id": "process-wollballen",
-      "name": "Wollballen weben",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 75,
-      "materials": {
-        "wollstoff": 3,
-        "naehfaden": 1
-      },
-      "vendorReagents": [
-        "naehfaden"
-      ],
-      "result": {
-        "type": "material",
-        "materialId": "wollballen",
-        "count": 1
-      },
-      "xp": 15,
-      "cooldownMinutes": 0,
-      "description": "Wärmer, dichter, teurer. Wie ein guter Mantel.",
-      "trainerCost": 125,
-      "desc": "Wolle zu etwas Nützlichem verarbeiten. Selina sagt, das gelte auch für Menschen."
-    },
-    {
-      "id": "process-seidenballen",
-      "name": "Seidenballen weben",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 150,
-      "materials": {
-        "seidenstoff": 3,
-        "seidenfaden": 1
-      },
-      "vendorReagents": [
-        "seidenfaden"
-      ],
-      "result": {
-        "type": "material",
-        "materialId": "seidenballen",
-        "count": 1
-      },
-      "xp": 20,
-      "cooldownMinutes": 0,
-      "description": "Seide zu verarbeiten erfordert leise Hände und laute Geduld.",
-      "trainerCost": 375,
-      "desc": "Seide weben. Leise. Langsam. Teuer. Selinas drei Lieblingswörter."
-    },
-    {
       "id": "process-runenballen",
       "name": "Runenballen weben",
       "profession": "schneider",
@@ -3733,7 +3661,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserne-stiefel"
+        "templateId": "craft-schneider-leinengewand"
       },
       "xp": 9,
       "description": "Webt: Leinengewand.",
@@ -3873,7 +3801,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerne-marschtreters"
+        "templateId": "craft-schneider-wollgewand"
       },
       "xp": 14,
       "description": "Webt: Wollgewand.",
@@ -4238,7 +4166,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-drachenzahn-kriegsstiefel"
+        "templateId": "craft-schneider-mondschein-gewand"
       },
       "xp": 25,
       "description": "Webt: Mondschein-Gewand.",
@@ -4387,7 +4315,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-riss-geschmiedete-beinschienen"
+        "templateId": "craft-schneider-aethergewand"
       },
       "xp": 34,
       "description": "Webt: Äthergewand.",
@@ -4513,7 +4441,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-seelenstiefel-des-wanderers"
+        "templateId": "craft-schneider-runengewand"
       },
       "xp": 46,
       "description": "Webt: Runengewand.",
@@ -6249,28 +6177,6 @@
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
       "desc": "Bestienkappe. Hat die Augen der Bestie im Design. Roderic findet das respektvoll. Die Bestie ist tot."
-    },
-    {
-      "id": "recipe-leder-bestien-treter-fxf",
-      "name": "Bestien-Treter",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 230,
-      "materials": {
-        "dickesleder": 2,
-        "bestienlederballen": 1,
-        "klauenoel": 1,
-        "seelensplitter": 1,
-        "runenfaden": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-treter-fxf"
-      },
-      "xp": 30,
-      "description": "Gerbt: Bestien-Treter.",
-      "trainerCost": 1100,
-      "desc": "Weitere Bestientreter. Roderic macht zwei Versionen von allem. Falls eine nicht reicht."
     },
     {
       "id": "recipe-leder-urzeit-kappe",
@@ -14265,7 +14171,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-brustpanzer"
+        "templateId": "craft-schmied-eiserner-kettenpanzer"
       },
       "xp": 8,
       "trainerCost": 60,
@@ -14285,7 +14191,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-gehaerteter-plattenpanzer"
+        "templateId": "craft-schmied-kristall-kettenpanzer"
       },
       "xp": 16,
       "trainerCost": 465,
@@ -14305,7 +14211,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+        "templateId": "craft-schmied-drachenschuppen-kettenhemd"
       },
       "xp": 24,
       "description": "Stellt her: Drachenschuppen-Kettenhemd.",
@@ -14641,7 +14547,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-eiserne-stiefel"
+        "templateId": "craft-schneider-leinengewand-des-wanderers"
       },
       "xp": 8,
       "trainerCost": 40,
@@ -14661,7 +14567,7 @@
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerne-marschtreters"
+        "templateId": "craft-schneider-wollrobe-des-wanderers"
       },
       "xp": 16,
       "trainerCost": 448,
@@ -15084,25 +14990,6 @@
       "desc": "Panzer aus Urzeitleder. Schützt vor allem. Einschließlich moderner Ideen."
     },
     {
-      "id": "recipe-lederverarbeiter-leichtleder-wams",
-      "name": "Leichtleder-Wams",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 22,
-      "materials": {
-        "leichtesleder": 2,
-        "grober-faden": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-leichtleder-wams"
-      },
-      "xp": 8,
-      "trainerCost": 123,
-      "description": "Stellt her: Leichtleder-Wams.",
-      "desc": "Wams aus Leichtleder. Leicht genug zum Rennen. Stark genug um anzukommen."
-    },
-    {
       "id": "recipe-lederverarbeiter-mittleres-leder-wams",
       "name": "Mittleres Leder-Wams",
       "profession": "lederverarbeiter",
@@ -15202,27 +15089,6 @@
       "desc": "Gehärtete Schuhe. Geben nicht nach. Weder dem Boden noch dem Träger."
     },
     {
-      "id": "recipe-lederverarbeiter-bestien-treter",
-      "name": "Bestien-Treter",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 215,
-      "materials": {
-        "gehaertetesschwerleder": 1,
-        "runenfaden": 1,
-        "verstaerktes-leder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-bestien-treter"
-      },
-      "xp": 24,
-      "description": "Stellt her: Bestien-Treter.",
-      "dropChance": 0.08,
-      "dropMinQuestRarity": "rare",
-      "desc": "Bestientreter. Die Bestie konnte nicht mehr davonlaufen. Du schon."
-    },
-    {
       "id": "recipe-lederverarbeiter-raues-leder-marsch",
       "name": "Raues Leder-Marsch",
       "profession": "lederverarbeiter",
@@ -15241,25 +15107,6 @@
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
       "desc": "Raues Leder für den letzten Marsch. Roderic sagt, man braucht nur ein Paar. Er meint es wörtlich."
-    },
-    {
-      "id": "recipe-lederverarbeiter-leichtleder-stiefel",
-      "name": "Leichtleder-Stiefel",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 25,
-      "materials": {
-        "leichtesleder": 2,
-        "grober-faden": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-leichtleder-stiefel"
-      },
-      "xp": 8,
-      "trainerCost": 65,
-      "description": "Stellt her: Leichtleder-Stiefel.",
-      "desc": "Leichtleder-Stiefel. Roderics Einstiegswerk. Er ist seitdem besser geworden. Behauptet er."
     },
     {
       "id": "recipe-lederverarbeiter-mittlere-leder-stiefel",
@@ -19462,27 +19309,6 @@
       "desc": "Grundlegendes Schmelzen. Erz wird Barren. Der Anfang von allem, auch von Grimvars schlechter Laune."
     },
     {
-      "id": "smelt_stahlbarren",
-      "name": "Stahlbarren schmelzen",
-      "profession": "schmied",
-      "source": "trainer",
-      "trainerCost": 125,
-      "reqSkill": 60,
-      "materials": {
-        "eisenbarren": 2,
-        "magiestaub": 1,
-        "kohlestueck": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "stahlbarren",
-        "outputAmount": 1
-      },
-      "xp": 12,
-      "description": "Veredelt Eisenbarren mit Magiestaub zu Stahl.",
-      "desc": "Stahl aus Eisen. Der Schmelzprozess dauert genau so lang wie Grimvar braucht um seinen Tee zu trinken."
-    },
-    {
       "id": "smelt_kristallbarren",
       "name": "Kristallbarren schmelzen",
       "profession": "schmied",
@@ -19523,150 +19349,6 @@
       "xp": 25,
       "description": "Stahl, gehärtet in Drachenschuppen.",
       "desc": "Verstärkter Stahl. Zwei Barren die sich nicht mögen werden zusammengezwungen. Paartherapie am Amboss."
-    },
-    {
-      "id": "bolt_leinenballen",
-      "name": "Leinenballen weben",
-      "profession": "schneider",
-      "source": "trainer",
-      "trainerCost": 0,
-      "reqSkill": 1,
-      "materials": {
-        "leinenstoff": 3,
-        "grober-faden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "leinenballen",
-        "outputAmount": 1
-      },
-      "xp": 8,
-      "description": "Webt Leinenstoff zu einem brauchbaren Ballen.",
-      "desc": "Leinen wird Ballen. Der Anfang einer langen Reise von Rohstoff zu Robe."
-    },
-    {
-      "id": "bolt_wollballen",
-      "name": "Wollballen weben",
-      "profession": "schneider",
-      "source": "trainer",
-      "trainerCost": 125,
-      "reqSkill": 60,
-      "materials": {
-        "wollstoff": 3,
-        "naehfaden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "wollballen",
-        "outputAmount": 1
-      },
-      "xp": 12,
-      "description": "Webt Wolle zu einem stabilen Ballen.",
-      "desc": "Wolle wird Ballen. Selina summt dabei. Der Webstuhl summt mit."
-    },
-    {
-      "id": "bolt_seidenballen",
-      "name": "Seidenballen weben",
-      "profession": "schneider",
-      "source": "trainer",
-      "trainerCost": 500,
-      "reqSkill": 130,
-      "materials": {
-        "seidenstoff": 3,
-        "seidenfaden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "seidenballen",
-        "outputAmount": 1
-      },
-      "xp": 18,
-      "description": "Feinste Seide, verdichtet zu einem wertvollen Ballen.",
-      "desc": "Seide wird Ballen. Leise, langsam, und mit der Vorsicht von jemandem der weiß was Seide kostet."
-    },
-    {
-      "id": "cure_leichtleder",
-      "name": "Leichtleder gerben",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "trainerCost": 0,
-      "reqSkill": 1,
-      "materials": {
-        "leichtesleder": 3,
-        "salzgerbung": 1,
-        "grober-faden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "geheiltesleichtleder",
-        "outputAmount": 1
-      },
-      "xp": 8,
-      "description": "Gerbt rohes Leichtleder zu verarbeitetem Material.",
-      "desc": "Gerben ist Geduld in flüssiger Form. Roderic hat davon genug. Von der Geduld, nicht vom Leder."
-    },
-    {
-      "id": "cure_mittleresleder",
-      "name": "Mittleres Leder gerben",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "trainerCost": 125,
-      "reqSkill": 60,
-      "materials": {
-        "mittleresleder": 3,
-        "salzgerbung": 1,
-        "naehfaden": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "geheiltesmittleresleder",
-        "outputAmount": 1
-      },
-      "xp": 12,
-      "description": "Gerbt mittleres Leder zu einem geschmeidigen Material.",
-      "desc": "Mittleres Leder gerben. Braucht mehr Salz. Und mehr Stille. Beides hat Roderic."
-    },
-    {
-      "id": "prepare_gewuerzmischung",
-      "name": "Gewürzmischung herstellen",
-      "profession": "koch",
-      "source": "trainer",
-      "trainerCost": 0,
-      "reqSkill": 1,
-      "materials": {
-        "wildfleisch": 1,
-        "feuerwurz": 1,
-        "milde-gewuerze": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "gewuerzmischung",
-        "outputAmount": 2
-      },
-      "xp": 8,
-      "description": "Grundlegende Gewürze für die Küche der Halle.",
-      "desc": "Gewürze mischen. Der erste Schritt. Und der wichtigste. Und der den alle überspringen wollen."
-    },
-    {
-      "id": "prepare_kraeuterbutter",
-      "name": "Kräuterbutter herstellen",
-      "profession": "koch",
-      "source": "trainer",
-      "trainerCost": 125,
-      "reqSkill": 60,
-      "materials": {
-        "kraeuterbuendel": 2,
-        "gewuerzmischung": 1,
-        "milde-gewuerze": 1
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "kraeuterbutter",
-        "outputAmount": 1
-      },
-      "xp": 12,
-      "description": "Verfeinert jedes Gericht. Ein Grundpfeiler der Gilde.",
-      "desc": "Kräuter in Butter. Simpler geht es nicht. Besser auch nicht. Brunas Philosophie in Butterform."
     },
     {
       "id": "recipe-koch-gap-130",

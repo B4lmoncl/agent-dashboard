@@ -574,7 +574,8 @@
       "rewards": {
         "xp": 30,
         "gold": 15
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-news",
@@ -2060,7 +2061,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-meta-learning",
@@ -2844,7 +2846,8 @@
       "rewards": {
         "xp": 12,
         "gold": 8
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "s-old-friend",
@@ -5500,7 +5503,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-docker-compose",
@@ -5516,7 +5520,8 @@
       "rewards": {
         "xp": 38,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-kubernetes-intro",
@@ -5532,7 +5537,8 @@
       "rewards": {
         "xp": 42,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-cicd",
@@ -5548,7 +5554,8 @@
       "rewards": {
         "xp": 40,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-git-advanced",
@@ -5564,7 +5571,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-regex",
@@ -5580,7 +5588,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-sql-joins",
@@ -5596,7 +5605,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-api-design",
@@ -5612,7 +5622,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-linux-commands",
@@ -5628,7 +5639,8 @@
       "rewards": {
         "xp": 25,
         "gold": 15
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-bash-scripting",
@@ -5676,7 +5688,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-tls-ssl",
@@ -5692,7 +5705,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-fortinet",
@@ -5724,7 +5738,8 @@
       "rewards": {
         "xp": 38,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-ansible",
@@ -5740,7 +5755,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-aws-ec2",
@@ -5788,7 +5804,8 @@
       "rewards": {
         "xp": 25,
         "gold": 15
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-design-patterns",
@@ -5804,7 +5821,8 @@
       "rewards": {
         "xp": 35,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-testing-tdd",
@@ -5820,7 +5838,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-debugging",
@@ -5836,7 +5855,8 @@
       "rewards": {
         "xp": 15,
         "gold": 10
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-algo-practice",
@@ -5852,7 +5872,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-system-design",
@@ -6012,7 +6033,8 @@
       "rewards": {
         "xp": 35,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-ml-intro",
@@ -6060,7 +6082,8 @@
       "rewards": {
         "xp": 35,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-graphql",
@@ -6252,7 +6275,8 @@
       "rewards": {
         "xp": 38,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-refactor",
@@ -6268,7 +6292,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-statistik",
@@ -8202,7 +8227,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-terraform",
@@ -8234,7 +8260,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-mongodb",
@@ -8250,7 +8277,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-kafka",
@@ -8330,7 +8358,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-pentest-basics",
@@ -8346,7 +8375,8 @@
       "rewards": {
         "xp": 42,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-log-analyse",
@@ -9242,7 +9272,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-cloudflare",
@@ -9258,7 +9289,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-postgresql-adv",
@@ -9274,7 +9306,8 @@
       "rewards": {
         "xp": 38,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-git-flow",
@@ -9290,7 +9323,8 @@
       "rewards": {
         "xp": 25,
         "gold": 15
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-oauth-jwt",
@@ -9306,7 +9340,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-cors-explained",
@@ -9322,7 +9357,8 @@
       "rewards": {
         "xp": 25,
         "gold": 15
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-http3",
@@ -9354,7 +9390,8 @@
       "rewards": {
         "xp": 15,
         "gold": 10
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-vim-basics",
@@ -9386,7 +9423,8 @@
       "rewards": {
         "xp": 22,
         "gold": 14
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "f-schwimmrunden",

@@ -1,9 +1,9 @@
 # Asset Backlog — Fehlende Bilder
 
-> Stand: 2026-03-30 (aktualisiert nach Gear-System Overhaul)
+> Stand: 2026-04-10 (verifiziert)
 > **WoW Classic Icon-Sharing Modell:** ~15 Items teilen sich 1 Icon.
-> Ziel: ~96 einzigartige Gear-Icons für 1431 Items.
-> Aktuell: 16 Icons. **~80 neue Gear Icons benötigt.**
+> Ziel: ~97 einzigartige Gear-Icons für 1458 Items.
+> Aktuell: 26 Icons (7 equip-* + 19 gacha-*). **~71 neue Gear Icons benötigt.**
 
 ---
 
@@ -28,14 +28,14 @@ In WoW Classic teilen sich ~15-20 Items dasselbe Icon. Ein "Eisenschwert" und ei
 
 | Slot | Items | Icons aktuell | Icons Ziel (~15/Icon) | Noch zu generieren |
 |------|-------|---------------|----------------------|-------------------|
-| Weapon | 241 | 5 | 17 | **12** |
-| Shield | 156 | 2 | 11 | **9** |
-| Helm | 213 | 1 | 15 | **14** |
-| Armor | 261 | 5 | 18 | **13** |
-| Amulet | 211 | 1 | 15 | **14** |
-| Boots | 213 | 1 | 15 | **14** |
-| Ring | 136 | 1 | 10 | **9** |
-| **Total** | **1431** | **16** | **~101** | **~85** |
+| Weapon | 245 | 5 | 17 | **12** |
+| Shield | 159 | 2 | 11 | **9** |
+| Helm | 217 | 1 | 15 | **14** |
+| Armor | 265 | 5 | 18 | **13** |
+| Amulet | 194 | 1 | 13 | **12** |
+| Boots | 217 | 1 | 15 | **14** |
+| Ring | 161 | 1 | 11 | **10** |
+| **Total** | **1458** | **16** | **~100** | **~84** |
 
 ### Icon-Prompts pro Slot
 
@@ -59,7 +59,7 @@ In WoW Classic teilen sich ~15-20 Items dasselbe Icon. Ein "Eisenschwert" und ei
 
 - ✅ 85 Achievement Icons — `public/images/icons/ach-*.png`
 - ✅ 5 Floor Banner — `public/images/banners/*.png`
-- ✅ 16 Gear Icons (Gacha + Equip slot icons) — `public/images/icons/gacha-*.png`, `equip-*.png`
+- ✅ 26 Gear Icons (7 equip-* + 19 gacha-*) — `public/images/icons/gacha-*.png`, `equip-*.png`
 - ✅ 16 Shop Icons — `public/images/icons/shop-*.png`
 - ✅ 8 Profession NPC Portraits — `public/images/npcs/{grimvar,ysolde,eldric,bruna,...}*.png`
 - ✅ 8 Profession Icons — `public/images/icons/prof-*.png`
@@ -67,7 +67,7 @@ In WoW Classic teilen sich ~15-20 Items dasselbe Icon. Ein "Eisenschwert" und ei
 - ✅ 4 Faction Icons — `public/images/icons/faction-*.png`
 - ✅ 9 World Boss Portraits — `public/images/bosses/*.png`
 - ✅ 23 Material Icons — `public/images/icons/mat-*.png`
-- ⬜ 10 Vendor Reagent Icons — `public/images/icons/mat-{reagent}.png` (see PRIO 9 below)
+- ⬜ 22 Vendor Reagent Icons — `public/images/icons/mat-{reagent}.png` (see PRIO 9 below)
 - ✅ 19 Nav Icons — `public/images/icons/nav-*.png`
 - ✅ 8 Expedition Location Icons — `public/images/icons/exp-*.png`
 - ✅ 9 Weekly Challenge Icons — `public/images/icons/wc-*.png`
@@ -79,7 +79,7 @@ In WoW Classic teilen sich ~15-20 Items dasselbe Icon. Ein "Eisenschwert" und ei
 
 ## Fehlende Assets — Priorisiert
 
-### PRIO 1: Gear Icons (~85 neue, 128×128)
+### PRIO 1: Gear Icons (~84 neue, 128×128)
 
 **Pfad:** `public/images/icons/gear-{slot}-{n}.png`
 **Bsp:** `gear-weapon-01.png`, `gear-helm-05.png`
@@ -99,7 +99,7 @@ Nach Generierung: Items in gearTemplates.json automatisch per Slot + Hash zuweis
 | Die Komfortzone | `komfortzone.png` | Massive cozy creature made of pillows and blankets with sleepy eyes, deceptively warm glow, fantasy RPG |
 | Der Deadline-Drache | `deadline-drache.png` | Dragon made of burning papers and scrolls, hourglass embedded in chest, flames intensifying, fantasy RPG |
 
-### PRIO 3: Neue Companion Portraits (4 fehlend, 256×256)
+### PRIO 3: Neue Companion Portraits (3 fehlend, 256×256)
 
 **Pfad:** `public/images/companions/companion-{type}.png`
 
@@ -107,8 +107,9 @@ Nach Generierung: Items in gearTemplates.json automatisch per Slot + Hash zuweis
 |-----------|-------|--------|
 | Basalt (Turtle) | `companion-turtle.png` | Ancient stone turtle with glowing rune cracks on shell, calm eyes, dark background, fantasy RPG |
 | Nyx (Raven) | `companion-raven.png` | Sleek black raven with one glowing purple eye, holding stolen gem in beak, dark background, fantasy RPG |
-| Whisper (Cat) | `companion-cat.png` | Elegant dark cat with piercing green eyes, sitting judgmentally, slight magical aura, dark background, fantasy RPG |
 | Flint (Salamander) | `companion-salamander.png` | Bright orange salamander with small flames on back, quick dynamic pose, dark background, fantasy RPG |
+
+> Note: `companion-cat.png` already exists.
 
 ### PRIO 4: Gacha Banner NPC Portraits (3 fehlend, 128×128)
 
@@ -131,10 +132,13 @@ Jedes Unique Named Item verdient ein eigenes Icon (sie sind handcrafted).
 Cat, Dog, Hamster, Bird, Fish, Rabbit — fehlen noch als richtige Portraits.
 **Pfad:** `public/images/portraits/companion-{type}.png`
 
-### PRIO 7: NPC Portraits (78 fehlend von 100 NPCs, 128×128)
+### PRIO 7: NPC Portraits (87 fehlend von 100 NPCs, 128×128)
 
-22 NPCs haben Portraits, 78 fehlen.
+13 NPCs haben Portraits, 87 fehlen. NPCs ohne Portrait spawnen NICHT (blockiert in npc-engine.js).
 **Pfad:** `public/images/npcs/{npc-id}.png`
+
+NPCs MIT Portrait (spawnen):
+`oma-ilse`, `wandering-merchant`, `dojo-master`, `forest-witch`, `bard`, `bruder-tomas`, `zara-funkenwind`, `alter-henrik`, `lumi`, `rogar-amboss`, `skelett-gentleman`, `archivarin-vex`, `captain-flint`
 
 ### PRIO 8: Nav Icons für neue Rooms (2 Placeholder, 128×128)
 
