@@ -99,7 +99,8 @@ export function getAuthHeaders(apiKeyFallback?: string): Record<string, string> 
 export async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
   const headers = new Headers(options.headers);
 
-  // Attach auth
+  // Track whether we sent a Bearer token (before getAuthHeaders may clear it)
+  const hadToken = !!accessToken;
   const authHeaders = getAuthHeaders();
   for (const [k, v] of Object.entries(authHeaders)) {
     if (!headers.has(k)) headers.set(k, v);
@@ -107,8 +108,8 @@ export async function authFetch(url: string, options: RequestInit = {}): Promise
 
   const r = await fetch(url, { ...options, headers, credentials: "include" });
 
-  // If 401, try refresh and retry once
-  if (r.status === 401 && accessToken) {
+  // If 401 and we had a token (now cleared as expired), try refresh and retry once
+  if (r.status === 401 && hadToken) {
     const newToken = await doRefresh();
     if (newToken) {
       headers.set("Authorization", `Bearer ${newToken}`);

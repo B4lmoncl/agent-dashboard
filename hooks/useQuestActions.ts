@@ -147,11 +147,11 @@ export function useQuestActions({
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ questId, action }),
       });
-      if (!r.ok) console.warn("Failed to toggle favorite");
+      if (!r.ok) addToast({ type: "error", message: "Failed to toggle favorite" });
     } catch {
-      console.warn("Network error toggling favorite");
+      addToast({ type: "error", message: "Network error toggling favorite" });
     }
-  }, [reviewApiKey, playerName]);
+  }, [reviewApiKey, playerName, addToast]);
 
   const handleClaim = useCallback(async (questId: string) => {
     if (!reviewApiKey || !playerName || loadingAction) return;
@@ -413,7 +413,8 @@ export function useQuestActions({
   }, [playerName, reviewApiKey, poolRefreshing, refresh, setApiErrorWithAutoClose, addToast, setLastPoolRefresh]);
 
   const handleShopBuy = useCallback(async (userId: string, itemId: string) => {
-    if (!reviewApiKey || !userId) return;
+    if (!reviewApiKey || !userId || loadingAction) return;
+    setLoadingAction({ questId: itemId, action: "shopBuy" });
     try {
       const r = await fetch("/api/shop/buy", {
         method: "POST",
@@ -439,11 +440,14 @@ export function useQuestActions({
       }
     } catch {
       addToast({ type: "error", message: "Network error — purchase failed" });
+    } finally {
+      setLoadingAction(null);
     }
-  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
+  }, [reviewApiKey, loadingAction, refresh, addToast, setRewardCelebration]);
 
   const handleGearBuy = useCallback(async (userId: string, gearId: string) => {
-    if (!reviewApiKey || !userId) return;
+    if (!reviewApiKey || !userId || loadingAction) return;
+    setLoadingAction({ questId: gearId, action: "gearBuy" });
     try {
       const r = await fetch("/api/shop/gear/buy", {
         method: "POST",
@@ -469,8 +473,10 @@ export function useQuestActions({
       }
     } catch {
       addToast({ type: "error", message: "Network error — gear purchase failed" });
+    } finally {
+      setLoadingAction(null);
     }
-  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
+  }, [reviewApiKey, loadingAction, refresh, addToast, setRewardCelebration]);
 
   return {
     // State
