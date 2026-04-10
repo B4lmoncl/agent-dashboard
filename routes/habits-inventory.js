@@ -268,9 +268,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'gear_next_tier': {
-      // Placeholder — complex logic for Task 2
-      message = 'Schmiedehammer der Meister aktiviert! (Upgrade-System coming soon)';
-      break;
+      // Not yet implemented — refund item instead of destroying it
+      return res.status(400).json({ error: 'Gear-Upgrade-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
     }
     case 'undo_missed_ritual': {
       // Reset ritual miss counter
@@ -282,9 +281,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'named_gear': {
-      // Placeholder — would add a specific legendary weapon
-      message = 'Legendary weapon obtained! (Coming soon)';
-      break;
+      // Not yet implemented — refund item
+      return res.status(400).json({ error: 'Named-Gear-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
     }
     case 'team_buff': {
       const amt = effect.amount || 25;
@@ -497,10 +495,45 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       message = `Enchant applied: +${ve.value} ${ve.stat} for ${ve.durationHours || 24}h!`;
       break;
     }
-    default: {
-      // Unknown effect — consume anyway but note it
-      message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
+    case 'gold_boost_next': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'gold_boost_10', questsRemaining: 1, activatedAt: now() });
+      message = 'Gold Boost aktiv! Nächste Quest gibt +10% Gold.';
       break;
+    }
+    case 'pity_minus_5': {
+      const gs = state.gachaState?.[uid];
+      if (gs) {
+        gs.pityCounter = Math.max(0, (gs.pityCounter || 0) + 5); // +5 closer to pity
+        message = `Pity-Zähler um 5 erhöht! Aktuell: ${gs.pityCounter}/75.`;
+      } else {
+        message = 'Kein Gacha-Status gefunden.';
+      }
+      break;
+    }
+    case 'rarity_boost_15': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'rarity_boost_15', questsRemaining: 3, activatedAt: now() });
+      message = 'Rarity Boost aktiv! +15% Chance auf seltene Drops für 3 Quests.';
+      break;
+    }
+    case 'streak_recovery_50': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'streak_recovery_50', questsRemaining: 1, activatedAt: now() });
+      message = 'Streak-Rettung bereit! 50% Chance, deinen Streak zu retten falls du ihn verlierst.';
+      break;
+    }
+    case 'unlock_secret_quest': {
+      // Not yet implemented — refund item
+      return res.status(400).json({ error: 'Secret-Quest-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
+    }
+    case 'team_buff': {
+      // Not yet implemented — refund item
+      return res.status(400).json({ error: 'Team-Buff-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
+    }
+    default: {
+      // Unknown effect — do NOT consume, return error
+      return res.status(400).json({ error: `Effekt "${effectType}" ist nicht implementiert. Item bleibt im Inventar.` });
     }
   }
 

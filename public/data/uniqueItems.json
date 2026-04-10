@@ -2320,22 +2320,21 @@
       "id": "dun-hollow-core-stiefel",
       "name": "Stiefel des Hohlen Kerns",
       "slot": "boots",
-      "rarity": "unique",
+      "rarity": "legendary",
       "reqLevel": 35,
       "source": "dungeon:hollow-core",
       "icon": null,
       "flavorText": "Der vorherige Besitzer ist nie aus dem Kern zurückgekommen. Die Stiefel schon. Das sagt mehr über die Stiefel als über den Besitzer.",
-      "fixedStats": {
-        "stats": {
-          "ausdauer": 7,
-          "kraft": 5,
-          "tempo": 4
-        }
-      },
+      "fixedStats": true,
       "legendaryEffect": {
         "type": "decay_reduction",
         "value": 5,
         "label": "Leerenanker: -{value}% Forge-Decay"
+      },
+      "stats": {
+        "ausdauer": 7,
+        "kraft": 5,
+        "tempo": 4
       }
     }
   ]
