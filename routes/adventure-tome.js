@@ -231,10 +231,13 @@ function evaluateFloor(floor, user, progress) {
           current = user._disenchantCount || user._salvageCount || 0;
           break;
         case "_maxRitualStreak": {
-          const rituals = state.rituals?.[user.name?.toLowerCase()] || [];
+          // state.rituals is a flat array with playerId per entry
+          const uid = user.name?.toLowerCase() || user.id;
+          const playerRituals = (Array.isArray(state.rituals) ? state.rituals : []).filter(r => r.playerId === uid);
           let maxStreak = 0;
-          for (const r of rituals) {
+          for (const r of playerRituals) {
             if ((r.streak || 0) > maxStreak) maxStreak = r.streak;
+            if ((r.longestStreak || 0) > maxStreak) maxStreak = r.longestStreak;
           }
           current = maxStreak;
           break;
