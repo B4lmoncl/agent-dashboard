@@ -1311,6 +1311,146 @@
       "category": "artifacts",
       "title": "Kristall-Sockel — Eine Verbindung, die man besser nicht löst",
       "text": "Ein Edelstein in einem Sockel ist mehr als Dekoration. Er ist ein Versprechen zwischen Stein und Stahl, das der Juwelier mit einer Mischung aus Handwerk und Sentimentalität besiegelt. Sechs Typen: Rubin für Kraft, Saphir für Weisheit, Smaragd für Glück, Topas für Ausdauer, Amethyst für Vitalität, Diamant für Fokus. Fünf Qualitätsstufen von 'angeschlagen' bis 'königlich'. Das Einsetzen ist feierlich. Das Entfernen ist teuer und emotional kompliziert — der Juwelier nimmt es persönlich, der Stein nimmt es persönlich, und die Ausrüstung knirscht vorwurfsvoll. Aufwerten geht vor Ort: drei gleiche Steine werden zu einem besseren. Was mit dem vierten Stein passiert, den du nicht brauchst, fragt besser niemand laut."
+    },
+    {
+      "id": "companion-expedition",
+      "category": "systems",
+      "title": "Companion-Expeditionen — Geschäftsreise mit Fell",
+      "text": "Schick deinen Companion los. Vier bis vierundzwanzig Stunden. Er kommt mit Gold, Materialien und gelegentlich Dingen zurück, die besser dort geblieben wären. Der Bond-Level erhöht die Ausbeute — ein erfahrener Companion verhandelt besser. Oder klaut effizienter. Beides führt zum selben Ergebnis.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 3
+      }
+    },
+    {
+      "id": "workshop-tools",
+      "category": "systems",
+      "title": "Werkstatt-Upgrades — Vier Dinge die man nur einmal kauft",
+      "text": "Sturdy Tools, Masterwork Tools, Legendary Tools, Mythic Forge. Jede Stufe gibt permanenten XP-Bonus auf alle Quests. Klingt nach einem guten Deal. Ist es auch. Der Preis steigt pro Stufe exponentiell, was der Turm als 'Investitionsanreiz' bezeichnet und der Spieler als 'Erpressung'.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 5
+      }
+    },
+    {
+      "id": "currency-conversion",
+      "category": "systems",
+      "title": "Währungsumrechnung — Der Turm nimmt zwanzig Prozent",
+      "text": "Fünf Währungspaare. Zwanzig Prozent Umrechnungsgebühr. Der Turm nennt das 'Bearbeitungspauschale'. Ökonomen nennen das 'Wucher'. Beide haben recht. Die Konvertierung ist trotzdem nützlich, wenn man 500 Runensplitter hat aber null Sternentaler braucht. Oder umgekehrt. Meistens umgekehrt.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 5
+      }
+    },
+    {
+      "id": "daily-login",
+      "category": "systems",
+      "title": "Täglicher Bonus — Der Turm belohnt Anwesenheit",
+      "text": "Einmal am Tag: Runensplitter, Essenz, und das gute Gefühl, hier zu sein. Streak-Tage erhöhen den Bonus. Bei 7 Tagen gibt es extra Runen. Bei 14 extra Essenz. Bei 30 fragt der Turm, ob du nicht mal rausgehen möchtest. Du ignorierst ihn. Der Turm respektiert das.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 1
+      }
+    },
+    {
+      "id": "quest-pool",
+      "category": "systems",
+      "title": "Der Quest-Pool — Zehn Angebote, eine Entscheidung",
+      "text": "Zehn offene Quests im Pool, gemischt aus fünf Typen. Der Pool rotiert täglich um Mitternacht. Was du nicht nimmst, verschwindet. Was du nimmst, landet in deiner In-Progress-Liste. Maximum 25 gleichzeitig, danach sagt der Turm 'nein' und meint es auch so.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 1
+      }
+    },
+    {
+      "id": "quest-rotation",
+      "category": "systems",
+      "title": "Tägliche Rotation — Mitternacht ist Stichtag",
+      "text": "Jeden Tag um Mitternacht (Berlin) räumt der Turm auf. Offene Quests verschwinden. Neue erscheinen. In-Progress-Quests bleiben — der Turm ist streng, aber nicht grausam. Die Rotation basiert auf einem Seed, was bedeutet, dass alle Spieler dieselbe Auswahl sehen. Fairness durch Determinismus.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 3
+      }
+    },
+    {
+      "id": "npc-rotation",
+      "category": "npcs",
+      "title": "Wanderer-Rotation — Kommen und Gehen",
+      "text": "NPCs erscheinen um Mitternacht und bleiben ein bis sieben Tage. Dann gehen sie. Laufende Quests scheitern. Abgeschlossene zählen. Der Turm hat Cooldowns — ein NPC der gerade ging, kommt nicht sofort wieder. Das nennt man Anstand. Oder Terminplanung.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 1
+      }
+    },
+    {
+      "id": "crafting-moonlight",
+      "category": "systems",
+      "title": "Mondlicht-Schmiede — Nachtschicht mit Bonus",
+      "text": "Zwischen 22 Uhr und 6 Uhr morgens (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden, erhalten zwanzig Prozent bessere Minimum-Rolls. Das klingt nach Aberglaube. Die Statistik sagt, es stimmt. Der Schmied sagt, er braucht Schlaf. Niemand hört auf den Schmied.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 5
+      }
+    },
+    {
+      "id": "crafting-skillup",
+      "category": "systems",
+      "title": "Skill-Up-System — Farben lügen nicht",
+      "text": "Orange: garantiert. Gelb: wahrscheinlich. Grün: unwahrscheinlich. Grau: vergiss es. Jedes Rezept hat Farbgrenzen die sich mit steigendem Skill verschieben. Was heute orange ist, wird morgen gelb und übermorgen grau. Das nennt man Fortschritt. Oder Obsoleszenz. Je nach Perspektive.",
+      "unlockedBy": {
+        "type": "profession_skill",
+        "value": 10
+      }
+    },
+    {
+      "id": "quest-chain",
+      "category": "systems",
+      "title": "Quest-Ketten — Eine Sache führt zur nächsten",
+      "text": "Manche Quests haben Nachfolger. Abschluss der einen schaltet die nächste frei. Die Belohnungen steigen. Die Schwierigkeit auch. Am Ende der Kette wartet etwas Besonderes. Oder etwas Enttäuschendes. Beides ist Teil der Erfahrung.",
+      "unlockedBy": {
+        "type": "quests_completed",
+        "value": 5
+      }
+    },
+    {
+      "id": "player-profile",
+      "category": "systems",
+      "title": "Spielerprofil — Alles was man nicht verbergen kann",
+      "text": "Level, Gear Score, Achievements, Professions, Companion. Alles öffentlich. Alles klickbar. Das Profil ist im Grunde ein Lebenslauf für den Turm. Manche schmücken ihn. Manche verstecken sich. Der Turm zeigt beides gleichermaßen unparteiisch.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 3
+      }
+    },
+    {
+      "id": "crafting-batch",
+      "category": "systems",
+      "title": "Batch-Crafting — Massenproduktion für Eilige",
+      "text": "Eins, fünf oder zehn auf einmal. Die Cast-Bar spielt für jedes einzelne. Der Skill-Up rollt für jedes einzelne. Die Materialien verschwinden für alle auf einmal. Das System nennt das Effizienz. Der Spieler nennt das 'ich hoffe ich habe genug Eisenerz'.",
+      "unlockedBy": {
+        "type": "crafts_completed",
+        "value": 5
+      }
+    },
+    {
+      "id": "challenge-wager",
+      "category": "systems",
+      "title": "Herausforderungen — Freundliche Konkurrenz mit Einsatz",
+      "text": "Fordere einen Freund heraus. Wer mehr Quests schafft diese Woche, gewinnt den Einsatz. Der Verlierer zahlt Gold. Man kann auch aufgeben — dann verliert man automatisch und das Gold. Der Turm nennt das 'sportlichen Geist'. Verlierer nennen es anders.",
+      "unlockedBy": {
+        "type": "friends_count",
+        "value": 1
+      }
+    },
+    {
+      "id": "daily-diminishing",
+      "category": "systems",
+      "title": "Tägliche Ermüdung — Weniger ist nicht weniger",
+      "text": "Die ersten fünf Quests am Tag: volle Belohnung. Sechs bis zehn: fünfundsiebzig Prozent. Elf bis zwanzig: fünfzig. Darüber: fünfundzwanzig. Der Turm bestraft nicht — er optimiert. Qualität vor Quantität. Das sagt man auch über Schlaf, und niemand hört darauf.",
+      "unlockedBy": {
+        "type": "quests_completed",
+        "value": 10
+      }
     }
   ]
 }
