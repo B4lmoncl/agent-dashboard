@@ -717,5 +717,11 @@
     "lastAuditDate": "2026-04-10",
     "findings": "Clean. GET-only batch endpoint, no mutations. Sensitive user fields correctly stripped (passwordHash, apiKey, refreshTokens, etc.). Rested XP live-calculated. Modifiers computed only for requesting player (perf optimization). NPC quest chain status correctly per-player. Weekly challenge + expedition correctly inlined.",
     "status": "clean"
+  },
+  "routes/campaigns.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
+    "status": "clean"
   }
 }
