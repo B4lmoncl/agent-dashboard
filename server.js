@@ -275,8 +275,8 @@ if (habitsInventory.fetchAndCacheChangelog) {
 // ─── Memory pruning ────────────────────────────────────────────────────────
 // Clean up unbounded in-memory data every hour
 function pruneMemory() {
-  // Prune todayCompletions — keep only entries from today
-  const today = new Date().toISOString().slice(0, 10);
+  // Prune todayCompletions — keep only entries from today (Berlin TZ to match todayStr())
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Berlin' });
   for (const [userId, data] of Object.entries(state.todayCompletions)) {
     if (data && data.date && data.date !== today) {
       delete state.todayCompletions[userId];
