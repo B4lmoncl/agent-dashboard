@@ -331,6 +331,8 @@ router.get('/api/professions', (req, res) => {
         skillUpColor: getSkillUpColor(playerSkill, reqSkill),
         skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
         cooldownRemaining,
+        icon: r.icon || (r.result?.templateId ? (state.gearById.get(r.result.templateId)?.icon || null) : null)
+          || (r.result?.type === 'material' ? (PROFESSIONS_DATA.materials?.find(m => m.id === (r.result.materialId || r.result.outputMaterial))?.icon || null) : null),
       };
     });
   const materials = u?.craftingMaterials || {};

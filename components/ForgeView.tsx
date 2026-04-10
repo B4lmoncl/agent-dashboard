@@ -59,6 +59,7 @@ interface Recipe {
   cooldownRemaining?: number;
   result?: { type?: string; templateId?: string; buffType?: string; duration?: string };
   vendorReagents?: Record<string, number>;
+  icon?: string;
 }
 
 interface MaterialDef {
@@ -1721,14 +1722,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           return (
                             <div className="space-y-4">
                               {/* Recipe name + skill info */}
-                              <div>
+                              <div className="flex items-start gap-3">
+                                {selectedRecipe.icon && <img src={selectedRecipe.icon.startsWith("/") ? selectedRecipe.icon : `/images/icons/${selectedRecipe.icon}`} alt="" width={36} height={36} className="img-render-auto flex-shrink-0 rounded mt-0.5" onError={hideOnError} />}
+                                <div className="min-w-0">
                                 <h3 className="text-base font-bold" style={{ color: SKILL_COLORS[selectedRecipe.skillUpColor || "gray"] }}>{selectedRecipe.name}</h3>
                                 <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                                   Skill {selectedRecipe.reqSkill || 0} · {SKILL_UP_COLORS[selectedRecipe.skillUpColor || "gray"]?.label || "No skill-up"}
                                   {selectedRecipe.skillUpChance != null && selectedRecipe.skillUpChance > 0 && selectedRecipe.skillUpChance < 100 && ` (${selectedRecipe.skillUpChance}%)`}
                                 </p>
                                 {selectedRecipe.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>&ldquo;{selectedRecipe.desc}&rdquo;</p>}
-                              </div>
+                              </div></div>
 
                               {/* Materials — WoW-style: icon + name + owned/needed */}
                               <div>
@@ -2374,6 +2377,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           return (
                             <div key={r.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: learned ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${learned ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.05)"}` }}>
                               <span style={{ color: learned ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{learned ? "✓" : "○"}</span>
+                              {r.icon && <img src={r.icon.startsWith("/") ? r.icon : `/images/icons/${r.icon}`} alt="" width={24} height={24} className="img-render-auto flex-shrink-0 rounded" style={{ opacity: learned ? 0.4 : 0.85 }} onError={hideOnError} />}
                               <div className="flex-1 min-w-0">
                                 <p className="text-xs font-semibold truncate" style={{ color: learned ? "rgba(255,255,255,0.4)" : "#e8e8e8" }}>{r.name}</p>
                                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill {r.reqSkill || 0}{r.desc ? ` — ${r.desc}` : ""}</p>
