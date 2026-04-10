@@ -2132,7 +2132,7 @@
     },
     {
       "id": "sable-nachtwind",
-      "portrait": null,
+      "portrait": "/images/npcs/sable-nachtwind.png",
       "rarity": "rare",
       "spawnWeight": 25,
       "cooldownHours": 96,
@@ -2202,7 +2202,7 @@
     },
     {
       "id": "professor-quill",
-      "portrait": null,
+      "portrait": "/images/npcs/professor-quill.png",
       "rarity": "uncommon",
       "spawnWeight": 40,
       "cooldownHours": 72,
@@ -2308,7 +2308,7 @@
     },
     {
       "id": "eiserne-mara",
-      "portrait": null,
+      "portrait": "/images/npcs/eiserne-mara.png",
       "rarity": "uncommon",
       "spawnWeight": 35,
       "cooldownHours": 72,
@@ -2395,7 +2395,7 @@
     },
     {
       "id": "koch-giovanni",
-      "portrait": null,
+      "portrait": "/images/npcs/koch-giovanni.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -2465,7 +2465,7 @@
     },
     {
       "id": "meisterin-sera",
-      "portrait": null,
+      "portrait": "/images/npcs/meisterin-sera.png",
       "rarity": "epic",
       "spawnWeight": 15,
       "cooldownHours": 168,
@@ -2536,7 +2536,7 @@
     },
     {
       "id": "pip-zahnrad",
-      "portrait": null,
+      "portrait": "/images/npcs/pip-zahnrad.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -2625,7 +2625,7 @@
     },
     {
       "id": "alte-martha",
-      "portrait": null,
+      "portrait": "/images/npcs/alte-martha.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -2695,7 +2695,7 @@
     },
     {
       "id": "hans-holzfuss",
-      "portrait": null,
+      "portrait": "/images/npcs/hans-holzfuss.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -2765,7 +2765,7 @@
     },
     {
       "id": "brieftraeger-emil",
-      "portrait": null,
+      "portrait": "/images/npcs/brieftraeger-emil.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -2818,7 +2818,7 @@
     },
     {
       "id": "gaertnerin-rose",
-      "portrait": null,
+      "portrait": "/images/npcs/gaertnerin-rose.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -2888,7 +2888,7 @@
     },
     {
       "id": "schneider-lin",
-      "portrait": null,
+      "portrait": "/images/npcs/schneider-lin.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -2958,7 +2958,7 @@
     },
     {
       "id": "wachmann-kurt",
-      "portrait": null,
+      "portrait": "/images/npcs/wachmann-kurt.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -3011,7 +3011,7 @@
     },
     {
       "id": "putzfrau-helga",
-      "portrait": null,
+      "portrait": "/images/npcs/putzfrau-helga.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -3081,7 +3081,7 @@
     },
     {
       "id": "geschichtenerzaehlerin-nadia",
-      "portrait": null,
+      "portrait": "/images/npcs/geschichtenerzaehlerin-nadia.png",
       "rarity": "common",
       "spawnWeight": 40,
       "cooldownHours": 48,
@@ -3151,7 +3151,7 @@
     },
     {
       "id": "zahlmeister-otto",
-      "portrait": null,
+      "portrait": "/images/npcs/zahlmeister-otto.png",
       "rarity": "common",
       "spawnWeight": 40,
       "cooldownHours": 48,
@@ -3221,7 +3221,7 @@
     },
     {
       "id": "laufbursche-felix",
-      "portrait": null,
+      "portrait": "/images/npcs/laufbursche-felix.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -3274,7 +3274,7 @@
     },
     {
       "id": "bibliothekarin-ada",
-      "portrait": null,
+      "portrait": "/images/npcs/bibliothekarin-ada.png",
       "rarity": "uncommon",
       "spawnWeight": 30,
       "cooldownHours": 72,
@@ -3344,7 +3344,7 @@
     },
     {
       "id": "trainer-rex",
-      "portrait": null,
+      "portrait": "/images/npcs/trainer-rex.png",
       "rarity": "uncommon",
       "spawnWeight": 30,
       "cooldownHours": 72,
@@ -3431,7 +3431,7 @@
     },
     {
       "id": "apothekerin-yara",
-      "portrait": null,
+      "portrait": "/images/npcs/apothekerin-yara.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -3501,7 +3501,7 @@
     },
     {
       "id": "kartograph-werner",
-      "portrait": null,
+      "portrait": "/images/npcs/kartograph-werner.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -3571,7 +3571,7 @@
     },
     {
       "id": "uhrmacher-tick",
-      "portrait": null,
+      "portrait": "/images/npcs/uhrmacher-tick.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -3641,7 +3641,7 @@
     },
     {
       "id": "netzwerkerin-luna",
-      "portrait": null,
+      "portrait": "/images/npcs/netzwerkerin-luna.png",
       "rarity": "uncommon",
       "spawnWeight": 30,
       "cooldownHours": 72,
@@ -3711,7 +3711,7 @@
     },
     {
       "id": "imker-boris",
-      "portrait": null,
+      "portrait": "/images/npcs/imker-boris.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -3764,7 +3764,7 @@
     },
     {
       "id": "schreiberin-mei",
-      "portrait": null,
+      "portrait": "/images/npcs/schreiberin-mei.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -3834,7 +3834,7 @@
     },
     {
       "id": "schlosser-grim",
-      "portrait": null,
+      "portrait": "/images/npcs/schlosser-grim.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -3906,7 +3906,7 @@
     },
     {
       "id": "astrologe-celes",
-      "portrait": null,
+      "portrait": "/images/npcs/astrologe-celes.png",
       "rarity": "uncommon",
       "spawnWeight": 22,
       "cooldownHours": 96,
@@ -3976,7 +3976,7 @@
     },
     {
       "id": "schmuggler-dante",
-      "portrait": null,
+      "portrait": "/images/npcs/schmuggler-dante.png",
       "rarity": "rare",
       "spawnWeight": 18,
       "cooldownHours": 96,
@@ -4063,7 +4063,7 @@
     },
     {
       "id": "astronomin-stella",
-      "portrait": null,
+      "portrait": "/images/npcs/astronomin-stella.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -4133,7 +4133,7 @@
     },
     {
       "id": "tavernenbesitzer-gus",
-      "portrait": null,
+      "portrait": "/images/npcs/tavernenbesitzer-gus.png",
       "rarity": "rare",
       "spawnWeight": 18,
       "cooldownHours": 96,
@@ -4203,7 +4203,7 @@
     },
     {
       "id": "bergsteigerin-kaya",
-      "portrait": null,
+      "portrait": "/images/npcs/bergsteigerin-kaya.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -4290,7 +4290,7 @@
     },
     {
       "id": "antiquar-simon",
-      "portrait": null,
+      "portrait": "/images/npcs/antiquar-simon.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -4360,7 +4360,7 @@
     },
     {
       "id": "fechtmeisterin-ines",
-      "portrait": null,
+      "portrait": "/images/npcs/fechtmeisterin-ines.png",
       "rarity": "rare",
       "spawnWeight": 16,
       "cooldownHours": 120,
@@ -4430,7 +4430,7 @@
     },
     {
       "id": "heiler-kaspar",
-      "portrait": null,
+      "portrait": "/images/npcs/heiler-kaspar.png",
       "rarity": "rare",
       "spawnWeight": 16,
       "cooldownHours": 120,
@@ -4500,7 +4500,7 @@
     },
     {
       "id": "puppenspieler-marco",
-      "portrait": null,
+      "portrait": "/images/npcs/puppenspieler-marco.png",
       "rarity": "rare",
       "spawnWeight": 14,
       "cooldownHours": 144,
@@ -4570,7 +4570,7 @@
     },
     {
       "id": "navigatorin-compass",
-      "portrait": null,
+      "portrait": "/images/npcs/navigatorin-compass.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -4640,7 +4640,7 @@
     },
     {
       "id": "spieleerfinderin-nora",
-      "portrait": null,
+      "portrait": "/images/npcs/spieleerfinderin-nora.png",
       "rarity": "rare",
       "spawnWeight": 16,
       "cooldownHours": 96,
@@ -4710,7 +4710,7 @@
     },
     {
       "id": "kriegsmeisterin-valka",
-      "portrait": null,
+      "portrait": "/images/npcs/kriegsmeisterin-valka.png",
       "rarity": "epic",
       "spawnWeight": 8,
       "cooldownHours": 168,
@@ -4797,7 +4797,7 @@
     },
     {
       "id": "alchemist-faye",
-      "portrait": null,
+      "portrait": "/images/npcs/alchemist-faye.png",
       "rarity": "epic",
       "spawnWeight": 10,
       "cooldownHours": 168,
@@ -4867,7 +4867,7 @@
     },
     {
       "id": "diplomat-aurelius",
-      "portrait": null,
+      "portrait": "/images/npcs/diplomat-aurelius.png",
       "rarity": "epic",
       "spawnWeight": 8,
       "cooldownHours": 168,
@@ -4937,7 +4937,7 @@
     },
     {
       "id": "schmiedin-ignis",
-      "portrait": null,
+      "portrait": "/images/npcs/schmiedin-ignis.png",
       "rarity": "epic",
       "spawnWeight": 9,
       "cooldownHours": 168,
@@ -5007,7 +5007,7 @@
     },
     {
       "id": "geisterjagerin-raven",
-      "portrait": null,
+      "portrait": "/images/npcs/geisterjagerin-raven.png",
       "rarity": "epic",
       "spawnWeight": 7,
       "cooldownHours": 168,
@@ -5077,7 +5077,7 @@
     },
     {
       "id": "chronist-aeon",
-      "portrait": null,
+      "portrait": "/images/npcs/chronist-aeon.png",
       "rarity": "legendary",
       "spawnWeight": 2,
       "cooldownHours": 720,
@@ -5164,7 +5164,7 @@
     },
     {
       "id": "tod-der-hoefliche",
-      "portrait": null,
+      "portrait": "/images/npcs/tod-der-hoefliche.png",
       "rarity": "legendary",
       "spawnWeight": 1,
       "cooldownHours": 1080,
@@ -5235,7 +5235,7 @@
     },
     {
       "id": "meisterin-der-stille",
-      "portrait": null,
+      "portrait": "/images/npcs/meisterin-der-stille.png",
       "rarity": "legendary",
       "spawnWeight": 2,
       "cooldownHours": 720,
@@ -5322,7 +5322,7 @@
     },
     {
       "id": "bauer-ernst",
-      "portrait": null,
+      "portrait": "/images/npcs/bauer-ernst.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -5375,7 +5375,7 @@
     },
     {
       "id": "tanzlehrerin-vivienne",
-      "portrait": null,
+      "portrait": "/images/npcs/tanzlehrerin-vivienne.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -5445,7 +5445,7 @@
     },
     {
       "id": "detektiv-ash",
-      "portrait": null,
+      "portrait": "/images/npcs/detektiv-ash.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -5515,7 +5515,7 @@
     },
     {
       "id": "philosophin-helen",
-      "portrait": null,
+      "portrait": "/images/npcs/philosophin-helen.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -5568,7 +5568,7 @@
     },
     {
       "id": "tierpfleger-finn",
-      "portrait": null,
+      "portrait": "/images/npcs/tierpfleger-finn.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -5621,7 +5621,7 @@
     },
     {
       "id": "maler-claude",
-      "portrait": null,
+      "portrait": "/images/npcs/maler-claude.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -5691,7 +5691,7 @@
     },
     {
       "id": "spion-echo",
-      "portrait": null,
+      "portrait": "/images/npcs/spion-echo.png",
       "rarity": "rare",
       "spawnWeight": 14,
       "cooldownHours": 144,
@@ -5761,7 +5761,7 @@
     },
     {
       "id": "musikerin-aria",
-      "portrait": null,
+      "portrait": "/images/npcs/musikerin-aria.png",
       "rarity": "rare",
       "spawnWeight": 16,
       "cooldownHours": 96,
@@ -5831,7 +5831,7 @@
     },
     {
       "id": "handwerkerin-petra",
-      "portrait": null,
+      "portrait": "/images/npcs/handwerkerin-petra.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -5901,7 +5901,7 @@
     },
     {
       "id": "coach-dominik",
-      "portrait": null,
+      "portrait": "/images/npcs/coach-dominik.png",
       "rarity": "uncommon",
       "spawnWeight": 30,
       "cooldownHours": 72,
@@ -5971,7 +5971,7 @@
     },
     {
       "id": "braumeister-bjorn",
-      "portrait": null,
+      "portrait": "/images/npcs/braumeister-bjorn.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -6024,7 +6024,7 @@
     },
     {
       "id": "postmeisterin-clara",
-      "portrait": null,
+      "portrait": "/images/npcs/postmeisterin-clara.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -6077,7 +6077,7 @@
     },
     {
       "id": "gaertner-thorn",
-      "portrait": null,
+      "portrait": "/images/npcs/gaertner-thorn.png",
       "rarity": "common",
       "spawnWeight": 40,
       "cooldownHours": 48,
@@ -6130,7 +6130,7 @@
     },
     {
       "id": "bote-swift",
-      "portrait": null,
+      "portrait": "/images/npcs/bote-swift.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -6183,7 +6183,7 @@
     },
     {
       "id": "waescherin-agnes",
-      "portrait": null,
+      "portrait": "/images/npcs/waescherin-agnes.png",
       "rarity": "common",
       "spawnWeight": 40,
       "cooldownHours": 48,
@@ -6236,7 +6236,7 @@
     },
     {
       "id": "schmied-vulkan",
-      "portrait": null,
+      "portrait": "/images/npcs/schmied-vulkan.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -6306,7 +6306,7 @@
     },
     {
       "id": "sterndeuterin-nova",
-      "portrait": null,
+      "portrait": "/images/npcs/sterndeuterin-nova.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -6359,7 +6359,7 @@
     },
     {
       "id": "sammler-magpie",
-      "portrait": null,
+      "portrait": "/images/npcs/sammler-magpie.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -6412,7 +6412,7 @@
     },
     {
       "id": "botanikerin-fern",
-      "portrait": null,
+      "portrait": "/images/npcs/botanikerin-fern.png",
       "rarity": "rare",
       "spawnWeight": 16,
       "cooldownHours": 120,
@@ -6482,7 +6482,7 @@
     },
     {
       "id": "erfinder-tesla",
-      "portrait": null,
+      "portrait": "/images/npcs/erfinder-tesla.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -6552,7 +6552,7 @@
     },
     {
       "id": "richterin-justina",
-      "portrait": null,
+      "portrait": "/images/npcs/richterin-justina.png",
       "rarity": "rare",
       "spawnWeight": 14,
       "cooldownHours": 144,
@@ -6622,7 +6622,7 @@
     },
     {
       "id": "leuchtturmwaerter-sol",
-      "portrait": null,
+      "portrait": "/images/npcs/leuchtturmwaerter-sol.png",
       "rarity": "epic",
       "spawnWeight": 8,
       "cooldownHours": 168,
@@ -6709,7 +6709,7 @@
     },
     {
       "id": "puppenmacherin-elara",
-      "portrait": null,
+      "portrait": "/images/npcs/puppenmacherin-elara.png",
       "rarity": "epic",
       "spawnWeight": 7,
       "cooldownHours": 168,
@@ -6779,7 +6779,7 @@
     },
     {
       "id": "wanderer-nobody",
-      "portrait": null,
+      "portrait": "/images/npcs/wanderer-nobody.png",
       "rarity": "legendary",
       "spawnWeight": 2,
       "cooldownHours": 720,
@@ -6866,7 +6866,7 @@
     },
     {
       "id": "baecker-fritz",
-      "portrait": null,
+      "portrait": "/images/npcs/baecker-fritz.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -6919,7 +6919,7 @@
     },
     {
       "id": "haushalterin-magda",
-      "portrait": null,
+      "portrait": "/images/npcs/haushalterin-magda.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -6972,7 +6972,7 @@
     },
     {
       "id": "laternenanzuender-pip",
-      "portrait": null,
+      "portrait": "/images/npcs/laternenanzuender-pip.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -7025,7 +7025,7 @@
     },
     {
       "id": "architektin-iris",
-      "portrait": null,
+      "portrait": "/images/npcs/architektin-iris.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -7095,7 +7095,7 @@
     },
     {
       "id": "gaukler-jest",
-      "portrait": null,
+      "portrait": "/images/npcs/gaukler-jest.png",
       "rarity": "uncommon",
       "spawnWeight": 30,
       "cooldownHours": 72,
@@ -7148,7 +7148,7 @@
     },
     {
       "id": "mentor-grau",
-      "portrait": null,
+      "portrait": "/images/npcs/mentor-grau.png",
       "rarity": "uncommon",
       "spawnWeight": 25,
       "cooldownHours": 72,
@@ -7218,7 +7218,7 @@
     },
     {
       "id": "jongleurin-luna",
-      "portrait": null,
+      "portrait": "/images/npcs/jongleurin-luna.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -7271,7 +7271,7 @@
     },
     {
       "id": "alchemist-gold",
-      "portrait": null,
+      "portrait": "/images/npcs/alchemist-gold.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -7341,7 +7341,7 @@
     },
     {
       "id": "traumdeuterin-morphea",
-      "portrait": null,
+      "portrait": "/images/npcs/traumdeuterin-morphea.png",
       "rarity": "rare",
       "spawnWeight": 14,
       "cooldownHours": 144,
@@ -7411,7 +7411,7 @@
     },
     {
       "id": "steinmetz-granite",
-      "portrait": null,
+      "portrait": "/images/npcs/steinmetz-granite.png",
       "rarity": "rare",
       "spawnWeight": 16,
       "cooldownHours": 96,
@@ -7481,7 +7481,7 @@
     },
     {
       "id": "kartografin-mappe",
-      "portrait": null,
+      "portrait": "/images/npcs/kartografin-mappe.png",
       "rarity": "rare",
       "spawnWeight": 15,
       "cooldownHours": 120,
@@ -7534,7 +7534,7 @@
     },
     {
       "id": "strategin-athena",
-      "portrait": null,
+      "portrait": "/images/npcs/strategin-athena.png",
       "rarity": "epic",
       "spawnWeight": 8,
       "cooldownHours": 168,
@@ -7604,7 +7604,7 @@
     },
     {
       "id": "geschichtsschreiber-chronos",
-      "portrait": null,
+      "portrait": "/images/npcs/geschichtsschreiber-chronos.png",
       "rarity": "epic",
       "spawnWeight": 7,
       "cooldownHours": 168,
@@ -7674,7 +7674,7 @@
     },
     {
       "id": "heilerin-grace",
-      "portrait": null,
+      "portrait": "/images/npcs/heilerin-grace.png",
       "rarity": "epic",
       "spawnWeight": 9,
       "cooldownHours": 168,
@@ -7744,7 +7744,7 @@
     },
     {
       "id": "zeitungsjunge-max",
-      "portrait": null,
+      "portrait": "/images/npcs/zeitungsjunge-max.png",
       "rarity": "common",
       "spawnWeight": 50,
       "cooldownHours": 48,
@@ -7797,7 +7797,7 @@
     },
     {
       "id": "mutter-erde",
-      "portrait": null,
+      "portrait": "/images/npcs/mutter-erde.png",
       "rarity": "legendary",
       "spawnWeight": 2,
       "cooldownHours": 720,
@@ -7884,7 +7884,7 @@
     },
     {
       "id": "meisterkoch-umami",
-      "portrait": null,
+      "portrait": "/images/npcs/meisterkoch-umami.png",
       "rarity": "uncommon",
       "spawnWeight": 28,
       "cooldownHours": 72,
@@ -7954,7 +7954,7 @@
     },
     {
       "id": "bergmann-gruber",
-      "portrait": null,
+      "portrait": "/images/npcs/bergmann-gruber.png",
       "rarity": "common",
       "spawnWeight": 45,
       "cooldownHours": 48,
@@ -8007,7 +8007,7 @@
     },
     {
       "id": "geschuetzt-erin",
-      "portrait": null,
+      "portrait": "/images/npcs/geschuetzt-erin.png",
       "rarity": "epic",
       "spawnWeight": 8,
       "cooldownHours": 168,
