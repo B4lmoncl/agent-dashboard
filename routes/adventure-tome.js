@@ -264,9 +264,13 @@ function evaluateFloor(floor, user, progress) {
           ).length : 0;
           break;
         }
-        case "_messagesSent":
-          current = user._messagesSent || 0;
+        case "_messagesSent": {
+          // Count from social message data
+          const msgs = state.socialData?.messages || [];
+          const senderId = user.name?.toLowerCase() || user.id;
+          current = msgs.filter(m => m.from === senderId).length;
           break;
+        }
         case "_tradesCompleted":
           current = user._tradesCompleted || 0;
           break;
@@ -277,7 +281,7 @@ function evaluateFloor(floor, user, progress) {
           current = user._expeditionCompletions || 0;
           break;
         case "_mailSent":
-          current = user._mailSent || 0;
+          current = user._mailsSent || user._mailSent || 0;
           break;
         case "_goldTraded":
           current = user._goldTraded || 0;

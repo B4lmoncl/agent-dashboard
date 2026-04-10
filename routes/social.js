@@ -786,6 +786,12 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
       // Track for achievements
       if (state.users[trade.initiator]) state.users[trade.initiator]._tradesCompleted = (state.users[trade.initiator]._tradesCompleted || 0) + 1;
       if (state.users[trade.recipient]) state.users[trade.recipient]._tradesCompleted = (state.users[trade.recipient]._tradesCompleted || 0) + 1;
+      // Track gold traded for Adventure Tome
+      const goldInTrade = (trade.initiatorOffer?.gold || 0) + (trade.recipientOffer?.gold || 0);
+      if (goldInTrade > 0) {
+        if (state.users[trade.initiator]) state.users[trade.initiator]._goldTraded = (state.users[trade.initiator]._goldTraded || 0) + goldInTrade;
+        if (state.users[trade.recipient]) state.users[trade.recipient]._goldTraded = (state.users[trade.recipient]._goldTraded || 0) + goldInTrade;
+      }
       console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
       return res.json({ ok: true, trade, executed: true, summary: result.summary });
     } finally {
