@@ -268,9 +268,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'gear_next_tier': {
-      // Placeholder — complex logic for Task 2
-      message = 'Schmiedehammer der Meister aktiviert! (Upgrade-System coming soon)';
-      break;
+      // Not yet implemented — refund item instead of destroying it
+      return res.status(400).json({ error: 'Gear-Upgrade-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
     }
     case 'undo_missed_ritual': {
       // Reset ritual miss counter
@@ -282,9 +281,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'named_gear': {
-      // Placeholder — would add a specific legendary weapon
-      message = 'Legendary weapon obtained! (Coming soon)';
-      break;
+      // Not yet implemented — refund item
+      return res.status(400).json({ error: 'Named-Gear-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
     }
     case 'team_buff': {
       const amt = effect.amount || 25;
@@ -525,10 +523,17 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       message = 'Streak-Rettung bereit! 50% Chance, deinen Streak zu retten falls du ihn verlierst.';
       break;
     }
+    case 'unlock_secret_quest': {
+      // Not yet implemented — refund item
+      return res.status(400).json({ error: 'Secret-Quest-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
+    }
+    case 'team_buff': {
+      // Not yet implemented — refund item
+      return res.status(400).json({ error: 'Team-Buff-System ist noch nicht verfügbar. Item bleibt im Inventar.' });
+    }
     default: {
-      // Unknown effect — consume anyway but note it
-      message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
-      break;
+      // Unknown effect — do NOT consume, return error
+      return res.status(400).json({ error: `Effekt "${effectType}" ist nicht implementiert. Item bleibt im Inventar.` });
     }
   }
 
