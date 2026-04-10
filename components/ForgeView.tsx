@@ -57,7 +57,7 @@ interface Recipe {
   trainerCost?: number;
   skillUpColor?: string;
   cooldownRemaining?: number;
-  result?: { type?: string; templateId?: string; buffType?: string; duration?: string };
+  result?: { type?: string; templateId?: string; buffType?: string; duration?: string; materialId?: string; outputMaterial?: string };
   vendorReagents?: Record<string, number>;
   icon?: string;
 }
@@ -202,6 +202,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [currencies, setCurrencies] = useState<Record<string, number>>({});
   const [maxProfSlots, setMaxProfSlots] = useState(2);
   const [selectedNpc, setSelectedNpc] = useState<ProfessionDef | null>(null);
+  const [selectedMaterial, setSelectedMaterial] = useState<MaterialDef | null>(null);
   const [craftResult, setCraftResult] = useState<string | null>(null);
   const [craftResultSkillUpColor, setCraftResultSkillUpColor] = useState<string | null>(null);
   const [craftResultHadSkillUp, setCraftResultHadSkillUp] = useState(false);
@@ -381,6 +382,24 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const startCraftCast = (recipeId: string, count = 1) => {
     if (crafting || craftProgress || !reviewApiKey) return;
+    // Pre-validate materials client-side BEFORE starting cast bar (WoW-style: don't start cast if impossible)
+    const recipe = recipes.find(r => r.id === recipeId);
+    if (recipe) {
+      for (const [matId, needed] of Object.entries(recipe.materials || {})) {
+        const owned = materials[matId] || 0;
+        if (owned < (needed as number) * count) {
+          const matDef = materialDefs.find(m => m.id === matId);
+          setCraftResult(`Not enough ${matDef?.name || matId} (${owned}/${(needed as number) * count})`);
+          setTimeout(() => setCraftResult(null), 3000);
+          return;
+        }
+      }
+      if (!recipe.canCraft) {
+        setCraftResult(recipe.learned === false ? "Recipe not learned yet" : "Cannot craft this recipe");
+        setTimeout(() => setCraftResult(null), 3000);
+        return;
+      }
+    }
     const castMs = getCraftCastMs(recipeId);
     craftCastMsRef.current = castMs;
     setCraftProgress({ recipeId, current: 0, total: count, startTime: Date.now() });
@@ -1151,10 +1170,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {relevantMats.length > 0 && !locked && (
               <div className="px-4 pb-3 flex flex-wrap gap-2">
                 {relevantMats.slice(0, 6).map(m => (
-                  <span key={m.id} className="text-xs flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90`, border: "1px solid rgba(255,255,255,0.04)" }}>
-                    <img src={m.icon} alt="" width={32} height={32} style={{ imageRendering: "auto" }} onError={hideOnError} />
+                  <button
+                    key={m.id}
+                    onClick={(e) => { e.stopPropagation(); setSelectedMaterial(m); }}
+                    className="text-xs flex items-center gap-1.5 px-2 py-1 rounded-lg"
+                    style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90`, border: "1px solid rgba(255,255,255,0.04)", cursor: "pointer" }}
+                    title={m.name}
+                  >
+                    {m.icon ? <img src={m.icon} alt="" width={32} height={32} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="flex items-center justify-center" style={{ width: 32, height: 32, fontSize: 16, color: `${RARITY_COLORS[m.rarity]}60` }}>◆</span>}
                     x{materials[m.id]}
-                  </span>
+                  </button>
                 ))}
               </div>
             )}
@@ -1165,6 +1190,54 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           </div>
         );
       })}
+
+      {/* ─── Material Detail Popover ──────────────────────────────────────── */}
+      {selectedMaterial && (() => {
+        const m = selectedMaterial;
+        const owned = materials[m.id] || 0;
+        const usedIn = recipes.filter(r => r.materials && m.id in r.materials);
+        const producedBy = recipes.filter(r => r.result?.materialId === m.id || r.result?.outputMaterial === m.id);
+        const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
+        return (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center modal-backdrop" onClick={() => setSelectedMaterial(null)}>
+            <div className="rounded-xl p-5 w-full max-w-sm space-y-3 tab-content-enter" style={{ background: "#141418", border: `1px solid ${rc}30` }} onClick={e => e.stopPropagation()}>
+              <div className="flex items-start gap-3">
+                {m.icon ? <img src={m.icon} alt="" width={48} height={48} className="img-render-auto flex-shrink-0 rounded" onError={hideOnError} /> : <span className="flex items-center justify-center rounded" style={{ width: 48, height: 48, background: `${rc}15`, color: rc, fontSize: 24 }}>◆</span>}
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-bold" style={{ color: rc }}>{m.name}</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{m.rarity} Material</p>
+                  {m.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>{m.desc}</p>}
+                </div>
+                <button onClick={() => setSelectedMaterial(null)} className="text-xs w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>✕</button>
+              </div>
+              <div className="flex items-center justify-between px-2 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Owned</span>
+                <span className="text-sm font-mono font-bold" style={{ color: owned > 0 ? "#22c55e" : "rgba(255,255,255,0.2)" }}>{owned}</span>
+              </div>
+              {m.source && <p className="text-xs px-1" style={{ color: "rgba(255,255,255,0.25)" }}>Source: {m.source}</p>}
+              {usedIn.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Used in ({usedIn.length})</p>
+                  <div className="space-y-0.5 max-h-32 overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+                    {usedIn.slice(0, 10).map(r => (
+                      <p key={r.id} className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>· {r.name} <span style={{ color: "rgba(255,255,255,0.15)" }}>({r.profession})</span></p>
+                    ))}
+                    {usedIn.length > 10 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>...+{usedIn.length - 10} more</p>}
+                  </div>
+                </div>
+              )}
+              {producedBy.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Produced by</p>
+                  {producedBy.slice(0, 5).map(r => (
+                    <p key={r.id} className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>· {r.name}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ─── Material Storage (GW2-style) ────────────────────────────────────── */}
       <div id="mat-storage-section" className="space-y-2">
@@ -1214,11 +1287,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const count = materials[m.id] || 0;
                     const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
                     return (
-                      <div
+                      <button
                         key={m.id}
-                        className="flex items-center gap-2 rounded-lg px-2.5 py-2"
+                        onClick={() => setSelectedMaterial(m)}
+                        className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-left w-full"
                         title={m.desc}
-                        style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
+                        style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4, cursor: "pointer" }}
                       >
                         {m.icon ? (
                           <img src={m.icon} alt={m.name} width={48} height={48} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
@@ -1229,7 +1303,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           <p className="text-xs font-semibold truncate" style={{ color: rc }}>{m.name}</p>
                           <p className="text-xs font-mono" style={{ color: count > 0 ? "#e8e8e8" : "rgba(255,255,255,0.2)" }}>{count}</p>
                         </div>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>
@@ -2373,18 +2447,26 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {recs.map(r => {
                           const learned = learnedSet.has(r.id);
                           const canAfford = gold >= (r.trainerCost || 0);
-                          // Trainer: you can LEARN any recipe you can afford (skill req only matters for crafting, not learning)
+                          const recipeSkill = r.reqSkill || 0;
+                          const aboveCap = recipeSkill > (selectedNpc.skillCap || 75);
+                          const canCraftSkill = playerSkill >= recipeSkill;
                           return (
-                            <div key={r.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: learned ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${learned ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.05)"}` }}>
+                            <div key={r.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: learned ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${learned ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.05)"}`, opacity: aboveCap ? 0.35 : 1 }}>
                               <span style={{ color: learned ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{learned ? "✓" : "○"}</span>
                               {r.icon && <img src={r.icon.startsWith("/") ? r.icon : `/images/icons/${r.icon}`} alt="" width={24} height={24} className="img-render-auto flex-shrink-0 rounded" style={{ opacity: learned ? 0.4 : 0.85 }} onError={hideOnError} />}
                               <div className="flex-1 min-w-0">
                                 <p className="text-xs font-semibold truncate" style={{ color: learned ? "rgba(255,255,255,0.4)" : "#e8e8e8" }}>{r.name}</p>
-                                <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill {r.reqSkill || 0}{r.desc ? ` — ${r.desc}` : ""}</p>
+                                <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                                  Skill {r.reqSkill || 0}
+                                  {!learned && !canCraftSkill && !aboveCap && <span style={{ color: "#f59e0b" }}> — need Skill {recipeSkill}</span>}
+                                  {aboveCap && <span style={{ color: "#ef4444" }}> — train higher rank</span>}
+                                  {r.desc ? ` — ${r.desc}` : ""}
+                                </p>
                               </div>
                               {!learned && (
                                 <button
                                   onClick={async () => {
+                                    if (aboveCap) return;
                                     try {
                                       const res = await fetch("/api/professions/learn", {
                                         method: "POST",
@@ -2397,14 +2479,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       setTimeout(() => setCraftResult(null), 3000);
                                     } catch { setCraftResult("Network error"); }
                                   }}
-                                  disabled={!canAfford || learned}
-                                  title={!canAfford ? `Need ${(r.trainerCost || 0) - gold} more gold` : `Learn for ${r.trainerCost}g`}
+                                  disabled={!canAfford || learned || aboveCap}
+                                  title={aboveCap ? `Requires higher rank (Cap ${recipeSkill}+)` : !canAfford ? `Need ${(r.trainerCost || 0) - gold} more gold` : `Learn for ${r.trainerCost}g`}
                                   className="text-xs px-3 py-1.5 rounded-lg font-semibold flex-shrink-0"
                                   style={{
-                                    background: canAfford ? "rgba(245,158,11,0.15)" : "rgba(255,255,255,0.03)",
-                                    color: canAfford ? "#f59e0b" : "rgba(255,255,255,0.2)",
-                                    border: `1px solid ${canAfford ? "rgba(245,158,11,0.35)" : "rgba(255,255,255,0.06)"}`,
-                                    cursor: canAfford ? "pointer" : "not-allowed",
+                                    background: canAfford && !aboveCap ? "rgba(245,158,11,0.15)" : "rgba(255,255,255,0.03)",
+                                    color: canAfford && !aboveCap ? "#f59e0b" : "rgba(255,255,255,0.2)",
+                                    border: `1px solid ${canAfford && !aboveCap ? "rgba(245,158,11,0.35)" : "rgba(255,255,255,0.06)"}`,
+                                    cursor: canAfford && !aboveCap ? "pointer" : "not-allowed",
                                   }}
                                 >
                                   Learn ({(r.trainerCost || 0).toLocaleString()}g)

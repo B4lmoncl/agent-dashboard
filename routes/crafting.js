@@ -342,7 +342,7 @@ router.get('/api/professions', (req, res) => {
         ...r,
         reqSkill,
         learned,
-        canCraft: learned && playerSkill >= reqSkill && factionRepMet,
+        canCraft: learned && playerSkill >= reqSkill && factionRepMet && Object.entries(r.materials || {}).every(([matId, amt]) => (u?.craftingMaterials?.[matId] || 0) >= amt),
         factionRepMet,
         skillUpColor: getSkillUpColor(playerSkill, reqSkill),
         skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
