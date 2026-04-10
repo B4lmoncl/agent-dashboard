@@ -1,111 +1,77 @@
 # Asset Backlog — Fehlende Bilder
 
-> Stand: 2026-04-10 (post-generation audit)
-> **WoW Classic Icon-Sharing Modell:** ~15 Items teilen sich 1 Icon.
-> Aktuell: 40 gacha-Icons + 7 equip-Placeholder. **13 Boots-Icons fehlen auf Platte.**
+> Stand: 2026-04-10 (post-generation final audit)
+> **Gear Icon System: KOMPLETT.** Alle 7 Slots haben 25 Icons, round-robin verteilt, 0 Placeholder.
+> **NPC Portraits: KOMPLETT.** Alle 100 NPCs haben Portraits und können spawnen.
+> **Boss Portraits: KOMPLETT.** Alle 15 Bosse haben Portraits.
+> **Material Icons: KOMPLETT.** Alle 64 Materialien haben Icons.
+> **Companion Portraits: KOMPLETT.** Alle 15 Companions haben Portraits.
 
 ---
 
-## Standardgrößen (verbindlich)
+## ✅ KOMPLETT — Nicht nochmal generieren
 
-| Asset-Typ | Größe | Style Reference | Endpoint |
-|---|---|---|---|
-| Gear Icons | 128×128 | `gacha-heiltrank.png` | `generate-with-style-v2` |
-| NPC Portraits | 128×128 | `rogar-amboss.png` | `generate-with-style-v2` |
-| Achievement Icons | 128×128 | `gacha-heiltrank.png` | `generate-with-style-v2` |
-| Material Icons | 128×128 | `gacha-heiltrank.png` | `generate-with-style-v2` |
-| World Boss Portraits | 256×256 | `rogar-amboss.png` | `generate-with-style-v2` |
-| Floor Banners | 792×200 | keine | `generate-image-v2` |
-
----
-
-## Aktuelle Slot-Verteilung (verifiziert 2026-04-10)
-
-| Slot | Items | Icons | Placeholder | Files Missing | Status |
-|------|-------|-------|-------------|---------------|--------|
-| Weapon | 245 | 5 gacha | 0 | 0 | ✅ Fertig |
-| Shield | 159 | 1 gacha + 1 equip | 72 | 0 | ⬜ Braucht ~9 neue Icons |
-| Helm | 217 | 10 gacha | 0 | 0 | ✅ Fertig |
-| Armor | 265 | 5 gacha | 0 | 0 | ✅ Fertig |
-| Amulet | 194 | 0 gacha + 1 equip | 194 | 0 | ⬜ Braucht ~13 neue Icons |
-| Boots | 217 | 14 (Mapping fertig) | 0 | **13 Files fehlen** | ⚠️ Mapping done, Files ausstehend |
-| Ring | 161 | 0 gacha + 1 equip | 160 | 0 | ⬜ Braucht ~10 neue Icons |
-
----
-
-## ✅ Bereits erledigt (NICHT nochmal generieren)
-
-- ✅ 85 Achievement Icons — `public/images/icons/ach-*.png`
-- ✅ 5 Floor Banner — `public/images/banners/*.png`
-- ✅ 5 Weapon Icons — `public/images/icons/gacha-{name}.png`
-- ✅ 5 Armor Icons — `public/images/icons/gacha-{name}.png` + `gacha-armor-obsidian-warplate.png`
-- ✅ 10 Helm Icons — `public/images/icons/gacha-helm-*.png`
-- ✅ 1 Shield Icon — `public/images/icons/gacha-schild-eiserner-wille.png`
-- ✅ 1 Boots Icon — `public/images/icons/gacha-boots-ethereal-walkers.png`
-- ✅ 16 Shop Icons — `public/images/icons/shop-*.png`
-- ✅ 8 Profession NPC Portraits — `public/images/npcs/{grimvar,ysolde,...}.png`
-- ✅ 8 Profession Icons — `public/images/icons/prof-*.png`
-- ✅ 4 Rift Icons — `public/images/icons/rift-*.png`
-- ✅ 4 Faction Icons — `public/images/icons/faction-*.png`
-- ✅ 15 World Boss Portraits — `public/images/bosses/*.png`
-- ✅ 64 Material Icons — `public/images/icons/mat-*.png`
-- ✅ 19 Nav Icons — `public/images/icons/nav-*.png`
-- ✅ 8 Expedition Location Icons — `public/images/icons/exp-*.png`
-- ✅ 9 Weekly Challenge Icons — `public/images/icons/wc-*.png`
-- ✅ 4 Workshop Icons — `public/images/icons/workshop-*.png`
-- ✅ 3 Ultimate Icons — `public/images/icons/ult-*.png`
-- ✅ **100 NPC Portraits** — `public/images/npcs/*.png` (ALLE 100 NPCs!)
+| Kategorie | Anzahl | Pfad |
+|-----------|--------|------|
+| Gear Icons (Weapon) | 25 | `gacha-weapon-*.png` |
+| Gear Icons (Shield) | 25 | `gacha-shield-*.png` |
+| Gear Icons (Helm) | 25 | `gacha-helm-*.png` |
+| Gear Icons (Armor) | 25 | `gacha-armor-*.png` |
+| Gear Icons (Amulet) | 25 | `gacha-amulet-*.png` |
+| Gear Icons (Boots) | 25 | `gacha-boots-*.png` |
+| Gear Icons (Ring) | 25 | `gacha-ring-*.png` |
+| NPC Portraits | 100 | `npcs/*.png` |
+| Boss Portraits | 15 | `bosses/*.png` |
+| Material Icons | 64 | `mat-*.png` |
+| Companion Portraits | 15 | `companions/*.png` |
+| Achievement Icons | 85 | `ach-*.png` (die existierenden) |
+| Shop Icons | 16 | `shop-*.png` (die existierenden) |
+| Profession Icons | 8 | `prof-*.png` |
+| Floor Banners | 5 | `banners/*.png` |
+| Nav Icons | 19 | `nav-*.png` |
+| Expedition Icons | 8 | `exp-*.png` |
+| Weekly Challenge Icons | 9 | `wc-*.png` |
+| Workshop Icons | 4 | `workshop-*.png` |
+| Ultimate Icons | 3 | `ult-*.png` |
+| Rift Icons | 4 | `rift-*.png` |
+| Faction Icons | 4 | `faction-*.png` |
 
 ---
 
 ## Fehlende Assets — Priorisiert
 
-### PRIO 1: Boots Icons (13 fehlend, 128×128) ⚠️ MAPPING DONE, NUR FILES FEHLEN
-
-**Pfad:** `public/images/icons/gacha-boots-{name}.png`
-**Das JSON-Mapping ist bereits fertig.** Die Items referenzieren diese Pfade. Sobald die Files auf der Platte liegen, funktioniert alles.
-
-| Icon | Datei | Prompt |
-|------|-------|--------|
-| Celestial Walkers | `gacha-boots-celestial-walkers.png` | Ethereal floating boots with starlight particles, celestial glow, dark background, fantasy RPG icon |
-| Desert Wraps | `gacha-boots-desert-wraps.png` | Wrapped leather foot wraps with desert sand texture, simple, dark background, fantasy RPG icon |
-| Dragon Greaves | `gacha-boots-dragon-greaves.png` | Heavy dragon-scale greaves with red accents, ornate, dark background, fantasy RPG icon |
-| Frost Treads | `gacha-boots-frost-treads.png` | Ice-encrusted boots with frozen crystal soles, blue glow, dark background, fantasy RPG icon |
-| Iron Greaves | `gacha-boots-iron-greaves.png` | Iron plate greaves, functional military style, dark background, fantasy RPG icon |
-| Leather Boots | `gacha-boots-leather-boots.png` | Sturdy brown leather boots, adventurer style, worn but reliable, dark background, fantasy RPG icon |
-| Mage Slippers | `gacha-boots-mage-slippers.png` | Enchanted cloth slippers with arcane runes, soft purple glow, dark background, fantasy RPG icon |
-| Plate Sabatons | `gacha-boots-plate-sabatons.png` | Heavy plate armor boots, knight style, steel shine, dark background, fantasy RPG icon |
-| Rangers Boots | `gacha-boots-rangers-boots.png` | Green-brown ranger boots, forest camouflage, practical buckles, dark background, fantasy RPG icon |
-| Sandals | `gacha-boots-sandals.png` | Simple rope sandals, peasant/monk style, humble, dark background, fantasy RPG icon |
-| Shadow Steps | `gacha-boots-shadow-steps.png` | Dark assassin boots with shadow wisps, barely visible, dark background, fantasy RPG icon |
-| Spiked Boots | `gacha-boots-spiked-boots.png` | Metal boots with spikes, aggressive warrior style, dark background, fantasy RPG icon |
-| Tribal Fur | `gacha-boots-tribal-fur.png` | Fur-lined tribal boots, bone decorations, primitive, dark background, fantasy RPG icon |
-
-### PRIO 2: Shield Icons (~9 neue, 128×128)
-
-**Pfad:** `public/images/icons/gacha-shield-{name}.png`
-72 Items auf Placeholder. Brauchen ~9 Icons für round-robin.
-
-### PRIO 3: Amulet Icons (~13 neue, 128×128)
-
-**Pfad:** `public/images/icons/gacha-amulet-{name}.png`
-194 Items auf Placeholder. Brauchen ~13 Icons.
-
-### PRIO 4: Ring Icons (~10 neue, 128×128)
-
-**Pfad:** `public/images/icons/gacha-ring-{name}.png`
-160 Items auf Placeholder. Brauchen ~10 Icons.
-
-### PRIO 5: Achievement Icons (55 fehlend, 128×128)
+### PRIO 1: Achievement Icons (55 fehlend, 128×128)
 
 **Pfad:** `public/images/icons/ach-{name}.png`
-55 Achievements referenzieren Icons die nicht existieren. UI zeigt Fallback.
+85 existieren bereits. 55 neuere Achievements (Professions, Factions, Dungeons, etc.) referenzieren Icons die nicht generiert wurden.
 
-### PRIO 6: NPC Reward Item Icons (87 neue, 128×128)
+Fehlend: `ach-10-day`, `ach-100-rituals`, `ach-1000`, `ach-20-npcs`, `ach-200`, `ach-3-day`, `ach-300`, `ach-5-npcs`, `ach-500`, `ach-all-bosses`, `ach-all-prof`, `ach-artisan`, `ach-bond-legend`, `ach-bond`, `ach-bp`, `ach-collector`, `ach-convert`, `ach-craft-100`, `ach-craft-500`, `ach-daily-sweep`, `ach-diplomat`, `ach-dual-prof`, `ach-dungeon-all`, `ach-dungeon`, `ach-enchant-10`, `ach-enchant`, `ach-expedition-10`, `ach-expedition-ancient`, `ach-expedition`, `ach-faction-all`, `ach-faction`, `ach-friends-10`, `ach-friends`, `ach-gacha-pity`, `ach-kanai-full`, `ach-kanai`, `ach-mail-10`, `ach-mail-50`, `ach-mail`, `ach-moonlight`, `ach-mythic-10`, `ach-mythic-5`, `ach-perfect-week`, `ach-recipe`, `ach-rift-legendary`, `ach-rift`, `ach-royal-gem`, `ach-talent-10`, `ach-talent-respec`, `ach-talent`, `ach-tome-50`, `ach-tome-floor`, `ach-tome`, `ach-trade`, `ach-universalist`
+
+### PRIO 2: Shop Icons (14 fehlend, 128×128)
+
+**Pfad:** `public/images/icons/shop-{name}.png`
+16 existieren. 14 neuere Shop-Items (Currency-Shop: Frames, Boosts, Cosmetics) referenzieren fehlende Icons.
+
+Fehlend: `shop-boss-boost`, `shop-companion-glow`, `shop-detox`, `shop-frame-diplomat`, `shop-frame-eclipse`, `shop-frame-guild`, `shop-frame-moon`, `shop-frame-star`, `shop-rested-boost`, `shop-shield-double`, `shop-title-flame`, `shop-title-sage`, `shop-title-shadow`, `shop-title-warrior`
+
+### PRIO 3: Loot Rarity Icons (5 fehlend, 128×128)
+
+**Pfad:** `public/images/icons/loot-{rarity}.png`
+Loot-Table-Items referenzieren rarity-spezifische Icons als Fallback.
+
+Fehlend: `loot-common`, `loot-uncommon`, `loot-rare`, `loot-epic`, `loot-legendary`
+
+### PRIO 4: Currency Icon (1 fehlend, 128×128)
+
+**Pfad:** `public/images/icons/currency-sternentaler.png`
+Sternentaler-Währung hat kein Icon. Wird in page.tsx, DashboardModals, ShopView referenziert.
+
+### PRIO 5: NPC Reward Item Icons (87 neue, 128×128)
 
 **Pfad:** `public/images/icons/unique-npc-{npc-id}-reward.png`
-Alle 87 neuen NPC-Reward-Items brauchen eigene Icons.
+Alle 87 NPC-Quest-Chain-Reward-Items haben `icon: null`. Brauchen individuelle Icons.
 
-### PRIO 7: Shop/Loot/Misc Icons (70 fehlend, 128×128)
+### PRIO 6: Old Item Template Icons (50 fehlend, 128×128)
 
-Diverse Icons für Shop-Items, Loot-Rarity-Badges, Currency-Icons etc. die referenziert aber nicht vorhanden sind.
+**Pfad:** `public/images/icons/{name}.png`
+`itemTemplates.json` referenziert 50 Icons im alten Format (`t1-axe.png`, `t2-helm.png` etc.) die nicht existieren. Diese sind Consumables/Loot-Items, nicht Gear.
