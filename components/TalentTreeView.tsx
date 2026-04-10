@@ -101,6 +101,7 @@ export default function TalentTreeView({
   const { playerName, reviewApiKey } = useDashboard();
   const [data, setData] = useState<TalentData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [allocating, setAllocating] = useState(false);
   const [resetting, setResetting] = useState(false);
@@ -119,6 +120,7 @@ export default function TalentTreeView({
       }
     } catch (e) {
       console.error("[talents] fetch error:", e);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -278,8 +280,9 @@ export default function TalentTreeView({
 
   if (!data) {
     return (
-      <div className="tab-content-enter flex items-center justify-center py-20">
-        <div className="text-sm text-w30">Talent-System nicht verfügbar</div>
+      <div className="tab-content-enter flex flex-col items-center justify-center py-20 gap-2">
+        <div className="text-sm" style={{ color: loadError ? "#ef4444" : "rgba(255,255,255,0.3)" }}>{loadError ? "Failed to load Talent Tree" : "Talent-System nicht verfügbar"}</div>
+        {loadError && <button onClick={() => { setLoadError(false); setLoading(true); fetchTalents(); }} className="text-xs px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}>Retry</button>}
       </div>
     );
   }

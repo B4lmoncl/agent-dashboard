@@ -55,6 +55,7 @@ export default function AdventureTomeView({
   const { reviewApiKey } = useDashboard();
   const [data, setData] = useState<TomeData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [claiming, setClaiming] = useState<string | null>(null);
   const [expandedFloor, setExpandedFloor] = useState<string | null>(null);
 
@@ -66,7 +67,7 @@ export default function AdventureTomeView({
         setData(d);
       }
     } catch {
-      /* ignore */
+      setLoadError(true);
     }
     setLoading(false);
   }, []);
@@ -116,6 +117,14 @@ export default function AdventureTomeView({
         <div className="skeleton-card h-40" />
         <div className="skeleton-card h-40" />
         <div className="skeleton-card h-40" />
+      </div>
+    );
+  }
+  if (loadError) {
+    return (
+      <div className="text-center py-12 tab-content-enter">
+        <p className="text-sm" style={{ color: "#ef4444" }}>Failed to load Adventure Tome data</p>
+        <button onClick={() => { setLoadError(false); setLoading(true); fetchTome(); }} className="text-xs mt-2 px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}>Retry</button>
       </div>
     );
   }
