@@ -373,9 +373,7 @@ button[disabled] {
   60%  { opacity: 1; transform: scale(1.4) rotate(180deg); }
   100% { opacity: 0; transform: scale(2) rotate(360deg); }
 }
-@keyframes tutorial-fade-step {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+100% { opacity: 1; }
 }
 .tutorial-spotlight {
   position: relative;
@@ -440,9 +438,7 @@ button[disabled] {
 }
 
 /* ─── NPC Modals — Ritual Chamber & Vow Shrine ──────────────────────────── */
-@keyframes npc-speech-in {
-  0%   { opacity: 0; transform: translateY(5px); }
-  100% { opacity: 1; transform: translateY(0); }
+100% { opacity: 1; transform: translateY(0); }
 }
 
 /* ─── Ritual section + Vow section tinting ───────────────────────────────── */
@@ -1183,9 +1179,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   0%, 100% { opacity: 0; transform: scale(0.5); }
   50% { opacity: 0.6; transform: scale(1); }
 }
-@keyframes ambient-drip {
-  0%, 90%, 100% { opacity: 0; transform: translateY(0); }
-  92% { opacity: 0.4; transform: translateY(0); }
+92% { opacity: 0.4; transform: translateY(0); }
   98% { opacity: 0.2; transform: translateY(8px); }
 }
 @keyframes ambient-wave {
@@ -1506,9 +1500,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 }
 
 /* Ring pulse when all tasks complete */
-@keyframes today-ring-complete {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.08); }
+40% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
@@ -1592,9 +1584,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   60% { opacity: 1; transform: scale(1.08) rotate(2deg); }
   100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
-@keyframes reward-particle-fly {
-  0% { opacity: 0.9; transform: translate(0,0) scale(1); }
-  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.2); }
+100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.2); }
 }
 .reward-burst-enter {
   animation: reward-burst-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -1625,9 +1615,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .forge-recipe-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
 
 /* 4. Craft Completion Sparkle */
-@keyframes craft-sparkle-rise {
-  0% { opacity: 0; transform: translateY(0) scale(0.5); }
-  30% { opacity: 1; }
+30% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-50px) scale(0.3); }
 }
 @keyframes craft-result-enter {
@@ -1651,9 +1639,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   0%, 100% { background: transparent; }
   50% { background: rgba(251,191,36,0.15); }
 }
-@keyframes skill-float-up {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-30px); }
+100% { opacity: 0; transform: translateY(-30px); }
 }
 .skill-bar-flash { animation: skill-up-flash 0.6s ease-out; }
 
@@ -1888,9 +1874,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 }
 
 /* ─── Coin Rain (daily bonus claim visual) ─────────────────────── */
-@keyframes coin-fall {
-  0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
-  100% { opacity: 0; transform: translateY(60px) rotate(720deg); }
+100% { opacity: 0; transform: translateY(60px) rotate(720deg); }
 }
 
 /* ─── Daily Hub: Bonus Pulse + Streak Urgency ─────────────────────── */
@@ -2159,35 +2143,25 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 /* ─── Talent Tree Animations ────────────────────────────────────────────── */
 
 /* Slow pulse on active connection lines */
-@keyframes talent-line-pulse {
-  0%, 100% { opacity: 0.5; stroke-width: 2; }
-  50%      { opacity: 0.9; stroke-width: 3; }
+50%      { opacity: 0.9; stroke-width: 3; }
 }
 
 /* Particles rising from allocated nodes — slow, ethereal */
-@keyframes talent-particle-rise {
-  0%   { transform: translateY(0) scale(1); opacity: 0.7; }
-  40%  { transform: translateY(-18px) scale(0.8); opacity: 0.5; }
+40%  { transform: translateY(-18px) scale(0.8); opacity: 0.5; }
   80%  { transform: translateY(-35px) scale(0.4); opacity: 0.2; }
   100% { transform: translateY(-45px) scale(0); opacity: 0; }
 }
 
 /* Ambient glow breath on allocated nodes */
-@keyframes talent-node-breathe {
-  0%, 100% { filter: drop-shadow(0 0 4px currentColor); }
-  50%      { filter: drop-shadow(0 0 10px currentColor); }
+50%      { filter: drop-shadow(0 0 10px currentColor); }
 }
 
 /* Ring circle slow rotation (very subtle) */
-@keyframes talent-ring-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+to   { transform: rotate(360deg); }
 }
 
 /* Selection ring pulse */
-@keyframes talent-select-pulse {
-  0%, 100% { stroke-opacity: 0.6; stroke-width: 2; }
-  50%      { stroke-opacity: 1; stroke-width: 3; }
+50%      { stroke-opacity: 1; stroke-width: 3; }
 }
 
 /* Skill-up flash for crafting profession bar (ForgeView) */
