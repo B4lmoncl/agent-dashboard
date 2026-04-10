@@ -366,8 +366,7 @@
       "description": "Erste Durchquerung des Versunkenen Archivs. Du hast gelesen, was die Welt vergessen hat.",
       "rarity": "rare",
       "condition": {
-        "type": "shop_purchase",
-        "value": 1
+        "type": "hidden"
       }
     },
     {
@@ -376,8 +375,7 @@
       "description": "Erste Durchquerung des Zerbrochenen Turms. Was gebrochen war, hast du bezwungen.",
       "rarity": "epic",
       "condition": {
-        "type": "shop_purchase",
-        "value": 1
+        "type": "hidden"
       }
     },
     {
@@ -386,8 +384,7 @@
       "description": "Erste Durchquerung des Hohlen Kerns. Du bist in die Leere gegangen — und zurückgekommen.",
       "rarity": "legendary",
       "condition": {
-        "type": "shop_purchase",
-        "value": 1
+        "type": "hidden"
       }
     },
     {
@@ -602,7 +599,7 @@
     },
     {
       "id": "gold5000",
-      "name": "Golddrache",
+      "name": "Goldsammler",
       "description": "5000 Gold. Du schläfst auf einem Haufen Münzen.",
       "rarity": "rare",
       "condition": {
@@ -712,7 +709,7 @@
     },
     {
       "id": "craft275",
-      "name": "Großmeister",
+      "name": "Meister der Künste",
       "description": "Profession Skill 275. Fast perfekt.",
       "rarity": "epic",
       "condition": {
@@ -832,7 +829,7 @@
     },
     {
       "id": "achpts50",
-      "name": "Sammler",
+      "name": "Punktesammler",
       "description": "50 Achievement-Punkte.",
       "rarity": "common",
       "condition": {
@@ -952,7 +949,7 @@
     },
     {
       "id": "inv25",
-      "name": "Sammler",
+      "name": "Hortmeister",
       "description": "25 Items im Inventar.",
       "rarity": "common",
       "condition": {
@@ -982,7 +979,7 @@
     },
     {
       "id": "gacha3",
-      "name": "Glückskind",
+      "name": "Drei Sterne",
       "description": "3 Legendary Gacha-Pulls.",
       "rarity": "rare",
       "condition": {
@@ -1002,7 +999,7 @@
     },
     {
       "id": "gacha10",
-      "name": "Sternenbrecher",
+      "name": "Sternenjäger",
       "description": "10 Legendary Pulls. Du biegst die Wahrscheinlichkeit.",
       "rarity": "legendary",
       "condition": {
@@ -1130,7 +1127,7 @@
     },
     {
       "id": "hidden-iron-will",
-      "name": "Eiserner Wille",
+      "name": "Unerschütterlich",
       "rarity": "legendary",
       "condition": {
         "type": "hidden"

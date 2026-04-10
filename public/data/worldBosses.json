@@ -34,7 +34,15 @@
         "color": "#ef4444",
         "glow": true
       },
-      "portrait": "/images/bosses/procrastination-wyrm.png"
+      "portrait": "/images/bosses/procrastination-wyrm.png",
+      "hp": 50000,
+      "enrageHours": 168,
+      "contributionThresholds": {
+        "bronze": 100,
+        "silver": 300,
+        "gold": 750,
+        "legendary": 1500
+      }
     },
     {
       "id": "burnout-colossus",
@@ -56,7 +64,15 @@
         "color": "#f97316",
         "glow": true
       },
-      "portrait": "/images/bosses/burnout-colossus.png"
+      "portrait": "/images/bosses/burnout-colossus.png",
+      "hp": 50000,
+      "enrageHours": 168,
+      "contributionThresholds": {
+        "bronze": 100,
+        "silver": 300,
+        "gold": 750,
+        "legendary": 1500
+      }
     },
     {
       "id": "chaos-hydra",
@@ -78,7 +94,15 @@
         "color": "#a855f7",
         "glow": true
       },
-      "portrait": "/images/bosses/chaos-hydra.png"
+      "portrait": "/images/bosses/chaos-hydra.png",
+      "hp": 50000,
+      "enrageHours": 168,
+      "contributionThresholds": {
+        "bronze": 100,
+        "silver": 300,
+        "gold": 750,
+        "legendary": 1500
+      }
     },
     {
       "id": "doubt-phantom",
