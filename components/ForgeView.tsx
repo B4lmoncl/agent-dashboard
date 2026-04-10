@@ -1798,6 +1798,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     </div>
                   );
                 })()}
+              </div>
             )}
 
             {/* ─── Tab: Disenchant (destroy uncommon+ items for enchanting materials) */}
