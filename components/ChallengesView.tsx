@@ -571,7 +571,7 @@ function ExpeditionView({
                     opacity: claiming === cp.number ? 0.5 : 1,
                     cursor: claiming === cp.number ? "not-allowed" : "pointer",
                   }}
-                  title={claiming === cp.number ? "Claiming reward..." : undefined}
+                  title={claiming === cp.number ? "Claiming reward..." : `Claim checkpoint ${cp.number} reward`}
                 >
                   {claiming === cp.number ? "Claiming..." : "Claim Reward"}
                 </button>
