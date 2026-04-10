@@ -7,6 +7,7 @@ const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const { now, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const cubeExtractLock = createPlayerLock('cube-extract');
+const cubeEquipLock = createPlayerLock('cube-equip');
 
 // ─── Effect Category Mapping (D3 style: Offensive / Defensive / Utility) ────
 
@@ -176,6 +177,8 @@ router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
 
 router.post('/api/kanais-cube/equip', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!cubeEquipLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { slot, effectType } = req.body;
@@ -200,12 +203,15 @@ router.post('/api/kanais-cube/equip', requireAuth, (req, res) => {
     message: `Equipped "${entry.label || effectType}" in ${slot} slot`,
     cube: { offensive: cube.offensive, defensive: cube.defensive, utility: cube.utility, library: cube.library },
   });
+  } finally { cubeEquipLock.release(uid); }
 });
 
 // ─── POST /api/kanais-cube/unequip — Remove active effect from slot ──────────
 
 router.post('/api/kanais-cube/unequip', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!cubeEquipLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { slot } = req.body;
@@ -223,6 +229,7 @@ router.post('/api/kanais-cube/unequip', requireAuth, (req, res) => {
     message: `Removed "${removed.label || removed.type}" from ${slot} slot`,
     cube: { offensive: cube.offensive, defensive: cube.defensive, utility: cube.utility, library: cube.library },
   });
+  } finally { cubeEquipLock.release(uid); }
 });
 
 module.exports = router;

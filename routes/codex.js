@@ -67,7 +67,7 @@ function checkCodexDiscovery(userId) {
         unlocked = (u._worldBossContributions || 0) >= cond.value;
         break;
       case 'dungeon_completed':
-        unlocked = (u._dungeonsCompleted || 0) >= cond.value;
+        unlocked = (u._dungeonCompletions || 0) >= cond.value;
         break;
       case 'rift_completions':
         unlocked = (u._riftCompletions || 0) >= cond.value;
@@ -94,9 +94,7 @@ function checkCodexDiscovery(userId) {
       case 'battlepass_level':
         unlocked = (u.battlePass?.level || 0) >= cond.value;
         break;
-      case 'daily_missions_completed':
-        unlocked = (u._dailyMissionsCompleted || 0) >= cond.value;
-        break;
+      // daily_missions_completed removed — no cumulative counter exists. Use level_reached instead.
       case 'quests_in_progress': {
         const inProgress = state.quests ? state.quests.filter(q => q.claimedBy?.toLowerCase() === userId && q.status === 'in_progress').length : 0;
         unlocked = inProgress >= cond.value;
@@ -105,6 +103,12 @@ function checkCodexDiscovery(userId) {
       case 'workshop_upgrade_purchased':
         unlocked = Object.keys(u.workshopUpgrades || {}).length >= cond.value;
         break;
+      case 'friends_count': {
+        const friendships = state.socialData?.friendships || [];
+        const friendCount = friendships.filter(f => f.player1 === userId || f.player2 === userId).length;
+        unlocked = friendCount >= cond.value;
+        break;
+      }
       case 'hidden':
         // Hidden entries — never auto-discovered
         unlocked = false;

@@ -482,7 +482,7 @@ export const DailyHub = memo(function DailyHub({
                   <span key={i} className="block rounded-full" style={{ width: 6, height: 6, background: m.done ? "#22c55e" : "rgba(255,255,255,0.12)", transition: "background 0.3s" }} />
                 ))}
               </span>
-              <span className="text-xs" style={{ color: allDone ? "#22c55e" : "rgba(255,255,255,0.25)", fontSize: 11 }}>
+              <span className="text-xs" style={{ color: allDone ? "#22c55e" : "rgba(255,255,255,0.25)", fontSize: 12 }}>
                 {allDone ? "Done" : `${done}/${missions.length}`}
               </span>
             </button>
@@ -536,7 +536,7 @@ export const DailyHub = memo(function DailyHub({
             >
               {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
               {tier && !claimingDailyBonus && (
-                <span className="text-xs font-normal px-1 py-0.5 rounded" style={{ background: `${tier.color}20`, color: tier.color, fontSize: 10 }}>
+                <span className="text-xs font-normal px-1 py-0.5 rounded" style={{ background: `${tier.color}20`, color: tier.color, fontSize: 12 }}>
                   {tier.label}
                 </span>
               )}

@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const crypto = require('crypto');
 const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, XP_BY_RARITY, GOLD_BY_RARITY, RUNENSPLITTER_BY_RARITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, saveUsers, savePlayerProgress, saveManagedKeys, rebuildQuestsById, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency, sanitizeAgent, calcDynamicForgeTemp, calcRestedXpPool, getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency, sanitizeAgent, calcDynamicForgeTemp, calcRestedXpPool, getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers, createPlayerLock } = require('../lib/helpers');
+const dailyMilestoneLock = createPlayerLock('daily-milestone');
 const { requireApiKey, requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');
@@ -497,6 +498,8 @@ router.get('/api/dashboard', (req, res) => {
 // POST /api/daily-missions/claim — claim a milestone reward
 router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!dailyMilestoneLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -557,6 +560,7 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
 
   saveUsers();
   res.json({ success: true, reward, earned, perfectDayBonus });
+  } finally { dailyMilestoneLock.release(uid); }
 });
 
 router.get('/api/leaderboard', (req, res) => {

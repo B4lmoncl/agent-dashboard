@@ -27,7 +27,7 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
-import { DailyHub } from "@/components/DailyHub";
+// DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -265,13 +265,12 @@ export default function Dashboard() {
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
   // habits state removed — was dead (set but never read)
-  const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
+  // lootDrop removed — loot now goes through RewardCelebration
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
   const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
   const { rewards: floatingRewards, addFloating, removeFloating } = useFloatingRewards();
   // questBoardTab removed — Rituals and Vows are now standalone views in Charakter-Turm
-  const closeLootDrop = useCallback(() => setLootDrop(null), []);
-  useModalBehavior(!!lootDrop, closeLootDrop);
+  // closeLootDrop + useModalBehavior removed — dead code after RewardCelebration migration
   const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
   useModalBehavior(!!levelUpCelebration, closeLevelUp);
   const pendingLevelUpRef = useRef<{ level: number; title: string } | null>(null);
@@ -894,18 +893,14 @@ export default function Dashboard() {
   }), [forgeTemp]);
 
   const playerActiveCount = playerActiveQuests.length;
-  const playerCompletedCount = playerCompletedTotal;
-  const questsCompletedToday = useMemo(() => {
-    const today = new Date().toISOString().slice(0, 10);
-    const dc = loggedInUser?._dailyCompletions;
-    return dc && dc.date === today ? dc.count : 0;
-  }, [loggedInUser]);
+  // playerCompletedCount alias removed — use playerCompletedTotal directly
+  // questsCompletedToday removed — was only used by DailyHub (now in TodayDrawer via dailyMissions)
 
   const openQuestsCount = useMemo(() => quests.open.filter(q => playerTypes.includes(q.type ?? "")).length, [quests.open, playerTypes]);
 
   const animStreak    = useCountUp(playerStreak, 0);
   const animActive    = useCountUp(playerActiveCount, 0);
-  const animCompleted = useCountUp(playerCompletedCount, 0);
+  const animCompleted = useCountUp(playerCompletedTotal, 0);
   const animGold      = useCountUp(playerGold, 0);
 
   const lastUpdatedStr = lastRefresh
@@ -1164,7 +1159,7 @@ export default function Dashboard() {
                         animation: "pulse-online 2s ease-in-out infinite",
                       }}
                     >
-                      <span>☀</span> {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
+                      <span>◆</span> {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
                     </button>
                   )}
                   <button
@@ -2638,34 +2633,6 @@ export default function Dashboard() {
         }} />
       )}
 
-      {/* Loot Drop Notification */}
-      {lootDrop && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.8)" }}
-          onClick={() => setLootDrop(null)}>
-          <div className="w-full max-w-xs rounded-2xl p-6 text-center bg-surface" style={{ border: `2px solid ${lootDrop.rarityColor}`, boxShadow: `0 0 30px ${lootDrop.rarityColor}55` }}
-            onClick={e => e.stopPropagation()}>
-            <div className="text-5xl mb-3" style={{ filter: `drop-shadow(0 0 12px ${lootDrop.rarityColor})` }}>{lootDrop.emoji}</div>
-            <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: lootDrop.rarityColor }}>{lootDrop.rarity}</div>
-            <div className="text-base font-bold mb-2 text-primary">{lootDrop.name}</div>
-            {lootDrop.effect?.amount && (
-              <div className="text-xs mb-4 text-w50">
-                {lootDrop.effect.type === 'gold' && `＋${lootDrop.effect.amount} Gold`}
-                {lootDrop.effect.type === 'xp' && `＋${lootDrop.effect.amount} XP`}
-                {lootDrop.effect.type === 'streak_shield' && `＋${lootDrop.effect.amount} Streak Shield`}
-                {lootDrop.effect.type === 'bond' && `＋${lootDrop.effect.amount} Bond XP`}
-              </div>
-            )}
-            <button
-              onClick={() => { setPurchaseToast(`${lootDrop.name} added to inventory!`); setLootDrop(null); }}
-              className="shop-buy-btn w-full py-2.5 rounded-xl text-sm font-semibold"
-              style={{ background: `${lootDrop.rarityColor}22`, color: lootDrop.rarityColor, border: `1px solid ${lootDrop.rarityColor}55` }}
-            >
-              Collect x
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Level Up Celebration */}
       {levelUpCelebration && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }}>
@@ -2788,7 +2755,7 @@ export default function Dashboard() {
           }}
           title="Click to close"
         >
-          <span style={{ fontSize: 18, flexShrink: 0 }}>⏱</span>
+          <span style={{ fontSize: 18, flexShrink: 0 }}>!</span>
           <p className="text-xs leading-relaxed flex-1" style={{ color: "#fca5a5" }}>{apiError}</p>
           <span className="text-xs flex-shrink-0 text-w25" style={{ marginLeft: 4 }}>✕</span>
         </div>

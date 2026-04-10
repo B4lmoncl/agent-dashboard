@@ -62,6 +62,7 @@ export default function DashboardHeader({
   const [loginError, setLoginError] = useState("");
   const [registerOpen, setRegisterOpen] = useState(false);
   const [registerName, setRegisterName] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
   const [registerError, setRegisterError] = useState("");
@@ -161,6 +162,7 @@ export default function DashboardHeader({
 
   const handleRegister = async () => {
     if (!registerName.trim() || authLoading) return;
+    if (!registerEmail.trim() || !registerEmail.includes("@")) { setRegisterError("Valid email is required"); return; }
     if (registerPassword.length < 8) { setRegisterError("Password must be at least 8 characters"); return; }
     if (!/[A-Z]/.test(registerPassword)) { setRegisterError("Password must contain at least one uppercase letter"); return; }
     if (!/[0-9]/.test(registerPassword)) { setRegisterError("Password must contain at least one number"); return; }
@@ -170,7 +172,7 @@ export default function DashboardHeader({
     const r = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: registerName.trim(), password: registerPassword }),
+      body: JSON.stringify({ name: registerName.trim(), email: registerEmail.trim(), password: registerPassword }),
     });
     const data = await r.json();
     if (r.ok) {
@@ -430,6 +432,7 @@ export default function DashboardHeader({
                       <div className="flex flex-col gap-2">
                         <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Create Account</p>
                         <input type="text" value={registerName} onChange={e => setRegisterName(e.target.value)} placeholder="Choose a name" className="text-xs px-2 py-1 rounded input-dark" />
+                        <input type="email" value={registerEmail} onChange={e => setRegisterEmail(e.target.value)} placeholder="Email address" className="text-xs px-2 py-1 rounded input-dark" />
                         <input type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} placeholder="Password (8+ chars, A-Z, 0-9)" className="text-xs px-2 py-1 rounded input-dark" />
                         <input type="password" value={registerPasswordConfirm} onChange={e => setRegisterPasswordConfirm(e.target.value)} placeholder="Confirm password" className="text-xs px-2 py-1 rounded input-dark" />
                         {registerError && <p role="alert" className="text-xs" style={{ color: "#ef4444" }}>{registerError}</p>}

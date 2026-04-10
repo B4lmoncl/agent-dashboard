@@ -1055,12 +1055,12 @@ export default function TodayDrawer({
                       {missions.map(m => (
                         <div key={m.id} className="flex items-center gap-2 py-0.5 px-1 rounded" style={{ opacity: m.done ? 0.45 : 1 }}>
                           <span className="flex-shrink-0 w-3.5 h-3.5 rounded-sm flex items-center justify-center" style={{ background: m.done ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.04)", border: `1px solid ${m.done ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}` }}>
-                            {m.done && <span style={{ fontSize: 9, color: "#22c55e" }}>✓</span>}
+                            {m.done && <span style={{ fontSize: 12, color: "#22c55e" }}>✓</span>}
                           </span>
                           <span className="text-xs flex-1" style={{ color: m.done ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.6)", textDecoration: m.done ? "line-through" : "none" }}>
                             {m.label}
                           </span>
-                          <span className="text-xs font-mono flex-shrink-0" style={{ color: m.done ? "rgba(255,255,255,0.2)" : "rgba(251,191,36,0.5)", fontSize: 11 }}>
+                          <span className="text-xs font-mono flex-shrink-0" style={{ color: m.done ? "rgba(255,255,255,0.2)" : "rgba(251,191,36,0.5)", fontSize: 12 }}>
                             +{m.points}
                           </span>
                         </div>
@@ -1128,7 +1128,7 @@ export default function TodayDrawer({
                 <div className="flex items-center gap-1.5 mb-1.5 px-1" style={{
                   animation: entered ? `today-card-enter 0.3s ease-out ${catIdx * 80}ms both` : "none",
                 }}>
-                  <span style={{ fontSize: 13 }}>{cat.icon}</span>
+                  {cat.icon.startsWith("/") ? <img src={cat.icon} alt="" width={13} height={13} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 13 }}>{cat.icon}</span>}
                   {CATEGORY_TOOLTIPS[cat.id] ? (
                     <TipCustom title={CATEGORY_TOOLTIPS[cat.id].title} accent={cat.id === "urgent" ? "#fbbf24" : "#818cf8"} body={<p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{CATEGORY_TOOLTIPS[cat.id].desc}</p>}>
                       <span className="text-xs font-bold uppercase tracking-widest cursor-help" style={{
@@ -1184,7 +1184,7 @@ export default function TodayDrawer({
                         background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
                         color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
                         border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
-                        fontSize: 11, fontWeight: 700,
+                        fontSize: 12, fontWeight: 700,
                         animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
                       }}>
                         {item.done ? "✓" : item.urgent ? "!" : "○"}
@@ -1207,7 +1207,7 @@ export default function TodayDrawer({
                           {item.tooltipKey ? <Tip k={item.tooltipKey}>{item.label}</Tip> : item.label}
                         </p>
                         {item.sub && (
-                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)", fontSize: 11 }}>{item.sub}</p>
+                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.sub}</p>
                         )}
                       </div>
 
@@ -1216,7 +1216,7 @@ export default function TodayDrawer({
                         <span className="text-xs font-mono flex items-center gap-1 px-2 py-1 rounded-lg flex-shrink-0" style={{
                           background: "rgba(167,139,250,0.08)",
                           color: "rgba(167,139,250,0.7)",
-                          fontSize: 11,
+                          fontSize: 12,
                           border: "1px solid rgba(167,139,250,0.1)",
                         }}>
                           {item.rewardIcon && <img src={item.rewardIcon} alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />}

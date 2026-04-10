@@ -302,7 +302,6 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       const prevQuestId = parentCampaign.questIds[idx - 1];
       const prevQuest = state.questsById.get(prevQuestId);
       if (prevQuest && prevQuest.status !== 'completed') {
-        questCompleteLock.release(agentKey);
         return res.status(400).json({ error: 'Complete the previous campaign quest first', prevQuestId });
       }
     }

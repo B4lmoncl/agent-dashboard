@@ -188,7 +188,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
                         {reached ? "✓" : "○"} {m.label}
                       </span>
                       {m.cosmetic && (
-                        <span className="text-xs truncate" style={{ color: reached ? `${mc}bb` : "rgba(255,255,255,0.15)", fontSize: 11 }}>
+                        <span className="text-xs truncate" style={{ color: reached ? `${mc}bb` : "rgba(255,255,255,0.15)", fontSize: 12 }}>
                           {m.cosmetic}
                         </span>
                       )}

@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
+    "description": "Audit markers — tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
     "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
     "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
   },
@@ -49,7 +49,7 @@
   "components/ForgeView.tsx": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-05",
-    "findings": "font 11\u219212, batch interval cleanup, buy cursor fix",
+    "findings": "font 11→12, batch interval cleanup, buy cursor fix",
     "status": "clean"
   },
   "components/RitualChamber.tsx": {
@@ -125,9 +125,9 @@
     "status": "clean"
   },
   "components/RiftView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "no hooks after return, loading OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "MED: getAuthHeaders() without reviewApiKey on rift/extend (fixed). Rest clean: loading states, disabled buttons with titles, error messages, screen shake, auto-refresh timer, 2-step abandon confirmation.",
     "status": "clean"
   },
   "components/ChallengesView.tsx": {
@@ -265,7 +265,7 @@
   "components/GuildHallBackground.tsx": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
-    "findings": "sky canvas, weather effects \u2014 visual only",
+    "findings": "sky canvas, weather effects — visual only",
     "status": "clean"
   },
   "components/FloorAmbientParticles.tsx": {
@@ -485,15 +485,15 @@
     "status": "clean"
   },
   "routes/codex.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "discovery logic OK, O(n) scan low-impact",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Cycle 98-100: friends_count unlock added, _dungeonsCompleted→_dungeonCompletions field fix, daily_missions_completed dead condition removed. All 20 active unlock types now verified against backend tracking fields.",
     "status": "clean"
   },
   "lib/state.js": {
     "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "atomic writes, debounced saves, Maps OK",
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. atomicWriteSync for crash safety. debouncedSave(200ms, max 2s). All 71 achievement condition types implemented in evaluateAchievementCondition(). All tracking fields populated in route handlers.",
     "status": "clean"
   },
   "lib/helpers.js": {
@@ -534,14 +534,14 @@
   },
   "server.js": {
     "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "security headers, rate limit, graceful shutdown",
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. Security headers. Graceful shutdown with flush. Error handlers. Memory pruning. Force-save 60s.",
     "status": "clean"
   },
   "app/page.tsx": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "welcome back toast, DR warning, pool refresh cursor, bulk update cursor+title",
+    "lastAuditDate": "2026-04-10",
+    "findings": "Dead lootDrop modal removed (30 lines). Dead questsCompletedToday + playerCompletedCount alias removed. Emoji violations fixed (sun, stopwatch). All lazy components have Suspense+ErrorBoundary. 4 modals without useModalBehavior noted (low impact).",
     "status": "clean"
   },
   "app/types.ts": {
@@ -552,14 +552,14 @@
   },
   "app/utils.ts": {
     "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "getUserLevel OK, countUp OK",
+    "lastAuditDate": "2026-04-10",
+    "findings": "Level edge cases clean (XP 0, max level, negative). Fetch helpers return safe defaults. getValidToken returns expired without check (unused externally).",
     "status": "clean"
   },
   "app/config.ts": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "talents room added to nav",
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "LOW: tome room minLevel 5 overridden by floor minLevel 8. Roadmap/changelog not in floor system (legacy). Otherwise clean.",
     "status": "clean"
   },
   "app/constants.ts": {
@@ -582,8 +582,8 @@
   },
   "hooks/useQuestActions.ts": {
     "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "FIXED: DR toast message at quest 5",
+    "lastAuditDate": "2026-04-10",
+    "findings": "MED fixed: handleShopBuy+handleGearBuy double-click protection added. handleToggleFavorite now shows error toast instead of console.warn. All 12 handlers verified with reviewApiKey.",
     "status": "clean"
   },
   "lib/sounds.ts": {
@@ -649,7 +649,7 @@
   "public/data/gems.json": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
-    "findings": "6 types \u00d7 5 tiers = 30 gems",
+    "findings": "6 types × 5 tiers = 30 gems",
     "status": "clean"
   },
   "public/data/talentTree.json": {
@@ -667,7 +667,7 @@
   "public/data/battlePass.json": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
-    "findings": "5 seasons \u00d7 40 rewards",
+    "findings": "5 seasons × 40 rewards",
     "status": "clean"
   },
   "public/data/weeklyChallenges.json": {
@@ -704,6 +704,60 @@
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
     "findings": "19 items all with descriptions",
+    "status": "clean"
+  },
+  "routes/rift.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "MED: /api/rift/extend missing player lock — added riftExtendLock. Rest is clean: all POST endpoints have locks, tavern-rest checks, level validation, cooldown checks, mythic anti-skip, weekly replay guard.. Cycle 2: verified all frontend calls use reviewApiKey",
+    "status": "clean"
+  },
+  "routes/config-admin.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. GET-only batch endpoint, no mutations. Sensitive user fields correctly stripped (passwordHash, apiKey, refreshTokens, etc.). Rested XP live-calculated. Modifiers computed only for requesting player (perf optimization). NPC quest chain status correctly per-player. Weekly challenge + expedition correctly inlined.",
+    "status": "clean"
+  },
+  "routes/campaigns.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
+    "status": "clean"
+  },
+  "routes/npcs-misc.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. Feedback endpoint properly secured: server-set userId/timestamp, XSS escaping, 500-entry cap, admin-only GET/PATCH. NPC endpoints read-only. SPA fallback correct.",
+    "status": "clean"
+  },
+  "routes/docs.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Static OpenAPI spec object. No inputs, no logic. Clean.",
+    "status": "clean"
+  },
+  "components/QuestBoard.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Barrel re-export file only. No logic. Clean.",
+    "status": "clean"
+  },
+  "components/AgentCard.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Legacy agent card with useCountUp hook. Not player-critical. Clean.",
+    "status": "clean"
+  },
+  "components/DashboardModals.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
+    "status": "clean"
+  },
+  "lib/auth-client.ts": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "HIGH fixed: authFetch token refresh retry was dead code (hadToken pattern). getAuthHeaders expiry check added earlier. getValidToken still returns without expiry check (unused externally).",
     "status": "clean"
   }
 }

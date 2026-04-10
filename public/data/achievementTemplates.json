@@ -1686,7 +1686,8 @@
       "condition": {
         "type": "dual_profession_skill",
         "value": 150
-      }
+      },
+      "description": "Zwei Berufe erlernt. Der Turm nennt das Spezialisierung. Dein Rücken nennt das Überstunden."
     },
     {
       "id": "artisan_rank",
@@ -1699,7 +1700,8 @@
       "condition": {
         "type": "profession_skill",
         "value": 300
-      }
+      },
+      "description": "Artisan-Rang erreicht. 300 Skill. Der Meister hat nichts mehr zu lehren. Der Meister hat Angst."
     },
     {
       "id": "recipe_collector",
@@ -1712,7 +1714,8 @@
       "condition": {
         "type": "learned_recipes",
         "value": 100
-      }
+      },
+      "description": "Alle Rezepte gelernt. Du weißt jetzt theoretisch alles. Praktisch ist eine andere Geschichte."
     },
     {
       "id": "moonlight_crafter",
@@ -1725,7 +1728,8 @@
       "condition": {
         "type": "moonlight_crafts",
         "value": 10
-      }
+      },
+      "description": "10 Items im Mondlicht geschmiedet. Die Sterne waren ausgerichtet. Dein Schlafrhythmus nicht."
     },
     {
       "id": "faction_friendly",
@@ -1738,7 +1742,8 @@
       "condition": {
         "type": "faction_standing",
         "value": 500
-      }
+      },
+      "description": "Eine Fraktion findet dich akzeptabel. Nicht gut — akzeptabel. Das ist hier bereits ein Kompliment."
     },
     {
       "id": "faction_exalted",
@@ -1751,7 +1756,8 @@
       "condition": {
         "type": "faction_standing",
         "value": 8000
-      }
+      },
+      "description": "Exalted-Rang bei einer Fraktion. Sie mögen dich. Wirklich. Das ist hier selten."
     },
     {
       "id": "faction_all_friendly",
@@ -1764,7 +1770,8 @@
       "condition": {
         "type": "all_factions_standing",
         "value": 500
-      }
+      },
+      "description": "Bei allen Fraktionen beliebt. Das erfordert eine Persönlichkeit, die man diplomatisch \"flexibel\" nennt."
     },
     {
       "id": "daily_faction_sweep",
@@ -1777,7 +1784,8 @@
       "condition": {
         "type": "faction_dailies_complete",
         "value": 12
-      }
+      },
+      "description": "12 Fraktionstagesaufträge erledigt. Das System ist beeindruckt. Das System hat niedrige Erwartungen."
     },
     {
       "id": "rift_first_clear",
@@ -1790,7 +1798,8 @@
       "condition": {
         "type": "rift_completions",
         "value": 1
-      }
+      },
+      "description": "Erster Riss überlebt. Der Riss war überrascht. Du auch."
     },
     {
       "id": "rift_legendary",
@@ -1803,7 +1812,8 @@
       "condition": {
         "type": "rift_legendary_completions",
         "value": 1
-      }
+      },
+      "description": "Legendären Riss abgeschlossen. Sieben Quests in 36 Stunden. Der Schlaf kam zu kurz. Der Loot nicht."
     },
     {
       "id": "mythic_plus_5",
@@ -1816,7 +1826,8 @@
       "condition": {
         "type": "mythic_level",
         "value": 5
-      }
+      },
+      "description": "Mythic+5 geschafft. Ab hier ist der Schwierigkeitsgrad kein Vorschlag mehr, sondern eine Drohung."
     },
     {
       "id": "dungeon_first",
@@ -1829,7 +1840,8 @@
       "condition": {
         "type": "dungeon_completions",
         "value": 1
-      }
+      },
+      "description": "Erstes Dungeon abgeschlossen. \"Abgeschlossen\" ist das operative Wort. \"Gemeistert\" wäre dreist."
     },
     {
       "id": "dungeon_all_tiers",
@@ -1842,7 +1854,8 @@
       "condition": {
         "type": "dungeon_tiers_complete",
         "value": 3
-      }
+      },
+      "description": "Alle Dungeon-Stufen gemeistert. Normal, Hard, Legendary. Dein Gear Score spricht Bände. Deine Nerven auch."
     },
     {
       "id": "wb_contributor",
@@ -1855,7 +1868,8 @@
       "condition": {
         "type": "world_boss_contributions",
         "value": 1
-      }
+      },
+      "description": "Einmal auf den Boss eingeschlagen. Technisch ein Beitrag. Der Boss hat es vermutlich nicht bemerkt."
     },
     {
       "id": "wb_top_contributor",
@@ -1868,7 +1882,8 @@
       "condition": {
         "type": "world_boss_top3",
         "value": 1
-      }
+      },
+      "description": "Top-Beitrag bei einem World Boss. Dein Schadensbericht liest sich wie ein Geständnis."
     },
     {
       "id": "bond_soulmate",
@@ -1881,7 +1896,8 @@
       "condition": {
         "type": "bond_level",
         "value": 5
-      }
+      },
+      "description": "Bond Level 7 mit deinem Companion. Seelenverwandte. Oder Stockholm-Syndrom. Schwer zu sagen."
     },
     {
       "id": "bond_legendary",
@@ -1894,7 +1910,8 @@
       "condition": {
         "type": "bond_level",
         "value": 10
-      }
+      },
+      "description": "Bond Level 10 — Legendär. Dein Companion versteht dich besser als die meisten Menschen. Das ist entweder schön oder traurig."
     },
     {
       "id": "expedition_collector",
@@ -1907,7 +1924,8 @@
       "condition": {
         "type": "expedition_completions",
         "value": 20
-      }
+      },
+      "description": "20 Expeditionen abgeschlossen. Dein Companion kennt jeden Busch in der Wildnis persönlich."
     },
     {
       "id": "bp_level_40",
@@ -1920,7 +1938,8 @@
       "condition": {
         "type": "battlepass_level",
         "value": 40
-      }
+      },
+      "description": "Season Pass komplett. 40 Stufen. Jede einzelne beansprucht. Erschöpft, aber zufrieden."
     },
     {
       "id": "gem_royal",
@@ -1933,7 +1952,8 @@
       "condition": {
         "type": "gem_tier",
         "value": 5
-      }
+      },
+      "description": "Einen Royal-Edelstein besitzt. Höchste Stufe. Der Juwelier behauptet, er schimmere. Der Stein behauptet nichts."
     },
     {
       "id": "gacha_pity",
@@ -1946,7 +1966,8 @@
       "condition": {
         "type": "gacha_hard_pity",
         "value": 1
-      }
+      },
+      "description": "Hard Pity erreicht. 75 Pulls ohne Legendary. Die Statistik sagt, das ist Pech. Du sagst, das ist ein System."
     },
     {
       "id": "gold_converter",
@@ -1959,7 +1980,8 @@
       "condition": {
         "type": "currency_conversions",
         "value": 10
-      }
+      },
+      "description": "10 Währungsumrechnungen. Der Wechselkurs ist kein Betrug. Er ist eine Gebühr. Mit einem Aufschlag. Und einer Bearbeitungspauschale."
     },
     {
       "id": "quest_variety_all",
@@ -1972,7 +1994,8 @@
       "condition": {
         "type": "quest_type_variety",
         "value": 5
-      }
+      },
+      "description": "Alle Quest-Typen abgeschlossen. Personal, Learning, Fitness, Social, Boss. Der Turm nennt das Vielseitigkeit. Dein Kalender nennt es Chaos."
     },
     {
       "id": "quest_500",
@@ -1985,7 +2008,8 @@
       "condition": {
         "type": "quests_completed",
         "value": 500
-      }
+      },
+      "description": "500 Quests abgeschlossen. Halbzeit. Falls das Ziel 1000 ist. Falls es ein Ziel gibt."
     },
     {
       "id": "quest_1000",
@@ -1998,7 +2022,8 @@
       "condition": {
         "type": "quests_completed",
         "value": 1000
-      }
+      },
+      "description": "1000 Quests. Tausendkämpfer. An diesem Punkt ist es kein Hobby mehr, sondern ein Lebensstil."
     },
     {
       "id": "streak_90",
@@ -2011,7 +2036,8 @@
       "condition": {
         "type": "streak",
         "value": 90
-      }
+      },
+      "description": "90-Tage-Streak. Ein Quartal. Die Flamme ist zu diesem Zeitpunkt weniger ein Feature und mehr ein Persönlichkeitsmerkmal."
     },
     {
       "id": "streak_180",
@@ -2024,7 +2050,8 @@
       "condition": {
         "type": "streak",
         "value": 180
-      }
+      },
+      "description": "180-Tage-Streak. Sechs Monate. Die Flamme ist mittlerweile Teil deiner Identität."
     },
     {
       "id": "streak_365",
@@ -2037,7 +2064,8 @@
       "condition": {
         "type": "streak",
         "value": 365
-      }
+      },
+      "description": "365 Tage. Ein Jahr. Die Flamme hat Geburtstag. Du hast vergessen, einen Kuchen zu besorgen."
     },
     {
       "id": "quest_200",
@@ -2050,7 +2078,8 @@
       "condition": {
         "type": "quests_completed",
         "value": 200
-      }
+      },
+      "description": "200 Quests. Die Zweihundertschaft. Klingt militärisch. Fühlt sich auch so an."
     },
     {
       "id": "quest_300",
@@ -2063,7 +2092,8 @@
       "condition": {
         "type": "quests_completed",
         "value": 300
-      }
+      },
+      "description": "300 Quests. Du machst das nicht zum Spaß. Doch. Irgendwie schon. Aber auch aus Pflichtgefühl."
     },
     {
       "id": "level_20",
@@ -2076,7 +2106,8 @@
       "condition": {
         "type": "level",
         "value": 20
-      }
+      },
+      "description": "Level 20 erreicht. Die Hälfte des Weges ist geschafft. Die zweite Hälfte ist die, über die niemand redet."
     },
     {
       "id": "level_30",
@@ -2089,7 +2120,8 @@
       "condition": {
         "type": "level",
         "value": 30
-      }
+      },
+      "description": "Level 30 erreicht. Du bist jetzt im Prestige-Bereich. Die Titel werden ausgefallener. Die Quests nicht."
     },
     {
       "id": "level_40",
@@ -2102,7 +2134,8 @@
       "condition": {
         "type": "level",
         "value": 40
-      }
+      },
+      "description": "Level 40. Fast am Ziel. Das \"fast\" tut mehr weh als erwartet."
     },
     {
       "id": "level_50",
@@ -2115,7 +2148,8 @@
       "condition": {
         "type": "level",
         "value": 50
-      }
+      },
+      "description": "Level 50. Maximum. Der Turm hat nichts mehr für dich. Du hast alles gesehen. Theoretisch."
     },
     {
       "id": "gold_5000",
@@ -2128,7 +2162,8 @@
       "condition": {
         "type": "gold",
         "value": 5000
-      }
+      },
+      "description": "5000 Gold angehäuft. Theoretisch könntest du jetzt aufhören. Wirst du aber nicht."
     },
     {
       "id": "gold_25000",
@@ -2141,7 +2176,8 @@
       "condition": {
         "type": "gold",
         "value": 25000
-      }
+      },
+      "description": "25.000 Gold. Genug für eine eigene Gilde. Oder 250 Heiltränke. Prioritäten."
     },
     {
       "id": "craft_100",
@@ -2154,7 +2190,8 @@
       "condition": {
         "type": "crafts_completed",
         "value": 100
-      }
+      },
+      "description": "100 Items gecraftet. Mindestens 30 davon waren brauchbar. Das ist eine hervorragende Quote."
     },
     {
       "id": "craft_500",
@@ -2167,7 +2204,8 @@
       "condition": {
         "type": "crafts_completed",
         "value": 500
-      }
+      },
+      "description": "500 Items gecraftet. Der Gildenlieferant. Deine Werkbank hat Laufspuren."
     },
     {
       "id": "all_professions",
@@ -2180,7 +2218,8 @@
       "condition": {
         "type": "all_professions_skill",
         "value": 50
-      }
+      },
+      "description": "Alle Berufe gelernt. Alleskönner. Keiner davon perfekt — aber alle akzeptabel."
     },
     {
       "id": "friends_10",
@@ -2193,7 +2232,8 @@
       "condition": {
         "type": "friends_count",
         "value": 10
-      }
+      },
+      "description": "10 Freunde. Ob sie das auch so sehen, steht auf einem anderen Blatt."
     },
     {
       "id": "trades_10",
@@ -2206,7 +2246,8 @@
       "condition": {
         "type": "trades_completed",
         "value": 10
-      }
+      },
+      "description": "10 Handelsgeschäfte. Du hast vermutlich bei mindestens drei davon draufgezahlt. Das ist normal."
     },
     {
       "id": "mail_50",
@@ -2219,7 +2260,8 @@
       "condition": {
         "type": "mails_sent",
         "value": 50
-      }
+      },
+      "description": "50 Briefe. Der Postbote ist müde. Der Postbote verdient eine Gehaltserhöhung."
     },
     {
       "id": "hidden_night_crafter",
@@ -2232,7 +2274,8 @@
       "condition": {
         "type": "moonlight_crafts",
         "value": 50
-      }
+      },
+      "description": "Im Mondlicht geschmiedet. Die Sterne waren Zeugen. Dein Schlafrhythmus das Opfer."
     },
     {
       "id": "hidden_all_bosses",
@@ -2245,7 +2288,8 @@
       "condition": {
         "type": "unique_bosses_defeated",
         "value": 9
-      }
+      },
+      "description": "Alle Boss-Typen besiegt. Bestienkenner. Kein Boss überrascht dich mehr. Du überraschst sie."
     },
     {
       "id": "hidden_full_gems",
@@ -2258,7 +2302,8 @@
       "condition": {
         "type": "all_royal_gems",
         "value": 1
-      }
+      },
+      "description": "Alle Gem-Typen auf Royal. Die Juwelenkrone. Sechs Steine, sechs Geschichten, ein Vermögen."
     },
     {
       "id": "hidden_100_rituals",
@@ -2271,7 +2316,8 @@
       "condition": {
         "type": "rituals_completed",
         "value": 100
-      }
+      },
+      "description": "100 Rituale abgeschlossen. Ritualmeister. Dein Morgen hat einen Ablaufplan den selbst Projektmanager beneiden."
     },
     {
       "id": "hidden_mythic10",
@@ -2284,7 +2330,8 @@
       "condition": {
         "type": "mythic_level",
         "value": 10
-      }
+      },
+      "description": "Mythic+10 geschafft. Die Leaderboard-Spitze grüßt. Der Verstand verabschiedet sich."
     },
     {
       "id": "hidden_no_miss_week",
@@ -2297,7 +2344,8 @@
       "condition": {
         "type": "perfect_weeks",
         "value": 1
-      }
+      },
+      "description": "Perfekte Woche. Alle Daily Missions. Jeden. Einzelnen. Tag."
     },
     {
       "id": "hidden_collector",
@@ -2310,7 +2358,8 @@
       "condition": {
         "type": "inventory_count",
         "value": 100
-      }
+      },
+      "description": "Alle Unique Items in der Collection. Der Sammler. Oder Hortungsstörung. Kommt auf die Perspektive an."
     },
     {
       "id": "hidden_paragon",
@@ -2323,7 +2372,8 @@
       "condition": {
         "type": "faction_standing",
         "value": 15000
-      }
+      },
+      "description": "Paragon bei allen Fraktionen. Du hast es geschafft. Alle mögen dich. Verdächtig."
     },
     {
       "id": "variety_all_types_10",
@@ -2336,7 +2386,8 @@
       "condition": {
         "type": "quest_type_min_each",
         "value": 10
-      }
+      },
+      "description": "10 Quests pro Typ, minimum. Universalist. Du bist nicht festgelegt. Du bist unentschlossen. Bewusst."
     },
     {
       "id": "variety_5_npcs",
@@ -2349,7 +2400,8 @@
       "condition": {
         "type": "unique_npcs_completed",
         "value": 5
-      }
+      },
+      "description": "5 verschiedene NPCs abgeschlossen. Du redest mit Fremden. Das ist entweder soziale Kompetenz oder Verzweiflung."
     },
     {
       "id": "variety_20_npcs",
@@ -2362,7 +2414,8 @@
       "condition": {
         "type": "unique_npcs_completed",
         "value": 20
-      }
+      },
+      "description": "20 verschiedene NPCs geholfen. Du redest mit jedem. Der Turm nennt es sozial. Andere nennen es neugierig."
     },
     {
       "id": "speed_3_quests_day",
@@ -2375,7 +2428,8 @@
       "condition": {
         "type": "quests_today",
         "value": 3
-      }
+      },
+      "description": "3 Quests an einem Tag. Produktivität hat einen Namen, und er lautet \"ich hatte eh nichts vor\"."
     },
     {
       "id": "speed_10_quests_day",
@@ -2388,7 +2442,8 @@
       "condition": {
         "type": "quests_today",
         "value": 10
-      }
+      },
+      "description": "10 Quests an einem Tag. Unaufhaltsam. Oder gelangweilt. Beides liefert dasselbe Ergebnis."
     },
     {
       "id": "codex-initiate",
@@ -2401,7 +2456,8 @@
       "condition": {
         "type": "codex_discovered",
         "value": 10
-      }
+      },
+      "description": "10 Einträge entdeckt. Du liest. Das allein hebt dich von der Mehrheit ab."
     },
     {
       "id": "codex-scholar",
@@ -2415,7 +2471,8 @@
         "type": "codex_discovered",
         "value": 25
       },
-      "chainPrev": "codex-initiate"
+      "chainPrev": "codex-initiate",
+      "description": "25 Einträge entdeckt. Wissen ist Macht. Niemand hat gesagt, dass es nützliche Macht ist."
     },
     {
       "id": "codex-archivist",
@@ -2429,7 +2486,8 @@
         "type": "codex_discovered",
         "value": 50
       },
-      "chainPrev": "codex-scholar"
+      "chainPrev": "codex-scholar",
+      "description": "50 Codex-Einträge. Archivar. Du weißt Dinge die niemand wissen will."
     },
     {
       "id": "codex-lorekeeper",
@@ -2443,7 +2501,8 @@
         "type": "codex_discovered",
         "value": 75
       },
-      "chainPrev": "codex-archivist"
+      "chainPrev": "codex-archivist",
+      "description": "75 Codex-Einträge. Hüter der Chroniken. Der Turm hat Geheimnisse. Du kennst die meisten."
     },
     {
       "id": "codex-omniscient",
@@ -2458,7 +2517,8 @@
         "value": 85
       },
       "chainPrev": "codex-lorekeeper",
-      "hidden": true
+      "hidden": true,
+      "description": "Alle Codex-Einträge. Allwissend. Eine Last. Aber eine gut dokumentierte."
     },
     {
       "id": "talent_first",
