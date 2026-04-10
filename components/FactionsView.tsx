@@ -82,7 +82,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         setStandings(data.standings || []);
         setDailyQuests(data.dailyQuests || {});
       }
-    } catch { /* ignore */ }
+    } catch { setMessage({ type: "error", text: "Failed to load faction data" }); }
     setLoading(false);
   }, []);
 

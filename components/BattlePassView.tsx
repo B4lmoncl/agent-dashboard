@@ -92,7 +92,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         setRewards(data.rewards || []);
         setPlayer(data.player);
       }
-    } catch (e) { console.error("[battlepass]", e); }
+    } catch (e) { console.error("[battlepass]", e); setMessage({ type: "error", text: "Failed to load Season Pass data" }); }
     setLoading(false);
   }, []);
 
