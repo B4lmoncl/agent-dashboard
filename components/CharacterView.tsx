@@ -859,10 +859,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
           transition: "background 0.15s, border-color 0.15s",
         }}
       >
-        {item.icon
-          ? <img src={item.icon} alt={item.name} draggable={false} style={{ width: 44, height: 44, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-          : <span style={{ fontSize: 14, color: RARITY_COLORS[item.rarity] || "#9ca3af", lineHeight: 1 }}>◆</span>
-        }
+        <ItemImg src={item.icon} alt={item.name} size={44} rarity={item.rarity} style={{ objectFit: "contain" }} />
         {/* Level requirement indicator */}
         {item.minLevel > 0 && item.minLevel > level && (
           <span style={{ position: "absolute", bottom: 1, right: 1, fontSize: 12, color: "#ef4444", fontWeight: 700, background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px" }}>
@@ -881,6 +878,17 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
       {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} equippedItem={equippedForSlot} playerLevel={level} />, document.body)}
     </>
   );
+}
+
+/** Renders an item icon with rarity-colored ◆ fallback instead of hiding broken images */
+function ItemImg({ src, alt, size, rarity, className, style }: { src?: string | null; alt: string; size: number; rarity?: string; className?: string; style?: React.CSSProperties }) {
+  const [failed, setFailed] = useState(false);
+  if (!src || failed) {
+    return (
+      <span className={className} style={{ width: size, height: size, display: "flex", alignItems: "center", justifyContent: "center", color: RARITY_COLORS[rarity || "common"] || "#9ca3af", fontSize: Math.max(12, size * 0.4), flexShrink: 0, ...style }}>◆</span>
+    );
+  }
+  return <img src={src} alt={alt} width={size} height={size} className={className} style={{ imageRendering: "auto", flexShrink: 0, ...style }} onError={() => setFailed(true)} />;
 }
 
 const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?: string }[] = [
@@ -918,14 +926,19 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           title={item ? item.name : `Klicke auf ein Item im Inventar um es auszurüsten`}
         >
           {item?.icon
-            ? <img src={item.icon} alt={item.name} width={40} height={40} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            ? <ItemImg src={item.icon} alt={item.name} size={40} rarity={item.rarity} />
             : iconSrc
               ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.4 }} onError={e => { e.currentTarget.style.display = "none"; }} />
               : <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{label.slice(0, 3)}</span>
           }
         </div>
         {item && (
-          <p className="text-center truncate mt-0.5" style={{ fontSize: 12, width: 56, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
+          <div className="mt-0.5" style={{ width: 56 }}>
+            <p className="text-center truncate" style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
+            {item.legendaryEffect && (
+              <p className="text-center truncate" style={{ fontSize: 9, color: "#f97316", lineHeight: 1.1, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
+            )}
+          </div>
         )}
         {!item && (
           <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.2)", lineHeight: 1.2 }}>{label}</p>
