@@ -198,17 +198,16 @@ Inspired by WoW Classic (item budget system, source exclusivity, set design) and
 
 Format: `"count": [min, max]`. Primary stats: kraft, weisheit, ausdauer, glueck. Minor stats: fokus, vitalitaet, charisma, tempo.
 
-### Stat Value Ranges by Level (per individual affix)
+### Stat Value Ranges by Tier (per individual affix)
 
-These ranges apply **identically regardless of rarity**. An affix pool entry always uses these ranges based on the item's `reqLevel`.
+These ranges apply **identically regardless of rarity**. In practice, items use **tier-based** ranges (not strict reqLevel brackets). A T2 item at reqLevel 9 uses T2 ranges, not the 1–10 bracket.
 
-| Level Range | Primary (min-max) | Minor (min-max) |
-|------------|-------------------|-----------------|
-| 1–10 | 1–3 | 1–2 |
-| 11–20 | 2–4 | 1–3 |
-| 21–30 | 3–6 | 2–4 |
-| 31–40 | 4–7 | 3–5 |
-| 41–50 | 5–8 | 3–6 |
+| Tier | Level Range | Primary (min-max) | Minor (min-max) |
+|------|------------|-------------------|-----------------|
+| T1 (Abenteurer) | 1–8 | 1–3 | 1–2 |
+| T2 (Veteranen) | 9–16 | 2–5 | 1–3 |
+| T3 (Meister) | 17–24 | 3–6 | 2–4 |
+| T4 (Legendär) | 25–50 | 4–8 | 3–6 |
 
 **BiS ceiling (Lv50 Legendary):** 3×(5-8) primary + 2×(3-6) minor = 15-24 primary + 6-12 minor total. With kraft cap at 30, this keeps endgame powerful but not broken.
 
