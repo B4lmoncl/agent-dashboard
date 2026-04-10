@@ -1637,7 +1637,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 {(() => {
                   const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
                   const learnedRecipes = profRecipes.filter(r => r.learned !== false && !(r as unknown as Record<string, unknown>).hidden);
-                  const displayRecipes = showAllRecipes ? profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden) : learnedRecipes;
+                  let displayRecipes = showAllRecipes ? profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden) : learnedRecipes;
+                  // Apply search filter
+                  if (recipeSearch.trim()) {
+                    const q = recipeSearch.trim().toLowerCase();
+                    displayRecipes = displayRecipes.filter(r => r.name.toLowerCase().includes(q) || r.id.toLowerCase().includes(q));
+                  }
+                  // Apply "craftable only" filter (has all materials + not on cooldown)
+                  if (showHaveMatsOnly) {
+                    displayRecipes = displayRecipes.filter(r => r.canCraft && (r.cooldownRemaining ?? 0) <= 0);
+                  }
                   const SKILL_COLORS: Record<string, string> = { orange: "#f97316", yellow: "#eab308", green: "#22c55e", gray: "rgba(255,255,255,0.2)" };
                   const selectedRecipe = selectedRecipeId ? profRecipes.find(r => r.id === selectedRecipeId) : null;
 
@@ -1645,12 +1654,25 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <div className="flex" style={{ minHeight: 350, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                       {/* ── Left Panel: Recipe List ──────────────────────── */}
                       <div className="flex-shrink-0 overflow-y-auto border-r" style={{ width: "min(240px, 35%)", maxHeight: 450, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
-                        {/* Header: count + toggle */}
-                        <div className="sticky top-0 px-3 py-2 flex items-center justify-between" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.05)", zIndex: 2 }}>
-                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{displayRecipes.length} recipes</span>
-                          <button onClick={() => setShowAllRecipes(v => !v)} className="text-xs px-1.5 py-0.5 rounded" style={{ color: showAllRecipes ? "#818cf8" : "rgba(255,255,255,0.2)", border: `1px solid ${showAllRecipes ? "rgba(129,140,248,0.3)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer", fontSize: 12 }}>
-                            {showAllRecipes ? "All" : "Learned"}
-                          </button>
+                        {/* Header: search + filters */}
+                        <div className="sticky top-0 px-2 py-1.5 space-y-1" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.05)", zIndex: 2 }}>
+                          <input
+                            type="text"
+                            value={recipeSearch}
+                            onChange={e => setRecipeSearch(e.target.value)}
+                            placeholder="Search..."
+                            className="input-dark w-full text-xs px-2 py-1 rounded"
+                            style={{ fontSize: 12 }}
+                          />
+                          <div className="flex items-center justify-between">
+                            <button onClick={() => setShowHaveMatsOnly(v => !v)} className="text-xs px-1.5 py-0.5 rounded" style={{ color: showHaveMatsOnly ? "#22c55e" : "rgba(255,255,255,0.2)", border: `1px solid ${showHaveMatsOnly ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer", fontSize: 12 }}>
+                              {showHaveMatsOnly ? "Craftable" : "All"}
+                            </button>
+                            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{displayRecipes.length}</span>
+                            <button onClick={() => setShowAllRecipes(v => !v)} className="text-xs px-1.5 py-0.5 rounded" style={{ color: showAllRecipes ? "#818cf8" : "rgba(255,255,255,0.2)", border: `1px solid ${showAllRecipes ? "rgba(129,140,248,0.3)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer", fontSize: 12 }}>
+                              {showAllRecipes ? "All" : "Learned"}
+                            </button>
+                          </div>
                         </div>
                         {/* Recipe names — WoW minimal: name + skill color */}
                         {displayRecipes.length === 0 ? (
