@@ -278,7 +278,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         });
                         refresh();
                       }
-                    } catch { /* network error — retry silently */ }
+                    } catch { addToast?.({ type: "error", message: "Network error — ritual not completed" }); }
                     setCompletingRitualId(null);
                   }}
                   className="text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all"
