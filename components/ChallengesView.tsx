@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { getBalance } from "@/lib/balance-cache";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
@@ -827,6 +828,12 @@ export default function ChallengesView({
 
       {/* Content */}
       <div key={activeTab} className="tab-content-enter">
+      <FirstVisitBanner
+        viewId="challenges"
+        title="Wöchentliche Herausforderungen"
+        description="Sternenpfad: Solo-Challenge mit 3 Stufen und Stern-Bewertungen. Schließe Stufen schnell ab für Bonus-Sterne. Expedition: Kooperative Gilden-Challenge — alle Spieler arbeiten gemeinsam auf Checkpoints hin."
+        accentColor="#fbbf24"
+      />
       {activeTab === "sternenpfad" && (
         weeklyChallenge ? (
           <SternenpfadView
