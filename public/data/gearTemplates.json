@@ -74,7 +74,7 @@
       },
       "flavorText": "Jeder große Held hatte ein erstes Schwert. Die meisten haben es rechtzeitig ersetzt.",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-sword.png"
+      "icon": "/images/icons/gacha-rostiger-dolch.png"
     },
     {
       "id": "t1-dagger",
@@ -120,7 +120,7 @@
       },
       "flavorText": "Die Klinge ist stumpf, der Griff wackelt, und trotzdem hat er mehr Mut als mancher Ritter.",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-dagger.png"
+      "icon": "/images/icons/gacha-abenteuerklinge.png"
     },
     {
       "id": "t1-staff",
@@ -176,7 +176,7 @@
       },
       "flavorText": "Alte Wanderer sagen, er führe dich zum richtigen Weg. Junge Wanderer sagen, er sei ein Stock.",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-staff.png"
+      "icon": "/images/icons/gacha-eisenschwert.png"
     },
     {
       "id": "t1-axe",
@@ -278,7 +278,7 @@
       },
       "flavorText": "Drei Bretter und ein Gebet. In Aethermoor reicht das für den Anfang.",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-shield.png"
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
     },
     {
       "id": "t1-buckler",
@@ -334,7 +334,7 @@
       },
       "flavorText": "Klein genug zum Vergessen, groß genug zum Überleben. Ein faires Tauschgeschäft.",
       "binding": "boe",
-      "icon": "/images/items/icons/t1-buckler.png"
+      "icon": "/images/icons/equip-shield.png"
     },
     {
       "id": "t1-helm",
@@ -804,7 +804,7 @@
       },
       "flavorText": "Guter Stahl erkennt man daran, dass er sich nicht verbiegt, wenn die Welt es tut.",
       "binding": "boe",
-      "icon": "/images/items/icons/t2-sword.png"
+      "icon": "/images/icons/gacha-rostiger-dolch.png"
     },
     {
       "id": "t2-katana",
@@ -1028,7 +1028,7 @@
       },
       "flavorText": "Hinter diesem Schild hat schon mancher eine ganze Schlacht verschlafen.",
       "binding": "boe",
-      "icon": "/images/items/icons/t2-tower.png"
+      "icon": "/images/icons/equip-shield.png"
     },
     {
       "id": "t2-helm",
@@ -1538,7 +1538,7 @@
       },
       "flavorText": "Die Runen glühen rot bei Gefahr. Leider glühen sie auch rot bei schlechtem Wetter.",
       "binding": "boe",
-      "icon": "/images/items/icons/t3-sword.png"
+      "icon": "/images/icons/gacha-rostiger-dolch.png"
     },
     {
       "id": "t3-lance",
@@ -1595,7 +1595,7 @@
       "flavorText": "Für Drachen geschmiedet, gegen Drachen ungetestet. Der Schmied nannte das optimistisch.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t3-lance.png"
+      "icon": "/images/icons/gacha-abenteuerklinge.png"
     },
     {
       "id": "t3-wand",
@@ -1652,7 +1652,7 @@
       "flavorText": "Der Aetherstrom pulsiert so dicht durch diesen Fokus, dass selbst die Luft zittert.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t3-wand.png"
+      "icon": "/images/icons/gacha-eisenschwert.png"
     },
     {
       "id": "t3-shield",
@@ -1708,7 +1708,7 @@
       },
       "flavorText": "Von einer Drachenschuppe geformt. Der Drache hat das letzte Wort verloren.",
       "binding": "boe",
-      "icon": "/images/items/icons/t3-shield.png"
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
     },
     {
       "id": "t3-barrier",
@@ -2286,7 +2286,7 @@
       "flavorText": "Im allerersten Morgen der Welt, als das Licht noch jung war, küsste es eine Klinge. Diese Klinge.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t4-dawn.png"
+      "icon": "/images/icons/gacha-rostiger-dolch.png"
     },
     {
       "id": "t4-void",
@@ -2349,7 +2349,7 @@
       "flavorText": "Sie verschluckt das Licht. Sie verschluckt den Mut. Was übrig bleibt, ist Stille und der Geschmack von Eisen.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/items/icons/t4-void.png"
+      "icon": "/images/icons/gacha-abenteuerklinge.png"
     },
     {
       "id": "t4-aegis",
@@ -2734,7 +2734,7 @@
       },
       "flavorText": "Es gibt eine Klinge, die nicht gezogen, sondern verdient wird. Du weißt bereits, welche.",
       "binding": "boe",
-      "icon": "/images/items/icons/t4-excalibur.png"
+      "icon": "/images/icons/gacha-eisenschwert.png"
     },
     {
       "id": "t4-phoenix",
@@ -2923,7 +2923,7 @@
       },
       "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht.",
       "binding": "boe",
-      "icon": "/images/items/icons/t4-nightfall.png"
+      "icon": "/images/icons/gacha-stab-erkenntnis.png"
     },
     {
       "id": "t4-rhythm",
@@ -2986,7 +2986,7 @@
       },
       "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?",
       "binding": "boe",
-      "icon": "/images/items/icons/t4-rhythm.png"
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
     },
     {
       "id": "t4-sentinel",
@@ -3188,7 +3188,7 @@
       "rarity": "common",
       "price": 35,
       "desc": "Aus einem Knochen geschnitzt. Fragt nicht, von wem.",
-      "icon": "/images/items/icons/gen-knochen-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3237,7 +3237,7 @@
       "rarity": "common",
       "price": 30,
       "desc": "Zusammengebundene Äste. Hält einen Schlag aus. Vielleicht zwei.",
-      "icon": "/images/items/icons/gen-reisigschild.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3485,7 +3485,7 @@
       "rarity": "common",
       "price": 55,
       "desc": "Grün angelaufen, aber die Klinge hält. Meistens.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3534,7 +3534,7 @@
       "rarity": "uncommon",
       "price": 80,
       "desc": "Aus dem Geweih eines Aetherhirsches gefertigt. Surrt beim Spannen.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3593,7 +3593,7 @@
       "rarity": "uncommon",
       "price": 90,
       "desc": "Mit Bienenwachs behandelt. Wasser perlt ab. Schwerter leider nicht.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4000,7 +4000,7 @@
       "rarity": "uncommon",
       "price": 120,
       "desc": "Die Klinge scheint im Morgennebel zu verschwimmen. Oder du brauchst eine Brille.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4059,7 +4059,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kein Schnörkel, kein Zauber. Nur Eisen und eine klare Botschaft.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4118,7 +4118,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Summt leise. Der Aetherstrom fließt hier dichter als anderswo.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4236,7 +4236,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Umarme mich. Ich wage dich.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4833,7 +4833,7 @@
       "rarity": "common",
       "price": 65,
       "desc": "Schwer und dumm. Wie der Besitzer vor dir.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4882,7 +4882,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Die Esse hat Spuren hinterlassen. Der Hammer glüht noch — oder bildet er sich das ein?",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4941,7 +4941,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Gebogen wie der abnehmende Mond. Schneidet Schatten.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -5059,7 +5059,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Eingeritzte Runen leuchten bei Gefahr. Sie leuchten gerade.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -5596,7 +5596,7 @@
       "rarity": "common",
       "price": 80,
       "desc": "Weich für eine Keule. Aber ein Treffer ist ein Treffer.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5745,7 +5745,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Bei Gewitter summt die Klinge. Bei Windstille auch. Das ist beunruhigend.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5804,7 +5804,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Diese Klinge kannte deinen Namen bevor du geboren wurdest.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -5868,7 +5868,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Zu groß für normale Arme. Aber wer sagt, dass du normal bist?",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6166,7 +6166,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ein Hammer so groß, dass er einen eigenen Schatten wirft. Und einen eigenen Ruf.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6225,7 +6225,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Kleine Lichter tanzen um den Stab. Sie flüstern. Nicht auf Deutsch.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6289,7 +6289,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Keine Kratzer. Keine Dellen. Kein Alter. Was wurde hier geschmiedet?",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6662,7 +6662,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Geschmiedet an der Grenze zwischen Wachen und Träumen. Wo genau, weiß niemand.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6960,7 +6960,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Die Klinge ist mit alter Tinte befleckt. Die Worte sind unleserlich — aber sie schneiden trotzdem.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7317,7 +7317,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Geformt wie eine Schreibfeder. Schreibt Geschichte. In Blut, wenn es sein muss.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7615,7 +7615,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Geschnitzt aus dem Kiel eines versunkenen Schiffes. Die Wellen erkennen ihn noch.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7674,7 +7674,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Bricht Licht in hundert Farben. Bricht auch Knochen, wenn nötig.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8090,7 +8090,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Der Kristall wächst nach, wenn er bricht. Langsam. Aber er wächst.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8388,7 +8388,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Die Klinge ist nicht da. Aber sie schneidet trotzdem. Die Leere schneidet immer.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8447,7 +8447,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Was nicht existiert, kann nicht zerbrechen. Die Philosophie dahinter ist fragwürdig.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8765,7 +8765,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Geschmiedet in der Abwesenheit von allem. Sogar Hitze. Wie schmiedet man ohne Hitze?",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8829,7 +8829,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Der innerste Kern hält alles zusammen. Oder hält alles draußen. Kommt auf die Perspektive an.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9013,7 +9013,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Die Klinge flimmert. Ist sie hier oder dort? Ja.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9847,7 +9847,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Hat kein Ende. Kein Anfang. Nur Mitte. Und die Mitte schneidet.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10170,7 +10170,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Geschmiedet in der Esse des Zirkels. Die Hitze geht nie ganz raus.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10229,7 +10229,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Bedeckt mit Asche vergangener Prüfungen. Jede Schicht ist ein bestandener Test.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10527,7 +10527,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Schärfer als jedes Argument. Und das sagt viel.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11241,7 +11241,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Jeder Schlag erzeugt einen Ton. Zusammen eine Melodie. Meistens dissonant.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11300,7 +11300,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Schwingt mit der Frequenz des Angreifers. Neutralisiert. Meistens.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11598,7 +11598,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Drei Sterne leuchten auf der Klinge. Drei Prüfungen bestanden.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11836,7 +11836,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Die Sterne am Rand leuchten in der Dunkelheit. Sechs kleine Leuchtfeuer.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11955,7 +11955,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Neun Sterne. Neun Prüfungen. Null Zweifel.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12193,7 +12193,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Checkpoint zwei. Die Mitte hält. Immer.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12312,7 +12312,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bonus-Checkpoint. Für die, die weitergegangen sind als erwartet.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12490,7 +12490,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Markiert den Beginn der Saison. Frisch und voller Möglichkeiten.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12847,7 +12847,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Zwanzig Level. Die Klinge hat sich mit dir geschärft.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13562,7 +13562,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Jede Schuppe von einem anderen Kopf. Die Hydra vermisst sie nicht — sie wachsen nach.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13860,7 +13860,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Der Apathy Sovereign ließ es fallen. Weil er aufgehört hat, sich darum zu scheren. Du nicht.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13978,7 +13978,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Lyra sagt, er gehört ihr nicht. Lyra sagt viel.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14276,7 +14276,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Glück ist kein Zufall. Es ist eine Waffe. Diese hier.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14335,7 +14335,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Blockt, was kommen soll. Manchmal bevor es kommt.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14394,7 +14394,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Der Aetherstrom fließt durch die Sehne. Jeder Pfeil ist ein Fragment der Ewigkeit.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14458,7 +14458,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Geschmiedet am Ende aller Dinge. Für den Anfang der nächsten.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14967,7 +14967,7 @@
       "source": "faction:echo",
       "shopHidden": true,
       "price": 0,
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "pool": [
@@ -15086,7 +15086,7 @@
       "source": "faction:glut",
       "shopHidden": true,
       "price": 0,
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "pool": [
@@ -15145,7 +15145,7 @@
       "source": "faction:glut",
       "shopHidden": true,
       "price": 0,
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "pool": [
@@ -15566,7 +15566,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Summt leise vor sich hin. Die meisten Waffen tun das nicht, was entweder besorgniserregend oder charmant ist — je nach Perspektive.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -15625,7 +15625,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schützt zuverlässig vor den meisten Dingen. Auch vor einigen Dingen, von denen man nicht wusste, dass man Schutz braucht.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -15807,7 +15807,7 @@
       "rarity": "common",
       "price": 15,
       "desc": "Ein schlichter Kupferring. Tut was er soll. Mehr nicht.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -15911,7 +15911,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Leuchtet schwach im Dunkeln. Die Feuerwache behauptet, das sei normal. Die Feuerwache lügt.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -15968,7 +15968,7 @@
       "rarity": "uncommon",
       "price": 60,
       "desc": "Geschmiedet bei Mondlicht. Ob das einen Unterschied macht? Ysolde sagt ja. Grimvar rollt mit den Augen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -16082,7 +16082,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Gefunden im Sunken Archive. Absorbiert Licht. Und gelegentlich gute Laune.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16201,7 +16201,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Flüstert Dinge die noch nicht passiert sind. Meistens Wettervorhersagen. Gelegentlich Katastrophen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16320,7 +16320,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ein Ring aus reinem Aetherkern. Die Luft um ihn vibriert. Handschuhpflicht empfohlen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16464,7 +16464,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Der Ring wählt seinen Träger, nicht umgekehrt. Er hat schlechten Geschmack, aber exzellentes Timing.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19875,7 +19875,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinengewand. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20274,7 +20274,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollgewand. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22086,7 +22086,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Runengewand. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25269,7 +25269,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eiserner Rundschild. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25440,7 +25440,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Einfacher Zauberstab. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25497,7 +25497,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eisenstab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25554,7 +25554,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eiserne Streitaxt. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25611,7 +25611,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Rostiger Dolch. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25668,7 +25668,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Grober Kriegshammer. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25725,7 +25725,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Einfacher Fokus. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25782,7 +25782,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisernes Beil. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25953,7 +25953,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Einfaches Schutzbuch. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26010,7 +26010,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Grober Schild. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26067,7 +26067,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Geschmiedeter Buckler. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26124,7 +26124,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserne Tartsche. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26238,7 +26238,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Schlichter Wanderstab. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26295,7 +26295,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserner Turmschild. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26409,7 +26409,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Tartsche. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26466,7 +26466,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Buckler. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26523,7 +26523,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristallklinge. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26580,7 +26580,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählernes Langschwert. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26694,7 +26694,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Prunkschild. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26751,7 +26751,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Kriegsbeil. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26865,7 +26865,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Turmschild. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26922,7 +26922,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Schutzschild. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -26979,7 +26979,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählernes Foliant. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27036,7 +27036,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählernes Breitschwert. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27093,7 +27093,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobener Fokuskristall. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27150,7 +27150,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Rundschild. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27207,7 +27207,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Zeremonialstab. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27435,7 +27435,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Schutzfolio. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27492,7 +27492,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristallstab. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27549,7 +27549,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Wanderstab. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27606,7 +27606,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Ritualklinge. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27663,7 +27663,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerne Streitaxt. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27720,7 +27720,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Kriegshammer. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27777,7 +27777,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Wappenschild. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27834,7 +27834,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Foliant. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -27948,7 +27948,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Hammer. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28005,7 +28005,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Kriegsbeil. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28119,7 +28119,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Tartsche. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28176,7 +28176,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Schattenklinge. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28233,7 +28233,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Ritualstab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28290,7 +28290,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Meisterschwert. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28347,7 +28347,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Kampfschild. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28404,7 +28404,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Stab. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28461,7 +28461,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Dolch. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28518,7 +28518,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Fokus. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28575,7 +28575,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Prunkfokus. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28632,7 +28632,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Axt. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28689,7 +28689,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Streitkolben. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28746,7 +28746,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Aegis. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28860,7 +28860,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Schwert. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28917,7 +28917,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Zeremonialstab. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -28974,7 +28974,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Zauberstab. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29088,7 +29088,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Schlachtbeil. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29202,7 +29202,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Klingenbrecher. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29259,7 +29259,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Kodex. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29321,7 +29321,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Fokuskristall. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29383,7 +29383,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Hammer. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29507,7 +29507,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Axt. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29569,7 +29569,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Zeremonialstab. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29631,7 +29631,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Sternenstab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29693,7 +29693,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Donnerhammer. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29755,7 +29755,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Kriegsklinge. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -29879,7 +29879,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Zauberstab. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30065,7 +30065,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Schlachtbeil. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30127,7 +30127,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelengeschmiedeter Stab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30189,7 +30189,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelensiegel-Fokus. Scharf genug um Ausreden zu durchschneiden.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30251,7 +30251,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Schattenklinge. Die Waffenkammer hat ein neues Lieblingsstück.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30313,7 +30313,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Kriegsaxt. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30375,7 +30375,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Stab. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30437,7 +30437,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Fokus. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30499,7 +30499,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Richtschwert. Geschmiedet für jemanden der weiß was er tut.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30561,7 +30561,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Dolch. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30623,7 +30623,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Schwert. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30809,7 +30809,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenklinge des Meisters. Varn sagt wenig. Diese Waffe spricht für sich.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30871,7 +30871,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Ritualklinge. Balanciert wie ein gut formuliertes Argument.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -30933,7 +30933,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenbrecher-Axt. Die Schneide summt leise. Oder das ist nur Einbildung.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31057,7 +31057,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Prunkschild. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32688,7 +32688,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinengewand des Wanderers. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32745,7 +32745,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollrobe des Wanderers. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34661,7 +34661,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eiserner Ring. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34775,7 +34775,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Grober Siegelring. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34889,7 +34889,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Einfacher Steinring. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -34946,7 +34946,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Ring des Lehrlings. Glänzt verdächtig. Aber auf die gute Art.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35003,7 +35003,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Kupferreif. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35402,7 +35402,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristallring. Glänzt verdächtig. Aber auf die gute Art.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35459,7 +35459,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Siegelring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35573,7 +35573,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Ring des Forschers. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35687,7 +35687,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Siegelring. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35744,7 +35744,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mondsteinring. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35801,7 +35801,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Ring der Erkenntnis. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -35915,7 +35915,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristallreif des Wanderers. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -36314,7 +36314,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Saphirring. Glänzt verdächtig. Aber auf die gute Art.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -36371,7 +36371,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenauge-Ring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -36428,7 +36428,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ring des Meisters. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -36542,7 +36542,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Siegelring. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -36599,7 +36599,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ring der Sterne. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -37283,7 +37283,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -37407,7 +37407,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Siegelring. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -37469,7 +37469,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Runenring. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -37717,7 +37717,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Ring des Schicksals. Glänzt verdächtig. Aber auf die gute Art.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/equip-ring.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -37903,7 +37903,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Ring der Ewigkeit. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -42291,7 +42291,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -42387,7 +42387,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -42501,7 +42501,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -42597,7 +42597,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -42693,7 +42693,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -42807,7 +42807,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -42921,7 +42921,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43035,7 +43035,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43149,7 +43149,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43263,7 +43263,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43439,7 +43439,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43553,7 +43553,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43672,7 +43672,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ein Ring aus den Tiefen des Turms.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -43797,7 +43797,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Archivar trug ihn drei Jahrhunderte. Er sagt, der Ring habe mehr gelesen als er selbst.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "dungeon:sunken-archive",
       "affixes": {
         "primary": {
@@ -43860,7 +43860,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ein Splitter des alten Turms, zu einem Ring geschmiedet. Er vibriert bei Höhenangst.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "dungeon:shattered-spire",
       "affixes": {
         "primary": {
@@ -44049,7 +44049,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der letzte Träger behauptet, der Ring habe mit ihm gesprochen. Der Ring bestreitet das.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "dungeon:hollow-core",
       "affixes": {
         "primary": {
@@ -44112,7 +44112,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Sie schneidet nicht durch Materie. Sie schneidet durch die Ausreden, die Materie dafür hat, im Weg zu stehen.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "source": "rift:hard",
       "affixes": {
         "primary": {
@@ -44180,7 +44180,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Temperatur: absoluter Nullpunkt. Stimmung: ähnlich. Im Katalog steht \"kühlend\". Das ist wie einen Tsunami \"feucht\" zu nennen.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "source": "rift:hard",
       "affixes": {
         "primary": {
@@ -44248,7 +44248,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Geschmiedet in den letzten fünf Minuten vor einer Deadline. Man spürt die Panik. Sie macht stärker.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "source": "rift:legendary",
       "affixes": {
         "primary": {
@@ -44892,7 +44892,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Wächter, der es trug, wachte über eine Tür, die nirgendwohin führte. Das Schwert war trotzdem scharf.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45120,7 +45120,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Auf der Rückseite steht: \"Nein.\" Auf der Vorderseite auch. Die Botschaft ist klar.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45291,7 +45291,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Bricht keine Stürme. Macht sie. Der Wetterbericht hasst dieses Item.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45849,7 +45849,7 @@
       "desc": "Hält stand. Nicht glanzvoll, nicht elegant, einfach: verlässlich.",
       "price": 15,
       "shopHidden": false,
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46305,7 +46305,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46339,7 +46339,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46373,7 +46373,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46430,7 +46430,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46555,7 +46555,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47374,7 +47374,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47465,7 +47465,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47522,7 +47522,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47579,7 +47579,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47693,7 +47693,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48719,7 +48719,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48833,7 +48833,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48890,7 +48890,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -48947,7 +48947,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49004,7 +49004,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49175,7 +49175,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49232,7 +49232,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50258,7 +50258,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Verkäufer versicherte: \"Keine Rückgabe.\" Mit einem Lächeln, das Fragen aufwirft.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50372,7 +50372,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50429,7 +50429,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50486,7 +50486,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50548,7 +50548,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Die Politur verbirgt Gebrauchsspuren. Und Geschichten. Und mindestens einen Fluch.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50610,7 +50610,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50724,7 +50724,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51795,7 +51795,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51914,7 +51914,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51948,7 +51948,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -51982,7 +51982,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52016,7 +52016,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52050,7 +52050,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52118,7 +52118,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52232,7 +52232,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52289,7 +52289,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52414,7 +52414,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52516,7 +52516,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52550,7 +52550,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52607,7 +52607,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52664,7 +52664,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54506,7 +54506,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54574,7 +54574,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54642,7 +54642,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54710,7 +54710,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider den falschen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54824,7 +54824,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54938,7 +54938,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -54972,7 +54972,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55006,7 +55006,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55040,7 +55040,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55131,7 +55131,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55188,7 +55188,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55336,7 +55336,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55370,7 +55370,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55438,7 +55438,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57156,7 +57156,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57224,7 +57224,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Jemand hat es einmal geliebt. Diese Zeiten sind vorbei.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57315,7 +57315,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57429,7 +57429,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57486,7 +57486,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57520,7 +57520,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57554,7 +57554,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider den falschen.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58829,7 +58829,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58897,7 +58897,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59011,7 +59011,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59068,7 +59068,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59102,7 +59102,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Jemand hat es abgelegt. Am Straßenrand. Im Regen.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59170,7 +59170,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59204,7 +59204,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Jemand hat es abgelegt. Am Straßenrand. Im Regen.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59238,7 +59238,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59272,7 +59272,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59306,7 +59306,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59340,7 +59340,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59374,7 +59374,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59408,7 +59408,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59442,7 +59442,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59476,7 +59476,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59544,7 +59544,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59578,7 +59578,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59612,7 +59612,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59680,7 +59680,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61108,7 +61108,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61176,7 +61176,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61244,7 +61244,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61312,7 +61312,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61380,7 +61380,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61448,7 +61448,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61482,7 +61482,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61516,7 +61516,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61550,7 +61550,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61618,7 +61618,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61652,7 +61652,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61686,7 +61686,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61720,7 +61720,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61754,7 +61754,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61822,7 +61822,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61856,7 +61856,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63114,7 +63114,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Jemand hat es abgelegt. Am Straßenrand. Im Regen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63182,7 +63182,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63250,7 +63250,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63318,7 +63318,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63352,7 +63352,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63420,7 +63420,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63454,7 +63454,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63488,7 +63488,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63522,7 +63522,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63556,7 +63556,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63590,7 +63590,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63658,7 +63658,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64406,7 +64406,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64474,7 +64474,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64542,7 +64542,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Besser als nichts. Knapp.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64576,7 +64576,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64610,7 +64610,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64644,7 +64644,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Jemand hat es abgelegt. Am Straßenrand. Im Regen.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65154,7 +65154,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65222,7 +65222,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65256,7 +65256,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65313,7 +65313,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65370,7 +65370,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65427,7 +65427,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65484,7 +65484,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65598,7 +65598,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65655,7 +65655,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65712,7 +65712,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65769,7 +65769,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66966,7 +66966,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67080,7 +67080,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67194,7 +67194,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67251,7 +67251,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67308,7 +67308,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67536,7 +67536,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68334,7 +68334,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68448,7 +68448,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Scheune. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68482,7 +68482,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Reicht.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68550,7 +68550,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Scheune. Tut was es soll.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68584,7 +68584,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Händler. Mehr nicht.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68618,7 +68618,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Tut was es soll.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68652,7 +68652,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Mehr nicht.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68686,7 +68686,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Naja.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68720,7 +68720,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Händler. Naja.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68754,7 +68754,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Straßenrand. Naja.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68856,7 +68856,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Lehrling. Mehr nicht.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68924,7 +68924,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Kiste. Naja.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70114,7 +70114,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Scheune. Immerhin.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70182,7 +70182,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Straßenrand. Wahrscheinlich.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70250,7 +70250,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Naja.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70318,7 +70318,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Kiste. Tut was es soll.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70352,7 +70352,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Händler. Tut was es soll.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70386,7 +70386,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Straßenrand. Funktioniert.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70420,7 +70420,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Geht so.",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70454,7 +70454,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Tut was es soll.",
-      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70488,7 +70488,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Geht so.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70522,7 +70522,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Wahrscheinlich.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70590,7 +70590,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Naja.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70624,7 +70624,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Naja.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71576,7 +71576,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Naja.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71644,7 +71644,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Geht so.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71712,7 +71712,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Kiste. Funktioniert.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71780,7 +71780,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "vom Straßenrand. Funktioniert.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71814,7 +71814,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus dem Keller. Geht so.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71848,7 +71848,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Immerhin.",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71950,7 +71950,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Scheune. Wahrscheinlich.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -71984,7 +71984,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "vom Lehrling. Tut was es soll.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72018,7 +72018,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus dem Keller. Tut was es soll.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72596,7 +72596,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Immerhin.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72664,7 +72664,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Scheune. Mehr nicht.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72732,7 +72732,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Naja.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73174,7 +73174,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Reicht.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73208,7 +73208,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73265,7 +73265,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
-      "icon": "/images/icons/gacha-eisenschwert.png",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73436,7 +73436,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/icons/gacha-eisenschwert.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73493,7 +73493,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "icon": "/images/icons/equip-shield.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74576,7 +74576,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
@@ -74690,7 +74690,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
-      "icon": "/images/icons/equip-ring.png",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
       "affixes": {
         "primary": {
           "count": [
