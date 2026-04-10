@@ -486,7 +486,12 @@ router.get('/api/dashboard', (req, res) => {
     riftActive: (() => {
       if (!playerLower) return false;
       const u = state.users[playerLower];
-      return !!(u?.activeRift && !u.activeRift.completed && !u.activeRift.failed && new Date(u.activeRift.expiresAt).getTime() > Date.now());
+      if (!u?.activeRift?.active || u.activeRift.completed || u.activeRift.failed) return false;
+      // expiresAt is NOT stored on rift — compute from startedAt + timeLimitHours
+      const RIFT_TIME_LIMITS = { normal: 72, hard: 48, legendary: 36, mythic: 30 };
+      const tl = u.activeRift.timeLimitHours || RIFT_TIME_LIMITS[u.activeRift.tier] || 72;
+      const expiresAt = new Date(u.activeRift.startedAt).getTime() + tl * 3600000;
+      return expiresAt > Date.now();
     })(),
     dungeonActive: isDungeonActiveForPlayer(playerLower),
     notifications,
