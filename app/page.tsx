@@ -27,7 +27,7 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
-import { DailyHub } from "@/components/DailyHub";
+// DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
