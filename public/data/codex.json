@@ -1242,8 +1242,8 @@
       "title": "Die Tagesordnung — Sechs Punkte, keine Diskussion",
       "text": "Jeden Tag sechs Aufgaben: Einloggen, Quests erledigen, Rituale pflegen, den Begleiter streicheln, etwas herstellen. Vier Meilensteine bei hundert, dreihundert, fünfhundert und siebenhundertfünfzig Punkten, jeder mit Währungsbelohnungen. Das System fragt nicht, ob du Lust hast. Das System hat eine Liste. Listen haben keine Gefühle. Listen haben Haken, und die Haken wollen gesetzt werden. Wer alle sechs schafft, bekommt die volle Ausbeute. Wer null schafft, bekommt morgen dieselbe Liste. Die Liste ist geduldig. Geduldiger als du.",
       "unlockedBy": {
-        "type": "daily_missions_completed",
-        "value": 1
+        "type": "level_reached",
+        "value": 3
       }
     },
     {
