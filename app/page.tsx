@@ -895,11 +895,7 @@ export default function Dashboard() {
 
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedTotal;
-  const questsCompletedToday = useMemo(() => {
-    const today = new Date().toISOString().slice(0, 10);
-    const dc = loggedInUser?._dailyCompletions;
-    return dc && dc.date === today ? dc.count : 0;
-  }, [loggedInUser]);
+  // questsCompletedToday removed — was only used by DailyHub (now in TodayDrawer via dailyMissions)
 
   const openQuestsCount = useMemo(() => quests.open.filter(q => playerTypes.includes(q.type ?? "")).length, [quests.open, playerTypes]);
 
