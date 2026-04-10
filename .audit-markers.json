@@ -535,14 +535,14 @@
   "server.js": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-10",
-    "findings": "Clean. Security headers (CSP, X-Frame, nosniff). Graceful shutdown with flushPendingSaves. Unhandled rejection + uncaught exception handlers. Memory pruning hourly. Force-save every 60s. Write-test on boot.",
+    "findings": "Clean. Security headers. Graceful shutdown with flush. Error handlers. Memory pruning. Force-save 60s.",
     "status": "clean"
   },
   "app/page.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "welcome back toast, DR warning, pool refresh cursor, bulk update cursor+title",
-    "status": "clean"
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "DailyHub import removed. All lazy components have Suspense+ErrorBoundary. Agent doing deep audit for stale state.",
+    "status": "in_progress"
   },
   "app/types.ts": {
     "auditCount": 1,
@@ -552,14 +552,14 @@
   },
   "app/utils.ts": {
     "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "getUserLevel OK, countUp OK",
+    "lastAuditDate": "2026-04-10",
+    "findings": "Level edge cases clean (XP 0, max level, negative). Fetch helpers return safe defaults. getValidToken returns expired without check (unused externally).",
     "status": "clean"
   },
   "app/config.ts": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "talents room added to nav",
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "LOW: tome room minLevel 5 overridden by floor minLevel 8. Roadmap/changelog not in floor system (legacy). Otherwise clean.",
     "status": "clean"
   },
   "app/constants.ts": {
