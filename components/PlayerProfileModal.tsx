@@ -7,6 +7,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { getUserLevel, formatLegendaryLabel } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import ItemTooltip from "@/components/ItemTooltip";
 import { RARITY_COLORS } from "@/app/constants";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -81,6 +82,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
   const [friendRequestSent, setFriendRequestSent] = useState(false);
   const [removingFriend, setRemovingFriend] = useState(false);
   const [confirmRemove, setConfirmRemove] = useState(false);
+  const [tooltipItem, setTooltipItem] = useState<{ name: string; rarity?: string; icon?: string | null; slot?: string | null; stats?: Record<string, number> | null; legendaryEffect?: { type: string; label?: string; value?: number } | null; setId?: string | null; desc?: string | null } | null>(null);
 
   useModalBehavior(true, onClose);
 
@@ -271,8 +273,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                       </div>
                     );
                     return (
-                      <TipCustom key={slot} title={item.name} icon={item.icon ?? "◆"} accent={rc} body={tooltipBody}>
-                        <div className="rounded-lg p-2 cursor-help" style={{ background: `${rc}08`, border: `1px solid ${rc}25` }}>
+                      <button key={slot} onClick={() => setTooltipItem({ name: item.name, rarity: item.rarity, icon: item.icon, slot, stats: item.stats, legendaryEffect: item.legendaryEffect, setId: item.setId, desc: item.desc })} className="rounded-lg p-2 text-left w-full" style={{ background: `${rc}08`, border: `1px solid ${rc}25`, cursor: "pointer" }}>
                           <div className="flex items-center gap-1.5">
                             {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />}
                             <div className="min-w-0">
@@ -283,8 +284,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                           {item.legendaryEffect && (
                             <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>★ {formatLegendaryLabel(item.legendaryEffect)}</p>
                           )}
-                        </div>
-                      </TipCustom>
+                      </button>
                     );
                   })}
                 </div>
@@ -377,6 +377,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
           </div>
         ) : null}
       </div>
+      {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>,
     document.body
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
+import ItemTooltip from "@/components/ItemTooltip";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -587,7 +588,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
 
 // ─── Trade Item Display ─────────────────────────────────────────────────────
 
-function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: string; color: string }) {
+function TradeOfferDisplay({ offer, label, color, onItemClick }: { offer: TradeOffer; label: string; color: string; onItemClick?: (item: TradeOffer["items"][number]) => void }) {
   return (
     <div className="rounded-lg p-3" style={{ background: `${color}08`, border: `1px solid ${color}20` }}>
       <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color }}>{label}</p>
@@ -631,11 +632,11 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
                   {item.setName && <p className="text-xs mt-1" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
                 </>}
               >
-                <div className="flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
+                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}`, cursor: "pointer" }}>
                   {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />}
                   <span className="font-semibold truncate" style={{ color: rc }}>{item.name}</span>
                   <span className="text-w20 capitalize ml-auto flex-shrink-0">{item.rarity}</span>
-                </div>
+                </button>
               </TipCustom>
             );
           })}
@@ -759,6 +760,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const { users, loggedInUser } = useDashboard();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [selectedTrade, setSelectedTrade] = useState<Trade | null>(null);
+  const [tooltipItem, setTooltipItem] = useState<{ name: string; rarity?: string; icon?: string | null; slot?: string | null; stats?: Record<string, number> | null; legendaryEffect?: { type: string; label?: string; value?: number } | null; desc?: string | null; binding?: string | null; bound?: boolean } | null>(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -938,11 +940,13 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
             offer={t.currentInitiatorOffer}
             label={amInitiator ? "Your offer" : `${t.initiatorName}'s offer`}
             color={amInitiator ? "#a855f7" : otherColor}
+            onItemClick={item => setTooltipItem({ name: item.name, rarity: item.rarity, icon: item.icon, slot: item.slot, stats: item.stats, legendaryEffect: item.legendaryEffect, binding: item.binding, bound: item.bound })}
           />
           <TradeOfferDisplay
             offer={t.currentRecipientOffer}
             label={amInitiator ? `${t.recipientName}'s offer` : "Your offer"}
             color={amInitiator ? otherColor : "#a855f7"}
+            onItemClick={item => setTooltipItem({ name: item.name, rarity: item.rarity, icon: item.icon, slot: item.slot, stats: item.stats, legendaryEffect: item.legendaryEffect, binding: item.binding, bound: item.bound })}
           />
         </div>
 
@@ -1284,6 +1288,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       {trades.length === 0 && !showNewTrade && (
         <p className="text-xs text-w20 text-center py-8">No trades yet. Propose a trade to get started!</p>
       )}
+      {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
   );
 }
