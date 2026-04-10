@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useDashboard } from "@/app/DashboardContext";
 import { useModalBehavior } from "@/components/ModalPortal";
@@ -299,6 +300,12 @@ export default function TalentTreeView({
 
   return (
     <div className="tab-content-enter">
+      <FirstVisitBanner
+        viewId="talents"
+        title="Schicksalsbaum"
+        description="Passive Boni in 3 Ringen. Innerer Ring = Grundlagen, Mitte = Spezialisierung mit Tradeoffs, Außen = mächtige Capstones. Manche Knoten schließen sich gegenseitig aus. Respec kostet 500 Gold + 50 Essenz."
+        accentColor="#a78bfa"
+      />
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>

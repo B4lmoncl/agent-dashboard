@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import ItemTooltip from "@/components/ItemTooltip";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -1988,6 +1989,13 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
           );
         })}
       </div>
+
+      <FirstVisitBanner
+        viewId="social"
+        title="The Breakaway"
+        description="Finde Freunde, tausche Items, sende Nachrichten und verfolge die Aktivitäten deiner Gilde. Freunde sehen deinen Online-Status und können dir Trade-Anfragen schicken."
+        accentColor="#a855f7"
+      />
 
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">
