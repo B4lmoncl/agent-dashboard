@@ -1,7 +1,7 @@
 // ─── Game API (Classes, Roadmap, Rituals) ───────────────────────────────────
 const router = require('express').Router();
 const {
-  state, STREAK_MILESTONES, RARITY_COLORS,
+  state, STREAK_MILESTONES, RARITY_COLORS, TIMEZONE,
   saveClasses, saveRoadmap, saveRituals, saveUsers, ensureUserCurrencies,
 } = require('../lib/state');
 const {
@@ -202,7 +202,8 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   // Streak logic: was it done yesterday?
   // Trigger-type vows only count on explicit completion — missed days don't break the streak.
   const isTriggerType = ritual.schedule?.type === 'trigger';
-  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  // Use Berlin timezone for yesterday (must match todayStr() which sets lastCompleted)
+  const yesterday = new Date(Date.now() - 86400000).toLocaleDateString('en-CA', { timeZone: TIMEZONE });
   if (ritual.lastCompleted === yesterday) {
     ritual.streak = (ritual.streak || 0) + 1;
   } else if (!ritual.lastCompleted) {
