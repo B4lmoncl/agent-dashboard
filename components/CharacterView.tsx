@@ -2388,13 +2388,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <div key={type}>
                     <p className="text-xs font-semibold mb-1" style={{ color: GEM_COLORS[type] || "#9ca3af" }}>{type}</p>
                     <div className="space-y-0.5">
-                      {entries.sort((a, b) => a.tier - b.tier).map(({ gemKey, gem, count, tier }) => (
+                      {entries.sort((a, b) => a.tier - b.tier).map(({ gemKey, gem, count, tier, statBonus }) => (
                         <div key={gemKey} className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
                           <div className="flex items-center gap-1.5">
                             <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: GEM_COLORS[gem.type] || "#9ca3af" }} />
                             <span className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{gem.name}</span>
                             <span className="text-xs text-w20">T{tier}</span>
-                            {gem.stat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>+{(gem as unknown as { tiers?: { tier: number; statBonus: number }[] }).tiers?.find(t => t.tier === tier)?.statBonus ?? "?"} {gem.stat}</span>}
+                            {gem.stat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>+{statBonus ?? "?"} {gem.stat}</span>}
                           </div>
                           <div className="flex items-center gap-1.5">
                             <span className="text-xs font-mono" style={{ color: GEM_COLORS[gem.type] || "#9ca3af" }}>x{count}</span>
