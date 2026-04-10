@@ -1214,7 +1214,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Owned</span>
                 <span className="text-sm font-mono font-bold" style={{ color: owned > 0 ? "#22c55e" : "rgba(255,255,255,0.2)" }}>{owned}</span>
               </div>
-              {m.source && <p className="text-xs px-1" style={{ color: "rgba(255,255,255,0.25)" }}>Source: {m.source}</p>}
+              <p className="text-xs px-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                Source: {m.source === "crafted" ? "Crafted from other materials" : m.source === "drop" ? "Drops from quests" : m.source === "vendor" ? "Buy from vendor" : m.source || "Quest drops + gathering"}
+              </p>
               {usedIn.length > 0 && (
                 <div>
                   <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Used in ({usedIn.length})</p>
@@ -2591,7 +2593,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             {/* Salvage All button */}
                             {grouped[rarity].length >= 2 && rarity !== "legendary" && (
                               <button
-                                onClick={() => handleDismantleAll(rarity, grouped[rarity].length)}
+                                onClick={() => {
+                                  const count = grouped[rarity].length;
+                                  setConfirmAction({
+                                    message: `Dismantle ALL ${count} ${rarity} items? This cannot be undone. You'll receive ~${count * (ESSENZ_TABLE[rarity] || 2)} Essenz.`,
+                                    onConfirm: () => { setConfirmAction(null); handleDismantleAll(rarity, count); },
+                                  });
+                                }}
                                 className="salvage-all-btn text-xs px-2 py-1 rounded font-semibold ml-auto"
                                 style={{ background: "rgba(255,140,0,0.1)", color: "#ff8c00", border: "1px solid rgba(255,140,0,0.25)" }}
                               >
