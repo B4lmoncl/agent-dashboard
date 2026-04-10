@@ -122,10 +122,22 @@ Gacha-Banner brauchen NPC-Bilder als Featured Character.
 | Rüstkammer | Selina die Weberin | `selina-weberin.png` | Elegant weaver woman with silver threads floating around her, enchanted loom in background, fantasy RPG portrait |
 | Saisonales Schicksal | Lyra die Archivarin | `lyra-archivarin.png` | Young woman with star-map eyes holding an ancient glowing book, constellation patterns, fantasy RPG portrait |
 
-### PRIO 5: Unique Item Icons (31 fehlend, 128×128)
+### PRIO 5: Unique Item Icons (31 + 87 NPC rewards = 118 fehlend, 128×128)
 
 Jedes Unique Named Item verdient ein eigenes Icon (sie sind handcrafted).
 **Pfad:** `public/images/icons/unique-{id}.png`
+
+**87 neue NPC-Reward-Items (Stand 2026-04-10):**
+Alle 87 NPCs ohne Portrait haben jetzt individuelle Skulduggery-Humor-Items als Quest-Chain-Belohnung. Jedes Item braucht ein 128×128 Icon.
+Namensbeispiele für Prompt-Generierung:
+- `npc-professor-quill-reward`: "Quills Vergessene Brille" (Helm, rare)
+- `npc-schmuggler-dante-reward`: "Dantes Doppelbodenbeutel" (Armor, rare)
+- `npc-kriegsmeisterin-valka-reward`: "Valkas Zerbrochener Befehlsstab" (Weapon, epic)
+- `npc-tod-der-hoefliche-reward`: "Visitenkarte des Höflichen Besuchers" (Amulet, epic)
+- `npc-geisterjagerin-raven-reward`: "Ravens Kalter Spiegel" (Shield, epic)
+
+Pfad-Konvention: `public/images/icons/unique-npc-{npc-id}-reward.png`
+Prompt-Suffix: `fantasy RPG icon, dark background, centered, single object`
 
 ### PRIO 6: Companion Portraits — Real Animals (6 fehlend, 256×256)
 
