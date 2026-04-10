@@ -1,6 +1,6 @@
 # Asset Backlog — Fehlende Bilder
 
-> Stand: 2026-04-10 (post-generation final audit)
+> Stand: 2026-04-10 (updated: crafting recipe icon audit)
 > **Gear Icon System: KOMPLETT.** Alle 7 Slots haben 25 Icons, round-robin verteilt, 0 Placeholder.
 > **NPC Portraits: KOMPLETT.** Alle 100 NPCs haben Portraits und können spawnen.
 > **Boss Portraits: KOMPLETT.** Alle 15 Bosse haben Portraits.
@@ -75,3 +75,51 @@ Alle 87 NPC-Quest-Chain-Reward-Items haben `icon: null`. Brauchen individuelle I
 
 **Pfad:** `public/images/icons/{name}.png`
 `itemTemplates.json` referenziert 50 Icons im alten Format (`t1-axe.png`, `t2-helm.png` etc.) die nicht existieren. Diese sind Consumables/Loot-Items, nicht Gear.
+
+### PRIO 7: Crafting Recipe Icons — Consumable-Berufe (aktuell Placeholder, 128×128)
+
+**Status:** Aktuell nutzen diese Rezepte generische Fallback-Icons (Heiltrank, Mahlzeit, Rune, Gem). Pro Beruf brauchen wir individuelle Icons für bessere Unterscheidbarkeit.
+
+| Beruf | Rezepttyp | Anzahl | Aktueller Placeholder | Benötigt |
+|-------|-----------|--------|----------------------|----------|
+| Alchemist | Buff-Potions (XP, Gold, Luck, Streak) | 67 | `gacha-heiltrank.png` | 6-8 Trank-Varianten (XP=blau, Gold=gelb, Luck=grün, Streak=rot, Flask=groß) |
+| Koch | Buff-Mahlzeiten (XP, Gold, Forge Temp) | 64 | `shop-meal.png` | 6-8 Food-Varianten (Suppe, Braten, Kuchen, Eintopf nach Tier) |
+| Verzauberer | Gear Enhance + Vellums | 73 | `ui-ritual-rune.png` | 4-5 Enchant-Varianten (Glow-Rune, Scroll, Permanent-Siegel) |
+| Juwelier | Gem Cut + Gem Merge | 34 | `gacha-amulet-soul-gem.png` | 6 Gem-Icons pro Typ (Ruby, Sapphire, Emerald, Topaz, Amethyst, Diamond) |
+| **Alle Gear-Berufe** | gear_enhance (Sharpen, Reinforce, Polish) | 73 | `loot-gear-upgrade.png` | 3-4 Enhance-Varianten (Schleifstein, Verstärkung, Politur) |
+
+**Gesamt: ~25-35 neue Icons** für volle Abdeckung aller Consumable/Enhance-Rezepte.
+
+### PRIO 8: Intermediate Crafting Material Icons (24 fehlend, 128×128)
+
+**Status:** Diese Materialien existieren in professions.json aber haben kein Icon in der materials-Liste. Sie werden von Rezepten als Output erzeugt (Barren, Ballen, verarbeitetes Leder).
+
+**Pfad:** `public/images/icons/mat-{name}.png`
+
+| Beruf | Material | Dateiname |
+|-------|----------|-----------|
+| Schmied | Eisenbarren | `mat-eisenbarren.png` |
+| Schmied | Kristallbarren | `mat-kristallbarren.png` |
+| Schmied | Verstärkter Stahl | `mat-verstaerkterstahl.png` |
+| Schmied | Drachenstahl | `mat-drachenstahl.png` |
+| Schmied | Drachenkern | `mat-drachenkern.png` |
+| Schmied | Aetherlegierung | `mat-aetherlegierung.png` |
+| Schmied | Aetherbarren | `mat-aetherbarren.png` |
+| Schmied | Seelenlegierung | `mat-seelenlegierung.png` |
+| Schmied | Seelenstahl | `mat-seelenstahl.png` |
+| Schneider | Magiestoff-Ballen | `mat-magiestoffballen.png` |
+| Schneider | Runenstoff-Ballen | `mat-runenstoffballen.png` |
+| Schneider | Sternenlicht-Farbe | `mat-sternenlichtfarbe.png` |
+| Schneider | Arkaner Faden | `mat-arkanerfaden.png` |
+| Lederverarbeiter | Geheiltes Leichtleder | `mat-geheiltesleichtleder.png` |
+| Lederverarbeiter | Geheiltes Mittleres Leder | `mat-geheiltesmittleresleder.png` |
+| Lederverarbeiter | Gehärtetes Schwerleder | `mat-gehaertetesschwerleder.png` |
+| Lederverarbeiter | Bestien-Lederballen | `mat-bestienlederballen.png` |
+| Lederverarbeiter | Urzeitleder-Ballen | `mat-urzeitleder.png` |
+| Lederverarbeiter | Klauenöl | `mat-klauenoel.png` |
+| Lederverarbeiter | Salzgerbung | `mat-salzgerbung.png` |
+| Lederverarbeiter | Uraltes Gerbmittel | `mat-uraltesgerbmittel.png` |
+
+**Gesamt: 21 neue Material-Icons** (+ 3 Transmute-Varianten die dieselben Materialien referenzieren).
+
+**Prompt-Hinweise:** Metallbarren = glühender Barren auf Amboss, Stoffballen = gerollter Stoff mit Muster, Leder = gestapelte Lederstücke mit Textur. Alle 128×128px, style ref `gacha-heiltrank.png`, `no_background: true`.
