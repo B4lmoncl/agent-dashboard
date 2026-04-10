@@ -2315,6 +2315,28 @@
       },
       "source": "world_boss:deadline-drache",
       "isUnique": true
+    },
+    {
+      "id": "dun-hollow-core-stiefel",
+      "name": "Stiefel des Hohlen Kerns",
+      "slot": "boots",
+      "rarity": "unique",
+      "reqLevel": 35,
+      "source": "dungeon:hollow-core",
+      "icon": null,
+      "flavorText": "Der vorherige Besitzer ist nie aus dem Kern zurückgekommen. Die Stiefel schon. Das sagt mehr über die Stiefel als über den Besitzer.",
+      "fixedStats": {
+        "stats": {
+          "ausdauer": 7,
+          "kraft": 5,
+          "tempo": 4
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "value": 5,
+        "label": "Leerenanker: -{value}% Forge-Decay"
+      }
     }
   ]
 }
