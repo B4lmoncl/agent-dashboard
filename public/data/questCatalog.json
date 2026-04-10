@@ -5672,7 +5672,8 @@
       "rewards": {
         "xp": 38,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-dns",
@@ -5722,7 +5723,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-cisco-cli",
@@ -5772,7 +5774,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-redis",
@@ -5788,7 +5791,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-clean-code",
@@ -6099,7 +6103,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-websockets",
@@ -6131,7 +6136,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-incident-response",
@@ -8179,7 +8185,8 @@
       "rewards": {
         "xp": 38,
         "gold": 25
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-bgp-routing",
@@ -8211,7 +8218,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-vlan-config",
@@ -8244,7 +8252,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-nginx-config",
@@ -8294,7 +8303,8 @@
       "rewards": {
         "xp": 40,
         "gold": 28
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-elasticsearch",
@@ -8342,7 +8352,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-security-headers",
@@ -8456,7 +8467,8 @@
       "rewards": {
         "xp": 28,
         "gold": 16
-      }
+      },
+      "classRequired": "developer"
     },
     {
       "id": "l-ux-principles",
