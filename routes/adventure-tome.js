@@ -194,10 +194,15 @@ function evaluateFloor(floor, user, progress) {
           current = user._craftsCompleted || 0;
           break;
         case "_professionMaxLevel": {
-          const profs = progress?.professions || {};
+          // Profession data is on user.professions, not playerProgress
+          const profs = user.professions || {};
           let maxLvl = 0;
           for (const p of Object.values(profs)) {
-            if (p && typeof p === 'object' && (p.level || 0) > maxLvl) maxLvl = p.level;
+            if (p && typeof p === 'object') {
+              const skill = p.skill || p.xp || 0;
+              // Convert skill to profession "level" (1-300 skill → rank-based level)
+              if (skill > maxLvl) maxLvl = skill;
+            }
           }
           current = maxLvl;
           break;
