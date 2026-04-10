@@ -18,6 +18,22 @@ const MOONLIGHT_BONUS = 0.20; // +20% minimum roll boost
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring'];
 const SECONDARY_PROFESSIONS = ['koch', 'verzauberer']; // Don't count against the 2 primary-slot limit
 
+// Fallback icons for recipes without a resolved template/material icon
+const RECIPE_TYPE_FALLBACK_ICONS = {
+  buff: '/images/icons/gacha-heiltrank.png',
+  forge_temp: '/images/icons/gacha-heiltrank.png',
+  streak_shield: '/images/icons/gacha-heiltrank.png',
+  gear_enhance: '/images/icons/loot-gear-upgrade.png',
+  vellum: '/images/icons/ui-ritual-rune.png',
+  gem_cut: '/images/icons/gacha-amulet-soul-gem.png',
+  gem_merge: '/images/icons/gacha-amulet-soul-gem.png',
+  // Per-profession fallbacks (used when result type has no match)
+  alchemist: '/images/icons/npc-zara-flask.png',
+  koch: '/images/icons/shop-meal.png',
+  verzauberer: '/images/icons/ui-ritual-rune.png',
+  juwelier: '/images/icons/gacha-amulet-soul-gem.png',
+};
+
 // ─── Faction ID mapping (old lore names → current system IDs) ─────────────
 const FACTION_ID_MAP = {
   orden_der_klinge: 'glut', zirkel_der_sterne: 'tinte',
@@ -332,7 +348,8 @@ router.get('/api/professions', (req, res) => {
         skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
         cooldownRemaining,
         icon: r.icon || (r.result?.templateId ? (state.gearById.get(r.result.templateId)?.icon || null) : null)
-          || (r.result?.type === 'material' ? (PROFESSIONS_DATA.materials?.find(m => m.id === (r.result.materialId || r.result.outputMaterial))?.icon || null) : null),
+          || (r.result?.type === 'material' || r.result?.type === 'transmute_material' ? (PROFESSIONS_DATA.materials?.find(m => m.id === (r.result.materialId || r.result.outputMaterial))?.icon || null) : null)
+          || RECIPE_TYPE_FALLBACK_ICONS[r.result?.type] || RECIPE_TYPE_FALLBACK_ICONS[r.profession] || null,
       };
     });
   const materials = u?.craftingMaterials || {};
