@@ -210,7 +210,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
-  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "reagents" | "schmiedekunst" | "transmutation" | "enchanting" | "disenchant">("recipes");
+  const [npcModalTab, setNpcModalTab] = useState<"craft" | "trainer" | "reagents" | "schmiedekunst" | "transmutation" | "enchanting" | "disenchant">("craft");
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
+  const [showAllRecipes, setShowAllRecipes] = useState(false);
   const [reagentBuyCount, setReagentBuyCount] = useState<Record<string, number>>({});
   const [buyingReagent, setBuyingReagent] = useState<string | null>(null);
   const [disenchantInv, setDisenchantInv] = useState<InventoryItem[]>([]);
@@ -1021,7 +1023,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* NPC card — clickable to open modal */}
             <button
-              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); setRecipeSlotFilter("all"); setRecipeSearch(""); } }}
+              onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("craft"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); setRecipeSlotFilter("all"); setRecipeSearch(""); } }}
               disabled={locked}
               title={locked ? `Requires Player Level ${prof.unlockCondition?.value || "?"}` : `Open ${prof.npcName}'s workshop`}
               className="w-full p-4 pt-2 text-left"
@@ -1570,30 +1572,37 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               {/* Materials moved to Material Storage section — no longer duplicated here */}
             </div>
 
-            {/* Tab bar */}
+            {/* Tab bar — WoW-style: Craft + Trainer only */}
             {(() => {
               const tabs: { key: typeof npcModalTab; label: string; color: string }[] = [
-                { key: "recipes", label: "Recipes", color: selectedNpc.color },
-                { key: "reagents", label: "Reagents", color: "#f59e0b" },
+                { key: "craft", label: "Craft", color: selectedNpc.color },
                 { key: "trainer", label: "Trainer", color: "#fbbf24" },
               ];
-              if (selectedNpc.id === "schmied") {
-                tabs.push({ key: "schmiedekunst", label: "Salvage", color: "#ff8c00" });
-              }
+              // Profession-specific special tabs as smaller buttons
+              const specials: { key: typeof npcModalTab; label: string; color: string }[] = [];
+              if (selectedNpc.id === "schmied") specials.push({ key: "schmiedekunst", label: "Salvage", color: "#ff8c00" });
               if (selectedNpc.id === "verzauberer") {
-                tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
-                tabs.push({ key: "disenchant" as typeof npcModalTab, label: "Entzaubern", color: "#ef4444" });
+                specials.push({ key: "enchanting", label: "Enchant", color: "#a855f7" });
+                specials.push({ key: "disenchant" as typeof npcModalTab, label: "Entzaubern", color: "#ef4444" });
               }
-              if (selectedNpc.id === "alchemist") {
-                tabs.push({ key: "transmutation", label: "Transmutation", color: "#22c55e" });
-              }
-              // Always show tabs (at least Recipes + Trainer)
+              if (selectedNpc.id === "alchemist") specials.push({ key: "transmutation", label: "Transmute", color: "#22c55e" });
               return (
-                <div className="flex gap-0.5 px-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="flex items-center gap-0.5 px-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   {tabs.map(t => (
-                    <button key={t.key} onClick={() => setNpcModalTab(t.key)} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
+                    <button key={t.key} onClick={() => { setNpcModalTab(t.key); if (t.key === "craft") setSelectedRecipeId(null); }} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
                       background: npcModalTab === t.key ? `${t.color}12` : "transparent",
                       color: npcModalTab === t.key ? t.color : "rgba(255,255,255,0.25)",
+                      borderBottom: npcModalTab === t.key ? `2px solid ${t.color}` : "2px solid transparent",
+                      cursor: "pointer",
+                    }}>
+                      {t.label}
+                    </button>
+                  ))}
+                  {specials.length > 0 && <span className="mx-1" style={{ width: 1, height: 20, background: "rgba(255,255,255,0.06)" }} />}
+                  {specials.map(t => (
+                    <button key={t.key} onClick={() => setNpcModalTab(t.key)} className="forge-btn text-xs font-semibold px-3 py-2 rounded-t-lg transition-colors hover:brightness-110" style={{
+                      background: npcModalTab === t.key ? `${t.color}12` : "transparent",
+                      color: npcModalTab === t.key ? t.color : "rgba(255,255,255,0.2)",
                       borderBottom: npcModalTab === t.key ? `2px solid ${t.color}` : "2px solid transparent",
                       cursor: "pointer",
                     }}>
@@ -1604,8 +1613,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               );
             })()}
 
-            {/* ─── Tab: Recipes ──────────────────────────────────────────── */}
-            {npcModalTab === "recipes" && (
+            {/* ─── Tab: Craft (WoW-style 2-Panel) ───────────────────────── */}
+            {npcModalTab === "craft" && (
               <div className="tab-content-enter">
                 {/* Not enrolled gate */}
                 {!selectedNpc.chosen && (
@@ -1622,577 +1631,167 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Browse recipes below to see what this profession offers.</p>
                   </div>
                 )}
-                {/* Recipe discovery counter + WoW-style color breakdown */}
+                {/* ─── WoW-style 2-Panel: Left=Recipe List, Right=Detail ───── */}
                 {(() => {
                   const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
-                  const discovered = profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden).length;
-                  const total = totalRecipesByProf[selectedNpc.id] || profRecipes.length;
-                  const learned = profRecipes.filter(r => r.learned !== false && !(r as unknown as Record<string, unknown>).hidden);
-                  const colorCounts = { orange: 0, yellow: 0, green: 0, gray: 0 };
-                  for (const r of learned) { colorCounts[(r.skillUpColor as keyof typeof colorCounts) || "gray"]++; }
+                  const learnedRecipes = profRecipes.filter(r => r.learned !== false && !(r as unknown as Record<string, unknown>).hidden);
+                  const displayRecipes = showAllRecipes ? profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden) : learnedRecipes;
+                  const SKILL_COLORS: Record<string, string> = { orange: "#f97316", yellow: "#eab308", green: "#22c55e", gray: "rgba(255,255,255,0.2)" };
+                  const selectedRecipe = selectedRecipeId ? profRecipes.find(r => r.id === selectedRecipeId) : null;
+
                   return (
-                    <div className="px-5 pt-3 space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
-                          {discovered}/{total} recipes discovered
-                        </span>
-                        {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                    <div className="flex" style={{ minHeight: 400, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                      {/* ── Left Panel: Recipe List ──────────────────────── */}
+                      <div className="flex-shrink-0 overflow-y-auto border-r" style={{ width: 240, maxHeight: 500, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                        {/* Header: count + toggle */}
+                        <div className="sticky top-0 px-3 py-2 flex items-center justify-between" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.05)", zIndex: 2 }}>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{displayRecipes.length} recipes</span>
+                          <button onClick={() => setShowAllRecipes(v => !v)} className="text-xs px-1.5 py-0.5 rounded" style={{ color: showAllRecipes ? "#818cf8" : "rgba(255,255,255,0.2)", border: `1px solid ${showAllRecipes ? "rgba(129,140,248,0.3)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer", fontSize: 11 }}>
+                            {showAllRecipes ? "All" : "Learned"}
+                          </button>
+                        </div>
+                        {/* Recipe names — WoW minimal: name + skill color */}
+                        {displayRecipes.length === 0 ? (
+                          <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.2)" }}>
+                            {selectedNpc.chosen ? "No recipes learned yet. Visit the Trainer tab." : "Choose this profession to start learning recipes."}
+                          </p>
+                        ) : displayRecipes.map(recipe => {
+                          const color = SKILL_COLORS[recipe.skillUpColor || "gray"];
+                          const isSelected = selectedRecipeId === recipe.id;
+                          const isHidden = (recipe as unknown as Record<string, unknown>).hidden;
+                          const notLearned = recipe.learned === false;
+                          return (
+                            <button
+                              key={recipe.id}
+                              onClick={() => setSelectedRecipeId(recipe.id)}
+                              className="w-full text-left px-3 py-1.5 text-xs transition-colors"
+                              style={{
+                                background: isSelected ? `${selectedNpc.color}15` : "transparent",
+                                borderLeft: isSelected ? `2px solid ${selectedNpc.color}` : "2px solid transparent",
+                                color: isHidden ? "rgba(255,255,255,0.15)" : notLearned ? "rgba(255,255,255,0.3)" : color,
+                                cursor: "pointer",
+                                fontWeight: isSelected ? 600 : 400,
+                              }}
+                            >
+                              {isHidden ? "???" : recipe.name}
+                              {notLearned && !isHidden && <span style={{ color: "rgba(255,255,255,0.15)", marginLeft: 4, fontSize: 10 }}>◇</span>}
+                            </button>
+                          );
+                        })}
                       </div>
-                      {selectedNpc.chosen && learned.length > 0 && (
-                        <div className="flex items-center gap-3">
-                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill-up:</span>
-                          {colorCounts.orange > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#f97316" }}>{colorCounts.orange}</span>}
-                          {colorCounts.yellow > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#eab308" }}>{colorCounts.yellow}</span>}
-                          {colorCounts.green > 0 && <span className="text-xs font-mono font-bold" style={{ color: "#22c55e" }}>{colorCounts.green}</span>}
-                          {colorCounts.gray > 0 && <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>{colorCounts.gray}</span>}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })()}
-                {/* Slot selector for Schmied/Verzauberer */}
-                {selectedNpc.id === "verzauberer" && (npcModalTab as string) === "enchanting" && (
-                  <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                    <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Enchantment Target</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {Object.entries(SLOT_LABELS).map(([slot, label]) => {
-                        const hasGear = !!(equippedSlots[slot] && typeof equippedSlots[slot] === "object");
-                        return (
-                          <button
-                            key={slot}
-                            onClick={() => setSelectedSlot(slot)}
-                            className="text-xs px-2.5 py-1 rounded-lg transition-all hover:brightness-125"
-                            style={{
-                              background: selectedSlot === slot ? `${selectedNpc.color}20` : "rgba(255,255,255,0.04)",
-                              color: selectedSlot === slot ? selectedNpc.color : hasGear ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)",
-                              border: `1px solid ${selectedSlot === slot ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
-                              opacity: hasGear ? 1 : 0.4,
-                              cursor: "pointer",
-                            }}
-                          >
-                            {label}
-                            {hasGear && " \u2713"}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
 
-                {/* Recipes list */}
-                <div className="px-5 py-3 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  {/* Compact filter bar: search + toggles on one row */}
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <div className="relative flex-1 min-w-0">
-                      <input
-                        type="text"
-                        value={recipeSearch}
-                        onChange={e => setRecipeSearch(e.target.value)}
-                        placeholder="Search..."
-                        className="input-dark w-full text-xs px-2.5 py-1.5 rounded-lg pr-6"
-                        style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.08)" }}
-                      />
-                      {recipeSearch && (
-                        <button onClick={() => setRecipeSearch("")} className="absolute right-1.5 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center rounded text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>&#10005;</button>
-                      )}
-                    </div>
-                    <button onClick={() => setShowCraftableOnly(v => !v)} className="text-xs px-2 py-1.5 rounded-lg font-medium whitespace-nowrap" style={{ background: showCraftableOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: showCraftableOnly ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${showCraftableOnly ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title="Show only recipes you can craft right now">Craftable</button>
-                    <button onClick={() => setShowHaveMatsOnly(v => !v)} className="text-xs px-2 py-1.5 rounded-lg font-medium whitespace-nowrap" style={{ background: showHaveMatsOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: showHaveMatsOnly ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${showHaveMatsOnly ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title="Show only recipes where you have all materials">Materials</button>
-                    <select
-                      value={recipeSort}
-                      onChange={e => setRecipeSort(e.target.value as typeof recipeSort)}
-                      className="text-xs px-1.5 py-1.5 rounded-lg input-dark"
-                      style={{ background: recipeSort !== "default" ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: recipeSort !== "default" ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${recipeSort !== "default" ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}
-                      title="Sort recipes"
-                    >
-                      <option value="default">Sort: Skill</option>
-                      <option value="name">Sort: A-Z</option>
-                      <option value="color">Sort: Color</option>
-                    </select>
-                    <TipCustom title="Skill-Up Colors" icon="◆" accent={selectedNpc.color} body={<div className="space-y-1">{Object.entries(SKILL_UP_COLORS).map(([k, sc]) => <p key={k} style={{ color: sc.color }}>{sc.label}: {k === "orange" ? "100%" : k === "yellow" ? "~75%" : k === "green" ? "~25%" : "0%"} skill-up</p>)}</div>}>
-                      <span className="flex items-center gap-0.5 cursor-help" style={{ color: "rgba(255,255,255,0.2)" }}>
-                        {Object.values(SKILL_UP_COLORS).map((sc, i) => <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: sc.color }} />)}
-                      </span>
-                    </TipCustom>
-                  </div>
-                  {/* Slot filter — compact pills */}
-                  <div className="flex gap-1 flex-wrap mb-2">
-                    {["all", "weapon", "shield", "helm", "armor", "amulet", "ring", "boots", "consumable"].map(s => (
-                      <button key={s} onClick={() => setRecipeSlotFilter(s)} className="text-xs px-2 py-0.5 rounded" style={{ background: recipeSlotFilter === s ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.02)", color: recipeSlotFilter === s ? "#e8e8e8" : "rgba(255,255,255,0.2)", border: `1px solid ${recipeSlotFilter === s ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.04)"}`, cursor: "pointer" }}>{s === "all" ? "All" : s === "consumable" ? "Buffs" : s.charAt(0).toUpperCase() + s.slice(1)}</button>
-                    ))}
-                  </div>
-                  {(() => {
-                    const SKILL_BRACKETS = [
-                      { name: "Apprentice", min: 0, max: 75, color: "#22c55e" },
-                      { name: "Journeyman", min: 75, max: 150, color: "#3b82f6" },
-                      { name: "Expert", min: 150, max: 225, color: "#a855f7" },
-                      { name: "Artisan", min: 225, max: 300, color: "#f59e0b" },
-                    ];
-                    const playerSkill = selectedNpc.skill || 0;
-                    const filteredRecipes = recipes.filter(r => r.profession === selectedNpc.id).filter(recipe => {
-                      // Slot filter
-                      if (recipeSlotFilter !== "all") {
-                        if (recipeSlotFilter === "consumable") {
-                          const isConsumable = ["buff", "temp_enchant", "streak_shield", "forge_temp", "vellum", "material", "transmute_material"].includes(recipe.result?.type || "");
-                          if (!isConsumable) return false;
-                        } else {
-                          const nameLower = (recipe.name || "").toLowerCase();
-                          const SLOT_KEYWORDS: Record<string, string[]> = { weapon: ["schwert", "klinge", "dolch", "axt", "waffe", "stab", "bogen"], shield: ["schild", "buckler"], helm: ["helm", "haube", "kappe", "krone"], armor: ["rüstung", "panzer", "wams", "robe", "tunika"], amulet: ["amulett", "kette", "anhänger", "medallion"], ring: ["ring", "reif", "band"], boots: ["stiefel", "schuhe", "sandalen"] };
-                          const keywords = SLOT_KEYWORDS[recipeSlotFilter] || [];
-                          if (!keywords.some(k => nameLower.includes(k))) return false;
-                        }
-                      }
-                      if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
-                      // Slot filter
-                      /* slot filter handled by existing SLOT_KEYWORDS logic above */
-                      if (showCraftableOnly) {
-                        const isLearned = recipe.learned !== false;
-                        const meetsLevel = recipe.canCraft;
-                        const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
-                        const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp" || recipe.result?.type === "material" || recipe.result?.type === "transmute_material" || recipe.result?.type === "gem_cut";
-                        const effectiveCount = isBatchable ? craftCount : 1;
-                        const canAffordCheck = (() => {
-                          const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                          const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount;
-                          if (totalGoldNeeded > 0 && g < totalGoldNeeded) return false;
-                          for (const [matId, amt] of Object.entries(recipe.materials || {})) {
-                            if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
-                          }
-                          return true;
-                        })();
-                        if (!canAffordCheck || !meetsLevel || onCooldown || !isLearned) return false;
-                      }
-                      if (showHaveMatsOnly) {
-                        const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
-                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= ((recipe.cost?.gold || 0));
-                        if (!hasMats || !hasGold) return false;
-                      }
-                      return true;
-                    });
-                    // Apply sort
-                    const COLOR_ORDER: Record<string, number> = { orange: 0, yellow: 1, green: 2, gray: 3 };
-                    if (recipeSort === "name") filteredRecipes.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
-                    else if (recipeSort === "color") filteredRecipes.sort((a, b) => (COLOR_ORDER[a.skillUpColor || "gray"] ?? 9) - (COLOR_ORDER[b.skillUpColor || "gray"] ?? 9));
-                    // default = by reqSkill (already in data order)
-                    const totalRecipes = recipes.filter(r => r.profession === selectedNpc.id && !(r as unknown as Record<string, unknown>).hidden).length;
-                    const isFiltered = recipeSearch || showCraftableOnly || showHaveMatsOnly || recipeSlotFilter !== "all";
-                    return <>{isFiltered && <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>Showing {filteredRecipes.length} of {totalRecipes} recipes</p>}{SKILL_BRACKETS.map(bracket => {
-                      const bracketRecipes = filteredRecipes.filter(r => {
-                        const skill = r.reqSkill || 0;
-                        return skill >= bracket.min && skill < bracket.max;
-                      }).sort((a, b) => {
-                        const aFav = favoriteRecipes.has(a.id) ? 0 : 1;
-                        const bFav = favoriteRecipes.has(b.id) ? 0 : 1;
-                        if (aFav !== bFav) return aFav - bFav;
-                        return (a.reqSkill || 0) - (b.reqSkill || 0);
-                      });
-                      if (bracketRecipes.length === 0) return null;
-                      // Determine default collapse: brackets below player's current bracket are collapsed,
-                      // the player's bracket and above are expanded. We use a lazy init pattern —
-                      // if the bracket was never explicitly toggled by the user, apply the default.
-                      const isPlayerBracket = playerSkill >= bracket.min && playerSkill < bracket.max;
-                      const isBelowPlayer = bracket.max <= playerSkill && !isPlayerBracket;
-                      // Default: collapse lower brackets, expand current + higher brackets
-                      const defaultCollapsed = isBelowPlayer && !isPlayerBracket;
-                      const collapsed = collapsedBrackets.has(bracket.name) ? true : collapsedBrackets.has(`_expanded_${bracket.name}`) ? false : defaultCollapsed;
-                      const handleToggle = () => {
-                        setCollapsedBrackets(prev => {
-                          const next = new Set(prev);
-                          if (collapsed) {
-                            // Expand: remove collapsed marker, add expanded marker
-                            next.delete(bracket.name);
-                            next.add(`_expanded_${bracket.name}`);
-                          } else {
-                            // Collapse: add collapsed marker, remove expanded marker
-                            next.add(bracket.name);
-                            next.delete(`_expanded_${bracket.name}`);
-                          }
-                          return next;
-                        });
-                      };
-                      return (
-                        <div key={bracket.name} className="mb-1">
-                          <button
-                            onClick={handleToggle}
-                            className="w-full flex items-center justify-between px-3 py-2 rounded-lg mb-1 transition-all"
-                            style={{ background: `${bracket.color}10`, border: `1px solid ${bracket.color}20`, cursor: "pointer" }}
-                          >
-                            <span className="flex items-center gap-2">
-                              <span className="text-sm font-bold" style={{ color: bracket.color }}>{bracket.name}</span>
-                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>({bracket.min}-{bracket.max})</span>
-                              {isPlayerBracket && <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${bracket.color}15`, color: bracket.color, border: `1px solid ${bracket.color}30` }}>Current</span>}
-                            </span>
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                              {bracketRecipes.length} recipe{bracketRecipes.length !== 1 ? "s" : ""} {collapsed ? "\u25B8" : "\u25BE"}
-                            </span>
-                          </button>
-                          {!collapsed && bracketRecipes.map(recipe => {
-                    // Hidden/undiscovered recipes — show as "???" with source hint
-                    if ((recipe as unknown as Record<string, unknown>).hidden) {
-                      return (
-                        <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.04)", borderLeft: "3px solid rgba(255,255,255,0.06)" }}>
-                          <div className="flex items-center gap-2">
-                            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>?</span>
-                            <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.15)" }}>???</p>
+                      {/* ── Right Panel: Recipe Detail ───────────────────── */}
+                      <div className="flex-1 overflow-y-auto p-4" style={{ maxHeight: 500, scrollbarWidth: "thin" }}>
+                        {!selectedRecipe ? (
+                          <div className="flex items-center justify-center h-full">
+                            <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Select a recipe from the list</p>
                           </div>
-                          <p className="text-xs mt-0.5 line-clamp-2" style={{ color: "rgba(255,255,255,0.1)" }}>{recipe.desc || "Unknown recipe"}</p>
-                        </div>
-                      );
-                    }
-                    const isLearned = recipe.learned !== false;
-                    const needsLearn = !isLearned && recipe.source === "trainer" && (recipe.trainerCost ?? 0) > 0;
-                    const meetsLevel = recipe.canCraft;
-                    const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
-                    const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
-                    const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp" || recipe.result?.type === "material" || recipe.result?.type === "transmute_material" || recipe.result?.type === "gem_cut";
-                    const effectiveCount = isBatchable ? craftCount : 1;
-                    const canAfford = (() => {
-                      const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                      const totalGoldNeeded = (recipe.cost?.gold || 0) * effectiveCount;
-                      if (totalGoldNeeded > 0 && gold < totalGoldNeeded) return false;
-                      for (const [matId, amt] of Object.entries(recipe.materials || {})) {
-                        if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
-                      }
-                      return true;
-                    })();
-                    // For reroll recipes, check if the equipped item has rerollable stats AND the template has an affix pool
-                    const isSlotRecipe = recipe.id === "reinforce_armor" || recipe.id === "enchant_socket" || recipe.id === "upgrade_rarity" || recipe.id === "permanent_enchant" || recipe.id === "sharpen_blade";
-                    const slotItem = equippedSlots[selectedSlot];
-                    const hasSlotItem = isSlotRecipe ? (slotItem && typeof slotItem === "object") : true;
-                    const canDo = isLearned && canAfford && meetsLevel && !onCooldown && hasSlotItem;
+                        ) : (() => {
+                          const isHidden = (selectedRecipe as unknown as Record<string, unknown>).hidden;
+                          if (isHidden) return <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>This recipe hasn&apos;t been discovered yet. It drops from world content.</p>;
+                          const notLearned = selectedRecipe.learned === false;
+                          const onCooldown = (selectedRecipe.cooldownRemaining ?? 0) > 0;
+                          const canCraft = selectedRecipe.canCraft && !onCooldown;
+                          const recipeMaterials = selectedRecipe.materials || {};
 
-                    return (
-                      <div key={recipe.id} className="forge-recipe-card rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${skillUp?.color || "rgba(255,255,255,0.06)"}` }}>
-                        <div className="flex items-start justify-between gap-2">
-                          <div>
-                            <div className="flex items-center gap-2">
-                              {/* Craftability indicator */}
-                              {isLearned && (
-                                <span className="flex-shrink-0" style={{ fontSize: 12, color: !meetsLevel || onCooldown ? "rgba(255,255,255,0.15)" : canAfford ? "#22c55e" : "#f59e0b" }} title={!meetsLevel ? "Skill too low" : onCooldown ? "On cooldown" : canAfford ? "Ready to craft" : "Missing materials"}>
-                                  {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
-                                </span>
-                              )}
-                              {isLearned && (
-                                <button
-                                  onClick={e => { e.stopPropagation(); toggleFavoriteRecipe(recipe.id); }}
-                                  className="flex-shrink-0"
-                                  style={{ fontSize: 12, color: favoriteRecipes.has(recipe.id) ? "#fbbf24" : "rgba(255,255,255,0.1)", cursor: "pointer", background: "none", border: "none", padding: 0, lineHeight: 1 }}
-                                  title={favoriteRecipes.has(recipe.id) ? "Remove from favorites" : "Add to favorites"}
-                                >★</button>
-                              )}
-                              <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
-                                {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}
-                                {recipe.name}
-                                {newlyLearned.has(recipe.id) && <span className="new-badge-pulse text-xs font-bold ml-1.5 px-1 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", fontSize: 12 }}>NEW</span>}
-                              </p>
-                              {/* Skill-up indicator dot */}
-                              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
-                            </div>
-                            <p className="text-sm mt-0.5 line-clamp-2" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
-                            {/* FI-056: Buff effect preview for buff-type recipes */}
-                            {recipe.result?.type === "buff" && recipe.result?.buffType && (() => {
-                              const effectLabel = BUFF_EFFECT_LABELS[recipe.result.buffType as string] || recipe.result.buffType as string;
-                              const durationLabel = formatBuffDuration(recipe.result.duration as string | undefined);
-                              return (
-                                <p className="text-xs mt-0.5 font-semibold" style={{ color: "#22c55e" }}>
-                                  {effectLabel}{durationLabel ? ` for ${durationLabel}` : ""}
+                          return (
+                            <div className="space-y-4">
+                              {/* Recipe name + skill info */}
+                              <div>
+                                <h3 className="text-base font-bold" style={{ color: SKILL_COLORS[selectedRecipe.skillUpColor || "gray"] }}>{selectedRecipe.name}</h3>
+                                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                                  Skill {selectedRecipe.reqSkill || 0} · {SKILL_UP_COLORS[selectedRecipe.skillUpColor || "gray"]?.label || "No skill-up"}
+                                  {selectedRecipe.skillUpChance != null && selectedRecipe.skillUpChance > 0 && selectedRecipe.skillUpChance < 100 && ` (${selectedRecipe.skillUpChance}%)`}
                                 </p>
-                              );
-                            })()}
-                            {/* Stat preview for slot-targeting recipes */}
-                            {meetsLevel && (recipe.id === "reinforce_armor" || recipe.id === "enchant_socket" || recipe.id === "sharpen_blade" || recipe.id === "permanent_enchant") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
-                              const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
-                              return (
-                                <div className="mt-1 rounded-lg px-2 py-1.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
-                                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                                    Current: {Object.entries(currentStats).map(([k, v]) => `${k} +${v}`).join(", ") || "none"}
+                                {selectedRecipe.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>&ldquo;{selectedRecipe.desc}&rdquo;</p>}
+                              </div>
+
+                              {/* Materials — WoW-style: icon + name + owned/needed */}
+                              <div>
+                                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>Reagents</p>
+                                <div className="space-y-1">
+                                  {Object.entries(recipeMaterials).map(([matId, needed]) => {
+                                    const mat = materialDefs.find(m => m.id === matId);
+                                    const owned = materials[matId] || 0;
+                                    const enough = owned >= (needed as number);
+                                    return (
+                                      <div key={matId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.02)" }}>
+                                        {mat?.icon && <img src={`/images/icons/${mat.icon}`} alt="" width={18} height={18} className="img-render-auto flex-shrink-0" onError={hideOnError} />}
+                                        <span className="text-xs flex-1" style={{ color: enough ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.4)" }}>{mat?.name || matId}</span>
+                                        <span className="text-xs font-mono" style={{ color: enough ? "#22c55e" : "#ef4444" }}>{owned}/{needed as number}</span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+
+                              {/* Not learned hint */}
+                              {notLearned && (
+                                <div className="rounded-lg px-3 py-2" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}>
+                                  <p className="text-xs" style={{ color: "#fbbf24" }}>
+                                    {selectedRecipe.source === "trainer" ? "Learn this recipe in the Trainer tab." : selectedRecipe.source === "drop" ? "This recipe drops from world content." : "Recipe not yet learned."}
+                                    {selectedRecipe.trainerCost ? ` Cost: ${selectedRecipe.trainerCost}g` : ""}
                                   </p>
                                 </div>
-                              );
-                            })()}
-                            {!meetsLevel && (
-                              <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires {selectedNpc.name} Skill {recipe.reqSkill || recipe.reqProfLevel}</p>
-                            )}
-                            {onCooldown && (
-                              <p className="text-xs mt-1" style={{ color: "#f97316" }}>
-                                Cooldown: {(recipe.cooldownRemaining ?? 0) >= 3600 ? `${Math.floor((recipe.cooldownRemaining ?? 0) / 3600)}h ${Math.floor(((recipe.cooldownRemaining ?? 0) % 3600) / 60)}m` : `${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}m`}
-                              </p>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-1.5 flex-shrink-0">
-                            {(() => {
-                              // Calculate max craftable quantity for the "Max" option
-                              const playerGoldForMax = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                              const maxFromMats = Object.entries(recipe.materials || {}).map(([matId, amt]) => Math.floor((materials[matId] || 0) / (amt as number)));
-                              const perCraftGold = (recipe.cost?.gold || 0);
-                              const maxFromGold = perCraftGold > 0 ? Math.floor(playerGoldForMax / perCraftGold) : Infinity;
-                              // Match backend logic: only material/transmute recipes get 50 cap
-                              const isMaterialRecipe = recipe.result?.type === "transmute_material" || recipe.result?.type === "material";
-                              const batchCap = isMaterialRecipe ? 50 : 10;
-                              const maxCraftable = Math.min(batchCap, maxFromGold, ...(maxFromMats.length > 0 ? maxFromMats : [batchCap]));
-                              const safeMax = Math.max(0, maxCraftable);
-                              return (
-                                <select
-                                  value={craftCount}
-                                  onChange={e => {
-                                    const val = e.target.value;
-                                    if (val === "max") setCraftCount(Math.max(1, safeMax));
-                                    else setCraftCount(parseInt(val, 10));
-                                  }}
-                                  disabled={!isBatchable}
-                                  title={!isBatchable ? "Only buff/consumable recipes support batch crafting" : `Craft x${craftCount}`}
-                                  className="text-xs rounded-lg px-1 py-1 font-mono"
-                                  style={{ background: "rgba(255,255,255,0.06)", color: isBatchable ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.1)", width: 52, cursor: isBatchable ? "pointer" : "not-allowed", opacity: isBatchable ? 1 : 0.4 }}
-                                >
-                                  {[1, 2, 3, 5, 10].map(n => <option key={n} value={n}>x{n}</option>)}
-                                  {isBatchable && <option value="max">Max ({safeMax})</option>}
-                                </select>
-                              );
-                            })()}
-                            {needsLearn ? (() => {
-                              const playerGold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                              return (
-                              <button
-                                onClick={() => setNpcModalTab("trainer" as typeof npcModalTab)}
-                                className="forge-btn text-xs px-3 py-1.5 rounded-lg"
-                                style={{
-                                  background: "rgba(251,191,36,0.08)",
-                                  color: "#fbbf24",
-                                  border: "1px solid rgba(251,191,36,0.2)",
-                                  cursor: "pointer",
-                                }}
-                                title={`Learn this recipe in the Trainer tab (${recipe.trainerCost}g)`}
-                              >
-                                Trainer →
-                              </button>
-                              );
-                            })() : (
-                              <button
-                                onClick={() => canDo && !craftProgress && startCraftCast(recipe.id, effectiveCount)}
-                                disabled={!canDo || crafting || !!craftProgress}
-                                className="forge-btn btn-press text-sm px-4 py-2 rounded-lg font-semibold relative overflow-hidden"
-                                style={{
-                                  background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
-                                  color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
-                                  border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
-                                  cursor: canDo && !crafting && !craftProgress ? "pointer" : "not-allowed",
-                                }}
-                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !canAfford ? "Not enough materials or gold" : "") : craftProgress ? "Press ESC to cancel" : `Craft ${recipe.name}`}
-                              >
-                                {craftProgress && craftProgress.recipeId === recipe.id ? `Crafting\u2026 ${craftProgress.total > 1 ? `${Math.min(craftProgress.current + 1, craftProgress.total)}/${craftProgress.total} ` : ''}` : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                        {/* Cost display */}
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {recipe.cost?.gold && (
-                            <span className="text-sm flex items-center gap-1" style={{ color: (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= recipe.cost.gold * effectiveCount ? "#f59e0b" : "#f44" }}>
-                              <img src="/images/icons/currency-gold.png" alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
-                              {recipe.cost.gold * effectiveCount}{effectiveCount > 1 ? ` (${recipe.cost.gold}x${effectiveCount})` : ""}
-                            </span>
-                          )}
-                          {Object.entries(recipe.materials || {}).map(([matId, amt]) => {
-                            const mat = materialDefs.find(m => m.id === matId);
-                            const needed = (amt as number) * effectiveCount;
-                            const owned = materials[matId] || 0;
-                            const has = owned >= needed;
-                            const almostReady = !has && needed > 0 && owned >= needed * 0.6;
-                            return (
-                              <span key={matId} className={`text-sm flex items-center gap-1${almostReady ? " mat-almost-ready" : ""}`} style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
-                                {!has && <span style={{ color: "#f44", fontSize: 12, lineHeight: 1 }}>●</span>}
-                                {mat?.icon ? <img src={mat.icon} alt="" width={28} height={28} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="w-3.5 h-3.5 rounded-full inline-block flex-shrink-0" style={{ background: RARITY_COLORS[mat?.rarity || "common"] || "#6b7280" }} />}
-                                {owned}/{needed} {mat?.name || matId}
-                                {mat?.source && (
-                                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", fontWeight: "normal", marginLeft: 2 }}>
-                                    {mat.source === "vendor" ? "Vendor" : mat.source === "crafted" ? "Crafted" : mat.source === "disenchant" ? "Disenchant" : null}
-                                  </span>
-                                )}
-                                {!mat?.source && mat && (
-                                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", fontWeight: "normal", marginLeft: 2 }}>Quest Drops</span>
-                                )}
-                              </span>
-                            );
-                          })}
-                          {recipe.cooldownMinutes > 0 && (
-                            <span className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>CD: {recipe.cooldownMinutes >= 60 ? `${Math.floor(recipe.cooldownMinutes / 60)}h` : `${recipe.cooldownMinutes}m`}</span>
-                          )}
-                          {(() => {
-                            const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
-                            const chance = recipe.skillUpChance ?? (recipe.skillUpColor === "gray" ? 0 : recipe.skillUpColor === "green" ? 25 : recipe.skillUpColor === "yellow" ? 75 : 100);
-                            const xpColor = recipe.skillUpColor === "gray" ? "#6b7280" : dailyBonusAvailable ? "#facc15" : skillUp?.color || "rgba(255,255,255,0.25)";
-                            return (
-                              <span className="text-sm font-mono flex items-center gap-1.5" style={{ color: xpColor }} title={`${skillUp?.label}: ${chance}% skill-up chance${dailyBonusAvailable ? " (2x daily)" : ""}`}>
-                                {chance === 0 ? "—" : `${chance}%`}
-                                {chance > 0 && (
-                                  <span className="inline-block rounded-full overflow-hidden" style={{ width: 40, height: 2, background: "rgba(255,255,255,0.08)" }}>
-                                    <span className="block h-full rounded-full" style={{ width: `${chance}%`, background: chance === 100 ? "#f97316" : chance >= 75 ? "#eab308" : chance >= 25 ? "#22c55e" : "#6b7280" }} />
-                                  </span>
-                                )}
-                              </span>
-                            );
-                          })()}
-                          {/* Preview toggle for gear craft recipes */}
-                          {recipe.result?.type === "craft_gear" && isLearned && (
-                            <button
-                              onClick={() => toggleCraftPreview(recipe.id)}
-                              className="text-xs px-1.5 py-0.5 rounded"
-                              style={{ color: craftPreview?.recipeId === recipe.id ? selectedNpc.color : "rgba(255,255,255,0.3)", background: craftPreview?.recipeId === recipe.id ? `${selectedNpc.color}15` : "rgba(255,255,255,0.04)", border: `1px solid ${craftPreview?.recipeId === recipe.id ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}
-                              title="Preview possible craft result"
-                            >
-                              {previewLoading === recipe.id ? "..." : craftPreview?.recipeId === recipe.id ? "Hide" : "Preview"}
-                            </button>
-                          )}
-                        </div>
-                        {/* Craft preview panel */}
-                        {craftPreview?.recipeId === recipe.id && craftPreview.data?.gear && (() => {
-                          const g = craftPreview.data.gear;
-                          const sr = g.statRanges;
-                          return (
-                            <div className="mt-2 rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${(RARITY_COLORS[g.rarity] || "#9ca3af")}25` }}>
-                              <div className="flex items-center gap-2 mb-1.5">
-                                <span className="text-sm font-semibold" style={{ color: RARITY_COLORS[g.rarity] || "#9ca3af" }}>{g.name}</span>
-                                <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{SLOT_LABELS[g.slot] || g.slot}</span>
-                                {g.setId && <span className="text-xs" style={{ color: "#22c55e" }}>Set: {g.setId}</span>}
-                              </div>
-                              {/* Primary stats */}
-                              {sr.primary?.length > 0 && (
-                                <div className="mb-1">
-                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Primary ({sr.primaryCount?.[0]}–{sr.primaryCount?.[1]} stats):</span>
-                                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
-                                    {sr.primary.map((a: { stat: string; min: number; max: number }) => (
-                                      <span key={a.stat} className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>
-                                        {a.stat} <span style={{ color: "#e8e8e8" }}>{a.min}–{a.max}</span>
-                                      </span>
+                              )}
+
+                              {/* Cooldown */}
+                              {onCooldown && (
+                                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                                  Cooldown: {Math.ceil((selectedRecipe.cooldownRemaining || 0) / 60)}min remaining
+                                </p>
+                              )}
+
+                              {/* Craft button + count */}
+                              {!notLearned && selectedNpc.chosen && (
+                                <div className="flex items-center gap-2">
+                                  {/* Batch count */}
+                                  <div className="flex items-center gap-1">
+                                    {[1, 5, 10].map(n => (
+                                      <button key={n} onClick={() => setCraftCount(n)} className="text-xs px-2 py-1 rounded" style={{ background: craftCount === n ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)", color: craftCount === n ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${craftCount === n ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}>
+                                        x{n}
+                                      </button>
                                     ))}
+                                  </div>
+                                  <button
+                                    onClick={() => handleCraft(selectedRecipe.id)}
+                                    disabled={!canCraft || craftProgress !== null}
+                                    className="flex-1 text-sm font-bold py-2.5 rounded-lg"
+                                    style={{
+                                      background: canCraft ? `linear-gradient(135deg, ${selectedNpc.color}30, ${selectedNpc.color}18)` : "rgba(255,255,255,0.03)",
+                                      color: canCraft ? selectedNpc.color : "rgba(255,255,255,0.2)",
+                                      border: `1px solid ${canCraft ? `${selectedNpc.color}50` : "rgba(255,255,255,0.06)"}`,
+                                      cursor: canCraft ? "pointer" : "not-allowed",
+                                    }}
+                                    title={!canCraft ? (onCooldown ? "On cooldown" : "Missing materials or requirements") : `Craft ${selectedRecipe.name}`}
+                                  >
+                                    {craftProgress !== null ? "Crafting..." : `Create${craftCount > 1 ? ` (${craftCount})` : ""}`}
+                                  </button>
+                                </div>
+                              )}
+
+                              {/* Cast bar (reuse existing) */}
+                              {craftProgress !== null && (
+                                <div className="mt-2">
+                                  <div className="craft-cast-bar rounded-full overflow-hidden" style={{ height: 8, background: "rgba(255,255,255,0.06)" }}>
+                                    <div className="h-full rounded-full craft-cast-fill" style={{ width: `${craftProgress}%`, background: `linear-gradient(90deg, ${selectedNpc.color}88, ${selectedNpc.color})` }} />
                                   </div>
                                 </div>
                               )}
-                              {/* Minor stats */}
-                              {sr.minor?.length > 0 && (
-                                <div className="mb-1">
-                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Minor ({sr.minorCount?.[0]}–{sr.minorCount?.[1]} stats):</span>
-                                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
-                                    {sr.minor.map((a: { stat: string; min: number; max: number }) => (
-                                      <span key={a.stat} className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>
-                                        {a.stat} <span style={{ color: "#e8e8e8" }}>{a.min}–{a.max}</span>
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              )}
-                              {/* Fixed stats */}
-                              {g.fixedStats && (
-                                <div className="mb-1">
-                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Fixed stats:</span>
-                                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
-                                    {Object.entries(g.fixedStats).map(([stat, val]) => (
-                                      <span key={stat} className="text-xs font-mono" style={{ color: "#e8e8e8" }}>{stat} +{String(val)}</span>
-                                    ))}
-                                  </div>
-                                </div>
-                              )}
-                              {/* Sockets & Legendary */}
-                              <div className="flex flex-wrap gap-3 mt-1">
-                                {g.socketRange && (g.socketRange[0] > 0 || g.socketRange[1] > 0) && (
-                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Sockets: {g.socketRange[0]}–{g.socketRange[1]}</span>
-                                )}
-                                {g.legendaryEffect && (
-                                  <span className="text-xs" style={{ color: "#f97316" }}>
-                                    Legendary: {g.legendaryEffect.type} ({g.legendaryEffect.min}–{g.legendaryEffect.max}%)
-                                  </span>
-                                )}
-                              </div>
-                              {/* Moonlight bonus indicator */}
-                              {craftPreview.data.moonlightActive && (
-                                <div className="mt-1.5 flex items-center gap-1.5">
-                                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#93c5fd", boxShadow: "0 0 4px #93c5fd" }} />
-                                  <span className="text-xs" style={{ color: "#93c5fd" }}>Mondlicht-Schmiede active: +{Math.round((craftPreview.data.moonlightBonus || 0) * 100)}% minimum rolls</span>
-                                </div>
-                              )}
-                              {craftPreview.data.mastery && (
-                                <div className="mt-0.5 flex items-center gap-1.5">
-                                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#facc15" }} />
-                                  <span className="text-xs" style={{ color: "#facc15" }}>Mastery bonus active</span>
-                                </div>
+
+                              {/* Craft result */}
+                              {craftResult && (
+                                <p className={`text-xs font-semibold ${craftResultHadSkillUp ? "skill-up-flash" : ""}`} style={{ color: craftResultSkillUpColor ? SKILL_COLORS[craftResultSkillUpColor] || "#22c55e" : "rgba(255,255,255,0.5)" }}>
+                                  {craftResult}
+                                </p>
                               )}
                             </div>
                           );
                         })()}
-                        {/* Standalone cast bar below recipe card */}
-                        {craftProgress && craftProgress.recipeId === recipe.id && (
-                          <div className="mt-2 relative">
-                            <div className="text-xs text-center font-mono mb-1" style={{ color: selectedNpc.color }}>
-                              {craftProgress.total > 1 && <span style={{ color: "rgba(255,255,255,0.3)", marginRight: 4 }}>{Math.min(craftProgress.current + 1, craftProgress.total)}/{craftProgress.total}</span>}
-                              {castCountdown ?? "0.0"}s
-                            </div>
-                            <div className="w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)", height: 7, border: "1px solid rgba(255,255,255,0.1)", boxShadow: "inset 0 1px 3px rgba(0,0,0,0.5)" }}>
-                              <div className="h-full rounded-full progress-shimmer" style={{
-                                background: `linear-gradient(90deg, ${selectedNpc.color}80, ${selectedNpc.color})`,
-                                animation: `craft-cast-fill ${craftCastMsRef.current}ms linear forwards`,
-                                transformOrigin: "left",
-                                boxShadow: `0 0 12px ${selectedNpc.color}60, 0 0 4px ${selectedNpc.color}, inset 0 1px 0 rgba(255,255,255,0.2)`,
-                              }} />
-                            </div>
-                            <p className="text-xs text-center mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>ESC to cancel</p>
-                          </div>
-                        )}
                       </div>
-                    );
-                  })}
-                        </div>
-                      );
-                    })}</>;
-                  })()}
-                  {/* Empty state when filter shows no results */}
-                  {showCraftableOnly && recipes.filter(r => r.profession === selectedNpc.id).filter(r => !(r as unknown as Record<string, unknown>).hidden && r.learned !== false && r.canCraft && (r.cooldownRemaining ?? 0) <= 0).length === 0 && (
-                    <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
-                      No craftable recipes. Possible reasons: not enough materials, skill too low, recipes on cooldown, or no gear equipped for slot-targeted recipes. Try dismantling gear for materials or completing quests.
-                    </p>
-                  )}
-                </div>
-
-                {/* Craft result toast */}
-                {craftResult && (() => {
-                  const skillUpInfo = craftResultSkillUpColor ? SKILL_UP_COLORS[craftResultSkillUpColor] : null;
-                  const toastColor = craftResultHadSkillUp && skillUpInfo ? skillUpInfo.color : selectedNpc.color;
-                  const sparkleColor = craftResultHadSkillUp && skillUpInfo ? skillUpInfo.color : (selectedNpc.color || '#fbbf24');
-                  return (
-                    <div className="relative mx-5 mb-4">
-                      <div
-                        id="forge-craft-result"
-                        className={`craft-result-celebrate px-3 py-2 rounded-lg text-xs font-semibold text-center${craftResultHadSkillUp ? " skill-up-result-flash" : ""}`}
-                        style={{
-                          background: `${toastColor}18`,
-                          color: toastColor,
-                          border: `1px solid ${toastColor}40`,
-                          boxShadow: craftResultHadSkillUp ? `0 0 16px ${toastColor}50, inset 0 0 8px ${toastColor}15` : undefined,
-                        }}
-                      >
-                        {craftResultHadSkillUp && skillUpInfo && (
-                          <span
-                            className="inline-flex items-center gap-1 mr-2 px-1.5 py-0.5 rounded font-bold"
-                            style={{ background: `${skillUpInfo.color}20`, color: skillUpInfo.color, border: `1px solid ${skillUpInfo.color}40`, fontSize: 12, letterSpacing: "0.04em" }}
-                          >
-                            <span className="w-2 h-2 rounded-full inline-block flex-shrink-0" style={{ background: skillUpInfo.color }} />
-                            {craftResultSkillUpColor ? craftResultSkillUpColor.charAt(0).toUpperCase() + craftResultSkillUpColor.slice(1) : ""} Skill-Up!
-                          </span>
-                        )}
-                        {craftResult}
-                      </div>
-                      {craftResultHadSkillUp && [0,1,2,3,4,5].map(i => (
-                        <span key={i} className="absolute pointer-events-none" style={{
-                          left: `${10 + i * 16}%`, bottom: '100%',
-                          width: i % 2 === 0 ? 5 : 3, height: i % 2 === 0 ? 5 : 3, borderRadius: '50%',
-                          background: sparkleColor,
-                          animation: `craft-sparkle-rise 1s ease-out ${i * 0.08}s forwards`,
-                          opacity: 0,
-                        }} />
-                      ))}
                     </div>
                   );
                 })()}
-              </div>
             )}
 
             {/* ─── Tab: Disenchant (destroy uncommon+ items for enchanting materials) */}
