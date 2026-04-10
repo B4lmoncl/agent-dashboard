@@ -240,10 +240,11 @@ function evaluateFloor(floor, user, progress) {
           current = (user.achievements || []).length;
           break;
         case "_friendsCount": {
-          const social = state.social || {};
-          const friends = social.friends || {};
-          const uid = user.name?.toLowerCase();
-          current = uid ? (friends[uid] || []).filter(f => f.status === 'accepted').length : 0;
+          const friendships = state.socialData?.friendships || [];
+          const fuid = user.name?.toLowerCase();
+          current = fuid ? friendships.filter(f =>
+            f.status === 'accepted' && (f.player1 === fuid || f.player2 === fuid)
+          ).length : 0;
           break;
         }
         case "_messagesSent":
@@ -405,15 +406,28 @@ router.post('/api/adventure-tome/claim', requireAuth, (req, res) => {
   }
   if (reward.title) {
     if (!user.earnedTitles) user.earnedTitles = [];
-    if (!user.earnedTitles.includes(reward.title)) {
-      user.earnedTitles.push(reward.title);
+    const titleId = `tome_${floorId}_${pct}`;
+    if (!user.earnedTitles.some(t => t.id === titleId)) {
+      user.earnedTitles.push({
+        id: titleId,
+        name: reward.title,
+        rarity: 'rare',
+        source: `${floor.name} — ${pct}%`,
+        earnedAt: new Date().toISOString(),
+      });
     }
     granted.push(`Titel: ${reward.title}`);
   }
   if (reward.frame) {
-    if (!user.earnedFrames) user.earnedFrames = [];
-    if (!user.earnedFrames.includes(reward.frame)) {
-      user.earnedFrames.push(reward.frame);
+    if (!user.unlockedFrames) user.unlockedFrames = [];
+    if (!user.unlockedFrames.some(f => f.id === reward.frame)) {
+      user.unlockedFrames.push({
+        id: reward.frame,
+        name: `${floor.name} Frame`,
+        color: floor.color,
+        glow: true,
+        source: `${floor.name} — ${pct}%`,
+      });
     }
     granted.push(`Frame: ${reward.frame}`);
   }
