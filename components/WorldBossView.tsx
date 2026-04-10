@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -300,6 +301,12 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
     return (
       <div className="space-y-5 tab-content-enter relative">
+        <FirstVisitBanner
+          viewId="worldboss"
+          title="World Boss"
+          description="Gemeinsamer Kampf aller Spieler gegen einen wöchentlichen Boss. Jede abgeschlossene Quest verursacht Schaden basierend auf deiner Gear Score. Top-Beitragende erhalten exklusive Titel und Unique-Items."
+          accentColor="#f59e0b"
+        />
         {/* Ambient ember particles — dark gold/amber for the graveyard of titans */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {Array.from({ length: 8 }, (_, i) => (
