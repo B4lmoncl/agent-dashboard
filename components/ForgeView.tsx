@@ -1625,7 +1625,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       onClick={() => setConfirmProf(selectedNpc)}
                       disabled={choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots}
                       className="text-sm px-5 py-2.5 rounded-lg font-semibold"
-                      style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: "pointer" }}
+                      style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: (choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? "not-allowed" : "pointer", opacity: (choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? 0.5 : 1 }}
+                      title={(professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? `Alle ${maxProfSlots} Berufsslots belegt` : undefined}
                     >
                       Choose {selectedNpc.name}
                     </button>
@@ -1647,7 +1648,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {/* Header: count + toggle */}
                         <div className="sticky top-0 px-3 py-2 flex items-center justify-between" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.05)", zIndex: 2 }}>
                           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{displayRecipes.length} recipes</span>
-                          <button onClick={() => setShowAllRecipes(v => !v)} className="text-xs px-1.5 py-0.5 rounded" style={{ color: showAllRecipes ? "#818cf8" : "rgba(255,255,255,0.2)", border: `1px solid ${showAllRecipes ? "rgba(129,140,248,0.3)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer", fontSize: 11 }}>
+                          <button onClick={() => setShowAllRecipes(v => !v)} className="text-xs px-1.5 py-0.5 rounded" style={{ color: showAllRecipes ? "#818cf8" : "rgba(255,255,255,0.2)", border: `1px solid ${showAllRecipes ? "rgba(129,140,248,0.3)" : "rgba(255,255,255,0.06)"}`, cursor: "pointer", fontSize: 12 }}>
                             {showAllRecipes ? "All" : "Learned"}
                           </button>
                         </div>
@@ -1675,7 +1676,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               }}
                             >
                               {isHidden ? "???" : recipe.name}
-                              {notLearned && !isHidden && <span style={{ color: "rgba(255,255,255,0.15)", marginLeft: 4, fontSize: 10 }}>◇</span>}
+                              {notLearned && !isHidden && <span style={{ color: "rgba(255,255,255,0.15)", marginLeft: 4, fontSize: 12 }}>◇</span>}
                             </button>
                           );
                         })}
@@ -1755,7 +1756,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                     ))}
                                   </div>
                                   <button
-                                    onClick={() => handleCraft(selectedRecipe.id, craftCount)}
+                                    onClick={() => startCraftCast(selectedRecipe.id, craftCount)}
                                     disabled={!canCraft || craftProgress !== null}
                                     className="flex-1 text-sm font-bold py-2.5 rounded-lg"
                                     style={{
@@ -1773,15 +1774,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
                               {/* Cast bar — uses CSS scaleX animation */}
                               {craftProgress !== null && (() => {
-                                const castMs = craftProgress.total ?? 3000;
+                                const castMs = craftCastMsRef.current;
                                 return (
                                   <div className="mt-2">
                                     <div className="craft-cast-bar rounded-full overflow-hidden" style={{ height: 8, background: "rgba(255,255,255,0.06)" }}>
                                       <div className="h-full rounded-full" style={{ width: "100%", background: `linear-gradient(90deg, ${selectedNpc.color}88, ${selectedNpc.color})`, transformOrigin: "left", animation: `craft-cast-fill ${castMs}ms linear forwards` }} />
                                     </div>
-                                    <p className="text-xs text-center mt-1 font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
-                                      {craftProgress.current > 1 ? `${craftProgress.current - 1}/${craftProgress.total ? Math.ceil(castMs / 1000) : ""}` : "Crafting..."}
-                                    </p>
+                                    {castCountdown && <p className="text-xs text-center mt-1 font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{castCountdown}s</p>}
                                   </div>
                                 );
                               })()}
@@ -1803,14 +1802,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* ─── Tab: Disenchant (destroy uncommon+ items for enchanting materials) */}
             {npcModalTab === "disenchant" && selectedNpc.id === "verzauberer" && (() => {
-              // Fetch inventory on first open
-              if (!disenchantLoading && disenchantInv.length === 0) {
-                setDisenchantLoading(true);
-                fetch(`/api/character?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) })
-                  .then(r => r.json())
-                  .then(data => { setDisenchantInv((data.inventory || []).filter((i: InventoryItem) => { const r = (i.rarity || 'common').toLowerCase(); return r !== 'common' && !i.locked; })); setDisenchantLoading(false); })
-                  .catch(() => setDisenchantLoading(false));
-              }
+              // Fetch handled by useEffect at top of component (lines 222-235)
               const inv = disenchantInv;
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
