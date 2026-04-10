@@ -534,8 +534,8 @@
   },
   "server.js": {
     "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "security headers, rate limit, graceful shutdown",
+    "lastAuditDate": "2026-04-10",
+    "findings": "Clean. Security headers (CSP, X-Frame, nosniff). Graceful shutdown with flushPendingSaves. Unhandled rejection + uncaught exception handlers. Memory pruning hourly. Force-save every 60s. Write-test on boot.",
     "status": "clean"
   },
   "app/page.tsx": {
@@ -581,9 +581,9 @@
     "status": "clean"
   },
   "hooks/useQuestActions.ts": {
-    "auditCount": 1,
+    "auditCount": 2,
     "lastAuditDate": "2026-04-10",
-    "findings": "Clean. All 12 handlers use getAuthHeaders(reviewApiKey). Loading states prevent double-clicks. Error toasts on all failures. RewardCelebration on quest complete. Retry buttons on network errors.",
+    "findings": "MED fixed: handleShopBuy+handleGearBuy double-click protection added. handleToggleFavorite now shows error toast instead of console.warn. All 12 handlers verified with reviewApiKey.",
     "status": "clean"
   },
   "lib/sounds.ts": {
@@ -752,6 +752,12 @@
     "auditCount": 1,
     "lastAuditDate": "2026-04-10",
     "findings": "Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
+    "status": "clean"
+  },
+  "lib/auth-client.ts": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-10",
+    "findings": "HIGH fixed: authFetch token refresh retry was dead code (hadToken pattern). getAuthHeaders expiry check added earlier. getValidToken still returns without expiry check (unused externally).",
     "status": "clean"
   }
 }
