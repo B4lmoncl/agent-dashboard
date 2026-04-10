@@ -683,7 +683,7 @@ router.get('/api/player/:name/public-profile', (req, res) => {
 
   // Equipped gear (public)
   const equipped = {};
-  const SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+  const SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'ring', 'boots'];
   for (const slot of SLOTS) {
     const eq = (u.equipment || {})[slot];
     if (eq && typeof eq === 'object') {
@@ -869,6 +869,7 @@ router.get('/api/tavern/status', (req, res) => {
     rest.autoExpired = true;
     u.tavernHistory = u.tavernHistory || [];
     u.tavernHistory.push({ startedAt: rest.startedAt, endedAt: rest.endedAt, days: rest.days, reason: rest.reason });
+    if (u.tavernHistory.length > 20) u.tavernHistory = u.tavernHistory.slice(-20);
     // Grant Welcome Back buff on auto-expire too
     u.activeBuffs = u.activeBuffs || [];
     if (!u.activeBuffs.some(b => b.type === 'xp_boost_25_return' && (b.questsRemaining || 0) > 0)) {
@@ -954,6 +955,7 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
   u.tavernRest.endedAt = now();
   u.tavernHistory = u.tavernHistory || [];
   u.tavernHistory.push({ startedAt: u.tavernRest.startedAt, endedAt: u.tavernRest.endedAt, days: u.tavernRest.days, reason: u.tavernRest.reason });
+  if (u.tavernHistory.length > 20) u.tavernHistory = u.tavernHistory.slice(-20);
 
   // Restore frozen values (use ?? to correctly restore 0 values)
   u.streakDays = u.tavernRest.streakFrozenAt ?? u.streakDays;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -224,6 +225,12 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   return (
     <div className="space-y-5 tab-content-enter relative">
+      <FirstVisitBanner
+        viewId="rift"
+        title="Der Riss"
+        description="Starte eine Quest-Kette unter Zeitdruck. Normal: 3 Quests in 72h. Hard: 5 in 48h. Legendary: 7 in 36h. Schließe Legendary ab, um den endlosen Mythic+ Modus freizuschalten."
+        accentColor="#a855f7"
+      />
       {/* Purple rift energy fragments */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 6 }, (_, i) => (

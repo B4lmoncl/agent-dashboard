@@ -1,7 +1,7 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
 const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById, logActivity } = require('../lib/state');
-const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory, createPlayerLock } = require('../lib/helpers');
+const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory, createPlayerLock, getTodayBerlin } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const questCompleteLock = createPlayerLock('quest-complete');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -90,7 +90,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
   const resolvedCreatedBy = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
   // Dobbie quest dedup: if same title was already created by dobbie today, return existing
   if (resolvedCreatedBy === 'dobbie') {
-    const today = new Date().toISOString().slice(0, 10);
+    const today = getTodayBerlin();
     const existing = state.quests.find(q => q.createdBy === 'dobbie' && q.title === title && (q.createdAt || '').slice(0, 10) === today);
     if (existing) {
       return res.json({ ok: true, quest: existing, duplicate: true });
@@ -258,9 +258,8 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
     }
     pp.claimedQuests.push(quest.id);
     savePlayerProgress();
-    quest.status = 'in_progress';
-    quest.claimedBy = agentKey;
-    saveQuests();
+    // NOTE: Do NOT set quest.status globally — player quests use per-player tracking.
+    // Global status stays 'open' so other players can still see/claim it.
     console.log(`[quest] ${quest.id} claimed (per-player) by ${agentKey}`);
     return res.json({ ok: true, quest: { ...quest, status: 'in_progress', claimedBy: agentKey } });
   }

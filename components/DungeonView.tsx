@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { useDashboard } from "@/app/DashboardContext";
 import { getUserLevel, formatLegendaryLabel } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -97,6 +98,7 @@ interface FriendInfo {
   level: number;
   isOnline: boolean;
   onlineStatus: string;
+  lastActiveAt: string | null;
 }
 
 interface CollectResult {
@@ -324,6 +326,12 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   return (
     <div className="space-y-5 tab-content-enter relative">
+      <FirstVisitBanner
+        viewId="dungeons"
+        title="Das Untergewölbe"
+        description="Lade 1-3 Freunde ein, um gemeinsam Dungeons zu bestreiten. Der Run läuft 8 Stunden im Hintergrund — sammle danach deine Belohnungen. Erfolg basiert auf eurer kombinierten Gear Score + Companion Bond."
+        accentColor="#3b82f6"
+      />
       {/* Dust motes in torchlight */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (
@@ -882,8 +890,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                           {f.avatar || f.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="flex-1">
-                          <p className="text-xs font-semibold" style={{ color: selected ? "#22c55e" : "rgba(255,255,255,0.6)" }}>{f.name}</p>
-                          <p className="text-xs text-w20">Lv.{f.level} {f.isOnline ? "Online" : ""}</p>
+                          <p className="text-xs font-semibold flex items-center gap-1" style={{ color: selected ? "#22c55e" : "rgba(255,255,255,0.6)" }}>
+                            <span className="inline-block w-2 h-2 rounded-full" style={{ background: f.onlineStatus === "online" ? "#22c55e" : f.onlineStatus === "idle" ? "#eab308" : "#6b7280" }} />
+                            {f.name}
+                          </p>
+                          <p className="text-xs text-w20">Lv.{f.level} {f.onlineStatus === "online" ? "Online" : f.onlineStatus === "idle" ? "Idle" : f.lastActiveAt ? (() => { const h = Math.floor((Date.now() - new Date(f.lastActiveAt).getTime()) / 3600000); return h < 1 ? "vor <1h" : h < 24 ? `vor ${h}h` : `vor ${Math.floor(h / 24)}d`; })() : "Offline"}</p>
                         </div>
                         <div className="w-4 h-4 rounded border flex items-center justify-center" style={{
                           background: selected ? "#22c55e" : "transparent",

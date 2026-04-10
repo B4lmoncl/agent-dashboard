@@ -410,9 +410,10 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
 
   // ── Bolstering affix: reduce remaining time by 1h per completed stage ──
   const bolsteringAffix = (rift.affixes || []).find(a => a.effect?.type === 'time_penalty');
-  if (bolsteringAffix && rift.expiresAt) {
-    const penaltyMs = (bolsteringAffix.effect.value || 1) * 3600000;
-    rift.expiresAt = new Date(new Date(rift.expiresAt).getTime() - penaltyMs).toISOString();
+  if (bolsteringAffix) {
+    const penaltyHours = bolsteringAffix.effect.value || 1;
+    const baseTL = rift.timeLimitHours || RIFT_TIERS[rift.tier]?.timeLimitHours || 72;
+    rift.timeLimitHours = Math.max(1, baseTL - penaltyHours);
   }
 
   // ── Rift-exclusive gear drop (from gearTemplates-rift.json pool) ──

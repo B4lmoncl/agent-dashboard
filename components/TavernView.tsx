@@ -179,7 +179,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-bold" style={{ color: "#d97706" }}>Currently Resting</p>
-              <p className="text-xs text-w35">You entered the Hearth {timeAgo(status.startedAt!)}</p>
+              <p className="text-xs text-w35">You entered the Hearth {status.startedAt ? timeAgo(status.startedAt) : "recently"}</p>
             </div>
             <div className="text-right">
               <p className="text-lg font-mono font-bold" style={{ color: "#fbbf24" }}>
@@ -294,6 +294,12 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </ul>
           </div>
 
+          {/* Cooldown warning */}
+          <div className="rounded-lg px-3 py-2 mb-2" style={{ background: "rgba(234,179,8,0.1)", border: "1px solid rgba(234,179,8,0.25)" }}>
+            <p className="text-xs font-semibold" style={{ color: "#eab308" }}>30-Tage Cooldown nach Verlassen</p>
+            <p className="text-xs" style={{ color: "rgba(234,179,8,0.6)" }}>Nach dem Verlassen der Taverne kannst du 30 Tage lang nicht erneut rasten. Wähle die Dauer sorgfältig.</p>
+          </div>
+
           <button
             onClick={enterTavern}
             disabled={actionLoading}
@@ -311,8 +317,8 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         <div className="rounded-xl p-5 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-sm font-semibold text-w40 mb-2">Rest on Cooldown</p>
           <p className="text-xs text-w25">You recently rested. Next rest available:</p>
-          {(() => {
-            const cdEnd = new Date(status.cooldownEndsAt!).getTime();
+          {status.cooldownEndsAt && (() => {
+            const cdEnd = new Date(status.cooldownEndsAt).getTime();
             const ms = cdEnd - Date.now();
             const days = Math.max(0, Math.ceil(ms / 86400000));
             const totalCooldownMs = 30 * 86400000;

@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const router = require('express').Router();
-const { state, saveUsers, saveQuests, saveQuestCatalog } = require('../lib/state');
+const { state, saveUsers, saveQuests, saveQuestCatalog, TIMEZONE } = require('../lib/state');
 const { now, todayStr, paginate } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -134,7 +134,7 @@ router.post('/api/forge/temp-decay', requireApiKey, (req, res) => {
   let decayed = 0;
   for (const [uid, u] of Object.entries(state.users)) {
     if (!u.streakLastDate || u.streakLastDate === today) continue;
-    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    const yesterday = new Date(Date.now() - 86400000).toLocaleDateString('en-CA', { timeZone: TIMEZONE });
     if (u.streakLastDate !== yesterday) {
       // missed at least one day — use calcDynamicForgeTemp (includes talent + legendary + stats)
       // then apply the -10 miss penalty

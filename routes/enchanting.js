@@ -43,10 +43,15 @@ router.post('/api/reroll/preview', requireAuth, (req, res) => {
   const goldCost = Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount)));
   const essenzCost = REROLL_ESSENZ_COST;
 
-  // Find affix pool for the locked stat
+  // Find affix pool for the locked stat (mirrors enchant endpoint fallback logic)
   const isPrimary = PRIMARY_STATS.includes(lockedStat);
   const pool = isPrimary ? template.affixes.primary?.pool : template.affixes.minor?.pool;
   const poolEntry = pool?.find(p => p.stat === lockedStat);
+  let effectiveRange = poolEntry ? { min: poolEntry.min, max: poolEntry.max } : null;
+  if (!effectiveRange && pool?.length) {
+    // Fallback: same as enchant endpoint — use first pool entry's range
+    effectiveRange = { min: pool[0].min, max: pool[0].max };
+  }
 
   res.json({
     item: eq,
@@ -54,7 +59,7 @@ router.post('/api/reroll/preview', requireAuth, (req, res) => {
     currentValue: allStats[lockedStat],
     rerollCount,
     cost: { gold: goldCost, essenz: essenzCost },
-    range: poolEntry ? { min: poolEntry.min, max: poolEntry.max } : null,
+    range: effectiveRange,
     isFirstReroll: !eq.rerollLocked,
   });
 });

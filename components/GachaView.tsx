@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { getBalance } from "@/lib/balance-cache";
 import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
@@ -763,6 +764,12 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <FirstVisitBanner
+        viewId="gacha"
+        title="Schicksalsrad"
+        description="Ziehe Items aus dem Schicksalsrad mit Stardust oder Runensplitter. Jeder 10er-Pull garantiert mindestens ein Episches Item. Je öfter du ohne Legendär ziehst, desto höher wird deine Pity-Chance."
+        accentColor="#f59e0b"
+      />
       {/* Pull animation overlay */}
       {pullResults && (
         <GachaPull

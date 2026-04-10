@@ -100,7 +100,7 @@ const FLOORS = [
       { id: "messages_sent_10",    type: "counter", label: "10 Nachrichten gesendet",       target: 10,  stat: "_messagesSent" },
       { id: "trades_completed_3",  type: "counter", label: "3 Trades abgeschlossen",        target: 3,   stat: "_tradesCompleted" },
       { id: "tavern_rest_1",       type: "counter", label: "Ersten Tavern-Rest genommen",   target: 1,   stat: "_tavernRests" },
-      { id: "expedition_complete_5", type: "counter", label: "5 Companion-Expeditionen",     target: 5,   stat: "_expeditionsCompleted" },
+      { id: "expedition_complete_5", type: "counter", label: "5 Companion-Expeditionen",     target: 5,   stat: "_expeditionCompletions" },
       { id: "mail_sent_5",         type: "counter", label: "5 Mails verschickt",            target: 5,   stat: "_mailSent" },
       { id: "trade_gold_1000",     type: "counter", label: "1000 Gold gehandelt",           target: 1000, stat: "_goldTraded" },
     ],
@@ -162,22 +162,27 @@ function evaluateFloor(floor, user, progress) {
           current = user.streakDays || 0;
           break;
         case "_riftsCompleted":
-          current = user._riftsCompleted || 0;
+          current = user._riftCompletions || user._riftsCompleted || 0;
           break;
-        case "_riftsHard":
-          current = user._riftsHard || 0;
+        case "_riftsHard": {
+          // Count hard rift completions from history
+          const riftHist = user.riftHistory || [];
+          current = riftHist.filter(h => h.tier === 'hard' && h.success).length;
           break;
-        case "_riftsLegendary":
-          current = user._riftsLegendary || 0;
+        }
+        case "_riftsLegendary": {
+          const riftHist2 = user.riftHistory || [];
+          current = riftHist2.filter(h => h.tier === 'legendary' && h.success).length;
           break;
+        }
         case "_mythicPlusHighest":
-          current = user._mythicPlusHighest || 0;
+          current = user.highestMythicCleared || user._mythicPlusHighest || 0;
           break;
         case "_dungeonsCompleted":
-          current = user._dungeonsCompleted || 0;
+          current = user._dungeonCompletions || user._dungeonsCompleted || 0;
           break;
         case "_worldBossKills":
-          current = user._worldBossKills || 0;
+          current = (user._bossKillIds || []).length;
           break;
         case "_worldBossTop3":
           current = user._worldBossTop3 || 0;
@@ -189,102 +194,136 @@ function evaluateFloor(floor, user, progress) {
           current = user._craftsCompleted || 0;
           break;
         case "_professionMaxLevel": {
-          const profs = progress?.professions || {};
+          // Profession data is on user.professions, not playerProgress
+          const profs = user.professions || {};
           let maxLvl = 0;
           for (const p of Object.values(profs)) {
-            if (p && typeof p === 'object' && (p.level || 0) > maxLvl) maxLvl = p.level;
+            if (p && typeof p === 'object') {
+              const skill = p.skill || p.xp || 0;
+              // Convert skill to profession "level" (1-300 skill → rank-based level)
+              if (skill > maxLvl) maxLvl = skill;
+            }
           }
           current = maxLvl;
           break;
         }
         case "_gachaPulls":
-          current = user._gachaPulls || 0;
+          current = user._gachaPullCount || user._gachaPulls || 0;
           break;
         case "_gachaLegendary":
-          current = user._gachaLegendary || 0;
+          current = (user._gachaRarityPulls?.legendary || 0);
           break;
         case "_shopPurchases":
-          current = user._shopPurchases || 0;
+          current = (user.purchases || []).length;
           break;
         case "_kanaiExtracts":
-          current = user._kanaiExtracts || 0;
+          current = user.cubeExtractionCount || user._kanaiExtracts || 0;
           break;
         case "_transmutations":
-          current = user._transmutations || 0;
+          current = user._transmuteCount || user._transmutations || 0;
           break;
-        case "_enchantments":
-          current = user._enchantments || 0;
+        case "_enchantments": {
+          // Count from equipment reroll counts
+          let enchants = 0;
+          for (const slot of ['weapon', 'shield', 'helm', 'armor', 'amulet', 'ring', 'boots']) {
+            const eq = user.equipment?.[slot];
+            if (eq && typeof eq === 'object' && eq.rerollCount) enchants += eq.rerollCount;
+          }
+          current = enchants || user._enchantments || 0;
           break;
+        }
         case "_salvageCount":
-          current = user._salvageCount || 0;
+          current = user._disenchantCount || user._salvageCount || 0;
           break;
         case "_maxRitualStreak": {
-          const rituals = state.rituals?.[user.name?.toLowerCase()] || [];
+          // state.rituals is a flat array with playerId per entry
+          const uid = user.name?.toLowerCase() || user.id;
+          const playerRituals = (Array.isArray(state.rituals) ? state.rituals : []).filter(r => r.playerId === uid);
           let maxStreak = 0;
-          for (const r of rituals) {
+          for (const r of playerRituals) {
             if ((r.streak || 0) > maxStreak) maxStreak = r.streak;
+            if ((r.longestStreak || 0) > maxStreak) maxStreak = r.longestStreak;
           }
           current = maxStreak;
           break;
         }
         case "_codexRead":
-          current = user._codexRead || 0;
+          current = (user.codexDiscovered || []).length;
           break;
         case "_companionBondMax":
-          current = user._companionBondMax || 0;
+          current = user.companion?.bondLevel || user._companionBondMax || 0;
           break;
-        case "_vowsCompleted":
-          current = user._vowsCompleted || 0;
+        case "_vowsCompleted": {
+          // Count completed blood pacts from ritual data
+          const uid = user.name?.toLowerCase() || user.id;
+          const rituals = state.rituals?.[uid] || [];
+          current = rituals.filter(r => r.bloodPact && r.pactCompleted).length;
+          break;
+        }
           break;
         case "_achievementCount":
           current = (user.achievements || []).length;
           break;
         case "_friendsCount": {
-          const social = state.social || {};
-          const friends = social.friends || {};
-          const uid = user.name?.toLowerCase();
-          current = uid ? (friends[uid] || []).filter(f => f.status === 'accepted').length : 0;
+          const friendships = state.socialData?.friendships || [];
+          const fuid = user.name?.toLowerCase();
+          current = fuid ? friendships.filter(f =>
+            f.status === 'accepted' && (f.player1 === fuid || f.player2 === fuid)
+          ).length : 0;
           break;
         }
-        case "_messagesSent":
-          current = user._messagesSent || 0;
+        case "_messagesSent": {
+          // Count from social message data
+          const msgs = state.socialData?.messages || [];
+          const senderId = user.name?.toLowerCase() || user.id;
+          current = msgs.filter(m => m.from === senderId).length;
           break;
+        }
         case "_tradesCompleted":
           current = user._tradesCompleted || 0;
           break;
         case "_tavernRests":
-          current = user._tavernRests || 0;
+          current = (user.tavernHistory || []).length;
           break;
-        case "_expeditionsCompleted":
-          current = user._expeditionsCompleted || 0;
+        case "_expeditionCompletions":
+          current = user._expeditionCompletions || 0;
           break;
         case "_mailSent":
-          current = user._mailSent || 0;
+          current = user._mailsSent || user._mailSent || 0;
           break;
         case "_goldTraded":
           current = user._goldTraded || 0;
           break;
-        case "_factionsHonored":
-          current = user._factionsHonored || 0;
+        case "_factionsHonored": {
+          // Count factions at honored (500+ rep) or above
+          const facs = user.factions || {};
+          current = Object.values(facs).filter(f => f && typeof f === 'object' && (f.rep || 0) >= 500).length;
           break;
-        case "_factionsExalted":
-          current = user._factionsExalted || 0;
+        }
+        case "_factionsExalted": {
+          // Count factions at exalted (5000+ rep) or above
+          const facs2 = user.factions || {};
+          current = Object.values(facs2).filter(f => f && typeof f === 'object' && (f.rep || 0) >= 5000).length;
           break;
+        }
         case "_seasonPassLevel":
           current = user.battlePass?.level || 0;
           break;
         case "_leaderboardTop10":
           current = user._leaderboardTop10 || 0;
           break;
-        case "_campaignsCompleted":
-          current = user._campaignsCompleted || 0;
+        case "_campaignsCompleted": {
+          current = (user.campaignRewardsClaimed || []).length;
           break;
+        }
         case "_expeditionBonus":
           current = user._expeditionBonus || 0;
           break;
-        case "_gearScore":
-          current = user._gearScore || 0;
+        case "_gearScore": {
+          const { getGearScore } = require('../lib/helpers');
+          current = getGearScore(user.name?.toLowerCase() || user.id)?.gearScore || 0;
           break;
+        }
         default:
           current = user[obj.stat] || 0;
       }
@@ -405,15 +444,28 @@ router.post('/api/adventure-tome/claim', requireAuth, (req, res) => {
   }
   if (reward.title) {
     if (!user.earnedTitles) user.earnedTitles = [];
-    if (!user.earnedTitles.includes(reward.title)) {
-      user.earnedTitles.push(reward.title);
+    const titleId = `tome_${floorId}_${pct}`;
+    if (!user.earnedTitles.some(t => t.id === titleId)) {
+      user.earnedTitles.push({
+        id: titleId,
+        name: reward.title,
+        rarity: 'rare',
+        source: `${floor.name} — ${pct}%`,
+        earnedAt: new Date().toISOString(),
+      });
     }
     granted.push(`Titel: ${reward.title}`);
   }
   if (reward.frame) {
-    if (!user.earnedFrames) user.earnedFrames = [];
-    if (!user.earnedFrames.includes(reward.frame)) {
-      user.earnedFrames.push(reward.frame);
+    if (!user.unlockedFrames) user.unlockedFrames = [];
+    if (!user.unlockedFrames.some(f => f.id === reward.frame)) {
+      user.unlockedFrames.push({
+        id: reward.frame,
+        name: `${floor.name} Frame`,
+        color: floor.color,
+        glow: true,
+        source: `${floor.name} — ${pct}%`,
+      });
     }
     granted.push(`Frame: ${reward.frame}`);
   }

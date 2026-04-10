@@ -356,8 +356,8 @@ router.get('/api/dashboard', (req, res) => {
   if (playerLower) {
     const u = state.users[playerLower];
     if (u) {
-      const today = new Date().toISOString().slice(0, 10);
-      dailyBonusAvailable = u.dailyBonusLastClaim !== today;
+      const todayBerlin = getTodayBerlin();
+      dailyBonusAvailable = u.dailyBonusLastClaim !== todayBerlin;
     }
   }
 
@@ -379,10 +379,10 @@ router.get('/api/dashboard', (req, res) => {
   if (playerLower) {
     const u = state.users[playerLower];
     if (u) {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = getTodayBerlin();
       const pp = state.playerProgress[playerLower] || {};
-      // Count quests completed today
-      const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
+      // Count quests completed today (cq.at is ISO timestamp — compare date portion in Berlin TZ)
+      const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && new Date(cq.at).toLocaleDateString('en-CA', { timeZone: 'Europe/Berlin' }) === today).length;
       // Check daily bonus claimed
       const dailyClaimed = u.dailyBonusLastClaim === today;
       // Check rituals completed today
@@ -425,7 +425,6 @@ router.get('/api/dashboard', (req, res) => {
     const u = state.users[playerLower];
     if (u) {
       // Unclaimed daily milestones
-      const today = new Date().toISOString().slice(0, 10);
       const dm = dailyMissions;
       const unclaimedMilestones = dm ? dm.milestones.filter(m => dm.earned >= m.threshold && !m.claimed).length : 0;
 
@@ -486,7 +485,12 @@ router.get('/api/dashboard', (req, res) => {
     riftActive: (() => {
       if (!playerLower) return false;
       const u = state.users[playerLower];
-      return !!(u?.activeRift && !u.activeRift.completed && !u.activeRift.failed && new Date(u.activeRift.expiresAt).getTime() > Date.now());
+      if (!u?.activeRift?.active || u.activeRift.completed || u.activeRift.failed) return false;
+      // expiresAt is NOT stored on rift — compute from startedAt + timeLimitHours
+      const RIFT_TIME_LIMITS = { normal: 72, hard: 48, legendary: 36, mythic: 30 };
+      const tl = u.activeRift.timeLimitHours || RIFT_TIME_LIMITS[u.activeRift.tier] || 72;
+      const expiresAt = new Date(u.activeRift.startedAt).getTime() + tl * 3600000;
+      return expiresAt > Date.now();
     })(),
     dungeonActive: isDungeonActiveForPlayer(playerLower),
     notifications,
@@ -507,7 +511,7 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   const validThresholds = [100, 300, 500, 750];
   if (!validThresholds.includes(threshold)) return res.status(400).json({ error: 'Invalid threshold' });
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getTodayBerlin();
   u.dailyMilestonesClaimed = u.dailyMilestonesClaimed || {};
   u.dailyMilestonesClaimed[today] = u.dailyMilestonesClaimed[today] || [];
   if (u.dailyMilestonesClaimed[today].includes(threshold)) {

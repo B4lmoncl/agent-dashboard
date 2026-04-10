@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -172,6 +173,12 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <FirstVisitBanner
+        viewId="factions"
+        title="Die Vier Zirkel"
+        description="Verdiene Reputation bei den Fraktionen durch Quests. Jede Fraktion belohnt bestimmte Quest-Typen. Steige in den Rängen auf für exklusive Titel, Rezepte und Shop-Rabatte."
+        accentColor="#22c55e"
+      />
       {/* Header */}
       <div className="text-center space-y-2">
         <img src="/images/icons/nav-factions.png" alt="" width={96} height={96} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />

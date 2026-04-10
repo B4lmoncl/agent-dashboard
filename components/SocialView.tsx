@@ -346,7 +346,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                       } catch { setSuccessMsg("Network error"); }
                     })();
                   }}
-                  className="text-xs px-2 py-0.5 rounded mt-1 opacity-0 group-hover:opacity-100 transition-opacity sm:opacity-100"
+                  className="text-xs px-2 py-0.5 rounded mt-1"
                   style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer", fontSize: 12 }}
                   title="Challenge this friend — who completes more quests this week? 100g wager"
                 >
