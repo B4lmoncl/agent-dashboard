@@ -105,6 +105,12 @@ function checkCodexDiscovery(userId) {
       case 'workshop_upgrade_purchased':
         unlocked = Object.keys(u.workshopUpgrades || {}).length >= cond.value;
         break;
+      case 'friends_count': {
+        const friendships = state.socialData?.friendships || [];
+        const friendCount = friendships.filter(f => f.player1 === userId || f.player2 === userId).length;
+        unlocked = friendCount >= cond.value;
+        break;
+      }
       case 'hidden':
         // Hidden entries — never auto-discovered
         unlocked = false;
