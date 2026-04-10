@@ -74,7 +74,7 @@
       },
       "flavorText": "Jeder große Held hatte ein erstes Schwert. Die meisten haben es rechtzeitig ersetzt.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-eisenschwert.png"
+      "icon": "/images/items/icons/t1-sword.png"
     },
     {
       "id": "t1-dagger",
@@ -120,7 +120,7 @@
       },
       "flavorText": "Die Klinge ist stumpf, der Griff wackelt, und trotzdem hat er mehr Mut als mancher Ritter.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
+      "icon": "/images/items/icons/t1-dagger.png"
     },
     {
       "id": "t1-staff",
@@ -176,7 +176,7 @@
       },
       "flavorText": "Alte Wanderer sagen, er führe dich zum richtigen Weg. Junge Wanderer sagen, er sei ein Stock.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-rostiger-dolch.png"
+      "icon": "/images/items/icons/t1-staff.png"
     },
     {
       "id": "t1-axe",
@@ -232,7 +232,7 @@
       },
       "flavorText": "Der Besitzer schwor, er sei Holzfäller. Die Kerben in der Klinge erzählen eine andere Geschichte.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png"
+      "icon": "/images/items/icons/t1-axe.png"
     },
     {
       "id": "t1-shield",
@@ -278,7 +278,7 @@
       },
       "flavorText": "Drei Bretter und ein Gebet. In Aethermoor reicht das für den Anfang.",
       "binding": "boe",
-      "icon": "/images/icons/equip-shield.png"
+      "icon": "/images/items/icons/t1-shield.png"
     },
     {
       "id": "t1-buckler",
@@ -334,7 +334,7 @@
       },
       "flavorText": "Klein genug zum Vergessen, groß genug zum Überleben. Ein faires Tauschgeschäft.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
+      "icon": "/images/items/icons/t1-buckler.png"
     },
     {
       "id": "t1-helm",
@@ -381,7 +381,7 @@
       "flavorText": "Schützt den Kopf. Nicht den Stolz.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t1-helm.png"
     },
     {
       "id": "t1-hood",
@@ -438,7 +438,7 @@
       "flavorText": "Die Schatten mögen dich, wenn du sie trägst. Ob das gut ist, sei dahingestellt.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t1-hood.png"
     },
     {
       "id": "t1-armor",
@@ -485,7 +485,7 @@
       "flavorText": "Riecht nach drei Besitzern und keinem Gerber. Aber Leder zwischen dir und einer Klinge ist Leder.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/icons/equip-armor.png"
+      "icon": "/images/items/icons/t1-armor.png"
     },
     {
       "id": "t1-tunic",
@@ -542,7 +542,7 @@
       "flavorText": "Die Metallplättchen klirren bei jedem Schritt. Leise Angriffe sind damit ausgeschlossen.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/icons/gacha-wanderermantel.png"
+      "icon": "/images/items/icons/t1-tunic.png"
     },
     {
       "id": "t1-amulet",
@@ -588,7 +588,7 @@
       },
       "flavorText": "Grünspan hat mehr Charakter als Gold. Das sagen zumindest die, die sich Gold nicht leisten können.",
       "binding": "boe",
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t1-amulet.png"
     },
     {
       "id": "t1-charm",
@@ -644,7 +644,7 @@
       },
       "flavorText": "Der Hase hatte weniger Glück. Aber vielleicht war das der Punkt.",
       "binding": "boe",
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t1-charm.png"
     },
     {
       "id": "t1-boots",
@@ -691,7 +691,7 @@
       "flavorText": "Tausend Meilen beginnen mit einem Paar Stiefeln, das nicht bei hundert aufgibt.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t1-boots.png"
     },
     {
       "id": "t1-sandals",
@@ -748,7 +748,7 @@
       "flavorText": "Man hört sie nicht kommen. Man hört sie auch nicht gehen. Nur das leise Klatschen auf nassem Stein.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t1-sandals.png"
     },
     {
       "id": "t2-sword",
@@ -804,7 +804,7 @@
       },
       "flavorText": "Guter Stahl erkennt man daran, dass er sich nicht verbiegt, wenn die Welt es tut.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
+      "icon": "/images/items/icons/t2-sword.png"
     },
     {
       "id": "t2-katana",
@@ -860,7 +860,7 @@
       },
       "flavorText": "Die Schmiede im Osten sagen: Eine Klinge, die schneller ist als der Gedanke, braucht keinen zweiten Hieb.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-abenteuerklinge.png"
+      "icon": "/images/items/icons/t2-katana.png"
     },
     {
       "id": "t2-hammer",
@@ -916,7 +916,7 @@
       },
       "flavorText": "Diplomatie für Leute, die keine Geduld für Worte haben.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-eisenschwert.png"
+      "icon": "/images/items/icons/t2-hammer.png"
     },
     {
       "id": "t2-shield",
@@ -972,7 +972,7 @@
       },
       "flavorText": "Dein Wille mag brechen. Dein Eisen nicht.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
+      "icon": "/images/items/icons/t2-shield.png"
     },
     {
       "id": "t2-tower",
@@ -1028,7 +1028,7 @@
       },
       "flavorText": "Hinter diesem Schild hat schon mancher eine ganze Schlacht verschlafen.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
+      "icon": "/images/items/icons/t2-tower.png"
     },
     {
       "id": "t2-helm",
@@ -1085,7 +1085,7 @@
       "flavorText": "Wer Komfort will, soll einen Hut tragen. Wer überleben will, Ketten.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t2-helm.png"
     },
     {
       "id": "t2-circlet",
@@ -1142,7 +1142,7 @@
       "flavorText": "Drei Gelehrte trugen ihn vor dir. Alle wussten mehr als sie sollten.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t2-circlet.png"
     },
     {
       "id": "t2-armor",
@@ -1199,7 +1199,7 @@
       "flavorText": "Zehntausend Ringe, jeder einzeln geschmiedet. Kettenarbeit lehrt Geduld — oder Wahnsinn.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png"
+      "icon": "/images/items/icons/t2-armor.png"
     },
     {
       "id": "t2-brigandine",
@@ -1256,7 +1256,7 @@
       "flavorText": "Von außen Leder, von innen Stahl. Die beste Lüge ist die, die schützt.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/icons/gacha-flickenumhang.png"
+      "icon": "/images/items/icons/t2-brigandine.png"
     },
     {
       "id": "t2-amulet",
@@ -1312,7 +1312,7 @@
       },
       "flavorText": "Im Mondlicht schimmert es wie ein Versprechen. Ob es gehalten wird, hängt von dir ab.",
       "binding": "boe",
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t2-amulet.png"
     },
     {
       "id": "t2-pendant",
@@ -1368,7 +1368,7 @@
       },
       "flavorText": "Die Runen flüstern in einer Sprache, die niemand mehr spricht. Das macht sie nicht leiser.",
       "binding": "boe",
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t2-pendant.png"
     },
     {
       "id": "t2-boots",
@@ -1425,7 +1425,7 @@
       "flavorText": "Auf Klingen zu treten ist unangenehm. Diese Stiefel machen es weniger unangenehm.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t2-boots.png"
     },
     {
       "id": "t2-strider",
@@ -1482,7 +1482,7 @@
       "flavorText": "Die Waldläufer von Aethermoor hinterlassen keine Spuren. Nur Geschichten.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t2-strider.png"
     },
     {
       "id": "t3-sword",
@@ -1538,7 +1538,7 @@
       },
       "flavorText": "Die Runen glühen rot bei Gefahr. Leider glühen sie auch rot bei schlechtem Wetter.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png"
+      "icon": "/images/items/icons/t3-sword.png"
     },
     {
       "id": "t3-lance",
@@ -1595,7 +1595,7 @@
       "flavorText": "Für Drachen geschmiedet, gegen Drachen ungetestet. Der Schmied nannte das optimistisch.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/gacha-rostiger-dolch.png"
+      "icon": "/images/items/icons/t3-lance.png"
     },
     {
       "id": "t3-wand",
@@ -1652,7 +1652,7 @@
       "flavorText": "Der Aetherstrom pulsiert so dicht durch diesen Fokus, dass selbst die Luft zittert.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
+      "icon": "/images/items/icons/t3-wand.png"
     },
     {
       "id": "t3-shield",
@@ -1708,7 +1708,7 @@
       },
       "flavorText": "Von einer Drachenschuppe geformt. Der Drache hat das letzte Wort verloren.",
       "binding": "boe",
-      "icon": "/images/icons/equip-shield.png"
+      "icon": "/images/items/icons/t3-shield.png"
     },
     {
       "id": "t3-barrier",
@@ -1765,7 +1765,7 @@
       "flavorText": "Keine Masse, kein Gewicht, keine Schwäche. Nur der reine, sture Wille, nicht getroffen zu werden.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-shield.png"
+      "icon": "/images/items/icons/t3-barrier.png"
     },
     {
       "id": "t3-helm",
@@ -1822,7 +1822,7 @@
       "flavorText": "Wissen ist kein Schild, sagen die Krieger. Die Arkanisten lächeln und sagen nichts.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t3-helm.png"
     },
     {
       "id": "t3-crown",
@@ -1880,7 +1880,7 @@
       "armorType": "cloth",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t3-crown.png"
     },
     {
       "id": "t3-armor",
@@ -1937,7 +1937,7 @@
       "flavorText": "Leicht wie ein Atemzug, hart wie ein Grundsatz. Die alten Minen gaben solches Erz nur einmal her.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/icons/gacha-wanderermantel.png"
+      "icon": "/images/items/icons/t3-armor.png"
     },
     {
       "id": "t3-plate",
@@ -1995,7 +1995,7 @@
       "armorType": "heavy",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png"
+      "icon": "/images/items/icons/t3-plate.png"
     },
     {
       "id": "t3-amulet",
@@ -2051,7 +2051,7 @@
       },
       "flavorText": "Das Gesicht im Medaillon lächelt. Niemand weiß, warum. Niemand fragt.",
       "binding": "boe",
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t3-amulet.png"
     },
     {
       "id": "t3-eye",
@@ -2108,7 +2108,7 @@
       "flavorText": "Es sieht, was du nicht sehen kannst. Manchmal ist das ein Segen. Manchmal wünschst du dir Blindheit.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t3-eye.png"
     },
     {
       "id": "t3-boots",
@@ -2165,7 +2165,7 @@
       "flavorText": "Der Wind hat keinen Herrn, sagen die Dichter. Diese Stiefel kommen dem am nächsten.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t3-boots.png"
     },
     {
       "id": "t3-shadow",
@@ -2223,7 +2223,7 @@
       "armorType": "leather",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t3-shadow.png"
     },
     {
       "id": "t4-dawn",
@@ -2286,7 +2286,7 @@
       "flavorText": "Im allerersten Morgen der Welt, als das Licht noch jung war, küsste es eine Klinge. Diese Klinge.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/gacha-eisenschwert.png"
+      "icon": "/images/items/icons/t4-dawn.png"
     },
     {
       "id": "t4-void",
@@ -2349,7 +2349,7 @@
       "flavorText": "Sie verschluckt das Licht. Sie verschluckt den Mut. Was übrig bleibt, ist Stille und der Geschmack von Eisen.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/gacha-stab-erkenntnis.png"
+      "icon": "/images/items/icons/t4-void.png"
     },
     {
       "id": "t4-aegis",
@@ -2412,7 +2412,7 @@
       "flavorText": "Es gibt Geschichten von Schwertern, die daran zerbrachen. Es gibt keine Geschichten von dem, der dahinter stand.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
+      "icon": "/images/items/icons/t4-aegis.png"
     },
     {
       "id": "t4-crown",
@@ -2476,7 +2476,7 @@
       "armorType": "heavy",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t4-crown.png"
     },
     {
       "id": "t4-armor",
@@ -2539,7 +2539,7 @@
       "armorType": "cloth",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-armor.png"
+      "icon": "/images/items/icons/t4-armor.png"
     },
     {
       "id": "t4-heart",
@@ -2602,7 +2602,7 @@
       "flavorText": "Es schlägt. Nicht wie ein Herz aus Fleisch — wie das Herz einer Geschichte, die gut ausgeht.",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t4-heart.png"
     },
     {
       "id": "t4-boots",
@@ -2666,7 +2666,7 @@
       "armorType": "leather",
       "binding": "boe",
       "shopHidden": true,
-      "icon": "/images/icons/equip-boots.png"
+      "icon": "/images/items/icons/t4-boots.png"
     },
     {
       "id": "t4-excalibur",
@@ -2734,7 +2734,7 @@
       },
       "flavorText": "Es gibt eine Klinge, die nicht gezogen, sondern verdient wird. Du weißt bereits, welche.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-abenteuerklinge.png"
+      "icon": "/images/items/icons/t4-excalibur.png"
     },
     {
       "id": "t4-phoenix",
@@ -2797,7 +2797,7 @@
       "flavorText": "Der Phoenix stirbt nicht. Er vergisst nur kurz, dass er lebt.",
       "armorType": "heavy",
       "binding": "boe",
-      "icon": "/images/icons/gacha-mantel-sternenwaechter.png"
+      "icon": "/images/items/icons/t4-phoenix.png"
     },
     {
       "id": "t4-oracle",
@@ -2860,7 +2860,7 @@
       },
       "flavorText": "Du wirst sehen, was kommt. Du wirst es nicht ändern können. Du wirst es trotzdem versuchen.",
       "binding": "boe",
-      "icon": "/images/icons/equip-amulet.png"
+      "icon": "/images/items/icons/t4-oracle.png"
     },
     {
       "id": "t4-nightfall",
@@ -2923,7 +2923,7 @@
       },
       "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht.",
       "binding": "boe",
-      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
+      "icon": "/images/items/icons/t4-nightfall.png"
     },
     {
       "id": "t4-rhythm",
@@ -2986,7 +2986,7 @@
       },
       "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?",
       "binding": "boe",
-      "icon": "/images/icons/gacha-stab-erkenntnis.png"
+      "icon": "/images/items/icons/t4-rhythm.png"
     },
     {
       "id": "t4-sentinel",
@@ -3050,7 +3050,7 @@
       "flavorText": "Der letzte Wächter von Aethermoor hat nie geschlafen. Seine Rüstung auch nicht.",
       "armorType": "cloth",
       "binding": "boe",
-      "icon": "/images/icons/equip-armor.png"
+      "icon": "/images/items/icons/t4-sentinel.png"
     },
     {
       "id": "t4-midas",
@@ -3113,7 +3113,7 @@
       },
       "flavorText": "Alles wird zu Gold. Das ist der Segen. Alles wird zu Gold. Das ist der Fluch.",
       "binding": "boe",
-      "icon": "/images/icons/equip-shield.png"
+      "icon": "/images/items/icons/t4-midas.png"
     },
     {
       "id": "t4-scholar",
@@ -3177,7 +3177,7 @@
       "flavorText": "Durch diese Gläser sieht die Welt aus wie ein Buch. Und jede Seite will gelesen werden.",
       "armorType": "leather",
       "binding": "boe",
-      "icon": "/images/icons/equip-helm.png"
+      "icon": "/images/items/icons/t4-scholar.png"
     },
     {
       "id": "gen-knochen-dolch",
@@ -3188,7 +3188,7 @@
       "rarity": "common",
       "price": 35,
       "desc": "Aus einem Knochen geschnitzt. Fragt nicht, von wem.",
-      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "icon": "/images/items/icons/gen-knochen-dolch.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3237,7 +3237,7 @@
       "rarity": "common",
       "price": 30,
       "desc": "Zusammengebundene Äste. Hält einen Schlag aus. Vielleicht zwei.",
-      "icon": "/images/icons/equip-shield.png",
+      "icon": "/images/items/icons/gen-reisigschild.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3286,7 +3286,7 @@
       "rarity": "common",
       "price": 30,
       "desc": "Mehr Flicken als Haube. Aber warm.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/items/icons/gen-flickenhaube.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3336,7 +3336,7 @@
       "rarity": "common",
       "price": 35,
       "desc": "Kratzt. Schützt kaum. Aber du siehst beschäftigt aus.",
-      "icon": "/images/icons/gacha-flickenumhang.png",
+      "icon": "/images/items/icons/gen-sackleinen-wams.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3386,7 +3386,7 @@
       "rarity": "common",
       "price": 25,
       "desc": "Ein Stein an einem Faden. Manchmal reicht das.",
-      "icon": "/images/icons/equip-amulet.png",
+      "icon": "/images/items/icons/gen-bindfaden-kette.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -3652,7 +3652,7 @@
       "rarity": "uncommon",
       "price": 75,
       "desc": "Schwarz wie die Nacht. Die Krähen halten dich für einen der ihren.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4295,7 +4295,7 @@
       "rarity": "uncommon",
       "price": 100,
       "desc": "Tintenflecken am Rand. Der vorherige Besitzer hat viel geschrieben. Oder geweint.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -4355,7 +4355,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Schränkt die Sicht ein. Dafür tut der nächste Treffer weniger weh.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5118,7 +5118,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Falkner sehen weiter als andere. Und sie wissen, wann man zuschlagen muss.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5178,7 +5178,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Hundert Schlachten. Keine Niederlage. Aber jede Menge Kopfschmerzen.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -5695,7 +5695,7 @@
       "rarity": "common",
       "price": 70,
       "desc": "Staubig und verbeult. Hält aber Felsbrocken ab. Und Regen. Und Meinungen.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -5927,7 +5927,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Der Aetherstrom formt eine Krone über deinem Haupt. Majestätisch. Und dezent angsteinflößend.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6353,7 +6353,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Jeder Edelstein ein gefallener Stern. Die Nacht trauert um sie. Du nicht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -6900,7 +6900,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Nebel sammelt sich um die Krone wie ein Schal. Er geht nie weg. Nie.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": false,
       "affixes": {
         "primary": {
@@ -7078,7 +7078,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Noch feucht. Das Archiv hat sie nicht freiwillig hergegeben.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7376,7 +7376,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Korallen wachsen an den Seiten. Die Tiefe hat ihn sich zu eigen gemacht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -7792,7 +7792,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristallsplitter ragen aus dem Metall. Nicht Dekoration — der Spire wächst weiter.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8149,7 +8149,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bricht jeden Gedanken in Spektren. Verwirrend, aber erleuchtend.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8506,7 +8506,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Wenn du in den Abgrund blickst, blickt die Haube zurück. Und zwinkert.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -8953,7 +8953,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Es ist immer dunkel unter diesem Helm. Aber du siehst trotzdem. Besser als vorher.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9132,7 +9132,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Blinkt rein und raus aus der Existenz. Hoffentlich nicht während eines Treffers.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9370,7 +9370,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Zerbrochen in einer Dimension. Ganz in einer anderen. Du trägst beide.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9727,7 +9727,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Ordnung zerfällt. Chaos entsteht. Unter diesem Helm macht beides Sinn.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -9976,7 +9976,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Das Ende aller Dinge. Und der Anfang der nächsten. Omega ist nur ein Buchstabe.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10288,7 +10288,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wer die Feuerprobe besteht, verdient diesen Helm. Wer sie nicht besteht, braucht keinen.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -10645,7 +10645,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jedes Wort das je geschrieben wurde, flüstert durch den Stoff.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11002,7 +11002,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Schützt vor Funken, Hitze und dummen Fragen.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11359,7 +11359,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jede Stimme hallt in der Ewigkeit wider. Unter diesem Helm hörst du sie alle.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -11776,7 +11776,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Sechs Sterne. Die Hälfte des Weges. Oder der Anfang des schweren Teils.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12133,7 +12133,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Checkpoint eins. Der erste Schritt ist immer der leichteste. Und der trügerischste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12549,7 +12549,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Jede Saison eine neue Farbe. Diese hier ist... interessant.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -12906,7 +12906,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Halb geschafft. Die obere Hälfte.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13263,7 +13263,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Fünf Level vom Ende. Die Krone wartet.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -13680,7 +13680,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwer wie Stagnation. Aber du trägst ihn. Und gehst weiter.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14037,7 +14037,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Sterne am Rand. Echte. Kleine. Funkelnde.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14586,7 +14586,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Die Krone von Aethermoor selbst. Sie hat auf dich gewartet. Schon immer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -14848,7 +14848,7 @@
       "source": "faction:echo",
       "shopHidden": true,
       "price": 0,
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "pool": [
@@ -15384,7 +15384,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Die Kapuze sieht aus, als hätte jemand den Riss selbst zu Stoff gefaltet. Was natürlich Unsinn ist. Vermutlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16665,7 +16665,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Geschlossener Eisenhelm. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16722,7 +16722,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Eiserne Sturmhaube. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -16779,7 +16779,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eiserne Panzerhaube. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17064,7 +17064,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisenkappe. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17178,7 +17178,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerner Drachenhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17292,7 +17292,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerne Sturmhaube. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17577,7 +17577,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Visierhelm. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17805,7 +17805,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Spangenhelm. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -17976,7 +17976,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Kronenhelm. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18090,7 +18090,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenschuppen-Drachenhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18261,7 +18261,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Helm. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18489,7 +18489,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenzahn-Sturmhaube. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18546,7 +18546,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Visierhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18717,7 +18717,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenkrone des Meisters. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -18903,7 +18903,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelen-Krone. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19151,7 +19151,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Sturmkappe. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19585,7 +19585,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aetherkern-Visier. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -19647,7 +19647,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leinenkappe. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20103,7 +20103,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leinenhaube. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20502,7 +20502,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gewobene Kappe. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -20901,7 +20901,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Tiara. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21243,7 +21243,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seidenkappe. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21414,7 +21414,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Haube. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21838,7 +21838,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Sternenhaube. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -21900,7 +21900,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Ätherkrone. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22148,7 +22148,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkane Krone. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22334,7 +22334,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenkappe. Die Webstube riecht nach Lavendel und Perfektionismus.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22515,7 +22515,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leichtleder-Kappe. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22686,7 +22686,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder-Haube. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -22857,7 +22857,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder-Stirnband. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23028,7 +23028,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Jäger-Kappe. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23427,7 +23427,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wildnis-Haube. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -23826,7 +23826,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Helm. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24282,7 +24282,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Kappe. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24401,7 +24401,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Kappe. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24587,7 +24587,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Helm. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -24711,7 +24711,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Seelenjäger-Haube. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25145,7 +25145,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien-Krone. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -25207,7 +25207,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeit-Visier. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31119,7 +31119,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisenkappe des Wächters. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31176,7 +31176,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Kristall-Wächterhelm. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31233,7 +31233,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachenstahl-Wächterhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31290,7 +31290,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether-Wächterhelm. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31352,7 +31352,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Geschmiedete Schutzhaube. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -31409,7 +31409,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählerne Schutzkappe. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32279,7 +32279,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Wollkappe des Forschers. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32393,7 +32393,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkane Weisenkrone. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32455,7 +32455,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Einfache Leinenkappe. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -32569,7 +32569,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Mondschein-Gelehrtenkappe. Genäht mit einer Präzision die an Besessenheit grenzt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33325,7 +33325,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leichtleder-Jägerkappe. Flexibel wo es sein muss. Hart wo es zählt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33382,7 +33382,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittlere Leder-Jägerkappe. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33439,7 +33439,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder-Jägerkrone. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33496,7 +33496,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Urzeitleder-Krone. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33558,7 +33558,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Einfache Lederkappe. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33615,7 +33615,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Gehärtete Lederkappe. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -33672,7 +33672,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Bestien-Lederkappe. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38585,7 +38585,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Eisern Kappe II. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38756,7 +38756,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether Haube II. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -38932,7 +38932,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachen Helm II. Riecht nach Kohle und Entschlossenheit.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39108,7 +39108,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Stählern Visier II. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39455,7 +39455,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Aether Kappe III. Der Stahl erinnert sich an jeden Hammerschlag.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39631,7 +39631,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Drachen Haube III. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39807,7 +39807,7 @@
       "rarity": "common",
       "price": 0,
       "desc": "Leinen Kappe II. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -39978,7 +39978,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkan Haube II. Lin hat es dreimal aufgetrennt bevor es seinen Standards genügte.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40154,7 +40154,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seiden Helm II. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40330,7 +40330,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Woll Visier II. Handarbeit. Keine Maschine. Kein Kompromiss.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40677,7 +40677,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Arkan Kappe III. Leichter als es aussieht. Wärmer als man denkt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -40853,7 +40853,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Seiden Haube III. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41029,7 +41029,7 @@
       "rarity": "uncommon",
       "price": 0,
       "desc": "Leichtleder Kappe II. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41200,7 +41200,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien Haube II. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41376,7 +41376,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder Helm II. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41552,7 +41552,7 @@
       "rarity": "rare",
       "price": 0,
       "desc": "Mittelleder Visier II. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -41899,7 +41899,7 @@
       "rarity": "legendary",
       "price": 0,
       "desc": "Bestien Kappe III. Riecht nach Gerberei und Trotz.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -42075,7 +42075,7 @@
       "rarity": "epic",
       "price": 0,
       "desc": "Schwerleder Haube III. Robust genug um einen Sturz zu überleben. Oder zwei.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
         "primary": {
@@ -44530,7 +44530,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Perfektions-Seraph trug ihn, um seine eine Schwäche zu verbergen: Er konnte \"gut genug\" nicht akzeptieren. Der Helm hat einen winzigen Kratzer. Er ist Absicht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "source": "world_boss:perfection-seraph",
       "affixes": {
         "primary": {
@@ -44710,7 +44710,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "War mal ein Topf. Ist jetzt ein Helm. Die Beförderung war nicht geplant.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -44778,7 +44778,7 @@
       "price": 15,
       "shopHidden": false,
       "desc": "Sie hält warm und die Entschlossenheit drin. Oder den Wahnsinn. Schwer zu sagen.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45234,7 +45234,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Die Dornen zeigen nach innen. Das ist entweder ein Designfehler oder ein Statement. Der Schmied weigert sich, es zu klären.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -45348,7 +45348,7 @@
       "desc": "Die Wache sieht alles. Vor allem die Dinge, die man lieber nicht sehen würde. Der vorherige Träger hat sich für den Ruhestand entschieden. Dreimal.",
       "price": 0,
       "shopHidden": true,
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46612,7 +46612,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46646,7 +46646,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46680,7 +46680,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Aus einem Material, das offiziell nicht existiert. Inoffiziell: sehr stabil.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -46737,7 +46737,7 @@
       "price": 25,
       "shopHidden": false,
       "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47864,7 +47864,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Handwerklich einwandfrei. Moralisch fragwürdig. Effektiv.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47921,7 +47921,7 @@
       "price": 35,
       "shopHidden": false,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -47978,7 +47978,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49289,7 +49289,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49346,7 +49346,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49403,7 +49403,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -49460,7 +49460,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Der Vorbesitzer hinterließ keine Gebrauchsanweisung. Das ist entweder Vertrauen oder eine Warnung.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50786,7 +50786,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50843,7 +50843,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50900,7 +50900,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -50962,7 +50962,7 @@
       "price": 0,
       "shopHidden": true,
       "desc": "Es funktioniert perfekt. Das ist verdächtig.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52778,7 +52778,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52812,7 +52812,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52846,7 +52846,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52880,7 +52880,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52914,7 +52914,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52948,7 +52948,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "Aus der \"Das muss reichen\"-Kollektion.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -52982,7 +52982,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53039,7 +53039,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53096,7 +53096,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -53153,7 +53153,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55666,7 +55666,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55700,7 +55700,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55734,7 +55734,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55768,7 +55768,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55802,7 +55802,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55859,7 +55859,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55916,7 +55916,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -55973,7 +55973,7 @@
       "price": 26,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen. Und Besitzer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57873,7 +57873,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57907,7 +57907,7 @@
       "price": 11,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57941,7 +57941,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -57998,7 +57998,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -58055,7 +58055,7 @@
       "price": 34,
       "shopHidden": false,
       "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59748,7 +59748,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59782,7 +59782,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Hat schon bessere Tage gesehen.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59816,7 +59816,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59850,7 +59850,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59884,7 +59884,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59918,7 +59918,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59952,7 +59952,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -59986,7 +59986,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60020,7 +60020,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -60054,7 +60054,7 @@
       "price": 4,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -61992,7 +61992,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62026,7 +62026,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62060,7 +62060,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62094,7 +62094,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62128,7 +62128,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62162,7 +62162,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62196,7 +62196,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -62230,7 +62230,7 @@
       "price": 6,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63692,7 +63692,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63726,7 +63726,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63760,7 +63760,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63794,7 +63794,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Gefunden. Behalten. Bereut.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -63828,7 +63828,7 @@
       "price": 8,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64746,7 +64746,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64780,7 +64780,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Der Händler hat nicht geweint. Aber fast.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -64814,7 +64814,7 @@
       "price": 10,
       "shopHidden": false,
       "desc": "Nicht das Schlechteste. Aber nah dran.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65826,7 +65826,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65883,7 +65883,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Es hält. Heute.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65940,7 +65940,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -65997,7 +65997,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Restposten. Aber ehrlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -66054,7 +66054,7 @@
       "price": 13,
       "shopHidden": false,
       "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67593,7 +67593,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67650,7 +67650,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Aus der Grabbelkiste.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -67707,7 +67707,7 @@
       "price": 18,
       "shopHidden": false,
       "desc": "Es hat Charakter. Leider.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -68992,7 +68992,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Reicht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69026,7 +69026,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Fundgrube. Mehr nicht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69060,7 +69060,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Scheune. Immerhin.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69094,7 +69094,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "vom Händler. Geht so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69128,7 +69128,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus dem Keller. Geht so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69162,7 +69162,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Geht so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69196,7 +69196,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Scheune. Naja.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
           "count": [
@@ -69230,7 +69230,7 @@
       "price": 3,
       "shopHidden": false,
       "desc": "aus der Mülltonne. Funktioniert.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70760,7 +70760,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Lehrling. Wahrscheinlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70794,7 +70794,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Werkstatt. Tut was es soll.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70828,7 +70828,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Straßenrand. Funktioniert.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70862,7 +70862,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Reicht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70896,7 +70896,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "aus der Kiste. Geht so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
           "count": [
@@ -70930,7 +70930,7 @@
       "price": 5,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Naja.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72052,7 +72052,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Scheune. Immerhin.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72086,7 +72086,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "vom Lehrling. Geht so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72120,7 +72120,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "vom Flohmarkt. Geht so.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72154,7 +72154,7 @@
       "price": 7,
       "shopHidden": false,
       "desc": "aus der Scheune. Wahrscheinlich.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72868,7 +72868,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "vom Straßenrand. Funktioniert.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -72902,7 +72902,7 @@
       "price": 9,
       "shopHidden": false,
       "desc": "aus der Kiste. Reicht.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73664,7 +73664,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73721,7 +73721,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73778,7 +73778,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
           "count": [
@@ -73835,7 +73835,7 @@
       "price": 0,
       "shopHidden": false,
       "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
-      "icon": "/images/icons/equip-helm.png",
+      "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
           "count": [
