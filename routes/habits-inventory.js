@@ -733,7 +733,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   }
 
   // Remove from inventory and equip as instance
-  u.inventory = u.inventory.filter(i => i.id !== invEntry.id);
+  const removeId = invEntry.instanceId || invEntry.id;
+  u.inventory = u.inventory.filter(i => (i.instanceId || i.id) !== removeId);
   // If invEntry already has rolled stats (from gacha/drop), build instance from it
   const instance = {
     instanceId: invEntry.id || `gi-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
