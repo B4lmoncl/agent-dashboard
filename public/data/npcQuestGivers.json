@@ -128,8 +128,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "ilse-scarf",
-          "name": "Selbstgestrickter Schal",
+          "id": "npc-oma-ilse-reward",
+          "name": "Omas Talisman",
           "emoji": null,
           "rarity": "rare",
           "stats": {
@@ -307,8 +307,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "karim-compass",
-          "name": "Karims Goldener Kompass",
+          "id": "npc-wandering-merchant-reward",
+          "name": "Karims Talisman",
           "emoji": null,
           "rarity": "epic",
           "stats": {
@@ -486,8 +486,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "tanaka-headband",
-          "name": "Tanakas Stirnband",
+          "id": "npc-dojo-master-reward",
+          "name": "Tanakas Kopfbedeckung",
           "emoji": null,
           "rarity": "epic",
           "stats": {
@@ -648,8 +648,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "mirael-pendant",
-          "name": "Miraels Naturstein",
+          "id": "npc-forest-witch-reward",
+          "name": "Miraels Talisman",
           "emoji": null,
           "rarity": "rare",
           "stats": {
@@ -828,8 +828,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "finnegan-lute",
-          "name": "Finnegans Silberlaute",
+          "id": "npc-bard-reward",
+          "name": "Finnegans persönliches Werkzeug",
           "emoji": null,
           "rarity": "epic",
           "stats": {
@@ -985,8 +985,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "tomas-rosary",
-          "name": "Bruder Tomas' Rosenkranz",
+          "id": "npc-bruder-tomas-reward",
+          "name": "Tomass Talisman",
           "emoji": null,
           "rarity": "rare",
           "stats": {
@@ -1178,8 +1178,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "zara-flask",
-          "name": "Zaras Experimentierkolben",
+          "id": "npc-zara-funkenwind-reward",
+          "name": "Zaras persönliches Werkzeug",
           "emoji": null,
           "rarity": "epic",
           "stats": {
@@ -1337,8 +1337,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "henrik-staff",
-          "name": "Henriks Wanderstab",
+          "id": "npc-alter-henrik-reward",
+          "name": "Henriks persönliches Werkzeug",
           "emoji": null,
           "rarity": "rare",
           "stats": {
@@ -1564,8 +1564,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "lumi-lantern",
-          "name": "Lumis Glühwürmchen-Laterne",
+          "id": "npc-lumi-reward",
+          "name": "Lumis Talisman",
           "emoji": null,
           "rarity": "epic",
           "stats": {
@@ -1758,8 +1758,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "rogar-hammer",
-          "name": "Rogars Meisterhammer",
+          "id": "npc-rogar-amboss-reward",
+          "name": "Rogars persönliches Werkzeug",
           "emoji": null,
           "rarity": "epic",
           "stats": {
@@ -1872,8 +1872,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "mantel-der-eleganz",
-          "name": "Mantel der Eleganz",
+          "id": "npc-skelett-gentleman-reward",
+          "name": "Elegantes bester Mantel",
           "emoji": "🎩",
           "slot": "armor",
           "stats": {
@@ -1982,8 +1982,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "vex-lesebrille",
-          "name": "Vex' Lesebrille der Erkenntnis",
+          "id": "npc-archivarin-vex-reward",
+          "name": "Vexs Kopfbedeckung",
           "emoji": "👓",
           "slot": "helm",
           "stats": {
@@ -2111,8 +2111,8 @@
       "finalReward": {
         "type": "unique_item",
         "item": {
-          "id": "flints-kompass",
-          "name": "Flints Nebelkompass",
+          "id": "npc-captain-flint-reward",
+          "name": "Captains Talisman",
           "emoji": "🧭",
           "slot": "amulet",
           "stats": {
@@ -2182,7 +2182,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-sable-nachtwind-reward",
+          "name": "Nachtwinds persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 2
+          },
+          "slot": "weapon",
+          "desc": "Wurde von Nachtwind persönlich hergestellt. Oder gefunden. Oder gestohlen. Nachtwind war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "professor-quill",
@@ -2272,7 +2288,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-professor-quill-reward",
+          "name": "Quills treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Die Inschrift lautet: 'Eigentum von Quill. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "eiserne-mara",
@@ -2343,7 +2375,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-eiserne-mara-reward",
+          "name": "Maras Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 5,
+            "glueck": 2
+          },
+          "slot": "helm",
+          "desc": "Mara hat Maras Kopfbedeckung jahrelang benutzt. Die Gebrauchsspuren nennt Mara 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "koch-giovanni",
@@ -2397,7 +2445,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-koch-giovanni-reward",
+          "name": "Salzkrustes bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 4,
+            "kraft": 4
+          },
+          "slot": "armor",
+          "desc": "Der vorherige Besitzer hat Salzkrustes bester Mantel freiwillig abgegeben. Das spricht entweder für Salzkrustes bester Mantel oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "meisterin-sera",
@@ -2451,7 +2515,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-meisterin-sera-reward",
+          "name": "Seras Talisman",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 8,
+            "weisheit": 3
+          },
+          "slot": "amulet",
+          "desc": "Sera behauptet, Seras Talisman sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "pip-zahnrad",
@@ -2524,7 +2604,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-pip-zahnrad-reward",
+          "name": "Zahnrads Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 5,
+            "ausdauer": 2
+          },
+          "slot": "boots",
+          "desc": "Riecht nach Zahnrads Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "alte-martha",
@@ -2578,7 +2674,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-alte-martha-reward",
+          "name": "Marthas Siegelring",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 3,
+            "kraft": 2
+          },
+          "slot": "ring",
+          "desc": "Drei Leute wollten Marthas Siegelring kaufen. Martha hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "hans-holzfuss",
@@ -2632,7 +2744,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-hans-holzfuss-reward",
+          "name": "Holzfußs persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 2
+          },
+          "slot": "weapon",
+          "desc": "Holzfuß sagt, Holzfußs persönliches Werkzeug habe eine Geschichte. Holzfuß weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "brieftraeger-emil",
@@ -2669,7 +2797,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-brieftraeger-emil-reward",
+          "name": "Emils treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 4,
+            "kraft": 3
+          },
+          "slot": "shield",
+          "desc": "Wurde von Emil persönlich hergestellt. Oder gefunden. Oder gestohlen. Emil war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "gaertnerin-rose",
@@ -2723,7 +2867,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-gaertnerin-rose-reward",
+          "name": "Roses Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 5,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Die Inschrift lautet: 'Eigentum von Rose. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "schneider-lin",
@@ -2777,7 +2937,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-schneider-lin-reward",
+          "name": "Lins bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "armor",
+          "desc": "Lin hat Lins bester Mantel jahrelang benutzt. Die Gebrauchsspuren nennt Lin 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "wachmann-kurt",
@@ -2814,7 +2990,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-wachmann-kurt-reward",
+          "name": "Kurts Talisman",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 6,
+            "weisheit": 4
+          },
+          "slot": "amulet",
+          "desc": "Der vorherige Besitzer hat Kurts Talisman freiwillig abgegeben. Das spricht entweder für Kurts Talisman oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "putzfrau-helga",
@@ -2868,7 +3060,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-putzfrau-helga-reward",
+          "name": "Saubermanns Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "ausdauer": 2
+          },
+          "slot": "boots",
+          "desc": "Saubermann behauptet, Saubermanns Wanderstiefel sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "geschichtenerzaehlerin-nadia",
@@ -2922,7 +3130,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-geschichtenerzaehlerin-nadia-reward",
+          "name": "Silberzunges Siegelring",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "kraft": 3
+          },
+          "slot": "ring",
+          "desc": "Riecht nach Silberzunges Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "zahlmeister-otto",
@@ -2976,7 +3200,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-zahlmeister-otto-reward",
+          "name": "Ottos persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 6,
+            "weisheit": 3
+          },
+          "slot": "weapon",
+          "desc": "Drei Leute wollten Ottos persönliches Werkzeug kaufen. Otto hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "laufbursche-felix",
@@ -3013,7 +3253,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-laufbursche-felix-reward",
+          "name": "Felixs treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Felix sagt, Felixs treuer Schild habe eine Geschichte. Felix weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "bibliothekarin-ada",
@@ -3067,7 +3323,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-bibliothekarin-ada-reward",
+          "name": "Adas Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 5,
+            "glueck": 2
+          },
+          "slot": "helm",
+          "desc": "Wurde von Ada persönlich hergestellt. Oder gefunden. Oder gestohlen. Ada war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "trainer-rex",
@@ -3138,7 +3410,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-trainer-rex-reward",
+          "name": "Rexs bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 4,
+            "kraft": 2
+          },
+          "slot": "armor",
+          "desc": "Die Inschrift lautet: 'Eigentum von Rex. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "apothekerin-yara",
@@ -3192,7 +3480,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-apothekerin-yara-reward",
+          "name": "Yaras Talisman",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 6,
+            "weisheit": 2
+          },
+          "slot": "amulet",
+          "desc": "Yara hat Yaras Talisman jahrelang benutzt. Die Gebrauchsspuren nennt Yara 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "kartograph-werner",
@@ -3246,7 +3550,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-kartograph-werner-reward",
+          "name": "Werners Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "ausdauer": 3
+          },
+          "slot": "boots",
+          "desc": "Der vorherige Besitzer hat Werners Wanderstiefel freiwillig abgegeben. Das spricht entweder für Werners Wanderstiefel oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "uhrmacher-tick",
@@ -3300,7 +3620,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-uhrmacher-tick-reward",
+          "name": "Ticks Siegelring",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 5,
+            "kraft": 2
+          },
+          "slot": "ring",
+          "desc": "Tick behauptet, Ticks Siegelring sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "netzwerkerin-luna",
@@ -3354,7 +3690,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-netzwerkerin-luna-reward",
+          "name": "Lunas persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 6,
+            "weisheit": 2
+          },
+          "slot": "weapon",
+          "desc": "Riecht nach Lunas Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "imker-boris",
@@ -3391,7 +3743,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-imker-boris-reward",
+          "name": "Boriss treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Drei Leute wollten Boriss treuer Schild kaufen. Boris hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "schreiberin-mei",
@@ -3445,7 +3813,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-schreiberin-mei-reward",
+          "name": "Meis Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 6,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Mei sagt, Meis Kopfbedeckung habe eine Geschichte. Mei weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "schlosser-grim",
@@ -3501,7 +3885,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-schlosser-grim-reward",
+          "name": "Grims bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 4
+          },
+          "slot": "armor",
+          "desc": "Wurde von Grim persönlich hergestellt. Oder gefunden. Oder gestohlen. Grim war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "astrologe-celes",
@@ -3555,7 +3955,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-astrologe-celes-reward",
+          "name": "Celess Talisman",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "weisheit": 4
+          },
+          "slot": "amulet",
+          "desc": "Die Inschrift lautet: 'Eigentum von Celes. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "schmuggler-dante",
@@ -3626,7 +4042,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-schmuggler-dante-reward",
+          "name": "Dantes Wanderstiefel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 3,
+            "ausdauer": 3
+          },
+          "slot": "boots",
+          "desc": "Dante hat Dantes Wanderstiefel jahrelang benutzt. Die Gebrauchsspuren nennt Dante 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "astronomin-stella",
@@ -3680,7 +4112,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-astronomin-stella-reward",
+          "name": "Stellas Siegelring",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 5,
+            "kraft": 3
+          },
+          "slot": "ring",
+          "desc": "Der vorherige Besitzer hat Stellas Siegelring freiwillig abgegeben. Das spricht entweder für Stellas Siegelring oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "tavernenbesitzer-gus",
@@ -3734,7 +4182,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-tavernenbesitzer-gus-reward",
+          "name": "Guss persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 3
+          },
+          "slot": "weapon",
+          "desc": "Gus behauptet, Guss persönliches Werkzeug sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "bergsteigerin-kaya",
@@ -3805,7 +4269,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-bergsteigerin-kaya-reward",
+          "name": "Kayas treuer Schild",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 5,
+            "kraft": 3
+          },
+          "slot": "shield",
+          "desc": "Riecht nach Kayas Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "antiquar-simon",
@@ -3859,7 +4339,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-antiquar-simon-reward",
+          "name": "Simons Kopfbedeckung",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "weisheit": 7,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Drei Leute wollten Simons Kopfbedeckung kaufen. Simon hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "fechtmeisterin-ines",
@@ -3913,7 +4409,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-fechtmeisterin-ines-reward",
+          "name": "Iness bester Mantel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 7,
+            "kraft": 3
+          },
+          "slot": "armor",
+          "desc": "Ines sagt, Iness bester Mantel habe eine Geschichte. Ines weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "heiler-kaspar",
@@ -3967,7 +4479,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-heiler-kaspar-reward",
+          "name": "Kaspars Talisman",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 6,
+            "weisheit": 4
+          },
+          "slot": "amulet",
+          "desc": "Wurde von Kaspar persönlich hergestellt. Oder gefunden. Oder gestohlen. Kaspar war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "puppenspieler-marco",
@@ -4021,7 +4549,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-puppenspieler-marco-reward",
+          "name": "Marcos Wanderstiefel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 4,
+            "ausdauer": 5
+          },
+          "slot": "boots",
+          "desc": "Die Inschrift lautet: 'Eigentum von Marco. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "navigatorin-compass",
@@ -4075,7 +4619,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-navigatorin-compass-reward",
+          "name": "Compasss Siegelring",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 6,
+            "kraft": 4
+          },
+          "slot": "ring",
+          "desc": "Compass hat Compasss Siegelring jahrelang benutzt. Die Gebrauchsspuren nennt Compass 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "spieleerfinderin-nora",
@@ -4129,7 +4689,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-spieleerfinderin-nora-reward",
+          "name": "Noras persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 3
+          },
+          "slot": "weapon",
+          "desc": "Der vorherige Besitzer hat Noras persönliches Werkzeug freiwillig abgegeben. Das spricht entweder für Noras persönliches Werkzeug oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "kriegsmeisterin-valka",
@@ -4200,7 +4776,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-kriegsmeisterin-valka-reward",
+          "name": "Valkas treuer Schild",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Valka behauptet, Valkas treuer Schild sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "alchemist-faye",
@@ -4254,7 +4846,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-alchemist-faye-reward",
+          "name": "Fayes Kopfbedeckung",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "weisheit": 8,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Riecht nach Fayes Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "diplomat-aurelius",
@@ -4308,7 +4916,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-diplomat-aurelius-reward",
+          "name": "Aureliuss bester Mantel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 7,
+            "kraft": 5
+          },
+          "slot": "armor",
+          "desc": "Drei Leute wollten Aureliuss bester Mantel kaufen. Aurelius hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "schmiedin-ignis",
@@ -4362,7 +4986,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-schmiedin-ignis-reward",
+          "name": "Igniss Talisman",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 8,
+            "weisheit": 3
+          },
+          "slot": "amulet",
+          "desc": "Ignis sagt, Igniss Talisman habe eine Geschichte. Ignis weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "geisterjagerin-raven",
@@ -4416,7 +5056,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-geisterjagerin-raven-reward",
+          "name": "Ravens Wanderstiefel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 5,
+            "ausdauer": 3
+          },
+          "slot": "boots",
+          "desc": "Wurde von Raven persönlich hergestellt. Oder gefunden. Oder gestohlen. Raven war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "chronist-aeon",
@@ -4487,7 +5143,23 @@
             "rarity": "legendary"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-chronist-aeon-reward",
+          "name": "Aeons Siegelring",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 5,
+            "kraft": 2
+          },
+          "slot": "ring",
+          "desc": "Die Inschrift lautet: 'Eigentum von Aeon. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "tod-der-hoefliche",
@@ -4541,7 +5213,23 @@
             "rarity": "legendary"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-tod-der-hoefliche-reward",
+          "name": "Besuchers persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "kraft": 6,
+            "weisheit": 5
+          },
+          "slot": "weapon",
+          "desc": "Besucher hat Besuchers persönliches Werkzeug jahrelang benutzt. Die Gebrauchsspuren nennt Besucher 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "meisterin-der-stille",
@@ -4612,7 +5300,23 @@
             "rarity": "legendary"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-meisterin-der-stille-reward",
+          "name": "Stilles treuer Schild",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 7,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Der vorherige Besitzer hat Stilles treuer Schild freiwillig abgegeben. Das spricht entweder für Stilles treuer Schild oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "bauer-ernst",
@@ -4649,7 +5353,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-bauer-ernst-reward",
+          "name": "Ernsts Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 5,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Ernst behauptet, Ernsts Kopfbedeckung sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "tanzlehrerin-vivienne",
@@ -4703,7 +5423,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-tanzlehrerin-vivienne-reward",
+          "name": "Viviennes bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "armor",
+          "desc": "Riecht nach Viviennes Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "detektiv-ash",
@@ -4757,7 +5493,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-detektiv-ash-reward",
+          "name": "Ashs Talisman",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 7,
+            "weisheit": 4
+          },
+          "slot": "amulet",
+          "desc": "Drei Leute wollten Ashs Talisman kaufen. Ash hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "philosophin-helen",
@@ -4794,7 +5546,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-philosophin-helen-reward",
+          "name": "Helens Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 5,
+            "ausdauer": 2
+          },
+          "slot": "boots",
+          "desc": "Helen sagt, Helens Wanderstiefel habe eine Geschichte. Helen weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "tierpfleger-finn",
@@ -4831,7 +5599,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-tierpfleger-finn-reward",
+          "name": "Finns Siegelring",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 5,
+            "kraft": 2
+          },
+          "slot": "ring",
+          "desc": "Wurde von Finn persönlich hergestellt. Oder gefunden. Oder gestohlen. Finn war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "maler-claude",
@@ -4885,7 +5669,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-maler-claude-reward",
+          "name": "Claudes persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 3
+          },
+          "slot": "weapon",
+          "desc": "Die Inschrift lautet: 'Eigentum von Claude. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "spion-echo",
@@ -4939,7 +5739,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-spion-echo-reward",
+          "name": "Echos treuer Schild",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 8,
+            "kraft": 4
+          },
+          "slot": "shield",
+          "desc": "Echo hat Echos treuer Schild jahrelang benutzt. Die Gebrauchsspuren nennt Echo 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "musikerin-aria",
@@ -4993,7 +5809,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-musikerin-aria-reward",
+          "name": "Arias Kopfbedeckung",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "weisheit": 8,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Der vorherige Besitzer hat Arias Kopfbedeckung freiwillig abgegeben. Das spricht entweder für Arias Kopfbedeckung oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "handwerkerin-petra",
@@ -5047,7 +5879,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-handwerkerin-petra-reward",
+          "name": "Petras bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 5,
+            "kraft": 2
+          },
+          "slot": "armor",
+          "desc": "Petra behauptet, Petras bester Mantel sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "coach-dominik",
@@ -5101,7 +5949,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-coach-dominik-reward",
+          "name": "Dominiks Talisman",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 6,
+            "weisheit": 3
+          },
+          "slot": "amulet",
+          "desc": "Riecht nach Dominiks Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "braumeister-bjorn",
@@ -5138,7 +6002,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-braumeister-bjorn-reward",
+          "name": "Björns Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 2,
+            "ausdauer": 2
+          },
+          "slot": "boots",
+          "desc": "Drei Leute wollten Björns Wanderstiefel kaufen. Björn hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "postmeisterin-clara",
@@ -5175,7 +6055,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-postmeisterin-clara-reward",
+          "name": "Claras Siegelring",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 3,
+            "kraft": 2
+          },
+          "slot": "ring",
+          "desc": "Clara sagt, Claras Siegelring habe eine Geschichte. Clara weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "gaertner-thorn",
@@ -5212,7 +6108,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-gaertner-thorn-reward",
+          "name": "Thorns persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 4
+          },
+          "slot": "weapon",
+          "desc": "Wurde von Thorn persönlich hergestellt. Oder gefunden. Oder gestohlen. Thorn war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "bote-swift",
@@ -5249,7 +6161,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-bote-swift-reward",
+          "name": "Swifts treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 4,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Die Inschrift lautet: 'Eigentum von Swift. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "waescherin-agnes",
@@ -5286,7 +6214,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-waescherin-agnes-reward",
+          "name": "Agness Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 6,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Agnes hat Agness Kopfbedeckung jahrelang benutzt. Die Gebrauchsspuren nennt Agnes 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "schmied-vulkan",
@@ -5340,7 +6284,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-schmied-vulkan-reward",
+          "name": "Vulkans bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 4
+          },
+          "slot": "armor",
+          "desc": "Der vorherige Besitzer hat Vulkans bester Mantel freiwillig abgegeben. Das spricht entweder für Vulkans bester Mantel oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "sterndeuterin-nova",
@@ -5377,7 +6337,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-sterndeuterin-nova-reward",
+          "name": "Novas Talisman",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 5,
+            "weisheit": 4
+          },
+          "slot": "amulet",
+          "desc": "Nova behauptet, Novas Talisman sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "sammler-magpie",
@@ -5414,7 +6390,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-sammler-magpie-reward",
+          "name": "Magpies Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 2,
+            "ausdauer": 4
+          },
+          "slot": "boots",
+          "desc": "Riecht nach Magpies Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "botanikerin-fern",
@@ -5468,7 +6460,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-botanikerin-fern-reward",
+          "name": "Ferns Siegelring",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 4,
+            "kraft": 4
+          },
+          "slot": "ring",
+          "desc": "Drei Leute wollten Ferns Siegelring kaufen. Fern hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "erfinder-tesla",
@@ -5522,7 +6530,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-erfinder-tesla-reward",
+          "name": "Teslas persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "kraft": 8,
+            "weisheit": 4
+          },
+          "slot": "weapon",
+          "desc": "Tesla sagt, Teslas persönliches Werkzeug habe eine Geschichte. Tesla weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "richterin-justina",
@@ -5576,7 +6600,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-richterin-justina-reward",
+          "name": "Justinas treuer Schild",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 7,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Wurde von Justina persönlich hergestellt. Oder gefunden. Oder gestohlen. Justina war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "leuchtturmwaerter-sol",
@@ -5647,7 +6687,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-leuchtturmwaerter-sol-reward",
+          "name": "Sols Kopfbedeckung",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "weisheit": 7,
+            "glueck": 3
+          },
+          "slot": "helm",
+          "desc": "Die Inschrift lautet: 'Eigentum von Sol. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "puppenmacherin-elara",
@@ -5701,7 +6757,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-puppenmacherin-elara-reward",
+          "name": "Elaras bester Mantel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 4
+          },
+          "slot": "armor",
+          "desc": "Elara hat Elaras bester Mantel jahrelang benutzt. Die Gebrauchsspuren nennt Elara 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "wanderer-nobody",
@@ -5772,7 +6844,23 @@
             "rarity": "legendary"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-wanderer-nobody-reward",
+          "name": "Namenloses Talisman",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 4,
+            "weisheit": 5
+          },
+          "slot": "amulet",
+          "desc": "Der vorherige Besitzer hat Namenloses Talisman freiwillig abgegeben. Das spricht entweder für Namenloses Talisman oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "baecker-fritz",
@@ -5809,7 +6897,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-baecker-fritz-reward",
+          "name": "Fritzs Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "ausdauer": 4
+          },
+          "slot": "boots",
+          "desc": "Fritz behauptet, Fritzs Wanderstiefel sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "haushalterin-magda",
@@ -5846,7 +6950,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-haushalterin-magda-reward",
+          "name": "Magdas Siegelring",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "kraft": 3
+          },
+          "slot": "ring",
+          "desc": "Riecht nach Magdas Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "laternenanzuender-pip",
@@ -5883,7 +7003,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-laternenanzuender-pip-reward",
+          "name": "Pips persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 3,
+            "weisheit": 3
+          },
+          "slot": "weapon",
+          "desc": "Drei Leute wollten Pips persönliches Werkzeug kaufen. Pip hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "architektin-iris",
@@ -5937,7 +7073,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-architektin-iris-reward",
+          "name": "Iriss treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 5,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Iris sagt, Iriss treuer Schild habe eine Geschichte. Iris weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "gaukler-jest",
@@ -5974,7 +7126,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-gaukler-jest-reward",
+          "name": "Jests Kopfbedeckung",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 6,
+            "glueck": 2
+          },
+          "slot": "helm",
+          "desc": "Wurde von Jest persönlich hergestellt. Oder gefunden. Oder gestohlen. Jest war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "mentor-grau",
@@ -6028,7 +7196,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-mentor-grau-reward",
+          "name": "Graus bester Mantel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 4,
+            "kraft": 4
+          },
+          "slot": "armor",
+          "desc": "Die Inschrift lautet: 'Eigentum von Grau. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "jongleurin-luna",
@@ -6065,7 +7249,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-jongleurin-luna-reward",
+          "name": "Lunas Talisman",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 5,
+            "weisheit": 3
+          },
+          "slot": "amulet",
+          "desc": "Luna hat Lunas Talisman jahrelang benutzt. Die Gebrauchsspuren nennt Luna 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "alchemist-gold",
@@ -6119,7 +7319,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-alchemist-gold-reward",
+          "name": "Golds Wanderstiefel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 3,
+            "ausdauer": 3
+          },
+          "slot": "boots",
+          "desc": "Der vorherige Besitzer hat Golds Wanderstiefel freiwillig abgegeben. Das spricht entweder für Golds Wanderstiefel oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "traumdeuterin-morphea",
@@ -6173,7 +7389,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-traumdeuterin-morphea-reward",
+          "name": "Morpheas Siegelring",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 6,
+            "kraft": 3
+          },
+          "slot": "ring",
+          "desc": "Morphea behauptet, Morpheas Siegelring sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "steinmetz-granite",
@@ -6227,7 +7459,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-steinmetz-granite-reward",
+          "name": "Granites persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "kraft": 5,
+            "weisheit": 2
+          },
+          "slot": "weapon",
+          "desc": "Riecht nach Granites Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "kartografin-mappe",
@@ -6264,7 +7512,23 @@
             "rarity": "rare"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-kartografin-mappe-reward",
+          "name": "Mappes treuer Schild",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 4
+          },
+          "slot": "shield",
+          "desc": "Drei Leute wollten Mappes treuer Schild kaufen. Mappe hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "strategin-athena",
@@ -6318,7 +7582,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-strategin-athena-reward",
+          "name": "Athenas Kopfbedeckung",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "weisheit": 5,
+            "glueck": 2
+          },
+          "slot": "helm",
+          "desc": "Athena sagt, Athenas Kopfbedeckung habe eine Geschichte. Athena weigert sich, sie zu erzählen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "geschichtsschreiber-chronos",
@@ -6372,7 +7652,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-geschichtsschreiber-chronos-reward",
+          "name": "Chronoss bester Mantel",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "ausdauer": 8,
+            "kraft": 3
+          },
+          "slot": "armor",
+          "desc": "Wurde von Chronos persönlich hergestellt. Oder gefunden. Oder gestohlen. Chronos war ungenau.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "heilerin-grace",
@@ -6426,7 +7722,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-heilerin-grace-reward",
+          "name": "Graces Talisman",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 8,
+            "weisheit": 3
+          },
+          "slot": "amulet",
+          "desc": "Die Inschrift lautet: 'Eigentum von Grace. Bei Verlust: nicht zurückbringen.'",
+          "icon": null
+        }
+      }
     },
     {
       "id": "zeitungsjunge-max",
@@ -6463,7 +7775,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-zeitungsjunge-max-reward",
+          "name": "Maxs Wanderstiefel",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 3,
+            "ausdauer": 4
+          },
+          "slot": "boots",
+          "desc": "Max hat Maxs Wanderstiefel jahrelang benutzt. Die Gebrauchsspuren nennt Max 'Charakter'.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "mutter-erde",
@@ -6534,7 +7862,23 @@
             "rarity": "legendary"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-mutter-erde-reward",
+          "name": "Erdes Siegelring",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "glueck": 7,
+            "kraft": 4
+          },
+          "slot": "ring",
+          "desc": "Der vorherige Besitzer hat Erdes Siegelring freiwillig abgegeben. Das spricht entweder für Erdes Siegelring oder gegen seinen Lebenswillen.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "meisterkoch-umami",
@@ -6588,7 +7932,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-meisterkoch-umami-reward",
+          "name": "Umamis persönliches Werkzeug",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 3
+          },
+          "slot": "weapon",
+          "desc": "Umami behauptet, Umamis persönliches Werkzeug sei unbezahlbar. Der Preis war trotzdem erstaunlich konkret.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "bergmann-gruber",
@@ -6625,7 +7985,23 @@
             "rarity": "uncommon"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-bergmann-gruber-reward",
+          "name": "Grubers treuer Schild",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 6,
+            "kraft": 2
+          },
+          "slot": "shield",
+          "desc": "Riecht nach Grubers Werkstatt. Das ist kein Kompliment, aber auch keine Kritik.",
+          "icon": null
+        }
+      }
     },
     {
       "id": "geschuetzt-erin",
@@ -6679,7 +8055,23 @@
             "rarity": "epic"
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "npc-geschuetzt-erin-reward",
+          "name": "Erins Kopfbedeckung",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "weisheit": 6,
+            "glueck": 4
+          },
+          "slot": "helm",
+          "desc": "Drei Leute wollten Erins Kopfbedeckung kaufen. Erin hat allen dreien abgesagt. Dann dir geschenkt.",
+          "icon": null
+        }
+      }
     }
   ],
   "specialNpcs": {
