@@ -294,6 +294,12 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </ul>
           </div>
 
+          {/* Cooldown warning */}
+          <div className="rounded-lg px-3 py-2 mb-2" style={{ background: "rgba(234,179,8,0.1)", border: "1px solid rgba(234,179,8,0.25)" }}>
+            <p className="text-xs font-semibold" style={{ color: "#eab308" }}>30-Tage Cooldown nach Verlassen</p>
+            <p className="text-xs" style={{ color: "rgba(234,179,8,0.6)" }}>Nach dem Verlassen der Taverne kannst du 30 Tage lang nicht erneut rasten. Wähle die Dauer sorgfältig.</p>
+          </div>
+
           <button
             onClick={enterTavern}
             disabled={actionLoading}
