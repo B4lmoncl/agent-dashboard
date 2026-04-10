@@ -130,11 +130,14 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   useEffect(() => { fetchRift(); }, [fetchRift]);
 
-  // Auto-refresh timer
+  // Auto-refresh timer + client-side countdown tick
+  const [, setTick] = useState(0);
   useEffect(() => {
     if (!activeRift || activeRift.completed || activeRift.failed) return;
-    const interval = setInterval(fetchRift, 60000);
-    return () => clearInterval(interval);
+    const apiRefresh = setInterval(fetchRift, 60000);
+    // Re-render every 10s for countdown accuracy
+    const countdownTick = setInterval(() => setTick(t => t + 1), 10000);
+    return () => { clearInterval(apiRefresh); clearInterval(countdownTick); };
   }, [activeRift, fetchRift]);
 
   const enterRift = async (tierId: string, mythicLevel?: number) => {

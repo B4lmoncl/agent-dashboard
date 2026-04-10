@@ -120,6 +120,9 @@ function daysRemaining(dateStr: string): string {
 function daysUntil(dateStr: string): string {
   const ms = new Date(dateStr).getTime() - Date.now();
   if (ms <= 0) return "Soon";
+  const hours = Math.ceil(ms / 3600000);
+  if (hours <= 6) return "a few hours";
+  if (hours <= 24) return "~1 day";
   const days = Math.ceil(ms / (24 * 60 * 60 * 1000));
   return `${days} day${days !== 1 ? "s" : ""}`;
 }
@@ -729,13 +732,17 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
             </div>
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#a855f7" }}>{playerContribution.quests}</p>
-              <p className="text-xs text-w20">Quests Completed</p>
+              <TipCustom title="Quests This Boss" icon="◆" accent="#a855f7" body={<p>Number of quests completed while this boss is active. Each quest deals damage based on rarity and your gear score.</p>}>
+                <p className="text-xs text-w20 cursor-help">Quests Completed</p>
+              </TipCustom>
             </div>
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#fbbf24" }}>
                 {playerRank > 0 ? `#${playerRank}` : "-"}
               </p>
-              <p className="text-xs text-w20">Rank</p>
+              <TipCustom title="Contribution Rank" icon="◆" accent="#fbbf24" body={<p>Your rank among all contributors. Top 3 earn bonus rewards including exclusive titles and unique items.</p>}>
+                <p className="text-xs text-w20 cursor-help">{playerRank > 0 ? "Rank" : "No contribution yet"}</p>
+              </TipCustom>
             </div>
           </div>
           {/* Contribution progress bar vs top contributor */}
