@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
+    "description": "Audit markers — tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
     "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
     "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
   },
@@ -49,7 +49,7 @@
   "components/ForgeView.tsx": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-05",
-    "findings": "font 11\u219212, batch interval cleanup, buy cursor fix",
+    "findings": "font 11→12, batch interval cleanup, buy cursor fix",
     "status": "clean"
   },
   "components/RitualChamber.tsx": {
@@ -265,7 +265,7 @@
   "components/GuildHallBackground.tsx": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
-    "findings": "sky canvas, weather effects \u2014 visual only",
+    "findings": "sky canvas, weather effects — visual only",
     "status": "clean"
   },
   "components/FloorAmbientParticles.tsx": {
@@ -649,7 +649,7 @@
   "public/data/gems.json": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
-    "findings": "6 types \u00d7 5 tiers = 30 gems",
+    "findings": "6 types × 5 tiers = 30 gems",
     "status": "clean"
   },
   "public/data/talentTree.json": {
@@ -667,7 +667,7 @@
   "public/data/battlePass.json": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
-    "findings": "5 seasons \u00d7 40 rewards",
+    "findings": "5 seasons × 40 rewards",
     "status": "clean"
   },
   "public/data/weeklyChallenges.json": {
@@ -704,6 +704,12 @@
     "auditCount": 1,
     "lastAuditDate": "2026-04-05",
     "findings": "19 items all with descriptions",
+    "status": "clean"
+  },
+  "routes/rift.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-10",
+    "findings": "MED: /api/rift/extend missing player lock — added riftExtendLock. Rest is clean: all POST endpoints have locks, tavern-rest checks, level validation, cooldown checks, mythic anti-skip, weekly replay guard.",
     "status": "clean"
   }
 }

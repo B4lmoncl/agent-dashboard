@@ -631,8 +631,11 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
 });
 
 // ─── POST /api/rift/extend — Extend rift timer with Mondstaub ───────────────
+const riftExtendLock = createPlayerLock('rift-extend');
 router.post('/api/rift/extend', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!riftExtendLock.acquire(uid)) return res.status(429).json({ error: 'Extension in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -684,6 +687,7 @@ router.post('/api/rift/extend', requireAuth, (req, res) => {
     mondstaubSpent: cost,
     mondstaubRemaining: u.currencies?.mondstaub ?? 0,
   });
+  } finally { riftExtendLock.release(uid); }
 });
 
 module.exports = router;
