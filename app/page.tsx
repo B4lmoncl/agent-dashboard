@@ -1162,7 +1162,7 @@ export default function Dashboard() {
                 </div>
                 <p className="text-xs mt-1 font-mono text-w20">
                   {playerLevelInfo.xpInLevel} {playerLevelInfo.xpForLevel ? `/ ${playerLevelInfo.xpForLevel} XP` : "(max)"}
-                  {(loggedInUser._restedXpPool ?? 0) > 0 && <span style={{ color: "rgba(96,165,250,0.5)", marginLeft: 6 }}>+{Math.round((loggedInUser._restedXpPool ?? 0))} rested</span>}
+                  {(loggedInUser._restedXpPool ?? 0) > 0 && <span className="font-semibold" style={{ color: "rgba(96,165,250,0.7)", marginLeft: 6 }}>+{Math.round((loggedInUser._restedXpPool ?? 0))} rested</span>}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   {dailyBonusAvailable && (

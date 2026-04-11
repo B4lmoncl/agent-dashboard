@@ -158,7 +158,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   const isEpicPlus = rarity === "epic" || rarity === "legendary";
   const isRarePlus = rarity === "rare" || rarity === "epic" || rarity === "legendary";
   // Border opacity: legendary/epic brighter, rare slightly elevated, common/uncommon default
-  const borderAlpha = isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "66";
+  const borderAlpha = isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "88";
   // Top glow for rare+ cards: a subtle inward shadow from the top edge using the rarity color
   const topGlow = isRarePlus ? `, 0 -1px 8px ${rarityColor}${isLegendary ? "55" : isEpic ? "44" : "33"} inset` : "";
   const hasMinLevel = quest.minLevel != null && quest.minLevel > 0;
