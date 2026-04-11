@@ -983,16 +983,16 @@ button[disabled] {
   50% { opacity: 1; }
 }
 .mondlicht-glow {
-  border-color: rgba(96,165,250,0.7) !important;
-  box-shadow: 0 0 12px rgba(96,165,250,0.35), inset 0 0 8px rgba(96,165,250,0.06);
+  border-color: rgba(103,232,249,0.7) !important;
+  box-shadow: 0 0 12px rgba(103,232,249,0.35), inset 0 0 8px rgba(103,232,249,0.06);
 }
 .mondlicht-glow::after {
   content: '';
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  border: 2px solid rgba(96,165,250,0.5);
-  box-shadow: 0 0 24px rgba(96,165,250,0.4), 0 0 8px rgba(96,165,250,0.6);
+  border: 2px solid rgba(103,232,249,0.5);
+  box-shadow: 0 0 24px rgba(103,232,249,0.4), 0 0 8px rgba(103,232,249,0.6);
   animation: mondlicht-card-pulse 5s ease-in-out infinite;
   pointer-events: none;
 }
@@ -1204,7 +1204,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: radial-gradient(ellipse at 30% 15%, rgba(96,165,250,0.08) 0%, transparent 55%), radial-gradient(ellipse at 75% 85%, rgba(99,102,241,0.06) 0%, transparent 45%);
+  background: radial-gradient(ellipse at 30% 15%, rgba(103,232,249,0.08) 0%, transparent 55%), radial-gradient(ellipse at 75% 85%, rgba(99,102,241,0.06) 0%, transparent 45%);
   z-index: 0;
 }
 
@@ -2205,8 +2205,8 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   100% { background-position: 200% 0; }
 }
 @keyframes rested-xp-breathe {
-  0%, 100% { box-shadow: 0 0 6px rgba(96,165,250,0.1), inset 0 0 3px rgba(96,165,250,0.08); }
-  50% { box-shadow: 0 0 12px rgba(96,165,250,0.2), inset 0 0 6px rgba(96,165,250,0.12); }
+  0%, 100% { box-shadow: 0 0 6px rgba(103,232,249,0.1), inset 0 0 3px rgba(103,232,249,0.08); }
+  50% { box-shadow: 0 0 12px rgba(103,232,249,0.2), inset 0 0 6px rgba(103,232,249,0.12); }
 }
 .rested-xp-zone {
   animation: rested-xp-breathe 3s ease-in-out infinite;
@@ -2216,7 +2216,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(103,232,249,0.15), transparent);
   background-size: 200% 100%;
   animation: rested-xp-shimmer 4s ease-in-out infinite;
   pointer-events: none;

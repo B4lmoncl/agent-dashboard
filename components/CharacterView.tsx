@@ -2043,7 +2043,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </div>
                   <div className="rounded-full overflow-hidden relative" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
                     {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
-                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(96,165,250,0.08), rgba(96,165,250,0.18), rgba(96,165,250,0.08))", borderRight: "2px solid rgba(96,165,250,0.5)", boxShadow: "0 0 8px rgba(96,165,250,0.15)" }} />
+                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))", borderRight: "2px solid rgba(103,232,249,0.5)", boxShadow: "0 0 8px rgba(103,232,249,0.15)" }} />
                     ) : null}
                     <div
                       className="h-full rounded-full relative"
@@ -2602,7 +2602,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           }
         }}
         className="shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
-        style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.15)", color: "rgba(96,165,250,0.55)", cursor: "pointer" }}
+        style={{ background: "rgba(103,232,249,0.06)", border: "1px solid rgba(103,232,249,0.15)", color: "rgba(103,232,249,0.55)", cursor: "pointer" }}
       >
         Collection
       </button>
@@ -2665,10 +2665,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       >
         <div
           className="rounded-2xl overflow-hidden"
-          style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
+          style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(103,232,249,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
         >
           {/* Header */}
-          <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>
+          <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(103,232,249,0.04)" }}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-lg" style={{ color: "#60a5fa" }}>◆</span>
@@ -2721,9 +2721,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   className="text-xs px-3 py-1.5 rounded-full font-medium"
                   style={{
                     cursor: "pointer",
-                    background: isActive ? "rgba(96,165,250,0.2)" : "rgba(255,255,255,0.04)",
+                    background: isActive ? "rgba(103,232,249,0.2)" : "rgba(255,255,255,0.04)",
                     color: isActive ? "#60a5fa" : "rgba(255,255,255,0.4)",
-                    border: `1px solid ${isActive ? "rgba(96,165,250,0.4)" : "rgba(255,255,255,0.06)"}`,
+                    border: `1px solid ${isActive ? "rgba(103,232,249,0.4)" : "rgba(255,255,255,0.06)"}`,
                     transition: "all 0.15s ease",
                   }}
                 >

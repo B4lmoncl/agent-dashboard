@@ -1148,9 +1148,9 @@ export default function Dashboard() {
                       className="absolute top-0 left-0 h-full rounded-full rested-xp-zone"
                       style={{
                         width: `${Math.min(100, ((playerLevelInfo.xpInLevel + (loggedInUser._restedXpPool ?? 0)) / playerLevelInfo.xpForLevel) * 100).toFixed(1)}%`,
-                        background: "linear-gradient(90deg, rgba(96,165,250,0.08), rgba(96,165,250,0.18), rgba(96,165,250,0.08))",
-                        borderRight: "2px solid rgba(96,165,250,0.5)",
-                        boxShadow: "0 0 8px rgba(96,165,250,0.15), inset 0 0 4px rgba(96,165,250,0.1)",
+                        background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))",
+                        borderRight: "2px solid rgba(103,232,249,0.5)",
+                        boxShadow: "0 0 8px rgba(103,232,249,0.15), inset 0 0 4px rgba(103,232,249,0.1)",
                         zIndex: 0,
                       }}
                       title={`${Math.round((loggedInUser._restedXpPool ?? 0))} Rested XP — next quests give 2x XP`}
@@ -1163,7 +1163,7 @@ export default function Dashboard() {
                 </div>
                 <p className="text-xs mt-1 font-mono text-w20">
                   {playerLevelInfo.xpInLevel} {playerLevelInfo.xpForLevel ? `/ ${playerLevelInfo.xpForLevel} XP` : "(max)"}
-                  {(loggedInUser._restedXpPool ?? 0) > 0 && <span className="font-semibold" style={{ color: "rgba(96,165,250,0.7)", marginLeft: 6 }}>+{Math.round((loggedInUser._restedXpPool ?? 0))} rested</span>}
+                  {(loggedInUser._restedXpPool ?? 0) > 0 && <span className="font-semibold" style={{ color: "rgba(103,232,249,0.7)", marginLeft: 6 }}>+{Math.round((loggedInUser._restedXpPool ?? 0))} rested</span>}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   {dailyBonusAvailable && (
@@ -1877,7 +1877,7 @@ export default function Dashboard() {
                     feat:     { badge: "feat",     color: "#4ade80", bg: "rgba(74,222,128,0.1)"  },
                     fix:      { badge: "fix",      color: "#f59e0b", bg: "rgba(245,158,11,0.1)"  },
                     chore:    { badge: "chore",    color: "#6b7280", bg: "rgba(107,114,128,0.1)" },
-                    docs:     { badge: "docs",     color: "#60a5fa", bg: "rgba(96,165,250,0.1)"  },
+                    docs:     { badge: "docs",     color: "#60a5fa", bg: "rgba(103,232,249,0.1)"  },
                     refactor: { badge: "refactor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
                   };
                   const ts = typeStyle[c.type] || { badge: c.type, color: "#9ca3af", bg: "rgba(156,163,175,0.1)" };
@@ -2179,7 +2179,7 @@ export default function Dashboard() {
                       if (dailyCount === 4) return (
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.12)" }}>
                           <span style={{ color: "#60a5fa", fontSize: 12, flexShrink: 0 }}>◆</span>
-                          <p className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>
+                          <p className="text-xs" style={{ color: "rgba(103,232,249,0.6)" }}>
                             <span className="font-semibold" style={{ color: "#60a5fa" }}>1 quest left</span> at full rewards today. After 5, rewards scale down.
                           </p>
                         </div>
@@ -2220,7 +2220,7 @@ export default function Dashboard() {
                         <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
                         <p className="text-sm font-semibold text-w30">{searchFilter ? `No quests match "${searchFilter}"` : "The Quest Board is empty"}</p>
                         {!searchFilter && <p className="text-xs text-w15 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
-                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button>}
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(103,232,249,0.1)", color: "#60a5fa", border: "1px solid rgba(103,232,249,0.2)" }}>Clear Search</button>}
                         {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive btn-press px-4 py-2 rounded-lg inline-flex items-center gap-2" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-bold">Summon Quests</span></button>}
                       </div>
                     ) : (
@@ -2501,7 +2501,7 @@ export default function Dashboard() {
                           )
                         : journalQuests;
                       if (filtered.length === 0) return (
-                        <div className="p-4 text-center"><p className="text-xs text-w20">No quests match &ldquo;{completedSearch}&rdquo;</p><button onClick={() => setCompletedSearch("")} className="btn-interactive mt-2 text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button></div>
+                        <div className="p-4 text-center"><p className="text-xs text-w20">No quests match &ldquo;{completedSearch}&rdquo;</p><button onClick={() => setCompletedSearch("")} className="btn-interactive mt-2 text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(103,232,249,0.1)", color: "#60a5fa", border: "1px solid rgba(103,232,249,0.2)" }}>Clear Search</button></div>
                       );
                       return (
                         <div>
