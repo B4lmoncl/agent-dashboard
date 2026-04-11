@@ -160,7 +160,8 @@ export default function AdventureTomeView({
         </p>
 
         {/* Total completion circle */}
-        <div className="flex items-center justify-center mt-3">
+        <Tip k="adventure_tome">
+        <div className="flex items-center justify-center mt-3 cursor-help">
           <div
             className="relative flex items-center justify-center"
             style={{ width: 80, height: 80 }}
@@ -191,6 +192,7 @@ export default function AdventureTomeView({
             </span>
           </div>
         </div>
+        </Tip>
         <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>
           Gesamtfortschritt durch den Turm
         </p>
