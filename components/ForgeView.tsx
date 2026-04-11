@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
 
@@ -870,6 +871,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   return (
     <div className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
+      <FirstVisitBanner
+        viewId="forge"
+        title="Artisan's Quarter"
+        description="Wähle bis zu 2 Berufe und lerne Rezepte bei NPC-Trainern. Höhere Ränge schalten stärkere Rezepte frei. Materialien droppen aus Quests basierend auf deiner Berufswahl."
+        accentColor="#f59e0b"
+      />
       {/* Ambient forge sparks */}
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{

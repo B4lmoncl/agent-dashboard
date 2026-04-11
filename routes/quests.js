@@ -314,6 +314,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     if (npcStatus && npcStatus.status === 'completed') {
       return res.status(409).json({ error: 'Quest already completed by this player' });
     }
+    // Must have claimed the quest first (status = in_progress or claimed)
+    if (!npcStatus || (npcStatus.status !== 'in_progress' && npcStatus.status !== 'claimed')) {
+      return res.status(400).json({ error: 'You must claim this quest first' });
+    }
     pp.npcQuests[quest.id] = { status: 'completed', completedAt: now(), completedBy: agentKey };
     savePlayerProgress();
     // Award XP/achievements to the player

@@ -36,7 +36,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
             { key: "household",  label: "Household",  iconSrc: "/images/icons/cat-personal.png",  fallback: "" },
             { key: "social",     label: "Social",     iconSrc: "/images/icons/cat-social.png",    fallback: "" },
             { key: "coop",       label: "Co-op",      iconSrc: "/images/icons/cat-coop.png",      fallback: "" },
-            { key: "challenges", label: "Challenges", iconSrc: "",                                fallback: "" /* TODO: no pixel art icon yet */ },
+            { key: "challenges", label: "Challenges", iconSrc: "/images/icons/nav-challenges.png", fallback: "" },
           ] as { key: typeof tab; label: string; iconSrc: string; fallback: string }[]).map(t => (
             <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-sm font-semibold transition-all whitespace-nowrap px-2 inline-flex items-center justify-center gap-1"
               style={{
