@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { ModalPortal, useModalBehavior } from "@/components/ModalPortal";
 import { fetchRituals } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -327,6 +328,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
 
   return (
     <>
+      <TutorialMomentBanner viewId="rituals" playerLevel={1} />
       <div data-feedback-id="ritual-chamber" className="section-ritual tab-content-enter">
         {isResting && (
           <div className="mb-3 px-3 py-2 rounded-lg text-xs" style={{ background: "rgba(217,119,6,0.08)", color: "#d97706", border: "1px solid rgba(217,119,6,0.2)" }}>

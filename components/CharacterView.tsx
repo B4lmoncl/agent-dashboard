@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemActionPopup from "@/components/ItemActionPopup";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { formatLegendaryLabel } from "@/app/utils";
