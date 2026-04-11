@@ -3,7 +3,7 @@
     {
       "id": "quick-forage",
       "name": "Quick Forage",
-      "description": "A short trip to gather nearby resources.",
+      "description": "A short trip. Your companion returns with supplies and opinions about your organizational skills.",
       "durationHours": 4,
       "icon": "/images/icons/exp-forest.png",
       "rewards": {
@@ -27,7 +27,7 @@
     {
       "id": "deep-woods",
       "name": "Deep Woods Patrol",
-      "description": "Venture into the forests beyond the tower walls.",
+      "description": "Beyond the tower walls, the trees watch. Your companion reports they watched back.",
       "durationHours": 8,
       "icon": "/images/icons/exp-forest.png",
       "rewards": {
@@ -55,7 +55,7 @@
     {
       "id": "mountain-pass",
       "name": "Mountain Pass Trek",
-      "description": "A challenging journey through treacherous mountain passes.",
+      "description": "Treacherous terrain. Your companion handles it. Barely. With complaints.",
       "durationHours": 12,
       "icon": "/images/icons/exp-mountain.png",
       "rewards": {
@@ -87,7 +87,7 @@
     {
       "id": "ancient-ruins",
       "name": "Ancient Ruins Expedition",
-      "description": "Explore forgotten ruins deep beneath the tower. Only the bravest companions dare.",
+      "description": "Forgotten ruins beneath the tower. Your companion insists it was not scared. The trembling is unrelated.",
       "durationHours": 24,
       "icon": "/images/icons/exp-ruins.png",
       "rewards": {
