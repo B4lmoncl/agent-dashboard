@@ -2043,7 +2043,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </div>
                   <div className="rounded-full overflow-hidden relative" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
                     {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
-                      <div className="absolute top-0 left-0 h-full rounded-full" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "rgba(96,165,250,0.15)", borderRight: "1px solid rgba(96,165,250,0.4)" }} />
+                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(96,165,250,0.08), rgba(96,165,250,0.18), rgba(96,165,250,0.08))", borderRight: "2px solid rgba(96,165,250,0.5)", boxShadow: "0 0 8px rgba(96,165,250,0.15)" }} />
                     ) : null}
                     <div
                       className="h-full rounded-full relative"

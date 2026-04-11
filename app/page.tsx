@@ -1142,14 +1142,15 @@ export default function Dashboard() {
                 <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
                 {/* XP progress bar — Diablo style + WoW rested XP blue zone */}
                 <div className={`progress-bar-diablo relative${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
-                  {/* Rested XP zone (blue overlay showing how far 2x bonus extends) */}
+                  {/* Rested XP zone — WoW-style blue shimmer showing 2x bonus range */}
                   {(loggedInUser._restedXpPool ?? 0) > 0 && playerLevelInfo.xpForLevel > 0 && (
                     <div
-                      className="absolute top-0 left-0 h-full rounded-full"
+                      className="absolute top-0 left-0 h-full rounded-full rested-xp-zone"
                       style={{
                         width: `${Math.min(100, ((playerLevelInfo.xpInLevel + (loggedInUser._restedXpPool ?? 0)) / playerLevelInfo.xpForLevel) * 100).toFixed(1)}%`,
-                        background: "rgba(96,165,250,0.15)",
-                        borderRight: "1px solid rgba(96,165,250,0.4)",
+                        background: "linear-gradient(90deg, rgba(96,165,250,0.08), rgba(96,165,250,0.18), rgba(96,165,250,0.08))",
+                        borderRight: "2px solid rgba(96,165,250,0.5)",
+                        boxShadow: "0 0 8px rgba(96,165,250,0.15), inset 0 0 4px rgba(96,165,250,0.1)",
                         zIndex: 0,
                       }}
                       title={`${Math.round((loggedInUser._restedXpPool ?? 0))} Rested XP — next quests give 2x XP`}
