@@ -228,8 +228,8 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             }}
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
-            style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-            title={actionLoading ? "Action in progress..." : "Leave rest mode — your streaks and forge temp will be restored"}
+            style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+            title={actionLoading ? "Action in progress..." : "Leave rest mode (triggers 30-day cooldown)"}
           >
             {actionLoading ? "..." : "Leave the Hearth"}
           </button>
