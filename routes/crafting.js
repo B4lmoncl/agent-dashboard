@@ -495,6 +495,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   if (!isRecipeDiscovered(recipe, profProgress, u)) {
     return res.status(400).json({ error: 'You haven\'t learned this recipe yet.' });
   }
+  // Guard: if player needs enrollment AND this is a primary profession they dropped,
+  // block crafting — don't silently re-enroll (WoW: dropping = lose everything)
+  if (needsEnrollment && !isSecondaryProf) {
+    return res.status(400).json({ error: `You must choose ${profDef.name} as your profession first.` });
+  }
 
   // Check profession skill/level
   if (!meetsSkillReq(recipe, profProgress)) {

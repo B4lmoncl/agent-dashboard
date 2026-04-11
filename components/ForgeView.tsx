@@ -1678,7 +1678,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               return (
                 <div className="flex items-center gap-0.5 px-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   {tabs.map(t => (
-                    <button key={t.key} onClick={() => { setNpcModalTab(t.key); if (t.key === "craft") setSelectedRecipeId(null); }} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
+                    <button key={t.key} onClick={() => { setNpcModalTab(t.key); }} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
                       background: npcModalTab === t.key ? `${t.color}12` : "transparent",
                       color: npcModalTab === t.key ? t.color : "rgba(255,255,255,0.25)",
                       borderBottom: npcModalTab === t.key ? `2px solid ${t.color}` : "2px solid transparent",

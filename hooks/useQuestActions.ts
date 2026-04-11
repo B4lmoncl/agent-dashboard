@@ -327,7 +327,7 @@ export function useQuestActions({
         }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
-          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered!", rarity: "epic" });
+          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
         }
         // Toast for faction rep level-ups
         if (data.repGains) {
