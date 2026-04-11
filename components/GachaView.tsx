@@ -769,7 +769,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
       <FirstVisitBanner
         viewId="gacha"
         title="Schicksalsrad"
-        description="Ziehe Items aus dem Schicksalsrad mit Stardust oder Runensplitter. Jeder 10er-Pull garantiert mindestens ein Episches Item. Je öfter du ohne Legendär ziehst, desto höher wird deine Pity-Chance."
+        description="Das Schicksalsrad dreht sich für Stardust oder Runensplitter. Ein 10er-Pull garantiert mindestens ein Episches Item. Das Pity-System belohnt deine Beharrlichkeit. Oder bestraft dein Glück. Kommt auf die Perspektive an."
         accentColor="#f59e0b"
       />
       {/* Pull animation overlay */}

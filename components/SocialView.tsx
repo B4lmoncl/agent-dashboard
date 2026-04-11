@@ -1993,7 +1993,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
       <FirstVisitBanner
         viewId="social"
         title="The Breakaway"
-        description="Finde Freunde, tausche Items, sende Nachrichten und verfolge die Aktivitäten deiner Gilde. Freunde sehen deinen Online-Status und können dir Trade-Anfragen schicken."
+        description="Freunde finden. Items tauschen. Nachrichten senden. Beobachten was die anderen so treiben. Das Übliche. Nur mit besseren Belohnungen."
         accentColor="#a855f7"
       />
 

@@ -303,7 +303,7 @@ export default function TalentTreeView({
       <FirstVisitBanner
         viewId="talents"
         title="Schicksalsbaum"
-        description="Passive Boni in 3 Ringen. Innerer Ring = Grundlagen, Mitte = Spezialisierung mit Tradeoffs, Außen = mächtige Capstones. Manche Knoten schließen sich gegenseitig aus. Respec kostet 500 Gold + 50 Essenz."
+        description="Drei Ringe. Der innere lehrt Grundlagen. Der mittlere verlangt Entscheidungen. Der äußere belohnt Entschlossenheit. Manche Pfade schließen sich gegenseitig aus. Respec kostet 500 Gold und 50 Essenz. Bereue weise."
         accentColor="#a78bfa"
       />
       {/* Header */}

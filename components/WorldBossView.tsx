@@ -307,7 +307,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         <FirstVisitBanner
           viewId="worldboss"
           title="World Boss"
-          description="Gemeinsamer Kampf aller Spieler gegen einen wöchentlichen Boss. Jede abgeschlossene Quest verursacht Schaden basierend auf deiner Gear Score. Top-Beitragende erhalten exklusive Titel und Unique-Items."
+          description="Ein Boss. Alle Spieler. Jede Quest ist ein Schlag. Deine Gear Score bestimmt wie hart. Die Top-Beiträger bekommen, was alle anderen nur bewundern können."
           accentColor="#f59e0b"
         />
         {/* Ambient ember particles — dark gold/amber for the graveyard of titans */}

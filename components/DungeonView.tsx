@@ -332,7 +332,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
       <FirstVisitBanner
         viewId="dungeons"
         title="Das Untergewölbe"
-        description="Lade 1-3 Freunde ein, um gemeinsam Dungeons zu bestreiten. Der Run läuft 8 Stunden im Hintergrund — sammle danach deine Belohnungen. Erfolg basiert auf eurer kombinierten Gear Score + Companion Bond."
+        description="Lade 1-3 Freunde ein. Der Dungeon läuft 8 Stunden im Hintergrund. Eure kombinierte Gear Score entscheidet über Erfolg. Companion Bond hilft. Hoffnung weniger."
         accentColor="#3b82f6"
       />
       {/* Dust motes in torchlight */}

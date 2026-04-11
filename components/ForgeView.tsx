@@ -878,7 +878,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       <FirstVisitBanner
         viewId="forge"
         title="Artisan's Quarter"
-        description="Wähle bis zu 2 Berufe und lerne Rezepte bei NPC-Trainern. Höhere Ränge schalten stärkere Rezepte frei. Materialien droppen aus Quests basierend auf deiner Berufswahl."
+        description="Zwei Berufe. Nicht mehr. Trainer lehren Rezepte für Gold. Höhere Ränge schalten stärkere Rezepte frei. Materialien droppen aus Quests — welche, hängt von deiner Berufswahl ab. Wähle entsprechend."
         accentColor="#f59e0b"
       />
       {/* Ambient forge sparks */}

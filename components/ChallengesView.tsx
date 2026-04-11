@@ -831,7 +831,7 @@ export default function ChallengesView({
       <FirstVisitBanner
         viewId="challenges"
         title="Wöchentliche Herausforderungen"
-        description="Sternenpfad: Solo-Challenge mit 3 Stufen und Stern-Bewertungen. Schließe Stufen schnell ab für Bonus-Sterne. Expedition: Kooperative Gilden-Challenge — alle Spieler arbeiten gemeinsam auf Checkpoints hin."
+        description="Sternenpfad: Drei Stufen. Allein. Schnelligkeit bringt Bonus-Sterne. Expedition: Alle zusammen auf gemeinsame Checkpoints. Eine Seite testet dich. Die andere testet eure Geduld miteinander."
         accentColor="#fbbf24"
       />
       {activeTab === "sternenpfad" && (

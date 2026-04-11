@@ -176,7 +176,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
       <FirstVisitBanner
         viewId="factions"
         title="Die Vier Zirkel"
-        description="Verdiene Reputation bei den Fraktionen durch Quests. Jede Fraktion belohnt bestimmte Quest-Typen. Steige in den Rängen auf für exklusive Titel, Rezepte und Shop-Rabatte."
+        description="Vier Zirkel. Jeder will etwas anderes von dir. Deine Quests verdienen Reputation beim passenden Zirkel. Die Ränge bringen Titel, Rezepte und Rabatte. Loyalität hat ihren Preis. Und ihren Lohn."
         accentColor="#22c55e"
       />
       {/* Header */}

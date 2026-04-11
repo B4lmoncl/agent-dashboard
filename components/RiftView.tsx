@@ -231,7 +231,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       <FirstVisitBanner
         viewId="rift"
         title="Der Riss"
-        description="Starte eine Quest-Kette unter Zeitdruck. Normal: 3 Quests in 72h. Hard: 5 in 48h. Legendary: 7 in 36h. Schließe Legendary ab, um den endlosen Mythic+ Modus freizuschalten."
+        description="Quest-Ketten unter Zeitdruck. Normal ist machbar. Hard ist unangenehm. Legendary ist eine Frage des Charakters. Dahinter wartet Mythic+ — für alle, die nicht wissen wann genug ist."
         accentColor="#a855f7"
       />
       {/* Purple rift energy fragments */}

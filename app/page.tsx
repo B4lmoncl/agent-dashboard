@@ -658,7 +658,7 @@ export default function Dashboard() {
       try {
         if (!localStorage.getItem(weekKey)) {
           localStorage.setItem(weekKey, "1");
-          setTimeout(() => addToast({ type: "flavor", message: "Weekly Reset — Challenges, Expedition & Faction Bonus refreshed!", icon: "◆", sub: "New week, new opportunities" }), 2000);
+          setTimeout(() => addToast({ type: "flavor", message: "Weekly Reset — Challenges, Expedition and Faction Bonus have refreshed.", icon: "◆", sub: "The slate is clean. What you do with it is your concern." }), 2000);
         }
       } catch { /* private browsing */ }
     }
@@ -824,7 +824,7 @@ export default function Dashboard() {
       if (streak > 0) parts.push(`${streak}-day streak`);
       else if (hoursSince >= 48) parts.push("Fresh start — new streak begins today");
 
-      const greeting = hoursSince >= 48 ? "The Hall remembers you." : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
+      const greeting = hoursSince >= 48 ? "The Hall remembers you." : hoursSince >= 24 ? "You're back." : "The Hall stirs.";
       const sub = parts.length > 0 ? parts.join(" · ") : undefined;
 
       setTimeout(() => {
@@ -1930,7 +1930,7 @@ export default function Dashboard() {
                       <FirstVisitBanner
                         viewId="questboard"
                         title="Willkommen im Quest Board"
-                        description="Nimm eine Quest an, schließe sie ab und verdiene XP, Gold und Loot. Jede Quest hat einen Typ (Fitness, Lernen, Sozial etc.) der bestimmt welche Faction-Reputation du bekommst. Höhere Raritäten geben mehr Belohnungen."
+                        description="Nimm eine Quest. Schließe sie ab. Verdiene was dir zusteht. Der Quest-Typ bestimmt welcher Zirkel dich dafür respektiert. Seltene Quests zahlen besser. Offensichtlich."
                         accentColor="#a78bfa"
                       />
                       <div>
@@ -2914,7 +2914,7 @@ export default function Dashboard() {
             setIsAdmin(false);
             await createStarterQuestsIfNew(newName, apiKey);
             await refresh();
-            addToast({ type: "flavor", message: "Welcome to Quest Hall! Check the Guide for tips on getting started.", icon: "/images/icons/nav-great-hall.png" });
+            addToast({ type: "flavor", message: "Welcome to Quest Hall. The Guide holds answers worth seeking.", icon: "/images/icons/nav-great-hall.png" });
             setTodayOpen(true); // Auto-open TodayDrawer for new players
             setShowTutorial(true);
             setTutorialStep(0);
