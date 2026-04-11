@@ -934,7 +934,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
         </div>
         {item && (
           <div className="mt-0.5" style={{ width: 56 }}>
-            <p className="text-center truncate" style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
+            <p className="text-center truncate" title={item.name} style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
             {item.legendaryEffect && (
               <p className="text-center truncate" style={{ fontSize: 9, color: "#f97316", lineHeight: 1.1, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
             )}
@@ -2866,7 +2866,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               >
                                 {item.obtained ? (
                                   <>
-                                    <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
+                                    <p className="text-xs font-semibold truncate" title={item.name} style={{ color }}>{item.name}</p>
                                     <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
                                     {item.legendaryEffect?.label && (
                                       <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>

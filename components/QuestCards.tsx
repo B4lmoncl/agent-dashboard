@@ -55,7 +55,7 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
       >
         <span className="text-xs font-mono flex-shrink-0" style={{ color: "rgba(34,197,94,0.6)" }}>✓</span>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-medium truncate" style={{ color: "rgba(255,255,255,0.6)" }}>{quest.title}</p>
+          <p className="text-xs font-medium truncate" title={quest.title} style={{ color: "rgba(255,255,255,0.6)" }}>{quest.title}</p>
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
               by <span style={{ color: "rgba(255,255,255,0.35)" }}>{quest.completedBy}</span>
@@ -362,7 +362,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <p className="text-xs font-medium truncate flex-1" style={{ color: "#e8d5a3" }}>{quest.title}</p>
+            <p className="text-xs font-medium truncate flex-1" title={quest.title} style={{ color: "#e8d5a3" }}>{quest.title}</p>
             {quest.humanInputRequired && <HumanInputBadge />}
             {quest.createdBy && quest.createdBy !== "leon" && quest.createdBy !== "unknown" && (
               <AgentBadge name={quest.createdBy} />
@@ -540,7 +540,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,165,0,0.7)" }}>◆</span>
-              <p className="text-xs font-semibold truncate flex-1" style={{ color: "#e8e8e8" }}>{quest.title}</p>
+              <p className="text-xs font-semibold truncate flex-1" title={quest.title} style={{ color: "#e8e8e8" }}>{quest.title}</p>
               {quest.humanInputRequired && <HumanInputBadge />}
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
                 {expanded ? "▲" : "▼"}
