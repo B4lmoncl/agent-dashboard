@@ -1830,7 +1830,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                     <p className="text-xs font-semibold" style={{ color: RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af" }}>
                                       {((selectedRecipe as unknown as Record<string, string>).outputRarity || "common").charAt(0).toUpperCase() + ((selectedRecipe as unknown as Record<string, string>).outputRarity || "common").slice(1)} · {selectedRecipe.result?.templateId ? (selectedRecipe as unknown as Record<string, string>).outputSlot || "Gear" : "Gear"}
                                     </p>
-                                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Stats rolled randomly from affix pool</p>
+                                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                                      Stats rolled randomly
+                                      {(() => {
+                                        const s = (selectedRecipe as unknown as Record<string, number[]>).outputSockets;
+                                        return s ? ` · ${s[0]}${s[1] > s[0] ? `–${s[1]}` : ""} socket${s[1] !== 1 ? "s" : ""}` : "";
+                                      })()}
+                                    </p>
                                   </div>
                                 </div>
                               )}
