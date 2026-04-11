@@ -263,7 +263,13 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
     if (data.type === "levelUp") SFX.levelUp();
     else if (data.type === "ritual") SFX.ritualComplete();
     else if (data.type === "vow") SFX.ritualComplete();
-    else SFX.questComplete();
+    else {
+      SFX.questComplete();
+      // Extra loot SFX for legendary/unique drops
+      if (data.loot?.rarity === "legendary" || data.loot?.rarity === "unique") {
+        setTimeout(() => SFX.lootDrop(), 300);
+      }
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ESC to collect & close
