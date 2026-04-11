@@ -287,6 +287,10 @@ export function useQuestActions({
           ...(currencies.length > 0 ? { currencies } : {}),
           ...(data.npcFinalReward
             ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` }
+            : data.gambleResult === "double"
+              ? { flavor: "Gamble paid off. Double rewards." }
+              : data.gambleResult === "halved"
+                ? { flavor: "Gamble lost. Half rewards." }
             : data.dailyDiminishing != null && data.dailyDiminishing < 1
               ? { flavor: `Quest ${data.dailyQuestCount || "?"} today. Rewards reduced to ${Math.round(data.dailyDiminishing * 100)}%.` }
               : data.dailyQuestCount != null && data.dailyQuestCount <= 5

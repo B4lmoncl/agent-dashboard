@@ -338,7 +338,8 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const streakMilestone = u?._lastStreakMilestone || null;
     const codexDiscovery = u?._lastCodexDiscovery || null;
     const battlePassLevelUp = u?._lastBattlePassXP?.leveledUp ? u._lastBattlePassXP : null;
-    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; }
+    const gambleResult = u?._lastGambleResult || null;
+    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; delete u._lastGambleResult; }
     const repGains = u?._lastRepGains || null;
     if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; }
     // Grant NPC's final reward item when the last quest in the chain is completed
@@ -380,6 +381,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       streakMilestone,
       codexDiscovery,
       battlePassLevelUp: battlePassLevelUp ? { level: battlePassLevelUp.level } : null,
+      gambleResult,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo.level > prevLevel ? { level: newLevelInfo.level, title: newLevelInfo.title } : null,
     });
