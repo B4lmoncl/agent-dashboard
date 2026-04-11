@@ -642,7 +642,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   });
                   const d = await r.json();
                   if (r.ok) {
-                    setMessage({ text: d.message || "Boost activated!", type: "success" });
+                    setMessage({ text: d.message || "Boost activated.", type: "success" });
                     fetchBoss();
                   } else {
                     setMessage({ text: d.error || "Boost failed", type: "error" });

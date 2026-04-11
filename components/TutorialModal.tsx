@@ -1089,7 +1089,7 @@ export const TUTORIAL_STEPS = [
   },
   {
     key: "done",
-    title: "Bereit, Wanderer!",
+    title: "Bereit, Wanderer.",
     desc: "Nimm eine Quest an. Halte deinen Streak. Der Guide hat den Rest.",
     target: null,
     position: "center" as const,

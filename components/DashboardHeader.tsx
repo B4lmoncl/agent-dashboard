@@ -544,7 +544,7 @@ export default function DashboardHeader({
                               body: JSON.stringify({ avatarStyle: style }),
                             });
                             refresh();
-                            setSettingsMsg("Avatar updated!");
+                            setSettingsMsg("Avatar updated.");
                             setTimeout(() => setSettingsMsg(""), 3000);
                           } catch { setSettingsMsg("Network error"); }
                         }}

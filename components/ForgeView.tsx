@@ -472,7 +472,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const resultSkillUpColor = data.skillUpColor || null;
         let msg = data.message || "Done.";
         if (data.atSkillCap && data.nextRankNeeded) msg += ` — Skill Cap reached! Train ${data.nextRankNeeded} to continue.`;
-        else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
+        else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus." : ""})`;
         else if (!hadSkillUp && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 75}]`;
         setCraftResultSkillUpColor(resultSkillUpColor);
