@@ -258,7 +258,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         setMessage({ text: d.error || "Failed to claim rewards", type: "error" });
       } else {
         setClaimResult(d);
-        setMessage({ text: "Rewards claimed!", type: "success" });
+        setMessage({ text: "Rewards claimed.", type: "success" });
         fetchBoss();
         onRefresh?.();
         if (onRewardCelebration && d.rewards) {

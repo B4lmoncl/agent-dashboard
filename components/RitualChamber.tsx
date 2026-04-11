@@ -212,7 +212,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 <span>Pact Goal: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
                 <span>·</span>
                 <span style={{ color: ritual.streak >= commitGoal ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
-                  {ritual.streak >= commitGoal ? "Fulfilled!" : `${commitGoal - ritual.streak}d remaining`}
+                  {ritual.streak >= commitGoal ? "Fulfilled." : `${commitGoal - ritual.streak}d remaining`}
                 </span>
               </div>
             )}

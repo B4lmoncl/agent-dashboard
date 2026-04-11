@@ -166,7 +166,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
-        addToast({ type: "flavor", message: "Quest claimed!", icon: "/images/icons/nav-great-hall.png" });
+        addToast({ type: "flavor", message: "Quest claimed.", icon: "/images/icons/nav-great-hall.png" });
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
@@ -323,7 +323,7 @@ export function useQuestActions({
         }
         // Toast for gem drops
         if (data.gemDrop) {
-          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped!", rarity: "rare" });
+          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped.", rarity: "rare" });
         }
         // Warning: inventory was full, loot was lost
         if (data.inventoryFull) {

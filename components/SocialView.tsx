@@ -1498,7 +1498,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
         if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
         onRewardCelebration({
           type: "daily-bonus",
-          title: "Mail Collected!",
+          title: "Mail collected.",
           xpEarned: 0,
           goldEarned: data.goldCollected || 0,
           loot: data.itemsCollected?.length ? { name: `${data.itemsCollected.length} item${data.itemsCollected.length > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
@@ -1533,7 +1533,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
       });
       const data = await r.json();
       if (r.ok) {
-        setActionMsg(data.message || "Sent!");
+        setActionMsg(data.message || "Sent.");
         setComposing(false);
         setSendTo(""); setSendSubject(""); setSendBody(""); setSendGold(0);
         fetchMail();

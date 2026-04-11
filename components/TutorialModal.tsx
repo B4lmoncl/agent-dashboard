@@ -1026,7 +1026,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "quest-board",
     title: "The Great Hall — Dein Quest Board",
-    desc: "Hier findest du deine Aufträge. Offene Quests annehmen → bearbeiten → abschließen. Jede Quest gibt XP, Gold und Loot-Chancen!",
+    desc: "Hier findest du deine Aufträge. Offene Quests annehmen → bearbeiten → abschließen. Jede Quest gibt XP, Gold und Loot-Chancen.",
     target: "quest-board-tab",
     position: "bottom" as const,
     navigateTo: "questBoard",

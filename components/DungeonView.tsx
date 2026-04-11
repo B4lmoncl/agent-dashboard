@@ -487,7 +487,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     {timeLeft(new Date(activeRun.completesAt).getTime() - Date.now())}
                   </p>
                   <p className="text-xs text-w20">
-                    {new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? "Ready to collect!" : "Time remaining"}
+                    {new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? "Ready to collect." : "Time remaining"}
                   </p>
                 </>
               )}

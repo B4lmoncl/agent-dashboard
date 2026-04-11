@@ -117,7 +117,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
         setCurrencyMsg({ text: d.resultMsg || "Acquired.", type: "success" });
         fetchCurrencyShop();
         if (onRewardCelebration) {
-          onRewardCelebration({ type: "quest", title: "Purchase Complete", xpEarned: 0, goldEarned: 0, flavor: d.resultMsg || "Item acquired!" });
+          onRewardCelebration({ type: "quest", title: "Purchase Complete", xpEarned: 0, goldEarned: 0, flavor: d.resultMsg || "Item acquired." });
         }
       } else {
         setCurrencyMsg({ text: d.error || "Purchase failed", type: "error" });

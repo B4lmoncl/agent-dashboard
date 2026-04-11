@@ -470,7 +470,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       if (r.ok) {
         const hadSkillUp = (data.skillGained ?? 0) > 0;
         const resultSkillUpColor = data.skillUpColor || null;
-        let msg = data.message || "Success!";
+        let msg = data.message || "Done.";
         if (data.atSkillCap && data.nextRankNeeded) msg += ` — Skill Cap reached! Train ${data.nextRankNeeded} to continue.`;
         else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (!hadSkillUp && data.skillUpColor !== "gray") msg += " (No skill-up)";
@@ -808,7 +808,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       if (r.ok) {
         const chosenProf = professions.find(p => p.id === profId);
         if (chosenProf) setProfCelebration(chosenProf);
-        else setCraftResult(data.message || "Profession chosen!");
+        else setCraftResult(data.message || "Profession chosen.");
         fetchData();
         onRefresh?.();
       } else {
@@ -2058,7 +2058,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   });
                   const data = await r.json();
                   if (r.ok) {
-                    setEnchantResult(data.message || "Stat updated!");
+                    setEnchantResult(data.message || "Stat updated.");
                     setEnchantOptions(null);
                     setEnchantStat(null);
                     fetchData();

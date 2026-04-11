@@ -178,7 +178,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         if (onRewardCelebration) {
           onRewardCelebration({
             type: "rift",
-            title: d.riftCompleted ? "Rift Complete!" : d.skippedStage ? `Stage Complete! (+1 skipped)` : "Stage Complete!",
+            title: d.riftCompleted ? "Rift Complete" : d.skippedStage ? `Stage Complete! (+1 skipped)` : "Stage Complete",
             xpEarned: d.xpEarned || 0,
             goldEarned: d.goldEarned || 0,
             loot: d.riftGearDrop ? { name: d.riftGearDrop.name, emoji: "◆", rarity: d.riftGearDrop.rarity || "epic", icon: d.riftGearDrop.icon } : d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare", icon: d.loot.icon } : undefined,
@@ -316,7 +316,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   });
                   const d = await r.json();
                   if (r.ok) {
-                    setMessage({ text: d.message || "Timer extended!", type: "success" });
+                    setMessage({ text: d.message || "Timer extended.", type: "success" });
                     fetchRift();
                   } else {
                     setMessage({ text: d.error || "Failed to extend", type: "error" });

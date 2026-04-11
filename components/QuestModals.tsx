@@ -415,7 +415,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
                   className="action-btn w-full text-xs py-1.5 rounded-lg font-semibold"
                   style={{ background: isDone ? "rgba(34,197,94,0.15)" : canCreate ? "rgba(244,63,94,0.15)" : "rgba(255,255,255,0.04)", color: isDone ? "#22c55e" : canCreate ? "#f43f5e" : "rgba(255,255,255,0.2)", border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(244,63,94,0.3)"}`, cursor: canCreate ? "pointer" : "not-allowed" }}
                 >
-                  {isDone ? "✓ Co-op Quest Created!" : isCreating ? "Creating…" : canCreate ? "Create Co-op Quest" : "Select both partners first"}
+                  {isDone ? "✓ Co-op Quest Created" : isCreating ? "Creating…" : canCreate ? "Create Co-op Quest" : "Select both partners first"}
                 </button>
               ) : (
                 <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>
@@ -562,7 +562,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
                     cursor: (isDone || isCreating) ? "not-allowed" : "pointer",
                   }}
                 >
-                  {isDone ? "✓ Quest Chain Created!" : isCreating ? "Creating…" : "Start Quest Chain"}
+                  {isDone ? "✓ Quest Chain Created" : isCreating ? "Creating…" : "Start Quest Chain"}
                 </button>
               ) : (
                 <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>
