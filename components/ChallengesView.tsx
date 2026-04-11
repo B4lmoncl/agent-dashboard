@@ -726,7 +726,7 @@ export default function ChallengesView({
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "sternenpfad",
-            title: `${stars}★ Milestone Claimed!`,
+            title: `${stars}★ Milestone Claimed`,
             xpEarned: 0,
             goldEarned: data.rewards.gold || 0,
             currencies: currencies.length > 0 ? currencies : undefined,

@@ -178,8 +178,8 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
               Level {player.level} / {config.levels}
             </p>
             <TipCustom title="Saisonende" icon="◆" accent={config.seasonAccent} body={<p>Verbleibende Tage bis zum Ende der aktuellen Saison. Nicht beanspruchte Belohnungen verfallen.</p>}>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
-                {daysLeft}d remaining
+              <p className="text-xs font-mono" style={{ color: daysLeft <= 3 ? "#ef4444" : daysLeft <= 7 ? "#f59e0b" : "rgba(255,255,255,0.3)", cursor: "help" }}>
+                {daysLeft <= 3 ? `${daysLeft}d left` : daysLeft <= 7 ? `${daysLeft}d remaining` : `${daysLeft}d remaining`}
               </p>
             </TipCustom>
           </div>
