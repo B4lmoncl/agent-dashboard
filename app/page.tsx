@@ -27,6 +27,7 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
 // DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
@@ -1926,6 +1927,12 @@ export default function Dashboard() {
                 <aside className="w-full">
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
+                      <FirstVisitBanner
+                        viewId="questboard"
+                        title="Willkommen im Quest Board"
+                        description="Nimm eine Quest an, schließe sie ab und verdiene XP, Gold und Loot. Jede Quest hat einen Typ (Fitness, Lernen, Sozial etc.) der bestimmt welche Faction-Reputation du bekommst. Höhere Raritäten geben mehr Belohnungen."
+                        accentColor="#a78bfa"
+                      />
                       <div>
                         <div className="flex items-center gap-1.5">
                           <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40">Quest Board</h2></Tip>
@@ -2908,6 +2915,7 @@ export default function Dashboard() {
             await createStarterQuestsIfNew(newName, apiKey);
             await refresh();
             addToast({ type: "flavor", message: "Welcome to Quest Hall! Check the Guide for tips on getting started.", icon: "/images/icons/nav-great-hall.png" });
+            setTodayOpen(true); // Auto-open TodayDrawer for new players
             setShowTutorial(true);
             setTutorialStep(0);
           }}
