@@ -382,6 +382,18 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   const rift = getRiftStatus(u);
   if (!rift?.active) return res.status(400).json({ error: 'No active rift' });
 
+  // Check if rift timer has expired
+  const RIFT_TIME_LIMITS = { normal: 72, hard: 48, legendary: 36, mythic: 30 };
+  const tl = rift.timeLimitHours || RIFT_TIME_LIMITS[rift.tier] || 72;
+  const expiresAt = new Date(rift.startedAt).getTime() + tl * 3600000;
+  if (Date.now() > expiresAt) {
+    rift.failed = true;
+    rift.failedAt = now();
+    rift.failReason = 'time_expired';
+    saveUsers();
+    return res.status(400).json({ error: 'Rift timer has expired. The Rift is lost.' });
+  }
+
   // Find next incomplete stage
   const nextStage = rift.quests.find(q => !q.completed);
   if (!nextStage) return res.status(400).json({ error: 'All stages already completed' });
