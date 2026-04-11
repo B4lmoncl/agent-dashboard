@@ -937,8 +937,8 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
                           key={item.id}
                           onClick={() => setTooltipItem({ name: item.name, rarity, icon: item.icon || undefined, desc: item.desc || undefined })}
                           className="group relative flex flex-col items-center gap-2.5 rounded-xl px-6 py-5 text-center"
-                          style={{ cursor: "pointer" }}
                           style={{
+                            cursor: "pointer",
                             background: cfg.bg,
                             border: `1px solid ${cfg.border}`,
                             boxShadow: hasGlow ? `0 0 8px ${cfg.glow}` : undefined,
