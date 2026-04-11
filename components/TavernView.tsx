@@ -165,7 +165,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         </div>
         <Tip k="hearth" heading><h2 className="text-lg font-bold" style={{ color: "#d97706", cursor: "help" }}>The Hearth</h2></Tip>
         <p className="text-xs text-w35" style={{ maxWidth: "min(500px, 100%)", margin: "0 auto" }}>
-          A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
+          A room in the tower where time moves differently. Streaks and forge temperature freeze while you rest. Progress pauses. The world does not.
         </p>
         <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: "min(500px, 100%)", margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
       </div>
@@ -231,7 +231,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
             title={actionLoading ? "Action in progress..." : "Leave rest mode — your streaks and forge temp will be restored"}
           >
-            {actionLoading ? "..." : "Leave the Hearth — Return to Adventure"}
+            {actionLoading ? "..." : "Leave the Hearth"}
           </button>
         </div>
       )}

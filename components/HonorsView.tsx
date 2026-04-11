@@ -372,8 +372,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                               {isHidden && myEarned && <span className="text-xs px-1 rounded" style={{ background: "rgba(138,43,226,0.2)", color: "#a855f7" }}>SECRET</span>}
                             </div>
                             {earnerCount > 0 || myEarned
-                              ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement freigeschaltet!"}</p>
-                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.15)" }}>Complete this achievement to learn more...</p>
+                              ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement unlocked."}</p>
+                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.15)" }}>Complete conditions to reveal description.</p>
                             }
                           </div>
                         </div>
