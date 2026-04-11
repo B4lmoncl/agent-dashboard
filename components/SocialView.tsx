@@ -460,7 +460,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         </div>
 
         {/* Messages */}
-        <div ref={messagesContainerRef} className="space-y-2 max-h-[360px] overflow-y-auto pr-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
+        <div ref={messagesContainerRef} className="space-y-2 max-h-[500px] overflow-y-auto pr-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
           {messages.map(msg => {
             const isMine = msg.from.toLowerCase() === playerName.toLowerCase();
             return (

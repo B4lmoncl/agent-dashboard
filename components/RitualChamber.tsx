@@ -177,7 +177,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               {/* Streak flame counter */}
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 12 }}>
+              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold${ritual.streak >= 30 ? " crystal-breathe" : ""}`} style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 12, "--glow-color": `${flameColor}25` } as React.CSSProperties}>
                 <span style={{ fontSize: 13 }}>{ritual.streak >= 7 ? "★" : "●"}</span>
                 {ritual.streak}
               </span>

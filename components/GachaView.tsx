@@ -552,10 +552,10 @@ function BannerPullModal({
           {pity && (
             <div className="rounded-lg px-3 py-2 mt-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center justify-between text-xs mb-1">
-                <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.3)" }}>
+                <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.45)" }}>
                   {inSoftPity ? "Soft Pity Active" : "Pity Progress"}
                 </span>
-                <span className="font-mono font-semibold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.5)" }}>
+                <span className="font-mono font-bold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.65)" }}>
                   {pity.pityCounter}/{pity.hardPity || getBalance().gacha.hardPity}
                 </span>
               </div>
