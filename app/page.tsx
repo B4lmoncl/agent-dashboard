@@ -530,6 +530,10 @@ export default function Dashboard() {
         counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0);
         // Character: companion expedition
         counts.character = n.expeditionReady || 0;
+        // Season Pass: unclaimed level rewards
+        counts.season = n.bpUnclaimed || 0;
+        // Factions: unclaimed tier rewards
+        counts.factions = n.factionUnclaimed || 0;
         setNavNotifs(counts);
       }
       // Load persistent seen state from backend (replaces localStorage)

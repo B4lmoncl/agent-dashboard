@@ -794,7 +794,8 @@ export default function ChallengesView({
         <WeeklyResetTimer />
       </div>
 
-      {/* Toggle buttons */}
+      {/* Toggle buttons + reset countdown */}
+      <div className="flex items-center gap-3 flex-wrap">
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
         <button
           onClick={() => setActiveTab("sternenpfad")}
@@ -816,6 +817,22 @@ export default function ChallengesView({
         >
           <Tip k="expedition">Expedition</Tip>
         </button>
+      </div>
+      {/* Weekly reset countdown */}
+      {(() => {
+        const now = new Date();
+        const nextMonday = new Date(now);
+        nextMonday.setDate(now.getDate() + ((8 - now.getDay()) % 7 || 7));
+        nextMonday.setHours(0, 0, 0, 0);
+        const ms = nextMonday.getTime() - now.getTime();
+        const d = Math.floor(ms / 86400000);
+        const h = Math.floor((ms % 86400000) / 3600000);
+        return (
+          <span className="text-xs font-mono" style={{ color: ms < 86400000 ? "#ef4444" : "rgba(255,255,255,0.2)" }}>
+            Resets in {d}d {h}h
+          </span>
+        );
+      })()}
       </div>
 
       {/* Error toast */}
