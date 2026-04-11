@@ -164,9 +164,9 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               title={isPlayerMode && onOpenProfile ? `View ${entry.name}'s profile` : undefined}
             >
-              <div className="text-lg"><RankMedal rank={rank} /></div>
+              <div className={`${rank === 1 ? "text-2xl" : "text-lg"}`}><RankMedal rank={rank} /></div>
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0 rank-glow"
+                className={`${rank === 1 ? "w-16 h-16" : "w-14 h-14"} rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0 rank-glow${rank === 1 ? " crystal-breathe" : ""}`}
                 style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, boxShadow: `0 6px 20px ${color}60`, ["--rank-color" as string]: rank === 1 ? "#fbbf24" : rank === 2 ? "#c0c0c0" : "#cd7f32" }}
               >
                 {entry.avatar ?? meta.avatar}
