@@ -451,8 +451,8 @@ export function WandererRest({
                   {allDone ? (
                     <div className="text-center py-4">
                       <p className="text-2xl mb-2">✓</p>
-                      <p className="text-sm font-bold" style={{ color: "#22c55e" }}>All quests completed!</p>
-                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Well done, brave adventurer.</p>
+                      <p className="text-sm font-bold" style={{ color: "#22c55e" }}>All quests completed.</p>
+                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>The wanderer nods. That counts as praise.</p>
                     </div>
                   ) : currentQuest ? (
                     <>
