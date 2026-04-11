@@ -346,6 +346,10 @@ export function useQuestActions({
             addToast({ type: "flavor", message: `Codex: ${entry.title || "New entry"} discovered.`, icon: "◆" });
           }
         }
+        // Toast for battle pass level-up
+        if (data.battlePassLevelUp) {
+          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Reward available.`, icon: "◆" });
+        }
         // Toast for faction rep level-ups
         if (data.repGains) {
           for (const rg of data.repGains) {
