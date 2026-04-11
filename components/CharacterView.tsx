@@ -2040,10 +2040,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
                     </span></Tip>
                   </div>
-                  <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
+                  <div className="rounded-full overflow-hidden relative" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
+                    {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
+                      <div className="absolute top-0 left-0 h-full rounded-full" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "rgba(96,165,250,0.15)", borderRight: "1px solid rgba(96,165,250,0.4)" }} />
+                    ) : null}
                     <div
-                      className="h-full rounded-full"
-                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+                      className="h-full rounded-full relative"
+                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
                     />
                   </div>
                   <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>{charData.title}</p>
