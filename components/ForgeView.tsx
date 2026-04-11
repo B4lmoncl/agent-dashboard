@@ -1768,6 +1768,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           const isSelected = selectedRecipeId === recipe.id;
                           const isHidden = (recipe as unknown as Record<string, unknown>).hidden;
                           const notLearned = recipe.learned === false;
+                          const cantCraft = !notLearned && !isHidden && !recipe.canCraft;
                           return (
                             <button
                               key={recipe.id}
@@ -1777,6 +1778,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 background: isSelected ? `${selectedNpc.color}15` : "transparent",
                                 borderLeft: isSelected ? `2px solid ${selectedNpc.color}` : "2px solid transparent",
                                 color: isHidden ? "rgba(255,255,255,0.15)" : notLearned ? "rgba(255,255,255,0.3)" : color,
+                                opacity: cantCraft ? 0.45 : 1,
                                 cursor: "pointer",
                                 fontWeight: isSelected ? 600 : 400,
                               }}
@@ -1815,6 +1817,25 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 </p>
                                 {selectedRecipe.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>&ldquo;{selectedRecipe.desc}&rdquo;</p>}
                               </div></div>
+
+                              {/* Output preview — WoW-style: what you'll craft */}
+                              {selectedRecipe.result?.type === "craft_gear" && selectedRecipe.icon && (
+                                <div className="flex items-center gap-3 px-3 py-2 rounded-lg" style={{ background: `${RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af"}08`, border: `1px solid ${RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af"}20` }}>
+                                  <img src={selectedRecipe.icon.startsWith("/") ? selectedRecipe.icon : `/images/icons/${selectedRecipe.icon}`} alt="" width={40} height={40} className="img-render-auto rounded flex-shrink-0" onError={hideOnError} />
+                                  <div className="min-w-0">
+                                    <p className="text-xs font-semibold" style={{ color: RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af" }}>
+                                      {((selectedRecipe as unknown as Record<string, string>).outputRarity || "common").charAt(0).toUpperCase() + ((selectedRecipe as unknown as Record<string, string>).outputRarity || "common").slice(1)} · {selectedRecipe.result?.templateId ? (selectedRecipe as unknown as Record<string, string>).outputSlot || "Gear" : "Gear"}
+                                    </p>
+                                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Stats rolled randomly from affix pool</p>
+                                  </div>
+                                </div>
+                              )}
+                              {selectedRecipe.result?.type === "buff" && (
+                                <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(34,197,94,0.05)", border: "1px solid rgba(34,197,94,0.15)" }}>
+                                  <span className="text-lg flex-shrink-0">◆</span>
+                                  <p className="text-xs" style={{ color: "rgba(34,197,94,0.6)" }}>Creates a buff consumable</p>
+                                </div>
+                              )}
 
                               {/* Materials — WoW-style: icon + name + owned/needed */}
                               <div>

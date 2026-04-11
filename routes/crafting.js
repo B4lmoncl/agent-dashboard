@@ -350,6 +350,8 @@ router.get('/api/professions', (req, res) => {
         icon: r.icon || (r.result?.templateId ? (state.gearById.get(r.result.templateId)?.icon || null) : null)
           || (r.result?.type === 'material' || r.result?.type === 'transmute_material' ? (PROFESSIONS_DATA.materials?.find(m => m.id === (r.result.materialId || r.result.outputMaterial))?.icon || null) : null)
           || RECIPE_TYPE_FALLBACK_ICONS[r.result?.type] || RECIPE_TYPE_FALLBACK_ICONS[r.profession] || null,
+        outputRarity: r.result?.templateId ? (state.gearById.get(r.result.templateId)?.rarity || null) : null,
+        outputSlot: r.result?.templateId ? (state.gearById.get(r.result.templateId)?.slot || null) : null,
       };
     });
   const materials = u?.craftingMaterials || {};
