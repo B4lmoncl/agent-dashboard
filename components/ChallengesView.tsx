@@ -340,7 +340,7 @@ function SternenpfadView({
                             <CurrencyBadge key={type} type={type} amount={Math.round((base as number) * multiplier)} />
                           ))}
                         </div>
-                        {stars > 1 && <span className="text-w15 ml-auto">+{stars === 3 ? "33" : "15"}%</span>}
+                        {stars > 1 && <span className="text-w30 ml-auto font-mono">+{stars === 3 ? "33" : "15"}%</span>}
                       </div>
                     );
                   })}
