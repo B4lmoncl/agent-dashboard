@@ -613,6 +613,7 @@ export default function Dashboard() {
       });
       const data = await r.json();
       if (r.ok && data.ok) {
+        SFX.coin();
         setDailyBonusAvailable(false);
         const currencies: { name: string; amount: number; color: string }[] = [];
         if (data.rewards?.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
