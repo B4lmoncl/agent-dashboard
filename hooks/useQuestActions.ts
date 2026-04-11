@@ -329,6 +329,10 @@ export function useQuestActions({
         if (data.inventoryFull) {
           addToast({ type: "error", message: "Inventory full — loot item lost. Free up space." });
         }
+        // Streak milestone celebration
+        if (data.streakMilestone) {
+          addToast({ type: "flavor", message: `${data.streakMilestone.days}-Day Streak. ${data.streakMilestone.label || "The flame endures."}`, icon: data.streakMilestone.badge || "◆" });
+        }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
           addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
