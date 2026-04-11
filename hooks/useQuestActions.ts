@@ -74,7 +74,8 @@ export function useQuestActions({
         setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to approve quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to approve quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not approve quest" });
@@ -97,7 +98,8 @@ export function useQuestActions({
         setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to reject quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to reject quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not reject quest" });
@@ -189,7 +191,8 @@ export function useQuestActions({
         updateNpcQuestStatus(questId, "open", null);
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to unclaim quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to unclaim quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not unclaim quest", onRetry: () => handleUnclaim(questId) });
@@ -210,7 +213,8 @@ export function useQuestActions({
       if (r.ok) {
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to join co-op quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to join co-op quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not join co-op quest" });
@@ -242,7 +246,8 @@ export function useQuestActions({
         }
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to complete co-op quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to complete co-op quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not complete co-op quest", onRetry: () => handleCoopComplete(questId) });
