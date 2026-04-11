@@ -1113,6 +1113,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           <span className="text-xs font-bold mb-0.5" style={{ color: tc.accent, lineHeight: 1.2 }}>
                             {exp.name}
                           </span>
+                          <span className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.2)", lineHeight: 1.2 }}>
+                            {exp.description}
+                          </span>
                           <span className="text-xs font-mono mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
                             {exp.durationHours}h
                           </span>
