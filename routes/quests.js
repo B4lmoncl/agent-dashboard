@@ -335,6 +335,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const recipeDrop = u?._lastRecipeDrop || null;
     const inventoryFull = u?._inventoryFull || false;
     const streakMilestone = u?._lastStreakMilestone || null;
+    const codexDiscovery = u?._lastCodexDiscovery || null;
     if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; }
     const repGains = u?._lastRepGains || null;
     if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; }
@@ -374,6 +375,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       repGains,
       inventoryFull,
       streakMilestone,
+      codexDiscovery,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo.level > prevLevel ? { level: newLevelInfo.level, title: newLevelInfo.title } : null,
     });

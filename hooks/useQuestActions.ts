@@ -339,6 +339,12 @@ export function useQuestActions({
         if (data.recipeDrop) {
           addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
         }
+        // Toast for codex discoveries
+        if (data.codexDiscovery && Array.isArray(data.codexDiscovery) && data.codexDiscovery.length > 0) {
+          for (const entry of data.codexDiscovery) {
+            addToast({ type: "flavor", message: `Codex: ${entry.title || "New entry"} discovered.`, icon: "◆" });
+          }
+        }
         // Toast for faction rep level-ups
         if (data.repGains) {
           for (const rg of data.repGains) {
