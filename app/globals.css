@@ -607,7 +607,8 @@ button[disabled] {
   50% { text-shadow: 0 0 20px currentColor, 0 0 40px currentColor; filter: brightness(1.2); }
 }
 @keyframes reward-pill-in {
-  0% { opacity: 0; transform: translateY(8px) scale(0.9); }
+  0% { opacity: 0; transform: translateY(12px) scale(0.8); }
+  60% { opacity: 1; transform: translateY(-2px) scale(1.05); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 .reward-celebration-modal {
@@ -2001,13 +2002,24 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   position: relative;
 }
 .quest-done-btn:hover:not(:disabled) {
-  background: rgba(251,191,36,0.2) !important;
-  box-shadow: 0 0 12px rgba(251,191,36,0.3), 0 0 24px rgba(251,191,36,0.1);
-  transform: translateY(-1px);
+  background: rgba(251,191,36,0.22) !important;
+  box-shadow: 0 0 16px rgba(251,191,36,0.4), 0 0 32px rgba(251,191,36,0.12);
+  transform: translateY(-2px) scale(1.03);
 }
 .quest-done-btn:active:not(:disabled) {
-  transform: translateY(0) scale(0.97);
-  filter: brightness(0.9);
+  transform: translateY(0) scale(0.95);
+  filter: brightness(0.85);
+  transition-duration: 0.08s;
+}
+
+/* ─── Quest Complete Success Flash ─────────────────────────────────── */
+@keyframes quest-complete-flash {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  50% { box-shadow: 0 0 20px 4px rgba(34,197,94,0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+.quest-complete-flash {
+  animation: quest-complete-flash 0.5s ease-out;
 }
 
 /* ─── Quest Card Action Loading Shimmer ──────────────────────────────── */
