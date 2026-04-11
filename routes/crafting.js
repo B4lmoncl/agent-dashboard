@@ -1111,6 +1111,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     craftCount: effectiveCount,
     atSkillCap: newSkill >= skillCap,
     skillCap,
+    cooldownMinutes: recipe.cooldownMinutes || 0,
     nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
   });
   } finally { releaseCraftLock(uid); }

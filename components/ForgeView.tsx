@@ -516,6 +516,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           setTimeout(() => setCraftedItemCelebration(null), 4000);
         }
         setCraftCount(1);
+        // Optimistic cooldown update — mark recipe as on-cooldown immediately
+        if (data.cooldownMinutes && data.cooldownMinutes > 0) {
+          setRecipes(prev => prev.map(r => r.id === recipeId ? { ...r, cooldownRemaining: data.cooldownMinutes * 60, canCraft: false } : r));
+        }
         fetchData();
         onRefresh?.();
       } else {
@@ -1772,7 +1776,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           return (
                             <button
                               key={recipe.id}
-                              onClick={() => setSelectedRecipeId(recipe.id)}
+                              onClick={() => { setSelectedRecipeId(recipe.id); if (recipe.skillUpColor === "gray") setCraftCount(1); }}
                               className="w-full text-left px-3 py-1.5 text-xs transition-colors"
                               style={{
                                 background: isSelected ? `${selectedNpc.color}15` : "transparent",
@@ -1876,14 +1880,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {/* Craft button + count */}
                               {!notLearned && selectedNpc.chosen && (
                                 <div className="flex items-center gap-2">
-                                  {/* Batch count */}
-                                  <div className="flex items-center gap-1">
-                                    {[1, 5, 10].map(n => (
-                                      <button key={n} onClick={() => setCraftCount(n)} className="text-xs px-2 py-1 rounded" style={{ background: craftCount === n ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)", color: craftCount === n ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${craftCount === n ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}>
-                                        x{n}
-                                      </button>
-                                    ))}
-                                  </div>
+                                  {/* Batch count — hidden for gray recipes (0% skill-up = waste of materials) */}
+                                  {selectedRecipe.skillUpColor !== "gray" ? (
+                                    <div className="flex items-center gap-1">
+                                      {[1, 5, 10].map(n => (
+                                        <button key={n} onClick={() => setCraftCount(n)} className="text-xs px-2 py-1 rounded" style={{ background: craftCount === n ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)", color: craftCount === n ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${craftCount === n ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}>
+                                          x{n}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  ) : (
+                                    <span className="text-xs px-2 py-1" style={{ color: "rgba(255,255,255,0.15)" }} title="Gray recipes can only be crafted x1 (no skill-up)">x1</span>
+                                  )}
                                   <button
                                     onClick={() => startCraftCast(selectedRecipe.id, craftCount)}
                                     disabled={!canCraft || craftProgress !== null}
