@@ -107,7 +107,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
       });
       const data = await r.json();
       if (r.ok) {
-        setMessage({ text: `Level ${level} reward claimed!`, type: "success" });
+        setMessage({ text: `Level ${level} reward claimed.`, type: "success" });
         fetchBP();
         if (onRewardCelebration && data.granted) {
           const g = data.granted;
@@ -214,7 +214,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders(reviewApiKey) });
                 const data = await r.json();
                 if (r.ok) {
-                  setMessage({ type: "success", text: `Claimed ${data.count} rewards!` });
+                  setMessage({ type: "success", text: `${data.count} rewards claimed.` });
                   if (onRewardCelebration) {
                     // Aggregate rewards for meaningful celebration
                     let totalGold = 0;

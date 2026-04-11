@@ -114,7 +114,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
       });
       const d = await r.json();
       if (r.ok) {
-        setCurrencyMsg({ text: d.resultMsg || "Purchased!", type: "success" });
+        setCurrencyMsg({ text: d.resultMsg || "Acquired.", type: "success" });
         fetchCurrencyShop();
         if (onRewardCelebration) {
           onRewardCelebration({ type: "quest", title: "Purchase Complete", xpEarned: 0, goldEarned: 0, flavor: d.resultMsg || "Item acquired!" });

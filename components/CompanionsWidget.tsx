@@ -15,7 +15,7 @@ import { getCompanionColor, getCompanionPortrait } from "@/lib/companion-config"
 
 const COMPANION_IDS_ALL = ["ember_sprite", "lore_owl", "gear_golem"];
 const COMPANION_META_ALL: Record<string, { name: string; quote: string; icon: string }> = {
-  ember_sprite: { name: "Ember Sprite", quote: "The forge burns because YOU keep it lit!", icon: "/images/icons/mini-ember-sprite.png" },
+  ember_sprite: { name: "Ember Sprite", quote: "The forge burns because you keep it lit.", icon: "/images/icons/mini-ember-sprite.png" },
   lore_owl:     { name: "Lore Owl",     quote: "Knowledge is power, adventurer.",         icon: "/images/icons/mini-lore-owl.png" },
   gear_golem:   { name: "Gear Golem",   quote: "Efficiency is the path to glory.",        icon: "/images/icons/mini-gear-golem.png" },
 };
@@ -299,7 +299,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     const tick = () => {
       const remaining = endTime - Date.now();
       if (remaining <= 0) {
-        setExpeditionTimer("Ready!");
+        setExpeditionTimer("Ready");
         setExpeditionTimerProgress(1);
         return;
       }
@@ -362,7 +362,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           if (d.rewards.runensplitter) rewardLines.push(`+${d.rewards.runensplitter} Runensplitter`);
           onRewardCelebration({
             type: "companion",
-            title: `${d.expedition || "Expedition"} Complete!`,
+            title: `${d.expedition || "Expedition"} Complete`,
             xpEarned: 0,
             goldEarned: d.rewards.gold || 0,
             bondXp: 0,
@@ -453,17 +453,17 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
   let mood: { label: string; color: string; tip: string; anim: string };
   if (isSleeping) {
-    mood = { label: "Sleeping", color: "#818cf8", tip: "Your companion is resting. Come back in the morning!", anim: "" };
+    mood = { label: "Sleeping", color: "#818cf8", tip: "Your companion is resting. Come back in the morning.", anim: "" };
   } else if (streak >= 7 && petRecent && bondLevel >= 5) {
-    mood = { label: "Ecstatic", color: "#f472b6", tip: "Your companion is absolutely thrilled!", anim: "animate-bounce" };
+    mood = { label: "Ecstatic", color: "#f472b6", tip: "Your companion is thrilled. Suspiciously so.", anim: "animate-bounce" };
   } else if (streak >= 7 && petRecent) {
-    mood = { label: "Happy", color: "#22c55e", tip: "Keep the streak going!", anim: "animate-bounce" };
+    mood = { label: "Happy", color: "#22c55e", tip: "The streak continues. So does the bond.", anim: "animate-bounce" };
   } else if (streak >= 3 || petRecent) {
-    mood = { label: "Neutral", color: "#f59e0b", tip: "Complete quests to cheer them up!", anim: "" };
+    mood = { label: "Neutral", color: "#f59e0b", tip: "Complete quests. They notice.", anim: "" };
   } else if (!petRecent && hoursSincePet > 72) {
-    mood = { label: "Neglected", color: "#dc2626", tip: "Your companion misses you — pet them!", anim: "animate-pulse" };
+    mood = { label: "Neglected", color: "#dc2626", tip: "Your companion misses you. Pet them.", anim: "animate-pulse" };
   } else {
-    mood = { label: "Sad", color: "#ef4444", tip: "Your companions miss you!", anim: "animate-pulse" };
+    mood = { label: "Sad", color: "#ef4444", tip: "Your companion misses you.", anim: "animate-pulse" };
   }
 
   // Bond info
@@ -514,7 +514,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       });
       const d = await r.json();
       if (r.ok) {
-        setUltimateResult(d.flavorText || d.message || "Success!");
+        setUltimateResult(d.flavorText || d.message || "Done.");
         setUltimatePickQuest(false);
         setUltimateGlow(true);
         SFX.companionPet();
