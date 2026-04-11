@@ -1201,6 +1201,12 @@ export default function Dashboard() {
                         <circle cx="10.5" cy="10.5" r="1" fill="rgba(251,191,36,0.3)" />
                       </svg>
                   </button>
+                  {/* Streak danger warning — visible when streak > 3 and no quests today */}
+                  {playerStreak >= 3 && dailyMissions && dailyMissions.missions?.find((m: { id: string; done: boolean }) => m.id === "quest")?.done === false && (
+                    <span className="text-xs px-2 py-1 rounded-lg font-semibold animate-pulse" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }} title={`Your ${playerStreak}-day streak is at risk. Complete a quest today.`}>
+                      Streak at risk
+                    </span>
+                  )}
                 </div>
               </div>
 
