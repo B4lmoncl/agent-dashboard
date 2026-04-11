@@ -166,6 +166,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
+        addToast({ type: "flavor", message: "Quest claimed!", icon: "/images/icons/nav-great-hall.png" });
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
