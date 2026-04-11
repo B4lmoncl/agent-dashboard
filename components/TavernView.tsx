@@ -206,7 +206,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </p>
           )}
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Tip k="streak">
               <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 <p className="text-xs text-w30">Streak Frozen</p>

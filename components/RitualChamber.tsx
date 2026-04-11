@@ -517,7 +517,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     <input value={newRitualTitle} onChange={e => { setNewRitualTitle(e.target.value); if (ritualNameError) setRitualNameError(false); }} placeholder="Name your ritual..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)", border: ritualNameError ? "1px solid #ef4444" : "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }} onKeyDown={e => e.key === "Enter" && submitRitual()} autoFocus />
                     {ritualNameError && <p style={{ color: "#ef4444", fontSize: "0.75rem", marginTop: 4 }}>Please enter a ritual name</p>}
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Category</label>
                       <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm rounded-lg text-bright" style={{ background: "#1a1a2e", border: "1px solid rgba(245,158,11,0.3)", outline: "none", padding: "8px 12px", borderRadius: 8, appearance: "none", cursor: "pointer" }}>
