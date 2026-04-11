@@ -1988,7 +1988,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       });
                                       const data = await r.json();
                                       if (r.ok) {
-                                        setCraftResult(data.message || "Entzaubert!");
+                                        setCraftResult(data.message || "Entzaubert.");
                                         setDisenchantInv(prev => prev.filter(i => (i.instanceId || i.id) !== (item.instanceId || item.id)));
                                         if (onRefresh) onRefresh();
                                         fetchData();

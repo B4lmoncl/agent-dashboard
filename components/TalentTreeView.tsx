@@ -142,7 +142,7 @@ export default function TalentTreeView({
       const d = await r.json();
       if (r.ok && d.success) {
         SFX.craftSkillUp(); // ascending ping for talent unlock
-        _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet!" });
+        _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet." });
         fetchTalents();
       } else {
         _toast({ type: "error", message: d.error || "Fehler" });

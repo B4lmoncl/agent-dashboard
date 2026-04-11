@@ -117,7 +117,7 @@ interface CollectResult {
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 function timeLeft(ms: number): string {
-  if (ms <= 0) return "Complete!";
+  if (ms <= 0) return "Complete.";
   const h = Math.floor(ms / 3600000);
   const m = Math.floor((ms % 3600000) / 60000);
   if (h >= 24) return `${Math.floor(h / 24)}d ${h % 24}h`;

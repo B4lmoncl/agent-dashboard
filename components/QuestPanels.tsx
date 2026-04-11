@@ -218,7 +218,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <span>Pact-Ziel: <span style={{ color: "#ef4444", fontWeight: 600 }}>{ar.commitmentDays}d</span></span>
                 <span>·</span>
                 <span style={{ color: days >= ar.commitmentDays ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
-                  {days >= ar.commitmentDays ? "Erfüllt!" : `${ar.commitmentDays - days}d verbleibend`}
+                  {days >= ar.commitmentDays ? "Erfüllt." : `${ar.commitmentDays - days}d verbleibend`}
                 </span>
               </div>
             )}

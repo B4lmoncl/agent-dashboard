@@ -556,7 +556,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
                         Boss HP
                       </span>
                       <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "#ef4444" }}>
-                        {progressPct === 100 ? "DEFEATED!" : `${Math.round(100 - progressPct)}% HP`}
+                        {progressPct === 100 ? "DEFEATED" : `${Math.round(100 - progressPct)}% HP`}
                       </span>
                     </div>
                     <div className="w-full rounded-full" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>

@@ -621,7 +621,7 @@ export default function Dashboard() {
         const fortune = data.dailyFortune;
         setRewardCelebration({
           type: "daily-bonus",
-          title: fortune ? `Daily Bonus — ${fortune.label}` : "Daily Bonus Claimed!",
+          title: fortune ? `Daily Bonus — ${fortune.label}` : "Daily Bonus Claimed.",
           flavor: fortune
             ? `Fortune smiled on you today. +${fortune.amount} bonus ${fortune.type}.`
             : data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
@@ -720,7 +720,7 @@ export default function Dashboard() {
     const rt = params.get("resetToken");
     if (rt) { setResetToken(rt); setResetPasswordOpen(true); window.history.replaceState({}, "", "/"); }
     const ev = params.get("emailVerified");
-    if (ev === "true") { addToast({ type: "flavor", message: "Email verified successfully!", icon: "/images/icons/nav-great-hall.png" }); window.history.replaceState({}, "", "/"); }
+    if (ev === "true") { addToast({ type: "flavor", message: "Email verified.", icon: "/images/icons/nav-great-hall.png" }); window.history.replaceState({}, "", "/"); }
   }, []);
 
   // What's New splash — show once per version

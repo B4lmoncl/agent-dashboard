@@ -1812,7 +1812,7 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
       });
       const d = await r.json();
       if (r.ok) {
-        setActionMsg("Challenge accepted!");
+        setActionMsg("Challenge accepted.");
         setChallenges(prev => prev.map(c => c.id === challengeId ? { ...c, status: "active", startedAt: new Date().toISOString(), expiresAt: d.challenge?.expiresAt || null } : c));
       } else {
         setActionMsg(d.error || "Failed to accept");
