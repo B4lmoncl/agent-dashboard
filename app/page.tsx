@@ -678,6 +678,40 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, [refresh]);
 
+  // Friend activity poll — show toasts for notable friend events (every 5min)
+  const lastFriendEventRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!playerName || !reviewApiKey) return;
+    const pollFriendActivity = async () => {
+      try {
+        const r = await fetch(`/api/social/activity-feed?player=${encodeURIComponent(playerName)}&limit=5`, { headers: getAuthHeaders(reviewApiKey) });
+        if (!r.ok) return;
+        const data = await r.json();
+        const events = data.events || data.feed || [];
+        if (events.length === 0) return;
+        const latest = events[0];
+        if (!latest?.id || latest.id === lastFriendEventRef.current) return;
+        lastFriendEventRef.current = latest.id;
+        // Only show toasts for notable events from FRIENDS (not self)
+        const isSelf = latest.playerName?.toLowerCase() === playerName.toLowerCase();
+        if (isSelf) return;
+        const notable = ["gacha_pull", "level_up", "rift_complete", "dungeon_complete", "achievement"].includes(latest.type);
+        if (!notable) return;
+        const messages: Record<string, string> = {
+          gacha_pull: `${latest.playerName} pulled a ${latest.data?.rarity || "rare"} item.`,
+          level_up: `${latest.playerName} reached Level ${latest.data?.level || "?"}.`,
+          rift_complete: `${latest.playerName} cleared a Rift.`,
+          dungeon_complete: `${latest.playerName} cleared a Dungeon.`,
+          achievement: `${latest.playerName} earned: ${latest.data?.name || "an achievement"}.`,
+        };
+        addToast({ type: "flavor", message: messages[latest.type] || `${latest.playerName} did something notable.`, icon: "◆", sub: "Friend Activity" });
+      } catch { /* silent */ }
+    };
+    const timer = setTimeout(pollFriendActivity, 10000); // first poll after 10s
+    const interval = setInterval(pollFriendActivity, 300000); // then every 5min
+    return () => { clearTimeout(timer); clearInterval(interval); };
+  }, [playerName, reviewApiKey, addToast]);
+
   // Re-fetch when playerName changes (login/logout) so filters apply correctly
   useEffect(() => {
     // Clear seen-state refs on logout/switch to prevent data leaking between accounts
@@ -2025,6 +2059,21 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
+                      {/* "Almost There" nudge — Zeigarnik effect */}
+                      {(() => {
+                        const nextUnclaimed = dailyMissions.milestones.find(ms => !ms.claimed && dailyMissions.earned < ms.threshold);
+                        if (!nextUnclaimed) return null;
+                        const remaining = nextUnclaimed.threshold - dailyMissions.earned;
+                        // Only show when very close (within 100 points = ~1 quest)
+                        if (remaining > 100) return null;
+                        const rewardText = Object.entries(nextUnclaimed.reward).map(([k, v]) => `+${v} ${k}`).join(", ");
+                        return (
+                          <div className="rounded-lg px-2.5 py-1.5 mb-2 flex items-center gap-2 animate-pulse" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                            <span className="text-xs" style={{ color: "#fbbf24" }}>◆</span>
+                            <span className="text-xs" style={{ color: "rgba(251,191,36,0.7)" }}>{remaining} points to next reward ({rewardText})</span>
+                          </div>
+                        );
+                      })()}
                       {/* Milestone reward track */}
                       <div className="relative mb-3">
                         <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
