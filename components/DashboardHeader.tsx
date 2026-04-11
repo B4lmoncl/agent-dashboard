@@ -378,8 +378,8 @@ export default function DashboardHeader({
                             onClick={handleLogin}
                             disabled={authLoading}
                             title={authLoading ? "Signing in..." : "Sign in to your account"}
-                            className="flex-1 text-xs px-3 py-1 rounded font-medium"
-                            style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}
+                            className="flex-1 text-xs px-3 py-2 rounded-lg font-bold btn-interactive"
+                            style={{ background: "linear-gradient(135deg, rgba(167,139,250,0.25), rgba(139,92,246,0.2))", color: "#c4b5fd", border: "1px solid rgba(167,139,250,0.5)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}
                           >
                             {authLoading ? "Signing in…" : "Sign In"}
                           </button>

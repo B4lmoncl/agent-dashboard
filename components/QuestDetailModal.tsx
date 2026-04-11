@@ -91,7 +91,7 @@ export default function QuestDetailModal({
         onClick={e => e.stopPropagation()}
       >
         {/* Rarity header bar */}
-        <div style={{ height: 4, background: `linear-gradient(90deg, transparent, ${rarityColor}, transparent)` }} />
+        <div style={{ height: 6, background: `linear-gradient(90deg, transparent, ${rarityColor}, transparent)`, boxShadow: `0 2px 8px ${rarityColor}40` }} />
         {/* Header */}
         <div className="px-5 pt-4 pb-3 flex items-start justify-between gap-3" style={{ borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
           <div className="flex items-start gap-3 flex-1 min-w-0">
