@@ -426,7 +426,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               </span>
             )}
             {collectResult.rewards.gearDropItem && (
-              <button onClick={() => { const g = collectResult.rewards.gearDropItem as Record<string, unknown>; setTooltipItem({ name: (g.name as string) || "Gear", rarity: (g.rarity as string) || "common", icon: (g.icon as string) || null, slot: (g.slot as string) || null, stats: (g.stats as Record<string, number>) || null }); }} className="text-xs px-2 py-1 rounded font-semibold" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7", cursor: "pointer" }}>
+              <button onClick={() => { const g = collectResult.rewards.gearDropItem as Record<string, unknown>; setTooltipItem({ name: (g.name as string) || "Gear", rarity: (g.rarity as string) || "common", icon: (g.icon as string) || null, slot: (g.slot as string) || null, stats: (g.stats as Record<string, number>) || null }); }} className="text-xs px-2 py-1 rounded font-semibold btn-interactive" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7", cursor: "pointer" }}>
                 {(collectResult.rewards.gearDropItem as { name?: string; rarity?: string }).name ?? "Gear"} ({(collectResult.rewards.gearDropItem as { rarity?: string }).rarity ?? "common"})
               </button>
             )}
