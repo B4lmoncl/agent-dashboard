@@ -933,9 +933,11 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
                     <div className="h-px mb-3" style={{ background: `linear-gradient(90deg, ${cfg.border}, transparent)` }} />
                     <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
                       {items.map(item => (
-                        <div
+                        <button
                           key={item.id}
-                          className="group relative flex flex-col items-center gap-2.5 rounded-xl px-6 py-5 text-center cursor-default"
+                          onClick={() => setTooltipItem({ name: item.name, rarity, icon: item.icon || null, desc: item.desc || null })}
+                          className="group relative flex flex-col items-center gap-2.5 rounded-xl px-6 py-5 text-center"
+                          style={{ cursor: "pointer" }}
                           style={{
                             background: cfg.bg,
                             border: `1px solid ${cfg.border}`,
@@ -953,12 +955,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
                           <span className="text-xs uppercase font-medium relative z-10" style={{ color: "rgba(255,255,255,0.3)" }}>
                             {item.type === "weapon" ? "Weapon" : item.type === "armor" ? "Armor" : item.type === "consumable" ? "Consumable" : "Artifact"}
                           </span>
-                          {item.desc && (
-                            <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-56 rounded-lg px-3 py-2.5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50" style={{ background: "#0f1220", border: `1px solid ${cfg.border}`, boxShadow: `0 4px 20px rgba(0,0,0,0.6), 0 0 8px ${cfg.glow}` }}>
-                              <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</p>
-                            </div>
-                          )}
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </div>
