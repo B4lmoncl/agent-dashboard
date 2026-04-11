@@ -32,6 +32,8 @@ const MILESTONES = [
 export default function DailyLoginCalendar({ onClose }: { onClose: () => void }) {
   useModalBehavior(true, onClose);
   const { playerName, reviewApiKey: apiKey } = useDashboard();
+  const [claimedToday, setClaimedToday] = useState(false);
+  const [claiming, setClaiming] = useState(false);
   const [claimHistory, setClaimHistory] = useState<string[]>([]);
   const [streakDays, setStreakDays] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -44,7 +46,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
         setClaimHistory(data.claimHistory || []);
         setStreakDays(data.streakDays || 0);
       }
-    } catch { /* ignore */ }
+    } catch { /* network error — calendar still shows last known state */ }
     setLoading(false);
   }, [playerName]);
 
@@ -59,6 +61,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
   const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7; // Monday = 0
 
   const claimSet = new Set(claimHistory);
+  const alreadyClaimedToday = claimedToday || claimSet.has(todayStr);
 
   const days: CalendarDay[] = [];
   for (let d = 1; d <= daysInMonth; d++) {
@@ -101,9 +104,29 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
             <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg transition-all hover:bg-w8" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
           </div>
         </div>
-        <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>
-          Log in daily to build your streak. Claim your daily bonus in the Great Hall to earn <Tip k="runensplitter"><span style={{ cursor: "help" }}>Runensplitter</span></Tip>, <Tip k="essenz"><span style={{ cursor: "help" }}>Essenz</span></Tip>, and streak milestone rewards.
-        </p>
+        {!alreadyClaimedToday && apiKey ? (
+          <button
+            onClick={async () => {
+              if (claiming || alreadyClaimedToday || !apiKey) return;
+              setClaiming(true);
+              try {
+                const { getAuthHeaders } = await import("@/lib/auth-client");
+                const r = await fetch("/api/daily-bonus/claim", { method: "POST", headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" }, body: JSON.stringify({ playerId: playerName }) });
+                if (r.ok) { setClaimedToday(true); fetchStatus(); }
+              } catch { /* toast handled elsewhere */ }
+              setClaiming(false);
+            }}
+            disabled={claiming}
+            className="w-full mt-2 py-2 rounded-lg text-sm font-bold"
+            style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)", cursor: claiming ? "not-allowed" : "pointer" }}
+          >
+            {claiming ? "Claiming..." : "Claim Daily Bonus"}
+          </button>
+        ) : (
+          <p className="text-xs mt-2 text-center py-1.5 rounded-lg" style={{ color: "rgba(34,197,94,0.6)", background: "rgba(34,197,94,0.05)" }}>
+            {alreadyClaimedToday ? "Today's bonus claimed" : "Log in to claim your daily bonus"}
+          </p>
+        )}
 
         {loading ? (
           <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
