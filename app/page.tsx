@@ -28,6 +28,7 @@ const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 // DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
@@ -706,10 +707,8 @@ export default function Dashboard() {
   // Auto-trigger tutorial on first visit (no login required)
   useEffect(() => {
     try {
-      if (localStorage.getItem("tutorialCompleted") !== "true") {
-        const t = setTimeout(() => { setShowTutorial(true); setTutorialStep(0); }, 800);
-        return () => clearTimeout(t);
-      }
+      // Old tutorial wizard removed — contextual moments handle this now
+      if (false) { /* legacy guard removed */ }
     } catch { /* ignore */ }
   }, []);
 
@@ -1949,6 +1948,7 @@ export default function Dashboard() {
               {/* Quest Board — player types only */}
               <div>
                 <aside className="w-full">
+                  <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} />
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
                       <FirstVisitBanner
@@ -2910,12 +2910,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Tutorial Overlay */}
-      {showTutorial && (
-        <TutorialOverlay step={tutorialStep} onNext={handleTutorialNext} onSkip={handleTutorialSkip} onNavigate={(tabKey) => {
-          setDashView(tabKey as typeof dashView);
-        }} />
-      )}
+      {/* Old Tutorial Overlay removed — replaced by contextual TutorialMomentBanner per view */}
 
       {/* Onboarding Wizard */}
       {/* Alpha Feedback Overlay */}
@@ -2940,8 +2935,7 @@ export default function Dashboard() {
             await refresh();
             addToast({ type: "flavor", message: "Welcome to Quest Hall. The Guide holds answers worth seeking.", icon: "/images/icons/nav-great-hall.png" });
             setTodayOpen(true); // Auto-open TodayDrawer for new players
-            setShowTutorial(true);
-            setTutorialStep(0);
+            // Tutorial moments will fire contextually on each view — no upfront wizard
           }}
         />
       )}
