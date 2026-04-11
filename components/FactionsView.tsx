@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -173,6 +174,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="factions" playerLevel={1} />
       <FirstVisitBanner
         viewId="factions"
         title="Die Vier Zirkel"

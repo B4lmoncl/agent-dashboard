@@ -157,10 +157,10 @@ export function useTutorialMoment(
   useEffect(() => {
     const seen = getSeenMoments();
     // Find the first unseen moment for this view that the player qualifies for
+    // minLevel is informational — view access is already level-gated by TowerMap
     const match = TUTORIAL_MOMENTS.find(m =>
       m.view === viewId &&
       !seen.has(m.id) &&
-      (!m.minLevel || playerLevel >= m.minLevel) &&
       (conditions ? conditions[m.id] !== false : true)
     );
     setActiveMoment(match || null);

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import { getBalance } from "@/lib/balance-cache";
 import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/types";
@@ -766,6 +767,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="gacha" playerLevel={1} />
       <FirstVisitBanner
         viewId="gacha"
         title="Schicksalsrad"

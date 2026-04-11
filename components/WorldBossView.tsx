@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -304,7 +305,8 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
     return (
       <div className="space-y-5 tab-content-enter relative">
-        <FirstVisitBanner
+        <TutorialMomentBanner viewId="worldboss" playerLevel={1} />
+      <FirstVisitBanner
           viewId="worldboss"
           title="World Boss"
           description="Ein Boss. Alle Spieler. Jede Quest ist ein Schlag. Deine Gear Score bestimmt wie hart. Die Top-Beiträger bekommen, was alle anderen nur bewundern können."

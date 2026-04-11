@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useDashboard } from "@/app/DashboardContext";
 import { useModalBehavior } from "@/components/ModalPortal";
@@ -300,6 +301,7 @@ export default function TalentTreeView({
 
   return (
     <div className="tab-content-enter">
+      <TutorialMomentBanner viewId="talents" playerLevel={1} />
       <FirstVisitBanner
         viewId="talents"
         title="Schicksalsbaum"

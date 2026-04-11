@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
 
@@ -875,6 +876,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   return (
     <div className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
+      <TutorialMomentBanner viewId="forge" playerLevel={1} />
       <FirstVisitBanner
         viewId="forge"
         title="Artisan's Quarter"

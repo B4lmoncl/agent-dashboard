@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import ItemTooltip from "@/components/ItemTooltip";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -1990,6 +1991,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         })}
       </div>
 
+      <TutorialMomentBanner viewId="social" playerLevel={1} />
       <FirstVisitBanner
         viewId="social"
         title="The Breakaway"

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import type { TooltipItem } from "@/components/ItemTooltip";
 import { useDashboard } from "@/app/DashboardContext";
@@ -329,6 +330,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   return (
     <div className="space-y-5 tab-content-enter relative">
+      <TutorialMomentBanner viewId="dungeons" playerLevel={1} />
       <FirstVisitBanner
         viewId="dungeons"
         title="Das Untergewölbe"
