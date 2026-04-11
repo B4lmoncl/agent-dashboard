@@ -215,7 +215,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
         <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Rift</p>
-        <p className="text-xs text-w15">Log in to enter The Rift.</p>
+        <p className="text-xs text-w25">Log in to enter The Rift.</p>
       </div>
     );
   }

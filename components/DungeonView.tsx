@@ -313,7 +313,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
         <img src="/images/icons/nav-dungeons.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-2" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
-        <p className="text-xs text-w15">Log in to enter the dungeons.</p>
+        <p className="text-xs text-w25">Log in to enter the dungeons.</p>
       </div>
     );
   }
@@ -519,7 +519,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   </div>
                   <p className="text-xs font-semibold truncate" style={{ color: p.color }}>{p.name}</p>
                   <p className="text-xs" style={{ color: p.gearScore >= activeRun.gearScoreThreshold ? "rgba(34,197,94,0.5)" : "rgba(239,68,68,0.6)" }}>GS: {p.gearScore}{p.gearScore < activeRun.gearScoreThreshold ? " !" : ""}</p>
-                  {p.bondLevel > 0 && <p className="text-xs text-w15">Bond: {p.bondLevel}</p>}
+                  {p.bondLevel > 0 && <p className="text-xs text-w25">Bond: {p.bondLevel}</p>}
                 </div>
               ))}
               {/* Pending invites */}
