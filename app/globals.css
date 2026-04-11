@@ -40,6 +40,11 @@ img {
 .cv-auto {
   content-visibility: auto;
   contain-intrinsic-size: auto 140px;
+  animation: card-fade-in 0.25s ease-out;
+}
+@keyframes card-fade-in {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -731,6 +736,11 @@ button[disabled] {
   border: 1px solid rgba(255,255,255,0.1);
   color: #fff;
   outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-dark:focus {
+  border-color: rgba(167,139,250,0.4);
+  box-shadow: 0 0 0 2px rgba(167,139,250,0.1);
 }
 
 /* Close button (modal X)                                                    */
