@@ -286,7 +286,7 @@ export function useQuestActions({
           ...(data.npcFinalReward
             ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` }
             : data.dailyDiminishing != null && data.dailyDiminishing < 1
-              ? { flavor: `Quest ${data.dailyQuestCount || "?"} today — rewards at ${Math.round(data.dailyDiminishing * 100)}%` }
+              ? { flavor: `Quest ${data.dailyQuestCount || "?"} today. Rewards reduced to ${Math.round(data.dailyDiminishing * 100)}%.` }
               : data.dailyQuestCount != null && data.dailyQuestCount <= 5
                 ? { flavor: `Quest ${data.dailyQuestCount} of 5 at full rewards today` }
                 : {}
