@@ -577,8 +577,8 @@ export default function TalentTreeView({
                       x={pos.x} y={pos.y + 1}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill={state === "allocated" ? "#000" : "rgba(255,255,255,0.5)"}
-                      fontSize={9}
+                      fill={state === "allocated" ? "#000" : "rgba(255,255,255,0.7)"}
+                      fontSize={11}
                       fontWeight="bold"
                     >
                       {data.allocated[n.id]?.rank || 0}/{n.maxRank}
@@ -592,7 +592,7 @@ export default function TalentTreeView({
             <text x={CENTER} y={CENTER - 8} textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize={11} fontWeight="bold">
               SCHICKSALSBAUM
             </text>
-            <text x={CENTER} y={CENTER + 8} textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize={9}>
+            <text x={CENTER} y={CENTER + 8} textAnchor="middle" fill="rgba(255,255,255,0.2)" fontSize={11}>
               Level {data.playerLevel}
             </text>
           </svg>

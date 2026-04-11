@@ -567,7 +567,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               }} />
             ))}
           </div>
-          <div className="rounded-full overflow-hidden" style={{ height: 12, background: "rgba(255,255,255,0.06)", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.4)" }}>
+          <div className="rounded-full overflow-hidden" style={{ height: 20, background: "rgba(255,255,255,0.06)", boxShadow: "inset 0 2px 6px rgba(0,0,0,0.5)" }}>
             <div
               className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}${hpPercent < 0.25 && !boss.defeated ? " rift-urgent" : ""}`}
               style={{
