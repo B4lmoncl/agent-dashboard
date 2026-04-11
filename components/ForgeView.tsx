@@ -1292,7 +1292,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   return ra - rb || a.name.localeCompare(b.name);
                 });
               if (filtered.length === 0 && matSearch) {
-                return <p className="text-xs text-w20 text-center py-6">Keine Materialien gefunden</p>;
+                return <p className="text-xs text-w20 text-center py-6">No materials found.</p>;
               }
               return (
                 <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
@@ -1960,7 +1960,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <p className="text-xs" style={{ color: "#fca5a5" }}>Uncommon → Arkaner Staub · Rare → Magische Essenz · Epic → Schimmersplitter · Legendary → Nexuskristall</p>
                   </div>
                   {inv.length === 0 ? (
-                    <p className="text-xs text-w20 text-center py-6">Keine entzauberbaren Items (Uncommon+ und nicht gesperrt)</p>
+                    <p className="text-xs text-w20 text-center py-6">No disenchantable items. Requires uncommon+ and unlocked.</p>
                   ) : (
                     <div className="space-y-1.5 max-h-[300px] overflow-y-auto scrollbar-rpg">
                       {inv.map(item => {
@@ -2283,9 +2283,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* ─── Tab: Reagents (Buy vendor reagents from trainer) ────────── */}
             {(npcModalTab as string) === "reagents" && (() => {
-              if (!selectedNpc.chosen) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-sm text-w30">Wähle diesen Beruf zuerst um Reagents zu kaufen.</p></div>;
+              if (!selectedNpc.chosen) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-sm text-w30">Choose this profession first to purchase reagents.</p></div>;
               const profReagents = vendorReagentDefs.filter(r => r.professions?.includes(selectedNpc.id));
-              if (profReagents.length === 0) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-xs text-w25">Keine Reagents für diesen Beruf verfügbar.</p></div>;
+              if (profReagents.length === 0) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-xs text-w25">No vendor reagents for this profession.</p></div>;
               const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>

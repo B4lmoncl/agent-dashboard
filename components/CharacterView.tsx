@@ -1454,7 +1454,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div className="space-y-2">
                   <p className="text-xs text-w25">{sorted.length} material{sorted.length !== 1 ? "s" : ""} in storage</p>
                   {sorted.length === 0 ? (
-                    <p className="text-xs text-center py-8 text-w15">{searchQ ? "Keine Materialien gefunden" : "No materials yet. Complete quests to gather materials based on your professions."}</p>
+                    <p className="text-xs text-center py-8 text-w15">{searchQ ? "No materials found." : "No materials yet. Complete quests to gather them."}</p>
                   ) : (
                     <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))" }}>
                       {sorted.map(([id, count]) => {

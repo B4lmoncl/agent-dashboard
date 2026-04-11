@@ -768,7 +768,7 @@ export default function TalentTreeView({
                             const invD = await invR.json();
                             const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
                             if (legendaries.length === 0) {
-                              _toast({ type: "error", message: "Kein Legendary Item verfügbar" });
+                              _toast({ type: "error", message: "No legendary item in inventory." });
                               return;
                             }
                             const item = legendaries[0];
