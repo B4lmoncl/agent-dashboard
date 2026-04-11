@@ -307,6 +307,7 @@ button[disabled] {
 /* NPC card hover in Artisan's Quarter */
 .npc-card-hover {
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  will-change: transform, box-shadow;
 }
 .npc-card-hover:hover {
   transform: translateY(-2px);
@@ -1103,6 +1104,7 @@ button[disabled] {
 /* ─── Enhanced Card Hover (Wolcen/D3 depth) ─── */
 .card-hover-depth {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  will-change: transform, box-shadow;
 }
 .card-hover-depth:hover {
   transform: translateY(-4px) scale(1.008);
