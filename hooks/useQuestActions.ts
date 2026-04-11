@@ -277,7 +277,7 @@ export function useQuestActions({
         if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
-          title: data.npcFinalReward ? `${questTitle} — Chain Complete!` : questTitle,
+          title: data.npcFinalReward ? `${questTitle} — Chain Complete` : questTitle,
           xpEarned: data.xpEarned || 0,
           goldEarned: data.goldEarned || 0,
           loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6", icon: data.npcFinalReward.icon } : data.lootDrop || null,
