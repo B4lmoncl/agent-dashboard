@@ -5,6 +5,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -157,6 +158,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="season" playerLevel={1} />
       {/* Header */}
       <div className="rounded-xl p-5" style={{
         background: `linear-gradient(135deg, ${config.seasonAccent}12 0%, rgba(14,14,18,0.95) 100%)`,

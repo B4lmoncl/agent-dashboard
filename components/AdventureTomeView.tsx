@@ -6,6 +6,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -146,6 +147,7 @@ export default function AdventureTomeView({
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="tome" playerLevel={1} />
       {/* ─── Header ────────────────────────────────────────────────────────── */}
       <div className="text-center space-y-2">
         <Tip k="adventure_tome" heading>

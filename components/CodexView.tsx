@@ -6,6 +6,7 @@ import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useDashboard } from "@/app/DashboardContext";
 import { TipCustom } from "@/components/GameTooltip";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 interface CodexEntry {
   id: string;
@@ -87,6 +88,7 @@ export default function CodexView() {
 
   return (
     <div className="tab-content-enter space-y-4 relative">
+      <TutorialMomentBanner viewId="codex" playerLevel={1} />
       {/* Ambient lore dust particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (

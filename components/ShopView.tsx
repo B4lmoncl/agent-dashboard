@@ -7,6 +7,7 @@ import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import shopData from "../public/data/shopItems.json";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 const GEAR_TIERS_CLIENT = shopData.gearTiers;
 const SHOP_ITEMS_LIST: ShopItem[] = shopData.items as ShopItem[];
@@ -132,6 +133,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   if (loading) {
     return (
       <div className="space-y-3 tab-content-enter">
+      <TutorialMomentBanner viewId="shop" playerLevel={1} />
         {Array.from({ length: 3 }, (_, i) => (
           <div key={i} className="skeleton-card h-20 rounded-lg" />
         ))}
