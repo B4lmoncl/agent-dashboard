@@ -984,8 +984,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         {expeditionData.active.name}
                       </span>
                       <span className="text-xs font-mono" style={{
-                        color: expeditionTimer === "Ready!" ? "#4ade80" : "rgba(255,255,255,0.4)",
-                        fontWeight: expeditionTimer === "Ready!" ? 700 : 400,
+                        color: expeditionTimer === "Ready" ? "#4ade80" : "rgba(255,255,255,0.4)",
+                        fontWeight: expeditionTimer === "Ready" ? 700 : 400,
                       }}>
                         {expeditionTimer || "..."}
                       </span>
@@ -995,7 +995,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <div style={{
                         height: "100%",
                         width: `${expeditionTimerProgress * 100}%`,
-                        background: expeditionTimer === "Ready!"
+                        background: expeditionTimer === "Ready"
                           ? "linear-gradient(90deg, #22c55e, #4ade80)"
                           : `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)`,
                         borderRadius: "inherit",
@@ -1003,7 +1003,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       }} />
                     </div>
                     {/* Collect button when ready */}
-                    {expeditionTimer === "Ready!" && (
+                    {expeditionTimer === "Ready" && (
                       <button
                         onClick={handleExpeditionCollect}
                         disabled={expeditionCollecting}

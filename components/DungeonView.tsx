@@ -293,7 +293,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                 : undefined;
           onRewardCelebration({
             type: "dungeon",
-            title: d.success ? "Dungeon Cleared!" : "Dungeon Survived",
+            title: d.success ? "Dungeon Cleared" : "Dungeon Survived",
             xpEarned: 0,
             goldEarned: rw.gold || 0,
             loot: loot || undefined,
@@ -384,7 +384,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             <span className="text-xl" style={collectResult.success ? { filter: "drop-shadow(0 0 6px rgba(34,197,94,0.5))" } : undefined}>{collectResult.success ? "★" : "—"}</span>
             <div>
               <p className="text-sm font-bold" style={{ color: collectResult.success ? "#22c55e" : "#ef4444" }}>
-                {collectResult.success ? "Dungeon Cleared!" : "Dungeon Failed"}
+                {collectResult.success ? "Dungeon Cleared" : "Dungeon Failed"}
               </p>
               <p className="text-xs text-w30">
                 Success chance: {collectResult.successChance}% | Power: {collectResult.effectivePower}/{collectResult.threshold}

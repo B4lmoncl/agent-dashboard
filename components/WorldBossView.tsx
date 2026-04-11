@@ -271,7 +271,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           const lootReward = d.rewards.find((rw: ClaimReward) => rw.type === "unique-drop" || rw.type === "legendary-drop" || rw.type === "gear-drop");
           onRewardCelebration({
             type: "world-boss",
-            title: "World Boss Rewards!",
+            title: "World Boss Rewards",
             xpEarned: 0,
             goldEarned: goldReward?.amount || 0,
             loot: lootReward ? { name: lootReward.name || "Loot Drop", emoji: "◆", rarity: lootReward.rarity || "legendary", rarityColor: lootReward.type === "gear-drop" ? "#a855f7" : "#ff8c00", icon: lootReward.icon } : undefined,

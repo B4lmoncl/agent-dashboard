@@ -283,7 +283,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             </div>
             <div className="text-right">
               <p className={`text-sm font-mono font-bold${!activeRift.completed && new Date(activeRift.expiresAt).getTime() - Date.now() < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 ? " bar-pulse" : ""}`} style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
-                {activeRift.completed ? "✓ Rift Conquered!" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
+                {activeRift.completed ? "✓ Rift Conquered" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
               </p>
               <p className="text-xs" style={{ color: activeRift.completed ? "rgba(34,197,94,0.5)" : "rgba(255,255,255,0.2)" }}>{activeRift.completed ? "All stages cleared — rewards granted" : "Time remaining"}</p>
             </div>

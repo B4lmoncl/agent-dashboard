@@ -131,7 +131,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 
   const statusColors: Record<string, { color: string; bg: string; border: string; label: string }> = {
     active:    { color: "#a78bfa", bg: "rgba(139,92,246,0.15)", border: "rgba(139,92,246,0.3)", label: "Active" },
-    completed: { color: "#34d399", bg: "rgba(16,185,129,0.15)", border: "rgba(16,185,129,0.3)", label: "Victory!" },
+    completed: { color: "#34d399", bg: "rgba(16,185,129,0.15)", border: "rgba(16,185,129,0.3)", label: "Complete" },
     archived:  { color: "#9ca3af", bg: "rgba(156,163,175,0.1)", border: "rgba(156,163,175,0.2)", label: "Archived" },
   };
 

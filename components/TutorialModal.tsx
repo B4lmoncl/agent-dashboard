@@ -993,8 +993,8 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
 export const TUTORIAL_STEPS = [
   {
     key: "welcome",
-    title: "Willkommen in der Quest Hall!",
-    desc: "Dein persönliches Abenteuer beginnt hier. Ich zeige dir die wichtigsten Bereiche des Turms — Schritt für Schritt.",
+    title: "Willkommen in der Quest Hall.",
+    desc: "Der Turm hat viele Stockwerke. Ich zeige dir die wichtigsten — der Rest erschließt sich. Oder auch nicht.",
     target: null,
     position: "center" as const,
     navigateTo: null,
