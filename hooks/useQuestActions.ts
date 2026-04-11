@@ -325,6 +325,10 @@ export function useQuestActions({
         if (data.gemDrop) {
           addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped!", rarity: "rare" });
         }
+        // Warning: inventory was full, loot was lost
+        if (data.inventoryFull) {
+          addToast({ type: "error", message: "Inventory full — loot item lost. Free up space." });
+        }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
           addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
