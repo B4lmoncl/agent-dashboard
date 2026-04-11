@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SFX } from "@/lib/sounds";
+import ItemTooltip from "@/components/ItemTooltip";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -257,6 +258,7 @@ interface RewardCelebrationProps {
 
 export function RewardCelebration({ data, onClose, onCollect, onAchievementClick, onNavigate }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
+  const [showLootTooltip, setShowLootTooltip] = useState(false);
 
   // Play reward sound on mount
   useEffect(() => {
@@ -416,26 +418,28 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
               </div>
             )}
             {data.loot && (
-              <div className="reward-pill" style={{
-                background: "rgba(255,215,0,0.08)",
-                border: "1px solid rgba(255,215,0,0.25)",
-              }}>
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowLootTooltip(true); }}
+                className="reward-pill"
+                style={{
+                  background: "rgba(255,215,0,0.08)",
+                  border: "1px solid rgba(255,215,0,0.25)",
+                  cursor: "pointer",
+                }}
+              >
                 {data.loot.icon ? (
                   <img src={data.loot.icon} alt="" width={24} height={24} className="mr-1.5" style={{ imageRendering: "auto", verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 ) : (
                   <span className="text-sm mr-1">{data.loot.emoji}</span>
                 )}
                 <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
-                {onNavigate && (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate("character"); onClose(); }}
-                    className="ml-2 text-xs px-1.5 py-0.5 rounded"
-                    style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer" }}
-                  >
-                    View {"\u2192"}
-                  </button>
-                )}
-              </div>
+              </button>
+            )}
+            {showLootTooltip && data.loot && (
+              <ItemTooltip
+                item={{ name: data.loot.name, rarity: data.loot.rarity, icon: data.loot.icon || null }}
+                onClose={() => setShowLootTooltip(false)}
+              />
             )}
             {data.currencies && data.currencies.map((c, i) => {
               const spendView = onNavigate ? (
