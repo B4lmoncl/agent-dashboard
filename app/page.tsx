@@ -200,6 +200,7 @@ export default function Dashboard() {
     }
     setDashViewRaw(view);
     setSearchFilter(""); // Clear quest search on tab switch
+    SFX.navigate();
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (backed by persistent backend state)
