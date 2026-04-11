@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { SFX } from "@/lib/sounds";
 import type { Quest, ActiveNpc, Ritual } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
@@ -331,6 +332,7 @@ export function useQuestActions({
         }
         // Streak milestone celebration
         if (data.streakMilestone) {
+          SFX.streakMilestone();
           addToast({ type: "flavor", message: `${data.streakMilestone.days}-Day Streak. ${data.streakMilestone.label || "The flame endures."}`, icon: data.streakMilestone.badge || "◆" });
         }
         // Toast for recipe discoveries

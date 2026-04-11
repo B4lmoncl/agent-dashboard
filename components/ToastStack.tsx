@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import type { EarnedAchievement } from "@/app/types";
 import { typeConfig } from "@/app/config";
+import { SFX } from "@/lib/sounds";
 
 // ─── Toast Types ─────────────────────────────────────────────────────────────
 export type ToastItem =
@@ -43,6 +44,10 @@ export function useToastStack() {
   const addToast = useCallback((toast: ToastInput) => {
     const id = `toast-${Date.now()}-${counterRef.current++}`;
     const newToast = { ...toast, id } as ToastItem;
+    // Play SFX for specific toast types
+    if (toast.type === "achievement") SFX.achievement();
+    else if (toast.type === "item") SFX.lootDrop();
+    else if (toast.type === "error") SFX.error();
     setToasts(prev => {
       const next = [...prev, newToast];
       // evict oldest if over max
