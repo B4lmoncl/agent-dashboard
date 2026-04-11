@@ -689,6 +689,8 @@ button[disabled] {
 
 /* ─── Quest Hall Design System — Utility Classes ─────────────────────────── */
 /* Text colors — white at various opacities (replaces inline rgba styles)    */
+.text-w10 { color: rgba(255,255,255,0.1); }
+.text-w15 { color: rgba(255,255,255,0.15); }
 .text-w20 { color: rgba(255,255,255,0.2); }
 .text-w25 { color: rgba(255,255,255,0.25); }
 .text-w30 { color: rgba(255,255,255,0.3); }
