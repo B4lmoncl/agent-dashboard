@@ -328,6 +328,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const lootDrop = u?._lastLoot || null;
     const companionReward = u?._lastCompanionReward || null;
     const xpEarned = u?._lastXpEarned || 0;
+    const restedBonusXp = u?._lastRestedBonusXp || 0;
     const goldEarned = u?._lastGoldEarned || 0;
     const runensplitterEarned = u?._lastRunensplitterEarned || 0;
     const gildentalerEarned = u?._lastGildentalerEarned || 0;
@@ -367,6 +368,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       npcFinalReward,
       companionReward,
       xpEarned,
+      restedBonusXp,
       goldEarned,
       runensplitterEarned,
       gildentalerEarned,
