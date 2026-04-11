@@ -721,7 +721,7 @@ button[disabled] {
 .border-w12 { border: 1px solid rgba(255,255,255,0.12); }
 
 /* Modal / Overlay backdrops                                                 */
-.modal-backdrop      { background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.modal-backdrop      { background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .modal-backdrop-blur { background: radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .modal-backdrop, .modal-backdrop-blur {
   touch-action: manipulation;
