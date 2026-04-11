@@ -2183,3 +2183,16 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   0% { box-shadow: 0 0 20px rgba(251,191,36,0.8), inset 0 0 10px rgba(251,191,36,0.5); filter: brightness(2); }
   100% { box-shadow: none; filter: brightness(1); }
 }
+
+/* ─── Accessibility: Reduced Motion ──────────────────────────────────────── */
+/* Respects user preference for reduced motion (vestibular disorders etc.) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .skeleton, .skeleton-pulse { animation: none !important; opacity: 0.06; }
+  .crystal-breathe, .crystal-breathe-card, .crystal-breathe-epic { animation: none !important; }
+  .progress-bar-nearly-full .progress-bar-diablo-fill { animation: none !important; }
+}
