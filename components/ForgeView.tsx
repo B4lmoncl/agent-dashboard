@@ -1064,7 +1064,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             >
               <div className="flex items-center gap-3 mb-2">
                 {/* NPC portrait — border evolves with rank */}
-                <div className={`w-20 h-20 rounded-lg overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
+                <div className={`w-24 h-24 rounded-xl overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
                   <img src={prof.npcPortrait} alt={prof.npcName} width={128} height={128} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -1128,7 +1128,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <div className="flex-1 progress-bar-diablo" style={{ height: 7 }}>
                     <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}cc, ${prof.color})`, width: `${(prof.skill || prof.playerXp || 0) / (prof.skillCap || prof.nextLevelXp || 75) * 100}%`, boxShadow: `0 0 6px ${prof.color}40` }} />
                   </div>
-                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 75} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
+                  <span className="text-sm font-mono font-bold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 75} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
                 </div>
               )}
               {prof.masteryBonus && (prof.masteryActive ? (
