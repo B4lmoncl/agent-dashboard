@@ -1578,6 +1578,26 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   animation: reward-burst-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
+/* ─── Legendary Drop VFX ──────────────────────────────────────────────── */
+@keyframes legendary-flash {
+  0% { background: rgba(255,255,255,0.6); }
+  100% { background: transparent; }
+}
+.legendary-screen-flash::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  animation: legendary-flash 0.4s ease-out forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes legendary-glow-pulse {
+  0%, 100% { box-shadow: 0 0 60px var(--glow-color, rgba(249,115,22,0.3)), 0 0 120px var(--glow-color, rgba(249,115,22,0.1)); }
+  50% { box-shadow: 0 0 100px var(--glow-color, rgba(249,115,22,0.5)), 0 0 200px var(--glow-color, rgba(249,115,22,0.2)); }
+}
+.legendary-drop-glow {
+  animation: legendary-glow-pulse 2s ease-in-out infinite;
+}
+
 /* ─── Visual Overhaul: Stat Card Depth ─────────────────────────────────── */
 .stat-card-depth {
   background: radial-gradient(ellipse at 50% 0%, rgba(50,50,60,0.3) 0%, #181818 65%) !important;

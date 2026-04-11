@@ -216,28 +216,28 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accent: "#818cf8",
     accentRgb: "129,140,248",
     gradientTop: "#0d0d1a",
-    label: "Rift Stage Cleared!",
+    label: "Rift Stage Cleared",
     icon: "◇",
     flavorMessages: [
-      "The Rift yields to your will!",
-      "Reality bends — and rewards.",
-      "Another tear in the veil, sealed.",
-      "The Aetherstream whispers approval.",
-      "Deeper still, the Rift beckons...",
+      "The Rift yields. Reluctantly.",
+      "Reality bends. It does not appreciate this.",
+      "Another tear sealed. More will open.",
+      "The Aetherstream acknowledges your persistence.",
+      "Deeper still. The Rift does not forgive.",
     ],
   },
   levelUp: {
     accent: "#fbbf24",
     accentRgb: "251,191,36",
     gradientTop: "#1a1400",
-    label: "Level Up!",
+    label: "Level Up",
     icon: "★",
     flavorMessages: [
-      "A new level of power unlocked!",
-      "The Hall of Records grows!",
-      "Greater strength, greater purpose.",
-      "Ascension. The forge burns hotter.",
-      "Power, earned through deeds.",
+      "A new threshold crossed.",
+      "The Hall takes notice. Briefly.",
+      "Greater strength. Greater expectations.",
+      "The forge burns hotter. So should you.",
+      "Power, earned. Not given.",
     ],
   },
 };
@@ -287,21 +287,22 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
     : theme.gradientTop;
   const icon = data.companionEmoji || theme.icon;
   const flavor = data.flavor || theme.flavorMessages[flavorIdx % theme.flavorMessages.length];
+  const isLegendaryDrop = data.loot?.rarity === "legendary" || data.loot?.rarity === "unique" || data.type === "levelUp";
 
   const hasRewards = data.xpEarned > 0 || data.goldEarned > 0 || data.loot || (data.bondXp && data.bondXp > 0) || (data.currencies && data.currencies.length > 0);
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      className={`fixed inset-0 z-[200] flex items-center justify-center p-4${isLegendaryDrop ? " legendary-screen-flash" : ""}`}
       style={{ background: `radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.88) 100%)` }}
       onClick={() => { if (onCollect) onCollect(data); onClose(); }}
     >
       <div
-        className="reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden"
+        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
         style={{
           background: `linear-gradient(180deg, ${gradientTop} 0%, #0d0d14 60%)`,
           border: `2px solid rgba(${accentRgb},0.5)`,
-          boxShadow: `0 0 60px rgba(${accentRgb},0.3), 0 0 120px rgba(${accentRgb},0.1)`,
+          boxShadow: `0 0 60px rgba(${accentRgb},0.3), 0 0 120px rgba(${accentRgb},0.1)${isLegendaryDrop ? `, 0 0 200px rgba(${accentRgb},0.2)` : ""}`,
         }}
         onClick={e => e.stopPropagation()}
       >
