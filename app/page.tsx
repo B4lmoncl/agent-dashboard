@@ -1139,15 +1139,29 @@ export default function Dashboard() {
                   })()}
                 </div>
                 <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
-                {/* XP progress bar — Diablo style */}
-                <div className={`progress-bar-diablo${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
+                {/* XP progress bar — Diablo style + WoW rested XP blue zone */}
+                <div className={`progress-bar-diablo relative${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
+                  {/* Rested XP zone (blue overlay showing how far 2x bonus extends) */}
+                  {(loggedInUser._restedXpPool ?? 0) > 0 && playerLevelInfo.xpForLevel > 0 && (
+                    <div
+                      className="absolute top-0 left-0 h-full rounded-full"
+                      style={{
+                        width: `${Math.min(100, ((playerLevelInfo.xpInLevel + (loggedInUser._restedXpPool ?? 0)) / playerLevelInfo.xpForLevel) * 100).toFixed(1)}%`,
+                        background: "rgba(96,165,250,0.15)",
+                        borderRight: "1px solid rgba(96,165,250,0.4)",
+                        zIndex: 0,
+                      }}
+                      title={`${Math.round((loggedInUser._restedXpPool ?? 0))} Rested XP — next quests give 2x XP`}
+                    />
+                  )}
                   <div
-                    className="progress-bar-diablo-fill progress-shimmer"
-                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)` }}
+                    className="progress-bar-diablo-fill progress-shimmer relative"
+                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)`, zIndex: 1 }}
                   />
                 </div>
                 <p className="text-xs mt-1 font-mono text-w20">
                   {playerLevelInfo.xpInLevel} {playerLevelInfo.xpForLevel ? `/ ${playerLevelInfo.xpForLevel} XP` : "(max)"}
+                  {(loggedInUser._restedXpPool ?? 0) > 0 && <span style={{ color: "rgba(96,165,250,0.5)", marginLeft: 6 }}>+{Math.round((loggedInUser._restedXpPool ?? 0))} rested</span>}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   {dailyBonusAvailable && (
