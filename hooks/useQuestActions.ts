@@ -423,6 +423,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         setLastPoolRefresh(new Date());
+        addToast({ type: "flavor", message: "Quest pool refreshed. New scrolls on the board.", icon: "/images/icons/ui-quest-scroll.png" });
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
