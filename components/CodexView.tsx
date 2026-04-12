@@ -84,7 +84,7 @@ export default function CodexView() {
   const undiscoveredFiltered = filtered.filter(e => !e.discovered);
 
   if (loading) return <div className="space-y-3 tab-content-enter"><div className="skeleton-card h-10" /><div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{Array.from({ length: 9 }).map((_, i) => <div key={i} className="skeleton-card h-16 rounded-lg" />)}</div></div>;
-  if (loadError) return <div className="text-center py-12 tab-content-enter"><p className="text-sm" style={{ color: "#ef4444" }}>Failed to load Codex</p></div>;
+  if (loadError) return <div className="text-center py-12 tab-content-enter"><p className="text-sm" style={{ color: "#ef4444" }}>Failed to load Codex</p><button onClick={() => { setLoadError(false); setLoading(true); fetchCodex(); }} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Retry</button></div>;
 
   return (
     <div className="tab-content-enter space-y-4 relative">
