@@ -411,6 +411,7 @@ export interface GachaPityInfo {
   hardPity: number;
   softPityStart: number;
   epicPity: number;
+  perBanner?: Record<string, { pityCounter: number; epicPityCounter: number }>;
 }
 
 export interface CurrencyTemplate {
