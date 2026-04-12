@@ -2139,12 +2139,11 @@ export default function Dashboard() {
                             <button
                               key={m.id}
                               onClick={() => target && setDashView(target as typeof dashViewRaw)}
-                              className="text-xs px-2 py-1 rounded-lg inline-flex items-center gap-1"
+                              className="text-xs px-2 py-1.5 rounded-lg inline-flex items-center gap-1.5"
                               style={{
-                                background: m.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.03)",
-                                color: m.done ? "#4ade80" : "rgba(255,255,255,0.3)",
-                                border: `1px solid ${m.done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.05)"}`,
-                                textDecoration: m.done ? "line-through" : "none",
+                                background: m.done ? "rgba(74,222,128,0.1)" : "rgba(255,255,255,0.03)",
+                                color: m.done ? "rgba(74,222,128,0.6)" : "rgba(255,255,255,0.4)",
+                                border: `1px solid ${m.done ? "rgba(74,222,128,0.2)" : "rgba(255,255,255,0.06)"}`,
                                 cursor: target && !m.done ? "pointer" : "default",
                               }}
                               title={target && !m.done ? `Go to ${target}` : undefined}
