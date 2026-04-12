@@ -117,13 +117,16 @@ export default function DashboardHeader({
     return () => document.removeEventListener("mousedown", handler);
   }, [settingsPopupOpen]);
 
-  // Scroll lock for settings modal (ref-counted via useModalBehavior pattern)
+  // Scroll lock + ESC key for settings modal
   useEffect(() => {
     if (!settingsModalOpen) return;
     const w = window as unknown as { _modalLockCount?: number };
     w._modalLockCount = (w._modalLockCount || 0) + 1;
     document.body.style.overflow = "hidden";
+    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") setSettingsModalOpen(false); };
+    window.addEventListener("keydown", handleKey);
     return () => {
+      window.removeEventListener("keydown", handleKey);
       w._modalLockCount = Math.max(0, (w._modalLockCount || 1) - 1);
       if (w._modalLockCount === 0) document.body.style.overflow = "";
     };
@@ -577,7 +580,7 @@ export default function DashboardHeader({
                               body: JSON.stringify({ relationshipStatus: s }),
                             });
                             refresh();
-                          } catch (err) { console.error('[settings] relationship update failed:', err); }
+                          } catch { setSettingsMsg("Failed to update relationship status"); }
                         }}
                         className="text-xs px-2 py-1 rounded"
                         style={{
