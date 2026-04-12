@@ -248,6 +248,19 @@ router.delete('/api/social/friend/:friendId', requireAuth, (req, res) => {
 
   state.socialData.friendships.splice(idx, 1);
   removeFromFriendIndex(userId, friendId);
+
+  // Auto-break any sworn bond between these players (no cooldown — side effect of unfriend)
+  const activeBond = (state.socialData.swornBonds || []).find(b =>
+    (b.status === 'active' || b.status === 'pending') &&
+    ((b.player1 === userId && b.player2 === friendId) || (b.player1 === friendId && b.player2 === userId))
+  );
+  if (activeBond) {
+    activeBond.status = 'broken';
+    activeBond.brokenAt = now();
+    activeBond.brokenBy = null; // No cooldown for friendship-dissolution break
+    console.log(`[social] Sworn bond ${activeBond.id} auto-broken due to unfriend`);
+  }
+
   saveSocial();
   console.log(`[social] Friendship removed: ${userId} ↔ ${friendId}`);
   res.json({ ok: true });

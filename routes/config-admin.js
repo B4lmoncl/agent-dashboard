@@ -371,7 +371,26 @@ router.get('/api/dashboard', (req, res) => {
       (t.initiator === playerLower || t.recipient === playerLower) &&
       (t.status === 'pending_initiator' || t.status === 'pending_recipient')
     ).length;
-    socialSummary = { pendingFriendRequests, unreadMessages, activeTrades };
+    const pendingBonds = (sd.swornBonds || []).filter(b => b.player2 === playerLower && b.status === 'pending').length;
+    // Sworn bond summary for at-a-glance display
+    let swornBondSummary = null;
+    const activeBond = (sd.swornBonds || []).find(b => b.status === 'active' && (b.player1 === playerLower || b.player2 === playerLower));
+    if (activeBond) {
+      try { const { ensureBondWeeklyObjective } = require('./sworn-bonds'); ensureBondWeeklyObjective?.(activeBond); } catch { /* not loaded yet */ }
+      const isP1 = activeBond.player1 === playerLower;
+      const partnerId = isP1 ? activeBond.player2 : activeBond.player1;
+      const partner = state.users[partnerId];
+      const obj = activeBond.weeklyObjective;
+      swornBondSummary = {
+        bondId: activeBond.id,
+        partnerName: partner?.name || partnerId,
+        streak: activeBond.streak || 0,
+        bondLevel: activeBond.bondLevel || 1,
+        objectiveCompleted: obj?.completed || false,
+        chestReady: obj?.completed && !(isP1 ? obj.chestClaimed?.player1 : obj.chestClaimed?.player2),
+      };
+    }
+    socialSummary = { pendingFriendRequests, unreadMessages, activeTrades, pendingBonds, swornBondSummary };
   }
 
   // Daily missions — computed from existing player actions (no new storage needed)

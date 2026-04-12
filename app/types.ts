@@ -414,6 +414,52 @@ export interface GachaPityInfo {
   perBanner?: Record<string, { pityCounter: number; epicPityCounter: number }>;
 }
 
+// ─── Sworn Bonds ────────────────────────────────────────────────────────────
+
+export interface SwornBondObjective {
+  weekId: string;
+  type: "combined_quests" | "combined_xp" | "type_variety" | "individual_quests";
+  description: string;
+  target: number;
+  targetPerPlayer: number | null;
+  progress: { mine: number; partner: number };
+  completed: boolean;
+  completedAt: string | null;
+  chestClaimed: boolean;
+}
+
+export interface SwornBondPartner {
+  id: string;
+  name: string;
+  avatar: string;
+  color: string;
+  level: number;
+}
+
+export interface SwornBond {
+  id: string;
+  status: "pending" | "active" | "broken";
+  isInitiator: boolean;
+  formedAt: string | null;
+  partner: SwornBondPartner;
+  bondLevel: number;
+  bondLevelTitle: string;
+  bondXp: number;
+  bondXpToNext: number;
+  streak: number;
+  longestStreak: number;
+  weeklyObjective: SwornBondObjective | null;
+}
+
+export interface SwornBondSummary {
+  bondId: string;
+  partnerName: string;
+  streak: number;
+  bondLevel: number;
+  objectiveCompleted: boolean;
+  chestReady: boolean;
+}
+
 export interface CurrencyTemplate {
   id: string;
   name: string;
