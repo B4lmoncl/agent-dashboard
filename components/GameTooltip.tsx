@@ -271,6 +271,22 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
       </>
     ),
   },
+  sworn_bonds: {
+    title: "Sworn Bonds",
+    icon: "◆",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>A 1-on-1 pact between friends with shared weekly objectives. Complete them together for escalating rewards.</p>
+        <div className="gt-stat-row"><span>Bond Levels</span><span>1-10 (Bekannte → Ewiger Bund)</span></div>
+        <div className="gt-stat-row"><span>Weekly Objectives</span><span>Reset every Monday</span></div>
+        <div className="gt-stat-row"><span>Duo Streak</span><span>Consecutive weeks = better rewards</span></div>
+        <div className="gt-stat-row"><span>Bond Chest</span><span>Gold + Essenz + Duo Frame chance</span></div>
+        <div className="gt-stat-row"><span>Break Cooldown</span><span>7 days after breaking a bond</span></div>
+        <p className="gt-source">One bond at a time. Both players must complete objectives to earn the chest.</p>
+      </>
+    ),
+  },
   hoarding: {
     title: "Hoarding Penalty",
     icon: "⚠️",

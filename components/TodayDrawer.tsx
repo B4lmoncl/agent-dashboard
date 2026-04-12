@@ -418,7 +418,7 @@ export default function TodayDrawer({
   worldBossActive: boolean;
   riftActive: boolean;
   vowCount: number;
-  socialBadge: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null;
+  socialBadge: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number; pendingBonds?: number; swornBondSummary?: { bondId: string; partnerName: string; streak: number; bondLevel: number; objectiveCompleted: boolean; chestReady: boolean } | null } | null;
   expeditionActive: boolean;
   dungeonActive: boolean;
   onClaimMilestone?: (threshold: number) => void;
@@ -768,6 +768,19 @@ export default function TodayDrawer({
           done: false,
           sub: `${socialBadge.unreadMessages} new`,
           tooltipKey: "breakaway",
+          onClick: () => { onNavigate("social"); onClose(); },
+        });
+      }
+      if (socialBadge.swornBondSummary?.chestReady) {
+        urgent.push({
+          id: "sworn-bond-chest",
+          icon: "/images/icons/currency-gildentaler.png",
+          label: "Bond Chest",
+          done: false,
+          urgent: true,
+          sub: `Ready to open with ${socialBadge.swornBondSummary.partnerName}`,
+          reward: "Gold, Essenz, Duo Frame",
+          tooltipKey: "sworn_bonds",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }

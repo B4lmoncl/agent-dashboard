@@ -510,6 +510,8 @@ router.get('/api/dashboard', (req, res) => {
         pendingFriendRequests: social.pendingFriendRequests,
         unreadMessages: social.unreadMessages,
         activeTrades: social.activeTrades,
+        pendingBonds: social.pendingBonds || 0,
+        bondChestReady: social.swornBondSummary?.chestReady ? 1 : 0,
       };
     }
   }

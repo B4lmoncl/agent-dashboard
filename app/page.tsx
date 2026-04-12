@@ -529,7 +529,7 @@ export default function Dashboard() {
         // Trading District: craft cooldowns ready (not tracked yet), milestones
         counts.bazaar = n.unclaimedMilestones || 0;
         // Breakaway: mail + trades + friends
-        counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0);
+        counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0) + (n.pendingBonds || 0) + (n.bondChestReady || 0);
         // Character: companion expedition
         counts.character = n.expeditionReady || 0;
         // Season Pass: unclaimed level rewards
