@@ -840,32 +840,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         ))}
       </div>
 
-      {/* Pity progress — visible at a glance without opening a banner */}
-      {pity && (pity.pityCounter > 0 || pity.epicPityCounter > 0) && (
-        <div className="rounded-xl px-4 py-3" style={{ background: "rgba(167,139,250,0.04)", border: "1px solid rgba(167,139,250,0.12)" }}>
-          <div className="flex items-center justify-between mb-2">
-            <Tip k="pity"><span className="text-xs font-bold uppercase tracking-widest cursor-help" style={{ color: "rgba(167,139,250,0.5)" }}>Pity Progress</span></Tip>
-            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{pity.pityCounter} / 75</span>
-          </div>
-          <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
-            <div
-              className="h-full rounded-full transition-all duration-700"
-              style={{
-                width: `${Math.min(100, (pity.pityCounter / 75) * 100)}%`,
-                background: pity.pityCounter >= 55
-                  ? "linear-gradient(90deg, #f97316, #ef4444)"
-                  : pity.pityCounter >= 40
-                  ? "linear-gradient(90deg, #a855f7, #f97316)"
-                  : "linear-gradient(90deg, #818cf8, #a855f7)",
-                boxShadow: pity.pityCounter >= 55 ? "0 0 8px rgba(249,115,22,0.4)" : "none",
-              }}
-            />
-          </div>
-          {pity.pityCounter >= 55 && (
-            <p className="text-xs mt-1" style={{ color: "rgba(249,115,22,0.6)" }}>Soft pity active — legendary chance increased</p>
-          )}
-        </div>
-      )}
+      {/* Pity progress is shown per-banner inside the banner modal (not duplicated here) */}
 
       {error && (
         <p className="text-xs px-3 py-2 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)" }}>
