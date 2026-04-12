@@ -21,7 +21,13 @@ function getWeekId() {
 function getPreviousWeekId(weekId) {
   const [year, wStr] = weekId.split('-W');
   const wNum = parseInt(wStr, 10);
-  if (wNum <= 1) return `${parseInt(year, 10) - 1}-W52`;
+  if (wNum <= 1) {
+    // Check if previous year had 53 weeks (Dec 31 is Thursday → 53 weeks)
+    const prevYear = parseInt(year, 10) - 1;
+    const dec31 = new Date(prevYear, 11, 31);
+    const lastWeek = dec31.getDay() === 4 || (dec31.getDay() === 5 && new Date(prevYear, 1, 29).getMonth() === 1) ? 53 : 52;
+    return `${prevYear}-W${String(lastWeek).padStart(2, '0')}`;
+  }
   return `${year}-W${String(wNum - 1).padStart(2, '0')}`;
 }
 
@@ -137,19 +143,28 @@ function ensureBondWeeklyObjective(bond) {
   const currentWeek = getWeekId();
 
   if (!bond.weeklyObjective || bond.weeklyObjective.weekId !== currentWeek) {
-    // Evaluate previous week
+    // Evaluate previous objective
     if (bond.weeklyObjective) {
-      const prevWeek = bond.weeklyObjective.weekId;
-      if (bond.weeklyObjective.completed && bond.lastCompletedWeekId === prevWeek) {
-        // Previous week was completed and already tracked — streak continues
-      } else if (bond.weeklyObjective.completed) {
-        bond.lastCompletedWeekId = prevWeek;
-        bond.streak++;
-        if (bond.streak > bond.longestStreak) bond.longestStreak = bond.streak;
-      } else {
+      const objWeek = bond.weeklyObjective.weekId;
+      const expectedPrevWeek = getPreviousWeekId(currentWeek);
+
+      if (bond.weeklyObjective.completed && bond.lastCompletedWeekId !== objWeek) {
+        // Objective was completed but streak not yet tracked
+        bond.lastCompletedWeekId = objWeek;
+        // Only increment streak if the completed week is DIRECTLY before current week (no gaps)
+        if (objWeek === expectedPrevWeek) {
+          bond.streak++;
+          if (bond.streak > bond.longestStreak) bond.longestStreak = bond.streak;
+        } else {
+          // Gap detected (skipped week) — reset streak even though objective was completed
+          bond.streak = 1; // this week counts as a fresh start
+          if (bond.streak > bond.longestStreak) bond.longestStreak = bond.streak;
+        }
+      } else if (!bond.weeklyObjective.completed) {
         // Previous week failed — streak resets
         bond.streak = 0;
       }
+      // else: already tracked (lastCompletedWeekId === objWeek) — no change
     }
 
     // Generate new objective
@@ -179,7 +194,8 @@ function contributeToBond(userId, quest) {
       obj.progress[playerKey]++;
       break;
     case 'combined_xp': {
-      const xpEarned = quest._lastXpEarned || 0;
+      const u = state.users[pid];
+      const xpEarned = u?._lastXpEarned || 0;
       obj.progress[playerKey] += xpEarned;
       break;
     }

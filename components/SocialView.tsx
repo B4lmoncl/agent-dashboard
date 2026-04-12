@@ -2051,20 +2051,49 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           </div>
           <p className="text-sm mb-3" style={{ color: "rgba(255,255,255,0.65)" }}>{obj.description}</p>
 
-          {/* Dual progress bar */}
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-mono font-bold w-8 text-right" style={{ color: "#818cf8" }}>{obj.progress.mine}</span>
-            <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
-              <div className="h-full rounded-full transition-all duration-500" style={{
-                width: `${progressPct}%`,
-                background: obj.completed
-                  ? "linear-gradient(90deg, #22c55e, #4ade80)"
-                  : `linear-gradient(90deg, #818cf8 0%, #818cf8 ${obj.target > 0 ? Math.round((obj.progress.mine / obj.target) * 100) : 0}%, ${bond.partner.color} ${obj.target > 0 ? Math.round((obj.progress.mine / obj.target) * 100) : 0}%, ${bond.partner.color} 100%)`,
-              }} />
+          {/* Progress display */}
+          {obj.targetPerPlayer ? (
+            // Individual objectives: show two separate bars
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="text-xs w-12 text-right truncate" style={{ color: "#818cf8" }}>You</span>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{
+                    width: `${Math.min(100, Math.round((obj.progress.mine / obj.targetPerPlayer) * 100))}%`,
+                    background: obj.progress.mine >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #818cf8, #6366f1)",
+                  }} />
+                </div>
+                <span className="text-xs font-mono font-bold w-12" style={{ color: obj.progress.mine >= obj.targetPerPlayer ? "#22c55e" : "#818cf8" }}>{obj.progress.mine}/{obj.targetPerPlayer}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs w-12 text-right truncate" style={{ color: bond.partner.color }}>{bond.partner.name.slice(0, 6)}</span>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{
+                    width: `${Math.min(100, Math.round((obj.progress.partner / obj.targetPerPlayer) * 100))}%`,
+                    background: obj.progress.partner >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : `linear-gradient(90deg, ${bond.partner.color}, ${bond.partner.color})`,
+                  }} />
+                </div>
+                <span className="text-xs font-mono font-bold w-12" style={{ color: obj.progress.partner >= obj.targetPerPlayer ? "#22c55e" : bond.partner.color }}>{obj.progress.partner}/{obj.targetPerPlayer}</span>
+              </div>
             </div>
-            <span className="text-xs font-mono font-bold w-8" style={{ color: bond.partner.color }}>{obj.progress.partner}</span>
-          </div>
-          <p className="text-xs text-center text-w30">{totalProgress} / {obj.target}</p>
+          ) : (
+            // Combined objectives: single bar with dual contribution
+            <>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-mono font-bold w-8 text-right" style={{ color: "#818cf8" }}>{obj.progress.mine}</span>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+                  <div className="h-full rounded-full transition-all duration-500" style={{
+                    width: `${progressPct}%`,
+                    background: obj.completed
+                      ? "linear-gradient(90deg, #22c55e, #4ade80)"
+                      : `linear-gradient(90deg, #818cf8 0%, #818cf8 ${obj.target > 0 ? Math.round((obj.progress.mine / obj.target) * 100) : 0}%, ${bond.partner.color} ${obj.target > 0 ? Math.round((obj.progress.mine / obj.target) * 100) : 0}%, ${bond.partner.color} 100%)`,
+                  }} />
+                </div>
+                <span className="text-xs font-mono font-bold w-8" style={{ color: bond.partner.color }}>{obj.progress.partner}</span>
+              </div>
+              <p className="text-xs text-center text-w30">{totalProgress} / {obj.target}</p>
+            </>
+          )}
 
           {/* Claim button */}
           {obj.completed && !obj.chestClaimed && (
