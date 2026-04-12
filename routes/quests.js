@@ -395,6 +395,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     if (pp.completedQuests && pp.completedQuests[quest.id]) {
       return res.status(409).json({ error: 'Quest already completed by this player' });
     }
+    // Must have claimed the quest first
+    if (!(pp.claimedQuests || []).includes(quest.id)) {
+      return res.status(400).json({ error: 'You must claim this quest first' });
+    }
     const completedAt = now();
     pp.completedQuests[quest.id] = { at: completedAt, proof: quest.proof || null };
     pp.claimedQuests = (pp.claimedQuests || []).filter(id => id !== quest.id);
