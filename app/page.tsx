@@ -2674,6 +2674,8 @@ export default function Dashboard() {
           expeditionActive={!!expedition}
           dungeonActive={dungeonActive}
           playerLevel={currentPlayerLevel}
+          factionUnclaimed={navNotifs.factions || 0}
+          seasonUnclaimed={navNotifs.season || 0}
           onClaimMilestone={async (threshold) => {
             try {
               const { getAuthHeaders } = await import("@/lib/auth-client");

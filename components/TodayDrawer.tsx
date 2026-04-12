@@ -401,6 +401,8 @@ export default function TodayDrawer({
   dungeonActive,
   onClaimMilestone,
   playerLevel,
+  factionUnclaimed,
+  seasonUnclaimed,
 }: {
   open: boolean;
   onClose: () => void;
@@ -420,6 +422,8 @@ export default function TodayDrawer({
   expeditionActive: boolean;
   dungeonActive: boolean;
   onClaimMilestone?: (threshold: number) => void;
+  factionUnclaimed?: number;
+  seasonUnclaimed?: number;
 }) {
   const { loggedInUser } = useDashboard();
 
@@ -595,6 +599,36 @@ export default function TodayDrawer({
         reward: "Unique drops",
         tooltipKey: "world_boss",
         onClick: () => { onNavigate("worldboss"); onClose(); },
+      });
+    }
+
+    // Faction unclaimed tier rewards
+    if ((factionUnclaimed ?? 0) > 0) {
+      urgent.push({
+        id: "faction-unclaimed",
+        icon: "/images/icons/ui-ritual-rune.png",
+        label: "Faction Rewards",
+        done: false,
+        urgent: true,
+        sub: `${factionUnclaimed} tier reward${factionUnclaimed !== 1 ? "s" : ""} ready`,
+        reward: "Titles, Recipes, Effects",
+        tooltipKey: "factions",
+        onClick: () => { onNavigate("factions"); onClose(); },
+      });
+    }
+
+    // Season Pass unclaimed level rewards
+    if ((seasonUnclaimed ?? 0) > 0) {
+      urgent.push({
+        id: "season-unclaimed",
+        icon: "/images/icons/currency-stardust.png",
+        label: "Season Pass",
+        done: false,
+        urgent: true,
+        sub: `${seasonUnclaimed} level${seasonUnclaimed !== 1 ? "s" : ""} to claim`,
+        reward: "Gold, Essenz, Titles",
+        tooltipKey: "battle_pass",
+        onClick: () => { onNavigate("battlepass"); onClose(); },
       });
     }
 
