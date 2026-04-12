@@ -13,7 +13,7 @@ import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
-  Trade, TradeOffer, ActivityEvent,
+  Trade, TradeOffer, ActivityEvent, SwornBond,
 } from "@/app/types";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -89,7 +89,7 @@ const EVENT_ICONS: Record<string, string> = {
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
 
-type SocialTab = "friends" | "messages" | "trades" | "activity" | "mail" | "challenges";
+type SocialTab = "friends" | "messages" | "trades" | "activity" | "mail" | "challenges" | "bonds";
 
 // ─── Friends Tab ────────────────────────────────────────────────────────────
 
@@ -1790,6 +1790,327 @@ const CHALLENGE_TYPE_LABELS: Record<string, string> = {
   custom: "Custom Rules",
 };
 
+// ─── Sworn Bond Tab ─────────────────────────────────────────────────────────
+
+function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; playerName: string; onRewardCelebration?: (d: RewardCelebrationData) => void }) {
+  const [bond, setBond] = useState<SwornBond | null>(null);
+  const [cooldownUntil, setCooldownUntil] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [actionLoading, setActionLoading] = useState(false);
+  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
+  const [friends, setFriends] = useState<FriendInfo[]>([]);
+  const [confirmBreak, setConfirmBreak] = useState(false);
+
+  const fetchBond = useCallback(async () => {
+    try {
+      const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/sworn-bond`, { headers: getAuthHeaders(apiKey) });
+      if (r.ok) {
+        const d = await r.json();
+        setBond(d.bond);
+        setCooldownUntil(d.cooldownUntil);
+      }
+    } catch { setMessage({ text: "Failed to load bond data", type: "error" }); }
+    setLoading(false);
+  }, [apiKey, playerName]);
+
+  useEffect(() => { fetchBond(); }, [fetchBond]);
+
+  // Load friends list for bond proposal
+  useEffect(() => {
+    if (bond) return; // Don't load friends if bond exists
+    (async () => {
+      try {
+        const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/friends`, { headers: getAuthHeaders(apiKey) });
+        if (r.ok) { const d = await r.json(); setFriends(d.friends || []); }
+      } catch { /* ignore */ }
+    })();
+  }, [apiKey, playerName, bond]);
+
+  const propose = async (targetId: string) => {
+    if (actionLoading) return;
+    setActionLoading(true);
+    setMessage(null);
+    try {
+      const r = await fetch("/api/social/sworn-bond/propose", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+        body: JSON.stringify({ targetPlayer: targetId }),
+      });
+      const d = await r.json();
+      if (r.ok) { setMessage({ text: d.message || "Bond proposed", type: "success" }); fetchBond(); }
+      else setMessage({ text: d.error || "Failed to propose", type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
+    setActionLoading(false);
+  };
+
+  const respond = async (action: "accept" | "decline") => {
+    if (!bond || actionLoading) return;
+    setActionLoading(true);
+    setMessage(null);
+    try {
+      const r = await fetch(`/api/social/sworn-bond/${bond.id}/${action}`, {
+        method: "POST",
+        headers: getAuthHeaders(apiKey),
+      });
+      const d = await r.json();
+      if (r.ok) { setMessage({ text: d.message, type: "success" }); fetchBond(); }
+      else setMessage({ text: d.error || `Failed to ${action}`, type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
+    setActionLoading(false);
+  };
+
+  const breakBond = async () => {
+    if (!bond || actionLoading) return;
+    setActionLoading(true);
+    setMessage(null);
+    try {
+      const r = await fetch(`/api/social/sworn-bond/${bond.id}/break`, {
+        method: "POST",
+        headers: getAuthHeaders(apiKey),
+      });
+      const d = await r.json();
+      if (r.ok) { setMessage({ text: d.message, type: "success" }); setBond(null); setConfirmBreak(false); fetchBond(); }
+      else setMessage({ text: d.error || "Failed to break bond", type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
+    setActionLoading(false);
+  };
+
+  const claimChest = async () => {
+    if (!bond || actionLoading) return;
+    setActionLoading(true);
+    setMessage(null);
+    try {
+      const r = await fetch(`/api/social/sworn-bond/${bond.id}/claim-chest`, {
+        method: "POST",
+        headers: getAuthHeaders(apiKey),
+      });
+      const d = await r.json();
+      if (r.ok) {
+        if (onRewardCelebration) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (d.rewards.essenz) currencies.push({ name: "Essenz", amount: d.rewards.essenz, color: "#ef4444" });
+          onRewardCelebration({
+            type: "daily-bonus",
+            title: "Bond Chest",
+            xpEarned: 0,
+            goldEarned: d.rewards.gold || 0,
+            currencies: currencies.length > 0 ? currencies : undefined,
+            flavor: d.rewards.frame ? `Duo Frame earned: "${d.rewards.frame}"` : `Bond Level ${d.newBondLevel}: ${d.newBondTitle}. Streak: ${d.streak} weeks.`,
+          });
+        }
+        fetchBond();
+      } else setMessage({ text: d.error || "Failed to claim", type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
+    setActionLoading(false);
+  };
+
+  if (loading) return <div className="space-y-3 tab-content-enter"><div className="skeleton-card h-24" /><div className="skeleton-card h-16" /></div>;
+
+  // ── No bond: propose view ──
+  if (!bond) {
+    return (
+      <div className="tab-content-enter space-y-4">
+        <div className="text-center py-4">
+          <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Sworn Bonds</p>
+          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+            Wähle einen Freund. Schwört einen Pakt. Erfüllt gemeinsame Ziele. Die stärksten Bande halten länger als Stahl.
+          </p>
+        </div>
+        {cooldownUntil && (
+          <div className="rounded-lg px-3 py-2 text-xs" style={{ background: "rgba(239,68,68,0.06)", color: "rgba(239,68,68,0.6)", border: "1px solid rgba(239,68,68,0.15)" }}>
+            Bond cooldown active until {new Date(cooldownUntil).toLocaleDateString()}. You recently broke a bond.
+          </div>
+        )}
+        {message && (
+          <div className="rounded-lg px-3 py-2 text-xs" style={{ background: message.type === "success" ? "rgba(34,197,94,0.06)" : "rgba(239,68,68,0.06)", color: message.type === "success" ? "#22c55e" : "#ef4444", border: `1px solid ${message.type === "success" ? "rgba(34,197,94,0.15)" : "rgba(239,68,68,0.15)"}` }}>
+            {message.text}
+          </div>
+        )}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">No friends yet. Add friends first.</p>}
+          {friends.map(f => (
+            <button
+              key={f.id}
+              disabled={actionLoading || !!cooldownUntil}
+              onClick={() => propose(f.id)}
+              className="rounded-lg p-3 text-left transition-all hover:brightness-125"
+              style={{
+                background: "rgba(245,158,11,0.04)",
+                border: "1px solid rgba(245,158,11,0.15)",
+                cursor: actionLoading || cooldownUntil ? "not-allowed" : "pointer",
+                opacity: actionLoading || cooldownUntil ? 0.5 : 1,
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `${f.color || '#666'}40`, color: f.color || '#666' }}>
+                  {f.avatar || f.name?.slice(0, 2).toUpperCase()}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold truncate" style={{ color: "#e8e8e8" }}>{f.name}</p>
+                  <p className="text-xs text-w25">Lv {f.level || "?"}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // ── Pending bond ──
+  if (bond.status === "pending") {
+    return (
+      <div className="tab-content-enter space-y-4">
+        <div className="rounded-xl p-5 text-center" style={{ background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.2)" }}>
+          <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center text-lg font-bold" style={{ background: `${bond.partner.color}30`, color: bond.partner.color }}>
+            {bond.partner.avatar?.slice(0, 2) || bond.partner.name.slice(0, 2).toUpperCase()}
+          </div>
+          <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>{bond.isInitiator ? "Bond Proposed" : "Bond Invitation"}</p>
+          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+            {bond.isInitiator
+              ? `Waiting for ${bond.partner.name} to accept the pact.`
+              : `${bond.partner.name} wants to forge a Sworn Bond with you.`
+            }
+          </p>
+          {!bond.isInitiator && (
+            <div className="flex gap-2 justify-center mt-4">
+              <button disabled={actionLoading} onClick={() => respond("accept")} className="btn-interactive text-xs px-4 py-2 rounded-lg font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
+                {actionLoading ? "..." : "Accept"}
+              </button>
+              <button disabled={actionLoading} onClick={() => respond("decline")} className="btn-interactive text-xs px-4 py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
+                {actionLoading ? "..." : "Decline"}
+              </button>
+            </div>
+          )}
+        </div>
+        {message && <div className="rounded-lg px-3 py-2 text-xs" style={{ background: message.type === "success" ? "rgba(34,197,94,0.06)" : "rgba(239,68,68,0.06)", color: message.type === "success" ? "#22c55e" : "#ef4444" }}>{message.text}</div>}
+      </div>
+    );
+  }
+
+  // ── Active bond ──
+  const obj = bond.weeklyObjective;
+  const totalProgress = obj ? (obj.progress.mine + obj.progress.partner) : 0;
+  const progressPct = obj ? Math.min(100, Math.round((totalProgress / obj.target) * 100)) : 0;
+  const bondXpPct = bond.bondXpToNext > 0 ? Math.min(100, Math.round((bond.bondXp / bond.bondXpToNext) * 100)) : 100;
+
+  return (
+    <div className="tab-content-enter space-y-4">
+      {message && <div className="rounded-lg px-3 py-2 text-xs" style={{ background: message.type === "success" ? "rgba(34,197,94,0.06)" : "rgba(239,68,68,0.06)", color: message.type === "success" ? "#22c55e" : "#ef4444", border: `1px solid ${message.type === "success" ? "rgba(34,197,94,0.15)" : "rgba(239,68,68,0.15)"}` }}>{message.text}</div>}
+
+      {/* Bond Header */}
+      <div className="rounded-xl p-5" style={{
+        background: "linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(217,119,6,0.03) 100%)",
+        border: "1px solid rgba(245,158,11,0.2)",
+        boxShadow: "0 0 20px rgba(245,158,11,0.04)",
+      }}>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-3">
+            {/* Partner avatar */}
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold" style={{ background: `${bond.partner.color}30`, color: bond.partner.color, border: `1px solid ${bond.partner.color}40` }}>
+              {bond.partner.avatar?.slice(0, 2) || bond.partner.name.slice(0, 2).toUpperCase()}
+            </div>
+            <div>
+              <p className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{bond.partner.name}</p>
+              <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>Level {bond.partner.level}</p>
+            </div>
+          </div>
+          <div className="text-right">
+            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#f59e0b" }}>Bond Lv {bond.bondLevel}</p>
+            <p className="text-xs" style={{ color: "rgba(245,158,11,0.5)" }}>{bond.bondLevelTitle}</p>
+          </div>
+        </div>
+
+        {/* Streak + Bond XP */}
+        <div className="flex items-center gap-4 mb-1">
+          <TipCustom title="Duo Streak" icon="◆" accent="#f59e0b" body={<p>Consecutive weeks of completing the bond objective. Higher streak = better chest rewards. Current: {bond.streak} weeks. Longest: {bond.longestStreak}.</p>}>
+            <span className="text-xs font-mono font-bold cursor-help" style={{ color: bond.streak > 0 ? "#f59e0b" : "rgba(255,255,255,0.25)" }}>
+              {bond.streak > 0 ? `${bond.streak}w streak` : "No streak"}
+            </span>
+          </TipCustom>
+          <div className="flex-1">
+            <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(245,158,11,0.1)" }}>
+              <div className="h-full rounded-full transition-all duration-700" style={{ width: `${bondXpPct}%`, background: "linear-gradient(90deg, #f59e0b, #d97706)" }} />
+            </div>
+          </div>
+          <span className="text-xs font-mono text-w25">{bond.bondXp}/{bond.bondXpToNext} XP</span>
+        </div>
+      </div>
+
+      {/* Weekly Objective */}
+      {obj && (
+        <div className="rounded-xl p-4" style={{
+          background: obj.completed ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)",
+          border: `1px solid ${obj.completed ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.06)"}`,
+        }}>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: obj.completed ? "#22c55e" : "rgba(255,255,255,0.4)" }}>
+              {obj.completed ? "Objective Complete" : "Weekly Objective"}
+            </p>
+            <span className="text-xs text-w20">{obj.weekId}</span>
+          </div>
+          <p className="text-sm mb-3" style={{ color: "rgba(255,255,255,0.65)" }}>{obj.description}</p>
+
+          {/* Dual progress bar */}
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xs font-mono font-bold w-8 text-right" style={{ color: "#818cf8" }}>{obj.progress.mine}</span>
+            <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+              <div className="h-full rounded-full transition-all duration-500" style={{
+                width: `${progressPct}%`,
+                background: obj.completed
+                  ? "linear-gradient(90deg, #22c55e, #4ade80)"
+                  : `linear-gradient(90deg, #818cf8 0%, #818cf8 ${obj.target > 0 ? Math.round((obj.progress.mine / obj.target) * 100) : 0}%, ${bond.partner.color} ${obj.target > 0 ? Math.round((obj.progress.mine / obj.target) * 100) : 0}%, ${bond.partner.color} 100%)`,
+              }} />
+            </div>
+            <span className="text-xs font-mono font-bold w-8" style={{ color: bond.partner.color }}>{obj.progress.partner}</span>
+          </div>
+          <p className="text-xs text-center text-w30">{totalProgress} / {obj.target}</p>
+
+          {/* Claim button */}
+          {obj.completed && !obj.chestClaimed && (
+            <button
+              onClick={claimChest}
+              disabled={actionLoading}
+              className="w-full mt-3 py-2.5 rounded-lg text-sm font-bold transition-all claimable-breathe"
+              style={{
+                background: "rgba(245,158,11,0.12)",
+                color: "#f59e0b",
+                border: "1px solid rgba(245,158,11,0.35)",
+                cursor: actionLoading ? "not-allowed" : "pointer",
+                opacity: actionLoading ? 0.6 : 1,
+              }}
+            >
+              {actionLoading ? "Opening..." : "Open Bond Chest"}
+            </button>
+          )}
+          {obj.completed && obj.chestClaimed && (
+            <p className="text-xs text-center mt-2" style={{ color: "rgba(34,197,94,0.5)" }}>Chest claimed this week</p>
+          )}
+        </div>
+      )}
+
+      {/* Break bond */}
+      <div className="text-center">
+        {!confirmBreak ? (
+          <button onClick={() => setConfirmBreak(true)} className="text-xs transition-opacity hover:opacity-70" style={{ color: "rgba(239,68,68,0.3)", cursor: "pointer" }}>
+            Break Bond
+          </button>
+        ) : (
+          <div className="rounded-lg px-4 py-3 inline-flex items-center gap-3" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.2)" }}>
+            <span className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>7-day cooldown. Streak lost. Sure?</span>
+            <button disabled={actionLoading} onClick={breakBond} className="text-xs font-semibold px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", cursor: actionLoading ? "not-allowed" : "pointer" }}>
+              {actionLoading ? "..." : "Confirm"}
+            </button>
+            <button onClick={() => setConfirmBreak(false)} className="text-xs px-2 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>
+              Cancel
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
   const [challenges, setChallenges] = useState<PlayerChallenge[]>([]);
   const [loading, setLoading] = useState(true);
@@ -1968,7 +2289,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5 flex-wrap" style={{ background: "#111" }}>
-        {(["friends", "messages", "trades", "challenges", "activity"] as SocialTab[]).map(tab => {
+        {(["friends", "bonds", "messages", "trades", "challenges", "activity"] as SocialTab[]).map(tab => {
           const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
           const unreadDot = false; // Per-tab unread counts require lifting state — deferred
           return (
@@ -1981,7 +2302,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
                   color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
                 }}
               >
-                {tab === "activity" ? "Feed" : tab}
+                {tab === "activity" ? "Feed" : tab === "bonds" ? "Sworn Bond" : tab}
                 {unreadDot && activeTab !== tab && (
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: "#a855f7", boxShadow: "0 0 4px rgba(168,85,247,0.5)" }} />
                 )}
@@ -2002,6 +2323,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
+        {activeTab === "bonds" && <SwornBondTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
