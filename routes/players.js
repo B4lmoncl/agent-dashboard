@@ -989,7 +989,7 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
 
   saveUsers();
   console.log(`[tavern] ${uid} left the Hearth early, granted Welcome Back buff${passiveGoldEarned > 0 ? `, +${passiveGoldEarned}g passive gold` : ''}`);
-  res.json({ ok: true, message: `Welcome back, adventurer! Your streak and forge temp have been restored. You feel refreshed — +25% XP for your next 50 quests!${passiveGoldEarned > 0 ? ` You earned ${passiveGoldEarned}g while resting.` : ''}`, passiveGoldEarned });
+  res.json({ ok: true, message: `Welcome back. Your streak and forge temp have been restored. +25% XP for your next 50 quests.${passiveGoldEarned > 0 ? ` You earned ${passiveGoldEarned}g while resting.` : ''}`, passiveGoldEarned });
   } finally { tavernLock.release(uid); }
 });
 

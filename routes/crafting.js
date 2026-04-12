@@ -888,7 +888,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         u.activeBuffs.push({ type: 'gold_boost_15', questsRemaining: champDuration, activatedAt: now() });
         u.activeBuffs.push({ type: 'luck_boost_10', questsRemaining: champDuration, activatedAt: now() });
       }
-      result.message = `Champion's Feast! +20% XP + 15% Gold + 10% Luck for ${champDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}!${masteryDef ? ' (Mastery)' : ''}`;
+      result.message = `Champion's Feast: +20% XP + 15% Gold + 10% Luck for ${champDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
 
@@ -948,7 +948,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         eq.stats[stat] = (eq.stats[stat] || 0) + value;
         if (recipe.result.target === 'primary_stat') eq.infusionCount = (eq.infusionCount || 0) + 1;
         else eq.permEnchantCount = (eq.permEnchantCount || 0) + 1;
-        result.message = `+${value} ${stat} permanently!`;
+        result.message = `+${value} ${stat} permanently`;
         result.updatedGear = eq;
         break;
       }
@@ -1070,7 +1070,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         }
         const gemData = state.gemsData?.gems?.find(g => g.id === gemType);
         const tierData = gemData?.tiers?.find(t => t.tier === gemTier);
-        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}${result.masteryProc ? ' (Mastery: Tier UP!)' : ''}`;
+        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}${result.masteryProc ? ' (Mastery: Tier Up)' : ''}`;
         break;
       }
       // Gem merge handler (Juwelier: combine 3 gems → 1 higher tier)

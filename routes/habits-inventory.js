@@ -161,14 +161,14 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       ensureUserCurrencies(u);
       u.currencies.gold = u.gold;
       updatedValues.gold = u.gold;
-      message = `+${amt} Gold erhalten!`;
+      message = `+${amt} Gold erhalten`;
       break;
     }
     case 'xp': {
       const amt = effect.amount || 0;
       u.xp = (u.xp || 0) + amt;
       updatedValues.xp = u.xp;
-      message = `+${amt} XP erhalten!`;
+      message = `+${amt} XP erhalten`;
       break;
     }
     case 'xp_boost': {
@@ -182,7 +182,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       // Task-based durations stored as-is, checked elsewhere
       u.activeBuffs.push({ type: 'xp_boost', amount: amt, duration: dur, activatedAt, expiresAt });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = `XP Boost active! +${amt}% for ${dur}`;
+      message = `XP Boost active. +${amt}% for ${dur}`;
       break;
     }
     case 'bond': {
@@ -192,14 +192,14 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
       updatedValues.bondXp = u.companion.bondXp;
       updatedValues.bondLevel = u.companion.bondLevel;
-      message = `+${amt} Bond XP! ${u.companion.name || 'Your Companion'} is happy!`;
+      message = `+${amt} Bond XP. ${u.companion.name || 'Your Companion'} appreciates the gesture.`;
       break;
     }
     case 'streak_shield': {
       const amt = effect.amount || 1;
       u.streakShields = Math.min(10, (u.streakShields || 0) + amt);
       updatedValues.streakShields = u.streakShields;
-      message = `+${amt} Streak-Schutzschild(e) erhalten!`;
+      message = `+${amt} Streak-Schutzschild(e) erhalten`;
       break;
     }
     case 'forge_temp': {
@@ -212,11 +212,11 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + amt);
       u.forgeTempAt = new Date().toISOString();
       updatedValues.forgeTemp = u.forgeTemp;
-      message = `Schmiedeglut +${amt}°! Forge-Temperatur steigt!`;
+      message = `Schmiedeglut +${amt}°. Forge-Temperatur steigt.`;
       break;
     }
     case 'random_gear': {
-      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full!'; break; }
+      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full'; break; }
       const { level: playerLvl } = getLevelInfo(u.xp || 0);
       const eligible = state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl && !g.shopHidden);
       const pool = eligible.length > 0 ? eligible : state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl);
@@ -225,14 +225,14 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         const instance = createGearInstance(gearTemplate);
         u.inventory.push(instance);
         updatedValues.newItem = instance;
-        message = `You received: ${instance.name}!`;
+        message = `You received: ${instance.name}`;
       } else {
         message = 'No matching equipment found.';
       }
       break;
     }
     case 'random_gear_epic': {
-      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full!'; break; }
+      if ((u.inventory || []).length >= INVENTORY_CAP) { message = 'Inventory full'; break; }
       const { level: playerLvl2 } = getLevelInfo(u.xp || 0);
       const minRarityIdx = RARITY_ORDER.indexOf('epic');
       const eligible2 = state.FULL_GEAR_ITEMS.filter(g =>
@@ -245,7 +245,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         const instance = createGearInstance(gearTemplate);
         u.inventory.push(instance);
         updatedValues.newItem = instance;
-        message = `You received: ${instance.name}!`;
+        message = `You received: ${instance.name}`;
       } else {
         message = 'No matching equipment found.';
       }
@@ -293,7 +293,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const expiresAt = dur === '24h' ? new Date(Date.now() + 24 * 3600000).toISOString() : new Date(Date.now() + 48 * 3600000).toISOString();
       u.activeBuffs.push({ type: 'team_buff', amount: amt, duration: dur, activatedAt, expiresAt, scope: 'global' });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = `Guild Blessing active! +${amt}% XP for all!`;
+      message = `Guild Blessing active. +${amt}% XP for all.`;
       break;
     }
     case 'title': {
@@ -301,7 +301,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       if (!u.titles) u.titles = [];
       if (!u.titles.includes(titleName)) u.titles.push(titleName);
       updatedValues.titles = u.titles;
-      message = `Neuer Titel freigeschaltet: ${titleName}!`;
+      message = `Neuer Titel freigeschaltet: ${titleName}`;
       break;
     }
     case 'unlock_secret_quest': {
@@ -312,7 +312,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     case 'revive': {
       u.phoenixFeather = true;
       updatedValues.phoenixFeather = true;
-      message = 'Phoenix Feather ready! Next streak loss prevented.';
+      message = 'Phoenix Feather ready. Next streak loss prevented.';
       break;
     }
     case 'gold_2x_24h': {
@@ -321,7 +321,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const expiresAt = new Date(Date.now() + 24 * 3600000).toISOString();
       u.activeBuffs.push({ type: 'gold_2x', amount: 2, duration: '24h', activatedAt, expiresAt });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = '2x Gold active for 24 hours!';
+      message = '2x Gold active for 24 hours.';
       break;
     }
     case 'essenz_boost_48h': {
@@ -330,7 +330,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const expiresAt = new Date(Date.now() + 48 * 3600000).toISOString();
       u.activeBuffs.push({ type: 'essenz_boost', amount: 2, duration: '48h', activatedAt, expiresAt });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = '2x Essence drops active for 48 hours!';
+      message = '2x Essence drops active for 48 hours.';
       break;
     }
     case 'quest_timer_24h': {
@@ -343,7 +343,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         }
       }
       updatedValues.questsExtended = extended;
-      message = `+24h on ${extended} active quest timers!`;
+      message = `+24h on ${extended} active quest timers`;
       break;
     }
     // Gacha passive effect strings used as consumable (when someone manages to "use" them)
@@ -362,7 +362,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     case 'streak_recovery_100': {
       u.phoenixFeather = true;
       updatedValues.phoenixFeather = true;
-      message = 'Phoenix Feather ready! Next streak loss prevented.';
+      message = 'Phoenix Feather ready. Next streak loss prevented.';
       break;
     }
     case 'armor': {
@@ -375,7 +375,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + amt);
       u.forgeTempAt = new Date().toISOString();
       updatedValues.forgeTemp = u.forgeTemp;
-      message = `Schmiedeglut +${amt}°! Forge-Temperatur steigt!`;
+      message = `Schmiedeglut +${amt}°. Forge-Temperatur steigt.`;
       break;
     }
     case 'essenz': {
