@@ -344,7 +344,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const repGains = u?._lastRepGains || null;
     const dailyDiminishing = u?._lastDailyDiminishing ?? 1;
     const dailyQuestCount = u?._lastDailyCount ?? 0;
-    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; delete u._lastDailyDiminishing; delete u._lastDailyCount; }
+    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; delete u._lastDailyDiminishing; delete u._lastDailyCount; delete u._lastRestedBonusXp; }
     // Grant NPC's final reward item when the last quest in the chain is completed
     let npcFinalReward = null;
     if (quest.chainIndex != null && quest.chainTotal && quest.chainIndex === quest.chainTotal - 1) {
@@ -427,9 +427,15 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const recipeDrop2 = u2?._lastRecipeDrop || null;
     const repGains2 = u2?._lastRepGains || null;
     const inventoryFull2 = u2?._inventoryFull || false;
+    const restedBonusXp2 = u2?._lastRestedBonusXp || 0;
+    const streakMilestone2 = u2?._lastStreakMilestone || null;
+    const codexDiscovery2 = u2?._lastCodexDiscovery || null;
+    const battlePassLevelUp2 = u2?._lastBattlePassXP?.leveledUp ? u2._lastBattlePassXP : null;
+    const gambleResult2 = u2?._lastGambleResult || null;
+    const varietyBonus2 = u2?._lastVarietyBonus || null;
     const dailyDiminishing2 = u2?._lastDailyDiminishing ?? 1;
     const dailyQuestCount2 = u2?._lastDailyCount ?? 0;
-    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; delete u2._lastRunensplitterEarned; delete u2._lastGildentalerEarned; delete u2._lastGemDrop; delete u2._lastRecipeDrop; delete u2._lastRepGains; delete u2._lastCodexDiscovery; delete u2._inventoryFull; delete u2._lastDailyDiminishing; delete u2._lastDailyCount; }
+    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; delete u2._lastRunensplitterEarned; delete u2._lastGildentalerEarned; delete u2._lastGemDrop; delete u2._lastRecipeDrop; delete u2._lastRepGains; delete u2._lastCodexDiscovery; delete u2._inventoryFull; delete u2._lastDailyDiminishing; delete u2._lastDailyCount; delete u2._lastStreakMilestone; delete u2._lastBattlePassXP; delete u2._lastGambleResult; delete u2._lastVarietyBonus; delete u2._lastRestedBonusXp; }
     // Activity feed
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u2 && newLevelInfo2.level > prevLevel2) logActivity(agentKey, 'level_up', { level: newLevelInfo2.level, title: newLevelInfo2.title });
@@ -449,6 +455,12 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       recipeDrop: recipeDrop2,
       repGains: repGains2,
       inventoryFull: inventoryFull2,
+      restedBonusXp: restedBonusXp2,
+      streakMilestone: streakMilestone2,
+      codexDiscovery: codexDiscovery2,
+      battlePassLevelUp: battlePassLevelUp2 ? { level: battlePassLevelUp2.level } : null,
+      gambleResult: gambleResult2,
+      varietyBonus: varietyBonus2,
       dailyDiminishing: dailyDiminishing2,
       dailyQuestCount: dailyQuestCount2,
       chainQuestTemplate: quest.nextQuestTemplate || null,
