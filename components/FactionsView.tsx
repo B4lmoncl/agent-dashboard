@@ -362,7 +362,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     const sReward = f.rewards?.[s.id];
                     const rewardDesc = sReward ? (sReward.title || sReward.recipeDesc || sReward.frameDesc || sReward.effectDesc || "") : "";
                     return (
-                      <TipCustom key={s.id} title={s.name} icon={isClaimed ? "✓" : "◆"} accent={s.color} body={<p>{s.minRep} Rep{rewardDesc ? ` — ${rewardDesc}` : ""}{isClaimed ? " (Claimed)" : isReached ? " (Ready!)" : ""}</p>}>
+                      <TipCustom key={s.id} title={s.name} icon={isClaimed ? "✓" : "◆"} accent={s.color} body={<p>{s.minRep} Rep{rewardDesc ? ` — ${rewardDesc}` : ""}{isClaimed ? " (Claimed)" : isReached ? " (Ready)" : ""}</p>}>
                         <div
                           className="flex-1 text-center py-1.5 rounded-lg cursor-help"
                           style={{

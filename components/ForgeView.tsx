@@ -502,7 +502,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         // Rank milestone celebration
         if (data.newSkill) {
           const ns = data.newSkill;
-          const milestones: [number, string][] = [[300, "Artisan — Meisterrang!"], [225, "Expert erreicht!"], [150, "Journeyman erreicht!"], [75, "Apprentice gemeistert!"]];
+          const milestones: [number, string][] = [[300, "Artisan — Meisterrang erreicht"], [225, "Expert erreicht"], [150, "Journeyman erreicht"], [75, "Apprentice gemeistert"]];
           for (const [threshold, label] of milestones) {
             if (prevSkill < threshold && ns >= threshold) {
               setRankUpCelebration(label);
@@ -2448,8 +2448,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               });
                               const data = await res.json();
                               if (res.ok) {
-                                setCraftResult(`Rank Up! ${nextRank.rank} — Skill cap now ${data.newCap || nextRank.toCap}`);
-                                setRankUpCelebration(`${nextRank.rank}!`);
+                                setCraftResult(`Rank Up: ${nextRank.rank} — Skill cap now ${data.newCap || nextRank.toCap}`);
+                                setRankUpCelebration(nextRank.rank);
                                 setTimeout(() => setRankUpCelebration(null), 3000);
                                 fetchData();
                               } else {
@@ -3081,7 +3081,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
                 style={{ background: `${profCelebration.color}20`, color: profCelebration.color, border: `1px solid ${profCelebration.color}40`, cursor: "pointer" }}
               >
-                Auf zum ersten Craft!
+                Auf zum ersten Craft
               </button>
             </div>
           </div>

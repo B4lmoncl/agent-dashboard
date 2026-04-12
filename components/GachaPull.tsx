@@ -205,7 +205,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
       {result.isNew && (
         <div className="absolute -top-2 -right-2 text-xs font-bold px-2 py-0.5 rounded-full"
           style={{ background: "#22c55e", color: "#000" }}>
-          NEU!
+          NEU
         </div>
       )}
     </div>

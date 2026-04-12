@@ -923,7 +923,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
             {earnedCompanions.length === 0 && !user?.companion && (
               <p className="text-xs mt-1 italic" style={{ color: "rgba(220,185,120,0.25)" }}>
-                Complete achievements to unlock more companions!
+                Complete achievements to unlock more companions.
               </p>
             )}
 
@@ -1164,7 +1164,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               {user?.companion?.emoji || "⭐"}
             </div>
             <div className="text-xs font-bold uppercase tracking-[0.2em] mb-1" style={{ color: cColor.accent }}>
-              Quest Complete!
+              Quest Complete
             </div>
             <div className="text-sm font-semibold mb-4" style={{ color: "rgba(255,255,255,0.7)" }}>
               {rewardPopup.title}
@@ -1195,7 +1195,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               className="action-btn w-full py-2 rounded-xl text-sm font-semibold"
               style={{ background: `rgba(${cColor.accentRgb},0.12)`, color: cColor.accent, border: `1px solid rgba(${cColor.accentRgb},0.35)` }}
             >
-              Nice!
+              Continue
             </button>
           </div>
         </div>

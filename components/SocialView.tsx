@@ -343,7 +343,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                           body: JSON.stringify({ targetId: f.id, type: "quests_week", wager: 100 }),
                         });
                         const d = await r.json();
-                        if (r.ok) setSuccessMsg("Challenge sent to " + f.name + "!");
+                        if (r.ok) setSuccessMsg("Challenge sent to " + f.name);
                         else setSuccessMsg(d.error || "Failed");
                         setTimeout(() => setSuccessMsg(null), 4000);
                       } catch { setSuccessMsg("Network error"); }
@@ -1570,7 +1570,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                     if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
                     onRewardCelebration({
                       type: "daily-bonus",
-                      title: `${data.mailsCollected} Mail${data.mailsCollected > 1 ? "s" : ""} Collected!`,
+                      title: `${data.mailsCollected} Mail${data.mailsCollected > 1 ? "s" : ""} Collected`,
                       xpEarned: 0,
                       goldEarned: data.goldCollected || 0,
                       loot: data.itemsCollected > 0 ? { name: `${data.itemsCollected} item${data.itemsCollected > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,

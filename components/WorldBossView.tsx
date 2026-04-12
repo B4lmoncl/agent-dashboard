@@ -177,6 +177,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   const [data, setData] = useState<BossData | null>(null);
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState(false);
+  const [boosting, setBoosting] = useState(false);
   const [claimResult, setClaimResult] = useState<{ rewards: ClaimReward[]; rank: number; contributionPercent: number } | null>(null);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -635,7 +636,10 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {!boss.defeated && reviewApiKey && (
           <div className="px-5 pb-4">
             <button
+              disabled={boosting}
               onClick={async () => {
+                if (boosting) return;
+                setBoosting(true);
                 setMessage(null);
                 try {
                   const r = await fetch("/api/world-boss/boost", {
@@ -650,18 +654,20 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                     setMessage({ text: d.error || "Boost failed", type: "error" });
                   }
                 } catch { setMessage({ text: "Network error", type: "error" }); }
+                setBoosting(false);
                 setTimeout(() => setMessage(null), 4000);
               }}
               title="Spend 50 Mondstaub for +25% boss damage on next 10 quests"
-              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
+              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg transition-all"
               style={{
-                background: "rgba(192,132,252,0.1)",
+                background: boosting ? "rgba(192,132,252,0.05)" : "rgba(192,132,252,0.1)",
                 color: "#c084fc",
                 border: "1px solid rgba(192,132,252,0.25)",
-                cursor: "pointer",
+                cursor: boosting ? "not-allowed" : "pointer",
+                opacity: boosting ? 0.6 : 1,
               }}
             >
-              Mondstaub Boost (+25% damage, 50 Mondstaub)
+              {boosting ? "Activating..." : "Mondstaub Boost (+25% damage, 50 Mondstaub)"}
             </button>
           </div>
         )}

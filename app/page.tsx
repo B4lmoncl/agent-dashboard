@@ -1860,7 +1860,7 @@ export default function Dashboard() {
         {dashView === "gacha" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
-            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
             onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}
@@ -2105,7 +2105,7 @@ export default function Dashboard() {
                                           if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
                                           setRewardCelebration({
                                             type: "daily-bonus",
-                                            title: `${ms.threshold} Milestone Claimed!`,
+                                            title: `${ms.threshold} Milestone Claimed`,
                                             xpEarned: 0,
                                             goldEarned: 0,
                                             currencies,
@@ -2692,7 +2692,7 @@ export default function Dashboard() {
                 if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
                 setRewardCelebration({
                   type: "daily-bonus",
-                  title: `${threshold} Milestone Claimed!`,
+                  title: `${threshold} Milestone Claimed`,
                   xpEarned: 0,
                   goldEarned: 0,
                   currencies,
@@ -2707,7 +2707,7 @@ export default function Dashboard() {
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
         <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onNavigate={(v) => setDashView(v as typeof dashView)} onCollect={(rd) => {
-          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory!`);
+          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory`);
           if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
           // Trigger floating reward numbers
           const floats: { text: string; color: string }[] = [];

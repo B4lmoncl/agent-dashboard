@@ -376,7 +376,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
       </div>
       <div className="rounded-xl p-4 mb-3" style={{ background: "#252525", border: "1px solid rgba(244,63,94,0.2)" }}>
         <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
-          Co-op quests require both partners to complete their part. Shared XP reward on success!
+          Co-op quests require both partners to complete their part. Shared XP reward on success.
         </p>
         <div className="flex gap-2 flex-wrap">
           <div className="flex flex-col gap-1">

@@ -198,7 +198,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           <div className="flex gap-1">
             <button
               onClick={() => setSeasonal(false)}
-              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              className="text-xs px-3 py-1 rounded-lg font-semibold transition-all duration-200 hover:brightness-125"
               style={{
                 background: !seasonal ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.03)",
                 color: !seasonal ? "#a78bfa" : "rgba(255,255,255,0.25)",
@@ -208,7 +208,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             >All-Time</button>
             <button
               onClick={() => setSeasonal(true)}
-              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              className="text-xs px-3 py-1 rounded-lg font-semibold transition-all duration-200 hover:brightness-125"
               style={{
                 background: seasonal ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
                 color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
@@ -278,7 +278,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                       );
                     })()}
                   </div>
-                  <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
+                  <div className="mt-0.5 rounded-full overflow-hidden" title={`${Math.round(barPct)}% of top player XP`} style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
                     <div className="h-full rounded-full" style={{ width: `${barPct}%`, background: `linear-gradient(90deg, ${color}80, ${color})` }} />
                   </div>
                 </div>

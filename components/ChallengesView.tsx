@@ -118,7 +118,7 @@ function SternenpfadView({
             <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>Die Sterne messen dich. Nicht dein Level — dich.</p>
           </div>
         </div>
-        <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star!</p></>}>
+        <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star.</p></>}>
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
             <Stars earned={totalStars} max={9} animated />
             <span className="text-xs font-bold ml-1" style={{ color: "#fbbf24" }}>{totalStars}/9</span>
@@ -277,7 +277,7 @@ function SternenpfadView({
                   </span>
                   <Stars earned={stage.earnedStars} animated />
                   {speedBonusActive && (
-                    <TipCustom title="Speed Bonus" icon="★" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
+                    <TipCustom title="Speed Bonus" icon="★" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star.</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
                         ★ Speed Bonus
                       </span>
@@ -767,7 +767,7 @@ export default function ChallengesView({
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "expedition",
-            title: `Checkpoint ${checkpoint} Reward!`,
+            title: `Checkpoint ${checkpoint} Reached`,
             xpEarned: 0,
             goldEarned: data.rewards.gold || 0,
             currencies: currencies.length > 0 ? currencies : undefined,

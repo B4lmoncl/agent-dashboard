@@ -549,7 +549,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <Stat color="#22c55e">Speed Bonus</Stat>: Stufe in 2 Tagen = +1★</li>
                   <li>• Sterne-Scaling: 2★ = +15%, 3★ = +33% Belohnungen</li>
                 </ul>
-                <GuideTip>Weekly Modifier: Ein Quest-Typ gibt +50% Fortschritt, andere -25%. Passe deine Strategie an!</GuideTip>
+                <GuideTip>Weekly Modifier: Ein Quest-Typ gibt +50% Fortschritt, andere -25%. Passe deine Strategie an.</GuideTip>
               </GuideSection>
 
               <GuideSection title="Expedition (Kooperativ)" icon="▲" accent="rgba(34,197,94,0.3)">
@@ -579,7 +579,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Vollständiger Abschluss gibt <Stat color="#fbbf24">Completion Bonus</Stat> (Gold, Essenz, Runensplitter)</li>
                   <li>• Abbruch/Timeout = Fail-Cooldown. Erfolg löscht den Cooldown.</li>
                 </ul>
-                <GuideTip>Rift-Stages geben volle Belohnungen: XP-Multiplikatoren, Loot-Drops, Materialien, Streak + Forge-Temp!</GuideTip>
+                <GuideTip>Rift-Stages geben volle Belohnungen: XP-Multiplikatoren, Loot-Drops, Materialien, Streak + Forge-Temp.</GuideTip>
               </GuideSection>
 
               <GuideSection title="Mythic+ Endless Rift" icon="☠" accent="rgba(255,68,68,0.3)">

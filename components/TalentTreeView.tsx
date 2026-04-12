@@ -190,7 +190,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt! ${d.goldSpent}g bezahlt.` });
+        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt. ${d.goldSpent}g bezahlt.` });
         setConfirmReset(false);
         fetchTalents();
       } else {
@@ -782,7 +782,7 @@ export default function TalentTreeView({
                             const d = await r.json();
                             if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
                             else {
-                              _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert! +1 Talentpunkt` });
+                              _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();
                             }
                           } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }

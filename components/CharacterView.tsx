@@ -1118,7 +1118,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped`, icon: item.icon, rarity: displayRarity(item) });
         }
       } else {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });

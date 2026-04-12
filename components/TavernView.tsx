@@ -59,7 +59,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
     try {
       const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`);
       if (r.ok) setStatus(await r.json());
-    } catch { /* ignore */ }
+    } catch { setError("Failed to load tavern status"); }
     setLoading(false);
   }, [playerName]);
 
@@ -306,7 +306,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
               onClick={() => setConfirmEnter(true)}
               disabled={actionLoading}
               className="btn-interactive w-full text-sm font-bold py-3 rounded-xl"
-              style={{ background: "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", cursor: "pointer" }}
+              style={{ background: actionLoading ? "rgba(217,119,6,0.3)" : "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
             >
               Enter the Hearth ({selectedDays} day{selectedDays !== 1 ? "s" : ""})
             </button>

@@ -237,9 +237,9 @@ export function useQuestActions({
       if (r.ok) {
         const data = await r.json().catch(() => ({}));
         if (data.allDone) {
-          addToast({ type: "flavor", message: "Co-op quest complete! All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
+          addToast({ type: "flavor", message: "Co-op quest complete. All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
         } else {
-          addToast({ type: "flavor", message: "Your part is done! Waiting for partners...", icon: "/images/icons/cat-coop.png" });
+          addToast({ type: "flavor", message: "Your part is done. Waiting for partners...", icon: "/images/icons/cat-coop.png" });
         }
         if (data.newAchievements?.length > 0) {
           for (const ach of data.newAchievements) {
