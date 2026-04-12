@@ -13,7 +13,7 @@ interface FirstVisitBannerProps {
  * Shows a dismissable hint banner the first time a user opens a view.
  * Once dismissed, never shows again (persisted in localStorage).
  */
-export default function FirstVisitBanner({ viewId, title, description, accentColor = "#a78bfa" }: FirstVisitBannerProps) {
+export default function FirstVisitBanner({ viewId, title, description, accentColor = "#e9a84c" }: FirstVisitBannerProps) {
   const { isFirstVisit, dismiss } = useFirstVisit(viewId);
 
   if (!isFirstVisit) return null;
