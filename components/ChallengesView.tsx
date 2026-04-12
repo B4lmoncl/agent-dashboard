@@ -413,19 +413,33 @@ function ExpeditionView({
 
   return (
     <div className="space-y-5">
-      {/* Header */}
-      <div className="flex items-start gap-3">
-        {expedition.icon && (
-          <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 mt-0.5" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
-            <img src={expedition.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+      {/* Expedition Hero Banner */}
+      <div className="relative rounded-xl overflow-hidden" style={{
+        background: "linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(16,185,129,0.04) 50%, rgba(6,95,70,0.1) 100%)",
+        border: "1px solid rgba(34,197,94,0.2)",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(34,197,94,0.1)",
+      }}>
+        <div className="flex items-center gap-5 p-5">
+          {expedition.icon && (
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden flex-shrink-0" style={{
+              border: "2px solid rgba(34,197,94,0.35)",
+              boxShadow: "0 0 20px rgba(34,197,94,0.15), inset 0 0 12px rgba(0,0,0,0.3)",
+            }}>
+              <img src={expedition.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+            </div>
+          )}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-bold" style={{ color: "#e8e8e8", textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>{expedition.name}</h3>
+            <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{expedition.description}</p>
+            <div className="flex items-center gap-3 mt-2">
+              <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.1)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.2)" }}>{expedition.playerCount} Players</span>
+              <span className="text-xs text-w25">Week {expedition.weekId}</span>
+            </div>
+            <p className="text-xs italic mt-2" style={{ color: "rgba(34,197,94,0.35)" }}>Gemeinsam ist kein leeres Wort. Es ist eine Waffe.</p>
           </div>
-        )}
-        <div className="flex-1">
-          <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{expedition.name}</h3>
-          <p className="text-xs text-w30 mt-0.5">{expedition.description}</p>
-          <p className="text-xs text-w20 mt-1">{expedition.playerCount} Players · Week {expedition.weekId}</p>
-          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Gemeinsam ist kein leeres Wort. Es ist eine Waffe.</p>
         </div>
+        {/* Subtle gradient overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent)" }} />
       </div>
 
       {/* Global progress */}
