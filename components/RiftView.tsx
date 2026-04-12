@@ -177,12 +177,23 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         document.body.classList.add("screenshake");
         setTimeout(() => document.body.classList.remove("screenshake"), 300);
         if (onRewardCelebration) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (d.completionBonus) {
+            if (d.completionBonus.gold) currencies.push({ name: "Gold", amount: d.completionBonus.gold, color: "#fbbf24" });
+            if (d.completionBonus.essenz) currencies.push({ name: "Essenz", amount: d.completionBonus.essenz, color: "#3b82f6" });
+            if (d.completionBonus.runensplitter) currencies.push({ name: "Runensplitter", amount: d.completionBonus.runensplitter, color: "#818cf8" });
+          }
+          if (d.seelensplitter) currencies.push({ name: "Seelensplitter", amount: d.seelensplitter, color: "#c084fc" });
+          if (d.riftMaterials?.length) {
+            for (const m of d.riftMaterials) currencies.push({ name: m.name || m.id, amount: m.amount || 1, color: "#a78bfa" });
+          }
           onRewardCelebration({
             type: "rift",
             title: d.riftCompleted ? "Rift Complete" : d.skippedStage ? `Stage Complete (+1 skipped)` : "Stage Complete",
             xpEarned: d.xpEarned || 0,
             goldEarned: d.goldEarned || 0,
             loot: d.riftGearDrop ? { name: d.riftGearDrop.name, emoji: "◆", rarity: d.riftGearDrop.rarity || "epic", icon: d.riftGearDrop.icon } : d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare", icon: d.loot.icon } : undefined,
+            currencies: currencies.length > 0 ? currencies : undefined,
           });
         }
         if (d.skippedStage) {

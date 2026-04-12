@@ -493,7 +493,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Join co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Join"}</button>
               )}
               {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
-                <button onClick={e => { e.stopPropagation(); onCoopComplete(quest.id); }} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ My Part Done</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopComplete(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Complete your part of the co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ My Part Done"}</button>
               )}
             </div>
           </div>

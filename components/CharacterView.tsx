@@ -990,6 +990,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const { playerName, reviewApiKey: apiKey, users, classesList } = useDashboard();
   const [charData, setCharData] = useState<CharacterData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
   const [rightTab, setRightTab] = useState<"stats" | "equipment" | "gems">("stats");
@@ -1099,8 +1100,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const fetchChar = useCallback(async () => {
     try {
       const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/character`);
-      if (r.ok) setCharData(await r.json());
-    } catch { /* ignore */ }
+      if (r.ok) { setCharData(await r.json()); setFetchError(false); }
+      else setFetchError(true);
+    } catch { setFetchError(true); }
     setLoading(false);
   }, [playerName]);
 
@@ -1420,6 +1422,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
+          {!loading && fetchError && !charData && (
+            <div className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+              <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Failed to load character data. Try refreshing.</p>
+              <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Retry</button>
+            </div>
+          )}
           {!loading && charData && (() => {
             const equippedIds = new Set<string>();
             for (const v of Object.values(charData.equipment)) {

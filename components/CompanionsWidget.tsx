@@ -435,7 +435,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           if (onUserRefresh) onUserRefresh();
         }, 2000);
       }
-    } catch { /* silent */ }
+    } catch { setPetError("Network error"); safeTimeout(() => setPetError(""), 3000); }
     setCompletingId(null);
   };
 
