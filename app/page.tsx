@@ -2268,7 +2268,7 @@ export default function Dashboard() {
                       <div className="rounded-xl p-6 text-center bg-card border-w6 space-y-3">
                         <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
                         <p className="text-sm font-semibold text-w30">{searchFilter ? `No quests match "${searchFilter}"` : "The Quest Board is empty"}</p>
-                        {!searchFilter && <p className="text-xs text-w15 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
+                        {!searchFilter && <p className="text-xs text-w25 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
                         {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(103,232,249,0.1)", color: "#60a5fa", border: "1px solid rgba(103,232,249,0.2)" }}>Clear Search</button>}
                         {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive btn-press px-4 py-2 rounded-lg inline-flex items-center gap-2" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-bold">Summon Quests</span></button>}
                       </div>

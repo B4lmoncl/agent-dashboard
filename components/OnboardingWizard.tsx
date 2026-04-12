@@ -288,6 +288,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           </div>
         </div>
 
+        {/* Step content with fade-in transition */}
+        <div key={step} className="tab-content-enter">
         {/* ── Step 0: Name ── */}
         {step === 0 && (
           <div className="p-6 space-y-5">
@@ -850,6 +852,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             </button>
           </div>
         )}
+        </div>{/* end tab-content-enter wrapper */}
       </div>
     </div>
   );
