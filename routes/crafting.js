@@ -461,6 +461,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot craft while resting in The Hearth' });
 
   const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
   if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
