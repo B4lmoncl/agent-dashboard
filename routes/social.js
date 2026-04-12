@@ -544,6 +544,7 @@ router.post('/api/social/trade/propose', requireAuth, (req, res) => {
   }
 
   const u = state.users[fromId];
+  if (u?.tavernRest?.active) return res.status(400).json({ error: 'Cannot trade while resting in The Hearth' });
   ensureUserCurrencies(u);
 
   // Validate gold
@@ -745,6 +746,9 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
   if (!isInitiator && !isRecipient) {
     return res.status(403).json({ error: 'You are not a participant in this trade' });
   }
+
+  const acceptUser = state.users[userId];
+  if (acceptUser?.tavernRest?.active) return res.status(400).json({ error: 'Cannot trade while resting in The Hearth' });
 
   // Only the player whose turn it is can accept
   if (trade.status === 'pending_initiator' && !isInitiator) {

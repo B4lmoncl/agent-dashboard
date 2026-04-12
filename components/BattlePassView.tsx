@@ -5,6 +5,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -107,7 +108,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
       });
       const data = await r.json();
       if (r.ok) {
-        setMessage({ text: `Level ${level} reward claimed!`, type: "success" });
+        setMessage({ text: `Level ${level} reward claimed.`, type: "success" });
         fetchBP();
         if (onRewardCelebration && data.granted) {
           const g = data.granted;
@@ -157,6 +158,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="season" playerLevel={1} />
       {/* Header */}
       <div className="rounded-xl p-5" style={{
         background: `linear-gradient(135deg, ${config.seasonAccent}12 0%, rgba(14,14,18,0.95) 100%)`,
@@ -178,8 +180,8 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
               Level {player.level} / {config.levels}
             </p>
             <TipCustom title="Saisonende" icon="◆" accent={config.seasonAccent} body={<p>Verbleibende Tage bis zum Ende der aktuellen Saison. Nicht beanspruchte Belohnungen verfallen.</p>}>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
-                {daysLeft}d remaining
+              <p className="text-xs font-mono" style={{ color: daysLeft <= 3 ? "#ef4444" : daysLeft <= 7 ? "#f59e0b" : "rgba(255,255,255,0.3)", cursor: "help" }}>
+                {daysLeft <= 3 ? `${daysLeft}d left` : daysLeft <= 7 ? `${daysLeft}d remaining` : `${daysLeft}d remaining`}
               </p>
             </TipCustom>
           </div>
@@ -214,7 +216,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders(reviewApiKey) });
                 const data = await r.json();
                 if (r.ok) {
-                  setMessage({ type: "success", text: `Claimed ${data.count} rewards!` });
+                  setMessage({ type: "success", text: `${data.count} rewards claimed.` });
                   if (onRewardCelebration) {
                     // Aggregate rewards for meaningful celebration
                     let totalGold = 0;
@@ -260,7 +262,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <div>
-            <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Season ends in {daysLeft} day{daysLeft !== 1 ? "s" : ""}!</p>
+            <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Season ends in {daysLeft} day{daysLeft !== 1 ? "s" : ""}.</p>
             <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Unclaimed rewards will be lost. Claim them before the season resets.</p>
           </div>
         </div>
@@ -271,7 +273,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           border: "1px solid rgba(239,68,68,0.35)",
         }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Season ends today! Claim all remaining rewards now.</p>
+          <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Season ends today. Claim remaining rewards before the reset.</p>
         </div>
       )}
 

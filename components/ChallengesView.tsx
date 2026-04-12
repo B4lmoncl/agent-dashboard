@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { getBalance } from "@/lib/balance-cache";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
@@ -117,7 +118,7 @@ function SternenpfadView({
             <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>Die Sterne messen dich. Nicht dein Level — dich.</p>
           </div>
         </div>
-        <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star!</p></>}>
+        <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star.</p></>}>
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
             <Stars earned={totalStars} max={9} animated />
             <span className="text-xs font-bold ml-1" style={{ color: "#fbbf24" }}>{totalStars}/9</span>
@@ -276,7 +277,7 @@ function SternenpfadView({
                   </span>
                   <Stars earned={stage.earnedStars} animated />
                   {speedBonusActive && (
-                    <TipCustom title="Speed Bonus" icon="★" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
+                    <TipCustom title="Speed Bonus" icon="★" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star.</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
                         ★ Speed Bonus
                       </span>
@@ -339,7 +340,7 @@ function SternenpfadView({
                             <CurrencyBadge key={type} type={type} amount={Math.round((base as number) * multiplier)} />
                           ))}
                         </div>
-                        {stars > 1 && <span className="text-w15 ml-auto">+{stars === 3 ? "33" : "15"}%</span>}
+                        {stars > 1 && <span className="text-w30 ml-auto font-mono">+{stars === 3 ? "33" : "15"}%</span>}
                       </div>
                     );
                   })}
@@ -726,7 +727,7 @@ export default function ChallengesView({
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "sternenpfad",
-            title: `${stars}★ Milestone Claimed!`,
+            title: `${stars}★ Milestone Claimed`,
             xpEarned: 0,
             goldEarned: data.rewards.gold || 0,
             currencies: currencies.length > 0 ? currencies : undefined,
@@ -766,7 +767,7 @@ export default function ChallengesView({
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "expedition",
-            title: `Checkpoint ${checkpoint} Reward!`,
+            title: `Checkpoint ${checkpoint} Reached`,
             xpEarned: 0,
             goldEarned: data.rewards.gold || 0,
             currencies: currencies.length > 0 ? currencies : undefined,
@@ -794,7 +795,8 @@ export default function ChallengesView({
         <WeeklyResetTimer />
       </div>
 
-      {/* Toggle buttons */}
+      {/* Toggle buttons + reset countdown */}
+      <div className="flex items-center gap-3 flex-wrap">
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
         <button
           onClick={() => setActiveTab("sternenpfad")}
@@ -817,6 +819,22 @@ export default function ChallengesView({
           <Tip k="expedition">Expedition</Tip>
         </button>
       </div>
+      {/* Weekly reset countdown */}
+      {(() => {
+        const now = new Date();
+        const nextMonday = new Date(now);
+        nextMonday.setDate(now.getDate() + ((8 - now.getDay()) % 7 || 7));
+        nextMonday.setHours(0, 0, 0, 0);
+        const ms = nextMonday.getTime() - now.getTime();
+        const d = Math.floor(ms / 86400000);
+        const h = Math.floor((ms % 86400000) / 3600000);
+        return (
+          <span className="text-xs font-mono" style={{ color: ms < 86400000 ? "#ef4444" : "rgba(255,255,255,0.2)" }}>
+            Resets in {d}d {h}h
+          </span>
+        );
+      })()}
+      </div>
 
       {/* Error toast */}
       {claimError && (
@@ -828,10 +846,11 @@ export default function ChallengesView({
 
       {/* Content */}
       <div key={activeTab} className="tab-content-enter">
+      <TutorialMomentBanner viewId="challenges" playerLevel={1} />
       <FirstVisitBanner
         viewId="challenges"
         title="Wöchentliche Herausforderungen"
-        description="Sternenpfad: Solo-Challenge mit 3 Stufen und Stern-Bewertungen. Schließe Stufen schnell ab für Bonus-Sterne. Expedition: Kooperative Gilden-Challenge — alle Spieler arbeiten gemeinsam auf Checkpoints hin."
+        description="Sternenpfad: Drei Stufen. Allein. Schnelligkeit bringt Bonus-Sterne. Expedition: Alle zusammen auf gemeinsame Checkpoints. Eine Seite testet dich. Die andere testet eure Geduld miteinander."
         accentColor="#fbbf24"
       />
       {activeTab === "sternenpfad" && (
@@ -847,7 +866,7 @@ export default function ChallengesView({
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
             <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>★</p>
             <p className="text-sm font-bold mb-1 text-w25">No Star Path active</p>
-            <p className="text-xs text-w15">{playerName ? "The Star Path resets every Monday. A new challenge awaits!" : "Log in to view the Star Path."}</p>
+            <p className="text-xs text-w25">{playerName ? "The Star Path resets every Monday. A new challenge awaits." : "Log in to view the Star Path."}</p>
           </div>
         )
       )}
@@ -863,7 +882,7 @@ export default function ChallengesView({
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
             <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>▲</p>
             <p className="text-sm font-bold mb-1 text-w25">No Expedition active</p>
-            <p className="text-xs text-w15">The Expedition resets every Monday. Rally your guild!</p>
+            <p className="text-xs text-w25">The Expedition resets every Monday.</p>
           </div>
         )
       )}

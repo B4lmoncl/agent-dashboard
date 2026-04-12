@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useDashboard } from "@/app/DashboardContext";
 import { useModalBehavior } from "@/components/ModalPortal";
@@ -142,7 +143,7 @@ export default function TalentTreeView({
       const d = await r.json();
       if (r.ok && d.success) {
         SFX.craftSkillUp(); // ascending ping for talent unlock
-        _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet!" });
+        _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet." });
         fetchTalents();
       } else {
         _toast({ type: "error", message: d.error || "Fehler" });
@@ -189,7 +190,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt! ${d.goldSpent}g bezahlt.` });
+        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt. ${d.goldSpent}g bezahlt.` });
         setConfirmReset(false);
         fetchTalents();
       } else {
@@ -300,10 +301,11 @@ export default function TalentTreeView({
 
   return (
     <div className="tab-content-enter">
+      <TutorialMomentBanner viewId="talents" playerLevel={1} />
       <FirstVisitBanner
         viewId="talents"
         title="Schicksalsbaum"
-        description="Passive Boni in 3 Ringen. Innerer Ring = Grundlagen, Mitte = Spezialisierung mit Tradeoffs, Außen = mächtige Capstones. Manche Knoten schließen sich gegenseitig aus. Respec kostet 500 Gold + 50 Essenz."
+        description="Drei Ringe. Der innere lehrt Grundlagen. Der mittlere verlangt Entscheidungen. Der äußere belohnt Entschlossenheit. Manche Pfade schließen sich gegenseitig aus. Respec kostet 500 Gold und 50 Essenz. Bereue weise."
         accentColor="#a78bfa"
       />
       {/* Header */}
@@ -575,8 +577,8 @@ export default function TalentTreeView({
                       x={pos.x} y={pos.y + 1}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill={state === "allocated" ? "#000" : "rgba(255,255,255,0.5)"}
-                      fontSize={9}
+                      fill={state === "allocated" ? "#000" : "rgba(255,255,255,0.7)"}
+                      fontSize={11}
                       fontWeight="bold"
                     >
                       {data.allocated[n.id]?.rank || 0}/{n.maxRank}
@@ -590,7 +592,7 @@ export default function TalentTreeView({
             <text x={CENTER} y={CENTER - 8} textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize={11} fontWeight="bold">
               SCHICKSALSBAUM
             </text>
-            <text x={CENTER} y={CENTER + 8} textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize={9}>
+            <text x={CENTER} y={CENTER + 8} textAnchor="middle" fill="rgba(255,255,255,0.2)" fontSize={11}>
               Level {data.playerLevel}
             </text>
           </svg>
@@ -768,7 +770,7 @@ export default function TalentTreeView({
                             const invD = await invR.json();
                             const legendaries = (invD.items || invD.inventory || []).filter((i: { rarity?: string; locked?: boolean }) => i.rarity === "legendary" && !i.locked);
                             if (legendaries.length === 0) {
-                              _toast({ type: "error", message: "Kein Legendary Item verfügbar" });
+                              _toast({ type: "error", message: "No legendary item in inventory." });
                               return;
                             }
                             const item = legendaries[0];
@@ -780,7 +782,7 @@ export default function TalentTreeView({
                             const d = await r.json();
                             if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
                             else {
-                              _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert! +1 Talentpunkt` });
+                              _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();
                             }
                           } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }

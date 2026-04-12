@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemActionPopup from "@/components/ItemActionPopup";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { formatLegendaryLabel } from "@/app/utils";
@@ -934,7 +935,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
         </div>
         {item && (
           <div className="mt-0.5" style={{ width: 56 }}>
-            <p className="text-center truncate" style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
+            <p className="text-center truncate" title={item.name} style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
             {item.legendaryEffect && (
               <p className="text-center truncate" style={{ fontSize: 9, color: "#f97316", lineHeight: 1.1, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
             )}
@@ -989,6 +990,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const { playerName, reviewApiKey: apiKey, users, classesList } = useDashboard();
   const [charData, setCharData] = useState<CharacterData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
   const [rightTab, setRightTab] = useState<"stats" | "equipment" | "gems">("stats");
@@ -1098,8 +1100,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const fetchChar = useCallback(async () => {
     try {
       const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/character`);
-      if (r.ok) setCharData(await r.json());
-    } catch { /* ignore */ }
+      if (r.ok) { setCharData(await r.json()); setFetchError(false); }
+      else setFetchError(true);
+    } catch { setFetchError(true); }
     setLoading(false);
   }, [playerName]);
 
@@ -1117,7 +1120,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped`, icon: item.icon, rarity: displayRarity(item) });
         }
       } else {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
@@ -1158,7 +1161,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used.", icon: item.icon, rarity: displayRarity(item) });
         }
       } else if (addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
@@ -1419,6 +1422,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
+          {!loading && fetchError && !charData && (
+            <div className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+              <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Failed to load character data. Try refreshing.</p>
+              <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Retry</button>
+            </div>
+          )}
           {!loading && charData && (() => {
             const equippedIds = new Set<string>();
             for (const v of Object.values(charData.equipment)) {
@@ -1454,7 +1463,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div className="space-y-2">
                   <p className="text-xs text-w25">{sorted.length} material{sorted.length !== 1 ? "s" : ""} in storage</p>
                   {sorted.length === 0 ? (
-                    <p className="text-xs text-center py-8 text-w15">{searchQ ? "Keine Materialien gefunden" : "No materials yet. Complete quests to gather materials based on your professions."}</p>
+                    <p className="text-xs text-center py-8 text-w25">{searchQ ? "No materials found." : "No materials yet. Complete quests to gather them."}</p>
                   ) : (
                     <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))" }}>
                       {sorted.map(([id, count]) => {
@@ -2040,10 +2049,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
                     </span></Tip>
                   </div>
-                  <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
+                  <div className="rounded-full overflow-hidden relative" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
+                    {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
+                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))", borderRight: "2px solid rgba(103,232,249,0.5)", boxShadow: "0 0 8px rgba(103,232,249,0.15)" }} />
+                    ) : null}
                     <div
-                      className="h-full rounded-full"
-                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+                      className="h-full rounded-full relative"
+                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
                     />
                   </div>
                   <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>{charData.title}</p>
@@ -2598,7 +2610,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           }
         }}
         className="shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
-        style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.15)", color: "rgba(96,165,250,0.55)", cursor: "pointer" }}
+        style={{ background: "rgba(103,232,249,0.06)", border: "1px solid rgba(103,232,249,0.15)", color: "rgba(103,232,249,0.55)", cursor: "pointer" }}
       >
         Collection
       </button>
@@ -2661,10 +2673,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       >
         <div
           className="rounded-2xl overflow-hidden"
-          style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
+          style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(103,232,249,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
         >
           {/* Header */}
-          <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>
+          <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(103,232,249,0.04)" }}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-lg" style={{ color: "#60a5fa" }}>◆</span>
@@ -2717,9 +2729,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   className="text-xs px-3 py-1.5 rounded-full font-medium"
                   style={{
                     cursor: "pointer",
-                    background: isActive ? "rgba(96,165,250,0.2)" : "rgba(255,255,255,0.04)",
+                    background: isActive ? "rgba(103,232,249,0.2)" : "rgba(255,255,255,0.04)",
                     color: isActive ? "#60a5fa" : "rgba(255,255,255,0.4)",
-                    border: `1px solid ${isActive ? "rgba(96,165,250,0.4)" : "rgba(255,255,255,0.06)"}`,
+                    border: `1px solid ${isActive ? "rgba(103,232,249,0.4)" : "rgba(255,255,255,0.06)"}`,
                     transition: "all 0.15s ease",
                   }}
                 >
@@ -2866,7 +2878,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               >
                                 {item.obtained ? (
                                   <>
-                                    <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
+                                    <p className="text-xs font-semibold truncate" title={item.name} style={{ color }}>{item.name}</p>
                                     <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
                                     {item.legendaryEffect?.label && (
                                       <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>

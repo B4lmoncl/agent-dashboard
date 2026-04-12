@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { SFX } from "@/lib/sounds";
 import type { Quest, ActiveNpc, Ritual } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
@@ -74,7 +75,8 @@ export function useQuestActions({
         setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to approve quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to approve quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not approve quest" });
@@ -97,7 +99,8 @@ export function useQuestActions({
         setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to reject quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to reject quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not reject quest" });
@@ -164,6 +167,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
+        addToast({ type: "flavor", message: "Quest claimed.", icon: "/images/icons/nav-great-hall.png" });
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
@@ -189,7 +193,8 @@ export function useQuestActions({
         updateNpcQuestStatus(questId, "open", null);
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to unclaim quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to unclaim quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not unclaim quest", onRetry: () => handleUnclaim(questId) });
@@ -210,7 +215,8 @@ export function useQuestActions({
       if (r.ok) {
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to join co-op quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to join co-op quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not join co-op quest" });
@@ -231,9 +237,9 @@ export function useQuestActions({
       if (r.ok) {
         const data = await r.json().catch(() => ({}));
         if (data.allDone) {
-          addToast({ type: "flavor", message: "Co-op quest complete! All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
+          addToast({ type: "flavor", message: "Co-op quest complete. All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
         } else {
-          addToast({ type: "flavor", message: "Your part is done! Waiting for partners...", icon: "/images/icons/cat-coop.png" });
+          addToast({ type: "flavor", message: "Your part is done. Waiting for partners...", icon: "/images/icons/cat-coop.png" });
         }
         if (data.newAchievements?.length > 0) {
           for (const ach of data.newAchievements) {
@@ -242,7 +248,8 @@ export function useQuestActions({
         }
         await refresh();
       } else {
-        addToast({ type: "error", message: "Failed to complete co-op quest" });
+        const d = await r.json().catch(() => ({}));
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to complete co-op quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not complete co-op quest", onRetry: () => handleCoopComplete(questId) });
@@ -269,9 +276,10 @@ export function useQuestActions({
         const currencies: { name: string; amount: number; color: string }[] = [];
         if (data.runensplitterEarned > 0) currencies.push({ name: "Runensplitter", amount: data.runensplitterEarned, color: "#818cf8" });
         if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
+        if (data.restedBonusXp > 0) currencies.push({ name: "Rested Bonus", amount: data.restedBonusXp, color: "#60a5fa" });
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
-          title: data.npcFinalReward ? `${questTitle} — Chain Complete!` : questTitle,
+          title: data.npcFinalReward ? `${questTitle} — Chain Complete` : questTitle,
           xpEarned: data.xpEarned || 0,
           goldEarned: data.goldEarned || 0,
           loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6", icon: data.npcFinalReward.icon } : data.lootDrop || null,
@@ -279,8 +287,14 @@ export function useQuestActions({
           ...(currencies.length > 0 ? { currencies } : {}),
           ...(data.npcFinalReward
             ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` }
+            : data.gambleResult === "double"
+              ? { flavor: "Gamble paid off. Double rewards." }
+              : data.gambleResult === "halved"
+                ? { flavor: "Gamble lost. Half rewards." }
+            : data.varietyBonus && data.varietyBonus.bonus > 0
+              ? { flavor: `${data.varietyBonus.types} quest types today. Variety Bonus +${data.varietyBonus.bonus}% XP.` }
             : data.dailyDiminishing != null && data.dailyDiminishing < 1
-              ? { flavor: `Quest ${data.dailyQuestCount || "?"} today — rewards at ${Math.round(data.dailyDiminishing * 100)}%` }
+              ? { flavor: `Quest ${data.dailyQuestCount || "?"} today. Rewards reduced to ${Math.round(data.dailyDiminishing * 100)}%.` }
               : data.dailyQuestCount != null && data.dailyQuestCount <= 5
                 ? { flavor: `Quest ${data.dailyQuestCount} of 5 at full rewards today` }
                 : {}
@@ -317,11 +331,30 @@ export function useQuestActions({
         }
         // Toast for gem drops
         if (data.gemDrop) {
-          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped!", rarity: "rare" });
+          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped.", rarity: "rare" });
+        }
+        // Warning: inventory was full, loot was lost
+        if (data.inventoryFull) {
+          addToast({ type: "error", message: "Inventory full — loot item lost. Free up space." });
+        }
+        // Streak milestone celebration
+        if (data.streakMilestone) {
+          SFX.streakMilestone();
+          addToast({ type: "flavor", message: `${data.streakMilestone.days}-Day Streak. ${data.streakMilestone.label || "The flame endures."}`, icon: data.streakMilestone.badge || "◆" });
         }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
-          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered!", rarity: "epic" });
+          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
+        }
+        // Toast for codex discoveries
+        if (data.codexDiscovery && Array.isArray(data.codexDiscovery) && data.codexDiscovery.length > 0) {
+          for (const entry of data.codexDiscovery) {
+            addToast({ type: "flavor", message: `Codex: ${entry.title || "New entry"} discovered.`, icon: "◆" });
+          }
+        }
+        // Toast for battle pass level-up
+        if (data.battlePassLevelUp) {
+          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Reward available.`, icon: "◆" });
         }
         // Toast for faction rep level-ups
         if (data.repGains) {
@@ -400,6 +433,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         setLastPoolRefresh(new Date());
+        addToast({ type: "flavor", message: "Quest pool refreshed. New scrolls on the board.", icon: "/images/icons/ui-quest-scroll.png" });
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));

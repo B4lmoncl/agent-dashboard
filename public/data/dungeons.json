@@ -3,7 +3,7 @@
     {
       "id": "sunken-archive",
       "name": "The Sunken Archive",
-      "description": "Flooded chambers deep beneath the tower. Ancient scrolls and forgotten knowledge lie waterlogged in the dark.",
+      "description": "Flooded chambers deep beneath the tower. The scrolls are waterlogged, the knowledge forgotten, and the water suspiciously warm. Nobody asks why.",
       "icon": "/images/icons/nav-dungeons.png",
       "accent": "#22c55e",
       "tier": "normal",
@@ -54,7 +54,7 @@
     {
       "id": "shattered-spire",
       "name": "The Shattered Spire",
-      "description": "A collapsed tower wing where the winds howl through broken stone. Something still stirs among the rubble.",
+      "description": "A collapsed tower wing. The winds howl. Something stirs among the rubble. Your gear score determines whether that something matters.",
       "icon": "/images/icons/nav-dungeons.png",
       "accent": "#3b82f6",
       "tier": "hard",
@@ -109,7 +109,7 @@
     {
       "id": "hollow-core",
       "name": "The Hollow Core",
-      "description": "The deepest point of the tower — a vast emptiness that should not exist. Those who enter rarely return unchanged.",
+      "description": "The deepest point of the tower. A vast emptiness that should not exist. Those who enter rarely return unchanged. Some say that is the point.",
       "icon": "/images/icons/nav-dungeons.png",
       "accent": "#ef4444",
       "tier": "legendary",

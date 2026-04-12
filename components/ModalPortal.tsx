@@ -19,6 +19,7 @@ export function useModalBehavior(isOpen: boolean, onClose: () => void, container
   // ESC key handler + focus trap
   useEffect(() => {
     if (!isOpen) return;
+    try { const { SFX } = require("@/lib/sounds"); SFX.modalOpen(); } catch { /* sounds not loaded */ }
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") { e.stopPropagation(); onClose(); return; }
       // Focus trap: cycle Tab within modal container

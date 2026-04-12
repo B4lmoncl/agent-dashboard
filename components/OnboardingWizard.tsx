@@ -29,12 +29,12 @@ interface OnboardingWizardProps {
 }
 
 const VIRTUAL_COMPANIONS = [
-  { type: "dragon", emoji: "🐉", iconSrc: "/images/icons/companion-dragon.png", name: "Ember",  desc: "A fiery dragon that pushes you forward",           personality: "fierce",    trait: "Fierce",    questHint: "Complete 3 quests every day!" },
-  { type: "owl", emoji: "🦉", iconSrc: "/images/icons/companion-owl.png", name: "Sage",   desc: "A wise owl that guides your learning journey",     personality: "wise",      trait: "Wise",      questHint: "Learn something new every day" },
-  { type: "phoenix", emoji: "🔥", iconSrc: "/images/icons/companion-phoenix.png", name: "Blaze",  desc: "A phoenix that rises from every setback",          personality: "resilient", trait: "Resilient", questHint: "Stronger after every setback" },
-  { type: "wolf",    emoji: "🐺", iconSrc: "/images/portraits/companion-wolf.png",    name: "Shadow", desc: "A loyal wolf that stands by your side",            personality: "loyal",     trait: "Loyal",     questHint: "Maintain your daily routine" },
-  { type: "fox",     emoji: "🦊", iconSrc: "/images/portraits/companion-fox.png",     name: "Trick",  desc: "A clever fox that finds creative solutions",       personality: "clever",    trait: "Clever",    questHint: "Find a more creative approach" },
-  { type: "bear",    emoji: "🐻", iconSrc: "/images/portraits/companion-bear.png",    name: "Bjorn",  desc: "A strong bear that carries you through tough times",personality: "strong",    trait: "Strong",    questHint: "Fitness and strength quests" },
+  { type: "dragon", emoji: "🐉", iconSrc: "/images/icons/companion-dragon.png", name: "Ember",  desc: "A fiery dragon. Judges your productivity.",           personality: "fierce",    trait: "Fierce",    questHint: "Complete 3 quests every day" },
+  { type: "owl", emoji: "🦉", iconSrc: "/images/icons/companion-owl.png", name: "Sage",   desc: "A wise owl. Knows more than it lets on.",     personality: "wise",      trait: "Wise",      questHint: "Learn something new every day" },
+  { type: "phoenix", emoji: "🔥", iconSrc: "/images/icons/companion-phoenix.png", name: "Blaze",  desc: "A phoenix. Falls down. Gets up. Repeat.",          personality: "resilient", trait: "Resilient", questHint: "Stronger after every setback" },
+  { type: "wolf",    emoji: "🐺", iconSrc: "/images/portraits/companion-wolf.png",    name: "Shadow", desc: "A loyal wolf. Silently disappointed when you skip.",            personality: "loyal",     trait: "Loyal",     questHint: "Maintain your daily routine" },
+  { type: "fox",     emoji: "🦊", iconSrc: "/images/portraits/companion-fox.png",     name: "Trick",  desc: "A clever fox. Solves problems you didn't know you had.",       personality: "clever",    trait: "Clever",    questHint: "Find a more creative approach" },
+  { type: "bear",    emoji: "🐻", iconSrc: "/images/portraits/companion-bear.png",    name: "Bjorn",  desc: "A strong bear. Carries the weight. Doesn't complain. Much.",personality: "strong",    trait: "Strong",    questHint: "Fitness and strength quests" },
 ];
 
 const PET_SPECIES = [
@@ -288,13 +288,15 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           </div>
         </div>
 
+        {/* Step content with fade-in transition */}
+        <div key={step} className="tab-content-enter">
         {/* ── Step 0: Name ── */}
         {step === 0 && (
           <div className="p-6 space-y-5">
             <div className="text-center space-y-1">
               <div className="text-4xl">★</div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Welcome to the Quest Hall!</h2>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Your adventure begins here. What should we call you?</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Welcome to Quest Hall.</h2>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>You need a name. What should we call you?</p>
             </div>
             <div className="space-y-3">
               <div>
@@ -473,7 +475,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.22)" }}
               >
                 <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>
-                  {selectedClass.icon} You chose {selectedClass.fantasy}!
+                  {selectedClass.icon} You chose {selectedClass.fantasy}.
                 </p>
                 <ul className="text-xs space-y-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>
                   <li>• {selectedClass.description}</li>
@@ -482,7 +484,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   ))}
                 </ul>
                 <button onClick={() => setShowClassTutorial(false)} className="text-xs" style={{ color: "rgba(167,139,250,0.55)" }}>
-                  Got it!
+                  Noted.
                 </button>
               </div>
             )}
@@ -546,7 +548,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {customClassSubmitted && (
               <div className="rounded-xl p-3" style={{ background: "rgba(245,158,11,0.07)", border: "1px solid rgba(245,158,11,0.25)" }}>
                 <p className="text-xs" style={{ color: "#f59e0b" }}>
-                  Your class is being forged! You can get started right away — your class path will be available once it's ready.
+                  Your class is being forged. You can get started right away — your class path will be available once it's ready.
                 </p>
               </div>
             )}
@@ -620,7 +622,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           <div className="p-6 space-y-4">
             <div>
               <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Choose your companion</h2>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Your companion motivates you on your journey.</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Your companion watches. And occasionally helps.</p>
             </div>
 
             {/* Real pet toggle */}
@@ -850,6 +852,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             </button>
           </div>
         )}
+        </div>{/* end tab-content-enter wrapper */}
       </div>
     </div>
   );

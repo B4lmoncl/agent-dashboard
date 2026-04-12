@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -176,12 +177,23 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         document.body.classList.add("screenshake");
         setTimeout(() => document.body.classList.remove("screenshake"), 300);
         if (onRewardCelebration) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (d.completionBonus) {
+            if (d.completionBonus.gold) currencies.push({ name: "Gold", amount: d.completionBonus.gold, color: "#fbbf24" });
+            if (d.completionBonus.essenz) currencies.push({ name: "Essenz", amount: d.completionBonus.essenz, color: "#3b82f6" });
+            if (d.completionBonus.runensplitter) currencies.push({ name: "Runensplitter", amount: d.completionBonus.runensplitter, color: "#818cf8" });
+          }
+          if (d.seelensplitter) currencies.push({ name: "Seelensplitter", amount: d.seelensplitter, color: "#c084fc" });
+          if (d.riftMaterials?.length) {
+            for (const m of d.riftMaterials) currencies.push({ name: m.name || m.id, amount: m.amount || 1, color: "#a78bfa" });
+          }
           onRewardCelebration({
             type: "rift",
-            title: d.riftCompleted ? "Rift Complete!" : d.skippedStage ? `Stage Complete! (+1 skipped)` : "Stage Complete!",
+            title: d.riftCompleted ? "Rift Complete" : d.skippedStage ? `Stage Complete (+1 skipped)` : "Stage Complete",
             xpEarned: d.xpEarned || 0,
             goldEarned: d.goldEarned || 0,
             loot: d.riftGearDrop ? { name: d.riftGearDrop.name, emoji: "◆", rarity: d.riftGearDrop.rarity || "epic", icon: d.riftGearDrop.icon } : d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare", icon: d.loot.icon } : undefined,
+            currencies: currencies.length > 0 ? currencies : undefined,
           });
         }
         if (d.skippedStage) {
@@ -214,7 +226,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
         <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Rift</p>
-        <p className="text-xs text-w15">Log in to enter The Rift.</p>
+        <p className="text-xs text-w25">Log in to enter The Rift.</p>
       </div>
     );
   }
@@ -228,10 +240,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   return (
     <div className="space-y-5 tab-content-enter relative">
+      <TutorialMomentBanner viewId="rift" playerLevel={1} />
       <FirstVisitBanner
         viewId="rift"
         title="Der Riss"
-        description="Starte eine Quest-Kette unter Zeitdruck. Normal: 3 Quests in 72h. Hard: 5 in 48h. Legendary: 7 in 36h. Schließe Legendary ab, um den endlosen Mythic+ Modus freizuschalten."
+        description="Quest-Ketten unter Zeitdruck. Normal ist machbar. Hard ist unangenehm. Legendary ist eine Frage des Charakters. Dahinter wartet Mythic+ — für alle, die nicht wissen wann genug ist."
         accentColor="#a855f7"
       />
       {/* Purple rift energy fragments */}
@@ -283,7 +296,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             </div>
             <div className="text-right">
               <p className={`text-sm font-mono font-bold${!activeRift.completed && new Date(activeRift.expiresAt).getTime() - Date.now() < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 ? " bar-pulse" : ""}`} style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
-                {activeRift.completed ? "✓ Rift Conquered!" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
+                {activeRift.completed ? "✓ Rift Conquered" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
               </p>
               <p className="text-xs" style={{ color: activeRift.completed ? "rgba(34,197,94,0.5)" : "rgba(255,255,255,0.2)" }}>{activeRift.completed ? "All stages cleared — rewards granted" : "Time remaining"}</p>
             </div>
@@ -316,7 +329,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   });
                   const d = await r.json();
                   if (r.ok) {
-                    setMessage({ text: d.message || "Timer extended!", type: "success" });
+                    setMessage({ text: d.message || "Timer extended.", type: "success" });
                     fetchRift();
                   } else {
                     setMessage({ text: d.error || "Failed to extend", type: "error" });

@@ -131,7 +131,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 
   const statusColors: Record<string, { color: string; bg: string; border: string; label: string }> = {
     active:    { color: "#a78bfa", bg: "rgba(139,92,246,0.15)", border: "rgba(139,92,246,0.3)", label: "Active" },
-    completed: { color: "#34d399", bg: "rgba(16,185,129,0.15)", border: "rgba(16,185,129,0.3)", label: "Victory!" },
+    completed: { color: "#34d399", bg: "rgba(16,185,129,0.15)", border: "rgba(16,185,129,0.3)", label: "Complete" },
     archived:  { color: "#9ca3af", bg: "rgba(156,163,175,0.1)", border: "rgba(156,163,175,0.2)", label: "Archived" },
   };
 
@@ -178,7 +178,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 </div>
               </div>
               {/* Rewards */}
-              {(expandedCampaign.rewards.xp > 0 || expandedCampaign.rewards.gold > 0 || expandedCampaign.rewards.title) && (
+              {expandedCampaign.rewards && (expandedCampaign.rewards.xp > 0 || expandedCampaign.rewards.gold > 0 || expandedCampaign.rewards.title) && (
                 <div className="mt-4 flex items-center gap-3 flex-wrap">
                   <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Completion Rewards:</span>
                   {expandedCampaign.rewards.xp > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.25)" }}>+{expandedCampaign.rewards.xp} XP</span>}
@@ -387,10 +387,10 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               <div>
                 <p className="text-xs mb-1.5" style={{ color: "rgba(167,139,250,0.7)" }}>Completion Rewards</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  <input type="number" value={form.rewardXp} onChange={e => setForm(f => ({ ...f, rewardXp: e.target.value }))} placeholder="XP"
-                    className="rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.2)", color: "#e9d5ff" }} />
-                  <input type="number" value={form.rewardGold} onChange={e => setForm(f => ({ ...f, rewardGold: e.target.value }))} placeholder="Gold"
-                    className="rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.2)", color: "#e9d5ff" }} />
+                  <input type="number" min={0} max={10000} value={form.rewardXp} onChange={e => setForm(f => ({ ...f, rewardXp: e.target.value }))} placeholder="XP"
+                    className="rounded-lg px-3 py-2 text-xs input-dark" />
+                  <input type="number" min={0} max={100000} value={form.rewardGold} onChange={e => setForm(f => ({ ...f, rewardGold: e.target.value }))} placeholder="Gold"
+                    className="rounded-lg px-3 py-2 text-xs input-dark" />
                   <input value={form.rewardTitle} onChange={e => setForm(f => ({ ...f, rewardTitle: e.target.value }))} placeholder="Title"
                     className="rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.2)", color: "#e9d5ff" }} />
                 </div>

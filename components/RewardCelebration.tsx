@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SFX } from "@/lib/sounds";
+import ItemTooltip from "@/components/ItemTooltip";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -48,196 +49,196 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accent: "#22c55e",
     accentRgb: "34,197,94",
     gradientTop: "#0d1a0f",
-    label: "Quest Complete!",
+    label: "Quest Complete",
     icon: "◆",
     flavorMessages: [
-      "The Forge burns bright!",
-      "Another quest conquered!",
-      "Victory is yours, adventurer!",
-      "Well fought!",
-      "The guild celebrates your deed!",
+      "The Forge takes note.",
+      "Another one off the board.",
+      "You did the thing. The thing is done.",
+      "Competence, demonstrated.",
+      "The Hall acknowledges your effort. Quietly.",
     ],
   },
   "npc-quest": {
     accent: "#a855f7",
     accentRgb: "168,85,247",
     gradientTop: "#1a0d20",
-    label: "Quest Complete!",
+    label: "Quest Complete",
     icon: "◆",
     flavorMessages: [
-      "The quest giver nods with approval.",
-      "A worthy adventurer indeed!",
+      "The quest giver nods. That counts as enthusiasm.",
+      "A task completed. Another one waits.",
       "The chain grows stronger.",
-      "Honor earned, rewards bestowed!",
-      "The wanderer is pleased.",
+      "The wanderer is pleased. Or at least less displeased.",
+      "Rewards earned. Gratitude implied.",
     ],
   },
   ritual: {
     accent: "#6366f1",
     accentRgb: "99,102,241",
     gradientTop: "#0d0d1a",
-    label: "Ritual Fulfilled!",
+    label: "Ritual Fulfilled",
     icon: "◆",
     flavorMessages: [
-      "The flame endures!",
-      "Discipline forged in fire.",
-      "Another day, another victory.",
-      "Your streak grows stronger!",
-      "The ritual binds your will.",
+      "The flame endures.",
+      "Discipline forged in repetition.",
+      "Another day. Another commitment kept.",
+      "The streak grows. So does your resolve.",
+      "The ritual holds.",
     ],
   },
   vow: {
     accent: "#3b82f6",
     accentRgb: "59,130,246",
     gradientTop: "#0d111a",
-    label: "Vow Upheld!",
+    label: "Vow Upheld",
     icon: "◆",
     flavorMessages: [
-      "Your resolve is unshaken!",
-      "Another clean day. Stay strong.",
-      "The vow holds firm!",
-      "Willpower made manifest.",
-      "Each day, you grow stronger.",
+      "Your resolve is noted.",
+      "Another clean day. Not bad.",
+      "The vow holds.",
+      "Willpower made visible.",
+      "Each day, a small victory. Small victories add up.",
     ],
   },
   companion: {
     accent: "#ff6b9d",
     accentRgb: "255,107,157",
     gradientTop: "#1a0d1e",
-    label: "Quest Complete!",
+    label: "Quest Complete",
     icon: "◆",
     flavorMessages: [
-      "Your companion is happy!",
-      "A bond strengthened!",
-      "Together, unstoppable!",
-      "Your companion purrs with joy!",
-      "Loyalty rewarded!",
+      "Your companion approves. Probably.",
+      "A bond, strengthened by mutual effort.",
+      "Together. Slightly less hopeless.",
+      "Your companion seems content. Hard to tell.",
+      "Loyalty, demonstrated.",
     ],
   },
   "daily-bonus": {
     accent: "#fbbf24",
     accentRgb: "251,191,36",
     gradientTop: "#1a160d",
-    label: "Daily Bonus!",
+    label: "Daily Bonus",
     icon: "★",
     flavorMessages: [
-      "The Forge welcomes you!",
-      "A new day, new possibilities!",
-      "Your loyalty is rewarded!",
-      "Welcome back, adventurer!",
-      "The Forge burns for you!",
+      "The Forge acknowledges your presence.",
+      "A new day. Same you. Better rewards.",
+      "Consistency has its perks.",
+      "You showed up. That counts.",
+      "The Forge burns. As do you, presumably.",
     ],
   },
   expedition: {
     accent: "#4ade80",
     accentRgb: "74,222,128",
     gradientTop: "#0d1a12",
-    label: "Expedition Reward!",
+    label: "Expedition Reward",
     icon: "◆",
     flavorMessages: [
-      "The guild marches onward!",
-      "Teamwork makes the dream work!",
-      "A checkpoint well earned!",
-      "Together, nothing can stop us!",
-      "The expedition bears fruit!",
+      "The guild advances. Collectively.",
+      "Cooperation. A surprisingly effective strategy.",
+      "A checkpoint reached. More ahead.",
+      "Together, you did something. Well done. Collectively.",
+      "The expedition proceeds as planned. Almost.",
     ],
   },
   sternenpfad: {
     accent: "#fbbf24",
     accentRgb: "251,191,36",
     gradientTop: "#1a160d",
-    label: "Star Path Milestone!",
+    label: "Star Path Milestone",
     icon: "★",
     flavorMessages: [
-      "The stars align in your favor!",
-      "Your brilliance shines through!",
-      "A constellation of effort!",
-      "Stardust fills your coffers!",
-      "The path rewards the worthy!",
+      "The stars take note.",
+      "Another milestone. The path stretches on.",
+      "Stars earned through effort. As intended.",
+      "Stardust accumulates. Like everything worth having.",
+      "The path rewards persistence. Not enthusiasm.",
     ],
   },
   battlepass: {
     accent: "#f472b6",
     accentRgb: "244,114,182",
     gradientTop: "#1a0d15",
-    label: "Season Pass Reward!",
+    label: "Season Pass Reward",
     icon: "◆",
     flavorMessages: [
-      "Season progress rewarded!",
-      "Another level conquered!",
-      "The season favors the bold!",
-      "Climbing the ranks!",
-      "Your dedication pays off!",
+      "Season progress, rewarded.",
+      "Another level. The track continues.",
+      "The season favors the consistent.",
+      "Progress measured. Rewards dispensed.",
+      "Your dedication is... documented.",
     ],
   },
   faction: {
     accent: "#c084fc",
     accentRgb: "192,132,252",
     gradientTop: "#150d1a",
-    label: "Faction Reward!",
+    label: "Faction Reward",
     icon: "🜂",
     flavorMessages: [
-      "The Circle acknowledges you!",
-      "Your allegiance is rewarded!",
-      "Standing increased!",
-      "The order is pleased!",
-      "Honor among the ranks!",
+      "The Circle acknowledges you. Reluctantly.",
+      "Reputation gained. Trust takes longer.",
+      "Standing increased. Expectations likewise.",
+      "The order nods. In their own way.",
+      "Allegiance has its privileges.",
     ],
   },
   "world-boss": {
     accent: "#ef4444",
     accentRgb: "239,68,68",
     gradientTop: "#1a0d0d",
-    label: "World Boss Vanquished!",
+    label: "World Boss Vanquished",
     icon: "◆",
     flavorMessages: [
-      "The beast has fallen!",
-      "A mighty foe, defeated!",
-      "The realm breathes easier!",
-      "Spoils of a legendary battle!",
-      "Your courage is unmatched!",
+      "The beast fell. You helped.",
+      "A collective effort. Someone should write that down.",
+      "The realm breathes easier. Temporarily.",
+      "Spoils claimed. The next one will be worse.",
+      "Your contribution is noted. Among many.",
     ],
   },
   dungeon: {
     accent: "#22d3ee",
     accentRgb: "34,211,238",
     gradientTop: "#0d1518",
-    label: "Dungeon Cleared!",
+    label: "Dungeon Cleared",
     icon: "◆",
     flavorMessages: [
-      "The Undercroft yields its treasures!",
-      "Darkness conquered!",
-      "The dungeon bows before you!",
-      "Riches from the deep!",
-      "A dungeon well plundered!",
+      "The Undercroft yields its treasures. This time.",
+      "Darkness recedes. For now.",
+      "The dungeon is cleared. It will refill. They always do.",
+      "Riches from below. Questions best left unasked.",
+      "A dungeon explored. Its inhabitants disagree with that phrasing.",
     ],
   },
   rift: {
     accent: "#818cf8",
     accentRgb: "129,140,248",
     gradientTop: "#0d0d1a",
-    label: "Rift Stage Cleared!",
+    label: "Rift Stage Cleared",
     icon: "◇",
     flavorMessages: [
-      "The Rift yields to your will!",
-      "Reality bends — and rewards.",
-      "Another tear in the veil, sealed.",
-      "The Aetherstream whispers approval.",
-      "Deeper still, the Rift beckons...",
+      "The Rift yields. Reluctantly.",
+      "Reality bends. It does not appreciate this.",
+      "Another tear sealed. More will open.",
+      "The Aetherstream acknowledges your persistence.",
+      "Deeper still. The Rift does not forgive.",
     ],
   },
   levelUp: {
     accent: "#fbbf24",
     accentRgb: "251,191,36",
     gradientTop: "#1a1400",
-    label: "Level Up!",
+    label: "Level Up",
     icon: "★",
     flavorMessages: [
-      "A new level of power unlocked!",
-      "The Hall of Records grows!",
-      "Greater strength, greater purpose.",
-      "Ascension. The forge burns hotter.",
-      "Power, earned through deeds.",
+      "A new threshold crossed.",
+      "The Hall takes notice. Briefly.",
+      "Greater strength. Greater expectations.",
+      "The forge burns hotter. So should you.",
+      "Power, earned. Not given.",
     ],
   },
 };
@@ -257,13 +258,20 @@ interface RewardCelebrationProps {
 
 export function RewardCelebration({ data, onClose, onCollect, onAchievementClick, onNavigate }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
+  const [showLootTooltip, setShowLootTooltip] = useState(false);
 
   // Play reward sound on mount
   useEffect(() => {
     if (data.type === "levelUp") SFX.levelUp();
     else if (data.type === "ritual") SFX.ritualComplete();
     else if (data.type === "vow") SFX.ritualComplete();
-    else SFX.questComplete();
+    else {
+      SFX.questComplete();
+      // Extra loot SFX for legendary/unique drops
+      if (data.loot?.rarity === "legendary" || data.loot?.rarity === "unique") {
+        setTimeout(() => SFX.lootDrop(), 300);
+      }
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ESC to collect & close
@@ -287,21 +295,22 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
     : theme.gradientTop;
   const icon = data.companionEmoji || theme.icon;
   const flavor = data.flavor || theme.flavorMessages[flavorIdx % theme.flavorMessages.length];
+  const isLegendaryDrop = data.loot?.rarity === "legendary" || data.loot?.rarity === "unique" || data.type === "levelUp";
 
   const hasRewards = data.xpEarned > 0 || data.goldEarned > 0 || data.loot || (data.bondXp && data.bondXp > 0) || (data.currencies && data.currencies.length > 0);
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      className={`fixed inset-0 z-[200] flex items-center justify-center p-4${isLegendaryDrop ? " legendary-screen-flash" : ""}`}
       style={{ background: `radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.88) 100%)` }}
       onClick={() => { if (onCollect) onCollect(data); onClose(); }}
     >
       <div
-        className="reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden"
+        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
         style={{
           background: `linear-gradient(180deg, ${gradientTop} 0%, #0d0d14 60%)`,
           border: `2px solid rgba(${accentRgb},0.5)`,
-          boxShadow: `0 0 60px rgba(${accentRgb},0.3), 0 0 120px rgba(${accentRgb},0.1)`,
+          boxShadow: `0 0 60px rgba(${accentRgb},0.3), 0 0 120px rgba(${accentRgb},0.1)${isLegendaryDrop ? `, 0 0 200px rgba(${accentRgb},0.2)` : ""}`,
         }}
         onClick={e => e.stopPropagation()}
       >
@@ -409,26 +418,28 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
               </div>
             )}
             {data.loot && (
-              <div className="reward-pill" style={{
-                background: "rgba(255,215,0,0.08)",
-                border: "1px solid rgba(255,215,0,0.25)",
-              }}>
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowLootTooltip(true); }}
+                className="reward-pill"
+                style={{
+                  background: "rgba(255,215,0,0.08)",
+                  border: "1px solid rgba(255,215,0,0.25)",
+                  cursor: "pointer",
+                }}
+              >
                 {data.loot.icon ? (
                   <img src={data.loot.icon} alt="" width={24} height={24} className="mr-1.5" style={{ imageRendering: "auto", verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 ) : (
                   <span className="text-sm mr-1">{data.loot.emoji}</span>
                 )}
                 <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
-                {onNavigate && (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate("character"); onClose(); }}
-                    className="ml-2 text-xs px-1.5 py-0.5 rounded"
-                    style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer" }}
-                  >
-                    View {"\u2192"}
-                  </button>
-                )}
-              </div>
+              </button>
+            )}
+            {showLootTooltip && data.loot && (
+              <ItemTooltip
+                item={{ name: data.loot.name, rarity: data.loot.rarity, icon: data.loot.icon || null }}
+                onClose={() => setShowLootTooltip(false)}
+              />
             )}
             {data.currencies && data.currencies.map((c, i) => {
               const spendView = onNavigate ? (

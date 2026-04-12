@@ -185,7 +185,7 @@ const AgentCard = memo(function AgentCard({ agent, activeQuests = [], isWide = f
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 min-w-0">
-              <h3 className="font-semibold text-sm truncate" style={{ color: "#f0f0f0" }}>{agent.name}</h3>
+              <h3 className="font-semibold text-sm truncate" title={agent.name} style={{ color: "#f0f0f0" }}>{agent.name}</h3>
               {(agent.streakDays ?? 0) > 0 && (
                 <span
                   className="text-xs font-bold flex-shrink-0"
@@ -303,7 +303,7 @@ const AgentCard = memo(function AgentCard({ agent, activeQuests = [], isWide = f
                   className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                   style={{ background: rarityDot[q.rarity ?? ""] ?? "#888" }}
                 />
-                <span className="truncate" style={{ maxWidth: "120px" }}>{q.title}</span>
+                <span className="truncate" title={q.title} style={{ maxWidth: "120px" }}>{q.title}</span>
               </div>
             ))}
           </div>

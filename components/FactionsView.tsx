@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -173,10 +174,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="factions" playerLevel={1} />
       <FirstVisitBanner
         viewId="factions"
         title="Die Vier Zirkel"
-        description="Verdiene Reputation bei den Fraktionen durch Quests. Jede Fraktion belohnt bestimmte Quest-Typen. Steige in den Rängen auf für exklusive Titel, Rezepte und Shop-Rabatte."
+        description="Vier Zirkel. Jeder will etwas anderes von dir. Deine Quests verdienen Reputation beim passenden Zirkel. Die Ränge bringen Titel, Rezepte und Rabatte. Loyalität hat ihren Preis. Und ihren Lohn."
         accentColor="#22c55e"
       />
       {/* Header */}
@@ -360,7 +362,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     const sReward = f.rewards?.[s.id];
                     const rewardDesc = sReward ? (sReward.title || sReward.recipeDesc || sReward.frameDesc || sReward.effectDesc || "") : "";
                     return (
-                      <TipCustom key={s.id} title={s.name} icon={isClaimed ? "✓" : "◆"} accent={s.color} body={<p>{s.minRep} Rep{rewardDesc ? ` — ${rewardDesc}` : ""}{isClaimed ? " (Claimed)" : isReached ? " (Ready!)" : ""}</p>}>
+                      <TipCustom key={s.id} title={s.name} icon={isClaimed ? "✓" : "◆"} accent={s.color} body={<p>{s.minRep} Rep{rewardDesc ? ` — ${rewardDesc}` : ""}{isClaimed ? " (Claimed)" : isReached ? " (Ready)" : ""}</p>}>
                         <div
                           className="flex-1 text-center py-1.5 rounded-lg cursor-help"
                           style={{

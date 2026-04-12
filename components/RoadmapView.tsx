@@ -126,7 +126,7 @@ export function RoadmapView() {
               <option value="infrastructure">Infrastructure</option>
               <option value="feature">Feature</option>
             </select>
-            <input value={newEta} onChange={e => setNewEta(e.target.value)} placeholder="ETA (z.B. März 2026)" className="text-xs px-2 py-1 rounded flex-1" style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }} />
+            <input value={newEta} onChange={e => setNewEta(e.target.value)} placeholder="ETA (e.g. Q2 2026)" className="text-xs px-2 py-1 rounded flex-1" style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }} />
           </div>
           <div className="flex gap-2">
             <button onClick={handleAdd} className="text-xs px-3 py-1 rounded font-semibold" style={{ background: "rgba(99,102,241,0.2)", color: "#a78bfa", border: "1px solid rgba(99,102,241,0.4)" }}>Add</button>

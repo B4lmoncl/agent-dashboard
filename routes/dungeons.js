@@ -493,6 +493,11 @@ router.post('/api/dungeons/:runId/join', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'You already have an active dungeon run' });
   }
 
+  // Max players check
+  if (run.participants.length >= (dungeon.maxPlayers || 4)) {
+    return res.status(400).json({ error: 'This dungeon run is full' });
+  }
+
   // Add participant
   run.participants.push(uid);
   run.participantGearScores[uid] = getPlayerGearScore(uid);
@@ -526,6 +531,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot collect dungeon rewards while resting in The Hearth' });
 
   const { runId } = req.params;
   const run = dungeonState.activeRuns[runId];

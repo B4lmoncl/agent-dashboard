@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import type { TooltipItem } from "@/components/ItemTooltip";
 import { useDashboard } from "@/app/DashboardContext";
@@ -117,7 +118,7 @@ interface CollectResult {
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 function timeLeft(ms: number): string {
-  if (ms <= 0) return "Complete!";
+  if (ms <= 0) return "Complete.";
   const h = Math.floor(ms / 3600000);
   const m = Math.floor((ms % 3600000) / 60000);
   if (h >= 24) return `${Math.floor(h / 24)}d ${h % 24}h`;
@@ -293,7 +294,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                 : undefined;
           onRewardCelebration({
             type: "dungeon",
-            title: d.success ? "Dungeon Cleared!" : "Dungeon Survived",
+            title: d.success ? "Dungeon Cleared" : "Dungeon Survived",
             xpEarned: 0,
             goldEarned: rw.gold || 0,
             loot: loot || undefined,
@@ -312,7 +313,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
         <img src="/images/icons/nav-dungeons.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-2" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
-        <p className="text-xs text-w15">Log in to enter the dungeons.</p>
+        <p className="text-xs text-w25">Log in to enter the dungeons.</p>
       </div>
     );
   }
@@ -329,10 +330,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   return (
     <div className="space-y-5 tab-content-enter relative">
+      <TutorialMomentBanner viewId="dungeons" playerLevel={1} />
       <FirstVisitBanner
         viewId="dungeons"
         title="Das Untergewölbe"
-        description="Lade 1-3 Freunde ein, um gemeinsam Dungeons zu bestreiten. Der Run läuft 8 Stunden im Hintergrund — sammle danach deine Belohnungen. Erfolg basiert auf eurer kombinierten Gear Score + Companion Bond."
+        description="Lade 1-3 Freunde ein. Der Dungeon läuft 8 Stunden im Hintergrund. Eure kombinierte Gear Score entscheidet über Erfolg. Companion Bond hilft. Hoffnung weniger."
         accentColor="#3b82f6"
       />
       {/* Dust motes in torchlight */}
@@ -384,7 +386,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             <span className="text-xl" style={collectResult.success ? { filter: "drop-shadow(0 0 6px rgba(34,197,94,0.5))" } : undefined}>{collectResult.success ? "★" : "—"}</span>
             <div>
               <p className="text-sm font-bold" style={{ color: collectResult.success ? "#22c55e" : "#ef4444" }}>
-                {collectResult.success ? "Dungeon Cleared!" : "Dungeon Failed"}
+                {collectResult.success ? "Dungeon Cleared" : "Dungeon Failed"}
               </p>
               <p className="text-xs text-w30">
                 Success chance: {collectResult.successChance}% | Power: {collectResult.effectivePower}/{collectResult.threshold}
@@ -424,7 +426,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               </span>
             )}
             {collectResult.rewards.gearDropItem && (
-              <button onClick={() => { const g = collectResult.rewards.gearDropItem as Record<string, unknown>; setTooltipItem({ name: (g.name as string) || "Gear", rarity: (g.rarity as string) || "common", icon: (g.icon as string) || null, slot: (g.slot as string) || null, stats: (g.stats as Record<string, number>) || null }); }} className="text-xs px-2 py-1 rounded font-semibold" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7", cursor: "pointer" }}>
+              <button onClick={() => { const g = collectResult.rewards.gearDropItem as Record<string, unknown>; setTooltipItem({ name: (g.name as string) || "Gear", rarity: (g.rarity as string) || "common", icon: (g.icon as string) || null, slot: (g.slot as string) || null, stats: (g.stats as Record<string, number>) || null }); }} className="text-xs px-2 py-1 rounded font-semibold btn-interactive" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7", cursor: "pointer" }}>
                 {(collectResult.rewards.gearDropItem as { name?: string; rarity?: string }).name ?? "Gear"} ({(collectResult.rewards.gearDropItem as { rarity?: string }).rarity ?? "common"})
               </button>
             )}
@@ -487,7 +489,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     {timeLeft(new Date(activeRun.completesAt).getTime() - Date.now())}
                   </p>
                   <p className="text-xs text-w20">
-                    {new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? "Ready to collect!" : "Time remaining"}
+                    {new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? "Ready to collect." : "Time remaining"}
                   </p>
                 </>
               )}
@@ -517,7 +519,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   </div>
                   <p className="text-xs font-semibold truncate" style={{ color: p.color }}>{p.name}</p>
                   <p className="text-xs" style={{ color: p.gearScore >= activeRun.gearScoreThreshold ? "rgba(34,197,94,0.5)" : "rgba(239,68,68,0.6)" }}>GS: {p.gearScore}{p.gearScore < activeRun.gearScoreThreshold ? " !" : ""}</p>
-                  {p.bondLevel > 0 && <p className="text-xs text-w15">Bond: {p.bondLevel}</p>}
+                  {p.bondLevel > 0 && <p className="text-xs text-w25">Bond: {p.bondLevel}</p>}
                 </div>
               ))}
               {/* Pending invites */}

@@ -370,7 +370,9 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
 
   const xpEarned = pactCompletionXp > 0 ? xpAmount + pactCompletionXp : xpAmount;
   const goldEarned = pactCompletionGold > 0 ? goldEarnedAmount + pactCompletionGold : goldEarnedAmount;
-  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
+  const streakMilestone = u?._lastStreakMilestone || null;
+  if (u) delete u._lastStreakMilestone;
+  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, streakMilestone, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
 });
 
 // PATCH /api/rituals/:id/extend — extend ritual/vow deadline [auth]

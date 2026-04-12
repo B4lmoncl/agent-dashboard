@@ -173,7 +173,7 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
             ) : notifications.length === 0 ? (
               <div className="p-6 text-center">
                 <p className="text-xs text-w20">No notifications yet</p>
-                <p className="text-xs text-w10 mt-1 italic">Complete quests, defeat bosses, and level up to see events here.</p>
+                <p className="text-xs text-w20 mt-1 italic">Complete quests, defeat bosses, and level up to see events here.</p>
               </div>
             ) : (
               <div>

@@ -374,6 +374,7 @@ router.post('/api/world-boss/damage', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
   const { rarity } = req.body;
   if (!uid) return res.status(401).json({ error: 'Unauthorized' });
+  if (state.users[uid]?.tavernRest?.active) return res.status(400).json({ error: 'Cannot deal boss damage while resting in The Hearth' });
 
   const result = dealBossDamage(uid, rarity || 'common');
   if (!result) return res.json({ active: false, message: 'No active boss' });

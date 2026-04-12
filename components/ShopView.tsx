@@ -7,6 +7,7 @@ import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import shopData from "../public/data/shopItems.json";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 const GEAR_TIERS_CLIENT = shopData.gearTiers;
 const SHOP_ITEMS_LIST: ShopItem[] = shopData.items as ShopItem[];
@@ -114,10 +115,10 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
       });
       const d = await r.json();
       if (r.ok) {
-        setCurrencyMsg({ text: d.resultMsg || "Purchased!", type: "success" });
+        setCurrencyMsg({ text: d.resultMsg || "Acquired.", type: "success" });
         fetchCurrencyShop();
         if (onRewardCelebration) {
-          onRewardCelebration({ type: "quest", title: "Purchase Complete", xpEarned: 0, goldEarned: 0, flavor: d.resultMsg || "Item acquired!" });
+          onRewardCelebration({ type: "quest", title: "Purchase Complete", xpEarned: 0, goldEarned: 0, flavor: d.resultMsg || "Item acquired." });
         }
       } else {
         setCurrencyMsg({ text: d.error || "Purchase failed", type: "error" });
@@ -132,6 +133,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   if (loading) {
     return (
       <div className="space-y-3 tab-content-enter">
+      <TutorialMomentBanner viewId="shop" playerLevel={1} />
         {Array.from({ length: 3 }, (_, i) => (
           <div key={i} className="skeleton-card h-20 rounded-lg" />
         ))}

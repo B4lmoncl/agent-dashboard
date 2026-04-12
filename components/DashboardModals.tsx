@@ -389,7 +389,7 @@ export default function DashboardModals({
                 <button onClick={() => setStreakInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-3 text-w60">
-                Your consecutive days of quest completion. Keep the streak alive to earn bonus XP and keep companions happy!
+                Your consecutive days of quest completion. Keep the streak alive to earn bonus XP and keep companions happy.
               </p>
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">

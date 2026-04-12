@@ -448,6 +448,34 @@ router.get('/api/dashboard', (req, res) => {
         } catch { return 0; }
       })();
 
+      // Battle Pass unclaimed levels
+      let bpUnclaimed = 0;
+      try {
+        const { getActiveSeason, getBPLevel } = require('./battlepass');
+        if (getActiveSeason && u.battlePass) {
+          const bpLevel = getBPLevel(u.battlePass.xp || 0);
+          const claimed = u.battlePass.claimedLevels || [];
+          for (let l = 1; l <= bpLevel; l++) { if (!claimed.includes(l)) bpUnclaimed++; }
+        }
+      } catch { /* battlepass not loaded */ }
+
+      // Faction unclaimed tier rewards
+      let factionUnclaimed = 0;
+      if (u.factions) {
+        const FACTION_TIERS = [
+          { id: 'friendly', minRep: 500 }, { id: 'honored', minRep: 1500 },
+          { id: 'revered', minRep: 4000 }, { id: 'exalted', minRep: 8000 }, { id: 'paragon', minRep: 15000 },
+        ];
+        for (const [, fData] of Object.entries(u.factions)) {
+          if (!fData || typeof fData !== 'object') continue;
+          const rep = fData.rep || 0;
+          const claimed = fData.claimedRewards || [];
+          for (const tier of FACTION_TIERS) {
+            if (rep >= tier.minRep && !claimed.includes(tier.id)) factionUnclaimed++;
+          }
+        }
+      }
+
       // Pending social (already computed above)
       const social = socialSummary || { pendingFriendRequests: 0, unreadMessages: 0, activeTrades: 0 };
 
@@ -458,6 +486,8 @@ router.get('/api/dashboard', (req, res) => {
         uncollectedMail,
         expeditionReady,
         wbClaimable,
+        bpUnclaimed,
+        factionUnclaimed,
         pendingFriendRequests: social.pendingFriendRequests,
         unreadMessages: social.unreadMessages,
         activeTrades: social.activeTrades,

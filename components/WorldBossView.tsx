@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -176,6 +177,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   const [data, setData] = useState<BossData | null>(null);
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState(false);
+  const [boosting, setBoosting] = useState(false);
   const [claimResult, setClaimResult] = useState<{ rewards: ClaimReward[]; rank: number; contributionPercent: number } | null>(null);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -258,7 +260,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         setMessage({ text: d.error || "Failed to claim rewards", type: "error" });
       } else {
         setClaimResult(d);
-        setMessage({ text: "Rewards claimed!", type: "success" });
+        setMessage({ text: "Rewards claimed.", type: "success" });
         fetchBoss();
         onRefresh?.();
         if (onRewardCelebration && d.rewards) {
@@ -271,7 +273,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           const lootReward = d.rewards.find((rw: ClaimReward) => rw.type === "unique-drop" || rw.type === "legendary-drop" || rw.type === "gear-drop");
           onRewardCelebration({
             type: "world-boss",
-            title: "World Boss Rewards!",
+            title: "World Boss Rewards",
             xpEarned: 0,
             goldEarned: goldReward?.amount || 0,
             loot: lootReward ? { name: lootReward.name || "Loot Drop", emoji: "◆", rarity: lootReward.rarity || "legendary", rarityColor: lootReward.type === "gear-drop" ? "#a855f7" : "#ff8c00", icon: lootReward.icon } : undefined,
@@ -304,10 +306,11 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
     return (
       <div className="space-y-5 tab-content-enter relative">
-        <FirstVisitBanner
+        <TutorialMomentBanner viewId="worldboss" playerLevel={1} />
+      <FirstVisitBanner
           viewId="worldboss"
           title="World Boss"
-          description="Gemeinsamer Kampf aller Spieler gegen einen wöchentlichen Boss. Jede abgeschlossene Quest verursacht Schaden basierend auf deiner Gear Score. Top-Beitragende erhalten exklusive Titel und Unique-Items."
+          description="Ein Boss. Alle Spieler. Jede Quest ist ein Schlag. Deine Gear Score bestimmt wie hart. Die Top-Beiträger bekommen, was alle anderen nur bewundern können."
           accentColor="#f59e0b"
         />
         {/* Ambient ember particles — dark gold/amber for the graveyard of titans */}
@@ -565,7 +568,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               }} />
             ))}
           </div>
-          <div className="rounded-full overflow-hidden" style={{ height: 12, background: "rgba(255,255,255,0.06)", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.4)" }}>
+          <div className="rounded-full overflow-hidden" style={{ height: 20, background: "rgba(255,255,255,0.06)", boxShadow: "inset 0 2px 6px rgba(0,0,0,0.5)" }}>
             <div
               className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}${hpPercent < 0.25 && !boss.defeated ? " rift-urgent" : ""}`}
               style={{
@@ -633,7 +636,10 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {!boss.defeated && reviewApiKey && (
           <div className="px-5 pb-4">
             <button
+              disabled={boosting}
               onClick={async () => {
+                if (boosting) return;
+                setBoosting(true);
                 setMessage(null);
                 try {
                   const r = await fetch("/api/world-boss/boost", {
@@ -642,24 +648,26 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   });
                   const d = await r.json();
                   if (r.ok) {
-                    setMessage({ text: d.message || "Boost activated!", type: "success" });
+                    setMessage({ text: d.message || "Boost activated.", type: "success" });
                     fetchBoss();
                   } else {
                     setMessage({ text: d.error || "Boost failed", type: "error" });
                   }
                 } catch { setMessage({ text: "Network error", type: "error" }); }
+                setBoosting(false);
                 setTimeout(() => setMessage(null), 4000);
               }}
               title="Spend 50 Mondstaub for +25% boss damage on next 10 quests"
-              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg"
+              className="btn-interactive w-full text-xs font-semibold py-2 rounded-lg transition-all"
               style={{
-                background: "rgba(192,132,252,0.1)",
+                background: boosting ? "rgba(192,132,252,0.05)" : "rgba(192,132,252,0.1)",
                 color: "#c084fc",
                 border: "1px solid rgba(192,132,252,0.25)",
-                cursor: "pointer",
+                cursor: boosting ? "not-allowed" : "pointer",
+                opacity: boosting ? 0.6 : 1,
               }}
             >
-              Mondstaub Boost (+25% damage, 50 Mondstaub)
+              {boosting ? "Activating..." : "Mondstaub Boost (+25% damage, 50 Mondstaub)"}
             </button>
           </div>
         )}

@@ -164,9 +164,9 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               title={isPlayerMode && onOpenProfile ? `View ${entry.name}'s profile` : undefined}
             >
-              <div className="text-lg"><RankMedal rank={rank} /></div>
+              <div className={`${rank === 1 ? "text-2xl" : "text-lg"}`}><RankMedal rank={rank} /></div>
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0 rank-glow"
+                className={`${rank === 1 ? "w-16 h-16" : "w-14 h-14"} rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0 rank-glow${rank === 1 ? " crystal-breathe" : ""}`}
                 style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, boxShadow: `0 6px 20px ${color}60`, ["--rank-color" as string]: rank === 1 ? "#fbbf24" : rank === 2 ? "#c0c0c0" : "#cd7f32" }}
               >
                 {entry.avatar ?? meta.avatar}
@@ -176,7 +176,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 {(() => { const t = userMap.get(entry.id)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af" }}>{t.name}</p> : null; })()}
                 {cls && <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)" }}>{cls.icon} {cls.fantasy}</p>}
                 <p className="text-xs" style={{ color: lvl.color }}>{lvl.name}</p>
-                <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
+                <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()} XP</span>
               </div>
               <div
                 className={`w-full rounded-t-lg flex items-center justify-center ${podiumHeightClass}`}
@@ -198,7 +198,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           <div className="flex gap-1">
             <button
               onClick={() => setSeasonal(false)}
-              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              className="text-xs px-3 py-1 rounded-lg font-semibold transition-all duration-200 hover:brightness-125"
               style={{
                 background: !seasonal ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.03)",
                 color: !seasonal ? "#a78bfa" : "rgba(255,255,255,0.25)",
@@ -208,7 +208,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             >All-Time</button>
             <button
               onClick={() => setSeasonal(true)}
-              className="text-xs px-3 py-1 rounded-lg font-semibold"
+              className="text-xs px-3 py-1 rounded-lg font-semibold transition-all duration-200 hover:brightness-125"
               style={{
                 background: seasonal ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
                 color: seasonal ? "#fbbf24" : "rgba(255,255,255,0.25)",
@@ -278,7 +278,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                       );
                     })()}
                   </div>
-                  <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
+                  <div className="mt-0.5 rounded-full overflow-hidden" title={`${Math.round(barPct)}% of top player XP`} style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
                     <div className="h-full rounded-full" style={{ width: `${barPct}%`, background: `linear-gradient(90deg, ${color}80, ${color})` }} />
                   </div>
                 </div>

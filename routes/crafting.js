@@ -350,6 +350,9 @@ router.get('/api/professions', (req, res) => {
         icon: r.icon || (r.result?.templateId ? (state.gearById.get(r.result.templateId)?.icon || null) : null)
           || (r.result?.type === 'material' || r.result?.type === 'transmute_material' ? (PROFESSIONS_DATA.materials?.find(m => m.id === (r.result.materialId || r.result.outputMaterial))?.icon || null) : null)
           || RECIPE_TYPE_FALLBACK_ICONS[r.result?.type] || RECIPE_TYPE_FALLBACK_ICONS[r.profession] || null,
+        outputRarity: r.result?.templateId ? (state.gearById.get(r.result.templateId)?.rarity || null) : null,
+        outputSlot: r.result?.templateId ? (state.gearById.get(r.result.templateId)?.slot || null) : null,
+        outputSockets: r.result?.templateId ? (state.gemsData?.socketsByRarity?.[state.gearById.get(r.result.templateId)?.rarity || 'common'] || null) : null,
       };
     });
   const materials = u?.craftingMaterials || {};
@@ -458,6 +461,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Cannot craft while resting in The Hearth' });
 
   const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
   if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
@@ -491,6 +495,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const profProgress = getProfLevel(u, recipe.profession);
   if (!isRecipeDiscovered(recipe, profProgress, u)) {
     return res.status(400).json({ error: 'You haven\'t learned this recipe yet.' });
+  }
+  // Guard: if player needs enrollment AND this is a primary profession they dropped,
+  // block crafting — don't silently re-enroll (WoW: dropping = lose everything)
+  if (needsEnrollment && !isSecondaryProf) {
+    return res.status(400).json({ error: `You must choose ${profDef.name} as your profession first.` });
   }
 
   // Check profession skill/level
@@ -879,7 +888,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         u.activeBuffs.push({ type: 'gold_boost_15', questsRemaining: champDuration, activatedAt: now() });
         u.activeBuffs.push({ type: 'luck_boost_10', questsRemaining: champDuration, activatedAt: now() });
       }
-      result.message = `Champion's Feast! +20% XP + 15% Gold + 10% Luck for ${champDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}!${masteryDef ? ' (Mastery)' : ''}`;
+      result.message = `Champion's Feast: +20% XP + 15% Gold + 10% Luck for ${champDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
 
@@ -939,7 +948,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         eq.stats[stat] = (eq.stats[stat] || 0) + value;
         if (recipe.result.target === 'primary_stat') eq.infusionCount = (eq.infusionCount || 0) + 1;
         else eq.permEnchantCount = (eq.permEnchantCount || 0) + 1;
-        result.message = `+${value} ${stat} permanently!`;
+        result.message = `+${value} ${stat} permanently`;
         result.updatedGear = eq;
         break;
       }
@@ -1061,7 +1070,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         }
         const gemData = state.gemsData?.gems?.find(g => g.id === gemType);
         const tierData = gemData?.tiers?.find(t => t.tier === gemTier);
-        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}${result.masteryProc ? ' (Mastery: Tier UP!)' : ''}`;
+        result.message = `Cut: ${tierData?.name || gemKey}${effectiveCount > 1 ? ` x${effectiveCount}` : ''}${result.masteryProc ? ' (Mastery: Tier Up)' : ''}`;
         break;
       }
       // Gem merge handler (Juwelier: combine 3 gems → 1 higher tier)
@@ -1109,6 +1118,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     craftCount: effectiveCount,
     atSkillCap: newSkill >= skillCap,
     skillCap,
+    cooldownMinutes: recipe.cooldownMinutes || 0,
     nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
   });
   } finally { releaseCraftLock(uid); }

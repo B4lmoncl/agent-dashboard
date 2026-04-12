@@ -117,13 +117,16 @@ export default function DashboardHeader({
     return () => document.removeEventListener("mousedown", handler);
   }, [settingsPopupOpen]);
 
-  // Scroll lock for settings modal (ref-counted via useModalBehavior pattern)
+  // Scroll lock + ESC key for settings modal
   useEffect(() => {
     if (!settingsModalOpen) return;
     const w = window as unknown as { _modalLockCount?: number };
     w._modalLockCount = (w._modalLockCount || 0) + 1;
     document.body.style.overflow = "hidden";
+    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") setSettingsModalOpen(false); };
+    window.addEventListener("keydown", handleKey);
     return () => {
+      window.removeEventListener("keydown", handleKey);
       w._modalLockCount = Math.max(0, (w._modalLockCount || 1) - 1);
       if (w._modalLockCount === 0) document.body.style.overflow = "";
     };
@@ -378,8 +381,8 @@ export default function DashboardHeader({
                             onClick={handleLogin}
                             disabled={authLoading}
                             title={authLoading ? "Signing in..." : "Sign in to your account"}
-                            className="flex-1 text-xs px-3 py-1 rounded font-medium"
-                            style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}
+                            className="flex-1 text-xs px-3 py-2 rounded-lg font-bold btn-interactive"
+                            style={{ background: "linear-gradient(135deg, rgba(167,139,250,0.25), rgba(139,92,246,0.2))", color: "#c4b5fd", border: "1px solid rgba(167,139,250,0.5)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}
                           >
                             {authLoading ? "Signing in…" : "Sign In"}
                           </button>
@@ -544,7 +547,7 @@ export default function DashboardHeader({
                               body: JSON.stringify({ avatarStyle: style }),
                             });
                             refresh();
-                            setSettingsMsg("Avatar updated!");
+                            setSettingsMsg("Avatar updated.");
                             setTimeout(() => setSettingsMsg(""), 3000);
                           } catch { setSettingsMsg("Network error"); }
                         }}
@@ -577,7 +580,7 @@ export default function DashboardHeader({
                               body: JSON.stringify({ relationshipStatus: s }),
                             });
                             refresh();
-                          } catch (err) { console.error('[settings] relationship update failed:', err); }
+                          } catch { setSettingsMsg("Failed to update relationship status"); }
                         }}
                         className="text-xs px-2 py-1 rounded"
                         style={{

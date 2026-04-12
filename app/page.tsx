@@ -27,6 +27,8 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
+import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 // DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
@@ -198,6 +200,7 @@ export default function Dashboard() {
     }
     setDashViewRaw(view);
     setSearchFilter(""); // Clear quest search on tab switch
+    SFX.navigate();
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (backed by persistent backend state)
@@ -529,6 +532,10 @@ export default function Dashboard() {
         counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0);
         // Character: companion expedition
         counts.character = n.expeditionReady || 0;
+        // Season Pass: unclaimed level rewards
+        counts.season = n.bpUnclaimed || 0;
+        // Factions: unclaimed tier rewards
+        counts.factions = n.factionUnclaimed || 0;
         setNavNotifs(counts);
       }
       // Load persistent seen state from backend (replaces localStorage)
@@ -606,6 +613,7 @@ export default function Dashboard() {
       });
       const data = await r.json();
       if (r.ok && data.ok) {
+        SFX.coin();
         setDailyBonusAvailable(false);
         const currencies: { name: string; amount: number; color: string }[] = [];
         if (data.rewards?.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
@@ -616,7 +624,7 @@ export default function Dashboard() {
         const fortune = data.dailyFortune;
         setRewardCelebration({
           type: "daily-bonus",
-          title: fortune ? `Daily Bonus — ${fortune.label}` : "Daily Bonus Claimed!",
+          title: fortune ? `Daily Bonus — ${fortune.label}` : "Daily Bonus Claimed.",
           flavor: fortune
             ? `Fortune smiled on you today. +${fortune.amount} bonus ${fortune.type}.`
             : data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
@@ -657,7 +665,7 @@ export default function Dashboard() {
       try {
         if (!localStorage.getItem(weekKey)) {
           localStorage.setItem(weekKey, "1");
-          setTimeout(() => addToast({ type: "flavor", message: "Weekly Reset — Challenges, Expedition & Faction Bonus refreshed!", icon: "◆", sub: "New week, new opportunities" }), 2000);
+          setTimeout(() => addToast({ type: "flavor", message: "Weekly Reset — Challenges, Expedition and Faction Bonus have refreshed.", icon: "◆", sub: "The slate is clean. What you do with it is your concern." }), 2000);
         }
       } catch { /* private browsing */ }
     }
@@ -669,6 +677,40 @@ export default function Dashboard() {
     const interval = setInterval(refresh, 30_000);
     return () => clearInterval(interval);
   }, [refresh]);
+
+  // Friend activity poll — show toasts for notable friend events (every 5min)
+  const lastFriendEventRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!playerName || !reviewApiKey) return;
+    const pollFriendActivity = async () => {
+      try {
+        const r = await fetch(`/api/social/activity-feed?player=${encodeURIComponent(playerName)}&limit=5`, { headers: getAuthHeaders(reviewApiKey) });
+        if (!r.ok) return;
+        const data = await r.json();
+        const events = data.events || data.feed || [];
+        if (events.length === 0) return;
+        const latest = events[0];
+        if (!latest?.id || latest.id === lastFriendEventRef.current) return;
+        lastFriendEventRef.current = latest.id;
+        // Only show toasts for notable events from FRIENDS (not self)
+        const isSelf = latest.playerName?.toLowerCase() === playerName.toLowerCase();
+        if (isSelf) return;
+        const notable = ["gacha_pull", "level_up", "rift_complete", "dungeon_complete", "achievement"].includes(latest.type);
+        if (!notable) return;
+        const messages: Record<string, string> = {
+          gacha_pull: `${latest.playerName} pulled a ${latest.data?.rarity || "rare"} item.`,
+          level_up: `${latest.playerName} reached Level ${latest.data?.level || "?"}.`,
+          rift_complete: `${latest.playerName} cleared a Rift.`,
+          dungeon_complete: `${latest.playerName} cleared a Dungeon.`,
+          achievement: `${latest.playerName} earned: ${latest.data?.name || "an achievement"}.`,
+        };
+        addToast({ type: "flavor", message: messages[latest.type] || `${latest.playerName} did something notable.`, icon: "◆", sub: "Friend Activity" });
+      } catch { /* silent */ }
+    };
+    const timer = setTimeout(pollFriendActivity, 10000); // first poll after 10s
+    const interval = setInterval(pollFriendActivity, 300000); // then every 5min
+    return () => { clearTimeout(timer); clearInterval(interval); };
+  }, [playerName, reviewApiKey, addToast]);
 
   // Re-fetch when playerName changes (login/logout) so filters apply correctly
   useEffect(() => {
@@ -701,10 +743,8 @@ export default function Dashboard() {
   // Auto-trigger tutorial on first visit (no login required)
   useEffect(() => {
     try {
-      if (localStorage.getItem("tutorialCompleted") !== "true") {
-        const t = setTimeout(() => { setShowTutorial(true); setTutorialStep(0); }, 800);
-        return () => clearTimeout(t);
-      }
+      // Old tutorial wizard removed — contextual moments handle this now
+      if (false) { /* legacy guard removed */ }
     } catch { /* ignore */ }
   }, []);
 
@@ -715,7 +755,7 @@ export default function Dashboard() {
     const rt = params.get("resetToken");
     if (rt) { setResetToken(rt); setResetPasswordOpen(true); window.history.replaceState({}, "", "/"); }
     const ev = params.get("emailVerified");
-    if (ev === "true") { addToast({ type: "flavor", message: "Email verified successfully!", icon: "/images/icons/nav-great-hall.png" }); window.history.replaceState({}, "", "/"); }
+    if (ev === "true") { addToast({ type: "flavor", message: "Email verified.", icon: "/images/icons/nav-great-hall.png" }); window.history.replaceState({}, "", "/"); }
   }, []);
 
   // What's New splash — show once per version
@@ -823,7 +863,7 @@ export default function Dashboard() {
       if (streak > 0) parts.push(`${streak}-day streak`);
       else if (hoursSince >= 48) parts.push("Fresh start — new streak begins today");
 
-      const greeting = hoursSince >= 48 ? "The Hall remembers you." : hoursSince >= 24 ? "Welcome back!" : "Good to see you!";
+      const greeting = hoursSince >= 48 ? "The Hall remembers you." : hoursSince >= 24 ? "You're back." : "The Hall stirs.";
       const sub = parts.length > 0 ? parts.join(" · ") : undefined;
 
       setTimeout(() => {
@@ -1134,15 +1174,30 @@ export default function Dashboard() {
                   })()}
                 </div>
                 <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
-                {/* XP progress bar — Diablo style */}
-                <div className={`progress-bar-diablo${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
+                {/* XP progress bar — Diablo style + WoW rested XP blue zone */}
+                <div className={`progress-bar-diablo relative${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
+                  {/* Rested XP zone — WoW-style blue shimmer showing 2x bonus range */}
+                  {(loggedInUser._restedXpPool ?? 0) > 0 && playerLevelInfo.xpForLevel > 0 && (
+                    <div
+                      className="absolute top-0 left-0 h-full rounded-full rested-xp-zone"
+                      style={{
+                        width: `${Math.min(100, ((playerLevelInfo.xpInLevel + (loggedInUser._restedXpPool ?? 0)) / playerLevelInfo.xpForLevel) * 100).toFixed(1)}%`,
+                        background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))",
+                        borderRight: "2px solid rgba(103,232,249,0.5)",
+                        boxShadow: "0 0 8px rgba(103,232,249,0.15), inset 0 0 4px rgba(103,232,249,0.1)",
+                        zIndex: 0,
+                      }}
+                      title={`${Math.round((loggedInUser._restedXpPool ?? 0))} Rested XP — next quests give 2x XP`}
+                    />
+                  )}
                   <div
-                    className="progress-bar-diablo-fill progress-shimmer"
-                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)` }}
+                    className="progress-bar-diablo-fill progress-shimmer relative"
+                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)`, zIndex: 1 }}
                   />
                 </div>
                 <p className="text-xs mt-1 font-mono text-w20">
                   {playerLevelInfo.xpInLevel} {playerLevelInfo.xpForLevel ? `/ ${playerLevelInfo.xpForLevel} XP` : "(max)"}
+                  {(loggedInUser._restedXpPool ?? 0) > 0 && <span className="font-semibold" style={{ color: "rgba(103,232,249,0.7)", marginLeft: 6 }}>+{Math.round((loggedInUser._restedXpPool ?? 0))} rested</span>}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   {dailyBonusAvailable && (
@@ -1182,6 +1237,12 @@ export default function Dashboard() {
                         <circle cx="10.5" cy="10.5" r="1" fill="rgba(251,191,36,0.3)" />
                       </svg>
                   </button>
+                  {/* Streak danger warning — visible when streak > 3 and no quests today */}
+                  {playerStreak >= 3 && dailyMissions && dailyMissions.missions?.find((m: { id: string; done: boolean }) => m.id === "quest")?.done === false && (
+                    <span className="text-xs px-2 py-1 rounded-lg font-semibold animate-pulse" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }} title={`Your ${playerStreak}-day streak is at risk. Complete a quest today.`}>
+                      Streak at risk
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -1799,7 +1860,7 @@ export default function Dashboard() {
         {dashView === "gacha" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
-            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
             onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}
@@ -1850,7 +1911,7 @@ export default function Dashboard() {
                     feat:     { badge: "feat",     color: "#4ade80", bg: "rgba(74,222,128,0.1)"  },
                     fix:      { badge: "fix",      color: "#f59e0b", bg: "rgba(245,158,11,0.1)"  },
                     chore:    { badge: "chore",    color: "#6b7280", bg: "rgba(107,114,128,0.1)" },
-                    docs:     { badge: "docs",     color: "#60a5fa", bg: "rgba(96,165,250,0.1)"  },
+                    docs:     { badge: "docs",     color: "#60a5fa", bg: "rgba(103,232,249,0.1)"  },
                     refactor: { badge: "refactor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
                   };
                   const ts = typeStyle[c.type] || { badge: c.type, color: "#9ca3af", bg: "rgba(156,163,175,0.1)" };
@@ -1924,8 +1985,15 @@ export default function Dashboard() {
               {/* Quest Board — player types only */}
               <div>
                 <aside className="w-full">
+                  <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} />
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
+                      <FirstVisitBanner
+                        viewId="questboard"
+                        title="Willkommen im Quest Board"
+                        description="Nimm eine Quest. Schließe sie ab. Verdiene was dir zusteht. Der Quest-Typ bestimmt welcher Zirkel dich dafür respektiert. Seltene Quests zahlen besser. Offensichtlich."
+                        accentColor="#a78bfa"
+                      />
                       <div>
                         <div className="flex items-center gap-1.5">
                           <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40">Quest Board</h2></Tip>
@@ -1957,11 +2025,14 @@ export default function Dashboard() {
                             title={poolRefreshing ? "Refreshing quest pool..." : undefined}
                           >
                             <TipCustom title="Refresh Quest Pool" icon="🔄" accent="#22c55e" body={<p>Refreshes the available quest pool. Limited to once every 6 hours.</p>}>
+                              <span className="flex items-center gap-1.5">
                               {poolRefreshing ? (
                                 <span className="text-sm">—</span>
                               ) : (
-                                <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                                <img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                               )}
+                              <span className="text-xs font-semibold hidden sm:inline">{poolRefreshing ? "..." : "Refresh"}</span>
+                              </span>
                             </TipCustom>
                             {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
                               <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
@@ -1988,6 +2059,21 @@ export default function Dashboard() {
                           </span>
                         </div>
                       </div>
+                      {/* "Almost There" nudge — Zeigarnik effect */}
+                      {(() => {
+                        const nextUnclaimed = dailyMissions.milestones.find(ms => !ms.claimed && dailyMissions.earned < ms.threshold);
+                        if (!nextUnclaimed) return null;
+                        const remaining = nextUnclaimed.threshold - dailyMissions.earned;
+                        // Only show when very close (within 100 points = ~1 quest)
+                        if (remaining > 100) return null;
+                        const rewardText = Object.entries(nextUnclaimed.reward).map(([k, v]) => `+${v} ${k}`).join(", ");
+                        return (
+                          <div className="rounded-lg px-2.5 py-1.5 mb-2 flex items-center gap-2 animate-pulse" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                            <span className="text-xs" style={{ color: "#fbbf24" }}>◆</span>
+                            <span className="text-xs" style={{ color: "rgba(251,191,36,0.7)" }}>{remaining} points to next reward ({rewardText})</span>
+                          </div>
+                        );
+                      })()}
                       {/* Milestone reward track */}
                       <div className="relative mb-3">
                         <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -2019,7 +2105,7 @@ export default function Dashboard() {
                                           if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
                                           setRewardCelebration({
                                             type: "daily-bonus",
-                                            title: `${ms.threshold} Milestone Claimed!`,
+                                            title: `${ms.threshold} Milestone Claimed`,
                                             xpEarned: 0,
                                             goldEarned: 0,
                                             currencies,
@@ -2053,12 +2139,11 @@ export default function Dashboard() {
                             <button
                               key={m.id}
                               onClick={() => target && setDashView(target as typeof dashViewRaw)}
-                              className="text-xs px-2 py-1 rounded-lg inline-flex items-center gap-1"
+                              className="text-xs px-2 py-1.5 rounded-lg inline-flex items-center gap-1.5"
                               style={{
-                                background: m.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.03)",
-                                color: m.done ? "#4ade80" : "rgba(255,255,255,0.3)",
-                                border: `1px solid ${m.done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.05)"}`,
-                                textDecoration: m.done ? "line-through" : "none",
+                                background: m.done ? "rgba(74,222,128,0.1)" : "rgba(255,255,255,0.03)",
+                                color: m.done ? "rgba(74,222,128,0.6)" : "rgba(255,255,255,0.4)",
+                                border: `1px solid ${m.done ? "rgba(74,222,128,0.2)" : "rgba(255,255,255,0.06)"}`,
                                 cursor: target && !m.done ? "pointer" : "default",
                               }}
                               title={target && !m.done ? `Go to ${target}` : undefined}
@@ -2142,7 +2227,7 @@ export default function Dashboard() {
                       if (dailyCount === 4) return (
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.12)" }}>
                           <span style={{ color: "#60a5fa", fontSize: 12, flexShrink: 0 }}>◆</span>
-                          <p className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>
+                          <p className="text-xs" style={{ color: "rgba(103,232,249,0.6)" }}>
                             <span className="font-semibold" style={{ color: "#60a5fa" }}>1 quest left</span> at full rewards today. After 5, rewards scale down.
                           </p>
                         </div>
@@ -2182,8 +2267,8 @@ export default function Dashboard() {
                       <div className="rounded-xl p-6 text-center bg-card border-w6 space-y-3">
                         <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
                         <p className="text-sm font-semibold text-w30">{searchFilter ? `No quests match "${searchFilter}"` : "The Quest Board is empty"}</p>
-                        {!searchFilter && <p className="text-xs text-w15 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
-                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button>}
+                        {!searchFilter && <p className="text-xs text-w25 italic">The board stands bare. New scrolls will appear soon — or summon them yourself.</p>}
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(103,232,249,0.1)", color: "#60a5fa", border: "1px solid rgba(103,232,249,0.2)" }}>Clear Search</button>}
                         {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive btn-press px-4 py-2 rounded-lg inline-flex items-center gap-2" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-bold">Summon Quests</span></button>}
                       </div>
                     ) : (
@@ -2464,7 +2549,7 @@ export default function Dashboard() {
                           )
                         : journalQuests;
                       if (filtered.length === 0) return (
-                        <div className="p-4 text-center"><p className="text-xs text-w20">No quests match &ldquo;{completedSearch}&rdquo;</p><button onClick={() => setCompletedSearch("")} className="btn-interactive mt-2 text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(96,165,250,0.1)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.2)" }}>Clear Search</button></div>
+                        <div className="p-4 text-center"><p className="text-xs text-w20">No quests match &ldquo;{completedSearch}&rdquo;</p><button onClick={() => setCompletedSearch("")} className="btn-interactive mt-2 text-xs px-3 py-1.5 rounded-lg font-semibold" style={{ background: "rgba(103,232,249,0.1)", color: "#60a5fa", border: "1px solid rgba(103,232,249,0.2)" }}>Clear Search</button></div>
                       );
                       return (
                         <div>
@@ -2607,7 +2692,7 @@ export default function Dashboard() {
                 if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
                 setRewardCelebration({
                   type: "daily-bonus",
-                  title: `${threshold} Milestone Claimed!`,
+                  title: `${threshold} Milestone Claimed`,
                   xpEarned: 0,
                   goldEarned: 0,
                   currencies,
@@ -2622,7 +2707,7 @@ export default function Dashboard() {
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
         <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onNavigate={(v) => setDashView(v as typeof dashView)} onCollect={(rd) => {
-          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory!`);
+          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory`);
           if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
           // Trigger floating reward numbers
           const floats: { text: string; color: string }[] = [];
@@ -2876,12 +2961,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Tutorial Overlay */}
-      {showTutorial && (
-        <TutorialOverlay step={tutorialStep} onNext={handleTutorialNext} onSkip={handleTutorialSkip} onNavigate={(tabKey) => {
-          setDashView(tabKey as typeof dashView);
-        }} />
-      )}
+      {/* Old Tutorial Overlay removed — replaced by contextual TutorialMomentBanner per view */}
 
       {/* Onboarding Wizard */}
       {/* Alpha Feedback Overlay */}
@@ -2904,9 +2984,9 @@ export default function Dashboard() {
             setIsAdmin(false);
             await createStarterQuestsIfNew(newName, apiKey);
             await refresh();
-            addToast({ type: "flavor", message: "Welcome to Quest Hall! Check the Guide for tips on getting started.", icon: "/images/icons/nav-great-hall.png" });
-            setShowTutorial(true);
-            setTutorialStep(0);
+            addToast({ type: "flavor", message: "Welcome to Quest Hall. The Guide holds answers worth seeking.", icon: "/images/icons/nav-great-hall.png" });
+            setTodayOpen(true); // Auto-open TodayDrawer for new players
+            // Tutorial moments will fire contextually on each view — no upfront wizard
           }}
         />
       )}

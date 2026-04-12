@@ -328,13 +328,23 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const lootDrop = u?._lastLoot || null;
     const companionReward = u?._lastCompanionReward || null;
     const xpEarned = u?._lastXpEarned || 0;
+    const restedBonusXp = u?._lastRestedBonusXp || 0;
     const goldEarned = u?._lastGoldEarned || 0;
     const runensplitterEarned = u?._lastRunensplitterEarned || 0;
     const gildentalerEarned = u?._lastGildentalerEarned || 0;
     const gemDrop = u?._lastGemDrop || null;
     const recipeDrop = u?._lastRecipeDrop || null;
+    const inventoryFull = u?._inventoryFull || false;
+    const streakMilestone = u?._lastStreakMilestone || null;
+    const codexDiscovery = u?._lastCodexDiscovery || null;
+    const battlePassLevelUp = u?._lastBattlePassXP?.leveledUp ? u._lastBattlePassXP : null;
+    const gambleResult = u?._lastGambleResult || null;
+    const varietyBonus = u?._lastVarietyBonus || null;
+    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; delete u._lastGambleResult; delete u._lastVarietyBonus; }
     const repGains = u?._lastRepGains || null;
-    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; }
+    const dailyDiminishing = u?._lastDailyDiminishing ?? 1;
+    const dailyQuestCount = u?._lastDailyCount ?? 0;
+    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; delete u._lastDailyDiminishing; delete u._lastDailyCount; delete u._lastRestedBonusXp; }
     // Grant NPC's final reward item when the last quest in the chain is completed
     let npcFinalReward = null;
     if (quest.chainIndex != null && quest.chainTotal && quest.chainIndex === quest.chainTotal - 1) {
@@ -363,12 +373,21 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       npcFinalReward,
       companionReward,
       xpEarned,
+      restedBonusXp,
       goldEarned,
       runensplitterEarned,
       gildentalerEarned,
       gemDrop,
       recipeDrop,
       repGains,
+      inventoryFull,
+      streakMilestone,
+      codexDiscovery,
+      battlePassLevelUp: battlePassLevelUp ? { level: battlePassLevelUp.level } : null,
+      gambleResult,
+      varietyBonus,
+      dailyDiminishing,
+      dailyQuestCount,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo.level > prevLevel ? { level: newLevelInfo.level, title: newLevelInfo.title } : null,
     });
@@ -379,6 +398,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const pp = getPlayerProgress(agentKey);
     if (pp.completedQuests && pp.completedQuests[quest.id]) {
       return res.status(409).json({ error: 'Quest already completed by this player' });
+    }
+    // Must have claimed the quest first
+    if (!(pp.claimedQuests || []).includes(quest.id)) {
+      return res.status(400).json({ error: 'You must claim this quest first' });
     }
     const completedAt = now();
     pp.completedQuests[quest.id] = { at: completedAt, proof: quest.proof || null };
@@ -403,7 +426,16 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const gemDrop2 = u2?._lastGemDrop || null;
     const recipeDrop2 = u2?._lastRecipeDrop || null;
     const repGains2 = u2?._lastRepGains || null;
-    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; delete u2._lastRunensplitterEarned; delete u2._lastGildentalerEarned; delete u2._lastGemDrop; delete u2._lastRecipeDrop; delete u2._lastRepGains; delete u2._lastCodexDiscovery; }
+    const inventoryFull2 = u2?._inventoryFull || false;
+    const restedBonusXp2 = u2?._lastRestedBonusXp || 0;
+    const streakMilestone2 = u2?._lastStreakMilestone || null;
+    const codexDiscovery2 = u2?._lastCodexDiscovery || null;
+    const battlePassLevelUp2 = u2?._lastBattlePassXP?.leveledUp ? u2._lastBattlePassXP : null;
+    const gambleResult2 = u2?._lastGambleResult || null;
+    const varietyBonus2 = u2?._lastVarietyBonus || null;
+    const dailyDiminishing2 = u2?._lastDailyDiminishing ?? 1;
+    const dailyQuestCount2 = u2?._lastDailyCount ?? 0;
+    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; delete u2._lastRunensplitterEarned; delete u2._lastGildentalerEarned; delete u2._lastGemDrop; delete u2._lastRecipeDrop; delete u2._lastRepGains; delete u2._lastCodexDiscovery; delete u2._inventoryFull; delete u2._lastDailyDiminishing; delete u2._lastDailyCount; delete u2._lastStreakMilestone; delete u2._lastBattlePassXP; delete u2._lastGambleResult; delete u2._lastVarietyBonus; delete u2._lastRestedBonusXp; }
     // Activity feed
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u2 && newLevelInfo2.level > prevLevel2) logActivity(agentKey, 'level_up', { level: newLevelInfo2.level, title: newLevelInfo2.title });
@@ -422,6 +454,15 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       gemDrop: gemDrop2,
       recipeDrop: recipeDrop2,
       repGains: repGains2,
+      inventoryFull: inventoryFull2,
+      restedBonusXp: restedBonusXp2,
+      streakMilestone: streakMilestone2,
+      codexDiscovery: codexDiscovery2,
+      battlePassLevelUp: battlePassLevelUp2 ? { level: battlePassLevelUp2.level } : null,
+      gambleResult: gambleResult2,
+      varietyBonus: varietyBonus2,
+      dailyDiminishing: dailyDiminishing2,
+      dailyQuestCount: dailyQuestCount2,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo2.level > prevLevel2 ? { level: newLevelInfo2.level, title: newLevelInfo2.title } : null,
     });

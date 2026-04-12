@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import { getBalance } from "@/lib/balance-cache";
 import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/types";
@@ -523,7 +524,7 @@ function BannerPullModal({
               {pity ? (<>
                 <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>{pity.pityCounter}/{pity.hardPity || getBalance().gacha.hardPity}</span></div>
                 <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{pity.epicPityCounter}/{getBalance().gacha.epicPity}</span></div>
-                <p>{(pity.hardPity || getBalance().gacha.hardPity) - pity.pityCounter} pulls until guaranteed Legendary{pity.pityCounter >= (pity.softPityStart || getBalance().gacha.softPity) ? <span style={{ color: "#f97316" }}> — Soft Pity active!</span> : null}{pity.guaranteed5050 ? <span style={{ color: "#22c55e" }}> — Next = Featured!</span> : null}</p>
+                <p>{(pity.hardPity || getBalance().gacha.hardPity) - pity.pityCounter} pulls until guaranteed Legendary{pity.pityCounter >= (pity.softPityStart || getBalance().gacha.softPity) ? <span style={{ color: "#f97316" }}> — Soft Pity active</span> : null}{pity.guaranteed5050 ? <span style={{ color: "#22c55e" }}> — Next is Featured</span> : null}</p>
               </>) : <p>Pull to start tracking pity</p>}
               <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary rate</span><span>{(getBalance().gacha.legendaryRate * 100).toFixed(1)}%</span></div>
               <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>{(getBalance().gacha.epicRate * 100).toFixed(0)}%</span></div>
@@ -551,10 +552,10 @@ function BannerPullModal({
           {pity && (
             <div className="rounded-lg px-3 py-2 mt-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center justify-between text-xs mb-1">
-                <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.3)" }}>
+                <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.45)" }}>
                   {inSoftPity ? "Soft Pity Active" : "Pity Progress"}
                 </span>
-                <span className="font-mono font-semibold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.5)" }}>
+                <span className="font-mono font-bold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.65)" }}>
                   {pity.pityCounter}/{pity.hardPity || getBalance().gacha.hardPity}
                 </span>
               </div>
@@ -588,7 +589,7 @@ function BannerPullModal({
                 border: `1px solid ${canPull1 ? (isFeatured ? "rgba(167,139,250,0.5)" : "rgba(129,140,248,0.5)") : "rgba(255,255,255,0.08)"}`,
                 boxShadow: canPull1 ? `0 0 20px ${isFeatured ? "rgba(167,139,250,0.2)" : "rgba(129,140,248,0.2)"}` : "none",
                 animation: canPull1 && !pulling ? "gacha-pull-glow 2s ease-in-out infinite" : "none",
-                opacity: !canPull1 ? 0.5 : pulling ? 0.7 : 1,
+                opacity: !canPull1 ? 0.35 : pulling ? 0.6 : 1,
                 cursor: canPull1 && !pulling ? "pointer" : !canPull1 ? "not-allowed" : "default",
                 transform: "scale(1)",
                 transition: "transform 0.15s ease, box-shadow 0.2s ease",
@@ -625,7 +626,7 @@ function BannerPullModal({
                 border: `2px solid ${canPull10 ? (isFeatured ? "rgba(167,139,250,0.8)" : "rgba(129,140,248,0.8)") : "rgba(255,255,255,0.08)"}`,
                 boxShadow: canPull10 ? `0 0 15px ${isFeatured ? "rgba(167,139,250,0.4)" : "rgba(129,140,248,0.4)"}, 0 0 35px ${isFeatured ? "rgba(167,139,250,0.25)" : "rgba(129,140,248,0.25)"}, inset 0 0 15px ${isFeatured ? "rgba(167,139,250,0.1)" : "rgba(129,140,248,0.1)"}` : "none",
                 animation: canPull10 && !pulling ? "gacha-pull-glow 2s ease-in-out infinite" : "none",
-                opacity: !canPull10 ? 0.5 : pulling ? 0.7 : 1,
+                opacity: !canPull10 ? 0.35 : pulling ? 0.6 : 1,
                 cursor: canPull10 && !pulling ? "pointer" : !canPull10 ? "not-allowed" : "default",
                 transform: "scale(1)",
                 transition: "transform 0.15s ease, box-shadow 0.2s ease",
@@ -766,10 +767,11 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="gacha" playerLevel={1} />
       <FirstVisitBanner
         viewId="gacha"
         title="Schicksalsrad"
-        description="Ziehe Items aus dem Schicksalsrad mit Stardust oder Runensplitter. Jeder 10er-Pull garantiert mindestens ein Episches Item. Je öfter du ohne Legendär ziehst, desto höher wird deine Pity-Chance."
+        description="Das Schicksalsrad dreht sich für Stardust oder Runensplitter. Ein 10er-Pull garantiert mindestens ein Episches Item. Das Pity-System belohnt deine Beharrlichkeit. Oder bestraft dein Glück. Kommt auf die Perspektive an."
         accentColor="#f59e0b"
       />
       {/* Pull animation overlay */}
@@ -860,7 +862,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
             />
           </div>
           {pity.pityCounter >= 55 && (
-            <p className="text-xs mt-1" style={{ color: "rgba(249,115,22,0.6)" }}>Soft pity active — increased legendary chance!</p>
+            <p className="text-xs mt-1" style={{ color: "rgba(249,115,22,0.6)" }}>Soft pity active — legendary chance increased</p>
           )}
         </div>
       )}
@@ -931,10 +933,12 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
                     <div className="h-px mb-3" style={{ background: `linear-gradient(90deg, ${cfg.border}, transparent)` }} />
                     <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
                       {items.map(item => (
-                        <div
+                        <button
                           key={item.id}
-                          className="group relative flex flex-col items-center gap-2.5 rounded-xl px-6 py-5 text-center cursor-default"
+                          onClick={() => setTooltipItem({ name: item.name, rarity, icon: item.icon || undefined, desc: item.desc || undefined })}
+                          className="group relative flex flex-col items-center gap-2.5 rounded-xl px-6 py-5 text-center"
                           style={{
+                            cursor: "pointer",
                             background: cfg.bg,
                             border: `1px solid ${cfg.border}`,
                             boxShadow: hasGlow ? `0 0 8px ${cfg.glow}` : undefined,
@@ -951,12 +955,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
                           <span className="text-xs uppercase font-medium relative z-10" style={{ color: "rgba(255,255,255,0.3)" }}>
                             {item.type === "weapon" ? "Weapon" : item.type === "armor" ? "Armor" : item.type === "consumable" ? "Consumable" : "Artifact"}
                           </span>
-                          {item.desc && (
-                            <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-56 rounded-lg px-3 py-2.5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50" style={{ background: "#0f1220", border: `1px solid ${cfg.border}`, boxShadow: `0 4px 20px rgba(0,0,0,0.6), 0 0 8px ${cfg.glow}` }}>
-                              <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</p>
-                            </div>
-                          )}
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </div>

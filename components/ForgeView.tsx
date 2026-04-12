@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
 
@@ -470,9 +471,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       if (r.ok) {
         const hadSkillUp = (data.skillGained ?? 0) > 0;
         const resultSkillUpColor = data.skillUpColor || null;
-        let msg = data.message || "Success!";
+        let msg = data.message || "Done.";
         if (data.atSkillCap && data.nextRankNeeded) msg += ` — Skill Cap reached! Train ${data.nextRankNeeded} to continue.`;
-        else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
+        else if (hadSkillUp) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus." : ""})`;
         else if (!hadSkillUp && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 75}]`;
         setCraftResultSkillUpColor(resultSkillUpColor);
@@ -501,7 +502,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         // Rank milestone celebration
         if (data.newSkill) {
           const ns = data.newSkill;
-          const milestones: [number, string][] = [[300, "Artisan — Meisterrang!"], [225, "Expert erreicht!"], [150, "Journeyman erreicht!"], [75, "Apprentice gemeistert!"]];
+          const milestones: [number, string][] = [[300, "Artisan — Meisterrang erreicht"], [225, "Expert erreicht"], [150, "Journeyman erreicht"], [75, "Apprentice gemeistert"]];
           for (const [threshold, label] of milestones) {
             if (prevSkill < threshold && ns >= threshold) {
               setRankUpCelebration(label);
@@ -516,6 +517,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           setTimeout(() => setCraftedItemCelebration(null), 4000);
         }
         setCraftCount(1);
+        // Optimistic cooldown update — mark recipe as on-cooldown immediately
+        if (data.cooldownMinutes && data.cooldownMinutes > 0) {
+          setRecipes(prev => prev.map(r => r.id === recipeId ? { ...r, cooldownRemaining: data.cooldownMinutes * 60, canCraft: false } : r));
+        }
         fetchData();
         onRefresh?.();
       } else {
@@ -804,7 +809,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       if (r.ok) {
         const chosenProf = professions.find(p => p.id === profId);
         if (chosenProf) setProfCelebration(chosenProf);
-        else setCraftResult(data.message || "Profession chosen!");
+        else setCraftResult(data.message || "Profession chosen.");
         fetchData();
         onRefresh?.();
       } else {
@@ -871,10 +876,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   return (
     <div className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
+      <TutorialMomentBanner viewId="forge" playerLevel={1} />
       <FirstVisitBanner
         viewId="forge"
         title="Artisan's Quarter"
-        description="Wähle bis zu 2 Berufe und lerne Rezepte bei NPC-Trainern. Höhere Ränge schalten stärkere Rezepte frei. Materialien droppen aus Quests basierend auf deiner Berufswahl."
+        description="Zwei Berufe. Nicht mehr. Trainer lehren Rezepte für Gold. Höhere Ränge schalten stärkere Rezepte frei. Materialien droppen aus Quests — welche, hängt von deiner Berufswahl ab. Wähle entsprechend."
         accentColor="#f59e0b"
       />
       {/* Ambient forge sparks */}
@@ -1058,7 +1064,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             >
               <div className="flex items-center gap-3 mb-2">
                 {/* NPC portrait — border evolves with rank */}
-                <div className={`w-20 h-20 rounded-lg overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
+                <div className={`w-24 h-24 rounded-xl overflow-hidden flex-shrink-0${prof.masteryActive ? " mastery-portrait-glow" : ""}`} style={{ background: `${prof.color}12`, border: `2px solid ${prof.masteryActive ? "#fbbf24" : (prof.rankColor || prof.color)}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}`, boxShadow: prof.masteryActive ? `0 0 12px rgba(251,191,36,0.25), inset 0 0 8px rgba(251,191,36,0.1)` : undefined }}>
                   <img src={prof.npcPortrait} alt={prof.npcName} width={128} height={128} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -1122,7 +1128,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <div className="flex-1 progress-bar-diablo" style={{ height: 7 }}>
                     <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}cc, ${prof.color})`, width: `${(prof.skill || prof.playerXp || 0) / (prof.skillCap || prof.nextLevelXp || 75) * 100}%`, boxShadow: `0 0 6px ${prof.color}40` }} />
                   </div>
-                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 75} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
+                  <span className="text-sm font-mono font-bold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 75} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
                 </div>
               )}
               {prof.masteryBonus && (prof.masteryActive ? (
@@ -1215,7 +1221,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{m.rarity} Material</p>
                   {m.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>{m.desc}</p>}
                 </div>
-                <button onClick={() => setSelectedMaterial(null)} className="text-xs w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>✕</button>
+                <button onClick={() => setSelectedMaterial(null)} className="text-xs w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>✕</button>
               </div>
               <div className="flex items-center justify-between px-2 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Owned</span>
@@ -1288,7 +1294,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   return ra - rb || a.name.localeCompare(b.name);
                 });
               if (filtered.length === 0 && matSearch) {
-                return <p className="text-xs text-w20 text-center py-6">Keine Materialien gefunden</p>;
+                return <p className="text-xs text-w20 text-center py-6">No materials found.</p>;
               }
               return (
                 <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
@@ -1611,7 +1617,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${selectedNpc.rankColor}15`, color: selectedNpc.rankColor, border: `1px solid ${selectedNpc.rankColor}30` }}>{selectedNpc.rank}</span>
                     )}
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; {selectedNpc.rank || "Novice"}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <TipCustom title="Profession Skill" icon="◆" accent={selectedNpc.color} body={<>
                       <p>Current Skill: <strong>{selectedNpc.skill || 0}</strong> / {selectedNpc.skillCap || 75} (Cap)</p>
@@ -1674,7 +1680,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               return (
                 <div className="flex items-center gap-0.5 px-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   {tabs.map(t => (
-                    <button key={t.key} onClick={() => { setNpcModalTab(t.key); if (t.key === "craft") setSelectedRecipeId(null); }} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
+                    <button key={t.key} onClick={() => { setNpcModalTab(t.key); }} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
                       background: npcModalTab === t.key ? `${t.color}12` : "transparent",
                       color: npcModalTab === t.key ? t.color : "rgba(255,255,255,0.25)",
                       borderBottom: npcModalTab === t.key ? `2px solid ${t.color}` : "2px solid transparent",
@@ -1768,15 +1774,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           const isSelected = selectedRecipeId === recipe.id;
                           const isHidden = (recipe as unknown as Record<string, unknown>).hidden;
                           const notLearned = recipe.learned === false;
+                          const cantCraft = !notLearned && !isHidden && !recipe.canCraft;
                           return (
                             <button
                               key={recipe.id}
-                              onClick={() => setSelectedRecipeId(recipe.id)}
+                              onClick={() => { setSelectedRecipeId(recipe.id); if (recipe.skillUpColor === "gray") setCraftCount(1); }}
                               className="w-full text-left px-3 py-1.5 text-xs transition-colors"
                               style={{
                                 background: isSelected ? `${selectedNpc.color}15` : "transparent",
                                 borderLeft: isSelected ? `2px solid ${selectedNpc.color}` : "2px solid transparent",
                                 color: isHidden ? "rgba(255,255,255,0.15)" : notLearned ? "rgba(255,255,255,0.3)" : color,
+                                opacity: cantCraft ? 0.45 : 1,
                                 cursor: "pointer",
                                 fontWeight: isSelected ? 600 : 400,
                               }}
@@ -1815,6 +1823,31 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 </p>
                                 {selectedRecipe.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>&ldquo;{selectedRecipe.desc}&rdquo;</p>}
                               </div></div>
+
+                              {/* Output preview — WoW-style: what you'll craft */}
+                              {selectedRecipe.result?.type === "craft_gear" && selectedRecipe.icon && (
+                                <div className="flex items-center gap-3 px-3 py-2 rounded-lg" style={{ background: `${RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af"}08`, border: `1px solid ${RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af"}20` }}>
+                                  <img src={selectedRecipe.icon.startsWith("/") ? selectedRecipe.icon : `/images/icons/${selectedRecipe.icon}`} alt="" width={40} height={40} className="img-render-auto rounded flex-shrink-0" onError={hideOnError} />
+                                  <div className="min-w-0">
+                                    <p className="text-xs font-semibold" style={{ color: RARITY_COLORS[(selectedRecipe as unknown as Record<string, string>).outputRarity || "common"] || "#9ca3af" }}>
+                                      {((selectedRecipe as unknown as Record<string, string>).outputRarity || "common").charAt(0).toUpperCase() + ((selectedRecipe as unknown as Record<string, string>).outputRarity || "common").slice(1)} · {selectedRecipe.result?.templateId ? (selectedRecipe as unknown as Record<string, string>).outputSlot || "Gear" : "Gear"}
+                                    </p>
+                                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                                      Stats rolled randomly
+                                      {(() => {
+                                        const s = (selectedRecipe as unknown as Record<string, number[]>).outputSockets;
+                                        return s ? ` · ${s[0]}${s[1] > s[0] ? `–${s[1]}` : ""} socket${s[1] !== 1 ? "s" : ""}` : "";
+                                      })()}
+                                    </p>
+                                  </div>
+                                </div>
+                              )}
+                              {selectedRecipe.result?.type === "buff" && (
+                                <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(34,197,94,0.05)", border: "1px solid rgba(34,197,94,0.15)" }}>
+                                  <span className="text-lg flex-shrink-0">◆</span>
+                                  <p className="text-xs" style={{ color: "rgba(34,197,94,0.6)" }}>Creates a buff consumable</p>
+                                </div>
+                              )}
 
                               {/* Materials — WoW-style: icon + name + owned/needed */}
                               <div>
@@ -1855,14 +1888,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {/* Craft button + count */}
                               {!notLearned && selectedNpc.chosen && (
                                 <div className="flex items-center gap-2">
-                                  {/* Batch count */}
-                                  <div className="flex items-center gap-1">
-                                    {[1, 5, 10].map(n => (
-                                      <button key={n} onClick={() => setCraftCount(n)} className="text-xs px-2 py-1 rounded" style={{ background: craftCount === n ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)", color: craftCount === n ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${craftCount === n ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}>
-                                        x{n}
-                                      </button>
-                                    ))}
-                                  </div>
+                                  {/* Batch count — hidden for gray recipes (0% skill-up = waste of materials) */}
+                                  {selectedRecipe.skillUpColor !== "gray" ? (
+                                    <div className="flex items-center gap-1">
+                                      {[1, 5, 10].map(n => (
+                                        <button key={n} onClick={() => setCraftCount(n)} className="text-xs px-2 py-1 rounded" style={{ background: craftCount === n ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)", color: craftCount === n ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${craftCount === n ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}>
+                                          x{n}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  ) : (
+                                    <span className="text-xs px-2 py-1" style={{ color: "rgba(255,255,255,0.15)" }} title="Gray recipes can only be crafted x1 (no skill-up)">x1</span>
+                                  )}
                                   <button
                                     onClick={() => startCraftCast(selectedRecipe.id, craftCount)}
                                     disabled={!canCraft || craftProgress !== null}
@@ -1925,7 +1962,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <p className="text-xs" style={{ color: "#fca5a5" }}>Uncommon → Arkaner Staub · Rare → Magische Essenz · Epic → Schimmersplitter · Legendary → Nexuskristall</p>
                   </div>
                   {inv.length === 0 ? (
-                    <p className="text-xs text-w20 text-center py-6">Keine entzauberbaren Items (Uncommon+ und nicht gesperrt)</p>
+                    <p className="text-xs text-w20 text-center py-6">No disenchantable items. Requires uncommon+ and unlocked.</p>
                   ) : (
                     <div className="space-y-1.5 max-h-[300px] overflow-y-auto scrollbar-rpg">
                       {inv.map(item => {
@@ -1953,7 +1990,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       });
                                       const data = await r.json();
                                       if (r.ok) {
-                                        setCraftResult(data.message || "Entzaubert!");
+                                        setCraftResult(data.message || "Entzaubert.");
                                         setDisenchantInv(prev => prev.filter(i => (i.instanceId || i.id) !== (item.instanceId || item.id)));
                                         if (onRefresh) onRefresh();
                                         fetchData();
@@ -2023,7 +2060,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   });
                   const data = await r.json();
                   if (r.ok) {
-                    setEnchantResult(data.message || "Stat updated!");
+                    setEnchantResult(data.message || "Stat updated.");
                     setEnchantOptions(null);
                     setEnchantStat(null);
                     fetchData();
@@ -2248,9 +2285,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* ─── Tab: Reagents (Buy vendor reagents from trainer) ────────── */}
             {(npcModalTab as string) === "reagents" && (() => {
-              if (!selectedNpc.chosen) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-sm text-w30">Wähle diesen Beruf zuerst um Reagents zu kaufen.</p></div>;
+              if (!selectedNpc.chosen) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-sm text-w30">Choose this profession first to purchase reagents.</p></div>;
               const profReagents = vendorReagentDefs.filter(r => r.professions?.includes(selectedNpc.id));
-              if (profReagents.length === 0) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-xs text-w25">Keine Reagents für diesen Beruf verfügbar.</p></div>;
+              if (profReagents.length === 0) return <div className="tab-content-enter px-5 py-8 text-center"><p className="text-xs text-w25">No vendor reagents for this profession.</p></div>;
               const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
@@ -2411,8 +2448,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               });
                               const data = await res.json();
                               if (res.ok) {
-                                setCraftResult(`Rank Up! ${nextRank.rank} — Skill cap now ${data.newCap || nextRank.toCap}`);
-                                setRankUpCelebration(`${nextRank.rank}!`);
+                                setCraftResult(`Rank Up: ${nextRank.rank} — Skill cap now ${data.newCap || nextRank.toCap}`);
+                                setRankUpCelebration(nextRank.rank);
                                 setTimeout(() => setRankUpCelebration(null), 3000);
                                 fetchData();
                               } else {
@@ -3044,7 +3081,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
                 style={{ background: `${profCelebration.color}20`, color: profCelebration.color, border: `1px solid ${profCelebration.color}40`, cursor: "pointer" }}
               >
-                Auf zum ersten Craft!
+                Auf zum ersten Craft
               </button>
             </div>
           </div>

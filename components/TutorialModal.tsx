@@ -102,7 +102,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><Stat color="#a78bfa">Klasse wählen</Stat> — Dein Berufspfad. Bestimmt Klassen-Quests und Tier-Stufen.</li>
                   <li><Stat color="#ec4899">Beziehungsstatus</Stat> — Optional: Partner-Name schaltet Coop-Quests frei.</li>
                   <li><Stat color="#f97316">Begleiter</Stat> — Haustier oder virtueller Companion (Pflicht).</li>
-                  <li><Stat color="#22c55e">Zusammenfassung</Stat> — Prüfe alles und starte dein Abenteuer.</li>
+                  <li><Stat color="#22c55e">Zusammenfassung</Stat> — Prüfe alles und leg los.</li>
                 </ol>
               </GuideSection>
 
@@ -142,7 +142,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Begleiter (Companions)" icon="●" accent="rgba(249,115,22,0.3)">
-                Dein Begleiter erscheint auf deiner Spielerkarte, gibt dir Quests und motiviert dich:
+                Dein Begleiter erscheint auf deiner Spielerkarte, gibt dir Quests und beurteilt dich still:
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f97316">Drache</Stat> — Fordernd</div>
@@ -208,7 +208,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Ab 21: <Stat color="#ef4444">-10% XP pro Quest</Stat> über dem Limit</li>
                   <li>• Hard-Cap: <Stat color="#ef4444">-80% XP</Stat> (ab 28+ Quests)</li>
                 </ul>
-                <GuideTip>Schließe Quests ab oder gib sie zurück bevor du neue annimmst!</GuideTip>
+                <GuideTip>Schließe Quests ab oder gib sie zurück bevor du neue annimmst.</GuideTip>
               </GuideSection>
 
               <GuideSection title="Kampagnen & Arcanum" icon="◆">
@@ -242,7 +242,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <div className="flex items-center gap-2"><Rarity r="epic">Epic</Rarity> <span style={{ color: "rgba(255,255,255,0.4)" }}>— 3 Ketten, 8-10 Quests, starke Belohnungen</span></div>
                   <div className="flex items-center gap-2"><Rarity r="legendary">Legendary</Rarity> <span style={{ color: "rgba(255,255,255,0.4)" }}>— 3 Ketten, 10-12 Quests, epische Story + Legendary Items</span></div>
                 </div>
-                <GuideTip>Schließe NPC-Quests ab bevor der NPC aufbricht! Die verbleibende Zeit steht am NPC-Portrait.</GuideTip>
+                <GuideTip>Schließe NPC-Quests ab bevor der NPC aufbricht. Die verbleibende Zeit steht am NPC-Portrait.</GuideTip>
               </GuideSection>
             </>
           )}
@@ -504,7 +504,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Wiederkehrende Aufgaben die Streaks aufbauen. Erreichbar über <Stat color="#a855f7">Ritual Chamber</Stat> im Inner Sanctum.
                 <ul className="space-y-1 mt-2">
                   <li>• Erstelle Rituale mit Name, Schwierigkeit und optionaler Beschreibung.</li>
-                  <li>• <Stat color="#ef4444">Verpasste Tage</Stat>: 1 Tag = -3 Streak, 2 Tage = -7, 3+ = Reset auf 0!</li>
+                  <li>• <Stat color="#ef4444">Verpasste Tage</Stat>: 1 Tag = -3 Streak, 2 Tage = -7, 3+ = Reset auf 0.</li>
                 </ul>
               </GuideSection>
 
@@ -525,7 +525,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <Stat color="#9ca3af">Spark</Stat><span>→</span><Stat color="#22c55e">Flame</Stat><span>→</span><Stat color="#f59e0b">Ember</Stat><span>→</span><Stat color="#ef4444">Crucible</Stat><span>→</span><Stat color="#a855f7">Eternity</Stat>
                 </div>
                 <div className="mt-2">
-                  <Stat color="#ef4444">Blood Pact</Stat> — Massiver Multiplikator (×3 bis ×30), aber Streak-Bruch = alles verloren!
+                  <Stat color="#ef4444">Blood Pact</Stat> — Massiver Multiplikator (×3 bis ×30), aber Streak-Bruch = Totalverlust.
                 </div>
                 <GuideTip>Blood Oaths können nicht verlängert werden. Payout nur wenn Streak ≥ Commitment-Tage.</GuideTip>
               </GuideSection>
@@ -549,7 +549,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <Stat color="#22c55e">Speed Bonus</Stat>: Stufe in 2 Tagen = +1★</li>
                   <li>• Sterne-Scaling: 2★ = +15%, 3★ = +33% Belohnungen</li>
                 </ul>
-                <GuideTip>Weekly Modifier: Ein Quest-Typ gibt +50% Fortschritt, andere -25%. Passe deine Strategie an!</GuideTip>
+                <GuideTip>Weekly Modifier: Ein Quest-Typ gibt +50% Fortschritt, andere -25%. Passe deine Strategie an.</GuideTip>
               </GuideSection>
 
               <GuideSection title="Expedition (Kooperativ)" icon="▲" accent="rgba(34,197,94,0.3)">
@@ -579,7 +579,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Vollständiger Abschluss gibt <Stat color="#fbbf24">Completion Bonus</Stat> (Gold, Essenz, Runensplitter)</li>
                   <li>• Abbruch/Timeout = Fail-Cooldown. Erfolg löscht den Cooldown.</li>
                 </ul>
-                <GuideTip>Rift-Stages geben volle Belohnungen: XP-Multiplikatoren, Loot-Drops, Materialien, Streak + Forge-Temp!</GuideTip>
+                <GuideTip>Rift-Stages geben volle Belohnungen: XP-Multiplikatoren, Loot-Drops, Materialien, Streak + Forge-Temp.</GuideTip>
               </GuideSection>
 
               <GuideSection title="Mythic+ Endless Rift" icon="☠" accent="rgba(255,68,68,0.3)">
@@ -993,8 +993,8 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
 export const TUTORIAL_STEPS = [
   {
     key: "welcome",
-    title: "Willkommen in der Quest Hall!",
-    desc: "Dein persönliches Abenteuer beginnt hier. Ich zeige dir die wichtigsten Bereiche des Turms — Schritt für Schritt.",
+    title: "Willkommen in der Quest Hall.",
+    desc: "Der Turm hat viele Stockwerke. Ich zeige dir die wichtigsten — der Rest erschließt sich. Oder auch nicht.",
     target: null,
     position: "center" as const,
     navigateTo: null,
@@ -1002,7 +1002,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "stat-cards",
     title: "Dein Fortschritt",
-    desc: "Forge-Temperatur, Streak und Quest-Zähler — deine wichtigsten Stats auf einen Blick. Halte die Forge heiß für XP- und Gold-Boni!",
+    desc: "Forge-Temperatur, Streak und Quest-Zähler — deine wichtigsten Stats auf einen Blick. Forge heiß halten gibt XP- und Gold-Boni.",
     target: "stat-cards",
     position: "bottom" as const,
     navigateTo: null,
@@ -1026,7 +1026,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "quest-board",
     title: "The Great Hall — Dein Quest Board",
-    desc: "Hier findest du deine Aufträge. Offene Quests annehmen → bearbeiten → abschließen. Jede Quest gibt XP, Gold und Loot-Chancen!",
+    desc: "Hier findest du deine Aufträge. Offene Quests annehmen → bearbeiten → abschließen. Jede Quest gibt XP, Gold und Loot-Chancen.",
     target: "quest-board-tab",
     position: "bottom" as const,
     navigateTo: "questBoard",
@@ -1034,7 +1034,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "first-quest",
     title: "Deine erste Quest",
-    desc: "Klick auf eine Quest und dann auf 'Claim'. Probier es gleich aus — deine Starter-Quests warten schon auf dich!",
+    desc: "Klick auf eine Quest und dann auf 'Claim'. Probier es gleich aus — deine Starter-Quests sind bereit.",
     target: "quest-list-first",
     position: "bottom" as const,
     navigateTo: "questBoard",
@@ -1074,7 +1074,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "forge-streak",
     title: "Forge-Temperatur & Streak",
-    desc: "Erledige täglich Quests oder Rituale um deinen Streak zu halten und die Forge heiß zu halten. Höhere Temp = mehr XP und Gold. Längerer Streak = bis +45% Gold!",
+    desc: "Erledige täglich Quests oder Rituale um deinen Streak zu halten und die Forge heiß zu halten. Höhere Temp = mehr XP und Gold. Längerer Streak = bis +45% Gold.",
     target: null,
     position: "center" as const,
     navigateTo: null,
@@ -1089,8 +1089,8 @@ export const TUTORIAL_STEPS = [
   },
   {
     key: "done",
-    title: "Bereit, Wanderer!",
-    desc: "Die Halle wartet. Nimm deine erste Quest an, halte deinen Streak und schmiedet deinen Weg nach oben. Öffne den Guide jederzeit für Details!",
+    title: "Bereit, Wanderer.",
+    desc: "Nimm eine Quest an. Halte deinen Streak. Der Guide hat den Rest.",
     target: null,
     position: "center" as const,
     navigateTo: null,
@@ -1249,7 +1249,7 @@ export function TutorialOverlay({ step, onNext, onSkip, onNavigate }: { step: nu
             className="action-btn btn-primary text-xs px-4 py-1.5 rounded-lg font-semibold"
             style={{ background: "rgba(251,191,36,0.18)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.4)" }}
           >
-            {isLast ? "Let's Go!" : "Next →"}
+            {isLast ? "Los" : "Next →"}
           </button>
         </div>
       </div>

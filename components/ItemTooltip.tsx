@@ -78,8 +78,8 @@ export default function ItemTooltip({ item, onClose, anchorRect, children }: Pro
     if (top + ph > window.innerHeight - 8) top = window.innerHeight - ph - 8;
     if (top < 4) top = 4;
     if (left < 4) left = 4;
-    return { position: "fixed" as const, left, top, width: pw, zIndex: 200 };
-  })() : { position: "fixed" as const, top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", width: Math.min(300, (typeof window !== "undefined" ? window.innerWidth : 400) - 40), zIndex: 200 };
+    return { position: "fixed" as const, left, top, width: pw, zIndex: 250 };
+  })() : { position: "fixed" as const, top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", width: Math.min(300, (typeof window !== "undefined" ? window.innerWidth : 400) - 40), zIndex: 250 };
 
   const content = (
     <div

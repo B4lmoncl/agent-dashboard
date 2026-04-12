@@ -15,7 +15,7 @@ import { getCompanionColor, getCompanionPortrait } from "@/lib/companion-config"
 
 const COMPANION_IDS_ALL = ["ember_sprite", "lore_owl", "gear_golem"];
 const COMPANION_META_ALL: Record<string, { name: string; quote: string; icon: string }> = {
-  ember_sprite: { name: "Ember Sprite", quote: "The forge burns because YOU keep it lit!", icon: "/images/icons/mini-ember-sprite.png" },
+  ember_sprite: { name: "Ember Sprite", quote: "The forge burns because you keep it lit.", icon: "/images/icons/mini-ember-sprite.png" },
   lore_owl:     { name: "Lore Owl",     quote: "Knowledge is power, adventurer.",         icon: "/images/icons/mini-lore-owl.png" },
   gear_golem:   { name: "Gear Golem",   quote: "Efficiency is the path to glory.",        icon: "/images/icons/mini-gear-golem.png" },
 };
@@ -299,7 +299,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     const tick = () => {
       const remaining = endTime - Date.now();
       if (remaining <= 0) {
-        setExpeditionTimer("Ready!");
+        setExpeditionTimer("Ready");
         setExpeditionTimerProgress(1);
         return;
       }
@@ -362,7 +362,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           if (d.rewards.runensplitter) rewardLines.push(`+${d.rewards.runensplitter} Runensplitter`);
           onRewardCelebration({
             type: "companion",
-            title: `${d.expedition || "Expedition"} Complete!`,
+            title: `${d.expedition || "Expedition"} Complete`,
             xpEarned: 0,
             goldEarned: d.rewards.gold || 0,
             bondXp: 0,
@@ -435,7 +435,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           if (onUserRefresh) onUserRefresh();
         }, 2000);
       }
-    } catch { /* silent */ }
+    } catch { setPetError("Network error"); safeTimeout(() => setPetError(""), 3000); }
     setCompletingId(null);
   };
 
@@ -453,17 +453,17 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
   let mood: { label: string; color: string; tip: string; anim: string };
   if (isSleeping) {
-    mood = { label: "Sleeping", color: "#818cf8", tip: "Your companion is resting. Come back in the morning!", anim: "" };
+    mood = { label: "Sleeping", color: "#818cf8", tip: "Your companion is resting. Come back in the morning.", anim: "" };
   } else if (streak >= 7 && petRecent && bondLevel >= 5) {
-    mood = { label: "Ecstatic", color: "#f472b6", tip: "Your companion is absolutely thrilled!", anim: "animate-bounce" };
+    mood = { label: "Ecstatic", color: "#f472b6", tip: "Your companion is thrilled. Suspiciously so.", anim: "animate-bounce" };
   } else if (streak >= 7 && petRecent) {
-    mood = { label: "Happy", color: "#22c55e", tip: "Keep the streak going!", anim: "animate-bounce" };
+    mood = { label: "Happy", color: "#22c55e", tip: "The streak continues. So does the bond.", anim: "animate-bounce" };
   } else if (streak >= 3 || petRecent) {
-    mood = { label: "Neutral", color: "#f59e0b", tip: "Complete quests to cheer them up!", anim: "" };
+    mood = { label: "Neutral", color: "#f59e0b", tip: "Complete quests. They notice.", anim: "" };
   } else if (!petRecent && hoursSincePet > 72) {
-    mood = { label: "Neglected", color: "#dc2626", tip: "Your companion misses you — pet them!", anim: "animate-pulse" };
+    mood = { label: "Neglected", color: "#dc2626", tip: "Your companion misses you. Pet them.", anim: "animate-pulse" };
   } else {
-    mood = { label: "Sad", color: "#ef4444", tip: "Your companions miss you!", anim: "animate-pulse" };
+    mood = { label: "Sad", color: "#ef4444", tip: "Your companion misses you.", anim: "animate-pulse" };
   }
 
   // Bond info
@@ -514,7 +514,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       });
       const d = await r.json();
       if (r.ok) {
-        setUltimateResult(d.flavorText || d.message || "Success!");
+        setUltimateResult(d.flavorText || d.message || "Done.");
         setUltimatePickQuest(false);
         setUltimateGlow(true);
         SFX.companionPet();
@@ -923,7 +923,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
             {earnedCompanions.length === 0 && !user?.companion && (
               <p className="text-xs mt-1 italic" style={{ color: "rgba(220,185,120,0.25)" }}>
-                Complete achievements to unlock more companions!
+                Complete achievements to unlock more companions.
               </p>
             )}
 
@@ -984,8 +984,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         {expeditionData.active.name}
                       </span>
                       <span className="text-xs font-mono" style={{
-                        color: expeditionTimer === "Ready!" ? "#4ade80" : "rgba(255,255,255,0.4)",
-                        fontWeight: expeditionTimer === "Ready!" ? 700 : 400,
+                        color: expeditionTimer === "Ready" ? "#4ade80" : "rgba(255,255,255,0.4)",
+                        fontWeight: expeditionTimer === "Ready" ? 700 : 400,
                       }}>
                         {expeditionTimer || "..."}
                       </span>
@@ -995,7 +995,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <div style={{
                         height: "100%",
                         width: `${expeditionTimerProgress * 100}%`,
-                        background: expeditionTimer === "Ready!"
+                        background: expeditionTimer === "Ready"
                           ? "linear-gradient(90deg, #22c55e, #4ade80)"
                           : `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)`,
                         borderRadius: "inherit",
@@ -1003,7 +1003,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       }} />
                     </div>
                     {/* Collect button when ready */}
-                    {expeditionTimer === "Ready!" && (
+                    {expeditionTimer === "Ready" && (
                       <button
                         onClick={handleExpeditionCollect}
                         disabled={expeditionCollecting}
@@ -1113,6 +1113,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           <span className="text-xs font-bold mb-0.5" style={{ color: tc.accent, lineHeight: 1.2 }}>
                             {exp.name}
                           </span>
+                          <span className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.2)", lineHeight: 1.2 }}>
+                            {exp.description}
+                          </span>
                           <span className="text-xs font-mono mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
                             {exp.durationHours}h
                           </span>
@@ -1161,7 +1164,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               {user?.companion?.emoji || "⭐"}
             </div>
             <div className="text-xs font-bold uppercase tracking-[0.2em] mb-1" style={{ color: cColor.accent }}>
-              Quest Complete!
+              Quest Complete
             </div>
             <div className="text-sm font-semibold mb-4" style={{ color: "rgba(255,255,255,0.7)" }}>
               {rewardPopup.title}
@@ -1192,7 +1195,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               className="action-btn w-full py-2 rounded-xl text-sm font-semibold"
               style={{ background: `rgba(${cColor.accentRgb},0.12)`, color: cColor.accent, border: `1px solid rgba(${cColor.accentRgb},0.35)` }}
             >
-              Nice!
+              Continue
             </button>
           </div>
         </div>

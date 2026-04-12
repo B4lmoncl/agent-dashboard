@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { ModalPortal, useModalBehavior } from "@/components/ModalPortal";
 import { fetchRituals } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -176,7 +177,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               {/* Streak flame counter */}
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 12 }}>
+              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold${ritual.streak >= 30 ? " crystal-breathe" : ""}`} style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 12, "--glow-color": `${flameColor}25` } as React.CSSProperties}>
                 <span style={{ fontSize: 13 }}>{ritual.streak >= 7 ? "★" : "●"}</span>
                 {ritual.streak}
               </span>
@@ -212,7 +213,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 <span>Pact Goal: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
                 <span>·</span>
                 <span style={{ color: ritual.streak >= commitGoal ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
-                  {ritual.streak >= commitGoal ? "Fulfilled!" : `${commitGoal - ritual.streak}d remaining`}
+                  {ritual.streak >= commitGoal ? "Fulfilled." : `${commitGoal - ritual.streak}d remaining`}
                 </span>
               </div>
             )}
@@ -327,6 +328,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
 
   return (
     <>
+      <TutorialMomentBanner viewId="rituals" playerLevel={1} />
       <div data-feedback-id="ritual-chamber" className="section-ritual tab-content-enter">
         {isResting && (
           <div className="mb-3 px-3 py-2 rounded-lg text-xs" style={{ background: "rgba(217,119,6,0.08)", color: "#d97706", border: "1px solid rgba(217,119,6,0.2)" }}>
@@ -517,7 +519,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     <input value={newRitualTitle} onChange={e => { setNewRitualTitle(e.target.value); if (ritualNameError) setRitualNameError(false); }} placeholder="Name your ritual..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)", border: ritualNameError ? "1px solid #ef4444" : "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }} onKeyDown={e => e.key === "Enter" && submitRitual()} autoFocus />
                     {ritualNameError && <p style={{ color: "#ef4444", fontSize: "0.75rem", marginTop: 4 }}>Please enter a ritual name</p>}
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Category</label>
                       <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm rounded-lg text-bright" style={{ background: "#1a1a2e", border: "1px solid rgba(245,158,11,0.3)", outline: "none", padding: "8px 12px", borderRadius: 8, appearance: "none", cursor: "pointer" }}>

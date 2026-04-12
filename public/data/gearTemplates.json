@@ -701,7 +701,7 @@
       "reqLevel": 4,
       "rarity": "uncommon",
       "price": 65,
-      "desc": "Luftig und erstaunlich schnell.",
+      "desc": "Luftig. Schneller als sie aussehen. Das ist meistens wichtiger.",
       "affixes": {
         "primary": {
           "count": [
@@ -5237,7 +5237,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Drahtgeflecht zwischen Lederlagen. Federleicht, erstaunlich widerstandsfähig.",
+      "desc": "Drahtgeflecht zwischen Lederlagen. Federleicht. Hält mehr aus als der Träger.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": false,
       "affixes": {

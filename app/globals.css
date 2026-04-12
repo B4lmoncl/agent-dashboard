@@ -40,6 +40,11 @@ img {
 .cv-auto {
   content-visibility: auto;
   contain-intrinsic-size: auto 140px;
+  animation: card-fade-in 0.25s ease-out;
+}
+@keyframes card-fade-in {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -302,6 +307,7 @@ button[disabled] {
 /* NPC card hover in Artisan's Quarter */
 .npc-card-hover {
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  will-change: transform, box-shadow;
 }
 .npc-card-hover:hover {
   transform: translateY(-2px);
@@ -602,7 +608,8 @@ button[disabled] {
   50% { text-shadow: 0 0 20px currentColor, 0 0 40px currentColor; filter: brightness(1.2); }
 }
 @keyframes reward-pill-in {
-  0% { opacity: 0; transform: translateY(8px) scale(0.9); }
+  0% { opacity: 0; transform: translateY(12px) scale(0.8); }
+  60% { opacity: 1; transform: translateY(-2px) scale(1.05); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 .reward-celebration-modal {
@@ -682,6 +689,8 @@ button[disabled] {
 
 /* ─── Quest Hall Design System — Utility Classes ─────────────────────────── */
 /* Text colors — white at various opacities (replaces inline rgba styles)    */
+.text-w10 { color: rgba(255,255,255,0.1); }
+.text-w15 { color: rgba(255,255,255,0.15); }
 .text-w20 { color: rgba(255,255,255,0.2); }
 .text-w25 { color: rgba(255,255,255,0.25); }
 .text-w30 { color: rgba(255,255,255,0.3); }
@@ -715,7 +724,7 @@ button[disabled] {
 .border-w12 { border: 1px solid rgba(255,255,255,0.12); }
 
 /* Modal / Overlay backdrops                                                 */
-.modal-backdrop      { background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.modal-backdrop      { background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .modal-backdrop-blur { background: radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .modal-backdrop, .modal-backdrop-blur {
   touch-action: manipulation;
@@ -731,6 +740,11 @@ button[disabled] {
   border: 1px solid rgba(255,255,255,0.1);
   color: #fff;
   outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-dark:focus {
+  border-color: rgba(167,139,250,0.4);
+  box-shadow: 0 0 0 2px rgba(167,139,250,0.1);
 }
 
 /* Close button (modal X)                                                    */
@@ -971,16 +985,16 @@ button[disabled] {
   50% { opacity: 1; }
 }
 .mondlicht-glow {
-  border-color: rgba(96,165,250,0.7) !important;
-  box-shadow: 0 0 12px rgba(96,165,250,0.35), inset 0 0 8px rgba(96,165,250,0.06);
+  border-color: rgba(103,232,249,0.7) !important;
+  box-shadow: 0 0 12px rgba(103,232,249,0.35), inset 0 0 8px rgba(103,232,249,0.06);
 }
 .mondlicht-glow::after {
   content: '';
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  border: 2px solid rgba(96,165,250,0.5);
-  box-shadow: 0 0 24px rgba(96,165,250,0.4), 0 0 8px rgba(96,165,250,0.6);
+  border: 2px solid rgba(103,232,249,0.5);
+  box-shadow: 0 0 24px rgba(103,232,249,0.4), 0 0 8px rgba(103,232,249,0.6);
   animation: mondlicht-card-pulse 5s ease-in-out infinite;
   pointer-events: none;
 }
@@ -1092,6 +1106,7 @@ button[disabled] {
 /* ─── Enhanced Card Hover (Wolcen/D3 depth) ─── */
 .card-hover-depth {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  will-change: transform, box-shadow;
 }
 .card-hover-depth:hover {
   transform: translateY(-4px) scale(1.008);
@@ -1191,7 +1206,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: radial-gradient(ellipse at 30% 15%, rgba(96,165,250,0.08) 0%, transparent 55%), radial-gradient(ellipse at 75% 85%, rgba(99,102,241,0.06) 0%, transparent 45%);
+  background: radial-gradient(ellipse at 30% 15%, rgba(103,232,249,0.08) 0%, transparent 55%), radial-gradient(ellipse at 75% 85%, rgba(99,102,241,0.06) 0%, transparent 45%);
   z-index: 0;
 }
 
@@ -1578,6 +1593,26 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   animation: reward-burst-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
+/* ─── Legendary Drop VFX ──────────────────────────────────────────────── */
+@keyframes legendary-flash {
+  0% { background: rgba(255,255,255,0.6); }
+  100% { background: transparent; }
+}
+.legendary-screen-flash::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  animation: legendary-flash 0.4s ease-out forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes legendary-glow-pulse {
+  0%, 100% { box-shadow: 0 0 60px var(--glow-color, rgba(249,115,22,0.3)), 0 0 120px var(--glow-color, rgba(249,115,22,0.1)); }
+  50% { box-shadow: 0 0 100px var(--glow-color, rgba(249,115,22,0.5)), 0 0 200px var(--glow-color, rgba(249,115,22,0.2)); }
+}
+.legendary-drop-glow {
+  animation: legendary-glow-pulse 2s ease-in-out infinite;
+}
+
 /* ─── Visual Overhaul: Stat Card Depth ─────────────────────────────────── */
 .stat-card-depth {
   background: radial-gradient(ellipse at 50% 0%, rgba(50,50,60,0.3) 0%, #181818 65%) !important;
@@ -1905,7 +1940,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   50%      { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.025); }
 }
 .empty-slot-dashed {
-  border: 1px dashed rgba(255,255,255,0.08);
+  border: 1px dashed rgba(255,255,255,0.15);
   border-radius: 8px;
   animation: empty-slot-dash-pulse 3.5s ease-in-out infinite;
 }
@@ -1971,13 +2006,24 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   position: relative;
 }
 .quest-done-btn:hover:not(:disabled) {
-  background: rgba(251,191,36,0.2) !important;
-  box-shadow: 0 0 12px rgba(251,191,36,0.3), 0 0 24px rgba(251,191,36,0.1);
-  transform: translateY(-1px);
+  background: rgba(251,191,36,0.22) !important;
+  box-shadow: 0 0 16px rgba(251,191,36,0.4), 0 0 32px rgba(251,191,36,0.12);
+  transform: translateY(-2px) scale(1.03);
 }
 .quest-done-btn:active:not(:disabled) {
-  transform: translateY(0) scale(0.97);
-  filter: brightness(0.9);
+  transform: translateY(0) scale(0.95);
+  filter: brightness(0.85);
+  transition-duration: 0.08s;
+}
+
+/* ─── Quest Complete Success Flash ─────────────────────────────────── */
+@keyframes quest-complete-flash {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  50% { box-shadow: 0 0 20px 4px rgba(34,197,94,0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+.quest-complete-flash {
+  animation: quest-complete-flash 0.5s ease-out;
 }
 
 /* ─── Quest Card Action Loading Shimmer ──────────────────────────────── */
@@ -2140,4 +2186,40 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 @keyframes skill-bar-flash-anim {
   0% { box-shadow: 0 0 20px rgba(251,191,36,0.8), inset 0 0 10px rgba(251,191,36,0.5); filter: brightness(2); }
   100% { box-shadow: none; filter: brightness(1); }
+}
+
+/* ─── Accessibility: Reduced Motion ──────────────────────────────────────── */
+/* Respects user preference for reduced motion (vestibular disorders etc.) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .skeleton, .skeleton-pulse { animation: none !important; opacity: 0.06; }
+  .crystal-breathe, .crystal-breathe-card, .crystal-breathe-epic { animation: none !important; }
+  .progress-bar-nearly-full .progress-bar-diablo-fill { animation: none !important; }
+}
+
+/* ─── Rested XP Blue Zone — WoW-style shimmer ───────────────────────────── */
+@keyframes rested-xp-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes rested-xp-breathe {
+  0%, 100% { box-shadow: 0 0 6px rgba(103,232,249,0.1), inset 0 0 3px rgba(103,232,249,0.08); }
+  50% { box-shadow: 0 0 12px rgba(103,232,249,0.2), inset 0 0 6px rgba(103,232,249,0.12); }
+}
+.rested-xp-zone {
+  animation: rested-xp-breathe 3s ease-in-out infinite;
+  overflow: hidden;
+}
+.rested-xp-zone::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(103,232,249,0.15), transparent);
+  background-size: 200% 100%;
+  animation: rested-xp-shimmer 4s ease-in-out infinite;
+  pointer-events: none;
 }

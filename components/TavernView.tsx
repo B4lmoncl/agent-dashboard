@@ -47,6 +47,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [selectedDays, setSelectedDays] = useState(3);
+  const [confirmEnter, setConfirmEnter] = useState(false);
   const [reason, setReason] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -58,7 +59,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
     try {
       const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`);
       if (r.ok) setStatus(await r.json());
-    } catch { /* ignore */ }
+    } catch { setError("Failed to load tavern status"); }
     setLoading(false);
   }, [playerName]);
 
@@ -164,7 +165,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         </div>
         <Tip k="hearth" heading><h2 className="text-lg font-bold" style={{ color: "#d97706", cursor: "help" }}>The Hearth</h2></Tip>
         <p className="text-xs text-w35" style={{ maxWidth: "min(500px, 100%)", margin: "0 auto" }}>
-          A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
+          A room in the tower where time moves differently. Streaks and forge temperature freeze while you rest. Progress pauses. The world does not.
         </p>
         <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: "min(500px, 100%)", margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
       </div>
@@ -205,7 +206,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             </p>
           )}
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Tip k="streak">
               <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 <p className="text-xs text-w30">Streak Frozen</p>
@@ -227,10 +228,10 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             }}
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
-            style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-            title={actionLoading ? "Action in progress..." : "Leave rest mode — your streaks and forge temp will be restored"}
+            style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+            title={actionLoading ? "Action in progress..." : "Leave rest mode (triggers 30-day cooldown)"}
           >
-            {actionLoading ? "..." : "Leave the Hearth — Return to Adventure"}
+            {actionLoading ? "..." : "Leave the Hearth"}
           </button>
         </div>
       )}
@@ -300,15 +301,33 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             <p className="text-xs" style={{ color: "rgba(234,179,8,0.6)" }}>Nach dem Verlassen der Taverne kannst du 30 Tage lang nicht erneut rasten. Wähle die Dauer sorgfältig.</p>
           </div>
 
-          <button
-            onClick={enterTavern}
-            disabled={actionLoading}
-            className="btn-interactive w-full text-sm font-bold py-3 rounded-xl"
-            style={{ background: "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-            title={actionLoading ? "Action in progress..." : undefined}
-          >
-            {actionLoading ? "..." : `Enter the Hearth (${selectedDays} day${selectedDays !== 1 ? "s" : ""})`}
-          </button>
+          {!confirmEnter ? (
+            <button
+              onClick={() => setConfirmEnter(true)}
+              disabled={actionLoading}
+              className="btn-interactive w-full text-sm font-bold py-3 rounded-xl"
+              style={{ background: actionLoading ? "rgba(217,119,6,0.3)" : "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
+            >
+              Enter the Hearth ({selectedDays} day{selectedDays !== 1 ? "s" : ""})
+            </button>
+          ) : (
+            <div className="space-y-2">
+              <div className="rounded-lg px-3 py-2" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
+                <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Are you sure?</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(239,68,68,0.6)" }}>
+                  Streaks and Forge temp will be frozen for {selectedDays} day{selectedDays !== 1 ? "s" : ""}.
+                  You cannot quest, craft, or complete rituals while resting.
+                  30-day cooldown after leaving. You&apos;ll receive a +25% XP Welcome Back buff.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => setConfirmEnter(false)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
+                <button onClick={() => { setConfirmEnter(false); enterTavern(); }} disabled={actionLoading} className="flex-1 text-xs py-2 rounded-lg font-bold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
+                  {actionLoading ? "..." : "Confirm Rest"}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

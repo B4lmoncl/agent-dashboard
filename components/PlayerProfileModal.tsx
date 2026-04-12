@@ -117,8 +117,11 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
       if (r.ok) {
         setFriendRequestSent(true);
         onAddFriend?.(playerId);
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setError((d as { error?: string }).error || "Failed to send friend request");
       }
-    } catch (e) { console.error("[profile]", e); }
+    } catch { setError("Network error"); }
   };
 
   const handleRemoveFriend = async () => {
@@ -132,8 +135,11 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
       if (r.ok) {
         fetchProfile(); // Refresh to update friendshipStatus
         setConfirmRemove(false);
+      } else {
+        const d = await r.json().catch(() => ({}));
+        setError((d as { error?: string }).error || "Failed to remove friend");
       }
-    } catch (e) { console.error("[profile]", e); }
+    } catch { setError("Network error"); }
     setRemovingFriend(false);
   };
 
@@ -161,7 +167,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-2xl flex-shrink-0" style={{ background: `linear-gradient(135deg, ${profile.color}, ${profile.color}88)`, color: "#fff", boxShadow: `0 6px 20px ${profile.color}40`, border: profile.equippedFrame ? `2px solid ${profile.equippedFrame.color}` : "none" }}>
-                    {profile.avatar?.slice(0, 2) || profile.name[0]}
+                    {profile.avatar?.slice(0, 2) || (profile.name || "?")[0]}
                   </div>
                   <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-[#141418]" style={{ background: ONLINE_COLORS[profile.onlineStatus] || "#555", boxShadow: profile.onlineStatus === "online" ? "0 0 6px #22c55e" : "none" }} />
                 </div>
@@ -260,7 +266,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                       </div>
                     );
                     const rc = RARITY_COLORS[item.rarity] || "#888";
-                    const statLines = Object.entries(item.stats).map(([k, v]) => (
+                    const statLines = Object.entries(item.stats || {}).map(([k, v]) => (
                       <span key={k} className="block text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>+{v} {k}</span>
                     ));
                     const tooltipBody = (

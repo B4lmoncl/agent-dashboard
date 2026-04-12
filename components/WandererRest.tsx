@@ -268,7 +268,7 @@ export function WandererRest({
                   <li>• NPCs kommen und gehen — sie bleiben <span style={{ color: "#f59e0b" }}>2-4 Tage</span>, dann ziehen sie weiter.</li>
                   <li>• Jeder NPC hat <span style={{ color: "#a78bfa" }}>mehrere Quest-Ketten</span> mit aufeinander aufbauenden Aufgaben.</li>
                   <li>• Die letzte Quest einer Kette gibt ein <span style={{ color: "#fbbf24" }}>einzigartiges Item</span>.</li>
-                  <li>• Schließe Quests ab bevor der NPC aufbricht!</li>
+                  <li>• Schließe Quests ab bevor der NPC aufbricht.</li>
                 </ul>
               </div>
               <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -451,8 +451,8 @@ export function WandererRest({
                   {allDone ? (
                     <div className="text-center py-4">
                       <p className="text-2xl mb-2">✓</p>
-                      <p className="text-sm font-bold" style={{ color: "#22c55e" }}>All quests completed!</p>
-                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Well done, brave adventurer.</p>
+                      <p className="text-sm font-bold" style={{ color: "#22c55e" }}>All quests completed.</p>
+                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>The wanderer nods. That counts as praise.</p>
                     </div>
                   ) : currentQuest ? (
                     <>

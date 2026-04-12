@@ -55,7 +55,7 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
       >
         <span className="text-xs font-mono flex-shrink-0" style={{ color: "rgba(34,197,94,0.6)" }}>✓</span>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-medium truncate" style={{ color: "rgba(255,255,255,0.6)" }}>{quest.title}</p>
+          <p className="text-xs font-medium truncate" title={quest.title} style={{ color: "rgba(255,255,255,0.6)" }}>{quest.title}</p>
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
               by <span style={{ color: "rgba(255,255,255,0.35)" }}>{quest.completedBy}</span>
@@ -158,7 +158,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   const isEpicPlus = rarity === "epic" || rarity === "legendary";
   const isRarePlus = rarity === "rare" || rarity === "epic" || rarity === "legendary";
   // Border opacity: legendary/epic brighter, rare slightly elevated, common/uncommon default
-  const borderAlpha = isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "66";
+  const borderAlpha = isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "88";
   // Top glow for rare+ cards: a subtle inward shadow from the top edge using the rarity color
   const topGlow = isRarePlus ? `, 0 -1px 8px ${rarityColor}${isLegendary ? "55" : isEpic ? "44" : "33"} inset` : "";
   const hasMinLevel = quest.minLevel != null && quest.minLevel > 0;
@@ -362,7 +362,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <p className="text-xs font-medium truncate flex-1" style={{ color: "#e8d5a3" }}>{quest.title}</p>
+            <p className="text-xs font-medium truncate flex-1" title={quest.title} style={{ color: "#e8d5a3" }}>{quest.title}</p>
             {quest.humanInputRequired && <HumanInputBadge />}
             {quest.createdBy && quest.createdBy !== "leon" && quest.createdBy !== "unknown" && (
               <AgentBadge name={quest.createdBy} />
@@ -487,13 +487,13 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Unclaim"}</button>
               )}
               {!isCoop && onComplete && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-2 py-1.5 rounded font-medium quest-done-btn" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
               )}
               {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Join co-op quest"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Join"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Join co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Join"}</button>
               )}
               {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
-                <button onClick={e => { e.stopPropagation(); onCoopComplete(quest.id); }} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ My Part Done</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopComplete(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Complete your part of the co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ My Part Done"}</button>
               )}
             </div>
           </div>
@@ -540,7 +540,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,165,0,0.7)" }}>◆</span>
-              <p className="text-xs font-semibold truncate flex-1" style={{ color: "#e8e8e8" }}>{quest.title}</p>
+              <p className="text-xs font-semibold truncate flex-1" title={quest.title} style={{ color: "#e8e8e8" }}>{quest.title}</p>
               {quest.humanInputRequired && <HumanInputBadge />}
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
                 {expanded ? "▲" : "▼"}
@@ -556,7 +556,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
                         Boss HP
                       </span>
                       <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "#ef4444" }}>
-                        {progressPct === 100 ? "DEFEATED!" : `${Math.round(100 - progressPct)}% HP`}
+                        {progressPct === 100 ? "DEFEATED" : `${Math.round(100 - progressPct)}% HP`}
                       </span>
                     </div>
                     <div className="w-full rounded-full" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>

@@ -6,6 +6,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { Tip } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -146,6 +147,7 @@ export default function AdventureTomeView({
 
   return (
     <div className="space-y-5 tab-content-enter">
+      <TutorialMomentBanner viewId="tome" playerLevel={1} />
       {/* ─── Header ────────────────────────────────────────────────────────── */}
       <div className="text-center space-y-2">
         <Tip k="adventure_tome" heading>
@@ -158,7 +160,8 @@ export default function AdventureTomeView({
         </p>
 
         {/* Total completion circle */}
-        <div className="flex items-center justify-center mt-3">
+        <Tip k="adventure_tome">
+        <div className="flex items-center justify-center mt-3 cursor-help">
           <div
             className="relative flex items-center justify-center"
             style={{ width: 80, height: 80 }}
@@ -189,6 +192,7 @@ export default function AdventureTomeView({
             </span>
           </div>
         </div>
+        </Tip>
         <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>
           Gesamtfortschritt durch den Turm
         </p>

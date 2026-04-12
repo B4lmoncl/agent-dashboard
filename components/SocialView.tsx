@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import ItemTooltip from "@/components/ItemTooltip";
 import FirstVisitBanner from "@/components/FirstVisitBanner";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -342,7 +343,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                           body: JSON.stringify({ targetId: f.id, type: "quests_week", wager: 100 }),
                         });
                         const d = await r.json();
-                        if (r.ok) setSuccessMsg("Challenge sent to " + f.name + "!");
+                        if (r.ok) setSuccessMsg("Challenge sent to " + f.name);
                         else setSuccessMsg(d.error || "Failed");
                         setTimeout(() => setSuccessMsg(null), 4000);
                       } catch { setSuccessMsg("Network error"); }
@@ -459,7 +460,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         </div>
 
         {/* Messages */}
-        <div ref={messagesContainerRef} className="space-y-2 max-h-[360px] overflow-y-auto pr-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
+        <div ref={messagesContainerRef} className="space-y-2 max-h-[500px] overflow-y-auto pr-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
           {messages.map(msg => {
             const isMine = msg.from.toLowerCase() === playerName.toLowerCase();
             return (
@@ -1498,7 +1499,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
         if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
         onRewardCelebration({
           type: "daily-bonus",
-          title: "Mail Collected!",
+          title: "Mail collected.",
           xpEarned: 0,
           goldEarned: data.goldCollected || 0,
           loot: data.itemsCollected?.length ? { name: `${data.itemsCollected.length} item${data.itemsCollected.length > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
@@ -1533,7 +1534,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
       });
       const data = await r.json();
       if (r.ok) {
-        setActionMsg(data.message || "Sent!");
+        setActionMsg(data.message || "Sent.");
         setComposing(false);
         setSendTo(""); setSendSubject(""); setSendBody(""); setSendGold(0);
         fetchMail();
@@ -1569,7 +1570,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                     if (data.goldCollected) currencies.push({ name: "Gold", amount: data.goldCollected, color: "#fbbf24" });
                     onRewardCelebration({
                       type: "daily-bonus",
-                      title: `${data.mailsCollected} Mail${data.mailsCollected > 1 ? "s" : ""} Collected!`,
+                      title: `${data.mailsCollected} Mail${data.mailsCollected > 1 ? "s" : ""} Collected`,
                       xpEarned: 0,
                       goldEarned: data.goldCollected || 0,
                       loot: data.itemsCollected > 0 ? { name: `${data.itemsCollected} item${data.itemsCollected > 1 ? "s" : ""}`, emoji: "◆", rarity: "rare" } : undefined,
@@ -1812,7 +1813,7 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
       });
       const d = await r.json();
       if (r.ok) {
-        setActionMsg("Challenge accepted!");
+        setActionMsg("Challenge accepted.");
         setChallenges(prev => prev.map(c => c.id === challengeId ? { ...c, status: "active", startedAt: new Date().toISOString(), expiresAt: d.challenge?.expiresAt || null } : c));
       } else {
         setActionMsg(d.error || "Failed to accept");
@@ -1990,10 +1991,11 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         })}
       </div>
 
+      <TutorialMomentBanner viewId="social" playerLevel={1} />
       <FirstVisitBanner
         viewId="social"
         title="The Breakaway"
-        description="Finde Freunde, tausche Items, sende Nachrichten und verfolge die Aktivitäten deiner Gilde. Freunde sehen deinen Online-Status und können dir Trade-Anfragen schicken."
+        description="Freunde finden. Items tauschen. Nachrichten senden. Beobachten was die anderen so treiben. Das Übliche. Nur mit besseren Belohnungen."
         accentColor="#a855f7"
       />
 
