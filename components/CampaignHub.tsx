@@ -178,7 +178,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 </div>
               </div>
               {/* Rewards */}
-              {(expandedCampaign.rewards.xp > 0 || expandedCampaign.rewards.gold > 0 || expandedCampaign.rewards.title) && (
+              {expandedCampaign.rewards && (expandedCampaign.rewards.xp > 0 || expandedCampaign.rewards.gold > 0 || expandedCampaign.rewards.title) && (
                 <div className="mt-4 flex items-center gap-3 flex-wrap">
                   <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Completion Rewards:</span>
                   {expandedCampaign.rewards.xp > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.25)" }}>+{expandedCampaign.rewards.xp} XP</span>}
