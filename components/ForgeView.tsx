@@ -1221,7 +1221,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{m.rarity} Material</p>
                   {m.desc && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>{m.desc}</p>}
                 </div>
-                <button onClick={() => setSelectedMaterial(null)} className="text-xs w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>✕</button>
+                <button onClick={() => setSelectedMaterial(null)} className="text-xs w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>✕</button>
               </div>
               <div className="flex items-center justify-between px-2 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Owned</span>
