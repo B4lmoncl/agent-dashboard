@@ -291,6 +291,8 @@ export function useQuestActions({
               ? { flavor: "Gamble paid off. Double rewards." }
               : data.gambleResult === "halved"
                 ? { flavor: "Gamble lost. Half rewards." }
+            : data.varietyBonus && data.varietyBonus.bonus > 0
+              ? { flavor: `${data.varietyBonus.types} quest types today. Variety Bonus +${data.varietyBonus.bonus}% XP.` }
             : data.dailyDiminishing != null && data.dailyDiminishing < 1
               ? { flavor: `Quest ${data.dailyQuestCount || "?"} today. Rewards reduced to ${Math.round(data.dailyDiminishing * 100)}%.` }
               : data.dailyQuestCount != null && data.dailyQuestCount <= 5
