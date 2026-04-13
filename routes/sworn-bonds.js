@@ -270,7 +270,7 @@ router.get('/api/social/:playerId/sworn-bond', requireAuth, (req, res) => {
         id: partnerId,
         name: partner?.name || partnerId,
         avatar: partner?.avatar || partnerId.slice(0, 2).toUpperCase(),
-        color: partner?.color || '#666',
+        color: partner?.color || '#666666',
         level: getLevelInfo(partner?.xp || 0).level,
       },
       bondLevel: lvl.level,

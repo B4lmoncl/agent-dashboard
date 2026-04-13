@@ -1954,7 +1954,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               }}
             >
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `${f.color || '#666'}40`, color: f.color || '#666' }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `${f.color || '#666666'}40`, color: f.color || '#666666' }}>
                   {f.avatar || f.name?.slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0">
