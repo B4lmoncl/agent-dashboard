@@ -475,13 +475,13 @@
   "routes/agents.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. requireApiKey on commands",
+    "findings": "Cycle 2: Clean. requireApiKey on all mutations. Status/health whitelist validation. Numeric casting for uptime/revenue. sanitizeAgent on GET output.",
     "status": "clean"
   },
   "routes/integrations.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. HMAC fail-closed, timing-safe compare",
+    "findings": "Cycle 2: Clean. HMAC-SHA256 fail-closed, timing-safe compare, raw body for signature, XSS sanitization on PR title/body.",
     "status": "clean"
   },
   "routes/codex.js": {
