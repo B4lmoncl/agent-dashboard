@@ -771,7 +771,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       }}
                       disabled={!ultimateReady || !!ultimateUsing}
                       title={ultimateUsing ? "Using ultimate..." : !ultimateReady ? `Ultimate on cooldown (${ultimateDaysLeft}d left)` : ult.desc}
-                      className="flex-1 text-xs px-2 py-1.5 rounded-lg font-semibold transition-all text-center"
+                      className={`flex-1 text-xs px-2 py-1.5 rounded-lg font-semibold transition-all text-center${ultimateReady && !ultimateUsing ? " claimable-breathe" : ""}`}
                       style={{
                         background: ultimateReady ? `rgba(${cColor.accentRgb},0.1)` : "rgba(255,255,255,0.02)",
                         color: ultimateReady ? cColor.accent : "rgba(255,255,255,0.15)",
