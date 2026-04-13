@@ -230,7 +230,10 @@ function contributeToBond(userId, quest) {
 // ─── Routes ─────────────────────────────────────────────────────────────────
 
 // Lazy prune broken bonds older than 30 days (cooldown is 7d, safe to remove after 30d)
+let _lastPrune = 0;
 function pruneStaleBonds() {
+  if (Date.now() - _lastPrune < 60000) return; // max once per minute
+  _lastPrune = Date.now();
   const cutoff = Date.now() - 30 * 86400000;
   const before = state.socialData.swornBonds.length;
   state.socialData.swornBonds = state.socialData.swornBonds.filter(b =>
