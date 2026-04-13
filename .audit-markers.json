@@ -413,9 +413,9 @@
     "status": "clean"
   },
   "routes/world-boss.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, unique drop ownership check",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. wbClaimLock, wbBoostLock, double-claim guard (rewardsClaimed), level check WB_MIN_LEVEL=15, tavern rest check, unique drop ownership check, contribution-proportional rewards, auto-spawn/expiry, mondstaub boost with max-1 guard, boss-specific gear from FULL_GEAR_ITEMS.",
     "status": "clean"
   },
   "routes/mail.js": {
