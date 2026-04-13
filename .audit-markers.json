@@ -395,15 +395,15 @@
     "status": "clean"
   },
   "routes/expedition.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, contribution check, double-claim guard",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. expClaimLock, min-1-contribution guard, double-claim via claimedRewards[uid], debounced save, shared progress scaling by playerCount, bonus title for last checkpoint, BP XP grant. atomic tmp+rename write.",
     "status": "clean"
   },
   "routes/challenges-weekly.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, star calculation, modifier system",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Claim lock, double-claim guard (completedStages check), star calculation with speed bonus + legendary challengeScoreBonus, modifier system with effective progress tracking, milestone claim with cumulative star check. Week rotation deterministic.",
     "status": "clean"
   },
   "routes/dungeons.js": {
