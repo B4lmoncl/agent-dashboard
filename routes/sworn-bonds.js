@@ -456,10 +456,8 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     // Mark claimed
     obj.chestClaimed[claimKey] = true;
 
-    // Track streak (on first claim of the week)
-    if (!bond.lastCompletedWeekId || bond.lastCompletedWeekId !== obj.weekId) {
-      bond.lastCompletedWeekId = obj.weekId;
-    }
+    // Note: streak tracking is handled by ensureBondWeeklyObjective on week rollover
+    // Do NOT set lastCompletedWeekId here — that would prevent streak increment
 
     saveSocial();
     const { saveUsers } = require('../lib/state');
