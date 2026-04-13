@@ -335,9 +335,9 @@
     "status": "clean"
   },
   "routes/crafting.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, gold sync, material check before deduction",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. craftLock, requireAuth, tavern rest block. Pre-validation BEFORE deduction: gold check, material check, inventory cap check, slot recipe per-item caps. Gold sync dual-field. Batch crafting with gray recipe block. Cooldown with legendary reduction. Moonlight bonus. Transmute shared cooldown. Faction rep check. Profession slot limit by player level.",
     "status": "clean"
   },
   "routes/shop.js": {
