@@ -1183,7 +1183,7 @@ router.post('/api/social/challenge/:id/forfeit', requireAuth, (req, res) => {
     const loser = state.users[uid];
     const winner = state.users[winnerId];
     if (loser && winner) {
-      const actualWager = Math.min(challenge.wager, loser.currencies?.gold ?? loser.gold ?? 0);
+      const actualWager = Math.max(0, Math.min(challenge.wager, loser.currencies?.gold ?? loser.gold ?? 0));
       if (actualWager > 0) {
         ensureUserCurrencies(loser);
         ensureUserCurrencies(winner);
