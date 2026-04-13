@@ -1310,6 +1310,7 @@
       "id": "kristall-sockel",
       "category": "artifacts",
       "title": "Kristall-Sockel — Eine Verbindung, die man besser nicht löst",
+      "unlockedBy": { "type": "level_reached", "value": 10 },
       "text": "Ein Edelstein in einem Sockel ist mehr als Dekoration. Er ist ein Versprechen zwischen Stein und Stahl, das der Juwelier mit einer Mischung aus Handwerk und Sentimentalität besiegelt. Sechs Typen: Rubin für Kraft, Saphir für Weisheit, Smaragd für Glück, Topas für Ausdauer, Amethyst für Vitalität, Diamant für Fokus. Fünf Qualitätsstufen von 'angeschlagen' bis 'königlich'. Das Einsetzen ist feierlich. Das Entfernen ist teuer und emotional kompliziert — der Juwelier nimmt es persönlich, der Stein nimmt es persönlich, und die Ausrüstung knirscht vorwurfsvoll. Aufwerten geht vor Ort: drei gleiche Steine werden zu einem besseren. Was mit dem vierten Stein passiert, den du nicht brauchst, fragt besser niemand laut."
     },
     {
