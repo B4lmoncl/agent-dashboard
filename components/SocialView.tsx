@@ -2334,7 +2334,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
   }
 
   return (
-    <div className="space-y-4">
+    <div data-feedback-id="social-view" className="space-y-4">
       {/* Section header */}
       <div>
         <div className="flex items-center gap-2">

@@ -800,7 +800,7 @@ export default function ChallengesView({
   }, [reviewApiKey, onRefresh, onRewardCelebration]);
 
   return (
-    <div className="space-y-4">
+    <div data-feedback-id="challenges-view" className="space-y-4">
       {/* Section header */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">

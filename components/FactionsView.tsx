@@ -173,7 +173,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
   };
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div data-feedback-id="factions-view" className="space-y-5 tab-content-enter">
       <TutorialMomentBanner viewId="factions" playerLevel={1} />
       <FirstVisitBanner
         viewId="factions"

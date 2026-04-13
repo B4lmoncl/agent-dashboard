@@ -468,7 +468,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
     : 0;
 
   return (
-    <div className="space-y-5 tab-content-enter relative">
+    <div data-feedback-id="worldboss-view" className="space-y-5 tab-content-enter relative">
       {/* Red/orange chaos embers — only when boss is active */}
       {!boss.defeated && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">

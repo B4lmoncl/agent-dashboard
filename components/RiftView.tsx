@@ -239,7 +239,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   );
 
   return (
-    <div className="space-y-5 tab-content-enter relative">
+    <div data-feedback-id="rift-view" className="space-y-5 tab-content-enter relative">
       <TutorialMomentBanner viewId="rift" playerLevel={1} />
       <FirstVisitBanner
         viewId="rift"

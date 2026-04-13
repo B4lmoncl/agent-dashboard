@@ -329,7 +329,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   const maxInvites = selectedDungeonData ? selectedDungeonData.maxPlayers - 1 : 3;
 
   return (
-    <div className="space-y-5 tab-content-enter relative">
+    <div data-feedback-id="dungeon-view" className="space-y-5 tab-content-enter relative">
       <TutorialMomentBanner viewId="dungeons" playerLevel={1} />
       <FirstVisitBanner
         viewId="dungeons"
