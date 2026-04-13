@@ -810,6 +810,8 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
         if (state.users[trade.recipient]) state.users[trade.recipient]._goldTraded = (state.users[trade.recipient]._goldTraded || 0) + goldInTrade;
       }
       console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
+      logActivity(trade.initiator, 'trade_complete', { partner: state.users[trade.recipient]?.name || trade.recipient, rarity: goldInTrade >= 100 ? 'rare' : 'common' });
+      logActivity(trade.recipient, 'trade_complete', { partner: state.users[trade.initiator]?.name || trade.initiator, rarity: goldInTrade >= 100 ? 'rare' : 'common' });
       return res.json({ ok: true, trade, executed: true, summary: result.summary });
     } finally {
       releaseTradeLock(trade.initiator);
