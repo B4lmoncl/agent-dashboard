@@ -126,14 +126,14 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               setClaiming(false);
             }}
             disabled={claiming}
-            className="w-full mt-2 py-2 rounded-lg text-sm font-bold"
-            style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)", cursor: claiming ? "not-allowed" : "pointer" }}
+            className={`w-full mt-2 py-2 rounded-lg text-sm font-bold${!claiming ? " claimable-breathe" : ""}`}
+            style={{ background: claiming ? "rgba(251,191,36,0.08)" : "rgba(251,191,36,0.15)", color: claiming ? "rgba(251,191,36,0.5)" : "#fbbf24", border: `1px solid ${claiming ? "rgba(251,191,36,0.15)" : "rgba(251,191,36,0.35)"}`, cursor: claiming ? "not-allowed" : "pointer" }}
           >
             {claiming ? "Claiming..." : "Claim Daily Bonus"}
           </button>
         ) : (
-          <p className="text-xs mt-2 text-center py-1.5 rounded-lg" style={{ color: "rgba(34,197,94,0.6)", background: "rgba(34,197,94,0.05)" }}>
-            {alreadyClaimedToday ? "Today's bonus claimed" : "Log in to claim your daily bonus"}
+          <p className={`text-xs mt-2 text-center py-1.5 rounded-lg${alreadyClaimedToday ? " tab-content-enter" : ""}`} style={{ color: alreadyClaimedToday ? "rgba(34,197,94,0.6)" : "rgba(255,255,255,0.25)", background: alreadyClaimedToday ? "rgba(34,197,94,0.05)" : "transparent" }}>
+            {alreadyClaimedToday ? "✓ Today's bonus claimed" : "Log in to claim your daily bonus"}
           </p>
         )}
 
