@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SFX } from "@/lib/sounds";
+import CountUp from "@/components/CountUp";
 import ItemTooltip from "@/components/ItemTooltip";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -398,7 +399,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 background: "rgba(167,139,250,0.1)",
                 border: "1px solid rgba(167,139,250,0.25)",
               }}>
-                <span className="text-sm font-semibold" style={{ color: "#a78bfa" }}>+{data.xpEarned} XP</span>
+                <span className="text-sm font-semibold" style={{ color: "#a78bfa" }}>+<CountUp value={data.xpEarned} duration={600} /> XP</span>
               </div>
             )}
             {data.goldEarned > 0 && (
@@ -406,7 +407,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 background: "rgba(251,191,36,0.1)",
                 border: "1px solid rgba(251,191,36,0.25)",
               }}>
-                <span className="text-sm font-semibold" style={{ color: "#fbbf24" }}>+{data.goldEarned} Gold</span>
+                <span className="text-sm font-semibold" style={{ color: "#fbbf24" }}>+<CountUp value={data.goldEarned} duration={600} /> Gold</span>
               </div>
             )}
             {data.bondXp && data.bondXp > 0 && (
@@ -454,7 +455,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                   background: `rgba(${hexToRgb(c.color)},0.1)`,
                   border: `1px solid rgba(${hexToRgb(c.color)},0.25)`,
                 }}>
-                  <span className="text-sm font-semibold" style={{ color: c.color }}>+{c.amount} {c.name}</span>
+                  <span className="text-sm font-semibold" style={{ color: c.color }}>+<CountUp value={c.amount} duration={500} /> {c.name}</span>
                   {spendView && (
                     <button
                       onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate!(spendView); onClose(); }}
