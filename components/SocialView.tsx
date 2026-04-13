@@ -1944,6 +1944,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               key={f.id}
               disabled={actionLoading || !!cooldownUntil}
               onClick={() => propose(f.id)}
+              title={cooldownUntil ? "Bond cooldown active" : actionLoading ? "Action in progress" : `Propose bond to ${f.name}`}
               className="rounded-lg p-3 text-left transition-all hover:brightness-125"
               style={{
                 background: "rgba(245,158,11,0.04)",
