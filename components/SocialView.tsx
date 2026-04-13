@@ -1984,6 +1984,21 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               : `${bond.partner.name} wants to forge a Sworn Bond with you.`
             }
           </p>
+          {bond.isInitiator && (
+            <button disabled={actionLoading} onClick={async () => {
+              if (actionLoading) return;
+              setActionLoading(true);
+              try {
+                const r = await fetch(`/api/social/sworn-bond/${bond.id}/cancel`, { method: "POST", headers: getAuthHeaders(apiKey) });
+                const d = await r.json();
+                if (r.ok) { setMessage({ text: d.message || "Cancelled", type: "success" }); fetchBond(); }
+                else setMessage({ text: d.error || "Failed", type: "error" });
+              } catch { setMessage({ text: "Network error", type: "error" }); }
+              setActionLoading(false);
+            }} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold mt-3" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
+              {actionLoading ? "..." : "Cancel Proposal"}
+            </button>
+          )}
           {!bond.isInitiator && (
             <div className="flex gap-2 justify-center mt-4">
               <button disabled={actionLoading} onClick={() => respond("accept")} className="btn-interactive text-xs px-4 py-2 rounded-lg font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}>

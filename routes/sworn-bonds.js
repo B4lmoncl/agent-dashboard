@@ -380,6 +380,22 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
   } finally { bondLock.release(uid); }
 });
 
+// POST /api/social/sworn-bond/:bondId/cancel — initiator cancels pending proposal
+router.post('/api/social/sworn-bond/:bondId/cancel', requireAuth, (req, res) => {
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const bond = state.socialData.swornBonds.find(b => b.id === req.params.bondId);
+  if (!bond) return res.status(404).json({ error: 'Bond not found' });
+  if (bond.status !== 'pending') return res.status(400).json({ error: 'Bond is not pending' });
+  if (bond.player1 !== uid) return res.status(403).json({ error: 'Only the initiator can cancel' });
+
+  bond.status = 'broken';
+  bond.brokenAt = now();
+  bond.brokenBy = null; // No cooldown for cancelling own proposal
+  saveSocial();
+
+  res.json({ ok: true, message: 'Bond proposal cancelled' });
+});
+
 // POST /api/social/sworn-bond/:bondId/decline
 router.post('/api/social/sworn-bond/:bondId/decline', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
