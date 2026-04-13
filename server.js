@@ -128,6 +128,7 @@ app.use(require('./routes/enchanting'));
 app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/expedition'));
 app.use(require('./routes/social'));
+app.use(require('./routes/sworn-bonds'));
 app.use(require('./routes/rift'));
 app.use('/api/factions', require('./routes/factions'));
 app.use('/api/battlepass', require('./routes/battlepass'));

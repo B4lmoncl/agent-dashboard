@@ -940,19 +940,8 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
               <p className="text-xs font-bold truncate mb-1" style={{ color: "#f0f0f0" }}>{q.title}</p>
               <p className="text-xs mb-2 leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
               {isActive ? (
-                <div className="flex gap-2">
-                  <div className="flex-1 text-center text-xs py-1.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
-                    Active
-                  </div>
-                  <button
-                    onClick={() => completeDobbieQuest(q.id)}
-                    disabled={isCompleting}
-                    title={isCompleting ? "Action in progress…" : undefined}
-                    className="action-btn text-xs px-3 py-1.5 rounded font-semibold"
-                    style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: isCompleting ? "not-allowed" : "pointer" }}
-                  >
-                    {isCompleting ? "..." : "Done"}
-                  </button>
+                <div className="text-center text-xs py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.08)", color: "rgba(34,197,94,0.6)", border: "1px solid rgba(34,197,94,0.2)" }}>
+                  In Progress — complete on Quest Board
                 </div>
               ) : (
                 <button

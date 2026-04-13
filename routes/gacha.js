@@ -22,13 +22,25 @@ function releasePullLock(playerId) {
 function getPlayerGachaState(playerId) {
   if (!state.gachaState[playerId]) {
     state.gachaState[playerId] = {
-      pityCounter: 0,       // pulls since last legendary
-      epicPityCounter: 0,   // pulls since last epic
+      pityCounter: 0,       // legacy global counter (migration fallback)
+      epicPityCounter: 0,   // legacy global counter
       guaranteed5050: false, // next legendary is guaranteed featured
       history: [],           // last 100 pulls
+      perBanner: {},         // per-banner pity: { [bannerId]: { pity: N, epicPity: N } }
     };
   }
+  // Ensure perBanner exists for old state
+  if (!state.gachaState[playerId].perBanner) state.gachaState[playerId].perBanner = {};
   return state.gachaState[playerId];
+}
+
+// Get pity counters for a specific banner (falls back to global for migration)
+function getBannerPity(gs, bannerId) {
+  if (!gs.perBanner[bannerId]) {
+    // First pull on this banner — migrate from global counter if it has progress
+    gs.perBanner[bannerId] = { pity: 0, epicPity: 0 };
+  }
+  return gs.perBanner[bannerId];
 }
 
 function getEffectiveLegendaryRate(pityCounter) {
@@ -81,6 +93,7 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
   const u = state.users[playerId];
   if (!u) return null;
   const gs = getPlayerGachaState(playerId);
+  const bp = getBannerPity(gs, banner.id);
 
   const pool = banner.type === 'featured' && state.gachaPool.featuredPool?.length > 0
     ? state.gachaPool.featuredPool
@@ -99,14 +112,14 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
   const luckyStreak = getUserTalentEffects(playerId).gacha_lucky_streak;
   let talentPityBoost = 0;
   if (luckyStreak && luckyStreak.pityAcceleration > 0) {
-    const totalPulls = gs.pityCounter;
+    const totalPulls = bp.pity;
     const everyN = luckyStreak.everyNthPull || 5;
     if (totalPulls > 0 && totalPulls % everyN === 0) {
       talentPityBoost = luckyStreak.pityAcceleration;
     }
   }
-  const effectivePity = gs.pityCounter + (gachaMods.pityReduction || 0) + talentPityBoost + pityPassiveBoost;
-  let rarity = rollRarity(effectivePity, gs.epicPityCounter, hasRarityBoost);
+  const effectivePity = bp.pity + (gachaMods.pityReduction || 0) + talentPityBoost + pityPassiveBoost;
+  let rarity = rollRarity(effectivePity, bp.epicPity, hasRarityBoost);
 
   // Talent: weekly_guaranteed_epic_pull — once per week, force epic+ rarity
   const weeklyEpicTalent = getUserTalentEffects(playerId).weekly_guaranteed_epic_pull;
@@ -147,16 +160,16 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
     }
   }
 
-  // Update pity counters
+  // Update pity counters (per-banner)
   if (rarity === 'legendary') {
-    gs.pityCounter = 0;
-    gs.epicPityCounter = 0;
+    bp.pity = 0;
+    bp.epicPity = 0;
   } else if (rarity === 'epic') {
-    gs.pityCounter++;
-    gs.epicPityCounter = 0;
+    bp.pity++;
+    bp.epicPity = 0;
   } else {
-    gs.pityCounter++;
-    gs.epicPityCounter++;
+    bp.pity++;
+    bp.epicPity++;
   }
 
   // Check for duplicate
@@ -222,8 +235,8 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
     isNew: !isDuplicate,
     isDuplicate,
     duplicateRefund,
-    pityCounter: gs.pityCounter,
-    epicPityCounter: gs.epicPityCounter,
+    pityCounter: bp.pity,
+    epicPityCounter: bp.epicPity,
     isWeeklyEpic: usedWeeklyEpic || false,
   };
 }
@@ -253,18 +266,27 @@ router.get('/api/gacha/pool', (req, res) => {
   res.json({ pool: grouped, totalItems: pool.length });
 });
 
-// GET /api/gacha/pity/:playerId — pity info
+// GET /api/gacha/pity/:playerId — pity info (per-banner)
 router.get('/api/gacha/pity/:playerId', (req, res) => {
   const uid = req.params.playerId.toLowerCase();
   if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
   const gs = getPlayerGachaState(uid);
+  // Return per-banner pity data + a default summary for backwards compat
+  const bannerPity = {};
+  for (const [bid, bp] of Object.entries(gs.perBanner || {})) {
+    bannerPity[bid] = { pityCounter: bp.pity || 0, epicPityCounter: bp.epicPity || 0 };
+  }
+  // Find highest pity across banners for backwards compat display
+  const maxPity = Object.values(gs.perBanner || {}).reduce((max, bp) => Math.max(max, bp.pity || 0), 0);
+  const maxEpicPity = Object.values(gs.perBanner || {}).reduce((max, bp) => Math.max(max, bp.epicPity || 0), 0);
   res.json({
-    pityCounter: gs.pityCounter,
-    epicPityCounter: gs.epicPityCounter,
+    pityCounter: maxPity,
+    epicPityCounter: maxEpicPity,
     guaranteed5050: gs.guaranteed5050,
     hardPity: 75,
     softPityStart: 55,
     epicPity: 10,
+    perBanner: bannerPity,
   });
 });
 
@@ -441,14 +463,15 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
 
       // Reset epic pity on the actual player state (the guarantee counts as an epic pull)
       const gs = getPlayerGachaState(uid);
-      gs.epicPityCounter = 0;
+      const bp10 = getBannerPity(gs, bannerId);
+      bp10.epicPity = 0;
 
       results[idx] = {
         item: epicItem,
         isNew: !isDup,
         isDuplicate: isDup,
         duplicateRefund: isDup ? (DUPLICATE_REFUND['epic'] || 20) : 0,
-        pityCounter: gs.pityCounter,
+        pityCounter: bp10.pity,
         epicPityCounter: 0,
       };
     }

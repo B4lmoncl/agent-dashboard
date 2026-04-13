@@ -1006,21 +1006,66 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       </div>
 
       {/* ─── NPC Grid (categorized) — materials shown per NPC card ────── */}
-      {[
-        { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"] },
-        { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
-        { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"] },
-      ].map(cat => {
-        const catProfs = professions.filter(p => cat.ids.includes(p.id) && (!showOnlyChosen || p.chosen));
-        if (catProfs.length === 0) return null;
-        return (
-          <div key={cat.label} className="mb-4">
-            <div className="flex items-center gap-3 mb-3 px-1">
-              <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, transparent, rgba(96,165,250,0.3), rgba(96,165,250,0.1))" : "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
-              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{cat.label}</span>
-              <span className="text-xs" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{cat.desc}</span>
-              <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, rgba(96,165,250,0.1), rgba(96,165,250,0.3), transparent)" : "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
-            </div>
+      {(() => {
+        // ── Profession Duo Combos ──
+        // When "My Profs" is active and player has exactly 2 primary profs,
+        // show a unique combo name instead of category headers.
+        const PROFESSION_DUOS: Record<string, { name: string; flavor: string }> = {
+          "schmied+schneider": { name: "Stoff & Stahl", flavor: "Die eine hämmert Platten, die andere webt Seide. Zusammen kleiden sie Armeen ein." },
+          "schmied+lederverarbeiter": { name: "Eisen & Haut", flavor: "Metall trifft auf Leder. Schwere Rüstung oben, geschmeidiger Schutz unten." },
+          "schmied+waffenschmied": { name: "Die Zwillingsessen", flavor: "Zwei Ambosse, ein Rhythmus. Was der eine formt, macht der andere tödlich." },
+          "schmied+juwelier": { name: "Funke & Schliff", flavor: "Roher Stahl und geschliffene Edelsteine. Brutalität veredelt durch Präzision." },
+          "schmied+alchemist": { name: "Feuer & Essenz", flavor: "Der Schmied härtet, die Alchemistin löst auf. Zwischen ihnen entsteht mehr als die Summe." },
+          "schneider+lederverarbeiter": { name: "Nadel & Ahle", flavor: "Stoff und Leder, verwoben zu etwas das kein Material allein sein könnte." },
+          "schneider+waffenschmied": { name: "Seide & Klinge", flavor: "Sie näht den Mantel, er schmiedet die Waffe darunter. Mode mit Konsequenzen." },
+          "schneider+juwelier": { name: "Faden & Facette", flavor: "Edelsteine auf Seide gestickt. Blendend schön und ruinös teuer." },
+          "schneider+alchemist": { name: "Gewand & Gebräu", flavor: "Verzauberte Stoffe getränkt in Elixieren. Ihre Kreationen atmen." },
+          "lederverarbeiter+waffenschmied": { name: "Griff & Garde", flavor: "Jede Waffe braucht einen Griff, jeder Krieger einen Schutz. Sie liefern beides." },
+          "lederverarbeiter+juwelier": { name: "Wild & Glanz", flavor: "Rohes Leder besetzt mit geschliffenen Steinen. Natur domestiziert durch Handwerk." },
+          "lederverarbeiter+alchemist": { name: "Gerbung & Tinktur", flavor: "Gehärtetes Leder, durchtränkt mit alchemistischen Ölen. Zäh wie die Wahrheit." },
+          "waffenschmied+juwelier": { name: "Stahl & Stein", flavor: "Klingen mit eingelassenen Edelsteinen. Jeder Schlag funkelt — buchstäblich." },
+          "waffenschmied+alchemist": { name: "Schärfe & Schatten", flavor: "Vergiftete Klingen. Effizient, unelegant, und beunruhigend effektiv." },
+          "juwelier+alchemist": { name: "Kristall & Kessel", flavor: "Edelsteine aufgelöst, destilliert, neu gebunden. Transmutation in Reinform." },
+        };
+
+        const chosenPrimary = showOnlyChosen ? professions.filter(p => p.chosen && !["koch","verzauberer"].includes(p.id)) : [];
+        const duoKey = chosenPrimary.length === 2
+          ? [chosenPrimary[0].id, chosenPrimary[1].id].sort().join("+")
+          : null;
+        const duo = duoKey ? PROFESSION_DUOS[duoKey] : null;
+
+        // Build the category list — in duo mode, merge primaries into one group with combo header
+        const categories = (showOnlyChosen && duo && chosenPrimary.length === 2)
+          ? [
+              { label: duo.name, desc: duo.flavor, ids: chosenPrimary.map(p => p.id), isDuo: true },
+              { label: "Secondary", desc: "", ids: ["koch","verzauberer"], isDuo: false },
+            ]
+          : [
+              { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"], isDuo: false },
+              { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"], isDuo: false },
+              { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"], isDuo: false },
+            ];
+
+        return categories.map(cat => {
+          const catProfs = professions.filter(p => cat.ids.includes(p.id) && (!showOnlyChosen || p.chosen));
+          if (catProfs.length === 0) return null;
+          return (
+            <div key={cat.label} className="mb-4">
+              <div className="flex items-center gap-3 mb-3 px-1">
+                <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, transparent, rgba(96,165,250,0.3), rgba(96,165,250,0.1))" : "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,255,255,0.06))" }} />
+                {cat.isDuo ? (
+                  <div className="text-center">
+                    <span className="text-sm font-bold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.45)" }}>{cat.label}</span>
+                    <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>{cat.desc}</p>
+                  </div>
+                ) : (
+                  <>
+                    <span className="text-sm font-bold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+                    {cat.desc && <span className="text-xs" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{cat.desc}</span>}
+                  </>
+                )}
+                <div style={{ flex: 1, height: 1, background: moonlightActive ? "linear-gradient(90deg, rgba(96,165,250,0.1), rgba(96,165,250,0.3), transparent)" : "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), transparent)" }} />
+              </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {catProfs.map(prof => {
         const locked = !prof.unlocked;
@@ -1202,7 +1247,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             </div>
           </div>
         );
-      })}
+      });
+      })()}
 
       {/* ─── Material Detail Popover ──────────────────────────────────────── */}
       {selectedMaterial && (() => {

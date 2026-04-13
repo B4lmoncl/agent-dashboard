@@ -401,6 +401,8 @@ export default function TodayDrawer({
   dungeonActive,
   onClaimMilestone,
   playerLevel,
+  factionUnclaimed,
+  seasonUnclaimed,
 }: {
   open: boolean;
   onClose: () => void;
@@ -416,10 +418,12 @@ export default function TodayDrawer({
   worldBossActive: boolean;
   riftActive: boolean;
   vowCount: number;
-  socialBadge: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null;
+  socialBadge: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number; pendingBonds?: number; swornBondSummary?: { bondId: string; partnerName: string; streak: number; bondLevel: number; objectiveCompleted: boolean; chestReady: boolean } | null } | null;
   expeditionActive: boolean;
   dungeonActive: boolean;
   onClaimMilestone?: (threshold: number) => void;
+  factionUnclaimed?: number;
+  seasonUnclaimed?: number;
 }) {
   const { loggedInUser } = useDashboard();
 
@@ -598,6 +602,36 @@ export default function TodayDrawer({
       });
     }
 
+    // Faction unclaimed tier rewards
+    if ((factionUnclaimed ?? 0) > 0) {
+      urgent.push({
+        id: "faction-unclaimed",
+        icon: "/images/icons/ui-ritual-rune.png",
+        label: "Faction Rewards",
+        done: false,
+        urgent: true,
+        sub: `${factionUnclaimed} tier reward${factionUnclaimed !== 1 ? "s" : ""} ready`,
+        reward: "Titles, Recipes, Effects",
+        tooltipKey: "factions",
+        onClick: () => { onNavigate("factions"); onClose(); },
+      });
+    }
+
+    // Season Pass unclaimed level rewards
+    if ((seasonUnclaimed ?? 0) > 0) {
+      urgent.push({
+        id: "season-unclaimed",
+        icon: "/images/icons/currency-stardust.png",
+        label: "Season Pass",
+        done: false,
+        urgent: true,
+        sub: `${seasonUnclaimed} level${seasonUnclaimed !== 1 ? "s" : ""} to claim`,
+        reward: "Gold, Essenz, Titles",
+        tooltipKey: "battle_pass",
+        onClick: () => { onNavigate("battlepass"); onClose(); },
+      });
+    }
+
     // ── ACTIVE CONTENT ──
 
     // In-progress quests
@@ -734,6 +768,19 @@ export default function TodayDrawer({
           done: false,
           sub: `${socialBadge.unreadMessages} new`,
           tooltipKey: "breakaway",
+          onClick: () => { onNavigate("social"); onClose(); },
+        });
+      }
+      if (socialBadge.swornBondSummary?.chestReady) {
+        urgent.push({
+          id: "sworn-bond-chest",
+          icon: "/images/icons/currency-gildentaler.png",
+          label: "Bond Chest",
+          done: false,
+          urgent: true,
+          sub: `Ready to open with ${socialBadge.swornBondSummary.partnerName}`,
+          reward: "Gold, Essenz, Duo Frame",
+          tooltipKey: "sworn_bonds",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }

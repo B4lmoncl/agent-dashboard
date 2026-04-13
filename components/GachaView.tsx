@@ -388,9 +388,12 @@ function BannerPullModal({
     );
   };
 
-  // Pity info panel (click-toggle)
-  const inSoftPity = pity ? pity.pityCounter >= (pity.softPityStart || getBalance().gacha.softPity) : false;
-  const pullsTilLegendary = pity ? ((pity.hardPity || getBalance().gacha.hardPity) - pity.pityCounter) : getBalance().gacha.hardPity;
+  // Per-banner pity (falls back to global for backwards compat)
+  const bannerPityData = pity?.perBanner?.[banner.id];
+  const activePityCounter = bannerPityData?.pityCounter ?? pity?.pityCounter ?? 0;
+  const activeEpicPity = bannerPityData?.epicPityCounter ?? pity?.epicPityCounter ?? 0;
+  const inSoftPity = activePityCounter >= (pity?.softPityStart || getBalance().gacha.softPity);
+  const pullsTilLegendary = (pity?.hardPity || getBalance().gacha.hardPity) - activePityCounter;
 
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={55}>
@@ -522,9 +525,9 @@ function BannerPullModal({
             </div>
             <TipCustom title="Pity System" icon="◆" accent="#fbbf24" body={<>
               {pity ? (<>
-                <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>{pity.pityCounter}/{pity.hardPity || getBalance().gacha.hardPity}</span></div>
-                <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{pity.epicPityCounter}/{getBalance().gacha.epicPity}</span></div>
-                <p>{(pity.hardPity || getBalance().gacha.hardPity) - pity.pityCounter} pulls until guaranteed Legendary{pity.pityCounter >= (pity.softPityStart || getBalance().gacha.softPity) ? <span style={{ color: "#f97316" }}> — Soft Pity active</span> : null}{pity.guaranteed5050 ? <span style={{ color: "#22c55e" }}> — Next is Featured</span> : null}</p>
+                <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>{activePityCounter}/{pity.hardPity || getBalance().gacha.hardPity}</span></div>
+                <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>{activeEpicPity}/{getBalance().gacha.epicPity}</span></div>
+                <p>{pullsTilLegendary} pulls until guaranteed Legendary{inSoftPity ? <span style={{ color: "#f97316" }}> — Soft Pity active</span> : null}{pity.guaranteed5050 ? <span style={{ color: "#22c55e" }}> — Next is Featured</span> : null}</p>
               </>) : <p>Pull to start tracking pity</p>}
               <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary rate</span><span>{(getBalance().gacha.legendaryRate * 100).toFixed(1)}%</span></div>
               <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>{(getBalance().gacha.epicRate * 100).toFixed(0)}%</span></div>
@@ -556,12 +559,12 @@ function BannerPullModal({
                   {inSoftPity ? "Soft Pity Active" : "Pity Progress"}
                 </span>
                 <span className="font-mono font-bold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.65)" }}>
-                  {pity.pityCounter}/{pity.hardPity || getBalance().gacha.hardPity}
+                  {activePityCounter}/{pity.hardPity || getBalance().gacha.hardPity}
                 </span>
               </div>
               <div className="progress-bar-diablo" style={{ height: 5 }}>
                 <div className={`progress-bar-diablo-fill${inSoftPity ? " progress-shimmer" : ""}`} style={{
-                  width: `${Math.min(100, (pity.pityCounter / (pity.hardPity || getBalance().gacha.hardPity)) * 100)}%`,
+                  width: `${Math.min(100, (activePityCounter / (pity.hardPity || getBalance().gacha.hardPity)) * 100)}%`,
                   background: inSoftPity ? "linear-gradient(90deg, #f97316, #ef4444)" : "linear-gradient(90deg, rgba(167,139,250,0.4), rgba(167,139,250,0.7))",
                 }} />
               </div>
@@ -840,32 +843,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         ))}
       </div>
 
-      {/* Pity progress — visible at a glance without opening a banner */}
-      {pity && (pity.pityCounter > 0 || pity.epicPityCounter > 0) && (
-        <div className="rounded-xl px-4 py-3" style={{ background: "rgba(167,139,250,0.04)", border: "1px solid rgba(167,139,250,0.12)" }}>
-          <div className="flex items-center justify-between mb-2">
-            <Tip k="pity"><span className="text-xs font-bold uppercase tracking-widest cursor-help" style={{ color: "rgba(167,139,250,0.5)" }}>Pity Progress</span></Tip>
-            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{pity.pityCounter} / 75</span>
-          </div>
-          <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
-            <div
-              className="h-full rounded-full transition-all duration-700"
-              style={{
-                width: `${Math.min(100, (pity.pityCounter / 75) * 100)}%`,
-                background: pity.pityCounter >= 55
-                  ? "linear-gradient(90deg, #f97316, #ef4444)"
-                  : pity.pityCounter >= 40
-                  ? "linear-gradient(90deg, #a855f7, #f97316)"
-                  : "linear-gradient(90deg, #818cf8, #a855f7)",
-                boxShadow: pity.pityCounter >= 55 ? "0 0 8px rgba(249,115,22,0.4)" : "none",
-              }}
-            />
-          </div>
-          {pity.pityCounter >= 55 && (
-            <p className="text-xs mt-1" style={{ color: "rgba(249,115,22,0.6)" }}>Soft pity active — legendary chance increased</p>
-          )}
-        </div>
-      )}
+      {/* Pity progress is shown per-banner inside the banner modal (not duplicated here) */}
 
       {error && (
         <p className="text-xs px-3 py-2 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)" }}>

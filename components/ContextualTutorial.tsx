@@ -217,15 +217,15 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
 
   if (!moment) return null;
 
-  const accent = moment.accent || "#c4b5fd";
+  const accent = moment.accent || "#e9a84c";
 
   return (
     <div
       className="rounded-xl px-4 py-3 mb-3 flex items-start gap-3 tab-content-enter"
       style={{
-        background: `linear-gradient(135deg, ${accent}08, ${accent}03)`,
-        border: `1px solid ${accent}25`,
-        boxShadow: `0 0 20px ${accent}08`,
+        background: "linear-gradient(135deg, rgba(233,168,76,0.08), rgba(233,168,76,0.03))",
+        border: "1px solid rgba(233,168,76,0.25)",
+        boxShadow: "0 0 24px rgba(233,168,76,0.06), inset 0 1px 0 rgba(233,168,76,0.08)",
       }}
     >
       {/* Lyra portrait */}
@@ -235,17 +235,17 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
         width={40}
         height={40}
         className="rounded-lg flex-shrink-0 mt-0.5"
-        style={{ imageRendering: "auto", border: `1px solid ${accent}30` }}
+        style={{ imageRendering: "auto", border: "1px solid rgba(233,168,76,0.3)" }}
         onError={e => { e.currentTarget.style.display = "none"; }}
       />
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-bold" style={{ color: accent }}>{moment.title}</p>
-        <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>{moment.text}</p>
+        <p className="text-xs font-bold" style={{ color: "#e9a84c" }}>{moment.title}</p>
+        <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{moment.text}</p>
       </div>
       <button
         onClick={dismiss}
         className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5"
-        style={{ background: `${accent}10`, color: accent, border: `1px solid ${accent}20`, cursor: "pointer" }}
+        style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}
       >
         Verstanden
       </button>
