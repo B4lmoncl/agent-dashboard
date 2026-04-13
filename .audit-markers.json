@@ -11,15 +11,15 @@
     "status": "clean"
   },
   "components/DashboardHeader.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "sound toggle width, silent catch fix",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. sound toggle width, silent catch fix",
     "status": "clean"
   },
   "components/QuestCards.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "hover shadow boost, claimed badge bounce, flavor rewrite",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. hover shadow boost, claimed badge bounce, flavor rewrite",
     "status": "clean"
   },
   "components/QuestDetailModal.tsx": {
@@ -41,9 +41,9 @@
     "status": "clean"
   },
   "components/CompanionsWidget.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "quote rewrite, safeTimeout cleanup verified",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. quote rewrite, safeTimeout cleanup verified",
     "status": "clean"
   },
   "components/ForgeView.tsx": {
@@ -77,9 +77,9 @@
     "status": "clean"
   },
   "components/TavernView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "card alignment mx-auto maxWidth:600",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. card alignment mx-auto maxWidth:600",
     "status": "clean"
   },
   "components/DailyHub.tsx": {
@@ -143,9 +143,9 @@
     "status": "clean"
   },
   "components/HonorsView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "points display exists, categories OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. points display exists, categories OK",
     "status": "clean"
   },
   "components/CodexView.tsx": {
@@ -179,9 +179,9 @@
     "status": "clean"
   },
   "components/UserCard.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "unlock milestones OK, rested XP bar OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. unlock milestones OK, rested XP bar OK",
     "status": "clean"
   },
   "components/TodayDrawer.tsx": {
@@ -239,9 +239,9 @@
     "status": "clean"
   },
   "components/PlayerProfileModal.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "FIXED: ring slot missing, 4 professions missing",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. FIXED: ring slot missing, 4 professions missing",
     "status": "clean"
   },
   "components/ShopModal.tsx": {
@@ -749,9 +749,9 @@
     "status": "clean"
   },
   "components/DashboardModals.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
     "status": "clean"
   },
   "lib/auth-client.ts": {
