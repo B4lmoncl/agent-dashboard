@@ -798,8 +798,6 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
 
       saveSocial();
       saveUsers();
-      logActivity(trade.initiator, 'trade_complete', { with: trade.recipient, summary: result.summary });
-      logActivity(trade.recipient, 'trade_complete', { with: trade.initiator, summary: result.summary });
       // Track for achievements
       if (state.users[trade.initiator]) state.users[trade.initiator]._tradesCompleted = (state.users[trade.initiator]._tradesCompleted || 0) + 1;
       if (state.users[trade.recipient]) state.users[trade.recipient]._tradesCompleted = (state.users[trade.recipient]._tradesCompleted || 0) + 1;
