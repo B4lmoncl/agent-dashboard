@@ -2041,10 +2041,16 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>Level {bond.partner.level}</p>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#f59e0b" }}>Bond Lv {bond.bondLevel}</p>
-            <p className="text-xs" style={{ color: "rgba(245,158,11,0.5)" }}>{bond.bondLevelTitle}</p>
-          </div>
+          <TipCustom title="Bond Level" icon="◆" accent="#f59e0b" body={<>
+            <p>Your Sworn Bond level (1-10). Higher level = better chest rewards. Each completed week earns Bond XP.</p>
+            <div className="gt-stat-row"><span>Current</span><span>Lv {bond.bondLevel} — {bond.bondLevelTitle}</span></div>
+            <div className="gt-stat-row"><span>XP</span><span>{bond.bondXp}/{bond.bondXpToNext}</span></div>
+          </>}>
+            <div className="text-right cursor-help">
+              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#f59e0b" }}>Bond Lv {bond.bondLevel}</p>
+              <p className="text-xs" style={{ color: "rgba(245,158,11,0.5)" }}>{bond.bondLevelTitle}</p>
+            </div>
+          </TipCustom>
         </div>
 
         {/* Streak + Bond XP */}
