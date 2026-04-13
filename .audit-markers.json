@@ -359,9 +359,9 @@
     "status": "clean"
   },
   "routes/schmiedekunst.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "gold sync OK on both paths",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. schmiedeLock on all 5 POSTs. Gold sync on transmute+reforge+reforge-stats. Locked/equipped item checks on dismantle+dismantle-all+transmute. Inventory cap on transmute result. Affix reroll with moonlight bonus.",
     "status": "clean"
   },
   "routes/social.js": {
@@ -419,15 +419,15 @@
     "status": "clean"
   },
   "routes/mail.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, self-check, capacity limit",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. mailSendLock+mailCollectLock. Gold sync on send (deduct) + collect (award). Item locked check on send. Inventory cap on collect. collect-all batch with gold sync after loop.",
     "status": "clean"
   },
   "routes/kanais-cube.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, locked-item check, escalating cost",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. cubeExtractLock+cubeEquipLock. Locked item check. Gold sync. Escalating cost by extraction count. Max 3 equipped passives. Unique+BoP check.",
     "status": "clean"
   },
   "routes/talent-tree.js": {
