@@ -1388,7 +1388,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             descriptionNode = <>found <TipCustom title={d.item || "Item"} icon="◇" accent={rarityColor} body={<p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "rare"} drop</p>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
             break;
           case "trade_complete":
-            descriptionNode = <>completed a trade{d.summary && <> — <span className="text-w30">{d.summary}</span></>}</>;
+            descriptionNode = <>completed a trade with <span className="text-w50">{d.partner || "someone"}</span></>;
             break;
           case "streak_milestone":
             descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak{d.label ? <> — <span className="text-w30">{d.label}</span></> : ""}</>;
