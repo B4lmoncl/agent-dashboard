@@ -47,9 +47,9 @@
     "status": "clean"
   },
   "components/ForgeView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "font 11→12, batch interval cleanup, buy cursor fix",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 4: Clean. 5 useModalBehavior calls. Extensive cursor:not-allowed states. Profession slot limit UI. Skill-up color coding. Batch crafting. Auto-salvage modal. Cube modal. Enchanting slot recipes.",
     "status": "clean"
   },
   "components/RitualChamber.tsx": {
@@ -101,9 +101,9 @@
     "status": "clean"
   },
   "components/ShopView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "deficit tooltips OK, owned state OK, loading guards OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. RewardCelebration on purchase. Disabled states with cursor:not-allowed. Gold+currency buy flows. Deficit tooltips. Owned state tracking.",
     "status": "clean"
   },
   "components/FactionsView.tsx": {
