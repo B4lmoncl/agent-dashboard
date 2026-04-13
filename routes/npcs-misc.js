@@ -131,7 +131,7 @@ router.get('/api/app-state', (req, res) => {
 // ─── Feedback endpoints ────────────────────────────────────────────────────────
 // POST /api/feedback — store a feedback entry (capped at 500 entries)
 router.post('/api/feedback', (req, res) => {
-  const { elementPath, type, text, userId, timestamp } = req.body || {};
+  const { elementPath, type, text, userId: clientUserId, timestamp } = req.body || {};
   if (!text || typeof text !== 'string') {
     return res.status(400).json({ error: 'text is required' });
   }
@@ -141,13 +141,17 @@ router.post('/api/feedback', (req, res) => {
   if (state.feedbackEntries.length >= 500) {
     return res.status(429).json({ error: 'Feedback limit reached' });
   }
+  // Try to resolve userId from auth if available, fall back to client-supplied name
+  const { resolveAuth } = require('../lib/auth');
+  const auth = resolveAuth(req);
+  const resolvedUser = auth?.userId || auth?.userName || clientUserId || 'anonymous';
   const entry = {
     id: `fb-${Date.now()}`,
     elementPath: elementPath || 'unknown',
     type: type === 'bug' ? 'bug' : 'feedback',
     text: text.trim().slice(0, 2000).replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-    userId: 'anonymous', // Always anonymous on unauthed endpoint — don't trust caller-supplied userId
-    timestamp: new Date().toISOString(), // Server-set only — don't trust client timestamp
+    userId: String(resolvedUser).toLowerCase(),
+    timestamp: new Date().toISOString(),
     resolved: false,
   };
   state.feedbackEntries.push(entry);

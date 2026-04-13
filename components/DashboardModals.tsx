@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { getBalance } from "@/lib/balance-cache";
+import CountUp from "@/components/CountUp";
 import type { User } from "@/app/types";
 import { ModalPortal } from "@/components/ModalPortal";
 import { Tip } from "@/components/GameTooltip";
@@ -183,7 +184,7 @@ export default function DashboardModals({
                           <p className="text-xs text-w30">{c.desc}</p>
                         </div>
                         <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.key !== "gold" ? "rgba(255,255,255,0.2)" : c.color }}>
-                          {c.value === 0 && c.key !== "gold" ? "—" : c.value.toLocaleString()}
+                          {c.value === 0 && c.key !== "gold" ? "—" : <CountUp value={Number(c.value) || 0} duration={600} />}
                         </span>
                       </div>
                       {currencyExpanded === c.key && (

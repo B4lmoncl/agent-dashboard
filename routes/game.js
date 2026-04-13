@@ -15,6 +15,205 @@ const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
 // ─── Classes API ────────────────────────────────────────────────────────────
 
+// ─── CLASS SYSTEM — "PFAD DER MEISTERSCHAFT" — DESIGN NOTES ─────────────────
+//
+// STATUS: Infrastructure exists. Gameplay impact = ZERO. This is the design plan.
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+// ORIGIN STORY
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// The class system was born from a personal need: the creator works as an IT
+// Systemintegrator / network specialist and wanted QuestHall to help him skill
+// up in Fortinet firewalls, proxies, security, etc. The idea: turn real career
+// development into a gamified quest chain. "Configure a firewall rule" becomes
+// a quest. "Pass Fortinet NSE4" becomes a tier milestone.
+//
+// This means classes are NOT fantasy archetypes (warrior/mage/rogue). They are
+// REAL-WORLD CAREER PATHS wrapped in fantasy naming. "Network Sage" = IT/Netzwerk.
+// "Switch Architect" = Switching/WLAN. Each class is a personalized learning path.
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+// WHAT EXISTS NOW (infrastructure, no gameplay)
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// - Data model: public/data/classes.json (1 active class: "Network Sage")
+//   Fields: id, name, icon, fantasy, description, realWorld, tiers[], skillTree[],
+//   achievements[], status (pending|active), createdBy, playerCount
+// - Registration: OnboardingWizard step 2 = class picker + custom class submission
+// - Pending → Active: POST /api/classes creates pending, PATCH activates
+// - Notification: class_activated modal when pending class goes active
+// - Quest gating: quest.classRequired field makes quests invisible to non-matching players
+// - Profile: user.classId, user.classPending, user.classPendingNotified
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+// DESIGN: HOW IT SHOULD WORK
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// ── 1. CLASS TIER SYSTEM (SEPARATE from player level!) ──────────────────────
+//
+// The global player level (1-50) comes from XP earned by ALL quests. The class
+// tier is a SEPARATE progression that advances ONLY by completing class-specific
+// quests. You can be Player Level 30 but Class Tier 2 if you mostly did
+// fitness quests and ignored your specialization.
+//
+// Storage: user._classTierProgress = { classId, questsCompleted: N, currentTier: N }
+// Tier thresholds are defined per class in tiers[] (already in data model).
+// BUT: thresholds should be based on class quest count, not global XP.
+//   Example: Tier 1 = 0 quests, Tier 2 = 10, Tier 3 = 25, Tier 4 = 50, etc.
+//
+// Tier-up rewards:
+//   - Title (already in tiers[].title, e.g., "Cable Apprentice" → "Switch Acolyte")
+//   - Cosmetic frame (one per tier, class-themed)
+//   - Maybe 1 cosmetic class emblem displayed on player card
+//   - NO stat items. The gear system is complex enough. Keep it clean.
+//
+// Display: "Class Tier" badge on player card, distinct from player level badge.
+//
+// ── 2. CLASS QUESTS (the main content — THE reason for the class system) ────
+//
+// Each class has ~30-50 specific quests. These are REAL learning tasks, not
+// generic RPG flavor. The class makes QuestHall a personalized career tool.
+//
+// Network Sage examples:
+//   - "Konfiguriere eine Fortinet Firewall Policy" (rarity: uncommon)
+//   - "Lerne die Grundlagen von Subnetting und CIDR" (rarity: common)
+//   - "Mache das Fortinet NSE4 Zertifikat" (rarity: legendary)
+//   - "Richte ein VLAN auf einem managed Switch ein" (rarity: rare)
+//   - "Deploy einen IPsec VPN Tunnel" (rarity: epic)
+//   - "Setze ein Monitoring mit SNMP auf" (rarity: uncommon)
+//   - "Konfiguriere einen Reverse Proxy" (rarity: rare)
+//   - "Dokumentiere ein Netzwerk-Topologie-Diagramm" (rarity: common)
+//
+// Class quests appear in the normal quest pool but ONLY for players of that
+// class (via classRequired field, already supported in the quest system).
+//
+// ── 3. CLASS PASSIVE BONUS (one per class, small, not game-breaking) ────────
+//
+// Each class has ONE passive multiplier applied in the XP pipeline.
+//   Example: Network Sage → "+15% XP for Learning quests"
+//   A designer class → "+15% XP for Creative quests"
+//
+// Applied in helpers.js onQuestCompletedByUser, in the XP multiplier stack.
+// Small enough to not break balancing. Just a nudge toward the "right" type.
+//
+// ── 4. PER-QUEST FEEDBACK SYSTEM (critical — classes are personalized) ──────
+//
+// Because every class is individually tailored, every player MUST be able to
+// give feedback on their class content. Without this, classes become stale.
+//
+// Per-quest feedback (on every class quest):
+//   - "Relevant" (thumbs up — want more like this)
+//   - "Not relevant" (thumbs down — not useful for my career path)
+//   - "I need..." (freetext — specific requests)
+//   Storage: user._classQuestFeedback = { [questId]: { rating, text, at } }
+//
+// General class feedback (on the class overview page):
+//   - Freetext panel where the player can write things like:
+//     "Ich soll jetzt ein Cisco Zertifikat machen"
+//     "Mein Fokus hat sich von Netzwerk auf Security verschoben"
+//     "Ich brauche mehr zu Proxy/Reverse Proxy Themen"
+//   Storage: user._classFeedback = [{ text, at }]
+//
+// THIS FEEDBACK IS THE INPUT FOR CLASS UPDATES. When an admin or Claude Code
+// session says "update the Network Sage class", they read this feedback first
+// and adjust quests accordingly. This is what makes the system alive.
+//
+// ── 5. CUSTOM CLASS PIPELINE (the "class forge") ────────────────────────────
+//
+// How a new class is born:
+//   1. Player registers and enters "I'm an IT admin focusing on switches and WLAN"
+//   2. POST /api/classes creates a pending class with the raw description
+//   3. UI shows "Your class is being forged by the master craftsmen of Aethermoor"
+//      (Skulduggery tone, mysterious, builds anticipation)
+//   4. Admin or Claude Code session reads the pending submission and builds:
+//      a) Fantasy name (e.g., "Wireless Warden", "Switch Architect")
+//      b) Lore description (Skulduggery/Kingkiller tone)
+//      c) 6-10 tier titles (career milestones as fantasy ranks)
+//      d) 30-50 class-specific quest templates (REAL learning tasks)
+//      e) One passive bonus (small XP multiplier for matching quest type)
+//      f) Class icon (via Pixellab API, 128×128, fantasy RPG style)
+//   5. Admin PATCH /api/classes/:id → status: 'active'
+//   6. Player gets the class_activated notification modal
+//
+// ── 6. NICHE HANDLING (two people in similar but different fields) ───────────
+//
+// Classes are GRANULAR, not broad. "Network Sage" and "Switch Architect" and
+// "Wireless Warden" are THREE SEPARATE classes. NOT branches of one class.
+//
+// If a friend joins and enters "I do switches and WLAN", they get their OWN
+// class built from scratch. Maybe 5-10 quests overlap with Network Sage
+// (fundamentals both need), but the rest is tailored to their focus.
+//
+// This means the class system scales by creating MORE classes, not by adding
+// branches to existing ones. Each player gets exactly the quests they need.
+//
+// The "fundamentals" overlap is handled by quests with classRequired: null —
+// visible to all players regardless of class. Only the specialized quests are
+// class-gated.
+//
+// ── 7. GEAR: MINIMAL ────────────────────────────────────────────────────────
+//
+// No new stat items. The gear/affix/gem/socket system is already complex.
+// Classes add QUESTS and PROGRESSION, not gear.
+// Maybe 1 cosmetic class emblem per tier (displayed on player card).
+// Maybe a unique class title at max tier. That's it.
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+// IMPLEMENTATION ORDER (when we get to this)
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// Step 1: Backend — class tier tracking (user._classTierProgress, increment on class quest complete)
+// Step 2: Backend — per-quest feedback endpoints (POST /api/classes/:id/quest-feedback, GET for admin)
+// Step 3: Backend — general class feedback endpoint (POST /api/classes/:id/feedback)
+// Step 4: Backend — class passive bonus in XP multiplier stack (helpers.js)
+// Step 5: Frontend — "Class Path" UI view (tier progress, class quest list, feedback buttons)
+// Step 6: Content — Network Sage quest catalog (~30-40 real IT/networking quests)
+// Step 7: Content — Class creation guide/template for admin/AI agent
+// Step 8: Integration — tier-up rewards (titles, frames) via existing reward pipeline
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+// CONCRETE EXAMPLE: NETWORK SAGE
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// realWorld: "IT / Netzwerk / Systemintegration"
+// fantasy: "Network Sage"
+// passive: "+15% XP for Learning quests"
+//
+// Tiers (based on class quest completions):
+//   T1: Cable Apprentice (0 quests) — "Du hast ein Kabel eingesteckt. Das ist ein Anfang."
+//   T2: Switch Acolyte (10 quests) — "Du weißt jetzt, was ein VLAN ist. Beeindruckend."
+//   T3: Firewall Warden (25 quests) — "Du hast gelernt, Dinge aufzuhalten. Meistens die richtigen."
+//   T4: Network Sentinel (50 quests) — "Du siehst Pakete im Schlaf. Das ist normal. Angeblich."
+//   T5: Infrastructure Archmage (80 quests) — "Du sprichst fließend OSI-Layer 3."
+//   T6: Network Sage (120 quests) — "Du bist das Netzwerk. Das Netzwerk bist du."
+//
+// Example quest catalog:
+//   FUNDAMENTALS (T1-T2):
+//     - "Lerne die 7 OSI-Schichten auswendig" (common)
+//     - "Konfiguriere eine statische IP auf einem Linux Server" (common)
+//     - "Subnetting: Berechne /24, /16, /8 Netze" (uncommon)
+//     - "Richte DHCP auf einem Router ein" (common)
+//     - "Dokumentiere ein Netzwerk-Topologie-Diagramm" (common)
+//   SWITCHING & ROUTING (T2-T3):
+//     - "Konfiguriere ein VLAN auf einem managed Switch" (rare)
+//     - "Setze Inter-VLAN Routing auf" (rare)
+//     - "Lerne die Grundlagen von OSPF" (uncommon)
+//   FIREWALLS & SECURITY (T3-T4):
+//     - "Erstelle eine Fortinet Firewall Policy" (rare)
+//     - "Konfiguriere NAT auf einer FortiGate" (uncommon)
+//     - "Setze einen IPsec VPN Tunnel auf" (epic)
+//     - "Lerne die Basics von IDS/IPS" (uncommon)
+//   CERTIFICATION (T4-T5):
+//     - "Mache das Fortinet NSE4 Zertifikat" (legendary)
+//     - "Bestehe eine CCNA Prüfung" (legendary)
+//   ADVANCED (T5-T6):
+//     - "Setze ein Monitoring mit SNMP + Grafana auf" (epic)
+//     - "Automatisiere Netzwerk-Config mit Ansible" (epic)
+//     - "Konfiguriere einen HA-Cluster" (legendary)
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
 // GET /api/classes — all active classes
 router.get('/api/classes', (req, res) => {
   res.json(state.classesData.classes.filter(c => c.status === 'active'));

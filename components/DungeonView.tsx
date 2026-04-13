@@ -579,7 +579,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               <button
                 onClick={() => joinRun(activeRun.runId)}
                 disabled={actionLoading}
-                className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
+                className={`btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg${!actionLoading ? " claimable-breathe" : ""}`}
                 style={{
                   background: `linear-gradient(135deg, ${activeRun.dungeonAccent}, ${activeRun.dungeonAccent}cc)`,
                   color: "#000",
@@ -599,7 +599,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               <button
                 onClick={() => collectRewards(activeRun.runId)}
                 disabled={actionLoading}
-                className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
+                className={`btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg${!actionLoading ? " claimable-breathe" : ""}`}
                 style={{
                   background: `linear-gradient(135deg, ${activeRun.dungeonAccent}, ${activeRun.dungeonAccent}cc)`,
                   color: "#000",
@@ -817,7 +817,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                 <button
                   onClick={() => canEnter && openCreateModal(d.id)}
                   disabled={!canEnter || actionLoading}
-                  className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
+                  className={`btn-interactive w-full text-xs font-bold py-2 rounded-lg${canEnter ? " claimable-breathe" : ""}`}
                   style={{
                     background: canEnter ? `${d.accent}15` : "rgba(255,255,255,0.03)",
                     color: canEnter ? d.accent : "rgba(255,255,255,0.2)",

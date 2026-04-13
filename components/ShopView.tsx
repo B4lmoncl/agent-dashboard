@@ -195,7 +195,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                   <button
                     onClick={() => { if (canAfford && !goldBuying) { setGoldBuying(item.id); Promise.resolve(onBuy(user.id, item.id)).finally(() => setGoldBuying(null)); } }}
                     disabled={!canAfford || goldBuying === item.id}
-                    className="shop-buy-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                    className={`shop-buy-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0${canAfford && goldBuying !== item.id ? " claimable-breathe" : ""}`}
                     title={canAfford ? `Buy for ${item.cost} gold` : `Insufficient gold (need ${item.cost}, have ${gold})`}
                     style={{
                       background: canAfford && goldBuying !== item.id ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.04)",
@@ -324,7 +324,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                     </div>
                     {isOwned ? (
                       <span
-                        className="text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                        className={`text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0${canAfford && currencyBuying !== item.id ? " claimable-breathe" : ""}`}
                         style={{ background: "rgba(34,197,94,0.08)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)" }}
                         title="Already owned"
                       >
@@ -335,7 +335,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                         onClick={() => canAfford && buyCurrencyItem(item.id, activeCurrencyTab)}
                         disabled={!canAfford || currencyBuying === item.id}
                         title={canAfford ? `Buy for ${item.cost} ${shopConf.label}` : `Need ${item.cost} ${shopConf.label}, have ${bal}`}
-                        className="text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                        className={`text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0${canAfford && currencyBuying !== item.id ? " claimable-breathe" : ""}`}
                         style={{
                           background: canAfford ? `${shopConf.color}20` : "rgba(255,255,255,0.04)",
                           color: canAfford ? shopConf.color : "rgba(255,255,255,0.2)",

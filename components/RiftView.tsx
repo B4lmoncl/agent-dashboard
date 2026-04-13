@@ -577,7 +577,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 <button
                   onClick={() => canEnter && enterRift(id)}
                   disabled={!canEnter || actionLoading}
-                  className="btn-interactive btn-press w-full text-xs font-bold py-2 rounded-lg"
+                  className={`btn-interactive btn-press w-full text-xs font-bold py-2 rounded-lg${canEnter && !actionLoading ? " claimable-breathe" : ""}`}
                   style={{
                     background: canEnter ? `${tier.color}15` : "rgba(255,255,255,0.03)",
                     color: canEnter ? tier.color : "rgba(255,255,255,0.2)",
