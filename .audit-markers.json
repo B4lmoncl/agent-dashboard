@@ -347,9 +347,9 @@
     "status": "clean"
   },
   "routes/gems.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, gold sync OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. All 5 POST endpoints have gemLock, auth, ownership checks, gold+essenz validation, gold sync. Socket/unsocket/upgrade/polish/unlock-socket all verified. Legendary gemPreserve in unsocket works correctly. parseGemKey validates type+tier. Max socket check uses socketsByRarity.",
     "status": "clean"
   },
   "routes/enchanting.js": {
