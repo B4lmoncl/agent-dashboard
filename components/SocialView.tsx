@@ -78,6 +78,8 @@ const EVENT_ICON_SRCS: Record<string, string> = {
   dungeon_complete: "/images/icons/nav-dungeons.png",
   rift_complete: "/images/icons/nav-rift.png",
   expedition_complete: "/images/icons/currency-essenz.png",
+  sworn_bond_formed: "/images/icons/nav-breakaway.png",
+  sworn_bond_chest: "/images/icons/currency-gildentaler.png",
 };
 // Fallback unicode for missing images
 const EVENT_ICONS: Record<string, string> = {
@@ -85,6 +87,7 @@ const EVENT_ICONS: Record<string, string> = {
   gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "◇",
   world_boss_spawn: "◆", world_boss_defeat: "◆", dungeon_complete: "▼",
   rift_complete: "◈", expedition_complete: "↗",
+  sworn_bond_formed: "◆", sworn_bond_chest: "◆",
 };
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
@@ -1309,6 +1312,8 @@ const EVENT_NAV: Record<string, { view: string; tooltip: string }> = {
   dungeon_complete: { view: "dungeons", tooltip: "View Dungeons" },
   rift_complete: { view: "rift", tooltip: "View The Rift" },
   streak_milestone: { view: "rituals", tooltip: "View Rituals" },
+  sworn_bond_formed: { view: "social", tooltip: "View Sworn Bond" },
+  sworn_bond_chest: { view: "social", tooltip: "View Sworn Bond" },
 };
 
 function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchievement }: { apiKey: string; playerName: string; onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void }) {
@@ -1402,6 +1407,12 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             break;
           case "expedition_complete":
             descriptionNode = <><span className="text-w40">{d.companion || "Companion"}</span> returned from <span className="font-semibold" style={{ color: "#22c55e" }}>{d.expedition || "an expedition"}</span></>;
+            break;
+          case "sworn_bond_formed":
+            descriptionNode = <>forged a <span className="font-semibold" style={{ color: "#f59e0b" }}>Sworn Bond</span> with <span className="text-w50">{d.partner || "someone"}</span></>;
+            break;
+          case "sworn_bond_chest":
+            descriptionNode = <>opened a <span className="font-semibold" style={{ color: "#f59e0b" }}>Bond Chest</span> with <span className="text-w50">{d.partner || "their partner"}</span>{d.streak ? <> — <span className="text-w30">{d.streak}w streak</span></> : ""}</>;
             break;
           default:
             descriptionNode = <>{(event.type as string).replace(/_/g, " ")}</>;
