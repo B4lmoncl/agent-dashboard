@@ -329,7 +329,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const r = await fetch(`/api/professions?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
       if (r.ok) {
         const data = await r.json();
-        setProfessions(data.professions || []);
+        const profs = data.professions || [];
+        setProfessions(profs);
+        // Auto-show "My Profs" if player has chosen any professions
+        if (profs.some((p: ProfessionDef) => p.chosen)) setShowOnlyChosen(true);
         setRecipes(data.recipes || []);
         setMaterials(data.materials || {});
         setMaterialDefs(data.materialDefs || []);
