@@ -137,9 +137,9 @@
     "status": "clean"
   },
   "components/LeaderboardView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "skeleton loading OK, seasonal toggle OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Skeleton loading. Seasonal toggle. Player profile modal integration. tab-content-enter. Achievement points display.",
     "status": "clean"
   },
   "components/HonorsView.tsx": {
@@ -161,15 +161,15 @@
     "status": "clean"
   },
   "components/TalentTreeView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "toast feedback OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Toast on allocate/deallocate/reset. Disabled states. SVG ring rendering. Choice group UI. Respec cost display.",
     "status": "clean"
   },
   "components/AdventureTomeView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "celebration OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. RewardCelebration on milestone claim. Disabled states. Per-floor objective tracking. Progress bars. Title rewards.",
     "status": "clean"
   },
   "components/StatBar.tsx": {
