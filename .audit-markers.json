@@ -503,15 +503,15 @@
     "status": "clean"
   },
   "lib/auth.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "separate secrets, fail-closed, revoked token pruning",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Separate 64-byte secrets for access+refresh. HS256 locked. Token rotation on refresh. Revoked token set with pruning. Cookie httpOnly+secure+sameSite. resolveAuth fail-closed.",
     "status": "clean"
   },
   "lib/middleware.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "requireSelf, requireMasterKey, lastActiveAt tracking",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. requireAuth fail-closed. requireSelf with admin bypass. requireMasterKey fail-closed. lastActiveAt tracking for online status. requireApiKey = requireAuth alias.",
     "status": "clean"
   },
   "lib/npc-engine.js": {
