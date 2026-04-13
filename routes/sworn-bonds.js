@@ -472,6 +472,9 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     const partnerName = state.users[partnerId]?.name || partnerId;
     logActivity(uid, 'sworn_bond_chest', { partner: partnerName, streak: streak, bondLevel: newLvl.level, rarity: newLvl.level >= 5 ? 'epic' : 'rare' });
 
+    // Battle Pass XP for bond chest
+    try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'quest_complete', { rarity: 'rare' }); } catch (e) { console.warn('[bp-xp] sworn-bond:', e.message); }
+
     const { saveUsers } = require('../lib/state');
     saveUsers();
 
