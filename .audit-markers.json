@@ -71,9 +71,9 @@
     "status": "clean"
   },
   "components/BattlePassView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "CRIT: useRef+useEffect moved before early return (hook ordering crash)",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 4: Clean. RewardCelebration on single + claim-all. Disabled states with cursor:not-allowed. claimable-breathe animation. Season end timer. Prior CRIT hook ordering fix holds.",
     "status": "clean"
   },
   "components/TavernView.tsx": {
@@ -107,9 +107,9 @@
     "status": "clean"
   },
   "components/FactionsView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "disabled buttons OK, celebrations OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. RewardCelebration for tier claim + daily claim. Disabled states. claimable-breathe. Rep bars with standing colors. Weekly bonus display. Daily quest progress tracking.",
     "status": "clean"
   },
   "components/WorldBossView.tsx": {
