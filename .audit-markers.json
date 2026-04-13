@@ -449,9 +449,9 @@
     "status": "clean"
   },
   "routes/users.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "bcrypt, rate limit, input validation, password stripped from API",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. authLimiter 10/min, bcrypt password hash, timing-safe legacy API key compare, sensitive field stripping (passwordHash/apiKey/refreshTokens/resetToken/emailVerifyToken), JWT token pair generation, refresh token rotation, email validation regex, password policy (8+ chars, uppercase, number).",
     "status": "clean"
   },
   "routes/currency.js": {
