@@ -453,6 +453,9 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     const newLvl = getBondLevel(bond.bondXp);
     bond.bondLevel = newLvl.level;
 
+    // Track for adventure tome + achievements
+    u._swornBondLevel = Math.max(u._swornBondLevel || 0, newLvl.level);
+
     // Mark claimed
     obj.chestClaimed[claimKey] = true;
 
