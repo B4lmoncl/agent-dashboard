@@ -112,7 +112,16 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               try {
                 const { getAuthHeaders } = await import("@/lib/auth-client");
                 const r = await fetch("/api/daily-bonus/claim", { method: "POST", headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" }, body: JSON.stringify({ playerId: playerName }) });
-                if (r.ok) { setClaimedToday(true); fetchStatus(); }
+                if (r.ok) {
+                  setClaimedToday(true); fetchStatus();
+                  // Play appropriate sound
+                  try {
+                    const { SFX } = await import("@/lib/sounds");
+                    const d = await r.clone().json().catch(() => null);
+                    if (d?.milestone) SFX.streakMilestone();
+                    else SFX.questComplete();
+                  } catch { /* sound optional */ }
+                }
               } catch { /* toast handled elsewhere */ }
               setClaiming(false);
             }}
