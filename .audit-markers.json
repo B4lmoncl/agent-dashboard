@@ -617,9 +617,9 @@
     "status": "clean"
   },
   "public/data/gearTemplates.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "named sets valid, affix counts OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: 1458 items. Affix counts verified against CLAUDE.md table: Common P:1-1 M:0-0, Rare P:2-2 M:1-1, Epic P:2-3 M:1-2, Legendary P:3-3 M:2-2. 184 legendaries all have legendaryEffect. Named sets valid.",
     "status": "clean"
   },
   "public/data/achievementTemplates.json": {
