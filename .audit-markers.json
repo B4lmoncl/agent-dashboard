@@ -371,9 +371,9 @@
     "status": "clean"
   },
   "routes/quests.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, tavern check, campaign ordering",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. questCompleteLock, requireApiKey, tavern rest block, campaign sequential ordering, NPC per-player completion with claim-first guard, temp field cleanup after onQuestCompletedByUser, chain quest unlock, pool management with Fisher-Yates shuffle, input validation (title 500, desc 5000). Core quest flow verified end-to-end.",
     "status": "clean"
   },
   "routes/gacha.js": {
