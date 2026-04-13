@@ -125,15 +125,15 @@
     "status": "clean"
   },
   "components/RiftView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-10",
-    "findings": "MED: getAuthHeaders() without reviewApiKey on rift/extend (fixed). Rest clean: loading states, disabled buttons with titles, error messages, screen shake, auto-refresh timer, 2-step abandon confirmation.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. RewardCelebration on stage complete. Disabled states. Screen shake. Auto-refresh timer. 2-step abandon. Mythic+ level selection. Affix display. Timer extend button. Prior getAuthHeaders fix holds.",
     "status": "clean"
   },
   "components/ChallengesView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "sub-components OK, reset timer OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. RewardCelebration on stage+milestone claim. Disabled states. Star display. Weekly reset timer. Modifier display. Expedition progress+claim. Speed bonus indicator.",
     "status": "clean"
   },
   "components/LeaderboardView.tsx": {
