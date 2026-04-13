@@ -78,6 +78,8 @@ const EVENT_ICON_SRCS: Record<string, string> = {
   dungeon_complete: "/images/icons/nav-dungeons.png",
   rift_complete: "/images/icons/nav-rift.png",
   expedition_complete: "/images/icons/currency-essenz.png",
+  sworn_bond_formed: "/images/icons/nav-breakaway.png",
+  sworn_bond_chest: "/images/icons/currency-gildentaler.png",
 };
 // Fallback unicode for missing images
 const EVENT_ICONS: Record<string, string> = {
@@ -85,6 +87,7 @@ const EVENT_ICONS: Record<string, string> = {
   gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "◇",
   world_boss_spawn: "◆", world_boss_defeat: "◆", dungeon_complete: "▼",
   rift_complete: "◈", expedition_complete: "↗",
+  sworn_bond_formed: "◆", sworn_bond_chest: "◆",
 };
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
@@ -1309,6 +1312,8 @@ const EVENT_NAV: Record<string, { view: string; tooltip: string }> = {
   dungeon_complete: { view: "dungeons", tooltip: "View Dungeons" },
   rift_complete: { view: "rift", tooltip: "View The Rift" },
   streak_milestone: { view: "rituals", tooltip: "View Rituals" },
+  sworn_bond_formed: { view: "social", tooltip: "View Sworn Bond" },
+  sworn_bond_chest: { view: "social", tooltip: "View Sworn Bond" },
 };
 
 function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchievement }: { apiKey: string; playerName: string; onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void }) {
@@ -1383,7 +1388,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             descriptionNode = <>found <TipCustom title={d.item || "Item"} icon="◇" accent={rarityColor} body={<p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "rare"} drop</p>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
             break;
           case "trade_complete":
-            descriptionNode = <>completed a trade{d.summary && <> — <span className="text-w30">{d.summary}</span></>}</>;
+            descriptionNode = <>completed a trade with <span className="text-w50">{d.partner || "someone"}</span></>;
             break;
           case "streak_milestone":
             descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak{d.label ? <> — <span className="text-w30">{d.label}</span></> : ""}</>;
@@ -1402,6 +1407,12 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             break;
           case "expedition_complete":
             descriptionNode = <><span className="text-w40">{d.companion || "Companion"}</span> returned from <span className="font-semibold" style={{ color: "#22c55e" }}>{d.expedition || "an expedition"}</span></>;
+            break;
+          case "sworn_bond_formed":
+            descriptionNode = <>forged a <span className="font-semibold" style={{ color: "#f59e0b" }}>Sworn Bond</span> with <span className="text-w50">{d.partner || "someone"}</span></>;
+            break;
+          case "sworn_bond_chest":
+            descriptionNode = <>opened a <span className="font-semibold" style={{ color: "#f59e0b" }}>Bond Chest</span> with <span className="text-w50">{d.partner || "their partner"}</span>{d.streak ? <> — <span className="text-w30">{d.streak}w streak</span></> : ""}</>;
             break;
           default:
             descriptionNode = <>{(event.type as string).replace(/_/g, " ")}</>;
@@ -1933,6 +1944,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               key={f.id}
               disabled={actionLoading || !!cooldownUntil}
               onClick={() => propose(f.id)}
+              title={cooldownUntil ? "Bond cooldown active" : actionLoading ? "Action in progress" : `Propose bond to ${f.name}`}
               className="rounded-lg p-3 text-left transition-all hover:brightness-125"
               style={{
                 background: "rgba(245,158,11,0.04)",
@@ -1942,7 +1954,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               }}
             >
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `${f.color || '#666'}40`, color: f.color || '#666' }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `${f.color || '#666666'}40`, color: f.color || '#666666' }}>
                   {f.avatar || f.name?.slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0">
@@ -1972,6 +1984,21 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               : `${bond.partner.name} wants to forge a Sworn Bond with you.`
             }
           </p>
+          {bond.isInitiator && (
+            <button disabled={actionLoading} onClick={async () => {
+              if (actionLoading) return;
+              setActionLoading(true);
+              try {
+                const r = await fetch(`/api/social/sworn-bond/${bond.id}/cancel`, { method: "POST", headers: getAuthHeaders(apiKey) });
+                const d = await r.json();
+                if (r.ok) { setMessage({ text: d.message || "Cancelled", type: "success" }); fetchBond(); }
+                else setMessage({ text: d.error || "Failed", type: "error" });
+              } catch { setMessage({ text: "Network error", type: "error" }); }
+              setActionLoading(false);
+            }} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold mt-3" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
+              {actionLoading ? "..." : "Cancel Proposal"}
+            </button>
+          )}
           {!bond.isInitiator && (
             <div className="flex gap-2 justify-center mt-4">
               <button disabled={actionLoading} onClick={() => respond("accept")} className="btn-interactive text-xs px-4 py-2 rounded-lg font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}>

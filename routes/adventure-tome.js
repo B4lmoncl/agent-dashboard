@@ -103,6 +103,7 @@ const FLOORS = [
       { id: "expedition_complete_5", type: "counter", label: "5 Companion-Expeditionen",     target: 5,   stat: "_expeditionCompletions" },
       { id: "mail_sent_5",         type: "counter", label: "5 Mails verschickt",            target: 5,   stat: "_mailSent" },
       { id: "trade_gold_1000",     type: "counter", label: "1000 Gold gehandelt",           target: 1000, stat: "_goldTraded" },
+      { id: "sworn_bond_3",        type: "counter", label: "Sworn Bond Level 3",            target: 3,   stat: "_swornBondLevel" },
     ],
     milestones: [
       { pct: 25,  reward: { gold: 150 },                          label: "25% — 150 Gold" },

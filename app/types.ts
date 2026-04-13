@@ -662,7 +662,7 @@ export interface ActivityEvent {
   playerName: string;
   playerAvatar: string;
   playerColor: string;
-  type: "quest_complete" | "level_up" | "achievement" | "gacha_pull" | "rare_drop" | "trade_complete" | "streak_milestone" | "world_boss_spawn" | "world_boss_defeat" | "dungeon_complete" | "rift_complete" | "expedition_complete";
+  type: "quest_complete" | "level_up" | "achievement" | "gacha_pull" | "rare_drop" | "trade_complete" | "streak_milestone" | "world_boss_spawn" | "world_boss_defeat" | "dungeon_complete" | "rift_complete" | "expedition_complete" | "sworn_bond_formed" | "sworn_bond_chest";
   data: Record<string, unknown>;
   at: string;
 }

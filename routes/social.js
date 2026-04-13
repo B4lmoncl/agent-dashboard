@@ -798,8 +798,6 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
 
       saveSocial();
       saveUsers();
-      logActivity(trade.initiator, 'trade_complete', { with: trade.recipient, summary: result.summary });
-      logActivity(trade.recipient, 'trade_complete', { with: trade.initiator, summary: result.summary });
       // Track for achievements
       if (state.users[trade.initiator]) state.users[trade.initiator]._tradesCompleted = (state.users[trade.initiator]._tradesCompleted || 0) + 1;
       if (state.users[trade.recipient]) state.users[trade.recipient]._tradesCompleted = (state.users[trade.recipient]._tradesCompleted || 0) + 1;
@@ -810,6 +808,8 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
         if (state.users[trade.recipient]) state.users[trade.recipient]._goldTraded = (state.users[trade.recipient]._goldTraded || 0) + goldInTrade;
       }
       console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
+      logActivity(trade.initiator, 'trade_complete', { partner: state.users[trade.recipient]?.name || trade.recipient, rarity: goldInTrade >= 100 ? 'rare' : 'common' });
+      logActivity(trade.recipient, 'trade_complete', { partner: state.users[trade.initiator]?.name || trade.initiator, rarity: goldInTrade >= 100 ? 'rare' : 'common' });
       return res.json({ ok: true, trade, executed: true, summary: result.summary });
     } finally {
       releaseTradeLock(trade.initiator);
@@ -1183,10 +1183,10 @@ router.post('/api/social/challenge/:id/forfeit', requireAuth, (req, res) => {
     const loser = state.users[uid];
     const winner = state.users[winnerId];
     if (loser && winner) {
-      const actualWager = Math.min(challenge.wager, loser.currencies?.gold ?? loser.gold ?? 0);
+      const actualWager = Math.max(0, Math.min(challenge.wager, loser.currencies?.gold ?? loser.gold ?? 0));
       if (actualWager > 0) {
-        ensureUserCurrencies(uid);
-        ensureUserCurrencies(winnerId);
+        ensureUserCurrencies(loser);
+        ensureUserCurrencies(winner);
         loser.currencies.gold = (loser.currencies.gold || 0) - actualWager;
         winner.currencies.gold = (winner.currencies.gold || 0) + actualWager;
         loser.gold = loser.currencies.gold;

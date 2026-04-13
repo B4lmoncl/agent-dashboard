@@ -1,6 +1,6 @@
 // ─── Sworn Bonds — 1-on-1 friendship pact with shared weekly objectives ────
 const router = require('express').Router();
-const { state, saveSocial, ensureUserCurrencies } = require('../lib/state');
+const { state, saveSocial, ensureUserCurrencies, logActivity } = require('../lib/state');
 const { now, getLevelInfo, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
@@ -229,8 +229,22 @@ function contributeToBond(userId, quest) {
 
 // ─── Routes ─────────────────────────────────────────────────────────────────
 
+// Lazy prune broken bonds older than 30 days (cooldown is 7d, safe to remove after 30d)
+let _lastPrune = 0;
+function pruneStaleBonds() {
+  if (Date.now() - _lastPrune < 60000) return; // max once per minute
+  _lastPrune = Date.now();
+  const cutoff = Date.now() - 30 * 86400000;
+  const before = state.socialData.swornBonds.length;
+  state.socialData.swornBonds = state.socialData.swornBonds.filter(b =>
+    b.status !== 'broken' || !b.brokenAt || new Date(b.brokenAt).getTime() > cutoff
+  );
+  if (state.socialData.swornBonds.length < before) saveSocial();
+}
+
 // GET /api/social/:playerId/sworn-bond — get active bond for player
 router.get('/api/social/:playerId/sworn-bond', requireAuth, (req, res) => {
+  pruneStaleBonds();
   const pid = req.params.playerId.toLowerCase();
   const bond = getActiveBondForPlayer(pid);
 
@@ -259,7 +273,7 @@ router.get('/api/social/:playerId/sworn-bond', requireAuth, (req, res) => {
         id: partnerId,
         name: partner?.name || partnerId,
         avatar: partner?.avatar || partnerId.slice(0, 2).toUpperCase(),
-        color: partner?.color || '#666',
+        color: partner?.color || '#666666',
         level: getLevelInfo(partner?.xp || 0).level,
       },
       bondLevel: lvl.level,
@@ -344,6 +358,8 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
   const uid = (req.auth?.userId || '').toLowerCase();
   if (!bondLock.acquire(uid)) return res.status(429).json({ error: 'Bond action in progress' });
   try {
+    if (state.users[uid]?.tavernRest?.active) return res.status(400).json({ error: 'Cannot accept bonds while resting in The Hearth' });
+
     const bond = state.socialData.swornBonds.find(b => b.id === req.params.bondId);
     if (!bond) return res.status(404).json({ error: 'Bond not found' });
     if (bond.status !== 'pending') return res.status(400).json({ error: 'Bond is not pending' });
@@ -359,10 +375,31 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
     bond.status = 'active';
     bond.formedAt = now();
     bond.weeklyObjective = generateObjective(bond, getWeekId());
+    logActivity(uid, 'sworn_bond_formed', { partner: bond.player1, rarity: 'rare' });
+    logActivity(bond.player1, 'sworn_bond_formed', { partner: uid, rarity: 'rare' });
     saveSocial();
+
+    // Check achievements for both players (sworn_bond_level >= 1 triggers here)
+    try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardAchievements(bond.player1); } catch { /* optional */ }
 
     res.json({ ok: true, message: 'Bond forged. The pact holds.' });
   } finally { bondLock.release(uid); }
+});
+
+// POST /api/social/sworn-bond/:bondId/cancel — initiator cancels pending proposal
+router.post('/api/social/sworn-bond/:bondId/cancel', requireAuth, (req, res) => {
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const bond = state.socialData.swornBonds.find(b => b.id === req.params.bondId);
+  if (!bond) return res.status(404).json({ error: 'Bond not found' });
+  if (bond.status !== 'pending') return res.status(400).json({ error: 'Bond is not pending' });
+  if (bond.player1 !== uid) return res.status(403).json({ error: 'Only the initiator can cancel' });
+
+  bond.status = 'broken';
+  bond.brokenAt = now();
+  bond.brokenBy = null; // No cooldown for cancelling own proposal
+  saveSocial();
+
+  res.json({ ok: true, message: 'Bond proposal cancelled' });
 });
 
 // POST /api/social/sworn-bond/:bondId/decline
@@ -453,6 +490,9 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     const newLvl = getBondLevel(bond.bondXp);
     bond.bondLevel = newLvl.level;
 
+    // Track for adventure tome + achievements
+    u._swornBondLevel = Math.max(u._swornBondLevel || 0, newLvl.level);
+
     // Mark claimed
     obj.chestClaimed[claimKey] = true;
 
@@ -460,6 +500,17 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     // Do NOT set lastCompletedWeekId here — that would prevent streak increment
 
     saveSocial();
+    // Activity feed
+    const partnerId = isP1 ? bond.player2 : bond.player1;
+    const partnerName = state.users[partnerId]?.name || partnerId;
+    logActivity(uid, 'sworn_bond_chest', { partner: partnerName, streak: streak, bondLevel: newLvl.level, rarity: newLvl.level >= 5 ? 'epic' : 'rare' });
+
+    // Battle Pass XP for bond chest
+    try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'quest_complete', { rarity: 'rare' }); } catch (e) { console.warn('[bp-xp] sworn-bond:', e.message); }
+
+    // Check achievements after bond level change
+    try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
+
     const { saveUsers } = require('../lib/state');
     saveUsers();
 
