@@ -431,15 +431,15 @@
     "status": "clean"
   },
   "routes/talent-tree.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, canAllocate validation",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. talentLock on allocate/deallocate/reset. canAllocate: maxRank check, available points, reqPoints, prerequisites, exclusions, choice groups with maxPicks. Respec cost gold+essenz with gold sync. getUserTalentEffects exported for cross-system use.",
     "status": "clean"
   },
   "routes/adventure-tome.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "FIXED: race condition lock + gold desync",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. tomeClaimLock, milestone double-claim guard, gold sync, objective stat tracking against user fields. Prior race condition + gold desync fixes hold.",
     "status": "clean"
   },
   "routes/players.js": {
