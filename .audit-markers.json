@@ -95,9 +95,9 @@
     "status": "clean"
   },
   "components/SocialView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "FIXED: mail collect + collect-all celebrations",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: SwornBondTab added and verified. Propose/accept/decline/break/claim flows with actionLoading guard. RewardCelebration on chest claim. Per-player progress bars for individual objectives. 2-step break confirmation. Cooldown display. Friends-fetch gated on !bond. Error handling on all fetches. Tab tooltip mapped to sworn_bonds.",
     "status": "clean"
   },
   "components/ShopView.tsx": {
