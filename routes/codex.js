@@ -109,6 +109,11 @@ function checkCodexDiscovery(userId) {
         unlocked = friendCount >= cond.value;
         break;
       }
+      case 'sworn_bond_level': {
+        const activeBond = (state.socialData?.swornBonds || []).find(b => b.status === 'active' && (b.player1 === userId || b.player2 === userId));
+        unlocked = (activeBond?.bondLevel || 0) >= cond.value;
+        break;
+      }
       case 'hidden':
         // Hidden entries — never auto-discovered
         unlocked = false;

@@ -1451,6 +1451,16 @@
         "type": "quests_completed",
         "value": 10
       }
+    },
+    {
+      "id": "sworn-bonds",
+      "category": "systems",
+      "title": "Geschworene Bande — Über die Torheit, sich zu binden",
+      "text": "Zwei Spieler. Ein Pakt. Wöchentliche Ziele, die beide erfüllen müssen. Klingt nach einer schönen Idee, bis man merkt, dass der Partner um Mittwoch aufhört, Quests zu machen. Der Duo-Streak wächst mit jeder abgeschlossenen Woche — und damit die Belohnungen. Die Bond-Truhe enthält Gold, Essenz, und eine winzige Chance auf einen Duo-Rahmen. Das Bond-Level steigt von 'Bekannte' über 'Waffenbrüder' bis zum 'Ewigen Bund'. Den Bund zu brechen kostet sieben Tage Bedenkzeit. Genug Zeit, um zu bereuen. Nicht genug, um zu vergessen.",
+      "unlockedBy": {
+        "type": "sworn_bond_level",
+        "value": 1
+      }
     }
   ]
 }
