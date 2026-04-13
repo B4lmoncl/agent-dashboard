@@ -2799,6 +2799,48 @@
       },
       "category": "social",
       "desc": "Ersten Trade abgeschlossen. Handel ist die zivilisierteste Form des Diebstahls."
+    },
+    {
+      "id": "sworn_bond_formed",
+      "name": "Geschworene",
+      "description": "Einen Sworn Bond geschmiedet. Zwei Seelen, ein Pakt, eine fragwürdige Menge gemeinsamer Verpflichtungen.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "sworn_bond_level",
+        "count": 1
+      },
+      "category": "social",
+      "desc": "Sworn Bond geformt. Geteiltes Leid ist halbes Leid. Geteilte Quests sind doppelte Arbeit."
+    },
+    {
+      "id": "sworn_bond_5",
+      "name": "Schicksalspaar",
+      "description": "Sworn Bond auf Level 5 gebracht. Der Pakt hielt länger als die meisten Ehen in Aethermoor.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "sworn_bond_level",
+        "count": 5
+      },
+      "category": "social",
+      "desc": "Bond Level 5 erreicht. Die Verbindung ist tiefer als die meisten Brunnen."
+    },
+    {
+      "id": "sworn_bond_streak_4",
+      "name": "Unzertrennlich",
+      "description": "4 Wochen in Folge das Bond-Ziel erreicht. Manche nennen es Verlässlichkeit. Andere nennen es Sturheit.",
+      "icon": "/images/icons/nav-breakaway.png",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "sworn_bond_streak",
+        "count": 4
+      },
+      "category": "social",
+      "desc": "4 Wochen Duo-Streak. Die stärksten Ketten werden nicht geschmiedet — sie wachsen."
     }
   ],
   "pointMilestones": [

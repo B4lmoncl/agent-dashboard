@@ -771,6 +771,18 @@ export default function TodayDrawer({
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
+      if ((socialBadge.pendingBonds ?? 0) > 0) {
+        urgent.push({
+          id: "sworn-bond-invite",
+          icon: "/images/icons/nav-breakaway.png",
+          label: "Bond Invite",
+          done: false,
+          urgent: true,
+          sub: "Someone wants to forge a Sworn Bond",
+          tooltipKey: "sworn_bonds",
+          onClick: () => { onNavigate("social"); onClose(); },
+        });
+      }
       if (socialBadge.swornBondSummary?.chestReady) {
         urgent.push({
           id: "sworn-bond-chest",

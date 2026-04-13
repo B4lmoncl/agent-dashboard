@@ -387,9 +387,16 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   const tl = rift.timeLimitHours || RIFT_TIME_LIMITS[rift.tier] || 72;
   const expiresAt = new Date(rift.startedAt).getTime() + tl * 3600000;
   if (Date.now() > expiresAt) {
+    rift.active = false;
     rift.failed = true;
     rift.failedAt = now();
     rift.failReason = 'time_expired';
+    // Apply fail cooldown (Mythic+ has no cooldown)
+    const expTier = RIFT_TIERS[rift.tier];
+    if (expTier && !expTier.isMythic) {
+      u.riftCooldowns = u.riftCooldowns || {};
+      u.riftCooldowns[rift.tier] = { failedAt: rift.failedAt, cooldownDays: expTier.failCooldownDays };
+    }
     saveUsers();
     return res.status(400).json({ error: 'Rift timer has expired. The Rift is lost.' });
   }

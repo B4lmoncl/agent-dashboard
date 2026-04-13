@@ -176,18 +176,6 @@ function applyDungeonRewards(userId, rewards) {
   if (rewards.runensplitter) awardCurrency(userId, 'runensplitter', rewards.runensplitter);
   if (rewards.sternentaler) awardCurrency(userId, 'sternentaler', rewards.sternentaler);
 
-  // Materials — award random crafting materials (use actual profession materials)
-  if (rewards.materialCount && rewards.materialCount > 0) {
-    const allMaterials = state.professionsData?.materials || [];
-    if (allMaterials.length > 0) {
-      if (!u.craftingMaterials) u.craftingMaterials = {};
-      for (let i = 0; i < rewards.materialCount; i++) {
-        const mat = allMaterials[Math.floor(Math.random() * allMaterials.length)];
-        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
-      }
-    }
-  }
-
   // Profession-aware material drops via rollCraftingMaterials (content-tier based on dungeon tier)
   const dungeonTierMap = { normal: 2, hard: 3, legendary: 4 };
   const dungeonContentTier = dungeonTierMap[rewards._dungeonTier] || 2;
@@ -562,9 +550,6 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Mark collected BEFORE success determination to prevent duplicate collection
   run.collected.push(uid);
-  u._dungeonCompletions = (u._dungeonCompletions || 0) + 1;
-  if (!u._dungeonTiersCleared) u._dungeonTiersCleared = [];
-  if (!u._dungeonTiersCleared.includes(run.dungeonId)) u._dungeonTiersCleared.push(run.dungeonId);
 
   // ── Determine run success ONCE (first collector calculates, subsequent reuse) ──
   const participantCount = run.participants.length;
@@ -585,6 +570,13 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   const isSuccess = run.success;
   const effectivePower = run.effectivePower;
+
+  // Track completion stats only on success
+  if (isSuccess) {
+    u._dungeonCompletions = (u._dungeonCompletions || 0) + 1;
+    if (!u._dungeonTiersCleared) u._dungeonTiersCleared = [];
+    if (!u._dungeonTiersCleared.includes(run.dungeonId)) u._dungeonTiersCleared.push(run.dungeonId);
+  }
 
   // Roll individual rewards (each player gets own rolls)
   const rewards = rollDungeonRewards(dungeon, isSuccess);

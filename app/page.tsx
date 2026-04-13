@@ -143,7 +143,7 @@ export default function Dashboard() {
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
-  const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number; pendingBonds?: number; swornBondSummary?: { bondId: string; partnerName: string; streak: number; bondLevel: number; objectiveCompleted: boolean; chestReady: boolean } | null } | null>(null);
   const [navNotifs, setNavNotifs] = useState<Record<string, number>>({});
   const [worldBossActive, setWorldBossActive] = useState(false);
   const [riftActive, setRiftActive] = useState(false);

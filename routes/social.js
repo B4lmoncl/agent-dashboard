@@ -1189,6 +1189,8 @@ router.post('/api/social/challenge/:id/forfeit', requireAuth, (req, res) => {
         ensureUserCurrencies(winnerId);
         loser.currencies.gold = (loser.currencies.gold || 0) - actualWager;
         winner.currencies.gold = (winner.currencies.gold || 0) + actualWager;
+        loser.gold = loser.currencies.gold;
+        winner.gold = winner.currencies.gold;
       }
     }
   }

@@ -388,10 +388,10 @@ function BannerPullModal({
     );
   };
 
-  // Per-banner pity (falls back to global for backwards compat)
+  // Per-banner pity (0 if never pulled on this banner)
   const bannerPityData = pity?.perBanner?.[banner.id];
-  const activePityCounter = bannerPityData?.pityCounter ?? pity?.pityCounter ?? 0;
-  const activeEpicPity = bannerPityData?.epicPityCounter ?? pity?.epicPityCounter ?? 0;
+  const activePityCounter = bannerPityData?.pityCounter ?? 0;
+  const activeEpicPity = bannerPityData?.epicPityCounter ?? 0;
   const inSoftPity = activePityCounter >= (pity?.softPityStart || getBalance().gacha.softPity);
   const pullsTilLegendary = (pity?.hardPity || getBalance().gacha.hardPity) - activePityCounter;
 
