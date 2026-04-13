@@ -1,6 +1,6 @@
 // ─── Sworn Bonds — 1-on-1 friendship pact with shared weekly objectives ────
 const router = require('express').Router();
-const { state, saveSocial, ensureUserCurrencies } = require('../lib/state');
+const { state, saveSocial, ensureUserCurrencies, logActivity } = require('../lib/state');
 const { now, getLevelInfo, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
@@ -361,6 +361,8 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
     bond.status = 'active';
     bond.formedAt = now();
     bond.weeklyObjective = generateObjective(bond, getWeekId());
+    logActivity(uid, 'sworn_bond_formed', { partner: bond.player1, rarity: 'rare' });
+    logActivity(bond.player1, 'sworn_bond_formed', { partner: uid, rarity: 'rare' });
     saveSocial();
 
     res.json({ ok: true, message: 'Bond forged. The pact holds.' });
@@ -465,6 +467,11 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     // Do NOT set lastCompletedWeekId here — that would prevent streak increment
 
     saveSocial();
+    // Activity feed
+    const partnerId = isP1 ? bond.player2 : bond.player1;
+    const partnerName = state.users[partnerId]?.name || partnerId;
+    logActivity(uid, 'sworn_bond_chest', { partner: partnerName, streak: streak, bondLevel: newLvl.level, rarity: newLvl.level >= 5 ? 'epic' : 'rare' });
+
     const { saveUsers } = require('../lib/state');
     saveUsers();
 
