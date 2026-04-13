@@ -376,6 +376,9 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
     logActivity(bond.player1, 'sworn_bond_formed', { partner: uid, rarity: 'rare' });
     saveSocial();
 
+    // Check achievements for both players (sworn_bond_level >= 1 triggers here)
+    try { const { checkAndAwardAchievements } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardAchievements(bond.player1); } catch { /* optional */ }
+
     res.json({ ok: true, message: 'Bond forged. The pact holds.' });
   } finally { bondLock.release(uid); }
 });
