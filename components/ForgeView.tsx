@@ -1536,7 +1536,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         setBuyingUpgrade(null);
                       }}
                       disabled={!canAfford || buyingUpgrade === up.id}
-                      title={!canAfford ? `Need ${up.nextTier?.cost || "more"} gold` : buyingUpgrade === up.id ? "Purchasing..." : "Buy upgrade"}
                       className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
                       style={{
                         background: canAfford ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.03)",
