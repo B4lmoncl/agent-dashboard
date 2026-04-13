@@ -353,9 +353,9 @@
     "status": "clean"
   },
   "routes/enchanting.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, gold sync OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. enchantLock on reroll+disenchant. Gold sync. rerollLocked stat validation. 3-option reroll with preview. Locked item check on disenchant.",
     "status": "clean"
   },
   "routes/schmiedekunst.js": {
@@ -461,9 +461,9 @@
     "status": "clean"
   },
   "routes/game.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "ritual self-check, gold sync OK, blood pact logic",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Ritual complete: self-check, tavern-rest block, idempotency via lastCompleted===today (prevents double-complete without lock — safe in single-threaded Node.js), streak logic with trigger-type grace, commitment/difficulty XP scaling, blood pact multipliers. Title equip: requireSelf, simple assignment. No lock needed on non-currency mutations.",
     "status": "clean"
   },
   "routes/habits-inventory.js": {
