@@ -502,6 +502,9 @@ router.post('/api/social/sworn-bond/:bondId/claim-chest', requireAuth, (req, res
     // Battle Pass XP for bond chest
     try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'quest_complete', { rarity: 'rare' }); } catch (e) { console.warn('[bp-xp] sworn-bond:', e.message); }
 
+    // Check achievements after bond level change
+    try { const { checkAndAwardAchievements, checkAndAwardTitles } = require('../lib/helpers'); checkAndAwardAchievements(uid); checkAndAwardTitles(uid); } catch { /* optional */ }
+
     const { saveUsers } = require('../lib/state');
     saveUsers();
 
