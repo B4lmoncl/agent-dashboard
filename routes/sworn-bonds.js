@@ -229,8 +229,19 @@ function contributeToBond(userId, quest) {
 
 // ─── Routes ─────────────────────────────────────────────────────────────────
 
+// Lazy prune broken bonds older than 30 days (cooldown is 7d, safe to remove after 30d)
+function pruneStaleBonds() {
+  const cutoff = Date.now() - 30 * 86400000;
+  const before = state.socialData.swornBonds.length;
+  state.socialData.swornBonds = state.socialData.swornBonds.filter(b =>
+    b.status !== 'broken' || !b.brokenAt || new Date(b.brokenAt).getTime() > cutoff
+  );
+  if (state.socialData.swornBonds.length < before) saveSocial();
+}
+
 // GET /api/social/:playerId/sworn-bond — get active bond for player
 router.get('/api/social/:playerId/sworn-bond', requireAuth, (req, res) => {
+  pruneStaleBonds();
   const pid = req.params.playerId.toLowerCase();
   const bond = getActiveBondForPlayer(pid);
 
