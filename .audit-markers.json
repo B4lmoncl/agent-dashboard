@@ -443,9 +443,9 @@
     "status": "clean"
   },
   "routes/players.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "requireSelf on all player mutations, tavern lock",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. requireSelf on mutations, tavern enter/leave locks, 30-day cooldown, XSS sanitization on reason, streak/forge restore with ?? for zero values, Welcome Back buff, passive gold with hour cap, companion ultimate/expedition locks, notification center with read tracking.",
     "status": "clean"
   },
   "routes/users.js": {
@@ -455,9 +455,9 @@
     "status": "clean"
   },
   "routes/currency.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "self-check, daily lock, Berlin timezone",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Admin-only earn guard, self-check on spend/convert, dailyLock on bonus claim, amount cap 1M, Berlin timezone, conversion tax, streak milestone rewards.",
     "status": "clean"
   },
   "routes/game.js": {
