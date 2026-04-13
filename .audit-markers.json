@@ -383,15 +383,15 @@
     "status": "clean"
   },
   "routes/battlepass.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, double-claim guard, season rotation",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Season rotation, locks, claim guards, grantBattlePassXP talent bonus, all reward types. No issues found.",
     "status": "clean"
   },
   "routes/factions.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, daily quest check",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. Locks, auth, daily quest progress, standing migration, weekly bonus auto-reset, legendary+talent rep multipliers. weeklyBonusMax=3 hardcoded but consistent.",
     "status": "clean"
   },
   "routes/expedition.js": {
