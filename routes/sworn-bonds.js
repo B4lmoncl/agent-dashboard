@@ -344,6 +344,8 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
   const uid = (req.auth?.userId || '').toLowerCase();
   if (!bondLock.acquire(uid)) return res.status(429).json({ error: 'Bond action in progress' });
   try {
+    if (state.users[uid]?.tavernRest?.active) return res.status(400).json({ error: 'Cannot accept bonds while resting in The Hearth' });
+
     const bond = state.socialData.swornBonds.find(b => b.id === req.params.bondId);
     if (!bond) return res.status(404).json({ error: 'Bond not found' });
     if (bond.status !== 'pending') return res.status(400).json({ error: 'Bond is not pending' });
