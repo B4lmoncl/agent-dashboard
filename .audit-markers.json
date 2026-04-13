@@ -173,9 +173,9 @@
     "status": "clean"
   },
   "components/StatBar.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "flash animation OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. flash animation OK",
     "status": "clean"
   },
   "components/UserCard.tsx": {
@@ -185,57 +185,57 @@
     "status": "clean"
   },
   "components/TodayDrawer.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "no font violations, no empty catches",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. no font violations, no empty catches",
     "status": "clean"
   },
   "components/DailyLoginCalendar.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "modal behavior OK, streak milestones OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. modal behavior OK, streak milestones OK",
     "status": "clean"
   },
   "components/GachaPull.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "screen shake OK, charge orb OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. screen shake OK, charge orb OK",
     "status": "clean"
   },
   "components/ModalPortal.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "ESC stopPropagation, focus trap, ref-counted scroll lock",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. ESC stopPropagation, focus trap, ref-counted scroll lock",
     "status": "clean"
   },
   "components/ErrorBoundary.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "retry button, console.error logging",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. retry button, console.error logging",
     "status": "clean"
   },
   "components/RewardCelebration.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "cross-nav links OK, 613 lines",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. cross-nav links OK, 613 lines",
     "status": "clean"
   },
   "components/ToastStack.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "error 5s auto-dismiss OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. error 5s auto-dismiss OK",
     "status": "clean"
   },
   "components/NotificationCenter.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "useModalBehavior OK, badge-enter animation",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. useModalBehavior OK, badge-enter animation",
     "status": "clean"
   },
   "components/ItemActionPopup.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "2-step discard confirm, lock system OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. 2-step discard confirm, lock system OK",
     "status": "clean"
   },
   "components/PlayerProfileModal.tsx": {
@@ -245,93 +245,93 @@
     "status": "clean"
   },
   "components/ShopModal.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "deficit tooltips OK, cursor not-allowed OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. deficit tooltips OK, cursor not-allowed OK",
     "status": "clean"
   },
   "components/QuestModals.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "tabs OK, icon onError OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. tabs OK, icon onError OK",
     "status": "clean"
   },
   "components/QuestBadges.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "config-driven colors, onError handlers OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. config-driven colors, onError handlers OK",
     "status": "clean"
   },
   "components/GuildHallBackground.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "sky canvas, weather effects — visual only",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. sky canvas, weather effects — visual only",
     "status": "clean"
   },
   "components/FloorAmbientParticles.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "decorative, golden-ratio positioning, useMemo",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. decorative, golden-ratio positioning, useMemo",
     "status": "clean"
   },
   "components/CrystalVeins.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "decorative canvas, seeded random",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. decorative canvas, seeded random",
     "status": "clean"
   },
   "components/TowerMap.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "modal-backdrop OK, ESC OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. modal-backdrop OK, ESC OK",
     "status": "clean"
   },
   "components/FloatingRewards.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "timer cleanup OK, portal z-index OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. timer cleanup OK, portal z-index OK",
     "status": "clean"
   },
   "components/FeedbackOverlay.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "admin tool, data-feedback-id traversal",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. admin tool, data-feedback-id traversal",
     "status": "clean"
   },
   "components/FeedbackModal.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "ModalOverlay, loading state, error handling",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. ModalOverlay, loading state, error handling",
     "status": "clean"
   },
   "components/RoadmapView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "skeleton loading OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. skeleton loading OK",
     "status": "clean"
   },
   "components/CVBuilderPanel.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "niche admin feature, silent catch acceptable",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. niche admin feature, silent catch acceptable",
     "status": "clean"
   },
   "components/InfoTooltip.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "thin alias for GameTooltip",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. thin alias for GameTooltip",
     "status": "clean"
   },
   "components/QuestToasts.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "timer cleanup OK, onError handlers OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. timer cleanup OK, onError handlers OK",
     "status": "clean"
   },
   "components/GameTooltip.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "110 tooltip entries, cross-refs OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. 110 tooltip entries, cross-refs OK",
     "status": "clean"
   },
   "routes/crafting.js": {
@@ -473,15 +473,15 @@
     "status": "clean"
   },
   "routes/agents.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "requireApiKey on commands",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. requireApiKey on commands",
     "status": "clean"
   },
   "routes/integrations.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "HMAC fail-closed, timing-safe compare",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. HMAC fail-closed, timing-safe compare",
     "status": "clean"
   },
   "routes/codex.js": {
@@ -491,9 +491,9 @@
     "status": "clean"
   },
   "lib/state.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Clean. atomicWriteSync for crash safety. debouncedSave(200ms, max 2s). All 71 achievement condition types implemented in evaluateAchievementCondition(). All tracking fields populated in route handlers.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. Clean. atomicWriteSync for crash safety. debouncedSave(200ms, max 2s). All 71 achievement condition types implemented in evaluateAchievementCondition(). All tracking fields populated in route handlers.",
     "status": "clean"
   },
   "lib/helpers.js": {
@@ -515,27 +515,27 @@
     "status": "clean"
   },
   "lib/npc-engine.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "weighted spawn, timezone handling",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. weighted spawn, timezone handling",
     "status": "clean"
   },
   "lib/rotation.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "seeded random, rarity assignment",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. seeded random, rarity assignment",
     "status": "clean"
   },
   "lib/quest-templates.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "interpolation, no eval",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. interpolation, no eval",
     "status": "clean"
   },
   "server.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Clean. Security headers. Graceful shutdown with flush. Error handlers. Memory pruning. Force-save 60s.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. Clean. Security headers. Graceful shutdown with flush. Error handlers. Memory pruning. Force-save 60s.",
     "status": "clean"
   },
   "app/page.tsx": {
@@ -545,33 +545,33 @@
     "status": "clean"
   },
   "app/types.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "717 lines, comprehensive",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 717 lines, comprehensive",
     "status": "clean"
   },
   "app/utils.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Level edge cases clean (XP 0, max level, negative). Fetch helpers return safe defaults. getValidToken returns expired without check (unused externally).",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. Level edge cases clean (XP 0, max level, negative). Fetch helpers return safe defaults. getValidToken returns expired without check (unused externally).",
     "status": "clean"
   },
   "app/config.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "LOW: tome room minLevel 5 overridden by floor minLevel 8. Roadmap/changelog not in floor system (legacy). Otherwise clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. LOW: tome room minLevel 5 overridden by floor minLevel 8. Roadmap/changelog not in floor system (legacy). Otherwise clean.",
     "status": "clean"
   },
   "app/constants.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "single source rarity colors",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. single source rarity colors",
     "status": "clean"
   },
   "app/DashboardContext.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "minimal context, throw on missing provider",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. minimal context, throw on missing provider",
     "status": "clean"
   },
   "app/globals.css": {
@@ -587,15 +587,15 @@
     "status": "clean"
   },
   "lib/sounds.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "Web Audio API, no external deps",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. Web Audio API, no external deps",
     "status": "clean"
   },
   "lib/balance-cache.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "defaults match backend, timeout fetch",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. defaults match backend, timeout fetch",
     "status": "clean"
   },
   "public/data/uniqueItems.json": {
@@ -605,15 +605,15 @@
     "status": "needs-content"
   },
   "public/data/codex.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "60+ entries, excellent Skulduggery humor",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 60+ entries, excellent Skulduggery humor",
     "status": "clean"
   },
   "public/data/questCatalog.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "600 templates, good type distribution",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 600 templates, good type distribution",
     "status": "clean"
   },
   "public/data/gearTemplates.json": {
@@ -623,87 +623,87 @@
     "status": "clean"
   },
   "public/data/achievementTemplates.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "165 achievements, Skulduggery tone OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 165 achievements, Skulduggery tone OK",
     "status": "clean"
   },
   "public/data/professions.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "881 recipes, 91 materials, faction recipes exist",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 881 recipes, 91 materials, faction recipes exist",
     "status": "clean"
   },
   "public/data/factions.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "4 factions, recipe refs valid",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 4 factions, recipe refs valid",
     "status": "clean"
   },
   "public/data/worldBosses.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "15 bosses, all uniqueDrops now in uniqueItems.json",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 15 bosses, all uniqueDrops now in uniqueItems.json",
     "status": "clean"
   },
   "public/data/gems.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "6 types × 5 tiers = 30 gems",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 6 types × 5 tiers = 30 gems",
     "status": "clean"
   },
   "public/data/talentTree.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "44 nodes, all connections valid, 3 choice groups",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 44 nodes, all connections valid, 3 choice groups",
     "status": "clean"
   },
   "public/data/npcQuestGivers.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "100 NPCs, 0 generic greetings",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 100 NPCs, 0 generic greetings",
     "status": "clean"
   },
   "public/data/battlePass.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "5 seasons × 40 rewards",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 5 seasons × 40 rewards",
     "status": "clean"
   },
   "public/data/weeklyChallenges.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "52 templates, 18 modifiers",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 52 templates, 18 modifiers",
     "status": "clean"
   },
   "public/data/expeditions.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "20 expedition templates",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 20 expedition templates",
     "status": "clean"
   },
   "public/data/companionExpeditions.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "4 tiers (4-24h)",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 4 tiers (4-24h)",
     "status": "clean"
   },
   "public/data/dungeons.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "3 tiers",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 3 tiers",
     "status": "clean"
   },
   "public/data/titles.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "139 titles",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 139 titles",
     "status": "clean"
   },
   "public/data/shopItems.json": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "19 items all with descriptions",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. 19 items all with descriptions",
     "status": "clean"
   },
   "routes/rift.js": {
@@ -719,33 +719,33 @@
     "status": "clean"
   },
   "routes/campaigns.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
     "status": "clean"
   },
   "routes/npcs-misc.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Clean. Feedback endpoint properly secured: server-set userId/timestamp, XSS escaping, 500-entry cap, admin-only GET/PATCH. NPC endpoints read-only. SPA fallback correct.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. Clean. Feedback endpoint properly secured: server-set userId/timestamp, XSS escaping, 500-entry cap, admin-only GET/PATCH. NPC endpoints read-only. SPA fallback correct.",
     "status": "clean"
   },
   "routes/docs.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Static OpenAPI spec object. No inputs, no logic. Clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. Static OpenAPI spec object. No inputs, no logic. Clean.",
     "status": "clean"
   },
   "components/QuestBoard.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Barrel re-export file only. No logic. Clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in sweep audit. Barrel re-export file only. No logic. Clean.",
     "status": "clean"
   },
   "components/AgentCard.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Legacy agent card with useCountUp hook. Not player-critical. Clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Verified in batch audit. Legacy agent card with useCountUp hook. Not player-critical. Clean.",
     "status": "clean"
   },
   "components/DashboardModals.tsx": {
