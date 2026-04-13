@@ -467,9 +467,9 @@
     "status": "clean"
   },
   "routes/habits-inventory.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "requireSelf, gold sync OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. inventoryLock on equip/unequip/discard/lock. requireSelf on all player mutations. Gold sync on shop-equip. Cross-slot dupe check. BoE binding on equip. Lock-check on discard. Equipped-check on discard. Level-gate on equip.",
     "status": "clean"
   },
   "routes/agents.js": {
