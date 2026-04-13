@@ -407,9 +407,9 @@
     "status": "clean"
   },
   "routes/dungeons.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, group success once, gear/unique drops OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "MED FIXED: duplicate material drops (generic + tier-aware rollCraftingMaterials) — removed generic drop. HIGH FIXED: _dungeonCompletions incremented on failed dungeons, inflating achievement tracking — moved after success determination, gated on isSuccess.",
     "status": "clean"
   },
   "routes/world-boss.js": {
@@ -707,9 +707,9 @@
     "status": "clean"
   },
   "routes/rift.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-10",
-    "findings": "MED: /api/rift/extend missing player lock — added riftExtendLock. Rest is clean: all POST endpoints have locks, tavern-rest checks, level validation, cooldown checks, mythic anti-skip, weekly replay guard.. Cycle 2: verified all frontend calls use reviewApiKey",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: MED FIXED: expired rift in complete-stage didn't set rift.active=false (self-healed on next GET but inconsistent). HIGH FIXED: expired rift in complete-stage didn't write fail cooldown entry — player could retry immediately after timer expiry. Bolstering affix accumulation verified correct. Mythic replay 7-day rolling window noted (design choice, not bug).",
     "status": "clean"
   },
   "routes/config-admin.js": {
