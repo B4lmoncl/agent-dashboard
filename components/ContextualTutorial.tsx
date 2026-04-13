@@ -104,7 +104,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "rift_intro",
     title: "Der Riss.",
-    text: "Quest-Ketten unter Zeitdruck. Normal ist höflich. Hard ist es nicht. Legendary ist persönlich. Wenn du Legendary schaffst, wartet dahinter Mythic+. Für alle, die nicht wissen wann Schluss ist.",
+    text: "Zeitbegrenzte Quest-Ketten. Normal: 3 Quests in 72 Stunden. Hard: 5 in 48. Legendary: 7 in 36. Scheitern kostet Tage Cooldown. Schaffst du Legendary, wartet Mythic+ — endlos skalierend, kein Limit, kein Mitleid.",
     view: "rift",
     minLevel: 10,
   },

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -241,12 +240,6 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   return (
     <div data-feedback-id="rift-view" className="space-y-5 tab-content-enter relative">
       <TutorialMomentBanner viewId="rift" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="rift"
-        title="Der Riss"
-        description="Quest-Ketten unter Zeitdruck. Normal ist machbar. Hard ist unangenehm. Legendary ist eine Frage des Charakters. Dahinter wartet Mythic+ — für alle, die nicht wissen wann genug ist."
-        accentColor="#a855f7"
-      />
       {/* Purple rift energy fragments */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 6 }, (_, i) => (

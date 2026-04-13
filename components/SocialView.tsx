@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import ItemTooltip from "@/components/ItemTooltip";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -2369,12 +2368,6 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
       </div>
 
       <TutorialMomentBanner viewId="social" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="social"
-        title="The Breakaway"
-        description="Freunde finden. Items tauschen. Nachrichten senden. Beobachten was die anderen so treiben. Das Übliche. Nur mit besseren Belohnungen."
-        accentColor="#a855f7"
-      />
 
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">

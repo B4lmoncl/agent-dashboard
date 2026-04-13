@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useDashboard } from "@/app/DashboardContext";
@@ -302,12 +301,6 @@ export default function TalentTreeView({
   return (
     <div className="tab-content-enter">
       <TutorialMomentBanner viewId="talents" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="talents"
-        title="Schicksalsbaum"
-        description="Drei Ringe. Der innere lehrt Grundlagen. Der mittlere verlangt Entscheidungen. Der äußere belohnt Entschlossenheit. Manche Pfade schließen sich gegenseitig aus. Respec kostet 500 Gold und 50 Essenz. Bereue weise."
-        accentColor="#a78bfa"
-      />
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>

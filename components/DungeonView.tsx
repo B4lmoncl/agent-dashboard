@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import type { TooltipItem } from "@/components/ItemTooltip";
@@ -331,12 +330,6 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   return (
     <div data-feedback-id="dungeon-view" className="space-y-5 tab-content-enter relative">
       <TutorialMomentBanner viewId="dungeons" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="dungeons"
-        title="Das Untergewölbe"
-        description="Lade 1-3 Freunde ein. Der Dungeon läuft 8 Stunden im Hintergrund. Eure kombinierte Gear Score entscheidet über Erfolg. Companion Bond hilft. Hoffnung weniger."
-        accentColor="#3b82f6"
-      />
       {/* Dust motes in torchlight */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (
