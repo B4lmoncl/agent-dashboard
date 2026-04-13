@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import CountUp from "@/components/CountUp";
 import type { User, ClassDef } from "@/app/types";
 import { getUserLevel, getUserXpProgress, GUILD_LEVELS } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -194,7 +195,7 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
             {streak > 0 && (
               <Tip k="streak">
                 <span
-                  className="text-xs font-bold flex-shrink-0"
+                  className={`text-xs font-bold flex-shrink-0${streak >= 14 ? " streak-flame-intense" : streak >= 7 ? " streak-flame" : ""}`}
                   style={{ color: streak >= 30 ? "#ef4444" : streak >= 7 ? "#f59e0b" : "#fb923c", cursor: onNavigate ? "pointer" : undefined }}
                   onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("rituals"); } : undefined}
                   title={onNavigate ? "Go to Ritual Chamber" : undefined}
@@ -224,7 +225,7 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
       <div className="px-3 pb-2">
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
-            {nextLvlEntry ? `${(xp - lvl.xpRequired).toLocaleString()} / ${(nextLvlEntry.xpRequired - lvl.xpRequired).toLocaleString()}` : "MAX"}
+            {nextLvlEntry ? <><CountUp value={xp - lvl.xpRequired} duration={800} /> / {(nextLvlEntry.xpRequired - lvl.xpRequired).toLocaleString()}</> : "MAX"}
           </span>
         </div>
         <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }}>
@@ -264,7 +265,12 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
           <Tip k="forge_temp">
             <div
               className="rounded-lg px-2 py-1.5 text-center"
-              style={{ background: "rgba(255,255,255,0.03)", cursor: onNavigate ? "pointer" : undefined }}
+              style={{
+                background: temp > 50 ? `radial-gradient(ellipse at center bottom, ${forgeTier.color}15 0%, rgba(255,255,255,0.03) 70%)` : "rgba(255,255,255,0.03)",
+                boxShadow: temp > 80 ? `0 0 ${Math.round((temp - 80) * 0.6)}px ${forgeTier.color}30, inset 0 -1px 4px ${forgeTier.color}15` : undefined,
+                cursor: onNavigate ? "pointer" : undefined,
+                transition: "box-shadow 0.6s ease, background 0.6s ease",
+              }}
               onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("forge"); } : undefined}
               title={onNavigate ? "Go to Artisan's Quarter" : undefined}
             >
