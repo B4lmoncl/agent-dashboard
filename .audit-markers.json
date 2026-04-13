@@ -113,15 +113,15 @@
     "status": "clean"
   },
   "components/WorldBossView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "types OK, formatting OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. RewardCelebration for claim (gold, essenz, stardust, unique/gear drops, rank+contribution%). Correct disabled states. Boost with not-allowed cursor. HP bar. Auto-refresh.",
     "status": "clean"
   },
   "components/DungeonView.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "2-step cancel OK, error handling OK",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. RewardCelebration for collect (gold, essenz, runensplitter, sternentaler, unique/gear/gem drops). Correct disabled states with cursor:not-allowed. 2-step cancel. Friend picker with level display. Error handling.",
     "status": "clean"
   },
   "components/RiftView.tsx": {
