@@ -341,9 +341,9 @@
     "status": "clean"
   },
   "routes/shop.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-05",
-    "findings": "lock, auth, self-check",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 2: Clean. shopBuyLock, self-check, buff cap 50, faction+talent discount, applyShopEffect covers 15 effect types, gold/currency buy, rift extend guard, workshop upgrades with tier validation.",
     "status": "clean"
   },
   "routes/gems.js": {
@@ -713,9 +713,9 @@
     "status": "clean"
   },
   "routes/config-admin.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-10",
-    "findings": "Clean. GET-only batch endpoint, no mutations. Sensitive user fields correctly stripped (passwordHash, apiKey, refreshTokens, etc.). Rested XP live-calculated. Modifiers computed only for requesting player (perf optimization). NPC quest chain status correctly per-player. Weekly challenge + expedition correctly inlined.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Verified new swornBondSummary/pendingBonds in socialSummary + notifications. bondChestReady + pendingBonds in notifications object. Prior findings still clean: GET-only batch, sensitive fields stripped, rested XP live-calc.",
     "status": "clean"
   },
   "routes/campaigns.js": {
