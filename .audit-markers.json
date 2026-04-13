@@ -89,9 +89,9 @@
     "status": "clean"
   },
   "components/CharacterView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "bg cover fix, NEW badge persistent, collection log OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-13",
+    "findings": "Cycle 3: Clean. useModalBehavior on modals. tab-content-enter. Legendary/unique glow+shimmer. Rarity colors. Disabled states with cursor:not-allowed on frame/title/gem actions. Gear tooltip with legendary effect label. 2-step confirm for discard. Collection log filter.",
     "status": "clean"
   },
   "components/SocialView.tsx": {
