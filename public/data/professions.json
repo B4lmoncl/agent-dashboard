@@ -7293,7 +7293,7 @@
       "xp": 5,
       "description": "Braut: Schwacher Trank der Kraft.",
       "trainerCost": 25,
-      "desc": "Schwacher Trank. Macht minimal stärker. Schmeckt maximal schlecht."
+      "desc": "Ein schwacher Trank der minimal stärker macht und maximal schlecht schmeckt."
     },
     {
       "id": "recipe-alch-schwacher-trank-der-weisheit",
@@ -7356,7 +7356,7 @@
       "xp": 5,
       "description": "Braut: Schwacher Trank der Ausdauer.",
       "trainerCost": 25,
-      "desc": "Ausdauertrank. Wirkt eine Stunde. Die Nebenwirkungen zwei."
+      "desc": "Ein Ausdauertrank der eine Stunde wirkt, während die Nebenwirkungen sich zwei nehmen."
     },
     {
       "id": "recipe-alch-schwacher-elixier-der-eile",
@@ -7377,7 +7377,7 @@
       "xp": 5,
       "description": "Braut: Schwacher Elixier der Eile.",
       "trainerCost": 25,
-      "desc": "Elixier der Eile. Alles geht schneller. Auch die Fehler."
+      "desc": "Ein Elixier der Eile unter dem alles schneller geht — auch die Fehler."
     },
     {
       "id": "recipe-alch-geringer-trank-der-kraft",
@@ -7399,7 +7399,7 @@
       "xp": 10,
       "description": "Braut: Geringer Trank der Kraft.",
       "trainerCost": 68,
-      "desc": "Stärker als der schwache. Schwächer als der normale. Ysolde hasst das Wort 'mittelmaß'."
+      "desc": "Stärker als der schwache, schwächer als der normale — Ysolde hasst das Wort 'Mittelmaß'."
     },
     {
       "id": "recipe-alch-geringer-trank-der-weisheit",
@@ -7443,7 +7443,7 @@
       "xp": 10,
       "description": "Braut: Geringer Trank des Glücks.",
       "trainerCost": 78,
-      "desc": "Etwas mehr Glück. Reicht für einen guten Würfelwurf. Nicht für zwei."
+      "desc": "Etwas mehr Glück, genug für einen guten Würfelwurf, aber nicht für zwei."
     },
     {
       "id": "recipe-alch-geringer-trank-der-ausdauer",
@@ -7465,7 +7465,7 @@
       "xp": 10,
       "description": "Braut: Geringer Trank der Ausdauer.",
       "trainerCost": 83,
-      "desc": "Geringerer Ausdauertrank. Ysolde sagt, die Dosis mache das Gift. Und den Trank."
+      "desc": "Geringerer Ausdauertrank — Ysolde sagt, die Dosis mache sowohl das Gift als auch den Trank."
     },
     {
       "id": "recipe-alch-geringer-elixier-der-eile",
@@ -7487,7 +7487,7 @@
       "xp": 10,
       "description": "Braut: Geringer Elixier der Eile.",
       "trainerCost": 88,
-      "desc": "Schneller als der schwache. Langsamer als der große. Die Geschichte von Ysoldes Leben."
+      "desc": "Schneller als der schwache und langsamer als der große — im Grunde die Geschichte von Ysoldes Leben."
     },
     {
       "id": "recipe-alch-normaler-trank-der-kraft",
@@ -7510,7 +7510,7 @@
       "description": "Braut: Normaler Trank der Kraft.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Normaler Krafttrank. Das Wort 'normal' ist relativ. Bei Ysolde besonders."
+      "desc": "Ein normaler Krafttrank, wobei das Wort 'normal' bei Ysolde besonders relativ ist."
     },
     {
       "id": "recipe-alch-normaler-trank-der-weisheit",
@@ -7532,7 +7532,7 @@
       "xp": 15,
       "description": "Braut: Normaler Trank der Weisheit.",
       "trainerCost": 153,
-      "desc": "Normaler Weisheitstrank. Die Weisheit kommt. Die Bescheidenheit nicht."
+      "desc": "Ein normaler Weisheitstrank, bei dem die Weisheit kommt und die Bescheidenheit leider nicht."
     },
     {
       "id": "recipe-alch-normaler-trank-des-gluecks",
@@ -7576,7 +7576,7 @@
       "xp": 15,
       "description": "Braut: Normaler Trank der Ausdauer.",
       "trainerCost": 173,
-      "desc": "Normaler Ausdauertrank. Hält so lange wie ein gutes Gespräch. Also kürzer als gehofft."
+      "desc": "Ein normaler Ausdauertrank der so lange hält wie ein gutes Gespräch — also kürzer als man hofft."
     },
     {
       "id": "recipe-alch-normaler-elixier-der-eile",
@@ -7621,7 +7621,7 @@
       "xp": 17,
       "description": "Ein Gebräu, das den Geist schärft wie eine frisch geschliffene Klinge — wer davon trinkt, sieht die Welt mit unangenehmer Deutlichkeit.",
       "trainerCost": 205,
-      "desc": "Klarheit in einer Flasche. Die Wahrheit ist nicht immer angenehm. Aber sie ist klar."
+      "desc": "Klarheit in einer Flasche — die Wahrheit ist nicht immer angenehm, aber zumindest klar."
     },
     {
       "id": "recipe-alch-tinktur-der-beharrlichkeit",
@@ -7644,7 +7644,7 @@
       "xp": 17,
       "description": "Beharrlichkeit in flüssiger Form — schmeckt nach bitteren Kräutern und dem leisen Versprechen, dass morgen einfacher wird als heute.",
       "trainerCost": 223,
-      "desc": "Tinktur für Leute die nicht aufhören können. Oder wollen. Der Unterschied ist chemisch."
+      "desc": "Eine Tinktur für Leute die nicht aufhören können oder wollen — der Unterschied ist laut Ysolde rein chemisch."
     },
     {
       "id": "recipe-alch-essenz-der-vitalitaet",
@@ -7668,7 +7668,7 @@
       "description": "Destillierte Lebenskraft, gewonnen aus Mondblumen, die nur in sternlosen Nächten geerntet werden. Ysolde schwört, man könne den Herzschlag darin hören.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Lebenskraft in flüssiger Form. Schmeckt nach Morgengymnastik. Also furchtbar, aber wirksam."
+      "desc": "Lebenskraft in flüssiger Form, die nach Morgengymnastik schmeckt — also furchtbar, aber wirksam."
     },
     {
       "id": "recipe-alch-gro-er-trank-der-kraft",
@@ -7692,7 +7692,7 @@
       "description": "Braut: Großer Trank der Kraft.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Großer Krafttrank. Die Muskeln danken. Das Glas beschwert sich über die Farbe."
+      "desc": "Ein großer Krafttrank, für den die Muskeln danken und das Glas sich über die Farbe beschwert."
     },
     {
       "id": "recipe-alch-gro-er-trank-der-weisheit",
@@ -7716,7 +7716,7 @@
       "description": "Braut: Großer Trank der Weisheit.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Großer Weisheitstrank. Weisheit auf Knopfdruck. Ysolde empfiehlt trotzdem auch Bücher."
+      "desc": "Großer Weisheitstrank — Weisheit auf Knopfdruck, obwohl Ysolde trotzdem zusätzlich Bücher empfiehlt."
     },
     {
       "id": "recipe-alch-gro-er-trank-des-gluecks",
@@ -7740,7 +7740,7 @@
       "description": "Braut: Großer Trank des Glücks.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Großes Glück. Die Flasche glänzt golden. Ysolde schwört es sei die Flüssigkeit. Es ist die Flasche."
+      "desc": "Ein Trank für großes Glück in einer golden glänzenden Flasche — Ysolde schwört es sei die Flüssigkeit, aber es ist die Flasche."
     },
     {
       "id": "recipe-alch-gro-er-trank-der-ausdauer",
@@ -7764,7 +7764,7 @@
       "description": "Braut: Großer Trank der Ausdauer.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Großer Ausdauertrank. Hält drei Stunden. Ysolde hält fünf. Ohne Trank."
+      "desc": "Ein großer Ausdauertrank der drei Stunden hält — Ysolde selbst hält fünf, und das ohne Trank."
     },
     {
       "id": "recipe-alch-gro-er-elixier-der-eile",
@@ -7812,7 +7812,7 @@
       "description": "Braut: Überlegener Trank der Kraft.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Überlegener Krafttrank. Der Name sagt alles. Ysolde auch. Laut."
+      "desc": "Ein überlegener Krafttrank dessen Name alles sagt — genau wie Ysolde, nur lauter."
     },
     {
       "id": "recipe-alch-ueberlegener-trank-der-weisheit",
@@ -7860,7 +7860,7 @@
       "description": "Braut: Überlegener Trank des Glücks.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Überlegenes Glück. Die Farbe wechselt je nach Stimmung. Deine. Nicht die des Tranks."
+      "desc": "Überlegenes Glück dessen Farbe je nach Stimmung wechselt — deiner, nicht der des Tranks."
     },
     {
       "id": "recipe-alch-ueberlegener-trank-der-ausdauer",
@@ -7930,7 +7930,7 @@
       "description": "Braut: Mächtiger Trank der Kraft.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Mächtiger Krafttrank. Die Flasche warnt dich. Das ist neu."
+      "desc": "Ein mächtiger Krafttrank bei dem die Flasche dich warnt, was durchaus neu ist."
     },
     {
       "id": "recipe-alch-maechtiger-trank-der-weisheit",
@@ -7953,7 +7953,7 @@
       "description": "Braut: Mächtiger Trank der Weisheit.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Mächtiger Weisheitstrank. Du weißt danach Dinge die du nicht wissen wolltest. Meistens über dich selbst."
+      "desc": "Ein mächtiger Weisheitstrank nach dem du Dinge weißt die du nicht wissen wolltest, meistens über dich selbst."
     },
     {
       "id": "recipe-alch-maechtiger-trank-des-gluecks",
@@ -7976,7 +7976,7 @@
       "description": "Braut: Mächtiger Trank des Glücks.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Mächtiges Glück. Die Flasche summt. Ysolde sagt sie singe. Das tut sie nicht."
+      "desc": "Mächtiges Glück in einer Flasche die summt — Ysolde behauptet sie singe, was sie definitiv nicht tut."
     },
     {
       "id": "recipe-alch-maechtiger-trank-der-ausdauer",
@@ -7999,7 +7999,7 @@
       "description": "Braut: Mächtiger Trank der Ausdauer.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Mächtiger Ausdauertrank. Ysolde hat einen getrunken und drei Tage nicht geschlafen. Freiwillig."
+      "desc": "Ein mächtiger Ausdauertrank — Ysolde hat einmal einen getrunken und danach drei Tage freiwillig nicht geschlafen."
     },
     {
       "id": "recipe-alch-maechtiger-elixier-der-eile",
@@ -8022,7 +8022,7 @@
       "description": "Braut: Mächtiger Elixier der Eile.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Mächtige Eile. Ysoldes stärkster Geschwindigkeitstrank. Die Phiole hat Angst."
+      "desc": "Ysoldes stärkster Geschwindigkeitstrank, vor dem selbst die Phiole Angst hat."
     },
     {
       "id": "recipe-alch-flakon-des-ehrgeizes",
@@ -8093,7 +8093,7 @@
       },
       "xp": 40,
       "description": "Braut: Flakon der Weisheit. Ein Meisterwerk.",
-      "desc": "Weisheitsflakon. Die ultimative Version. Ysolde hat bei der Herstellung drei Mal gelacht. Nervös."
+      "desc": "Der ultimative Weisheitsflakon, bei dessen Herstellung Ysolde dreimal nervös gelacht hat."
     },
     {
       "id": "recipe-alch-flakon-der-titanen",
@@ -8118,7 +8118,7 @@
       },
       "xp": 42,
       "description": "Braut: Flakon der Titanen. Ein Meisterwerk.",
-      "desc": "Flakon der Titanen. Für Leute die größer sein wollen als sie sind. Nicht physisch. Meistens."
+      "desc": "Ein Flakon für Leute die größer sein wollen als sie sind — nicht physisch, meistens jedenfalls."
     },
     {
       "id": "recipe-alch-flakon-der-sterne",
@@ -8143,7 +8143,7 @@
       },
       "xp": 45,
       "description": "Braut: Flakon der Sterne. Ein Meisterwerk.",
-      "desc": "Flakon aus Sternenlicht. Leuchtet im Dunkeln. Schmeckt nach Kosmos. Und ein bisschen nach Minze."
+      "desc": "Ein Flakon aus Sternenlicht der im Dunkeln leuchtet und nach Kosmos schmeckt — und ein bisschen nach Minze."
     },
     {
       "id": "recipe-alch-flakon-der-ewigkeit",
@@ -8186,7 +8186,7 @@
       "xp": 15,
       "description": "Transmutation: Eisen → Kristall.",
       "trainerCost": 125,
-      "desc": "Eisen wird Kristall. Alchemie oder Betrug? Ysolde sagt: 'Ja.'"
+      "desc": "Verwandelt Eisen in Kristall — ob das Alchemie oder Betrug ist, beantwortet Ysolde mit einem schlichten 'Ja'."
     },
     {
       "id": "recipe-alch-transmute-kristall-drache",
@@ -8206,7 +8206,7 @@
       "xp": 22,
       "description": "Transmutation: Kristall → Drache.",
       "trainerCost": 375,
-      "desc": "Kristall wird Drachenmaterial. Kein Drache war beteiligt. Der Drache ist erleichtert."
+      "desc": "Verwandelt Kristall in Drachenmaterial, ohne dass ein Drache beteiligt war — zur Erleichterung aller Drachen."
     },
     {
       "id": "recipe-alch-transmute-drache-aether",
@@ -8228,7 +8228,7 @@
       "cooldownMinutes": 1440,
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Drachenmaterial wird Aether. Transmutation auf höchstem Niveau. Und mit höchster Rechnung."
+      "desc": "Transmutiert Drachenmaterial zu Aether — auf höchstem alchemistischen Niveau und mit entsprechend höchster Rechnung."
     },
     {
       "id": "recipe-alch-transmute-aether-seele",
@@ -8270,7 +8270,7 @@
       "xp": 12,
       "description": "Transmutation: Leinen → Wolle.",
       "trainerCost": 100,
-      "desc": "Leinen wird Wolle. Selina findet das respektlos. Ysolde findet das effizient."
+      "desc": "Verwandelt Leinen in Wolle, was Selina respektlos und Ysolde effizient findet."
     },
     {
       "id": "recipe-alch-transmute-wolle-seide",
@@ -8290,7 +8290,7 @@
       "xp": 18,
       "description": "Transmutation: Wolle → Seide.",
       "trainerCost": 275,
-      "desc": "Wolle wird Seide. Die Wolle beschwert sich nicht. Sie hat keine Wahl."
+      "desc": "Verwandelt Wolle in Seide — die Wolle beschwert sich nicht, weil sie keine Wahl hat."
     },
     {
       "id": "recipe-alch-transmute-seide-magie",
@@ -8311,7 +8311,7 @@
       "description": "Transmutation: Seide → Magiestoff.",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare",
-      "desc": "Seide wird Magiestoff. Der teuerste Weg Stoff zu veredeln. Und der schnellste."
+      "desc": "Verwandelt Seide in Magiestoff auf dem teuersten und zugleich schnellsten Weg Stoff zu veredeln."
     },
     {
       "id": "recipe-alch-transmute-leicht-mittel",
@@ -8331,7 +8331,7 @@
       "xp": 12,
       "description": "Transmutation: Leicht → Mittel Leder.",
       "trainerCost": 100,
-      "desc": "Leichtleder wird mittleres Leder. Roderic nennt es Betrug. Ysolde nennt es Chemie."
+      "desc": "Verwandelt Leichtleder in mittleres Leder — Roderic nennt es Betrug, Ysolde nennt es Chemie."
     },
     {
       "id": "recipe-alch-transmute-mittel-schwer",
@@ -8351,7 +8351,7 @@
       "xp": 18,
       "description": "Transmutation: Mittel → Schwer Leder.",
       "trainerCost": 275,
-      "desc": "Mittleres wird schweres Leder. Die Physik beschwert sich. Ysolde hört nicht zu."
+      "desc": "Verwandelt mittleres in schweres Leder, wobei sich die Physik beschwert und Ysolde nicht zuhört."
     },
     {
       "id": "recipe-alch-transmute-schwer-dick",
@@ -8373,7 +8373,7 @@
       "cooldownMinutes": 1440,
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Schwer wird dick. Ysolde sagt, das passiere auch ohne Alchemie. Beim Abendessen."
+      "desc": "Verwandelt schweres in dickes Leder — Ysolde sagt, das passiere auch ohne Alchemie, besonders beim Abendessen."
     },
     {
       "id": "recipe-alch-transmute-magie-runen",
@@ -8417,7 +8417,7 @@
       "cooldownMinutes": 2880,
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Dickes Leder wird raues Leder. Upgrade klingt paradox. Ist es auch."
+      "desc": "Verwandelt dickes Leder in raues — was als Upgrade paradox klingt und auch ist."
     },
     {
       "id": "recipe-alch-schwaches-elixier-des-fokus",
@@ -8437,7 +8437,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Elixier des Fokus.",
       "trainerCost": 25,
-      "desc": "Fokus in einer Flasche. Für Leute die nicht stillsitzen können. Wie Ysolde."
+      "desc": "Fokus in einer Flasche, für Leute die nicht stillsitzen können — wie Ysolde selbst."
     },
     {
       "id": "recipe-alch-schwaches-elixier-der-vitalitaet",
@@ -8457,7 +8457,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Elixier der Vitalität.",
       "trainerCost": 25,
-      "desc": "Vitalitätstrank. Man fühlt sich lebendiger. Kurz. Dann müde. Dann braucht man noch einen."
+      "desc": "Ein Vitalitätstrank nach dem man sich kurz lebendiger fühlt, dann müde, und dann braucht man noch einen."
     },
     {
       "id": "recipe-alch-schwaches-elixier-des-charisma",
@@ -8477,7 +8477,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Elixier des Charisma.",
       "trainerCost": 25,
-      "desc": "Charisma zum Trinken. Ysolde sagt, es wirke subtil. Die Wirkung ist auffällig. Der Geschmack auch."
+      "desc": "Charisma zum Trinken, das laut Ysolde subtil wirkt — wobei die Wirkung auffällig ist und der Geschmack ebenfalls."
     },
     {
       "id": "recipe-alch-elixier-des-fokus",
@@ -8497,7 +8497,7 @@
       "xp": 14,
       "description": "Braut: Elixier des Fokus.",
       "factionId": "pakt_der_wildnis",
-      "desc": "Stärkerer Fokus. Die Gedanken werden klarer. Die Rechnung auch."
+      "desc": "Stärkerer Fokus, unter dem die Gedanken klarer werden — und die Rechnung leider ebenfalls."
     },
     {
       "id": "recipe-alch-elixier-der-vitalitaet",
@@ -8517,7 +8517,7 @@
       "xp": 14,
       "description": "Braut: Elixier der Vitalität.",
       "trainerCost": 125,
-      "desc": "Mehr Lebenskraft. Ysolde empfiehlt es vor dem Frühstück. Nicht statt dem Frühstück."
+      "desc": "Mehr Lebenskraft — Ysolde empfiehlt es vor dem Frühstück, ausdrücklich nicht anstelle davon."
     },
     {
       "id": "recipe-alch-elixier-des-charisma",
@@ -8538,7 +8538,7 @@
       "description": "Braut: Elixier des Charisma.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Mehr Charisma. Ysolde trinkt keinen. Sie braucht keinen. Behauptet sie."
+      "desc": "Mehr Charisma in flüssiger Form — Ysolde selbst trinkt keinen, weil sie keinen braucht, behauptet sie."
     },
     {
       "id": "recipe-alch-starkes-elixier-des-fokus",
@@ -8559,7 +8559,7 @@
       "description": "Braut: Starkes Elixier des Fokus.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Starker Fokus. Man kann die Zeit vergessen. Und das Essen. Und den eigenen Namen. Vorübergehend."
+      "desc": "Starker Fokus unter dem man die Zeit vergisst, das Essen und gelegentlich den eigenen Namen — vorübergehend."
     },
     {
       "id": "recipe-alch-starkes-elixier-der-vitalitaet",
@@ -8621,7 +8621,7 @@
       "xp": 28,
       "description": "Braut: Überragendes Elixier des Fokus.",
       "trainerCost": 875,
-      "desc": "Überragender Fokus. Man sieht einzelne Staubkörner. Man zählt sie. Man kann nicht aufhören."
+      "desc": "Überragender Fokus unter dem man einzelne Staubkörner sieht, sie zählt und nicht mehr aufhören kann."
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-der-vitalitaet",
@@ -8661,7 +8661,7 @@
       "xp": 28,
       "description": "Braut: Überragendes Elixier des Charisma.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Überragendes Charisma. Feinde werden zu Fans. Kurzzeitig. Dann ärgern sie sich über sich selbst."
+      "desc": "Überragendes Charisma, unter dem Feinde kurzzeitig zu Fans werden und sich danach über sich selbst ärgern."
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-fokus",
@@ -8681,7 +8681,7 @@
       "xp": 40,
       "description": "Braut: Legendäres Elixier des Fokus.",
       "trainerCost": 1900,
-      "desc": "Legendärer Fokus. Ysoldes stärkstes Rezept. Sie hat beim Brauen den Turm vergessen. Drei Stunden lang."
+      "desc": "Ysoldes stärkstes Fokus-Rezept, bei dessen Herstellung sie den gesamten Turm drei Stunden lang vergessen hat."
     },
     {
       "id": "recipe-alch-legendaeres-elixier-der-vitalitaet",
@@ -8702,7 +8702,7 @@
       "description": "Braut: Legendäres Elixier der Vitalität.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Legendäre Vitalität. Man fühlt sich unsterblich. Ist man nicht. Aber die fünf Minuten sind nett."
+      "desc": "Legendäre Vitalität, unter der man sich für fünf Minuten unsterblich fühlt — was man nicht ist, aber die fünf Minuten sind nett."
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-charisma",
@@ -8744,7 +8744,7 @@
       "xp": 8,
       "description": "Braut: Schwaches Gegengift.",
       "trainerCost": 25,
-      "desc": "Schwaches Gegengift. Hilft gegen leichte Vergiftungen. Und gegen Ysoldes Kochversuche."
+      "desc": "Ein schwaches Gegengift das gegen leichte Vergiftungen hilft und gegen Ysoldes gelegentliche Kochversuche."
     },
     {
       "id": "recipe-alch-gegengift-2",
@@ -8790,7 +8790,7 @@
       "description": "Braut: Meister-Gegengift.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Meister-Gegengift. Entgiftet alles. Ysolde hat es an allem getestet. Einschließlich dem Mittagessen."
+      "desc": "Ein Meister-Gegengift das alles entgiftet — Ysolde hat es an allem getestet, einschließlich dem Mittagessen."
     },
     {
       "id": "recipe-alch-schmiedekatalysator-1",
@@ -8810,7 +8810,7 @@
       "xp": 12,
       "description": "Braut: Schwacher Schmiedekatalysator.",
       "trainerCost": 83,
-      "desc": "Heizt die Schmiede. Grimvar ist dankbar. Er zeigt es nicht. Weil er Grimvar ist."
+      "desc": "Heizt die Schmiede auf, wofür Grimvar dankbar ist — auch wenn er es nicht zeigt, weil er Grimvar ist."
     },
     {
       "id": "recipe-alch-schmiedekatalysator-2",
@@ -8831,7 +8831,7 @@
       "description": "Braut: Starker Schmiedekatalysator.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Stärkerer Katalysator. Grimvar grunzt zufriedener. Marginal."
+      "desc": "Ein stärkerer Katalysator, bei dem Grimvar marginal zufriedener grunzt."
     },
     {
       "id": "recipe-alch-schmiedekatalysator-3",
@@ -8851,7 +8851,7 @@
       "xp": 38,
       "description": "Braut: Meister-Schmiedekatalysator.",
       "factionId": "pakt_der_wildnis",
-      "desc": "Meisterkatalysator. Die Schmiede brennt so heiß dass Grimvar lächelt. Einmal. Kurz."
+      "desc": "Der Meisterkatalysator, unter dem die Schmiede so heiß brennt, dass Grimvar einmal kurz lächelt."
     },
     {
       "id": "recipe-alch-streakschutz-1",
@@ -8871,7 +8871,7 @@
       "xp": 15,
       "description": "Braut: Alchemistischer Streakschutz.",
       "trainerCost": 125,
-      "desc": "Alchemistischer Streakschutz. Schützt Gewohnheiten mit Chemie. Ysolde ist der Beweis dass es funktioniert."
+      "desc": "Alchemistischer Streakschutz der Gewohnheiten mit Chemie bewahrt — Ysolde selbst ist der lebende Beweis, dass es funktioniert."
     },
     {
       "id": "recipe-alch-streakschutz-2",
@@ -8916,7 +8916,7 @@
       "description": "Braut: Brillantes Manaöl.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Brillantes Manaöl. Leuchtet blau. Schmeckt blau. Ysolde sagt blau sei ein Geschmack. Diskussion beendet."
+      "desc": "Brillantes Manaöl das blau leuchtet und blau schmeckt — Ysolde behauptet, blau sei ein Geschmack, und die Diskussion ist damit beendet."
     },
     {
       "id": "recipe-alch-schattenoel",
@@ -8939,7 +8939,7 @@
       "xp": 25,
       "description": "Braut: Schattenöl.",
       "trainerCost": 625,
-      "desc": "Schattenöl. Für Dinge die im Dunkeln passieren sollen. Ysolde fragt nicht welche."
+      "desc": "Schattenöl für Dinge die im Dunkeln passieren sollen — Ysolde fragt wohlweislich nicht, welche genau."
     },
     {
       "id": "recipe-alch-wildes-oel",
@@ -8983,7 +8983,7 @@
       "xp": 32,
       "description": "Braut: Trank des Glücksregens.",
       "factionId": "bund_der_schatten",
-      "desc": "Glücksregen in einer Flasche. Ysolde sagt es regne Glück. Es regnet grüne Flüssigkeit. Aber das Glück kommt."
+      "desc": "Glücksregen in einer Flasche — Ysolde sagt es regne Glück, tatsächlich regnet es grüne Flüssigkeit, aber das Glück kommt trotzdem."
     },
     {
       "id": "process-filet",
