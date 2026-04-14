@@ -3687,7 +3687,7 @@
       "description": "Webt: Leinenschuhe.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Stoffschuhe. Bequem bei Sonnenschein. Katastrophal bei Regen. Selina verschweigt letzteres."
+      "desc": "Stoffschuhe die bei Sonnenschein die bequemsten Schuhe der Welt sind und bei Regen eine Katastrophe — ein Detail das Selina konsequent verschweigt."
     },
     {
       "id": "recipe-schneider-leinenpantoffeln",
@@ -4490,7 +4490,7 @@
       "description": "Webt: Ätherschuhe.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Schuhe aus Aether. Man steht auf nichts. Und doch steht man. Philosophie am Fuß."
+      "desc": "Schuhe aus reinem Aether — man steht auf nichts und doch steht man, was entweder Philosophie oder Schuhwerk ist."
     },
     {
       "id": "recipe-schneider-seelenwandler-schuhe",
@@ -4986,7 +4986,7 @@
       "xp": 10,
       "description": "Stoff veredeln I.",
       "trainerCost": 25,
-      "desc": "Stoff wird besser. Wie Wein. Nur trockener. Und tragbar."
+      "desc": "Veredelter Stoff wird mit der Zeit besser, wie guter Wein — nur trockener und deutlich tragbarer."
     },
     {
       "id": "recipe-schneider-stoff-veredeln-2",
@@ -5236,7 +5236,7 @@
       "description": "Glück weben I.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Glück in Stoff. Selina hat es versucht. Es hat funktioniert. Einmal. Reicht als Beweis."
+      "desc": "Selinas Versuch, Glück in Stoff zu weben, hat tatsächlich funktioniert — einmal, was sie als hinreichenden Beweis betrachtet."
     },
     {
       "id": "recipe-schneider-glueck-weben-2",
@@ -5998,7 +5998,7 @@
       "description": "Gerbt: Schwerleder-Helm.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common",
-      "desc": "Lederhelm. Leichter als Metall. Leiser als Metall. Weniger metallig als Metall."
+      "desc": "Ein Lederhelm der leichter und leiser ist als sein Pendant aus Metall, und der den entscheidenden Vorteil hat, nicht aus Metall zu sein."
     },
     {
       "id": "recipe-leder-bestien-kapuze",
@@ -9375,7 +9375,7 @@
       "xp": 16,
       "description": "Kocht: FeineMahlzeit der Eile.",
       "trainerCost": 215,
-      "desc": "Feines Eilessen. Wird schnell serviert. Wirkt schnell. Verschwindet schnell. Wie die meisten Freuden."
+      "desc": "Ein feines Eilessen das schnell serviert wird, schnell wirkt und schnell verschwindet — wie die meisten Freuden im Leben."
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-fokus",
@@ -9512,7 +9512,7 @@
       "description": "Kocht: ErleseneMahlzeit der Eile.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Erlesene Eile. Widerspricht sich. Bruna auch. Meistens gleichzeitig."
+      "desc": "Erlesene Eile widerspricht sich als Konzept — genau wie Bruna sich regelmäßig selbst widerspricht, meistens gleichzeitig."
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-des-fokus",
@@ -9872,7 +9872,7 @@
       "description": "Braut: Drachenmet.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Drachenmet. Brennt beim Trinken. Und danach. Und am nächsten Morgen. Bruna empfiehlt Wasser."
+      "desc": "Brunas Drachenmet brennt beim Trinken, danach und am nächsten Morgen — sie empfiehlt, Wasser in Reichweite zu haben. Und einen freien Tag."
     },
     {
       "id": "recipe-koch-beruhigender-tee",
@@ -10302,7 +10302,7 @@
       "xp": 16,
       "description": "Bereitet zu: Scharfe Marinade.",
       "trainerCost": 208,
-      "desc": "Scharfe Marinade. Mariniert alles. Einschließlich des Magens. Bruna empfiehlt Vorsicht. Und Milch."
+      "desc": "Eine Marinade die alles durchdringt, einschließlich deines Magens — Bruna empfiehlt Vorsicht und prophylaktisch ein Glas Milch."
     },
     {
       "id": "recipe-koch-sternen-essenz",
@@ -10626,7 +10626,7 @@
       "xp": 16,
       "description": "Verzaubert: Starke Verzauberung der Ausdauer.",
       "trainerCost": 208,
-      "desc": "Starke Ausdauer. Die Rune pulsiert. Der Gegenstand atmet. Eldric findet das faszinierend. Alle anderen beunruhigend."
+      "desc": "Eine Ausdauerrune die so stark pulsiert, dass der verzauberte Gegenstand anfängt zu atmen — Eldric findet das faszinierend, alle anderen finden es beunruhigend."
     },
     {
       "id": "recipe-verz-starke-verzauberung-des-gluecks",
@@ -10865,7 +10865,7 @@
       "description": "Verzaubert: Legendäre Verzauberung der Kraft.",
       "factionId": "tinte",
       "factionMinRep": "revered",
-      "desc": "Legendäre Kraft. Eldrics stärkste Rune. Er zittert dabei. Nicht vor Angst. Vor Ehrfurcht."
+      "desc": "Eldrics stärkste Kraftrune — seine Hände zittern bei der Anwendung, und er besteht darauf, dass es Ehrfurcht ist, nicht Angst."
     },
     {
       "id": "recipe-verz-legendaere-verzauberung-der-weisheit",
@@ -11143,7 +11143,7 @@
       "description": "Verzaubert permanent: +2 tempo auf Stiefel.",
       "factionId": "tinte",
       "factionMinRep": "honored",
-      "desc": "Große Stiefelverzauberung. Die Stiefel schweben jetzt. Einen Millimeter. Selindra bemerkt es. Sonst niemand."
+      "desc": "Nach dieser Verzauberung schweben die Stiefel einen Millimeter über dem Boden, was ausschließlich Selindra bemerkt und als Erfolg verbucht."
     },
     {
       "id": "recipe-verz-perm-helm-2",
@@ -11281,7 +11281,7 @@
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Ausdauer.",
       "trainerCost": 93,
-      "desc": "Ausdauerschriftrolle. Gibt Energie. Auf Papier. Eldric versteht das. Physiker nicht."
+      "desc": "Eine Schriftrolle die Energie auf Papier speichert — Eldric versteht wie das funktioniert, Physiker weniger."
     },
     {
       "id": "recipe-verz-scroll-glueck-3",
@@ -14473,7 +14473,7 @@
       "xp": 8,
       "trainerCost": 45,
       "description": "Stellt her: Einfache Leinenkappe.",
-      "desc": "Einfach. Leinen. Kappe. Selina hat sich bei der Namensgebung nicht angestrengt. Beim Weben schon."
+      "desc": "Eine Leinenkappe deren Name so schlicht ist wie ihr Material — Selina hat ihre kreative Energie ins Weben gesteckt, nicht in die Benennung."
     },
     {
       "id": "recipe-schneider-gewobener-wollschleier",
@@ -14710,7 +14710,7 @@
       "xp": 8,
       "trainerCost": 55,
       "description": "Stellt her: Einfache Leinenschuhe.",
-      "desc": "Schuhe aus Leinen. Leicht wie Luft. Haltbar wie... weniger als Luft."
+      "desc": "Leinenschuhe die so leicht sind wie Luft und ungefähr genauso lang halten."
     },
     {
       "id": "recipe-schneider-gewobene-wollschuhe",
@@ -18437,7 +18437,7 @@
       "description": "Stellt her: Woll Visier II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Wollvisier. Man sieht durch Wolle. Schlecht. Aber warm."
+      "desc": "Ein Wollvisier, das die Sicht einschränkt und das Gesicht wärmt — in genau dieser Reihenfolge der Prioritäten."
     },
     {
       "id": "recipe-schneider-seiden-panzer-ii",

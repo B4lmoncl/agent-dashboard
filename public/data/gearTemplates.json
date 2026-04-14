@@ -11418,7 +11418,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Verbindet Träger und Welt. Empathie als Rüstung. Klingt sanft. Ist es nicht.",
+      "desc": "Ein Mantel der seinen Träger mit der Welt verbindet und Empathie als Rüstung verwendet — was sanfter klingt als es ist.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -14036,7 +14036,7 @@
       "reqLevel": 28,
       "rarity": "rare",
       "price": 0,
-      "desc": "Sterne am Rand. Echte. Kleine. Funkelnde.",
+      "desc": "Am Rand dieses Reifs sitzen echte Sterne — klein, funkelnd und vollkommen deplatziert auf einem Stück Schmiedework.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
@@ -30250,7 +30250,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Unsichtbar im Schatten. Tödlich im Licht. Varn ist stolz. Er zeigt es nicht. Natürlich nicht.",
+      "desc": "Eine Klinge die im Schatten unsichtbar wird und im Licht tödlich — Varn ist stolz auf sie, auch wenn er das natürlich niemals zeigen würde.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "shopHidden": true,
       "affixes": {
