@@ -55,9 +55,9 @@ interface CurrencyShopItem {
 }
 
 const CURRENCY_SHOPS: { key: string; label: string; color: string; iconPath: string }[] = [
-  { key: "sternentaler", label: "Star Coins", color: "#fbbf24", iconPath: "/images/icons/currency-sternentaler.png" },
-  { key: "gildentaler", label: "Guild Coins", color: "#10b981", iconPath: "/images/icons/currency-gildentaler.png" },
-  { key: "mondstaub", label: "Moondust", color: "#c084fc", iconPath: "/images/icons/currency-mondstaub.png" },
+  { key: "sternentaler", label: "Sternentaler", color: "#fbbf24", iconPath: "/images/icons/currency-sternentaler.png" },
+  { key: "gildentaler", label: "Gildentaler", color: "#10b981", iconPath: "/images/icons/currency-gildentaler.png" },
+  { key: "mondstaub", label: "Mondstaub", color: "#c084fc", iconPath: "/images/icons/currency-mondstaub.png" },
 ];
 
 export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {

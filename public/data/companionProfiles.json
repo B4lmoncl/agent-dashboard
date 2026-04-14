@@ -45,42 +45,42 @@
     "quests": [
       {
         "id": "feed_dobbie",
-        "title": "Feed Dobbie Before 18:00",
-        "description": "His Highness demands his meal on time. No excuses.",
+        "title": "Dobbie vor 18:00 füttern",
+        "description": "Seine Hoheit verlangt pünktliche Mahlzeiten. Keine Ausreden.",
         "rarity": "rare"
       },
       {
         "id": "clean_litter",
-        "title": "Clean the Litter Box",
-        "description": "The sacred ritual must be performed. Dobbie demands cleanliness.",
+        "title": "Katzenklo reinigen",
+        "description": "Das heilige Ritual muss vollzogen werden. Dobbie duldet keine Unreinheit.",
         "rarity": "uncommon"
       },
       {
         "id": "pet_dobbie",
-        "title": "Pet Dobbie for 5 Minutes",
-        "description": "Five minutes of undivided attention. The minimum acceptable tribute.",
+        "title": "Dobbie 5 Minuten streicheln",
+        "description": "Fünf Minuten ungeteilte Aufmerksamkeit. Das akzeptable Minimum an Tribut.",
         "rarity": "common"
       },
       {
         "id": "play_time",
-        "title": "Interactive Play Session",
-        "description": "10 minutes with the wand toy. Dobbie requires stimulation.",
+        "title": "Spielzeit mit der Federangel",
+        "description": "10 Minuten mit dem Spielzeug. Dobbie verlangt Stimulation.",
         "rarity": "common"
       },
       {
         "id": "window_watch",
-        "title": "Open Window for Bird Watching",
-        "description": "Allow access to the window ledge for prime bird surveillance.",
+        "title": "Fenster öffnen zur Vogelbeobachtung",
+        "description": "Zugang zum Fensterbrett gewähren. Erstklassige Vogelüberwachung.",
         "rarity": "common"
       }
     ],
     "moodQuotes": {
-      "Sleeping": "Zzz... Do not disturb. Consequences will be severe.",
-      "Ecstatic": "Fine. You may pet me. BRIEFLY. Do not read into this.",
-      "Happy": "You may proceed. I am... temporarily satisfied.",
-      "Neutral": "This is taking far too long. My patience wears thin, human.",
-      "Neglected": "UNACCEPTABLE. The litter box remains unattended. Consequences incoming.",
-      "Sad": "You call that a play session? I've seen dust motes with more energy."
+      "Sleeping": "Zzz... Nicht stören. Die Konsequenzen wären erheblich.",
+      "Ecstatic": "Gut. Du darfst mich streicheln. KURZ. Interpretier da nichts rein.",
+      "Happy": "Du darfst weitermachen. Ich bin... vorübergehend zufrieden.",
+      "Neutral": "Das dauert entschieden zu lange. Meine Geduld hat Grenzen, Mensch.",
+      "Neglected": "INAKZEPTABEL. Das Katzenklo wartet. Konsequenzen folgen.",
+      "Sad": "Das nennst du Spielzeit? Ich habe Staubkörner mit mehr Energie gesehen."
     }
   },
   "dragon": {

@@ -22,81 +22,81 @@
     { "id": "essenz_crystal",  "name": "Essence Crystal",   "cost": 400,  "category": "boost",  "icon": "/images/icons/shop-essenz.png",        "desc": "Kristallisierte Essenz aus den tieferen Schichten des Turms. 10 Essenz. Der Kristall summt leise. Das ist normal. Wahrscheinlich.",              "effect": { "type": "instant_essenz",   "amount": 10 } }
   ],
   "gearTiers": [
-    { "id": "worn",       "name": "Worn Tools",       "cost": 0,    "tier": 0, "xpBonus": 0, "icon": "/images/icons/tools-worn.png", "desc": "Worn-out tools. No bonus." },
-    { "id": "sturdy",     "name": "Sturdy Tools",     "cost": 250,  "tier": 1, "xpBonus": 2, "icon": "/images/icons/tools-sturdy.png", "desc": "+2% XP on all quests" },
-    { "id": "masterwork", "name": "Masterwork Tools", "cost": 750,  "tier": 2, "xpBonus": 4, "icon": "/images/icons/tools-masterwork.png", "desc": "+4% XP on all quests" },
-    { "id": "legendary",  "name": "Legendary Tools",  "cost": 2000, "tier": 3, "xpBonus": 7, "icon": "/images/icons/tools-legendary.png", "desc": "+7% XP on all quests" },
-    { "id": "mythic",     "name": "Mythic Forge",     "cost": 5000, "tier": 4, "xpBonus": 10, "icon": "/images/icons/tools-mythic.png", "desc": "+10% XP on all quests" }
+    { "id": "worn",       "name": "Abgenutzte Werkzeuge",  "cost": 0,    "tier": 0, "xpBonus": 0, "icon": "/images/icons/tools-worn.png", "desc": "Abgenutzte Werkzeuge. Kein Bonus. Kein Stolz." },
+    { "id": "sturdy",     "name": "Solide Werkzeuge",     "cost": 250,  "tier": 1, "xpBonus": 2, "icon": "/images/icons/tools-sturdy.png", "desc": "+2% XP auf alle Quests" },
+    { "id": "masterwork", "name": "Meisterwerkzeuge",      "cost": 750,  "tier": 2, "xpBonus": 4, "icon": "/images/icons/tools-masterwork.png", "desc": "+4% XP auf alle Quests" },
+    { "id": "legendary",  "name": "Legendäre Werkzeuge",   "cost": 2000, "tier": 3, "xpBonus": 7, "icon": "/images/icons/tools-legendary.png", "desc": "+7% XP auf alle Quests" },
+    { "id": "mythic",     "name": "Mythische Schmiede",    "cost": 5000, "tier": 4, "xpBonus": 10, "icon": "/images/icons/tools-mythic.png", "desc": "+10% XP auf alle Quests" }
   ],
   "sternentalerItems": [
-    { "id": "st_frame_starweaver", "name": "Starweaver Frame", "cost": 15, "currency": "sternentaler", "type": "frame", "frameId": "starweaver-frame", "frameName": "Starweaver", "frameColor": "#c4b5fd", "frameGlow": true, "icon": "/images/icons/shop-frame-star.png", "desc": "A frame woven from starlight. Reserved for those who walk the Star Path." },
-    { "id": "st_frame_eclipse", "name": "Eclipse Frame", "cost": 25, "currency": "sternentaler", "type": "frame", "frameId": "eclipse-frame", "frameName": "Eclipse", "frameColor": "#1e1b4b", "frameGlow": true, "icon": "/images/icons/shop-frame-eclipse.png", "desc": "Darkness that outshines the light. Earned, not given." },
-    { "id": "st_title_sternkind", "name": "Title: Sternkind", "cost": 10, "currency": "sternentaler", "type": "title", "titleId": "sternkind", "titleName": "Sternkind", "titleRarity": "epic", "icon": "/images/icons/shop-title-star.png", "desc": "A title for those born under the Star Path." },
-    { "id": "st_title_sternjager", "name": "Title: Sternjäger", "cost": 20, "currency": "sternentaler", "type": "title", "titleId": "sternjager", "titleName": "Sternjäger", "titleRarity": "legendary", "icon": "/images/icons/shop-title-star.png", "desc": "Hunter of stars. Collector of impossible things." },
-    { "id": "st_xp_scroll_15", "name": "Star Scroll", "cost": 8, "currency": "sternentaler", "type": "boost", "icon": "/images/icons/shop-xp-scroll.png", "desc": "+15% XP for the next 5 quests. Stronger than the Gold variant.", "effect": { "type": "xp_boost_15", "questsRemaining": 5 } },
-    { "id": "st_companion_glow", "name": "Companion Starlight Aura", "cost": 30, "currency": "sternentaler", "type": "cosmetic", "icon": "/images/icons/shop-companion-glow.png", "desc": "Your companion glows with soft starlight. Purely cosmetic, entirely majestic." }
+    { "id": "st_frame_starweaver", "name": "Starweaver Frame", "cost": 15, "currency": "sternentaler", "type": "frame", "frameId": "starweaver-frame", "frameName": "Starweaver", "frameColor": "#c4b5fd", "frameGlow": true, "icon": "/images/icons/shop-frame-star.png", "desc": "Ein Rahmen aus gewobenem Sternenlicht. Reserviert für die, die den Sternenpfad wandeln." },
+    { "id": "st_frame_eclipse", "name": "Eklipse-Rahmen", "cost": 25, "currency": "sternentaler", "type": "frame", "frameId": "eclipse-frame", "frameName": "Eclipse", "frameColor": "#1e1b4b", "frameGlow": true, "icon": "/images/icons/shop-frame-eclipse.png", "desc": "Dunkelheit, die das Licht überstrahlt. Verdient, nicht geschenkt." },
+    { "id": "st_title_sternkind", "name": "Titel: Sternkind", "cost": 10, "currency": "sternentaler", "type": "title", "titleId": "sternkind", "titleName": "Sternkind", "titleRarity": "epic", "icon": "/images/icons/shop-title-star.png", "desc": "Ein Titel für die, die unter dem Sternenpfad geboren wurden." },
+    { "id": "st_title_sternjager", "name": "Titel: Sternjäger", "cost": 20, "currency": "sternentaler", "type": "title", "titleId": "sternjager", "titleName": "Sternjäger", "titleRarity": "legendary", "icon": "/images/icons/shop-title-star.png", "desc": "Jäger der Sterne. Sammler unmöglicher Dinge." },
+    { "id": "st_xp_scroll_15", "name": "Sternenrolle", "cost": 8, "currency": "sternentaler", "type": "boost", "icon": "/images/icons/shop-xp-scroll.png", "desc": "+15% XP für deine nächsten 5 Quests. Stärker als die Gold-Variante.", "effect": { "type": "xp_boost_15", "questsRemaining": 5 } },
+    { "id": "st_companion_glow", "name": "Sternenglanz-Aura", "cost": 30, "currency": "sternentaler", "type": "cosmetic", "icon": "/images/icons/shop-companion-glow.png", "desc": "Dein Companion leuchtet in sanftem Sternenlicht. Rein kosmetisch, völlig majestätisch." }
   ],
   "gildentalerItems": [
-    { "id": "gt_frame_guildmaster", "name": "Guildmaster Frame", "cost": 30, "currency": "gildentaler", "type": "frame", "frameId": "guildmaster-frame", "frameName": "Guildmaster", "frameColor": "#10b981", "frameGlow": true, "icon": "/images/icons/shop-frame-guild.png", "desc": "The mark of one who builds bonds stronger than steel." },
-    { "id": "gt_frame_diplomat", "name": "Diplomat Frame", "cost": 20, "currency": "gildentaler", "type": "frame", "frameId": "diplomat-frame", "frameName": "Diplomat", "frameColor": "#60a5fa", "frameGlow": false, "icon": "/images/icons/shop-frame-diplomat.png", "desc": "For those who solve problems with words, not swords. Usually." },
-    { "id": "gt_title_gildenherz", "name": "Title: Gildenherz", "cost": 15, "currency": "gildentaler", "type": "title", "titleId": "gildenherz", "titleName": "Gildenherz", "titleRarity": "epic", "icon": "/images/icons/shop-title-guild.png", "desc": "Heart of the guild. The one everyone counts on." },
-    { "id": "gt_title_botschafter", "name": "Title: Botschafter", "cost": 25, "currency": "gildentaler", "type": "title", "titleId": "botschafter", "titleName": "Botschafter", "titleRarity": "legendary", "icon": "/images/icons/shop-title-guild.png", "desc": "Ambassador of the Hall. Your reputation precedes you — and it's impeccable." },
-    { "id": "gt_trade_boost", "name": "Trade Charm", "cost": 10, "currency": "gildentaler", "type": "boost", "icon": "/images/icons/shop-social.png", "desc": "+15% Gold on your next 5 quests. Community commerce at its finest.", "effect": { "type": "gold_boost_15", "questsRemaining": 5 } }
+    { "id": "gt_frame_guildmaster", "name": "Guildmaster Frame", "cost": 30, "currency": "gildentaler", "type": "frame", "frameId": "guildmaster-frame", "frameName": "Guildmaster", "frameColor": "#10b981", "frameGlow": true, "icon": "/images/icons/shop-frame-guild.png", "desc": "Das Zeichen eines Menschen, der Bande schmiedet, die stärker sind als Stahl." },
+    { "id": "gt_frame_diplomat", "name": "Diplomaten-Rahmen", "cost": 20, "currency": "gildentaler", "type": "frame", "frameId": "diplomat-frame", "frameName": "Diplomat", "frameColor": "#60a5fa", "frameGlow": false, "icon": "/images/icons/shop-frame-diplomat.png", "desc": "Für die, die Probleme mit Worten lösen, nicht mit Schwertern. Meistens." },
+    { "id": "gt_title_gildenherz", "name": "Titel: Gildenherz", "cost": 15, "currency": "gildentaler", "type": "title", "titleId": "gildenherz", "titleName": "Gildenherz", "titleRarity": "epic", "icon": "/images/icons/shop-title-guild.png", "desc": "Herz der Gilde. Der Mensch, auf den alle zählen." },
+    { "id": "gt_title_botschafter", "name": "Titel: Botschafter", "cost": 25, "currency": "gildentaler", "type": "title", "titleId": "botschafter", "titleName": "Botschafter", "titleRarity": "legendary", "icon": "/images/icons/shop-title-guild.png", "desc": "Botschafter der Halle. Dein Ruf eilt dir voraus — und er ist makellos." },
+    { "id": "gt_trade_boost", "name": "Handelszauber", "cost": 10, "currency": "gildentaler", "type": "boost", "icon": "/images/icons/shop-social.png", "desc": "+15% Gold auf deine nächsten 5 Quests. Gemeinschaftshandel in seiner feinsten Form.", "effect": { "type": "gold_boost_15", "questsRemaining": 5 } }
   ],
   "mondstaubItems": [
-    { "id": "md_boss_boost", "name": "Colosseum War Cry", "cost": 50, "currency": "mondstaub", "type": "boost", "icon": "/images/icons/shop-boss-boost.png", "desc": "+25% World Boss damage for 10 quests. The arena roars louder when you enter.", "effect": { "type": "world_boss_damage_boost", "value": 25, "questsRemaining": 10 } },
-    { "id": "md_rift_extend", "name": "Temporal Anchor", "cost": 30, "currency": "mondstaub", "type": "boost", "icon": "/images/icons/shop-rift-extend.png", "desc": "Extends your active Rift timer by 6 hours. Time bends for those who know where to pull.", "effect": { "type": "rift_time_extension", "hours": 6 } },
-    { "id": "md_frame_moonlit", "name": "Moonlit Frame", "cost": 40, "currency": "mondstaub", "type": "frame", "frameId": "moonlit-frame", "frameName": "Moonlit", "frameColor": "#a78bfa", "frameGlow": true, "icon": "/images/icons/shop-frame-moon.png", "desc": "Bathed in moonlight that doesn't come from any moon. Don't ask." },
-    { "id": "md_title_mondwandler", "name": "Title: Mondwandler", "cost": 20, "currency": "mondstaub", "type": "title", "titleId": "mondwandler", "titleName": "Mondwandler", "titleRarity": "legendary", "icon": "/images/icons/shop-title-moon.png", "desc": "Walker of moons. Which moons? All of them, presumably." }
+    { "id": "md_boss_boost", "name": "Colosseum War Cry", "cost": 50, "currency": "mondstaub", "type": "boost", "icon": "/images/icons/shop-boss-boost.png", "desc": "+25% Weltboss-Schaden für 10 Quests. Die Arena brüllt lauter, wenn du sie betrittst.", "effect": { "type": "world_boss_damage_boost", "value": 25, "questsRemaining": 10 } },
+    { "id": "md_rift_extend", "name": "Zeitanker", "cost": 30, "currency": "mondstaub", "type": "boost", "icon": "/images/icons/shop-rift-extend.png", "desc": "Verlängert deinen aktiven Riss-Timer um 6 Stunden. Die Zeit beugt sich denen, die wissen wo man ziehen muss.", "effect": { "type": "rift_time_extension", "hours": 6 } },
+    { "id": "md_frame_moonlit", "name": "Mondlicht-Rahmen", "cost": 40, "currency": "mondstaub", "type": "frame", "frameId": "moonlit-frame", "frameName": "Moonlit", "frameColor": "#a78bfa", "frameGlow": true, "icon": "/images/icons/shop-frame-moon.png", "desc": "Gebadet in Mondlicht, das von keinem Mond stammt. Frag nicht." },
+    { "id": "md_title_mondwandler", "name": "Titel: Mondwandler", "cost": 20, "currency": "mondstaub", "type": "title", "titleId": "mondwandler", "titleName": "Mondwandler", "titleRarity": "legendary", "icon": "/images/icons/shop-title-moon.png", "desc": "Wanderer der Monde. Welcher Monde? Aller, vermutlich." }
   ],
   "workshopUpgrades": [
     {
       "id": "gold_tools",
-      "name": "Gold-Forged Tools",
+      "name": "Goldgeschmiedete Werkzeuge",
       "category": "gold_boost",
       "tiers": [
-        { "tier": 1, "cost": 500,   "currency": "gold", "value": 2, "label": "+2% Gold on all quests" },
-        { "tier": 2, "cost": 1500,  "currency": "gold", "value": 3, "label": "+3% Gold on all quests" },
-        { "tier": 3, "cost": 4000,  "currency": "gold", "value": 4, "label": "+4% Gold on all quests" },
-        { "tier": 4, "cost": 10000, "currency": "gold", "value": 5, "label": "+5% Gold on all quests" }
+        { "tier": 1, "cost": 500,   "currency": "gold", "value": 2, "label": "+2% Gold auf alle Quests" },
+        { "tier": 2, "cost": 1500,  "currency": "gold", "value": 3, "label": "+3% Gold auf alle Quests" },
+        { "tier": 3, "cost": 4000,  "currency": "gold", "value": 4, "label": "+4% Gold auf alle Quests" },
+        { "tier": 4, "cost": 10000, "currency": "gold", "value": 5, "label": "+5% Gold auf alle Quests" }
       ],
       "icon": "/images/icons/workshop-gold-tools.png",
-      "desc": "Permanent gold bonus from enchanted tools."
+      "desc": "Permanenter Gold-Bonus durch verzauberte Werkzeuge."
     },
     {
       "id": "loot_amulet",
-      "name": "Loot Chance Amulet",
+      "name": "Beutechancen-Amulett",
       "category": "loot_boost",
       "tiers": [
-        { "tier": 1, "cost": 1000,  "currency": "gold", "value": 1, "label": "+1% Loot Drop Chance" },
-        { "tier": 2, "cost": 3000,  "currency": "gold", "value": 2, "label": "+2% Loot Drop Chance" },
-        { "tier": 3, "cost": 8000,  "currency": "gold", "value": 3, "label": "+3% Loot Drop Chance" }
+        { "tier": 1, "cost": 1000,  "currency": "gold", "value": 1, "label": "+1% Beutechance" },
+        { "tier": 2, "cost": 3000,  "currency": "gold", "value": 2, "label": "+2% Beutechance" },
+        { "tier": 3, "cost": 8000,  "currency": "gold", "value": 3, "label": "+3% Beutechance" }
       ],
       "icon": "/images/icons/workshop-loot-amulet.png",
-      "desc": "A lucky charm that attracts rare drops."
+      "desc": "Ein Glücksbringer, der seltene Beute anzieht."
     },
     {
       "id": "streak_charm",
-      "name": "Streak Shield Charm",
+      "name": "Streak-Schutz-Talisman",
       "category": "streak_shield",
       "tiers": [
-        { "tier": 1, "cost": 15000, "currency": "gold", "value": 1, "label": "Auto-saves streak 1x per week" },
-        { "tier": 2, "cost": 25000, "currency": "gold", "value": 2, "label": "Auto-saves streak 2x per week" }
+        { "tier": 1, "cost": 15000, "currency": "gold", "value": 1, "label": "Rettet Streak automatisch 1x pro Woche" },
+        { "tier": 2, "cost": 25000, "currency": "gold", "value": 2, "label": "Rettet Streak automatisch 2x pro Woche" }
       ],
       "icon": "/images/icons/workshop-streak-charm.png",
-      "desc": "An ancient charm that protects your streak once per week."
+      "desc": "Ein uralter Talisman, der deinen Streak einmal pro Woche schützt."
     },
     {
       "id": "material_magnet",
-      "name": "Material Magnet",
+      "name": "Materialmagnet",
       "category": "material_boost",
       "tiers": [
-        { "tier": 1, "cost": 2000,  "currency": "gold", "value": 5,  "label": "+5% Material Drop Chance" },
-        { "tier": 2, "cost": 5000,  "currency": "gold", "value": 10, "label": "+10% Material Drop Chance" },
-        { "tier": 3, "cost": 12000, "currency": "gold", "value": 15, "label": "+15% Material Drop Chance" }
+        { "tier": 1, "cost": 2000,  "currency": "gold", "value": 5,  "label": "+5% Materialchance" },
+        { "tier": 2, "cost": 5000,  "currency": "gold", "value": 10, "label": "+10% Materialchance" },
+        { "tier": 3, "cost": 12000, "currency": "gold", "value": 15, "label": "+15% Materialchance" }
       ],
       "icon": "/images/icons/workshop-material-magnet.png",
-      "desc": "Magnetically attracts crafting materials from quests."
+      "desc": "Zieht Handwerksmaterialien magnetisch aus Quests an."
     }
   ]
 }

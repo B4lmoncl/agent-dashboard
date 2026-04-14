@@ -1715,7 +1715,7 @@
         "type": "learned_recipes",
         "value": 100
       },
-      "description": "Alle Rezepte gelernt. Du weißt jetzt theoretisch alles. Praktisch ist eine andere Geschichte."
+      "description": "100 Rezepte gelernt. Dein Kopf ist voller Anleitungen. Ob du sie im Schlaf aufsagen kannst, ist eine Frage der Zeit."
     },
     {
       "id": "moonlight_crafter",
@@ -1897,7 +1897,7 @@
         "type": "bond_level",
         "value": 5
       },
-      "description": "Bond Level 7 mit deinem Companion. Seelenverwandte. Oder Stockholm-Syndrom. Schwer zu sagen."
+      "description": "Bond Level 5 mit deinem Companion. Seelenverwandte. Oder Stockholm-Syndrom. Schwer zu sagen."
     },
     {
       "id": "bond_legendary",
@@ -1987,7 +1987,7 @@
       "id": "quest_variety_all",
       "name": "Renaissance-Wanderer",
       "icon": "/images/icons/ach-variety.png",
-      "desc": "Jeden Quest-Typ einmal. Personal, Fitness, Lernen, Social, Boss. Du bist der Renaissance-Mensch, den niemand bestellt hat.",
+      "desc": "Jeden Quest-Typ einmal. Personal, Fitness, Lernen, Social, Dev. Du bist der Renaissance-Mensch, den niemand bestellt hat.",
       "category": "variety",
       "rarity": "rare",
       "points": 25,
@@ -1995,7 +1995,7 @@
         "type": "quest_type_variety",
         "value": 5
       },
-      "description": "Alle Quest-Typen abgeschlossen. Personal, Learning, Fitness, Social, Boss. Der Turm nennt das Vielseitigkeit. Dein Kalender nennt es Chaos."
+      "description": "Alle Quest-Typen abgeschlossen. Personal, Lernen, Fitness, Social, Dev. Der Turm nennt das Vielseitigkeit. Dein Kalender nennt es Chaos."
     },
     {
       "id": "quest_500",
@@ -2085,7 +2085,7 @@
       "id": "quest_300",
       "name": "Dreihunderter",
       "icon": "/images/icons/ach-300.png",
-      "desc": "300 Quests. Gold. Die Farbe von Obsession, verpackt als Erfolg.",
+      "desc": "300 Quests. Dreihundert. Der Punkt, an dem Hobby zu Berufung kippt. Oder zu Wahnsinn.",
       "category": "milestone",
       "rarity": "epic",
       "points": 50,
@@ -2093,7 +2093,7 @@
         "type": "quests_completed",
         "value": 300
       },
-      "description": "300 Quests. Du machst das nicht zum Spaß. Doch. Irgendwie schon. Aber auch aus Pflichtgefühl."
+      "description": "300 Quests. Du machst das nicht mehr zum Spaß. Doch. Irgendwie schon. Aber auch aus einem Pflichtgefühl, das niemand verlangt hat."
     },
     {
       "id": "level_20",
@@ -2281,13 +2281,13 @@
       "id": "hidden_all_bosses",
       "name": "Bestienkenner",
       "icon": "/images/icons/ach-all-bosses.png",
-      "desc": "Alle 9 Weltbosse gesehen. Du sammelst Bosse wie andere Leute Briefmarken. Weniger klebrig, genau so obsessiv.",
+      "desc": "Alle 15 Weltbosse gesehen. Du sammelst Bosse wie andere Leute Briefmarken. Weniger klebrig, genau so obsessiv.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
       "condition": {
         "type": "unique_bosses_defeated",
-        "value": 9
+        "value": 15
       },
       "description": "Alle Boss-Typen besiegt. Bestienkenner. Kein Boss überrascht dich mehr. Du überraschst sie."
     },
@@ -2359,7 +2359,7 @@
         "type": "inventory_count",
         "value": 100
       },
-      "description": "Alle Unique Items in der Collection. Der Sammler. Oder Hortungsstörung. Kommt auf die Perspektive an."
+      "description": "100 Items im Inventar. Du brauchst keinen Rucksack, du brauchst einen Lagerraum. Oder Therapie."
     },
     {
       "id": "hidden_paragon",
@@ -2373,7 +2373,7 @@
         "type": "faction_standing",
         "value": 15000
       },
-      "description": "Paragon bei allen Fraktionen. Du hast es geschafft. Alle mögen dich. Verdächtig."
+      "description": "Paragon bei einer Fraktion. Jenseits von Verehrt. Sie haben deinen Geburtstag im Kalender. Und deinen Lieblingstee."
     },
     {
       "id": "variety_all_types_10",
@@ -2514,11 +2514,11 @@
       "points": 100,
       "condition": {
         "type": "codex_discovered",
-        "value": 85
+        "value": 143
       },
       "chainPrev": "codex-lorekeeper",
       "hidden": true,
-      "description": "Alle Codex-Einträge. Allwissend. Eine Last. Aber eine gut dokumentierte."
+      "description": "Alle 143 Codex-Einträge entdeckt. Allwissend. Eine Last. Aber eine gut dokumentierte."
     },
     {
       "id": "talent_first",

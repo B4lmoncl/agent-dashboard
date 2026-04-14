@@ -174,7 +174,7 @@
       "id": "colosseum",
       "category": "world",
       "title": "Das Kolosseum",
-      "text": "Die Arena, in der die Gemeinschaft gegen Titanen kämpft. Neun Bosse, jeder ein Spiegel menschlicher Schwächen: Prokrastination, Burnout, Zweifel, Chaos. Man besiegt sie nicht allein. Das ist der Punkt.",
+      "text": "Die Arena, in der die Gemeinschaft gegen Titanen kämpft. Fünfzehn Bosse, jeder ein Spiegel menschlicher Schwächen: Prokrastination, Burnout, Zweifel, Perfektionismus, Komfortzonen. Man besiegt sie nicht allein. Das ist der Punkt.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 15
@@ -221,40 +221,40 @@
       }
     },
     {
-      "id": "orden-der-klinge",
+      "id": "zirkel-der-glut",
       "category": "factions",
-      "title": "Orden der Klinge",
-      "text": "Der Orden löst Probleme mit der ältesten Methode der Welt: Erschöpfung. Ihre Mitglieder trainieren, bis Schweiß zu Stahl wird und Stahl zu Metapher. Ein Novize fragte einmal, ob es auch einen intellektuellen Pfad gäbe. Man gab ihm einen schwereren Hammer.",
+      "title": "Zirkel der Glut",
+      "text": "Der Zirkel löst Probleme mit der ältesten Methode der Welt: Erschöpfung. Ihre Mitglieder trainieren, bis Schweiß zu Stahl wird und Stahl zu Metapher. Ein Novize fragte einmal, ob es auch einen intellektuellen Pfad gäbe. Man gab ihm einen schwereren Hammer.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
       }
     },
     {
-      "id": "zirkel-der-sterne",
+      "id": "zirkel-der-tinte",
       "category": "factions",
-      "title": "Zirkel der Sterne",
-      "text": "Nerds mit Autorität. Der Zirkel sammelt, ordnet und bewahrt Wissen — und benutzt es als Waffe, indem er dich korrigiert. Immer. Zu allem. Ihre Bibliothek ist technisch gesehen endlos, nicht weil sie so viele Bücher haben, sondern weil die Bücher sich weigern, aufzuhören. Ein Mitglied wurde gefragt, was der Unterschied zwischen einem Sternenzirkel-Gelehrten und einem normalen Besserwisser sei. 'Quellenangaben', sagte er. Ohne zu lächeln.",
+      "title": "Zirkel der Tinte",
+      "text": "Nerds mit Autorität. Der Zirkel sammelt, ordnet und bewahrt Wissen — und benutzt es als Waffe, indem er dich korrigiert. Immer. Zu allem. Ihre Bibliothek ist technisch gesehen endlos, nicht weil sie so viele Bücher haben, sondern weil die Bücher sich weigern, aufzuhören. Ein Mitglied wurde gefragt, was der Unterschied zwischen einem Tintenzirkel-Gelehrten und einem normalen Besserwisser sei. 'Quellenangaben', sagte er. Ohne zu lächeln.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
       }
     },
     {
-      "id": "pakt-der-wildnis",
+      "id": "zirkel-des-amboss",
       "category": "factions",
-      "title": "Pakt der Wildnis",
-      "text": "Eine Fraktion, deren Mitglieder barfuß zu Meetings kommen und das auch noch für eine Persönlichkeit halten. Ihre Quests riechen nach Erde. Ihre Mitglieder riechen ebenfalls nach Erde. Das ist Absicht, behaupten sie. Der Pakt glaubt an natürliches Wachstum, was in der Praxis bedeutet: keine Deadlines, keine Schuhe und ein erschreckend entspanntes Verhältnis zu giftigen Pilzen.",
+      "title": "Zirkel des Amboss",
+      "text": "Eine Fraktion, deren Mitglieder mit Ruß verschmiert zu Meetings kommen und das auch noch für eine Persönlichkeit halten. Ihre Werkstätten riechen nach heißem Metall. Ihre Mitglieder ebenfalls. Das ist Absicht, behaupten sie. Der Zirkel glaubt an Perfektion durch Wiederholung, was in der Praxis bedeutet: keine Deadlines, keine sauberen Hände und ein erschreckend entspanntes Verhältnis zu geschmolzenem Eisen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
       }
     },
     {
-      "id": "bund-der-schatten",
+      "id": "zirkel-des-echos",
       "category": "factions",
-      "title": "Bund der Schatten",
-      "text": "Die einzige Fraktion, die leugnet zu existieren, während sie gleichzeitig Mitgliedsbeiträge erhebt. Der Bund arbeitet im Stillen — Verbindungen knüpfen, Informationen handeln, Code schreiben. Ihr Motto: 'Am effektivsten ist man, wenn niemand zuschaut.' Ihr inoffizielles Motto: 'Wir waren nie hier.' Ihr noch inoffizielleres Motto: 'Doch, wir waren hier, aber du kannst es nicht beweisen.'",
+      "title": "Zirkel des Echos",
+      "text": "Die einzige Fraktion, die behauptet, man müsse sie hören, bevor man sie verstehen kann, während sie gleichzeitig nie aufhört zu reden. Der Zirkel arbeitet an Verbindungen — Brücken bauen, Gespräche führen, Kontakte pflegen. Ihr Motto: 'Am effektivsten ist man, wenn jemand zuhört.' Ihr inoffizielles Motto: 'Wir hören nie auf.' Ihr noch inoffizielleres Motto: 'Doch, manchmal schon, aber dann vermisst ihr uns sofort.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 10
@@ -900,7 +900,7 @@
       "id": "faction-glut-secret",
       "category": "factions",
       "title": "Die Wahre Flamme der Glut",
-      "text": "Die meisten glauben, der Zirkel der Glut brenne für körperliche Disziplin. Das stimmt — so wie es stimmt, dass ein Vulkan \"warm\" ist. Die innere Flamme, von der die Ältesten flüstern, hat wenig mit Schweiß zu tun und viel mit dem Moment, in dem man aufhört, sich selbst zu belügen. Der letzte Paragon soll drei Tage still auf dem Dach des Turms gesessen haben, bevor er erklärte, er habe \"endlich das Feuer gefunden, das nicht erlöschen kann\". Auf die Frage, ob es wehtat, antwortete er: \"Nur mein Ego.\"",
+      "text": "Die meisten glauben, der Zirkel der Glut brenne für körperliche Disziplin. Das stimmt — so wie es stimmt, dass ein Vulkan 'warm' ist. Die innere Flamme, von der die Ältesten flüstern, hat wenig mit Schweiß zu tun und viel mit dem Moment, in dem man aufhört, sich selbst zu belügen. Der letzte Paragon soll drei Tage still auf dem Dach des Turms gesessen haben, bevor er erklärte, er habe 'endlich das Feuer gefunden, das nicht erlöschen kann'. Auf die Frage, ob es wehtat, antwortete er: 'Nur mein Ego.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -910,7 +910,7 @@
       "id": "faction-tinte-secret",
       "category": "factions",
       "title": "Das Ungeschriebene Buch",
-      "text": "Im tiefsten Archiv des Zirkels der Tinte steht ein Buch ohne Titel, ohne Autor und — das ist der irritierende Teil — ohne Seiten. Es steht trotzdem aufrecht im Regal, zwischen zwei Bänden über fortgeschrittene Kalligraphie. Die Bibliothekarin behauptet, es sei das wichtigste Werk der Sammlung. Auf die Frage, was darin stehe, lächelt sie nur und sagt: \"Alles, was du noch nicht gelernt hast.\" Der Katalog führt es als \"in Bearbeitung\". Seit zweihundert Jahren.",
+      "text": "Im tiefsten Archiv des Zirkels der Tinte steht ein Buch ohne Titel, ohne Autor und — das ist der irritierende Teil — ohne Seiten. Es steht trotzdem aufrecht im Regal, zwischen zwei Bänden über fortgeschrittene Kalligraphie. Die Bibliothekarin behauptet, es sei das wichtigste Werk der Sammlung. Auf die Frage, was darin stehe, lächelt sie nur und sagt: 'Alles, was du noch nicht gelernt hast.' Der Katalog führt es als 'in Bearbeitung'. Seit zweihundert Jahren.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -930,7 +930,7 @@
       "id": "faction-echo-secret",
       "category": "factions",
       "title": "Die Stille Zwischen Den Stimmen",
-      "text": "Der Zirkel des Echos ist die lauteste Fraktion im Turm. Das überrascht die meisten, die erwarten, dass eine Gruppe namens \"Echo\" leise wäre. Aber ein Echo braucht zuerst einen Schrei. Die wahre Kunst, sagen die Ältesten, liegt nicht darin, gehört zu werden — sondern darin, die richtige Pause zu finden. \"Jedes Gespräch\", erklärte einmal eine Paragon, \"ist eigentlich ein Lied. Die meisten Leute singen nur die lauten Teile.\" Dann schwieg sie so nachdrücklich, dass drei Zuhörer spontan in Tränen ausbrachen.",
+      "text": "Der Zirkel des Echos ist die lauteste Fraktion im Turm. Das überrascht die meisten, die erwarten, dass eine Gruppe namens 'Echo' leise wäre. Aber ein Echo braucht zuerst einen Schrei. Die wahre Kunst, sagen die Ältesten, liegt nicht darin, gehört zu werden — sondern darin, die richtige Pause zu finden. 'Jedes Gespräch', erklärte einmal eine Paragon, 'ist eigentlich ein Lied. Die meisten Leute singen nur die lauten Teile.' Dann schwieg sie so nachdrücklich, dass drei Zuhörer spontan in Tränen ausbrachen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -970,7 +970,7 @@
       "id": "schicksalsbaum",
       "category": "systems",
       "title": "Der Schicksalsbaum",
-      "text": "Ab Level 5 wächst im Inneren Heiligtum ein Baum, der deine Entscheidungen in Rinde ritzt. Drei Ringe, sechsundzwanzig Knoten, fünfundzwanzig Punkte die nie für alles reichen. Der Baum hat kein Mitleid. Er hat auch keine Blätter. Er hat Meinungen. Manche Knoten schließen sich gegenseitig aus — der Baum nennt das 'Charakter'. Zurücksetzen kostet 500 Gold und 50 Essenz, was angemessen ist für jemanden der seine Persönlichkeit komplett ändern will.",
+      "text": "Ab Level 5 wächst im Inneren Heiligtum ein Baum, der deine Entscheidungen in Rinde ritzt. Drei Ringe, vierundvierzig Knoten, dreiundzwanzig Punkte die nie für alles reichen. Der Baum hat kein Mitleid. Er hat auch keine Blätter. Er hat Meinungen. Manche Knoten schließen sich gegenseitig aus — der Baum nennt das 'Charakter'. Zurücksetzen kostet 500 Gold und 50 Essenz, was angemessen ist für jemanden der seine Persönlichkeit komplett ändern will.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
@@ -1461,6 +1461,16 @@
       "unlockedBy": {
         "type": "sworn_bond_level",
         "value": 1
+      }
+    },
+    {
+      "id": "turmgleichung",
+      "category": "world",
+      "title": "Die Turmgleichung — Warum alle gleich aussehen",
+      "text": "Je länger jemand im Turm lebt, desto mehr gleichen sich die Gesichtszüge an. Kein Fluch, keine Krankheit — der Aetherstrom formt die, die in seiner Nähe altern. Ältere Bewohnerinnen sehen sich auffällig ähnlich: dieselben scharfen Augen, dieselbe silberne Hochsteckfrisur, derselbe Blick der sagt 'Ich habe dich durchschaut und bin nicht beeindruckt'. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich seit Jahren, das Thema zu diskutieren — was daran liegt, dass mindestens vier andere Frauen im Turm von Fremden für sie gehalten werden. Die Verwechslungen haben zu drei diplomatischen Zwischenfällen und einem unbeabsichtigten Heiratsantrag geführt. Ilse hat den Antrag nicht abgelehnt. Sie hat ihn ignoriert. Das ist schlimmer.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 3
       }
     }
   ]

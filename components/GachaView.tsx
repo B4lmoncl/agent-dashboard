@@ -13,12 +13,12 @@ import { getAuthHeaders } from "@/lib/auth-client";
 
 // ─── Currency helpers ────────────────────────────────────────────────────────
 const CURRENCY_META: Record<string, { emoji: string; label: string; color: string; iconSrc?: string }> = {
-  runensplitter: { emoji: "", label: "Rune Shards", color: "#818cf8", iconSrc: "/images/icons/currency-runensplitter.png" },
-  stardust:      { emoji: "", label: "Stardust",    color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
-  gold:          { emoji: "", label: "Gold",        color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
-  essenz:        { emoji: "", label: "Essence",     color: "#ef4444", iconSrc: "/images/icons/currency-essenz.png" },
-  gildentaler:   { emoji: "", label: "Guild Coins", color: "#10b981", iconSrc: "/images/icons/currency-gildentaler.png" },
-  mondstaub:     { emoji: "", label: "Moondust",    color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
+  runensplitter: { emoji: "", label: "Runensplitter", color: "#818cf8", iconSrc: "/images/icons/currency-runensplitter.png" },
+  stardust:      { emoji: "", label: "Stardust",       color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
+  gold:          { emoji: "", label: "Gold",           color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
+  essenz:        { emoji: "", label: "Essenz",         color: "#ef4444", iconSrc: "/images/icons/currency-essenz.png" },
+  gildentaler:   { emoji: "", label: "Gildentaler",    color: "#10b981", iconSrc: "/images/icons/currency-gildentaler.png" },
+  mondstaub:     { emoji: "", label: "Mondstaub",      color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
 };
 
 function getCurrencyInfo(key: string) {
@@ -39,7 +39,7 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
 
         <div className="space-y-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>Drop Rates</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>Dropchancen</h4>
             <div className="space-y-1">
               {[
                 { label: "Legendary", rate: `${(getBalance().gacha.legendaryRate * 100).toFixed(1)}%`, color: "#f97316" },

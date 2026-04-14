@@ -193,7 +193,7 @@
     {
       "id": "completionist",
       "name": "Perfektionist",
-      "description": "Alle 6 Ausrüstungsslots gefüllt.",
+      "description": "Alle 7 Ausrüstungsslots gefüllt.",
       "rarity": "uncommon",
       "condition": {
         "type": "full_equipment",
@@ -1040,6 +1040,7 @@
     {
       "id": "hidden-first-blood",
       "name": "First Blood",
+      "description": "Die allererste Quest der Halle abgeschlossen. Jemand musste anfangen.",
       "rarity": "uncommon",
       "condition": {
         "type": "hidden"
@@ -1048,6 +1049,7 @@
     {
       "id": "hidden-night-owl",
       "name": "Nachteule",
+      "description": "Quest nach Mitternacht abgeschlossen. Schlaf ist für Leute mit weniger Ambitionen.",
       "rarity": "uncommon",
       "condition": {
         "type": "hidden"
@@ -1056,6 +1058,7 @@
     {
       "id": "hidden-early-bird",
       "name": "Frühaufsteher",
+      "description": "Quest vor 6 Uhr morgens abgeschlossen. Die Welt gehört den Wahnsinnigen.",
       "rarity": "uncommon",
       "condition": {
         "type": "hidden"
@@ -1064,6 +1067,7 @@
     {
       "id": "hidden-speed-demon",
       "name": "Geschwindigkeitsdämon",
+      "description": "Quest in unter 30 Minuten erledigt. Entweder effizient oder verdächtig.",
       "rarity": "rare",
       "condition": {
         "type": "hidden"
@@ -1072,6 +1076,7 @@
     {
       "id": "hidden-perfectionist",
       "name": "Perfektionist",
+      "description": "Alle Quest-Typen in einer Woche abgeschlossen. Vielseitigkeit oder Unentschlossenheit.",
       "rarity": "rare",
       "condition": {
         "type": "hidden"
@@ -1080,6 +1085,7 @@
     {
       "id": "hidden-social-butterfly",
       "name": "Sozialer Schmetterling",
+      "description": "10 Social-Quests in einem Monat. Du redest gern mit Menschen. Verdächtig.",
       "rarity": "rare",
       "condition": {
         "type": "hidden"
@@ -1088,6 +1094,7 @@
     {
       "id": "hidden-silent-grinder",
       "name": "Stiller Schleifer",
+      "description": "20 Quests erledigt, ohne eine einzige Nachricht zu schicken. Effizient und unsichtbar.",
       "rarity": "rare",
       "condition": {
         "type": "hidden"
@@ -1096,6 +1103,7 @@
     {
       "id": "hidden-comeback-kid",
       "name": "Comeback Kid",
+      "description": "Nach 30+ Tagen Abwesenheit zurückgekehrt und sofort eine Quest erledigt. Der Turm erinnert sich.",
       "rarity": "epic",
       "condition": {
         "type": "hidden"
@@ -1104,6 +1112,7 @@
     {
       "id": "hidden-one-more-turn",
       "name": "Nur noch eine Runde",
+      "description": "5 Quests nach 23 Uhr an einem Tag abgeschlossen. Du wolltest aufhören. Du konntest nicht.",
       "rarity": "epic",
       "condition": {
         "type": "hidden"
@@ -1112,6 +1121,7 @@
     {
       "id": "hidden-fashionista",
       "name": "Modefürst",
+      "description": "Ein vollständiges Gear-Set ausgerüstet. Aussehen schlägt Statistik. Manchmal.",
       "rarity": "epic",
       "condition": {
         "type": "hidden"
@@ -1120,6 +1130,7 @@
     {
       "id": "hidden-lore-keeper",
       "name": "Hüter der Geschichten",
+      "description": "50 Codex-Einträge entdeckt. Du weißt Dinge, die der Turm lieber vergessen würde.",
       "rarity": "epic",
       "condition": {
         "type": "hidden"
@@ -1128,6 +1139,7 @@
     {
       "id": "hidden-iron-will",
       "name": "Unerschütterlich",
+      "description": "Streak nach einem Verlust innerhalb von 24 Stunden wieder aufgebaut. Rückschläge sind temporär.",
       "rarity": "legendary",
       "condition": {
         "type": "hidden"
@@ -1136,6 +1148,7 @@
     {
       "id": "hidden-beyond-the-veil",
       "name": "Jenseits des Schleiers",
+      "description": "Alle versteckten Codex-Einträge gefunden. Der Turm hat keine Geheimnisse mehr vor dir.",
       "rarity": "legendary",
       "condition": {
         "type": "hidden"
@@ -1144,6 +1157,7 @@
     {
       "id": "hidden-threadbare",
       "name": "Fadenriss",
+      "description": "Einen 100+ Tage Streak verloren. Die Flamme erlosch. Was du danach tust, definiert dich.",
       "rarity": "legendary",
       "condition": {
         "type": "hidden"
@@ -1152,6 +1166,7 @@
     {
       "id": "hidden-true-name",
       "name": "Der Wahre Name",
+      "description": "Dein wahrer Name — nicht der gegebene, sondern der verdiente. Der Turm kennt ihn. Du auch.",
       "rarity": "legendary",
       "condition": {
         "type": "hidden"

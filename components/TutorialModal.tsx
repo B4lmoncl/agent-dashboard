@@ -595,7 +595,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="World Boss (Kolosseum)" icon="◆" accent="rgba(239,68,68,0.3)">
                 Community-weite Bosskämpfe. Alle Spieler tragen per Quest-Completion zum Schaden bei.
                 <ul className="space-y-1 mt-2">
-                  <li>• 9 Bosse mit einzigartiger Lore und Unique Drops</li>
+                  <li>• 15 Bosse mit einzigartiger Lore und Unique Drops</li>
                   <li>• Contribution-Ranking: Bronze, Silver, Gold, Legendary</li>
                   <li>• Ab <Stat color="#22c55e">Level 15</Stat> verfügbar</li>
                 </ul>
@@ -668,7 +668,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "progression" && (
             <>
-              <GuideSection title="XP & Level (Max 30)" icon="▲" accent="rgba(168,85,247,0.4)">
+              <GuideSection title="XP & Level (Max 50)" icon="▲" accent="rgba(168,85,247,0.4)">
                 Jede Quest gibt XP, beeinflusst von: Forge-Temp, Kraft-Stat, Gear, Companion-Bond, Streaks, Buffs.
                 <p className="mt-1">Bei Level-Up: <Stat color="#818cf8">5 + Level Stardust</Stat>.</p>
               </GuideSection>
@@ -756,10 +756,10 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Die Vier Zirkel (Factions)" icon="◆" accent="rgba(129,140,248,0.3)">
                 4 Fraktionen mit Reputations-System. Auto-Rep durch Quest-Completion basierend auf Quest-Typ.
                 <ul className="space-y-1 mt-2">
-                  <li>• <Stat color="#ef4444">Orden der Klinge</Stat> — Fitness</li>
-                  <li>• <Stat color="#3b82f6">Zirkel der Sterne</Stat> — Learning</li>
-                  <li>• <Stat color="#22c55e">Pakt der Wildnis</Stat> — Personal/Creative</li>
-                  <li>• <Stat color="#a855f7">Bund der Schatten</Stat> — Social/Development</li>
+                  <li>• <Stat color="#ef4444">Zirkel der Glut</Stat> — Fitness</li>
+                  <li>• <Stat color="#3b82f6">Zirkel der Tinte</Stat> — Learning</li>
+                  <li>• <Stat color="#22c55e">Zirkel des Amboss</Stat> — Crafting/Personal</li>
+                  <li>• <Stat color="#a855f7">Zirkel des Echos</Stat> — Social/Development</li>
                   <li>• 6 Rep-Stufen: Neutral → Friendly → Honored → Revered → Exalted → Paragon</li>
                   <li>• Belohnungen pro Stufe: Titel, Rezepte, Frames, Shop-Rabatte, Legendary-Effekte</li>
                   <li>• Ab <Stat color="#22c55e">Level 10</Stat> verfügbar</li>
@@ -887,16 +887,16 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Vier Fraktionen mit eigenen Reputationsstufen. Rep wird automatisch durch Quest-Abschlüsse vergeben:
                 <div className="grid gap-1.5 mt-2">
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(239,68,68,0.06)" }}>
-                    <Stat color="#ef4444">Orden der Klinge</Stat> — Kampf &amp; Fitness-Quests → +30 Rep
+                    <Stat color="#ef4444">Zirkel der Glut</Stat> — Kampf &amp; Fitness-Quests → +30 Rep
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(59,130,246,0.06)" }}>
-                    <Stat color="#3b82f6">Zirkel der Sterne</Stat> — Wissen &amp; Lern-Quests → +20 Rep
+                    <Stat color="#3b82f6">Zirkel der Tinte</Stat> — Wissen &amp; Lern-Quests → +20 Rep
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(34,197,94,0.06)" }}>
-                    <Stat color="#22c55e">Pakt der Wildnis</Stat> — Natur &amp; Pflege-Quests → +20 Rep
+                    <Stat color="#22c55e">Zirkel des Amboss</Stat> — Handwerk &amp; Crafting-Quests → +20 Rep
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(168,85,247,0.06)" }}>
-                    <Stat color="#a855f7">Bund der Schatten</Stat> — Stealth &amp; Sozial-Quests → +10 Rep
+                    <Stat color="#a855f7">Zirkel des Echos</Stat> — Social &amp; Verbindungs-Quests → +10 Rep
                   </div>
                 </div>
               </GuideSection>
@@ -932,12 +932,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Schicksalsbaum — Passiver Talentbaum" icon="◇" accent="rgba(167,139,250,0.3)">
-                Kreisförmiger Skill-Tree mit 26 Knoten in 3 Ringen — inspiriert von Wolcen:
+                Kreisförmiger Skill-Tree mit 44 Knoten in 3 Ringen — inspiriert von Wolcen:
                 <ul className="space-y-1 mt-2">
-                  <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 8 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
-                  <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 10 Spezialisierungen mit Tradeoffs.</li>
-                  <li>• <Stat color="#f97316">Aszension</Stat> (Außen) — 8 Capstone-Boni: Mythic+ Skip, Friend XP Echo, Passive Gold.</li>
-                  <li>• Freischaltung ab <Stat color="#f0f0f0">Level 5</Stat>, 1 Punkt pro 2 Level, max 25 Punkte.</li>
+                  <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 12 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
+                  <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 18 Spezialisierungen mit Tradeoffs.</li>
+                  <li>• <Stat color="#f97316">Aszension</Stat> (Außen) — 14 Capstone-Boni: Mythic+ Skip, Friend XP Echo, Passive Gold.</li>
+                  <li>• Freischaltung ab <Stat color="#f0f0f0">Level 5</Stat>, 1 Punkt pro 2 Level, max 23 Punkte.</li>
                   <li>• Respec: 500 Gold + 50 Essenz.</li>
                 </ul>
               </GuideSection>

@@ -172,7 +172,7 @@
       "ring": "inner",
       "name": "Goldader",
       "icon": "gold-vein",
-      "desc": "+2 flat Gold Bonus auf jede Quest-Belohnung.",
+      "desc": "+2 Gold pauschal auf jede Quest-Belohnung.",
       "flavor": "Zwei Gold mehr. Klingt nach wenig. Multiplizier es mit tausend Quests.",
       "maxRank": 1,
       "reqPoints": 0,

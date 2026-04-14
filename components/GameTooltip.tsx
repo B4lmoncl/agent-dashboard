@@ -173,7 +173,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Gear bonus</span><span>Varies by equipment</span></div>
         <div className="gt-stat-row"><span>Companion Bond</span><span>+1% per bond level</span></div>
         <div className="gt-stat-row"><span>Hoarding malus</span><span>-10%/quest over 20 active</span></div>
-        <p className="gt-source">Max level: 30. Level-up grants 5 + level <GTRef k="stardust">Stardust</GTRef>.</p>
+        <p className="gt-source">Max level: 50. Level-up grants 5 + level <GTRef k="stardust">Stardust</GTRef>.</p>
       </>
     ),
   },
@@ -235,11 +235,11 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     body: (
       <>
         <p>Items and quests have 5 rarity tiers. Higher rarity = better stats and rewards.</p>
-        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>Base values</span></div>
-        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>1-2 affixes</span></div>
-        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>2-3 primary + 1 minor</span></div>
-        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>2-3 primary + 1-2 minor</span></div>
-        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>Legendary</span><span>3-4 primary + 1-2 minor + effect</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>1 primary, 0 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>1-2 primary, 0-1 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>2 primary, 1 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>2-3 primary, 1-2 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>Legendary</span><span>3 primary, 2 minor + effect</span></div>
       </>
     ),
   },
@@ -937,12 +937,11 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#a855f7",
     body: (
       <>
-        <p>Earn <GTRef k="xp">XP</GTRef> from quests to level up (max 30). Each level requires exponentially more <GTRef k="xp">XP</GTRef>.</p>
+        <p>Earn <GTRef k="xp">XP</GTRef> from quests to level up (max 50). Each level requires exponentially more <GTRef k="xp">XP</GTRef>.</p>
         <p>Level-ups grant <GTRef k="stardust">Stardust</GTRef> (5 + level) and unlock new features:</p>
-        <div className="gt-stat-row"><span>Lv 5</span><span>1st profession slot</span></div>
-        <div className="gt-stat-row"><span>Lv 15</span><span>2nd profession slot</span></div>
-        <div className="gt-stat-row"><span>Lv 20</span><span>3rd profession slot</span></div>
-        <div className="gt-stat-row"><span>Lv 25</span><span>All 4 profession slots</span></div>
+        <div className="gt-stat-row"><span>Lv 5</span><span>Talent tree unlocked</span></div>
+        <div className="gt-stat-row"><span>Lv 10</span><span>Rift access</span></div>
+        <div className="gt-stat-row"><span>Professions</span><span>2 primary slots + Koch/Enchanter free</span></div>
       </>
     ),
   },
@@ -1191,8 +1190,8 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>📚 Learning</span><span>Study, skills, reading</span></div>
         <div className="gt-stat-row"><span>💪 Fitness</span><span>Exercise, health</span></div>
         <div className="gt-stat-row"><span>👥 Social</span><span>Friends, community</span></div>
-        <div className="gt-stat-row"><span>🎨 Creative</span><span>Art, music, writing</span></div>
-        <div className="gt-stat-row"><span>💼 Work</span><span>Career, productivity</span></div>
+        <div className="gt-stat-row"><span>💻 Development</span><span>Coding, career, projects</span></div>
+        <div className="gt-stat-row"><span>⚔️ Boss</span><span>Multi-hour challenges</span></div>
       </>
     ),
   },
@@ -1509,10 +1508,10 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#a855f7",
     body: (
       <>
-        <p>Passive skill tree with 26 nodes in 3 concentric rings. Allocate points to unlock permanent bonuses.</p>
+        <p>Passive skill tree with 44 nodes in 3 concentric rings. Allocate points to unlock permanent bonuses.</p>
         <div className="gt-stat-row"><span>Unlock</span><span>Level 5</span></div>
-        <div className="gt-stat-row"><span>Points</span><span>1 per 2 levels (max 25)</span></div>
-        <div className="gt-stat-row"><span>Rings</span><span>Inner (8) · Middle (10) · Outer (8)</span></div>
+        <div className="gt-stat-row"><span>Points</span><span>1 per 2 levels (max 23)</span></div>
+        <div className="gt-stat-row"><span>Rings</span><span>Inner (12) · Middle (18) · Outer (14)</span></div>
         <div className="gt-stat-row"><span>Reset</span><span>500 Gold + 50 Essenz</span></div>
         <p className="gt-source">Some nodes are mutually exclusive — choose wisely. Build archetypes: Grinder, Crafter, Gambler, Social, Rift Runner.</p>
       </>

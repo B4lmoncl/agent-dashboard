@@ -27,7 +27,7 @@ const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
 import TodayDrawer from "@/components/TodayDrawer";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
+
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 // DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
@@ -1988,12 +1988,6 @@ export default function Dashboard() {
                   <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} />
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
-                      <FirstVisitBanner
-                        viewId="questboard"
-                        title="Willkommen im Quest Board"
-                        description="Nimm eine Quest. Schließe sie ab. Verdiene was dir zusteht. Der Quest-Typ bestimmt welcher Zirkel dich dafür respektiert. Seltene Quests zahlen besser. Offensichtlich."
-                        accentColor="#a78bfa"
-                      />
                       <div>
                         <div className="flex items-center gap-1.5">
                           <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40">Quest Board</h2></Tip>

@@ -181,8 +181,8 @@
   },
   {
     "id": "quest-daily-2026-03-13-001",
-    "title": "Apprentice's First Step",
-    "description": "A simple task for beginners.",
+    "title": "Erste Schritte",
+    "description": "Eine einfache Aufgabe für Anfänger.",
     "priority": "low",
     "type": "personal",
     "categories": [
@@ -217,8 +217,8 @@
   },
   {
     "id": "quest-daily-2026-03-13-002",
-    "title": "The Journeyman's Trial",
-    "description": "Prove you've grown beyond the basics.",
+    "title": "Die Gesellenprüfung",
+    "description": "Beweise, dass du über die Grundlagen hinausgewachsen bist.",
     "priority": "medium",
     "type": "personal",
     "categories": [
@@ -253,8 +253,8 @@
   },
   {
     "id": "quest-daily-2026-03-13-003",
-    "title": "Veteran's Challenge",
-    "description": "Only experienced adventurers dare attempt this.",
+    "title": "Veteranenprüfung",
+    "description": "Nur erfahrene Abenteurer wagen sich an diese Aufgabe.",
     "priority": "medium",
     "type": "fitness",
     "categories": [
@@ -289,8 +289,8 @@
   },
   {
     "id": "quest-daily-2026-03-13-004",
-    "title": "The Legendary Ordeal",
-    "description": "Few return. Fewer succeed. None forget.",
+    "title": "Die legendäre Prüfung",
+    "description": "Wenige kehren zurück. Noch weniger bestehen. Keiner vergisst.",
     "priority": "medium",
     "type": "boss",
     "categories": [
@@ -325,8 +325,8 @@
   },
   {
     "id": "quest-daily-2026-03-13-005",
-    "title": "Master's Gauntlet",
-    "description": "The masters of the hall whisper about this trial.",
+    "title": "Meisterprüfung",
+    "description": "Die Meister der Halle flüstern über diese Prüfung.",
     "priority": "medium",
     "type": "boss",
     "categories": [

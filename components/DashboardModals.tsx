@@ -159,18 +159,18 @@ export default function DashboardModals({
               <div className="w-full max-w-xs rounded-2xl p-5 bg-surface-alt border-w10" style={{ maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" }}
                 onClick={e => e.stopPropagation()}>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-semibold text-primary">Currencies</h3>
+                  <h3 className="text-sm font-semibold text-primary">Währungen</h3>
                   <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Schließen">×</button>
                 </div>
                 <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
                   {[
-                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "The honest metal of the Hall.", iconSrc: "/images/icons/currency-gold.png" },
-                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Congealed starlight.", iconSrc: "/images/icons/currency-stardust.png" },
-                    { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "The silent brew of perseverance.", iconSrc: "/images/icons/currency-essenz.png" },
-                    { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echoes of the forgotten tongue.", iconSrc: "/images/icons/currency-runensplitter.png" },
-                    { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Tokens of solidarity.", iconSrc: "/images/icons/currency-gildentaler.png" },
-                    { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Breath of focus. Extremely rare.", iconSrc: "/images/icons/currency-mondstaub.png" },
-                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exclusive from weekly challenges.", iconSrc: "/images/icons/currency-sternentaler.png" },
+                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
+                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },
+                    { name: "Essenz", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Die stille Essenz der Beständigkeit.", iconSrc: "/images/icons/currency-essenz.png" },
+                    { name: "Runensplitter", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echos einer vergessenen Sprache.", iconSrc: "/images/icons/currency-runensplitter.png" },
+                    { name: "Gildentaler", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Münzen der Kameradschaft.", iconSrc: "/images/icons/currency-gildentaler.png" },
+                    { name: "Mondstaub", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Hauch der Konzentration. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
+                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exklusiv aus wöchentlichen Herausforderungen.", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.name}>
                       <div
@@ -213,7 +213,7 @@ export default function DashboardModals({
                     className="w-full text-xs font-semibold py-1.5 rounded-lg"
                     style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                   >
-                    {conversionOpen ? "Hide" : "Convert Currencies"} {conversionOpen ? "▲" : "▼"}
+                    {conversionOpen ? "Ausblenden" : "Währungen tauschen"} {conversionOpen ? "▲" : "▼"}
                   </button>
 
                   {conversionOpen && (
@@ -324,7 +324,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-bold text-bright">Modifier Breakdown</h3>
+                <h3 className="text-sm font-bold text-bright">Modifikator-Übersicht</h3>
                 <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Schließen">×</button>
               </div>
               <div className="mb-4">
@@ -394,7 +394,7 @@ export default function DashboardModals({
               </p>
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
-                  <span className="text-xs text-w50">Current Streak</span>
+                  <span className="text-xs text-w50">Aktueller Streak</span>
                   <span className="font-mono font-bold text-sm" style={{ color: "#f97316" }}>{loggedInUser?.streakDays ?? 0}d</span>
                 </div>
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
