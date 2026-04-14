@@ -23084,7 +23084,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Die Maske verbirgt das Gesicht. Roderic sagt, Jäger brauchen keine Mimik. Nur Geduld.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -23540,7 +23540,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Wams für Jäger die wissen dass die Jagd kein Sprint ist. Sondern Sitzen. Und Warten.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -24958,7 +24958,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Bestien-Rüstung. Das Leder stammt von etwas Großem. Roderic hat es allein erlegt. Er redet nicht drüber.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -33381,7 +33381,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Mittleres Leder, präzise zugeschnitten. Roderic hat dreimal gemessen. Er misst immer dreimal.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -33847,7 +33847,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Gehärtet in einem Prozess der Roderics Werkstatt drei Tage unbewohnbar macht.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -41784,7 +41784,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Drittes Wams. Das Leder hat begriffen was Roderic will. Es hat nur drei Versuche gebraucht.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -46736,7 +46736,7 @@
       "rarity": "uncommon",
       "price": 25,
       "shopHidden": false,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Die Haube kennt mehr Wege als ihr Träger. Und mehr Sackgassen.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "affixes": {
         "primary": {
@@ -46861,7 +46861,7 @@
       "rarity": "uncommon",
       "price": 25,
       "shopHidden": false,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Warm ohne Grund. Der Stoff erinnert sich an Flammen die nie brannten.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "affixes": {
         "primary": {
@@ -47339,7 +47339,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "desc": "Im Dunkeln warm. Im Licht kalt. Der Ring hat seine Prioritäten.",
       "icon": "/images/icons/gacha-ring-runic-band.png",
       "affixes": {
         "primary": {
@@ -47464,7 +47464,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "desc": "Aus dem Norden. Wo die Klingen kälter sind als die Menschen.",
       "icon": "/images/icons/gacha-weapon-dual-scimitars.png",
       "affixes": {
         "primary": {
@@ -47692,7 +47692,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Aus dem Norden. Wo der Wind schneidet und die Schilde dicker sind.",
       "icon": "/images/icons/gacha-shield-rune-tower.png",
       "affixes": {
         "primary": {
@@ -48376,7 +48376,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Der Mond hat viele Anhänger. Dieser hier ist sein bescheidenstes Geschenk.",
       "icon": "/images/icons/gacha-amulet-vampire-fang.png",
       "affixes": {
         "primary": {
@@ -48661,7 +48661,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "desc": "Für die unteren Stockwerke gemacht. Wo der Boden nasser ist als die Laune.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "affixes": {
         "primary": {
@@ -49288,7 +49288,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Kalt auf der Stirn. Die Kälte schärft den Verstand. Oder friert ihn ein. Beides nützlich.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "affixes": {
         "primary": {
@@ -49516,7 +49516,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Im Schatten unsichtbar. Im Licht verdächtig. Der Kompromiss des Schattenwandlers.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "affixes": {
         "primary": {
@@ -50029,7 +50029,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "desc": "Nachttreter. Lautlos. Der Boden merkt nichts. Der Feind auch nicht.",
       "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
@@ -50143,7 +50143,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "desc": "Absolute Stille bei jedem Schritt. Unheimlich für alle. Einschließlich des Trägers.",
       "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
@@ -51199,7 +51199,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Erprobt in dreizehn Schlachten. Überlebt hat es jede. Der Träger nur elf.",
+      "desc": "Die Ketten sind rot. Nicht von Farbe — von Erinnerung. Das Metall vergisst nicht.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "affixes": {
         "primary": {
@@ -51737,7 +51737,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Solide Arbeit. Nicht inspiriert, nicht elegant — einfach: fertig.",
+      "desc": "Vergessen von allen außer denen die ihn tragen. Der Ring erinnert sich an jeden.",
       "icon": "/images/icons/gacha-ring-runic-band.png",
       "affixes": {
         "primary": {
@@ -52345,7 +52345,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Der Buckler hat eine natürliche Krümmung. Natürlich falsch, aber natürlich.",
       "icon": "/images/icons/gacha-shield-mirror-shield.png",
       "affixes": {
         "primary": {
@@ -52913,7 +52913,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Verschlissen wie ein Lieblingsbuch. Nur weniger lesenswert.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "affixes": {
         "primary": {
@@ -53209,7 +53209,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Staub überall. Selbst auf dem Staub liegt Staub. Ein Ökosystem.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "affixes": {
         "primary": {
@@ -53277,7 +53277,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Waren mal etwas. Sind jetzt Lumpen. Dazwischen liegt eine Geschichte die niemand erzählen will.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "affixes": {
         "primary": {
@@ -53959,7 +53959,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Die Kratzer sind ein Kalender. Jeder Strich ein Tag. Es sind viele.",
       "icon": "/images/icons/gacha-amulet-celestial-orb.png",
       "affixes": {
         "primary": {
@@ -55335,7 +55335,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Verbogen vom Gebrauch. Oder Missbrauch. Die Grenze ist fließend.",
       "icon": "/images/icons/gacha-shield-tower-shield.png",
       "affixes": {
         "primary": {
@@ -55369,7 +55369,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Angeschlagen, aber nicht geschlagen. Es gibt einen Unterschied. Einen kleinen.",
       "icon": "/images/icons/gacha-shield-wooden-buckler.png",
       "affixes": {
         "primary": {
@@ -55403,7 +55403,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Wackelt bei jedem Schlag. Meistens überlebt er trotzdem. Meistens.",
       "icon": "/images/icons/gacha-shield-arcane-ward.png",
       "affixes": {
         "primary": {
@@ -55858,7 +55858,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Die Flecken bilden ein Muster. Kein schönes, aber ein konsequentes.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "affixes": {
         "primary": {
@@ -56029,7 +56029,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Die Motten hatten Hunger. Die Tunika hatte Pech. Beide haben bekommen was sie wollten.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "affixes": {
         "primary": {
@@ -56529,7 +56529,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Schnur und Stein. Die älteste Form des Schmucks. Und die ehrlichste.",
       "icon": "/images/icons/gacha-amulet-dragon-tooth.png",
       "affixes": {
         "primary": {
@@ -56700,7 +56700,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Es riecht nach Abenteuer. Und nach etwas anderem.",
+      "desc": "Angelaufen wie ein altes Versprechen. Unter der Patina liegt vielleicht noch etwas.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "affixes": {
         "primary": {
@@ -57667,7 +57667,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Rost und Holz. Zwei Materialien die nicht zusammengehören. Wie die meisten Paare.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "affixes": {
         "primary": {
@@ -58054,7 +58054,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Der Preis war fair. Das heißt: zu hoch für das, was es ist.",
+      "desc": "Verschlissen an Stellen die darauf hindeuten dass der Vorbesitzer viel genickt hat.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
@@ -73549,7 +73549,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Aetherverstärkter Stahl. Das Schild summt bei Berührung. Leise, respektvoll.",
       "icon": "/images/icons/gacha-shield-emerald-defender.png",
       "affixes": {
         "primary": {
@@ -73606,7 +73606,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Im Nebel geschmiedet. Die Konturen sind unscharf. Absichtlich.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "affixes": {
         "primary": {
@@ -74233,7 +74233,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Elfenbein und Silber. Die Kette flüstert von alten Wäldern und noch älteren Geheimnissen.",
       "icon": "/images/icons/gacha-amulet-rune-stone.png",
       "affixes": {
         "primary": {
@@ -74461,7 +74461,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Der Sturm hat sie geformt. Nicht die Schmiede. Natur als Handwerker.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "affixes": {
         "primary": {
@@ -74518,7 +74518,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Hinterlassen keine Spuren. Nicht im Sand, nicht im Schnee, nicht im Gedächtnis.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
@@ -74575,7 +74575,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Ein Siegel ohne Zeichen. Der Ring wartet auf seinen Besitzer. Geduldig.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -74689,7 +74689,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus einem Material gefertigt, das die Schmiede \"theoretisch unmöglich\" nennen. Praktisch funktioniert es trotzdem.",
+      "desc": "Der Ring ist durchsichtig. Oder der Finger ist unsichtbar. Perspektive.",
       "icon": "/images/icons/gacha-ring-ruby-ring.png",
       "affixes": {
         "primary": {
