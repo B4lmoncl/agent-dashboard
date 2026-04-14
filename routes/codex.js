@@ -133,11 +133,87 @@ function checkCodexDiscovery(userId) {
   return newEntries;
 }
 
+/**
+ * Revalidate a player's codex — remove entries they no longer qualify for.
+ * This runs once per player when codex requirements change (tracked by schema version).
+ */
+function revalidateCodex(userId) {
+  const u = state.users[userId];
+  if (!u || !u.codexDiscovered || u.codexDiscovered.length === 0) return;
+
+  // Schema version — bump this when codex requirements change to trigger revalidation
+  const CODEX_SCHEMA_VERSION = 2;
+  if ((u._codexSchemaVersion || 1) >= CODEX_SCHEMA_VERSION) return; // already revalidated
+
+  const level = getLevelInfo(u.xp || 0).level;
+  const entryMap = new Map(CODEX_DATA.entries.map(e => [e.id, e]));
+  const kept = [];
+
+  for (const id of u.codexDiscovered) {
+    const entry = entryMap.get(id);
+    if (!entry || !entry.unlockedBy) { kept.push(id); continue; } // keep unknown/legacy entries
+    const cond = entry.unlockedBy;
+    let qualifies = false;
+
+    switch (cond.type) {
+      case 'level_reached': qualifies = level >= cond.value; break;
+      case 'profession_skill': qualifies = Math.max(0, ...Object.values(u.professions || {}).map(p => p.skill || 0)) >= cond.value; break;
+      case 'bond_level': qualifies = (u.companion?.bondLevel || 0) >= cond.value; break;
+      case 'mythic_cleared': qualifies = (u.highestMythicCleared || 0) >= cond.value; break;
+      case 'quests_completed': qualifies = (u.questsCompleted || 0) >= cond.value; break;
+      case 'streak': case 'streak_days': qualifies = (u.streakDays || 0) >= cond.value; break;
+      case 'world_boss_contributions': qualifies = (u._worldBossContributions || 0) >= cond.value; break;
+      case 'dungeon_completed': qualifies = (u._dungeonCompletions || 0) >= cond.value; break;
+      case 'rift_completions': qualifies = (u._riftCompletions || 0) >= cond.value; break;
+      case 'unique_npcs_completed': qualifies = (u._npcsUnlocked || 0) >= cond.value; break;
+      case 'crafts_completed': qualifies = (u._craftsCompleted || 0) >= cond.value; break;
+      case 'trades_completed': qualifies = (u._tradesCompleted || 0) >= cond.value; break;
+      case 'battlepass_level': qualifies = (u.battlePass?.level || 0) >= cond.value; break;
+      case 'workshop_upgrade_purchased': qualifies = Object.keys(u.workshopUpgrades || {}).length >= cond.value; break;
+      case 'friends_count': {
+        const friendships = state.socialData?.friendships || [];
+        qualifies = friendships.filter(f => f.player1 === userId || f.player2 === userId).length >= cond.value;
+        break;
+      }
+      case 'sworn_bond_level': {
+        const activeBond = (state.socialData?.swornBonds || []).find(b => b.status === 'active' && (b.player1 === userId || b.player2 === userId));
+        qualifies = (activeBond?.bondLevel || 0) >= cond.value;
+        break;
+      }
+      case 'gem_tier': {
+        const gems = u.gems || {};
+        qualifies = Object.keys(gems).some(k => parseInt(k.split('_').pop() || '0', 10) >= cond.value);
+        break;
+      }
+      case 'faction_rank': {
+        const factions = u.factions || {};
+        qualifies = Object.values(factions).some(f => (f && typeof f === 'object' ? f.rep || 0 : 0) >= (cond.value || 500));
+        break;
+      }
+      case 'hidden': qualifies = true; break; // keep hidden entries once discovered
+      default: qualifies = true; break; // unknown types — keep
+    }
+
+    if (qualifies) kept.push(id);
+  }
+
+  const removed = u.codexDiscovered.length - kept.length;
+  u.codexDiscovered = kept;
+  u._codexSchemaVersion = CODEX_SCHEMA_VERSION;
+  if (removed > 0) {
+    console.log(`[codex] Revalidated ${userId}: removed ${removed} entries that no longer qualify (${kept.length} kept)`);
+    saveUsers();
+  }
+}
+
 // GET /api/codex — get all discovered codex entries
 router.get('/api/codex', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
+
+  // Revalidate against current requirements (runs once after schema version bump)
+  revalidateCodex(uid);
 
   // Check for new discoveries
   checkCodexDiscovery(uid);
