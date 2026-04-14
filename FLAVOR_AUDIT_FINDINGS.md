@@ -268,6 +268,9 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
     - :225 Locked-Room-Icons `opacity: 0.3` = 30%, kaum sichtbar
     - Fix: Subtitle auf mindestens 0.3, Room-Count auf 0.2, Locked-Rooms auf 0.25, Room-Icons auf 0.5
 
+### Systemisches Kontrast-Problem: Inline-Styles umgehen Utility-Boost
+111. **[Kontrast]** Die `text-w15` etc. Utility-Klassen wurden gebootsted, aber **50+ Stellen** in Components nutzen inline `style={{ color: "rgba(255,255,255,0.12-0.15)" }}` direkt. Diese umgehen den Boost komplett. Betroffen: ForgeView (20+ Stellen), ChallengesView (4), NotificationCenter (1), TowerMap (5), RoadmapView (1). Ein globaler Search-Replace von inline `0.12` → `0.22` und `0.15` → `0.25` für Text-Color-Contexts wäre nötig.
+
 ## CSS / Technisches
 
 101. **[Dead Code]** globals.css:1470-1477 — `@keyframes today-card-enter` und `today-urgent-pulse` sind doppelt definiert. Die ersten (Zeile 1470/1474) werden von den zweiten (Zeile 1505/1510) überschrieben. Erste Definition ist toter Code.
