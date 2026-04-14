@@ -17405,7 +17405,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Stahl und Schweiß. Grimvars zwei Lieblingszutaten. Kohle ist die dritte.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -17462,7 +17462,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Kristallplatten wie Schuppen arrangiert. Jede einzelne reflektiert das Licht. Und Grimvars Stolz.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -17861,7 +17861,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Plattenarbeit die drei Tage gedauert hat. Grimvar hat in der Zeit nichts anderes getan. Nicht mal geatmet. Gefühlt.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -17918,7 +17918,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Drachenstahl an den Füßen. Schwer wie eine Verantwortung. Aber tragbar.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -18317,7 +18317,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Für einen König geschmiedet. Oder jemanden der sich wie einer fühlen will. Grimvar urteilt nicht.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -18374,7 +18374,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Drachenzähne als Verstärkung. Der Boden merkt jeden Schritt. Der Träger kaum.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -18778,7 +18778,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Aetherketten die leiser klirren als gewöhnliche. Grimvar hat das Flüstern des Aethers in den Stahl gehämmert.",
       "icon": "/images/icons/gacha-amulet-star-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -18840,7 +18840,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Seelenketten die sich dem Träger anpassen. Grimvar versteht nicht wie. Er hat es trotzdem geschmiedet.",
       "icon": "/images/icons/gacha-amulet-thunder-rune.png",
       "shopHidden": true,
       "affixes": {
@@ -19274,7 +19274,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Stiefel für Wanderer die nicht wissen wohin. Die Stiefel wissen es. Manchmal.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -19336,7 +19336,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Aetherstiefel. Der Träger schwebt fast. Grimvar findet Schweben unpraktisch. Aber beeindruckend.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -20444,7 +20444,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Wolle, viermal verarbeitet. Lin sagt, der Stoff muss sich an den Körper erinnern. Dieser hier hat ein gutes Gedächtnis.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -20900,7 +20900,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Eine Tiara aus gewobenen Fäden. Lin hat sie bei Mondlicht gearbeitet. Nicht aus Notwendigkeit — aus Prinzip.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -21356,7 +21356,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Seide die fließt wie Wasser und schützt wie Stahl. Lin sagt, das sei kein Widerspruch. Nur Handwerk.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -21837,7 +21837,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Sternenstoff am Kopf. Die Haube leuchtet nachts. Lin sagt, das war geplant. Ihr Gesicht sagt etwas anderes.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -22333,7 +22333,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Kappe reagiert auf Gedanken. Lin findet das praktisch. Ihre Gedanken sind meistens kritisch.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "shopHidden": true,
       "affixes": {
@@ -31465,7 +31465,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Drachenstahl verbiegt sich nicht. Grimvar auch nicht. Das erklärt die Zusammenarbeit.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -31522,7 +31522,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Aetherkern pulsiert im Brustpanzer. Grimvar sagt, die Rüstung lebt. Er meint es wörtlich.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -31931,7 +31931,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Schuppen an den Sohlen. Der Drache war dagegen. Grimvar war dafür. Grimvar hat gewonnen.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -31988,7 +31988,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Seelentreter. Leise, schnell, und mit einer Wärme die nicht von der Esse kommt.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "shopHidden": true,
       "affixes": {
@@ -32625,7 +32625,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Ein Mantel der den Sternenhimmel trägt. Lin hat vier Nächte daran genäht. Der Himmel hat zugeschaut.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -33091,7 +33091,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Lins Abschlussarbeit in Schuhform. Sie hat nie zugegeben wie viele Versuche es brauchte.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -38931,7 +38931,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Zweiter Drachenhelm. Grimvar sagt, der erste war gut. Dieser ist besser. Das Wort besser hat er noch nie benutzt.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
@@ -38988,7 +38988,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Zweite Aetherplatte. Der Aether hat sich beschwert. Grimvar hat lauter gehämmert.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -39397,7 +39397,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Dritte Drachensandalen. Offen und trotzdem aus Drachenstahl. Grimvar nennt es einen Widerspruch. Lin nennt es Mode.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -39454,7 +39454,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Dritte Aetherkappe. Jede Version leichter. Grimvar hat es als persönlichen Kampf gegen die Physik betrachtet.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "shopHidden": true,
       "affixes": {
@@ -40096,7 +40096,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Zweite Wollstiefel. Wärmer. Weicher. Lin sagt: Die ersten waren ein Entwurf. Diese sind ernst gemeint.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -40562,7 +40562,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Drittes Wollwams. Der Stoff hat kapiert was Lin will. Es hat drei Versuche gedauert. Und zwei Drohungen.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -55733,7 +55733,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Ausgeblichen von Sonne und Vernachlässigung. Zwei natürliche Feinde der Mode.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
@@ -56131,7 +56131,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Die Risse erzählen von Kämpfen. Oder von schlechtem Material. Beides möglich.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "affixes": {
         "primary": {
@@ -56279,7 +56279,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Ausgebessert mit mehr Hoffnung als Faden. Erstaunlicherweise hält beides.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "affixes": {
         "primary": {
@@ -56495,7 +56495,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Der Stein ist zerkratzt. Von innen. Das sollte nicht passieren.",
       "icon": "/images/icons/gacha-amulet-dark-pentacle.png",
       "affixes": {
         "primary": {
@@ -56825,7 +56825,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Klappern rhythmisch. Manche nennen es Musik. Die meisten nicht.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
@@ -57872,7 +57872,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Ramponiert ist ein euphemismus. Ruiniert wäre ehrlicher. Aber unhöflich.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
@@ -57906,7 +57906,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Schützt den Kopf. Vor Regen. Vor Sonne. Nicht vor dem was weh tut.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
@@ -57940,7 +57940,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Verschlissen von zu vielen Trägern und zu wenig Pflege.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "affixes": {
         "primary": {
@@ -58384,7 +58384,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Der Schmied schwor, es sei stabil. Der Schmied ist jetzt Bauer.",
+      "desc": "Zerkratzt wie die Oberfläche einer alten Wahrheit. Oder wie ein Stein in einer Tasche.",
       "icon": "/images/icons/gacha-amulet-copper-pendant.png",
       "affixes": {
         "primary": {
@@ -59815,7 +59815,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Die Form ist Vergangenheit. Was bleibt ist ein Stoffhaufen mit Ambitionen.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
@@ -60597,7 +60597,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Ein Stein. An einer Schnur. Nicht mehr, nicht weniger. Eher weniger.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "affixes": {
         "primary": {
@@ -61243,7 +61243,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Die Kratzer sind älter als die Erinnerung an den Vorbesitzer.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "affixes": {
         "primary": {
@@ -62229,7 +62229,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "War ein Topf. Dann ein Helm. Die Beförderung war nicht gerechtfertigt.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
@@ -63827,7 +63827,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Verschlissen vom Wind, vom Regen, und von der Zeit. Alle drei unerbittlich.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
@@ -64337,7 +64337,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Die Sohle erinnert sich an bessere Zeiten. Der Fuß an wärmere.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
@@ -65996,7 +65996,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Verbeult, aber stolz. Wie ein Veteran nach dem dritten Bier.",
       "icon": "/images/icons/gacha-helm-bone-mask.png",
       "affixes": {
         "primary": {
@@ -66566,7 +66566,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Billige Schnur, teures Versprechen. Eins davon hält.",
       "icon": "/images/icons/gacha-amulet-ruby-amulet.png",
       "affixes": {
         "primary": {
@@ -67250,7 +67250,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Restposten. Aber ehrlich.",
+      "desc": "Angerostet und verbogen. Perfekt für jemanden der keine Ansprüche hat.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "affixes": {
         "primary": {
