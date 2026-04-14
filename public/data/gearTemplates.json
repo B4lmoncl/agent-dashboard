@@ -53152,7 +53152,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Tut was es muss. Nicht mehr. Deutlich nicht mehr.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
@@ -53527,7 +53527,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Erfüllt seinen Zweck. Knapp. Gerade so.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "affixes": {
         "primary": {
@@ -53641,7 +53641,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Funktioniert. Erwartungen sollten trotzdem niedrig bleiben.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "affixes": {
         "primary": {
@@ -56097,7 +56097,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Schlimmer geht immer. Aber nicht viel schlimmer.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "affixes": {
         "primary": {
@@ -58179,7 +58179,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Tut was es muss. Nicht mehr. Deutlich nicht mehr.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "affixes": {
         "primary": {
@@ -58418,7 +58418,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Erfüllt seinen Zweck. Knapp. Gerade so.",
       "icon": "/images/icons/gacha-amulet-crystal-shard.png",
       "affixes": {
         "primary": {
@@ -58589,7 +58589,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Funktioniert. Erwartungen sollten trotzdem niedrig bleiben.",
       "icon": "/images/icons/gacha-boots-flame-greaves.png",
       "affixes": {
         "primary": {
@@ -59169,7 +59169,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Schlimmer geht immer. Aber nicht viel schlimmer.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "affixes": {
         "primary": {
@@ -59373,7 +59373,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Selbst der Händler hat Mitleid gezeigt. Kurz.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "affixes": {
         "primary": {
@@ -59441,7 +59441,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
       "icon": "/images/icons/gacha-shield-blood-pavise.png",
       "affixes": {
         "primary": {
@@ -59577,7 +59577,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Zuverlässig bei Sonnenschein. Bei Regen: Glückssache.",
       "icon": "/images/icons/gacha-shield-divine-aegis.png",
       "affixes": {
         "primary": {
@@ -59611,7 +59611,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
       "icon": "/images/icons/gacha-shield-dragon-scale.png",
       "affixes": {
         "primary": {
@@ -59645,7 +59645,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Gegen besseres Wissen erworben. Und behalten.",
       "icon": "/images/icons/gacha-shield-dragon-shield.png",
       "affixes": {
         "primary": {
@@ -59679,7 +59679,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
       "icon": "/images/icons/gacha-shield-emerald-defender.png",
       "affixes": {
         "primary": {
@@ -59713,7 +59713,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Knapp über der Schwelle zu nutzlos.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "affixes": {
         "primary": {
@@ -59985,7 +59985,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Besser als barfuß. Aber nur leicht.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "affixes": {
         "primary": {
@@ -60053,7 +60053,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "affixes": {
         "primary": {
@@ -60087,7 +60087,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "affixes": {
         "primary": {
@@ -60155,7 +60155,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Tut was es muss. Nicht mehr. Deutlich nicht mehr.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "affixes": {
         "primary": {
@@ -60189,7 +60189,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "affixes": {
         "primary": {
@@ -60427,7 +60427,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Erfüllt seinen Zweck. Knapp. Gerade so.",
       "icon": "/images/icons/gacha-amulet-crystal-shard.png",
       "affixes": {
         "primary": {
@@ -60461,7 +60461,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Zuverlässig bei Sonnenschein. Bei Regen: Glückssache.",
       "icon": "/images/icons/gacha-amulet-dark-pentacle.png",
       "affixes": {
         "primary": {
@@ -60495,7 +60495,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Funktioniert. Erwartungen sollten trotzdem niedrig bleiben.",
       "icon": "/images/icons/gacha-amulet-dragon-tooth.png",
       "affixes": {
         "primary": {
@@ -60529,7 +60529,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Schlimmer geht immer. Aber nicht viel schlimmer.",
       "icon": "/images/icons/gacha-amulet-druid-acorn.png",
       "affixes": {
         "primary": {
@@ -60665,7 +60665,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Hat Persönlichkeit. Die falsche, aber immerhin.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "affixes": {
         "primary": {
@@ -60733,7 +60733,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Selbst der Händler hat Mitleid gezeigt. Kurz.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "affixes": {
         "primary": {
@@ -60767,7 +60767,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "affixes": {
         "primary": {
@@ -60869,7 +60869,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Einzigartig. Leider in jeder Hinsicht.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
@@ -60937,7 +60937,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
@@ -60971,7 +60971,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Tut was es muss. Nicht mehr. Deutlich nicht mehr.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
@@ -61175,7 +61175,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Knapp über der Schwelle zu nutzlos.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "affixes": {
         "primary": {
@@ -61277,7 +61277,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Unverwechselbar. Und unverkäuflich.",
       "icon": "/images/icons/gacha-ring-flame-ring.png",
       "affixes": {
         "primary": {
@@ -61345,7 +61345,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
       "icon": "/images/icons/gacha-ring-gold-band.png",
       "affixes": {
         "primary": {
@@ -61413,7 +61413,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -61447,7 +61447,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Erfüllt seinen Zweck. Knapp. Gerade so.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "affixes": {
         "primary": {
@@ -61515,7 +61515,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Besonders. Nicht auf die gute Art.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "affixes": {
         "primary": {
@@ -61549,7 +61549,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "affixes": {
         "primary": {
@@ -61617,7 +61617,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Zuverlässig bei Sonnenschein. Bei Regen: Glückssache.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "affixes": {
         "primary": {
@@ -61685,7 +61685,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "affixes": {
         "primary": {
@@ -61821,7 +61821,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Funktioniert. Erwartungen sollten trotzdem niedrig bleiben.",
       "icon": "/images/icons/gacha-shield-dragon-shield.png",
       "affixes": {
         "primary": {
@@ -61923,7 +61923,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Schlimmer geht immer. Aber nicht viel schlimmer.",
       "icon": "/images/icons/gacha-shield-gilded-aspis.png",
       "affixes": {
         "primary": {
@@ -61957,7 +61957,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Besser als barfuß. Aber nur leicht.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "affixes": {
         "primary": {
@@ -62059,7 +62059,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Gegen besseres Wissen erworben. Und behalten.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "affixes": {
         "primary": {
@@ -62093,7 +62093,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
@@ -62263,7 +62263,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Selbst der Händler hat Mitleid gezeigt. Kurz.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "affixes": {
         "primary": {
@@ -62297,7 +62297,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Hat Persönlichkeit. Die falsche, aber immerhin.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "affixes": {
         "primary": {
@@ -62501,7 +62501,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "affixes": {
         "primary": {
@@ -62535,7 +62535,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "affixes": {
         "primary": {
@@ -62705,7 +62705,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "affixes": {
         "primary": {
@@ -62773,7 +62773,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Tut was es muss. Nicht mehr. Deutlich nicht mehr.",
       "icon": "/images/icons/gacha-amulet-ruby-amulet.png",
       "affixes": {
         "primary": {
@@ -62841,7 +62841,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Knapp über der Schwelle zu nutzlos.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
@@ -62977,7 +62977,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Gegen besseres Wissen erworben. Und behalten.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "affixes": {
         "primary": {
@@ -63045,7 +63045,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Einzigartig. Leider in jeder Hinsicht.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "affixes": {
         "primary": {
@@ -63215,7 +63215,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Erfüllt seinen Zweck. Knapp. Gerade so.",
       "icon": "/images/icons/gacha-ring-gold-band.png",
       "affixes": {
         "primary": {
@@ -63249,7 +63249,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -63283,7 +63283,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Unverwechselbar. Und unverkäuflich.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -63487,7 +63487,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Besser als barfuß. Aber nur leicht.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "affixes": {
         "primary": {
@@ -63691,7 +63691,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Funktioniert. Erwartungen sollten trotzdem niedrig bleiben.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "affixes": {
         "primary": {
@@ -63759,7 +63759,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Schlimmer geht immer. Aber nicht viel schlimmer.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "affixes": {
         "primary": {
@@ -63895,7 +63895,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Besonders. Nicht auf die gute Art.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "affixes": {
         "primary": {
@@ -63929,7 +63929,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "affixes": {
         "primary": {
@@ -63963,7 +63963,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Selbst der Händler hat Mitleid gezeigt. Kurz.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "affixes": {
         "primary": {
@@ -64269,7 +64269,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
@@ -64439,7 +64439,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Hat Persönlichkeit. Die falsche, aber immerhin.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "affixes": {
         "primary": {
@@ -64473,7 +64473,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Tut was es muss. Nicht mehr. Deutlich nicht mehr.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "affixes": {
         "primary": {
@@ -64677,7 +64677,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
       "icon": "/images/icons/gacha-shield-tower-shield.png",
       "affixes": {
         "primary": {
@@ -64711,7 +64711,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Erfüllt seinen Zweck. Knapp. Gerade so.",
       "icon": "/images/icons/gacha-shield-wooden-buckler.png",
       "affixes": {
         "primary": {
@@ -64779,7 +64779,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
@@ -64813,7 +64813,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
@@ -64881,7 +64881,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Knapp über der Schwelle zu nutzlos.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "affixes": {
         "primary": {
@@ -65051,7 +65051,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Zuverlässig bei Sonnenschein. Bei Regen: Glückssache.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
@@ -65085,7 +65085,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
@@ -65312,7 +65312,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Gegen besseres Wissen erworben. Und behalten.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "affixes": {
         "primary": {
@@ -65426,7 +65426,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Besser als barfuß. Aber nur leicht.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "affixes": {
         "primary": {
@@ -65654,7 +65654,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "affixes": {
         "primary": {
@@ -65711,7 +65711,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Einzigartig. Leider in jeder Hinsicht.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "affixes": {
         "primary": {
@@ -65825,7 +65825,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "affixes": {
         "primary": {
@@ -66509,7 +66509,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
       "icon": "/images/icons/gacha-amulet-prism-crystal.png",
       "affixes": {
         "primary": {
@@ -66737,7 +66737,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "affixes": {
         "primary": {
@@ -66794,7 +66794,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Unverwechselbar. Und unverkäuflich.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "affixes": {
         "primary": {
@@ -67136,7 +67136,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Besonders. Nicht auf die gute Art.",
       "icon": "/images/icons/gacha-ring-sapphire-ring.png",
       "affixes": {
         "primary": {
@@ -67193,7 +67193,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Es tut, was es soll. Was es soll, ist nicht viel.",
+      "desc": "Funktioniert. Erwartungen sollten trotzdem niedrig bleiben.",
       "icon": "/images/icons/gacha-ring-shadow-ring.png",
       "affixes": {
         "primary": {
@@ -67991,7 +67991,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Funktioniert. Meistens. Bei gutem Wetter.",
+      "desc": "Zuverlässig bei Sonnenschein. Bei Regen: Glückssache.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "affixes": {
         "primary": {
@@ -68162,7 +68162,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
       "icon": "/images/icons/gacha-boots-cloth-shoes.png",
       "affixes": {
         "primary": {
@@ -68333,7 +68333,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Der Händler hat nicht geweint. Aber fast.",
+      "desc": "Selbst der Händler hat Mitleid gezeigt. Kurz.",
       "icon": "/images/icons/gacha-ring-runic-band.png",
       "affixes": {
         "primary": {
