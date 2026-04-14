@@ -701,7 +701,7 @@
       "reqLevel": 4,
       "rarity": "uncommon",
       "price": 65,
-      "desc": "Luftig. Schneller als sie aussehen. Das ist meistens wichtiger.",
+      "desc": "Luftige Sandalen die schneller sind als sie aussehen, was meistens wichtiger ist.",
       "affixes": {
         "primary": {
           "count": [
@@ -870,7 +870,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Schwer. Effektiv. Kein Schnickschnack.",
+      "desc": "Ein schwerer, effektiver Kriegshammer ohne jeglichen Schnickschnack.",
       "affixes": {
         "primary": {
           "count": [
@@ -3236,7 +3236,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 30,
-      "desc": "Zusammengebundene Äste. Hält einen Schlag aus. Vielleicht zwei.",
+      "desc": "Zusammengebundene Äste die einen Schlag aushalten — vielleicht zwei.",
       "icon": "/images/icons/gacha-shield-blood-pavise.png",
       "shopHidden": false,
       "affixes": {
@@ -3335,7 +3335,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 35,
-      "desc": "Kratzt. Schützt kaum. Aber du siehst beschäftigt aus.",
+      "desc": "Ein Sackleinen-Wams das kratzt und kaum schützt, dafür aber beschäftigt aussehen lässt.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": false,
       "affixes": {
@@ -3592,7 +3592,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 90,
-      "desc": "Mit Bienenwachs behandelt. Wasser perlt ab. Schwerter leider nicht.",
+      "desc": "Mit Bienenwachs behandelt, sodass Wasser abperlt — Schwerter leider nicht.",
       "icon": "/images/icons/gacha-shield-bone-aegis.png",
       "shopHidden": false,
       "affixes": {
@@ -3880,7 +3880,7 @@
       "reqLevel": 7,
       "rarity": "rare",
       "price": 0,
-      "desc": "Geschärft an einem Wildschwein. Das Schwein lebt noch. Es ist wütend.",
+      "desc": "Geschärft an einem Wildschwein das noch lebt und entsprechend wütend ist.",
       "icon": "/images/icons/gacha-weapon-druid-staff.png",
       "shopHidden": false,
       "affixes": {
@@ -4176,7 +4176,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 130,
-      "desc": "Poliert bis zum Wahnsinn. Blendet Feinde. Und dich. Meistens dich.",
+      "desc": "Bis zum Wahnsinn poliert, blendet sowohl Feinde als auch dich — meistens dich.",
       "icon": "/images/icons/gacha-shield-blood-pavise.png",
       "shopHidden": false,
       "affixes": {
@@ -4294,7 +4294,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 100,
-      "desc": "Tintenflecken am Rand. Der vorherige Besitzer hat viel geschrieben. Oder geweint.",
+      "desc": "Ein Gelehrtenhut mit Tintenflecken am Rand — der vorherige Besitzer hat viel geschrieben, oder geweint.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "shopHidden": false,
       "affixes": {
@@ -4414,7 +4414,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 110,
-      "desc": "Jede Niete einzeln eingeschlagen. Von Hand. Man sieht's.",
+      "desc": "Jede einzelne Niete von Hand eingeschlagen, und man sieht es.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": false,
       "affixes": {
@@ -4474,7 +4474,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Zwei Lagen Kettenglieder. Doppelt so schwer. Doppelt so sicher. Fast.",
+      "desc": "Zwei Lagen Kettenglieder, doppelt so schwer und doppelt so sicher — fast.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": false,
       "affixes": {
