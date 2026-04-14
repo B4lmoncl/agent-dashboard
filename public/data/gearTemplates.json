@@ -68440,7 +68440,7 @@
     },
     {
       "id": "c2-w1-kupferklinge0",
-      "name": "KupferKlinge",
+      "name": "Kupfer-Klinge",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 1,
@@ -68474,7 +68474,7 @@
     },
     {
       "id": "c2-w1-knochenklinge1",
-      "name": "KnochenKlinge",
+      "name": "Knochen-Klinge",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 2,
@@ -68508,7 +68508,7 @@
     },
     {
       "id": "c2-w1-tonsto2",
-      "name": "TonStoß",
+      "name": "Ton-Stoß",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 3,
@@ -68542,7 +68542,7 @@
     },
     {
       "id": "c2-w1-stoffschlag3",
-      "name": "StoffSchlag",
+      "name": "Stoff-Schlag",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 4,
@@ -68576,7 +68576,7 @@
     },
     {
       "id": "c2-w1-kupferhieb4",
-      "name": "KupferHieb",
+      "name": "Kupfer-Hieb",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 5,
@@ -68610,7 +68610,7 @@
     },
     {
       "id": "c2-w1-eisenhieb5",
-      "name": "EisenHieb",
+      "name": "Eisen-Hieb",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 6,
@@ -68644,7 +68644,7 @@
     },
     {
       "id": "c2-w1-knochenhieb6",
-      "name": "KnochenHieb",
+      "name": "Knochen-Hieb",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 7,
@@ -68678,7 +68678,7 @@
     },
     {
       "id": "c2-w1-stoffschlag7",
-      "name": "StoffSchlag",
+      "name": "Stoff-Schlag",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 8,
@@ -68712,7 +68712,7 @@
     },
     {
       "id": "c2-s1-bronzeschutz0",
-      "name": "BronzeSchutz",
+      "name": "Bronze-Schutz",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 1,
@@ -68746,7 +68746,7 @@
     },
     {
       "id": "c2-s1-eisenschutz1",
-      "name": "EisenSchutz",
+      "name": "Eisen-Schutz",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 2,
@@ -68780,7 +68780,7 @@
     },
     {
       "id": "c2-s1-lederwehr2",
-      "name": "LederWehr",
+      "name": "Leder-Wehr",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 3,
@@ -68814,7 +68814,7 @@
     },
     {
       "id": "c2-s1-steindeckung3",
-      "name": "SteinDeckung",
+      "name": "Stein-Deckung",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 4,
@@ -68848,7 +68848,7 @@
     },
     {
       "id": "c2-s1-stoffdeckung4",
-      "name": "StoffDeckung",
+      "name": "Stoff-Deckung",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 5,
@@ -68882,7 +68882,7 @@
     },
     {
       "id": "c2-s1-bronzewehr5",
-      "name": "BronzeWehr",
+      "name": "Bronze-Wehr",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 6,
@@ -68916,7 +68916,7 @@
     },
     {
       "id": "c2-s1-eisenschutz6",
-      "name": "EisenSchutz",
+      "name": "Eisen-Schutz",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 7,
@@ -68950,7 +68950,7 @@
     },
     {
       "id": "c2-s1-steindeckung7",
-      "name": "SteinDeckung",
+      "name": "Stein-Deckung",
       "slot": "shield",
       "tier": 1,
       "reqLevel": 8,
@@ -68984,7 +68984,7 @@
     },
     {
       "id": "c2-h1-knochendeckel0",
-      "name": "KnochenDeckel",
+      "name": "Knochen-Deckel",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 1,
@@ -69018,7 +69018,7 @@
     },
     {
       "id": "c2-h1-holzschutz1",
-      "name": "HolzSchutz",
+      "name": "Holz-Schutz",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 2,
@@ -69052,7 +69052,7 @@
     },
     {
       "id": "c2-h1-stoffkopf2",
-      "name": "StoffKopf",
+      "name": "Stoff-Kopf",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 3,
@@ -69086,7 +69086,7 @@
     },
     {
       "id": "c2-h1-holzhaube3",
-      "name": "HolzHaube",
+      "name": "Holz-Haube",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 4,
@@ -69120,7 +69120,7 @@
     },
     {
       "id": "c2-h1-stoffhaube4",
-      "name": "StoffHaube",
+      "name": "Stoff-Haube",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 5,
@@ -69154,7 +69154,7 @@
     },
     {
       "id": "c2-h1-holzkopf5",
-      "name": "HolzKopf",
+      "name": "Holz-Kopf",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 6,
@@ -69188,7 +69188,7 @@
     },
     {
       "id": "c2-h1-stahldeckel6",
-      "name": "StahlDeckel",
+      "name": "Stahl-Deckel",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 7,
@@ -69222,7 +69222,7 @@
     },
     {
       "id": "c2-h1-knochenschutz7",
-      "name": "KnochenSchutz",
+      "name": "Knochen-Schutz",
       "slot": "helm",
       "tier": 1,
       "reqLevel": 8,
@@ -69256,7 +69256,7 @@
     },
     {
       "id": "c2-a1-tonhlle0",
-      "name": "TonHülle",
+      "name": "Ton-Hülle",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 1,
@@ -69290,7 +69290,7 @@
     },
     {
       "id": "c2-a1-holzpanzer1",
-      "name": "HolzPanzer",
+      "name": "Holz-Panzer",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 2,
@@ -69324,7 +69324,7 @@
     },
     {
       "id": "c2-a1-lederschutz2",
-      "name": "LederSchutz",
+      "name": "Leder-Schutz",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 3,
@@ -69358,7 +69358,7 @@
     },
     {
       "id": "c2-a1-kupferhlle3",
-      "name": "KupferHülle",
+      "name": "Kupfer-Hülle",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 4,
@@ -69392,7 +69392,7 @@
     },
     {
       "id": "c2-a1-tonhlle4",
-      "name": "TonHülle",
+      "name": "Ton-Hülle",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 5,
@@ -69426,7 +69426,7 @@
     },
     {
       "id": "c2-a1-holzhlle5",
-      "name": "HolzHülle",
+      "name": "Holz-Hülle",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 6,
@@ -69460,7 +69460,7 @@
     },
     {
       "id": "c2-a1-bronzehlle6",
-      "name": "BronzeHülle",
+      "name": "Bronze-Hülle",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 7,
@@ -69494,7 +69494,7 @@
     },
     {
       "id": "c2-a1-stahldecke7",
-      "name": "StahlDecke",
+      "name": "Stahl-Decke",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 8,
@@ -69528,7 +69528,7 @@
     },
     {
       "id": "c2-a1-kupferschmuck0",
-      "name": "KupferSchmuck",
+      "name": "Kupfer-Schmuck",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 1,
@@ -69562,7 +69562,7 @@
     },
     {
       "id": "c2-a1-stofftand1",
-      "name": "StoffTand",
+      "name": "Stoff-Tand",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 2,
@@ -69596,7 +69596,7 @@
     },
     {
       "id": "c2-a1-kupferschmuck2",
-      "name": "KupferSchmuck",
+      "name": "Kupfer-Schmuck",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 3,
@@ -69630,7 +69630,7 @@
     },
     {
       "id": "c2-a1-lederschmuck3",
-      "name": "LederSchmuck",
+      "name": "Leder-Schmuck",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 4,
@@ -69664,7 +69664,7 @@
     },
     {
       "id": "c2-a1-eisenschmuck4",
-      "name": "EisenSchmuck",
+      "name": "Eisen-Schmuck",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 5,
@@ -69698,7 +69698,7 @@
     },
     {
       "id": "c2-a1-lederglck5",
-      "name": "LederGlück",
+      "name": "Leder-Glück",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 6,
@@ -69732,7 +69732,7 @@
     },
     {
       "id": "c2-a1-eisentand6",
-      "name": "EisenTand",
+      "name": "Eisen-Tand",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 7,
@@ -69766,7 +69766,7 @@
     },
     {
       "id": "c2-a1-holzglck7",
-      "name": "HolzGlück",
+      "name": "Holz-Glück",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 8,
@@ -69800,7 +69800,7 @@
     },
     {
       "id": "c2-b1-stahlschritt0",
-      "name": "StahlSchritt",
+      "name": "Stahl-Schritt",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 1,
@@ -69834,7 +69834,7 @@
     },
     {
       "id": "c2-b1-holzgang1",
-      "name": "HolzGang",
+      "name": "Holz-Gang",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 2,
@@ -69868,7 +69868,7 @@
     },
     {
       "id": "c2-b1-tongang2",
-      "name": "TonGang",
+      "name": "Ton-Gang",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 3,
@@ -69902,7 +69902,7 @@
     },
     {
       "id": "c2-b1-holzschritt3",
-      "name": "HolzSchritt",
+      "name": "Holz-Schritt",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 4,
@@ -69936,7 +69936,7 @@
     },
     {
       "id": "c2-b1-kupfergang4",
-      "name": "KupferGang",
+      "name": "Kupfer-Gang",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 5,
@@ -69970,7 +69970,7 @@
     },
     {
       "id": "c2-b1-stahltritt5",
-      "name": "StahlTritt",
+      "name": "Stahl-Tritt",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 6,
@@ -70004,7 +70004,7 @@
     },
     {
       "id": "c2-b1-bronzetritt6",
-      "name": "BronzeTritt",
+      "name": "Bronze-Tritt",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 7,
@@ -70038,7 +70038,7 @@
     },
     {
       "id": "c2-b1-stofftritt7",
-      "name": "StoffTritt",
+      "name": "Stoff-Tritt",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 8,
@@ -70072,7 +70072,7 @@
     },
     {
       "id": "c2-r1-stoffschlinge0",
-      "name": "StoffSchlinge",
+      "name": "Stoff-Schlinge",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 1,
@@ -70106,7 +70106,7 @@
     },
     {
       "id": "c2-r1-knochenkreis1",
-      "name": "KnochenKreis",
+      "name": "Knochen-Kreis",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 2,
@@ -70140,7 +70140,7 @@
     },
     {
       "id": "c2-r1-stahlband2",
-      "name": "StahlBand",
+      "name": "Stahl-Band",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 3,
@@ -70174,7 +70174,7 @@
     },
     {
       "id": "c2-r1-tonkreis3",
-      "name": "TonKreis",
+      "name": "Ton-Kreis",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 4,
@@ -70208,7 +70208,7 @@
     },
     {
       "id": "c2-r1-eisenband4",
-      "name": "EisenBand",
+      "name": "Eisen-Band",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 5,
@@ -70242,7 +70242,7 @@
     },
     {
       "id": "c2-r1-lederschlinge5",
-      "name": "LederSchlinge",
+      "name": "Leder-Schlinge",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 6,
@@ -70276,7 +70276,7 @@
     },
     {
       "id": "c2-r1-knochenkreis6",
-      "name": "KnochenKreis",
+      "name": "Knochen-Kreis",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 7,
@@ -70310,7 +70310,7 @@
     },
     {
       "id": "c2-r1-holzkreis7",
-      "name": "HolzKreis",
+      "name": "Holz-Kreis",
       "slot": "ring",
       "tier": 1,
       "reqLevel": 8,
@@ -70344,7 +70344,7 @@
     },
     {
       "id": "c2-w2-tonsto0",
-      "name": "TonStoß",
+      "name": "Ton-Stoß",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 9,
@@ -70378,7 +70378,7 @@
     },
     {
       "id": "c2-w2-bronzeschlag1",
-      "name": "BronzeSchlag",
+      "name": "Bronze-Schlag",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 10,
@@ -70412,7 +70412,7 @@
     },
     {
       "id": "c2-w2-stahlschlag2",
-      "name": "StahlSchlag",
+      "name": "Stahl-Schlag",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 11,
@@ -70446,7 +70446,7 @@
     },
     {
       "id": "c2-w2-stahlhieb3",
-      "name": "StahlHieb",
+      "name": "Stahl-Hieb",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 12,
@@ -70480,7 +70480,7 @@
     },
     {
       "id": "c2-w2-stoffhieb4",
-      "name": "StoffHieb",
+      "name": "Stoff-Hieb",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 13,
@@ -70514,7 +70514,7 @@
     },
     {
       "id": "c2-w2-kupferklinge5",
-      "name": "KupferKlinge",
+      "name": "Kupfer-Klinge",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 14,
@@ -70548,7 +70548,7 @@
     },
     {
       "id": "c2-s2-eisenschutz0",
-      "name": "EisenSchutz",
+      "name": "Eisen-Schutz",
       "slot": "shield",
       "tier": 2,
       "reqLevel": 9,
@@ -70582,7 +70582,7 @@
     },
     {
       "id": "c2-s2-holzblock1",
-      "name": "HolzBlock",
+      "name": "Holz-Block",
       "slot": "shield",
       "tier": 2,
       "reqLevel": 10,
@@ -70616,7 +70616,7 @@
     },
     {
       "id": "c2-s2-kupferblock2",
-      "name": "KupferBlock",
+      "name": "Kupfer-Block",
       "slot": "shield",
       "tier": 2,
       "reqLevel": 11,
@@ -70650,7 +70650,7 @@
     },
     {
       "id": "c2-s2-lederschutz3",
-      "name": "LederSchutz",
+      "name": "Leder-Schutz",
       "slot": "shield",
       "tier": 2,
       "reqLevel": 12,
@@ -70684,7 +70684,7 @@
     },
     {
       "id": "c2-s2-stoffdeckung4",
-      "name": "StoffDeckung",
+      "name": "Stoff-Deckung",
       "slot": "shield",
       "tier": 2,
       "reqLevel": 13,
@@ -70718,7 +70718,7 @@
     },
     {
       "id": "c2-s2-stoffdeckung5",
-      "name": "StoffDeckung",
+      "name": "Stoff-Deckung",
       "slot": "shield",
       "tier": 2,
       "reqLevel": 14,
@@ -70752,7 +70752,7 @@
     },
     {
       "id": "c2-h2-bronzeschutz0",
-      "name": "BronzeSchutz",
+      "name": "Bronze-Schutz",
       "slot": "helm",
       "tier": 2,
       "reqLevel": 9,
@@ -70786,7 +70786,7 @@
     },
     {
       "id": "c2-h2-holzhaube1",
-      "name": "HolzHaube",
+      "name": "Holz-Haube",
       "slot": "helm",
       "tier": 2,
       "reqLevel": 10,
@@ -70820,7 +70820,7 @@
     },
     {
       "id": "c2-h2-knochendeckel2",
-      "name": "KnochenDeckel",
+      "name": "Knochen-Deckel",
       "slot": "helm",
       "tier": 2,
       "reqLevel": 11,
@@ -70854,7 +70854,7 @@
     },
     {
       "id": "c2-h2-knochenschutz3",
-      "name": "KnochenSchutz",
+      "name": "Knochen-Schutz",
       "slot": "helm",
       "tier": 2,
       "reqLevel": 12,
@@ -70888,7 +70888,7 @@
     },
     {
       "id": "c2-h2-bronzekopf4",
-      "name": "BronzeKopf",
+      "name": "Bronze-Kopf",
       "slot": "helm",
       "tier": 2,
       "reqLevel": 13,
@@ -70922,7 +70922,7 @@
     },
     {
       "id": "c2-h2-stoffdeckel5",
-      "name": "StoffDeckel",
+      "name": "Stoff-Deckel",
       "slot": "helm",
       "tier": 2,
       "reqLevel": 14,
@@ -70956,7 +70956,7 @@
     },
     {
       "id": "c2-a2-stahlpanzer0",
-      "name": "StahlPanzer",
+      "name": "Stahl-Panzer",
       "slot": "armor",
       "tier": 2,
       "reqLevel": 9,
@@ -70990,7 +70990,7 @@
     },
     {
       "id": "c2-a2-stahlschutz1",
-      "name": "StahlSchutz",
+      "name": "Stahl-Schutz",
       "slot": "armor",
       "tier": 2,
       "reqLevel": 10,
@@ -71024,7 +71024,7 @@
     },
     {
       "id": "c2-a2-holzschutz2",
-      "name": "HolzSchutz",
+      "name": "Holz-Schutz",
       "slot": "armor",
       "tier": 2,
       "reqLevel": 11,
@@ -71058,7 +71058,7 @@
     },
     {
       "id": "c2-a2-eisendecke3",
-      "name": "EisenDecke",
+      "name": "Eisen-Decke",
       "slot": "armor",
       "tier": 2,
       "reqLevel": 12,
@@ -71092,7 +71092,7 @@
     },
     {
       "id": "c2-a2-holzschutz4",
-      "name": "HolzSchutz",
+      "name": "Holz-Schutz",
       "slot": "armor",
       "tier": 2,
       "reqLevel": 13,
@@ -71126,7 +71126,7 @@
     },
     {
       "id": "c2-a2-kupferschutz5",
-      "name": "KupferSchutz",
+      "name": "Kupfer-Schutz",
       "slot": "armor",
       "tier": 2,
       "reqLevel": 14,
@@ -71160,7 +71160,7 @@
     },
     {
       "id": "c2-a2-bronzezierde0",
-      "name": "BronzeZierde",
+      "name": "Bronze-Zierde",
       "slot": "amulet",
       "tier": 2,
       "reqLevel": 9,
@@ -71194,7 +71194,7 @@
     },
     {
       "id": "c2-a2-stahlzierde1",
-      "name": "StahlZierde",
+      "name": "Stahl-Zierde",
       "slot": "amulet",
       "tier": 2,
       "reqLevel": 10,
@@ -71228,7 +71228,7 @@
     },
     {
       "id": "c2-a2-tonschmuck2",
-      "name": "TonSchmuck",
+      "name": "Ton-Schmuck",
       "slot": "amulet",
       "tier": 2,
       "reqLevel": 11,
@@ -71262,7 +71262,7 @@
     },
     {
       "id": "c2-a2-bronzezierde3",
-      "name": "BronzeZierde",
+      "name": "Bronze-Zierde",
       "slot": "amulet",
       "tier": 2,
       "reqLevel": 12,
@@ -71296,7 +71296,7 @@
     },
     {
       "id": "c2-a2-tonschmuck4",
-      "name": "TonSchmuck",
+      "name": "Ton-Schmuck",
       "slot": "amulet",
       "tier": 2,
       "reqLevel": 13,
@@ -71330,7 +71330,7 @@
     },
     {
       "id": "c2-a2-steinzierde5",
-      "name": "SteinZierde",
+      "name": "Stein-Zierde",
       "slot": "amulet",
       "tier": 2,
       "reqLevel": 14,
@@ -71364,7 +71364,7 @@
     },
     {
       "id": "c2-b2-bronzelauf0",
-      "name": "BronzeLauf",
+      "name": "Bronze-Lauf",
       "slot": "boots",
       "tier": 2,
       "reqLevel": 9,
@@ -71398,7 +71398,7 @@
     },
     {
       "id": "c2-b2-knochengang1",
-      "name": "KnochenGang",
+      "name": "Knochen-Gang",
       "slot": "boots",
       "tier": 2,
       "reqLevel": 10,
@@ -71432,7 +71432,7 @@
     },
     {
       "id": "c2-b2-stofftritt2",
-      "name": "StoffTritt",
+      "name": "Stoff-Tritt",
       "slot": "boots",
       "tier": 2,
       "reqLevel": 11,
@@ -71466,7 +71466,7 @@
     },
     {
       "id": "c2-b2-tontritt3",
-      "name": "TonTritt",
+      "name": "Ton-Tritt",
       "slot": "boots",
       "tier": 2,
       "reqLevel": 12,
@@ -71500,7 +71500,7 @@
     },
     {
       "id": "c2-b2-tonlauf4",
-      "name": "TonLauf",
+      "name": "Ton-Lauf",
       "slot": "boots",
       "tier": 2,
       "reqLevel": 13,
@@ -71534,7 +71534,7 @@
     },
     {
       "id": "c2-b2-stofflauf5",
-      "name": "StoffLauf",
+      "name": "Stoff-Lauf",
       "slot": "boots",
       "tier": 2,
       "reqLevel": 14,
@@ -71568,7 +71568,7 @@
     },
     {
       "id": "c2-r2-knochenschlinge0",
-      "name": "KnochenSchlinge",
+      "name": "Knochen-Schlinge",
       "slot": "ring",
       "tier": 2,
       "reqLevel": 9,
@@ -71602,7 +71602,7 @@
     },
     {
       "id": "c2-r2-tonrund1",
-      "name": "TonRund",
+      "name": "Ton-Rund",
       "slot": "ring",
       "tier": 2,
       "reqLevel": 10,
@@ -71636,7 +71636,7 @@
     },
     {
       "id": "c2-r2-eisenschlinge2",
-      "name": "EisenSchlinge",
+      "name": "Eisen-Schlinge",
       "slot": "ring",
       "tier": 2,
       "reqLevel": 11,
@@ -71670,7 +71670,7 @@
     },
     {
       "id": "c2-r2-lederschlinge3",
-      "name": "LederSchlinge",
+      "name": "Leder-Schlinge",
       "slot": "ring",
       "tier": 2,
       "reqLevel": 12,
@@ -71704,7 +71704,7 @@
     },
     {
       "id": "c2-r2-eisenkreis4",
-      "name": "EisenKreis",
+      "name": "Eisen-Kreis",
       "slot": "ring",
       "tier": 2,
       "reqLevel": 13,
@@ -71738,7 +71738,7 @@
     },
     {
       "id": "c2-r2-kupferband5",
-      "name": "KupferBand",
+      "name": "Kupfer-Band",
       "slot": "ring",
       "tier": 2,
       "reqLevel": 14,
@@ -71772,7 +71772,7 @@
     },
     {
       "id": "c2-w3-stoffhieb0",
-      "name": "StoffHieb",
+      "name": "Stoff-Hieb",
       "slot": "weapon",
       "tier": 3,
       "reqLevel": 17,
@@ -71806,7 +71806,7 @@
     },
     {
       "id": "c2-w3-knochenstich1",
-      "name": "KnochenStich",
+      "name": "Knochen-Stich",
       "slot": "weapon",
       "tier": 3,
       "reqLevel": 19,
@@ -71840,7 +71840,7 @@
     },
     {
       "id": "c2-w3-kupfersto2",
-      "name": "KupferStoß",
+      "name": "Kupfer-Stoß",
       "slot": "weapon",
       "tier": 3,
       "reqLevel": 21,
@@ -71874,7 +71874,7 @@
     },
     {
       "id": "c2-w3-stoffhieb3",
-      "name": "StoffHieb",
+      "name": "Stoff-Hieb",
       "slot": "weapon",
       "tier": 3,
       "reqLevel": 23,
@@ -71908,7 +71908,7 @@
     },
     {
       "id": "c2-s3-holzschutz0",
-      "name": "HolzSchutz",
+      "name": "Holz-Schutz",
       "slot": "shield",
       "tier": 3,
       "reqLevel": 17,
@@ -71942,7 +71942,7 @@
     },
     {
       "id": "c2-s3-bronzeschutz1",
-      "name": "BronzeSchutz",
+      "name": "Bronze-Schutz",
       "slot": "shield",
       "tier": 3,
       "reqLevel": 19,
@@ -71976,7 +71976,7 @@
     },
     {
       "id": "c2-s3-kupferwehr2",
-      "name": "KupferWehr",
+      "name": "Kupfer-Wehr",
       "slot": "shield",
       "tier": 3,
       "reqLevel": 21,
@@ -72010,7 +72010,7 @@
     },
     {
       "id": "c2-s3-eisenschutz3",
-      "name": "EisenSchutz",
+      "name": "Eisen-Schutz",
       "slot": "shield",
       "tier": 3,
       "reqLevel": 23,
@@ -72044,7 +72044,7 @@
     },
     {
       "id": "c2-h3-holzhaube0",
-      "name": "HolzHaube",
+      "name": "Holz-Haube",
       "slot": "helm",
       "tier": 3,
       "reqLevel": 17,
@@ -72078,7 +72078,7 @@
     },
     {
       "id": "c2-h3-knochenschutz1",
-      "name": "KnochenSchutz",
+      "name": "Knochen-Schutz",
       "slot": "helm",
       "tier": 3,
       "reqLevel": 19,
@@ -72112,7 +72112,7 @@
     },
     {
       "id": "c2-h3-bronzeschutz2",
-      "name": "BronzeSchutz",
+      "name": "Bronze-Schutz",
       "slot": "helm",
       "tier": 3,
       "reqLevel": 21,
@@ -72146,7 +72146,7 @@
     },
     {
       "id": "c2-h3-lederdeckel3",
-      "name": "LederDeckel",
+      "name": "Leder-Deckel",
       "slot": "helm",
       "tier": 3,
       "reqLevel": 23,
@@ -72180,7 +72180,7 @@
     },
     {
       "id": "c2-a3-holzdecke0",
-      "name": "HolzDecke",
+      "name": "Holz-Decke",
       "slot": "armor",
       "tier": 3,
       "reqLevel": 17,
@@ -72214,7 +72214,7 @@
     },
     {
       "id": "c2-a3-eisenschutz1",
-      "name": "EisenSchutz",
+      "name": "Eisen-Schutz",
       "slot": "armor",
       "tier": 3,
       "reqLevel": 19,
@@ -72248,7 +72248,7 @@
     },
     {
       "id": "c2-a3-tonschutz2",
-      "name": "TonSchutz",
+      "name": "Ton-Schutz",
       "slot": "armor",
       "tier": 3,
       "reqLevel": 21,
@@ -72282,7 +72282,7 @@
     },
     {
       "id": "c2-a3-eisenschutz3",
-      "name": "EisenSchutz",
+      "name": "Eisen-Schutz",
       "slot": "armor",
       "tier": 3,
       "reqLevel": 23,
@@ -72316,7 +72316,7 @@
     },
     {
       "id": "c2-a3-steinzierde0",
-      "name": "SteinZierde",
+      "name": "Stein-Zierde",
       "slot": "amulet",
       "tier": 3,
       "reqLevel": 17,
@@ -72350,7 +72350,7 @@
     },
     {
       "id": "c2-a3-eisenzierde1",
-      "name": "EisenZierde",
+      "name": "Eisen-Zierde",
       "slot": "amulet",
       "tier": 3,
       "reqLevel": 19,
@@ -72384,7 +72384,7 @@
     },
     {
       "id": "c2-a3-eisentand2",
-      "name": "EisenTand",
+      "name": "Eisen-Tand",
       "slot": "amulet",
       "tier": 3,
       "reqLevel": 21,
@@ -72418,7 +72418,7 @@
     },
     {
       "id": "c2-a3-holztand3",
-      "name": "HolzTand",
+      "name": "Holz-Tand",
       "slot": "amulet",
       "tier": 3,
       "reqLevel": 23,
@@ -72452,7 +72452,7 @@
     },
     {
       "id": "c2-b3-ledergang0",
-      "name": "LederGang",
+      "name": "Leder-Gang",
       "slot": "boots",
       "tier": 3,
       "reqLevel": 17,
@@ -72486,7 +72486,7 @@
     },
     {
       "id": "c2-b3-holztritt1",
-      "name": "HolzTritt",
+      "name": "Holz-Tritt",
       "slot": "boots",
       "tier": 3,
       "reqLevel": 19,
@@ -72520,7 +72520,7 @@
     },
     {
       "id": "c2-b3-lederlauf2",
-      "name": "LederLauf",
+      "name": "Leder-Lauf",
       "slot": "boots",
       "tier": 3,
       "reqLevel": 21,
@@ -72554,7 +72554,7 @@
     },
     {
       "id": "c2-b3-kupferlauf3",
-      "name": "KupferLauf",
+      "name": "Kupfer-Lauf",
       "slot": "boots",
       "tier": 3,
       "reqLevel": 23,
@@ -72588,7 +72588,7 @@
     },
     {
       "id": "c2-r3-knochenschlinge0",
-      "name": "KnochenSchlinge",
+      "name": "Knochen-Schlinge",
       "slot": "ring",
       "tier": 3,
       "reqLevel": 17,
@@ -72622,7 +72622,7 @@
     },
     {
       "id": "c2-r3-tonrund1",
-      "name": "TonRund",
+      "name": "Ton-Rund",
       "slot": "ring",
       "tier": 3,
       "reqLevel": 19,
@@ -72656,7 +72656,7 @@
     },
     {
       "id": "c2-r3-steinschlinge2",
-      "name": "SteinSchlinge",
+      "name": "Stein-Schlinge",
       "slot": "ring",
       "tier": 3,
       "reqLevel": 21,
@@ -72690,7 +72690,7 @@
     },
     {
       "id": "c2-r3-knochenband3",
-      "name": "KnochenBand",
+      "name": "Knochen-Band",
       "slot": "ring",
       "tier": 3,
       "reqLevel": 23,
@@ -72724,7 +72724,7 @@
     },
     {
       "id": "c2-w4-bronzesto0",
-      "name": "BronzeStoß",
+      "name": "Bronze-Stoß",
       "slot": "weapon",
       "tier": 4,
       "reqLevel": 25,
@@ -72758,7 +72758,7 @@
     },
     {
       "id": "c2-w4-knochenstich1",
-      "name": "KnochenStich",
+      "name": "Knochen-Stich",
       "slot": "weapon",
       "tier": 4,
       "reqLevel": 28,
@@ -72792,7 +72792,7 @@
     },
     {
       "id": "c2-s4-knochendeckung0",
-      "name": "KnochenDeckung",
+      "name": "Knochen-Deckung",
       "slot": "shield",
       "tier": 4,
       "reqLevel": 25,
@@ -72826,7 +72826,7 @@
     },
     {
       "id": "c2-s4-lederdeckung1",
-      "name": "LederDeckung",
+      "name": "Leder-Deckung",
       "slot": "shield",
       "tier": 4,
       "reqLevel": 28,
@@ -72860,7 +72860,7 @@
     },
     {
       "id": "c2-h4-eisenkopf0",
-      "name": "EisenKopf",
+      "name": "Eisen-Kopf",
       "slot": "helm",
       "tier": 4,
       "reqLevel": 25,
@@ -72894,7 +72894,7 @@
     },
     {
       "id": "c2-h4-knochenhaube1",
-      "name": "KnochenHaube",
+      "name": "Knochen-Haube",
       "slot": "helm",
       "tier": 4,
       "reqLevel": 28,
@@ -72928,7 +72928,7 @@
     },
     {
       "id": "c2-a4-stahlpanzer0",
-      "name": "StahlPanzer",
+      "name": "Stahl-Panzer",
       "slot": "armor",
       "tier": 4,
       "reqLevel": 25,
@@ -72962,7 +72962,7 @@
     },
     {
       "id": "c2-a4-stahlpanzer1",
-      "name": "StahlPanzer",
+      "name": "Stahl-Panzer",
       "slot": "armor",
       "tier": 4,
       "reqLevel": 28,
@@ -72996,7 +72996,7 @@
     },
     {
       "id": "c2-a4-steinglck0",
-      "name": "SteinGlück",
+      "name": "Stein-Glück",
       "slot": "amulet",
       "tier": 4,
       "reqLevel": 25,
@@ -73030,7 +73030,7 @@
     },
     {
       "id": "c2-a4-steinschmuck1",
-      "name": "SteinSchmuck",
+      "name": "Stein-Schmuck",
       "slot": "amulet",
       "tier": 4,
       "reqLevel": 28,
@@ -73064,7 +73064,7 @@
     },
     {
       "id": "c2-b4-bronzeschritt0",
-      "name": "BronzeSchritt",
+      "name": "Bronze-Schritt",
       "slot": "boots",
       "tier": 4,
       "reqLevel": 25,
@@ -73098,7 +73098,7 @@
     },
     {
       "id": "c2-b4-tongang1",
-      "name": "TonGang",
+      "name": "Ton-Gang",
       "slot": "boots",
       "tier": 4,
       "reqLevel": 28,
@@ -73132,7 +73132,7 @@
     },
     {
       "id": "c2-r4-steinkreis0",
-      "name": "SteinKreis",
+      "name": "Stein-Kreis",
       "slot": "ring",
       "tier": 4,
       "reqLevel": 25,
@@ -73166,7 +73166,7 @@
     },
     {
       "id": "c2-r4-eisenschlinge1",
-      "name": "EisenSchlinge",
+      "name": "Eisen-Schlinge",
       "slot": "ring",
       "tier": 4,
       "reqLevel": 28,
