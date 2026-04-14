@@ -17348,7 +17348,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Kristallverstärkte Beinschienen. Grimvar hat den Kristall verflucht. Dann hat er ihn bezwungen.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -17804,7 +17804,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Kristallspangen im Helm. Jede einzeln eingesetzt. Grimvar hat dabei nicht geblinzelt. Zwei Stunden lang.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -18260,7 +18260,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Drachenstahl am Kopf. Grimvar sagt, ein Helm muss man verdienen. Diesen hier besonders.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -18716,7 +18716,7 @@
       "reqLevel": 37,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Die Krone eines Schmiedemeisters. Grimvar hat sie nicht für sich geschmiedet. Er hat sie verdient.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -19212,7 +19212,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Schulterplatten die an den Seelen früherer Träger erinnern. Grimvar findet das poetisch. Er sagt es nicht laut.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -23198,7 +23198,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Mittelleder, doppelt gegerbt. Die Kapuze riecht nach Arbeit und leiser Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -23654,7 +23654,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Bestienleder ist zäh. Wie der Gerber der es verarbeitet. Roderic nimmt das als Kompliment.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -24110,7 +24110,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Bestien-Sohlen. Leise auf Laub, fest auf Stein. Das Tier war schnell. Die Schuhe sind schneller.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
@@ -24586,7 +24586,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Urzeitleder am Kopf. Roderic sagt, das Material beschützt nicht — es erinnert. Woran, sagt er nicht.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
@@ -25082,7 +25082,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Ein Mantel aus Material das niemand mehr herstellen kann. Roderic hat ihn trotzdem repariert.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -31408,7 +31408,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Stahl, gehärtet bis er singt. Grimvars Methode: lauter hämmern bis das Metall aufgibt.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -31874,7 +31874,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Stahltreter. Schwer beim ersten Schritt. Beim hundertsten vergisst du das Gewicht.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -33495,7 +33495,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Eine Krone aus Urzeitleder. Das Material hat Roderics Werkzeuge stumpf gemacht. Und seinen Respekt geschärft.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -33961,7 +33961,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Urzeitpanzer. Roderic hat beim Gerben eine Woche nicht gesprochen. Der Panzer sprach für sich.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -34427,7 +34427,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Raues Leder, verstärkt für Märsche. Roderic sagt, der Weg formt den Schuh. Und der Schuh den Weg.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -38874,7 +38874,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Zweite Stahlstiefel-Version. Leiser. Grimvar hat Filz an die Innenseite gelegt. Filz. Von Grimvar.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -39340,7 +39340,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Drittes Stahlwams. Grimvar hat die Platten dünner geschlagen. Und dafür dreimal so oft gehämmert.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -41432,7 +41432,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Zweite Bestienplatte. Dickere Schichten. Roderic hat das Ergebnis begutachtet und einmal genickt.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -41898,7 +41898,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Riecht nach Gerberei und Trotz.",
+      "desc": "Dritte Bestienkappe. Das Leder gibt nach drei Gerbungen endlich nach. Wie alle guten Materialien.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -51947,7 +51947,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "So stumpf dass es als Buttermesser durchgehen könnte. Als Waffe weniger.",
       "icon": "/images/icons/gacha-weapon-dual-scimitars.png",
       "affixes": {
         "primary": {
@@ -52049,7 +52049,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Repariert mit Hoffnung und Schnur. Beides hat Grenzen.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "affixes": {
         "primary": {
@@ -52481,7 +52481,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Der Deckel hat eine interessante Form. Kein Schmied war daran beteiligt. Nur Schwerkraft.",
       "icon": "/images/icons/gacha-shield-shadow-veil.png",
       "affixes": {
         "primary": {
@@ -52549,7 +52549,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Ein Brett. Kein Schild. Ein Brett. Aber es blockt. Technisch.",
       "icon": "/images/icons/gacha-shield-thorn-buckler.png",
       "affixes": {
         "primary": {
@@ -52811,7 +52811,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Fleckig wie ein Dalmatiner. Nur weniger niedlich.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "affixes": {
         "primary": {
@@ -52981,7 +52981,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Der Hut hat aufgegeben. Aber er fällt nicht vom Kopf. Eigensinn.",
       "icon": "/images/icons/gacha-helm-flame-crown.png",
       "affixes": {
         "primary": {
@@ -53095,7 +53095,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "War mal ein Hut. Jetzt eine Sammlung von Flecken die zufällig hutförmig ist.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "affixes": {
         "primary": {
@@ -53743,7 +53743,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Eine Kette ohne Anhänger. Der Anhänger hat gekündigt.",
       "icon": "/images/icons/gacha-amulet-star-pendant.png",
       "affixes": {
         "primary": {
@@ -54175,7 +54175,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Die Sandalen halten. Der Glaube daran weniger.",
       "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "affixes": {
         "primary": {
@@ -54277,7 +54277,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "So ausgeleiert dass der Fuß drinschwimmt. Komfort hat viele Formen.",
       "icon": "/images/icons/gacha-boots-flame-greaves.png",
       "affixes": {
         "primary": {
@@ -54334,7 +54334,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Klappern warnt die Feinde. Oder lockt sie an. Fifty-fifty.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
@@ -54573,7 +54573,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Billig in jeder Hinsicht. Der Reif, der Preis, und die Erwartung.",
       "icon": "/images/icons/gacha-ring-silver-ring.png",
       "affixes": {
         "primary": {
@@ -54607,7 +54607,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Gebogen wie das Schicksal. Und genauso vorhersehbar.",
       "icon": "/images/icons/gacha-ring-skull-ring.png",
       "affixes": {
         "primary": {
@@ -54641,7 +54641,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Draht, gebogen zu einem Kreis. Kunst? Handwerk? Verzweiflung? Ja.",
       "icon": "/images/icons/gacha-ring-spirit-ring.png",
       "affixes": {
         "primary": {
@@ -54823,7 +54823,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Das Band ist billig. Der Ring ist billiger. Die Kombination ist gratis. Fast.",
       "icon": "/images/icons/gacha-ring-bronze-signet.png",
       "affixes": {
         "primary": {
@@ -55073,7 +55073,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Wurde repariert. Das Wort repariert tut hier schwere Arbeit.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "affixes": {
         "primary": {
@@ -55301,7 +55301,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Ein Brett mit Griff. Der Griff ist ein Nagel. Nicht der sicherste Entwurf.",
       "icon": "/images/icons/gacha-shield-thorn-buckler.png",
       "affixes": {
         "primary": {
@@ -55437,7 +55437,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Einst war er rund. Jetzt ist er eine philosophische Frage über Form und Funktion.",
       "icon": "/images/icons/gacha-shield-bark-shield.png",
       "affixes": {
         "primary": {
@@ -55699,7 +55699,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "War ein Topf. Dann ein Helm. Dann wieder ein Topf. Jetzt ist er beides. Und keines.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "affixes": {
         "primary": {
@@ -55801,7 +55801,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Lädiert ist freundlich formuliert. Demoliert wäre ehrlicher.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
@@ -55915,7 +55915,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Ein ehrliches Stück Handwerk. Ehrlich schlecht.",
+      "desc": "Jede Beule ist eine Geschichte. Kurze Geschichten. Mit schlechtem Ende.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "affixes": {
         "primary": {
@@ -56393,7 +56393,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Das Anlaufen ist der natürliche Zustand. Glanz war die Ausnahme.",
       "icon": "/images/icons/gacha-amulet-celestial-orb.png",
       "affixes": {
         "primary": {
@@ -56427,7 +56427,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Hängt am Hals. Zieht nach unten. Wie Schuld, nur metallischer.",
       "icon": "/images/icons/gacha-amulet-copper-pendant.png",
       "affixes": {
         "primary": {
@@ -57314,7 +57314,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Oval statt rund. Der Schmied hat gelogen als er sagte es sei Absicht.",
       "icon": "/images/icons/gacha-ring-copper-band.png",
       "affixes": {
         "primary": {
@@ -57519,7 +57519,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Repariert ist ein starkes Wort. Zusammengehalten trifft es besser.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "affixes": {
         "primary": {
@@ -57724,7 +57724,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Der Riss spaltet den Buckler in zwei Hälften. Beide sind nutzlos. Zusammen weniger.",
       "icon": "/images/icons/gacha-shield-spiked-shield.png",
       "affixes": {
         "primary": {
@@ -57997,7 +57997,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Die Flecken haben Flecken. Es ist Flecken bis ganz nach unten.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
@@ -58350,7 +58350,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Haltbar bis zum ersten Einsatz. Danach: Diskussionssache.",
+      "desc": "Jeder Kratzer ist ein Kapitel. Das Buch endet schlecht.",
       "icon": "/images/icons/gacha-amulet-celestial-orb.png",
       "affixes": {
         "primary": {
@@ -58714,7 +58714,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "Aufgeweicht vom Regen. Oder von Tränen. Beides plausibel.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
@@ -58896,7 +58896,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Der Verkäufer hat gelacht. Nicht mit dir — über dich.",
+      "desc": "So billig dass der Schmied sich geweigert hat, seinen Namen darauf zu setzen.",
       "icon": "/images/icons/gacha-ring-vine-ring.png",
       "affixes": {
         "primary": {
