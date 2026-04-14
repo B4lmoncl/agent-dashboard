@@ -7604,7 +7604,7 @@
       "type": "boss",
       "category": "boss",
       "vars": {
-        "description": "Einen ganzen Tag lang jemanden mentoren — nicht nebenbei, dediziert.",
+        "description": "Einen ganzen Tag lang jemanden mentoren — nicht nebenbei, mit voller Aufmerksamkeit.",
         "flavor": "Grau: 'Der beste Rat kommt von Leuten die die gleichen Fehler gemacht haben. Nur halt früher.'",
         "difficulty": "expert"
       },

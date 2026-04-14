@@ -521,7 +521,7 @@
       "id": "stagnations-golem",
       "category": "creatures",
       "title": "Der Stagnations-Golem",
-      "text": "Er bewegt sich nicht. Seit Äonen. Nicht einen Zentimeter. Das klingt harmlos, bis du realisierst, dass er genau in der Mitte eines sehr wichtigen Korridors steht. Man hat versucht, ihn zu verschieben. Man hat versucht, ihn zu sprengen. Man hat versucht, ihn höflich zu bitten. Er bewegt sich nicht. Sein Gesichtsausdruck sagt: 'Ich mache das morgen.' Seit dreihundert Jahren. Manche Helden erkennen sich in ihm wieder und werden sehr, sehr still.",
+      "text": "Er bewegt sich nicht. Seit Äonen. Nicht einen Zentimeter. Das klingt harmlos, bis man begreift, dass er genau in der Mitte eines sehr wichtigen Korridors steht. Man hat versucht, ihn zu verschieben. Man hat versucht, ihn zu sprengen. Man hat versucht, ihn höflich zu bitten. Er bewegt sich nicht. Sein Gesichtsausdruck sagt: 'Ich mache das morgen.' Seit dreihundert Jahren. Manche Helden erkennen sich in ihm wieder und werden sehr, sehr still.",
       "unlockedBy": {
         "type": "world_boss_contributions",
         "value": 1
@@ -1150,7 +1150,7 @@
       "id": "npc-selindra-edelsteinkennerin",
       "category": "npcs",
       "title": "Selindra die Edelsteinkennerin",
-      "text": "Selindra hört Edelsteine singen. Das klingt poetisch, bis man realisiert, dass die meisten Edelsteine furchtbar singen. 'Der Rubin summt in Moll', sagt sie. 'Der Saphir bevorzugt Dur. Der Diamant singt gar nicht, er urteilt.' Sie kam zum Turm, weil ein Amethyst sie gebeten hat. Nicht auf mysteriöse, schicksalhafte Weise — er hat buchstäblich ihren Namen gerufen, während sie in einem Laden stand und Radieschen kaufte. Sie hat die Radieschen bezahlt, den Amethyst eingesteckt und ist losgegangen. Die Radieschen hat sie nie gegessen. Der Amethyst sitzt jetzt in einem Ring im dritten Stock und weigert sich, mit anderen Edelsteinen zu kommunizieren, was Selindra als 'Persönlichkeit' bezeichnet und alle anderen als 'Problem'. Ihre Werkstatt ist leiser als jeder andere Raum im Turm, nicht weil sie Ruhe braucht, sondern weil die Edelsteine sonst mitsingen und das klingt, Zitat Grimvar, 'wie ein Chor der seine eigene Beerdigung probt'.",
+      "text": "Selindra hört Edelsteine singen. Das klingt poetisch, bis man erfährt, dass die meisten Edelsteine furchtbar singen. 'Der Rubin summt in Moll', sagt sie. 'Der Saphir bevorzugt Dur. Der Diamant singt gar nicht, er urteilt.' Sie kam zum Turm, weil ein Amethyst sie gebeten hat. Nicht auf mysteriöse, schicksalhafte Weise — er hat buchstäblich ihren Namen gerufen, während sie in einem Laden stand und Radieschen kaufte. Sie hat die Radieschen bezahlt, den Amethyst eingesteckt und ist losgegangen. Die Radieschen hat sie nie gegessen. Der Amethyst sitzt jetzt in einem Ring im dritten Stock und weigert sich, mit anderen Edelsteinen zu kommunizieren, was Selindra als 'Persönlichkeit' bezeichnet und alle anderen als 'Problem'. Ihre Werkstatt ist leiser als jeder andere Raum im Turm, nicht weil sie Ruhe braucht, sondern weil die Edelsteine sonst mitsingen und das klingt, Zitat Grimvar, 'wie ein Chor der seine eigene Beerdigung probt'.",
       "unlockedBy": {
         "type": "profession_skill",
         "value": 50
