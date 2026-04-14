@@ -23312,7 +23312,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Mitteldickes Leder. Weder fein noch grob. Roderic nennt es den Kompromiss zwischen Eleganz und Überleben.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -23768,7 +23768,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Drei Schichten Leder, jede härter als die vorherige. Wie Roderics Urteil über Lehrlingsarbeit.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -24224,7 +24224,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Das Leder stammt von etwas das Roderic nicht beim Namen nennt. Nur beim Respekt.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -24710,7 +24710,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Die Haube flüstert. Nicht bedrohlich — eher wie ein Kompass der weiß wohin du musst.",
       "icon": "/images/icons/gacha-helm-bandana.png",
       "shopHidden": true,
       "affixes": {
@@ -25206,7 +25206,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Aus urzeitlichem Leder. Das Material existiert nicht mehr. Das Visier schon. Irgendwie.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "shopHidden": true,
       "affixes": {
@@ -26066,7 +26066,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Varns Einstieg in die Schildkunst. Er nennt Schilde immer noch Waffen. Niemand korrigiert ihn.",
       "icon": "/images/icons/gacha-shield-emerald-defender.png",
       "shopHidden": true,
       "affixes": {
@@ -26123,7 +26123,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Eine Tartsche so breit wie Varns Schweigen. Das ist ziemlich breit.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -26522,7 +26522,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Kristall und Stahl verschmolzen. Der Prozess dauert drei Tage. Varn redet in der Zeit mit niemandem.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "shopHidden": true,
       "affixes": {
@@ -26579,7 +26579,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Lang und gerade. Wie Varns Antwort auf die Frage ob es fertig ist: Ja.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -26978,7 +26978,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Ein Buch aus Metall. Varn hat lange gebraucht um den Sinn zu verstehen. Er versteht ihn immer noch nicht.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -27035,7 +27035,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn hat es in einer Sitzung geschmiedet. Sechs Stunden. Ohne Pause. Ohne Wasser.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -27434,7 +27434,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Kristall in Buchform. Varn hat geflucht. Dann hat er es gebaut. Dann hat er nochmal geflucht.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -27491,7 +27491,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Kristall am Stab. Varn hat den Kristall von Selindra. Er hat ihn nicht zurückgegeben.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -27890,7 +27890,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Breit, schwer, und absolut kompromisslos. Wie Varns Meinung über dünne Klingen.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -27947,7 +27947,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Der Hammer wiegt so viel wie Varns Respekt für Leichtgewichte. Wenig.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -28346,7 +28346,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Der Schild hat mehr Prügel eingesteckt als die meisten Helden. Und weniger geklagt.",
       "icon": "/images/icons/gacha-shield-gilded-aspis.png",
       "shopHidden": true,
       "affixes": {
@@ -28403,7 +28403,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Ein Stab der bei Berührung vibriert. Varn nennt das den Ruf des Metalls.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -28802,7 +28802,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Ein Turmschild aus Drachenschuppen. Dahinter passt ein Held und sein ganzer Stolz.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -28859,7 +28859,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Ein Zahn des Drachen als Klinge. Varn sagt, der Drache hat es verdient. Er erklärt nicht warum.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "shopHidden": true,
       "affixes": {
@@ -29258,7 +29258,7 @@
       "reqLevel": 37,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Ein Kodex der Seelen bindet. Varn hat ihn nicht gelesen. Er hat ihn geschmiedet. Lesen ist Selindras Job.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -29320,7 +29320,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Konzentriert Energie auf einen Punkt. Wie Varns Blick wenn du seine Arbeit kritisierst.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -29754,7 +29754,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Klinge schneidet durch mehr als Stahl. Varn sagt, sie schneidet durch Ausreden. Er meint es ernst.",
       "icon": "/images/icons/gacha-weapon-druid-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -29816,7 +29816,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Ein Schild der den Aether selbst blockt. Varn hat drei Wochen daran gearbeitet. In Stille.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -30250,7 +30250,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Unsichtbar im Schatten. Tödlich im Licht. Varn ist stolz. Er zeigt es nicht. Natürlich nicht.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "shopHidden": true,
       "affixes": {
@@ -30312,7 +30312,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Die Axt kennt kein Zögern. Wie ihr Schöpfer.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -30746,7 +30746,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Ein Buch das Aether kanalisiert. Varn findet Bücher als Waffen absurd. Dieses hier hat ihn überzeugt.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -30808,7 +30808,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varns letzte Klinge. Er wird danach nicht aufhören. Aber er wird wissen, dass er könnte.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -33614,7 +33614,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Gehärtet in Roderics Speziallauge. Die Rezeptur ist geheim. Der Gestank nicht.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -34080,7 +34080,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt: mittleres Leder ist wie ein mittlerer Tag. Nicht aufregend, aber verlässlich.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -34546,7 +34546,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Passform kommt von Erfahrung. Roderic hat dreißig Jahre Erfahrung und müde Hände.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -41085,7 +41085,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Die zweite Version sitzt besser. Roderic sagt, das war der Plan. Er plant selten.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -41551,7 +41551,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Überarbeitetes Sichtfeld. Roderic hat das Feedback ernst genommen. Dieses eine Mal.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "shopHidden": true,
       "affixes": {
@@ -42017,7 +42017,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Dritte Revision. Die Sohle ist dicker, die Naht feiner, und Roderic hat neue Falten.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
