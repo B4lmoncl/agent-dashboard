@@ -25833,7 +25833,7 @@
     {
       "id": "craft-waffenschmied-grober-streitkolben",
       "name": "Grober Streitkolben",
-      "slot": "armor",
+      "slot": "weapon",
       "tier": 1,
       "reqLevel": 6,
       "rarity": "uncommon",
@@ -26346,7 +26346,7 @@
     {
       "id": "craft-waffenschmied-grobes-foliant",
       "name": "Grobes Foliant",
-      "slot": "armor",
+      "slot": "weapon",
       "tier": 1,
       "reqLevel": 11,
       "rarity": "uncommon",
