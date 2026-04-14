@@ -515,7 +515,8 @@ export default function AdventureTomeView({
                               ) : (
                                 <span
                                   className="text-xs"
-                                  style={{ color: "rgba(255,255,255,0.1)" }}
+                                  style={{ color: "rgba(255,255,255,0.1)", cursor: "not-allowed", opacity: 0.5 }}
+                                  title={`Reach ${m.pct}% completion to unlock`}
                                 >
                                   ◇
                                 </span>

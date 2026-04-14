@@ -308,9 +308,12 @@ router.post('/api/social/sworn-bond/propose', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
   if (!bondLock.acquire(uid)) return res.status(429).json({ error: 'Bond action in progress' });
   try {
-    const { targetPlayer } = req.body;
+    const { targetPlayer, duration } = req.body;
     if (!targetPlayer) return res.status(400).json({ error: 'targetPlayer required' });
     const target = targetPlayer.toLowerCase();
+    const validDurations = ['4w', '8w', 'endless'];
+    const bondDuration = validDurations.includes(duration) ? duration : '4w';
+    const durationWeeks = bondDuration === '4w' ? 4 : bondDuration === '8w' ? 8 : null;
 
     if (uid === target) return res.status(400).json({ error: 'A bond with yourself would be remarkably one-sided' });
     if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
@@ -344,6 +347,9 @@ router.post('/api/social/sworn-bond/propose', requireAuth, (req, res) => {
       longestStreak: 0,
       lastCompletedWeekId: null,
       weeklyObjective: null,
+      duration: bondDuration,
+      durationWeeks: durationWeeks,
+      expiresAt: null, // set on accept based on durationWeeks
     };
 
     state.socialData.swornBonds.push(bond);
@@ -374,6 +380,9 @@ router.post('/api/social/sworn-bond/:bondId/accept', requireAuth, (req, res) => 
 
     bond.status = 'active';
     bond.formedAt = now();
+    if (bond.durationWeeks) {
+      bond.expiresAt = new Date(Date.now() + bond.durationWeeks * 7 * 24 * 60 * 60 * 1000).toISOString();
+    }
     bond.weeklyObjective = generateObjective(bond, getWeekId());
     logActivity(uid, 'sworn_bond_formed', { partner: bond.player1, rarity: 'rare' });
     logActivity(bond.player1, 'sworn_bond_formed', { partner: uid, rarity: 'rare' });
@@ -427,6 +436,10 @@ router.post('/api/social/sworn-bond/:bondId/break', requireAuth, (req, res) => {
     if (!bond) return res.status(404).json({ error: 'Bond not found' });
     if (bond.status !== 'active') return res.status(400).json({ error: 'Bond is not active' });
     if (bond.player1 !== uid && bond.player2 !== uid) return res.status(403).json({ error: 'You are not part of this bond' });
+
+    if (!req.body.confirmed) {
+      return res.json({ ok: false, needsConfirmation: true, message: 'Schwurbund wirklich brechen? 7 Tage Abklingzeit.' });
+    }
 
     bond.status = 'broken';
     bond.brokenAt = now();

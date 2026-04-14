@@ -231,7 +231,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                   <button
                     key={f}
                     onClick={() => setEarnedFilter(f)}
-                    className="text-xs px-2 py-0.5 rounded"
+                    className="text-xs px-2 py-1.5 rounded"
                     style={{
                       background: earnedFilter === f ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.03)",
                       color: earnedFilter === f ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.25)",
@@ -303,7 +303,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                       <div
                         key={ach.id}
                         className="rounded-xl overflow-hidden"
-                        style={{ background: "#111111", border: "2px solid rgba(138,43,226,0.1)", opacity: 0.5 }}
+                        style={{ background: "#111111", border: "2px solid rgba(138,43,226,0.1)", opacity: 0.5, cursor: "not-allowed" }}
+                        title="Unlock this hidden achievement to reveal it"
                       >
                         <div className="h-1" style={{ background: "rgba(138,43,226,0.3)" }} />
                         <div className="p-3.5 flex items-center gap-3">

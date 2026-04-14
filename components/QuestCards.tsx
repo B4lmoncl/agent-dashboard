@@ -345,13 +345,19 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         {onToggle && (
           <button
             onClick={e => { e.stopPropagation(); onToggle(quest.id); }}
-            className="mt-0.5 flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center"
+            className="mt-0.5 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center p-1"
             style={{
-              background: selected ? "rgba(255,102,51,0.8)" : "rgba(255,255,255,0.06)",
-              border: `1px solid ${selected ? "rgba(255,102,51,0.9)" : "rgba(255,255,255,0.15)"}`,
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
             }}
           >
-            {selected && <span style={{ color: "#fff", fontSize: 12, lineHeight: 1 }}>✓</span>}
+            <span className="w-3.5 h-3.5 rounded flex items-center justify-center flex-shrink-0" style={{
+              background: selected ? "rgba(255,102,51,0.8)" : "rgba(255,255,255,0.06)",
+              border: `1px solid ${selected ? "rgba(255,102,51,0.9)" : "rgba(255,255,255,0.15)"}`,
+            }}>
+              {selected && <span style={{ color: "#fff", fontSize: 12, lineHeight: 1 }}>✓</span>}
+            </span>
           </button>
         )}
         {!onToggle && isInProgress && (
@@ -484,7 +490,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onClaim(quest.id); }} disabled={isLoading} className="text-xs font-bold quest-seal-btn" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }} title={isLoading ? "Action in progress..." : "Claim quest"}>{isLoading ? "..." : "!"}</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Unclaim"}</button>
+                <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer", transition: "background 0.15s ease" }}>{isLoading ? "..." : "Unclaim"}</button>
               )}
               {!isCoop && onComplete && isClaimedByMe && (
                 <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>

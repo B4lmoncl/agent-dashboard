@@ -270,7 +270,7 @@ function BannerPreviewCard({
         </div>
 
         {/* Lore text */}
-        <p className="text-xs italic leading-relaxed pr-32" style={{ color: "rgba(255,255,255,0.25)" }}>
+        <p className="text-sm italic leading-relaxed pr-32" style={{ color: "rgba(255,255,255,0.3)" }}>
           {banner.lore}
         </p>
 
@@ -509,7 +509,7 @@ function BannerPullModal({
               </div>
               <button onClick={onClose} className="btn-close" style={{ position: "absolute", top: 12, right: 12, zIndex: 10 }}>×</button>
             </div>
-            <p className="text-xs italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.25)", maxWidth: portraitSrc ? "55%" : undefined }}>
+            <p className="text-sm italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.3)", maxWidth: portraitSrc ? "55%" : undefined }}>
               {banner.lore}
             </p>
           </div>
@@ -819,7 +819,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
           </div>
           <Tip k="vault_of_fate" heading><h2 className="text-xl font-bold" style={{ color: "#e8e8e8", cursor: "pointer" }} onClick={() => setInfoOpen(true)}>The Vault of Fate</h2></Tip>
         </div>
-        <p className="text-xs italic leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <p className="text-sm italic leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.35)" }}>
           A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars. Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
         </p>
         <p className="text-xs italic mt-1" style={{ color: "rgba(167,139,250,0.3)" }}>Das Schicksal lässt sich nicht kaufen. Aber verhandeln... manchmal.</p>

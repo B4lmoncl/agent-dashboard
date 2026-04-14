@@ -191,7 +191,7 @@ export default function ItemTooltip({ item, onClose, anchorRect, children }: Pro
 
           {/* Flavor Text */}
           {item.flavorText && (
-            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)" }}>&ldquo;{item.flavorText}&rdquo;</p>
+            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>
           )}
 
           {/* Suffix */}

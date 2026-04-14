@@ -492,7 +492,20 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       const d = await r.json();
       if (r.ok) {
         setPetsToday(d.petsToday ?? null);
-        // message feedback removed — belly rubs counter is enough
+        // Celebration for bond level-up
+        if (d.bondLevelUp && onRewardCelebration) {
+          const cCol = getCompanionColor(user?.companion?.type || user?.companion?.species);
+          onRewardCelebration({
+            type: "companion",
+            title: `Bond Level ${d.bondLevelUp}!`,
+            xpEarned: 0,
+            goldEarned: 0,
+            bondXp: 0,
+            loot: null,
+            companionAccent: cCol.accent,
+            companionEmoji: user?.companion?.emoji || "◆",
+          });
+        }
         if (onUserRefresh) onUserRefresh();
       } else {
         setPetError(d.error || "Error");
@@ -776,7 +789,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         background: ultimateReady ? `rgba(${cColor.accentRgb},0.1)` : "rgba(255,255,255,0.02)",
                         color: ultimateReady ? cColor.accent : "rgba(255,255,255,0.15)",
                         border: `1px solid ${ultimateReady ? `rgba(${cColor.accentRgb},0.25)` : "rgba(255,255,255,0.05)"}`,
-                        cursor: ultimateReady ? "pointer" : "not-allowed",
+                        cursor: ultimateReady && !ultimateUsing ? "pointer" : "not-allowed",
+                        opacity: !ultimateReady || !!ultimateUsing ? 0.5 : 1,
                         minWidth: 70,
                       }}
                     >
@@ -839,7 +853,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       }}>
                         <div className="p-3 flex-1">
                           <p className="text-sm font-semibold leading-snug" style={{ color: "#f0d0c0", textDecoration: done ? "line-through" : "none", textShadow: "0 0 8px rgba(255,107,157,0.15)" }}>{q.title}</p>
-                          {flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(220,185,120,0.35)", fontSize: "0.75rem" }}>{flavorText}</p>}
+                          {flavorText && <p className="text-sm italic mt-1" style={{ color: "rgba(220,185,120,0.4)" }}>{flavorText}</p>}
                         </div>
                         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
@@ -1014,6 +1028,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           color: "#4ade80",
                           border: "1px solid rgba(34,197,94,0.35)",
                           cursor: expeditionCollecting ? "not-allowed" : "pointer",
+                          opacity: expeditionCollecting ? 0.5 : 1,
                           boxShadow: "0 0 12px rgba(34,197,94,0.15)",
                         }}
                       >
@@ -1064,6 +1079,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           color: cColor.accent,
                           border: `1px solid rgba(${cColor.accentRgb},0.3)`,
                           cursor: expeditionSending ? "not-allowed" : "pointer",
+                          opacity: expeditionSending ? 0.5 : 1,
                         }}
                         title={expeditionSending ? "Sending..." : undefined}
                       >

@@ -150,6 +150,7 @@ function SternenpfadView({
                   style={{
                     background: canClaim ? "rgba(251,191,36,0.08)" : "transparent",
                     cursor: canClaim && claimingMilestone === null ? "pointer" : claimed ? "default" : "not-allowed",
+                    opacity: !canClaim && !claimed ? 0.5 : claimingMilestone !== null && !claimed ? 0.5 : 1,
                     animation: canClaim ? "pulse 4s infinite" : "none",
                   }}
                 >
@@ -697,7 +698,7 @@ export default function ChallengesView({
         await onRefresh();
         if (onRewardCelebration && data.rewards) {
           const currencies: { name: string; amount: number; color: string }[] = [];
-          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "sternenpfad",
@@ -736,7 +737,7 @@ export default function ChallengesView({
         await onRefresh();
         if (onRewardCelebration && data.rewards) {
           const currencies: { name: string; amount: number; color: string }[] = [];
-          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "sternenpfad",
@@ -776,7 +777,7 @@ export default function ChallengesView({
         if (onRewardCelebration && data.rewards) {
           const currencies: { name: string; amount: number; color: string }[] = [];
           if (data.rewards.runensplitter) currencies.push({ name: "Runensplitter", amount: data.rewards.runensplitter, color: "#a855f7" });
-          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
           if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
           onRewardCelebration({
             type: "expedition",

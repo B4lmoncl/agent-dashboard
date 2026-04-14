@@ -17742,7 +17742,7 @@
     {
       "id": "craft-schmied-kristall-kettenhemd",
       "name": "Kristall-Kettenhemd",
-      "slot": "amulet",
+      "slot": "armor",
       "tier": 2,
       "reqLevel": 22,
       "rarity": "rare",
@@ -18654,7 +18654,7 @@
     {
       "id": "craft-schmied-drachenzahn-kettenhemd",
       "name": "Drachenzahn-Kettenhemd",
-      "slot": "amulet",
+      "slot": "armor",
       "tier": 3,
       "reqLevel": 34,
       "rarity": "epic",
@@ -18773,7 +18773,7 @@
     {
       "id": "craft-schmied-aether-kettenhemd",
       "name": "Aether-Kettenhemd",
-      "slot": "amulet",
+      "slot": "armor",
       "tier": 4,
       "reqLevel": 38,
       "rarity": "legendary",
@@ -21294,7 +21294,7 @@
     {
       "id": "craft-schneider-mondschein-gewand",
       "name": "Mondschein-Gewand",
-      "slot": "weapon",
+      "slot": "armor",
       "tier": 3,
       "reqLevel": 31,
       "rarity": "epic",
@@ -23193,7 +23193,7 @@
     {
       "id": "craft-leder-mittelleder-kapuze",
       "name": "Mittelleder-Kapuze",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 16,
       "rarity": "rare",
@@ -23877,7 +23877,7 @@
     {
       "id": "craft-leder-bestien-kapuze",
       "name": "Bestien-Kapuze",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 3,
       "reqLevel": 31,
       "rarity": "epic",
@@ -31579,7 +31579,7 @@
     {
       "id": "craft-schmied-eiserner-kettenpanzer",
       "name": "Eiserner Kettenpanzer",
-      "slot": "amulet",
+      "slot": "armor",
       "tier": 1,
       "reqLevel": 11,
       "rarity": "uncommon",
@@ -31636,7 +31636,7 @@
     {
       "id": "craft-schmied-kristall-kettenpanzer",
       "name": "Kristall-Kettenpanzer",
-      "slot": "amulet",
+      "slot": "armor",
       "tier": 2,
       "reqLevel": 14,
       "rarity": "rare",
@@ -31693,7 +31693,7 @@
     {
       "id": "craft-schmied-drachenschuppen-kettenhemd",
       "name": "Drachenschuppen-Kettenhemd",
-      "slot": "amulet",
+      "slot": "armor",
       "tier": 3,
       "reqLevel": 33,
       "rarity": "epic",
@@ -35624,7 +35624,7 @@
     {
       "id": "craft-juwelier-staehlerner-reif",
       "name": "Stählerner Reif",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 2,
       "reqLevel": 15,
       "rarity": "rare",
@@ -36650,7 +36650,7 @@
     {
       "id": "craft-juwelier-drachenschuppen-reif",
       "name": "Drachenschuppen-Reif",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 29,
       "rarity": "epic",
@@ -36764,7 +36764,7 @@
     {
       "id": "craft-juwelier-ring-des-weisen",
       "name": "Ring des Weisen",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 3,
       "reqLevel": 31,
       "rarity": "epic",
@@ -37339,7 +37339,7 @@
     {
       "id": "craft-juwelier-ring-der-leere",
       "name": "Ring der Leere",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 38,
       "rarity": "legendary",
@@ -37587,7 +37587,7 @@
     {
       "id": "craft-juwelier-aetherkern-band",
       "name": "Aetherkern-Band",
-      "slot": "amulet",
+      "slot": "ring",
       "tier": 4,
       "reqLevel": 40,
       "rarity": "legendary",
@@ -52549,7 +52549,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Ein Brett. Kein Schild. Ein Brett. Aber es blockt. Technisch.",
+      "desc": "Ein Brett. Kein Schild. Ein Brett. Aber es blockt. Irgendwie.",
       "icon": "/images/icons/gacha-shield-thorn-buckler.png",
       "affixes": {
         "primary": {

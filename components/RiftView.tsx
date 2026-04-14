@@ -264,7 +264,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         </div>
       </div>
       <div className="rounded-lg px-4 py-2.5" style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.06) 0%, transparent 80%)", borderLeft: "2px solid rgba(168,85,247,0.2)" }}>
-        <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", maxWidth: 520 }}>Die Risse flüstern. Hör nicht hin. Seit der Wiederkehr öffnen sich die Risse im Aetherstrom häufiger — fragmentierte Realitäten sickern hindurch.</p>
+        <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)", maxWidth: 520 }}>Die Risse flüstern. Hör nicht hin. Seit der Wiederkehr öffnen sich die Risse im Aetherstrom häufiger — fragmentierte Realitäten sickern hindurch.</p>
       </div>
 
       {/* Messages */}
@@ -612,7 +612,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 onClick={() => setSelectedMythicLevel(l => Math.max(1, l - 1))}
                 disabled={selectedMythicLevel <= 1}
                 title={selectedMythicLevel <= 1 ? "Already at minimum level" : "Decrease Mythic level"}
-                className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
+                className="btn-interactive w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center"
                 style={{
                   background: "rgba(255,68,68,0.08)",
                   border: "1px solid rgba(255,68,68,0.25)",
@@ -629,7 +629,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 onClick={() => setSelectedMythicLevel(l => Math.min(nextMythicLevel, l + 1))}
                 disabled={selectedMythicLevel >= nextMythicLevel}
                 title={selectedMythicLevel >= nextMythicLevel ? "Already at maximum level" : "Increase Mythic level"}
-                className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
+                className="btn-interactive w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center"
                 style={{
                   background: "rgba(255,68,68,0.08)",
                   border: "1px solid rgba(255,68,68,0.25)",

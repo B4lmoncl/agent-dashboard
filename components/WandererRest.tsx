@@ -12,6 +12,7 @@ import {
 import { Tip } from "@/components/GameTooltip";
 import { RARITY_COLORS } from "@/app/constants";
 import { useDashboard } from "@/app/DashboardContext";
+import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { getCompanionColor as getCC, getCompanionPortrait as getCompanionPortraitWR } from "@/lib/companion-config";
 interface WandererRestProps {
   npcBoardFilter: string | null;
@@ -141,6 +142,7 @@ export function WandererRest({
 
   return (
     <div className="space-y-6 tab-content-enter">
+      <TutorialMomentBanner viewId="wanderer" playerLevel={1} />
       {/* Dobbie filter banner */}
       {npcBoardFilter === "dobbie" && (
         <div className="rounded-xl px-4 py-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.07)", border: "1px solid #2a2a3e" }}>
@@ -438,7 +440,7 @@ export function WandererRest({
               {/* Greeting / Speech bubble */}
               {npc.greeting && (
                 <div className="relative mx-5 mt-4 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", zIndex: 1 }}>
-                  <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>&ldquo;{npc.greeting}&rdquo;</p>
+                  <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>&ldquo;{npc.greeting}&rdquo;</p>
                 </div>
               )}
 
@@ -486,7 +488,7 @@ export function WandererRest({
                       <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <p className="text-sm font-bold leading-snug" style={{ color: "#f0f0f0" }}>{currentQuest.title?.replace(/^x\s+/i, "")}</p>
                         {currentQuest.flavorText && (
-                          <p className="mt-1.5 leading-relaxed" style={{ fontSize: "0.8rem", fontStyle: "italic", color: "rgba(255,255,255,0.45)" }}>{currentQuest.flavorText}</p>
+                          <p className="mt-1.5 text-sm leading-relaxed" style={{ fontStyle: "italic", color: "rgba(255,255,255,0.5)" }}>{currentQuest.flavorText}</p>
                         )}
                         <p className="text-sm mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>{currentQuest.description}</p>
                         <div className="flex items-center gap-3 mt-3">
@@ -586,7 +588,7 @@ export function WandererRest({
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold" style={{ color: "rgba(255,215,0,0.8)" }}>Chain Reward</p>
                         <p className="text-sm mt-0.5 font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>{npc.finalReward.item.name}</p>
-                        <p className="text-xs mt-1 italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>{npc.finalReward.item.desc}</p>
+                        <p className="text-sm mt-1 italic leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>{npc.finalReward.item.desc}</p>
                       </div>
                     </button>
                   )}

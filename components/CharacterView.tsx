@@ -575,7 +575,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
 
         {/* Flavor text */}
         {item.flavorText && (
-          <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{item.flavorText}&rdquo;</p>
+          <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>&ldquo;{item.flavorText}&rdquo;</p>
         )}
 
         {/* Description */}
@@ -937,7 +937,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           <div className="mt-0.5" style={{ width: 56 }}>
             <p className="text-center truncate" title={item.name} style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
             {item.legendaryEffect && (
-              <p className="text-center truncate" style={{ fontSize: 9, color: "#f97316", lineHeight: 1.1, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
+              <p className="text-center truncate" style={{ fontSize: 11, color: "#f97316", lineHeight: 1.2, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
             )}
           </div>
         )}
@@ -2615,15 +2615,6 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       >
         Collection
       </button>
-      {onNavigate && (
-        <button
-          onClick={() => onNavigate("forge")}
-          className="cross-nav-link shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
-          style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)", color: "rgba(245,158,11,0.55)" }}
-        >
-          <Tip k="artisans_quarter">Artisan&#39;s Quarter &#8250;</Tip>
-        </button>
-      )}
       {onNavigate && (
         <button
           onClick={() => onNavigate("talents")}

@@ -67,6 +67,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
   const [extendCommitment, setExtendCommitment] = useState("none");
   const [recommitId, setRecommitId] = useState<string | null>(null);
   const [slipAnimId, setSlipAnimId] = useState<string | null>(null);
+  const [vowActionError, setVowActionError] = useState<string | null>(null);
 
   const closeExtendModal = useCallback(() => { setExtendId(null); setExtendCommitment("none"); }, []);
   const closeRecommitModal = useCallback(() => setRecommitId(null), []);
@@ -404,6 +405,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
         </div>
       )}
 
+      {vowActionError && <p className="text-xs mt-2 px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>{vowActionError}</p>}
+
       {createOpen && (() => {
         const closeVowModal = () => { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); setNewVowDifficulty("medium"); setVowCommitmentError(false); };
         const tierData = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
@@ -540,7 +543,10 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     try {
                       await fetch(`/api/rituals/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
                       loadAntiRituals();
-                    } catch { /* ignore */ }
+                    } catch {
+                      setVowActionError("Schwur konnte nicht aufgegeben werden. Der Server antwortet nicht.");
+                      setTimeout(() => setVowActionError(null), 5000);
+                    }
                   }}
                   className="flex-1 text-sm py-2 rounded-lg font-semibold"
                   style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}
