@@ -1093,7 +1093,7 @@ export default function Dashboard() {
               const meta = PROF_META[pid];
               return { id: pid, level: p?.level ?? 0, name: meta?.name ?? pid, color: meta?.color ?? "#888" };
             });
-            const mainValue = profSummary.map(p => `Lv.${p.level}`).join(" · ");
+            const mainValue = profSummary.map(p => `${p.name} ${p.level}`).join(" · ");
             const totalMats = Object.values(loggedInUser?.craftingMaterials ?? {}).reduce((a, b) => a + b, 0);
             return (
               <Tip k="artisans_quarter"><StatBar
