@@ -60223,7 +60223,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Besser als nichts. Knapp.",
+      "desc": "Geflickt an Stellen die darauf hindeuten dass der Vorbesitzer schlecht blockt.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "affixes": {
         "primary": {
@@ -61073,7 +61073,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Das Minimum. Aber immerhin das.",
+      "desc": "Durchgetreten bis zum Boden. Der Boden grüßt durch die Sohle.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "affixes": {
         "primary": {
@@ -61379,7 +61379,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Aus der Grabbelkiste.",
+      "desc": "Draht und Zufall. Beides hat den Ring geformt. Keins war geplant.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -61413,7 +61413,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
+      "desc": "Einfach, schlicht, vergessbar. Perfekt für jemanden der nicht auffallen will.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -61957,7 +61957,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Besser als barfuß. Aber nur leicht.",
+      "desc": "Windschief genug um dem Wind eine Geschichte zu erzählen.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "affixes": {
         "primary": {
@@ -63351,7 +63351,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Aus der Grabbelkiste.",
+      "desc": "Verbogen in einem Kampf. Oder beim Umzug. Beides hinterlässt Spuren.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "affixes": {
         "primary": {
@@ -63487,7 +63487,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Besser als barfuß. Aber nur leicht.",
+      "desc": "Gefunden. Der Finder fragt sich noch ob es ein Glück war.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "affixes": {
         "primary": {
@@ -64269,7 +64269,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
+      "desc": "Ausgeleiert wie die Geduld des Vorbesitzers. Beides hat gelitten.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
@@ -64541,7 +64541,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Besser als nichts. Knapp.",
+      "desc": "Traurig wie ein Lied ohne Melodie. Aber es trifft trotzdem.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "affixes": {
         "primary": {
@@ -64915,7 +64915,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Das Minimum. Aber immerhin das.",
+      "desc": "Zerschlissen, aber würdevoll. Wie ein alter General in Unterwäsche.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "affixes": {
         "primary": {
@@ -65426,7 +65426,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Besser als barfuß. Aber nur leicht.",
+      "desc": "Ein Stock. Gefunden, nicht geschnitzt. Die Natur als Waffenschmied.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "affixes": {
         "primary": {
@@ -66737,7 +66737,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Bewährt sich im Alltag. In Kämpfen weniger.",
+      "desc": "Platt und leise. Der Boden nimmt sie nicht ernst. Aber sie sind da.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "affixes": {
         "primary": {
@@ -67592,7 +67592,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Aus der Grabbelkiste.",
+      "desc": "Schief, aber auf dem Kopf. Das reicht für den Anfang.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "affixes": {
         "primary": {
@@ -68105,7 +68105,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Besser als nichts. Knapp.",
+      "desc": "Platt wie eine Pfannkuchen. Die Pfannkuchen-Schuh-Parallele hört dort auf.",
       "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
@@ -68390,7 +68390,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Das Minimum. Aber immerhin das.",
+      "desc": "Angelaufen wie die Motivation am dritten Tag einer Diät.",
       "icon": "/images/icons/gacha-ring-sapphire-ring.png",
       "affixes": {
         "primary": {
@@ -69705,7 +69705,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "aus der Scheune. Naja.",
+      "desc": "Leder als Glücksbringer. Der Geruch bringt Erinnerungen. Nicht alle gut.",
       "icon": "/images/icons/gacha-amulet-tiger-tooth.png",
       "affixes": {
         "primary": {
@@ -69773,7 +69773,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "aus der Scheune. Immerhin.",
+      "desc": "Holz als Glücksbringer. Der Optimismus ist größer als das Material.",
       "icon": "/images/icons/gacha-amulet-bone-charm.png",
       "affixes": {
         "primary": {
@@ -70113,7 +70113,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "aus der Scheune. Immerhin.",
+      "desc": "Knochen am Finger. Der Vorbesitzer braucht ihn nicht mehr.",
       "icon": "/images/icons/gacha-ring-silver-loop.png",
       "affixes": {
         "primary": {
@@ -70249,7 +70249,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "aus der Werkstatt. Naja.",
+      "desc": "Leder am Finger. Weich und warm. Wie eine Entschuldigung.",
       "icon": "/images/icons/gacha-ring-thorn-ring.png",
       "affixes": {
         "primary": {
@@ -70997,7 +70997,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "aus der Werkstatt. Naja.",
+      "desc": "Stahl am Arm. Der Lehrling war stolz. Der Meister weniger.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "affixes": {
         "primary": {
@@ -71031,7 +71031,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "aus der Kiste. Funktioniert.",
+      "desc": "Holz über dem Kopf. Primitiv, aber die Idee ist solide.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "affixes": {
         "primary": {
@@ -71337,7 +71337,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "aus dem Kellerarchiv des Turms. Naja.",
+      "desc": "Stein, poliert vom Lehrling. Die Politur ist ungleichmäßig. Wie die Begeisterung.",
       "icon": "/images/icons/gacha-amulet-bone-charm.png",
       "affixes": {
         "primary": {
@@ -71711,7 +71711,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "aus der Kiste. Funktioniert.",
+      "desc": "Eisen, gebogen zu einem Kreis. Mehr Ring als Schmuck. Aber Ring.",
       "icon": "/images/icons/gacha-ring-skull-ring.png",
       "affixes": {
         "primary": {
@@ -72051,7 +72051,7 @@
       "rarity": "common",
       "price": 7,
       "shopHidden": false,
-      "desc": "aus der Scheune. Immerhin.",
+      "desc": "Holz über dem Kopf. Kein Helm, keine Kappe — ein Statement.",
       "icon": "/images/icons/gacha-helm-bandana.png",
       "affixes": {
         "primary": {
@@ -72323,7 +72323,7 @@
       "rarity": "common",
       "price": 7,
       "shopHidden": false,
-      "desc": "aus der Kiste. Funktioniert.",
+      "desc": "Stein und Schnur. Die älteste Kombination. Und die billigste.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "affixes": {
         "primary": {
@@ -72459,7 +72459,7 @@
       "rarity": "common",
       "price": 7,
       "shopHidden": false,
-      "desc": "aus der Scheune. Naja.",
+      "desc": "Leder an den Füßen. Besser als der Boden. Meistens.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
@@ -72731,7 +72731,7 @@
       "rarity": "common",
       "price": 9,
       "shopHidden": false,
-      "desc": "aus dem Kellerarchiv des Turms. Naja.",
+      "desc": "Bronze und Entschlossenheit. Eins davon ist weich. Beides trifft.",
       "icon": "/images/icons/gacha-weapon-dual-scimitars.png",
       "affixes": {
         "primary": {
@@ -72799,7 +72799,7 @@
       "rarity": "common",
       "price": 9,
       "shopHidden": false,
-      "desc": "aus der Werkstatt. Naja.",
+      "desc": "Knochen als Schild. Die Natur hat nicht damit gerechnet. Aber sie beschwert sich nicht.",
       "icon": "/images/icons/gacha-shield-arcane-ward.png",
       "affixes": {
         "primary": {
@@ -73003,7 +73003,7 @@
       "rarity": "common",
       "price": 9,
       "shopHidden": false,
-      "desc": "aus der Scheune. Naja.",
+      "desc": "Ein Glücksstein. Ob er funktioniert, hängt von der Definition ab.",
       "icon": "/images/icons/gacha-amulet-star-pendant.png",
       "affixes": {
         "primary": {
@@ -73037,7 +73037,7 @@
       "rarity": "common",
       "price": 9,
       "shopHidden": false,
-      "desc": "aus dem Kellerarchiv des Turms. Naja.",
+      "desc": "Stein am Hals. Schwer wie ein Versprechen. Und ähnlich unbequem.",
       "icon": "/images/icons/gacha-amulet-thunder-rune.png",
       "affixes": {
         "primary": {
