@@ -42500,7 +42500,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "desc": "Saphir in einem Band aus Stahl. Blau wie die Tiefe aus der er stammt.",
       "icon": "/images/icons/gacha-ring-rune-ring.png",
       "affixes": {
         "primary": {
@@ -42557,7 +42557,7 @@
       "rarity": "common",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus den unteren Stockwerken geborgen. Niemand fragt woher.",
+      "desc": "Stahl am Finger. Kalt, ehrlich, und ohne Verzierung. Wie ein Handschlag.",
       "icon": "/images/icons/gacha-ring-frost-ring.png",
       "affixes": {
         "primary": {
@@ -42749,7 +42749,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "desc": "Mystisch ist relativ. Für den Ring ist alles mystisch. Für dich nur er.",
       "icon": "/images/icons/gacha-ring-ruby-ring.png",
       "affixes": {
         "primary": {
@@ -42806,7 +42806,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus den unteren Stockwerken geborgen. Niemand fragt woher.",
+      "desc": "Funkt bei Berührung. Nicht gefährlich. Nur überraschend. Jedes Mal.",
       "icon": "/images/icons/gacha-ring-rune-ring.png",
       "affixes": {
         "primary": {
@@ -43034,7 +43034,7 @@
       "rarity": "uncommon",
       "price": 0,
       "shopHidden": false,
-      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "desc": "Kristall, geschliffen zu einem Ring. Durchsichtig wie gute Absichten.",
       "icon": "/images/icons/gacha-ring-gold-band.png",
       "affixes": {
         "primary": {
@@ -43091,7 +43091,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus den unteren Stockwerken geborgen. Niemand fragt woher.",
+      "desc": "Vibriert bei Gewitter. Oder bei schlechter Laune. Schwer zu unterscheiden.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -43319,7 +43319,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "desc": "Nenn ihn nicht Kronjuwel in der Nähe einer echten Krone. Peinlich für alle.",
       "icon": "/images/icons/gacha-ring-runic-band.png",
       "affixes": {
         "primary": {
@@ -43381,7 +43381,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Aus den unteren Stockwerken geborgen. Niemand fragt woher.",
+      "desc": "Titan. Härter als Stahl. Schwerer als Gold. Bescheidener als beides.",
       "icon": "/images/icons/gacha-ring-frost-ring.png",
       "affixes": {
         "primary": {
@@ -43609,7 +43609,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Ein Ring aus den Tiefen des Turms.",
+      "desc": "Der Ring der Sterne bricht. Oder so heißt die Geschichte. Die Sterne sind anderer Meinung.",
       "icon": "/images/icons/gacha-ring-ruby-ring.png",
       "affixes": {
         "primary": {
@@ -43671,7 +43671,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Aus den unteren Stockwerken geborgen. Niemand fragt woher.",
+      "desc": "Der Ring wechselt die Farbe mit der Stimmung. Er ist meistens grau.",
       "icon": "/images/icons/gacha-ring-rune-ring.png",
       "affixes": {
         "primary": {
@@ -46554,7 +46554,7 @@
       "rarity": "uncommon",
       "price": 25,
       "shopHidden": false,
-      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "desc": "Asche bedeckt das Wappen. Was darunter liegt, ist stärker als der Name.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "affixes": {
         "primary": {
@@ -47191,7 +47191,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "desc": "Zwischen Tag und Nacht getragen. Die Dämmerung verbirgt die Kratzer.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "affixes": {
         "primary": {
@@ -47635,7 +47635,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "desc": "Jeder Dorn ist ein Argument. Die Klinge hat viele.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "affixes": {
         "primary": {
@@ -48034,7 +48034,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "desc": "Getragen von denen die vergessen wurden. Das Kettenhemd erinnert sich.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "affixes": {
         "primary": {
@@ -48148,7 +48148,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "desc": "Das Schicksal trägt viele Rüstungen. Diese hier ist eine der günstigen.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
@@ -48262,7 +48262,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "desc": "Der Abgrund ist tief. Der Talisman ist tiefer. Metaphorisch.",
       "icon": "/images/icons/gacha-amulet-thunder-rune.png",
       "affixes": {
         "primary": {
@@ -48433,7 +48433,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "desc": "Blut und Metall. Das Medaillon erinnert an Opfer die niemand zählt.",
       "icon": "/images/icons/gacha-amulet-bone-charm.png",
       "affixes": {
         "primary": {
@@ -48547,7 +48547,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "desc": "Im Nebel verschwimmen die Schritte. Die Schuhe wissen trotzdem wohin.",
       "icon": "/images/icons/gacha-boots-flame-greaves.png",
       "affixes": {
         "primary": {
@@ -50086,7 +50086,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "desc": "Im Schatten zuhause. Im Licht ein Gast. Die Stiefel kennen den Unterschied.",
       "icon": "/images/icons/gacha-boots-elven-walkers.png",
       "affixes": {
         "primary": {
@@ -50200,7 +50200,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Im Katalog steht: \"Zuverlässig.\" Die Fußnote steht da nicht ohne Grund.",
+      "desc": "Der Ring verschwindet im Schatten. Das ist entweder ein Feature oder Verlust.",
       "icon": "/images/icons/gacha-ring-silver-loop.png",
       "affixes": {
         "primary": {
@@ -50314,7 +50314,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "desc": "Das Band vibriert bei Sonnenaufgang. Es will dass du aufstehst. Es ist hartnäckig.",
       "icon": "/images/icons/gacha-ring-skull-ring.png",
       "affixes": {
         "primary": {
@@ -50842,7 +50842,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "desc": "Eisen am Kopf. Schwer, kalt, unerbittlich. Wie die Wahrheit.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "affixes": {
         "primary": {
@@ -50899,7 +50899,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "desc": "Im Helm ist es still. Nicht leise — still. Gedanken klingen lauter.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
@@ -51375,7 +51375,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "desc": "Für die Vergessenen. Von den Vergessenen. Das Amulett erinnert sich an beide.",
       "icon": "/images/icons/gacha-amulet-ruby-amulet.png",
       "affixes": {
         "primary": {
@@ -51556,7 +51556,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Ergonomisch optimiert für jemanden, der seine Probleme nicht diskutiert sondern löst.",
+      "desc": "Ewigkeit an den Füßen. Jeder Schritt dauert einen Moment. Und hält für immer.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "affixes": {
         "primary": {
@@ -51675,7 +51675,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Die Gravur liest sich wie eine Entschuldigung. Oder eine Drohung. Kommt auf die Beleuchtung an.",
+      "desc": "Das Schicksal hat viele Wege. Diese Treter finden den unangenehmsten. Zuverlässig.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
@@ -54505,7 +54505,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "desc": "Billig. Aber am Finger. Und manchmal reicht Anwesenheit.",
       "icon": "/images/icons/gacha-ring-signet-ring.png",
       "affixes": {
         "primary": {
@@ -55767,7 +55767,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "desc": "Die Flecken haben ein System. Es ist nur für Flecken verständlich.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "affixes": {
         "primary": {
@@ -57121,7 +57121,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "desc": "Oval geworden durch Benutzung. Oder durch Frustration. Oder beides.",
       "icon": "/images/icons/gacha-ring-thorn-ring.png",
       "affixes": {
         "primary": {
@@ -57189,7 +57189,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "desc": "Ein Band. Ein Ring. Eine Illusion von Schmuck.",
       "icon": "/images/icons/gacha-ring-amethyst-ring.png",
       "affixes": {
         "primary": {
@@ -58111,7 +58111,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "desc": "Ausgebessert von jemandem der Nähen gelernt hat. Gerade eben.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "affixes": {
         "primary": {
@@ -58236,7 +58236,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Offiziell: \"gebraucht\". Inoffiziell: \"aufgegeben\".",
+      "desc": "Die Schürze hängt zusammen. Durch Willenskraft. Nicht durch Nähte.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "affixes": {
         "primary": {
