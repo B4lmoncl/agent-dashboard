@@ -244,6 +244,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [guideOpen, setGuideOpen] = useState<boolean | null>(null); // null = auto (open if no profs)
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
+  const [forgeFever, setForgeFever] = useState<{ profession: string; endsAt: string; remainingMs: number; playerCrafts: number; cacheEarned: boolean; cacheClaimed: boolean; threshold: number } | null>(null);
+  const [feverClaiming, setFeverClaiming] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState<Set<string>>(new Set());
   const [craftCount, setCraftCount] = useState(1);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -337,6 +339,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.moonlightActive !== undefined) setMoonlightActive(data.moonlightActive);
+        if (data.forgeFever) setForgeFever(data.forgeFever); else setForgeFever(null);
         if (data.favoriteRecipes) setFavoriteRecipes(new Set(data.favoriteRecipes));
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
@@ -914,6 +917,49 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <span className="w-2 h-2 rounded-full" style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa", animation: "ambient-spark 3s ease-in-out infinite" }} />
                   Mondlicht-Schmiede aktiv
                 </span>
+              </TipCustom>
+            </div>
+          )}
+          {forgeFever && (
+            <div className="mt-2">
+              <TipCustom title="Schmiedefieber" accent="#f97316" body={<p className="text-xs">Alle 48 Stunden bricht in einer zufälligen Profession das Schmiedefieber aus. 4 Stunden lang: Materialkosten halbiert, doppelte Skill-XP. Bei 5+ Crafts gibt es einen Bonus-Cache mit seltenen Materialien.</p>}>
+                <div className="text-xs font-semibold px-3 py-2 rounded-lg inline-flex items-center gap-3 cursor-help" style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.35)", boxShadow: "0 0 12px rgba(249,115,22,0.15)" }}>
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#f97316", boxShadow: "0 0 8px #f97316", animation: "ambient-spark 1.5s ease-in-out infinite" }} />
+                  <span style={{ color: "#f97316" }}>
+                    Schmiedefieber: {professions.find(p => p.id === forgeFever.profession)?.name || forgeFever.profession}
+                  </span>
+                  <span style={{ color: "rgba(255,255,255,0.35)" }}>
+                    {Math.ceil(forgeFever.remainingMs / 60000)}m
+                  </span>
+                  <span className="font-mono" style={{ color: forgeFever.playerCrafts >= forgeFever.threshold ? "#22c55e" : "rgba(255,255,255,0.4)" }}>
+                    {forgeFever.playerCrafts}/{forgeFever.threshold}
+                  </span>
+                  {forgeFever.cacheEarned && !forgeFever.cacheClaimed && (
+                    <button
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        if (feverClaiming) return;
+                        setFeverClaiming(true);
+                        try {
+                          const r = await fetch("/api/professions/fever/claim", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) } });
+                          if (r.ok) {
+                            setForgeFever(prev => prev ? { ...prev, cacheClaimed: true } : null);
+                            onRefresh?.();
+                          }
+                        } catch { /* handled */ }
+                        setFeverClaiming(false);
+                      }}
+                      disabled={feverClaiming}
+                      className="px-2 py-0.5 rounded text-xs font-bold"
+                      style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)", cursor: feverClaiming ? "not-allowed" : "pointer", opacity: feverClaiming ? 0.5 : 1 }}
+                    >
+                      {feverClaiming ? "..." : "Cache holen"}
+                    </button>
+                  )}
+                  {forgeFever.cacheClaimed && (
+                    <span className="text-xs" style={{ color: "rgba(34,197,94,0.5)" }}>✓</span>
+                  )}
+                </div>
               </TipCustom>
             </div>
           )}
