@@ -17234,7 +17234,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Für lange Märsche und kurze Geduld. Grimvar hat den Klang der Schritte geprüft. Zu laut, sagt er. Aber das liegt am Träger.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -17690,7 +17690,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Kristalle in den Sohlen. Sie knirschen nicht — sie singen. Leise. Verstimmt. Aber sie singen.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -18146,7 +18146,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Drachenstahl verzeiht keine Fehler. Grimvar auch nicht. Deswegen passen sie zusammen.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -18602,7 +18602,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Drei Wochen Arbeit. Zwei gebrochene Hämmer. Ein Panzer der Kriege überdauert.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -19088,7 +19088,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Aetherstrom hat das Metall durchdrungen. Es atmet jetzt. Buchstäblich.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -19584,7 +19584,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Sieht Dinge die kein normaler Helm sieht. Ob das hilfreich oder beunruhigend ist, hängt davon ab was du siehst.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -31289,7 +31289,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Geschmiedet am Rand des Aetherstroms. Das Metall erinnert sich an Dinge die noch nicht passiert sind.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
@@ -31755,7 +31755,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Jeder Schritt hinterlässt einen kurzen Aetherfunken. Im Dunkeln sieht es aus wie ein Sternenpfad.",
       "icon": "/images/icons/gacha-boots-flame-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -38755,7 +38755,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Die zweite Iteration. Grimvar sagt, die erste war nicht schlecht. Für seine Verhältnisse ist das ein Liebesbrief.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "shopHidden": true,
       "affixes": {
@@ -39221,7 +39221,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Aether fließt durch die Nähte. Jeder Schritt fühlt sich an wie der erste Frühlingstag. Minus die Allergie.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -39687,7 +39687,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Drei Versionen. Drei Monate. Grimvar hat die ersten zwei eingeschmolzen ohne ein Wort. Die dritte hat er behalten.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -60121,7 +60121,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Die Löcher sind belüftet. Das ist das Freundlichste was man sagen kann.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "affixes": {
         "primary": {
@@ -60699,7 +60699,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Der Stein trübt. Ob vor Alter oder Trauer lässt sich nicht feststellen.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "affixes": {
         "primary": {
@@ -61209,7 +61209,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Stumpf in jeder Hinsicht. Schneidet nicht, schützt nicht, glänzt nicht.",
       "icon": "/images/icons/gacha-ring-emerald-ring.png",
       "affixes": {
         "primary": {
@@ -61787,7 +61787,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Wackelt beim Tragen. Wackelt beim Blocken. Konsequent, wenigstens.",
       "icon": "/images/icons/gacha-shield-dragon-scale.png",
       "affixes": {
         "primary": {
@@ -63555,7 +63555,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Der Riss geht diagonal. Macht es nicht besser. Macht es aber einzigartig.",
       "icon": "/images/icons/gacha-shield-arcane-ward.png",
       "affixes": {
         "primary": {
@@ -64201,7 +64201,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Die Sohle ist so dünn dass du jeden Stein persönlich kennenlernst.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "affixes": {
         "primary": {
@@ -65483,7 +65483,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Die Biegung war ein Unfall. Jetzt ist sie ein Feature. Sagt der Verkäufer.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "affixes": {
         "primary": {
@@ -66110,7 +66110,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Zerschlissen aber tragbar. Wie die meisten guten Ausreden.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "affixes": {
         "primary": {
@@ -66395,7 +66395,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Eine Schnur mit einem Stein. Der Stein schaut skeptisch. Die Schnur auch.",
       "icon": "/images/icons/gacha-amulet-onyx-talisman.png",
       "affixes": {
         "primary": {
@@ -67364,7 +67364,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Der Säbel hat eine Kurve die nicht geplant war. Trifft trotzdem.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "affixes": {
         "primary": {
@@ -67877,7 +67877,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Mehr Loch als Jacke. Aber die Löcher lassen Luft durch und das ist auch etwas.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "affixes": {
         "primary": {
@@ -68276,7 +68276,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Qualität: Ausreichend. Erwartung: Niedrig.",
+      "desc": "Ein Kreis aus Metall. Rund. Einfach. Ohne Ambitionen.",
       "icon": "/images/icons/gacha-ring-rune-ring.png",
       "affixes": {
         "primary": {
