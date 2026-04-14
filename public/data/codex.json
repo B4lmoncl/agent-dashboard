@@ -174,7 +174,7 @@
       "id": "colosseum",
       "category": "world",
       "title": "Das Kolosseum",
-      "text": "Die Arena, in der die Gemeinschaft gegen Titanen kämpft. Neun Bosse, jeder ein Spiegel menschlicher Schwächen: Prokrastination, Burnout, Zweifel, Chaos. Man besiegt sie nicht allein. Das ist der Punkt.",
+      "text": "Die Arena, in der die Gemeinschaft gegen Titanen kämpft. Fünfzehn Bosse, jeder ein Spiegel menschlicher Schwächen: Prokrastination, Burnout, Zweifel, Perfektionismus, Komfortzonen. Man besiegt sie nicht allein. Das ist der Punkt.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 15
@@ -897,40 +897,40 @@
       }
     },
     {
-      "id": "faction-glut-secret",
+      "id": "faction-klinge-secret",
       "category": "factions",
-      "title": "Die Wahre Flamme der Glut",
-      "text": "Die meisten glauben, der Zirkel der Glut brenne für körperliche Disziplin. Das stimmt — so wie es stimmt, dass ein Vulkan \"warm\" ist. Die innere Flamme, von der die Ältesten flüstern, hat wenig mit Schweiß zu tun und viel mit dem Moment, in dem man aufhört, sich selbst zu belügen. Der letzte Paragon soll drei Tage still auf dem Dach des Turms gesessen haben, bevor er erklärte, er habe \"endlich das Feuer gefunden, das nicht erlöschen kann\". Auf die Frage, ob es wehtat, antwortete er: \"Nur mein Ego.\"",
+      "title": "Die Wahre Klinge",
+      "text": "Die meisten glauben, der Orden der Klinge brenne für körperliche Disziplin. Das stimmt — so wie es stimmt, dass ein Vulkan 'warm' ist. Die innere Klinge, von der die Ältesten flüstern, hat wenig mit Schweiß zu tun und viel mit dem Moment, in dem man aufhört, sich selbst zu belügen. Der letzte Paragon soll drei Tage still auf dem Dach des Turms gesessen haben, bevor er erklärte, er habe 'endlich die Klinge gefunden, die nicht stumpf wird'. Auf die Frage, ob es wehtat, antwortete er: 'Nur mein Ego.'",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
       }
     },
     {
-      "id": "faction-tinte-secret",
+      "id": "faction-sterne-secret",
       "category": "factions",
       "title": "Das Ungeschriebene Buch",
-      "text": "Im tiefsten Archiv des Zirkels der Tinte steht ein Buch ohne Titel, ohne Autor und — das ist der irritierende Teil — ohne Seiten. Es steht trotzdem aufrecht im Regal, zwischen zwei Bänden über fortgeschrittene Kalligraphie. Die Bibliothekarin behauptet, es sei das wichtigste Werk der Sammlung. Auf die Frage, was darin stehe, lächelt sie nur und sagt: \"Alles, was du noch nicht gelernt hast.\" Der Katalog führt es als \"in Bearbeitung\". Seit zweihundert Jahren.",
+      "text": "Im tiefsten Archiv des Zirkels der Sterne steht ein Buch ohne Titel, ohne Autor und — das ist der irritierende Teil — ohne Seiten. Es steht trotzdem aufrecht im Regal, zwischen zwei Bänden über fortgeschrittene Aetherstrom-Theorie. Die Archivarin behauptet, es sei das wichtigste Werk der Sammlung. Auf die Frage, was darin stehe, lächelt sie nur und sagt: 'Alles, was du noch nicht gelernt hast.' Der Katalog führt es als 'in Bearbeitung'. Seit zweihundert Jahren.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
       }
     },
     {
-      "id": "faction-amboss-secret",
+      "id": "faction-wildnis-secret",
       "category": "factions",
-      "title": "Der Erste Hammerschlag",
-      "text": "Es gibt eine Tradition im Zirkel des Amboss: Jeder neue Meister schmiedet ein Werkzeug, das er selbst nie benutzen wird. Manche schmieden Schlüssel für Türen, die es noch nicht gibt. Andere Uhren, die rückwärts laufen. Einer schmiedete einmal einen perfekten Spiegel aus Stahl und stellte fest, dass sein Spiegelbild einen besseren Bart hatte. Der Amboss lehrt nicht Perfektion — er lehrt, dass die interessantesten Dinge entstehen, wenn man aufhört, das Ergebnis kontrollieren zu wollen.",
+      "title": "Die Wurzeln des Pakts",
+      "text": "Es gibt eine Tradition im Pakt der Wildnis: Jeder neue Meister pflanzt einen Baum, den er selbst nie sehen wird. Manche pflanzen Eichen an unmöglichen Stellen. Andere Pilze, die nur bei Vollmond wachsen. Einer pflanzte einmal einen Setzling kopfüber und stellte fest, dass der Baum es akzeptierte und nach unten wuchs. Die Wildnis lehrt nicht Perfektion — sie lehrt, dass die interessantesten Dinge entstehen, wenn man aufhört, das Ergebnis kontrollieren zu wollen.",
       "unlockedBy": {
         "type": "faction_rank",
         "value": 1
       }
     },
     {
-      "id": "faction-echo-secret",
+      "id": "faction-schatten-secret",
       "category": "factions",
-      "title": "Die Stille Zwischen Den Stimmen",
-      "text": "Der Zirkel des Echos ist die lauteste Fraktion im Turm. Das überrascht die meisten, die erwarten, dass eine Gruppe namens \"Echo\" leise wäre. Aber ein Echo braucht zuerst einen Schrei. Die wahre Kunst, sagen die Ältesten, liegt nicht darin, gehört zu werden — sondern darin, die richtige Pause zu finden. \"Jedes Gespräch\", erklärte einmal eine Paragon, \"ist eigentlich ein Lied. Die meisten Leute singen nur die lauten Teile.\" Dann schwieg sie so nachdrücklich, dass drei Zuhörer spontan in Tränen ausbrachen.",
+      "title": "Die Stille Zwischen Den Schatten",
+      "text": "Der Bund der Schatten ist die lauteste Fraktion im Turm. Das überrascht die meisten, die erwarten, dass eine Gruppe namens 'Schatten' leise wäre. Aber ein Schatten braucht zuerst ein Licht. Die wahre Kunst, sagen die Ältesten, liegt nicht darin, unsichtbar zu sein — sondern darin, den richtigen Moment zu finden. 'Jede Operation', erklärte einmal ein Paragon, 'ist eigentlich ein Lied. Die meisten Leute singen nur die lauten Teile.' Dann verschwand er so nachdrücklich, dass drei Zuhörer spontan die Tür abschlossen.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 20
@@ -970,7 +970,7 @@
       "id": "schicksalsbaum",
       "category": "systems",
       "title": "Der Schicksalsbaum",
-      "text": "Ab Level 5 wächst im Inneren Heiligtum ein Baum, der deine Entscheidungen in Rinde ritzt. Drei Ringe, sechsundzwanzig Knoten, fünfundzwanzig Punkte die nie für alles reichen. Der Baum hat kein Mitleid. Er hat auch keine Blätter. Er hat Meinungen. Manche Knoten schließen sich gegenseitig aus — der Baum nennt das 'Charakter'. Zurücksetzen kostet 500 Gold und 50 Essenz, was angemessen ist für jemanden der seine Persönlichkeit komplett ändern will.",
+      "text": "Ab Level 5 wächst im Inneren Heiligtum ein Baum, der deine Entscheidungen in Rinde ritzt. Drei Ringe, vierundvierzig Knoten, dreiundzwanzig Punkte die nie für alles reichen. Der Baum hat kein Mitleid. Er hat auch keine Blätter. Er hat Meinungen. Manche Knoten schließen sich gegenseitig aus — der Baum nennt das 'Charakter'. Zurücksetzen kostet 500 Gold und 50 Essenz, was angemessen ist für jemanden der seine Persönlichkeit komplett ändern will.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 5
