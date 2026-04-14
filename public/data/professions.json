@@ -1280,7 +1280,7 @@
       },
       "xp": 15,
       "description": "Verzaubert: +2 Weisheit für 3 Quests.",
-      "desc": "Tinte für Gelehrte. Eldric schreibt damit Runen. Die Runen schreiben manchmal zurück."
+      "desc": "Tinte für Gelehrte, mit der Eldric seine Runen schreibt — wobei die Runen gelegentlich zurückschreiben."
     },
     {
       "id": "artisans_whetstone",
@@ -1324,7 +1324,7 @@
       },
       "xp": 15,
       "description": "Verzaubert: +2 Fokus für 3 Quests.",
-      "desc": "Amulett das resoniert. Mit was, weiß Eldric nicht. Er rechnet noch."
+      "desc": "Ein Amulett das mit irgendetwas resoniert, wobei Eldric immer noch berechnet womit genau."
     },
     {
       "id": "recipe-schmied-eisenbarren",
@@ -1344,7 +1344,7 @@
       "xp": 5,
       "description": "Schmilzt Eisenerz zu einem Barren.",
       "trainerCost": 25,
-      "desc": "Zwei Erze rein, ein Barren raus. Grimvar nennt es Effizienz. Mathematiker nennen es fragwürdig."
+      "desc": "Zwei Erze rein, ein Barren raus — Grimvar nennt das Effizienz, Mathematiker nennen es fragwürdig."
     },
     {
       "id": "recipe-schmied-stahlbarren",
@@ -1386,7 +1386,7 @@
       "xp": 15,
       "description": "Verschmelzt Kristall und Eisen.",
       "trainerCost": 125,
-      "desc": "Kristall und Metall. Sollte nicht funktionieren. Tut es trotzdem. Grimvar hat aufgehört Fragen zu stellen."
+      "desc": "Eine Legierung aus Kristall und Metall, die theoretisch nicht funktionieren sollte — Grimvar hat aufgehört Fragen zu stellen."
     },
     {
       "id": "recipe-schmied-verstaerkterstahl",
@@ -1428,7 +1428,7 @@
       "xp": 22,
       "description": "Drachenschuppen verleihen dem Stahl Feuerresistenz.",
       "trainerCost": 375,
-      "desc": "Benannt nach einem Drachen der sich beschwert hat. Die Beschwerde wurde abgelehnt. Der Stahl nicht."
+      "desc": "Benannt nach einem Drachen der sich formell beschwert hat — die Beschwerde wurde abgelehnt, der Stahl hingegen nicht."
     },
     {
       "id": "recipe-schmied-drachenkern",
@@ -1525,7 +1525,7 @@
         "aetherkern": 1,
         "aetherflux": 2
       },
-      "desc": "Metall das zurückstarrt. Grimvar sagt, man soll es nicht zu lange ansehen. Er hat mal geblinzelt. Der Stahl nicht.",
+      "desc": "Ein Metall das zurückstarrt, wenn man es ansieht — Grimvar empfiehlt kurze Blickkontakte, seit er einmal geblinzelt hat und der Stahl nicht.",
       "result": {
         "type": "material",
         "materialId": "seelenstahl",
@@ -1645,7 +1645,7 @@
       "xp": 7,
       "description": "Schmiedet: Geschlossener Eisenhelm.",
       "trainerCost": 25,
-      "desc": "Schützt den Kopf. Nicht die Frisur. Grimvar sagt, Prioritäten seien wichtig."
+      "desc": "Schützt den Kopf, wenn auch nicht die Frisur — Grimvar sagt, man müsse Prioritäten setzen."
     },
     {
       "id": "recipe-schmied-eiserne-sturmhaube",
@@ -1724,7 +1724,7 @@
       "description": "Schmiedet: Gehärtete Eisenstiefel.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": "Wie normale Eisenstiefel, nur mit mehr Überzeugung gehärtet. Der Unterschied ist spürbar. Am Gewicht."
+      "desc": "Wie normale Eisenstiefel, nur mit deutlich mehr Überzeugung gehärtet — der Unterschied ist vor allem am Gewicht spürbar."
     },
     {
       "id": "recipe-schmied-eiserner-brustpanzer",
@@ -1824,7 +1824,7 @@
       "xp": 12,
       "description": "Schmiedet: Stählerner Drachenhelm.",
       "trainerCost": 125,
-      "desc": "Hat Drachenschuppen im Design. Kein Drache wurde gefragt. Keiner hat sich beschwert. Noch nicht."
+      "desc": "Ein Helm mit Drachenschuppen im Design, wobei kein Drache um Erlaubnis gefragt wurde — noch hat sich keiner beschwert."
     },
     {
       "id": "recipe-schmied-staehlerne-marschtreters",
@@ -1925,7 +1925,7 @@
       "description": "Schmiedet: Kristall-Königsrüstung.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Der Name ist Programm. Der Preis auch. Grimvar hat bei der Namensgebung nicht an Bescheidenheit gedacht."
+      "desc": "Der Name ist Programm und der Preis ebenfalls — Grimvar hat bei der Namensgebung nicht an Bescheidenheit gedacht."
     },
     {
       "id": "recipe-schmied-staehlerne-sturmstiefel",
@@ -2005,7 +2005,7 @@
       "description": "Schmiedet: Kristall-Stiefel.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": "Kristall an den Füßen. Klingt fragil. Ist es nicht. Der Boden hat mehr Angst als du."
+      "desc": "Kristall an den Füßen klingt fragil, ist es aber nicht — im Zweifelsfall hat der Boden mehr Angst als du."
     },
     {
       "id": "recipe-schmied-kristall-kettenhemd",
@@ -2085,7 +2085,7 @@
       "xp": 20,
       "description": "Schmiedet: Drachenstahl-Stiefel.",
       "trainerCost": 400,
-      "desc": "Drachenstahl an den Füßen. Der Drache wurde nicht gefragt. Die Füße auch nicht."
+      "desc": "Drachenstahl an den Füßen — weder der Drache noch die Füße wurden vorher um ihre Meinung gebeten."
     },
     {
       "id": "recipe-schmied-drachenschuppen-kronenhelm",
@@ -2124,7 +2124,7 @@
       "description": "Schmiedet: Drachenschuppen-Panzerstiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Schwer genug um Eindruck zu machen. Leicht genug um wegzurennen. Beides wichtig."
+      "desc": "Schwer genug um Eindruck zu machen und leicht genug um nötigenfalls wegzurennen, was gleichermaßen wichtig ist."
     },
     {
       "id": "recipe-schmied-drachenschuppen-drachenhelm",
@@ -2183,7 +2183,7 @@
       "description": "Schmiedet: Drachenschuppen-Plattenpanzer.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Jede Schuppe stammt von einem anderen Drachen. Keiner wurde gefragt. Alle waren dagegen."
+      "desc": "Jede einzelne Schuppe stammt von einem anderen Drachen, keiner davon wurde gefragt, und alle waren entschieden dagegen."
     },
     {
       "id": "recipe-schmied-drachenstahl-helm",
@@ -2246,7 +2246,7 @@
       "description": "Schmiedet: Drachenzahn-Kriegsstiefel.",
       "dropChance": 0.09,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Drachenzähne im Sohlendesign. Unpraktisch für Parkettböden. Perfekt für alles andere."
+      "desc": "Stiefel mit Drachenzähnen im Sohlendesign — unpraktisch auf Parkettböden, aber perfekt für absolut alles andere."
     },
     {
       "id": "recipe-schmied-drachenschuppen-beinschienen",
@@ -2308,7 +2308,7 @@
       "description": "Schmiedet: Drachenstahl-Visierhelm.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare",
-      "desc": "Man sieht die Welt durch Drachenstahl-Schlitze. Die Welt sieht zurück. Und blinzelt zuerst."
+      "desc": "Man sieht die Welt durch Drachenstahl-Schlitze, und die Welt sieht zurück — sie blinzelt meistens zuerst."
     },
     {
       "id": "recipe-schmied-drachenstahl-kriegspanzer",
@@ -2328,7 +2328,7 @@
       "description": "Schmiedet: Drachenstahl-Kriegspanzer.",
       "factionId": "glut",
       "factionMinRep": "friendly",
-      "desc": "Grimvars Meisterwerk dieser Woche. Nächste Woche macht er einen besseren. Behauptet er."
+      "desc": "Grimvars Meisterwerk dieser Woche — nächste Woche macht er angeblich einen besseren, wie er jede Woche behauptet."
     },
     {
       "id": "recipe-schmied-drachenzahn-kettenhemd",
@@ -2348,7 +2348,7 @@
       "description": "Schmiedet: Drachenzahn-Kettenhemd.",
       "factionId": "amboss",
       "factionMinRep": "friendly",
-      "desc": "Zweitausend Glieder aus Drachenzahn. Grimvar hat bei jedem einzeln geflucht. Zweihundertacht Mal."
+      "desc": "Zweitausend Glieder aus Drachenzahn, bei deren Fertigung Grimvar zweihundertachtmal individuell geflucht hat."
     },
     {
       "id": "recipe-schmied-seelenkrone-des-meisters",
@@ -2388,7 +2388,7 @@
       "xp": 30,
       "description": "Schmiedet: Aether-Kettenhemd.",
       "trainerCost": 1100,
-      "desc": "Aether-infundierte Kettenglieder. Klirren nicht. Summen. Grimvar findet das unheimlich. Die Kunden finden es teuer."
+      "desc": "Kettenglieder die mit Aether infundiert sind und deshalb summen statt zu klirren — Grimvar findet das unheimlich, die Kunden finden es hauptsächlich teuer."
     },
     {
       "id": "recipe-schmied-seelen-kettenruestung",
@@ -2446,7 +2446,7 @@
       "xp": 33,
       "description": "Schmiedet: Aetherkern-Panzer.",
       "factionId": "bund_der_schatten",
-      "desc": "Aetherkern als Herzstück. Der Panzer atmet. Nicht metaphorisch. Tatsächlich. Grimvar schläft seitdem unruhig."
+      "desc": "Ein Panzer mit einem Aetherkern als Herzstück, der tatsächlich atmet — nicht metaphorisch, was Grimvar seither unruhig schlafen lässt."
     },
     {
       "id": "recipe-schmied-seelengeschmiedete-platte",
@@ -2487,7 +2487,7 @@
       "xp": 34,
       "description": "Schmiedet: Aether-Brustplatte.",
       "trainerCost": 1400,
-      "desc": "Leuchtet blau bei Mondlicht. Leuchtet rot bei Gefahr. Leuchtet grün wenn Grimvar in der Nähe ist. Niemand weiß warum."
+      "desc": "Leuchtet blau bei Mondlicht, rot bei Gefahr und grün wenn Grimvar in der Nähe ist, wobei letzteres niemand erklären kann."
     },
     {
       "id": "recipe-schmied-aetherkern-sturmkappe",
@@ -2528,7 +2528,7 @@
       "xp": 36,
       "description": "Schmiedet: Seelen-Schulterwacht.",
       "trainerCost": 1500,
-      "desc": "Die Schulterplatten flüstern Ermutigungen. Leise. Manchmal grammatisch falsch. Aber der Gedanke zählt."
+      "desc": "Schulterplatten die leise Ermutigungen flüstern, manchmal grammatisch falsch, aber der Gedanke zählt."
     },
     {
       "id": "recipe-schmied-seelen-wanderstiefel",
@@ -2699,7 +2699,7 @@
       "description": "Stellt her: Rauer Schärfstein.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Rauer als der grobe. Varn sagt, der Unterschied sei eine Frage der Einstellung. Und der Körnung."
+      "desc": "Rauer als der grobe — Varn sagt, der Unterschied sei eine Frage der Einstellung und der Körnung."
     },
     {
       "id": "recipe-schmied-schwerer-schaerfstein",
@@ -2721,7 +2721,7 @@
       "xp": 18,
       "description": "Stellt her: Schwerer Schärfstein.",
       "trainerCost": 208,
-      "desc": "Schwer genug um damit zu werfen. Varn empfiehlt das nicht. Die Wand auch nicht."
+      "desc": "Schwer genug um damit zu werfen, was Varn nicht empfiehlt — die Wand übrigens auch nicht."
     },
     {
       "id": "recipe-schmied-dichter-schaerfstein",
@@ -2766,7 +2766,7 @@
       "xp": 35,
       "description": "Stellt her: Elementarer Schärfstein.",
       "trainerCost": 1500,
-      "desc": "Schärft auf atomarer Ebene. Varn behauptet er kann das erklären. Er kann es nicht."
+      "desc": "Schärft auf atomarer Ebene, was Varn behauptet erklären zu können — was er definitiv nicht kann."
     },
     {
       "id": "recipe-schmied-leichter-gewichtstein",
@@ -2897,7 +2897,7 @@
       "xp": 22,
       "description": "Stellt her: Kristall-Schilddornen.",
       "trainerCost": 375,
-      "desc": "Kristalldornen die bei Kontakt splittern. In den Feind. Designentscheidung, kein Defekt."
+      "desc": "Kristalldornen die bei Kontakt in den Feind splittern, was eine bewusste Designentscheidung ist und kein Defekt."
     },
     {
       "id": "recipe-schmied-aether-schilddornen",
@@ -3049,7 +3049,7 @@
       "description": "Stellt her: Gluthammer.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Heizt die Schmiede auf. Wörtlich. Grimvar benutzt ihn auch um Lehrlinge zu motivieren. Figürlich."
+      "desc": "Heizt die Schmiede auf, und zwar wörtlich — Grimvar benutzt ihn auch um Lehrlinge zu motivieren, was eher figürlich gemeint ist."
     },
     {
       "id": "recipe-schmied-seelenglut",
@@ -3070,7 +3070,7 @@
       "description": "Stellt her: Seelenglut.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Flamme die nie erlischt. Grimvar hat sie einmal ausgepustet. Sie hat zurückgepustet."
+      "desc": "Eine Flamme die nie erlischt — Grimvar hat einmal versucht sie auszupusten und sie hat zurückgepustet."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-1",
@@ -3110,7 +3110,7 @@
       "xp": 15,
       "description": "Klinge schärfen II.",
       "trainerCost": 125,
-      "desc": "Schärfer als zuvor. Varn testet es an seinem Daumen. Er hat noch alle zehn. Neun. Er hat neun."
+      "desc": "Schärfer als zuvor — Varn testet die Klinge an seinem Daumen und hat noch alle zehn Finger, wobei, nein, neun."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-3",
@@ -3131,7 +3131,7 @@
       "xp": 22,
       "description": "Klinge schärfen III.",
       "factionId": "orden_der_klinge",
-      "desc": "Dritte Schärfung. Die Klinge schneidet jetzt Argumente. Und manchmal Tische."
+      "desc": "Nach der dritten Schärfung schneidet diese Klinge nicht nur Stahl sondern auch Argumente — und gelegentlich Tische."
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-4",
