@@ -120,7 +120,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
       <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
         <img src="/images/icons/nav-proving.png" alt="" width={48} height={48} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-medium mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>{mode === "players" ? "The Proving Grounds await" : "No agents deployed"}</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{mode === "players" ? "Complete quests to earn XP and claim your rank. Daily rituals, campaigns, and challenges all contribute to your standing." : "Deploy agents and let them complete quests to appear on the leaderboard."}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{mode === "players" ? "Complete quests to earn XP and claim your rank. Daily rituals, campaigns, and challenges all contribute to your standing." : "Deploy agents and let them complete quests to appear on the leaderboard."}</p>
       </div>
     );
   }
@@ -276,7 +276,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                       return cls ? (
                         <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)" }}>{cls.icon} {cls.fantasy}</span>
                       ) : (
-                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.15)" }}>No Class</span>
+                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.25)" }}>No Class</span>
                       );
                     })()}
                   </div>

@@ -171,7 +171,7 @@ export default function CodexView() {
                 <div className="flex items-center gap-3 mb-2.5">
                   <div className="w-1 h-6 rounded-full" style={{ background: cat.color }} />
                   <span className="text-xs font-bold uppercase tracking-wider" style={{ color: cat.color }}>{cat.name}</span>
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>{catDiscovered.length}/{catTotal}</span>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{catDiscovered.length}/{catTotal}</span>
                   <div className="flex-1 h-px" style={{ background: `${cat.color}15` }} />
                 </div>
                 {/* Mixed layout: first entry larger, rest compact */}
@@ -232,7 +232,7 @@ export default function CodexView() {
                   <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{ background: "#fbbf24", boxShadow: "0 0 4px rgba(251,191,36,0.6)" }} />
                 )}
                 <p className="text-xs font-semibold line-clamp-2" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
-                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>{cat?.name}</p>
+                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{cat?.name}</p>
               </button>
             );
           })}
@@ -281,14 +281,14 @@ export default function CodexView() {
       {undiscoveredFiltered.length > 0 && (
         <div className="space-y-1 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
           <TipCustom title="Unentdeckt" icon="?" accent="#6b7280" body={<p>Noch nicht freigeschaltete Eintr&auml;ge. Schlie&szlig;e Quests ab und erkunde die Welt, um sie zu entdecken.</p>}>
-            <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.15)", cursor: "help" }}>
+            <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.25)", cursor: "help" }}>
               Undiscovered ({undiscoveredFiltered.length})
             </p>
           </TipCustom>
           <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))" }}>
             {undiscoveredFiltered.map(entry => (
               <div key={entry.id} className="rounded-lg px-3 py-2 text-center crystal-breathe" style={{ background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.04)", ["--glow-color" as string]: "rgba(107,114,128,0.15)" }}>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.12)" }}>???</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.22)" }}>???</p>
               </div>
             ))}
           </div>
@@ -318,7 +318,7 @@ function CompanionGallery() {
     <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
         <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Companion Gallery</span>
-        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
       </button>
       {open && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter stagger-list">
@@ -356,7 +356,7 @@ function WorldStats() {
     <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
         <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>World Statistics</span>
-        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
       </button>
       {open && stats && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3 tab-content-enter">

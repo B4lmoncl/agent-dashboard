@@ -152,7 +152,7 @@ export default function QuestDetailModal({
             &ldquo;{flavorText}&rdquo;
           </p>
           {/* Ornamental divider */}
-          <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.12)" }}>
+          <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.22)" }}>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
             <span style={{ fontSize: 12, letterSpacing: 4 }}>◆ ◆ ◆</span>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />

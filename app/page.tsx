@@ -2029,7 +2029,7 @@ export default function Dashboard() {
                               </span>
                             </TipCustom>
                             {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
-                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
                                 {Math.ceil((6 * 3600 * 1000 - (Date.now() - lastPoolRefresh.getTime())) / 3600000)}h
                               </span>
                             )}
@@ -2458,7 +2458,7 @@ export default function Dashboard() {
               <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w4 text-w20">
                 {quests.rejected.length}
               </span>
-              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
+              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                 {rejectedOpen ? "▲" : "▼"}
               </span>
             </button>
@@ -2473,7 +2473,7 @@ export default function Dashboard() {
                     <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>x</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs truncate text-w25" style={{ textDecoration: "line-through" }}>{q.title}</p>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>by {q.createdBy ?? "unknown"}</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>by {q.createdBy ?? "unknown"}</span>
                     </div>
                     {q.rarity && <span className="text-xs px-1 rounded" style={{ color: ({ common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" } as Record<string, string>)[q.rarity] || "#9ca3af" }}>{q.rarity}</span>}
                   </div>
@@ -2775,11 +2775,11 @@ export default function Dashboard() {
         <div style={{ height: 1, background: `linear-gradient(90deg, transparent 0%, ${currentFloorColor}18 30%, ${currentFloorColor}25 50%, ${currentFloorColor}18 70%, transparent 100%)`, marginBottom: 16 }} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
           <span>Quest Hall v{gameVersion}</span>
-          <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+          <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
           <span style={{ color: `${currentFloorColor}40` }}>{CURRENT_SEASON.name}</span>
           {reviewApiKey && playerName && (
             <>
-              <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+              <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
               <button
                 data-feedback-id="footer.alpha-button"
                 onClick={() => setFeedbackMode(v => !v)}

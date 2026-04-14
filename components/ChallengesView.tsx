@@ -40,7 +40,7 @@ function Stars({ earned, max = 3, animated = false }: { earned: number; max?: nu
             key={i}
             className={isEarned && animated ? "star-earned" : ""}
             style={{
-              color: isEarned ? "#fbbf24" : "rgba(255,255,255,0.12)",
+              color: isEarned ? "#fbbf24" : "rgba(255,255,255,0.22)",
               fontSize: 16,
               display: "inline-block",
               animationDelay: animated && isEarned ? `${i * 0.15}s` : undefined,
@@ -165,7 +165,7 @@ function SternenpfadView({
                     {claimed ? "✓" : claimingMilestone === ms.stars ? "…" : ms.stars}
                   </div>
                   <span className="text-xs font-bold" style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{ms.label}</span>
-                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.12)", fontSize: 12 }}>{ms.reward}</span>
+                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.22)", fontSize: 12 }}>{ms.reward}</span>
                   {canClaim && <span className="text-xs font-semibold" style={{ color: "#fbbf24", fontSize: 12 }}>Claim!</span>}
                 </button>
               );
@@ -872,7 +872,7 @@ export default function ChallengesView({
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>★</p>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>★</p>
             <p className="text-sm font-bold mb-1 text-w25">No Star Path active</p>
             <p className="text-xs text-w25">{playerName ? "The Star Path resets every Monday. A new challenge awaits." : "Log in to view the Star Path."}</p>
           </div>
@@ -888,7 +888,7 @@ export default function ChallengesView({
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>▲</p>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>▲</p>
             <p className="text-sm font-bold mb-1 text-w25">No Expedition active</p>
             <p className="text-xs text-w25">The Expedition resets every Monday.</p>
           </div>

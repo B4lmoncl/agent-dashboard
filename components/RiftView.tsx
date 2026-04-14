@@ -669,7 +669,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     {selectedMythicLevel >= affix.minLevel ? (
                       <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>{affix.desc}</span>
                     ) : (
-                      <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.15)" }}>Activates at M+{affix.minLevel}</span>
+                      <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>Activates at M+{affix.minLevel}</span>
                     )}
                   </div>
                   {selectedMythicLevel >= affix.minLevel && (

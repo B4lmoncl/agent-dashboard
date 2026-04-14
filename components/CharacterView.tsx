@@ -330,7 +330,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           {frames.length === 0 ? (
             <div className="rounded-lg p-4 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No frames unlocked yet.</p>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }}>Earn frames from:</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>Earn frames from:</p>
               <div className="flex flex-wrap gap-1 mt-2 justify-center">
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Factions (Revered)</span>
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Season Pass</span>
@@ -1934,7 +1934,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             {bonus > 0 && (
                               <span className="text-xs font-mono" style={{ color: "#4ade80" }}>(+{bonus})</span>
                             )}
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
                           </button>
                         </Tip>
                         {isExpanded && sources.length > 0 && (
@@ -1948,7 +1948,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           </div>
                         )}
                         {isExpanded && sources.length === 0 && (
-                          <p className="ml-5 mt-1 mb-2 text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>No gear contributions</p>
+                          <p className="ml-5 mt-1 mb-2 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No gear contributions</p>
                         )}
                       </div>
                     );
@@ -2018,9 +2018,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         <div className="mt-1.5 space-y-0.5">
                           {((ns as unknown as { pieces: { id: string; name: string; slot: string; equipped: boolean }[] }).pieces).map(p => (
                             <div key={p.id} className="flex items-center gap-1.5 text-xs">
-                              <span style={{ color: p.equipped ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{p.equipped ? "●" : "○"}</span>
+                              <span style={{ color: p.equipped ? "#22c55e" : "rgba(255,255,255,0.25)", fontSize: 12 }}>{p.equipped ? "●" : "○"}</span>
                               <span className="flex-1 truncate" style={{ color: p.equipped ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)" }}>{p.name}</span>
-                              <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{p.slot}</span>
+                              <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{p.slot}</span>
                             </div>
                           ))}
                         </div>
@@ -2464,7 +2464,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 {socket ? (
                                   <span className="w-2 h-2 rounded-full" style={{ background: GEM_COLORS[socket.gemType] || "#9ca3af" }} />
                                 ) : (
-                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>+</span>
+                                  <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>+</span>
                                 )}
                               </div>
                               <div className="flex gap-0.5">
@@ -2879,7 +2879,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 ) : (
                                   <>
                                     <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
-                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{item.slot}</p>
+                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.slot}</p>
                                   </>
                                 )}
                               </div>

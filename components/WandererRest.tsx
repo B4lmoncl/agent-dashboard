@@ -658,7 +658,7 @@ export function WandererRest({
                       <button onClick={() => setDevOpenCollapsed(v => !v)} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
                         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
                         <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{devVisibleOpen.length}</span>
-                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{devOpenCollapsed ? "►" : "▼"}</span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{devOpenCollapsed ? "►" : "▼"}</span>
                       </button>
                       {!devOpenCollapsed && devVisibleOpen.map(q =>
                         q.children && q.children.length > 0
@@ -672,7 +672,7 @@ export function WandererRest({
                       <button onClick={() => setDevInProgressCollapsed(v => !v)} className="flex items-center gap-2 w-full text-left pt-2 pb-0.5">
                         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>In Progress</span>
                         <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{devVisibleInProgress.length}</span>
-                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{devInProgressCollapsed ? "►" : "▼"}</span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{devInProgressCollapsed ? "►" : "▼"}</span>
                       </button>
                       {!devInProgressCollapsed && devVisibleInProgress.map(q =>
                         q.children && q.children.length > 0
