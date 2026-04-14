@@ -2,8 +2,8 @@
   "expeditions": [
     {
       "id": "quick-forage",
-      "name": "Quick Forage",
-      "description": "A short trip. Your companion returns with supplies and opinions about your organizational skills.",
+      "name": "Schnelles Sammeln",
+      "description": "Ein kurzer Ausflug. Dein Companion kommt zurück mit Vorräten und Meinungen über deine organisatorischen Fähigkeiten.",
       "durationHours": 4,
       "icon": "/images/icons/exp-forest.png",
       "rewards": {
@@ -26,8 +26,8 @@
     },
     {
       "id": "deep-woods",
-      "name": "Deep Woods Patrol",
-      "description": "Beyond the tower walls, the trees watch. Your companion reports they watched back.",
+      "name": "Tiefer Wald",
+      "description": "Jenseits der Turmmauern beobachten die Bäume. Dein Companion berichtet, er hätte zurückgestarrt.",
       "durationHours": 8,
       "icon": "/images/icons/exp-forest.png",
       "rewards": {
@@ -54,8 +54,8 @@
     },
     {
       "id": "mountain-pass",
-      "name": "Mountain Pass Trek",
-      "description": "Treacherous terrain. Your companion handles it. Barely. With complaints.",
+      "name": "Bergpass",
+      "description": "Tückisches Gelände. Dein Companion meistert es. Gerade so. Unter Protest.",
       "durationHours": 12,
       "icon": "/images/icons/exp-mountain.png",
       "rewards": {
@@ -86,8 +86,8 @@
     },
     {
       "id": "ancient-ruins",
-      "name": "Ancient Ruins Expedition",
-      "description": "Forgotten ruins beneath the tower. Your companion insists it was not scared. The trembling is unrelated.",
+      "name": "Uralte Ruinen",
+      "description": "Vergessene Ruinen unter dem Turm. Dein Companion besteht darauf, keine Angst gehabt zu haben. Das Zittern habe andere Gründe.",
       "durationHours": 24,
       "icon": "/images/icons/exp-ruins.png",
       "rewards": {
