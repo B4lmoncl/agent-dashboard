@@ -261,6 +261,7 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 
 100. **[Typo]** npcQuestGivers.json — Strategin Athena title: "Die Schlachtenkdenkerin" → sollte "Die Schlachtendenkerin" sein
 109. **[Typo]** config.ts:148 — Navigation label "Wanderers Rest" fehlt Apostroph. Überall sonst "Wanderer's Rest" (mit ').
+110. **[Kontrast]** TowerMap.tsx — Tower Map Navigation hat zu schlechten Kontrast. Text/Labels schwer lesbar. (User-reported)
 
 ## CSS / Technisches
 
