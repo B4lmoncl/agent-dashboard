@@ -1218,6 +1218,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
   return (
     <div data-feedback-id="character-view" className="tab-content-enter">
+    <TutorialMomentBanner viewId="character" playerLevel={1} />
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
