@@ -233,6 +233,34 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 ### MITTEL: Tier/Level Mismatch bei 263 Crafted Items
 86. **[Tier Mismatch]** gearTemplates.json — 263 Crafting-Items haben `tier` das nicht zum `reqLevel` passt (laut CLAUDE.md Regeln T1=1-8, T2=9-16, T3=17-24, T4=25-50). Systematisch 1 Tier zu niedrig. Möglicherweise Designentscheidung, widerspricht aber der Dokumentation.
 
+## Fehlende Tooltips / Info-Lücken
+
+87. **[Missing Tooltip]** ChallengesView.tsx:315 — Star-Thresholds (★1: 5 quests etc.) ohne Erklärung was die Zahlen bedeuten
+88. **[Missing Tooltip]** ChallengesView.tsx:342 — Bonus-Multiplier "+15%", "+33%" ohne Tooltip was die Prozente betreffen (Star-Tier Reward Scaling)
+89. **[Missing Tooltip]** ForgeView.tsx:1477 — Currency-Icon bei Gear-Kosten ohne Tooltip welche Währung
+90. **[Missing Tooltip]** LeaderboardView.tsx:194 — Podium zeigt XP-Zahlen ohne lokalen Tooltip der erklärt was gemessen wird
+91. **[Missing Tooltip]** UserCard.tsx:288 — "Quests"-Counter ohne GameTooltip, nur title-Attribut
+92. **[Missing Tooltip]** CampaignHub.tsx:185 — Currency-Icon in Campaign-Rewards ohne Tip-Wrapper
+
+## Backend API Edge Cases
+
+### Inkonsistente Cooldown-Kommunikation
+93. **[Cooldown]** sworn-bonds.js:334 — Bond-Break-Cooldown zeigt nur Datum-Text, kein Countdown/Millisekunden für Frontend-Timer
+94. **[Cooldown]** crafting.js:526 — Crafting-Cooldown nur terse Text "X minutes remaining", kein maschinenlesbarer Wert
+95. **[Cooldown]** gacha.js:314 — Pull-Lock Error "Pull already in progress" ohne Timeout-Info. Bei Crash bleibt User stuck.
+
+### Destructive Actions ohne Confirmation
+96. **[Destructive]** game.js:635 — DELETE /api/rituals/:id löscht sofort ohne `confirmed: true` Parameter
+97. **[Destructive]** sworn-bonds.js:430 — Bond-Break feuert sofort. Fat-Finger = 7 Tage Cooldown-Strafe.
+98. **[Destructive]** rift.js:332 — Rift-Abandon sofort ohne Confirmation. User kann 30+ Min Fortschritt verlieren.
+
+### Fehlende Response-Daten
+99. **[Response]** quests.js:593 — Coop-Completion returned nur `ok: true`, nicht die individuellen Reward-Anteile
+
+## Typos & Kleine Textfehler
+
+100. **[Typo]** npcQuestGivers.json — Strategin Athena title: "Die Schlachtenkdenkerin" → sollte "Die Schlachtendenkerin" sein
+
 ---
 
 ## Bereits gefixt (diese Session)
