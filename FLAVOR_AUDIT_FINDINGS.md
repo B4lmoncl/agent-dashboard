@@ -260,6 +260,7 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 ## Typos & Kleine Textfehler
 
 100. **[Typo]** npcQuestGivers.json — Strategin Athena title: "Die Schlachtenkdenkerin" → sollte "Die Schlachtendenkerin" sein
+109. **[Typo]** config.ts:148 — Navigation label "Wanderers Rest" fehlt Apostroph. Überall sonst "Wanderer's Rest" (mit ').
 
 ## CSS / Technisches
 
