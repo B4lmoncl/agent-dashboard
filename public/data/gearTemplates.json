@@ -20159,7 +20159,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Wolle von Aethermoor-Schafen. Die Schafe sind widerspenstig. Lin auch. Deswegen verstehen sie sich.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -20615,7 +20615,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Durchscheinend genug um zu sehen. Dicht genug um zu schützen. Lins Definition von Kompromiss.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -21071,7 +21071,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Seide die bei Berührung summt. Lin behauptet, das sei der Stoff. Nicht sie.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -21527,7 +21527,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Die Fäden sind aus etwas gewebt das kein Webstuhl erzeugen kann. Lin hat es trotzdem geschafft.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -22023,7 +22023,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lins Meisterwerk. Sie würde es nie so nennen. Sie nennt es: den sechsten Versuch.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -22913,7 +22913,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Roderic hat es an einem Nachmittag gefertigt. Für ihn ist das langsam.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -23027,7 +23027,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Sitzt wie angegossen. Roderic hat den Kopf des Trägers vermessen. Ohne zu fragen.",
       "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
@@ -23255,7 +23255,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Aus dem Leder einer Kreatur die nur nachts jagt. Roderic auch.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -23369,7 +23369,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Für die Jagd gemacht. Welche Jagd ist Interpretationssache.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
@@ -23483,7 +23483,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Die goldene Mitte zwischen Schutz und Beweglichkeit. Roderic nennt es Pragmatismus.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -23711,7 +23711,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Jede Schicht einzeln gehärtet. Der Prozess stinkt. Das Ergebnis nicht.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -23825,7 +23825,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Schweres Leder, mehrfach gehärtet. Roderics Methode ist geheim. Und laut.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "shopHidden": true,
       "affixes": {
@@ -23939,7 +23939,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Schweres Leder an den Sohlen. Leise auf Erde. Laut auf Stein. Perfekt auf Feinden.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -24167,7 +24167,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Bestien-Leder hat eigene Regeln. Roderic hat sie gelernt. Auf die harte Tour.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -24281,7 +24281,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Aus dem Leder einer Kreatur die Roderic nur als unfreundlich beschreibt.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "shopHidden": true,
       "affixes": {
@@ -24400,7 +24400,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Aus einem Material das es theoretisch nicht mehr gibt. Roderic stellt keine Fragen.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "shopHidden": true,
       "affixes": {
@@ -24648,7 +24648,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Aus einem Material das älter ist als die Gerberei. Roderic hat improvisiert.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -24772,7 +24772,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Das Leder reagiert auf den Träger. Nicht unbedingt positiv. Aber es reagiert.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -24896,7 +24896,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Die Schuhe passen sich dem Träger an. Nicht dem Fuß — dem Charakter.",
       "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -25144,7 +25144,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Eine Krone aus Leder. Roderic findet das Konzept absurd. Er hat sie trotzdem gemacht.",
       "icon": "/images/icons/gacha-helm-bone-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -32335,7 +32335,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Jede Falte fällt exakt wie geplant. Lin hat die Schwerkraft persönlich instruiert.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -32801,7 +32801,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Leuchtet bei Dunkelheit. Dezent. Wie ein Lesezeichen in einem Buch das niemand liest.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -33267,7 +33267,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Stoff der im Mondlicht gewebt wurde. Der Zeitplan war unbequem. Das Ergebnis nicht.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "shopHidden": true,
       "affixes": {
@@ -33324,7 +33324,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Leder so dünn, dass man die Sterne durchsehen kann. Beinahe.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -33557,7 +33557,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Roderics erste Arbeit an jedem neuen Lehrling. Einfach. Aber lehrreich.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -33671,7 +33671,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Roderic hat das Tier selbst erlegt. Er redet nicht gerne darüber. Es war kompliziert.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "shopHidden": true,
       "affixes": {
@@ -33790,7 +33790,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Roderics Einstiegsmodell. Schlicht, funktional, und leicht beschämt.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -34023,7 +34023,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Leichtleder, frisch gegerbt. Der Geruch verfliegt. Irgendwann.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -34137,7 +34137,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Gehärtet in einem Prozess der drei Tage dauert und die Nachbarn beunruhigt.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -34256,7 +34256,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Bequem vom ersten Schritt an. Roderic sagt: Gute Schuhe lügen nicht.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -34489,7 +34489,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Roderics Standardwerk. Solide. Unauffällig. Genau wie er es will.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
@@ -34603,7 +34603,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Die Sohlen sind aus dem härtesten Leder das Roderic finden konnte. Er hat lange gesucht.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -39806,7 +39806,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Zweite Version. Die erste hat Lin verbrannt. Nicht aus Fehler — aus Prinzip.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -40272,7 +40272,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Überarbeitete Sohle. Lin sagt, die Verbesserung sei minimal. Das stimmt nicht.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -40738,7 +40738,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Dritter Anlauf. Der Stoff hat kapiert was Lin von ihm will. Es hat gedauert.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -41028,7 +41028,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Überarbeitete Passform. Roderic hat seinen eigenen Kopf als Modell genommen.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -41142,7 +41142,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Überarbeitete Nähte. Roderic sagt, die ersten waren schon gut. Er lügt.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -41261,7 +41261,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Dünner als er aussieht. Wärmer als man denkt. Typisch Roderic.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -41494,7 +41494,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Leiser als die erste Version. Roderic hat eine Beschwerdeliste abgearbeitet.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -41608,7 +41608,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Version zwei. Mehr Schichten. Mehr Schutz. Mehr Beschwerden von Roderics Rücken.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -41727,7 +41727,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Dritte Revision. Roderic hat die Nähte dreimal aufgetrennt. Perfektion braucht Geduld.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -41960,7 +41960,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Dritte Version. Das Leder ist weicher, die Nähte feiner, und Roderic ist müder.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -42074,7 +42074,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Drei Versionen in drei Monaten. Roderic hat in jedem Monat weniger geschlafen.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -42193,7 +42193,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Version drei hat dickere Sohlen. Roderic hat auf Kundenfeedback gehört. Einmal.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
