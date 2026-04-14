@@ -18964,7 +18964,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Der Kern pulsiert unter den Platten. Grimvar sagt, der Panzer träumt. Das ist beunruhigend.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -19026,7 +19026,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Seelenstahl erkennt seinen Träger. Grimvar weiß nicht wie. Und das stört ihn.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -19460,7 +19460,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Frisch aus der Deepforge. Noch warm. Wortwörtlich.",
+      "desc": "Seele und Stahl verschmolzen. Der Panzer atmet. Grimvar behauptet das sei normal.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -19522,7 +19522,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Kein Meisterwerk. Aber verdammt nah dran.",
+      "desc": "Aether an den Sohlen. Leise wie ein Gedanke. Härter als einer.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -27548,7 +27548,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Ein Stab für Wanderer. Varn hat ihn getestet. Auf dem Weg zur Werkstatt. Und zurück. Er hält.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -27662,7 +27662,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Eine Streitaxt die Argumente beendet. Nicht verbal. Das war Varns Designphilosophie.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -27719,7 +27719,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Der Hammer wiegt so viel wie ein Standpunkt. Und ist genauso schwer zu widerlegen.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "shopHidden": true,
       "affixes": {
@@ -28004,7 +28004,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Das Gewicht sitzt perfekt. Wie eine gut getimte Pointe.",
+      "desc": "Ein Zahn als Schneide. Der Drache hatte viele. Hatte.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -28118,7 +28118,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Nicht für Anfänger. Nicht für Angeber. Für Könner.",
+      "desc": "Zähne als Schildbuckel. Der Drache wäre nicht begeistert. Zum Glück ist er nicht gefragt worden.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -28175,7 +28175,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn nennt es seine beste Arbeit. Diesen Monat. Er sagt das jeden Monat.",
+      "desc": "Im Schatten unsichtbar. Im Licht tödlich. Der Drachenzahn kennt beide Seiten.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -28460,7 +28460,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Ausgewogen in jeder Hinsicht. Außer im Preis.",
+      "desc": "Ein kleiner Zahn, eine große Wirkung. Varn hat ihn in einer Stunde geschmiedet. Und eine Woche poliert.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -28574,7 +28574,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Wer das hier benutzt, braucht keine Anleitung.",
+      "desc": "Ein Fokus der prankt. Drachenstahl und Edelsteine. Varn nennt es übertrieben. Alle anderen: angemessen.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -28631,7 +28631,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Aus Varns Werkstatt. Er hat sie persönlich geprüft. Gründlich.",
+      "desc": "Drachenstahl ist schwer. Die Axt ist leichter als man denkt. Aber der Treffer nicht.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -29878,7 +29878,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Aetherkern vibriert in der Hand. Varn sagt, der Stab wählt seinen Moment. Oder seinen Magier.",
       "icon": "/images/icons/gacha-weapon-dual-scimitars.png",
       "shopHidden": true,
       "affixes": {
@@ -30002,7 +30002,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Der Schild spürt Gefahr. Bevor sie da ist. Varn findet das paranoid. Aber nützlich.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "shopHidden": true,
       "affixes": {
@@ -30064,7 +30064,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Aether im Beil. Die Schneide glüht bei Kontakt. Varn sagt, das spart Fackeln.",
       "icon": "/images/icons/gacha-weapon-elven-longbow.png",
       "shopHidden": true,
       "affixes": {
@@ -30374,7 +30374,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Das Gewicht sitzt perfekt. Wie eine gut getimte Pointe.",
+      "desc": "Der Stab summt bei Berührung. Nicht bedrohlich. Eher wie eine Katze die schnurrt. Eine sehr große Katze.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -30498,7 +30498,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Nicht für Anfänger. Nicht für Angeber. Für Könner.",
+      "desc": "Das Schwert richtet. Nicht über andere — über den Träger. Varn findet das philosophisch. Und unbequem.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -30560,7 +30560,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn nennt es seine beste Arbeit. Diesen Monat. Er sagt das jeden Monat.",
+      "desc": "Klein, schnell, und voller Aether. Der Dolch ist diskreter als seine Energie.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -30870,7 +30870,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Ausgewogen in jeder Hinsicht. Außer im Preis.",
+      "desc": "Für Rituale die mehr brauchen als Worte. Die Klinge liefert den Rest.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -30994,7 +30994,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Wer das hier benutzt, braucht keine Anleitung.",
+      "desc": "Aether im Wappen. Das Schild blockt Angriffe und schlechte Nachrichten. Letzteres metaphorisch.",
       "icon": "/images/icons/gacha-shield-mirror-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -31056,7 +31056,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aus Varns Werkstatt. Er hat sie persönlich geprüft. Gründlich.",
+      "desc": "Das prunkvollste Schild das Varn je gebaut hat. Er hat es sofort bereut. Dann hat er es behalten.",
       "icon": "/images/icons/gacha-shield-obsidian-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -31175,7 +31175,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Esse hat ihre Spuren hinterlassen. Absichtlich.",
+      "desc": "Kristall im Visier. Sieht mehr als normal. Zeigt weniger.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -31232,7 +31232,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Zweckmäßig. Ohne Schnörkel. Ohne Entschuldigung.",
+      "desc": "Drachenstahl schützt den Kopf. Und die Gedanken darin. Grimvar versteht Letzteres nicht, respektiert es aber.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
@@ -38641,7 +38641,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Stahlfäden in Stoff. Zweite Version. Grimvar hat mit Lin zusammengearbeitet. Beide reden nicht mehr darüber.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -38698,7 +38698,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Zweiter Drachenmarschtritt. Leiser. Grimvar hat Filz zwischen die Schuppen gelegt. Keiner fragt woher er Filz hat.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
@@ -39107,7 +39107,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Frisch aus der Deepforge. Noch warm. Wortwörtlich.",
+      "desc": "Überarbeitetes Visier. Bessere Sicht. Grimvar hat ein Fenster reingeschlagen. Metaphorisch.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -39164,7 +39164,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Kein Meisterwerk. Aber verdammt nah dran.",
+      "desc": "Zweiter Drachenpanzer. Grimvar hat das Gewicht reduziert. Indem er lauter auf den Stahl einredete.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -39573,7 +39573,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Esse hat ihre Spuren hinterlassen. Absichtlich.",
+      "desc": "Dritter Marschtritt. Grimvar hat nicht gelächelt. Aber er hat die dritte Version nicht eingeschmolzen. Für Grimvar ist das Applaus.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -39630,7 +39630,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Zweckmäßig. Ohne Schnörkel. Ohne Entschuldigung.",
+      "desc": "Dritte Drachenhaube. Die Schuppen sitzen so eng dass kein Wind durchkommt. Und kein Zweifel.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -49972,7 +49972,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
+      "desc": "Der Donner beginnt an den Füßen. Jeder Schritt grollt.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
@@ -50485,7 +50485,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Leicht, scharf, und dezent beunruhigend. Wie ein höflicher Drohbrief.",
+      "desc": "In der Dämmerung geschmiedet. Dort wo das Licht aufhört und der Stahl beginnt.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "affixes": {
         "primary": {
@@ -50723,7 +50723,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
+      "desc": "Blut und Stahl. Das Schild erinnert sich an jeden Treffer. Und vergilt keinen.",
       "icon": "/images/icons/gacha-shield-spiked-shield.png",
       "affixes": {
         "primary": {
@@ -51794,7 +51794,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es sieht besser aus als es riecht. Das ist ein niedriger Maßstab.",
+      "desc": "Ewigkeit ist lang. Der Ring weiß das. Du noch nicht.",
       "icon": "/images/icons/gacha-ring-sapphire-ring.png",
       "affixes": {
         "primary": {
@@ -55005,7 +55005,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "desc": "Gebraucht und müde. Wie der Montag nach dem Sonntag.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "affixes": {
         "primary": {
@@ -56222,7 +56222,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Die Herkunft ist... unklar. Absichtlich.",
+      "desc": "Ausgebessert mit dem was da war. Und was da war, war wenig.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "affixes": {
         "primary": {
@@ -56336,7 +56336,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Aufgelesen. Der Vorbesitzer hat nicht protestiert. Er war nicht da.",
+      "desc": "Verschlissen vom Tragen. Und vom Nicht-Waschen. Und von der Zeit.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "affixes": {
         "primary": {
@@ -56757,7 +56757,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Fundstück. Keine weiteren Fragen.",
+      "desc": "Ausgeleiert vom Tragen. Oder vom Leben. Beides hinterlässt Spuren.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "affixes": {
         "primary": {
@@ -57064,7 +57064,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Gefunden, nicht gekauft. Nicht gestohlen. Wahrscheinlich.",
+      "desc": "So ausgeleiert dass der Sand durchkommt. Und alles andere.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "affixes": {
         "primary": {
@@ -57485,7 +57485,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Die Herkunft ist... unklar. Absichtlich.",
+      "desc": "Gefunden unter einem Stein. Der Stein war zufriedener damit.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "affixes": {
         "primary": {
@@ -58475,7 +58475,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Aufgelesen. Der Vorbesitzer hat nicht protestiert. Er war nicht da.",
+      "desc": "Zerkratzt. Aber unter den Kratzern liegt noch etwas. Vielleicht.",
       "icon": "/images/icons/gacha-amulet-dark-pentacle.png",
       "affixes": {
         "primary": {
@@ -59010,7 +59010,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Fundstück. Keine weiteren Fragen.",
+      "desc": "Draht. Finger. Fertig. Minimalismus als Notwendigkeit.",
       "icon": "/images/icons/gacha-ring-bronze-signet.png",
       "affixes": {
         "primary": {
@@ -62365,7 +62365,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Gerade so über der Schwelle des Brauchbaren.",
+      "desc": "Löchrig an den Stellen die zählen. Und an denen die nicht zählen.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "affixes": {
         "primary": {
@@ -62399,7 +62399,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
+      "desc": "Lumpen die sich weigern aufzugeben. Bewundernswert. Oder traurig.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "affixes": {
         "primary": {
@@ -63657,7 +63657,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Reicht. Für den Moment.",
+      "desc": "Die Löcher machen ihn leichter. Und nutzloser. Kompromisse.",
       "icon": "/images/icons/gacha-shield-bone-aegis.png",
       "affixes": {
         "primary": {
@@ -64371,7 +64371,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Dünner Trost, aber Trost.",
+      "desc": "Ein Band. Ein Finger. Eine enttäuschende Beziehung.",
       "icon": "/images/icons/gacha-ring-claw-ring.png",
       "affixes": {
         "primary": {
@@ -64949,7 +64949,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Gerade so über der Schwelle des Brauchbaren.",
+      "desc": "Stumpf und blind. Der Stein hat nichts zu sagen. Das spart Zeit.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "affixes": {
         "primary": {
@@ -65119,7 +65119,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Reicht. Für den Moment.",
+      "desc": "Abgelaufen wie ein Vertrag. Beide Seiten sind erleichtert.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "affixes": {
         "primary": {
@@ -65255,7 +65255,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Der Vorbesitzer hat es freiwillig hergegeben. Oder so.",
+      "desc": "Schartig wie ein Zahn nach dem Zahnarzt. Funktioniert noch. Irgendwie.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "affixes": {
         "primary": {
@@ -66680,7 +66680,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Dünner Trost, aber Trost.",
+      "desc": "Der Schlamm hält sie zusammen. Ohne den Schlamm wäre es vorbei.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
