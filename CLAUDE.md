@@ -391,6 +391,8 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 
 > **Status:** Design phase. No code yet.
 
+**Spieler-Erklärung:** Einmal pro Tag öffnet ein mysteriöser Händler seinen Stand im Trading District — aber nur für 2 Stunden, zu einer zufälligen Uhrzeit. Wer den Markt verpasst, muss bis morgen warten. Das Sortiment wechselt täglich: seltene Materialien zu Sonderpreisen, Mystery-Boxen, gelegentlich vergünstigte Gacha-Tokens. Pro Erscheinung kann jeder Spieler nur begrenzt einkaufen (1-3 Stück pro Item). Ein Banner im UI zeigt an, wenn der Markt aktiv ist, mit Countdown bis zum Verschwinden.
+
 **Concept:** Once per day, at a random hour, a mysterious vendor ("Der Zwielichtmarkt") appears for exactly 2 hours in the Trading District. Offers 3-5 exclusive items: rare materials at discount, mystery scroll boxes, occasional gacha tokens at reduced cost, time-limited consumables. Inspired by WoW rare vendors + HSR Liben's Gift Box.
 
 **Key Design Decisions:**
@@ -402,6 +404,25 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 - **UI:** Notification banner when market is active. Countdown timer. Items show stock remaining. Missed-market indicator ("Der Markt war heute um 14:00. Du hast ihn verpasst.").
 - **Backend:** `routes/twilight-market.js`. Daily spawn time calculated at midnight rotation. State in `data/twilightMarket.json`. Stock tracked per player per appearance.
 - **Lore:** "Im Schatten zwischen den Stockwerken, wo das Licht nicht ganz hinreicht, baut jemand einen Stand auf. Niemand weiß wer. Niemand fragt. Die Preise sind gut und die Ware... interessant."
+
+### Schmiedefieber / Forge Fever (PLANNED — IMPLEMENTATION IN PROGRESS)
+
+> **Status:** Design finalized, implementation starting.
+
+**Spieler-Erklärung:** Alle 48 Stunden bricht in einer zufälligen Profession das Schmiedefieber aus — ein 4-stündiges Zeitfenster, in dem die Werkstatt überhitzt läuft. Während des Fiebers: Materialkosten halbiert (-50%) und doppelte Skill-XP (2x). Wer es schafft, innerhalb des Fensters 5 oder mehr Rezepte zu craften, bekommt zusätzlich einen Bonus-Cache mit seltenen Materialien. Das Fieber wird im Artisan's Quarter durch ein pulsierendes Banner angezeigt — mit Countdown, betroffener Profession und aktuellem Craft-Zähler.
+
+**Concept:** Every 48 hours, a random profession enters a "Fever" state for exactly 4 hours. During Fever: 50% material cost reduction, 2x skill XP gain. Completing 5+ crafts during the window awards a bonus material cache. Inspired by HSR double-reward events and WoW Darkmoon Faire profession buffs.
+
+**Key Design Decisions:**
+- **Rotation:** Every 48h at midnight Berlin time, one profession is randomly selected. Cannot repeat the same profession consecutively.
+- **Duration:** Exactly 4 hours from activation (midnight → 04:00, or first craft → +4h if delayed start).
+- **Material Discount:** All material costs for that profession's recipes are halved (rounded up). Gold costs unchanged.
+- **XP Bonus:** Skill XP from crafting doubled (stacks with daily first-craft bonus).
+- **Bonus Cache:** 5+ crafts during the fever window → reward cache with 2-4 random materials (uncommon-rare tier) for that profession.
+- **Per-Player Tracking:** Craft count tracked per player per fever event. Cache claimable once per event.
+- **UI:** Pulsing "Schmiedefieber" banner in ForgeView with profession icon, countdown timer, craft counter (X/5), and claim button when cache is earned.
+- **Backend:** Logic in `routes/crafting.js`. State in `state.forgeFever` (persisted via saveData). Rotation triggered in midnight rotation (`lib/rotation.js`).
+- **Lore:** "Manchmal überhitzt die Schmiede ohne Vorwarnung. Grimvar nennt es 'Inspiration'. Ysolde nennt es 'gefährlich'. Beide haben Recht."
 
 ### Class System "Pfad der Meisterschaft" (PLANNED — NOT YET IMPLEMENTED)
 
