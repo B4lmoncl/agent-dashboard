@@ -261,7 +261,12 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 
 100. **[Typo]** npcQuestGivers.json — Strategin Athena title: "Die Schlachtenkdenkerin" → sollte "Die Schlachtendenkerin" sein
 109. **[Typo]** config.ts:148 — Navigation label "Wanderers Rest" fehlt Apostroph. Überall sonst "Wanderer's Rest" (mit ').
-110. **[Kontrast]** TowerMap.tsx — Tower Map Navigation hat zu schlechten Kontrast. Text/Labels schwer lesbar. (User-reported)
+110. **[Kontrast]** TowerMap.tsx — Tower Map Navigation hat zu schlechten Kontrast. (User-reported)
+    - :159 Floor-Subtitle/Flavor `rgba(255,255,255,0.15)` = 15% Opacity, quasi unsichtbar
+    - :164 Room-Count `rgba(255,255,255,0.1)` = 10% Opacity, noch schlimmer
+    - :218 Locked-Room-Labels `rgba(255,255,255,0.12)` = 12%, quasi unsichtbar
+    - :225 Locked-Room-Icons `opacity: 0.3` = 30%, kaum sichtbar
+    - Fix: Subtitle auf mindestens 0.3, Room-Count auf 0.2, Locked-Rooms auf 0.25, Room-Icons auf 0.5
 
 ## CSS / Technisches
 
