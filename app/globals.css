@@ -702,12 +702,12 @@ button[disabled] {
 
 /* ─── Quest Hall Design System — Utility Classes ─────────────────────────── */
 /* Text colors — white at various opacities (replaces inline rgba styles)    */
-.text-w10 { color: rgba(255,255,255,0.1); }
-.text-w15 { color: rgba(255,255,255,0.15); }
-.text-w20 { color: rgba(255,255,255,0.2); }
-.text-w25 { color: rgba(255,255,255,0.25); }
-.text-w30 { color: rgba(255,255,255,0.3); }
-.text-w35 { color: rgba(255,255,255,0.35); }
+.text-w10 { color: rgba(255,255,255,0.15); }
+.text-w15 { color: rgba(255,255,255,0.22); }
+.text-w20 { color: rgba(255,255,255,0.28); }
+.text-w25 { color: rgba(255,255,255,0.32); }
+.text-w30 { color: rgba(255,255,255,0.38); }
+.text-w35 { color: rgba(255,255,255,0.42); }
 .text-w40 { color: rgba(255,255,255,0.4); }
 .text-w50 { color: rgba(255,255,255,0.5); }
 .text-w55 { color: rgba(255,255,255,0.55); }

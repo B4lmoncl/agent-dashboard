@@ -2617,15 +2617,6 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       </button>
       {onNavigate && (
         <button
-          onClick={() => onNavigate("forge")}
-          className="cross-nav-link shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
-          style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)", color: "rgba(245,158,11,0.55)" }}
-        >
-          <Tip k="artisans_quarter">Artisan&#39;s Quarter &#8250;</Tip>
-        </button>
-      )}
-      {onNavigate && (
-        <button
           onClick={() => onNavigate("talents")}
           className="cross-nav-link shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
           style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)", color: "rgba(168,85,247,0.55)" }}

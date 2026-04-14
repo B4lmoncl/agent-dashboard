@@ -74,16 +74,22 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   // ── Tier 2: System Unlocks ─────────────────────────────────────────────
   {
+    id: "wanderer_intro",
+    title: "Wanderer's Rest.",
+    text: "Reisende NPCs besuchen die Halle — jeder mit eigenen Quest-Ketten und einer einzigartigen Belohnung am Ende. Sie bleiben nicht lange. Wer ihre Quests erledigt bevor sie weiterziehen, bekommt etwas das es nirgendwo sonst gibt.",
+    view: "wanderer",
+  },
+  {
     id: "companion_intro",
     title: "Dein Companion.",
     text: "Es folgt dir. Streichle es gelegentlich. Bei Bond Level 5 hat es Fähigkeiten die tatsächlich nützlich sind. Bis dahin ist es hauptsächlich... da. Urteilend.",
-    view: "character",
+    view: "companion",
     minLevel: 3,
   },
   {
     id: "talents_intro",
     title: "Der Schicksalsbaum.",
-    text: "Passive Boni in drei Ringen. Innen: Grundlagen. Mitte: Entscheidungen die du bereuen wirst. Außen: Belohnungen für alle die trotzdem durchhalten. Respec kostet. Bereue weise.",
+    text: "Passive Boni in drei Ringen. Innen: Grundlagen. Mitte: Spezialisierungen mit Preis — wer hier wählt, verzichtet auf etwas anderes. Außen: Spielverändernde Kräfte für die, die den Weg bis hierhin gehen. Respec kostet. Wähle weise.",
     view: "talents",
     minLevel: 5,
   },
@@ -139,7 +145,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "challenges_intro",
     title: "Wöchentliche Herausforderungen.",
-    text: "Sternenpfad: Drei Stufen. Allein. Schnelligkeit gibt Bonus-Sterne. Expedition: Alle zusammen. Ein gemeinsames Ziel. Beide resetten montags. Das ist weder Zufall noch Gnade.",
+    text: "Sternenpfad: Drei Stufen. Allein. Schnelligkeit gibt Bonus-Sterne. Expedition: Alle zusammen. Ein gemeinsames Ziel. Beide resetten montags — neue Woche, neue Chance.",
     view: "challenges",
     minLevel: 5,
   },

@@ -1810,6 +1810,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [friends, setFriends] = useState<FriendInfo[]>([]);
   const [confirmBreak, setConfirmBreak] = useState(false);
+  const [proposalTarget, setProposalTarget] = useState<FriendInfo | null>(null);
+  const [proposalDuration, setProposalDuration] = useState<"4w" | "8w" | "endless">("4w");
 
   const fetchBond = useCallback(async () => {
     try {
@@ -1836,7 +1838,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
     })();
   }, [apiKey, playerName, bond]);
 
-  const propose = async (targetId: string) => {
+  const propose = async (targetId: string, duration: string) => {
     if (actionLoading) return;
     setActionLoading(true);
     setMessage(null);
@@ -1844,10 +1846,10 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       const r = await fetch("/api/social/sworn-bond/propose", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
-        body: JSON.stringify({ targetPlayer: targetId }),
+        body: JSON.stringify({ targetPlayer: targetId, duration }),
       });
       const d = await r.json();
-      if (r.ok) { setMessage({ text: d.message || "Bond proposed", type: "success" }); fetchBond(); }
+      if (r.ok) { setMessage({ text: d.message || "Bond proposed", type: "success" }); setProposalTarget(null); fetchBond(); }
       else setMessage({ text: d.error || "Failed to propose", type: "error" });
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
@@ -1942,8 +1944,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
             <button
               key={f.id}
               disabled={actionLoading || !!cooldownUntil}
-              onClick={() => propose(f.id)}
-              title={cooldownUntil ? "Bond cooldown active" : actionLoading ? "Action in progress" : `Propose bond to ${f.name}`}
+              onClick={() => setProposalTarget(f)}
+              title={cooldownUntil ? "Bond cooldown active" : actionLoading ? "Action in progress" : `Select ${f.name}`}
               className="rounded-lg p-3 text-left transition-all hover:brightness-125"
               style={{
                 background: "rgba(245,158,11,0.04)",
@@ -1964,6 +1966,64 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
             </button>
           ))}
         </div>
+        {/* ── Bond Proposal Modal ── */}
+        {proposalTarget && (
+          <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.25)" }}>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ background: `${proposalTarget.color || '#666666'}30`, color: proposalTarget.color || '#666666' }}>
+                {proposalTarget.avatar || proposalTarget.name?.slice(0, 2).toUpperCase()}
+              </div>
+              <div>
+                <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Pakt mit {proposalTarget.name}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Wähle die Dauer eures Bundes.</p>
+              </div>
+              <button onClick={() => setProposalTarget(null)} className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.25)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {([
+                { key: "4w" as const, label: "Kurzpakt", desc: "4 Wochen", detail: "Ideal zum Ausprobieren. 4 wöchentliche Ziele." },
+                { key: "8w" as const, label: "Schwurbund", desc: "8 Wochen", detail: "Der Standard-Pakt. Mehr Zeit, stärkere Belohnungen." },
+                { key: "endless" as const, label: "Ewiger Eid", desc: "Unbegrenzt", detail: "Bis einer von euch bricht. Höchste Duo-Streak-Boni." },
+              ]).map(opt => (
+                <button
+                  key={opt.key}
+                  onClick={() => setProposalDuration(opt.key)}
+                  className="rounded-lg p-3 text-center transition-all"
+                  style={{
+                    background: proposalDuration === opt.key ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.02)",
+                    border: `1px solid ${proposalDuration === opt.key ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.06)"}`,
+                    cursor: "pointer",
+                  }}
+                >
+                  <p className="text-xs font-bold" style={{ color: proposalDuration === opt.key ? "#f59e0b" : "rgba(255,255,255,0.5)" }}>{opt.label}</p>
+                  <p className="text-xs mt-0.5" style={{ color: proposalDuration === opt.key ? "rgba(245,158,11,0.7)" : "rgba(255,255,255,0.2)" }}>{opt.desc}</p>
+                </button>
+              ))}
+            </div>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+              {proposalDuration === "4w" ? "Ideal zum Ausprobieren. 4 wöchentliche Ziele, danach endet der Pakt automatisch." :
+               proposalDuration === "8w" ? "Der Standard-Pakt. 8 wöchentliche Ziele mit stärkeren Belohnungen ab Woche 5." :
+               "Kein Ende in Sicht. Der Pakt läuft bis einer von euch ihn bricht. Höchste Duo-Streak-Boni."}
+            </p>
+            <div className="flex gap-2">
+              <button
+                disabled={actionLoading}
+                onClick={() => propose(proposalTarget.id, proposalDuration)}
+                className="flex-1 py-2.5 rounded-lg text-xs font-bold"
+                style={{ background: "rgba(245,158,11,0.15)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}
+              >
+                {actionLoading ? "..." : "Pakt vorschlagen"}
+              </button>
+              <button
+                onClick={() => setProposalTarget(null)}
+                className="px-4 py-2.5 rounded-lg text-xs"
+                style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+              >
+                Abbrechen
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

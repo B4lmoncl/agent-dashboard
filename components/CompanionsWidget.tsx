@@ -492,7 +492,20 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       const d = await r.json();
       if (r.ok) {
         setPetsToday(d.petsToday ?? null);
-        // message feedback removed — belly rubs counter is enough
+        // Celebration for bond level-up
+        if (d.bondLevelUp && onRewardCelebration) {
+          const cCol = getCompanionColor(user?.companion?.type || user?.companion?.species);
+          onRewardCelebration({
+            type: "companion",
+            title: `Bond Level ${d.bondLevelUp}!`,
+            xpEarned: 0,
+            goldEarned: 0,
+            bondXp: 0,
+            loot: null,
+            companionAccent: cCol.accent,
+            companionEmoji: user?.companion?.emoji || "◆",
+          });
+        }
         if (onUserRefresh) onUserRefresh();
       } else {
         setPetError(d.error || "Error");

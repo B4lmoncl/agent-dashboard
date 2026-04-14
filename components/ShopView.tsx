@@ -153,6 +153,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
 
   return (
     <div data-feedback-id="shop-view" className="space-y-4 tab-content-enter">
+      <TutorialMomentBanner viewId="shop" playerLevel={1} />
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <div>

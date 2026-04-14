@@ -351,11 +351,13 @@ router.post('/api/player/:name/companion/pet', requireAuth, requireSelf('name'),
   const onExpedition = expedition && expedition.completesAt && !expedition.collected;
 
   // Always allow petting, but no bond XP during active expedition or if limit reached
+  const prevBondLevel = u.companion.bondLevel || getBondLevel(u.companion.bondXp || 0).level;
   if (!xpLimitReached && !onExpedition) {
     u.companion.petCountToday = petsToday + 1;
     u.companion.bondXp = (u.companion.bondXp || 0) + 0.5;
     u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
   }
+  const bondLevelUp = u.companion.bondLevel > prevBondLevel;
   u.companion.lastPetted = now();
   // Battle Pass XP (only when bond XP was awarded)
   if (!xpLimitReached && !onExpedition) { try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'companion_pet'); } catch (e) { console.warn('[bp-xp] companion_pet:', e.message); } }
@@ -378,6 +380,7 @@ router.post('/api/player/:name/companion/pet', requireAuth, requireSelf('name'),
     companion: { ...u.companion, bondInfo },
     petsToday: u.companion.petCountToday || 0,
     xpAwarded: !xpLimitReached && !onExpedition,
+    bondLevelUp: bondLevelUp ? u.companion.bondLevel : null,
     message: onExpedition ? expeditionMessage : (xpLimitReached ? 'Your companion loves the attention! (XP limit reached for today)' : undefined),
   });
 });

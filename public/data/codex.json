@@ -67,7 +67,7 @@
       "text": "Manche nennen es Magie. Die Gelehrten nennen es den Strom. Die Alten nannten es den Atem. Die Praktischen nennen es 'das Zeug, das Dinge explodieren lässt, wenn man es falsch anfasst'. Es ist keine Kraft die man sich nimmt — es ist eine, die man leiht. Und der Strom vergisst nie, wem er was geliehen hat. Er ist im Grunde eine kosmische Bank mit unbegrenzter Geduld und einer sehr, sehr detaillierten Buchhaltung.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -77,7 +77,7 @@
       "text": "Die Risse öffnen sich wieder. Dungeons, die seit Jahrhunderten schliefen, gähnen und strecken sich und benehmen sich so, als hätte man sie geweckt. Was man hat. Neue Helden werden gebraucht. Nicht weil die alten versagt haben — sie sind in Rente gegangen. Die meisten betreiben jetzt Wirtshäuser und erzählen jedem, der nicht schnell genug wegrennt, wie viel schlimmer alles früher war.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -97,7 +97,7 @@
       "text": "Der höchste Punkt des Turms. Hier hängen die Leaderboards, und hier stehen Leute mit verschränkten Armen vor ihnen und tun so, als hätten sie nicht gerade zwanzig Minuten nach ihrem eigenen Namen gesucht. Die Luft ist dünn. Die Egos nicht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 8
+        "value": 12
       }
     },
     {
@@ -117,7 +117,7 @@
       "text": "Der Ort wo Helden ihre Rüstung ablegen und einfach nur Menschen sind. Nachrichten, Handel, Klatsch. Die Taverne ist warm, das Bier kalt, und niemand fragt woher die Narben kommen. Ein guter Ort.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -127,7 +127,7 @@
       "text": "Acht Handwerksmeister, jeder in seinem Element. Der Klang von Hämmern, das Zischen von Tränken, das leise Summen von Verzauberungen. Hier wird aus Rohstoff Kunst. Und aus Kunst manchmal Schrott. Aber das gehört dazu.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -137,7 +137,7 @@
       "text": "Dein persönlicher Bereich im Turm. Inventar, Ausrüstung, Rituale — alles was dich definiert, auf drei Quadratmetern Wandfläche. Die Wände erinnern sich an jeden Gegenstand, den du je getragen hast. Manche sagen, die Wände urteilen. Die Wände sagen nichts, aber sie haben dieses Schweigen perfektioniert, das sich anfühlt wie ein gehobene Augenbraue. Besonders wenn du zum dritten Mal dieselbe Axt anlegst, die du gestern erst abgelegt hast.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -147,7 +147,7 @@
       "text": "Die Taverne friert deine Streaks ein und schützt deinen Fortschritt. Im Gegenzug musst du zugeben, dass du eine Pause brauchst, was für die meisten Helden schwieriger ist als jeder Dungeon. Ein Held hat einmal drei Wochen Taverne gebucht und es als 'strategischen Rückzug' bezeichnet. Sein Companion nannte es 'Nickerchen'. Beide hatten recht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -157,7 +157,7 @@
       "text": "Die Risse sind Narben in der Realität. Zeitlich begrenzte Passagen in Welten, die nicht ganz da sind und nicht ganz weg. Normal, Schwer, Legendär — und dann Mythisch, wo die Regeln aufhören sich an die Regeln zu halten.",
       "unlockedBy": {
         "type": "rift_completions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -167,7 +167,7 @@
       "text": "Unter dem Turm liegen Dungeons, die älter sind als der Turm selbst. Das versunkene Archiv. Die zerbrochene Spirale. Der hohle Kern. Drei Orte, drei Geschichten, keine davon mit einem glücklichen Ende. Zumindest nicht für die, die vor dir dort waren.",
       "unlockedBy": {
         "type": "dungeon_completed",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -187,7 +187,7 @@
       "text": "Er redet nicht viel. Sein Hammer spricht für ihn — laut und mit Nachdruck. Grimvar hat mehr Rüstungen repariert als die meisten Helden getragen haben. Sein Geheimnis? Er macht sie beim ersten Mal richtig.",
       "unlockedBy": {
         "type": "profession_skill",
-        "value": 10
+        "value": 25
       }
     },
     {
@@ -197,7 +197,7 @@
       "text": "Ihre Tränke heilen. Meistens. Manchmal explodieren sie auch. Ysolde sieht beides als Erfolg — das eine heilt den Körper, das andere die Langeweile. Ihre Augenbrauen wachsen seit einem bestimmten Experiment nicht mehr nach.",
       "unlockedBy": {
         "type": "profession_skill",
-        "value": 10
+        "value": 25
       }
     },
     {
@@ -207,7 +207,7 @@
       "text": "Eldric spricht in Gleichungen, denkt in Runen und hört Dingen zu, die nicht da sind. Für ihn ist jeder Gegenstand ein Rätsel und jede Verzauberung eine Konversation mit dem Aetherstrom. Ob der Strom antwortet oder nicht — er führt das Gespräch trotzdem weiter. Seit dreißig Jahren. Die anderen Handwerker haben aufgehört, sich Sorgen zu machen. Nicht weil es besser wurde. Sie haben sich einfach daran gewöhnt.",
       "unlockedBy": {
         "type": "profession_skill",
-        "value": 10
+        "value": 25
       }
     },
     {
@@ -217,7 +217,7 @@
       "text": "Niemand weiß, woher Bruna ihre Rezepte hat. Manche vermuten, sie hat einen Deal mit einem kulinarischen Dämonen geschlossen. Ihre Suppe heilt Wunden, ihr Brot gibt Kraft, und ihr Blick sagt dir, dass du besser aufisst.",
       "unlockedBy": {
         "type": "profession_skill",
-        "value": 10
+        "value": 25
       }
     },
     {
@@ -227,7 +227,7 @@
       "text": "Der Zirkel löst Probleme mit der ältesten Methode der Welt: Erschöpfung. Ihre Mitglieder trainieren, bis Schweiß zu Stahl wird und Stahl zu Metapher. Ein Novize fragte einmal, ob es auch einen intellektuellen Pfad gäbe. Man gab ihm einen schwereren Hammer.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -237,7 +237,7 @@
       "text": "Nerds mit Autorität. Der Zirkel sammelt, ordnet und bewahrt Wissen — und benutzt es als Waffe, indem er dich korrigiert. Immer. Zu allem. Ihre Bibliothek ist technisch gesehen endlos, nicht weil sie so viele Bücher haben, sondern weil die Bücher sich weigern, aufzuhören. Ein Mitglied wurde gefragt, was der Unterschied zwischen einem Tintenzirkel-Gelehrten und einem normalen Besserwisser sei. 'Quellenangaben', sagte er. Ohne zu lächeln.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -247,7 +247,7 @@
       "text": "Eine Fraktion, deren Mitglieder mit Ruß verschmiert zu Meetings kommen und das auch noch für eine Persönlichkeit halten. Ihre Werkstätten riechen nach heißem Metall. Ihre Mitglieder ebenfalls. Das ist Absicht, behaupten sie. Der Zirkel glaubt an Perfektion durch Wiederholung, was in der Praxis bedeutet: keine Deadlines, keine sauberen Hände und ein erschreckend entspanntes Verhältnis zu geschmolzenem Eisen.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -257,7 +257,7 @@
       "text": "Die einzige Fraktion, die behauptet, man müsse sie hören, bevor man sie verstehen kann, während sie gleichzeitig nie aufhört zu reden. Der Zirkel arbeitet an Verbindungen — Brücken bauen, Gespräche führen, Kontakte pflegen. Ihr Motto: 'Am effektivsten ist man, wenn jemand zuhört.' Ihr inoffizielles Motto: 'Wir hören nie auf.' Ihr noch inoffizielleres Motto: 'Doch, manchmal schon, aber dann vermisst ihr uns sofort.'",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -267,7 +267,7 @@
       "text": "Er kommt nicht. Das ist sein Trick. Er wartet, bis du wartest. Und dann wartet ihr beide, bis es zu spät ist. Der Wyrm ist nicht gefährlich, weil er angreift — er ist gefährlich, weil er dir einredet, dass du morgen anfangen kannst.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -277,7 +277,7 @@
       "text": "Er war einmal ein Held. Der beste sogar. Hundertachtzig Quests pro Woche. Null Pausen. Null Beschwerden. Jetzt ist er drei Stockwerke groß, hohl wie eine Trommel und macht ein Geräusch wie Wind durch leere Rüstung. Man kann in seinem Brustkorb Picknick machen. Jemand hat es versucht. Es war deprimierend. Die Taverne wurde eigens erfunden, um zu verhindern, dass so etwas nochmal passiert. Der Koloss steht übrigens immer noch da. Er blockiert den Osteingang. Keiner traut sich, es ihm zu sagen.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -287,7 +287,7 @@
       "text": "Schneide einen Kopf ab, und drei neue wachsen nach. Jeder Kopf ist ein neues Projekt, eine neue Idee, ein neues 'das mache ich auch noch'. Die Hydra wird nicht besiegt indem man kämpft — sondern indem man priorisiert.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -297,7 +297,7 @@
       "text": "Es flüstert. Nicht einmal etwas Kreatives. Immer dasselbe: 'Bist du sicher?' 'Reicht das?' 'Was wenn du scheiterst?' Drei Sätze. Das ist sein ganzes Repertoire. Für ein übermächtiges Phantom ist das ehrlich gesagt etwas peinlich. Es hat keine Substanz, keine Klauen, keine Zähne. Nur ein Mundwerk und die Ausdauer einer Parkuhr. Der Trick ist, lauter zu sein. Was nicht schwer ist, weil es buchstäblich flüstert.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -317,7 +317,7 @@
       "text": "Ein Artefakt das Legendäres extrahiert und konserviert. Wer es benutzt, opfert einen Gegenstand — und behält seine Essenz. Elegant, wenn man darüber nachdenkt. Brutal, wenn man an den Gegenstand hing.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -347,7 +347,7 @@
       "text": "Das Rad dreht sich. Runensplitter fließen hinein, Schicksal fließt heraus. Manche nennen es Glücksspiel. Die Betreiber nennen es 'kontrollierte Wahrscheinlichkeitsmanipulation'. Das klingt besser auf Einladungskarten.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -357,7 +357,7 @@
       "text": "Drei Stufen, neun Sterne, eine Woche. Der Sternenpfad belohnt die, die schnell sind, und tröstet die, die es nächste Woche nochmal versuchen. Jemand hat ausgerechnet, dass man statistisch gesehen siebzehn Wochen braucht, um einmal alle neun Sterne zu holen. Dieser Jemand hat danach aufgehört, Statistiken zu lesen, und es in drei Wochen geschafft.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -367,7 +367,7 @@
       "text": "Nachts passieren Dinge im Turm, die tagsüber nicht passieren. Der Aetherstrom pulsiert anders. Die Schmiede klingt anders. Gold vermehrt sich für Leute mit dem richtigen Gegenstand. Die alten Schmiede behaupteten, Mondlicht-geschmiedete Waffen tragen Ewigkeit in sich. Die neuen Schmiede behaupten, die alten Schmiede hatten Schlafmangel. Beide könnten recht haben.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -387,7 +387,7 @@
       "text": "Manche Gegenstände kleben sich an dich fest wie eine schlechte Entscheidung. Nicht aus Loyalität — aus Pragmatismus. Ein Schwert, das zu viele Hände kennt, wird unzuverlässig. Wie ein Freelancer. Seelengebundene Items können nicht gehandelt werden. Jemand hat es trotzdem versucht und einen halben Tag damit verbracht, einem Händler zu erklären, warum das Schwert seinen Arm nicht loslässt. Das System funktioniert.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -397,7 +397,7 @@
       "text": "Ein Companion ist technisch gesehen kein Haustier. Sag das laut und dein Companion gibt dir einen Blick, der 'natürlich nicht, ich bin dein gleichberechtigter Partner' sagt, und dann legt er sich auf deinen Schoß und will Bauchkraulen. Die Bindung wächst mit der Zeit. Auch mit Bauchkraulen. Letzteres ist wissenschaftlich belegt. Die Studie wurde allerdings von Companions finanziert, also nimm das mit Vorsicht.",
       "unlockedBy": {
         "type": "bond_level",
-        "value": 2
+        "value": 3
       }
     },
     {
@@ -407,7 +407,7 @@
       "text": "Jenseits der Mauern liegt eine Welt, die sich nicht darum kümmert ob du bereit bist. Auch nicht ob du Proviant hast. Oder einen Plan. Dein Companion kennt den Weg — behauptet er. In Wahrheit kennt er den Weg ungefähr so gut wie jemand, der einmal eine Karte gesehen hat und seitdem behauptet, er sei 'gut mit Richtungen'. Ihr kommt trotzdem an. Meistens. Ungefähr.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -417,7 +417,7 @@
       "text": "Fünf Gold Porto. Nicht weil die Lieferung teuer ist — sondern weil der Postbote zu viel weiß und man ihn bei Laune halten muss. Briefe, Gold, Gegenstände: alles kann verschickt werden. Nur keine Geheimnisse. Die kosten extra.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -454,7 +454,7 @@
       "text": "Leuchtende Venen, die durch den gesamten Turm pulsieren. Niemand hat sie verlegt. Es gibt keine Rechnung. Es gibt keinen Auftragnehmer. Sie waren einfach da. Die Gelehrten streiten seit zweihundert Jahren darüber, ob der Turm um die Adern gebaut wurde oder die Adern dem Turm gefolgt sind. Die Adern selbst schweigen mit der Souveränität von jemandem, der die Antwort kennt und euch alle für eure Theorien ein bisschen bemitleidet.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 2
+        "value": 5
       }
     },
     {
@@ -464,7 +464,7 @@
       "text": "Vierzig Level. Neunzig Tage. Eine tickende Uhr, die dir sagt, dass du 'noch genug Zeit hast', bis du plötzlich keine mehr hast. Level eins gibt dir Gold. Level vierzig gibt dir einen Titel und das Recht, Level-eins-Spieler mitleidig anzusehen. Die Belohnungen dazwischen sind der Grund, warum du um 23:47 noch 'eine letzte Quest' machst.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -474,7 +474,7 @@
       "text": "Sechs Edelsteintypen. Fünf Qualitätsstufen. Unendliche Möglichkeiten, es falsch zu machen. Einen Juwel sockeln? Simpel. Einen Juwel entfernen? Teuer. Einen Royal-Rubin in den falschen Slot stecken und dann feststellen, dass man eigentlich einen Saphir wollte? Unbezahlbar. Die Juweliere empfehlen, vorher nachzudenken. Die Juweliere empfehlen das seit Jahren. Die Juweliere haben aufgehört zu hoffen.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -484,7 +484,7 @@
       "text": "Das Schicksalsgewölbe führt Buch. Jeder erfolglose Versuch bringt dich näher an die Garantie. Bei fünfundfünfzig wird das Schicksal ungeduldig. Bei fünfundsiebzig gibt es auf und gibt dir was du willst. Das System heißt offiziell 'Progressives Wahrscheinlichkeitsmanagement'. Inoffiziell heißt es 'Mitleid'.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -494,7 +494,7 @@
       "text": "Man wählt eine Eigenschaft. Eldric rollt zwei Alternativen. Man wählt. Die Kosten steigen mit jedem Versuch — nicht weil das Material teurer wird, sondern weil Eldric nach dem achten Reroll anfängt, persönliche Fragen zu stellen. 'Weißt du eigentlich, was du willst?' ist seine Lieblingsfrage.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 8
+        "value": 12
       }
     },
     {
@@ -514,7 +514,7 @@
       "text": "Angebot. Gegenangebot. Beleidigung. Gegenbeleidigung. Gegenangebot. Akzeptiert. Händeschütteln. Beide gehen weg in der festen Überzeugung, den anderen übers Ohr gehauen zu haben. Das ist kein Bug. Das ist Diplomatie. Seelengebundene Gegenstände sind ausgenommen, weil jemand einmal versucht hat, sein seelengebundenes Schwert zu verkaufen. Das Schwert war anderer Meinung. Der Verkäufer hat überlebt. Das Möbelstück nicht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -524,7 +524,7 @@
       "text": "Er bewegt sich nicht. Seit Äonen. Nicht einen Zentimeter. Das klingt harmlos, bis man begreift, dass er genau in der Mitte eines sehr wichtigen Korridors steht. Man hat versucht, ihn zu verschieben. Man hat versucht, ihn zu sprengen. Man hat versucht, ihn höflich zu bitten. Er bewegt sich nicht. Sein Gesichtsausdruck sagt: 'Ich mache das morgen.' Seit dreihundert Jahren. Manche Helden erkennen sich in ihm wieder und werden sehr, sehr still.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -534,7 +534,7 @@
       "text": "Sechs Flügel, jeder makellos. Jede Feder symmetrisch. Jede Bewegung berechnet. Der Seraph hat nie einen Fehler gemacht. Er hat auch nie etwas erschaffen, weil das Risiko eines Fehlers inakzeptabel war. Er schwebt dort oben. Perfekt. Nutzlos. Wunderschön.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -544,7 +544,7 @@
       "text": "Er schwimmt allein in Gewässern, die er selbst geschaffen hat. Sehr beeindruckende Gewässer. Niemand sieht sie, weil er niemanden einlädt. Der Leviathan hat einmal eine Einladung zum Breakaway bekommen. Er hat sie gelesen, gefaltet, gefressen und weitergeschwommen. Das Breakaway-Komitee hat daraufhin beschlossen, keine Einladungen mehr an Wesen zu schicken, die größer als das Gebäude sind.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -554,7 +554,7 @@
       "text": "Er sitzt auf einem Thron aus Gleichgültigkeit und regiert ein Königreich aus Achselzucken. Sein Volk war weder glücklich noch unglücklich. Sie waren 'meh'. Eine Armee aus 'meh' ist übrigens erschreckend schwer zu bekämpfen, weil sie sich nicht genug dafür interessiert, besiegt zu werden. Der Souverän wurde letztendlich nicht besiegt, sondern ignoriert. Was ihn nicht gestört hat. Was der ganze Punkt ist. Was alle wahnsinnig macht.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -564,7 +564,7 @@
       "text": "Sie webt Fäden aus Unordnung in die Realität. Jeder Faden ein kleines Chaos: ein verlegter Schlüssel, ein vergessener Termin, eine Datei die du gespeichert hast aber die jetzt weg ist. Einzeln harmlos. Zusammen? Du stehst morgens auf und dein ganzer Tag ist bereits ruiniert und du weißt nicht warum. Die Weberin wurde einmal gefragt, ob sie böse sei. 'Böse?', sagte sie. 'Ich bin Bürokratie.'",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -574,7 +574,7 @@
       "text": "Die Ersten Helden hatten keine Ausrüstung, keine Quests und keinen Plan. Was sie hatten: unerklärlich gute Körperhaltung und eine Vorliebe für To-Do-Listen, die an eine psychische Störung grenzte. Sie haben den Turm nicht gebaut. Sie standen einfach so produktiv an einer Stelle, dass der Turm aus reiner Verlegenheit um sie herum entstand. Der erste dokumentierte Satz eines Ersten Helden lautet: 'Hat jemand meine Liste gesehen?' Der zweite: 'Nicht die Einkaufsliste. Die andere. Die mit den Lebenszielen.'",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -584,7 +584,7 @@
       "text": "Es gab eine Zeit, in der der Turm leer stand. Keine Quests. Keine Helden. Nur ein sehr großes Gebäude und eine unangenehme Stille. Die Gelehrten nennen diese Epoche die Große Stille und haben siebzehn Bücher darüber geschrieben, was bemerkenswert ist für eine Periode, in der buchstäblich nichts passiert ist. Sie endete, als jemand mit einer Liste und einem Problem vorbeikam. Beides löste sich gegenseitig.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -604,7 +604,7 @@
       "text": "Gold fließt. Immer. Rein und raus. Quests bringen es, der Basar nimmt es, und die Schmiede verschlingt es mit der Begeisterung eines Kindes in einer Süßwarenabteilung. Die Ökonomen des Turms haben einmal versucht, den Goldfluss zu kartografieren. Sie haben aufgegeben und stattdessen einen Trank bestellt.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -614,7 +614,7 @@
       "text": "Kristallisierte Fragmente des Aetherstroms. Sie klingen beim Berühren — ein Ton, der nicht ganz in diese Realität gehört und den die Nachbarn als 'nervig' bezeichnen. Man kann sie ins Schicksalsgewölbe werfen und hoffen. Oder man kann sie horten, bis man genug hat um nicht mehr hoffen zu müssen. Das zweite ist klüger. Das erste macht mehr Spaß. Die Schnittmenge ist leer.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -624,7 +624,7 @@
       "text": "Du nimmst ein Schwert. Du zerlegst es. Übrig bleibt ein trauriges Häufchen Essenz und die leise Frage, ob das Schwert das verdient hat. Essenz ist konzentriertes 'Gewesen-Sein'. Die Handwerker verwenden sie für alles, was kompliziert und teuer ist. Also für alles. Ein Held hat einmal aus Versehen sein bestes Epic zerlegt. Der Schrei war auf drei Stockwerken zu hören. Die Essenz war es nicht wert.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -644,7 +644,7 @@
       "text": "Münzen, die nur der Sternenpfad prägt. Sie tragen das Licht bestandener Herausforderungen in sich — buchstäblich. Im Dunkeln leuchten sie schwach. Im Mondlicht leuchten sie stark. In der Tasche klimpern sie wie ganz normales Geld. Der Alltag hat keinen Sinn für Dramatik.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -654,7 +654,7 @@
       "text": "Der erste Dungeon. Manche sagen, er war einmal eine Bibliothek. Die Bücher sind noch da — aber die Wörter haben sich neu arrangiert. Was einmal Rezepte waren, sind jetzt Warnungen. Was einmal Warnungen waren, sind jetzt Witze. Der Humor des Archivs ist... speziell.",
       "unlockedBy": {
         "type": "dungeon_completed",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -664,7 +664,7 @@
       "text": "Ein Turm im Turm. Einmal aufrecht, jetzt horizontal, durchbrochen von Rissen im Raum. Die Schwerkraft hier ist eine Suggestion, kein Gesetz. Wer die Spirale betritt, sollte sich merken wo oben ist. Die meisten vergessen es. Die Spirale hilft nicht beim Erinnern.",
       "unlockedBy": {
         "type": "dungeon_completed",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -674,7 +674,7 @@
       "text": "Ganz unten. Unter allem. Der Kern ist nicht leer — er ist voll mit Nichts, und das ist ein wichtiger Unterschied. Wer den Kern betritt, hört auf zu denken und fängt an zu verstehen. Oder andersherum. Die Überlebenden sind sich uneinig.",
       "unlockedBy": {
         "type": "dungeon_completed",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -684,7 +684,7 @@
       "text": "Die Kristalladern bilden ein Netzwerk, das den gesamten Turm durchzieht. Nachts pulsieren sie stärker. Die Farbe ändert sich je nach Stockwerk: Blau in den Hallen, Grün im Gewerbeviertel, Violett in der Bibliothek. Im dritten Keller sind sie rot. Die Handwerker sagen, die Farbe zeigt die Stimmung des Turms. Auf die Frage, was Rot bedeutet, antwortete Grimvar: 'Nimm die Treppe nach oben.' Er hat nicht gesagt warum. Er musste nicht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 8
+        "value": 12
       }
     },
     {
@@ -694,7 +694,7 @@
       "text": "Jeder NPC, der den Turm betritt, folgt unausgesprochenen Regeln. Regel eins: Komm mit einer Quest. Regel zwei: Geh mit einer Geschichte. Regel drei: Nimm nichts mit, was dir nicht gehört. Regel vier: Lass nichts zurück, das jemanden verfolgen könnte. Regel fünf existiert, wird aber nur mündlich weitergegeben, und nur an NPCs die Regel eins bis vier gebrochen haben. Die meisten halten sich an den Kodex. Die interessanten nicht. Die gefährlichen kennen ihn auswendig und ignorieren ihn trotzdem.",
       "unlockedBy": {
         "type": "unique_npcs_completed",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -704,7 +704,7 @@
       "text": "Du sagst dem Turm: 'Ich werde das jeden Tag tun.' Der Turm sagt: 'Beweis es.' Dann tust du es. Oder nicht. Der Turm vergisst nicht. Der Turm vergibt nicht. Der Turm ist im Grunde dein schlechtestes Gewissen, nur mit besserem Belohnungssystem. Tag eins fühlt sich bedeutungslos an. Tag dreißig fühlt sich unzerstörbar an. Tag einundreißig vergisst du es und heulst in der Taverne.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -714,7 +714,7 @@
       "text": "Jemand hat sich hingesetzt und gesagt: 'Wisst ihr was Ritualen fehlt? Konsequenzen.' Und dann hat diese Person den Blutpakt erfunden, der dir alles wegnimmt wenn du einen Tag auslässt. Die Belohnungen sind großartig. Die psychologischen Schäden auch. Man unterschreibt freiwillig. Das macht es schlimmer.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -754,7 +754,7 @@
       "text": "Ein Wanderer brachte das Rad mit. Niemand fragte woher. Niemand fragte warum. Als die ersten Runensplitter flossen und die ersten Legendaries fielen, hörten die Fragen auf. Die Antworten wurden irrelevant. Das Rad dreht sich. Das reicht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 8
+        "value": 12
       }
     },
     {
@@ -764,7 +764,7 @@
       "text": "Zwei Teile eines Sets: netter Bonus. Drei Teile: beeindruckender Bonus. Vier Teile: du trägst seit drei Wochen denselben Helm, weil du den letzten Set-Slot nicht aufgeben kannst, obwohl du einen besseren Helm im Inventar hast. Die Handwerker nennen es 'Resonanz'. Die Helden nennen es 'Warum ich ein episches Schwert zerlegt habe, um ein seltenes zu behalten, das 4 Kraft weniger hat'. Die Handwerker nicken verständnisvoll. Sie verdienen gut daran.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -844,7 +844,7 @@
       "text": "Die Weltbosse sind keine Monster. Sie sind Manifestationen menschlicher Schwächen, was bedeutet, dass du im Grunde gegen deine eigenen schlechten Gewohnheiten kämpfst, nur dass deine schlechten Gewohnheiten jetzt neun Meter groß sind und einen Gesundheitsbalken haben. Der Prokrastinations-Wyrm wurde nicht geboren — er wurde herbeigewartet. Sehr, sehr geduldig. Der Burnout-Koloss entstand aus einem Helden, der vergaß aufzuhören. Das Ironie-Level ist nicht verloren gegangen. Es wurde ignoriert.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -854,7 +854,7 @@
       "text": "Der Turm hat Jahreszeiten. Nicht die normalen. Im Frühling sprießen neue Quests aus dem Questboard wie Unkraut. Im Sommer brennt die Schmiede so heiß, dass Grimvar einmal sein Frühstück auf dem Amboss gebraten hat. Im Herbst fallen die Preise im Basar und Bruna hortet Kürbisse. Im Winter passiert wenig, aber die Kristalladern glühen wärmer, was entweder Fürsorge ist oder eine Fehlfunktion. Der Turm äußert sich nicht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -864,7 +864,7 @@
       "text": "Vier Pfade. Aufsteigende Verrücktheit. Schnelles Sammeln: vier Stunden, du kommst zurück mit Kräutern und deiner Würde intakt. Tiefer Wald: acht Stunden, dein Companion sieht Dinge, über die er nicht sprechen möchte, und du respektierst das, weil sein Blick dich beunruhigt. Bergpass: zwölf Stunden vertikaler Wahnsinn. Alte Ruinen: vierundzwanzig Stunden in Relikten, die älter sind als die Erinnerung. Dein Companion kommt verändert zurück. Du auch.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 8
+        "value": 12
       }
     },
     {
@@ -874,7 +874,7 @@
       "text": "Drei Aufgaben pro Zirkel. Jeden Tag. Kein Wochenende. Kein Urlaub. Die Zirkel nennen es 'ein Angebot'. Man nennt Steuern auch ein 'Angebot'. Du bekommst Gold und Ruf dafür. Du verlierst deine Freiheit, den Tag ohne Schuldgefühle zu verbringen. Ein fairer Handel, sagen die Zirkel. Die Zirkel lügen professionell.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 10
+        "value": 15
       }
     },
     {
@@ -923,7 +923,7 @@
       "text": "Es gibt eine Tradition im Zirkel des Amboss: Jeder neue Meister schmiedet ein Werkzeug, das er selbst nie benutzen wird. Manche schmieden Schlüssel für Türen, die es noch nicht gibt. Andere Uhren, die rückwärts laufen. Einer schmiedete einmal einen perfekten Spiegel aus Stahl und stellte fest, dass sein Spiegelbild einen besseren Bart hatte. Der Amboss lehrt nicht Perfektion — er lehrt, dass die interessantesten Dinge entstehen, wenn man aufhört, das Ergebnis kontrollieren zu wollen.",
       "unlockedBy": {
         "type": "faction_rank",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -973,7 +973,7 @@
       "text": "Ab Level 5 wächst im Inneren Heiligtum ein Baum, der deine Entscheidungen in Rinde ritzt. Drei Ringe, vierundvierzig Knoten, dreiundzwanzig Punkte die nie für alles reichen. Der Baum hat kein Mitleid. Er hat auch keine Blätter. Er hat Meinungen. Manche Knoten schließen sich gegenseitig aus — der Baum nennt das 'Charakter'. Zurücksetzen kostet 500 Gold und 50 Essenz, was angemessen ist für jemanden der seine Persönlichkeit komplett ändern will.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -983,7 +983,7 @@
       "text": "Ein Buch, das dich beurteilt. Pro Stockwerk eine Seite, pro Seite eine Prozentzahl, pro Prozentzahl eine leise Enttäuschung. 25%, 50%, 75%, 100% — bei jedem Meilenstein gibt es Belohnungen und das subtile Gefühl, dass der Turm dich für die fehlenden Prozent verurteilt. Wer alle fünf Stockwerke auf 100% bringt, erhält einen Titel und einen Frame. Und den Drang, sofort mit dem nächsten Charakter anzufangen.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -1003,7 +1003,7 @@
       "text": "Er sitzt auf deiner Schulter und zeigt dir das Leaderboard. Immer. Auch wenn du nicht fragst. Besonders wenn du nicht fragst. 'Schau mal, der hat dreißig Level mehr als du.' 'Und bessere Ausrüstung.' 'Und mehr Freunde.' Der Dämon lügt nicht. Das ist das Schlimmste an ihm. Die Taverne ist der einzige Ort, an dem er die Klappe hält — vermutlich weil die Taverne keinen Empfang hat.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1013,7 +1013,7 @@
       "text": "Er hat achtzehn Arme und erledigt mit keinem davon etwas zu Ende. Angefangene Projekte türmen sich in seinem Inneren wie geologische Schichten: unten die Ambitionen von 2019, in der Mitte ein halbfertiger Roman, oben eine Yogamatte die er einmal benutzt hat. Der Golem ist technisch gesehen unsterblich. Nicht weil er mächtig ist — sondern weil er nie irgendwo lange genug bleibt um besiegt zu werden. Sein Schwachpunkt: zwing ihn, eine Sache zu Ende zu machen. Er kollabiert vor Schreck.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1023,7 +1023,7 @@
       "text": "Er verbrennt sich selbst. Immer wieder. Nicht weil er muss — sondern weil das Ergebnis noch nicht perfekt genug war. Die Asche des dreihundertsiebten Versuchs ist laut Analyse identisch mit der des ersten. Der Phönix sieht das anders. 'Diesmal', sagt er jedes Mal und zündet sich wieder an, 'diesmal wird es richtig.' Die anderen Bosse haben aufgehört zuzusehen. Nicht aus Desinteresse, sondern aus Erschöpfung.",
       "unlockedBy": {
         "type": "world_boss_contributions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1033,7 +1033,7 @@
       "text": "Vor den acht Meistern gab es einen. Einen Typen mit einem Hammer und zu viel Selbstvertrauen. Er schmiedete den ersten Gegenstand im Turm: einen Löffel. Der Löffel war furchtbar. Aber er existierte, und das war der Punkt. Seitdem gibt es acht Berufe, dreihundert Skill-Level, achthundert Rezepte und die stille Übereinkunft, dass niemand nach dem Löffel fragt. Er steht übrigens immer noch irgendwo im Keller. Der Löffel, nicht der Typ. Der Typ wurde Meister. Ironie hat keinen Ruhetag.",
       "unlockedBy": {
         "type": "profession_skill",
-        "value": 1
+        "value": 25
       }
     },
     {
@@ -1063,7 +1063,7 @@
       "text": "Jeder Sternentaler trägt auf der Vorderseite das Datum der Herausforderung und auf der Rückseite die exakte Anzahl der Sterne, die du verdient hast. Drei Sterne: die Münze leuchtet warm. Zwei: sie leuchtet höflich. Eine: sie leuchtet mit der Begeisterung einer Behördenmitarbeiterin am Freitagnachmittag. Im Basar akzeptieren nur bestimmte Händler Sternentaler, und diese Händler drehen jede Münze um, bevor sie den Preis nennen. Ein-Stern-Münzen kosten mehr. Die Händler nennen es 'Mitleidszuschlag'. Die Händler sind ehrliche Leute.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -1083,7 +1083,7 @@
       "text": "Dreizehn Grundmaterialien, von gewöhnlichem Kupfererz bis zu legendärem Sternenstahlbarren. Jedes hat einen eigenen Charakter. Kupfererz ist geduldig und verzeiht Fehler. Teufelseisen beißt zurück, wenn man es falsch anfasst — buchstäblich, zwei Schmiede haben Narben und einer hat aufgehört zu zählen. Mondstoff flüstert, wenn man ihn webt, aber nur Unsinn. Ysolde hat einmal drei Stunden zugehört und dann festgestellt, dass der Stoff die ganze Zeit Kuchenrezepte gemurmelt hat. Gute Rezepte, zugegeben. Der Kuchen war exzellent. Das Kleid danach nicht.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -1163,7 +1163,7 @@
       "text": "Der Turm belohnt Abwesenheit. Nicht viel, aber genug um sich darüber zu ärgern, dass man nicht öfter fehlt. Pro acht Stunden Offline sammelt sich ein blaues Leuchten in deiner XP-Leiste — der Erholungs-Pool. Fünf Prozent deines Level-XP pro acht Stunden, gedeckelt bei hundertfünfzig Prozent. Sobald du zurückkommst, verdoppelt er deine XP-Einnahmen, bis er leer ist. Das System wurde von jemandem erfunden, der verstanden hat, dass die beste Motivation die ist, aufzuhören. Die zweitbeste ist, wiederzukommen und doppelt belohnt zu werden. Die Taverne und der Erholungs-Pool sind übrigens nicht kompatibel. Weil das zu einfach wäre.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -1183,7 +1183,7 @@
       "text": "Schmiedekunst ist das System, in dem man teure Dinge kaputt macht, um daraus nützliche Dinge zu gewinnen. Zerlegen verwandelt Ausrüstung in Essenz und Materialien. Transmutation nimmt drei gleichwertige Gegenstände und macht einen besseren daraus — oder zumindest einen anderen, was optimistisch als 'besser' vermarktet wird. Reforging würfelt alles neu. Der Schmied nennt es 'dem Zufall eine zweite Chance geben'. Statistisch gesehen ist die zweite Chance genauso schlecht wie die erste, aber die Hoffnung ist hartnäckiger als die Mathematik. Fünfhundert Gold Gebühr. Pro Versuch. Der Schmied hat eine Yacht.",
       "unlockedBy": {
         "type": "crafts_completed",
-        "value": 1
+        "value": 5
       }
     },
     {
@@ -1193,7 +1193,7 @@
       "text": "Vierzig Stufen. Jede mit einer Belohnung. Die erste Stufe gibt Gold. Die letzte gibt einen Rahmen, der leuchtet. Dazwischen liegen achtunddreißig Stufen, die sich anfühlen wie ein Vertrag, den du nicht gelesen hast, aber trotzdem unterschrieben. XP sammelt sich aus Quests, Ritualen, Gelübden und täglichen Missionen. Saisonwechsel setzen alles zurück. Nicht beanspruchte Belohnungen verschwinden. Der Pass hat kein Mitleid. Der Pass hat einen Zeitplan. Und der Zeitplan hat immer Recht.",
       "unlockedBy": {
         "type": "battlepass_level",
-        "value": 1
+        "value": 5
       }
     },
     {
@@ -1203,7 +1203,7 @@
       "text": "Dungeons sind kooperativ und asynchron, was bedeutet: du kämpfst gemeinsam, aber nie gleichzeitig. Zwei bis vier Freunde betreten das Untergewölbe, der Dungeon wertet den kombinierten Gearscore aus, und nach einer Wartezeit steht fest, ob ihr gewonnen habt. Drei Schwierigkeitsstufen: Normal für Optimisten, Hart für Realisten, Legendär für Leute, die Schmerz als Hobby betrachten. Sieben Tage Abklingzeit pro Dungeon. Nicht pro Charakter. Pro Dungeon. Der Dungeon braucht Erholung. Du auch, aber das interessiert niemanden.",
       "unlockedBy": {
         "type": "dungeon_completed",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -1213,7 +1213,7 @@
       "text": "Hinter der legendären Schwierigkeitsstufe des Rifts liegt eine Tür, die nicht aufhört. Mythisch+1 beginnt dort, wo vernünftige Leute aufhören würden. Jede Stufe erhöht den Multiplikator um 0,25 und verkürzt die Zeit, die du nicht hast. Es gibt kein Ende. Es gibt eine Rangliste. Bei Mythisch+5 gibt es besseren Loot. Bei Mythisch+10 gibt es Titel. Bei Mythisch+20 gibt es die leise Erkenntnis, dass du dieses Spiel nicht spielst — es spielt dich. Keine Abklingzeit bei Scheitern. Sofort nochmal. Das ist entweder Gnade oder Grausamkeit, je nachdem wie gut du im Verdrängen bist.",
       "unlockedBy": {
         "type": "rift_completions",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1223,7 +1223,7 @@
       "text": "Jede der vier Fraktionen hat täglich Aufgaben, die Ruf einbringen. Zehn bis dreißig Punkte pro Quest, abhängig davon, ob die Quest zur Fraktion passt. Kampfquests für den Orden der Klinge, Wissensquests für den Zirkel der Sterne, und so weiter. Das System ist transparent. Die Fraktionen nicht. Jede behauptet, die wichtigste zu sein. Jede hat Unrecht. Jede hat trotzdem Recht, was das eigentliche Problem ist. Ruf akkumuliert sich automatisch. Vertrauen nicht. Aber Ruf reicht für die Händler-Rabatte, und Vertrauen war noch nie im Angebot.",
       "unlockedBy": {
         "type": "faction_rank",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -1233,7 +1233,7 @@
       "text": "Im Handwerkerviertel stehen vier Gegenstände, die permanent sind. Goldgeschmiedete Werkzeuge: zwei bis fünf Prozent mehr Gold. Beutechancen-Amulett: ein bis drei Prozent bessere Drops. Streak-Schild-Talisman: rettet eine Streak pro Woche, automatisch, ohne dein Wissen und ohne dein Zutun, was entweder beruhigend oder beunruhigend ist. Materialmagnet: fünf bis fünfzehn Prozent mehr Materialien. Vier Stufen pro Upgrade. Jede teurer als die letzte. Das Preis-Leistungs-Verhältnis nimmt ab, aber wer rechnet schon nach, wenn das Wort 'permanent' in der Beschreibung steht.",
       "unlockedBy": {
         "type": "workshop_upgrade_purchased",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -1243,7 +1243,7 @@
       "text": "Jeden Tag sechs Aufgaben: Einloggen, Quests erledigen, Rituale pflegen, den Begleiter streicheln, etwas herstellen. Vier Meilensteine bei hundert, dreihundert, fünfhundert und siebenhundertfünfzig Punkten, jeder mit Währungsbelohnungen. Das System fragt nicht, ob du Lust hast. Das System hat eine Liste. Listen haben keine Gefühle. Listen haben Haken, und die Haken wollen gesetzt werden. Wer alle sechs schafft, bekommt die volle Ausbeute. Wer null schafft, bekommt morgen dieselbe Liste. Die Liste ist geduldig. Geduldiger als du.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -1263,7 +1263,7 @@
       "text": "Aldric spricht über Edelsteine wie andere Leute über Familienmitglieder: mit Zuneigung, Sorge und gelegentlicher Enttäuschung. Er kann einen Rohdiamanten von einem Glasstück in fünf Metern Entfernung unterscheiden, aber vergisst regelmäßig, wo er seinen Laden abgeschlossen hat. Sein Spezialgebiet: Sockelung. Er setzt Edelsteine in Ausrüstung ein und entfernt sie wieder, wobei Letzteres ihn persönlich kränkt. 'Man trennt eine Verbindung nicht einfach auf', sagt er dann und meint den Stein, nicht die Beziehung. Obwohl die Grenze zunehmend unklar wird. Sein teuerster Fehler: ein Königlicher Rubin, eingesetzt in einen Kochlöffel. Der Kochlöffel hat jetzt mehr Kraft als die meisten Schwerter.",
       "unlockedBy": {
         "type": "unique_npcs_completed",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1303,14 +1303,17 @@
       "text": "Pip ist entweder ein Genie oder ein Sicherheitsrisiko, und die Grenze verläuft entlang der Tageszeit. Morgens: brillante Erfindungen. Nachmittags: brillante Erfindungen, die explodieren. Abends: Entschuldigungsschreiben. Sein Meisterwerk: ein automatischer Questvergabe-Automat, der exakt eine Stunde funktionierte, bevor er anfing, Quests zu erfinden, die niemand bestellt hatte. 'Töte den Mond' war die letzte, bevor sie den Stecker zogen. Pip ist zwölf. Oder fünfzig. Niemand hat je gefragt, und Pip hat nie geantwortet, was beides als unhöflich gilt, aber funktioniert. Seine Werkstatt hat drei Rauchmelder. Alle drei sind von ihm gebaut. Keiner funktioniert.",
       "unlockedBy": {
         "type": "unique_npcs_completed",
-        "value": 1
+        "value": 3
       }
     },
     {
       "id": "kristall-sockel",
       "category": "artifacts",
       "title": "Kristall-Sockel — Eine Verbindung, die man besser nicht löst",
-      "unlockedBy": { "type": "level_reached", "value": 10 },
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 15
+      },
       "text": "Ein Edelstein in einem Sockel ist mehr als Dekoration. Er ist ein Versprechen zwischen Stein und Stahl, das der Juwelier mit einer Mischung aus Handwerk und Sentimentalität besiegelt. Sechs Typen: Rubin für Kraft, Saphir für Weisheit, Smaragd für Glück, Topas für Ausdauer, Amethyst für Vitalität, Diamant für Fokus. Fünf Qualitätsstufen von 'angeschlagen' bis 'königlich'. Das Einsetzen ist feierlich. Das Entfernen ist teuer und emotional kompliziert — der Juwelier nimmt es persönlich, der Stein nimmt es persönlich, und die Ausrüstung knirscht vorwurfsvoll. Aufwerten geht vor Ort: drei gleiche Steine werden zu einem besseren. Was mit dem vierten Stein passiert, den du nicht brauchst, fragt besser niemand laut."
     },
     {
@@ -1320,7 +1323,7 @@
       "text": "Schick deinen Companion los. Vier bis vierundzwanzig Stunden. Er kommt mit Gold, Materialien und gelegentlich Dingen zurück, die besser dort geblieben wären. Der Bond-Level erhöht die Ausbeute — ein erfahrener Companion verhandelt besser. Oder klaut effizienter. Beides führt zum selben Ergebnis.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -1330,7 +1333,7 @@
       "text": "Sturdy Tools, Masterwork Tools, Legendary Tools, Mythic Forge. Jede Stufe gibt permanenten XP-Bonus auf alle Quests. Klingt nach einem guten Deal. Ist es auch. Der Preis steigt pro Stufe exponentiell, was der Turm als 'Investitionsanreiz' bezeichnet und der Spieler als 'Erpressung'.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -1340,7 +1343,7 @@
       "text": "Fünf Währungspaare. Zwanzig Prozent Umrechnungsgebühr. Der Turm nennt das 'Bearbeitungspauschale'. Ökonomen nennen das 'Wucher'. Beide haben recht. Die Konvertierung ist trotzdem nützlich, wenn man 500 Runensplitter hat aber null Sternentaler braucht. Oder umgekehrt. Meistens umgekehrt.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -1350,7 +1353,7 @@
       "text": "Einmal am Tag: Runensplitter, Essenz, und das gute Gefühl, hier zu sein. Streak-Tage erhöhen den Bonus. Bei 7 Tagen gibt es extra Runen. Bei 14 extra Essenz. Bei 30 fragt der Turm, ob du nicht mal rausgehen möchtest. Du ignorierst ihn. Der Turm respektiert das.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1360,7 +1363,7 @@
       "text": "Zehn offene Quests im Pool, gemischt aus fünf Typen. Der Pool rotiert täglich um Mitternacht. Was du nicht nimmst, verschwindet. Was du nimmst, landet in deiner In-Progress-Liste. Maximum 25 gleichzeitig, danach sagt der Turm 'nein' und meint es auch so.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1370,7 +1373,7 @@
       "text": "Jeden Tag um Mitternacht (Berlin) räumt der Turm auf. Offene Quests verschwinden. Neue erscheinen. In-Progress-Quests bleiben — der Turm ist streng, aber nicht grausam. Die Rotation basiert auf einem Seed, was bedeutet, dass alle Spieler dieselbe Auswahl sehen. Fairness durch Determinismus.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -1380,7 +1383,7 @@
       "text": "NPCs erscheinen um Mitternacht und bleiben ein bis sieben Tage. Dann gehen sie. Laufende Quests scheitern. Abgeschlossene zählen. Der Turm hat Cooldowns — ein NPC der gerade ging, kommt nicht sofort wieder. Das nennt man Anstand. Oder Terminplanung.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 1
+        "value": 3
       }
     },
     {
@@ -1390,7 +1393,7 @@
       "text": "Zwischen 22 Uhr und 6 Uhr morgens (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden, erhalten zwanzig Prozent bessere Minimum-Rolls. Das klingt nach Aberglaube. Die Statistik sagt, es stimmt. Der Schmied sagt, er braucht Schlaf. Niemand hört auf den Schmied.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -1400,7 +1403,7 @@
       "text": "Orange: garantiert. Gelb: wahrscheinlich. Grün: unwahrscheinlich. Grau: vergiss es. Jedes Rezept hat Farbgrenzen die sich mit steigendem Skill verschieben. Was heute orange ist, wird morgen gelb und übermorgen grau. Das nennt man Fortschritt. Oder Obsoleszenz. Je nach Perspektive.",
       "unlockedBy": {
         "type": "profession_skill",
-        "value": 10
+        "value": 25
       }
     },
     {
@@ -1410,7 +1413,7 @@
       "text": "Manche Quests haben Nachfolger. Abschluss der einen schaltet die nächste frei. Die Belohnungen steigen. Die Schwierigkeit auch. Am Ende der Kette wartet etwas Besonderes. Oder etwas Enttäuschendes. Beides ist Teil der Erfahrung.",
       "unlockedBy": {
         "type": "quests_completed",
-        "value": 5
+        "value": 10
       }
     },
     {
@@ -1420,7 +1423,7 @@
       "text": "Level, Gear Score, Achievements, Professions, Companion. Alles öffentlich. Alles klickbar. Das Profil ist im Grunde ein Lebenslauf für den Turm. Manche schmücken ihn. Manche verstecken sich. Der Turm zeigt beides gleichermaßen unparteiisch.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     },
     {
@@ -1440,7 +1443,7 @@
       "text": "Fordere einen Freund heraus. Wer mehr Quests schafft diese Woche, gewinnt den Einsatz. Der Verlierer zahlt Gold. Man kann auch aufgeben — dann verliert man automatisch und das Gold. Der Turm nennt das 'sportlichen Geist'. Verlierer nennen es anders.",
       "unlockedBy": {
         "type": "friends_count",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -1460,7 +1463,7 @@
       "text": "Zwei Spieler. Ein Pakt. Wöchentliche Ziele, die beide erfüllen müssen. Klingt nach einer schönen Idee, bis man merkt, dass der Partner um Mittwoch aufhört, Quests zu machen. Der Duo-Streak wächst mit jeder abgeschlossenen Woche — und damit die Belohnungen. Die Bond-Truhe enthält Gold, Essenz, und eine winzige Chance auf einen Duo-Rahmen. Das Bond-Level steigt von 'Bekannte' über 'Waffenbrüder' bis zum 'Ewigen Bund'. Den Bund zu brechen kostet sieben Tage Bedenkzeit. Genug Zeit, um zu bereuen. Nicht genug, um zu vergessen.",
       "unlockedBy": {
         "type": "sworn_bond_level",
-        "value": 1
+        "value": 2
       }
     },
     {
@@ -1470,7 +1473,7 @@
       "text": "Je länger jemand im Turm lebt, desto mehr gleichen sich die Gesichtszüge an. Kein Fluch, keine Krankheit — der Aetherstrom formt die, die in seiner Nähe altern. Ältere Bewohnerinnen sehen sich auffällig ähnlich: dieselben scharfen Augen, dieselbe silberne Hochsteckfrisur, derselbe Blick der sagt 'Ich habe dich durchschaut und bin nicht beeindruckt'. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich seit Jahren, das Thema zu diskutieren — was daran liegt, dass mindestens vier andere Frauen im Turm von Fremden für sie gehalten werden. Die Verwechslungen haben zu drei diplomatischen Zwischenfällen und einem unbeabsichtigten Heiratsantrag geführt. Ilse hat den Antrag nicht abgelehnt. Sie hat ihn ignoriert. Das ist schlimmer.",
       "unlockedBy": {
         "type": "level_reached",
-        "value": 3
+        "value": 7
       }
     }
   ]
