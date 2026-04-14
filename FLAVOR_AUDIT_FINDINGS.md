@@ -263,6 +263,33 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 
 ---
 
+## Feature-Vorschläge (zur Diskussion)
+
+Alles baut auf bestehender Infrastruktur auf, nichts kollidiert mit BACKLOG/REJECTED/FEATURE_IDEAS.
+
+### 1. Kopfgeldjagd (Bounty Board) — Effort: M
+3 wöchentlich rotierende Bounties mit Risiko/Reward: Wähle 1, zahle ein Gold-Deposit, schaff es oder verlier den Einsatz. D3-Adventure-Mode-Bounties meets WoW-Wanted-Quests. Füllt die "pick one high-stakes objective"-Lücke die Sternenpfad/Expedition nicht bedienen.
+
+### 2. Echos der Vergangenheit (Quest Reflection Journal) — Effort: M
+Nach Quest-Completion optional 1-3 Sätze Reflektion schreiben. Werden später als "Echos" angezeigt wenn ähnliche Quests auftauchen. Milestone-Titel bei 10/50/100 Reflektionen. Verwandelt mechanische Clicks in Micro-Journaling. Habit-Science-basiert.
+
+### 3. Schmiedefieber (Forge Fever) — Effort: S-M
+Alle 48h bekommt eine zufällige Profession ein 4-Stunden-Fever-Window: 50% weniger Material, doppelte Skill-XP. 5+ Crafts im Window = Bonus-Cache. Erzeugt Login-Urgency wie HSR Double-Reward-Events.
+
+### 4. Schattenspiegel (Shadow Mirror) — Effort: M
+System generiert einen "Schatten" — Phantom-Rivale basierend auf deinen eigenen Stats von vor 7 Tagen. Jede Woche: Schlägst du dein vergangenes Ich? 3 Wochen in Folge → Shadow wird härter + einzigartiger Frame. Solo-Selbstverbesserung ohne Social-Druck. D2-Personal-Bests-Konzept.
+
+### 5. Gildenchronik (Guild Chronicle) — Effort: M
+Permanente scrollbare Community-Timeline: Erste Clears, World-Boss-Kills, Legendäre Drops, Rekorde. Erster Spieler der etwas schafft bekommt "First!"-Badge. Hall of Fame die dem Leaderboard fehlt. Nutzt bestehendes `logActivity()`-System.
+
+### 6. Zwielichtmarkt (Twilight Market) — Effort: M
+Einmal pro Tag, zu zufälliger Stunde, erscheint ein mysteriöser Vendor für genau 2 Stunden. 3-5 exklusive Items, seltene Materialien, Mystery-Scrolls, gelegentlich vergünstigte Gacha-Tokens. Wer die 2h verpasst, verpasst den Deal. WoW-Rare-Vendors + HSR-Liben-Konzept.
+
+### 7. Runenworte (Runewords) — Effort: M
+Spezifische Gem-Kombinationen in derselben Ausrüstung fusionieren zu "Runenworten" mit mächtigen Bonus-Effekten. 8-12 versteckte Rezepte, Entdeckung durch Experimentieren oder Runenstein-Hints als seltene Drops. Entdeckte Runenworte erscheinen im Codex. Diablo-2-Runewords auf bestehendem Gem-Socket-System.
+
+---
+
 ## Bereits gefixt (diese Session)
 - Companion Level-Up RewardCelebration
 - Wanderer's Rest Tutorial hinzugefügt
