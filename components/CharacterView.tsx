@@ -937,7 +937,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           <div className="mt-0.5" style={{ width: 56 }}>
             <p className="text-center truncate" title={item.name} style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
             {item.legendaryEffect && (
-              <p className="text-center truncate" style={{ fontSize: 9, color: "#f97316", lineHeight: 1.1, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
+              <p className="text-center truncate" style={{ fontSize: 11, color: "#f97316", lineHeight: 1.2, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
             )}
           </div>
         )}
