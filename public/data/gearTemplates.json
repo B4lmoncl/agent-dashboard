@@ -62297,7 +62297,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Hat Persönlichkeit. Die falsche, aber immerhin.",
+      "desc": "Die Motten waren gründlich. Und wählerisch. Sie haben die Nähte verschont.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "affixes": {
         "primary": {
@@ -62433,7 +62433,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Vom Boden des Fasses. Buchstäblich.",
+      "desc": "Geflickt von Hand. Von einer Hand die Besseres verdient hat.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "affixes": {
         "primary": {
@@ -62467,7 +62467,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "War im Angebot. Jetzt versteht man warum.",
+      "desc": "Zerschlissen. Die Jacke hat aufgehört sich Sorgen zu machen.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "affixes": {
         "primary": {
@@ -63045,7 +63045,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Einzigartig. Leider in jeder Hinsicht.",
+      "desc": "Klappern bei jedem Schritt. Ein Metronom der Bewegung.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "affixes": {
         "primary": {
@@ -63181,7 +63181,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Abgenutzt, aber noch da. Wie die meisten Helden.",
+      "desc": "Kratzer auf Kratzern auf Kratzern. Archäologie am Finger.",
       "icon": "/images/icons/gacha-ring-frost-ring.png",
       "affixes": {
         "primary": {
@@ -63283,7 +63283,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Unverwechselbar. Und unverkäuflich.",
+      "desc": "Rost als Design. Unbeabsichtigt. Aber hübsch. Auf eine traurige Art.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -63385,7 +63385,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Gebraucht. Sehr gebraucht.",
+      "desc": "Stumpf und direkt. Wie Kritik von Grimvar.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "affixes": {
         "primary": {
@@ -63453,7 +63453,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Besitzerwechsel. Die Details sind... unwichtig.",
+      "desc": "Verbogen in einem Kampf. Oder beim Umziehen. Beides gleich peinlich.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "affixes": {
         "primary": {
@@ -63861,7 +63861,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "War einmal neu. Lang ist es her.",
+      "desc": "Mehr Loch als Hemd. Aber die Löcher sind gut verteilt.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "affixes": {
         "primary": {
@@ -63895,7 +63895,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Besonders. Nicht auf die gute Art.",
+      "desc": "Zerrissen mit Würde. Wenn Rüstungen Würde hätten.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "affixes": {
         "primary": {
@@ -64031,7 +64031,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Geerbt. Von jemandem den niemand kennt.",
+      "desc": "Trüb wie ein Fenster das seit Jahren niemand geputzt hat.",
       "icon": "/images/icons/gacha-amulet-druid-acorn.png",
       "affixes": {
         "primary": {
@@ -64405,7 +64405,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Vom Boden des Fasses. Buchstäblich.",
+      "desc": "Ein Band am Finger. Nicht Gold, nicht Silber — Kupfer. Ehrlich.",
       "icon": "/images/icons/gacha-ring-copper-band.png",
       "affixes": {
         "primary": {
@@ -64439,7 +64439,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Hat Persönlichkeit. Die falsche, aber immerhin.",
+      "desc": "Billig im Preis. Unbezahlbar in der Enttäuschung.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "affixes": {
         "primary": {
@@ -64507,7 +64507,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
+      "desc": "Angelaufen und müde. Wie ein langer Tag der nicht enden will.",
       "icon": "/images/icons/gacha-ring-emerald-ring.png",
       "affixes": {
         "primary": {
@@ -65187,7 +65187,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Temporär. Alles ist temporär. Besonders das hier.",
+      "desc": "Schlicht bis zur Perfektion. Nein, schlicht bis zur Gleichgültigkeit.",
       "icon": "/images/icons/gacha-ring-silver-loop.png",
       "affixes": {
         "primary": {
@@ -65597,7 +65597,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Besitzerwechsel. Die Details sind... unwichtig.",
+      "desc": "Holz und Hoffnung. Beides dünn. Beides hält. Vorerst.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "affixes": {
         "primary": {
@@ -65711,7 +65711,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Einzigartig. Leider in jeder Hinsicht.",
+      "desc": "Verbeult von Treffern. Oder vom Runterfallen. Wahrscheinlich beides.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "affixes": {
         "primary": {
@@ -65768,7 +65768,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Geerbt. Von jemandem den niemand kennt.",
+      "desc": "Ein Brett. Verbeult. Aber aufrecht. Das zählt etwas.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "affixes": {
         "primary": {
@@ -66167,7 +66167,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Morgen ist ein neuer Tag. Für ein neues Item.",
+      "desc": "Verschlissen von Arbeit. Echte Arbeit. Nicht die Art die man auf LinkedIn postet.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "affixes": {
         "primary": {
@@ -66281,7 +66281,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Abgenutzt, aber noch da. Wie die meisten Helden.",
+      "desc": "Fadenscheinig wie die Argumente den Ring zu behalten.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "affixes": {
         "primary": {
@@ -66338,7 +66338,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Temporär. Alles ist temporär. Besonders das hier.",
+      "desc": "Dünn wie eine Entschuldigung. Und ähnlich wärmend.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
@@ -66623,7 +66623,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Gebraucht. Sehr gebraucht.",
+      "desc": "Blind und zufrieden damit. Manchmal ist Unwissenheit der beste Schmuck.",
       "icon": "/images/icons/gacha-amulet-rune-stone.png",
       "affixes": {
         "primary": {
@@ -66794,7 +66794,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Unverwechselbar. Und unverkäuflich.",
+      "desc": "Schlamm und Sandalen. Eine Feindschaft die nie endet.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "affixes": {
         "primary": {
@@ -66851,7 +66851,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "War im Angebot. Jetzt versteht man warum.",
+      "desc": "Schief auf beiden Seiten. Symmetrie der Unperfektion.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
@@ -66908,7 +66908,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "War einmal neu. Lang ist es her.",
+      "desc": "Ausgeleiert bis sie wie Pantoffeln passen. Pantoffeln für draußen.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "affixes": {
         "primary": {
@@ -67136,7 +67136,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Besonders. Nicht auf die gute Art.",
+      "desc": "Angelaufen und grün. Wie ein Apfel der zu lang gelegen hat.",
       "icon": "/images/icons/gacha-ring-sapphire-ring.png",
       "affixes": {
         "primary": {
