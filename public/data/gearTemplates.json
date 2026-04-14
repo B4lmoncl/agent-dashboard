@@ -17291,7 +17291,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Die Sturmhaube hat den Sturm überlebt. Und Grimvars Temperament. Beides beachtlich.",
       "icon": "/images/icons/gacha-helm-flame-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -17747,7 +17747,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Kristallglieder zwischen Stahlringen. Die Kombination klingt absurd. Grimvar macht absurd funktional.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -18203,7 +18203,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Platten aus Drachenschuppen. Jede einzeln erhitzt, gehämmert und von Grimvar persönlich angeschrien.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -18659,7 +18659,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Drachenzähne als Kettenglieder. Der Drache hat protestiert. Grimvar hat lauter gehämmert.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -19150,7 +19150,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Der Aetherkern pulsiert im Inneren. Grimvar sagt, der Helm denkt. Grimvar findet das irritierend.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -20102,7 +20102,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leinen, doppelt verwebt. Lin sagt, die erste Schicht schützt den Kopf. Die zweite schützt den Stolz.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "shopHidden": true,
       "affixes": {
@@ -20216,7 +20216,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Wolle an offenen Sandalen. Ein Experiment. Es funktioniert besser als erwartet. Deutlich besser.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -20273,7 +20273,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Wolle die bei jedem Schritt raschelt. Lin nennt es Musik. Andere nennen es kratzig.",
       "icon": "/images/icons/gacha-weapon-flame-greatsword.png",
       "shopHidden": true,
       "affixes": {
@@ -20558,7 +20558,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Gewebt, nicht genäht. Lin besteht auf dem Unterschied. Der Unterschied ist real.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
@@ -20672,7 +20672,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Treter aus gewobenen Fäden. Leicht. Bequem. Und Lin hat sich geweigert, sie Schuhe zu nennen.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -20729,7 +20729,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Eine Kutte die sich dem Körper anpasst. Nicht dem Wetter. Das ist Lins Priorität.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -21014,7 +21014,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Seide an den Füßen. Der Boden wird zum Tanzpartner. Ob du tanzen kannst, ist dein Problem.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -21128,7 +21128,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Seide unter den Füßen. Der Boden hat nichts dagegen. Der Preis schon.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
@@ -21185,7 +21185,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Durchscheinend wie ein halbes Versprechen. Schützt mehr als es zeigt.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -21470,7 +21470,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Im Mondlicht gewebt. Die Fäden schimmern silbern. Lin sagt, das ist Absicht. Diesmal stimmt es.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -21589,7 +21589,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Die Robe hat ein Eigenleben. Lin nennt es den besten Stoff den sie je verarbeitet hat. Und den ungehorsamsten.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -21651,7 +21651,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Runen unter den Sohlen. Jeder Schritt schreibt etwas in den Boden. Niemand kann es lesen.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -21961,7 +21961,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Sternenstoff ist kein Material. Es ist eine Verhandlung mit dem Himmel. Lin hat gewonnen.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -22085,7 +22085,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Runen eingewebt in jeden Faden. Lin hat drei Lupen benutzt und ein Wort erfunden das wir hier nicht wiederholen.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -22147,7 +22147,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Eine Krone die nicht aus Metall besteht. Lin hat bewiesen dass Stoff majestätisch sein kann.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -31351,7 +31351,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Grimvars Standardmodell für den Kopf. Schlicht, effektiv, und ohne Verzierungen. Wie Grimvar selbst.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -31817,7 +31817,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Eisen an den Füßen. Grimvar hat die Passform am eigenen Fuß getestet. Sein Fuß ist größer als deiner.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -32278,7 +32278,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Für Forscher die vergessen, dass es draußen kalt ist. Lin denkt an alles. Auch an Forscher.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -32392,7 +32392,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Eine Krone aus Stoff. Lin fand die Idee lächerlich. Dann hat sie sie gebaut. Und es war nicht mehr lächerlich.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -32454,7 +32454,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Einfach. Sauber. Lins Anfängerarbeit — was bei Lin bedeutet: besser als das Meisterwerk anderer.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -32744,7 +32744,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Wolle so dicht dass kein Wind durchkommt. Und kaum Luft. Kompromisse, sagt Lin.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -32858,7 +32858,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Lins Meisterwerk. Sie hat es nie so genannt. Sie hat gesagt: Nächstes Mal wird es besser.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -32920,7 +32920,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Weich genug zum Lesen. Leise genug für die Bibliothek. Ada hat sie genehmigt.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -33210,7 +33210,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Wollschuhe mit verstärkter Sohle. Für Wege die kein Schuster empfehlen würde.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -38817,7 +38817,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Eisenfäden im Stoff. Grimvar nennt es Schneiderei für Erwachsene. Lin ist not amused.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -39283,7 +39283,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Dritter Versuch. Die ersten zwei waren zu schwer. Dieser hier ist auch zu schwer. Aber weniger.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -39749,7 +39749,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Version drei. Leichter als eins und zwei. Immer noch schwerer als Leder. Grimvar findet das richtig.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -39863,7 +39863,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Zweite Wollrobe. Wärmer. Weicher. Lin sagt: Die erste war ein Entwurf. Diese hier ist eine Aussage.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -39920,7 +39920,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Zweite Seidenversion. Haltbarer. Lin sagt, Seide muss man erziehen. Diese hier hat zugehört.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -40210,7 +40210,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Arkane Plattenrobe. Ein Widerspruch in Stoff. Lin hat den Widerspruch zur Kunst erhoben.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -40329,7 +40329,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Überarbeitetes Visier aus Wolle und Verstärkung. Lin hat den Sitz dreimal angepasst. An drei verschiedenen Köpfen.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -40386,7 +40386,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Seidenpanzer, verstärkt. Der Widerspruch ist Absicht. Lin lebt von Widersprüchen.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -40676,7 +40676,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Dritte Arkane Kappe. Die Magie sitzt jetzt fester. Lins Geduld dafür weniger.",
       "icon": "/images/icons/gacha-helm-flame-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -40795,7 +40795,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Dritter Marschtritt. Die Sohle ist aus gewobener Wolle und purem Trotz.",
       "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -40852,7 +40852,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Dritte Haube. Die Seide sitzt wie eine zweite Haut. Lin ist zufrieden. Was bedeutet: sie kritisiert nur noch Details.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "shopHidden": true,
       "affixes": {
