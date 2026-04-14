@@ -13,12 +13,12 @@ import { getAuthHeaders } from "@/lib/auth-client";
 
 // ─── Currency helpers ────────────────────────────────────────────────────────
 const CURRENCY_META: Record<string, { emoji: string; label: string; color: string; iconSrc?: string }> = {
-  runensplitter: { emoji: "", label: "Rune Shards", color: "#818cf8", iconSrc: "/images/icons/currency-runensplitter.png" },
-  stardust:      { emoji: "", label: "Stardust",    color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
-  gold:          { emoji: "", label: "Gold",        color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
-  essenz:        { emoji: "", label: "Essence",     color: "#ef4444", iconSrc: "/images/icons/currency-essenz.png" },
-  gildentaler:   { emoji: "", label: "Guild Coins", color: "#10b981", iconSrc: "/images/icons/currency-gildentaler.png" },
-  mondstaub:     { emoji: "", label: "Moondust",    color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
+  runensplitter: { emoji: "", label: "Runensplitter", color: "#818cf8", iconSrc: "/images/icons/currency-runensplitter.png" },
+  stardust:      { emoji: "", label: "Stardust",       color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
+  gold:          { emoji: "", label: "Gold",           color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
+  essenz:        { emoji: "", label: "Essenz",         color: "#ef4444", iconSrc: "/images/icons/currency-essenz.png" },
+  gildentaler:   { emoji: "", label: "Gildentaler",    color: "#10b981", iconSrc: "/images/icons/currency-gildentaler.png" },
+  mondstaub:     { emoji: "", label: "Mondstaub",      color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
 };
 
 function getCurrencyInfo(key: string) {

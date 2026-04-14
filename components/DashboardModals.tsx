@@ -164,13 +164,13 @@ export default function DashboardModals({
                 </div>
                 <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
                   {[
-                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "The honest metal of the Hall.", iconSrc: "/images/icons/currency-gold.png" },
-                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Congealed starlight.", iconSrc: "/images/icons/currency-stardust.png" },
-                    { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "The silent brew of perseverance.", iconSrc: "/images/icons/currency-essenz.png" },
-                    { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echoes of the forgotten tongue.", iconSrc: "/images/icons/currency-runensplitter.png" },
-                    { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Tokens of solidarity.", iconSrc: "/images/icons/currency-gildentaler.png" },
-                    { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Breath of focus. Extremely rare.", iconSrc: "/images/icons/currency-mondstaub.png" },
-                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exclusive from weekly challenges.", iconSrc: "/images/icons/currency-sternentaler.png" },
+                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
+                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },
+                    { name: "Essenz", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Die stille Essenz der Beständigkeit.", iconSrc: "/images/icons/currency-essenz.png" },
+                    { name: "Runensplitter", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echos einer vergessenen Sprache.", iconSrc: "/images/icons/currency-runensplitter.png" },
+                    { name: "Gildentaler", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Münzen der Kameradschaft.", iconSrc: "/images/icons/currency-gildentaler.png" },
+                    { name: "Mondstaub", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Hauch der Konzentration. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
+                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exklusiv aus wöchentlichen Herausforderungen.", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.name}>
                       <div

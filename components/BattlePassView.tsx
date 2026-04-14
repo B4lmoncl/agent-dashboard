@@ -49,13 +49,13 @@ interface BPPlayer {
 const REWARD_CONFIG: Record<string, { icon: string; color: string; label: string }> = {
   gold: { icon: "/images/icons/currency-gold.png", color: "#f59e0b", label: "Gold" },
   essenz: { icon: "/images/icons/currency-essenz.png", color: "#ef4444", label: "Essenz" },
-  runensplitter: { icon: "/images/icons/currency-runensplitter.png", color: "#a78bfa", label: "Rune Shards" },
+  runensplitter: { icon: "/images/icons/currency-runensplitter.png", color: "#a78bfa", label: "Runensplitter" },
   stardust: { icon: "/images/icons/currency-stardust.png", color: "#818cf8", label: "Stardust" },
   sternentaler: { icon: "/images/icons/nav-challenges.png", color: "#fbbf24", label: "Sternentaler" },
   mondstaub: { icon: "/images/icons/currency-mondstaub.png", color: "#c084fc", label: "Mondstaub" },
   material: { icon: "/images/icons/mat-eisenerz.png", color: "#f59e0b", label: "Material" },
-  title: { icon: "/images/icons/nav-proving.png", color: "#fbbf24", label: "Title" },
-  frame: { icon: "/images/icons/nav-character.png", color: "#a78bfa", label: "Frame" },
+  title: { icon: "/images/icons/nav-proving.png", color: "#fbbf24", label: "Titel" },
+  frame: { icon: "/images/icons/nav-character.png", color: "#a78bfa", label: "Rahmen" },
 };
 
 // ─── Component ──────────────────────────────────────────────────────────────
