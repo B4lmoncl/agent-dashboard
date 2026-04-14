@@ -1462,6 +1462,16 @@
         "type": "sworn_bond_level",
         "value": 1
       }
+    },
+    {
+      "id": "turmgleichung",
+      "category": "world",
+      "title": "Die Turmgleichung — Warum alle gleich aussehen",
+      "text": "Je länger jemand im Turm lebt, desto mehr gleichen sich die Gesichtszüge an. Kein Fluch, keine Krankheit — der Aetherstrom formt die, die in seiner Nähe altern. Ältere Bewohnerinnen sehen sich auffällig ähnlich: dieselben scharfen Augen, dieselbe silberne Hochsteckfrisur, derselbe Blick der sagt 'Ich habe dich durchschaut und bin nicht beeindruckt'. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich seit Jahren, das Thema zu diskutieren — was daran liegt, dass mindestens vier andere Frauen im Turm von Fremden für sie gehalten werden. Die Verwechslungen haben zu drei diplomatischen Zwischenfällen und einem unbeabsichtigten Heiratsantrag geführt. Ilse hat den Antrag nicht abgelehnt. Sie hat ihn ignoriert. Das ist schlimmer.",
+      "unlockedBy": {
+        "type": "level_reached",
+        "value": 3
+      }
     }
   ]
 }
