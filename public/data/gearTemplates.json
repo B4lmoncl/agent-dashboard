@@ -14894,7 +14894,7 @@
       },
       "flavorText": "Die Schatten flüstern dem Träger zu. Meistens nützliche Dinge.",
       "binding": "boe",
-      "desc": "Ein episches Stück Ausrüstung."
+      "desc": "Leicht wie ein Versprechen und ebenso zuverlässig. Schützt den Kopf und verbirgt die Identität. Beides gleich wichtig im Bund der Schatten."
     },
     {
       "id": "fac-schattenjaeger-stiefel",
@@ -14954,7 +14954,7 @@
       },
       "flavorText": "Kein Geräusch. Kein Abdruck. Keine Entschuldigung.",
       "binding": "boe",
-      "desc": "Ein episches Stück Ausrüstung."
+      "desc": "Lautlos auf jedem Untergrund. Die Sohlen absorbieren Geräusche wie Geheimnisse — vollständig und ohne Rückgabe."
     },
     {
       "id": "fac-schattenjaeger-klinge",
@@ -15013,7 +15013,7 @@
       },
       "flavorText": "Scharf genug für Schatten. Das sagt alles.",
       "binding": "boe",
-      "desc": "Ein episches Stück Ausrüstung."
+      "desc": "Geschmiedet für jene die im Verborgenen wirken. Die Klinge reflektiert kein Licht. Absicht, nicht Zufall."
     },
     {
       "id": "fac-flammenherz-panzer",
@@ -15073,7 +15073,7 @@
       },
       "flavorText": "Das Feuer prüft. Wer besteht, wird stärker. Wer nicht, wird wärmer.",
       "binding": "boe",
-      "desc": "Ein episches Stück Ausrüstung."
+      "desc": "Geschmiedet in der Glut des Zirkels. Die Hitze steckt noch drin — nicht als Fehler, sondern als Feature."
     },
     {
       "id": "fac-flammenherz-schild",
@@ -15132,7 +15132,7 @@
       },
       "flavorText": "Ein Schild das brennt, aber nicht verbrennt. Wie Überzeugung.",
       "binding": "boe",
-      "desc": "Ein episches Stück Ausrüstung."
+      "desc": "Ein Bollwerk aus dem Herzen der Esse. Blockiert Angriffe und Zweifel gleichermaßen."
     },
     {
       "id": "fac-flammenherz-ring",
@@ -15191,7 +15191,7 @@
       },
       "flavorText": "Das Siegel der Klinge. Wer es trägt, hat das Feuer bestanden.",
       "binding": "boe",
-      "desc": "Ein episches Stück Ausrüstung."
+      "desc": "Brennt nicht am Finger. Brennt im Inneren. Der Zirkel der Glut kennt den Unterschied."
     },
     {
       "id": "craft-schmied-abgrundstahl-brustplatte",
