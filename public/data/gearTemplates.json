@@ -14894,7 +14894,7 @@
       },
       "flavorText": "Die Schatten flüstern dem Träger zu. Meistens nützliche Dinge.",
       "binding": "boe",
-      "desc": "Schattenjäger-Kappe. Ein episches Stück Ausrüstung."
+      "desc": "Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-schattenjaeger-stiefel",
@@ -14954,7 +14954,7 @@
       },
       "flavorText": "Kein Geräusch. Kein Abdruck. Keine Entschuldigung.",
       "binding": "boe",
-      "desc": "Schattenjäger-Treter. Ein episches Stück Ausrüstung."
+      "desc": "Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-schattenjaeger-klinge",
@@ -15013,7 +15013,7 @@
       },
       "flavorText": "Scharf genug für Schatten. Das sagt alles.",
       "binding": "boe",
-      "desc": "Schattenjäger-Klinge. Ein episches Stück Ausrüstung."
+      "desc": "Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-flammenherz-panzer",
@@ -15073,7 +15073,7 @@
       },
       "flavorText": "Das Feuer prüft. Wer besteht, wird stärker. Wer nicht, wird wärmer.",
       "binding": "boe",
-      "desc": "Flammenherz-Brustplatte. Ein episches Stück Ausrüstung."
+      "desc": "Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-flammenherz-schild",
@@ -15132,7 +15132,7 @@
       },
       "flavorText": "Ein Schild das brennt, aber nicht verbrennt. Wie Überzeugung.",
       "binding": "boe",
-      "desc": "Flammenherz-Bollwerk. Ein episches Stück Ausrüstung."
+      "desc": "Ein episches Stück Ausrüstung."
     },
     {
       "id": "fac-flammenherz-ring",
@@ -15191,7 +15191,7 @@
       },
       "flavorText": "Das Siegel der Klinge. Wer es trägt, hat das Feuer bestanden.",
       "binding": "boe",
-      "desc": "Flammenherz-Siegelring. Ein episches Stück Ausrüstung."
+      "desc": "Ein episches Stück Ausrüstung."
     },
     {
       "id": "craft-schmied-abgrundstahl-brustplatte",
@@ -16607,7 +16607,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Eiserne Brustplatte. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -16664,7 +16664,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Geschlossener Eisenhelm. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -16721,7 +16721,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Eiserne Sturmhaube. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "shopHidden": true,
       "affixes": {
@@ -16778,7 +16778,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserne Panzerhaube. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "shopHidden": true,
       "affixes": {
@@ -16835,7 +16835,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserne Stiefel. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-boots-elven-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -16892,7 +16892,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Gehärtete Eisenstiefel. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -16949,7 +16949,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserner Brustpanzer. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -17006,7 +17006,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserne Beinschienen. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-boots-flame-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -17063,7 +17063,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisenkappe. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -17120,7 +17120,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Gehärteter Plattenpanzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -17177,7 +17177,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Drachenhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -17234,7 +17234,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Marschtreter. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -17291,7 +17291,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Sturmhaube. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-helm-flame-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -17348,7 +17348,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Beinschienen. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -17405,7 +17405,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Brünne. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -17462,7 +17462,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Königsrüstung. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -17519,7 +17519,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Sturmstiefel. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -17576,7 +17576,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Visierhelm. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "shopHidden": true,
       "affixes": {
@@ -17633,7 +17633,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Schuppenpanzer. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -17690,7 +17690,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Stiefel. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -17747,7 +17747,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Kettenhemd. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -17804,7 +17804,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Spangenhelm. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -17861,7 +17861,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Plattenpanzer. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -17918,7 +17918,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Stiefel. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -17975,7 +17975,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Kronenhelm. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
@@ -18032,7 +18032,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Panzerstiefel. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -18089,7 +18089,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Drachenhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -18146,7 +18146,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Brustplatte. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -18203,7 +18203,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Plattenpanzer. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -18260,7 +18260,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Helm. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -18317,7 +18317,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Königsrüstung. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -18374,7 +18374,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Kriegsstiefel. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -18431,7 +18431,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Beinschienen. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -18488,7 +18488,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Sturmhaube. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -18545,7 +18545,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Visierhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -18602,7 +18602,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Kriegspanzer. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -18659,7 +18659,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Kettenhemd. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -18716,7 +18716,7 @@
       "reqLevel": 37,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenkrone des Meisters. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -18778,7 +18778,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Kettenhemd. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-amulet-star-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -18840,7 +18840,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Kettenrüstung. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-amulet-thunder-rune.png",
       "shopHidden": true,
       "affixes": {
@@ -18902,7 +18902,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Krone. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -18964,7 +18964,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Panzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -19026,7 +19026,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelengeschmiedete Platte. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -19088,7 +19088,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Brustplatte. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -19150,7 +19150,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Sturmkappe. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -19212,7 +19212,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Schulterwacht. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -19274,7 +19274,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelengeschmiedete Wanderstiefel. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -19336,7 +19336,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Schreitstiefel. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -19398,7 +19398,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenstiefel des Wanderers. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -19460,7 +19460,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelengeschmiedeter Panzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -19522,7 +19522,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Marschtritt. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -19584,7 +19584,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Visier. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -19646,7 +19646,7 @@
       "reqLevel": 2,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinenkappe. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-helm-flame-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -19703,7 +19703,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinenhut. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -19760,7 +19760,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinensandalen. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -19817,7 +19817,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinenrobe. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -19874,7 +19874,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinengewand. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -19931,7 +19931,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinenschuhe. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -19988,7 +19988,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinenpantoffeln. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -20045,7 +20045,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinentunika. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -20102,7 +20102,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinenhaube. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "shopHidden": true,
       "affixes": {
@@ -20159,7 +20159,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollstiefel. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -20216,7 +20216,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollsandalen. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -20273,7 +20273,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollgewand. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-weapon-flame-greatsword.png",
       "shopHidden": true,
       "affixes": {
@@ -20330,7 +20330,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollmantel. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "shopHidden": true,
       "affixes": {
@@ -20387,7 +20387,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollhut. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -20444,7 +20444,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollrobe. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -20501,7 +20501,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobene Kappe. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
@@ -20558,7 +20558,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobene Schuhe. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
@@ -20615,7 +20615,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollschleier. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -20672,7 +20672,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobene Treter. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -20729,7 +20729,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobene Kutte. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -20786,7 +20786,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollkapuze. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -20843,7 +20843,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Kutte. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -20900,7 +20900,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Tiara. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -20957,7 +20957,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Treter. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -21014,7 +21014,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenschuhe. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -21071,7 +21071,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenmantel. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -21128,7 +21128,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidensandalen. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
@@ -21185,7 +21185,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenschleier. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -21242,7 +21242,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenkappe. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -21299,7 +21299,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Gewand. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "shopHidden": true,
       "affixes": {
@@ -21356,7 +21356,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenrobe. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -21413,7 +21413,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Haube. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -21470,7 +21470,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Pantoffeln. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -21527,7 +21527,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenstiefel. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -21589,7 +21589,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenrobe. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -21651,7 +21651,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Runensandalen. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -21713,7 +21713,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Äthergewand. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -21775,7 +21775,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Runenschleier. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -21837,7 +21837,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternenhaube. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -21899,7 +21899,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Ätherkrone. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -21961,7 +21961,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternenrobe. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -22023,7 +22023,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkane Robe. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -22085,7 +22085,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Runengewand. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -22147,7 +22147,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkane Krone. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -22209,7 +22209,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Ätherschuhe. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -22271,7 +22271,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenwandler-Schuhe. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-boots-cloth-shoes.png",
       "shopHidden": true,
       "affixes": {
@@ -22333,7 +22333,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenkappe. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "shopHidden": true,
       "affixes": {
@@ -22395,7 +22395,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkane Schuhe. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
@@ -22457,7 +22457,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Leichtleder-Stiefel. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -22514,7 +22514,7 @@
       "reqLevel": 2,
       "rarity": "common",
       "price": 0,
-      "desc": "Leichtleder-Kappe. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -22571,7 +22571,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Leichtleder-Sandalen. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -22628,7 +22628,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder-Tunika. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "shopHidden": true,
       "affixes": {
@@ -22685,7 +22685,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder-Haube. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
@@ -22742,7 +22742,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder-Jacke. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -22799,7 +22799,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder-Treter. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -22856,7 +22856,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder-Stirnband. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
@@ -22913,7 +22913,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder-Wams. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -22970,7 +22970,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jagd-Jacke. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -23027,7 +23027,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jäger-Kappe. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-helm-iron-pot.png",
       "shopHidden": true,
       "affixes": {
@@ -23084,7 +23084,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jagd-Maske. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -23141,7 +23141,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jäger-Stiefel. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -23198,7 +23198,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder-Kapuze. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -23255,7 +23255,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wildnis-Weste. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -23312,7 +23312,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder-Treter. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -23369,7 +23369,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jagd-Schuhe. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
@@ -23426,7 +23426,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wildnis-Haube. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
@@ -23483,7 +23483,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder-Harnisch. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -23540,7 +23540,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jäger-Wams. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -23597,7 +23597,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wildnis-Stiefel. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -23654,7 +23654,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Jacke. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -23711,7 +23711,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Rüstung. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -23768,7 +23768,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Harnisch. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -23825,7 +23825,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Helm. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "shopHidden": true,
       "affixes": {
@@ -23882,7 +23882,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Kapuze. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -23939,7 +23939,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Tritte. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -23996,7 +23996,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Stiefel. Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -24053,7 +24053,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Maske. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -24110,7 +24110,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Schuhe. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
@@ -24167,7 +24167,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Wams. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -24224,7 +24224,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Treter. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -24281,7 +24281,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Kappe. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "shopHidden": true,
       "affixes": {
@@ -24338,7 +24338,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien-Treter. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -24400,7 +24400,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Kappe. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "shopHidden": true,
       "affixes": {
@@ -24462,7 +24462,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenjäger-Stiefel. Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -24524,7 +24524,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Tritte. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -24586,7 +24586,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Helm. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
@@ -24648,7 +24648,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Harnisch. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -24710,7 +24710,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenjäger-Haube. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-helm-bandana.png",
       "shopHidden": true,
       "affixes": {
@@ -24772,7 +24772,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenjäger-Wams. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -24834,7 +24834,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Stiefel. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-boots-elven-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -24896,7 +24896,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenjäger-Schuhe. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -24958,7 +24958,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien-Rüstung. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -25020,7 +25020,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Jacke. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -25082,7 +25082,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Mantel. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -25144,7 +25144,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien-Krone. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-helm-bone-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -25206,7 +25206,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeit-Visier. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "shopHidden": true,
       "affixes": {
@@ -25268,7 +25268,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Eiserner Rundschild. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-shield-crystal-aegis.png",
       "shopHidden": true,
       "affixes": {
@@ -25325,7 +25325,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Eisernes Kurzschwert. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -25382,7 +25382,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Eiserner Buckler. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-shield-divine-aegis.png",
       "shopHidden": true,
       "affixes": {
@@ -25439,7 +25439,7 @@
       "reqLevel": 2,
       "rarity": "common",
       "price": 0,
-      "desc": "Einfacher Zauberstab. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -25496,7 +25496,7 @@
       "reqLevel": 2,
       "rarity": "common",
       "price": 0,
-      "desc": "Eisenstab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -25553,7 +25553,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Eiserne Streitaxt. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -25610,7 +25610,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Rostiger Dolch. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -25667,7 +25667,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Grober Kriegshammer. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
@@ -25724,7 +25724,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Einfacher Fokus. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -25781,7 +25781,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisernes Beil. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -25838,7 +25838,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grober Streitkolben. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -25895,7 +25895,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserner Langschild. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-shield-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -25952,7 +25952,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Einfaches Schutzbuch. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -26009,7 +26009,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grober Schild. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-shield-dragon-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -26066,7 +26066,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedeter Buckler. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-shield-emerald-defender.png",
       "shopHidden": true,
       "affixes": {
@@ -26123,7 +26123,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserne Tartsche. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -26180,7 +26180,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserne Klinge. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -26237,7 +26237,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Schlichter Wanderstab. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -26294,7 +26294,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserner Turmschild. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -26351,7 +26351,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grobes Foliant. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -26408,7 +26408,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Tartsche. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "shopHidden": true,
       "affixes": {
@@ -26465,7 +26465,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Buckler. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -26522,7 +26522,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristallklinge. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "shopHidden": true,
       "affixes": {
@@ -26579,7 +26579,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählernes Langschwert. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -26636,7 +26636,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Zauberstab. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -26693,7 +26693,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Prunkschild. Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
       "icon": "/images/icons/gacha-shield-gilded-aspis.png",
       "shopHidden": true,
       "affixes": {
@@ -26750,7 +26750,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Kriegsbeil. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -26807,7 +26807,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Fokus. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -26864,7 +26864,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Turmschild. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "shopHidden": true,
       "affixes": {
@@ -26921,7 +26921,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Schutzschild. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -26978,7 +26978,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählernes Foliant. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -27035,7 +27035,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählernes Breitschwert. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -27092,7 +27092,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobener Fokuskristall. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
@@ -27149,7 +27149,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Rundschild. Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "shopHidden": true,
       "affixes": {
@@ -27206,7 +27206,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Zeremonialstab. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -27263,7 +27263,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Kampfstab. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -27320,7 +27320,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Streitaxt. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -27377,7 +27377,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristalldolch. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -27434,7 +27434,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Schutzfolio. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -27491,7 +27491,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristallstab. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -27548,7 +27548,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Wanderstab. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -27605,7 +27605,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Ritualklinge. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "shopHidden": true,
       "affixes": {
@@ -27662,7 +27662,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Streitaxt. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -27719,7 +27719,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Kriegshammer. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "shopHidden": true,
       "affixes": {
@@ -27776,7 +27776,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Wappenschild. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "shopHidden": true,
       "affixes": {
@@ -27833,7 +27833,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Foliant. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -27890,7 +27890,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Breitschwert. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -27947,7 +27947,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Hammer. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -28004,7 +28004,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Kriegsbeil. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -28061,7 +28061,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Wappenschild. Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -28118,7 +28118,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Tartsche. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -28175,7 +28175,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Schattenklinge. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -28232,7 +28232,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Ritualstab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
@@ -28289,7 +28289,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Meisterschwert. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -28346,7 +28346,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Kampfschild. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-shield-gilded-aspis.png",
       "shopHidden": true,
       "affixes": {
@@ -28403,7 +28403,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Stab. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -28460,7 +28460,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Dolch. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -28517,7 +28517,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Fokus. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -28574,7 +28574,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Prunkfokus. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -28631,7 +28631,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Axt. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -28688,7 +28688,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Streitkolben. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -28745,7 +28745,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Aegis. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "shopHidden": true,
       "affixes": {
@@ -28802,7 +28802,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Turmschild. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -28859,7 +28859,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Schwert. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "shopHidden": true,
       "affixes": {
@@ -28916,7 +28916,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Zeremonialstab. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -28973,7 +28973,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Zauberstab. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "shopHidden": true,
       "affixes": {
@@ -29030,7 +29030,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Buckler. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "shopHidden": true,
       "affixes": {
@@ -29087,7 +29087,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Schlachtbeil. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29144,7 +29144,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Rundschild. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "shopHidden": true,
       "affixes": {
@@ -29201,7 +29201,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Klingenbrecher. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -29258,7 +29258,7 @@
       "reqLevel": 37,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Kodex. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -29320,7 +29320,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Fokuskristall. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -29382,7 +29382,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Hammer. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "shopHidden": true,
       "affixes": {
@@ -29444,7 +29444,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Buckler. Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "shopHidden": true,
       "affixes": {
@@ -29506,7 +29506,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Axt. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29568,7 +29568,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Zeremonialstab. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "shopHidden": true,
       "affixes": {
@@ -29630,7 +29630,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Sternenstab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29692,7 +29692,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Donnerhammer. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -29754,7 +29754,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Kriegsklinge. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-druid-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -29816,7 +29816,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Turmschild. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -29878,7 +29878,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Zauberstab. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-dual-scimitars.png",
       "shopHidden": true,
       "affixes": {
@@ -29940,7 +29940,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Aegis. Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "shopHidden": true,
       "affixes": {
@@ -30002,7 +30002,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenwächter-Schild. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "shopHidden": true,
       "affixes": {
@@ -30064,7 +30064,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Schlachtbeil. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-elven-longbow.png",
       "shopHidden": true,
       "affixes": {
@@ -30126,7 +30126,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelengeschmiedeter Stab. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-flame-greatsword.png",
       "shopHidden": true,
       "affixes": {
@@ -30188,7 +30188,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelensiegel-Fokus. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "shopHidden": true,
       "affixes": {
@@ -30250,7 +30250,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Schattenklinge. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "shopHidden": true,
       "affixes": {
@@ -30312,7 +30312,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Kriegsaxt. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -30374,7 +30374,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Stab. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -30436,7 +30436,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Fokus. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -30498,7 +30498,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Richtschwert. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -30560,7 +30560,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Dolch. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -30622,7 +30622,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Schwert. Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -30684,7 +30684,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Bollwerk. Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Scharf genug um Ausreden zu durchschneiden.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
@@ -30746,7 +30746,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Foliant. Die Waffenkammer hat ein neues Lieblingsstück.",
+      "desc": "Die Waffenkammer hat ein neues Lieblingsstück.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -30808,7 +30808,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenklinge des Meisters. Varn sagt wenig. Diese Waffe spricht für sich.",
+      "desc": "Varn sagt wenig. Diese Waffe spricht für sich.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -30870,7 +30870,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Ritualklinge. Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Balanciert wie ein gut formuliertes Argument.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -30932,7 +30932,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenbrecher-Axt. Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -30994,7 +30994,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Wappenschild. Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Geschmiedet für jemanden der weiß was er tut.",
       "icon": "/images/icons/gacha-shield-mirror-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -31056,7 +31056,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Prunkschild. Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
       "icon": "/images/icons/gacha-shield-obsidian-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -31118,7 +31118,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisenkappe des Wächters. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
@@ -31175,7 +31175,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Wächterhelm. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -31232,7 +31232,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Wächterhelm. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
@@ -31289,7 +31289,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Wächterhelm. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
@@ -31351,7 +31351,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedete Schutzhaube. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -31408,7 +31408,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Schutzkappe. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -31465,7 +31465,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Plattenpanzer. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -31522,7 +31522,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Rüstung. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -31584,7 +31584,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserner Kettenpanzer. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-amulet-dark-pentacle.png",
       "shopHidden": true,
       "affixes": {
@@ -31641,7 +31641,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Kettenpanzer. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "shopHidden": true,
       "affixes": {
@@ -31698,7 +31698,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Kettenhemd. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -31755,7 +31755,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Marschtritt. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-boots-flame-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -31817,7 +31817,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedete Stiefel. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -31874,7 +31874,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Treter. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -31931,7 +31931,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Treter. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -31988,7 +31988,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Treter. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "shopHidden": true,
       "affixes": {
@@ -32050,7 +32050,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eiserne Marschtreters. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -32107,7 +32107,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Marschtreters. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -32164,7 +32164,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenstahl-Kriegstiefel. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -32221,7 +32221,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinenschleier des Gelehrten. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -32278,7 +32278,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollkappe des Forschers. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -32335,7 +32335,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenschleier des Weisen. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -32392,7 +32392,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkane Weisenkrone. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -32454,7 +32454,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Einfache Leinenkappe. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -32511,7 +32511,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobener Wollschleier. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -32568,7 +32568,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Gelehrtenkappe. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-helm-bandana.png",
       "shopHidden": true,
       "affixes": {
@@ -32625,7 +32625,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternenmantel. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -32687,7 +32687,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinengewand des Wanderers. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -32744,7 +32744,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollrobe des Wanderers. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -32801,7 +32801,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenrobe der Erleuchtung. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -32858,7 +32858,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkane Meisterrobe. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -32920,7 +32920,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinenpantoffeln des Lesers. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -32977,7 +32977,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wollstiefel des Reisenden. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
@@ -33034,7 +33034,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seidenpantoffeln des Meisters. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -33091,7 +33091,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkane Meisterschuhe. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -33153,7 +33153,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Einfache Leinenschuhe. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
@@ -33210,7 +33210,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gewobene Wollschuhe. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -33267,7 +33267,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Schritte. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-mage-vestments.png",
       "shopHidden": true,
       "affixes": {
@@ -33324,7 +33324,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Leichtleder-Jägerkappe. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -33381,7 +33381,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittlere Leder-Jägerkappe. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -33438,7 +33438,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Jägerkrone. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-helm-bone-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -33495,7 +33495,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeitleder-Krone. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -33557,7 +33557,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Einfache Lederkappe. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -33614,7 +33614,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gehärtete Lederkappe. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -33671,7 +33671,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Lederkappe. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-helm-celestial-halo.png",
       "shopHidden": true,
       "affixes": {
@@ -33728,7 +33728,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien-Meisterwams. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -33790,7 +33790,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Einfacher Lederpanzer. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -33847,7 +33847,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gehärteter Lederpanzer. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -33904,7 +33904,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Lederwams. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -33961,7 +33961,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeitleder-Panzer. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -34023,7 +34023,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Leichtleder-Wams. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -34080,7 +34080,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittleres Leder-Wams. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -34137,7 +34137,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Jagdpanzer. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "shopHidden": true,
       "affixes": {
@@ -34194,7 +34194,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Urzeitleder-Stiefel. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -34256,7 +34256,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Einfache Lederschuhe. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -34313,7 +34313,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Gehärtete Lederschuhe. Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -34370,7 +34370,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Bestien-Treter. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -34427,7 +34427,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Raues Leder-Marsch. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -34489,7 +34489,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Leichtleder-Stiefel. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "shopHidden": true,
       "affixes": {
@@ -34546,7 +34546,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittlere Leder-Stiefel. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -34603,7 +34603,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder-Jagdstiefel. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -34660,7 +34660,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Eiserner Ring. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-ring-copper-band.png",
       "shopHidden": true,
       "affixes": {
@@ -34717,7 +34717,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Schlichter Kupferring. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-dragon-tooth.png",
       "shopHidden": true,
       "affixes": {
@@ -34774,7 +34774,7 @@
       "reqLevel": 2,
       "rarity": "common",
       "price": 0,
-      "desc": "Grober Siegelring. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -34831,7 +34831,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Eisenband. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-druid-acorn.png",
       "shopHidden": true,
       "affixes": {
@@ -34888,7 +34888,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Einfacher Steinring. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -34945,7 +34945,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Ring des Lehrlings. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-ring-emerald-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35002,7 +35002,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Kupferreif. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35059,7 +35059,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisenring des Wanderers. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-ring-flame-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35116,7 +35116,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Kupferkette. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -35173,7 +35173,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisernes Medaillon. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -35230,7 +35230,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Schlichter Anhänger. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "shopHidden": true,
       "affixes": {
@@ -35287,7 +35287,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Steinamulett. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "shopHidden": true,
       "affixes": {
@@ -35344,7 +35344,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Einfache Kette. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -35401,7 +35401,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristallring. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-ring-copper-band.png",
       "shopHidden": true,
       "affixes": {
@@ -35458,7 +35458,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Siegelring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35515,7 +35515,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristallband. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "shopHidden": true,
       "affixes": {
@@ -35572,7 +35572,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Ring des Forschers. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35629,7 +35629,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Reif. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -35686,7 +35686,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Siegelring. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-ring-emerald-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35743,7 +35743,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mondsteinring. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35800,7 +35800,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Ring der Erkenntnis. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-ring-flame-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35857,7 +35857,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerner Gelehrtenring. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "shopHidden": true,
       "affixes": {
@@ -35914,7 +35914,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristallreif des Wanderers. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -35971,7 +35971,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristallkette. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-amulet-onyx-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -36028,7 +36028,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählernes Medaillon. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "shopHidden": true,
       "affixes": {
@@ -36085,7 +36085,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mondstein-Anhänger. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-prism-crystal.png",
       "shopHidden": true,
       "affixes": {
@@ -36142,7 +36142,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Amulett. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-amulet-ruby-amulet.png",
       "shopHidden": true,
       "affixes": {
@@ -36199,7 +36199,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählerne Kette. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-rune-stone.png",
       "shopHidden": true,
       "affixes": {
@@ -36256,7 +36256,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Kristall-Medaillon. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "shopHidden": true,
       "affixes": {
@@ -36313,7 +36313,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Saphirring. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -36370,7 +36370,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenauge-Ring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -36427,7 +36427,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Ring des Meisters. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-ring-emerald-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -36484,7 +36484,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Smaragdband. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "shopHidden": true,
       "affixes": {
@@ -36541,7 +36541,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Siegelring. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -36598,7 +36598,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Ring der Sterne. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-ring-flame-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -36655,7 +36655,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Reif. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "shopHidden": true,
       "affixes": {
@@ -36712,7 +36712,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Saphir-Gelehrtenring. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -36769,7 +36769,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Ring des Weisen. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "shopHidden": true,
       "affixes": {
@@ -36826,7 +36826,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Smaragdreif. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-amulet-onyx-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -36883,7 +36883,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Saphir-Kette. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "shopHidden": true,
       "affixes": {
@@ -36940,7 +36940,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenzahn-Medaillon. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-amulet-prism-crystal.png",
       "shopHidden": true,
       "affixes": {
@@ -36997,7 +36997,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Smaragd-Anhänger. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-ruby-amulet.png",
       "shopHidden": true,
       "affixes": {
@@ -37054,7 +37054,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Mondschein-Amulett. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-amulet-rune-stone.png",
       "shopHidden": true,
       "affixes": {
@@ -37111,7 +37111,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachenschuppen-Kette. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "shopHidden": true,
       "affixes": {
@@ -37168,7 +37168,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Saphir-Medaillon. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-amulet-silver-locket.png",
       "shopHidden": true,
       "affixes": {
@@ -37225,7 +37225,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Smaragd-Amulett. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-amulet-soul-gem.png",
       "shopHidden": true,
       "affixes": {
@@ -37282,7 +37282,7 @@
       "reqLevel": 37,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -37344,7 +37344,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Ring der Leere. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-amulet-tiger-tooth.png",
       "shopHidden": true,
       "affixes": {
@@ -37406,7 +37406,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Siegelring. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -37468,7 +37468,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Runenring. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-ring-emerald-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -37530,7 +37530,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternenring. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-amulet-vampire-fang.png",
       "shopHidden": true,
       "affixes": {
@@ -37592,7 +37592,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Band. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-bone-charm.png",
       "shopHidden": true,
       "affixes": {
@@ -37654,7 +37654,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelenreif. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-amulet-celestial-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -37716,7 +37716,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Ring des Schicksals. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -37778,7 +37778,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkaner Siegelring. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-amulet-copper-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -37840,7 +37840,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Gelehrtenring. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-amulet-crystal-shard.png",
       "shopHidden": true,
       "affixes": {
@@ -37902,7 +37902,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Ring der Ewigkeit. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-ring-flame-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -37964,7 +37964,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternenband des Webers. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-dark-pentacle.png",
       "shopHidden": true,
       "affixes": {
@@ -38026,7 +38026,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether-Kette. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-amulet-dragon-tooth.png",
       "shopHidden": true,
       "affixes": {
@@ -38088,7 +38088,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Medaillon. Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
       "icon": "/images/icons/gacha-amulet-druid-acorn.png",
       "shopHidden": true,
       "affixes": {
@@ -38150,7 +38150,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternen-Anhänger. Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -38212,7 +38212,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Runen-Amulett. Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -38274,7 +38274,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aetherkern-Kette. Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
+      "desc": "Mirael sagt, Perfektion sei eine Reise. Diese hier ist fast angekommen.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "shopHidden": true,
       "affixes": {
@@ -38336,7 +38336,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelen-Amulett. Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
+      "desc": "Der Edelstein hat eine eigene Meinung. Meistens stimmt sie.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "shopHidden": true,
       "affixes": {
@@ -38398,7 +38398,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Sternen-Medaillon. Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
+      "desc": "Handgeschliffen. Jede Facette erzählt eine winzige Geschichte.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -38460,7 +38460,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkaner Anhänger. Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
+      "desc": "Mirael hat es 'beinahe würdig' genannt. Das ist ihr höchstes Lob.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "shopHidden": true,
       "affixes": {
@@ -38522,7 +38522,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Seelensiegel-Kette. Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
+      "desc": "Funkelt bei Mondlicht anders als bei Tageslicht. Niemand weiß warum.",
       "icon": "/images/icons/gacha-amulet-onyx-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -38584,7 +38584,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisern Kappe II. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -38641,7 +38641,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählern Robe II. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -38698,7 +38698,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachen Marschtritt II. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
@@ -38755,7 +38755,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether Haube II. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "shopHidden": true,
       "affixes": {
@@ -38817,7 +38817,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisern Mantel II. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -38874,7 +38874,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählern Stiefel II. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -38931,7 +38931,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachen Helm II. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "shopHidden": true,
       "affixes": {
@@ -38988,7 +38988,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether Platte II. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -39050,7 +39050,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Eisern Treter II. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -39107,7 +39107,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählern Visier II. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -39164,7 +39164,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachen Panzer II. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -39221,7 +39221,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether Schuhe II. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -39283,7 +39283,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisern Schleier III. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -39340,7 +39340,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählern Wams III. Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
+      "desc": "Grimvar sagt, es sei 'akzeptabel'. Das ist sein höchstes Lob.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -39397,7 +39397,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachen Sandalen III. Riecht nach Kohle und Entschlossenheit.",
+      "desc": "Riecht nach Kohle und Entschlossenheit.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -39454,7 +39454,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether Kappe III. Der Stahl erinnert sich an jeden Hammerschlag.",
+      "desc": "Der Stahl erinnert sich an jeden Hammerschlag.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "shopHidden": true,
       "affixes": {
@@ -39516,7 +39516,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Eisern Robe III. Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -39573,7 +39573,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Stählern Marschtritt III. Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -39630,7 +39630,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Drachen Haube III. Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -39687,7 +39687,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Aether Mantel III. Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
+      "desc": "Der Amboss hat sich beschwert. Der Amboss beschwert sich immer.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -39749,7 +39749,7 @@
       "reqLevel": 1,
       "rarity": "common",
       "price": 0,
-      "desc": "Eisern Stiefel III. Geschmiedet bei Temperaturen die andere für unmöglich halten.",
+      "desc": "Geschmiedet bei Temperaturen die andere für unmöglich halten.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -39806,7 +39806,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinen Kappe II. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -39863,7 +39863,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Woll Robe II. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -39920,7 +39920,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seiden Marschtritt II. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -39977,7 +39977,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkan Haube II. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -40039,7 +40039,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinen Mantel II. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -40096,7 +40096,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Woll Stiefel II. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-boots-bone-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -40153,7 +40153,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seiden Helm II. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -40210,7 +40210,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkan Platte II. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -40272,7 +40272,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinen Treter II. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -40329,7 +40329,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Woll Visier II. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -40386,7 +40386,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seiden Panzer II. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -40443,7 +40443,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkan Schuhe II. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -40505,7 +40505,7 @@
       "reqLevel": 2,
       "rarity": "common",
       "price": 0,
-      "desc": "Leinen Schleier III. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "shopHidden": true,
       "affixes": {
@@ -40562,7 +40562,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Woll Wams III. Die Webstube riecht nach Lavendel und Perfektionismus.",
+      "desc": "Die Webstube riecht nach Lavendel und Perfektionismus.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -40619,7 +40619,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seiden Sandalen III. Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -40676,7 +40676,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkan Kappe III. Leichter als es aussieht. Wärmer als man denkt.",
+      "desc": "Leichter als es aussieht. Wärmer als man denkt.",
       "icon": "/images/icons/gacha-helm-flame-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -40738,7 +40738,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinen Robe III. Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
+      "desc": "Lin sagt, die Farbe sei 'akzeptabel'. Von Lin ist das ein Kompliment.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -40795,7 +40795,7 @@
       "reqLevel": 22,
       "rarity": "rare",
       "price": 0,
-      "desc": "Woll Marschtritt III. Handarbeit. Keine Maschine. Kein Kompromiss.",
+      "desc": "Handarbeit. Keine Maschine. Kein Kompromiss.",
       "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -40852,7 +40852,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Seiden Haube III. Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
+      "desc": "Der Stoff flüstert beim Tragen. Nicht laut — aber deutlich.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "shopHidden": true,
       "affixes": {
@@ -40909,7 +40909,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Arkan Mantel III. Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
+      "desc": "Lin hat sie dreimal aufgetrennt bevor sie ihren Standards genügten.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -40971,7 +40971,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leinen Stiefel III. Genäht mit einer Präzision die an Besessenheit grenzt.",
+      "desc": "Genäht mit einer Präzision die an Besessenheit grenzt.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -41028,7 +41028,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder Kappe II. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -41085,7 +41085,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder Robe II. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -41142,7 +41142,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder Marschtritt II. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -41199,7 +41199,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien Haube II. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "shopHidden": true,
       "affixes": {
@@ -41261,7 +41261,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder Mantel II. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -41318,7 +41318,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder Stiefel II. Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-boots-cloth-shoes.png",
       "shopHidden": true,
       "affixes": {
@@ -41375,7 +41375,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder Helm II. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "shopHidden": true,
       "affixes": {
@@ -41432,7 +41432,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien Platte II. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-armor-shadow-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -41494,7 +41494,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder Treter II. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -41551,7 +41551,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder Visier II. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "shopHidden": true,
       "affixes": {
@@ -41608,7 +41608,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder Panzer II. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -41665,7 +41665,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien Schuhe II. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -41727,7 +41727,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder Schleier III. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -41784,7 +41784,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder Wams III. Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
+      "desc": "Roderic hat es getestet. Auf sich selbst. Er lebt noch.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -41841,7 +41841,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder Sandalen III. Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -41898,7 +41898,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien Kappe III. Riecht nach Gerberei und Trotz.",
+      "desc": "Riecht nach Gerberei und Trotz.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -41960,7 +41960,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder Robe III. Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
+      "desc": "Die Gerberei ist kein Ort für schwache Nasen. Oder schwache Nerven.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -42017,7 +42017,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Mittelleder Marschtritt III. Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
+      "desc": "Roderic sagt, gutes Leder erzählt eine Geschichte. Dieses hier murmelt.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
@@ -42074,7 +42074,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwerleder Haube III. Robust genug um einen Sturz zu überleben. Oder zwei.",
+      "desc": "Robust genug um einen Sturz zu überleben. Oder zwei.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -42131,7 +42131,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Bestien Mantel III. Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
@@ -42193,7 +42193,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Leichtleder Stiefel III. Flexibel wo es sein muss. Hart wo es zählt.",
+      "desc": "Flexibel wo es sein muss. Hart wo es zählt.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
