@@ -30,6 +30,12 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Readability bump — override Tailwind text-xs from 12px to 13px site-wide */
+.text-xs {
+  font-size: 0.8125rem !important;
+  line-height: 1.25rem;
+}
+
 /* Default: auto rendering for all images (bilinear interpolation, no pixelation) */
 img {
   image-rendering: auto;
