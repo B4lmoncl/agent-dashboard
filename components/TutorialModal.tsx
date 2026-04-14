@@ -934,9 +934,9 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Schicksalsbaum — Passiver Talentbaum" icon="◇" accent="rgba(167,139,250,0.3)">
                 Kreisförmiger Skill-Tree mit 44 Knoten in 3 Ringen — inspiriert von Wolcen:
                 <ul className="space-y-1 mt-2">
-                  <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 8 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
-                  <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 10 Spezialisierungen mit Tradeoffs.</li>
-                  <li>• <Stat color="#f97316">Aszension</Stat> (Außen) — 8 Capstone-Boni: Mythic+ Skip, Friend XP Echo, Passive Gold.</li>
+                  <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 12 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
+                  <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 18 Spezialisierungen mit Tradeoffs.</li>
+                  <li>• <Stat color="#f97316">Aszension</Stat> (Außen) — 14 Capstone-Boni: Mythic+ Skip, Friend XP Echo, Passive Gold.</li>
                   <li>• Freischaltung ab <Stat color="#f0f0f0">Level 5</Stat>, 1 Punkt pro 2 Level, max 23 Punkte.</li>
                   <li>• Respec: 500 Gold + 50 Essenz.</li>
                 </ul>
