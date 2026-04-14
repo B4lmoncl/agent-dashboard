@@ -3195,7 +3195,7 @@
       "xp": 10,
       "description": "Rüstung verstärken I.",
       "trainerCost": 25,
-      "desc": "Der erste Versuch ein gutes Stück besser zu machen. Meistens erfolgreich. Manchmal lehrreich."
+      "desc": "Der erste Versuch, ein gutes Stück besser zu machen — meistens erfolgreich, manchmal lehrreich."
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-2",
@@ -3215,7 +3215,7 @@
       "xp": 18,
       "description": "Rüstung verstärken II.",
       "trainerCost": 208,
-      "desc": "Verstärkung für Rüstung die schon gut war. Jetzt ist sie besser. Grimvar nennt das Ehrgeiz."
+      "desc": "Verstärkung für eine Rüstung die bereits gut war — jetzt ist sie besser, was Grimvar schlicht Ehrgeiz nennt."
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-3",
@@ -3236,7 +3236,7 @@
       "xp": 25,
       "description": "Rüstung verstärken III.",
       "trainerCost": 583,
-      "desc": "Dritte Verstärkung. An diesem Punkt fragt die Rüstung sich ob sie noch dieselbe ist. Philosophie am Amboss."
+      "desc": "Bei der dritten Verstärkung fragt sich die Rüstung langsam, ob sie noch dieselbe ist — Philosophie am Amboss."
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-4",
@@ -3257,7 +3257,7 @@
       "description": "Rüstung verstärken IV.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Vierte Verstärkung. Die Rüstung ist jetzt mehr Verstärkung als Rüstung. Grimvar sieht kein Problem."
+      "desc": "Nach der vierten Verstärkung ist die Rüstung inzwischen mehr Verstärkung als Rüstung, was Grimvar nicht als Problem betrachtet."
     },
     {
       "id": "recipe-schmied-schild-polieren-1",
@@ -3298,7 +3298,7 @@
       "description": "Schild polieren II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Stärkere Politur. Der Schild blendet jetzt. Absichtlich."
+      "desc": "Eine stärkere Politur die den Schild so blank macht, dass er Feinde blendet — und das ist ausdrücklich Absicht."
     },
     {
       "id": "recipe-schmied-schild-polieren-3",
@@ -3361,7 +3361,7 @@
       "description": "Amulett segnen II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Stärkere Segnung. Grimvar murmelt lauter. Das Amulett leuchtet heller. Korrelation unbewiesen."
+      "desc": "Bei der stärkeren Segnung murmelt Grimvar lauter und das Amulett leuchtet heller, wobei die Korrelation unbewiesen bleibt."
     },
     {
       "id": "recipe-schmied-amulett-segnen-3",
@@ -14038,7 +14038,7 @@
       "xp": 16,
       "trainerCost": 273,
       "description": "Stellt her: Kristall-Wächterhelm.",
-      "desc": "Der Kristall im Helm warnt vor Gefahr. Oder vor Regen. Er unterscheidet nicht gut."
+      "desc": "Der Kristall im Helm warnt vor Gefahr, gelegentlich auch vor Regen — er unterscheidet nicht besonders gut zwischen beidem."
     },
     {
       "id": "recipe-schmied-drachenstahl-waechterhelm",
@@ -14136,7 +14136,7 @@
       "xp": 24,
       "trainerCost": 883,
       "description": "Stellt her: Drachenstahl-Plattenpanzer.",
-      "desc": "Plattenpanzer aus Drachenstahl. Der Drache hat eine Rechnung geschickt. Grimvar hat sie ignoriert."
+      "desc": "Ein Plattenpanzer aus Drachenstahl, für den der ursprüngliche Drache eine formelle Rechnung geschickt hat — die Grimvar konsequent ignoriert."
     },
     {
       "id": "recipe-schmied-aetherkern-ruestung",
@@ -14157,7 +14157,7 @@
       "description": "Stellt her: Aetherkern-Rüstung.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Rüstung mit eigenem Herzschlag. Manche finden das tröstlich. Die meisten finden es verstörend."
+      "desc": "Eine Rüstung mit eigenem Herzschlag, was manche Träger tröstlich finden und die meisten zutiefst verstörend."
     },
     {
       "id": "recipe-schmied-eiserner-kettenpanzer",
@@ -14176,7 +14176,7 @@
       "xp": 8,
       "trainerCost": 60,
       "description": "Stellt her: Eiserner Kettenpanzer.",
-      "desc": "Kettengeflecht für Einsteiger. Klappert beim Gehen. Grimvar nennt das Frühwarnsystem."
+      "desc": "Kettengeflecht für Einsteiger, das beim Gehen klappert — Grimvar nennt das großzügig ein Frühwarnsystem."
     },
     {
       "id": "recipe-schmied-kristall-kettenpanzer",
@@ -14196,7 +14196,7 @@
       "xp": 16,
       "trainerCost": 465,
       "description": "Stellt her: Kristall-Kettenpanzer.",
-      "desc": "Klirrt nicht, sondern klingt. Wie Windspiele aus Kristall. Nur tödlicher."
+      "desc": "Ein Kettenpanzer der nicht klirrt sondern klingt, wie Windspiele aus Kristall — nur deutlich tödlicher."
     },
     {
       "id": "recipe-schmied-drachenschuppen-kettenhemd",
@@ -14257,7 +14257,7 @@
       "description": "Stellt her: Geschmiedete Stiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Einfache Stiefel. Ehrliche Arbeit. Grimvar hat zwei Minuten dafür gebraucht und drei Stunden darüber nachgedacht."
+      "desc": "Einfache Stiefel, ehrliche Arbeit — Grimvar hat zwei Minuten für die Fertigung gebraucht und drei Stunden darüber nachgedacht, ob er sie hätte besser machen können."
     },
     {
       "id": "recipe-schmied-staehlerne-treter",
@@ -14296,7 +14296,7 @@
       "description": "Stellt her: Drachenschuppen-Treter.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Drachenschuppen am Fuß. Für Leute die auf Drachen treten wollen. Metaphorisch. Hoffentlich."
+      "desc": "Drachenschuppen am Fuß, für Leute die auf Drachen treten wollen — metaphorisch, hoffentlich."
     },
     {
       "id": "recipe-schmied-seelen-treter",
@@ -14356,7 +14356,7 @@
       "xp": 16,
       "trainerCost": 270,
       "description": "Stellt her: Kristall-Marschtreters.",
-      "desc": "Kristall an der Sohle. Jeder Schritt funkelt. Heimlichkeit ist damit ausgeschlossen."
+      "desc": "Marschtreter mit Kristall an der Sohle, bei denen jeder Schritt funkelt — Heimlichkeit ist damit vollständig ausgeschlossen."
     },
     {
       "id": "recipe-schmied-drachenstahl-kriegstiefel",
@@ -17591,7 +17591,7 @@
       "xp": 8,
       "trainerCost": 30,
       "description": "Eisernes Rüstungskit.",
-      "desc": "Ein Kit das Rüstung repariert. Oder verschlimmert. Hängt vom Benutzer ab."
+      "desc": "Ein Kit das Rüstung repariert oder verschlimmert, je nachdem wer es in die Hände bekommt."
     },
     {
       "id": "recipe-schmied-kristall-ruestungskit",
@@ -17693,7 +17693,7 @@
       "description": "Platte härten II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Zweite Härtung. Die Rüstung beschwert sich nicht mehr. Sie hat aufgegeben."
+      "desc": "Bei der zweiten Härtung beschwert sich die Rüstung nicht mehr — sie hat aufgegeben, sich gegen Grimvars Hammer zu wehren."
     },
     {
       "id": "recipe-schmied-platte-haerten-3",
@@ -17713,7 +17713,7 @@
       "xp": 32,
       "description": "Platte härten III.",
       "factionId": "orden_der_klinge",
-      "desc": "Dritte Härtung. An diesem Punkt ist die Rüstung härter als Grimvars Meinung. Fast."
+      "desc": "Nach der dritten Härtung ist die Rüstung fast so hart wie Grimvars Meinung — fast."
     },
     {
       "id": "recipe-schmied-vitalitaet-tempern-1",
@@ -17734,7 +17734,7 @@
       "xp": 10,
       "trainerCost": 60,
       "description": "Rüstung tempern I.",
-      "desc": "Tempern für Vitalität. Die Rüstung gibt Lebenskraft. Grimvar gibt Lebensweisheiten. Beides ungefragt."
+      "desc": "Tempern für Vitalität — die Rüstung gibt Lebenskraft und Grimvar gibt Lebensweisheiten, beides gleichermaßen ungefragt."
     },
     {
       "id": "recipe-schmied-vitalitaet-tempern-2",
@@ -17755,7 +17755,7 @@
       "description": "Rüstung tempern II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Mehr Vitalität. Mehr Tempern. Mehr Grimvar der dabei brummt."
+      "desc": "Mehr Vitalität durch mehr Tempern, begleitet von mehr Grimvar-Brummen als bei der ersten Stufe."
     },
     {
       "id": "recipe-schmied-vitalitaet-tempern-3",
@@ -17798,7 +17798,7 @@
       "xp": 15,
       "trainerCost": 120,
       "description": "Fokus einarbeiten I.",
-      "desc": "Fokus in Metall. Klingt unmöglich. Grimvar hat unmöglich nicht in seinem Wortschatz."
+      "desc": "Fokus direkt in Metall einarbeiten klingt unmöglich, aber Grimvar hat das Wort 'unmöglich' nicht in seinem Wortschatz."
     },
     {
       "id": "recipe-schmied-fokus-einarbeiten-2",
@@ -17819,7 +17819,7 @@
       "xp": 25,
       "description": "Fokus einarbeiten II.",
       "factionId": "bund_der_schatten",
-      "desc": "Mehr Fokus, mehr Konzentration. Die Rüstung denkt mit. Manchmal schneller als der Träger."
+      "desc": "Mehr Fokus, mehr Konzentration — an diesem Punkt denkt die Rüstung mit, manchmal schneller als ihr Träger."
     },
     {
       "id": "recipe-schmied-fokus-einarbeiten-3",
@@ -17839,7 +17839,7 @@
       "xp": 40,
       "description": "Fokus einarbeiten III.",
       "factionId": "orden_der_klinge",
-      "desc": "Maximaler Fokus im Metall. Die Rüstung hat jetzt eine kürzere Aufmerksamkeitsspanne als du. Paradox."
+      "desc": "Maximaler Fokus im Metall, wobei die Rüstung paradoxerweise eine kürzere Aufmerksamkeitsspanne hat als ihr Träger."
     },
     {
       "id": "recipe-schmied-eisern-kappe-ii",
@@ -17858,7 +17858,7 @@
       "xp": 8,
       "trainerCost": 50,
       "description": "Stellt her: Eisern Kappe II.",
-      "desc": "Version zwei der Eisenkappe. Grimvar hat die Fehler von Version eins behoben. Und neue eingebaut."
+      "desc": "Version zwei der Eisenkappe — Grimvar hat die Fehler von Version eins behoben und dabei pflichtbewusst neue eingebaut."
     },
     {
       "id": "recipe-schmied-staehlern-robe-ii",
@@ -17974,7 +17974,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Drachen Helm II.",
-      "desc": "Drachenhelm mit neuen Features. Grimvar nennt jede Veränderung ein Feature. Sogar die Delle."
+      "desc": "Drachenhelm mit neuen Features, wobei Grimvar jede Veränderung ein Feature nennt — sogar die Delle."
     },
     {
       "id": "recipe-schmied-aether-platte-ii",
@@ -18032,7 +18032,7 @@
       "xp": 16,
       "description": "Stellt her: Stählern Visier II.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Stählernes Visier, verbessert. Sieht jetzt mehr und urteilt weniger. Ein Fortschritt für alle."
+      "desc": "Stählernes Visier in der verbesserten Version, das jetzt mehr sieht und weniger urteilt — ein Fortschritt für alle Beteiligten."
     },
     {
       "id": "recipe-schmied-drachen-panzer-ii",
@@ -18051,7 +18051,7 @@
       "xp": 24,
       "trainerCost": 625,
       "description": "Stellt her: Drachen Panzer II.",
-      "desc": "Drachenpanzer, aktualisiert. Die Schuppen sind jetzt in der richtigen Richtung. Meistens."
+      "desc": "Drachenpanzer in der aktualisierten Version, bei der die Schuppen jetzt in der richtigen Richtung sitzen — meistens."
     },
     {
       "id": "recipe-schmied-aether-schuhe-ii",
@@ -18205,7 +18205,7 @@
       "description": "Stellt her: Drachen Haube III.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Drachenhaube, dritter Anlauf. Grimvar sagt Perfektion braucht Wiederholung. Und Geduld. Und Flüche."
+      "desc": "Die Drachenhaube im dritten Anlauf — Grimvar sagt, Perfektion braucht Wiederholung, Geduld und eine beachtliche Menge Flüche."
     },
     {
       "id": "recipe-schmied-aether-mantel-iii",
