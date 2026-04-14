@@ -937,12 +937,11 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#a855f7",
     body: (
       <>
-        <p>Earn <GTRef k="xp">XP</GTRef> from quests to level up (max 30). Each level requires exponentially more <GTRef k="xp">XP</GTRef>.</p>
+        <p>Earn <GTRef k="xp">XP</GTRef> from quests to level up (max 50). Each level requires exponentially more <GTRef k="xp">XP</GTRef>.</p>
         <p>Level-ups grant <GTRef k="stardust">Stardust</GTRef> (5 + level) and unlock new features:</p>
-        <div className="gt-stat-row"><span>Lv 5</span><span>1st profession slot</span></div>
-        <div className="gt-stat-row"><span>Lv 15</span><span>2nd profession slot</span></div>
-        <div className="gt-stat-row"><span>Lv 20</span><span>3rd profession slot</span></div>
-        <div className="gt-stat-row"><span>Lv 25</span><span>All 4 profession slots</span></div>
+        <div className="gt-stat-row"><span>Lv 5</span><span>Talent tree unlocked</span></div>
+        <div className="gt-stat-row"><span>Lv 10</span><span>Rift access</span></div>
+        <div className="gt-stat-row"><span>Professions</span><span>2 primary slots + Koch/Enchanter free</span></div>
       </>
     ),
   },
