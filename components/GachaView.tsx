@@ -39,7 +39,7 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
 
         <div className="space-y-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>Drop Rates</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>Dropchancen</h4>
             <div className="space-y-1">
               {[
                 { label: "Legendary", rate: `${(getBalance().gacha.legendaryRate * 100).toFixed(1)}%`, color: "#f97316" },

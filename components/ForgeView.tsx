@@ -863,8 +863,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     return (
       <div className="flex flex-col items-center justify-center py-16 space-y-3">
         <span className="text-4xl" style={{ opacity: 0.3 }}>&#9876;</span>
-        <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>{"Artisan's Quarter"}</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{"Sign in to enter the Artisan's Quarter."}</p>
+        <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>{"Das Handwerkerviertel"}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{"Einloggen, um das Handwerkerviertel zu betreten."}</p>
       </div>
     );
   }
@@ -905,7 +905,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
         <div>
-          <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
+          <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: moonlightActive ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.4)" }}>{"Das Handwerkerviertel"}</span></Tip>
           <p className="text-xs italic mt-0.5" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{moonlightActive ? "Die Sterne sind ausgerichtet. Was im Mondlicht geschmiedet wird, trägt ein Stück Ewigkeit in sich." : "Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider."}</p>
           {moonlightActive && (
             <div className="mt-2">
