@@ -24462,7 +24462,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Seelenleder. Passt sich dem Gang an. Nicht dem Willen — dem Gang.",
       "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -34313,7 +34313,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Gehärtet und formstabil. Roderic hat sie drei Wochen getragen bevor er zufrieden war.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -41318,7 +41318,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat sie getestet. An sich selbst. Er lebt noch.",
+      "desc": "Zweite Version. Bessere Sohle. Roderic hat die erste zerstört. Absichtlich.",
       "icon": "/images/icons/gacha-boots-cloth-shoes.png",
       "shopHidden": true,
       "affixes": {
@@ -48319,7 +48319,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "desc": "Der Wanderer geht weiter. Der Anhänger bleibt. Ironie der Dinge.",
       "icon": "/images/icons/gacha-amulet-tiger-tooth.png",
       "affixes": {
         "primary": {
@@ -49231,7 +49231,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "desc": "Das Wappen zeigt den Abgrund. Der Abgrund zeigt nichts zurück.",
       "icon": "/images/icons/gacha-shield-shadow-veil.png",
       "affixes": {
         "primary": {
@@ -50371,7 +50371,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "desc": "Die Keule weckt auf. Buchstäblich. Der letzte Treffer hallt nach.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "affixes": {
         "primary": {
@@ -50609,7 +50609,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Der Schmied nannte es sein Meisterwerk. Der Schmied hat niedrige Standards.",
+      "desc": "Feuer am Wappen. Nicht gefährlich — motivierend. Theoretisch.",
       "icon": "/images/icons/gacha-shield-rune-tower.png",
       "affixes": {
         "primary": {
@@ -50666,7 +50666,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "desc": "Der Norden schmiedet andere Schilde. Kälter. Härter. Stiller.",
       "icon": "/images/icons/gacha-shield-shadow-veil.png",
       "affixes": {
         "primary": {
@@ -50785,7 +50785,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Drei Schmiede haben daran gearbeitet. Zwei sprechen noch miteinander.",
+      "desc": "Ein Diadem aus dem Norden. Wo Eis eine Form der Kunst ist.",
       "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
@@ -60903,7 +60903,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Durchgetreten und freundlich. Wie ein alter Schuhmacher der aufgegeben hat.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "affixes": {
         "primary": {
@@ -60937,7 +60937,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
+      "desc": "Verschlammt. Der Schlamm trocknet. Die Erinnerung nicht.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
@@ -61345,7 +61345,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
+      "desc": "Rostig. Der Rost hat mehr Persönlichkeit als der Ring.",
       "icon": "/images/icons/gacha-ring-gold-band.png",
       "affixes": {
         "primary": {
@@ -61549,7 +61549,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
+      "desc": "Gebraucht. Von wem und wofür steht nicht im Prospekt.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "affixes": {
         "primary": {
@@ -61685,7 +61685,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
+      "desc": "Ein Stock. Gefunden am Wegesrand. Der Wegesrand ist ein großzügiger Geber.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "affixes": {
         "primary": {
@@ -61719,7 +61719,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Behelfsmäßig und stolz darauf. Oder gleichgültig. Schwer zu sagen bei einem Buckler.",
       "icon": "/images/icons/gacha-shield-crystal-aegis.png",
       "affixes": {
         "primary": {
@@ -61855,7 +61855,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Letztes Exemplar. Aus gutem Grund.",
+      "desc": "Provisorisch aus Holz. Holz vergibt. Holz vergisst. Holz splittert.",
       "icon": "/images/icons/gacha-shield-emerald-defender.png",
       "affixes": {
         "primary": {
@@ -62059,7 +62059,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Gegen besseres Wissen erworben. Und behalten.",
+      "desc": "Lädiert wie das Selbstvertrauen nach dem ersten Boss.",
       "icon": "/images/icons/gacha-helm-fur-cap.png",
       "affixes": {
         "primary": {
@@ -62671,7 +62671,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Matt wie die Zukunftsaussichten. Aber am Hals. Und das zählt etwas.",
       "icon": "/images/icons/gacha-amulet-onyx-talisman.png",
       "affixes": {
         "primary": {
@@ -62705,7 +62705,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
+      "desc": "Stumpf und trüb. Wie der Montag nach dem Urlaub.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "affixes": {
         "primary": {
@@ -62977,7 +62977,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Gegen besseres Wissen erworben. Und behalten.",
+      "desc": "Wackeln bei jedem Schritt. Tanzen bei keinem.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "affixes": {
         "primary": {
@@ -63589,7 +63589,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Letztes Exemplar. Aus gutem Grund.",
+      "desc": "Verbogen in eine Form die kein Schildträger anerkennen würde. Aber sie blockt.",
       "icon": "/images/icons/gacha-shield-bark-shield.png",
       "affixes": {
         "primary": {
@@ -63929,7 +63929,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
+      "desc": "Lumpen mit Ambitionen. Keine davon realistisch.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "affixes": {
         "primary": {
@@ -63997,7 +63997,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Verschlissen an den Ellbogen. Was der Vorbesitzer damit gemacht hat, bleibt sein Geheimnis.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "affixes": {
         "primary": {
@@ -64779,7 +64779,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Der Verkauf war schnell. Die Reue kam danach.",
+      "desc": "Krumm. Aber auf dem Kopf merkt man das weniger. Sagt der Verkäufer.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
@@ -64847,7 +64847,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Nicht das Schlechteste. Aber nah dran.",
+      "desc": "Dünn wie ein Versprechen. Schützt ähnlich viel.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "affixes": {
         "primary": {
@@ -65085,7 +65085,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Tut seinen Dienst. Wenn der Dienst nicht zu anspruchsvoll ist.",
+      "desc": "Löchrig an beiden Seiten. Belüftung, sagt der Optimist.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
@@ -65312,7 +65312,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Gegen besseres Wissen erworben. Und behalten.",
+      "desc": "Billig gekauft, teuer bereut. Der klassische Kreislauf.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "affixes": {
         "primary": {
@@ -65825,7 +65825,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Hält. Unter idealen Bedingungen. Die selten sind.",
+      "desc": "Lädiert. Das Wort klingt besser als der Helm aussieht.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "affixes": {
         "primary": {
@@ -67649,7 +67649,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Letztes Exemplar. Aus gutem Grund.",
+      "desc": "Ausgeblichen wie die Hoffnung. Aber die Haube hält. Die Hoffnung auch. Knapp.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
@@ -67706,7 +67706,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider.",
+      "desc": "Topf-Helm. Die Karriere vom Herd zum Kopf war nicht geplant.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
