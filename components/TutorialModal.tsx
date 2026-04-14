@@ -668,7 +668,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "progression" && (
             <>
-              <GuideSection title="XP & Level (Max 30)" icon="▲" accent="rgba(168,85,247,0.4)">
+              <GuideSection title="XP & Level (Max 50)" icon="▲" accent="rgba(168,85,247,0.4)">
                 Jede Quest gibt XP, beeinflusst von: Forge-Temp, Kraft-Stat, Gear, Companion-Bond, Streaks, Buffs.
                 <p className="mt-1">Bei Level-Up: <Stat color="#818cf8">5 + Level Stardust</Stat>.</p>
               </GuideSection>
