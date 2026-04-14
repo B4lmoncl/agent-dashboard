@@ -61175,7 +61175,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Knapp über der Schwelle zu nutzlos.",
+      "desc": "Stumpf am Finger. Scharf im Gedächtnis. Nein, auch stumpf im Gedächtnis.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "affixes": {
         "primary": {
@@ -61889,7 +61889,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Hat schon bessere Tage gesehen.",
+      "desc": "Angeschlagen an jeder Ecke. Das Ergebnis: ein Schild mit Erfahrung.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "affixes": {
         "primary": {
@@ -62025,7 +62025,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Restposten. Ohne Garantie.",
+      "desc": "Der Hut hat Löcher. Das sind keine Lüftungsschlitze.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "affixes": {
         "primary": {
@@ -62093,7 +62093,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
+      "desc": "Ausgeleiert am Rand. Wie der Horizont nach einem langen Tag.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
@@ -62501,7 +62501,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
+      "desc": "Zerrissen mit Stil. Wenn man Stil sehr großzügig definiert.",
       "icon": "/images/icons/gacha-armor-druid-leathers.png",
       "affixes": {
         "primary": {
@@ -62535,7 +62535,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
+      "desc": "Blind und stumm. Der perfekte Anhänger für jemanden der Ruhe sucht.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "affixes": {
         "primary": {
@@ -62739,7 +62739,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Die besten Tage sind vorbei. Die passablen auch.",
+      "desc": "Zerkratzt und verblichen. Wie eine alte Postkarte aus einem Ort den es nicht mehr gibt.",
       "icon": "/images/icons/gacha-amulet-prism-crystal.png",
       "affixes": {
         "primary": {
@@ -62841,7 +62841,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Knapp über der Schwelle zu nutzlos.",
+      "desc": "Platt getreten von Helden die mehr wogen als sie zugeben.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "affixes": {
         "primary": {
@@ -63249,7 +63249,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
+      "desc": "Einfacher Draht. Runder Draht. Ring-Draht. Das wars.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -63725,7 +63725,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Restposten. Ohne Garantie.",
+      "desc": "Lädierter Topf. Schützt den Kopf vor Sonne und Würde.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "affixes": {
         "primary": {
@@ -64235,7 +64235,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Hat schon bessere Tage gesehen.",
+      "desc": "Verschlammt und zufrieden damit. Der Schlamm gehört jetzt dazu.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "affixes": {
         "primary": {
@@ -64677,7 +64677,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
+      "desc": "Verbogen, aber hier. Anwesenheit ist alles. Sagt der Schild.",
       "icon": "/images/icons/gacha-shield-tower-shield.png",
       "affixes": {
         "primary": {
@@ -64813,7 +64813,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
+      "desc": "Verbeult bis zur Unkenntlichkeit. War es ein Helm? Ein Topf? Ein Traum?",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
@@ -64881,7 +64881,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Knapp über der Schwelle zu nutzlos.",
+      "desc": "Ausgebessert von jemandem der besser in Aufgeben als in Nähen ist.",
       "icon": "/images/icons/gacha-armor-cloth-tunic.png",
       "affixes": {
         "primary": {
@@ -65369,7 +65369,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Die besten Tage sind vorbei. Die passablen auch.",
+      "desc": "Alt, aber standhaft. Wie ein Argument das niemand widerlegt hat.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "affixes": {
         "primary": {
@@ -65654,7 +65654,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Der Boden ist nicht weit. Aber wir sind drüber.",
+      "desc": "Ein Brett mit Charakter. Charakter bedeutet hier: Beulen.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "affixes": {
         "primary": {
@@ -66509,7 +66509,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Niemand war stolz auf diesen Kauf. Niemand.",
+      "desc": "Zerkratzt und blind. Der Stein hat aufgehört hinzuschauen.",
       "icon": "/images/icons/gacha-amulet-prism-crystal.png",
       "affixes": {
         "primary": {
@@ -67079,7 +67079,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Hat schon bessere Tage gesehen.",
+      "desc": "Stumpf und glanzlos. Wie ein Satz ohne Pointe.",
       "icon": "/images/icons/gacha-ring-runic-band.png",
       "affixes": {
         "primary": {
@@ -67421,7 +67421,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Die besten Tage sind vorbei. Die passablen auch.",
+      "desc": "Windschief wie eine Ausrede die man zu oft benutzt hat.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "affixes": {
         "primary": {
@@ -67763,7 +67763,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Restposten. Ohne Garantie.",
+      "desc": "Staubig wie ein vergessenes Bücherregal. Und ähnlich nützlich.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "affixes": {
         "primary": {
@@ -68162,7 +68162,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Fast gut. Also schlecht. Aber optimistisch schlecht.",
+      "desc": "Schief genug um aufzufallen. Flach genug um es nicht zu sein.",
       "icon": "/images/icons/gacha-boots-cloth-shoes.png",
       "affixes": {
         "primary": {
@@ -69263,7 +69263,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "vom Lehrling. Immerhin.",
+      "desc": "Ton am Körper. Zerbrechlich und warm. Wie die meisten Anfänge.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "affixes": {
         "primary": {
@@ -69603,7 +69603,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "vom Lehrling. Reicht.",
+      "desc": "Kupfer am Hals. Wird grün mit der Zeit. Wie alles im Turm.",
       "icon": "/images/icons/gacha-amulet-soul-gem.png",
       "affixes": {
         "primary": {
@@ -70045,7 +70045,7 @@
       "rarity": "common",
       "price": 3,
       "shopHidden": false,
-      "desc": "vom Lehrling. Reicht.",
+      "desc": "Stoff an den Füßen. Nicht viel Schutz. Aber ein Anfang.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
@@ -70589,7 +70589,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "vom Lehrling. Naja.",
+      "desc": "Ein Block aus Holz. Schild ist ein starkes Wort.",
       "icon": "/images/icons/gacha-shield-obsidian-bulwark.png",
       "affixes": {
         "primary": {
@@ -71065,7 +71065,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "vom Lehrling. Naja.",
+      "desc": "Eisen am Körper. Schwer und kalt. Wie Pflichtbewusstsein.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "affixes": {
         "primary": {
@@ -71541,7 +71541,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "vom Lehrling. Immerhin.",
+      "desc": "Stoff unter den Füßen. Weich, leise, und nach einer Woche durch.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "affixes": {
         "primary": {
@@ -71575,7 +71575,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "vom Lehrling. Naja.",
+      "desc": "Knochen als Ring. Der Lehrling war kreativ. Der Meister war entsetzt.",
       "icon": "/images/icons/gacha-ring-shadow-ring.png",
       "affixes": {
         "primary": {
@@ -72425,7 +72425,7 @@
       "rarity": "common",
       "price": 7,
       "shopHidden": false,
-      "desc": "vom Lehrling. Immerhin.",
+      "desc": "Holz als Schmuck. Der Lehrling nennt es minimalistisch. Der Meister nennt es nichts.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "affixes": {
         "primary": {
@@ -73139,7 +73139,7 @@
       "rarity": "common",
       "price": 9,
       "shopHidden": false,
-      "desc": "vom Lehrling. Reicht.",
+      "desc": "Stein, rund geschliffen. Der Lehrling hat eine Woche gebraucht. Für einen Kreis.",
       "icon": "/images/icons/gacha-ring-skull-ring.png",
       "affixes": {
         "primary": {
@@ -74005,7 +74005,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "desc": "Das Herz ist aus Eisen. Es schlägt nicht — es schützt.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "affixes": {
         "primary": {
@@ -74176,7 +74176,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "desc": "Der Stein ist rot. Von Natur aus. Oder von etwas anderem.",
       "icon": "/images/icons/gacha-amulet-ruby-amulet.png",
       "affixes": {
         "primary": {
@@ -74290,7 +74290,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Der Händler nannte es \"selten\". In dem Ton, in dem man \"teuer\" sagt.",
+      "desc": "Ein Splitter des Mondes. Zumindest behauptet das der Verkäufer.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "affixes": {
         "primary": {
