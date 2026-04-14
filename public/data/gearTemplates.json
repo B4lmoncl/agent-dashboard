@@ -46793,7 +46793,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Eine Rüstung die vorgibt ewig zu halten. Die Erwartungshaltung ist ambitioniert.",
       "icon": "/images/icons/gacha-armor-mage-robe.png",
       "affixes": {
         "primary": {
@@ -46975,7 +46975,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Je tiefer man schaut, desto weniger sieht man. Das gilt für den Talisman und seine Besitzer.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "affixes": {
         "primary": {
@@ -47920,7 +47920,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Leuchtet nachts. Dezent. Genug um den Weg zu finden. Nicht genug um gefunden zu werden.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
@@ -48490,7 +48490,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Der Name ist schlimmer als das Item. Der Vorbesitzer war Dramatiker.",
       "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
@@ -48946,7 +48946,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Wer sie schwingt, wacht auf. Wer getroffen wird auch. Vorübergehend.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "affixes": {
         "primary": {
@@ -49003,7 +49003,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Das Schicksal hat viele Klingen. Diese hier ist die diskreteste.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "affixes": {
         "primary": {
@@ -49744,7 +49744,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Getragen von jemandem der nie aufgehört hat zu laufen. Die Kette weiß warum. Sie sagt es nicht.",
       "icon": "/images/icons/gacha-amulet-thunder-rune.png",
       "affixes": {
         "primary": {
@@ -49801,7 +49801,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Zwischen Tag und Nacht liegt ein Moment in dem alles möglich ist. Das Medaillon fängt ihn ein.",
       "icon": "/images/icons/gacha-amulet-tiger-tooth.png",
       "affixes": {
         "primary": {
@@ -50961,7 +50961,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Eisen kennt keine Kompromisse. Und diese Krone auch nicht.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {
@@ -51137,7 +51137,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Der Mantel brennt nicht. Alles andere schon. Das ist der Punkt.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "affixes": {
         "primary": {
@@ -51499,7 +51499,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es funktioniert perfekt. Das ist verdächtig.",
+      "desc": "Jeder Schritt hinterlässt Wärme. Nicht Flammen — Wärme. Der Unterschied ist wichtig.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
@@ -53811,7 +53811,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Matt wie die Aussichten. Aber es hängt am Hals und das ist ein Anfang.",
       "icon": "/images/icons/gacha-amulet-tiger-tooth.png",
       "affixes": {
         "primary": {
@@ -53845,7 +53845,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Angelaufen. Vom Alter oder von Enttäuschung. Beides plausibel.",
       "icon": "/images/icons/gacha-amulet-vampire-fang.png",
       "affixes": {
         "primary": {
@@ -54243,7 +54243,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Das Klappern ist kein Bug. Es ist ein Feature. Sagt der Hersteller. Der Hersteller lügt.",
       "icon": "/images/icons/gacha-boots-ethereal-walkers.png",
       "affixes": {
         "primary": {
@@ -54391,7 +54391,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Abgelaufen wie Milch. Nur weniger offensichtlich. Anfangs.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "affixes": {
         "primary": {
@@ -54539,7 +54539,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Draht, zu einem Kreis gebogen. Schmuck ist relativ.",
       "icon": "/images/icons/gacha-ring-silver-loop.png",
       "affixes": {
         "primary": {
@@ -54880,7 +54880,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Das Band ist billig. Die Hoffnung die darin steckt war gratis.",
       "icon": "/images/icons/gacha-ring-claw-ring.png",
       "affixes": {
         "primary": {
@@ -55551,7 +55551,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Der Riss ist nicht tragisch. Nur inconvenient. Sehr inconvenient.",
       "icon": "/images/icons/gacha-shield-bone-aegis.png",
       "affixes": {
         "primary": {
@@ -56893,7 +56893,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Waren im Regen. Sind jetzt weich. Zu weich. Für alles.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "affixes": {
         "primary": {
@@ -57257,7 +57257,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Schlicht und ergreifend. Vor allem schlicht.",
       "icon": "/images/icons/gacha-ring-claw-ring.png",
       "affixes": {
         "primary": {
@@ -57758,7 +57758,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "War mal rund. Jetzt oval. Evolution, sagt der Schmied. Versagen, sagt die Physik.",
       "icon": "/images/icons/gacha-shield-thorn-buckler.png",
       "affixes": {
         "primary": {
@@ -58293,7 +58293,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Funktional. Wenn man großzügig definiert.",
+      "desc": "Mehr Flicken als Stoff. Aber die Flicken halten. Das ist auch etwas.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "affixes": {
         "primary": {
@@ -60393,7 +60393,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Zerrissen an Stellen die anatomisch fragwürdig sind. Was hat der Vorbesitzer getrieben.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "affixes": {
         "primary": {
@@ -62875,7 +62875,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "So ausgeleiert dass sie bei jedem Schritt klatschen. Rhythmisch. Fast musikalisch.",
       "icon": "/images/icons/gacha-boots-snow-boots.png",
       "affixes": {
         "primary": {
@@ -62909,7 +62909,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Die Sohle hat aufgegeben. Der Rest macht aus Trotz weiter.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
@@ -63623,7 +63623,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Provisorisch seit dem dritten Besitzer. Tradition hat viele Formen.",
       "icon": "/images/icons/gacha-shield-blood-pavise.png",
       "affixes": {
         "primary": {
@@ -63793,7 +63793,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Schützt den Kopf vor allem außer Würde.",
       "icon": "/images/icons/gacha-helm-viking-horns.png",
       "affixes": {
         "primary": {
@@ -64065,7 +64065,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "So unscheinbar dass man vergisst es zu tragen. Und dann erinnert man sich. Weil es kratzt.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "affixes": {
         "primary": {
@@ -64575,7 +64575,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Der Griff wackelt. Die Klinge nicht. Halbes Glück.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "affixes": {
         "primary": {
@@ -64983,7 +64983,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Keine Steine, keine Verzierung, kein Glanz. Nur Metall und stille Entschlossenheit.",
       "icon": "/images/icons/gacha-amulet-silver-locket.png",
       "affixes": {
         "primary": {
@@ -65153,7 +65153,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Rost hat Charakter. Dieser Ring hat sehr viel Charakter.",
       "icon": "/images/icons/gacha-ring-signet-ring.png",
       "affixes": {
         "primary": {
@@ -67535,7 +67535,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Wackelt hin und her. Wie das Selbstvertrauen vor dem ersten Kampf.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "affixes": {
         "primary": {
@@ -68219,7 +68219,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Gefunden. Behalten. Bereut.",
+      "desc": "Platt getreten von Helden die es besser hatten. Und von Helden die es nicht hatten.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "affixes": {
         "primary": {
