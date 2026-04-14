@@ -302,9 +302,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
 
         {/* Frame Selection */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
-          <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
+          <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Kosmetischer Rahmen</label>
           <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.2)" }}>
-            Frames add a colored border and glow effect to your player card visible to everyone. Earn frames from faction reputation (Revered), the Season Pass, World Boss #1, Dungeon first-clears, and the Currency Shops.
+            Rahmen fügen deiner Spielerkarte einen farbigen Rand und Leuchteffekt hinzu, sichtbar für alle. Verdiene Rahmen durch Fraktionsruf (Verehrt), den Season Pass, Weltboss-Rang 1, Dungeon-Erstdurchquerungen und die Währungsshops.
           </p>
 
           {/* Preview: how current frame looks */}
@@ -336,7 +336,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Season Pass</span>
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>World Boss #1</span>
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Dungeon First-Clear</span>
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Currency Shops</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Währungsshops</span>
               </div>
             </div>
           ) : (
