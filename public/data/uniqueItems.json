@@ -926,7 +926,7 @@
       "legendaryEffect": {
         "type": "forge_temp_flat",
         "value": 3,
-        "label": "+3 Forge Temperature per quest"
+        "label": "+3 Schmiedetemperatur pro Quest"
       },
       "source": "world_boss:procrastination-wyrm"
     },
@@ -1110,7 +1110,7 @@
       "legendaryEffect": {
         "type": "every_nth_bonus",
         "value": 5,
-        "label": "Every 5th quest: bonus rewards"
+        "label": "Jede 5. Quest: Bonusbelohnung"
       },
       "source": "world_boss:procrastination-wyrm"
     },
@@ -1225,7 +1225,7 @@
       "legendaryEffect": {
         "type": "forge_temp_flat",
         "value": 2,
-        "label": "+2 Forge Temperature per quest"
+        "label": "+2 Schmiedetemperatur pro Quest"
       },
       "source": "world_boss:stagnation-golem"
     },
