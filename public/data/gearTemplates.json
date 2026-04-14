@@ -20501,7 +20501,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Eine Kappe die aussieht wie Schmuck. Lin sagt: Schutz und Schönheit schließen sich nicht aus.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "shopHidden": true,
       "affixes": {
@@ -20957,7 +20957,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Mondlichtstoff unter den Sohlen. Jeder Schritt ist wie auf Samt. Nur kälter.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -21413,7 +21413,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Die Haube absorbiert Mondlicht. Am Tag sieht sie gewöhnlich aus. Nachts nicht.",
       "icon": "/images/icons/gacha-helm-shadow-cowl.png",
       "shopHidden": true,
       "affixes": {
@@ -21899,7 +21899,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Lins ambitioniertestes Stück. Eine Krone aus Aetherfäden. Sie leuchtet leise. Wie Lins Stolz.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -22395,7 +22395,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Arkane Energie in jeder Faser. Die Schuhe sind leichter als Luft. Und teurer als alles andere.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": true,
       "affixes": {
@@ -22970,7 +22970,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Jagdleder, zugeschnitten für Bewegung. Roderic sagt, eine Jacke die einengt ist keine Jacke.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "shopHidden": true,
       "affixes": {
@@ -23141,7 +23141,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Jägerstiefel für jemanden der sein Wild zu Fuß einholt. Roderic hat den Lauf getestet.",
       "icon": "/images/icons/gacha-boots-pirate-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -23426,7 +23426,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Wildnisleder schützt vor Wetter und Blicken. Roderic hat beides getestet.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
@@ -23597,7 +23597,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Wildnisleder an den Sohlen. Der Wald erkennt dich als Freund. Oder zumindest als Bekannten.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -23882,7 +23882,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Bestienleder dehnt sich nicht. Es wird nur härter. Wie Roderics Blick wenn du fragst ob es billiger geht.",
       "icon": "/images/icons/gacha-armor-chainmail.png",
       "shopHidden": true,
       "affixes": {
@@ -24053,7 +24053,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Eine Maske die das Gesicht schützt und verbirgt. Roderic fand die Kombination praktisch.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -24338,7 +24338,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Die Füße spüren den Boden. Jede Wurzel. Jeden Stein. Roderic nennt das Aufmerksamkeit.",
       "icon": "/images/icons/gacha-armor-crystal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -24524,7 +24524,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Urzeitleder unter den Füßen. Jeder Schritt auf dem Boden ist eine Verbeugung vor der Vergangenheit.",
       "icon": "/images/icons/gacha-armor-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -24834,7 +24834,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Urzeitleder das älter ist als die Gerberei selbst. Roderic hat Respekt vor dem Material. Das hat Seltenheitswert.",
       "icon": "/images/icons/gacha-boots-elven-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -25020,7 +25020,7 @@
       "reqLevel": 44,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Die Jacke ist aus Material das nicht mehr existieren sollte. Roderic stellt keine Fragen. Er verarbeitet.",
       "icon": "/images/icons/gacha-armor-fur-cloak.png",
       "shopHidden": true,
       "affixes": {
@@ -32221,7 +32221,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Für Gelehrte die viel lesen und wenig schlafen. Lin kennt den Typ.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -32687,7 +32687,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Ein Gewand für Wanderer. Hält dem Wind stand und dem Besitzer auch.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -33153,7 +33153,7 @@
       "reqLevel": 4,
       "rarity": "common",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Einfach heißt bei Lin: ohne sichtbare Fehler. Das ist schwieriger als es klingt.",
       "icon": "/images/icons/gacha-boots-mage-slippers.png",
       "shopHidden": true,
       "affixes": {
@@ -33438,7 +33438,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Eine Krone aus gehärtetem Leder. Roderic sagt, Kronen müssen nicht aus Gold sein. Sie müssen halten.",
       "icon": "/images/icons/gacha-helm-bone-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -33728,7 +33728,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Roderics Meisterstück. Er benutzt das Wort nicht. Er zeigt auf das Wams. Und schweigt.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -33904,7 +33904,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Bestienleder, dreifach gegerbt. Der Prozess dauert eine Woche und riecht wie drei.",
       "icon": "/images/icons/gacha-armor-monk-robe.png",
       "shopHidden": true,
       "affixes": {
@@ -34194,7 +34194,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Material aus der Tiefe des Turms. Roderic hat es drei Wochen bearbeitet. Ohne Pause. Ohne Klage.",
       "icon": "/images/icons/gacha-boots-hunter-mocs.png",
       "shopHidden": true,
       "affixes": {
@@ -34370,7 +34370,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Leise auf jedem Untergrund. Roderic sagt, die besten Jäger hört man nicht kommen. Oder gehen.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "shopHidden": true,
       "affixes": {
@@ -40153,7 +40153,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Seidenhelm, überarbeitet. Weicher, stabiler, und Lin ist weniger genervt als beim ersten Mal.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -40619,7 +40619,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Jede Naht sitzt. Lin duldet keine Fehler. Keine.",
+      "desc": "Dritte Seidensandale. Der Faden hat begriffen was Lin will. Endlich.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -41199,7 +41199,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Zweite Bestienhaube. Dichter, härter. Roderic hat das Monster diesmal persönlich ausgesucht.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "shopHidden": true,
       "affixes": {
@@ -41375,7 +41375,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Zweiter Schwerlederhelm. Sitzt enger. Schützt besser. Roderic ist mit weniger nicht zufrieden.",
       "icon": "/images/icons/gacha-helm-druid-antlers.png",
       "shopHidden": true,
       "affixes": {
@@ -41665,7 +41665,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Überarbeitete Bestienschuhe. Leiser als die erste Version. Bestien mögen Stille.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -41841,7 +41841,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Roderic hat das Leder persönlich ausgewählt. Und persönlich beschimpft.",
+      "desc": "Dritte Sandale. Schwerleder und offene Bauart — ein Widerspruch den Roderic zum Prinzip erhoben hat.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -42131,7 +42131,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Nähte sind mit Sehne verstärkt. Traditionell. Und ein bisschen eklig.",
+      "desc": "Dritter Bestienmantel. Das Material ist widerspenstiger als Roderic. Und das will etwas heißen.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "shopHidden": true,
       "affixes": {
