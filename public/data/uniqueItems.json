@@ -2335,7 +2335,8 @@
         "ausdauer": 7,
         "kraft": 5,
         "tempo": 4
-      }
+      },
+      "desc": "Stiefel aus dem Material des tiefsten Punktes im Turm. Jeder Schritt fühlt sich an wie der letzte — und der nächste fühlt sich trotzdem leichter an. Verlangsamt den Verfall der Forge-Temperatur."
     }
   ]
 }
