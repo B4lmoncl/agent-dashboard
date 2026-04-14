@@ -90,7 +90,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "gacha_intro",
     title: "Das Schicksalsrad.",
-    text: "Gib Runensplitter oder Stardust. Bekomme Items. Manchmal gute. Meistens... lehrreiche. Das System hat ein Mitleidszähler — nach 75 Pulls ohne Legendär garantiert es eins. Das klingt großzügig, bis du nachzählst.",
+    text: "Gib Runensplitter oder Stardust. Bekomme Items. Manchmal gute. Meistens... lehrreiche. Das System hat einen Mitleidszähler — nach 75 Pulls ohne Legendär garantiert es dir eins. Das klingt großzügig, bis du nachzählst.",
     view: "gacha",
     minLevel: 5,
   },
@@ -132,7 +132,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "shop_intro",
     title: "Der Basar.",
-    text: "Zwei Abteilungen. Links: Dinge die gut für dich sind. Rechts: Dinge die gut für deine Stats sind. Der Unterschied ist subtiler als du denkst. Manche Items geben temporäre Buffs. Die meisten kosten Gold. Alle kosten Überwindung.",
+    text: "Zwei Abteilungen. Self-Care: Dinge die gut für dich sind. Boosts: Dinge die gut für deine Stats sind. Der Unterschied ist subtiler als du denkst. Manche Items geben temporäre Buffs. Die meisten kosten Gold. Alle kosten Überwindung.",
     view: "shop",
     minLevel: 3,
   },
