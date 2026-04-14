@@ -7237,7 +7237,7 @@
       "category": "boss",
       "vars": {
         "description": "Ganzer Tag Exam-Prep: Practice Tests, Schwächen identifizieren, Lücken füllen.",
-        "flavor": "Professor Quill: 'Prüfungen sind unangenehm. Aber weniger als Unwissenheit.'",
+        "flavor": "Grimvar hat seine Meisterprüfung dreimal abgelegt. Nicht weil er zweimal durchfiel — sondern weil er die ersten beiden Ergebnisse 'nicht gut genug' fand.",
         "difficulty": "expert"
       },
       "rewards": {
@@ -7269,7 +7269,7 @@
       "category": "boss",
       "vars": {
         "description": "5 Uhr aufstehen. Die erste Stunde nur für dich: Bewegung, Lesen, Planen.",
-        "flavor": "Die Welt ist anders um 5 Uhr. Stiller. Klarer. Kälter. Aber klarer.",
+        "flavor": "Die Welt ist anders um 5 Uhr. Stiller. Klarer. Kälter. Aber ehrlicher.",
         "difficulty": "expert"
       },
       "rewards": {
