@@ -4652,7 +4652,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 100,
-      "desc": "Leise auf Laub. Laut auf Kies. Perfekt ist relativ.",
+      "desc": "Stiefel die auf Laub leise und auf Kies laut sind — Perfektion ist eben relativ.",
       "icon": "/images/icons/gacha-boots-cloth-shoes.png",
       "shopHidden": false,
       "affixes": {
@@ -4712,7 +4712,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Metallbeschläge an der Sohle. Gut auf Eis. Schlecht auf Marmor.",
+      "desc": "Stiefel mit Metallbeschlägen an der Sohle — gut auf Eis, schlecht auf Marmor.",
       "icon": "/images/icons/gacha-boots-desert-wraps.png",
       "shopHidden": false,
       "affixes": {
@@ -6839,7 +6839,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Schwer gepanzerte Beinschienen. Der Boden zittert. Oder das bist du.",
+      "desc": "Schwer gepanzerte Beinschienen unter denen der Boden zittert — oder das bist du.",
       "icon": "/images/icons/gacha-boots-dragon-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -7554,7 +7554,7 @@
       "reqLevel": 14,
       "rarity": "epic",
       "price": 0,
-      "desc": "Nasse Fußspuren. Immer. Auch auf Sand.",
+      "desc": "Gezeitenstiefel die immer nasse Fußspuren hinterlassen, auch auf Sand.",
       "icon": "/images/icons/gacha-boots-elven-walkers.png",
       "shopHidden": true,
       "affixes": {
@@ -16721,7 +16721,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Solide Arbeit, nicht elegant, aber manchmal reicht solide vollkommen aus.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "shopHidden": true,
       "affixes": {
@@ -17120,7 +17120,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Frisch aus der Deepforge. Noch warm. Wortwörtlich.",
+      "desc": "Frisch aus der Deepforge und noch wortwörtlich warm.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
