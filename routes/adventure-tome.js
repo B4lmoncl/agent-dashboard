@@ -75,7 +75,7 @@ const FLOORS = [
       { id: "ritual_streak_7",     type: "counter", label: "7-Tage Ritual-Streak",          target: 7,   stat: "_maxRitualStreak" },
       { id: "ritual_streak_30",    type: "counter", label: "30-Tage Ritual-Streak",         target: 30,  stat: "_maxRitualStreak" },
       { id: "codex_entries_25",    type: "counter", label: "25 Codex-Einträge gelesen",     target: 25,  stat: "_codexRead" },
-      { id: "codex_entries_all",   type: "counter", label: "Alle Codex-Einträge gelesen",   target: 95,  stat: "_codexRead" },
+      { id: "codex_entries_all",   type: "counter", label: "Alle Codex-Einträge gelesen",   target: 143, stat: "_codexRead" },
       { id: "companion_bond_3",    type: "counter", label: "Companion Bond Level 3",        target: 3,   stat: "_companionBondMax" },
       { id: "companion_bond_5",    type: "counter", label: "Companion Bond Level 5",        target: 5,   stat: "_companionBondMax" },
       { id: "streak_60",           type: "counter", label: "60-Tage Quest-Streak",           target: 60,  stat: "streakDays" },
