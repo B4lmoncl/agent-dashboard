@@ -250,12 +250,13 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
                 <button
                   key={d}
                   onClick={() => setSelectedDays(d)}
-                  className="flex-1 py-2 rounded-lg text-xs font-bold transition-all"
+                  className="flex-1 py-2 rounded-lg text-xs font-bold"
                   style={{
                     background: selectedDays === d ? "rgba(217,119,6,0.15)" : "rgba(255,255,255,0.03)",
                     color: selectedDays === d ? "#d97706" : "rgba(255,255,255,0.3)",
                     border: `1px solid ${selectedDays === d ? "rgba(217,119,6,0.4)" : "rgba(255,255,255,0.06)"}`,
                     cursor: "pointer",
+                    transition: "background 0.15s ease, color 0.15s ease, border-color 0.15s ease",
                   }}
                 >
                   {d}d

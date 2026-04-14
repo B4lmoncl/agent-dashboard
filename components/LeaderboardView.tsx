@@ -160,7 +160,9 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             <div
               key={entry.id}
               className={`flex flex-col items-center gap-2${isPlayerMode && onOpenProfile ? " cursor-pointer" : ""}`}
-              style={{ minWidth: 100 }}
+              style={{ minWidth: 100, transition: "transform 0.15s ease, filter 0.15s ease" }}
+              onMouseEnter={e => { if (isPlayerMode && onOpenProfile) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(1.1)"; } }}
+              onMouseLeave={e => { if (isPlayerMode && onOpenProfile) { e.currentTarget.style.transform = ""; e.currentTarget.style.filter = ""; } }}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               title={isPlayerMode && onOpenProfile ? `View ${entry.name}'s profile` : undefined}
             >
@@ -244,7 +246,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           return (
             <div
               key={entry.id}
-              className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
+              className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors duration-150" : ""}`}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               style={{
                 gridTemplateColumns: "32px 1fr 60px 60px 60px",

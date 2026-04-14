@@ -324,7 +324,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                     <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-2 py-1 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
-                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove friend">✕</button>
+                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100" style={{ transition: "opacity 0.15s ease" }} title="Remove friend">✕</button>
                 )}
                 <div className="relative mb-1.5">
                   <PlayerBadge name={f.name} avatar={f.avatar} color={f.color} size={36} />
@@ -636,7 +636,9 @@ function TradeOfferDisplay({ offer, label, color, onItemClick }: { offer: TradeO
                   {item.setName && <p className="text-xs mt-1" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
                 </>}
               >
-                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}`, cursor: "pointer" }}>
+                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left hover:brightness-125" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}`, cursor: "pointer", transition: "background 0.15s ease, filter 0.15s ease" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}>
                   {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />}
                   <span className="font-semibold truncate" style={{ color: rc }}>{item.name}</span>
                   <span className="text-w20 capitalize ml-auto flex-shrink-0">{item.rarity}</span>
