@@ -145,7 +145,7 @@ export const FLOORS: Floor[] = [
     minLevel: 1,
     rooms: [
       { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
-      { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
+      { key: "npcBoard",   label: "Wanderer's Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
       { key: "challenges", label: "Challenges",       iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null, minLevel: 3 },
       { key: "rift",       label: "Rift",             iconSrc: "/images/icons/nav-rift.png",        requiresLogin: true, tutorialKey: null, minLevel: 8 },
       { key: "dungeons",   label: "Undercroft",       iconSrc: "/images/icons/nav-dungeons.png",    requiresLogin: true, tutorialKey: null, minLevel: 12 },
