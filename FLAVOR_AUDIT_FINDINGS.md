@@ -266,6 +266,26 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 101. **[Dead Code]** globals.css:1470-1477 — `@keyframes today-card-enter` und `today-urgent-pulse` sind doppelt definiert. Die ersten (Zeile 1470/1474) werden von den zweiten (Zeile 1505/1510) überschrieben. Erste Definition ist toter Code.
 102. **[Animation Count]** globals.css — 155 `@keyframes` Animationen. Beeindruckend, aber möglicherweise Performance-Impact auf schwächeren Geräten. Keine davon scheint überflüssig (außer die Duplicates).
 
+## Game Balance Edge Cases
+
+### Crafting Material Access
+103. **[Balance]** Neue Verzauberer-Spieler (Lv8) können kein erstes Rezept craften ohne magiestaub/runenstein Drops — die hängen von Quest-Rarity ab. Bei Common-Quests ~1-3% Dropchance pro Material. Kann 20+ Quests dauern bis 1 Material droppt. "Locked out" Gefühl.
+
+### Battle Pass Erreichbarkeit
+104. **[Balance]** 90-Tage-Season braucht ~10.000 XP für Lv40. Casual-Spieler (2 Quests/Tag) = ~3.150 XP = Lv12. Man braucht 5-6 Quests/Tag für Lv40 — aber Daily Diminishing Returns strafen ab Quest 6. Battle Pass ist für Casuals quasi unmöglich komplett.
+
+### Diminishing Returns Cliff
+105. **[Balance]** Quest 1-5 = 100%, Quest 6 = sofort 75%. Es gibt keinen Übergang. Die 5→6 Grenze fühlt sich künstlich an und erzeugt "hör bei 5 auf"-Incentive. Besser: sanfterer Curve (5 = 100%, 6-7 = 90%, 8-10 = 75%).
+
+### Gacha Soft-Pity Zone zu lang
+106. **[Balance]** Soft Pity ab 55, Hard Pity bei 75. Das sind 20 Pulls "vielleicht" ohne Garantie. Genshin hat Soft ab 75, Hard bei 90 — nur 15 Pulls Unsicherheit. QuestHall's Soft-Zone fühlt sich zu lange frustrierend an.
+
+### Pity-Display Verwirrung
+107. **[UX]** GET /api/gacha/pity zeigt `maxPity` (höchster Wert über alle Banner) für Rückwärtskompatibilität. Spieler sieht 40 Pity, denkt er ist nah an 75, wechselt den Banner und hat dort nur 30. Irreführend.
+
+### Professions-Plateau
+108. **[Balance]** Bei Skill 200+ sind Rezepte auf dem Level grau (0% Skillup). Spieler braucht neuen Rank (Artisan bei 200+), aber dann fehlen Rezepte die noch Orange/Yellow sind. "Proficiency Plateau" bis neuer Content kommt.
+
 ---
 
 ## Feature-Vorschläge (zur Diskussion)
