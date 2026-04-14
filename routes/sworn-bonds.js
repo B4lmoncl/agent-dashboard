@@ -437,6 +437,10 @@ router.post('/api/social/sworn-bond/:bondId/break', requireAuth, (req, res) => {
     if (bond.status !== 'active') return res.status(400).json({ error: 'Bond is not active' });
     if (bond.player1 !== uid && bond.player2 !== uid) return res.status(403).json({ error: 'You are not part of this bond' });
 
+    if (!req.body.confirmed) {
+      return res.json({ ok: false, needsConfirmation: true, message: 'Schwurbund wirklich brechen? 7 Tage Abklingzeit.' });
+    }
+
     bond.status = 'broken';
     bond.brokenAt = now();
     bond.brokenBy = uid;

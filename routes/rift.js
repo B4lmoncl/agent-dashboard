@@ -616,6 +616,10 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
   const rift = u.activeRift;
   if (!rift?.active) return res.status(400).json({ error: 'No active rift' });
 
+  if (!req.body.confirmed) {
+    return res.json({ ok: false, needsConfirmation: true, message: 'Rift wirklich abbrechen? Aller Fortschritt geht verloren.' });
+  }
+
   const tier = RIFT_TIERS[rift.tier];
   const mythicLvl = rift.mythicLevel || 0;
   rift.active = false;

@@ -641,6 +641,9 @@ router.delete('/api/rituals/:id', requireApiKey, (req, res) => {
   if (!req.auth?.isAdmin && ritual.playerId?.toLowerCase() !== authId) {
     return res.status(403).json({ error: 'Cannot delete another player\'s ritual' });
   }
+  if (!req.body.confirmed) {
+    return res.json({ ok: false, needsConfirmation: true, message: 'Ritual wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.' });
+  }
   state.rituals.splice(idx, 1);
   saveRituals();
   res.json({ ok: true });
