@@ -63,7 +63,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "streak_intro",
     title: "Der Streak.",
-    text: "Jeden Tag eine Quest. Das ist der Streak. Er gibt dir bis zu +45% Gold. Wenn du einen Tag verpasst, sinkt er. Zwei Tage? Mehr. Drei? Weg. Die Mathematik ist nicht auf deiner Seite.",
+    text: "Jeden Tag eine Quest. Das ist der Streak. Er gibt dir bis zu +45% Gold. Verpasst du einen Tag, wird er zurückgesetzt — außer du hast Schutz: Streak Shields, Vitalität, oder den Schicksalsbaum. Dein Streak ist wertvoll. Schütz ihn.",
     view: "questBoard",
   },
   {
