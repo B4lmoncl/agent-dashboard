@@ -15208,7 +15208,7 @@
       "xp": 6,
       "description": "Fasst: Schlichter Kupferring.",
       "trainerCost": 25,
-      "desc": "Kupferring. Schlicht im Design. Laut in Selindras Meinung darüber."
+      "desc": "Ein schlichter Kupferring über den Selindra eine ausgesprochen laute Meinung hat."
     },
     {
       "id": "recipe-juwelier-grober-siegelring",
@@ -15246,7 +15246,7 @@
       "xp": 7,
       "description": "Fasst: Eisenband.",
       "trainerCost": 40,
-      "desc": "Eisenband am Finger. Klingt unbequem. Ist es. Selindra nennt es Charakter."
+      "desc": "Ein Eisenband am Finger das so unbequem ist wie es klingt — Selindra nennt das Charakter."
     },
     {
       "id": "recipe-juwelier-einfacher-steinring",
@@ -15284,7 +15284,7 @@
       "xp": 8,
       "description": "Fasst: Ring des Lehrlings.",
       "trainerCost": 55,
-      "desc": "Ring eines Lehrlings. Selindra hat ihn benotet. Mit einem Seufzer. Das ist gut."
+      "desc": "Ring eines Lehrlings den Selindra mit einem Seufzer benotet hat, was bei ihr als gute Note gilt."
     },
     {
       "id": "recipe-juwelier-kupferreif",
@@ -15304,7 +15304,7 @@
       "description": "Fasst: Kupferreif.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Reif aus Kupfer. Glänzt bei Sonnenuntergang. Oxidiert bei Regen. Beides hat Ästhetik."
+      "desc": "Ein Kupferreif der bei Sonnenuntergang glänzt und bei Regen oxidiert — beides hat auf seine Weise Ästhetik."
     },
     {
       "id": "recipe-juwelier-eisenring-des-wanderers",
@@ -15364,7 +15364,7 @@
       "description": "Fasst: Eisernes Medaillon.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Medaillon aus Eisen. Schwer am Hals. Leicht im Preis. Selindra nennt das faire Physik."
+      "desc": "Ein Eisenmedaillon das schwer am Hals und leicht im Preis ist — Selindra nennt das faire Physik."
     },
     {
       "id": "recipe-juwelier-schlichter-anhaenger",
@@ -15385,7 +15385,7 @@
       "description": "Fasst: Schlichter Anhänger.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Anhänger ohne Schnörkel. Selindra sagt, Einfachheit sei die höchste Form der Eleganz. Bei diesem Preis."
+      "desc": "Ein Anhänger ohne Schnörkel — Selindra sagt, Einfachheit sei die höchste Form der Eleganz, besonders bei diesem Preis."
     },
     {
       "id": "recipe-juwelier-steinamulett",
@@ -15427,7 +15427,7 @@
       "description": "Fasst: Einfache Kette.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": "Einfache Kette. Jedes Glied eine Entscheidung. Selindra hat keine davon bereut. Sagt sie."
+      "desc": "Eine einfache Kette bei der jedes Glied eine Entscheidung war, und Selindra behauptet, keine davon bereut zu haben."
     },
     {
       "id": "recipe-juwelier-kristallring",
@@ -15447,7 +15447,7 @@
       "xp": 12,
       "description": "Fasst: Kristallring.",
       "trainerCost": 100,
-      "desc": "Kristall am Finger. Funkelt. Selindra sagt, der Kristall wähle seinen Träger. Marketing."
+      "desc": "Ein funkelnder Kristallring — Selindra behauptet, der Kristall wähle seinen Träger, was im Wesentlichen Marketing ist."
     },
     {
       "id": "recipe-juwelier-staehlerner-siegelring",
@@ -15467,7 +15467,7 @@
       "xp": 13,
       "description": "Fasst: Stählerner Siegelring.",
       "trainerCost": 120,
-      "desc": "Stählerner Siegelring. Schwerer als der eiserne. Wichtiger als der kupferne. Teurer als beide."
+      "desc": "Ein stählerner Siegelring der schwerer als der eiserne, wichtiger als der kupferne und teurer als beide ist."
     },
     {
       "id": "recipe-juwelier-kristallband",
@@ -15508,7 +15508,7 @@
       "description": "Fasst: Ring des Forschers.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Ring für Forscher. Selindra sagt, er helfe beim Nachdenken. Er hilft beim Angeben."
+      "desc": "Ein Ring für Forscher, der laut Selindra beim Nachdenken hilft — und beim Angeben."
     },
     {
       "id": "recipe-juwelier-staehlerner-reif",
@@ -15529,7 +15529,7 @@
       "description": "Fasst: Stählerner Reif.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Stählerner Reif. Passt perfekt. Weil Selindra jeden Finger vermisst. Millimetergenau."
+      "desc": "Ein stählerner Reif der perfekt passt, weil Selindra jeden Finger millimetergenau vermisst."
     },
     {
       "id": "recipe-juwelier-kristall-siegelring",
@@ -15549,7 +15549,7 @@
       "xp": 15,
       "description": "Fasst: Kristall-Siegelring.",
       "factionId": "pakt_der_wildnis",
-      "desc": "Kristall-Siegelring. Das Siegel ändert sich je nach Lichteinfangs. Oder Selindras Laune."
+      "desc": "Ein Kristall-Siegelring dessen Siegel sich je nach Lichteinfall ändert — oder nach Selindras Laune."
     },
     {
       "id": "recipe-juwelier-mondsteinring",
@@ -15569,7 +15569,7 @@
       "xp": 16,
       "description": "Fasst: Mondsteinring.",
       "trainerCost": 220,
-      "desc": "Mondstein am Finger. Leuchtet nachts. Nicht hell genug zum Lesen. Hell genug um aufzufallen."
+      "desc": "Ein Mondsteinring der nachts leuchtet — nicht hell genug zum Lesen, aber hell genug um aufzufallen."
     },
     {
       "id": "recipe-juwelier-ring-der-erkenntnis",
@@ -15590,7 +15590,7 @@
       "description": "Fasst: Ring der Erkenntnis.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Ring der Erkenntnis. Man erkennt danach Dinge. Meistens die eigenen Fehler. Selindra hat gewarnt."
+      "desc": "Ein Ring der Erkenntnis, nach dem man Dinge erkennt — meistens die eigenen Fehler, wovor Selindra ausdrücklich gewarnt hat."
     },
     {
       "id": "recipe-juwelier-staehlerner-gelehrtenring",
@@ -15611,7 +15611,7 @@
       "description": "Fasst: Stählerner Gelehrtenring.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Gelehrtenring. Für Gelehrte. Oder Leute die gelehrt aussehen wollen. Selindra urteilt nicht. Laut."
+      "desc": "Ein Gelehrtenring für Gelehrte oder Leute die gelehrt aussehen wollen — Selindra urteilt nicht, zumindest nicht laut."
     },
     {
       "id": "recipe-juwelier-kristallreif-des-wanderers",
@@ -15632,7 +15632,7 @@
       "description": "Fasst: Kristallreif des Wanderers.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Kristallreif der beim Wandern leuchtet. Der Weg ist heller. Die Rechnung auch."
+      "desc": "Ein Kristallreif der beim Wandern leuchtet und sowohl den Weg als auch die Rechnung erhellt."
     },
     {
       "id": "recipe-juwelier-kristallkette",
@@ -15695,7 +15695,7 @@
       "description": "Fasst: Mondstein-Anhänger.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Mondstein-Anhänger. Leuchtet bei Nacht. Selindra sagt, der Mond sei eifersüchtig."
+      "desc": "Ein Mondstein-Anhänger der bei Nacht leuchtet — Selindra behauptet, der Mond sei eifersüchtig."
     },
     {
       "id": "recipe-juwelier-kristall-amulett",
@@ -15716,7 +15716,7 @@
       "description": "Fasst: Kristall-Amulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Kristallamulett. Selindra hat den Kristall geschliffen bis er geweint hat. Kristalle weinen nicht. Aber dieser fast."
+      "desc": "Ein Kristallamulett bei dem Selindra den Kristall geschliffen hat bis er fast geweint hat — Kristalle weinen zwar nicht, aber dieser war nah dran."
     },
     {
       "id": "recipe-juwelier-staehlerne-kette",
@@ -15758,7 +15758,7 @@
       "description": "Fasst: Kristall-Medaillon.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": "Kristallmedaillon. Innen ist Platz für ein Bild. Oder einen Edelstein. Oder Selindras Visitenkarte."
+      "desc": "Ein Kristallmedaillon mit Platz für ein Bild, einen Edelstein oder Selindras Visitenkarte."
     },
     {
       "id": "recipe-juwelier-saphirring",
@@ -15778,7 +15778,7 @@
       "xp": 20,
       "description": "Fasst: Saphirring.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Saphir am Finger. Blau wie der Himmel. Teuer wie der Himmel nicht ist."
+      "desc": "Ein Saphirring, blau wie der Himmel und teuer wie der Himmel es nicht ist."
     },
     {
       "id": "recipe-juwelier-drachenauge-ring",
@@ -15841,7 +15841,7 @@
       "description": "Fasst: Smaragdband.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Smaragdband. Grün wie Neid. Und genauso begehrt."
+      "desc": "Ein Smaragdband so grün wie Neid und genauso begehrt."
     },
     {
       "id": "recipe-juwelier-mondschein-siegelring",
@@ -15882,7 +15882,7 @@
       "description": "Fasst: Ring der Sterne.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Ring der Sterne. Selindra sagt die Sterne darin sind echt. Astronomen widersprechen. Selindra auch."
+      "desc": "Ein Ring der Sterne, von denen Selindra behauptet sie seien echt — Astronomen widersprechen, und Selindra widerspricht den Astronomen."
     },
     {
       "id": "recipe-juwelier-drachenschuppen-reif",
@@ -15924,7 +15924,7 @@
       "description": "Fasst: Saphir-Gelehrtenring.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Saphir-Gelehrtenring. Für Gelehrte die ihren Saphir zeigen wollen. Und ihre Gelehrsamkeit. In dieser Reihenfolge."
+      "desc": "Ein Saphir-Gelehrtenring für Gelehrte die ihren Saphir zeigen wollen, und ihre Gelehrsamkeit — in dieser Reihenfolge."
     },
     {
       "id": "recipe-juwelier-ring-des-weisen",
@@ -15966,7 +15966,7 @@
       "description": "Fasst: Smaragdreif.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Smaragdreif. Grüner als Hoffnung. Und stabiler."
+      "desc": "Ein Smaragdreif der grüner als Hoffnung und deutlich stabiler ist."
     },
     {
       "id": "recipe-juwelier-saphir-kette",
@@ -16050,7 +16050,7 @@
       "description": "Fasst: Mondschein-Amulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Mondscheinalmulett. Leuchtet in allen Phasen. Selindra hat Mondphasen studiert. Für das Amulett. Nicht aus Interesse."
+      "desc": "Ein Mondscheinamulett das in allen Mondphasen leuchtet, für das Selindra eigens Mondphasen studiert hat — nicht aus persönlichem Interesse, versteht sich."
     },
     {
       "id": "recipe-juwelier-drachenschuppen-kette",
@@ -16071,7 +16071,7 @@
       "description": "Fasst: Drachenschuppen-Kette.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Kette aus Drachenschuppen. Jede Schuppe ein Drama. Jedes Drama ein Kettenglied."
+      "desc": "Eine Kette aus Drachenschuppen bei der jede Schuppe ein eigenes Drama ist und jedes Drama ein Kettenglied."
     },
     {
       "id": "recipe-juwelier-saphir-medaillon",
@@ -16092,7 +16092,7 @@
       "description": "Fasst: Saphir-Medaillon.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Saphirmedaillon. Blau innen, blau außen. Selindra sagt, es sei konsistent. Wie sie selbst."
+      "desc": "Ein Saphirmedaillon das innen und außen gleichermaßen blau ist — Selindra nennt das konsistent, wie sich selbst."
     },
     {
       "id": "recipe-juwelier-smaragd-amulett",
@@ -16113,7 +16113,7 @@
       "description": "Fasst: Smaragd-Amulett.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": "Smaragdamulett. Selindras Lieblingsstein in Selindras Lieblingsform. Zufall? Nein."
+      "desc": "Selindras Lieblingsstein in Selindras Lieblingsform — ob das Zufall ist? Keineswegs."
     },
     {
       "id": "recipe-juwelier-aetherring",
@@ -16133,7 +16133,7 @@
       "xp": 28,
       "description": "Fasst: Aetherring.",
       "trainerCost": 800,
-      "desc": "Aetherring. Existiert zu achtzig Prozent. Die fehlenden zwanzig sind der interessante Teil."
+      "desc": "Ein Aetherring der zu achtzig Prozent existiert — die fehlenden zwanzig sind der interessante Teil."
     },
     {
       "id": "recipe-juwelier-ring-der-leere",
@@ -16154,7 +16154,7 @@
       "description": "Fasst: Ring der Leere.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Ring der Leere. Innen ist nichts. Außen auch nicht viel. Trotzdem teuer."
+      "desc": "Ein Ring der Leere in dem innen nichts ist und außen auch nicht viel — trotzdem erstaunlich teuer."
     },
     {
       "id": "recipe-juwelier-seelen-siegelring",
@@ -16174,7 +16174,7 @@
       "xp": 30,
       "description": "Fasst: Seelen-Siegelring.",
       "factionId": "pakt_der_wildnis",
-      "desc": "Seelen-Siegelring. Das Siegel ist persönlich. Sehr persönlich. Selindra weiß nicht was es zeigt. Willst du?"
+      "desc": "Ein Seelen-Siegelring mit einem sehr persönlichen Siegel — Selindra weiß nicht was es zeigt, und die Frage ist ob du es wissen willst."
     },
     {
       "id": "recipe-juwelier-runenring",
@@ -16195,7 +16195,7 @@
       "description": "Fasst: Runenring.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Ring mit Runen die Selindra nicht lesen kann. Sie hört sie stattdessen. Leider."
+      "desc": "Ein Ring mit Runen die Selindra nicht lesen kann, weshalb sie sie stattdessen hört — leider."
     },
     {
       "id": "recipe-juwelier-sternenring",
@@ -16236,7 +16236,7 @@
       "description": "Fasst: Aetherkern-Band.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Band mit Aetherkern. Das Band vibriert. Der Kern auch. Selindra findet das harmonisch."
+      "desc": "Ein Band mit Aetherkern bei dem sowohl das Band als auch der Kern vibrieren, was Selindra harmonisch findet."
     },
     {
       "id": "recipe-juwelier-seelenreif",
@@ -16257,7 +16257,7 @@
       "description": "Fasst: Seelenreif.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Reif mit Seele. Wessen Seele, weiß Selindra nicht. Sie hat nicht gefragt."
+      "desc": "Ein Reif mit Seele, wobei Selindra nicht weiß wessen Seele — sie hat wohlweislich nicht gefragt."
     },
     {
       "id": "recipe-juwelier-ring-des-schicksals",
@@ -16298,7 +16298,7 @@
       "xp": 37,
       "description": "Fasst: Arkaner Siegelring.",
       "trainerCost": 1680,
-      "desc": "Arkaner Siegelring. Das Siegel leuchtet je nach Stimmung. Montags gar nicht."
+      "desc": "Ein arkaner Siegelring dessen Siegel je nach Stimmung leuchtet — montags gar nicht."
     },
     {
       "id": "recipe-juwelier-seelen-gelehrtenring",
@@ -16319,7 +16319,7 @@
       "description": "Fasst: Seelen-Gelehrtenring.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Gelehrtenring mit Seele. Die Seele hat einen Doktortitel. Angeblich."
+      "desc": "Ein Gelehrtenring mit Seele die angeblich einen Doktortitel hat."
     },
     {
       "id": "recipe-juwelier-ring-der-ewigkeit",
@@ -16340,7 +16340,7 @@
       "description": "Fasst: Ring der Ewigkeit.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Ring der Ewigkeit. Hält nicht ewig. Aber länger als die meisten Versprechen."
+      "desc": "Ein Ring der Ewigkeit der zwar nicht ewig hält, aber länger als die meisten Versprechen."
     },
     {
       "id": "recipe-juwelier-sternenband-des-webers",
@@ -16361,7 +16361,7 @@
       "description": "Fasst: Sternenband des Webers.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Band das Sterne webt. Klingt poetisch. Ist Metallurgie. Selindra macht keinen Unterschied."
+      "desc": "Ein Band das Sterne webt, was poetisch klingt und reine Metallurgie ist — Selindra macht da keinen Unterschied."
     },
     {
       "id": "recipe-juwelier-aether-kette",
@@ -16382,7 +16382,7 @@
       "description": "Fasst: Aether-Kette.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Aetherkette. Jedes Glied ein kleiner Riss in der Realität. Zusammen: ein Halskette."
+      "desc": "Eine Aetherkette bei der jedes einzelne Glied ein kleiner Riss in der Realität ist — zusammen ergeben sie eine Halskette."
     },
     {
       "id": "recipe-juwelier-seelen-medaillon",
@@ -16403,7 +16403,7 @@
       "description": "Fasst: Seelen-Medaillon.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Medaillon das Erinnerungen speichert. Nicht deine. Vorherige. Selindra empfiehlt nicht nachzusehen."
+      "desc": "Ein Medaillon das Erinnerungen speichert, allerdings nicht deine, sondern vorherige — Selindra empfiehlt, nicht nachzusehen."
     },
     {
       "id": "recipe-juwelier-sternen-anhaenger",
@@ -16424,7 +16424,7 @@
       "description": "Fasst: Sternen-Anhänger.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Sternenanhänger. Ein Stern am Hals. Der Stern ist nicht echt. Das Funkeln schon."
+      "desc": "Ein Sternenanhänger mit einem Stern am Hals — der Stern ist nicht echt, das Funkeln allerdings schon."
     },
     {
       "id": "recipe-juwelier-runen-amulett",
@@ -16445,7 +16445,7 @@
       "description": "Fasst: Runen-Amulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Runenamulett. Die Runen wechseln. Selindra sagt, sie kommunizieren. Mit wem ist unklar."
+      "desc": "Ein Runenamulett dessen Runen wechseln — Selindra sagt, sie kommunizieren, mit wem bleibt allerdings unklar."
     },
     {
       "id": "recipe-juwelier-aetherkern-kette",
@@ -16466,7 +16466,7 @@
       "description": "Fasst: Aetherkern-Kette.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Aetherkernkette. Die Kette existiert in dieser Dimension. Der Kern nicht ganz."
+      "desc": "Eine Aetherkernkette die in dieser Dimension existiert, wobei der Kern das nicht ganz tut."
     },
     {
       "id": "recipe-juwelier-seelen-amulett",
@@ -16487,7 +16487,7 @@
       "description": "Fasst: Seelen-Amulett.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Seelenamulett. Selindras Meisterwerk. Sie hat dabei geweint. Das Amulett auch."
+      "desc": "Selindras Meisterwerk — ein Seelenamulett, bei dessen Fertigung sowohl Selindra als auch das Amulett geweint haben."
     },
     {
       "id": "recipe-juwelier-sternen-medaillon",
@@ -16508,7 +16508,7 @@
       "description": "Fasst: Sternen-Medaillon.",
       "factionId": "tinte",
       "factionMinRep": "friendly",
-      "desc": "Sternenmedaillon. Innen funkelt es. Außen kostet es. Beides eindrucksvoll."
+      "desc": "Ein Sternenmedaillon das innen funkelt und außen kostet — beides gleichermaßen eindrucksvoll."
     },
     {
       "id": "recipe-juwelier-arkaner-anhaenger",
@@ -16529,7 +16529,7 @@
       "description": "Fasst: Arkaner Anhänger.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": "Arkaner Anhänger. Hängt am Hals und am Gewissen. Wegen des Preises."
+      "desc": "Ein arkaner Anhänger der am Hals und am Gewissen hängt — letzteres wegen des Preises."
     },
     {
       "id": "recipe-juwelier-seelensiegel-kette",
@@ -16550,7 +16550,7 @@
       "description": "Fasst: Seelensiegel-Kette.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic",
-      "desc": "Selindras letztes Werk. Sagt sie. Wie immer. Sie fängt morgen das nächste an."
+      "desc": "Selindras angeblich letztes Werk, was sie wie immer sagt — morgen fängt sie das nächste an."
     },
     {
       "id": "recipe-juwelier-gem-ruby-1",
@@ -16570,7 +16570,7 @@
       "xp": 13,
       "description": "Schleift: Gesplitterter Rubin.",
       "trainerCost": 250,
-      "desc": "Gesplitterter Rubin. Rot wie Blut. Selindra sagt rot wie Leidenschaft. Klingt besser. Kostet mehr."
+      "desc": "Ein gesplitterter Rubin, rot wie Blut — oder rot wie Leidenschaft, sagt Selindra, was besser klingt und mehr kostet."
     },
     {
       "id": "recipe-juwelier-gem-ruby-2",
@@ -16590,7 +16590,7 @@
       "xp": 21,
       "description": "Schleift: Fehlerhafter Rubin.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Fehlerhafter Rubin. Der Fehler ist Charakter, sagt Selindra. Der Preis ist niedriger. Zufall."
+      "desc": "Ein fehlerhafter Rubin, dessen Fehler laut Selindra Charakter ist — dass der Preis niedriger ist, sei reiner Zufall."
     },
     {
       "id": "recipe-juwelier-gem-ruby-3",
@@ -16612,7 +16612,7 @@
       "description": "Schleift: Geschliffener Rubin.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Geschliffener Rubin. Der Stein singt jetzt. Laut Selindra. Laut allen anderen: Stille."
+      "desc": "Ein geschliffener Rubin der jetzt singt — zumindest laut Selindra, alle anderen hören nur Stille."
     },
     {
       "id": "recipe-juwelier-gem-ruby-4",
@@ -16656,7 +16656,7 @@
       "description": "Schleift: Königlicher Rubin.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Königlicher Rubin. Selindra hat beim Schleifen den Atem angehalten. Fünf Minuten. Neuer Rekord."
+      "desc": "Ein königlicher Rubin, bei dessen Schliff Selindra fünf Minuten lang den Atem angehalten hat — neuer Rekord."
     },
     {
       "id": "recipe-juwelier-gem-sapphire-1",
@@ -16676,7 +16676,7 @@
       "xp": 13,
       "description": "Schleift: Gesplitterter Saphir.",
       "trainerCost": 250,
-      "desc": "Gesplitterter Saphir. Blau und gebrochen. Wie ein Montag."
+      "desc": "Ein gesplitterter Saphir, blau und gebrochen wie ein Montag."
     },
     {
       "id": "recipe-juwelier-gem-sapphire-2",
@@ -16739,7 +16739,7 @@
       "description": "Schleift: Makelloser Saphir.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Makelloser Saphir. So blau dass der Himmel neidisch ist. Selindra findet das befriedigend."
+      "desc": "Ein makelloser Saphir, so blau dass der Himmel neidisch ist — was Selindra ausgesprochen befriedigend findet."
     },
     {
       "id": "recipe-juwelier-gem-sapphire-5",
@@ -16761,7 +16761,7 @@
       "description": "Schleift: Königlicher Saphir.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Königlicher Saphir. Der König aller Saphire. Selindra hat ihn gekrönt. Mit Poliersand."
+      "desc": "Der König aller Saphire, von Selindra persönlich gekrönt — mit Poliersand."
     },
     {
       "id": "recipe-juwelier-gem-emerald-1",
@@ -16781,7 +16781,7 @@
       "xp": 13,
       "description": "Schleift: Gesplitterter Smaragd.",
       "trainerCost": 250,
-      "desc": "Gesplitterter Smaragd. Grün und voller Potential. Wie ein Samen. Nur teurer."
+      "desc": "Ein gesplitterter Smaragd voller Potential, wie ein Samen — nur deutlich teurer."
     },
     {
       "id": "recipe-juwelier-gem-emerald-2",
@@ -16802,7 +16802,7 @@
       "description": "Schleift: Fehlerhafter Smaragd.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Fehlerhafter Smaragd. Der Fehler ist ein Einschluss. Selindra nennt ihn 'Persönlichkeit'."
+      "desc": "Ein fehlerhafter Smaragd dessen Einschluss Selindra diplomatisch als 'Persönlichkeit' bezeichnet."
     },
     {
       "id": "recipe-juwelier-gem-emerald-3",
@@ -16823,7 +16823,7 @@
       "xp": 29,
       "description": "Schleift: Geschliffener Smaragd.",
       "trainerCost": 750,
-      "desc": "Geschliffener Smaragd. Grüner als Neid. Und haltbarer."
+      "desc": "Ein geschliffener Smaragd der grüner als Neid und deutlich haltbarer ist."
     },
     {
       "id": "recipe-juwelier-gem-emerald-4",
@@ -16845,7 +16845,7 @@
       "description": "Schleift: Makelloser Smaragd.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Makelloser Smaragd. Selindra hat beim Schleifen gegrinst. Das passiert selten."
+      "desc": "Ein makelloser Smaragd bei dessen Schliff Selindra gegrinst hat, was ausgesprochen selten vorkommt."
     },
     {
       "id": "recipe-juwelier-gem-emerald-5",
@@ -16887,7 +16887,7 @@
       "xp": 13,
       "description": "Schleift: Gesplitterter Topas.",
       "trainerCost": 250,
-      "desc": "Gesplitterter Topas. Golden und gebrochen. Wie ein verbranntes Kompliment."
+      "desc": "Ein gesplitterter Topas, golden und gebrochen wie ein verbranntes Kompliment."
     },
     {
       "id": "recipe-juwelier-gem-topaz-2",
@@ -16907,7 +16907,7 @@
       "xp": 21,
       "description": "Schleift: Fehlerhafter Topas.",
       "trainerCost": 500,
-      "desc": "Fehlerhafter Topas. Der Fehler schimmert. Selindra nennt das Kunst."
+      "desc": "Ein fehlerhafter Topas dessen Fehler schimmert, was Selindra schlicht als Kunst bezeichnet."
     },
     {
       "id": "recipe-juwelier-gem-topaz-3",
@@ -16928,7 +16928,7 @@
       "xp": 29,
       "description": "Schleift: Geschliffener Topas.",
       "trainerCost": 750,
-      "desc": "Geschliffener Topas. Golden wie Grimvars Amboss bei Sonnenuntergang. Ohne den Geruch."
+      "desc": "Ein geschliffener Topas, golden wie Grimvars Amboss bei Sonnenuntergang — nur ohne den Geruch."
     },
     {
       "id": "recipe-juwelier-gem-topaz-4",
@@ -16950,7 +16950,7 @@
       "description": "Schleift: Makelloser Topas.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Makelloser Topas. So golden dass man geblendet wird. Oder geblended. Selindra verwechselt das."
+      "desc": "Ein makelloser Topas, so golden dass man geblendet oder geblended wird — Selindra verwechselt das gelegentlich."
     },
     {
       "id": "recipe-juwelier-gem-topaz-5",
@@ -16972,7 +16972,7 @@
       "description": "Schleift: Königlicher Topas.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Königlicher Topas. Leuchtet von innen. Oder von außen. Oder beides. Physik ist Selindras Schwäche."
+      "desc": "Ein königlicher Topas der von innen oder von außen oder von beidem leuchtet — Physik war noch nie Selindras Stärke."
     },
     {
       "id": "recipe-juwelier-gem-amethyst-1",
@@ -16992,7 +16992,7 @@
       "xp": 13,
       "description": "Schleift: Gesplitterter Amethyst.",
       "trainerCost": 250,
-      "desc": "Gesplitterter Amethyst. Violett und melancholisch. Wie ein Gedicht das sich nicht reimt."
+      "desc": "Ein gesplitterter Amethyst, violett und melancholisch wie ein Gedicht das sich nicht reimt."
     },
     {
       "id": "recipe-juwelier-gem-amethyst-2",
@@ -17012,7 +17012,7 @@
       "xp": 21,
       "description": "Schleift: Fehlerhafter Amethyst.",
       "trainerCost": 500,
-      "desc": "Fehlerhafter Amethyst. Der Fehler vibriert. Selindra sagt, der Stein seufze. Steine seufzen nicht."
+      "desc": "Ein fehlerhafter Amethyst dessen Fehler vibriert — Selindra behauptet, der Stein seufze, obwohl Steine das definitiv nicht tun."
     },
     {
       "id": "recipe-juwelier-gem-amethyst-3",
@@ -17056,7 +17056,7 @@
       "description": "Schleift: Makelloser Amethyst.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Makelloser Amethyst. Violetter als Violett. Selindra hat ihn eine Woche lang angestarrt. Produktive Woche."
+      "desc": "Ein makelloser Amethyst der violetter als Violett selbst ist — Selindra hat ihn eine Woche lang angestarrt und nennt das eine produktive Woche."
     },
     {
       "id": "recipe-juwelier-gem-amethyst-5",
@@ -17098,7 +17098,7 @@
       "xp": 13,
       "description": "Schleift: Gesplitterter Diamant.",
       "trainerCost": 250,
-      "desc": "Gesplitterter Diamant. Hart und gebrochen. Wie Grimvar. Nur transparenter."
+      "desc": "Ein gesplitterter Diamant, hart und gebrochen wie Grimvar — nur transparenter."
     },
     {
       "id": "recipe-juwelier-gem-diamond-2",
@@ -17118,7 +17118,7 @@
       "xp": 21,
       "description": "Schleift: Fehlerhafter Diamant.",
       "trainerCost": 500,
-      "desc": "Fehlerhafter Diamant. Der Fehler bricht das Licht anders. Selindra nennt es Innovation."
+      "desc": "Ein fehlerhafter Diamant dessen Fehler das Licht anders bricht, was Selindra großzügig Innovation nennt."
     },
     {
       "id": "recipe-juwelier-gem-diamond-3",
@@ -17140,7 +17140,7 @@
       "description": "Schleift: Geschliffener Diamant.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Geschliffener Diamant. Bricht Licht in sieben Farben. Selindra hat alle benannt. Sechs davon falsch."
+      "desc": "Ein geschliffener Diamant der Licht in sieben Farben bricht, von denen Selindra alle benannt hat — sechs davon falsch."
     },
     {
       "id": "recipe-juwelier-gem-diamond-4",
@@ -17162,7 +17162,7 @@
       "description": "Schleift: Makelloser Diamant.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Makelloser Diamant. Perfekt. Selindra hat nichts gesagt. Das ist ihr höchstes Lob."
+      "desc": "Ein makelloser Diamant, so perfekt dass Selindra nichts dazu gesagt hat — was ihr höchstes Lob ist."
     },
     {
       "id": "recipe-juwelier-gem-diamond-5",
@@ -17184,7 +17184,7 @@
       "description": "Schleift: Königlicher Diamant.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "rare",
-      "desc": "Königlicher Diamant. Selindras ultimativer Schliff. Sie hat danach drei Tage nicht geschliffen. Aus Respekt."
+      "desc": "Selindras ultimativer Schliff — ein königlicher Diamant, nach dem sie drei Tage lang nicht geschliffen hat, aus reinem Respekt."
     },
     {
       "id": "recipe-juwelier-gem-merge-1",
@@ -17203,7 +17203,7 @@
       "xp": 20,
       "description": "Verschmelzt 3 Gems der Stufe 1 zu einem Gem der Stufe 2.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Drei Steine werden eins. Die Steine sind dagegen. Selindra auch manchmal."
+      "desc": "Drei Steine werden zu einem verschmolzen — die Steine sind dagegen, und Selindra manchmal auch."
     },
     {
       "id": "recipe-juwelier-gem-merge-2",
@@ -17222,7 +17222,7 @@
       "xp": 30,
       "trainerCost": 750,
       "description": "Verschmelzt 3 Gems der Stufe 2 zu einem Gem der Stufe 3.",
-      "desc": "Stärkere Verschmelzung. Die Steine beschweren sich lauter. Selindra ignoriert sie professioneller."
+      "desc": "Eine stärkere Verschmelzung bei der sich die Steine lauter beschweren und Selindra sie professioneller ignoriert."
     },
     {
       "id": "recipe-juwelier-gem-merge-3",
@@ -17241,7 +17241,7 @@
       "xp": 40,
       "description": "Verschmelzt 3 Gems der Stufe 3 zu einem Gem der Stufe 4.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Dritte Stufe der Verschmelzung. Die Steine haben aufgehört sich zu wehren. Resignation."
+      "desc": "Die dritte Stufe der Verschmelzung, bei der die Steine aufgehört haben sich zu wehren — reine Resignation."
     },
     {
       "id": "recipe-juwelier-gem-merge-4",
@@ -17260,7 +17260,7 @@
       "xp": 50,
       "description": "Verschmelzt 3 Gems der Stufe 4 zu einem Gem der Stufe 5.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Vierte Verschmelzung. Selindra hat den Stein nicht mehr gefragt. Sie hat kommandiert."
+      "desc": "Bei der vierten Verschmelzung fragt Selindra den Stein nicht mehr — sie kommandiert."
     },
     {
       "id": "recipe-juwelier-poliertuch-1",
@@ -17324,7 +17324,7 @@
       "xp": 32,
       "description": "Stellt her: Arkanes Poliertuch.",
       "factionId": "bund_der_schatten",
-      "desc": "Arkanes Poliertuch. Poliert und verzaubert gleichzeitig. Multitasking in Stoffform."
+      "desc": "Ein arkanes Poliertuch das gleichzeitig poliert und verzaubert — Multitasking in Stoffform."
     },
     {
       "id": "recipe-juwelier-charisma-ring-buff-1",
@@ -17345,7 +17345,7 @@
       "xp": 12,
       "trainerCost": 100,
       "description": "Stellt her: Ring der Anmut.",
-      "desc": "Ring der Anmut. Macht anmutiger. Oder zumindest weniger ungeschickt."
+      "desc": "Ein Ring der Anmut der seinen Träger anmutiger macht — oder zumindest weniger ungeschickt."
     },
     {
       "id": "recipe-juwelier-charisma-ring-buff-2",
@@ -17368,7 +17368,7 @@
       "description": "Stellt her: Ring der Majestät.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Ring der Majestät. Selindra sagt, der Träger strahle. Wie eine Glühbirne. Mit mehr Charisma."
+      "desc": "Ein Ring der Majestät, dessen Träger laut Selindra strahlt wie eine Glühbirne — nur mit mehr Charisma."
     },
     {
       "id": "recipe-juwelier-streakschutz",
@@ -17388,7 +17388,7 @@
       "xp": 20,
       "trainerCost": 300,
       "description": "Stellt her: Juwelen-Streakschutz.",
-      "desc": "Juwelen-Streakschutz. Ein Edelstein der Gewohnheiten schützt. Selindra versteht Streaks nicht. Aber Steine schon."
+      "desc": "Ein Edelstein der Gewohnheiten schützt — Selindra versteht Streaks nicht, aber Steine schon."
     },
     {
       "id": "recipe-juwelier-meister-streakschutz",
@@ -17409,7 +17409,7 @@
       "description": "Stellt her: Meister-Juwelen-Streakschutz.",
       "dropChance": 0.08,
       "dropMinQuestRarity": "rare",
-      "desc": "Meister-Streakschutz. Der stärkste Schutz den ein Stein bieten kann. Gegen alles außer Dienstage."
+      "desc": "Der stärkste Streakschutz den ein Stein bieten kann — gegen alles, außer Dienstage."
     },
     {
       "id": "recipe-juwelier-forge-temp-1",
@@ -17428,7 +17428,7 @@
       "xp": 14,
       "trainerCost": 125,
       "description": "Stellt her: Glühender Edelstein.",
-      "desc": "Glühender Edelstein. Heizt die Schmiede auf. Grimvar nickt. Selindra strahlt. Alle zufrieden."
+      "desc": "Ein glühender Edelstein der die Schmiede aufheizt — Grimvar nickt, Selindra strahlt, alle sind zufrieden."
     },
     {
       "id": "recipe-juwelier-forge-temp-2",
@@ -17467,7 +17467,7 @@
       "xp": 10,
       "trainerCost": 75,
       "description": "Ring segnen I.",
-      "desc": "Ring segnen. Selindra betet dabei. An wen, sagt sie nicht. Vermutlich an den Stein."
+      "desc": "Ring segnen — Selindra betet dabei, an wen verrät sie nicht, vermutlich an den Stein selbst."
     },
     {
       "id": "recipe-juwelier-ring-segnen-2",
@@ -17488,7 +17488,7 @@
       "description": "Ring segnen II.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Stärkere Segnung. Selindra betet lauter. Der Stein antwortet. Leiser."
+      "desc": "Bei der stärkeren Segnung betet Selindra lauter, und der Stein antwortet — leiser."
     },
     {
       "id": "recipe-juwelier-ring-segnen-3",
@@ -17508,7 +17508,7 @@
       "xp": 30,
       "description": "Ring segnen III.",
       "factionId": "zirkel_der_sterne",
-      "desc": "Stärkste Segnung. Selindra und der Stein haben eine Vereinbarung getroffen. Niemand kennt die Details."
+      "desc": "Die stärkste Segnung, bei der Selindra und der Stein eine Vereinbarung getroffen haben, deren Details niemand kennt."
     },
     {
       "id": "recipe-juwelier-amulett-segnen-1",
@@ -17529,7 +17529,7 @@
       "description": "Amulett verzieren I.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Amulett verzieren. Selindra hängt Gefühle an Metall. Sie nennt es Handwerk."
+      "desc": "Amulettverzierung, bei der Selindra Gefühle an Metall hängt und das Handwerk nennt."
     },
     {
       "id": "recipe-juwelier-amulett-segnen-2",
@@ -17549,7 +17549,7 @@
       "xp": 22,
       "trainerCost": 450,
       "description": "Amulett verzieren II.",
-      "desc": "Stärkere Verzierung. Das Amulett wird persönlicher. Und teurer. Wie Therapie."
+      "desc": "Eine stärkere Verzierung die das Amulett persönlicher und teurer macht — wie Therapie."
     },
     {
       "id": "recipe-juwelier-amulett-segnen-3",
