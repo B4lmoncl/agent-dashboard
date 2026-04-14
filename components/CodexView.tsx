@@ -318,7 +318,7 @@ function CompanionGallery() {
     <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
         <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Companion Gallery</span>
-        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{open ? "▲" : "▼"}</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
       </button>
       {open && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter stagger-list">
@@ -356,7 +356,7 @@ function WorldStats() {
     <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
         <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>World Statistics</span>
-        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{open ? "▲" : "▼"}</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
       </button>
       {open && stats && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3 tab-content-enter">

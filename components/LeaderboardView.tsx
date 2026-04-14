@@ -178,7 +178,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 {(() => { const t = userMap.get(entry.id)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af" }}>{t.name}</p> : null; })()}
                 {cls && <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)" }}>{cls.icon} {cls.fantasy}</p>}
                 <p className="text-xs" style={{ color: lvl.color }}>{lvl.name}</p>
-                <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()} XP</span>
+                <span className="text-xs font-mono font-bold" title="Gesamt-XP" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()} XP</span>
               </div>
               <div
                 className={`w-full rounded-t-lg flex items-center justify-center ${podiumHeightClass}`}

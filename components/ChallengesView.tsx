@@ -314,7 +314,7 @@ function SternenpfadView({
                 {(isActive || isCompleted) && stage.starThresholds && (
                   <div className="flex gap-3 text-xs text-w20 mb-2">
                     {stage.starThresholds.map((t: number, si: number) => (
-                      <span key={si} style={{ color: progressValue >= t ? "#fbbf24" : undefined }}>
+                      <span key={si} title={`${t} abgeschlossen für ${si + 1} Stern${si > 0 ? "e" : ""}`} style={{ color: progressValue >= t ? "#fbbf24" : undefined, cursor: "help" }}>
                         ★{si + 1}: {t}{stage.requirement.type === "quest_type" ? ` ${stage.requirement.questType}` : ""}
                       </span>
                     ))}
@@ -340,7 +340,7 @@ function SternenpfadView({
                             <CurrencyBadge key={type} type={type} amount={Math.round((base as number) * multiplier)} />
                           ))}
                         </div>
-                        {stars > 1 && <span className="text-w30 ml-auto font-mono">+{stars === 3 ? "33" : "15"}%</span>}
+                        {stars > 1 && <span className="text-w30 ml-auto font-mono" title={`Belohnungsbonus für ${stars} Sterne`} style={{ cursor: "help" }}>+{stars === 3 ? "33" : "15"}%</span>}
                       </div>
                     );
                   })}
