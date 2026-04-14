@@ -595,7 +595,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="World Boss (Kolosseum)" icon="◆" accent="rgba(239,68,68,0.3)">
                 Community-weite Bosskämpfe. Alle Spieler tragen per Quest-Completion zum Schaden bei.
                 <ul className="space-y-1 mt-2">
-                  <li>• 9 Bosse mit einzigartiger Lore und Unique Drops</li>
+                  <li>• 15 Bosse mit einzigartiger Lore und Unique Drops</li>
                   <li>• Contribution-Ranking: Bronze, Silver, Gold, Legendary</li>
                   <li>• Ab <Stat color="#22c55e">Level 15</Stat> verfügbar</li>
                 </ul>
@@ -932,12 +932,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Schicksalsbaum — Passiver Talentbaum" icon="◇" accent="rgba(167,139,250,0.3)">
-                Kreisförmiger Skill-Tree mit 26 Knoten in 3 Ringen — inspiriert von Wolcen:
+                Kreisförmiger Skill-Tree mit 44 Knoten in 3 Ringen — inspiriert von Wolcen:
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 8 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
                   <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 10 Spezialisierungen mit Tradeoffs.</li>
                   <li>• <Stat color="#f97316">Aszension</Stat> (Außen) — 8 Capstone-Boni: Mythic+ Skip, Friend XP Echo, Passive Gold.</li>
-                  <li>• Freischaltung ab <Stat color="#f0f0f0">Level 5</Stat>, 1 Punkt pro 2 Level, max 25 Punkte.</li>
+                  <li>• Freischaltung ab <Stat color="#f0f0f0">Level 5</Stat>, 1 Punkt pro 2 Level, max 23 Punkte.</li>
                   <li>• Respec: 500 Gold + 50 Essenz.</li>
                 </ul>
               </GuideSection>

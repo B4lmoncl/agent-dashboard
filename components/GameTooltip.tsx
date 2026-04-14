@@ -1509,9 +1509,9 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#a855f7",
     body: (
       <>
-        <p>Passive skill tree with 26 nodes in 3 concentric rings. Allocate points to unlock permanent bonuses.</p>
+        <p>Passive skill tree with 44 nodes in 3 concentric rings. Allocate points to unlock permanent bonuses.</p>
         <div className="gt-stat-row"><span>Unlock</span><span>Level 5</span></div>
-        <div className="gt-stat-row"><span>Points</span><span>1 per 2 levels (max 25)</span></div>
+        <div className="gt-stat-row"><span>Points</span><span>1 per 2 levels (max 23)</span></div>
         <div className="gt-stat-row"><span>Rings</span><span>Inner (8) · Middle (10) · Outer (8)</span></div>
         <div className="gt-stat-row"><span>Reset</span><span>500 Gold + 50 Essenz</span></div>
         <p className="gt-source">Some nodes are mutually exclusive — choose wisely. Build archetypes: Grinder, Crafter, Gambler, Social, Rift Runner.</p>
