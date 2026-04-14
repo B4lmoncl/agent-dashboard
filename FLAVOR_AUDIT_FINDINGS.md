@@ -219,6 +219,20 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 ### Button-Padding Inkonsistenz
 82. **[Padding]** QuestCards.tsx:490 — Primary-Action-Buttons `px-3` während andere Views konsistent `px-4` nutzen. Quest-Buttons wirken gequetscht.
 
+### Currency-Bar Alignment (User-Reported)
+83. **[Alignment]** page.tsx:1262 — Currency-Icons und Zahlen sind horizontal versetzt. Ursache: `<Tip>` rendert ein `<span>` (inline), darin liegen Icon + Zahl als Inline-Kinder. Kein Flex-Layout innerhalb von Tip → Baseline-Alignment statt Center. **Fix:** Entweder den span in Tip als `inline-flex items-center gap-1` stylen, oder Icon und Zahl jeweils in eigene `<Tip>` wrappen und mit dem äußeren Flex-Container (`gap-1`) ausrichten.
+
+## Data Consistency (automatisierte Prüfung)
+
+### KRITISCH: World Boss Drops referenzieren nicht-existierende Items
+84. **[Missing Items]** worldBosses.json — ALLE 35 uniqueDrops über alle 15 Bosse referenzieren Item-IDs die weder in gearTemplates.json noch uniqueItems.json existieren. Spieler die Bosse besiegen bekommen Referenzen auf Phantom-Items.
+
+### HOCH: 32 Crafting-Items mit falschem Slot
+85. **[Wrong Slot]** gearTemplates.json — 16 Juwelier-Items namens "Ring/Reif/Band" haben `slot=amulet` statt `slot=ring`. 7 Schmied-Items "Kettenhemd/Kettenpanzer" haben `slot=amulet` statt `slot=armor`. 6 Schneider-Items "Gewand" haben `slot=weapon` statt `slot=armor`. 3 "Kapuze"-Items haben `slot=armor` statt `slot=helm`.
+
+### MITTEL: Tier/Level Mismatch bei 263 Crafted Items
+86. **[Tier Mismatch]** gearTemplates.json — 263 Crafting-Items haben `tier` das nicht zum `reqLevel` passt (laut CLAUDE.md Regeln T1=1-8, T2=9-16, T3=17-24, T4=25-50). Systematisch 1 Tier zu niedrig. Möglicherweise Designentscheidung, widerspricht aber der Dokumentation.
+
 ---
 
 ## Bereits gefixt (diese Session)
