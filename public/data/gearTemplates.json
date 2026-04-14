@@ -17063,7 +17063,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Das Eisen ist schlicht. Der Schutz nicht. Grimvar verschwendet keine Verzierungen an Dinge die funktionieren.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -17519,7 +17519,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Für Märsche durch Unwetter gemacht. Grimvar hat sie im Regen getestet. Er kam trocken zurück. Die Stiefel waren zufrieden.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -17975,7 +17975,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Jede Schuppe einzeln eingesetzt. Grimvar hat eine Woche nicht gesprochen. Danach sagte er: Fertig. Und ging.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
@@ -18431,7 +18431,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Das Gewicht der Schuppen verteilt sich gleichmäßig. Wie die Last der Verantwortung. Nur tragbarer.",
       "icon": "/images/icons/gacha-boots-leather-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -18902,7 +18902,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Die letzte Arbeit eines Schmiedemeisters ist immer die beste. Diese hier macht keine Ausnahme.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "shopHidden": true,
       "affixes": {
@@ -19398,7 +19398,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Grimvar schmiedet Waffen und Rüstungen. Stiefel sind unter seiner Würde. Diese hier sind die Ausnahme. Man sieht warum.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "shopHidden": true,
       "affixes": {
@@ -31118,7 +31118,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Entworfen für jemanden der seine Wache ernst nimmt. Das Eisen ist dick genug um einzuschlafen. Theoretisch.",
       "icon": "/images/icons/gacha-helm-knight-bucket.png",
       "shopHidden": true,
       "affixes": {
@@ -31584,7 +31584,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Kettenglieder aus Grimvars Esse. Jedes einzeln geprüft. Er hat einen Assistenten dafür. Der Assistent hasst seinen Job.",
       "icon": "/images/icons/gacha-amulet-dark-pentacle.png",
       "shopHidden": true,
       "affixes": {
@@ -32050,7 +32050,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Schwer genug um Spuren zu hinterlassen. Leicht genug um vor ihnen wegzulaufen.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -38584,7 +38584,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Eine verbesserte Version. Grimvar hat das Wort Verbesserung nie benutzt. Er hat gesagt: Weniger schlecht.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "shopHidden": true,
       "affixes": {
@@ -39050,7 +39050,7 @@
       "reqLevel": 3,
       "rarity": "common",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Eisen an den Sohlen. Nicht elegant, aber der Boden merkt dass du da bist.",
       "icon": "/images/icons/gacha-armor-studded-leather.png",
       "shopHidden": true,
       "affixes": {
@@ -39516,7 +39516,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Grimvar hat nicht gelächelt als er es fertig hatte. Er lächelt nie. Aber er hat genickt.",
+      "desc": "Eine Robe mit eingewebten Eisenfäden. Grimvar nennt es eine Beleidigung der Schmiedekunst. Aber sie funktioniert.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -52231,7 +52231,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Mehr Stock als Waffe. Aber im Notfall reicht auch ein Stock.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "affixes": {
         "primary": {
@@ -52663,7 +52663,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Der Riss geht quer durch. Aber beide Hälften halten noch zusammen. Gerade so.",
       "icon": "/images/icons/gacha-shield-wooden-buckler.png",
       "affixes": {
         "primary": {
@@ -52777,7 +52777,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Die Farbe ist weg. Der Schutz... größtenteils auch. Aber die Form stimmt.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
@@ -52947,7 +52947,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Die Flecken sind nicht Blut. Wahrscheinlich nicht. Hoffentlich nicht.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "affixes": {
         "primary": {
@@ -53470,7 +53470,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Jedes Loch erzählt eine Geschichte. Die meisten handeln von Dornen.",
       "icon": "/images/icons/gacha-armor-shadow-leathers.png",
       "affixes": {
         "primary": {
@@ -53675,7 +53675,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Die Schnur hat mehr Knoten als Sinn. Aber sie hängt am Hals und das zählt.",
       "icon": "/images/icons/gacha-amulet-silver-locket.png",
       "affixes": {
         "primary": {
@@ -54073,7 +54073,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Schlamm trocknet. Hoffnung auch. Aber die Stiefel halten trotzdem.",
       "icon": "/images/icons/gacha-boots-celestial-walkers.png",
       "affixes": {
         "primary": {
@@ -54209,7 +54209,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Jeder Schritt klingt wie eine Entschuldigung.",
       "icon": "/images/icons/gacha-boots-elven-walkers.png",
       "affixes": {
         "primary": {
@@ -54937,7 +54937,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Mehr Drohung als Waffe. Aber Drohungen haben auch ihren Wert.",
       "icon": "/images/icons/gacha-weapon-iron-mace.png",
       "affixes": {
         "primary": {
@@ -55039,7 +55039,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Wurde als Wanderstock verkauft. Als Waffe ist es eine Umwidmung.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "affixes": {
         "primary": {
@@ -55187,7 +55187,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Die Biegung war nicht beabsichtigt. Aber jetzt ist sie Markenzeichen.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "affixes": {
         "primary": {
@@ -55494,7 +55494,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "War mal ein Fassdeckel. Jetzt ist es ein Schild. Aufstieg.",
       "icon": "/images/icons/gacha-shield-blood-pavise.png",
       "affixes": {
         "primary": {
@@ -55665,7 +55665,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Die Beulen sind Erinnerungen. An Köpfe, Türen und einen sehr wütenden Koch.",
       "icon": "/images/icons/gacha-helm-bone-mask.png",
       "affixes": {
         "primary": {
@@ -56165,7 +56165,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Jeder Flicken ist ein Versprechen dass es besser wird. Wird es nicht. Aber die Weste hält.",
       "icon": "/images/icons/gacha-armor-scale-mail.png",
       "affixes": {
         "primary": {
@@ -56461,7 +56461,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Glänzt nicht. Schützt nicht. Sieht aber beschäftigt aus am Hals.",
       "icon": "/images/icons/gacha-amulet-crystal-shard.png",
       "affixes": {
         "primary": {
@@ -56586,7 +56586,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Der Stein hat Kratzer von innen. Das sollte nicht möglich sein.",
       "icon": "/images/icons/gacha-amulet-druid-acorn.png",
       "affixes": {
         "primary": {
@@ -57155,7 +57155,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Der Draht war mal gerade. Das Leben auch. Beides hat sich geändert.",
       "icon": "/images/icons/gacha-ring-vine-ring.png",
       "affixes": {
         "primary": {
@@ -57371,7 +57371,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Ein Band aus Kupfer. Grün am Finger, warm am Herzen. Angeblich.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "affixes": {
         "primary": {
@@ -57428,7 +57428,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Der Händler hat geschworen, es sei Gold. Der Händler schwört viel.",
       "icon": "/images/icons/gacha-ring-dragon-ring.png",
       "affixes": {
         "primary": {
@@ -57815,7 +57815,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Die Schlagmarken zeigen wo die Gegner getroffen haben. Überall, anscheinend.",
       "icon": "/images/icons/gacha-shield-tower-shield.png",
       "affixes": {
         "primary": {
@@ -58532,7 +58532,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Ein Stein an einem Band. Die Einfachheit ist entweder minimalistisch oder armselig.",
       "icon": "/images/icons/gacha-amulet-dragon-tooth.png",
       "affixes": {
         "primary": {
@@ -58771,7 +58771,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Das Verfallsdatum war vor zwei Monaten. Bei Schuhen ist das relativ.",
       "icon": "/images/icons/gacha-boots-knight-greaves.png",
       "affixes": {
         "primary": {
@@ -58828,7 +58828,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Aus der \"Das muss reichen\"-Kollektion.",
+      "desc": "Unter der Patina könnte Silber sein. Oder Zinn. Oder Hoffnung.",
       "icon": "/images/icons/gacha-ring-spirit-ring.png",
       "affixes": {
         "primary": {
@@ -58862,7 +58862,7 @@
       "rarity": "common",
       "price": 11,
       "shopHidden": false,
-      "desc": "Im Ausverkauf erstanden. Und selbst da überteuert.",
+      "desc": "Oval statt rund. Der Schmied nennt es Absicht. Der Preis sagt etwas anderes.",
       "icon": "/images/icons/gacha-ring-thorn-ring.png",
       "affixes": {
         "primary": {
@@ -59917,7 +59917,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Sitzt locker. Sehr locker. Eher eine Empfehlung als ein Schutz.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "affixes": {
         "primary": {
@@ -59951,7 +59951,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Wurde gesessen, nicht getragen. Man sieht es.",
       "icon": "/images/icons/gacha-helm-ranger-hood.png",
       "affixes": {
         "primary": {
@@ -60835,7 +60835,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Der linke Schuh ist größer als der rechte. Oder der Fuß ist kleiner. Schwer zu sagen.",
       "icon": "/images/icons/gacha-boots-mage-sandals.png",
       "affixes": {
         "primary": {
@@ -61311,7 +61311,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Ein Ring ohne Geschichte. Noch nicht. Gib ihm Zeit.",
       "icon": "/images/icons/gacha-ring-frost-ring.png",
       "affixes": {
         "primary": {
@@ -62195,7 +62195,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "War mal ein Kochtopf. Jetzt ein Helm. Die Karriereleiter ist steil.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "affixes": {
         "primary": {
@@ -62331,7 +62331,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Mehr Loch als Stoff. Aber die Löcher sind symmetrisch, also zählt es als Design.",
       "icon": "/images/icons/gacha-armor-celestial-robe.png",
       "affixes": {
         "primary": {
@@ -62603,7 +62603,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Der Stein behauptet, magisch zu sein. Beweise: keine.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "affixes": {
         "primary": {
@@ -62807,7 +62807,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Flach wie das Selbstwertgefühl nach dem ersten Dungeon.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "affixes": {
         "primary": {
@@ -62943,7 +62943,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Die Sohle war mal dicker. Die Straße war stärker.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "affixes": {
         "primary": {
@@ -63011,7 +63011,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Klappern bei jedem Schritt. Schleichmissionen sind ausgeschlossen.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
@@ -63317,7 +63317,7 @@
       "rarity": "common",
       "price": 6,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Die Kratzer erzählen Geschichten. Kurze. Traurige.",
       "icon": "/images/icons/gacha-ring-ruby-ring.png",
       "affixes": {
         "primary": {
@@ -63521,7 +63521,7 @@
       "rarity": "common",
       "price": 8,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Provisorium seit drei Jahren. Irgendwann wird es Tradition.",
       "icon": "/images/icons/gacha-shield-wooden-buckler.png",
       "affixes": {
         "primary": {
@@ -64745,7 +64745,7 @@
       "rarity": "common",
       "price": 10,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Hat vier Tiers überlebt. Sieht aus wie keiner davon.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "affixes": {
         "primary": {
@@ -65882,7 +65882,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Schützt den Kopf. Vor Regen. Vor Sonne. Vor Schwertern weniger.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "affixes": {
         "primary": {
@@ -66452,7 +66452,7 @@
       "rarity": "uncommon",
       "price": 13,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Ein Knoten an einer Schnur. Bedeutung unklar. Wirkung überraschend.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "affixes": {
         "primary": {
@@ -67307,7 +67307,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Müde, aber nicht machtlos. Wie die meisten Montage.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "affixes": {
         "primary": {
@@ -67820,7 +67820,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Der Stoff ist dünn. Die Hoffnung dünner. Aber beides hält.",
       "icon": "/images/icons/gacha-armor-frost-mantle.png",
       "affixes": {
         "primary": {
@@ -68048,7 +68048,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hält. Heute.",
+      "desc": "Die Schnur hat Charakter. Wortwörtlich — sie zieht an bestimmten Stellen.",
       "icon": "/images/icons/gacha-amulet-silver-locket.png",
       "affixes": {
         "primary": {
