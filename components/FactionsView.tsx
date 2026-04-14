@@ -365,6 +365,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                             fontWeight: isCurrent ? 700 : 400,
                             fontSize: 12,
                             boxShadow: isClaimed ? `0 0 6px ${s.color}15` : "none",
+                            opacity: isReached ? 1 : 0.5,
                           }}
                         >
                           <span style={{ display: "block", fontSize: 12 }}>{isClaimed ? "✓" : isReached ? "●" : "○"}</span>

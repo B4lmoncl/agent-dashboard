@@ -342,7 +342,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                           color: canAfford ? shopConf.color : "rgba(255,255,255,0.2)",
                           border: `1px solid ${canAfford ? `${shopConf.color}40` : "rgba(255,255,255,0.08)"}`,
                           cursor: canAfford && currencyBuying !== item.id ? "pointer" : "not-allowed",
-                          opacity: currencyBuying === item.id ? 0.5 : 1,
+                          opacity: !canAfford || currencyBuying === item.id ? 0.5 : 1,
                         }}
                       >
                         {currencyBuying === item.id ? "..." : item.cost}

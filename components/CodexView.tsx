@@ -34,6 +34,7 @@ export default function CodexView() {
   const [selectedEntry, setSelectedEntry] = useState<CodexEntry | null>(null);
   useModalBehavior(!!selectedEntry, () => setSelectedEntry(null));
   const [readEntries, setReadEntries] = useState<Set<string>>(new Set());
+  const [markReadError, setMarkReadError] = useState(false);
 
   const fetchCodex = useCallback(async () => {
     try {
@@ -66,7 +67,7 @@ export default function CodexView() {
           method: "POST",
           headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
           body: JSON.stringify({ category: "codex", ids: [id] }),
-        }).catch(() => {});
+        }).catch(() => { setMarkReadError(true); setTimeout(() => setMarkReadError(false), 5000); });
       }
       return next;
     });
@@ -89,6 +90,7 @@ export default function CodexView() {
   return (
     <div className="tab-content-enter space-y-4 relative">
       <TutorialMomentBanner viewId="codex" playerLevel={1} />
+      {markReadError && <p className="text-xs px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>Lesefortschritt konnte nicht gespeichert werden.</p>}
       {/* Ambient lore dust particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (

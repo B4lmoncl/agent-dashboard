@@ -789,7 +789,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         background: ultimateReady ? `rgba(${cColor.accentRgb},0.1)` : "rgba(255,255,255,0.02)",
                         color: ultimateReady ? cColor.accent : "rgba(255,255,255,0.15)",
                         border: `1px solid ${ultimateReady ? `rgba(${cColor.accentRgb},0.25)` : "rgba(255,255,255,0.05)"}`,
-                        cursor: ultimateReady ? "pointer" : "not-allowed",
+                        cursor: ultimateReady && !ultimateUsing ? "pointer" : "not-allowed",
+                        opacity: !ultimateReady || !!ultimateUsing ? 0.5 : 1,
                         minWidth: 70,
                       }}
                     >
@@ -1027,6 +1028,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           color: "#4ade80",
                           border: "1px solid rgba(34,197,94,0.35)",
                           cursor: expeditionCollecting ? "not-allowed" : "pointer",
+                          opacity: expeditionCollecting ? 0.5 : 1,
                           boxShadow: "0 0 12px rgba(34,197,94,0.15)",
                         }}
                       >
@@ -1077,6 +1079,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           color: cColor.accent,
                           border: `1px solid rgba(${cColor.accentRgb},0.3)`,
                           cursor: expeditionSending ? "not-allowed" : "pointer",
+                          opacity: expeditionSending ? 0.5 : 1,
                         }}
                         title={expeditionSending ? "Sending..." : undefined}
                       >

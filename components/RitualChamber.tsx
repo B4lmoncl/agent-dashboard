@@ -616,7 +616,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     try {
                       await fetch(`/api/rituals/${id}`, { method: 'DELETE', headers: { ...getAuthHeaders(reviewApiKey) } });
                       if (playerName) fetchRituals(playerName).then(setRituals);
-                    } catch { /* ignore */ }
+                    } catch { addToast?.({ type: "error", message: "Ritual konnte nicht gelöscht werden. Versuch es nochmal." }); }
                   }}
                   className="flex-1 text-sm py-2 rounded-lg font-semibold"
                   style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}

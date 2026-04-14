@@ -335,6 +335,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
   const [partner2, setPartner2] = useState("");
   const [creating, setCreating] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [coopError, setCoopError] = useState<string | null>(null);
 
   const userIds = users.map(u => u.id);
 
@@ -355,13 +356,16 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
         }),
       });
       if (res.ok) {
+        setCoopError(null);
         setSuccess(template.id);
         setTimeout(() => setSuccess(null), 3000);
         onRefresh();
       } else {
-        console.error("[coop] create failed:", await res.json().catch(() => ({})));
+        const d = await res.json().catch(() => ({}));
+        console.error("[coop] create failed:", d);
+        setCoopError(d.error || "Fehler beim Erstellen der Co-op Quest. Versuch es nochmal.");
       }
-    } catch { /* ignore */ } finally { setCreating(null); }
+    } catch { setCoopError("Netzwerkfehler — Quest konnte nicht erstellt werden."); } finally { setCreating(null); }
   };
 
   return (
@@ -395,6 +399,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
           </div>
         </div>
       </div>
+      {coopError && <p className="text-xs mb-2 px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>{coopError}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {COOP_TEMPLATES.map(t => {
           const isCreating = creating === t.id;

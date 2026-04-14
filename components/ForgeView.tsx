@@ -1956,7 +1956,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       background: canCraft ? `linear-gradient(135deg, ${selectedNpc.color}30, ${selectedNpc.color}18)` : "rgba(255,255,255,0.03)",
                                       color: canCraft ? selectedNpc.color : "rgba(255,255,255,0.2)",
                                       border: `1px solid ${canCraft ? `${selectedNpc.color}50` : "rgba(255,255,255,0.06)"}`,
-                                      cursor: canCraft ? "pointer" : "not-allowed",
+                                      cursor: canCraft && craftProgress === null ? "pointer" : "not-allowed",
+                                      opacity: !canCraft || craftProgress !== null ? 0.5 : 1,
                                     }}
                                     title={!canCraft ? (onCooldown ? "On cooldown" : "Missing materials or requirements") : `Craft ${selectedRecipe.name}`}
                                   >
@@ -2362,9 +2363,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <p className="text-xs mt-0.5" style={{ color: "#fbbf24" }}>{effectivePrice < reagent.price ? <><s style={{ opacity: 0.4 }}>{reagent.price}g</s> {effectivePrice}g</> : <>{reagent.price}g</>} pro Stück · Du hast: <span className="font-mono">{owned}</span></p>
                           </div>
                           <div className="flex items-center gap-1.5 flex-shrink-0">
-                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, (prev[reagent.id] || 1) - 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>−</button>
+                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, (prev[reagent.id] || 1) - 1) }))} className="w-8 h-8 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>−</button>
                             <input type="number" min={1} max={100} value={count} onChange={e => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.max(1, Math.min(100, parseInt(e.target.value) || 1)) }))} className="w-12 text-center text-xs font-mono rounded py-1 input-dark" style={{ border: "1px solid rgba(255,255,255,0.1)" }} />
-                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.min(100, (prev[reagent.id] || 1) + 1) }))} className="w-6 h-6 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>+</button>
+                            <button onClick={() => setReagentBuyCount(prev => ({ ...prev, [reagent.id]: Math.min(100, (prev[reagent.id] || 1) + 1) }))} className="w-8 h-8 rounded text-xs font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer", border: "none" }}>+</button>
                           </div>
                           <button
                             onClick={async () => {

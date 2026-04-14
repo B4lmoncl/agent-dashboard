@@ -612,7 +612,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 onClick={() => setSelectedMythicLevel(l => Math.max(1, l - 1))}
                 disabled={selectedMythicLevel <= 1}
                 title={selectedMythicLevel <= 1 ? "Already at minimum level" : "Decrease Mythic level"}
-                className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
+                className="btn-interactive w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center"
                 style={{
                   background: "rgba(255,68,68,0.08)",
                   border: "1px solid rgba(255,68,68,0.25)",
@@ -629,7 +629,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 onClick={() => setSelectedMythicLevel(l => Math.min(nextMythicLevel, l + 1))}
                 disabled={selectedMythicLevel >= nextMythicLevel}
                 title={selectedMythicLevel >= nextMythicLevel ? "Already at maximum level" : "Increase Mythic level"}
-                className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
+                className="btn-interactive w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center"
                 style={{
                   background: "rgba(255,68,68,0.08)",
                   border: "1px solid rgba(255,68,68,0.25)",

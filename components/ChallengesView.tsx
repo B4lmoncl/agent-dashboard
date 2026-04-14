@@ -150,6 +150,7 @@ function SternenpfadView({
                   style={{
                     background: canClaim ? "rgba(251,191,36,0.08)" : "transparent",
                     cursor: canClaim && claimingMilestone === null ? "pointer" : claimed ? "default" : "not-allowed",
+                    opacity: !canClaim && !claimed ? 0.5 : claimingMilestone !== null && !claimed ? 0.5 : 1,
                     animation: canClaim ? "pulse 4s infinite" : "none",
                   }}
                 >

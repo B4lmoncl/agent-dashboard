@@ -320,7 +320,7 @@ export default function DashboardHeader({
                     </div>
                     <button
                       className="flex items-center gap-2 px-4 py-2.5 text-xs text-left text-w50 relative"
-                      style={{ background: "none", border: "none", cursor: "pointer" }}
+                      style={{ background: "none", border: "none", cursor: "pointer", transition: "background 0.15s ease" }}
                       onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"}
                       onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.background = "none"}
                       onClick={async () => {
@@ -338,7 +338,7 @@ export default function DashboardHeader({
                     <div className="bg-w7" style={{ height: 1, margin: "0 12px" }} />
                     <button
                       className="flex items-center gap-2 px-4 py-2.5 text-xs text-left"
-                      style={{ color: "#ef4444", background: "none", border: "none", cursor: "pointer" }}
+                      style={{ color: "#ef4444", background: "none", border: "none", cursor: "pointer", transition: "background 0.15s ease" }}
                       onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.background = "rgba(239,68,68,0.08)"}
                       onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.background = "none"}
                       onClick={handleLogout}
