@@ -27149,7 +27149,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Rund wie die Erde. Hart wie Varns Urteil. Reflektiert beides.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "shopHidden": true,
       "affixes": {
@@ -28061,7 +28061,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Drachenstahl und Wappen. Das eine schützt den Körper. Das andere die Ehre.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -29444,7 +29444,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Klein aber mächtig. Der Aether verstärkt was der Stahl beginnt.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "shopHidden": true,
       "affixes": {
@@ -29940,7 +29940,7 @@
       "reqLevel": 42,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Oberfläche schimmert. Angriffe prallen ab wie schlechte Argumente.",
+      "desc": "Die letzte Verteidigung. Dahinter ist nur noch Hoffnung. Und Hoffnung hat keinen Rüstungswert.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "shopHidden": true,
       "affixes": {
@@ -42596,7 +42596,7 @@
       "rarity": "common",
       "price": 0,
       "shopHidden": false,
-      "desc": "Kalt wie die Tiefe aus der er stammt.",
+      "desc": "Eiche am Finger. Warm, leicht, und älter als die meisten Probleme.",
       "icon": "/images/icons/gacha-ring-gold-band.png",
       "affixes": {
         "primary": {
@@ -42635,7 +42635,7 @@
       "rarity": "uncommon",
       "price": 0,
       "shopHidden": false,
-      "desc": "Der Turm gibt selten etwas her. Dies ist eine Ausnahme.",
+      "desc": "Sternenstaub in einem Band. Leicht, warm, und voller Versprechen.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -42692,7 +42692,7 @@
       "rarity": "uncommon",
       "price": 0,
       "shopHidden": false,
-      "desc": "Gefunden zwischen den Steinen. Vermutlich absichtlich versteckt.",
+      "desc": "Der Reif summt bei Wind. Ein leises Lied das niemand geschrieben hat.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -42863,7 +42863,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Kalt wie die Tiefe aus der er stammt.",
+      "desc": "Der Ring leuchtet bei Dämmerung. Kurz. Wie ein Abschied.",
       "icon": "/images/icons/gacha-ring-runic-band.png",
       "affixes": {
         "primary": {
@@ -42920,7 +42920,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Der Turm gibt selten etwas her. Dies ist eine Ausnahme.",
+      "desc": "Warm am Finger. Nicht heiß — warm. Wie eine Erinnerung an ein Lagerfeuer.",
       "icon": "/images/icons/gacha-ring-sapphire-ring.png",
       "affixes": {
         "primary": {
@@ -42977,7 +42977,7 @@
       "rarity": "uncommon",
       "price": 0,
       "shopHidden": false,
-      "desc": "Gefunden zwischen den Steinen. Vermutlich absichtlich versteckt.",
+      "desc": "Runen am Rand. Sie leuchten nicht. Aber sie fühlen sich warm an.",
       "icon": "/images/icons/gacha-ring-frost-ring.png",
       "affixes": {
         "primary": {
@@ -43148,7 +43148,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Kalt wie die Tiefe aus der er stammt.",
+      "desc": "Im Nebel verborgen. Im Licht sichtbar. Der Ring wählt seine Momente.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -43205,7 +43205,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Der Turm gibt selten etwas her. Dies ist eine Ausnahme.",
+      "desc": "Schwarz wie das Nichts. Der Ring absorbiert Licht. Und Fragen.",
       "icon": "/images/icons/gacha-ring-ruby-ring.png",
       "affixes": {
         "primary": {
@@ -43262,7 +43262,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Gefunden zwischen den Steinen. Vermutlich absichtlich versteckt.",
+      "desc": "Das Auge blinzelt nicht. Es beobachtet. Geduldig wie ein Jäger.",
       "icon": "/images/icons/gacha-ring-rune-ring.png",
       "affixes": {
         "primary": {
@@ -43438,7 +43438,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Kalt wie die Tiefe aus der er stammt.",
+      "desc": "Vibriert bei Sturm. Beruhigend oder beunruhigend. Kommt auf den Sturm an.",
       "icon": "/images/icons/gacha-ring-gold-band.png",
       "affixes": {
         "primary": {
@@ -43495,7 +43495,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Der Turm gibt selten etwas her. Dies ist eine Ausnahme.",
+      "desc": "Der Ring öffnet nichts. Aber er fühlt sich an als könnte er es.",
       "icon": "/images/icons/gacha-ring-iron-band.png",
       "affixes": {
         "primary": {
@@ -43552,7 +43552,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Gefunden zwischen den Steinen. Vermutlich absichtlich versteckt.",
+      "desc": "Das Band scheint dünner zu werden. Oder die Zeit vergeht schneller in seiner Nähe.",
       "icon": "/images/icons/gacha-ring-pearl-ring.png",
       "affixes": {
         "primary": {
@@ -47225,7 +47225,7 @@
       "rarity": "uncommon",
       "price": 25,
       "shopHidden": false,
-      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "desc": "Im Schatten leise. Im Licht normal. Die Stiefel passen sich an.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "affixes": {
         "primary": {
@@ -48604,7 +48604,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "desc": "Stille an den Beinen. Kein Rascheln, kein Knirschen. Nur Schritte die niemand hört.",
       "icon": "/images/icons/gacha-boots-frost-treads.png",
       "affixes": {
         "primary": {
@@ -48775,7 +48775,7 @@
       "rarity": "uncommon",
       "price": 35,
       "shopHidden": false,
-      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "desc": "Aus der Tiefe geholt. Die Tiefe hat es nicht freiwillig hergegeben.",
       "icon": "/images/icons/gacha-ring-skull-ring.png",
       "affixes": {
         "primary": {
@@ -49174,7 +49174,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "desc": "Asche bedeckt die Oberfläche. Was darunter liegt ist härter als es aussieht.",
       "icon": "/images/icons/gacha-shield-rune-tower.png",
       "affixes": {
         "primary": {
@@ -49345,7 +49345,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": true,
-      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "desc": "Die Krone donnert bei Zorn. Und bei Freude. Sie unterscheidet nicht.",
       "icon": "/images/icons/gacha-helm-horned.png",
       "affixes": {
         "primary": {
@@ -49402,7 +49402,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "desc": "Bei Donner summt sie. Nicht laut — aber spürbar.",
       "icon": "/images/icons/gacha-helm-iron-pot.png",
       "affixes": {
         "primary": {
@@ -49630,7 +49630,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "desc": "Asche und Stahl. Die Rüstung erinnert sich an das Feuer das sie geformt hat.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "affixes": {
         "primary": {
@@ -49687,7 +49687,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Im Halbdunkel sieht es majestätisch aus. Im Tageslicht auch, wenn man die Augen etwas zusammenkneift.",
+      "desc": "Das Wams wärmt von innen. Nicht durch den Stoff — durch etwas das im Stoff lebt.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "affixes": {
         "primary": {
@@ -50428,7 +50428,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "desc": "Jeder Dorn eine Warnung. Der Stab hat viele.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "affixes": {
         "primary": {
@@ -51261,7 +51261,7 @@
       "rarity": "epic",
       "price": 0,
       "shopHidden": true,
-      "desc": "Es hat eine Geschichte. Wie die meisten guten Dinge ist sie kompromittierend.",
+      "desc": "Das Schicksal hängt am Hals. Schwer wie eine Verantwortung. Aber schön.",
       "icon": "/images/icons/gacha-amulet-phoenix-feather.png",
       "affixes": {
         "primary": {
@@ -51437,7 +51437,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "desc": "Nachts ist er warm. Am Tag kalt. Der Talisman lebt nach seinem eigenen Zeitplan.",
       "icon": "/images/icons/gacha-amulet-rune-stone.png",
       "affixes": {
         "primary": {
@@ -51613,7 +51613,7 @@
       "rarity": "legendary",
       "price": 0,
       "shopHidden": true,
-      "desc": "Aus dem Nachlass eines Abenteurers, der es \"vorübergehend nicht mehr braucht\".",
+      "desc": "Dämmerungstreter. Zwischen den Welten. Nicht ganz hier, nicht ganz dort.",
       "icon": "/images/icons/gacha-boots-plate-sabatons.png",
       "affixes": {
         "primary": {
@@ -70385,7 +70385,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "vom Straßenrand. Funktioniert.",
+      "desc": "Bronze ist weich. Aber weich ist besser als nichts. Knapp.",
       "icon": "/images/icons/gacha-weapon-druid-staff.png",
       "affixes": {
         "primary": {
@@ -70827,7 +70827,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "vom Straßenrand. Funktioniert.",
+      "desc": "Ein Deckel aus Knochen. Wessen Knochen ist unklar. Besser so.",
       "icon": "/images/icons/gacha-helm-skull-helm.png",
       "affixes": {
         "primary": {
@@ -71779,7 +71779,7 @@
       "rarity": "common",
       "price": 7,
       "shopHidden": false,
-      "desc": "vom Straßenrand. Funktioniert.",
+      "desc": "Ein Hieb aus Stoff. Der Name ist ambitionierter als das Ergebnis.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "affixes": {
         "primary": {
@@ -72289,7 +72289,7 @@
       "rarity": "common",
       "price": 7,
       "shopHidden": false,
-      "desc": "vom Straßenrand. Funktioniert.",
+      "desc": "Eisen am Arm. Schwer, einfach, effektiv. Die drei Tugenden des Lehrlingswerks.",
       "icon": "/images/icons/gacha-armor-obsidian-warplate.png",
       "affixes": {
         "primary": {
@@ -72867,7 +72867,7 @@
       "rarity": "common",
       "price": 9,
       "shopHidden": false,
-      "desc": "vom Straßenrand. Funktioniert.",
+      "desc": "Eiserner Kopfschutz. Schützt den Kopf. Belastet den Nacken. Kompromiss.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "affixes": {
         "primary": {
@@ -73264,7 +73264,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "desc": "Der Aether fließt durch die Klinge. Sie schneidet durch mehr als Stahl.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "affixes": {
         "primary": {
@@ -73663,7 +73663,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "desc": "Sieht weiter als normale Helme. Was es sieht, behält es für sich.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "affixes": {
         "primary": {
@@ -73720,7 +73720,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "desc": "Die Kappe knistert vor Energie. Bei Gewitter mehr als sonst.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
@@ -73777,7 +73777,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "desc": "Nicht jede Krone gehört einem König. Manche gehören dem Überleben.",
       "icon": "/images/icons/gacha-helm-dragon-skull.png",
       "affixes": {
         "primary": {
@@ -73891,7 +73891,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "desc": "Im Schatten schmilzt er mit der Dunkelheit zusammen. Im Licht steht er allein.",
       "icon": "/images/icons/gacha-armor-padded-jerkin.png",
       "affixes": {
         "primary": {
@@ -73948,7 +73948,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "desc": "Blitze prallen ab. Oder werden absorbiert. Beides ist beeindruckend.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "affixes": {
         "primary": {
@@ -74062,7 +74062,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "desc": "Drachenhaut als Rüstung. Der Drache ist dagegen. War dagegen.",
       "icon": "/images/icons/gacha-armor-royal-plate.png",
       "affixes": {
         "primary": {
@@ -74119,7 +74119,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "desc": "Ein Stern gefangen in Metall. Er leuchtet nachts. Wie eine Erinnerung.",
       "icon": "/images/icons/gacha-amulet-prism-crystal.png",
       "affixes": {
         "primary": {
@@ -74347,7 +74347,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Handarbeit eines Meisters, der seinen Namen nicht auf seine Werke schreibt. Aus Bescheidenheit oder weil er sich schämt, ist unklar.",
+      "desc": "Die Schritte hinterlassen keinen Abdruck. Nur eine Brise.",
       "icon": "/images/icons/gacha-boots-spiked-boots.png",
       "affixes": {
         "primary": {
@@ -74404,7 +74404,7 @@
       "rarity": "rare",
       "price": 0,
       "shopHidden": false,
-      "desc": "Es summt leise. Nicht unheimlich, eher wie eine Katze, die zufrieden ist. Nur dass Katzen normalerweise keine Schwerter sind.",
+      "desc": "Jeder Schritt löst sich im Nebel auf. Der Boden vergisst dass du da warst.",
       "icon": "/images/icons/gacha-boots-storm-treads.png",
       "affixes": {
         "primary": {
