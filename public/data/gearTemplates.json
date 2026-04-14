@@ -19698,7 +19698,7 @@
     {
       "id": "craft-schneider-leinenhut",
       "name": "Leinenhut",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 1,
       "reqLevel": 3,
       "rarity": "common",
@@ -19983,7 +19983,7 @@
     {
       "id": "craft-schneider-leinenpantoffeln",
       "name": "Leinenpantoffeln",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 1,
       "reqLevel": 7,
       "rarity": "uncommon",
@@ -20382,7 +20382,7 @@
     {
       "id": "craft-schneider-wollhut",
       "name": "Wollhut",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 18,
       "rarity": "rare",
@@ -20667,7 +20667,7 @@
     {
       "id": "craft-schneider-gewobene-treter",
       "name": "Gewobene Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 2,
       "reqLevel": 23,
       "rarity": "rare",
@@ -20952,7 +20952,7 @@
     {
       "id": "craft-schneider-mondschein-treter",
       "name": "Mondschein-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 26,
       "rarity": "epic",
@@ -21465,7 +21465,7 @@
     {
       "id": "craft-schneider-mondschein-pantoffeln",
       "name": "Mondschein-Pantoffeln",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 36,
       "rarity": "epic",
@@ -22794,7 +22794,7 @@
     {
       "id": "craft-leder-leichtleder-treter",
       "name": "Leichtleder-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 1,
       "reqLevel": 9,
       "rarity": "uncommon",
@@ -23079,7 +23079,7 @@
     {
       "id": "craft-leder-jagd-maske",
       "name": "Jagd-Maske",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 14,
       "rarity": "rare",
@@ -23307,7 +23307,7 @@
     {
       "id": "craft-leder-mittelleder-treter",
       "name": "Mittelleder-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 2,
       "reqLevel": 17,
       "rarity": "rare",
@@ -23934,7 +23934,7 @@
     {
       "id": "craft-leder-schwerleder-tritte",
       "name": "Schwerleder-Tritte",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 31,
       "rarity": "epic",
@@ -24048,7 +24048,7 @@
     {
       "id": "craft-leder-schwerleder-maske",
       "name": "Schwerleder-Maske",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 3,
       "reqLevel": 34,
       "rarity": "epic",
@@ -24219,7 +24219,7 @@
     {
       "id": "craft-leder-bestien-treter",
       "name": "Bestien-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 36,
       "rarity": "epic",
@@ -24333,7 +24333,7 @@
     {
       "id": "craft-leder-bestien-treter-fxf",
       "name": "Bestien-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 4,
       "reqLevel": 38,
       "rarity": "legendary",
@@ -24519,7 +24519,7 @@
     {
       "id": "craft-leder-urzeit-tritte",
       "name": "Urzeit-Tritte",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 4,
       "reqLevel": 39,
       "rarity": "legendary",
@@ -31869,7 +31869,7 @@
     {
       "id": "craft-schmied-staehlerne-treter",
       "name": "Stählerne Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 2,
       "reqLevel": 22,
       "rarity": "rare",
@@ -31926,7 +31926,7 @@
     {
       "id": "craft-schmied-drachenschuppen-treter",
       "name": "Drachenschuppen-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 34,
       "rarity": "epic",
@@ -31983,7 +31983,7 @@
     {
       "id": "craft-schmied-seelen-treter",
       "name": "Seelen-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 4,
       "reqLevel": 42,
       "rarity": "legendary",
@@ -32915,7 +32915,7 @@
     {
       "id": "craft-schneider-leinenpantoffeln-des-lesers",
       "name": "Leinenpantoffeln des Lesers",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 1,
       "reqLevel": 7,
       "rarity": "uncommon",
@@ -33029,7 +33029,7 @@
     {
       "id": "craft-schneider-seidenpantoffeln-des-meisters",
       "name": "Seidenpantoffeln des Meisters",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 32,
       "rarity": "epic",
@@ -33262,7 +33262,7 @@
     {
       "id": "craft-schneider-mondschein-schritte",
       "name": "Mondschein-Schritte",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 28,
       "rarity": "epic",
@@ -34365,7 +34365,7 @@
     {
       "id": "craft-lederverarbeiter-bestien-treter",
       "name": "Bestien-Treter",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 3,
       "reqLevel": 35,
       "rarity": "epic",
@@ -39045,7 +39045,7 @@
     {
       "id": "craft-schmied-eisern-treter-ii",
       "name": "Eisern Treter II",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 1,
       "reqLevel": 3,
       "rarity": "common",
@@ -40267,7 +40267,7 @@
     {
       "id": "craft-schneider-leinen-treter-ii",
       "name": "Leinen Treter II",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 1,
       "reqLevel": 3,
       "rarity": "common",
@@ -41489,7 +41489,7 @@
     {
       "id": "craft-lederverarbeiter-leichtleder-treter-ii",
       "name": "Leichtleder Treter II",
-      "slot": "armor",
+      "slot": "boots",
       "tier": 1,
       "reqLevel": 7,
       "rarity": "uncommon",
@@ -69325,7 +69325,7 @@
     {
       "id": "c2-a1-lederschutz2",
       "name": "Leder-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 1,
       "reqLevel": 3,
       "rarity": "common",
@@ -70991,7 +70991,7 @@
     {
       "id": "c2-a2-stahlschutz1",
       "name": "Stahl-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 10,
       "rarity": "common",
@@ -71025,7 +71025,7 @@
     {
       "id": "c2-a2-holzschutz2",
       "name": "Holz-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 11,
       "rarity": "common",
@@ -71093,7 +71093,7 @@
     {
       "id": "c2-a2-holzschutz4",
       "name": "Holz-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 13,
       "rarity": "common",
@@ -71127,7 +71127,7 @@
     {
       "id": "c2-a2-kupferschutz5",
       "name": "Kupfer-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 2,
       "reqLevel": 14,
       "rarity": "common",
@@ -72215,7 +72215,7 @@
     {
       "id": "c2-a3-eisenschutz1",
       "name": "Eisen-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 3,
       "reqLevel": 19,
       "rarity": "common",
@@ -72249,7 +72249,7 @@
     {
       "id": "c2-a3-tonschutz2",
       "name": "Ton-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 3,
       "reqLevel": 21,
       "rarity": "common",
@@ -72283,7 +72283,7 @@
     {
       "id": "c2-a3-eisenschutz3",
       "name": "Eisen-Schutz",
-      "slot": "armor",
+      "slot": "helm",
       "tier": 3,
       "reqLevel": 23,
       "rarity": "common",
