@@ -354,7 +354,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         </div>
       </div>
       <div className="rounded-lg px-4 py-2.5" style={{ background: "linear-gradient(135deg, rgba(129,140,248,0.06) 0%, transparent 80%)", borderLeft: "2px solid rgba(129,140,248,0.2)" }}>
-        <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", maxWidth: 520 }}>Was hier unten schläft, hat Gründe dafür. Unter dem Turm liegen vergessene Gewölbe, versiegelte Archive und Kammern, die seit Äonen niemand betreten hat.</p>
+        <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)", maxWidth: 520 }}>Was hier unten schläft, hat Gründe dafür. Unter dem Turm liegen vergessene Gewölbe, versiegelte Archive und Kammern, die seit Äonen niemand betreten hat.</p>
       </div>
 
       {/* Messages */}

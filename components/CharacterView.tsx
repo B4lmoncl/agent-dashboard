@@ -575,7 +575,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
 
         {/* Flavor text */}
         {item.flavorText && (
-          <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{item.flavorText}&rdquo;</p>
+          <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>&ldquo;{item.flavorText}&rdquo;</p>
         )}
 
         {/* Description */}

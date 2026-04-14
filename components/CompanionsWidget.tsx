@@ -852,7 +852,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       }}>
                         <div className="p-3 flex-1">
                           <p className="text-sm font-semibold leading-snug" style={{ color: "#f0d0c0", textDecoration: done ? "line-through" : "none", textShadow: "0 0 8px rgba(255,107,157,0.15)" }}>{q.title}</p>
-                          {flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(220,185,120,0.35)", fontSize: "0.75rem" }}>{flavorText}</p>}
+                          {flavorText && <p className="text-sm italic mt-1" style={{ color: "rgba(220,185,120,0.4)" }}>{flavorText}</p>}
                         </div>
                         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
