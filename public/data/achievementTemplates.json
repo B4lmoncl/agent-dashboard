@@ -2281,13 +2281,13 @@
       "id": "hidden_all_bosses",
       "name": "Bestienkenner",
       "icon": "/images/icons/ach-all-bosses.png",
-      "desc": "Alle 9 Weltbosse gesehen. Du sammelst Bosse wie andere Leute Briefmarken. Weniger klebrig, genau so obsessiv.",
+      "desc": "Alle 15 Weltbosse gesehen. Du sammelst Bosse wie andere Leute Briefmarken. Weniger klebrig, genau so obsessiv.",
       "category": "hidden",
       "rarity": "legendary",
       "points": 100,
       "condition": {
         "type": "unique_bosses_defeated",
-        "value": 9
+        "value": 15
       },
       "description": "Alle Boss-Typen besiegt. Bestienkenner. Kein Boss überrascht dich mehr. Du überraschst sie."
     },
@@ -2514,11 +2514,11 @@
       "points": 100,
       "condition": {
         "type": "codex_discovered",
-        "value": 85
+        "value": 143
       },
       "chainPrev": "codex-lorekeeper",
       "hidden": true,
-      "description": "Alle Codex-Einträge. Allwissend. Eine Last. Aber eine gut dokumentierte."
+      "description": "Alle 143 Codex-Einträge entdeckt. Allwissend. Eine Last. Aber eine gut dokumentierte."
     },
     {
       "id": "talent_first",
