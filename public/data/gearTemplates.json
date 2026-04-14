@@ -25952,7 +25952,7 @@
       "reqLevel": 7,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Ein Buch das Schläge abwehrt. Varn fand die Idee absurd. Dann hat er es gebaut. Und es funktioniert.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -26009,7 +26009,7 @@
       "reqLevel": 8,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Grob, aber ehrlich. Wie Varns Meinung über deine Technik.",
       "icon": "/images/icons/gacha-shield-dragon-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -26408,7 +26408,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Kristall und Stahl in einer Klinge vereint. Varn hat den Kristallschliff von Selindra gelernt. Er gibt es nicht zu.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "shopHidden": true,
       "affixes": {
@@ -26465,7 +26465,7 @@
       "reqLevel": 13,
       "rarity": "rare",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Der Kristall bricht das Licht. Und gelegentlich den Willen des Angreifers.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -26864,7 +26864,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Groß genug um dahinter zu wohnen. Varn hat das als Verkaufsargument gemeint.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "shopHidden": true,
       "affixes": {
@@ -26921,7 +26921,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Stahl, poliert bis er spiegelt. Der Feind sieht sein eigenes Gesicht. Das allein schreckt ab.",
       "icon": "/images/icons/gacha-shield-kite-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -27320,7 +27320,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Die Axt singt beim Schwung. Varn sagt, das sei der Kristall. Nicht seine Handschrift.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -27377,7 +27377,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Klein, schnell, tödlich. Wie eine gut platzierte Pointe.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -27776,7 +27776,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Das Wappen ist individuell. Varn graviert keine zwei gleichen. Aus Stolz, nicht Höflichkeit.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "shopHidden": true,
       "affixes": {
@@ -27833,7 +27833,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Ein Buch das man werfen kann. Varn findet Bücher erst so nützlich.",
       "icon": "/images/icons/gacha-weapon-legendary-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -28232,7 +28232,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Ein Stab für Rituale die kein normales Holz überleben würde. Varn hat Respekt. Vor dem Stab.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
@@ -28289,7 +28289,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Das Schwert kennt seinen Weg zum Ziel. Der Träger muss nur loslassen.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -28688,7 +28688,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Drachenschuppen am Kopf. Jeder Treffer hinterlässt Funken. Buchstäblich.",
       "icon": "/images/icons/gacha-weapon-battleaxe.png",
       "shopHidden": true,
       "affixes": {
@@ -28745,7 +28745,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Schuppen eines Drachen, geschmiedet zu einem Schild. Der Drache wäre stolz. Falls Drachen Stolz kennen.",
       "icon": "/images/icons/gacha-shield-iron-roundshield.png",
       "shopHidden": true,
       "affixes": {
@@ -29144,7 +29144,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Ein Drachenzahn eingelassen in den Schildbuckel. Der Drache war nicht einverstanden.",
       "icon": "/images/icons/gacha-shield-leather-targe.png",
       "shopHidden": true,
       "affixes": {
@@ -29201,7 +29201,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Bricht Klingen. Moralisch und physisch. Hauptsächlich physisch.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -29630,7 +29630,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Der Stab reagiert auf Emotionen. Bei Wut glüht er rot. Bei Freude blau. Bei Langeweile tut er gar nichts.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29692,7 +29692,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Wenn er trifft, donnert es. Nicht metaphorisch. Die Nachbarn haben sich beschwert.",
       "icon": "/images/icons/gacha-weapon-cursed-blade.png",
       "shopHidden": true,
       "affixes": {
@@ -30126,7 +30126,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Geschmiedet in einem Prozess den Varn niemandem beschreibt. Die Werkstatt riecht danach noch tagelang anders.",
       "icon": "/images/icons/gacha-weapon-flame-greatsword.png",
       "shopHidden": true,
       "affixes": {
@@ -30188,7 +30188,7 @@
       "reqLevel": 43,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Fokussiert magische Energie wie eine Linse Licht. Nur gefährlicher. Deutlich gefährlicher.",
       "icon": "/images/icons/gacha-weapon-frost-claymore.png",
       "shopHidden": true,
       "affixes": {
@@ -30622,7 +30622,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat die Klinge geprüft. Zweimal. Das tut er nur bei guter Arbeit.",
+      "desc": "Varns Lebenswerk. Er hat es drei Jahre lang jeden Abend poliert. Dann hat er es abgegeben. Ohne ein Wort.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -30684,7 +30684,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Scharf genug um Ausreden zu durchschneiden.",
+      "desc": "Die letzte Verteidigung. Danach kommt nur noch Trotz. Und Trotz hat keinen Rüstungswert.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
