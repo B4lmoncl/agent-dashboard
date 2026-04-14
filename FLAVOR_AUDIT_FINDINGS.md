@@ -261,6 +261,11 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 
 100. **[Typo]** npcQuestGivers.json — Strategin Athena title: "Die Schlachtenkdenkerin" → sollte "Die Schlachtendenkerin" sein
 
+## CSS / Technisches
+
+101. **[Dead Code]** globals.css:1470-1477 — `@keyframes today-card-enter` und `today-urgent-pulse` sind doppelt definiert. Die ersten (Zeile 1470/1474) werden von den zweiten (Zeile 1505/1510) überschrieben. Erste Definition ist toter Code.
+102. **[Animation Count]** globals.css — 155 `@keyframes` Animationen. Beeindruckend, aber möglicherweise Performance-Impact auf schwächeren Geräten. Keine davon scheint überflüssig (außer die Duplicates).
+
 ---
 
 ## Feature-Vorschläge (zur Diskussion)
