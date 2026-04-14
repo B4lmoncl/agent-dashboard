@@ -17,7 +17,7 @@
       "npcName": "Grimvar the Smith",
       "npcPortrait": "/images/npcs/grimvar-schmied.png",
       "npcGreeting": "Das Eisen ruft, Wanderer. Leg dein Stück auf den Amboss — ich mach was draus.",
-      "description": "Forges heavy armor from ore and crystal. Also hosts the Salvage station for dismantling gear.",
+      "description": "Schmiedet schwere Rüstungen aus Erz und Kristall. Beherbergt außerdem die Zerlegungsstation für Ausrüstung.",
       "color": "#f59e0b",
       "icon": "/images/icons/prof-schmied.png",
       "maxSkill": 300,
@@ -33,7 +33,7 @@
       "masteryBonus": {
         "type": "gear_stat_boost",
         "value": 10,
-        "desc": "+10% gear stat rolls when equipping items"
+        "desc": "+10% Stat-Rolls bei ausgerüsteten Items"
       }
     },
     {
@@ -42,7 +42,7 @@
       "npcName": "Ysolde the Alchemist",
       "npcPortrait": "/images/npcs/ysolde-alchemist.png",
       "npcGreeting": "Jeder Tropfen zählt, jedes Kraut hat seinen Zweck. Was soll es sein?",
-      "description": "Brews potions and elixirs from gathered materials. Also hosts the Transmutation station for upgrading gear.",
+      "description": "Braut Tränke und Elixiere aus gesammelten Materialien. Beherbergt außerdem die Transmutationsstation.",
       "color": "#22c55e",
       "icon": "/images/icons/prof-alchemist.png",
       "maxSkill": 300,
@@ -58,7 +58,7 @@
       "masteryBonus": {
         "type": "potion_duration",
         "value": 2,
-        "desc": "+2 extra quest charges on crafted potions"
+        "desc": "+2 zusätzliche Quest-Ladungen bei hergestellten Tränken"
       }
     },
     {
@@ -67,7 +67,7 @@
       "npcName": "Eldric the Enchanter",
       "npcPortrait": "/images/npcs/eldric-verzauberer.png",
       "npcGreeting": "Zeig mir deine Ausrüstung... ich kann die verborgene Magie darin erwecken.",
-      "description": "Enchants gear with bonus stats and hosts the Enchanting station for targeted stat rerolling.",
+      "description": "Verzaubert Ausrüstung mit Bonuswerten und beherbergt die Verzauberungsstation für gezieltes Stat-Rerolling.",
       "color": "#a78bfa",
       "icon": "/images/icons/prof-verzauberer.png",
       "maxSkill": 300,
@@ -83,7 +83,7 @@
       "masteryBonus": {
         "type": "enchant_power",
         "value": 2,
-        "desc": "+2 bonus to enchantment stat ranges"
+        "desc": "+2 Bonus auf Verzauberungs-Stat-Bereiche"
       }
     },
     {
@@ -92,7 +92,7 @@
       "npcName": "Selina the Weaver",
       "npcPortrait": "/images/npcs/selina-schneider.png",
       "npcGreeting": "Jeder Faden erzählt eine Geschichte. Mal sehen, welche zu dir passt.",
-      "description": "Crafts cloth armor imbued with arcane resonance. Cloth pieces boost XP per slot equipped.",
+      "description": "Fertigt Stoffrüstung durchdrungen von arkaner Resonanz. Stoffteile erhöhen XP pro ausgerüstetem Slot.",
       "color": "#c084fc",
       "icon": "/images/icons/prof-schneider.png",
       "maxSkill": 300,
@@ -108,7 +108,7 @@
       "masteryBonus": {
         "type": "cloth_stat_boost",
         "value": 10,
-        "desc": "+10% cloth armor stat rolls when crafting"
+        "desc": "+10% Stat-Rolls bei gefertigter Stoffrüstung"
       }
     },
     {
@@ -117,7 +117,7 @@
       "npcName": "Bruna the Cook",
       "npcPortrait": "/images/npcs/bruna-koch.png",
       "npcGreeting": "Hungrig? Setz dich! Mein Eintopf heilt Leib und Seele.",
-      "description": "Cooks meals from gathered herbs and materials. Meals grant temporary buffs.",
+      "description": "Kocht Mahlzeiten aus gesammelten Kräutern und Materialien. Mahlzeiten gewähren temporäre Buffs.",
       "color": "#e87b35",
       "icon": "/images/icons/prof-koch.png",
       "maxSkill": 300,
@@ -133,7 +133,7 @@
       "masteryBonus": {
         "type": "meal_duration",
         "value": 2,
-        "desc": "+2 extra quest charges on crafted meals"
+        "desc": "+2 zusätzliche Quest-Ladungen bei zubereiteten Mahlzeiten"
       }
     },
     {
@@ -142,7 +142,7 @@
       "npcName": "Roderic the Tanner",
       "npcPortrait": "/images/npcs/roderic-lederverarbeiter.png",
       "npcGreeting": "Gutes Leder erzählt eine Geschichte, Freund. Zeig mir, was du hast.",
-      "description": "Tans and shapes leather into flexible armor. Specializes in balanced gear with gold-finding properties.",
+      "description": "Gerbt und formt Leder zu flexibler Rüstung. Spezialisiert auf ausgewogene Ausrüstung mit Goldfundbonus.",
       "color": "#b45309",
       "icon": "/images/icons/prof-lederverarbeiter.png",
       "maxSkill": 300,
@@ -158,7 +158,7 @@
       "masteryBonus": {
         "type": "leather_stat_boost",
         "value": 10,
-        "desc": "+10% leather armor stat rolls when equipping items"
+        "desc": "+10% Stat-Rolls bei ausgerüsteter Lederrüstung"
       }
     },
     {
@@ -167,7 +167,7 @@
       "npcName": "Varn the Blademaster",
       "npcPortrait": "/images/npcs/varn-waffenschmied.png",
       "npcGreeting": "Eine Waffe ist eine Verlängerung des Willens. Zeig mir deinen — und ich mach ihn schärfer.",
-      "description": "Forges weapons and shields from ore and dragonscale. The offensive counterpart to the armor professions.",
+      "description": "Schmiedet Waffen und Schilde aus Erz und Drachenschuppen. Das offensive Gegenstück zu den Rüstungsberufen.",
       "color": "#dc2626",
       "icon": "/images/icons/prof-waffenschmied.png",
       "maxSkill": 300,
@@ -183,7 +183,7 @@
       "masteryBonus": {
         "type": "weapon_stat_boost",
         "value": 10,
-        "desc": "+10% weapon/shield stat rolls when crafting"
+        "desc": "+10% Stat-Rolls bei gefertigten Waffen/Schilden"
       }
     },
     {
@@ -192,7 +192,7 @@
       "npcName": "Selindra the Gem Sage",
       "npcPortrait": "/images/npcs/mirael-juwelier.png",
       "npcGreeting": "Jeder Edelstein birgt ein Geheimnis. Lass mich dir zeigen, wie man zuhört.",
-      "description": "Crafts rings, amulets, and cut gems. The only profession that works with the Gem socket system.",
+      "description": "Fertigt Ringe, Amulette und geschliffene Edelsteine. Der einzige Beruf, der mit dem Sockelsystem arbeitet.",
       "color": "#ec4899",
       "icon": "/images/icons/prof-juwelier.png",
       "maxSkill": 300,
@@ -208,7 +208,7 @@
       "masteryBonus": {
         "type": "gem_quality_boost",
         "value": 1,
-        "desc": "+1 gem tier chance when cutting gems"
+        "desc": "+1 Edelstein-Stufe beim Schleifen"
       }
     }
   ],
@@ -216,11 +216,11 @@
     "baseBonusChance": 0.05,
     "perLevelBonus": 0.03,
     "maxBonusChance": 0.35,
-    "description": "Active professions passively gather their affinity materials on quest completion. Chance scales with profession level."
+    "description": "Aktive Berufe sammeln passiv ihre Affinitätsmaterialien bei Questabschluss. Chance skaliert mit Berufslevel."
   },
   "masteryConfig": {
     "unlockSkill": 225,
-    "description": "At profession skill 225+, a passive mastery bonus activates for that profession."
+    "description": "Ab Berufsskill 225+ aktiviert sich ein passiver Meisterschaftsbonus für diesen Beruf."
   },
   "materials": [
     {
