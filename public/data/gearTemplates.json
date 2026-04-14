@@ -25781,7 +25781,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Das Beil ist gerade. Varns Blick beim Prüfen war gerader. Beide bestanden.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -26237,7 +26237,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Ein Stab der nichts vortäuscht. Varn schätzt Ehrlichkeit. Auch bei Holz.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -27605,7 +27605,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Für Rituale gemacht. Varn versteht Rituale nicht. Aber er versteht Klingen.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "shopHidden": true,
       "affixes": {
@@ -28517,7 +28517,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Ein Fokus aus Drachenschuppen. Kanalisiert Energie wie Varns Schweigen Respekt kanalisiert.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -28973,7 +28973,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Drachenschuppen an einem Stab. Varn hat ihn widerwillig gebaut. Stäbe sind keine Waffen, sagt er.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "shopHidden": true,
       "affixes": {
@@ -30436,7 +30436,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Der Aetherkern vibriert. Varn sagt, das sei normal. Sein Gesicht sagt etwas anderes.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -30932,7 +30932,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Schneide summt leise. Oder das ist nur Einbildung.",
+      "desc": "Die Axt bricht mehr als Rüstungen. Varn hat sie einem Freund versprochen. Der Freund ist nie aufgetaucht.",
       "icon": "/images/icons/gacha-weapon-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -35287,7 +35287,7 @@
       "reqLevel": 10,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Stein ist aus dem Fundament des Turms. Selindra sagt, er erinnert sich an alles.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "shopHidden": true,
       "affixes": {
@@ -35344,7 +35344,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Eine Kette so fein dass man sie kaum sieht. Selindra sagt, das sei der Punkt.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -35401,7 +35401,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Kristall statt Stein. Der Ring ist durchsichtig. Selindra sagt, Transparenz sei eine Tugend.",
       "icon": "/images/icons/gacha-ring-copper-band.png",
       "shopHidden": true,
       "affixes": {
@@ -35743,7 +35743,7 @@
       "reqLevel": 17,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Der Mondstein wechselt die Farbe mit dem Mond. Selindra hat den Mond nie gefragt ob das OK ist.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35800,7 +35800,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Der Ring schärft den Blick. Selindra hat ihn an sich selbst getestet. Dann hat sie fünf Fehler in ihrer Werkstatt gefunden.",
       "icon": "/images/icons/gacha-ring-flame-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -35857,7 +35857,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Stahl am Gelehrtenfinger. Der Kontrast ist Absicht. Selindra mag Kontraste.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "shopHidden": true,
       "affixes": {
@@ -36199,7 +36199,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Stahl in einer Kette. Selindra fand das unter ihrer Würde. Dann hat sie es poliert. Und ihre Meinung geändert.",
       "icon": "/images/icons/gacha-amulet-rune-stone.png",
       "shopHidden": true,
       "affixes": {
@@ -36256,7 +36256,7 @@
       "reqLevel": 24,
       "rarity": "rare",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Kristall, geschliffen bis er singt. Selindra hat das Singen als Qualitätskontrolle eingeführt.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "shopHidden": true,
       "affixes": {
@@ -36313,7 +36313,7 @@
       "reqLevel": 25,
       "rarity": "epic",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Ein Saphir so blau wie Mitternacht. Selindra hat drei Nächte am Schliff gearbeitet. Passend.",
       "icon": "/images/icons/gacha-ring-divine-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -36655,7 +36655,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Drachenschuppen als Reif. Das Material ist wärmer als erwartet. Und eigensinniger.",
       "icon": "/images/icons/gacha-amulet-iron-medallion.png",
       "shopHidden": true,
       "affixes": {
@@ -36712,7 +36712,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Saphirblau wie tiefes Wasser. Selindra sagt, der Stein denkt. Sie auch. Beide gleichzeitig.",
       "icon": "/images/icons/gacha-amulet-jade-pendant.png",
       "shopHidden": true,
       "affixes": {
@@ -36769,7 +36769,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Für Weise die wissen dass Weisheit nicht vom Ring kommt. Aber er schadet nicht.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "shopHidden": true,
       "affixes": {
@@ -37111,7 +37111,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Eine Kette aus Drachenschuppen die im Feuer geschmiedet wurde. Die Ironie ist Selindra bewusst.",
       "icon": "/images/icons/gacha-amulet-sapphire-amulet.png",
       "shopHidden": true,
       "affixes": {
@@ -37168,7 +37168,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Ein Saphir der das Licht bricht und in seine Bestandteile zerlegt. Wie Selindras Kritik.",
       "icon": "/images/icons/gacha-amulet-silver-locket.png",
       "shopHidden": true,
       "affixes": {
@@ -37225,7 +37225,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Smaragd in Gold. Selindra sagt, die Kombination sei klassisch. Sie sagt nie konservativ.",
       "icon": "/images/icons/gacha-amulet-soul-gem.png",
       "shopHidden": true,
       "affixes": {
@@ -37592,7 +37592,7 @@
       "reqLevel": 40,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Aetherkern eingelassen in ein Band. Die Energie pulsiert. Selindra nennt es den Herzschlag des Turms.",
       "icon": "/images/icons/gacha-amulet-bone-charm.png",
       "shopHidden": true,
       "affixes": {
@@ -37654,7 +37654,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Der Reif passt sich dem Träger an. Nicht dem Finger — der Person. Selindra versteht nicht wie.",
       "icon": "/images/icons/gacha-amulet-celestial-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -37716,7 +37716,7 @@
       "reqLevel": 41,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Das Schicksal hat viele Formen. Diese hier ist rund. Und teuer.",
       "icon": "/images/icons/gacha-ring-eternity-ring.png",
       "shopHidden": true,
       "affixes": {
@@ -38088,7 +38088,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Er trinkt seitdem mehr.",
+      "desc": "Das Medaillon fängt Seelen. Winzige. Harmlose. Selindra sagt, es seien Erinnerungen. Das klingt netter.",
       "icon": "/images/icons/gacha-amulet-druid-acorn.png",
       "shopHidden": true,
       "affixes": {
@@ -38150,7 +38150,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Filigrane Arbeit. Mirael hat drei Lupen benutzt.",
+      "desc": "Sternenstaub eingefasst. Der Anhänger leuchtet nachts. Selindra empfiehlt ihn nicht zum Schlafen.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "shopHidden": true,
       "affixes": {
@@ -38212,7 +38212,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Glänzt verdächtig. Aber auf die gute Art.",
+      "desc": "Runen eingeritzt in Edelstein. Selindra hat eine Lupe für die Lupe benutzt.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -53345,7 +53345,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Verschlissen und stolz darauf. Oder gleichgültig. Schwer zu sagen bei einer Jacke.",
       "icon": "/images/icons/gacha-armor-runic-mail.png",
       "affixes": {
         "primary": {
@@ -53584,7 +53584,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Die Motten haben ihren Teil genommen. Der Rest gehört dir. Herzlichen Glückwunsch.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "affixes": {
         "primary": {
@@ -53709,7 +53709,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Das Anlaufen hat mehr Charakter als der Stein. Das sagt einiges über den Stein.",
       "icon": "/images/icons/gacha-amulet-soul-gem.png",
       "affixes": {
         "primary": {
@@ -54016,7 +54016,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Die Kratzer sind tiefer als der Stein breit ist. Physikalisch fragwürdig. Metaphorisch akkurat.",
       "icon": "/images/icons/gacha-amulet-copper-pendant.png",
       "affixes": {
         "primary": {
@@ -54709,7 +54709,7 @@
       "rarity": "uncommon",
       "price": 18,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Der Ring hat seine beste Zeit verpasst. Und die zweitbeste auch.",
       "icon": "/images/icons/gacha-ring-vine-ring.png",
       "affixes": {
         "primary": {
@@ -56643,7 +56643,7 @@
       "rarity": "uncommon",
       "price": 26,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Hängt am Hals wie eine offene Frage. Die Antwort interessiert niemanden.",
       "icon": "/images/icons/gacha-amulet-emerald-talisman.png",
       "affixes": {
         "primary": {
@@ -57553,7 +57553,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "So billig dass der Schmied sich geweigert hat es Schwert zu nennen. Er nannte es Versuch.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "affixes": {
         "primary": {
@@ -57610,7 +57610,7 @@
       "rarity": "uncommon",
       "price": 34,
       "shopHidden": false,
-      "desc": "Es hat Charakter. Leider den falschen.",
+      "desc": "Ein Stock der sich als Waffe verkleidet. Die Verkleidung ist dünn.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "affixes": {
         "primary": {
