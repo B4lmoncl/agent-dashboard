@@ -214,8 +214,49 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
   conditions?: Record<string, boolean>;
 }) {
   const { moment, dismiss } = useTutorialMoment(viewId, playerLevel, conditions);
+  const [reopened, setReopened] = useState(false);
 
-  if (!moment) return null;
+  // If no active moment, show a small "?" to re-open the last tutorial for this view
+  if (!moment) {
+    // Find the most relevant moment for this view that WAS seen
+    const seen = getSeenMoments();
+    const applicable = TUTORIAL_MOMENTS.filter(m => m.view === viewId && seen.has(m.id));
+    if (applicable.length === 0) return null;
+    const lastMoment = applicable[applicable.length - 1];
+
+    if (!reopened) {
+      return (
+        <button
+          onClick={() => setReopened(true)}
+          className="text-xs mb-2 px-2 py-1 rounded-lg flex items-center gap-1.5 transition-opacity hover:opacity-100"
+          style={{ background: "rgba(233,168,76,0.06)", color: "rgba(233,168,76,0.4)", border: "1px solid rgba(233,168,76,0.12)", cursor: "pointer", opacity: 0.5 }}
+          title="Show tutorial hint"
+        >
+          <span style={{ fontSize: 11 }}>?</span>
+          <span>{lastMoment.title}</span>
+        </button>
+      );
+    }
+
+    // Re-opened: show the full banner (non-dismissable via storage — just hide with state)
+    const accent = lastMoment.accent || "#e9a84c";
+    return (
+      <div className="rounded-xl px-4 py-3 mb-3 flex items-start gap-3 tab-content-enter" style={{
+        background: "linear-gradient(135deg, rgba(233,168,76,0.08), rgba(233,168,76,0.03))",
+        border: "1px solid rgba(233,168,76,0.25)",
+        boxShadow: "0 0 24px rgba(233,168,76,0.06), inset 0 1px 0 rgba(233,168,76,0.08)",
+      }}>
+        <img src="/images/npcs/starweaver-final.png" alt="" width={40} height={40} className="rounded-lg flex-shrink-0 mt-0.5" style={{ imageRendering: "auto", border: "1px solid rgba(233,168,76,0.3)" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-bold" style={{ color: accent }}>{lastMoment.title}</p>
+          <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{lastMoment.text}</p>
+        </div>
+        <button onClick={() => setReopened(false)} className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5" style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}>
+          OK
+        </button>
+      </div>
+    );
+  }
 
   const accent = moment.accent || "#e9a84c";
 
