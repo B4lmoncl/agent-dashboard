@@ -134,6 +134,93 @@ UI/UX Improvements, AAA-Feinschliff, Polishing
 
 ---
 
+## Modals, Popups & Feedback-Systeme
+
+### Close-Button Sizing
+49. **[Click Target]** PlayerProfileModal.tsx:152 — Close-Button nur 8x8px, weit unter 32px Minimum
+50. **[Click Target]** QuestDetailModal.tsx:132 — btn-close 18px Font, Hit-Target zu klein
+
+### Z-Index Chaos
+51. **[Z-Index]** DashboardModals.tsx:385,413,449 — Info-Overlays `zIndex: 9999` vs RewardCelebration `z-[200]`. Inkonsistente Strategie.
+52. **[Z-Index]** DashboardModals.tsx:321 — Modifier-Modal-Backdrop `zIndex: 9999` während Parent-Currency-Modal nur `z-[90]`
+53. **[Z-Index]** ToastStack.tsx:330 — ToastStack `z-[150]` liegt UNTER RewardCelebration `z-[200]`. Error-Toasts während Quest-Completion unsichtbar.
+
+### Async/Loading Feedback
+54. **[Loading State]** ItemActionPopup.tsx:46 — Keine Loading-Animation bei Item-Actions, nur Opacity-Change. Auf langsamen Netzen unklar ob Button funktioniert.
+55. **[Loading State]** QuestDetailModal.tsx:247 — "Claiming…" Text aber kein Spinner/Cursor-Feedback. Button sieht bei opacity 0.6 noch klickbar aus.
+
+### Backdrop/Close Verhalten
+56. **[Close Animation]** DashboardModals.tsx:57 — ESC-Taste resettet mehrere States ohne Animation-Delay. Harter Unmount statt Fade-Out.
+57. **[Scroll]** DashboardModals.tsx:156 — Kein `overscrollBehavior: contain` in Modals. Auf Mobile kann Scrollen Pull-to-Refresh triggern.
+58. **[Backdrop]** QuestDetailModal.tsx:79 — Wenn Modal höher als Viewport (80vh), ist scrollender Backdrop-Bereich klickbar und schließt versehentlich.
+
+### Accessibility
+59. **[Focus]** OnboardingWizard.tsx:250 — Kein initialer Focus-Set auf erstes interaktives Element. Keyboard-User haben keinen Focus-Indikator.
+60. **[aria]** PlayerProfileModal.tsx:149 — Fehlt `aria-modal="true"` Attribut
+
+## Animations & Game Feel
+
+### Performance (Layout Thrash)
+61. **[Performance]** TodayDrawer.tsx:914,1037,1081 — Progress-Bars animieren `width` direkt statt `transform: scaleX()`. Erzeugt Reflow jeden Frame. Auf schwachen Geräten Jank.
+62. **[Performance]** WorldBossView.tsx:757 — Damage-Leaderboard-Bar mit `transition: "width 0.3s"`, selbes Layout-Thrash-Problem
+
+### Timing & Feel
+63. **[Timing]** globals.css:636 — `reward-title-glow` Animation 1.5s, zu langsam für Celebration. WoW/Diablo pulsieren bei 1.0-1.2s.
+64. **[Timing]** GachaPull.tsx:287 — Gacha-Reveal-Card 0.5s ease-out nach 5.8s Charge ist zu langsam. Genshin-Impact-Standard: 0.25-0.3s für snappy Payoff.
+65. **[Timing]** globals.css:649 — Reward-Pills cascadieren mit 0.15s Intervals — zu schnell, erzeugt visual noise bei vielen Rewards
+
+### Missing Animations
+66. **[Missing Animation]** RewardCelebration.tsx:542 — "Nehmen"-Button erscheint ohne Animation (hard cut). Sollte 0.4s nach Modal-Entrance fade+scale rein.
+
+### Overuse
+67. **[Overuse]** page.tsx:1242 — Streak-Warning nutzt `animate-pulse` (2s, sanft) — zu sanft für Urgency. Sollte 1.2s mit stärkerem Opacity-Shift sein.
+
+## Responsive & Mobile
+
+*Aktuell nicht relevant — Mobile ist noch nicht supported. Wird übersprungen.*
+
+## Error Handling UX
+
+### Silent Failures (User sieht NICHTS bei Fehler)
+68. **[Silent]** QuestModals.tsx:364 — Co-op Quest Creation Fehler wird nur in Console geloggt, User sieht nichts
+69. **[Silent]** QuestPanels.tsx:543 — Vow-Abandonment: DELETE-Fehler komplett verschluckt mit `catch { /* ignore */ }`
+70. **[Silent]** RitualChamber.tsx:543 — Vow/Habit-Deletion: `catch { /* ignore */ }` — komplett stumm bei Fehler
+71. **[Silent]** CodexView.tsx:69 — Content-Loading-Fehler verschluckt: `.catch(() => {})` — kann endlose Loading-Animation erzeugen
+72. **[Silent]** WorldBossView.tsx:225 — Endpoint-Fehler stumm ignoriert, kein Fallback-UI
+
+### Generische/Zu kurze Error Messages
+73. **[Auto-Dismiss]** SocialView.tsx:1527 — Mail-Deletion Error verschwindet nach 4s, zu kurz zum Lesen
+74. **[Auto-Dismiss]** DailyLoginCalendar.tsx:49 — Claim-Bonus Error nach 3-5s weg, nur "Network error"
+75. **[Generic]** ForgeView.tsx:619 — Dismantle-Fehler zeigt nur "Network error" ohne Kontext was schiefging
+76. **[Generic]** ForgeView.tsx:654 — Dismantle-All: "Something went wrong. Try again" — keinerlei Detail
+
+### Missing Response Validation
+77. **[No .ok Check]** GachaView.tsx:735 — History-Fetch parst JSON ohne `r.ok`-Check. Bei 500er Error crasht JSON-Parse stumm.
+
+### Pattern-Zusammenfassung
+- `catch { /* ignore */ }` kommt **8+ mal** vor
+- `.catch(() => {})` kommt **7 mal** vor
+- Auto-Dismiss Zeiten: 3-6 Sekunden, oft zu kurz für Fehlermeldungen
+
+## Visuelle Konsistenz
+
+### Falsche Farben
+78. **[Farbe]** ChallengesView.tsx:700 — Essenz wird als `#3b82f6` (blau) angezeigt statt `#ef4444` (orange). Falsche Currency-Farbe!
+
+### Inkonsistente Border-Radii
+79. **[Radius]** ChallengesView.tsx:80,816 — Mischt `rounded-md` (6px) mit `rounded-lg` (8px) in derselben View für gleiche Element-Typen
+
+### Inkonsistente Section-Headers
+80. **[Header]** ChallengesView.tsx:431 — Expedition-Header ist `text-lg` mit textShadow, Star-Path-Header nur `text-sm` ohne Shadow. Gleiches semantisches Level, unterschiedliches Gewicht.
+
+### Currency-Display Inkonsistenz
+81. **[Currency]** DungeonView.tsx:753 — Gold/Essenz manchmal mit Icon + Background, manchmal nur als Text. Zwei verschiedene Styles für selbe Daten.
+
+### Button-Padding Inkonsistenz
+82. **[Padding]** QuestCards.tsx:490 — Primary-Action-Buttons `px-3` während andere Views konsistent `px-4` nutzen. Quest-Buttons wirken gequetscht.
+
+---
+
 ## Bereits gefixt (diese Session)
 - Companion Level-Up RewardCelebration
 - Wanderer's Rest Tutorial hinzugefügt
