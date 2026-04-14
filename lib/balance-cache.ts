@@ -62,7 +62,7 @@ const DEFAULTS: BalanceConfig = {
   },
   streak: { bonusPerDay: 0.015, maxBonus: 0.45, maxDays: 30 },
   hoarding: { freeLimit: 20, penaltyPerQuest: 10, softCap: 50, hardCap: 80, hardCapAt: 30 },
-  gacha: { legendaryRate: 0.008, epicRate: 0.03, rareRate: 0.25, uncommonRate: 0.45, softPity: 55, hardPity: 75, softPityIncrease: 0.025, epicPity: 10 },
+  gacha: { legendaryRate: 0.008, epicRate: 0.03, rareRate: 0.25, uncommonRate: 0.45, softPity: 60, hardPity: 75, softPityIncrease: 0.025, epicPity: 10 },
   setBonuses: { partial: 0.05, full: 0.10 },
   starBonus: { twoStar: 0.15, threeStar: 0.33 },
 };

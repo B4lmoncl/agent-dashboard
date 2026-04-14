@@ -77,7 +77,7 @@ function WeeklyResetTimer() {
   }, []);
 
   return (
-    <span className="text-xs px-2 py-1 rounded-md" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)" }}>
+    <span className="text-xs px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)" }}>
       Resets in {timeLeft}
     </span>
   );
@@ -814,7 +814,7 @@ export default function ChallengesView({
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
         <button
           onClick={() => setActiveTab("sternenpfad")}
-          className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all"
+          className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg transition-all"
           style={{
             background: activeTab === "sternenpfad" ? "#252525" : "transparent",
             color: activeTab === "sternenpfad" ? "#fbbf24" : "rgba(255,255,255,0.3)",
@@ -824,7 +824,7 @@ export default function ChallengesView({
         </button>
         <button
           onClick={() => setActiveTab("expedition")}
-          className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all"
+          className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg transition-all"
           style={{
             background: activeTab === "expedition" ? "#252525" : "transparent",
             color: activeTab === "expedition" ? "#4ade80" : "rgba(255,255,255,0.3)",

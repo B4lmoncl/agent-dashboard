@@ -60,7 +60,7 @@ router.get('/api/config', (req, res) => {
         epicRate: 0.03,
         rareRate: 0.25,
         uncommonRate: 0.45,
-        softPity: 55,
+        softPity: 60,
         hardPity: 75,
         softPityIncrease: 0.025,
         epicPity: 10,
@@ -69,7 +69,9 @@ router.get('/api/config', (req, res) => {
       starBonus: { twoStar: 0.15, threeStar: 0.33 },
       dailyDiminishing: { tiers: [
         { maxQuests: 5, multiplier: 1.0, label: "Full rewards" },
+        { maxQuests: 7, multiplier: 0.90, label: "90% rewards" },
         { maxQuests: 10, multiplier: 0.75, label: "75% rewards" },
+        { maxQuests: 15, multiplier: 0.60, label: "60% rewards" },
         { maxQuests: 20, multiplier: 0.50, label: "50% rewards" },
         { maxQuests: Infinity, multiplier: 0.25, label: "25% rewards" },
       ]},

@@ -1186,7 +1186,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               {prof.masteryBonus && (prof.masteryActive ? (
                 <p className="text-xs mt-1" style={{ color: "#facc15" }} title={prof.masteryBonus.desc}>&#9733; Mastery: {prof.masteryBonus.desc}</p>
               ) : prof.unlocked && (prof.skill || prof.playerXp || 0) > 0 ? (
-                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }} title={`Unlocks at Skill 225: ${prof.masteryBonus.desc}`}>&#9734; Mastery (Skill 225): {prof.masteryBonus.desc}</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }} title={`Unlocks at Skill 225: ${prof.masteryBonus.desc}`}>&#9734; Mastery (Skill 225): {prof.masteryBonus.desc}</p>
               ) : null)}
               {isChosen && prof.gatheringAffinity && prof.gatheringAffinity.length > 0 && (
                 <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -1288,9 +1288,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Used in ({usedIn.length})</p>
                   <div className="space-y-0.5 max-h-32 overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
                     {usedIn.slice(0, 10).map(r => (
-                      <p key={r.id} className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>· {r.name} <span style={{ color: "rgba(255,255,255,0.15)" }}>({r.profession})</span></p>
+                      <p key={r.id} className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>· {r.name} <span style={{ color: "rgba(255,255,255,0.25)" }}>({r.profession})</span></p>
                     ))}
-                    {usedIn.length > 10 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>...+{usedIn.length - 10} more</p>}
+                    {usedIn.length > 10 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>...+{usedIn.length - 10} more</p>}
                   </div>
                 </div>
               )}
@@ -1372,7 +1372,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               );
             })()}
             {materialDefs.length === 0 && (
-              <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No materials data loaded.</p>
+              <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.25)" }}>No materials data loaded.</p>
             )}
           </div>
         )}
@@ -1403,7 +1403,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               return (
                 <div key={slot} className="flex-1 rounded-lg px-2 py-1.5 text-center" style={{ background: `${colors[slot]}08`, border: `1px solid ${colors[slot]}20` }}>
                   <p className="text-xs uppercase font-semibold" style={{ color: `${colors[slot]}80` }}>{slot}</p>
-                  <p className="text-xs font-semibold truncate" style={{ color: active ? colors[slot] : "rgba(255,255,255,0.15)" }}>
+                  <p className="text-xs font-semibold truncate" style={{ color: active ? colors[slot] : "rgba(255,255,255,0.25)" }}>
                     {active ? active.label : "Empty"}
                   </p>
                 </div>
@@ -1831,14 +1831,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               style={{
                                 background: isSelected ? `${selectedNpc.color}15` : "transparent",
                                 borderLeft: isSelected ? `2px solid ${selectedNpc.color}` : "2px solid transparent",
-                                color: isHidden ? "rgba(255,255,255,0.15)" : notLearned ? "rgba(255,255,255,0.3)" : color,
+                                color: isHidden ? "rgba(255,255,255,0.25)" : notLearned ? "rgba(255,255,255,0.3)" : color,
                                 opacity: cantCraft ? 0.45 : 1,
                                 cursor: "pointer",
                                 fontWeight: isSelected ? 600 : 400,
                               }}
                             >
                               {isHidden ? "???" : recipe.name}
-                              {notLearned && !isHidden && <span style={{ color: "rgba(255,255,255,0.15)", marginLeft: 4, fontSize: 12 }}>◇</span>}
+                              {notLearned && !isHidden && <span style={{ color: "rgba(255,255,255,0.25)", marginLeft: 4, fontSize: 12 }}>◇</span>}
                             </button>
                           );
                         })}
@@ -1848,7 +1848,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <div className="flex-1 overflow-y-auto p-4" style={{ maxHeight: 500, scrollbarWidth: "thin" }}>
                         {!selectedRecipe ? (
                           <div className="flex items-center justify-center h-full">
-                            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.15)" }}>Wähl ein Rezept aus der Liste. Die Werkbank wartet.</p>
+                            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)" }}>Wähl ein Rezept aus der Liste. Die Werkbank wartet.</p>
                           </div>
                         ) : (() => {
                           const isHidden = (selectedRecipe as unknown as Record<string, unknown>).hidden;
@@ -1946,7 +1946,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       ))}
                                     </div>
                                   ) : (
-                                    <span className="text-xs px-2 py-1" style={{ color: "rgba(255,255,255,0.15)" }} title="Gray recipes can only be crafted x1 (no skill-up)">x1</span>
+                                    <span className="text-xs px-2 py-1" style={{ color: "rgba(255,255,255,0.25)" }} title="Gray recipes can only be crafted x1 (no skill-up)">x1</span>
                                   )}
                                   <button
                                     onClick={() => startCraftCast(selectedRecipe.id, craftCount)}
@@ -2219,7 +2219,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 const isPrimary = ["kraft", "ausdauer", "weisheit", "glueck"].includes(r.stat);
                                 return (
                                   <span key={r.stat} className="text-xs" style={{ color: currentVal != null ? (isPrimary ? "#60a5fa" : "#34d399") : "rgba(255,255,255,0.2)" }}>
-                                    {r.stat} {r.min}–{r.max}{currentVal != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {currentVal})</span>}
+                                    {r.stat} {r.min}–{r.max}{currentVal != null && <span style={{ color: "rgba(255,255,255,0.25)" }}> (now {currentVal})</span>}
                                   </span>
                                 );
                               })}
@@ -2298,7 +2298,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>=</span>
                                 )}
                                 {isOriginal && (
-                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>no change</span>
+                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>no change</span>
                                 )}
                                 {/* Choose button */}
                                 <span className="mt-1 text-xs font-semibold px-4 py-1.5 rounded-lg" style={{
@@ -2547,7 +2547,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           const canCraftSkill = playerSkill >= recipeSkill;
                           return (
                             <div key={r.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: learned ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${learned ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.05)"}`, opacity: aboveCap ? 0.35 : 1 }}>
-                              <span style={{ color: learned ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{learned ? "✓" : "○"}</span>
+                              <span style={{ color: learned ? "#22c55e" : "rgba(255,255,255,0.25)", fontSize: 12 }}>{learned ? "✓" : "○"}</span>
                               {r.icon && <img src={r.icon.startsWith("/") ? r.icon : `/images/icons/${r.icon}`} alt="" width={24} height={24} className="img-render-auto flex-shrink-0 rounded" style={{ opacity: learned ? 0.4 : 0.85 }} onError={hideOnError} />}
                               <div className="flex-1 min-w-0">
                                 <p className="text-xs font-semibold truncate" style={{ color: learned ? "rgba(255,255,255,0.4)" : "#e8e8e8" }}>{r.name}</p>
@@ -2594,7 +2594,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     </div>
                   ))}
                   {trainerRecipes.length === 0 && (
-                    <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No trainer recipes for this profession.</p>
+                    <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.25)" }}>No trainer recipes for this profession.</p>
                   )}
                   </div>
                 </div>
@@ -3287,7 +3287,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
                         </>
                       ) : (
-                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Empty</p>
+                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Empty</p>
                       )}
                       {/* Dropdown to equip from library */}
                       {slotEffects.length > 0 && (
@@ -3324,7 +3324,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     (i: InventoryItem) => i.legendaryEffect && i.legendaryEffect.type && i.rarity === "legendary"
                   );
                   const alreadyExtracted = new Set((cubeData?.library || []).map(e => e.type));
-                  if (legendaryInv.length === 0) return <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>No legendary items with effects in inventory.</p>;
+                  if (legendaryInv.length === 0) return <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No legendary items with effects in inventory.</p>;
                   return (
                     <div className="grid gap-1.5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(52px, 1fr))" }}>
                       {legendaryInv.map(item => {

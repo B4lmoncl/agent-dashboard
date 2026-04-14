@@ -45,7 +45,7 @@ function getBannerPity(gs, bannerId) {
 
 function getEffectiveLegendaryRate(pityCounter) {
   const BASE_RATE = 0.008;      // 0.8% (nerfed from 1.6%)
-  const SOFT_PITY_START = 55;   // was 35
+  const SOFT_PITY_START = 60;   // was 55
   const HARD_PITY = 75;         // was 50
   const SOFT_PITY_INCREASE = 0.025; // was 0.03
 
@@ -284,7 +284,7 @@ router.get('/api/gacha/pity/:playerId', (req, res) => {
     epicPityCounter: maxEpicPity,
     guaranteed5050: gs.guaranteed5050,
     hardPity: 75,
-    softPityStart: 55,
+    softPityStart: 60,
     epicPity: 10,
     perBanner: bannerPity,
   });
