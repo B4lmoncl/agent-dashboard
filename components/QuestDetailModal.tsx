@@ -181,8 +181,8 @@ export default function QuestDetailModal({
           {/* Faction rep indicator */}
           {q.type && ["fitness", "learning", "development", "personal", "social"].includes(q.type) && (() => {
             const FACTION_BY_TYPE: Record<string, { name: string; symbol: string; color: string }> = {
-              fitness: { name: "Orden der Klinge", symbol: "🜂", color: "#ef4444" },
-              learning: { name: "Zirkel der Sterne", symbol: "🜄", color: "#3b82f6" },
+              fitness: { name: "Zirkel der Glut", symbol: "🜂", color: "#ef4444" },
+              learning: { name: "Zirkel der Tinte", symbol: "🜄", color: "#3b82f6" },
               development: { name: "Zirkel des Amboss", symbol: "🜁", color: "#f59e0b" },
               personal: { name: "Zirkel des Amboss", symbol: "🜁", color: "#f59e0b" },
               social: { name: "Zirkel des Echos", symbol: "🜃", color: "#ec4899" },

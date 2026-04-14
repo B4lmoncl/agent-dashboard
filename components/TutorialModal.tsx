@@ -756,10 +756,10 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Die Vier Zirkel (Factions)" icon="◆" accent="rgba(129,140,248,0.3)">
                 4 Fraktionen mit Reputations-System. Auto-Rep durch Quest-Completion basierend auf Quest-Typ.
                 <ul className="space-y-1 mt-2">
-                  <li>• <Stat color="#ef4444">Orden der Klinge</Stat> — Fitness</li>
-                  <li>• <Stat color="#3b82f6">Zirkel der Sterne</Stat> — Learning</li>
-                  <li>• <Stat color="#22c55e">Pakt der Wildnis</Stat> — Personal/Creative</li>
-                  <li>• <Stat color="#a855f7">Bund der Schatten</Stat> — Social/Development</li>
+                  <li>• <Stat color="#ef4444">Zirkel der Glut</Stat> — Fitness</li>
+                  <li>• <Stat color="#3b82f6">Zirkel der Tinte</Stat> — Learning</li>
+                  <li>• <Stat color="#22c55e">Zirkel des Amboss</Stat> — Crafting/Personal</li>
+                  <li>• <Stat color="#a855f7">Zirkel des Echos</Stat> — Social/Development</li>
                   <li>• 6 Rep-Stufen: Neutral → Friendly → Honored → Revered → Exalted → Paragon</li>
                   <li>• Belohnungen pro Stufe: Titel, Rezepte, Frames, Shop-Rabatte, Legendary-Effekte</li>
                   <li>• Ab <Stat color="#22c55e">Level 10</Stat> verfügbar</li>
@@ -887,16 +887,16 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Vier Fraktionen mit eigenen Reputationsstufen. Rep wird automatisch durch Quest-Abschlüsse vergeben:
                 <div className="grid gap-1.5 mt-2">
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(239,68,68,0.06)" }}>
-                    <Stat color="#ef4444">Orden der Klinge</Stat> — Kampf &amp; Fitness-Quests → +30 Rep
+                    <Stat color="#ef4444">Zirkel der Glut</Stat> — Kampf &amp; Fitness-Quests → +30 Rep
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(59,130,246,0.06)" }}>
-                    <Stat color="#3b82f6">Zirkel der Sterne</Stat> — Wissen &amp; Lern-Quests → +20 Rep
+                    <Stat color="#3b82f6">Zirkel der Tinte</Stat> — Wissen &amp; Lern-Quests → +20 Rep
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(34,197,94,0.06)" }}>
-                    <Stat color="#22c55e">Pakt der Wildnis</Stat> — Natur &amp; Pflege-Quests → +20 Rep
+                    <Stat color="#22c55e">Zirkel des Amboss</Stat> — Handwerk &amp; Crafting-Quests → +20 Rep
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5" style={{ background: "rgba(168,85,247,0.06)" }}>
-                    <Stat color="#a855f7">Bund der Schatten</Stat> — Stealth &amp; Sozial-Quests → +10 Rep
+                    <Stat color="#a855f7">Zirkel des Echos</Stat> — Social &amp; Verbindungs-Quests → +10 Rep
                   </div>
                 </div>
               </GuideSection>
