@@ -173,7 +173,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Gear bonus</span><span>Varies by equipment</span></div>
         <div className="gt-stat-row"><span>Companion Bond</span><span>+1% per bond level</span></div>
         <div className="gt-stat-row"><span>Hoarding malus</span><span>-10%/quest over 20 active</span></div>
-        <p className="gt-source">Max level: 30. Level-up grants 5 + level <GTRef k="stardust">Stardust</GTRef>.</p>
+        <p className="gt-source">Max level: 50. Level-up grants 5 + level <GTRef k="stardust">Stardust</GTRef>.</p>
       </>
     ),
   },
@@ -235,11 +235,11 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     body: (
       <>
         <p>Items and quests have 5 rarity tiers. Higher rarity = better stats and rewards.</p>
-        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>Base values</span></div>
-        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>1-2 affixes</span></div>
-        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>2-3 primary + 1 minor</span></div>
-        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>2-3 primary + 1-2 minor</span></div>
-        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>Legendary</span><span>3-4 primary + 1-2 minor + effect</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>1 primary, 0 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>1-2 primary, 0-1 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>2 primary, 1 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>2-3 primary, 1-2 minor</span></div>
+        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>Legendary</span><span>3 primary, 2 minor + effect</span></div>
       </>
     ),
   },
@@ -1190,8 +1190,8 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>📚 Learning</span><span>Study, skills, reading</span></div>
         <div className="gt-stat-row"><span>💪 Fitness</span><span>Exercise, health</span></div>
         <div className="gt-stat-row"><span>👥 Social</span><span>Friends, community</span></div>
-        <div className="gt-stat-row"><span>🎨 Creative</span><span>Art, music, writing</span></div>
-        <div className="gt-stat-row"><span>💼 Work</span><span>Career, productivity</span></div>
+        <div className="gt-stat-row"><span>💻 Development</span><span>Coding, career, projects</span></div>
+        <div className="gt-stat-row"><span>⚔️ Boss</span><span>Multi-hour challenges</span></div>
       </>
     ),
   },
