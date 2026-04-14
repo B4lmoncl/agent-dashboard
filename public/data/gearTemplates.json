@@ -17120,7 +17120,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Frisch aus der Deepforge. Noch warm. Wortwörtlich.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -17177,7 +17177,7 @@
       "reqLevel": 12,
       "rarity": "rare",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Kein Meisterwerk. Aber verdammt nah dran.",
       "icon": "/images/icons/gacha-helm-elven-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -17576,7 +17576,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Esse hat ihre Spuren hinterlassen. Absichtlich.",
       "icon": "/images/icons/gacha-helm-frost-tiara.png",
       "shopHidden": true,
       "affixes": {
@@ -17633,7 +17633,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Zweckmäßig. Ohne Schnörkel. Ohne Entschuldigung.",
       "icon": "/images/icons/gacha-armor-leather-vest.png",
       "shopHidden": true,
       "affixes": {
@@ -18032,7 +18032,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Deepforge-Qualität. Das Metall erinnert sich an jede Flamme.",
       "icon": "/images/icons/gacha-boots-iron-greaves.png",
       "shopHidden": true,
       "affixes": {
@@ -18089,7 +18089,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Ehrliche Arbeit in ehrlichem Metall.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -18488,7 +18488,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Geschmiedet bei Temperaturen die der Amboss nicht vergisst.",
       "icon": "/images/icons/gacha-helm-paladin-crown.png",
       "shopHidden": true,
       "affixes": {
@@ -18545,7 +18545,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Der Schmied hat sein Bestes gegeben. Sein Bestes ist beachtlich.",
       "icon": "/images/icons/gacha-helm-plate-visor.png",
       "shopHidden": true,
       "affixes": {
@@ -19460,7 +19460,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Frisch aus der Deepforge. Noch warm. Wortwörtlich.",
       "icon": "/images/icons/gacha-armor-templar-plate.png",
       "shopHidden": true,
       "affixes": {
@@ -19522,7 +19522,7 @@
       "reqLevel": 47,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Kein Meisterwerk. Aber verdammt nah dran.",
       "icon": "/images/icons/gacha-boots-thief-creepers.png",
       "shopHidden": true,
       "affixes": {
@@ -25724,7 +25724,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Das Gewicht sitzt perfekt. Wie eine gut getimte Pointe.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -25838,7 +25838,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Nicht für Anfänger. Nicht für Angeber. Für Könner.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -25895,7 +25895,7 @@
       "reqLevel": 6,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn nennt es seine beste Arbeit. Diesen Monat. Er sagt das jeden Monat.",
       "icon": "/images/icons/gacha-shield-dragon-scale.png",
       "shopHidden": true,
       "affixes": {
@@ -26180,7 +26180,7 @@
       "reqLevel": 9,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Ausgewogen in jeder Hinsicht. Außer im Preis.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -26294,7 +26294,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Wer das hier benutzt, braucht keine Anleitung.",
       "icon": "/images/icons/gacha-shield-frost-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -26351,7 +26351,7 @@
       "reqLevel": 11,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Aus Varns Werkstatt. Er hat sie persönlich geprüft. Gründlich.",
       "icon": "/images/icons/gacha-armor-ringmail.png",
       "shopHidden": true,
       "affixes": {
@@ -26636,7 +26636,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Die Balance stimmt. Die Frage ist nur: für wen.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -26750,7 +26750,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Für erfahrene Hände. Unerfahrene merken den Unterschied.",
       "icon": "/images/icons/gacha-weapon-obsidian-dagger.png",
       "shopHidden": true,
       "affixes": {
@@ -26807,7 +26807,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat drei Tage daran gearbeitet. Zwei davon hat er nicht geschlafen.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -27092,7 +27092,7 @@
       "reqLevel": 18,
       "rarity": "rare",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Handwerklich makellos. Und es weiß das.",
       "icon": "/images/icons/gacha-weapon-shortbow.png",
       "shopHidden": true,
       "affixes": {
@@ -27206,7 +27206,7 @@
       "reqLevel": 19,
       "rarity": "rare",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Gemacht für Leute die aufgehört haben zu fragen warum.",
       "icon": "/images/icons/gacha-weapon-steel-longsword.png",
       "shopHidden": true,
       "affixes": {
@@ -27263,7 +27263,7 @@
       "reqLevel": 20,
       "rarity": "rare",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat einen neuen Hammer benutzt. Der alte hat die Arbeit nicht verdient.",
       "icon": "/images/icons/gacha-weapon-throwing-knives.png",
       "shopHidden": true,
       "affixes": {
@@ -28004,7 +28004,7 @@
       "reqLevel": 26,
       "rarity": "epic",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Das Gewicht sitzt perfekt. Wie eine gut getimte Pointe.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -28118,7 +28118,7 @@
       "reqLevel": 27,
       "rarity": "epic",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Nicht für Anfänger. Nicht für Angeber. Für Könner.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -28175,7 +28175,7 @@
       "reqLevel": 28,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn nennt es seine beste Arbeit. Diesen Monat. Er sagt das jeden Monat.",
       "icon": "/images/icons/gacha-weapon-shadow-scythe.png",
       "shopHidden": true,
       "affixes": {
@@ -28460,7 +28460,7 @@
       "reqLevel": 30,
       "rarity": "epic",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Ausgewogen in jeder Hinsicht. Außer im Preis.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -28574,7 +28574,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Wer das hier benutzt, braucht keine Anleitung.",
       "icon": "/images/icons/gacha-weapon-wizard-staff.png",
       "shopHidden": true,
       "affixes": {
@@ -28631,7 +28631,7 @@
       "reqLevel": 32,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Aus Varns Werkstatt. Er hat sie persönlich geprüft. Gründlich.",
       "icon": "/images/icons/gacha-weapon-arcane-orb.png",
       "shopHidden": true,
       "affixes": {
@@ -28916,7 +28916,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Die Balance stimmt. Die Frage ist nur: für wen.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29030,7 +29030,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Für erfahrene Hände. Unerfahrene merken den Unterschied.",
       "icon": "/images/icons/gacha-shield-knight-emblem.png",
       "shopHidden": true,
       "affixes": {
@@ -29087,7 +29087,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat drei Tage daran gearbeitet. Zwei davon hat er nicht geschlafen.",
       "icon": "/images/icons/gacha-weapon-crystal-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29382,7 +29382,7 @@
       "reqLevel": 38,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Handwerklich makellos. Und es weiß das.",
       "icon": "/images/icons/gacha-weapon-bone-club.png",
       "shopHidden": true,
       "affixes": {
@@ -29506,7 +29506,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Gemacht für Leute die aufgehört haben zu fragen warum.",
       "icon": "/images/icons/gacha-weapon-celestial-spear.png",
       "shopHidden": true,
       "affixes": {
@@ -29568,7 +29568,7 @@
       "reqLevel": 39,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn hat einen neuen Hammer benutzt. Der alte hat die Arbeit nicht verdient.",
       "icon": "/images/icons/gacha-weapon-crossbow.png",
       "shopHidden": true,
       "affixes": {
@@ -30374,7 +30374,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Das Gewicht sitzt perfekt. Wie eine gut getimte Pointe.",
       "icon": "/images/icons/gacha-weapon-monk-fists.png",
       "shopHidden": true,
       "affixes": {
@@ -30498,7 +30498,7 @@
       "reqLevel": 45,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Nicht für Anfänger. Nicht für Angeber. Für Könner.",
       "icon": "/images/icons/gacha-weapon-runic-warhammer.png",
       "shopHidden": true,
       "affixes": {
@@ -30560,7 +30560,7 @@
       "reqLevel": 46,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Varn nennt es seine beste Arbeit. Diesen Monat. Er sagt das jeden Monat.",
       "icon": "/images/icons/gacha-weapon-rusty-sword.png",
       "shopHidden": true,
       "affixes": {
@@ -30870,7 +30870,7 @@
       "reqLevel": 48,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Balanciert wie ein gut formuliertes Argument.",
+      "desc": "Ausgewogen in jeder Hinsicht. Außer im Preis.",
       "icon": "/images/icons/gacha-weapon-twin-daggers.png",
       "shopHidden": true,
       "affixes": {
@@ -30994,7 +30994,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Geschmiedet für jemanden der weiß was er tut.",
+      "desc": "Wer das hier benutzt, braucht keine Anleitung.",
       "icon": "/images/icons/gacha-shield-mirror-shield.png",
       "shopHidden": true,
       "affixes": {
@@ -31056,7 +31056,7 @@
       "reqLevel": 49,
       "rarity": "legendary",
       "price": 0,
-      "desc": "Varn hat beim Schmieden gelächelt. Alle im Raum waren beunruhigt.",
+      "desc": "Aus Varns Werkstatt. Er hat sie persönlich geprüft. Gründlich.",
       "icon": "/images/icons/gacha-shield-obsidian-bulwark.png",
       "shopHidden": true,
       "affixes": {
@@ -31175,7 +31175,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Esse hat ihre Spuren hinterlassen. Absichtlich.",
       "icon": "/images/icons/gacha-helm-leather-cap.png",
       "shopHidden": true,
       "affixes": {
@@ -31232,7 +31232,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Zweckmäßig. Ohne Schnörkel. Ohne Entschuldigung.",
       "icon": "/images/icons/gacha-helm-winged.png",
       "shopHidden": true,
       "affixes": {
@@ -31641,7 +31641,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Deepforge-Qualität. Das Metall erinnert sich an jede Flamme.",
       "icon": "/images/icons/gacha-amulet-holy-symbol.png",
       "shopHidden": true,
       "affixes": {
@@ -31698,7 +31698,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Ehrliche Arbeit in ehrlichem Metall.",
       "icon": "/images/icons/gacha-amulet-eye-of-fate.png",
       "shopHidden": true,
       "affixes": {
@@ -32107,7 +32107,7 @@
       "reqLevel": 14,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Geschmiedet bei Temperaturen die der Amboss nicht vergisst.",
       "icon": "/images/icons/gacha-boots-sandals.png",
       "shopHidden": true,
       "affixes": {
@@ -32164,7 +32164,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Der Schmied hat sein Bestes gegeben. Sein Bestes ist beachtlich.",
       "icon": "/images/icons/gacha-boots-rangers-boots.png",
       "shopHidden": true,
       "affixes": {
@@ -39107,7 +39107,7 @@
       "reqLevel": 21,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Frisch aus der Deepforge. Noch warm. Wortwörtlich.",
       "icon": "/images/icons/gacha-helm-rogue-mask.png",
       "shopHidden": true,
       "affixes": {
@@ -39164,7 +39164,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Kein Meisterwerk. Aber verdammt nah dran.",
       "icon": "/images/icons/gacha-armor-plate-cuirass.png",
       "shopHidden": true,
       "affixes": {
@@ -39573,7 +39573,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Hitze der Deepforge steckt noch drin. Anfassen auf eigene Gefahr.",
+      "desc": "Die Esse hat ihre Spuren hinterlassen. Absichtlich.",
       "icon": "/images/icons/gacha-boots-tribal-fur.png",
       "shopHidden": true,
       "affixes": {
@@ -39630,7 +39630,7 @@
       "reqLevel": 29,
       "rarity": "epic",
       "price": 0,
-      "desc": "Solide Arbeit. Nicht elegant — solide. Manchmal reicht das.",
+      "desc": "Zweckmäßig. Ohne Schnörkel. Ohne Entschuldigung.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "shopHidden": true,
       "affixes": {
