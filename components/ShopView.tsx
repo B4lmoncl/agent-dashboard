@@ -152,7 +152,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   }
 
   return (
-    <div className="space-y-4 tab-content-enter">
+    <div data-feedback-id="shop-view" className="space-y-4 tab-content-enter">
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <div>

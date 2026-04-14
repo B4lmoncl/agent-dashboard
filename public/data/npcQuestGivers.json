@@ -2635,7 +2635,7 @@
       "name": "Alte Martha",
       "emoji": null,
       "title": "Die Kräutersammlerin",
-      "description": "Kennt jede Pflanze im Umkreis von drei Tagesreisen. Vertraut keiner davon. Die Pflanzen vertrauen ihr auch nicht. Es ist ein Gleichgewicht des Misstrauens.",
+      "description": "Kennt jede Pflanze im Umkreis von drei Tagesreisen. Vertraut keiner davon. Die Pflanzen vertrauen ihr auch nicht. Es ist ein Gleichgewicht des Misstrauens. Ehemalige Lehrmeisterin von Oma Ilse — die Ähnlichkeit in Erscheinung und Sturheit ist kein Zufall.",
       "stayDays": 3,
       "cooldownDays": 10,
       "questChains": [
@@ -3017,11 +3017,11 @@
       "cooldownHours": 48,
       "departureDurationHours": 72,
       "maxChainsPerVisit": 1,
-      "greeting": "Ich habe den Staub gezählt. Er gewinnt 347 zu null. Das ändert sich heute oder ich brenne den Turm nieder und fang sauber an.",
+      "greeting": "347 Staubkörner auf dem Treppengeländer. Gestern waren es 312. Der Turm testet mich. Der Turm wird verlieren.",
       "name": "Helga Saubermann",
       "emoji": null,
       "title": "Die Reinigungsmeisterin",
-      "description": "Sauberkeit ist für Helga keine Tugend, sondern eine Religion. Staubkörner sind Ketzer. Schmutzflecken sind Hochverrat. Der Putzplan ist die Heilige Schrift.",
+      "description": "Sauberkeit ist für Helga keine Tugend, sondern eine Religion. Staubkörner sind Ketzer. Schmutzflecken sind Hochverrat. Der Putzplan ist die Heilige Schrift. Eine Cousine der berüchtigten Zwillinge Ilse und Lin — die Familienähnlichkeit ist unverkennbar, die Meinungsverschiedenheit über den richtigen Beruf auch.",
       "stayDays": 2,
       "cooldownDays": 8,
       "questChains": [
@@ -3441,7 +3441,7 @@
       "name": "Apothekerin Yara",
       "emoji": null,
       "title": "Die Kräutermischerin",
-      "description": "Ihre Tränke wirken immer. Die Nebenwirkungen stehen auf einem Beipackzettel der 47 Seiten lang ist und mit 'Im Falle eines plötzlichen Leuchtens...' beginnt.",
+      "description": "Ihre Tränke wirken immer. Die Nebenwirkungen stehen auf einem Beipackzettel der 47 Seiten lang ist und mit 'Im Falle eines plötzlichen Leuchtens...' beginnt. Studierte unter Alter Martha, deren misstrauischen Blick sie perfekt übernommen hat — zusammen mit der Frisur.",
       "stayDays": 3,
       "cooldownDays": 14,
       "questChains": [
@@ -6034,7 +6034,7 @@
       "name": "Postmeisterin Clara",
       "emoji": null,
       "title": "Die Nachrichtenwächterin",
-      "description": "Sortiert Post seit 40 Jahren. Hat noch nie einen Brief geöffnet, was angesichts der Briefbombenstatistik des Turms auch als Überlebensstrategie zählt.",
+      "description": "Sortiert Post seit 40 Jahren. Hat noch nie einen Brief geöffnet, was angesichts der Briefbombenstatistik des Turms auch als Überlebensstrategie zählt. Tante mütterlicherseits der Zwillinge Ilse und Lin — dieselben Wangenknochen, derselbe Blick, ein völlig anderer Beruf.",
       "stayDays": 2,
       "cooldownDays": 8,
       "questChains": [
@@ -6193,7 +6193,7 @@
       "name": "Wäscherin Agnes",
       "emoji": null,
       "title": "Die Reinliche",
-      "description": "Wäscht Wäsche und Reputationen. Beides braucht heißes Wasser, und bei beidem kommen manchmal Dinge zum Vorschein, die besser versteckt geblieben wären.",
+      "description": "Wäscht Wäsche und Reputationen. Beides braucht heißes Wasser, und bei beidem kommen manchmal Dinge zum Vorschein, die besser versteckt geblieben wären. Schwester von Helga Saubermann — die eine reinigt Kleidung, die andere reinigt alles andere. Die Familienähnlichkeit ist Pflicht.",
       "stayDays": 2,
       "cooldownDays": 9,
       "questChains": [
@@ -6929,7 +6929,7 @@
       "name": "Haushälterin Magda",
       "emoji": null,
       "title": "Die Ordnungsgeberin",
-      "description": "Ihr Haus ist makellos. Ihre Erwartungen ebenfalls. Der Staub in ihrem Haushalt hat eine Kündigungsfrist von null Sekunden.",
+      "description": "Ihr Haus ist makellos. Ihre Erwartungen ebenfalls. Der Staub in ihrem Haushalt hat eine Kündigungsfrist von null Sekunden. Helga Saubermann ist ihre beste Freundin — und ja, die Ähnlichkeit geht über Putzwahn und Gesichtszüge hinaus.",
       "stayDays": 2,
       "cooldownDays": 9,
       "questChains": [

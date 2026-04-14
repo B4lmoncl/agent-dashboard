@@ -157,7 +157,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div data-feedback-id="battlepass-view" className="space-y-5 tab-content-enter">
       <TutorialMomentBanner viewId="season" playerLevel={1} />
       {/* Header */}
       <div className="rounded-xl p-5" style={{

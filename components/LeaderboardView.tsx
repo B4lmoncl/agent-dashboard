@@ -129,7 +129,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const isPlayerMode = mode === "players";
 
   return (
-    <div className="space-y-6 tab-content-enter relative">
+    <div data-feedback-id="leaderboard-view" className="space-y-6 tab-content-enter relative">
       <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
       {/* ── Podium ── */}
       <div className="flex items-end justify-center gap-4 relative">

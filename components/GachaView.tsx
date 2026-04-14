@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import { getBalance } from "@/lib/balance-cache";
@@ -771,12 +770,6 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   return (
     <div className="space-y-5 tab-content-enter">
       <TutorialMomentBanner viewId="gacha" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="gacha"
-        title="Schicksalsrad"
-        description="Das Schicksalsrad dreht sich für Stardust oder Runensplitter. Ein 10er-Pull garantiert mindestens ein Episches Item. Das Pity-System belohnt deine Beharrlichkeit. Oder bestraft dein Glück. Kommt auf die Perspektive an."
-        accentColor="#f59e0b"
-      />
       {/* Pull animation overlay */}
       {pullResults && (
         <GachaPull

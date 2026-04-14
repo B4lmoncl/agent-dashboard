@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
@@ -875,14 +874,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const chosenCount = professions.filter(p => p.chosen).length;
 
   return (
-    <div className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
+    <div data-feedback-id="forge-view" className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
       <TutorialMomentBanner viewId="forge" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="forge"
-        title="Artisan's Quarter"
-        description="Zwei Berufe. Nicht mehr. Trainer lehren Rezepte für Gold. Höhere Ränge schalten stärkere Rezepte frei. Materialien droppen aus Quests — welche, hängt von deiner Berufswahl ab. Wähle entsprechend."
-        accentColor="#f59e0b"
-      />
       {/* Ambient forge sparks */}
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
@@ -1026,19 +1019,33 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           "waffenschmied+juwelier": { name: "Stahl & Stein", flavor: "Klingen mit eingelassenen Edelsteinen. Jeder Schlag funkelt — buchstäblich." },
           "waffenschmied+alchemist": { name: "Schärfe & Schatten", flavor: "Vergiftete Klingen. Effizient, unelegant, und beunruhigend effektiv." },
           "juwelier+alchemist": { name: "Kristall & Kessel", flavor: "Edelsteine aufgelöst, destilliert, neu gebunden. Transmutation in Reinform." },
+          // Primary + Secondary combos
+          "koch+schmied": { name: "Amboss & Herd", flavor: "Der eine hämmert Stahl, der andere würzt Suppe. Unterschiedliche Hitze, gleiche Leidenschaft." },
+          "koch+schneider": { name: "Nadel & Nudelholz", flavor: "Kleidung und Küche. Für den Helden der gut aussehen UND gut essen will." },
+          "koch+lederverarbeiter": { name: "Jagd & Festmahl", flavor: "Was der Gerber fängt, landet auf dem Teller. Effizienz in ihrer reinsten Form." },
+          "koch+waffenschmied": { name: "Klinge & Kessel", flavor: "Erst schmieden, dann kochen. Die Reihenfolge ist wichtig. Meistens." },
+          "koch+juwelier": { name: "Zucker & Kristall", flavor: "Pralinenschachteln mit Edelsteinverzierung. Dekadenz hat einen Namen." },
+          "alchemist+koch": { name: "Trank & Tafel", flavor: "Der eine braut Elixiere, der andere backt Brot. Beide wissen was Hitze kann." },
+          "schmied+verzauberer": { name: "Stahl & Sigille", flavor: "Gehämmert und verzaubert. Jede Rüstung trägt ein Geheimnis in der Naht." },
+          "schneider+verzauberer": { name: "Faden & Formel", flavor: "Arkane Muster in Stoff gewirkt. Mode mit magischen Nebenwirkungen." },
+          "lederverarbeiter+verzauberer": { name: "Haut & Hexerei", flavor: "Leder getränkt in Runenessenz. Zäh genug für den Kampf, seltsam genug für die Akademie." },
+          "waffenschmied+verzauberer": { name: "Schwert & Siegel", flavor: "Klingen mit eingravierten Runen. Der Feind merkt den Unterschied. Einmal." },
+          "juwelier+verzauberer": { name: "Juwel & Zauber", flavor: "Edelsteine als Fokus, Enchantments als Seele. Die teuerste Art Magie zu wirken." },
+          "alchemist+verzauberer": { name: "Elixier & Enchant", flavor: "Tränke die Gear verbessern, Enchantments die Tränke verstärken. Ein Kreislauf der Macht." },
+          "koch+alchemist": { name: "Küche & Labor", flavor: "Der Unterschied zwischen Kochen und Brauen ist eine Frage der Absicht. Und der Explosionsgefahr." },
+          "koch+verzauberer": { name: "Gewürz & Glyphe", flavor: "Magisch gewürztes Essen und verzauberte Saucen. Die Gäste fragen nie nach dem Rezept. Sie trauen sich nicht." },
         };
 
-        const chosenPrimary = showOnlyChosen ? professions.filter(p => p.chosen && !["koch","verzauberer"].includes(p.id)) : [];
-        const duoKey = chosenPrimary.length === 2
-          ? [chosenPrimary[0].id, chosenPrimary[1].id].sort().join("+")
+        const chosenAll = showOnlyChosen ? professions.filter(p => p.chosen) : [];
+        const duoKey = chosenAll.length === 2
+          ? [chosenAll[0].id, chosenAll[1].id].sort().join("+")
           : null;
         const duo = duoKey ? PROFESSION_DUOS[duoKey] : null;
 
-        // Build the category list — in duo mode, merge primaries into one group with combo header
-        const categories = (showOnlyChosen && duo && chosenPrimary.length === 2)
+        // Build the category list — in duo mode, merge both profs into one group with combo header
+        const categories = (showOnlyChosen && duo && chosenAll.length === 2)
           ? [
-              { label: duo.name, desc: duo.flavor, ids: chosenPrimary.map(p => p.id), isDuo: true },
-              { label: "Secondary", desc: "", ids: ["koch","verzauberer"], isDuo: false },
+              { label: duo.name, desc: duo.flavor, ids: chosenAll.map(p => p.id), isDuo: true },
             ]
           : [
               { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"], isDuo: false },

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { getBalance } from "@/lib/balance-cache";
 import { useDashboard } from "@/app/DashboardContext";
@@ -800,7 +799,7 @@ export default function ChallengesView({
   }, [reviewApiKey, onRefresh, onRewardCelebration]);
 
   return (
-    <div className="space-y-4">
+    <div data-feedback-id="challenges-view" className="space-y-4">
       {/* Section header */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
@@ -861,12 +860,6 @@ export default function ChallengesView({
       {/* Content */}
       <div key={activeTab} className="tab-content-enter">
       <TutorialMomentBanner viewId="challenges" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="challenges"
-        title="Wöchentliche Herausforderungen"
-        description="Sternenpfad: Drei Stufen. Allein. Schnelligkeit bringt Bonus-Sterne. Expedition: Alle zusammen auf gemeinsame Checkpoints. Eine Seite testet dich. Die andere testet eure Geduld miteinander."
-        accentColor="#fbbf24"
-      />
       {activeTab === "sternenpfad" && (
         weeklyChallenge ? (
           <SternenpfadView

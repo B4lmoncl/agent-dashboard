@@ -131,7 +131,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   );
 
   return (
-    <div className="space-y-5 tab-content-enter relative">
+    <div data-feedback-id="tavern-view" className="space-y-5 tab-content-enter relative">
       {/* Ember particles — warm fireplace ambiance */}
       {[0,1,2,3,4,5,6,7].map(i => (
         <span

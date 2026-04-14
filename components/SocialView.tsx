@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import ItemTooltip from "@/components/ItemTooltip";
-import FirstVisitBanner from "@/components/FirstVisitBanner";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -2042,10 +2041,16 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>Level {bond.partner.level}</p>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#f59e0b" }}>Bond Lv {bond.bondLevel}</p>
-            <p className="text-xs" style={{ color: "rgba(245,158,11,0.5)" }}>{bond.bondLevelTitle}</p>
-          </div>
+          <TipCustom title="Bond Level" icon="◆" accent="#f59e0b" body={<>
+            <p>Your Sworn Bond level (1-10). Higher level = better chest rewards. Each completed week earns Bond XP.</p>
+            <div className="gt-stat-row"><span>Current</span><span>Lv {bond.bondLevel} — {bond.bondLevelTitle}</span></div>
+            <div className="gt-stat-row"><span>XP</span><span>{bond.bondXp}/{bond.bondXpToNext}</span></div>
+          </>}>
+            <div className="text-right cursor-help">
+              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#f59e0b" }}>Bond Lv {bond.bondLevel}</p>
+              <p className="text-xs" style={{ color: "rgba(245,158,11,0.5)" }}>{bond.bondLevelTitle}</p>
+            </div>
+          </TipCustom>
         </div>
 
         {/* Streak + Bond XP */}
@@ -2334,7 +2339,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
   }
 
   return (
-    <div className="space-y-4">
+    <div data-feedback-id="social-view" className="space-y-4">
       {/* Section header */}
       <div>
         <div className="flex items-center gap-2">
@@ -2369,12 +2374,6 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
       </div>
 
       <TutorialMomentBanner viewId="social" playerLevel={1} />
-      <FirstVisitBanner
-        viewId="social"
-        title="The Breakaway"
-        description="Freunde finden. Items tauschen. Nachrichten senden. Beobachten was die anderen so treiben. Das Übliche. Nur mit besseren Belohnungen."
-        accentColor="#a855f7"
-      />
 
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">
