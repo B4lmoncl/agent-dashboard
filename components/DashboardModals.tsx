@@ -159,7 +159,7 @@ export default function DashboardModals({
               <div className="w-full max-w-xs rounded-2xl p-5 bg-surface-alt border-w10" style={{ maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" }}
                 onClick={e => e.stopPropagation()}>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-semibold text-primary">Currencies</h3>
+                  <h3 className="text-sm font-semibold text-primary">Währungen</h3>
                   <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Schließen">×</button>
                 </div>
                 <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
@@ -213,7 +213,7 @@ export default function DashboardModals({
                     className="w-full text-xs font-semibold py-1.5 rounded-lg"
                     style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                   >
-                    {conversionOpen ? "Hide" : "Convert Currencies"} {conversionOpen ? "▲" : "▼"}
+                    {conversionOpen ? "Ausblenden" : "Währungen tauschen"} {conversionOpen ? "▲" : "▼"}
                   </button>
 
                   {conversionOpen && (
@@ -324,7 +324,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-bold text-bright">Modifier Breakdown</h3>
+                <h3 className="text-sm font-bold text-bright">Modifikator-Übersicht</h3>
                 <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Schließen">×</button>
               </div>
               <div className="mb-4">
@@ -394,7 +394,7 @@ export default function DashboardModals({
               </p>
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
-                  <span className="text-xs text-w50">Current Streak</span>
+                  <span className="text-xs text-w50">Aktueller Streak</span>
                   <span className="font-mono font-bold text-sm" style={{ color: "#f97316" }}>{loggedInUser?.streakDays ?? 0}d</span>
                 </div>
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
