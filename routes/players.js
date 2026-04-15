@@ -1024,7 +1024,7 @@ router.post('/api/player/:name/seen', requireAuth, requireSelf('name'), (req, re
     return res.status(400).json({ error: 'ids must be a non-empty array' });
   }
   // Cap batch size to prevent abuse
-  const safeIds = ids.slice(0, 500).map(String);
+  const safeIds = ids.slice(0, 500).map(v => String(v).slice(0, 100));
 
   u.seen = u.seen || {};
   u.seen[category] = u.seen[category] || [];
