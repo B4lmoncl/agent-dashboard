@@ -15,6 +15,8 @@ function verifyGitHubSignature(req) {
   // Use raw body bytes for HMAC (re-serializing parsed JSON doesn't match GitHub's signature)
   const body = req.rawBody || Buffer.from(JSON.stringify(req.body));
   const expected = 'sha256=' + crypto.createHmac('sha256', secret).update(body).digest('hex');
+  // timingSafeEqual throws if lengths differ — guard against malformed signatures
+  if (Buffer.byteLength(sig) !== Buffer.byteLength(expected)) return false;
   return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
 }
 
