@@ -338,9 +338,23 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
       </>
     ),
   },
+  forge_fever: {
+    title: "Schmiedefieber",
+    icon: "/images/icons/prof-schmied.png",
+    accent: "#f97316",
+    body: (
+      <>
+        <p>Alle 48 Stunden bricht in einer zuf\u00e4lligen Profession das Schmiedefieber aus \u2014 ein 4-st\u00fcndiges Zeitfenster mit besonderen Boni.</p>
+        <div className="gt-stat-row"><span>Materialkosten</span><span style={{ color: "#22c55e" }}>-50%</span></div>
+        <div className="gt-stat-row"><span>Skill-XP</span><span style={{ color: "#22c55e" }}>2\u00d7</span></div>
+        <div className="gt-stat-row"><span>Bonus-Cache</span><span>5+ Crafts im Fenster</span></div>
+        <p className="gt-source">Der Bonus-Cache enth\u00e4lt 2-4 zuf\u00e4llige Materialien (Uncommon-Rare). Stapelt sich mit dem t\u00e4glichen Erstcraft-Bonus.</p>
+      </>
+    ),
+  },
   set_bonus: {
     title: "Set Bonuses",
-    icon: "🔷",
+    icon: "\uD83D\uDD37",
     accent: "#3b82f6",
     body: (
       <>
