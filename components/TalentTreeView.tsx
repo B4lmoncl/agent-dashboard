@@ -708,6 +708,7 @@ export default function TalentTreeView({
                   <button
                     onClick={() => handleAllocate(selected.id)}
                     disabled={allocating}
+                    title={allocating ? "Talent wird zugewiesen..." : undefined}
                     className="text-xs px-4 py-2 rounded-lg font-semibold"
                     style={{
                       background: `${getNodeThemeColor(selected.id, data.meta.themes)}22`,
@@ -724,6 +725,7 @@ export default function TalentTreeView({
                   <button
                     onClick={() => handleDeallocate(selected.id)}
                     disabled={allocating}
+                    title={allocating ? "Talent wird entfernt..." : undefined}
                     className="text-xs px-4 py-2 rounded-lg font-semibold"
                     style={{
                       background: "rgba(239,68,68,0.1)",
