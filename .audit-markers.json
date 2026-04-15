@@ -802,6 +802,12 @@
     "findings": "No issues. Clean 40-line component. Uses useFirstVisit hook correctly.",
     "status": "clean"
   },
+  "components/DashboardModals.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Clean. ModalPortal on currencies+modifier. ESC handler unified. Conversion: disabled title tooltips, cursor:not-allowed, preview, balance validation. Object.assign currencies update on convert success. LOW: modifier modal uses z-[9999] inline instead of ModalPortal default.",
+    "status": "clean"
+  },
   "components/ItemTooltip.tsx": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-15",
