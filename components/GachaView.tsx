@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
+import { useState, useEffect, useCallback, useId, useMemo } from "react";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import { getBalance } from "@/lib/balance-cache";
