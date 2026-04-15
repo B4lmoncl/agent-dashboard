@@ -419,9 +419,9 @@
     "status": "clean"
   },
   "routes/mail.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. mailSendLock+mailCollectLock. Gold sync on send (deduct) + collect (award). Item locked check on send. Inventory cap on collect. collect-all batch with gold sync after loop.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Cycle 3: Clean. Full deep read. mailSendLock+mailCollectLock on all POSTs. Gold sync correct (dual-field). Inventory cap pre-check. XSS sanitization. Equipped/bound/locked item checks. Delete blocks uncollected attachments. collect-all gold sync after loop.",
     "status": "clean"
   },
   "routes/kanais-cube.js": {
@@ -455,9 +455,9 @@
     "status": "clean"
   },
   "routes/currency.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Admin-only earn guard, self-check on spend/convert, dailyLock on bonus claim, amount cap 1M, Berlin timezone, conversion tax, streak milestone rewards.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Cycle 3: Deep read. currencyLock on convert. dailyLock on claim. Admin-only earn. Self-check on spend/convert. Conversion: pair whitelist + 20% tax + received<=0 guard. Daily fortune random rewards. Amount 1M cap. Berlin TZ. BP XP on login.",
     "status": "clean"
   },
   "routes/game.js": {
