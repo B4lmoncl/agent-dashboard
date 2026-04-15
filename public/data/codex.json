@@ -1467,6 +1467,16 @@
       }
     },
     {
+      "id": "forge-fever",
+      "category": "systems",
+      "title": "Schmiedefieber \u2014 Wenn die Werkstatt \u00fcberhitzt",
+      "text": "Alle achtundvierzig Stunden passiert etwas, das niemand richtig erkl\u00e4ren kann. Eine zuf\u00e4llige Werkstatt im Artisan's Quarter beginnt zu gl\u00fchen. Die Essen laufen hei\u00dfer, die Materialien schmelzen bereitwilliger, und selbst die unfähigsten Hände produzieren erstaunliche Ergebnisse. Grimvar nennt es 'Inspiration'. Ysolde nennt es 'gef\u00e4hrlich'. Beide haben Recht. W\u00e4hrend des Fiebers kosten Materialien nur halb so viel und die Skill-Erfahrung verdoppelt sich. Wer f\u00fcnf oder mehr Rezepte im Fieberrausch craftet, erh\u00e4lt einen Bonus-Cache mit seltenen Materialien. Das Fieber h\u00e4lt genau vier Stunden. Danach ist die Werkstatt wieder kalt. Der Satz 'Das Fieber kommt, wenn es will, nicht wenn man es braucht' steht seit Jahren an Grimvars Amboss. Niemand wei\u00df, wer ihn geschrieben hat. Grimvar behauptet, er war schon da, als er ankam.",
+      "unlockedBy": {
+        "type": "crafts_completed",
+        "value": 5
+      }
+    },
+    {
       "id": "turmgleichung",
       "category": "world",
       "title": "Die Turmgleichung — Warum alle gleich aussehen",
