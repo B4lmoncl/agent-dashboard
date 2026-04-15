@@ -244,6 +244,7 @@ export default function QuestDetailModal({
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
               disabled={actionLoading}
+              title={actionLoading ? "Action in progress..." : undefined}
               onClick={async () => { setActionLoading(true); try { await handleClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
               style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
               onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}

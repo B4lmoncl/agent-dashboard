@@ -126,6 +126,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               setClaiming(false);
             }}
             disabled={claiming}
+            title={claiming ? "Claiming bonus..." : undefined}
             className={`w-full mt-2 py-2 rounded-lg text-sm font-bold${!claiming ? " claimable-breathe" : ""}`}
             style={{ background: claiming ? "rgba(251,191,36,0.08)" : "rgba(251,191,36,0.15)", color: claiming ? "rgba(251,191,36,0.5)" : "#fbbf24", border: `1px solid ${claiming ? "rgba(251,191,36,0.15)" : "rgba(251,191,36,0.35)"}`, cursor: claiming ? "not-allowed" : "pointer" }}
           >

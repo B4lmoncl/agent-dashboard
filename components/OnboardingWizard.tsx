@@ -528,6 +528,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   <button
                     onClick={handleSubmitCustomClass}
                     disabled={!customProfession.trim()}
+                    title={!customProfession.trim() ? "Enter a profession name" : undefined}
                     className="text-xs px-3 py-1.5 rounded-lg font-semibold"
                     style={{
                       background: customProfession.trim() ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.05)",

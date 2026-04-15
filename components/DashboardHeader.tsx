@@ -412,6 +412,7 @@ export default function DashboardHeader({
                                 } catch { setForgotMsg({ text: "Network error", ok: false }); }
                               }}
                               disabled={!forgotEmail.includes("@")}
+                              title={!forgotEmail.includes("@") ? "Enter a valid email address" : undefined}
                               className="text-xs px-3 py-1 rounded font-medium w-full"
                               style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: forgotEmail.includes("@") ? "pointer" : "not-allowed" }}
                             >Send Reset Link</button>
@@ -619,6 +620,7 @@ export default function DashboardHeader({
                     setChangePwLoading(false);
                   }}
                   disabled={changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm || changePwNew.length < 8}
+                  title={changePwLoading ? "Changing password..." : !changePwCurrent ? "Enter current password" : !changePwNew || changePwNew.length < 8 ? "New password must be at least 8 characters" : changePwNew !== changePwConfirm ? "Passwords do not match" : undefined}
                   className="w-full text-xs py-2 rounded-lg font-semibold"
                   style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm ? "not-allowed" : "pointer", opacity: changePwLoading ? 0.5 : 1 }}
                 >{changePwLoading ? "Changing..." : "Change Password"}</button>

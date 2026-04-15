@@ -950,6 +950,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         setFeverClaiming(false);
                       }}
                       disabled={feverClaiming}
+                      title={feverClaiming ? "Bonus-Cache wird abgeholt..." : "Bonus-Cache mit seltenen Materialien abholen"}
                       className="px-2 py-0.5 rounded text-xs font-bold"
                       style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)", cursor: feverClaiming ? "not-allowed" : "pointer", opacity: feverClaiming ? 0.5 : 1 }}
                     >
@@ -1808,9 +1809,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <button
                       onClick={() => setConfirmProf(selectedNpc)}
                       disabled={choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots}
+                      title={choosingProf ? "Profession wird gewählt..." : professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots ? `Alle ${maxProfSlots} Profession-Slots belegt` : undefined}
                       className="text-sm px-5 py-2.5 rounded-lg font-semibold"
                       style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: (choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? "not-allowed" : "pointer", opacity: (choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? 0.5 : 1 }}
-                      title={(professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? `Alle ${maxProfSlots} Berufsslots belegt` : undefined}
                     >
                       Choose {selectedNpc.name}
                     </button>
@@ -2461,8 +2462,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 <button
                   onClick={() => setConfirmProf(selectedNpc)}
                   disabled={choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots}
+                  title={choosingProf ? "Profession wird gewählt..." : professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots ? `Alle ${maxProfSlots} Profession-Slots belegt` : undefined}
                   className="text-sm px-5 py-2.5 rounded-lg font-semibold"
-                  style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: "pointer" }}
+                  style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: (choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots) ? "not-allowed" : "pointer" }}
                 >
                   Choose {selectedNpc.name}
                 </button>
@@ -3277,6 +3279,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <button
                           onClick={executeAutoSalvage}
                           disabled={autoSalvageLoading}
+                          title={autoSalvageLoading ? "Salvage läuft..." : undefined}
                           className="flex-1 text-xs py-2 rounded-lg font-semibold"
                           style={{ background: "rgba(239,68,68,0.2)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.5)", cursor: autoSalvageLoading ? "not-allowed" : "pointer" }}
                         >
@@ -3330,7 +3333,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <>
                           <p className="text-xs font-semibold" style={{ color: c }}>{active.label}</p>
                           <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{active.value}%</p>
-                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
+                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} title={cubeLoading ? "Kanai's Cube arbeitet..." : undefined} className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
                         </>
                       ) : (
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Empty</p>
@@ -3416,6 +3419,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <button
                           onClick={() => handleCubeExtract(cubeExtractId)}
                           disabled={cubeLoading}
+                          title={cubeLoading ? "Extraction läuft..." : undefined}
                           className="flex-1 text-xs py-2 rounded-lg font-semibold"
                           style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
                         >

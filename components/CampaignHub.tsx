@@ -148,7 +148,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       <div className="space-y-6">
         {/* Back button + header */}
         <div>
-          <button onClick={() => setExpandedId(null)} className="flex items-center gap-2 text-xs mb-4 transition-opacity hover:opacity-100" style={{ color: "rgba(167,139,250,0.7)", opacity: 0.8 }}>
+          <button onClick={() => setExpandedId(null)} className="flex items-center gap-2 text-xs mb-4 transition-opacity hover:opacity-100" style={{ color: "rgba(167,139,250,0.7)", opacity: 0.8, cursor: "pointer" }}>
             ← Back to Campaigns
           </button>
           <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a0d2e 0%, #0d1017 100%)", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 0 40px rgba(139,92,246,0.1)" }}>
@@ -297,12 +297,12 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               {/* Delete button */}
               {deleteConfirm === c.id ? (
                 <div className="flex gap-2 mt-3" onClick={e => e.stopPropagation()}>
-                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }} onClick={() => handleDelete(c.id)}>Confirm delete</button>
-                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }} onClick={() => setDeleteConfirm(null)}>Cancel</button>
+                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }} onClick={() => handleDelete(c.id)}>Confirm delete</button>
+                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }} onClick={() => setDeleteConfirm(null)}>Cancel</button>
                 </div>
               ) : (
                 reviewApiKey && (
-                  <button className="text-xs mt-3 opacity-30 hover:opacity-70 transition-opacity" style={{ color: "#f87171" }}
+                  <button className="text-xs mt-3 opacity-30 hover:opacity-70 transition-opacity" style={{ color: "#f87171", cursor: "pointer" }}
                     onClick={e => { e.stopPropagation(); setDeleteConfirm(c.id); }}>
                     Delete
                   </button>
