@@ -191,6 +191,19 @@ function getUserInventory(user: unknown): InventoryItem[] {
   return ((user as Record<string, unknown>).inventory as InventoryItem[] | undefined) || [];
 }
 
+// ─── Fever Countdown (live-ticking) ─────────────────────────────────────────
+function FeverCountdown({ endsAt }: { endsAt: string }) {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 30000); // tick every 30s
+    return () => clearInterval(id);
+  }, []);
+  const ms = Math.max(0, new Date(endsAt).getTime() - now);
+  const h = Math.floor(ms / 3600000);
+  const m = Math.ceil((ms % 3600000) / 60000);
+  return <>{h > 0 ? `${h}h ${m}m` : `${m}m`}</>;
+}
+
 // ─── ForgeView Component ────────────────────────────────────────────────────
 export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () => void; onNavigate?: (tab: string) => void }) {
   const { playerName, reviewApiKey, loggedInUser } = useDashboard();
@@ -929,7 +942,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     Schmiedefieber: {professions.find(p => p.id === forgeFever.profession)?.name || forgeFever.profession}
                   </span>
                   <span style={{ color: "rgba(255,255,255,0.35)" }}>
-                    {Math.ceil(forgeFever.remainingMs / 60000)}m
+                    <FeverCountdown endsAt={forgeFever.endsAt} />
                   </span>
                   <span className="font-mono" style={{ color: forgeFever.playerCrafts >= forgeFever.threshold ? "#22c55e" : "rgba(255,255,255,0.4)" }}>
                     {forgeFever.playerCrafts}/{forgeFever.threshold}
