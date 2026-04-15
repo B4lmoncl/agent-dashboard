@@ -759,5 +759,11 @@
     "lastAuditDate": "2026-04-10",
     "findings": "HIGH fixed: authFetch token refresh retry was dead code (hadToken pattern). getAuthHeaders expiry check added earlier. getValidToken still returns without expiry check (unused externally).",
     "status": "clean"
+  },
+  "routes/sworn-bonds.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "MED FIXED: cancel+decline endpoints missing bondLock — added. All 7 endpoints verified: propose/accept/cancel/decline/break/claim-chest/GET. bondLock on all 5 POSTs. Double-claim guard on chest. Streak logic correct (gap detection, consecutive week check). Bond XP+level progression. Lazy prune of stale bonds. Achievement+title checks on claim.",
+    "status": "clean"
   }
 }
