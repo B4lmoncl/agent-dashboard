@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
-const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
+const { state, saveUsers, saveUsersSync, ensureUserCurrencies, saveAppState } = require('../lib/state');
 const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP, getTodayBerlin } = require('../lib/helpers');
 
 // ─── Mondlicht-Schmiede: +20% better minimum rolls during night hours (22:00-06:00 Berlin) ───
@@ -132,6 +132,7 @@ function rotateForgeFever() {
     playerClaimed: {}, // { playerId: true }
   };
   console.log(`[forge-fever] New fever: ${nextProf} for 4 hours`);
+  saveAppState();
 }
 
 function isFeverActive(professionId) {
@@ -1586,6 +1587,7 @@ router.post('/api/professions/fever/claim', requireAuth, (req, res) => {
   state.forgeFever.playerClaimed = state.forgeFever.playerClaimed || {};
   state.forgeFever.playerClaimed[uid] = true;
   saveUsers();
+  saveAppState();
   res.json({ ok: true, cache, message: 'Schmiedefieber Bonus-Cache erhalten!' });
 });
 
