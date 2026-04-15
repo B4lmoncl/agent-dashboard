@@ -330,8 +330,10 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
           </div>
         )) || <>
           <div className="gt-stat-row"><span>1-5 quests</span><span>100% rewards</span></div>
-          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>6-10 quests</span><span>75% rewards</span></div>
-          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>11-20 quests</span><span>50% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>6-7 quests</span><span>90% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>8-10 quests</span><span>75% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>11-15 quests</span><span>60% rewards</span></div>
+          <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>16-20 quests</span><span>50% rewards</span></div>
           <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>21+ quests</span><span>25% rewards</span></div>
         </>}
         <p className="gt-source">Resets daily at midnight. Material drops are not affected.</p>
