@@ -62,11 +62,6 @@ function playFile(name: string, volume?: number): boolean {
   return true; // Optimistic — synth fallback handled by caller
 }
 
-// Check if a file-based sound is available (loaded before)
-function hasFile(name: string): boolean {
-  return audioCache.has(name) && !failedFiles.has(name);
-}
-
 // ─── Web Audio Synth (fallback) ────────────────────────────────────────────
 
 type OscType = OscillatorType;
