@@ -1204,7 +1204,7 @@ export default function TodayDrawer({
                       {cat.label}
                     </span>
                   )}
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
                     {cat.items.filter(i => i.done).length}/{cat.items.length}
                   </span>
                   {catAllDone && <span className="text-xs" style={{ color: "#4ade80" }}>✓</span>}

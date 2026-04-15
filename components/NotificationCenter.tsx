@@ -215,7 +215,7 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
                         <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.25)" }}>{n.message}</p>
                       </div>
                       {/* Time */}
-                      <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>{timeAgo(n.at)}</span>
+                      <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{timeAgo(n.at)}</span>
                       {/* Unread dot */}
                       {!n.read && (
                         <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: "#60a5fa", boxShadow: "0 0 4px #60a5fa" }} />

@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
-const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
+const { state, saveUsers, saveUsersSync, ensureUserCurrencies, saveAppState } = require('../lib/state');
 const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP, getTodayBerlin } = require('../lib/helpers');
 
 // ─── Mondlicht-Schmiede: +20% better minimum rolls during night hours (22:00-06:00 Berlin) ───
@@ -99,6 +99,53 @@ const PROFICIENCY_RANKS = [
   { name: 'Artisan', skillCap: 300, reqPlayerLevel: 40, color: '#f59e0b' },
 ];
 const MAX_SKILL = 300;
+
+// ─── Schmiedefieber / Forge Fever ──────────────────────────────────────────
+// Every 48h, a random profession gets a 4h fever window:
+// - 50% material cost reduction (rounded up)
+// - 2x skill XP (stacks with daily bonus)
+// - 5+ crafts during fever = bonus material cache
+const FEVER_DURATION_MS = 4 * 3600 * 1000; // 4 hours
+const FEVER_INTERVAL_MS = 48 * 3600 * 1000; // 48 hours
+const FEVER_CRAFT_THRESHOLD = 5; // crafts needed for bonus cache
+
+function getForgeFever() {
+  const fever = state.forgeFever;
+  if (!fever || !fever.profession || !fever.startedAt) return null;
+  const elapsed = Date.now() - new Date(fever.startedAt).getTime();
+  if (elapsed >= FEVER_DURATION_MS) return null; // expired
+  return { ...fever, endsAt: new Date(new Date(fever.startedAt).getTime() + FEVER_DURATION_MS).toISOString(), remainingMs: FEVER_DURATION_MS - elapsed };
+}
+
+function rotateForgeFever() {
+  const fever = state.forgeFever || {};
+  const lastRotation = fever.lastRotation ? new Date(fever.lastRotation).getTime() : 0;
+  if (Date.now() - lastRotation < FEVER_INTERVAL_MS) return; // not time yet
+
+  const profIds = PROFESSIONS_DATA.professions.map(p => p.id).filter(id => id !== fever.profession); // no consecutive repeat
+  const nextProf = profIds[Math.floor(Math.random() * profIds.length)];
+  state.forgeFever = {
+    profession: nextProf,
+    startedAt: new Date().toISOString(),
+    lastRotation: new Date().toISOString(),
+    playerCrafts: {}, // { playerId: craftCount }
+    playerClaimed: {}, // { playerId: true }
+  };
+  console.log(`[forge-fever] New fever: ${nextProf} for 4 hours`);
+  saveAppState();
+}
+
+function isFeverActive(professionId) {
+  const fever = getForgeFever();
+  return fever && fever.profession === professionId;
+}
+
+function trackFeverCraft(playerId) {
+  const fever = getForgeFever();
+  if (!fever) return;
+  state.forgeFever.playerCrafts = state.forgeFever.playerCrafts || {};
+  state.forgeFever.playerCrafts[playerId] = (state.forgeFever.playerCrafts[playerId] || 0) + 1;
+}
 
 function getProfRank(skill) {
   for (let i = PROFICIENCY_RANKS.length - 1; i >= 0; i--) {
@@ -388,7 +435,18 @@ router.get('/api/professions', (req, res) => {
     ...r,
     discountedPrice: talentReagentDiscount > 0 ? Math.max(1, Math.round(r.price * (1 - talentReagentDiscount))) : null,
   }));
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes });
+  // Schmiedefieber state for frontend
+  const fever = getForgeFever();
+  const forgeFever = fever ? {
+    profession: fever.profession,
+    endsAt: fever.endsAt,
+    remainingMs: fever.remainingMs,
+    playerCrafts: (state.forgeFever?.playerCrafts?.[uid]) || 0,
+    cacheEarned: ((state.forgeFever?.playerCrafts?.[uid]) || 0) >= FEVER_CRAFT_THRESHOLD,
+    cacheClaimed: !!(state.forgeFever?.playerClaimed?.[uid]),
+    threshold: FEVER_CRAFT_THRESHOLD,
+  } : null;
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes, forgeFever });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
@@ -414,9 +472,8 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'You must choose this profession first.' });
   }
 
-  // WoW Classic style: trainer recipes can be LEARNED at any skill level
-  // (you just need the right rank/cap trained — the reqSkill only gates CRAFTING, not learning)
-  // Only check: does the player's trained rank allow recipes at this skill level?
+  // WoW Classic style: you need both the right rank (skill cap) AND sufficient current skill
+  // to learn a recipe at the trainer. reqSkill gates LEARNING, not just crafting.
   const profProgress = getProfLevel(u, recipe.profession);
   const playerLvl = getLevelInfo(u.xp || 0).level;
   const profData = (u.professions || {})[recipe.profession];
@@ -424,6 +481,12 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
   const recipeSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
   if (recipeSkill > skillCap) {
     return res.status(400).json({ error: `Train a higher rank first — this recipe requires Skill Cap ${recipeSkill}+ (your cap: ${skillCap})` });
+  }
+
+  // Check player's CURRENT skill meets the recipe requirement
+  if (!meetsSkillReq(recipe, profProgress)) {
+    const reqLabel = recipe.reqSkill != null ? `Skill ${recipe.reqSkill}` : `Level ${recipe.reqProfLevel}`;
+    return res.status(400).json({ error: `Requires ${recipe.profession} ${reqLabel} (you have Skill ${profProgress.skill})` });
   }
 
   // Already learned?
@@ -576,10 +639,12 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
-  // Check materials (×count for batch)
+  // Check materials (×count for batch) — Schmiedefieber: 50% material reduction
+  const feverActive = isFeverActive(recipe.profession);
   u.craftingMaterials = u.craftingMaterials || {};
   for (const [matId, amount] of Object.entries(recipe.materials || {})) {
-    const needed = amount * effectiveCount;
+    const feverAmount = feverActive ? Math.ceil(amount * 0.5) : amount;
+    const needed = feverAmount * effectiveCount;
     if ((u.craftingMaterials[matId] || 0) < needed) {
       const matDef = PROFESSIONS_DATA.materials.find(m => m.id === matId);
       return res.status(400).json({ error: `Not enough ${matDef?.name || matId} (${u.craftingMaterials[matId] || 0}/${needed})` });
@@ -606,10 +671,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     u.currencies.gold = (u.currencies.gold || 0) - totalDeduction;
     u.gold = u.currencies.gold;
   }
-  // Deduct materials (×count) — Talent: craft_material_preserve chance to save materials
+  // Deduct materials (×count) — Schmiedefieber: 50% reduction, Talent: preserve chance
   const talentPreserve = (require('./talent-tree').getUserTalentEffects(uid)).craft_material_preserve || 0;
   for (const [matId, amount] of Object.entries(recipe.materials || {})) {
-    let totalCost = amount * effectiveCount;
+    const feverAmount = feverActive ? Math.ceil(amount * 0.5) : amount;
+    let totalCost = feverAmount * effectiveCount;
     // Each unit has independent chance to be preserved
     if (talentPreserve > 0) {
       let preserved = 0;
@@ -643,12 +709,17 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const talentEffects = getUserTalentEffects(uid);
   const talentDailyMod = talentEffects.profession_daily_bonus_modifier || 0;
   const dailyMultiplier = dailyBonusAvailable ? (2 + talentDailyMod) : 1;
+  const feverXpMultiplier = feverActive ? 2 : 1; // Schmiedefieber: 2x skill XP
   // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
   let totalSkillGained = 0;
   for (let i = 0; i < effectiveCount; i++) {
     if (currentSkill + totalSkillGained < skillCap && Math.random() < skillUpChance) {
-      totalSkillGained += 1 * dailyMultiplier; // daily bonus: 2 points instead of 1
+      totalSkillGained += 1 * dailyMultiplier * feverXpMultiplier;
     }
+  }
+  // Track fever crafts for bonus cache
+  if (feverActive) {
+    for (let i = 0; i < effectiveCount; i++) trackFeverCraft(uid);
   }
   u.professions[recipe.profession].skill = Math.min(MAX_SKILL, (u.professions[recipe.profession].skill || 0) + totalSkillGained);
   // Sync legacy xp field
@@ -1480,9 +1551,65 @@ router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
   } finally { releaseCraftLock(uid); }
 });
 
+// ─── POST /api/professions/fever/claim — claim bonus cache from Schmiedefieber ──
+router.post('/api/professions/fever/claim', requireAuth, (req, res) => {
+  const uid = req.resolvedPlayerId;
+  const u = state.usersByName.get(uid) || state.usersByApiKey.get(req.headers['x-api-key']);
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const fever = getForgeFever();
+  if (!fever) return res.status(400).json({ error: 'Kein Schmiedefieber aktiv.' });
+
+  const crafts = (state.forgeFever?.playerCrafts?.[uid]) || 0;
+  if (crafts < FEVER_CRAFT_THRESHOLD) {
+    return res.status(400).json({ error: `Noch ${FEVER_CRAFT_THRESHOLD - crafts} Crafts bis zum Bonus-Cache.` });
+  }
+  if (state.forgeFever?.playerClaimed?.[uid]) {
+    return res.status(400).json({ error: 'Bonus-Cache bereits abgeholt.' });
+  }
+
+  // Generate bonus cache: 2-4 random uncommon-rare materials for the fever profession
+  const profMaterials = PROFESSIONS_DATA.materials.filter(m =>
+    (m.rarity === 'uncommon' || m.rarity === 'rare') && m.id !== 'gold'
+  );
+  const cacheSize = 2 + Math.floor(Math.random() * 3); // 2-4 items
+  const cache = [];
+  u.craftingMaterials = u.craftingMaterials || {};
+  for (let i = 0; i < cacheSize; i++) {
+    const mat = profMaterials[Math.floor(Math.random() * profMaterials.length)];
+    if (mat) {
+      const qty = 1 + Math.floor(Math.random() * 3); // 1-3 each
+      u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + qty;
+      cache.push({ id: mat.id, name: mat.name, qty });
+    }
+  }
+
+  state.forgeFever.playerClaimed = state.forgeFever.playerClaimed || {};
+  state.forgeFever.playerClaimed[uid] = true;
+  saveUsers();
+  saveAppState();
+  res.json({ ok: true, cache, message: 'Schmiedefieber Bonus-Cache erhalten!' });
+});
+
+// ─── GET /api/professions/fever — current fever status ──────────────────────
+router.get('/api/professions/fever', (req, res) => {
+  const fever = getForgeFever();
+  if (!fever) return res.json({ active: false });
+  const profDef = PROFESSIONS_DATA.professions.find(p => p.id === fever.profession);
+  res.json({
+    active: true,
+    profession: fever.profession,
+    professionName: profDef?.name || fever.profession,
+    endsAt: fever.endsAt,
+    remainingMs: fever.remainingMs,
+    threshold: FEVER_CRAFT_THRESHOLD,
+  });
+});
+
 // ─── Exports (shared with schmiedekunst.js and enchanting.js) ─────────────
 module.exports = router;
 module.exports.loadProfessions = loadProfessions;
+module.exports.rotateForgeFever = rotateForgeFever;
 module.exports.isMoonlightActive = isMoonlightActive;
 module.exports.MOONLIGHT_BONUS = MOONLIGHT_BONUS;
 module.exports.VALID_SLOTS = VALID_SLOTS;

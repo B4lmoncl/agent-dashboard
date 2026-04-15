@@ -366,7 +366,10 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                             fontSize: 12,
                             boxShadow: isClaimed ? `0 0 6px ${s.color}15` : "none",
                             opacity: isReached ? 1 : 0.5,
+                            transition: "transform 0.15s ease, box-shadow 0.15s ease",
                           }}
+                          onMouseEnter={e => { if (isReached) e.currentTarget.style.transform = "scale(1.08)"; }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = ""; }}
                         >
                           <span style={{ display: "block", fontSize: 12 }}>{isClaimed ? "✓" : isReached ? "●" : "○"}</span>
                           <span style={{ opacity: 0.7 }}>{s.name.split(" ").pop()}</span>

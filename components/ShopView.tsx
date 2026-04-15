@@ -319,7 +319,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold" style={{ color: shopConf.color }}>{item.name}</p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{item.desc}</p>
-                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>
+                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
                         {item.type === "frame" ? "Frame" : item.type === "title" ? "Title" : item.type === "boost" ? "Boost" : item.type === "cosmetic" ? "Cosmetic" : "Item"}
                       </p>
                     </div>

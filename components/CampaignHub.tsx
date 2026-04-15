@@ -148,7 +148,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       <div className="space-y-6">
         {/* Back button + header */}
         <div>
-          <button onClick={() => setExpandedId(null)} className="flex items-center gap-2 text-xs mb-4 transition-opacity hover:opacity-100" style={{ color: "rgba(167,139,250,0.7)", opacity: 0.8 }}>
+          <button onClick={() => setExpandedId(null)} className="flex items-center gap-2 text-xs mb-4 transition-opacity hover:opacity-100" style={{ color: "rgba(167,139,250,0.7)", opacity: 0.8, cursor: "pointer" }}>
             ← Back to Campaigns
           </button>
           <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a0d2e 0%, #0d1017 100%)", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 0 40px rgba(139,92,246,0.1)" }}>
@@ -182,7 +182,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 <div className="mt-4 flex items-center gap-3 flex-wrap">
                   <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Completion Rewards:</span>
                   {expandedCampaign.rewards.xp > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.25)" }}>+{expandedCampaign.rewards.xp} XP</span>}
-                  {expandedCampaign.rewards.gold > 0 && <span className="text-xs px-2 py-0.5 rounded inline-flex items-center gap-1" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.25)" }}><img src="/images/icons/currency-gold.png" alt="" width={14} height={14} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {expandedCampaign.rewards.gold}</span>}
+                  {expandedCampaign.rewards.gold > 0 && <span className="text-xs px-2 py-0.5 rounded inline-flex items-center gap-1" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.25)" }}><img src="/images/icons/currency-gold.png" alt="Gold" title="Gold" width={14} height={14} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {expandedCampaign.rewards.gold}</span>}
                   {expandedCampaign.rewards.title && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(232,121,249,0.1)", color: "#e879f9", border: "1px solid rgba(232,121,249,0.25)" }}>★ &quot;{expandedCampaign.rewards.title}&quot;</span>}
                 </div>
               )}
@@ -297,12 +297,12 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               {/* Delete button */}
               {deleteConfirm === c.id ? (
                 <div className="flex gap-2 mt-3" onClick={e => e.stopPropagation()}>
-                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }} onClick={() => handleDelete(c.id)}>Confirm delete</button>
-                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }} onClick={() => setDeleteConfirm(null)}>Cancel</button>
+                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }} onClick={() => handleDelete(c.id)}>Confirm delete</button>
+                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }} onClick={() => setDeleteConfirm(null)}>Cancel</button>
                 </div>
               ) : (
                 reviewApiKey && (
-                  <button className="text-xs mt-3 opacity-30 hover:opacity-70 transition-opacity" style={{ color: "#f87171" }}
+                  <button className="text-xs mt-3 opacity-30 hover:opacity-70 transition-opacity" style={{ color: "#f87171", cursor: "pointer" }}
                     onClick={e => { e.stopPropagation(); setDeleteConfirm(c.id); }}>
                     Delete
                   </button>

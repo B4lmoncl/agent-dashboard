@@ -520,6 +520,18 @@
     "findings": "Cycle 2: Verified in batch audit. weighted spawn, timezone handling",
     "status": "clean"
   },
+  "lib/quest-catalog.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Clean. Idempotent seed (checks quest-seed-001). push+questsById.set correct. Metadata rebuild. No mutations outside boot.",
+    "status": "clean"
+  },
+  "routes/campaigns.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization. requireMasterKey on PATCH/DELETE.",
+    "status": "clean"
+  },
   "lib/rotation.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
@@ -758,6 +770,42 @@
     "auditCount": 2,
     "lastAuditDate": "2026-04-10",
     "findings": "HIGH fixed: authFetch token refresh retry was dead code (hadToken pattern). getAuthHeaders expiry check added earlier. getValidToken still returns without expiry check (unused externally).",
+    "status": "clean"
+  },
+  "routes/campaigns.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization on create/patch. isCampaignFullyCompleted uses questsById correctly. Line 139 uses state.quests.filter for claimedBy query (necessary, not a find-by-id). requireMasterKey on PATCH/DELETE.",
+    "status": "clean"
+  },
+  "routes/sworn-bonds.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "MED FIXED: cancel+decline endpoints missing bondLock — added. All 7 endpoints verified: propose/accept/cancel/decline/break/claim-chest/GET. bondLock on all 5 POSTs. Double-claim guard on chest. Streak logic correct (gap detection, consecutive week check). Bond XP+level progression. Lazy prune of stale bonds. Achievement+title checks on claim.",
+    "status": "clean"
+  },
+  "components/ContextualTutorial.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "LOW FIXED: fontSize 11 -> 12 (min font violation line 241). No bugs, no security issues. Clean.",
+    "status": "clean"
+  },
+  "components/CountUp.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "No issues. Clean utility component (67 lines). Proper RAF cleanup.",
+    "status": "clean"
+  },
+  "components/FirstVisitBanner.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "No issues. Clean 40-line component. Uses useFirstVisit hook correctly.",
+    "status": "clean"
+  },
+  "components/ItemTooltip.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "No bugs or security issues. Portal-based tooltip with ESC/click-outside. All images have onError. All stats have tooltips via Tip component.",
     "status": "clean"
   }
 }

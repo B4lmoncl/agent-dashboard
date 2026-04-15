@@ -89,20 +89,6 @@ img {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-/* Inline button spinner — use as ::before on loading buttons */
-.btn-loading { position: relative; pointer-events: none; }
-.btn-loading::before {
-  content: "";
-  display: inline-block;
-  width: 12px; height: 12px;
-  border: 2px solid rgba(255,255,255,0.15);
-  border-top-color: currentColor;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
 @keyframes fadeInDown {
   from { opacity: 0; transform: translate(-50%, -10px); }
   to { opacity: 1; transform: translate(-50%, 0); }
@@ -908,16 +894,6 @@ button[disabled] {
   animation: discovery-reveal 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ─── Milestone Claim Glow Pulse ─────────────────────────────────────── */
-@keyframes milestone-claim-glow {
-  0%   { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
-  30%  { box-shadow: 0 0 20px rgba(251,191,36,0.4), 0 0 40px rgba(251,191,36,0.1); }
-  100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
-}
-.milestone-claimed {
-  animation: milestone-claim-glow 0.8s ease-out;
-}
-
 /* ─── Skeleton Loading ──────────────────────────────────────────────────── */
 @keyframes skeleton-pulse {
   0%, 100% { opacity: 0.04; }
@@ -1123,13 +1099,6 @@ button[disabled] {
   100% { transform: translateY(-40px) scale(0.3) rotate(45deg); opacity: 0; }
 }
 
-/* ─── Floor Transition ─── */
-@keyframes floor-enter {
-  0% { opacity: 0; transform: translateY(8px); filter: brightness(1.3); }
-  100% { opacity: 1; transform: translateY(0); filter: brightness(1); }
-}
-.floor-transition-enter { animation: floor-enter 0.4s ease-out; }
-
 /* ─── Enhanced Card Hover (Wolcen/D3 depth) ─── */
 .card-hover-depth {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
@@ -1220,21 +1189,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 @keyframes ambient-wave {
   0%, 100% { transform: scaleX(0.8); opacity: 0.2; }
   50% { transform: scaleX(1.2); opacity: 0.5; }
-}
-
-/* Mondlicht background — aether veins glowing through the tower walls */
-/* Mondlicht page background — static subtle gradient (no animation = no flicker) */
-.mondlicht-bg {
-  position: relative;
-}
-.mondlicht-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background: radial-gradient(ellipse at 30% 15%, rgba(103,232,249,0.08) 0%, transparent 55%), radial-gradient(ellipse at 75% 85%, rgba(99,102,241,0.06) 0%, transparent 45%);
-  z-index: 0;
 }
 
 /* ─── Activity Feed Enhancements ────────────────────────────────────────── */
@@ -1466,16 +1420,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   100% { filter: drop-shadow(0 0 3px var(--ring-color, #818cf8)) hue-rotate(0deg); }
 }
 
-/* Today Drawer card animations */
-@keyframes today-card-enter {
-  from { opacity: 0; transform: translateX(-8px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes today-urgent-pulse {
-  0%, 100% { box-shadow: inset 0 0 0 0 rgba(251,191,36,0), 0 0 0 0 rgba(251,191,36,0); }
-  50% { box-shadow: inset 0 0 8px rgba(251,191,36,0.06), 0 0 8px rgba(251,191,36,0.08); }
-}
-
 /* Streak flame animation */
 @keyframes today-flame-flicker {
   0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.9; }
@@ -1670,40 +1614,12 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .npc-modal-backdrop { animation: npc-modal-enter 0.3s ease-out; }
 .npc-modal-content { animation: npc-modal-content-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
 
-/* 2. Recipe Card Hover Lift */
-.forge-recipe-card { transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
-.forge-recipe-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
-
-/* 4. Craft Completion Sparkle */
-@keyframes craft-result-enter {
-  from { opacity: 0; transform: translateY(8px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-.craft-result-celebrate { animation: craft-result-enter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-
-/* Skill-up result toast — dramatic flash when a skill-up was gained */
-@keyframes skill-up-result-flash-anim {
-  0%   { opacity: 0; transform: translateY(6px) scale(0.97); }
-  15%  { opacity: 1; transform: translateY(0) scale(1.04); }
-  40%  { transform: scale(1); }
-  60%  { filter: brightness(1.4); }
-  100% { filter: brightness(1); transform: scale(1); }
-}
-.skill-up-result-flash { animation: skill-up-result-flash-anim 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-
 /* 5. Skill-Up Flash + Float */
 @keyframes skill-up-flash {
   0%, 100% { background: transparent; }
   50% { background: rgba(251,191,36,0.15); }
 }
 .skill-bar-flash { animation: skill-up-flash 0.6s ease-out; }
-
-/* 7. Material Count Pulsing */
-@keyframes material-almost-ready {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.9; color: rgba(251,191,36,0.8); }
-}
-.mat-almost-ready { animation: material-almost-ready 2s ease-in-out infinite; }
 
 /* ─── Enhanced Card Hover Micro-Interactions ──────────────────────────── */
 /* Apply to quest cards, inventory items, friend cards for polished hover  */
@@ -1716,32 +1632,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
     0 6px 20px rgba(0,0,0,0.35),
     0 0 1px rgba(255,255,255,0.08),
     inset 0 1px 0 rgba(255,255,255,0.03);
-}
-
-/* Rarity glow intensification on hover — epic */
-.card-rarity-epic {
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  box-shadow: 0 0 6px rgba(168,85,247,0.15);
-}
-.card-rarity-epic:hover {
-  box-shadow:
-    0 0 14px rgba(168,85,247,0.35),
-    0 0 28px rgba(168,85,247,0.12),
-    inset 0 0 6px rgba(168,85,247,0.06);
-  border-color: rgba(168,85,247,0.4);
-}
-
-/* Rarity glow intensification on hover — legendary */
-.card-rarity-legendary {
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  box-shadow: 0 0 8px rgba(249,115,22,0.15);
-}
-.card-rarity-legendary:hover {
-  box-shadow:
-    0 0 18px rgba(249,115,22,0.4),
-    0 0 36px rgba(249,115,22,0.15),
-    inset 0 0 8px rgba(249,115,22,0.06);
-  border-color: rgba(249,115,22,0.5);
 }
 
 /* ─── Staggered List Item Fade-In ─────────────────────────────────────── */
@@ -1764,23 +1654,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .stagger-list > *:nth-child(9)  { animation-delay: 0.32s; }
 .stagger-list > *:nth-child(10) { animation-delay: 0.36s; }
 .stagger-list > *:nth-child(n+11) { animation-delay: 0.40s; }
-
-/* ─── Smooth Tab Switch Transitions ───────────────────────────────────── */
-/* Wrap tab content panels in .tab-panel for crossfade effect              */
-@keyframes tab-fade-out {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-4px); }
-}
-@keyframes tab-fade-in-up {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.tab-panel-enter {
-  animation: tab-fade-in-up 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-.tab-panel-exit {
-  animation: tab-fade-out 0.15s ease-in forwards;
-}
 
 /* ─── Progress Bar Shimmer & Pulse ────────────────────────────────────── */
 /* Sweeping shine across any progress bar fill                             */
@@ -1840,57 +1713,11 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   100% { transform: translateX(120%); }
 }
 
-/* ─── Mini Streak Flame (CSS-only, for DailyHub) ─────────────────── */
-.streak-mini-flame {
-  display: inline-block;
-  width: 10px;
-  height: 14px;
-  position: relative;
-}
-.streak-mini-flame::before,
-.streak-mini-flame::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  transform: translateX(-50%);
-}
-.streak-mini-flame::before {
-  width: 10px;
-  height: 14px;
-  background: linear-gradient(to top, #f97316, #fbbf24 60%, #fef3c7);
-  animation: mini-flame-dance 0.8s ease-in-out infinite alternate;
-}
-.streak-mini-flame::after {
-  width: 5px;
-  height: 8px;
-  bottom: 0;
-  background: linear-gradient(to top, #fef3c7, white);
-  animation: mini-flame-dance 0.6s ease-in-out infinite alternate-reverse;
-}
-.streak-mini-flame.epic::before { background: linear-gradient(to top, #7c3aed, #a78bfa 60%, #e0e7ff); }
-.streak-mini-flame.epic::after  { background: linear-gradient(to top, #c4b5fd, white); }
-@keyframes mini-flame-dance {
-  0%   { transform: translateX(-50%) scaleY(1) scaleX(1); }
-  100% { transform: translateX(-50%) scaleY(1.15) scaleX(0.9); }
-}
-
 /* ─── Quest Complete Shine (sweep across card after completion) ──── */
 @keyframes quest-complete-shine {
   0%   { transform: translateX(-100%) skewX(-15deg); }
   100% { transform: translateX(300%) skewX(-15deg); }
 }
-.quest-complete-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  width: 40%;
-  animation: quest-complete-shine 0.8s ease-out forwards;
-  pointer-events: none;
-}
-
 /* ─── Legendary Item Pulse (items in inventory/equipment) ──────── */
 @keyframes legendary-item-pulse {
   0%, 100% { box-shadow: 0 0 4px rgba(249,115,22,0.3); }
@@ -1918,57 +1745,12 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   animation: forge-bar-blaze 2s ease-in-out infinite;
 }
 
-/* ─── XP Bar Fill Animation (smooth counting up) ──────────────── */
-@keyframes xp-fill-glow {
-  0%   { filter: brightness(1); }
-  50%  { filter: brightness(1.4); }
-  100% { filter: brightness(1); }
-}
-.xp-bar-filling {
-  animation: xp-fill-glow 0.5s ease-out;
-}
-
 /* ─── Coin Rain (daily bonus claim visual) ─────────────────────── */
 
 /* ─── Daily Hub: Bonus Pulse + Streak Urgency ─────────────────────── */
 @keyframes daily-bonus-pulse {
   0%, 100% { box-shadow: 0 0 8px rgba(251,191,36,0.15); }
   50%      { box-shadow: 0 0 20px rgba(251,191,36,0.3), 0 0 40px rgba(251,191,36,0.1); }
-}
-.daily-bonus-glow:hover {
-  background: linear-gradient(135deg, rgba(251,191,36,0.3), rgba(245,158,11,0.25)) !important;
-  transform: translateY(-1px);
-}
-.streak-urgent-pulse {
-  animation: streak-danger 1.5s ease-in-out infinite;
-}
-@keyframes streak-danger {
-  0%, 100% { box-shadow: none; }
-  50%      { box-shadow: 0 0 12px rgba(239,68,68,0.3); }
-}
-
-/* Pulse at 100% — apply when bar is full */
-@keyframes progress-complete-pulse {
-  0%, 100% { filter: brightness(1); box-shadow: 0 0 4px var(--bar-color, rgba(74,222,128,0.3)); }
-  50%      { filter: brightness(1.25); box-shadow: 0 0 14px var(--bar-color, rgba(74,222,128,0.5)), 0 0 24px var(--bar-color, rgba(74,222,128,0.2)); }
-}
-.progress-complete {
-  animation: progress-complete-pulse 1.8s ease-in-out infinite;
-}
-
-/* XP bar satisfying fill — smooth width transition with overshoot         */
-.xp-bar-fill-animate {
-  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* ─── Empty State Breathing Animation ─────────────────────────────────── */
-/* Apply to empty state containers for a subtle alive feel                 */
-@keyframes empty-state-breathe {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50%      { opacity: 0.7; transform: scale(1.005); }
-}
-.empty-state-breathe {
-  animation: empty-state-breathe 4s ease-in-out infinite;
 }
 
 /* Empty inventory slot — dim dashed border with pulse                     */
@@ -2077,16 +1859,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   transition-duration: 0.08s;
 }
 
-/* ─── Quest Complete Success Flash ─────────────────────────────────── */
-@keyframes quest-complete-flash {
-  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-  50% { box-shadow: 0 0 20px 4px rgba(34,197,94,0.4); }
-  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
-}
-.quest-complete-flash {
-  animation: quest-complete-flash 0.5s ease-out;
-}
-
 /* ─── Quest Card Action Loading Shimmer ──────────────────────────────── */
 /* Subtle golden shimmer along the top border during async actions         */
 @keyframes quest-action-shimmer {
@@ -2145,42 +1917,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   animation: npc-quest-pulse 4s ease-in-out infinite;
 }
 
-/* ─── Number Counter Bounce Animation ─────────────────────────────────── */
-/* Apply when a number changes (XP gain, gold reward, stat change)         */
-@keyframes number-count-bounce {
-  0%   { transform: scale(1); }
-  25%  { transform: scale(1.2); color: #4ade80; }
-  50%  { transform: scale(0.95); }
-  75%  { transform: scale(1.05); }
-  100% { transform: scale(1); color: inherit; }
-}
-@keyframes number-count-bounce-gold {
-  0%   { transform: scale(1); }
-  25%  { transform: scale(1.2); color: #fbbf24; }
-  50%  { transform: scale(0.95); }
-  75%  { transform: scale(1.05); }
-  100% { transform: scale(1); color: inherit; }
-}
-@keyframes number-count-bounce-loss {
-  0%   { transform: scale(1); }
-  25%  { transform: scale(1.15); color: #ef4444; }
-  50%  { transform: scale(0.95); }
-  75%  { transform: scale(1.03); }
-  100% { transform: scale(1); color: inherit; }
-}
-.number-bounce {
-  display: inline-block;
-  animation: number-count-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.number-bounce-gold {
-  display: inline-block;
-  animation: number-count-bounce-gold 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.number-bounce-loss {
-  display: inline-block;
-  animation: number-count-bounce-loss 0.4s ease-out;
-}
-
 /* ─── Legendary Item Ambient Glow ─────────────────────────────────────── */
 /* Slow rotating/pulsing glow for legendary items in inventory             */
 @keyframes legendary-ambient-glow {
@@ -2192,34 +1928,6 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .legendary-ambient {
   animation: legendary-ambient-glow 4s ease-in-out infinite;
   border-color: rgba(249,115,22,0.3);
-}
-
-/* Legendary rotating halo — pseudo-element for extra drama                */
-@keyframes legendary-halo-rotate {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.legendary-halo {
-  position: relative;
-  overflow: visible;
-}
-.legendary-halo::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    rgba(249,115,22,0.2) 10%,
-    transparent 20%,
-    transparent 50%,
-    rgba(255,140,0,0.15) 60%,
-    transparent 70%
-  );
-  animation: legendary-halo-rotate 8s linear infinite;
-  pointer-events: none;
-  z-index: -1;
 }
 
 /* Epic item static glow — subtler than legendary                          */

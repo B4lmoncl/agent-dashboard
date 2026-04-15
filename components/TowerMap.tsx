@@ -215,7 +215,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         className="text-xs px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 hover:brightness-125"
                         style={{
                           background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.035)",
-                          color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.45)",
+                          color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.45)",
                           border: `1px solid ${isActive ? `${floor.color}50` : "rgba(255,255,255,0.04)"}`,
                           cursor: roomLocked ? "not-allowed" : "pointer",
                           fontWeight: isActive ? 700 : 400,

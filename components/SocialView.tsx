@@ -324,7 +324,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                     <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-2 py-1 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
-                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove friend">✕</button>
+                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100" style={{ transition: "opacity 0.15s ease" }} title="Remove friend">✕</button>
                 )}
                 <div className="relative mb-1.5">
                   <PlayerBadge name={f.name} avatar={f.avatar} color={f.color} size={36} />
@@ -599,7 +599,7 @@ function TradeOfferDisplay({ offer, label, color, onItemClick }: { offer: TradeO
       {offer.gold > 0 && (
         <div className="flex items-center gap-1.5 mb-1.5">
           <Tip k="gold">
-            <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", cursor: "help" }}>
+            <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", cursor: "help" }}>
               {offer.gold} Gold
             </span>
           </Tip>
@@ -636,7 +636,9 @@ function TradeOfferDisplay({ offer, label, color, onItemClick }: { offer: TradeO
                   {item.setName && <p className="text-xs mt-1" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
                 </>}
               >
-                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}`, cursor: "pointer" }}>
+                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left hover:brightness-125" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}`, cursor: "pointer", transition: "background 0.15s ease, filter 0.15s ease" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}>
                   {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />}
                   <span className="font-semibold truncate" style={{ color: rc }}>{item.name}</span>
                   <span className="text-w20 capitalize ml-auto flex-shrink-0">{item.rarity}</span>
@@ -678,7 +680,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
             <button
               key={k}
               onClick={() => onSortChange(k)}
-              className="text-xs px-2 py-0.5 rounded"
+              className="text-xs px-2 py-1.5 rounded-lg"
               style={{
                 background: sortKey === k ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.04)",
                 color: sortKey === k ? "#a855f7" : "rgba(255,255,255,0.3)",
@@ -1087,8 +1089,8 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
                     </div>
                     {round.message && <p className="text-xs text-w40 italic">&ldquo;{round.message}&rdquo;</p>}
                     <div className="flex gap-3 mt-1 text-xs text-w20 flex-wrap">
-                      {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: {round.initiatorOffer.gold}g</span>}
-                      {round.recipientOffer.gold > 0 && <span>{t.recipientName}: {round.recipientOffer.gold}g</span>}
+                      {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: <span className="font-mono">{round.initiatorOffer.gold}</span>g</span>}
+                      {round.recipientOffer.gold > 0 && <span>{t.recipientName}: <span className="font-mono">{round.recipientOffer.gold}</span>g</span>}
                       {round.initiatorOffer.items.length > 0 && (() => {
                         const names = round.initiatorOffer.items.map(it => it.name);
                         const preview = names.slice(0, 2).join(", ");
@@ -2417,7 +2419,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
             <Tip key={tab} k={tipKey}>
               <button
                 onClick={() => setActiveTab(tab)}
-                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize relative"
+                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg transition-all capitalize relative"
                 style={{
                   background: activeTab === tab ? "#252525" : "transparent",
                   color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",

@@ -2029,7 +2029,7 @@ export default function Dashboard() {
                               </span>
                             </TipCustom>
                             {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
-                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
                                 {Math.ceil((6 * 3600 * 1000 - (Date.now() - lastPoolRefresh.getTime())) / 3600000)}h
                               </span>
                             )}
@@ -2270,8 +2270,8 @@ export default function Dashboard() {
                         {playerVisibleInProgress.length > 0 && (
                           <>
                             <button data-feedback-id="quest-board.in-progress" onClick={() => { const next = !inProgressSectionCollapsed; setInProgressSectionCollapsed(next); try { localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
-                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-md" style={{ color: "#a78bfa", background: "linear-gradient(90deg, rgba(139,92,246,0.18), rgba(139,92,246,0.1) 60%, transparent 100%)", minWidth: 180, borderLeft: "2px solid rgba(139,92,246,0.5)", boxShadow: "0 1px 0 rgba(139,92,246,0.08)" }}>In Progress</span>
-                              <span className="text-xs px-2 py-0.5 rounded-md font-mono font-bold relative group" style={{ background: playerVisibleInProgress.length >= 20 ? "rgba(239,68,68,0.18)" : "rgba(139,92,246,0.18)", color: playerVisibleInProgress.length >= 20 ? "#ef4444" : "#a78bfa", border: playerVisibleInProgress.length >= 20 ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(139,92,246,0.3)" }}>{playerVisibleInProgress.length}{playerVisibleInProgress.length > 20 && <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 whitespace-nowrap rounded-md px-2.5 py-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity z-50" style={{ background: "#1c1c1c", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", boxShadow: "0 4px 12px rgba(0,0,0,0.5)" }}>Too many quests in progress! XP malus: -{playerVisibleInProgress.length >= 30 ? 80 : Math.min(50, (playerVisibleInProgress.length - 20) * 10)}%</span>}</span>
+                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-lg" style={{ color: "#a78bfa", background: "linear-gradient(90deg, rgba(139,92,246,0.18), rgba(139,92,246,0.1) 60%, transparent 100%)", minWidth: 180, borderLeft: "2px solid rgba(139,92,246,0.5)", boxShadow: "0 1px 0 rgba(139,92,246,0.08)" }}>In Progress</span>
+                              <span className="text-xs px-2 py-0.5 rounded-lg font-mono font-bold relative group" style={{ background: playerVisibleInProgress.length >= 20 ? "rgba(239,68,68,0.18)" : "rgba(139,92,246,0.18)", color: playerVisibleInProgress.length >= 20 ? "#ef4444" : "#a78bfa", border: playerVisibleInProgress.length >= 20 ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(139,92,246,0.3)" }}>{playerVisibleInProgress.length}{playerVisibleInProgress.length > 20 && <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity z-50" style={{ background: "#1c1c1c", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", boxShadow: "0 4px 12px rgba(0,0,0,0.5)" }}>Too many quests in progress! XP malus: -{playerVisibleInProgress.length >= 30 ? 80 : Math.min(50, (playerVisibleInProgress.length - 20) * 10)}%</span>}</span>
                               <span className="ml-auto text-xs text-w25">{inProgressSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
                             {!inProgressSectionCollapsed && (
@@ -2304,7 +2304,7 @@ export default function Dashboard() {
                               </div>
                             )}
                             <button data-feedback-id="quest-board.open" onClick={() => { const next = !openSectionCollapsed; setOpenSectionCollapsed(next); try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
-                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-md" style={{ color: "#94a3b8", background: "linear-gradient(90deg, rgba(148,163,184,0.15), rgba(148,163,184,0.08) 60%, transparent 100%)", minWidth: 180, borderLeft: "2px solid rgba(148,163,184,0.4)", boxShadow: "0 1px 0 rgba(148,163,184,0.06)" }}>Open</span>
+                              <span className="text-sm uppercase tracking-widest px-3 py-1 rounded-lg" style={{ color: "#94a3b8", background: "linear-gradient(90deg, rgba(148,163,184,0.15), rgba(148,163,184,0.08) 60%, transparent 100%)", minWidth: 180, borderLeft: "2px solid rgba(148,163,184,0.4)", boxShadow: "0 1px 0 rgba(148,163,184,0.06)" }}>Open</span>
                               <span className="ml-auto text-xs text-w25">{openSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
                             {!openSectionCollapsed && (
@@ -2458,7 +2458,7 @@ export default function Dashboard() {
               <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w4 text-w20">
                 {quests.rejected.length}
               </span>
-              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
+              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                 {rejectedOpen ? "▲" : "▼"}
               </span>
             </button>
@@ -2473,7 +2473,7 @@ export default function Dashboard() {
                     <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>x</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs truncate text-w25" style={{ textDecoration: "line-through" }}>{q.title}</p>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>by {q.createdBy ?? "unknown"}</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>by {q.createdBy ?? "unknown"}</span>
                     </div>
                     {q.rarity && <span className="text-xs px-1 rounded" style={{ color: ({ common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" } as Record<string, string>)[q.rarity] || "#9ca3af" }}>{q.rarity}</span>}
                   </div>
@@ -2775,11 +2775,11 @@ export default function Dashboard() {
         <div style={{ height: 1, background: `linear-gradient(90deg, transparent 0%, ${currentFloorColor}18 30%, ${currentFloorColor}25 50%, ${currentFloorColor}18 70%, transparent 100%)`, marginBottom: 16 }} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
           <span>Quest Hall v{gameVersion}</span>
-          <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+          <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
           <span style={{ color: `${currentFloorColor}40` }}>{CURRENT_SEASON.name}</span>
           {reviewApiKey && playerName && (
             <>
-              <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+              <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
               <button
                 data-feedback-id="footer.alpha-button"
                 onClick={() => setFeedbackMode(v => !v)}

@@ -175,7 +175,7 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
           </div>
           {/* Level badge overlay */}
           <div
-            className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-md text-xs font-black"
+            className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full text-xs font-black"
             style={{
               background: "#1a1a1e",
               color: lvl.color,

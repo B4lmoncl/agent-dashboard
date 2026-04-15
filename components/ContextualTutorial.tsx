@@ -238,7 +238,7 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
           style={{ background: "rgba(233,168,76,0.06)", color: "rgba(233,168,76,0.4)", border: "1px solid rgba(233,168,76,0.12)", cursor: "pointer", opacity: 0.5 }}
           title="Show tutorial hint"
         >
-          <span style={{ fontSize: 11 }}>?</span>
+          <span style={{ fontSize: 12 }}>?</span>
           <span>{lastMoment.title}</span>
         </button>
       );

@@ -161,6 +161,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
                 <button
                   onClick={handleSubmit}
                   disabled={submitting || !text.trim()}
+                  title={submitting ? "Submitting..." : !text.trim() ? "Enter feedback text first" : undefined}
                   className="flex-1 text-xs py-2 rounded-lg font-semibold"
                   style={{
                     background: submitting || !text.trim()

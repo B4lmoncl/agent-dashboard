@@ -374,7 +374,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                             </div>
                             {earnerCount > 0 || myEarned
                               ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement unlocked."}</p>
-                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.15)" }}>Complete conditions to reveal description.</p>
+                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.25)" }}>Complete conditions to reveal description.</p>
                             }
                           </div>
                         </div>
@@ -387,7 +387,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                                 {rarity.label.toUpperCase()}
                               </span>
                             </Tip>
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                               {totalUsers > 0 ? Math.round((earnerCount / totalUsers) * 100) : 0}% aller Spieler
                             </span>
                           </div>

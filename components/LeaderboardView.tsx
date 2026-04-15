@@ -120,7 +120,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
       <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
         <img src="/images/icons/nav-proving.png" alt="" width={48} height={48} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-medium mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>{mode === "players" ? "The Proving Grounds await" : "No agents deployed"}</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{mode === "players" ? "Complete quests to earn XP and claim your rank. Daily rituals, campaigns, and challenges all contribute to your standing." : "Deploy agents and let them complete quests to appear on the leaderboard."}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{mode === "players" ? "Complete quests to earn XP and claim your rank. Daily rituals, campaigns, and challenges all contribute to your standing." : "Deploy agents and let them complete quests to appear on the leaderboard."}</p>
       </div>
     );
   }
@@ -160,7 +160,9 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             <div
               key={entry.id}
               className={`flex flex-col items-center gap-2${isPlayerMode && onOpenProfile ? " cursor-pointer" : ""}`}
-              style={{ minWidth: 100 }}
+              style={{ minWidth: 100, transition: "transform 0.15s ease, filter 0.15s ease" }}
+              onMouseEnter={e => { if (isPlayerMode && onOpenProfile) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(1.1)"; } }}
+              onMouseLeave={e => { if (isPlayerMode && onOpenProfile) { e.currentTarget.style.transform = ""; e.currentTarget.style.filter = ""; } }}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               title={isPlayerMode && onOpenProfile ? `View ${entry.name}'s profile` : undefined}
             >
@@ -176,7 +178,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 {(() => { const t = userMap.get(entry.id)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af" }}>{t.name}</p> : null; })()}
                 {cls && <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)" }}>{cls.icon} {cls.fantasy}</p>}
                 <p className="text-xs" style={{ color: lvl.color }}>{lvl.name}</p>
-                <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()} XP</span>
+                <span className="text-xs font-mono font-bold" title="Gesamt-XP" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()} XP</span>
               </div>
               <div
                 className={`w-full rounded-t-lg flex items-center justify-center ${podiumHeightClass}`}
@@ -244,7 +246,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           return (
             <div
               key={entry.id}
-              className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
+              className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors duration-150" : ""}`}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               style={{
                 gridTemplateColumns: "32px 1fr 60px 60px 60px",
@@ -274,7 +276,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                       return cls ? (
                         <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)" }}>{cls.icon} {cls.fantasy}</span>
                       ) : (
-                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.15)" }}>No Class</span>
+                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.25)" }}>No Class</span>
                       );
                     })()}
                   </div>

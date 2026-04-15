@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useId, useMemo } from "react";
+import { useState, useEffect, useCallback, useId, useMemo } from "react";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import ItemTooltip from "@/components/ItemTooltip";
 import { getBalance } from "@/lib/balance-cache";
@@ -871,7 +871,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
               {history.slice(0, 50).map((h, i) => {
                 const cfg = RARITY_CONFIG[h.rarity] || RARITY_CONFIG.common;
                 return (
-                  <button key={i} onClick={() => setTooltipItem({ name: h.name, rarity: h.rarity, icon: h.icon || null, desc: h.isDuplicate ? "Duplicate — refunded as Runensplitter" : undefined })} className="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left" style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, cursor: "pointer" }}>
+                  <button key={i} onClick={() => setTooltipItem({ name: h.name, rarity: h.rarity, icon: h.icon || null, desc: h.isDuplicate ? "Duplicate — refunded as Runensplitter" : undefined })} className="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:brightness-125" style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, cursor: "pointer", transition: "filter 0.15s ease" }}>
                     {h.icon && h.icon.startsWith("/") ? <img src={h.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-base">{h.emoji || "?"}</span>}
                     <span className="text-xs font-semibold flex-1" style={{ color: cfg.color }}>{h.name}</span>
                     <span className="text-xs uppercase font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{cfg.label}</span>
