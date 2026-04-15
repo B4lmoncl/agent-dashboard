@@ -599,7 +599,7 @@ function TradeOfferDisplay({ offer, label, color, onItemClick }: { offer: TradeO
       {offer.gold > 0 && (
         <div className="flex items-center gap-1.5 mb-1.5">
           <Tip k="gold">
-            <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", cursor: "help" }}>
+            <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", cursor: "help" }}>
               {offer.gold} Gold
             </span>
           </Tip>
@@ -680,7 +680,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
             <button
               key={k}
               onClick={() => onSortChange(k)}
-              className="text-xs px-2 py-0.5 rounded"
+              className="text-xs px-2 py-1.5 rounded-lg"
               style={{
                 background: sortKey === k ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.04)",
                 color: sortKey === k ? "#a855f7" : "rgba(255,255,255,0.3)",
@@ -1089,8 +1089,8 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
                     </div>
                     {round.message && <p className="text-xs text-w40 italic">&ldquo;{round.message}&rdquo;</p>}
                     <div className="flex gap-3 mt-1 text-xs text-w20 flex-wrap">
-                      {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: {round.initiatorOffer.gold}g</span>}
-                      {round.recipientOffer.gold > 0 && <span>{t.recipientName}: {round.recipientOffer.gold}g</span>}
+                      {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: <span className="font-mono">{round.initiatorOffer.gold}</span>g</span>}
+                      {round.recipientOffer.gold > 0 && <span>{t.recipientName}: <span className="font-mono">{round.recipientOffer.gold}</span>g</span>}
                       {round.initiatorOffer.items.length > 0 && (() => {
                         const names = round.initiatorOffer.items.map(it => it.name);
                         const preview = names.slice(0, 2).join(", ");
@@ -2419,7 +2419,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
             <Tip key={tab} k={tipKey}>
               <button
                 onClick={() => setActiveTab(tab)}
-                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize relative"
+                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg transition-all capitalize relative"
                 style={{
                   background: activeTab === tab ? "#252525" : "transparent",
                   color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",

@@ -22,7 +22,7 @@ function CurrencyBadge({ type, amount }: { type: string; amount: number }) {
   // Wrap with Tip if the currency has a tooltip entry
   const tipKey = type === "runensplitter" || type === "sternentaler" || type === "essenz" || type === "gold" || type === "stardust" || type === "gildentaler" || type === "xp" || type === "mondstaub" ? type : null;
   const badge = (
-    <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded" style={{ background: `${info.color}15`, color: info.color, cursor: tipKey ? "help" : undefined }}>
+    <span className="inline-flex items-center gap-1 text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: `${info.color}15`, color: info.color, cursor: tipKey ? "help" : undefined }}>
       {amount} {info.label}
     </span>
   );
