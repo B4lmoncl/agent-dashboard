@@ -405,9 +405,9 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 - **Backend:** `routes/twilight-market.js`. Daily spawn time calculated at midnight rotation. State in `data/twilightMarket.json`. Stock tracked per player per appearance.
 - **Lore:** "Im Schatten zwischen den Stockwerken, wo das Licht nicht ganz hinreicht, baut jemand einen Stand auf. Niemand weiß wer. Niemand fragt. Die Preise sind gut und die Ware... interessant."
 
-### Schmiedefieber / Forge Fever (PLANNED — IMPLEMENTATION IN PROGRESS)
+### Schmiedefieber / Forge Fever (IMPLEMENTED)
 
-> **Status:** Design finalized, implementation starting.
+> **Status:** Fully implemented. Backend in `routes/crafting.js`, UI in `components/ForgeView.tsx`, state persisted via `appState.json`, rotation in `lib/rotation.js`.
 
 **Spieler-Erklärung:** Alle 48 Stunden bricht in einer zufälligen Profession das Schmiedefieber aus — ein 4-stündiges Zeitfenster, in dem die Werkstatt überhitzt läuft. Während des Fiebers: Materialkosten halbiert (-50%) und doppelte Skill-XP (2x). Wer es schafft, innerhalb des Fensters 5 oder mehr Rezepte zu craften, bekommt zusätzlich einen Bonus-Cache mit seltenen Materialien. Das Fieber wird im Artisan's Quarter durch ein pulsierendes Banner angezeigt — mit Countdown, betroffener Profession und aktuellem Craft-Zähler.
 
