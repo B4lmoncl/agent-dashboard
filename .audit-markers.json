@@ -837,5 +837,35 @@
     "lastAuditDate": "2026-04-16",
     "findings": "Clean. Standard Next.js layout. Geist fonts. viewport maximumScale=5. lang=en correct per translation rules.",
     "status": "clean"
+  },
+  "public/data/gachaPool.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "MED FIXED: All 6 gear items had inflated stat ranges violating T4 max (legendaries 8-20→5-8, epics 5-12→4-8, rares 4-9→4-8). Affix counts correct. Consumables OK. uniqueDrops cross-refs valid.",
+    "status": "clean"
+  },
+  "public/data/bannerTemplates.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. 5 banners (2 active, 3 inactive). Drop rates consistent. Waffenkammer/Ruestkammer slot weights OK. Featured items reference valid gacha pool IDs.",
+    "status": "clean"
+  },
+  "public/data/itemTemplates.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "LOW: T4 maxLevel=30 vs CLAUDE.md 25-50, but tiers array is metadata only (not consumed by game logic). Items schema clean. 8 stats, 7 slots, 8 types defined.",
+    "status": "clean"
+  },
+  "public/data/lootTables.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. 5 rarity tiers, self-contained item data. Effects well-structured. random_gear entries present for all tiers.",
+    "status": "clean"
+  },
+  "public/data/suffixes.json": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. 10 suffixes with level-scaled stat bonuses. Values reasonable (1-5 per stat at Lv50). Used for gear naming.",
+    "status": "clean"
   }
 }
