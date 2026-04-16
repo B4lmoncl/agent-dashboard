@@ -813,5 +813,29 @@
     "lastAuditDate": "2026-04-15",
     "findings": "No bugs or security issues. Portal-based tooltip with ESC/click-outside. All images have onError. All stats have tooltips via Tip component.",
     "status": "clean"
+  },
+  "lib/email.js": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. Plaintext email (no XSS). encodeURIComponent on URL params. API key from env. Graceful error handling. Inbox caching.",
+    "status": "clean"
+  },
+  "lib/companion-config.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. Pure config — 12 companion colors, portrait path helper, virtual type set. No logic, no side effects.",
+    "status": "clean"
+  },
+  "hooks/useFirstVisit.ts": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. localStorage hook with try/catch. Proper initial state via useState callback.",
+    "status": "clean"
+  },
+  "app/layout.tsx": {
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-16",
+    "findings": "Clean. Standard Next.js layout. Geist fonts. viewport maximumScale=5. lang=en correct per translation rules.",
+    "status": "clean"
   }
 }

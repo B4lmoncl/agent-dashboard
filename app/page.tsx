@@ -526,8 +526,11 @@ export default function Dashboard() {
         const counts: Record<string, number> = {};
         // Great Halls: daily bonus, world boss
         counts.worldboss = n.wbClaimable || 0;
-        // Trading District: craft cooldowns ready (not tracked yet), milestones
+        // Challenges: unclaimed star milestones
+        counts.challenges = n.challengeUnclaimed || 0;
+        // Trading District: forge fever + daily milestones
         counts.bazaar = n.unclaimedMilestones || 0;
+        counts.forge = n.forgeFeverActive || 0;
         // Breakaway: mail + trades + friends
         counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0) + (n.pendingBonds || 0) + (n.bondChestReady || 0);
         // Character: companion expedition
@@ -536,6 +539,10 @@ export default function Dashboard() {
         counts.season = n.bpUnclaimed || 0;
         // Factions: unclaimed tier rewards
         counts.factions = n.factionUnclaimed || 0;
+        // Adventure Tome: unclaimed milestones
+        counts.tome = n.tomeUnclaimed || 0;
+        // Rift: active rift in progress (reminder dot)
+        if (batch.riftActive) counts.rift = 1;
         setNavNotifs(counts);
       }
       // Load persistent seen state from backend (replaces localStorage)
