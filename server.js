@@ -314,6 +314,7 @@ function shutdown(signal) {
   clearInterval(forceSaveInterval);
   if (typeof changelogInterval !== 'undefined') clearInterval(changelogInterval);
   flushPendingSaves();
+  saveAppState(); // Persist forgeFever + appState on shutdown
   server.close(() => {
     console.log('[shutdown] HTTP server closed');
     process.exit(0);

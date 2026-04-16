@@ -576,6 +576,7 @@ router.post('/api/social/trade/propose', requireAuth, (req, res) => {
   if (offer.materials && typeof offer.materials === 'object') {
     u.craftingMaterials = u.craftingMaterials || {};
     for (const [matId, amount] of Object.entries(offer.materials)) {
+      if (typeof matId !== 'string' || matId.length > 50) continue; // Sanitize key length
       const amt = Math.max(0, Math.floor(Number(amount) || 0));
       if (amt <= 0) continue;
       if ((u.craftingMaterials[matId] || 0) < amt) {

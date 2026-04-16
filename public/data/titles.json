@@ -311,6 +311,66 @@
       }
     },
     {
+      "id": "bp_s4_10",
+      "name": "Wurzelwandler",
+      "description": "Season Pass Level 10 — Season 4: Schicksalsbaum. Die Wurzeln des Baums haben dich erkannt.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "bp_s4_25",
+      "name": "Astw\u00e4hler",
+      "description": "Season Pass Level 25 — Season 4: Schicksalsbaum. Jede Wahl formt den Pfad.",
+      "rarity": "rare",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 25
+      }
+    },
+    {
+      "id": "bp_s4_40",
+      "name": "Schicksalskrone",
+      "description": "Season Pass Level 40 — Season 4: Schicksalsbaum. Der Baum tr\u00e4gt deine Krone.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 40
+      }
+    },
+    {
+      "id": "bp_s5_10",
+      "name": "Kartograph",
+      "description": "Season Pass Level 10 — Season 5: Abenteuerbuch. Du kartierst das Unbekannte.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "bp_s5_25",
+      "name": "Entdecker der Tiefe",
+      "description": "Season Pass Level 25 — Season 5: Abenteuerbuch. Was verborgen war, hast du gefunden.",
+      "rarity": "rare",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 25
+      }
+    },
+    {
+      "id": "bp_s5_40",
+      "name": "Chronist von Aethermoor",
+      "description": "Season Pass Level 40 — Season 5: Abenteuerbuch. Die Geschichte selbst kennt deinen Namen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 40
+      }
+    },
+    {
       "id": "sternkind",
       "name": "Sternkind",
       "description": "Erworben im Sternentaler-Shop. Die Sterne haben dich als eines der Ihren erkannt.",
