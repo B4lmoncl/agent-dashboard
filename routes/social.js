@@ -1028,7 +1028,7 @@ module.exports = router;
 
 // POST /api/social/challenge — create a challenge between two players
 router.post('/api/social/challenge', requireAuth, (req, res) => {
-  const uid = req.auth?.userId;
+  const uid = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { targetId, type, duration, wager, rules } = req.body;
@@ -1061,7 +1061,7 @@ router.post('/api/social/challenge', requireAuth, (req, res) => {
     targetName: target.name,
     type,
     wager: Math.min(Math.max(0, parseInt(wager) || 0), 1000),
-    rules: type === 'custom' ? String(rules).slice(0, 300) : null,
+    rules: type === 'custom' ? sanitizeText(String(rules).slice(0, 300)) : null,
     duration: duration || '7d',
     status: 'pending', // pending → accepted → active → completed/forfeited/cancelled
     createdAt: new Date().toISOString(),
@@ -1084,7 +1084,7 @@ router.post('/api/social/challenge', requireAuth, (req, res) => {
 
 // POST /api/social/challenge/:id/accept — accept a pending challenge
 router.post('/api/social/challenge/:id/accept', requireAuth, (req, res) => {
-  const uid = req.auth?.userId;
+  const uid = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -1110,7 +1110,7 @@ router.post('/api/social/challenge/:id/accept', requireAuth, (req, res) => {
 
 // GET /api/social/challenges — list my challenges
 router.get('/api/social/challenges', requireAuth, (req, res) => {
-  const uid = req.auth?.userId;
+  const uid = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   res.json({ challenges: u.challenges || [] });
@@ -1118,7 +1118,7 @@ router.get('/api/social/challenges', requireAuth, (req, res) => {
 
 // POST /api/social/challenge/:id/cancel — cancel a pending challenge (challenger only)
 router.post('/api/social/challenge/:id/cancel', requireAuth, (req, res) => {
-  const uid = req.auth?.userId;
+  const uid = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -1141,7 +1141,7 @@ router.post('/api/social/challenge/:id/cancel', requireAuth, (req, res) => {
 
 // POST /api/social/challenge/:id/decline — decline a pending challenge (target only)
 router.post('/api/social/challenge/:id/decline', requireAuth, (req, res) => {
-  const uid = req.auth?.userId;
+  const uid = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -1163,7 +1163,7 @@ router.post('/api/social/challenge/:id/decline', requireAuth, (req, res) => {
 
 // POST /api/social/challenge/:id/forfeit — forfeit an active challenge (auto-lose)
 router.post('/api/social/challenge/:id/forfeit', requireAuth, (req, res) => {
-  const uid = req.auth?.userId;
+  const uid = req.auth.userId?.toLowerCase() || req.auth.userName?.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -1184,11 +1184,11 @@ router.post('/api/social/challenge/:id/forfeit', requireAuth, (req, res) => {
     const loser = state.users[uid];
     const winner = state.users[winnerId];
     if (loser && winner) {
-      const actualWager = Math.max(0, Math.min(challenge.wager, loser.currencies?.gold ?? loser.gold ?? 0));
+      ensureUserCurrencies(loser);
+      ensureUserCurrencies(winner);
+      const actualWager = Math.max(0, Math.min(challenge.wager, loser.currencies.gold || 0));
       if (actualWager > 0) {
-        ensureUserCurrencies(loser);
-        ensureUserCurrencies(winner);
-        loser.currencies.gold = (loser.currencies.gold || 0) - actualWager;
+        loser.currencies.gold -= actualWager;
         winner.currencies.gold = (winner.currencies.gold || 0) + actualWager;
         loser.gold = loser.currencies.gold;
         winner.gold = winner.currencies.gold;

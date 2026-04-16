@@ -45,10 +45,19 @@ function areFriends(a, b) {
 
 function getActiveBondForPlayer(playerId) {
   const pid = playerId.toLowerCase();
-  return state.socialData.swornBonds.find(b =>
+  const bond = state.socialData.swornBonds.find(b =>
     (b.status === 'active' || b.status === 'pending') &&
     (b.player1 === pid || b.player2 === pid)
   ) || null;
+  // Auto-expire timed bonds
+  if (bond && bond.status === 'active' && bond.expiresAt && new Date(bond.expiresAt).getTime() <= Date.now()) {
+    bond.status = 'broken';
+    bond.brokenAt = now();
+    bond.brokenBy = null; // natural expiry — no cooldown
+    saveSocial();
+    return null;
+  }
+  return bond;
 }
 
 function getBondLevel(bondXp) {

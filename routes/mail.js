@@ -44,10 +44,15 @@ router.get('/api/mail', requireAuth, (req, res) => {
   if (!u) return res.status(404).json({ error: 'User not found' });
   const mailbox = ensureMailbox(u);
 
-  // Prune expired mail (auto-return attachments would need sender lookup — skip for now)
+  // Prune expired mail — but keep mail with uncollected attachments (gold or items)
   const cutoff = Date.now() - MAIL_EXPIRY_DAYS * 24 * 3600000;
   const before = mailbox.length;
-  u.mailbox = mailbox.filter(m => new Date(m.sentAt).getTime() > cutoff);
+  u.mailbox = mailbox.filter(m => {
+    if (new Date(m.sentAt).getTime() > cutoff) return true;
+    // Keep expired mail if it has uncollected attachments
+    if (!m.collected && ((m.gold || 0) > 0 || (m.items || []).length > 0)) return true;
+    return false;
+  });
   if (u.mailbox.length < before) saveUsers();
 
   res.json({
@@ -113,7 +118,11 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
     if (itemIds.length > 6) return res.status(400).json({ error: 'Max 6 items per mail' });
     const equippedIds = getEquippedIds(u);
     const inv = u.inventory || [];
+    const seenIds = new Set();
     for (const itemId of itemIds) {
+      if (typeof itemId !== 'string' || !itemId) return res.status(400).json({ error: 'Invalid item ID' });
+      if (seenIds.has(itemId)) return res.status(400).json({ error: 'Duplicate item in attachment list' });
+      seenIds.add(itemId);
       const item = inv.find(i => (i.instanceId || i.id) === itemId);
       if (!item) return res.status(400).json({ error: `Item not found in your inventory` });
       if (equippedIds.has(itemId)) return res.status(400).json({ error: `${item.name || 'Item'} is currently equipped — unequip it first` });
@@ -150,10 +159,10 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
   };
 
   recipientMailbox.push(mail);
-  saveUsers();
 
-  // Track for achievements
+  // Track for achievements (before save so it persists)
   u._mailsSent = (u._mailsSent || 0) + 1;
+  saveUsers();
 
   res.json({
     ok: true,
