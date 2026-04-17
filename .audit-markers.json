@@ -395,9 +395,9 @@
     "status": "clean"
   },
   "routes/expedition.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. expClaimLock, min-1-contribution guard, double-claim via claimedRewards[uid], debounced save, shared progress scaling by playerCount, bonus title for last checkpoint, BP XP grant. atomic tmp+rename write.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted — only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim.",
     "status": "clean"
   },
   "routes/challenges-weekly.js": {
@@ -407,9 +407,9 @@
     "status": "clean"
   },
   "routes/dungeons.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "MED FIXED: duplicate material drops (generic + tier-aware rollCraftingMaterials) — removed generic drop. HIGH FIXED: _dungeonCompletions incremented on failed dungeons, inflating achievement tracking — moved after success determination, gated on isSuccess.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "Cycle 3: MED FIXED: deleted player blocked dungeon finalization — run.collected.length never reached run.participants.length if a participant deleted their account. Now filters for active (existing) participants. Prior fixes hold.",
     "status": "clean"
   },
   "routes/world-boss.js": {
