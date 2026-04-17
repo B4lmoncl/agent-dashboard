@@ -276,8 +276,11 @@ router.post('/api/player/:name/notification-center/read', requireAuth, requireSe
   const allIds = [];
   // Achievements
   if (u.achievements) for (const ach of u.achievements) allIds.push(`ach-${ach.id}`);
-  // Quests
-  const completedQuests = state.quests.filter(q => q.status === "completed" && q.completedBy?.toLowerCase() === uid);
+  // Quests — only the 500 most recent completions (older quests shouldn't generate fresh badges)
+  const completedQuests = state.quests
+    .filter(q => q.status === "completed" && q.completedBy?.toLowerCase() === uid)
+    .sort((a, b) => new Date(b.completedAt || 0).getTime() - new Date(a.completedAt || 0).getTime())
+    .slice(0, 500);
   for (const q of completedQuests) allIds.push(`quest-${q.id}`);
   // World boss
   if (state.store.worldBoss?.active && state.store.worldBoss.boss) allIds.push(`wb-active-${state.store.worldBoss.boss.bossId || "current"}`);
@@ -407,23 +410,30 @@ router.post('/api/player/:name/companion/swap', requireAuth, requireSelf('name')
     return res.status(400).json({ error: 'Invalid companion type' });
   }
 
-  // Retain bond XP and level — only change appearance/type
-  const prevType = u.companion.type;
-  const prevName = u.companion.name;
-  u.companion.type = type;
-  u.companion.name = name || u.companion.name;
-  u.companion.emoji = emoji || u.companion.emoji;
-  u.companion.isReal = isReal !== undefined ? isReal : VALID_REAL.includes(type);
-  u.companion.species = species || type;
-  // Bond XP and level are preserved — no reset
-
-  // Cooldown: 7 days between swaps
+  // Cooldown check FIRST (before any mutation, to prevent corrupting in-memory state)
   const lastSwap = u.companion.lastSwapAt ? new Date(u.companion.lastSwapAt).getTime() : 0;
   const SWAP_COOLDOWN_MS = 7 * 24 * 3600000;
   if (Date.now() - lastSwap < SWAP_COOLDOWN_MS) {
     const daysLeft = Math.ceil((SWAP_COOLDOWN_MS - (Date.now() - lastSwap)) / 86400000);
     return res.status(429).json({ error: `Companion swap on cooldown. ${daysLeft} day${daysLeft !== 1 ? "s" : ""} remaining.` });
   }
+
+  // Sanitize user-controlled fields (length caps + HTML escape)
+  const sanitize = (v, max) => typeof v === 'string' ? v.slice(0, max).replace(/[<>"'&]/g, '') : undefined;
+  const safeName = sanitize(name, 40);
+  const safeEmoji = sanitize(emoji, 8);
+  const safeSpecies = sanitize(species, 30);
+
+  // Retain bond XP and level — only change appearance/type
+  const prevType = u.companion.type;
+  const prevName = u.companion.name;
+  u.companion.type = type;
+  if (safeName) u.companion.name = safeName;
+  if (safeEmoji !== undefined) u.companion.emoji = safeEmoji || u.companion.emoji;
+  u.companion.isReal = isReal !== undefined ? isReal : VALID_REAL.includes(type);
+  if (safeSpecies) u.companion.species = safeSpecies;
+  else if (!u.companion.species) u.companion.species = type;
+  // Bond XP and level are preserved — no reset
   u.companion.lastSwapAt = now();
 
   saveUsers();
@@ -473,6 +483,12 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
   let result = { success: true, message: '' };
   const companionName = u.companion.name || 'Your Companion';
   const flavorText = (ability.flavorText || '').replace(/\{name\}/g, companionName);
+
+  // Claim cooldown BEFORE applying the effect so a crash mid-flow
+  // cannot be exploited for a free ultimate on retry.
+  const cooldownClaimedAt = now();
+  const priorUltimateLastUsed = u.companion.ultimateLastUsed;
+  u.companion.ultimateLastUsed = cooldownClaimedAt;
 
   switch (ability.effect.type) {
     case 'instant_complete_quest': {
@@ -524,11 +540,12 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
       break;
     }
     default:
+      // Roll back cooldown — we never actually applied anything
+      u.companion.ultimateLastUsed = priorUltimateLastUsed;
       return res.status(400).json({ error: `Unknown effect type: ${ability.effect.type}` });
   }
 
-  // Set cooldown
-  u.companion.ultimateLastUsed = now();
+  // Cooldown was already claimed before effect application
   saveUsers();
   // Only save quests if we actually modified one
   if (result.completedQuest) {
@@ -545,14 +562,20 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
   } finally { companionUltimateLock.release(uid); }
 });
 
-// GET /api/cv-export — export skills/certs from completed learning quests
-router.get('/api/cv-export', (req, res) => {
+// GET /api/cv-export — export skills/certs from completed learning quests (self only)
+router.get('/api/cv-export', requireAuth, (req, res) => {
+  const authUid = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
   const { userId } = req.query;
+  // Enforce self-check: userId query must match authenticated user (admin bypass)
+  if (userId && !req.auth?.isAdmin && userId.toLowerCase() !== authUid) {
+    return res.status(403).json({ error: 'Can only export your own CV' });
+  }
+  const effectiveUid = (userId ? userId.toLowerCase() : authUid);
   const learningQuests = state.quests.filter(q =>
     q.type === 'learning' &&
     q.status === 'completed' &&
     !q.npcGiverId &&
-    (!userId || (q.completedBy && q.completedBy.toLowerCase() === userId.toLowerCase()) || (q.claimedBy && q.claimedBy.toLowerCase() === userId.toLowerCase()))
+    (!effectiveUid || (q.completedBy && q.completedBy.toLowerCase() === effectiveUid) || (q.claimedBy && q.claimedBy.toLowerCase() === effectiveUid))
   );
   const skillMap = {};
   for (const q of learningQuests) {
@@ -640,7 +663,7 @@ router.get('/api/player/:name/seen-version', (req, res) => {
 
 // GET /api/players/search?q=term — search all players by name (for friend adding, profile browsing)
 router.get('/api/players/search', (req, res) => {
-  const q = ((req.query.q || '') + '').toLowerCase().trim();
+  const q = ((req.query.q || '') + '').toLowerCase().trim().slice(0, 100);
   const limit = Math.min(parseInt(req.query.limit, 10) || 20, 50);
   const agentIds = new Set(Object.keys(state.store.agents || {}));
 
@@ -841,10 +864,16 @@ router.get('/api/player/:name/collection', (req, res) => {
 
 // ─── Tavern / Rest Mode ──────────────────────────────────────────────────────
 
-// GET /api/tavern/status — get current rest mode status
-router.get('/api/tavern/status', (req, res) => {
+// GET /api/tavern/status — get current rest mode status (self only)
+router.get('/api/tavern/status', requireAuth, (req, res) => {
   const playerName = (req.query.player || '').toLowerCase();
-  const u = playerName ? state.usersByName.get(playerName) : null;
+  const authUid = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+  // Enforce self-check: player query must match authenticated user (admin bypass)
+  if (!req.auth?.isAdmin && playerName && playerName !== authUid) {
+    return res.status(403).json({ error: 'Can only view your own tavern status' });
+  }
+  const effectivePlayer = playerName || authUid;
+  const u = effectivePlayer ? state.usersByName.get(effectivePlayer) : null;
   if (!u) return res.json({ resting: false });
 
   const rest = u.tavernRest || null;
@@ -1272,7 +1301,7 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
   const talentExpBondXp = getTalentFx(uid).companion_expedition_bond_xp;
   if (talentExpBondXp && u.companion) {
     const rate = talentExpBondXp.rate || 0.5;
-    const hours = (Date.now() - new Date(expedition.startedAt).getTime()) / 3600000;
+    const hours = (Date.now() - new Date(expedition.sentAt).getTime()) / 3600000;
     const bondXpGain = Math.round(hours * rate * 0.1); // 0.1 bond XP per hour scaled by rate
     if (bondXpGain > 0) {
       u.companion.bondXp = (u.companion.bondXp || 0) + bondXpGain;
