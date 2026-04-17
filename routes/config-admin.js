@@ -511,14 +511,12 @@ router.get('/api/dashboard', (req, res) => {
         }
       }
 
-      // Forge fever active
+      // Forge fever active (getForgeFever returns null if expired)
       let forgeFeverActive = 0;
       try {
-        const fever = state.forgeFever;
-        if (fever?.active && fever.endsAt && new Date(fever.endsAt).getTime() > Date.now()) {
-          forgeFeverActive = 1;
-        }
-      } catch { /* no forge fever data */ }
+        const { getForgeFever: getFF } = require('./crafting');
+        if (typeof getFF === 'function' && getFF()) forgeFeverActive = 1;
+      } catch { /* crafting module not loaded */ }
 
       // Adventure Tome unclaimed milestones
       let tomeUnclaimed = 0;

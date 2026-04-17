@@ -1620,6 +1620,7 @@ router.get('/api/professions/fever', (req, res) => {
 module.exports = router;
 module.exports.loadProfessions = loadProfessions;
 module.exports.rotateForgeFever = rotateForgeFever;
+module.exports.getForgeFever = getForgeFever;
 module.exports.isMoonlightActive = isMoonlightActive;
 module.exports.MOONLIGHT_BONUS = MOONLIGHT_BONUS;
 module.exports.VALID_SLOTS = VALID_SLOTS;
