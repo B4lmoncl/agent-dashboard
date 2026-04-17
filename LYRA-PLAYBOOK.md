@@ -402,22 +402,26 @@ Items haben **keine festen Stats** mehr. Stattdessen definiert jedes Item einen 
 
 ### Affix-Counts nach Rarity
 
+> **Verbindliche Quelle: CLAUDE.md Item & Gear Balancing Rules**
+
 | Rarity | Primary Affixes | Minor Affixes |
 |--------|----------------|---------------|
-| common | 1 | 0 |
-| uncommon | 1-2 | 0-1 |
-| rare | 2-3 | 1 |
-| epic | 2-3 | 1-2 |
-| legendary | 3-4 | 1-2 + Legendary Effect |
+| common | 1 / 1 | 0 / 0 |
+| uncommon | 1 / 2 | 0 / 1 |
+| rare | 2 / 2 | 1 / 1 |
+| epic | 2 / 3 | 1 / 2 |
+| legendary | 3 / 3 | 2 / 2 + Legendary Effect |
 
 ### Stat-Ranges nach Tier
+
+> **Verbindliche Quelle: CLAUDE.md Item & Gear Balancing Rules**
 
 | Tier | Primary Range | Minor Range |
 |------|--------------|-------------|
 | T1 (Abenteurer) | 1-3 | 1-2 |
-| T2 (Veteranen) | 2-6 | 1-3 |
-| T3 (Meister) | 4-10 | 2-4 |
-| T4 (Legendär) | 6-15 | 2-5 |
+| T2 (Veteranen) | 2-5 | 1-3 |
+| T3 (Meister) | 3-6 | 2-4 |
+| T4 (Legendär) | 4-8 | 3-6 |
 
 ### Slots & empfohlene Affix-Pools
 
