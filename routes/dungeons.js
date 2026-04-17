@@ -96,9 +96,20 @@ function isOnCooldown(userId, dungeonId) {
   if (!cd) return { onCooldown: false };
   const endsAt = new Date(cd).getTime() + 7 * 24 * 3600000;
   if (Date.now() >= endsAt) {
-    // Cooldown expired, clean up
     delete dungeonState.cooldowns[userId][dungeonId];
     return { onCooldown: false };
+  }
+  // Check for dungeon_reset buff (consumable: skip cooldown)
+  const u = state.users[userId];
+  if (u) {
+    const resetBuff = (u.activeBuffs || []).find(b => b.type === 'dungeon_reset' && ((b.chargesRemaining || 0) > 0 || (b.questsRemaining || 0) > 0));
+    if (resetBuff) {
+      if (resetBuff.chargesRemaining) resetBuff.chargesRemaining--;
+      else if (resetBuff.questsRemaining) resetBuff.questsRemaining--;
+      u.activeBuffs = (u.activeBuffs || []).filter(b => (b.chargesRemaining ?? 1) > 0 && (b.questsRemaining ?? 1) > 0);
+      delete dungeonState.cooldowns[userId][dungeonId];
+      return { onCooldown: false, resetUsed: true };
+    }
   }
   return { onCooldown: true, endsAt: new Date(endsAt).toISOString(), remainingMs: endsAt - Date.now() };
 }

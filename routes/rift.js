@@ -338,6 +338,16 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
     ? Math.max(18, 30 - mythicLevel * 1.5)
     : tier.timeLimitHours;
 
+  // Apply rift_time_extend buff (consumable: +25% time)
+  const riftExtendBuff = (u.activeBuffs || []).find(b => b.type === 'rift_time_extend' && ((b.chargesRemaining || 0) > 0 || (b.questsRemaining || 0) > 0));
+  if (riftExtendBuff) {
+    const extendPct = riftExtendBuff.percent || 0.25;
+    timeLimitHours = Math.round(timeLimitHours * (1 + extendPct));
+    if (riftExtendBuff.chargesRemaining) riftExtendBuff.chargesRemaining--;
+    else if (riftExtendBuff.questsRemaining) riftExtendBuff.questsRemaining--;
+    u.activeBuffs = (u.activeBuffs || []).filter(b => (b.chargesRemaining ?? 1) > 0 && (b.questsRemaining ?? 1) > 0);
+  }
+
   // Apply Mythic+ weekly affixes (M+2 and above)
   let activeAffixes = [];
   if (tierId === 'mythic' && mythicLevel >= 2) {

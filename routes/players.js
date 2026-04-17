@@ -1164,7 +1164,17 @@ router.post('/api/player/:name/companion/expedition/send', requireAuth, requireS
   }
 
   const sentAt = now();
-  const completesAt = new Date(Date.now() + expDef.durationHours * 60 * 60 * 1000).toISOString();
+  // Apply expedition_speed buff (consumable: -25% duration)
+  let durationHours = expDef.durationHours;
+  const speedBuff = (u.activeBuffs || []).find(b => b.type === 'expedition_speed' && ((b.chargesRemaining || 0) > 0 || (b.questsRemaining || 0) > 0));
+  if (speedBuff) {
+    const speedPct = speedBuff.percent || speedBuff.value || 0.25;
+    durationHours = Math.max(1, Math.round(durationHours * (1 - speedPct)));
+    if (speedBuff.chargesRemaining) speedBuff.chargesRemaining--;
+    else if (speedBuff.questsRemaining) speedBuff.questsRemaining--;
+    u.activeBuffs = (u.activeBuffs || []).filter(b => (b.chargesRemaining ?? 1) > 0 && (b.questsRemaining ?? 1) > 0);
+  }
+  const completesAt = new Date(Date.now() + durationHours * 60 * 60 * 1000).toISOString();
 
   u.companionExpedition = {
     expeditionId,
