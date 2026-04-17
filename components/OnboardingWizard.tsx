@@ -148,7 +148,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         const d = await r.json();
         if (d.classId || d.id) setSelectedClassId(d.classId || d.id);
       }
-    } catch (err) { console.error('Failed to submit custom class:', err); }
+    } catch (err) { console.error('Failed to submit custom class:', err); setError('Failed to submit custom class. Please try again.'); }
     setCustomClassSubmitted(true);
   };
 
@@ -527,13 +527,14 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 <div className="flex gap-2">
                   <button
                     onClick={handleSubmitCustomClass}
-                    disabled={!customProfession.trim()}
-                    title={!customProfession.trim() ? "Enter a profession name" : undefined}
+                    disabled={!customProfession.trim() || customClassSubmitted}
+                    title={!customProfession.trim() ? "Enter a profession name" : customClassSubmitted ? "Class already submitted" : undefined}
                     className="text-xs px-3 py-1.5 rounded-lg font-semibold"
                     style={{
-                      background: customProfession.trim() ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.05)",
-                      color: customProfession.trim() ? "#a78bfa" : "rgba(255,255,255,0.2)",
-                      border: `1px solid ${customProfession.trim() ? "rgba(167,139,250,0.35)" : "rgba(255,255,255,0.08)"}`,
+                      background: customProfession.trim() && !customClassSubmitted ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.05)",
+                      color: customProfession.trim() && !customClassSubmitted ? "#a78bfa" : "rgba(255,255,255,0.2)",
+                      border: `1px solid ${customProfession.trim() && !customClassSubmitted ? "rgba(167,139,250,0.35)" : "rgba(255,255,255,0.08)"}`,
+                      cursor: (!customProfession.trim() || customClassSubmitted) ? "not-allowed" : "pointer",
                     }}
                   >
                     Submit Class
