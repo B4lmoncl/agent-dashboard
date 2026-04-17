@@ -731,8 +731,9 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
     rarity: dungeon.tier === 'legendary' ? 'legendary' : dungeon.tier === 'hard' ? 'epic' : 'rare',
   });
 
-  // If all participants collected, finalize run → move to history
-  if (run.collected.length >= run.participants.length) {
+  // If all remaining participants collected (skip deleted accounts), finalize run
+  const activeParticipants = run.participants.filter(pid => !!state.users[pid]);
+  if (run.collected.length >= activeParticipants.length) {
     dungeonState.history.push({
       runId,
       dungeonId: run.dungeonId,
