@@ -380,3 +380,5 @@ function grantBattlePassXP(user, source, detail) {
 module.exports = router;
 module.exports.grantBattlePassXP = grantBattlePassXP;
 module.exports.ensureUserBP = ensureUserBP;
+module.exports.getActiveSeason = getActiveSeason;
+module.exports.getBPLevel = getBPLevel;
