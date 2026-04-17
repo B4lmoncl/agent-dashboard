@@ -365,9 +365,9 @@
     "status": "clean"
   },
   "routes/social.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "trade gold desync FIXED, friendship index OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "Cycle 3: HIGH FIXED: 6 challenge endpoints missing toLowerCase+userName fallback. MED FIXED: challenge rules XSS, forfeit gold ordering. Architecture FIXED: challenges moved from dual-copy u.challenges to state.socialData.challenges (central store). challengeLock added. Friendship check added. Gold validation at proposal time. Trade counter-offer materials field now validated+persisted in currentOffer.",
     "status": "clean"
   },
   "routes/quests.js": {
@@ -419,9 +419,9 @@
     "status": "clean"
   },
   "routes/mail.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Cycle 3: Clean. Full deep read. mailSendLock+mailCollectLock on all POSTs. Gold sync correct (dual-field). Inventory cap pre-check. XSS sanitization. Equipped/bound/locked item checks. Delete blocks uncollected attachments. collect-all gold sync after loop.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-17",
+    "findings": "Cycle 4: CRIT FIXED: duplicate itemIds in send caused item duplication exploit (send 1 receive N) — added seenIds dedup + type validation. HIGH FIXED: expired mail pruning destroyed uncollected gold/items — now keeps expired mail with attachments. LOW FIXED: _mailsSent tracking moved before saveUsers() for persistence.",
     "status": "clean"
   },
   "routes/kanais-cube.js": {
@@ -443,9 +443,9 @@
     "status": "clean"
   },
   "routes/players.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. requireSelf on mutations, tavern enter/leave locks, 30-day cooldown, XSS sanitization on reason, streak/forge restore with ?? for zero values, Welcome Back buff, passive gold with hour cap, companion ultimate/expedition locks, notification center with read tracking.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "Cycle 3: CRIT FIXED: companion expedition collect read expedition.startedAt (nonexistent field, should be sentAt) — broke companion_expedition_bond_xp talent. HIGH FIXED: GET /api/tavern/status was unauthenticated + mutated state — now requireAuth+self-check. HIGH FIXED: companion ultimate cooldown set AFTER effect — now claimed BEFORE (crash safety). MED FIXED: companion swap mutated fields before cooldown check. MED FIXED: companion name/emoji/species unbounded input. MED FIXED: notification-center read stored unbounded quest array. MED FIXED: search query length uncapped. LOW FIXED: cv-export unauthenticated.",
     "status": "clean"
   },
   "routes/users.js": {
@@ -779,9 +779,9 @@
     "status": "clean"
   },
   "routes/sworn-bonds.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "MED FIXED: cancel+decline endpoints missing bondLock — added. All 7 endpoints verified: propose/accept/cancel/decline/break/claim-chest/GET. bondLock on all 5 POSTs. Double-claim guard on chest. Streak logic correct (gap detection, consecutive week check). Bond XP+level progression. Lazy prune of stale bonds. Achievement+title checks on claim.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-17",
+    "findings": "Cycle 2: MED FIXED: timed bonds (4w/8w duration) never expired — expiresAt was set but never checked. Added auto-expiry in getActiveBondForPlayer(). brokenBy=null on expiry (no cooldown). Prior fixes hold: bondLock on all POSTs, double-claim guard, streak logic.",
     "status": "clean"
   },
   "components/ContextualTutorial.tsx": {
