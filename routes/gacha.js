@@ -497,3 +497,4 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
 });
 
 module.exports = router;
+module.exports.getPlayerGachaState = getPlayerGachaState;
