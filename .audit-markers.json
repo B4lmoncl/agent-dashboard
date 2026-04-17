@@ -867,5 +867,41 @@
     "lastAuditDate": "2026-04-16",
     "findings": "Clean. 10 suffixes with level-scaled stat bonuses. Values reasonable (1-5 per stat at Lv50). Used for gear naming.",
     "status": "clean"
+  },
+  "routes/game.js": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable — nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified.",
+    "status": "clean"
+  },
+  "routes/social.js": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "HIGH FIXED: 6 challenge endpoints moved to central store (state.socialData.challenges). Challenge auth+XSS+gold fixes. Trade counter-offer materials fix. 4 zombie buff types wired. Friendship required for challenges.",
+    "status": "clean"
+  },
+  "routes/mail.js": {
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-17",
+    "findings": "CRIT FIXED: item duplication exploit via duplicate itemIds. HIGH FIXED: expired mail pruning destroyed uncollected items. LOW FIXED: _mailsSent tracking after saveUsers. Added type validation on itemIds elements.",
+    "status": "clean"
+  },
+  "routes/sworn-bonds.js": {
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-17",
+    "findings": "MED FIXED: bond expiresAt set but never checked — timed bonds never expired. Added auto-expiry in getActiveBondForPlayer. All POST endpoints have bondLock.",
+    "status": "clean"
+  },
+  "routes/players.js": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "CRIT FIXED: expedition.startedAt→sentAt. HIGH FIXED: tavern status unauthed+mutating. HIGH FIXED: ultimate cooldown ordering. MED FIXED: companion swap pre-cooldown mutation. MED FIXED: name/emoji unbounded. MED FIXED: notif-read unbounded. MED FIXED: search query unbounded. LOW FIXED: cv-export unauthed. 4 zombie buffs wired (craft_discount, rift_time_extend, dungeon_reset, expedition_speed).",
+    "status": "clean"
+  },
+  "routes/habits-inventory.js": {
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners.",
+    "status": "clean"
   }
 }
