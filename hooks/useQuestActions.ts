@@ -316,6 +316,7 @@ export function useQuestActions({
         // Fire companion bond toast if companion quest awarded bond XP
         if (data.companionReward) {
           const cr = data.companionReward;
+          const isUltimateUnlock = cr.bondLevelUp === 5;
           addToast({
             type: "companionBond",
             companionName: cr.companionName || "Companion",
@@ -325,6 +326,9 @@ export function useQuestActions({
             bondTitle: cr.bondTitle || "Stranger",
             bondLevelUp: !!cr.bondLevelUp,
           });
+          if (isUltimateUnlock) {
+            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} has awakened their Ultimate Ability.`, icon: "★", sub: "Bond Level 5 — a new power stirs." });
+          }
         }
         if (data.levelUp) {
           pendingLevelUpRef.current = data.levelUp;
