@@ -384,6 +384,10 @@ export function useQuestActions({
             }
           }
         }
+        // Bond objective completed notification
+        if (data.bondObjectiveCompleted) {
+          addToast({ type: "flavor", message: "Sworn Bond objective complete. Chest ready.", icon: "★", sub: "Visit your Bond to claim." });
+        }
         // Diminishing returns notification — warn early, then each tier
         if (data.dailyQuestCount === 5) addToast({ type: "flavor", message: "Full rewards reached for today", icon: "◆", sub: "Next quests earn 75% — the forge cools" });
         else if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Rewards at 75%", icon: "◆", sub: `Quest ${data.dailyQuestCount} — first 5 were full value` });

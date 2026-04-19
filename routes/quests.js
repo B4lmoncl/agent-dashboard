@@ -342,7 +342,8 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const battlePassLevelUp = u?._lastBattlePassXP?.leveledUp ? u._lastBattlePassXP : null;
     const gambleResult = u?._lastGambleResult || null;
     const varietyBonus = u?._lastVarietyBonus || null;
-    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; delete u._lastGambleResult; delete u._lastVarietyBonus; }
+    const bondObjectiveCompleted = u?._lastBondObjectiveCompleted || false;
+    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; delete u._lastGambleResult; delete u._lastVarietyBonus; delete u._lastBondObjectiveCompleted; }
     const repGains = u?._lastRepGains || null;
     const dailyDiminishing = u?._lastDailyDiminishing ?? 1;
     const dailyQuestCount = u?._lastDailyCount ?? 0;
@@ -390,6 +391,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       battlePassLevelUp: battlePassLevelUp ? { level: battlePassLevelUp.level } : null,
       gambleResult,
       varietyBonus,
+      bondObjectiveCompleted,
       dailyDiminishing,
       dailyQuestCount,
       chainQuestTemplate: quest.nextQuestTemplate || null,

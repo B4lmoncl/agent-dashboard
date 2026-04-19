@@ -220,6 +220,7 @@ function contributeToBond(userId, quest) {
 
   // Check completion
   const totalProgress = obj.progress.player1 + obj.progress.player2;
+  const wasComplete = obj.completed;
   if (obj.targetPerPlayer) {
     // Both players must individually meet their target
     if (obj.progress.player1 >= obj.targetPerPlayer && obj.progress.player2 >= obj.targetPerPlayer) {
@@ -231,6 +232,12 @@ function contributeToBond(userId, quest) {
       obj.completed = true;
       obj.completedAt = now();
     }
+  }
+
+  // Store flag if objective just completed (for quest completion toast)
+  if (obj.completed && !wasComplete) {
+    const u = state.users[pid];
+    if (u) u._lastBondObjectiveCompleted = true;
   }
 
   saveSocial();
