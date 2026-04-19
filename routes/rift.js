@@ -675,6 +675,7 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
   rift.active = false;
   rift.failed = true;
   rift.failedAt = now();
+  delete u._riftNecroticActive;
 
   // Apply cooldown — Mythic+ has no fail cooldown (retry immediately per spec)
   const isMythic = tier?.isMythic;
