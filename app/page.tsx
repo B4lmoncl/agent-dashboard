@@ -2001,7 +2001,15 @@ export default function Dashboard() {
                         </div>
                         <p className="text-xs mt-0.5 text-w25">
                           {playerName
-                            ? `${boardOpen.length} open · ${playerVisibleInProgress.length} in progress`
+                            ? (() => {
+                                const today = new Date().toISOString().slice(0, 10);
+                                const doneToday = quests.completed.filter(q => q.completedBy?.toLowerCase() === playerName.toLowerCase() && q.completedAt?.slice(0, 10) === today).length;
+                                const drPct = doneToday <= 5 ? 100 : doneToday <= 7 ? 90 : doneToday <= 10 ? 75 : doneToday <= 15 ? 60 : doneToday <= 20 ? 50 : 25;
+                                return <>
+                                  {boardOpen.length} open · {playerVisibleInProgress.length} in progress
+                                  {doneToday > 0 && <> · <span style={{ color: drPct < 100 ? "#f59e0b" : "#4ade80" }}>{doneToday} done{drPct < 100 ? ` (${drPct}%)` : ""}</span></>}
+                                </>;
+                              })()
                             : "Log in · 0 available"}
                         </p>
                       </div>
@@ -2520,6 +2528,11 @@ export default function Dashboard() {
                 <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w6 text-w30">
                   {journalQuests.length}
                 </span>
+                {(() => {
+                  const today = new Date().toISOString().slice(0, 10);
+                  const todayCount = journalQuests.filter(q => q.completedAt?.slice(0, 10) === today).length;
+                  return todayCount > 0 ? <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(34,197,94,0.12)", color: "#4ade80" }}>{todayCount} today</span> : null;
+                })()}
                 <span className="ml-auto text-xs text-w20">
                   {completedOpen ? "▲" : "▼"}
                 </span>

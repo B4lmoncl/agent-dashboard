@@ -228,7 +228,7 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
             {nextLvlEntry ? <><CountUp value={xp - lvl.xpRequired} duration={800} /> / {(nextLvlEntry.xpRequired - lvl.xpRequired).toLocaleString()}</> : "MAX"}
           </span>
         </div>
-        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }}>
+        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }} title={nextLvlEntry ? `${(nextLvlEntry.xpRequired - xp).toLocaleString()} XP to Level ${lvl.level + 1} (${lvl.title})` : "Max level reached"}>
           <div
             className="progress-bar-diablo-fill progress-shimmer"
             style={{
