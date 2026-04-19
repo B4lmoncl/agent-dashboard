@@ -576,7 +576,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   const goldEarned = u._lastGoldEarned || nextStage.goldReward;
   const loot = u._lastLoot || null;
   // Cleanup temp fields to prevent persistence bloat
-  delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastLoot; delete u._lastCompanionReward;
+  delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastLoot; delete u._lastCompanionReward; delete u._lastMaterialDrops;
   saveUsers();
   console.log(`[rift] ${uid} completed stage ${stageNum}/${rift.quests.length} in ${rift.tier} rift (+${xpEarned}XP, +${goldEarned}g)`);
 
