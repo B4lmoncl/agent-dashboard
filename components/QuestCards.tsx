@@ -534,7 +534,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
           {onToggle && (
             <button
               onClick={e => { e.stopPropagation(); onToggle(quest.id); }}
-              className="mt-0.5 flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center"
+              className="mt-0.5 flex-shrink-0 w-5 h-5 rounded flex items-center justify-center"
               style={{
                 background: selected ? "rgba(255,102,51,0.8)" : "rgba(255,255,255,0.06)",
                 border: `1px solid ${selected ? "rgba(255,102,51,0.9)" : "rgba(255,255,255,0.15)"}`,
