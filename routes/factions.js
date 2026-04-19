@@ -218,7 +218,7 @@ router.post("/:factionId/claim-daily/:dailyId", requireAuth, (req, res) => {
   user._factionDailiesComplete = (user._factionDailiesComplete || 0) + 1;
   ensureUserCurrencies(user);
   user.currencies.gold = (user.currencies.gold || 0) + template.goldReward;
-  if (user.gold !== undefined) user.gold = user.currencies.gold;
+  user.gold = user.currencies.gold;
 
   dq.claimed = true;
   saveUsers();

@@ -507,8 +507,11 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
       u.gold = (u.gold || 0) + pactCompletionGold;
       u.currencies.gold = u.gold;
       ritual.pactCompleted = true;
+    }
 
     // ─── Mega-milestone premium currency bonuses (180/365 day streaks) ───
+    // (Must be OUTSIDE the pactCompleted gate — these trigger at day 180/365
+    //  regardless of when the initial commitment was completed)
     const MEGA_MILESTONES = [
       { days: 180, stardust: 50, essenz: 100, title: { id: 'pact-half-year', name: 'Halbjahreseid', rarity: 'epic' } },
       { days: 365, stardust: 150, essenz: 300, title: { id: 'pact-year', name: 'Jahresschwur', rarity: 'legendary' } },
@@ -529,7 +532,6 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
           }
         }
       }
-    }
     }
 
     // Milestone check

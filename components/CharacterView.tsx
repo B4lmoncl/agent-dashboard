@@ -937,7 +937,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           <div className="mt-0.5" style={{ width: 56 }}>
             <p className="text-center truncate" title={item.name} style={{ fontSize: 12, color: borderColor, lineHeight: 1.2 }}>{item.name}</p>
             {item.legendaryEffect && (
-              <p className="text-center truncate" style={{ fontSize: 11, color: "#f97316", lineHeight: 1.2, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
+              <p className="text-center truncate" style={{ fontSize: 12, color: "#f97316", lineHeight: 1.2, marginTop: 1 }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>
             )}
           </div>
         )}
@@ -2418,7 +2418,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               <button
                                 onClick={() => doGemAction("upgrade", { gemKey })}
                                 disabled={!!gemAction}
-                                title={gemAction ? "Action in progress…" : `Combine 3 × T${tier} → 1 × T${tier + 1} (costs 100g + Essenz)`}
+                                title={gemAction ? "Action in progress…" : `Combine 3 × T${tier} → 1 × T${tier + 1} (costs 100g + ${({1:25,2:50,3:100,4:200})[tier] ?? 50} Essenz)`}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >

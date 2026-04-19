@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import type { QuestsData, User, CVData } from "@/app/types";
+import { getAuthHeaders } from "@/lib/auth-client";
 
-export default function CVBuilderPanel({ quests, users, playerName }: { quests: QuestsData; users: User[]; playerName: string }) {
+export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey }: { quests: QuestsData; users: User[]; playerName: string; reviewApiKey?: string }) {
   const [cvData, setCvData] = useState<CVData | null>(null);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function CVBuilderPanel({ quests, users, playerName }: { quests: 
     if (!userId) return;
     setLoading(true);
     try {
-      const r = await fetch(`/api/cv-export?userId=${encodeURIComponent(userId)}`);
+      const r = await fetch(`/api/cv-export?userId=${encodeURIComponent(userId)}`, { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) {
         const data = await r.json();
         setCvData(data);

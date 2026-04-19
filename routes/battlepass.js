@@ -161,7 +161,7 @@ router.post("/claim/:level", requireAuth, (req, res) => {
     case "gold":
       if (!user.currencies) user.currencies = {};
       user.currencies.gold = (user.currencies.gold ?? user.gold ?? 0) + reward.amount;
-      if (user.gold !== undefined) user.gold = user.currencies.gold;
+      user.gold = user.currencies.gold;
       granted.amount = reward.amount;
       break;
     case "essenz":
@@ -257,7 +257,7 @@ router.post("/claim-all", requireAuth, (req, res) => {
       case "gold":
         if (!user.currencies) user.currencies = {};
         user.currencies.gold = (user.currencies.gold ?? user.gold ?? 0) + reward.amount;
-        if (user.gold !== undefined) user.gold = user.currencies.gold;
+        user.gold = user.currencies.gold;
         break;
       case "essenz":
         ensureUserCurrencies(user);
@@ -380,3 +380,5 @@ function grantBattlePassXP(user, source, detail) {
 module.exports = router;
 module.exports.grantBattlePassXP = grantBattlePassXP;
 module.exports.ensureUserBP = ensureUserBP;
+module.exports.getActiveSeason = getActiveSeason;
+module.exports.getBPLevel = getBPLevel;

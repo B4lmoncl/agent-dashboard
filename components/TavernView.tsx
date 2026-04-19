@@ -57,7 +57,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   const fetchStatus = useCallback(async () => {
     if (!playerName) return;
     try {
-      const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`);
+      const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) setStatus(await r.json());
     } catch { setError("Failed to load tavern status"); }
     setLoading(false);

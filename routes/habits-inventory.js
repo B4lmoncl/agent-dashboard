@@ -502,12 +502,23 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       break;
     }
     case 'pity_minus_5': {
-      const gs = state.gachaState?.[uid];
-      if (gs) {
-        gs.pityCounter = Math.max(0, (gs.pityCounter || 0) + 5); // +5 closer to pity
-        message = `Pity-Zähler um 5 erhöht! Aktuell: ${gs.pityCounter}/75.`;
+      // Per-banner pity: boost all active banners' pity by +5
+      const { getPlayerGachaState } = require('./gacha');
+      if (getPlayerGachaState) {
+        const gs = getPlayerGachaState(uid);
+        const bannerIds = Object.keys(gs.perBanner || {});
+        if (bannerIds.length > 0) {
+          for (const bid of bannerIds) {
+            gs.perBanner[bid].pity = Math.max(0, (gs.perBanner[bid].pity || 0) + 5);
+          }
+          const highest = Math.max(...bannerIds.map(b => gs.perBanner[b].pity));
+          message = `Pity +5 on ${bannerIds.length} banner${bannerIds.length > 1 ? 's' : ''}! Highest: ${highest}/75.`;
+        } else {
+          gs.pityCounter = Math.max(0, (gs.pityCounter || 0) + 5);
+          message = `Pity +5! Pull on a banner to activate. (${gs.pityCounter}/75)`;
+        }
       } else {
-        message = 'Kein Gacha-Status gefunden.';
+        message = 'Gacha system not available.';
       }
       break;
     }

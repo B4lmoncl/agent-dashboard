@@ -80,7 +80,6 @@ export const FLOORS: Floor[] = [
       { key: "factions",    label: "Four Circles",       iconSrc: "/images/icons/nav-factions.png",    requiresLogin: true, tutorialKey: null, minLevel: 10 },
       { key: "season",      label: "Season Pass",        iconSrc: "/images/icons/nav-season.png",      requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
       { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
-      { key: "tome", label: "Abenteuerbuch", iconSrc: "/images/icons/nav-tome.png", requiresLogin: true, tutorialKey: null, minLevel: 5 },
     ],
   },
   // ─── 4F: Breakaway — Obere Etagen (Lv1) ─────────────────────────────────────
@@ -114,6 +113,7 @@ export const FLOORS: Floor[] = [
       { key: "vows",          label: "Vow Shrine",     iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
       { key: "talents",        label: "Schicksalsbaum", iconSrc: "/images/icons/nav-talents.png",      requiresLogin: true, tutorialKey: null, minLevel: 5 },
       { key: "codex",          label: "Codex",          iconSrc: "/images/icons/nav-codex.png",        requiresLogin: true, tutorialKey: null },
+      { key: "tome",           label: "Abenteuerbuch", iconSrc: "/images/icons/nav-tome.png",         requiresLogin: true, tutorialKey: null, minLevel: 5 },
       { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
   },

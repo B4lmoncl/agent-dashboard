@@ -1095,7 +1095,7 @@ export default function TodayDrawer({
                                 background: m.claimed ? "#22c55e" : reached ? "linear-gradient(135deg, #fbbf24, #f59e0b)" : "rgba(255,255,255,0.06)",
                                 border: `2px solid ${m.claimed ? "#16a34a" : reached ? "#d97706" : "rgba(255,255,255,0.08)"}`,
                                 boxShadow: canClaim ? "0 0 8px rgba(251,191,36,0.4), 0 0 24px rgba(251,191,36,0.15)" : m.claimed ? "0 0 6px rgba(34,197,94,0.3)" : "none",
-                                cursor: canClaim ? "pointer" : "default",
+                                cursor: canClaim ? "pointer" : m.claimed ? "default" : "not-allowed",
                                 animation: canClaim ? "daily-bonus-pulse 2s ease-in-out infinite" : "none",
                                 zIndex: 2,
                                 transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",

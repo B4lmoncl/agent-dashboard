@@ -11,6 +11,7 @@ const { isWorldBossActive } = require('./world-boss');
 const { isDungeonActiveForPlayer } = require('./dungeons');
 const { getActiveChallenge, evaluateStageProgress, calculateStageStars, getActiveModifier, getWeeklyData } = require('./challenges-weekly');
 const { ensureExpedition, getExpeditionData } = require('./expedition');
+const { getTomeUnclaimedCount } = require('./adventure-tome');
 
 // GET /api/config — expose game constants to frontend (no auth required)
 router.get('/api/config', (req, res) => {
@@ -500,6 +501,29 @@ router.get('/api/dashboard', (req, res) => {
       // Pending social (already computed above)
       const social = socialSummary || { pendingFriendRequests: 0, unreadMessages: 0, activeTrades: 0 };
 
+      // Challenge unclaimed star milestones (from already-computed weeklyChallenge)
+      let challengeUnclaimed = 0;
+      if (weeklyChallenge) {
+        const STAR_MILESTONE_THRESHOLDS = [3, 6, 9];
+        const claimed = weeklyChallenge.claimedMilestones || [];
+        for (const t of STAR_MILESTONE_THRESHOLDS) {
+          if (weeklyChallenge.totalStars >= t && !claimed.includes(t)) challengeUnclaimed++;
+        }
+      }
+
+      // Forge fever active (getForgeFever returns null if expired)
+      let forgeFeverActive = 0;
+      try {
+        const { getForgeFever: getFF } = require('./crafting');
+        if (typeof getFF === 'function' && getFF()) forgeFeverActive = 1;
+      } catch { /* crafting module not loaded */ }
+
+      // Adventure Tome unclaimed milestones
+      let tomeUnclaimed = 0;
+      try {
+        tomeUnclaimed = getTomeUnclaimedCount(u);
+      } catch { /* tome not loaded */ }
+
       notifications = {
         dailyBonus: dailyBonusAvailable ? 1 : 0,
         unclaimedMilestones,
@@ -509,6 +533,9 @@ router.get('/api/dashboard', (req, res) => {
         wbClaimable,
         bpUnclaimed,
         factionUnclaimed,
+        challengeUnclaimed,
+        forgeFeverActive,
+        tomeUnclaimed,
         pendingFriendRequests: social.pendingFriendRequests,
         unreadMessages: social.unreadMessages,
         activeTrades: social.activeTrades,

@@ -225,6 +225,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
   const rewards = { ...(EXPEDITION_DATA.expedition?.checkpointRewards[rewardKey] || {}) };
 
   ensureUserCurrencies(u);
+  if (rewards.xp) u.xp = (u.xp || 0) + rewards.xp;
   if (rewards.gold) awardCurrency(uid, 'gold', rewards.gold);
   if (rewards.runensplitter) awardCurrency(uid, 'runensplitter', rewards.runensplitter);
   if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);

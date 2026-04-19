@@ -483,4 +483,20 @@ router.post('/api/adventure-tome/claim', requireAuth, (req, res) => {
   } finally { tomeClaimLock.release(uid); }
 });
 
+// ─── Lightweight unclaimed milestone counter (for dashboard badge) ──────────
+function getTomeUnclaimedCount(user) {
+  if (!user) return 0;
+  const progress = state.playerProgress?.[user.name?.toLowerCase() || user.id] || {};
+  const tomeClaimed = user._tomeClaimed || {};
+  let count = 0;
+  for (const floor of FLOORS) {
+    const eval_ = evaluateFloor(floor, user, progress);
+    for (const m of floor.milestones) {
+      if (eval_.percentage >= m.pct && !tomeClaimed[`${floor.id}_${m.pct}`]) count++;
+    }
+  }
+  return count;
+}
+
 module.exports = router;
+module.exports.getTomeUnclaimedCount = getTomeUnclaimedCount;

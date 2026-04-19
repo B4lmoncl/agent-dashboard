@@ -184,12 +184,13 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   const handleRequest = async (reqId: string, action: "accept" | "decline") => {
     setProcessingReqId(reqId);
     try {
-      await fetch(`/api/social/friend-request/${reqId}/${action}`, {
+      const r = await fetch(`/api/social/friend-request/${reqId}/${action}`, {
         method: "POST",
         headers: getAuthHeaders(apiKey),
       });
+      if (!r.ok) { const d = await r.json().catch(() => ({})); setError(d.error || "Request failed"); }
       fetchFriends();
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) { console.error('[social]', e); setError("Network error"); }
     setProcessingReqId(null);
   };
 
@@ -2412,8 +2413,8 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5 flex-wrap" style={{ background: "#111" }}>
-        {(["friends", "bonds", "messages", "trades", "challenges", "activity"] as SocialTab[]).map(tab => {
-          const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab === "bonds" ? "sworn_bonds" : tab;
+        {(["friends", "bonds", "messages", "mail", "trades", "challenges", "activity"] as SocialTab[]).map(tab => {
+          const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab === "bonds" ? "sworn_bonds" : tab === "mail" ? "mailbox" : tab;
           const unreadDot = false; // Per-tab unread counts require lifting state — deferred
           return (
             <Tip key={tab} k={tipKey}>

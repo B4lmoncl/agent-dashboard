@@ -3,13 +3,13 @@
 
 ## Open Bugs
 
-*(none currently known — last audit: 2026-04-05)*
+*(none currently known — last deep audit: 2026-04-17, 20+ commits across 40+ cycles)*
 
 ## Open Features
 
 ### Near-Term
 - ForgeView: BoE badge, gem-cut/gem-merge recipe display
-- Mail system: decide keep or remove (overlaps messaging + trading, but enables NPC/system mail)
+- ~~Mail system: decide keep or remove~~ → Kept. Mail tab added to Social navigation (was hidden/unreachable). Full UI already existed.
 
 ### Resolved (from previous backlog)
 - ~~Character Screen: Background image clipped at top~~ → Fixed (backgroundSize: cover)

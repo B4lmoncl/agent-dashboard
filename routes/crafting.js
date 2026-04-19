@@ -630,8 +630,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
-  // Check gold cost (×count for batch)
-  const totalGoldCost = (recipe.cost?.gold || 0) * effectiveCount;
+  // Check gold cost (×count for batch) — apply craft_discount buff if active
+  let craftDiscountPct = 0;
+  const craftDiscountBuff = (u.activeBuffs || []).find(b => (b.type === 'craft_discount') && ((b.chargesRemaining || 0) > 0 || (b.questsRemaining || 0) > 0));
+  if (craftDiscountBuff) craftDiscountPct = (craftDiscountBuff.percent || craftDiscountBuff.value || 0.5);
+  const totalGoldCost = Math.max(0, Math.round((recipe.cost?.gold || 0) * effectiveCount * (1 - craftDiscountPct)));
   if (totalGoldCost > 0) {
     const userGold = u.currencies?.gold ?? u.gold ?? 0;
     if (userGold < totalGoldCost) {
@@ -1165,6 +1168,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
+  // Consume craft_discount buff charge (if used)
+  if (craftDiscountBuff && craftDiscountPct > 0) {
+    if (craftDiscountBuff.chargesRemaining) craftDiscountBuff.chargesRemaining--;
+    else if (craftDiscountBuff.questsRemaining) craftDiscountBuff.questsRemaining--;
+    u.activeBuffs = (u.activeBuffs || []).filter(b => (b.chargesRemaining ?? 1) > 0 && (b.questsRemaining ?? 1) > 0);
+  }
+
   // Track craft count for achievements
   u._craftsCompleted = (u._craftsCompleted || 0) + effectiveCount;
   if (isMoonlightActive()) u._moonlightCrafts = (u._moonlightCrafts || 0) + effectiveCount;
@@ -1610,6 +1620,7 @@ router.get('/api/professions/fever', (req, res) => {
 module.exports = router;
 module.exports.loadProfessions = loadProfessions;
 module.exports.rotateForgeFever = rotateForgeFever;
+module.exports.getForgeFever = getForgeFever;
 module.exports.isMoonlightActive = isMoonlightActive;
 module.exports.MOONLIGHT_BONUS = MOONLIGHT_BONUS;
 module.exports.VALID_SLOTS = VALID_SLOTS;
