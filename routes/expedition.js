@@ -114,11 +114,17 @@ function contributeQuest(userId) {
   exp.contributions[userId] = (exp.contributions[userId] || 0) + 1;
 
   // Check if new checkpoints are reached
+  let newCheckpoint = false;
   for (let i = 0; i < exp.totalRequired.length; i++) {
     const cpNum = i + 1;
     if (exp.progress >= exp.totalRequired[i] && !exp.checkpointsReached.includes(cpNum)) {
       exp.checkpointsReached.push(cpNum);
+      newCheckpoint = true;
     }
+  }
+  if (newCheckpoint) {
+    const u = state.users[userId];
+    if (u) u._lastExpeditionCheckpoint = true;
   }
 
   saveExpeditionState();
