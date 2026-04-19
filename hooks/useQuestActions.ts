@@ -333,6 +333,11 @@ export function useQuestActions({
         if (data.gemDrop) {
           addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped.", rarity: "rare" });
         }
+        // Toast for material drops
+        if (data.materialDrops && Array.isArray(data.materialDrops) && data.materialDrops.length > 0) {
+          const matNames = data.materialDrops.map((m: { name?: string; id: string; amount: number }) => `${m.amount}x ${m.name || m.id}`).join(", ");
+          addToast({ type: "item", itemName: matNames, message: "Materials found.", rarity: "uncommon" });
+        }
         // Warning: inventory was full, loot was lost
         if (data.inventoryFull) {
           addToast({ type: "error", message: "Inventory full — loot item lost. Free up space." });
