@@ -956,10 +956,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         try {
                           const r = await fetch("/api/professions/fever/claim", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) } });
                           if (r.ok) {
+                            const d = await r.json();
                             setForgeFever(prev => prev ? { ...prev, cacheClaimed: true } : null);
+                            setCraftResult(d.cache?.length ? `Cache: ${d.cache.map((m: { name: string; qty: number }) => `${m.qty}x ${m.name}`).join(", ")}` : d.message || "Bonus collected!");
                             onRefresh?.();
                           }
-                        } catch { /* handled */ }
+                        } catch { setCraftResult("Network error"); }
                         setFeverClaiming(false);
                       }}
                       disabled={feverClaiming}
