@@ -277,6 +277,11 @@ export function useQuestActions({
         if (data.runensplitterEarned > 0) currencies.push({ name: "Runensplitter", amount: data.runensplitterEarned, color: "#818cf8" });
         if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
         if (data.restedBonusXp > 0) currencies.push({ name: "Rested Bonus", amount: data.restedBonusXp, color: "#60a5fa" });
+        if (data.repGains && Array.isArray(data.repGains)) {
+          for (const rg of data.repGains) {
+            if (rg.gained > 0) currencies.push({ name: `${rg.factionName} Rep`, amount: rg.gained, color: rg.factionIcon === "\u{1F702}" ? "#ef4444" : rg.factionIcon === "\u{1F704}" ? "#3b82f6" : rg.factionIcon === "\u{1F701}" ? "#f59e0b" : "#ec4899" });
+          }
+        }
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
           title: data.npcFinalReward ? `${questTitle} — Chain Complete` : questTitle,
