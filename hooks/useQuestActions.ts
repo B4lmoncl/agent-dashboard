@@ -392,6 +392,10 @@ export function useQuestActions({
         if (data.expeditionCheckpoint) {
           addToast({ type: "flavor", message: "Expedition checkpoint reached. Rewards available.", icon: "◆", sub: "The guild advances together." });
         }
+        // World Boss defeated notification
+        if (data.worldBossDefeated) {
+          addToast({ type: "flavor", message: "World Boss defeated. Claim your rewards in the Colosseum.", icon: "★", sub: "Your blow was the last." });
+        }
         // Diminishing returns notification — warn early, then each tier
         if (data.dailyQuestCount === 5) addToast({ type: "flavor", message: "Full rewards reached for today", icon: "◆", sub: "Next quests earn 75% — the forge cools" });
         else if (data.dailyQuestCount === 6) addToast({ type: "flavor", message: "Rewards at 75%", icon: "◆", sub: `Quest ${data.dailyQuestCount} — first 5 were full value` });

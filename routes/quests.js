@@ -344,7 +344,8 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const varietyBonus = u?._lastVarietyBonus || null;
     const bondObjectiveCompleted = u?._lastBondObjectiveCompleted || false;
     const expeditionCheckpoint = u?._lastExpeditionCheckpoint || false;
-    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; delete u._lastGambleResult; delete u._lastVarietyBonus; delete u._lastBondObjectiveCompleted; delete u._lastExpeditionCheckpoint; }
+    const worldBossDefeated = u?._lastWorldBossDefeated || null;
+    if (u) { delete u._inventoryFull; delete u._lastStreakMilestone; delete u._lastBattlePassXP; delete u._lastGambleResult; delete u._lastVarietyBonus; delete u._lastBondObjectiveCompleted; delete u._lastExpeditionCheckpoint; delete u._lastWorldBossDefeated; }
     const repGains = u?._lastRepGains || null;
     const dailyDiminishing = u?._lastDailyDiminishing ?? 1;
     const dailyQuestCount = u?._lastDailyCount ?? 0;
@@ -394,6 +395,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       varietyBonus,
       bondObjectiveCompleted,
       expeditionCheckpoint,
+      worldBossDefeated,
       dailyDiminishing,
       dailyQuestCount,
       chainQuestTemplate: quest.nextQuestTemplate || null,

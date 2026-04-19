@@ -201,6 +201,9 @@ function dealBossDamage(userId, questRarity) {
   if (boss.currentHp <= 0) {
     boss.defeated = true;
     boss.defeatedAt = new Date().toISOString();
+    // Flag for triggering player's quest completion toast
+    const triggerUser = state.users[userId];
+    if (triggerUser) triggerUser._lastWorldBossDefeated = boss.bossId;
     console.log(`[world-boss] "${boss.bossId}" defeated! ${Object.keys(boss.contributions).length} contributors.`);
 
     // Log world boss defeat for all contributors in activity feed
