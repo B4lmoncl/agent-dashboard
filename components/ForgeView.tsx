@@ -2104,9 +2104,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                         if (onRefresh) onRefresh();
                                         fetchData();
                                       } else {
-                                        setCraftResult(data.error || "Fehler");
+                                        setCraftResult(data.error || "Craft failed");
                                       }
-                                    } catch { setCraftResult("Netzwerkfehler"); }
+                                    } catch { setCraftResult("Network error"); }
                                   },
                                 });
                               }}
@@ -2444,7 +2444,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 } else {
                                   setCraftResult(data.error || "Kauf fehlgeschlagen");
                                 }
-                              } catch { setCraftResult("Netzwerkfehler"); }
+                              } catch { setCraftResult("Network error"); }
                               setBuyingReagent(null);
                             }}
                             disabled={!canAfford || !!buyingReagent}

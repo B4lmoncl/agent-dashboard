@@ -145,10 +145,10 @@ export default function TalentTreeView({
         _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet." });
         fetchTalents();
       } else {
-        _toast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Network error" });
     } finally {
       setAllocating(false);
     }
@@ -169,10 +169,10 @@ export default function TalentTreeView({
         _toast({ type: "flavor", icon: "◆", message: "Talent entfernt" });
         fetchTalents();
       } else {
-        _toast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Network error" });
     } finally {
       setAllocating(false);
     }
@@ -193,10 +193,10 @@ export default function TalentTreeView({
         setConfirmReset(false);
         fetchTalents();
       } else {
-        _toast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Network error" });
     } finally {
       setResetting(false);
     }
@@ -780,7 +780,7 @@ export default function TalentTreeView({
                               _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();
                             }
-                          } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }
+                          } catch { _toast({ type: "error", message: "Network error" }); }
                         });
                       }}
                       className="text-xs px-3 py-1.5 rounded font-semibold"
