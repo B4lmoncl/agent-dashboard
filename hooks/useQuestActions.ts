@@ -361,6 +361,12 @@ export function useQuestActions({
             addToast({ type: "flavor", message: `Codex: ${entry.title || "New entry"} discovered.`, icon: "◆" });
           }
         }
+        // Toast for achievement point milestone unlocks (frames, titles)
+        if (data.milestoneUnlocks && Array.isArray(data.milestoneUnlocks)) {
+          for (const ml of data.milestoneUnlocks) {
+            addToast({ type: "flavor", message: `${ml.type === "frame" ? "Frame" : "Title"} Unlocked: ${ml.name}`, icon: "★", sub: `${ml.atPoints} Achievement Points` });
+          }
+        }
         // Toast for battle pass level-up
         if (data.battlePassLevelUp) {
           addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Reward available.`, icon: "◆" });

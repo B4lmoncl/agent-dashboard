@@ -335,6 +335,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const gemDrop = u?._lastGemDrop || null;
     const recipeDrop = u?._lastRecipeDrop || null;
     const materialDrops = u?._lastMaterialDrops || null;
+    const milestoneUnlocks = u?._lastMilestoneUnlocks || null;
     const inventoryFull = u?._inventoryFull || false;
     const streakMilestone = u?._lastStreakMilestone || null;
     const codexDiscovery = u?._lastCodexDiscovery || null;
@@ -345,7 +346,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const repGains = u?._lastRepGains || null;
     const dailyDiminishing = u?._lastDailyDiminishing ?? 1;
     const dailyQuestCount = u?._lastDailyCount ?? 0;
-    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastMaterialDrops; delete u._lastRepGains; delete u._lastCodexDiscovery; delete u._lastDailyDiminishing; delete u._lastDailyCount; delete u._lastRestedBonusXp; }
+    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastMaterialDrops; delete u._lastMilestoneUnlocks; delete u._lastRepGains; delete u._lastCodexDiscovery; delete u._lastDailyDiminishing; delete u._lastDailyCount; delete u._lastRestedBonusXp; }
     // Grant NPC's final reward item when the last quest in the chain is completed
     let npcFinalReward = null;
     if (quest.chainIndex != null && quest.chainTotal && quest.chainIndex === quest.chainTotal - 1) {
@@ -385,6 +386,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       inventoryFull,
       streakMilestone,
       codexDiscovery,
+      milestoneUnlocks,
       battlePassLevelUp: battlePassLevelUp ? { level: battlePassLevelUp.level } : null,
       gambleResult,
       varietyBonus,
