@@ -1990,7 +1990,7 @@ export default function Dashboard() {
               {/* Companions Widget — full experience in the Great Hall */}
               {playerName && (
                 <div className="mb-5" style={{ minHeight: 100 }}>
-                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} />
+                  <Suspense fallback={null}><CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense>
                 </div>
               )}
 
@@ -2431,7 +2431,7 @@ export default function Dashboard() {
           const lyraQuestsInProgress = applySort(applyFilter(quests.inProgress.filter(q => (q.createdBy ?? "").toLowerCase() === "lyra")));
           const lyraAllQuests = lyraQuestsOpen.concat(lyraQuestsInProgress);
           return (
-            <WandererRest
+            <Suspense fallback={null}><WandererRest
               npcBoardFilter={npcBoardFilter}
               setNpcBoardFilter={setNpcBoardFilter}
               activeNpcs={activeNpcs}
@@ -2465,7 +2465,7 @@ export default function Dashboard() {
               handleComplete={handleComplete}
               streak={playerStreak}
               user={loggedInUser}
-            />
+            /></Suspense>
           );
         })()}
 
@@ -2679,7 +2679,7 @@ export default function Dashboard() {
 
       {/* Today Drawer */}
       {playerName && (
-        <TodayDrawer
+        <Suspense fallback={null}><TodayDrawer
           open={todayOpen}
           onClose={() => setTodayOpen(false)}
           onNavigate={(v) => { setDashView(v as typeof dashView); }}
@@ -2726,7 +2726,7 @@ export default function Dashboard() {
               }
             } catch { /* ignore */ }
           }}
-        />
+        /></Suspense>
       )}
 
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
@@ -2990,14 +2990,14 @@ export default function Dashboard() {
 
       {/* Onboarding Wizard */}
       {/* Alpha Feedback Overlay */}
-      <FeedbackOverlay
+      <Suspense fallback={null}><FeedbackOverlay
         active={feedbackMode}
         onExit={() => setFeedbackMode(false)}
         playerName={playerName || undefined}
-      />
+      /></Suspense>
 
       {onboardingOpen && (
-        <OnboardingWizard
+        <Suspense fallback={null}><OnboardingWizard
           onClose={() => setOnboardingOpen(false)}
           onComplete={async ({ name: newName, apiKey, accessToken: token }) => {
             setOnboardingOpen(false);
@@ -3013,7 +3013,7 @@ export default function Dashboard() {
             setTodayOpen(true); // Auto-open TodayDrawer for new players
             // Tutorial moments will fire contextually on each view — no upfront wizard
           }}
-        />
+        /></Suspense>
       )}
 
       {/* Email Migration Modal (forced for existing users without email) */}

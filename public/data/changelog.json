@@ -1,5 +1,26 @@
 [
   {
+    "version": "2.0.0",
+    "date": "2026-04-21",
+    "title": "Open Beta — Die Halle öffnet ihre Tore",
+    "changes": [
+      "Schmiedefieber — alle 48h brennt eine Profession: -50% Material, 2x Skill-XP, Bonus-Cache",
+      "Mythic+ Affixe — 10 Affixe mit echtem Gameplay-Impact (Tyrannical, Necrotic, Volcanic, Fortified...)",
+      "Rested XP — WoW-Classic-Style: baut sich offline auf, verdoppelt XP bis verbraucht",
+      "Per-Banner Gacha Pity — jeder Banner hat eigenen Mitleidszähler",
+      "D3-Style Bucket System — Buffs/Gear/Legendary additiv innerhalb, multiplikativ zwischen Kategorien",
+      "Item Hover Tooltips — jedes Item in Toasts und Celebrations ist hoverbar",
+      "Contextual Tutorial — Lyra erklärt Features kontextuell statt als Wizard",
+      "175 neue Gear-Icons, 87 NPC-Reward-Icons, 18 Achievement-Icons",
+      "Highstorm VFX — Sturm-Effekt bei Boss- und Rift-Events",
+      "Stormlight Gem-Infusion — Currency-Icons pulsieren wie infundierte Sphären",
+      "Talent-Baum Energie-Fluss — Lichtpartikel fließen entlang aktiver Verbindungen",
+      "Dashboard-Payload ~80% kleiner, 60 unnötige Re-Renders/min eliminiert",
+      "40+ Bugs gefixt — 3 vollständige Audit-Durchläufe",
+      "Alle 1.458 Rezeptbeschreibungen überarbeitet"
+    ]
+  },
+  {
     "version": "1.6.0",
     "date": "2026-03-27",
     "title": "The Artisan's Update — Binding, Mail, Mythic+ Affixes & QoL",
