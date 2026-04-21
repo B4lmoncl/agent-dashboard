@@ -193,9 +193,10 @@ export function useTutorialMoment(
     return TUTORIAL_MOMENTS.find(m =>
       m.view === viewId &&
       !seen.has(m.id) &&
+      (m.minLevel ? playerLevel >= m.minLevel : true) &&
       (conditions ? conditions[m.id] !== false : true)
     ) || null;
-  }, [viewId, conditions]);
+  }, [viewId, playerLevel, conditions]);
 
   useEffect(() => {
     setActiveMoment(findNext());

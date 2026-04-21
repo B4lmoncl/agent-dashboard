@@ -67,7 +67,7 @@ import {
   getQuestRarity,
 } from "@/app/utils";
 
-const CURRENT_VERSION = "1.6.0";
+const CURRENT_VERSION = "2.0.0";
 
 import {
   typeConfig,
@@ -3084,28 +3084,28 @@ export default function Dashboard() {
       {whatsNewOpen && (
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}>
           <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
-            <div className="px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
-              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v1.6.0 — The Artisan&apos;s Update</p>
+            <div className="px-5 py-3" style={{ background: "linear-gradient(135deg, rgba(129,140,248,0.08), rgba(249,115,22,0.06))", borderBottom: "1px solid rgba(129,140,248,0.2)" }}>
+              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v2.0.0 — Open Beta</p>
+              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Quest Hall verlässt die Alpha. 111 Commits. Alles ist besser.</p>
             </div>
             <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>New Systems</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Ätherwürfel — extract and equip legendary effects permanently</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls crafted by Verzauberer</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Quality of Life</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from accidental salvage, trade, or discard</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs and 2-step confirmation</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search (unlimited, no cap)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Recipe Discovery — undiscovered recipes shown as ??? with source hints</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>NEW badges on inventory items, craftability icons on recipes</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Notification badges on navigation tabs for pending actions</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Timer overview in Today Drawer (weekly reset, season end, active content)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Collect All for mail and Battle Pass rewards</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Progression</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Level-gated progression: Lv1 Quests/Character/Social, Lv3 Challenges, Lv5 Forge/Gacha, Lv8 Rift/Leaderboard, Lv10 Factions/BP, Lv12 Dungeons, Lv15 World Boss</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Batch craft animation with sequential reveal</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>New Features</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Schmiedefieber — alle 48h brennt eine Profession: -50% Material, 2x Skill-XP</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixe — 7 Affixe mit echtem Gameplay-Impact (Tyrannical, Necrotic, Volcanic...)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Hover Tooltips — jedes Item in Toasts und Celebrations ist jetzt hoverbar</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Contextual Tutorial — Lyra erklärt Features wenn du sie entdeckst, nicht vorher</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Balance</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>D3-Style Bucket System — Buffs/Gear/Legendary sind jetzt additiv innerhalb, multiplikativ zwischen Kategorien</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Diminishing Returns — glatte 6-Stufen-Kurve statt harter Cliffs</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Tavern Rest — serverseitige Dauer-Prüfung, kein ewiger Streak-Freeze mehr</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Performance</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Dashboard Payload ~80% kleiner — schnelleres Laden, weniger Traffic</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>60 unnötige Re-Renders/Minute eliminiert — spürbar flüssigere UI</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Canvas-Animationen pausieren in Hintergrund-Tabs — weniger Akkuverbrauch</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Quality</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>40+ Bugs gefixt — 3 vollständige Audit-Durchläufe (Frontend, Backend, Spielmechanik)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Jede Aktion gibt jetzt Feedback — keine stillen Fehler mehr</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Alle 1.458 Rezeptbeschreibungen überarbeitet</p></div>
             </div>
             <div className="px-5 pb-4">
               <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>

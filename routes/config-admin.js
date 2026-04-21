@@ -158,9 +158,13 @@ router.get('/api/dashboard', (req, res) => {
       const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
       const hoarding = getQuestHoardingMalus(u.id);
       const legendaryMods = getLegendaryModifiers(u.id);
+      // D3-style bucket display: additive within bucket, multiplicative between
+      const xpGearBucket = 1 + (gear.xpBonus || 0) / 100;
+      const xpCompBucket = 1 + (compBonus - 1) + (bondBonus - 1);
+      const xpEquipBucket = 1 + ((legendaryMods.xpBonus || 1) - 1);
       result.modifiers = {
-        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoarding.multiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoarding.multiplier * legendaryMods.xpBonus).toFixed(2) },
-        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
+        xp: { forge: forgeXp, gearBucket: xpGearBucket, companionBucket: xpCompBucket, equipBucket: xpEquipBucket, hoarding: hoarding.multiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: +(forgeXp * xpGearBucket * xpCompBucket * hoarding.multiplier * xpEquipBucket).toFixed(2) },
+        gold: { forge: forgeGold, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
       };
     }
     return result;

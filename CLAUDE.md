@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Quest Hall / Agent Dashboard** (v1.6.0) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
+**Quest Hall / Agent Dashboard** (v2.0.0 Open Beta) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
 
 ## Game Design References (Primäre Vorbilder)
 
@@ -185,7 +185,7 @@ Inspired by WoW Classic (item budget system, source exclusivity, set design) and
 
 **Rarity determines HOW MANY stats roll.** A level 30 common and a level 30 legendary roll from the **same value ranges** — the legendary just has more affix slots.
 
-**Level determines the VALUE RANGES** of individual affixes. Higher level = higher per-affix values, but scaling is deliberately flat (small numbers matter because all multipliers stack multiplicatively).
+**Level determines the VALUE RANGES** of individual affixes. Higher level = higher per-affix values, but scaling is deliberately flat (small numbers matter because multipliers use a D3-style bucket system — see Multiplier Stacking Rules below).
 
 ### Affix Slot Counts by Rarity (D3-style)
 
@@ -223,7 +223,7 @@ These ranges apply **identically regardless of rarity**. In practice, items use 
 
 ### Legendary Effect Value Ranges
 
-Legendary effects are multiplicative with other systems — keep values **small**.
+Legendary effects are **additive** with other equipment effects within their bucket, then **multiplicative** between buckets — keep values **small**.
 
 | Item Level | Effect % Range | Example |
 |-----------|---------------|---------|
@@ -290,6 +290,35 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 4. Does the affix pool have 2–3 primary and 1–3 minor options (variety for rolling)?
 5. Is the item source-appropriate (no legendaries in general pool, no commons in raids)?
 6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 7-slot build?
+
+## Multiplier Stacking Rules (D3-Style Buckets)
+
+Inspired by Diablo 3's damage formula: **additive within a bucket, multiplicative between buckets.** This prevents exponential scaling from stacking the same bonus type while rewarding diversification across categories.
+
+### XP Formula
+
+```
+finalXP = xpBase × forgeBucket × gearBucket × companionBucket × equipBucket × buffBucket × situationalBucket × procMulti × hoardingMalus × dailyDR + restedBonus
+```
+
+| Bucket | Contains (additive within) | Example |
+|--------|---------------------------|---------|
+| **Forge** | Forge temp bonus + Kraft stat bonus | 1 + 0.25 + 0.15 = 1.40 |
+| **Gear** | Gear tier XP% + Armor trait + Codex XP | 1 + 0.05 + 0.07 + 0.05 = 1.17 |
+| **Companion** | Companion achievements + Bond level | 1 + 0.06 + 0.04 = 1.10 |
+| **Equipment Effects** | Passive item XP% + Legendary xpBonus | 1 + 0.10 + 0.05 = 1.15 |
+| **Buffs** | All active buffs (potions, feast, night, berserker, weekend) | 1 + 0.10 + 0.25 + 1.0 = 2.35 |
+| **Situational** | Variety bonus + Chain bonus + Nth bonus | 1 + 0.15 + 0.10 + 0.05 = 1.30 |
+| **Procs** | Crit (2x) × Double-quest (2x) × Gamble (2x/0.5x) | Each is its own multiplier (binary) |
+| **Penalties** | Hoarding malus × Daily DR | Multiplicative debuffs |
+
+### Gold Formula
+
+Same bucket pattern. Forge bucket (forge + weisheit + workshop) is additive within, then multiplicative with streak gold and legendary gold bonuses.
+
+### Key Rule
+
+When adding a new XP/Gold modifier: **identify which bucket it belongs to and ADD it** (`+= bonus`), don't multiply. Only create a NEW bucket if the bonus comes from a genuinely different game system.
 
 ## UI Design Guidelines
 

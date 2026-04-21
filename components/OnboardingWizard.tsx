@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useModalBehavior } from "./ModalPortal";
 
 interface ClassDef {
@@ -52,8 +52,13 @@ const PET_EMOJI: Record<string, string> = {
 };
 
 export default function OnboardingWizard({ onComplete, onClose }: OnboardingWizardProps) {
-  useModalBehavior(true, onClose);
   const [step, setStep] = useState(0);
+  // Only allow ESC/backdrop dismiss on step 0 (before any data is entered).
+  // After step 0, closing would lose registration progress.
+  const safeClose = useCallback(() => {
+    if (step === 0) onClose();
+  }, [step, onClose]);
+  useModalBehavior(true, safeClose);
 
   // Step 0 fields
   const [name, setName] = useState("");
