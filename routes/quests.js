@@ -482,6 +482,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
 
   // Dev quests / non-player users: global shared state
   if (quest.status === 'completed') return res.status(409).json({ error: 'Quest already completed' });
+  if (quest.status !== 'in_progress') return res.status(400).json({ error: 'Quest must be in progress to complete' });
+  if (quest.claimedBy && !req.auth?.isAdmin && agentKey !== quest.claimedBy.toLowerCase()) {
+    return res.status(403).json({ error: 'Only the claimant can complete this quest' });
+  }
   quest.status = 'completed';
   quest.completedBy = agentId;
   quest.completedAt = now();
@@ -510,7 +514,18 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const recipeDrop = u3?._lastRecipeDrop || null;
   const materialDrops = u3?._lastMaterialDrops || null;
   const repGains = u3?._lastRepGains || null;
-  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; delete u3._lastRunensplitterEarned; delete u3._lastGildentalerEarned; delete u3._lastDailyDiminishing; delete u3._lastDailyCount; delete u3._lastGemDrop; delete u3._lastRecipeDrop; delete u3._lastMaterialDrops; delete u3._lastRepGains; delete u3._lastCodexDiscovery; }
+  const inventoryFull3 = u3?._inventoryFull || false;
+  const restedBonusXp3 = u3?._lastRestedBonusXp || 0;
+  const streakMilestone3 = u3?._lastStreakMilestone || null;
+  const codexDiscovery3 = u3?._lastCodexDiscovery || null;
+  const battlePassLevelUp3 = u3?._lastBattlePassXP?.leveledUp ? u3._lastBattlePassXP : null;
+  const gambleResult3 = u3?._lastGambleResult || null;
+  const varietyBonus3 = u3?._lastVarietyBonus || null;
+  const bondObjectiveCompleted3 = u3?._lastBondObjectiveCompleted || null;
+  const expeditionCheckpoint3 = u3?._lastExpeditionCheckpoint || null;
+  const worldBossDefeated3 = u3?._lastWorldBossDefeated || null;
+  const milestoneUnlocks3 = u3?._lastMilestoneUnlocks || null;
+  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; delete u3._lastRunensplitterEarned; delete u3._lastGildentalerEarned; delete u3._lastDailyDiminishing; delete u3._lastDailyCount; delete u3._lastGemDrop; delete u3._lastRecipeDrop; delete u3._lastMaterialDrops; delete u3._lastRepGains; delete u3._lastCodexDiscovery; delete u3._inventoryFull; delete u3._lastStreakMilestone; delete u3._lastBattlePassXP; delete u3._lastGambleResult; delete u3._lastVarietyBonus; delete u3._lastRestedBonusXp; delete u3._lastBondObjectiveCompleted; delete u3._lastExpeditionCheckpoint; delete u3._lastWorldBossDefeated; delete u3._lastMilestoneUnlocks; }
   // Activity feed: quest completion + optional level-up
   if (state.users[agentKey]) {
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
@@ -527,7 +542,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     }
   }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, dailyDiminishing, dailyQuestCount, gemDrop, recipeDrop, materialDrops, repGains, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
+  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, dailyDiminishing, dailyQuestCount, gemDrop, recipeDrop, materialDrops, repGains, inventoryFull: inventoryFull3, restedBonusXp: restedBonusXp3, streakMilestone: streakMilestone3, codexDiscovery: codexDiscovery3, battlePassLevelUp: battlePassLevelUp3 ? { level: battlePassLevelUp3.level } : null, gambleResult: gambleResult3, varietyBonus: varietyBonus3, bondObjectiveCompleted: bondObjectiveCompleted3, expeditionCheckpoint: expeditionCheckpoint3, worldBossDefeated: worldBossDefeated3, milestoneUnlocks: milestoneUnlocks3, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
   } finally { questCompleteLock.release(agentKey); }
 });
 
