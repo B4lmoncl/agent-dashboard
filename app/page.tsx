@@ -2006,7 +2006,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40">Quest Board</h2></Tip>
+                          <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40 section-header-floor">Quest Board</h2></Tip>
                         </div>
                         <p className="text-xs mt-0.5 text-w25">
                           {playerName
@@ -2375,7 +2375,7 @@ export default function Dashboard() {
         {dashView === "klassenquests" && (
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Tip k="classes" heading><h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2></Tip>
+              <Tip k="classes" heading><h2 className="text-xs font-semibold uppercase tracking-widest section-header-floor" style={{ color: "#60a5fa" }}>The Arcanum</h2></Tip>
             </div>
             <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#3b82f6" ? "59,130,246" : "96,165,250"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
               <img src="/images/icons/nav-arcanum.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -3090,22 +3090,39 @@ export default function Dashboard() {
             </div>
             <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
               <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>New Features</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Schmiedefieber — alle 48h brennt eine Profession: -50% Material, 2x Skill-XP</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Schmiedefieber — alle 48h brennt eine Profession: -50% Material, 2x Skill-XP, Bonus-Cache</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixe — 7 Affixe mit echtem Gameplay-Impact (Tyrannical, Necrotic, Volcanic...)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Hover Tooltips — jedes Item in Toasts und Celebrations ist jetzt hoverbar</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Contextual Tutorial — Lyra erklärt Features wenn du sie entdeckst, nicht vorher</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Balance</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>D3-Style Bucket System — Buffs/Gear/Legendary sind jetzt additiv innerhalb, multiplikativ zwischen Kategorien</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Diminishing Returns — glatte 6-Stufen-Kurve statt harter Cliffs</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Rested XP — WoW-Classic-Style: baut sich offline auf, verdoppelt XP bis verbraucht</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Per-Banner Gacha Pity — jeder Banner hat eigenen Mitleidszähler</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Highstorm VFX — dramatischer Sturm-Effekt beim Betreten von Boss- und Rift-Seiten</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Notifications &amp; Feedback</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Hover Tooltips — jedes Item in Toasts und Celebrations ist jetzt hoverbar</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Crafting-Material-Drops werden jetzt als Toast angezeigt</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Fraktions-Rep in Quest-Celebration sichtbar</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>World Boss Defeat, Expedition Checkpoint, Bond Objective — alles meldet sich jetzt</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Bond Level 5 Ultimate Unlock, Achievement-Meilensteine, Battle Pass Level-Up</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>DR-Indikator, Completed-Today-Badge, XP-Hover mit Breakdown</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Contextual Tutorial — Lyra erklärt Features wenn du sie entdeckst, nicht vorher</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Balance &amp; Mechanik</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>D3-Style Bucket System — Buffs/Gear/Legendary additiv innerhalb, multiplikativ zwischen Kategorien</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Diminishing Returns — glatte 6-Stufen-Kurve (100/90/75/60/50/25%)</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Tavern Rest — serverseitige Dauer-Prüfung, kein ewiger Streak-Freeze mehr</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Battle Pass XP für Rift-Stages, fehlende Season 4+5 Titel ergänzt</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Visuell</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Stormlight Gem-Infusion — Currency-Icons pulsieren wie infundierte Sphären</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Talent-Baum Energie-Fluss — Lichtpartikel fließen entlang aktiver Verbindungen</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kontrast-Boost seitenweit + Floor-Akzentfarben in Navigation und Headers</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Ornate Panel-Borders — WoW-Style dekorative Ecken auf wichtigen Panels</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Hover-Transitions, Click-Targets vergrößert, Button-States standardisiert</p></div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Performance</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Dashboard Payload ~80% kleiner — schnelleres Laden, weniger Traffic</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Dashboard-Payload ~80% kleiner — schnelleres Laden, weniger Traffic</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>60 unnötige Re-Renders/Minute eliminiert — spürbar flüssigere UI</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Canvas-Animationen pausieren in Hintergrund-Tabs — weniger Akkuverbrauch</p></div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Quality</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>40+ Bugs gefixt — 3 vollständige Audit-Durchläufe (Frontend, Backend, Spielmechanik)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Jede Aktion gibt jetzt Feedback — keine stillen Fehler mehr</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>40+ Bugs gefixt — 3 Audit-Durchläufe (Frontend, Backend, Spielmechanik)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Jede Aktion gibt Feedback — keine stillen Fehler, keine stummen Catches mehr</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Alle 1.458 Rezeptbeschreibungen überarbeitet</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item-Duplikation, Auth-Lücken, Bond-Expiry und Buff-Decrement Bugs gefixt</p></div>
             </div>
             <div className="px-5 pb-4">
               <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>

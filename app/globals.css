@@ -2138,8 +2138,20 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   opacity: 0.6;
 }
 
-/* Floor-tinted card border — subtle top accent glow */
+/* Floor-tinted card border — subtle top accent line via pseudo-element (avoids box-shadow conflicts) */
 .card-floor-border {
-  border-top: 1px solid color-mix(in srgb, var(--floor-color, #fff) 25%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--floor-color, #fff) 8%, transparent);
+  position: relative;
+}
+.card-floor-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  border-radius: 0 0 1px 1px;
+  background: linear-gradient(90deg, transparent, var(--floor-color, rgba(255,255,255,0.2)), transparent);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
 }
