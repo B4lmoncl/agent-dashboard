@@ -66,6 +66,14 @@ const CATEGORY_TOOLTIPS: Record<string, { title: string; desc: string }> = {
   timers: { title: "Timers", desc: "All active countdowns at a glance — weekly resets, season deadlines, active rifts, and world boss spawns." },
 };
 
+const CAT_ACCENT: Record<string, string> = {
+  urgent: "#fbbf24",
+  daily: "#818cf8",
+  content: "#c084fc",
+  social: "#34d399",
+  timers: "#38bdf8",
+};
+
 // ─── Time-of-day flavor ──────────────────────────────────────────────────────
 
 interface TimeInfo {
@@ -338,42 +346,42 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
       {/* 2×2 stat pill grid */}
       <div className="grid grid-cols-2 gap-2">
         {/* Quests Today */}
-        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src="/images/icons/equip-weapon.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Quests</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>Quests</span>
           </div>
           <span className="text-base font-bold font-mono" style={{ color: "#e8e8e8" }}>{questsToday}</span>
-          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>today</span>
+          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.4)" }}>today</span>
         </div>
 
         {/* DR Tier */}
-        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>◆</span>
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>DR Tier</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>DR Tier</span>
           </div>
           <span className="text-xs font-semibold" style={{ color: drTier.color, fontSize: 12 }}>{drTier.label}</span>
         </div>
 
         {/* XP Earned */}
-        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src="/images/icons/currency-essenz.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>XP</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>XP</span>
           </div>
           <span className="text-base font-bold font-mono" style={{ color: "#818cf8" }}>~{xpEarned}</span>
-          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>earned</span>
+          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.4)" }}>earned</span>
         </div>
 
         {/* Gold Earned */}
-        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src="/images/icons/currency-gold.png" alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Gold</span>
+            <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>Gold</span>
           </div>
           <span className="text-base font-bold font-mono" style={{ color: "#fbbf24" }}>~{goldEarned}</span>
-          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.25)" }}>earned</span>
+          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.4)" }}>earned</span>
         </div>
       </div>
     </div>
@@ -902,7 +910,7 @@ export default function TodayDrawer({
               ✕
             </button>
           </div>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.4 }}>{timeInfo.flavor}</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{timeInfo.flavor}</p>
 
           {/* Compact progress bar — replaces the bulky SVG arc */}
           <div className="mt-2 flex items-center gap-2.5">
@@ -915,7 +923,7 @@ export default function TodayDrawer({
                 boxShadow: allDone ? "0 0 8px rgba(74,222,128,0.4)" : "0 0 6px rgba(129,140,248,0.3)",
               }} />
             </div>
-            <span className="text-xs" style={{ color: allDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.2)" }}>{allDone ? "Done" : "tasks"}</span>
+            <span className="text-xs" style={{ color: allDone ? "rgba(74,222,128,0.6)" : "rgba(255,255,255,0.35)" }}>{allDone ? "Done" : "tasks"}</span>
           </div>
         </div>
 
@@ -945,7 +953,7 @@ export default function TodayDrawer({
                 <StreakFlame streak={streak} />
                 <div>
                   <span className="text-lg font-bold font-mono" style={{ color: streak > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>{streak}</span>
-                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 12, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.4)", marginTop: -2 }}>Streak <span style={{ fontSize: 12, opacity: 0.6 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
@@ -1037,7 +1045,7 @@ export default function TodayDrawer({
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 12, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>Forge <span style={{ fontSize: 12, opacity: 0.6 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
@@ -1062,7 +1070,7 @@ export default function TodayDrawer({
                 const allDone = missions.every(m => m.done);
 
                 return (
-                  <div className="rounded-xl p-3 mt-2 mb-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div className="rounded-xl p-3 mt-2 mb-1" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.10)" }}>
                     {/* Milestone bar header */}
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold uppercase tracking-widest" style={{ color: allDone ? "rgba(34,197,94,0.6)" : "rgba(251,191,36,0.6)" }}>
@@ -1116,10 +1124,10 @@ export default function TodayDrawer({
                           <span className="flex-shrink-0 w-3.5 h-3.5 rounded-sm flex items-center justify-center" style={{ background: m.done ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.04)", border: `1px solid ${m.done ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.08)"}` }}>
                             {m.done && <span style={{ fontSize: 12, color: "#22c55e" }}>✓</span>}
                           </span>
-                          <span className="text-xs flex-1" style={{ color: m.done ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.6)", textDecoration: m.done ? "line-through" : "none" }}>
+                          <span className="text-xs flex-1" style={{ color: m.done ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.7)", textDecoration: m.done ? "line-through" : "none" }}>
                             {m.label}
                           </span>
-                          <span className="text-xs font-mono flex-shrink-0" style={{ color: m.done ? "rgba(255,255,255,0.2)" : "rgba(251,191,36,0.5)", fontSize: 12 }}>
+                          <span className="text-xs font-mono flex-shrink-0" style={{ color: m.done ? "rgba(255,255,255,0.3)" : "rgba(251,191,36,0.7)", fontSize: 12 }}>
                             +{m.points}
                           </span>
                         </div>
@@ -1162,7 +1170,7 @@ export default function TodayDrawer({
                   )}
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold" style={{ color: accentColor }}>{item.label}</p>
-                    {item.sub && <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{item.sub}</p>}
+                    {item.sub && <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>{item.sub}</p>}
                   </div>
                   {item.reward ? (
                     <span className="text-xs font-mono px-2.5 py-1 rounded-lg flex-shrink-0" style={{ background: `${accentColor}12`, color: `${accentColor}cc`, border: `1px solid ${accentColor}20` }}>
@@ -1179,32 +1187,33 @@ export default function TodayDrawer({
           {/* ─── Flat Checklist (replaces card grid) ───────────────────── */}
           {categories.map((cat, catIdx) => {
             const catAllDone = cat.items.every(i => i.done);
+            const accent = CAT_ACCENT[cat.id] || "#818cf8";
             return (
               <div key={cat.id}>
-                {catIdx > 0 && <MagicDivider />}
+                {catIdx > 0 && <MagicDivider color={`${accent}40`} />}
 
                 {/* Category header */}
-                <div className="flex items-center gap-1.5 mb-1.5 px-1" style={{
+                <div className="flex items-center gap-2 mb-2 px-1" style={{
                   animation: entered ? `today-card-enter 0.3s ease-out ${catIdx * 80}ms both` : "none",
                 }}>
-                  {cat.icon.startsWith("/") ? <img src={cat.icon} alt="" width={13} height={13} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 13 }}>{cat.icon}</span>}
+                  {cat.icon.startsWith("/") ? <img src={cat.icon} alt="" width={14} height={14} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 14, color: accent }}>{cat.icon}</span>}
                   {CATEGORY_TOOLTIPS[cat.id] ? (
-                    <TipCustom title={CATEGORY_TOOLTIPS[cat.id].title} accent={cat.id === "urgent" ? "#fbbf24" : "#818cf8"} body={<p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{CATEGORY_TOOLTIPS[cat.id].desc}</p>}>
+                    <TipCustom title={CATEGORY_TOOLTIPS[cat.id].title} accent={accent} body={<p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{CATEGORY_TOOLTIPS[cat.id].desc}</p>}>
                       <span className="text-xs font-bold uppercase tracking-widest cursor-help" style={{
-                        color: cat.id === "urgent" ? "rgba(251,191,36,0.7)" : catAllDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.3)",
-                        borderBottom: "1px dotted rgba(255,255,255,0.15)",
+                        color: catAllDone ? "rgba(74,222,128,0.6)" : accent,
+                        borderBottom: `1px dotted ${accent}40`,
                       }}>
                         {cat.label}
                       </span>
                     </TipCustom>
                   ) : (
                     <span className="text-xs font-bold uppercase tracking-widest" style={{
-                      color: cat.id === "urgent" ? "rgba(251,191,36,0.7)" : catAllDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.3)",
+                      color: catAllDone ? "rgba(74,222,128,0.6)" : accent,
                     }}>
                       {cat.label}
                     </span>
                   )}
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
                     {cat.items.filter(i => i.done).length}/{cat.items.length}
                   </span>
                   {catAllDone && <span className="text-xs" style={{ color: "#4ade80" }}>✓</span>}
@@ -1212,7 +1221,9 @@ export default function TodayDrawer({
 
                 {/* Row cards — full-width cards with depth, arranged vertically */}
                 <div className="space-y-1.5 mb-2">
-                  {cat.items.map((item, itemIdx) => (
+                  {cat.items.map((item, itemIdx) => {
+                    const itemAccent = item.urgent ? "#fbbf24" : item.done ? "#4ade80" : accent;
+                    return (
                     <button
                       key={item.id}
                       onClick={() => item.onClick?.()}
@@ -1220,19 +1231,19 @@ export default function TodayDrawer({
                       className="today-item-card w-full rounded-xl px-3.5 py-2.5 text-left flex items-center gap-3 transition-all"
                       style={{
                         background: item.urgent
-                          ? "linear-gradient(135deg, rgba(251,191,36,0.06) 0%, rgba(251,191,36,0.02) 100%)"
+                          ? "linear-gradient(135deg, rgba(251,191,36,0.10) 0%, rgba(251,191,36,0.04) 100%)"
                           : item.done
-                          ? "linear-gradient(135deg, rgba(74,222,128,0.03) 0%, rgba(74,222,128,0.01) 100%)"
-                          : "linear-gradient(135deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%)",
-                        border: `1px solid ${item.urgent ? "rgba(251,191,36,0.18)" : item.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.06)"}`,
-                        borderLeft: `3px solid ${item.urgent ? "rgba(251,191,36,0.5)" : item.done ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.08)"}`,
+                          ? "linear-gradient(135deg, rgba(74,222,128,0.05) 0%, rgba(74,222,128,0.02) 100%)"
+                          : "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%)",
+                        border: `1px solid ${item.urgent ? "rgba(251,191,36,0.25)" : item.done ? "rgba(74,222,128,0.12)" : "rgba(255,255,255,0.10)"}`,
+                        borderLeft: `3px solid ${item.urgent ? "rgba(251,191,36,0.7)" : item.done ? "rgba(74,222,128,0.35)" : `${accent}40`}`,
                         boxShadow: item.urgent
-                          ? "inset 0 1px 0 rgba(251,191,36,0.06), 0 2px 8px rgba(0,0,0,0.15)"
+                          ? "inset 0 1px 0 rgba(251,191,36,0.08), 0 2px 8px rgba(0,0,0,0.2)"
                           : item.done
-                          ? "inset 0 1px 0 rgba(74,222,128,0.03)"
-                          : "inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 6px rgba(0,0,0,0.1)",
+                          ? "inset 0 1px 0 rgba(74,222,128,0.04)"
+                          : "inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 6px rgba(0,0,0,0.15)",
                         cursor: item.onClick ? "pointer" : "default",
-                        opacity: item.done ? 0.55 : 1,
+                        opacity: item.done ? 0.6 : 1,
                         animation: entered
                           ? `today-card-enter 0.3s ease-out ${catIdx * 80 + (itemIdx + 1) * 40}ms both${item.urgent ? ", today-urgent-pulse 2.5s ease-in-out infinite" : ""}`
                           : item.urgent ? "today-urgent-pulse 2.5s ease-in-out infinite" : "none",
@@ -1240,9 +1251,9 @@ export default function TodayDrawer({
                     >
                       {/* Status dot */}
                       <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style={{
-                        background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
-                        color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
-                        border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
+                        background: item.done ? "rgba(74,222,128,0.2)" : item.urgent ? "rgba(251,191,36,0.2)" : `${accent}15`,
+                        color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : accent,
+                        border: `1px solid ${item.done ? "rgba(74,222,128,0.35)" : item.urgent ? "rgba(251,191,36,0.35)" : `${accent}30`}`,
                         fontSize: 12, fontWeight: 700,
                         animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
                       }}>
@@ -1259,33 +1270,49 @@ export default function TodayDrawer({
                       {/* Label + sub */}
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold leading-tight" style={{
-                          color: item.done ? "rgba(255,255,255,0.35)" : item.urgent ? "#fbbf24" : "#e8e8e8",
+                          color: item.done ? "rgba(255,255,255,0.4)" : item.urgent ? "#fbbf24" : "#e8e8e8",
                           textDecoration: item.done ? "line-through" : "none",
                           textDecorationColor: "rgba(74,222,128,0.3)",
                         }}>
                           {item.tooltipKey ? <Tip k={item.tooltipKey}>{item.label}</Tip> : item.label}
                         </p>
                         {item.sub && (
-                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.sub}</p>
+                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>{item.sub}</p>
                         )}
                       </div>
 
                       {/* Right side: Claim button OR reward badge OR arrow */}
-                      {item.reward && !item.done ? (
-                        <span className="text-xs font-mono flex items-center gap-1 px-2 py-1 rounded-lg flex-shrink-0" style={{
-                          background: "rgba(167,139,250,0.08)",
-                          color: "rgba(167,139,250,0.7)",
+                      {item.onClaim && !item.done ? (
+                        <span
+                          role="button"
+                          onClick={e => { e.stopPropagation(); item.onClaim?.(); }}
+                          className="text-xs font-bold flex items-center gap-1 px-3 py-1.5 rounded-lg flex-shrink-0"
+                          style={{
+                            background: `${itemAccent}18`,
+                            color: itemAccent,
+                            fontSize: 12,
+                            border: `1px solid ${itemAccent}30`,
+                            cursor: "pointer",
+                          }}
+                        >
+                          Claim now
+                        </span>
+                      ) : item.reward && !item.done ? (
+                        <span className="text-xs font-mono flex items-center gap-1 px-2.5 py-1 rounded-lg flex-shrink-0" style={{
+                          background: `${accent}12`,
+                          color: `${accent}cc`,
                           fontSize: 12,
-                          border: "1px solid rgba(167,139,250,0.1)",
+                          border: `1px solid ${accent}20`,
                         }}>
                           {item.rewardIcon && <img src={item.rewardIcon} alt="" width={12} height={12} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />}
                           {item.reward}
                         </span>
                       ) : item.onClick && !item.done ? (
-                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>→</span>
+                        <span className="text-xs flex-shrink-0" style={{ color: `${accent}60` }}>→</span>
                       ) : null}
                     </button>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             );
