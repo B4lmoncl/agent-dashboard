@@ -307,7 +307,7 @@ export default function DashboardHeader({
                 </button>
                 {settingsPopupOpen && (
                   <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col bg-surface-alt border-w10 tab-content-enter" style={{ minWidth: 200, overflow: "hidden" }}>
-                    <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                    <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.11)" }}>
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
                           {playerName.slice(0, 1).toUpperCase()}
@@ -395,9 +395,9 @@ export default function DashboardHeader({
                           </button>
                         </div>
                         {!forgotOpen ? (
-                          <button onClick={() => setForgotOpen(true)} className="text-xs" style={{ color: "rgba(255,255,255,0.25)", cursor: "pointer", background: "none", border: "none", padding: 0 }}>Forgot password?</button>
+                          <button onClick={() => setForgotOpen(true)} className="text-xs" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "none", border: "none", padding: 0 }}>Forgot password?</button>
                         ) : (
-                          <div className="space-y-1.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                          <div className="space-y-1.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
                             <input type="email" value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} placeholder="Your email address" className="text-xs px-2 py-1 rounded input-dark w-full" />
                             <button
                               onClick={async () => {
@@ -491,14 +491,14 @@ export default function DashboardHeader({
         <div className="w-full max-w-md rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
           <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
             <p className="text-sm font-bold" style={{ color: "#818cf8" }}>Settings</p>
-            <button onClick={() => setSettingsModalOpen(false)} className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
+            <button onClick={() => setSettingsModalOpen(false)} className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
           </div>
           <div className="px-5 py-4 space-y-4 max-h-[70vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
             {/* Email Section */}
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Email</p>
               {emailStatus?.hasEmail ? (
-                <div className="rounded-lg px-3 py-2 space-y-1.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="rounded-lg px-3 py-2 space-y-1.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{emailStatus.email}</span>
                     {emailStatus.emailVerified
@@ -508,7 +508,7 @@ export default function DashboardHeader({
                   </div>
                   {!emailStatus.emailVerified && (
                     <div className="space-y-1">
-                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Password reset requires a verified email.</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Password reset requires a verified email.</p>
                       <button
                         onClick={async () => {
                           try {
@@ -525,7 +525,7 @@ export default function DashboardHeader({
                   )}
                 </div>
               ) : (
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No email set. Use the migration prompt to add one.</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>No email set. Use the migration prompt to add one.</p>
               )}
             </div>
 
@@ -535,7 +535,7 @@ export default function DashboardHeader({
               <div className="space-y-3">
                 {/* Avatar Style */}
                 <div>
-                  <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Avatar</p>
+                  <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>Avatar</p>
                   <div className="flex gap-2">
                     {(["male", "female"] as const).map(style => (
                       <button
@@ -568,7 +568,7 @@ export default function DashboardHeader({
 
                 {/* Relationship Status */}
                 <div>
-                  <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Relationship</p>
+                  <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>Relationship</p>
                   <div className="flex gap-1 flex-wrap">
                     {["single", "relationship", "married", "complicated"].map(s => (
                       <button

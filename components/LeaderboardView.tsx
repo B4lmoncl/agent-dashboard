@@ -117,10 +117,10 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
 
   if (merged.length === 0) {
     return (
-      <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
         <img src="/images/icons/nav-proving.png" alt="" width={48} height={48} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
-        <p className="text-sm font-medium mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>{mode === "players" ? "The Proving Grounds await" : "No agents deployed"}</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{mode === "players" ? "Complete quests to earn XP and claim your rank. Daily rituals, campaigns, and challenges all contribute to your standing." : "Deploy agents and let them complete quests to appear on the leaderboard."}</p>
+        <p className="text-sm font-medium mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>{mode === "players" ? "The Proving Grounds await" : "No agents deployed"}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{mode === "players" ? "Complete quests to earn XP and claim your rank. Daily rituals, campaigns, and challenges all contribute to your standing." : "Deploy agents and let them complete quests to appear on the leaderboard."}</p>
       </div>
     );
   }
@@ -130,7 +130,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
 
   return (
     <div data-feedback-id="leaderboard-view" className="space-y-6 tab-content-enter relative">
-      <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
+      <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.35)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
       {/* ── Podium ── */}
       <div className="flex items-end justify-center gap-4 relative">
         {/* Gold sparkles around top 3 podium */}
@@ -184,7 +184,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 className={`w-full rounded-t-lg flex items-center justify-center ${podiumHeightClass}`}
                 style={{ background: `linear-gradient(180deg, ${color}20 0%, ${color}08 100%)`, border: `1px solid ${color}30`, borderBottom: "none" }}
               >
-                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>#{rank}</span>
+                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>#{rank}</span>
               </div>
             </div>
           );
@@ -193,7 +193,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
 
       {/* ── Ranking Note + Season Toggle ── */}
       <div className="flex items-center justify-center gap-3">
-        <Tip k="leaderboard_rank"><p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+        <Tip k="leaderboard_rank"><p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
           Ranked by {seasonal ? "Season " : ""}XP · Ties broken by Quests
         </p></Tip>
         {mode === "players" && (
@@ -223,8 +223,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
       </div>
 
       {/* ── Leaderboard Table ── */}
-      <div className="rounded-xl overflow-hidden stagger-list" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "32px 1fr 60px 60px 60px", color: "rgba(255,255,255,0.3)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl overflow-hidden stagger-list" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.11)" }}>
+        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "32px 1fr 60px 60px 60px", color: "rgba(255,255,255,0.45)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
           <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><Tip k="player_level"><span className="text-right">Level</span></Tip><Tip k="xp"><span className="text-right">XP</span></Tip><Tip k="quest_board"><span className="text-right">Quests</span></Tip>
         </div>
         {merged.map((entry) => {
@@ -276,7 +276,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                       return cls ? (
                         <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)" }}>{cls.icon} {cls.fantasy}</span>
                       ) : (
-                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.25)" }}>No Class</span>
+                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.4)" }}>No Class</span>
                       );
                     })()}
                   </div>
@@ -306,7 +306,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             <p className="text-xs font-semibold" style={{ color: "#fbbf24" }}>
               {xpDiff} XP until Rank {myEntry.rank - 1}
             </p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
               Pass {above.name} to climb the leaderboard
             </p>
           </div>

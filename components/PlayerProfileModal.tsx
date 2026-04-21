@@ -235,7 +235,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             </div>
 
             {/* Stats row */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
               {[
                 { label: "XP", value: profile.xp.toLocaleString(), color: "#a855f7", tip: "xp" as const },
                 { label: "Quests", value: profile.questsCompleted.toLocaleString(), color: "#8b5cf6", tip: "quest_board" as const },
@@ -260,7 +260,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                   {(["weapon", "shield", "helm", "armor", "amulet", "boots"] as const).map(slot => {
                     const item = profile.equipped[slot];
                     if (!item) return (
-                      <div key={slot} className="rounded-lg p-2 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+                      <div key={slot} className="rounded-lg p-2 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.04)" }}>
                         <p className="text-xs text-w15">{SLOT_LABELS[slot]}</p>
                         <p className="text-xs text-w10">Empty</p>
                       </div>
@@ -275,7 +275,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                         {statLines.length > 0 && <div>{statLines}</div>}
                         {item.setId && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setId}</p>}
                         {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {formatLegendaryLabel(item.legendaryEffect)}</p>}
-                        {item.desc && <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.3)" }}>&quot;{item.desc}&quot;</p>}
+                        {item.desc && <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.45)" }}>&quot;{item.desc}&quot;</p>}
                       </div>
                     );
                     return (

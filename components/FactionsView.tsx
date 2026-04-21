@@ -153,8 +153,8 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   if (!playerName) {
     return (
-      <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>Log in to view faction standings.</p>
+      <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>Log in to view faction standings.</p>
       </div>
     );
   }
@@ -183,7 +183,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         <p className="text-xs text-w35" style={{ maxWidth: "min(440px, 100%)", margin: "0 auto" }}>
           Secret orders of the tower. Earn reputation through quests and unlock exclusive rewards.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Alte Orden, erwacht aus dem langen Schlaf des Turms. Vier Philosophien. Vier Aspekte des Aetherstroms.</p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.4)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Alte Orden, erwacht aus dem langen Schlaf des Turms. Vier Philosophien. Vier Aspekte des Aetherstroms.</p>
       </div>
 
       {/* Messages */}
@@ -234,7 +234,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   <div className="text-right">
                     <p className="text-xs font-bold" style={{ color: f.standingColor }}>{f.standingName}</p>
                     <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Ruf wird automatisch durch passende Quests verdient (+5-35 je nach Quest-Rarit&auml;t). Weekly Bonus verdoppelt den Ruf-Gewinn.</p>}>
-                      <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{f.playerRep} Rep</p>
+                      <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>{f.playerRep} Rep</p>
                     </TipCustom>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   </TipCustom>
                   {f.nextStanding && (
                     <TipCustom title="Rufpunkte" icon="◆" accent={f.accent} body={<p>Fortschritt zur n&auml;chsten Stufe. Ruf wird durch passende Quests verdient (+5-35 je nach Rarit&auml;t).</p>}>
-                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
+                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>
                         {f.playerRep} / {f.nextStanding.minRep}
                       </span>
                     </TipCustom>
@@ -285,7 +285,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 </div>
                 {f.nextStanding && (
                   <TipCustom title={f.nextStanding.name} icon="▲" accent={f.nextStanding.color} body={<p>N&auml;chste Stufe bei {f.nextStanding.minRep} Rep. Schaltet neue Belohnungen frei.</p>}>
-                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)", cursor: "help" }}>
+                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)", cursor: "help" }}>
                       {f.nextStanding.minRep - f.playerRep} Rep until {f.nextStanding.name}
                     </p>
                   </TipCustom>
@@ -314,7 +314,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                           </span>
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-semibold truncate" style={{ color: claimed ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.6)", textDecoration: claimed ? "line-through" : "none" }}>{dq.name}</p>
-                            <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.2)" }}>{dq.desc}</p>
+                            <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{dq.desc}</p>
                           </div>
                           <div className="flex items-center gap-1.5 flex-shrink-0">
                             <span className="text-xs font-mono" style={{ color: `${f.accent}88` }}>+{dq.repReward}</span>
@@ -360,7 +360,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                           className="flex-1 text-center py-1.5 rounded-lg cursor-help"
                           style={{
                             background: isClaimed ? `${s.color}20` : isReached ? `${s.color}12` : "rgba(255,255,255,0.02)",
-                            color: isReached ? s.color : "rgba(255,255,255,0.12)",
+                            color: isReached ? s.color : "rgba(255,255,255,0.25)",
                             border: `1px solid ${isCurrent ? `${s.color}50` : isReached ? `${s.color}20` : "rgba(255,255,255,0.04)"}`,
                             fontWeight: isCurrent ? 700 : 400,
                             fontSize: 12,
@@ -384,12 +384,12 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
               {onNavigate && reward && (
                 <div className="px-4 pb-1 flex gap-3">
                   {reward.recipe && (
-                    <button onClick={(e) => { e.stopPropagation(); onNavigate("forge"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("forge"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.4)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
                       Unlock in Forge {"\u2192"}
                     </button>
                   )}
                   {reward.frame && (
-                    <button onClick={(e) => { e.stopPropagation(); onNavigate("character"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("character"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.4)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
                       View in Character {"\u2192"}
                     </button>
                   )}

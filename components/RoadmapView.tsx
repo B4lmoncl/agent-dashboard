@@ -130,7 +130,7 @@ export function RoadmapView() {
           </div>
           <div className="flex gap-2">
             <button onClick={handleAdd} className="text-xs px-3 py-1 rounded font-semibold" style={{ background: "rgba(99,102,241,0.2)", color: "#a78bfa", border: "1px solid rgba(99,102,241,0.4)" }}>Add</button>
-            <button onClick={() => setAddOpen(false)} className="text-xs px-3 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)" }}>Cancel</button>
+            <button onClick={() => setAddOpen(false)} className="text-xs px-3 py-1 rounded" style={{ color: "rgba(255,255,255,0.45)" }}>Cancel</button>
           </div>
         </div>
       )}
@@ -140,7 +140,7 @@ export function RoadmapView() {
         if (catItems.length === 0) return null;
         return (
         <div key={cat}>
-          <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>{cat}</p>
+          <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>{cat}</p>
           <div className="space-y-2">
             {catItems.map(item => {
               const cfg = ROADMAP_STATUS_CONFIG[item.status] ?? ROADMAP_STATUS_CONFIG.planned;
@@ -157,14 +157,14 @@ export function RoadmapView() {
                   >
                     <span className="text-sm">{cfg.dot}</span>
                     <span className="text-sm font-semibold flex-1" style={{ color: "#f0f0f0" }}>{item.title}</span>
-                    {item.eta && <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{item.eta}</span>}
+                    {item.eta && <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{item.eta}</span>}
                     <span
                       className="text-xs px-2 py-0.5 rounded font-medium"
                       style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}
                     >
                       {cfg.label}
                     </span>
-                    <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.2)" }}>{isOpen ? "▲" : "▼"}</span>
+                    <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.35)" }}>{isOpen ? "▲" : "▼"}</span>
                   </button>
                   {isOpen && (
                     <div className="px-4 pb-3 space-y-2">
@@ -201,8 +201,8 @@ export function RoadmapView() {
         <div className="space-y-3"><div className="skeleton-card h-16 rounded-lg" /><div className="skeleton-card h-16 rounded-lg" /><div className="skeleton-card h-16 rounded-lg" /></div>
       )}
       {!loading && items.length === 0 && (
-        <div className="flex flex-col items-center py-12" style={{ color: "rgba(255,255,255,0.3)" }}>
-          <span className="text-3xl mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>◇</span>
+        <div className="flex flex-col items-center py-12" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <span className="text-3xl mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>◇</span>
           <p className="text-sm font-medium mb-1">The road ahead is uncharted</p>
           <p className="text-xs">No roadmap items yet. Check back soon for upcoming features.</p>
         </div>

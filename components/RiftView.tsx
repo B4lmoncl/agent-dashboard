@@ -222,7 +222,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   if (!playerName || !reviewApiKey) {
     return (
-      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <img src="/images/icons/rift-normal.png" alt="" width={32} height={32} className="img-render-auto mx-auto mb-2" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Rift</p>
         <p className="text-xs text-w25">Log in to enter The Rift.</p>
@@ -505,7 +505,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   {locked && (
                     <div className="mt-1 flex items-center justify-center gap-1.5">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Requires Lv.{tier.minLevel}</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Requires Lv.{tier.minLevel}</p>
                     </div>
                   )}
                 </div>
@@ -521,13 +521,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   </Tip>
                 </div>
                 {tier.completionBonus && (
-                  <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.04)" }}>
                     <p className="text-xs text-w25 mb-1">Completion Bonus:</p>
                     <div className="flex flex-wrap gap-1">
                       {Object.entries(tier.completionBonus).map(([k, v]) => {
                         const tipKey = k === "gold" ? "gold" : k === "essenz" ? "essenz" : k === "sternentaler" ? "sternentaler" : k === "runensplitter" ? "runensplitter" : "";
                         const badge = (
-                          <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: k === "gold" ? "#fbbf24" : k === "essenz" ? "#ef4444" : k === "sternentaler" ? "#fbbf24" : "#818cf8" }}>
+                          <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: k === "gold" ? "#fbbf24" : k === "essenz" ? "#ef4444" : k === "sternentaler" ? "#fbbf24" : "#818cf8" }}>
                             {v} {k}
                           </span>
                         );
@@ -669,7 +669,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     {selectedMythicLevel >= affix.minLevel ? (
                       <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>{affix.desc}</span>
                     ) : (
-                      <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>Activates at M+{affix.minLevel}</span>
+                      <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Activates at M+{affix.minLevel}</span>
                     )}
                   </div>
                   {selectedMythicLevel >= affix.minLevel && (
@@ -738,7 +738,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Rift History</p>
           <div className="space-y-1">
             {history.map((h, i) => (
-              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)" }}>
                 <div className="flex items-center gap-2">
                   <span style={{ color: h.success ? "#22c55e" : "#ef4444" }}>{h.success ? "✓" : "✕"}</span>
                   <span className="text-w40 capitalize">{h.tier}</span>

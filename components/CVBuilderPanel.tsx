@@ -35,7 +35,7 @@ export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey
           <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
             {completedLearning} skills tracked
           </span>
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{open ? "▲" : "▼"}</span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{open ? "▲" : "▼"}</span>
         </button>
         <div className="ml-auto flex items-center gap-2">
         </div>
@@ -44,10 +44,10 @@ export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey
         <div className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(96,165,250,0.2)" }}>
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{activeUser ? `${activeUser}'s Skill Profile` : "All Players Skill Profile"}</p>
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{cvData.totalLearningQuests} learning quests completed</span>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{cvData.totalLearningQuests} learning quests completed</span>
           </div>
           {cvData.skills.length === 0 ? (
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No completed learning quests yet. Start a quest chain in the Learning Workshop!</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>No completed learning quests yet. Start a quest chain in the Learning Workshop!</p>
           ) : (
             <>
               <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(96,165,250,0.7)" }}>Skill Tree</h3>
@@ -73,7 +73,7 @@ export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey
                         </div>
                         <div className="flex items-center gap-1.5">
                           <span className="text-xs font-semibold" style={{ color: tier.color }}>{tier.label}</span>
-                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>×{skill.count}</span>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>×{skill.count}</span>
                         </div>
                       </div>
                       <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
@@ -83,7 +83,7 @@ export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey
                         />
                       </div>
                       {nextTier && (
-                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
                           {nextTier.min - skill.count} more to {nextTier.label}
                         </p>
                       )}
@@ -101,7 +101,7 @@ export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey
                   <div key={i} className="flex items-center gap-2 text-xs">
                     <span style={{ color: "#fbbf24" }}>★</span>
                     <span style={{ color: "#e8e8e8" }}>{cert.title}</span>
-                    {cert.earnedAt && <span style={{ color: "rgba(255,255,255,0.3)" }}>{new Date(cert.earnedAt).toLocaleDateString()}</span>}
+                    {cert.earnedAt && <span style={{ color: "rgba(255,255,255,0.45)" }}>{new Date(cert.earnedAt).toLocaleDateString()}</span>}
                   </div>
                 ))}
               </div>

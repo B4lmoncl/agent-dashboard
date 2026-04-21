@@ -112,7 +112,7 @@ export default function CodexView() {
           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
         </TipCustom>
         <TipCustom title="Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anteil der entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, NPCs und besondere Events freigeschaltet.</p>}>
-          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)", cursor: "help" }}>
+          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)", cursor: "help" }}>
             {discoveredCount}/{totalCount} discovered
           </span>
         </TipCustom>
@@ -171,7 +171,7 @@ export default function CodexView() {
                 <div className="flex items-center gap-3 mb-2.5">
                   <div className="w-1 h-6 rounded-full" style={{ background: cat.color }} />
                   <span className="text-xs font-bold uppercase tracking-wider" style={{ color: cat.color }}>{cat.name}</span>
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{catDiscovered.length}/{catTotal}</span>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{catDiscovered.length}/{catTotal}</span>
                   <div className="flex-1 h-px" style={{ background: `${cat.color}15` }} />
                 </div>
                 {/* Mixed layout: first entry larger, rest compact */}
@@ -198,7 +198,7 @@ export default function CodexView() {
                         )}
                         <p className={`font-semibold line-clamp-2 ${isFeatured ? "text-sm mb-1" : "text-xs"}`} style={{ color: cat.color }}>{entry.title}</p>
                         {isFeatured && entry.text && (
-                          <p className="text-xs line-clamp-3 mt-1" style={{ color: "rgba(255,255,255,0.25)", lineHeight: "1.5" }}>
+                          <p className="text-xs line-clamp-3 mt-1" style={{ color: "rgba(255,255,255,0.4)", lineHeight: "1.5" }}>
                             {entry.text.slice(0, 120)}{entry.text.length > 120 ? "..." : ""}
                           </p>
                         )}
@@ -232,7 +232,7 @@ export default function CodexView() {
                   <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{ background: "#fbbf24", boxShadow: "0 0 4px rgba(251,191,36,0.6)" }} />
                 )}
                 <p className="text-xs font-semibold line-clamp-2" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
-                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{cat?.name}</p>
+                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{cat?.name}</p>
               </button>
             );
           })}
@@ -256,13 +256,13 @@ export default function CodexView() {
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", borderLeft: `4px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}` }}>
+            <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)", borderLeft: `4px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}` }}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-bold" style={{ color: categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24" }}>{selectedEntry.title}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{categories.find(c => c.id === selectedEntry.category)?.name}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{categories.find(c => c.id === selectedEntry.category)?.name}</p>
                 </div>
-                <button onClick={() => setSelectedEntry(null)} aria-label="Schließen" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>×</button>
+                <button onClick={() => setSelectedEntry(null)} aria-label="Schließen" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}>×</button>
               </div>
             </div>
             {selectedEntry.text && (
@@ -281,7 +281,7 @@ export default function CodexView() {
       {undiscoveredFiltered.length > 0 && (
         <div className="space-y-1 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
           <TipCustom title="Unentdeckt" icon="?" accent="#6b7280" body={<p>Noch nicht freigeschaltete Eintr&auml;ge. Schlie&szlig;e Quests ab und erkunde die Welt, um sie zu entdecken.</p>}>
-            <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.25)", cursor: "help" }}>
+            <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.4)", cursor: "help" }}>
               Undiscovered ({undiscoveredFiltered.length})
             </p>
           </TipCustom>
@@ -315,10 +315,10 @@ function CompanionGallery() {
   ];
 
   return (
-    <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+    <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
       <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
-        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Companion Gallery</span>
-        <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
+        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>Companion Gallery</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
       </button>
       {open && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter stagger-list">
@@ -326,10 +326,10 @@ function CompanionGallery() {
             <div key={c.id} className="rounded-xl p-3 text-center crystal-breathe" style={{ background: `${c.color}08`, border: `1px solid ${c.color}20`, ["--glow-color" as string]: `${c.color}15` }}>
               <span className="text-3xl block mb-1">{c.emoji}</span>
               <p className="text-sm font-bold" style={{ color: c.color }}>{c.name}</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.personality}</p>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>{c.desc}</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{c.personality}</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>{c.desc}</p>
               <p className="text-xs mt-2 font-semibold" style={{ color: `${c.color}aa` }}>Ultimate (Bond 5):</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{c.ultimate}</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{c.ultimate}</p>
             </div>
           ))}
         </div>
@@ -353,10 +353,10 @@ function WorldStats() {
   }, [open, stats]);
 
   return (
-    <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+    <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
       <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
-        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>World Statistics</span>
-        <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
+        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>World Statistics</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)", display: "inline-block", transition: "transform 0.2s ease", transform: open ? "rotate(0deg)" : "rotate(180deg)" }}>▲</span>
       </button>
       {open && stats && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3 tab-content-enter">
@@ -367,7 +367,7 @@ function WorldStats() {
             { label: "Quest Templates", value: stats.catalogTemplates, color: "#f59e0b" },
             ...Object.entries(stats.byType).map(([type, count]) => ({ label: type, value: count, color: "rgba(255,255,255,0.4)" })),
           ].map(s => (
-            <div key={s.label} className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+            <div key={s.label} className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
               <p className="text-xs text-w25 capitalize">{s.label}</p>
               <p className="text-lg font-mono font-bold" style={{ color: s.color }}>{s.value}</p>
             </div>

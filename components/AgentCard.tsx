@@ -65,7 +65,7 @@ const statusConfig: Record<string, { label: string; color: string; dot: string }
   online:  { label: "Online",  color: "#4ade80", dot: "#4ade80" },
   working: { label: "Working", color: "#ff6b00", dot: "#ff6b00" },
   idle:    { label: "Idle",    color: "#facc15", dot: "#facc15" },
-  offline: { label: "Offline", color: "rgba(255,255,255,0.25)", dot: "rgba(255,255,255,0.2)" },
+  offline: { label: "Offline", color: "rgba(255,255,255,0.4)", dot: "rgba(255,255,255,0.2)" },
 };
 
 const statusDotAnim: Record<string, string> = {
@@ -286,7 +286,7 @@ const AgentCard = memo(function AgentCard({ agent, activeQuests = [], isWide = f
       {/* Active Quests */}
       {activeQuests.length > 0 && (
         <div className="mt-3">
-          <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>Active Quests</p>
+          <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Active Quests</p>
           <div className="flex flex-wrap gap-1.5">
             {activeQuests.map(q => (
               <div

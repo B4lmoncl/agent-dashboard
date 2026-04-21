@@ -144,12 +144,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Begleiter (Companions)" icon="●" accent="rgba(249,115,22,0.3)">
                 Dein Begleiter erscheint auf deiner Spielerkarte, gibt dir Quests und beurteilt dich still:
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f97316">Drache</Stat> — Fordernd</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#a78bfa">Eule</Stat> — Weise</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#ef4444">Phoenix</Stat> — Resilient</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#6b7280">Wolf</Stat> — Loyal</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f59e0b">Fuchs</Stat> — Clever</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>● <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>● <Stat color="#f97316">Drache</Stat> — Fordernd</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>● <Stat color="#a78bfa">Eule</Stat> — Weise</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>● <Stat color="#ef4444">Phoenix</Stat> — Resilient</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>● <Stat color="#6b7280">Wolf</Stat> — Loyal</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>● <Stat color="#f59e0b">Fuchs</Stat> — Clever</div>
                 </div>
                 <GuideTip>Ab Bond Lv. 5 schaltest du Ultimate-Fähigkeiten frei: Sofort-Abschluss, 2× Loot oder +3 Streak-Tage (7d Cooldown).</GuideTip>
               </GuideSection>
@@ -180,8 +180,8 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Seltenheit & Belohnungen" icon="◇" accent="rgba(168,85,247,0.3)">
                 Quests haben eine Seltenheitsstufe die Belohnungen bestimmt:
-                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Rarity</span><span>XP</span><span>Gold</span><span>Runen</span>
                   </div>
                   {([["common","Common","10","5-10","1"],["uncommon","Uncommon","18","10-18","1"],["rare","Rare","30","18-30","2"],["epic","Epic","50","30-50","3"],["legendary","Legendary","80","50-80","5"]] as const).map(([r,name,xp,gold,rune]) => (
@@ -256,7 +256,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt:
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 mt-2 text-center text-xs">
                   {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Ring", "Boots"] as const).map(s => (
-                    <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>{s}</div>
+                    <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>{s}</div>
                   ))}
                 </div>
               </GuideSection>
@@ -305,7 +305,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>◇ 2× Loot</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>🔥 +3 Streak-Tage</div>
                 </div>
-                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
               </GuideSection>
 
               <GuideSection title="Inventar & Titel" icon="◆">
@@ -510,12 +510,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Streak-Badges" icon="🔥" accent="rgba(249,115,22,0.3)">
                 <div className="grid grid-cols-2 gap-1 mt-2">
-                  <div className="rounded px-2 py-0.5"><Stat color="#cd7f32">Bronze</Stat> <span style={{ color: "rgba(255,255,255,0.3)" }}>7d · +5% XP</span></div>
-                  <div className="rounded px-2 py-0.5"><Stat color="#c0c0c0">Silber</Stat> <span style={{ color: "rgba(255,255,255,0.3)" }}>21d · +10% XP</span></div>
-                  <div className="rounded px-2 py-0.5"><Stat color="#f59e0b">Gold</Stat> <span style={{ color: "rgba(255,255,255,0.3)" }}>60d · +15% XP</span></div>
-                  <div className="rounded px-2 py-0.5"><Stat color="#67e8f9">Diamond</Stat> <span style={{ color: "rgba(255,255,255,0.3)" }}>180d · +25% XP</span></div>
-                  <div className="rounded px-2 py-0.5"><Stat color="#6b7280">Titan</Stat> <span style={{ color: "rgba(255,255,255,0.3)" }}>90d · Epic Loot</span></div>
-                  <div className="rounded px-2 py-0.5"><Stat color="#a855f7">Legend</Stat> <span style={{ color: "rgba(255,255,255,0.3)" }}>365d · Leg. Loot</span></div>
+                  <div className="rounded px-2 py-0.5"><Stat color="#cd7f32">Bronze</Stat> <span style={{ color: "rgba(255,255,255,0.45)" }}>7d · +5% XP</span></div>
+                  <div className="rounded px-2 py-0.5"><Stat color="#c0c0c0">Silber</Stat> <span style={{ color: "rgba(255,255,255,0.45)" }}>21d · +10% XP</span></div>
+                  <div className="rounded px-2 py-0.5"><Stat color="#f59e0b">Gold</Stat> <span style={{ color: "rgba(255,255,255,0.45)" }}>60d · +15% XP</span></div>
+                  <div className="rounded px-2 py-0.5"><Stat color="#67e8f9">Diamond</Stat> <span style={{ color: "rgba(255,255,255,0.45)" }}>180d · +25% XP</span></div>
+                  <div className="rounded px-2 py-0.5"><Stat color="#6b7280">Titan</Stat> <span style={{ color: "rgba(255,255,255,0.45)" }}>90d · Epic Loot</span></div>
+                  <div className="rounded px-2 py-0.5"><Stat color="#a855f7">Legend</Stat> <span style={{ color: "rgba(255,255,255,0.45)" }}>365d · Leg. Loot</span></div>
                 </div>
               </GuideSection>
 
@@ -564,8 +564,8 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="The Rift (Dungeons)" icon="◆" accent="rgba(168,85,247,0.4)">
                 Zeitlich begrenzte Quest-Ketten mit eskalierender Schwierigkeit:
-                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Tier</span><span>Stages</span><span>Zeit</span><span>Min Lv</span><span>Cooldown</span>
                   </div>
                   {([["Normal","3","72h","1","3d","#22c55e"],["Hard","5","48h","5","5d","#a855f7"],["Legendary","7","36h","10","7d","#f59e0b"]] as const).map(([name,stages,time,lv,cd,color]) => (
@@ -655,12 +655,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Activity Feed" icon="◆" accent="rgba(129,140,248,0.3)">
                 Feed mit Aktivitäten deiner Freunde:
                 <div className="flex flex-wrap gap-1.5 mt-2 text-xs">
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◆ Quests</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>▲ Level-Ups</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◆ Achievements</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◇ Gacha (Epic+)</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◇ Rare Drops</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◈ Trades</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>◆ Quests</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>▲ Level-Ups</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>◆ Achievements</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>◇ Gacha (Epic+)</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>◇ Rare Drops</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>◈ Trades</span>
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}><Rarity r="legendary">Legendary</Rarity>-Events leuchten golden, <Rarity r="epic">Epic</Rarity> lila. Umschaltbar: Kompakt/Detailliert.</p>
               </GuideSection>
@@ -687,7 +687,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                     );
                   })}
                 </div>
-                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Verfall: 2%/h (Ausdauer verlangsamt). Jede Quest: +10 Temp.</p>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>Verfall: 2%/h (Ausdauer verlangsamt). Jede Quest: +10 Temp.</p>
               </GuideSection>
 
               <GuideSection title="Streaks & Gold" icon="◆">
@@ -714,12 +714,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Daily Missions" icon="✓" accent="rgba(34,197,94,0.3)">
                 6 tägliche Aufgaben mit Belohnungstrack auf dem Quest Board:
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 mt-2 text-center text-xs">
-                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Login +100</div>
-                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>1 Quest +150</div>
-                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>3 Quests +250</div>
-                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Ritual +100</div>
-                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Pet +50</div>
-                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Craft +100</div>
+                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>Login +100</div>
+                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>1 Quest +150</div>
+                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>3 Quests +250</div>
+                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>Ritual +100</div>
+                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>Pet +50</div>
+                  <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.05)" }}>Craft +100</div>
                 </div>
                 <p className="mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>4 Meilensteine bei 100/300/500/750 Punkten → Gold, Essenz, Runensplitter, Sternentaler.</p>
               </GuideSection>
@@ -818,8 +818,8 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
             <>
               <GuideSection title="The Rift — Zeitgebundene Dungeon-Ketten" icon="◆" accent="rgba(239,68,68,0.4)">
                 Der Riss öffnete sich ohne Vorwarnung, mitten im Hauptsaal. Drei Schwierigkeitsstufen, jede mit eigenem Zeitdruck:
-                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Tier</span><span>Stages</span><span>Time</span><span>Cooldown</span>
                   </div>
                   {([["Normal","3","72h","3d"],["Hard","5","48h","5d"],["Legendary","7","36h","7d"]] as const).map(([tier,stages,time,cd]) => (
@@ -844,8 +844,8 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="The Undercroft — Kooperative Dungeons" icon="◆" accent="rgba(59,130,246,0.4)">
                 Asynchrone Gruppen-Dungeons für 2-4 Freunde. Erstelle einen Run, lade Freunde ein, und sammle Beute:
-                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Dungeon</span><span>Level</span><span>GS</span><span>Players</span>
                   </div>
                   {([["Sunken Archive","10","100","2-4"],["Shattered Spire","20","250","2-4"],["Hollow Core","35","500","2-4"]] as const).map(([name,lv,gs,pl]) => (
@@ -905,7 +905,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 6 Stufen pro Fraktion, jede mit besseren Belohnungen:
                 <div className="mt-2 space-y-0.5">
                   {([["Neutral","0","—"],["Friendly","100","Titel"],["Honored","500","Rahmen"],["Revered","1500","Rezepte"],["Exalted","4000","Legendary Effect"],["Paragon","8000","Exklusive Belohnungen"]] as const).map(([tier,rep,reward]) => (
-                    <div key={tier} className="flex justify-between text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <div key={tier} className="flex justify-between text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)" }}>
                       <Stat color="#818cf8">{tier}</Stat><span>{rep} Rep</span><span style={{ color: "rgba(255,255,255,0.35)" }}>{reward}</span>
                     </div>
                   ))}
@@ -918,8 +918,8 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
             <>
               <GuideSection title="Season Pass — 40-Stufen Belohnungspfad" icon="◆" accent="rgba(251,191,36,0.4)">
                 Verdiene Season-XP durch Quests, Rituale, Gelübde und tägliche Missionen:
-                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-2 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="grid grid-cols-2 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}>
                     <span>XP-Quelle</span><span>XP pro Aktion</span>
                   </div>
                   {([["Quest (Common)","10"],["Quest (Epic)","40"],["Quest (Legendary)","50"],["Ritual abschließen","8"],["Gelübde (pro Tag)","5"],["Daily Mission Milestone","10-25"]] as const).map(([src,xp]) => (
@@ -978,9 +978,9 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
         <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
           <div>
             <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Player Guide</h2>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Everything you need to know</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Everything you need to know</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
         </div>
         <GuideContent onRestartTutorial={onRestartTutorial} />
       </div>

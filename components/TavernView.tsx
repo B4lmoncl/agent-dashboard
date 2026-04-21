@@ -115,7 +115,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
   if (!playerName || !reviewApiKey) {
     return (
-      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <img src="/images/icons/nav-hearth.png" alt="" width={96} height={96} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Hearth</p>
         <p className="text-xs text-w15">Log in to rest at the Hearth.</p>
@@ -201,20 +201,20 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           )}
 
           {status.reason && (
-            <p className="text-xs italic text-w40 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", borderLeft: "3px solid rgba(217,119,6,0.3)" }}>
+            <p className="text-xs italic text-w40 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", borderLeft: "3px solid rgba(217,119,6,0.3)" }}>
               &ldquo;{status.reason}&rdquo;
             </p>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Tip k="streak">
-              <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
                 <p className="text-xs text-w30">Streak Frozen</p>
                 <p className="text-lg font-mono font-bold" style={{ color: "#f59e0b" }}>🔥 {status.streakFrozenAt}</p>
               </div>
             </Tip>
             <Tip k="forge_temp">
-              <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
                 <p className="text-xs text-w30">Forge Frozen</p>
                 <p className="text-lg font-mono font-bold" style={{ color: "#f97316" }}>⚒ {status.forgeFrozenAt}%</p>
               </div>
@@ -238,7 +238,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* Not resting — can enter */}
       {!status?.resting && status?.canRest && (
-        <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
           <p className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Take a Rest</p>
           <p className="text-xs text-w35">Going on vacation? Feeling burned out? Rest at the Hearth to freeze your progress. No quests will be generated, no streaks will decay, and your forge temperature stays locked.</p>
 
@@ -283,7 +283,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           </div>
 
           {/* What happens */}
-          <div className="rounded-lg p-3 space-y-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <div className="rounded-lg p-3 space-y-1" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
             <Tip k="rest_freeze"><p className="text-xs font-semibold text-w40">While resting:</p></Tip>
             <ul className="text-xs text-w30 space-y-0.5">
               <li>✓ Streaks are frozen (no decay)</li>
@@ -334,7 +334,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
       {/* On cooldown */}
       {!status?.resting && !status?.canRest && status?.cooldownEndsAt && (
-        <div className="rounded-xl p-5 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-xl p-5 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <p className="text-sm font-semibold text-w40 mb-2">Rest on Cooldown</p>
           <p className="text-xs text-w25">You recently rested. Next rest available:</p>
           {status.cooldownEndsAt && (() => {
@@ -369,7 +369,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Rest History</p>
           <div className="space-y-1">
             {status.history.map((h, i) => (
-              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)" }}>
                 <span className="text-w35">{h.days}d rest{h.reason ? ` — "${h.reason}"` : ""}</span>
                 <span className="text-w20">{timeAgo(h.endedAt)}</span>
               </div>

@@ -57,15 +57,15 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
           <div>
             <h2 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>
               <span style={{ color: "#818cf8", fontFamily: "monospace", marginRight: 6 }}>(α)</span>
               Alpha Feedback
             </h2>
-            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>Help us improve Quest Hall</p>
+            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>Help us improve Quest Hall</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
         </div>
 
         <div className="px-5 py-4 space-y-4" style={{ overscrollBehavior: "contain" }}>
@@ -73,7 +73,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
             <div className="text-center py-6">
               <div className="text-4xl mb-3">✓</div>
               <p className="text-sm font-semibold" style={{ color: "#22c55e" }}>Feedback submitted!</p>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>Thank you for helping improve Quest Hall.</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>Thank you for helping improve Quest Hall.</p>
             </div>
           ) : (
             <>

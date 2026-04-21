@@ -328,7 +328,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           <Tip k="world_boss" heading>
             <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
           </Tip>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No World Boss Active</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>No World Boss Active</p>
           {inactive?.nextSpawnEstimate && (
             <div className="rounded-lg px-3 py-1.5 inline-block" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)" }}>
               <p className="text-xs" style={{ color: "rgba(245,158,11,0.7)" }}>
@@ -352,18 +352,18 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               <div style={{ width: 3, height: 18, background: "linear-gradient(180deg, #f59e0b, #92400e)", borderRadius: 1 }} />
               <h3 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#f59e0b" }}>Hall of Fallen Titans</h3>
             </div>
-            <p className="text-xs mb-5" style={{ color: "rgba(255,255,255,0.25)", paddingLeft: 6 }}>
+            <p className="text-xs mb-5" style={{ color: "rgba(255,255,255,0.4)", paddingLeft: 6 }}>
               The land rests in uneasy peace. These are the threats that were vanquished.
             </p>
 
             {hallEntries.length === 0 && bossHistory.length === 0 && (
-              <p className="text-xs text-center py-6" style={{ color: "rgba(255,255,255,0.2)" }}>
+              <p className="text-xs text-center py-6" style={{ color: "rgba(255,255,255,0.35)" }}>
                 No titans have fallen yet. The chronicle is empty.
               </p>
             )}
 
             {hallEntries.length === 0 && bossHistory.length > 0 && (
-              <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
+              <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.35)" }}>
                 No defeated bosses on record. Some slipped away.
               </p>
             )}
@@ -414,9 +414,9 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                         {bossTitle && <p className="text-xs truncate" style={{ color: `${accent}70` }}>{bossTitle}</p>}
                         <div className="flex items-center gap-3 mt-1">
                           <span className="text-xs font-semibold" style={{ color: "#22c55e" }}>Slain</span>
-                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{defeatedDate}</span>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{defeatedDate}</span>
                           {entry.contributorCount != null && entry.contributorCount > 0 && (
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                               {entry.contributorCount} contributor{entry.contributorCount !== 1 ? "s" : ""}
                             </span>
                           )}
@@ -488,7 +488,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         <p className="text-xs text-w35" style={{ maxWidth: "min(440px, 100%)", margin: "0 auto" }}>
           A community-wide threat. Deal damage by completing quests. Claim rewards when defeated.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.4)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
       </div>
 
       {/* Messages */}
@@ -582,10 +582,10 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               </span>
             )}
             {boss.defeated && <span className="text-xs font-semibold" style={{ color: "#22c55e" }}>Defeated</span>}
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
               {boss.contributorCount} contributor{boss.contributorCount !== 1 ? "s" : ""}
             </span>
-            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
               {Math.round((1 - hpPercent) * 100)}% dealt
             </span>
           </div>
@@ -605,7 +605,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   body={<>
                     <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
                     {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
-                    {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                    {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
                     {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   </>}
                 >
@@ -668,7 +668,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {/* Defeated — Claim Rewards */}
         {boss.defeated && canClaim && !claimResult && (
           <div className="px-5 pb-4">
-            <Tip k="wb_claim_tiers"><p className="text-xs mb-2 cursor-help" style={{ color: "rgba(255,255,255,0.25)" }}>Rewards scale with your contribution rank</p></Tip>
+            <Tip k="wb_claim_tiers"><p className="text-xs mb-2 cursor-help" style={{ color: "rgba(255,255,255,0.4)" }}>Rewards scale with your contribution rank</p></Tip>
             <button
               onClick={claimRewards}
               disabled={claiming}
@@ -695,7 +695,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               <div className="flex flex-wrap gap-2">
                 {claimResult.rewards.map((r, i) => (
                   <span key={i} className="text-xs px-2 py-1 rounded-lg font-semibold" style={{
-                    background: "rgba(255,255,255,0.04)",
+                    background: "rgba(255,255,255,0.06)",
                     color: rewardColor(r),
                     border: `1px solid ${rewardColor(r)}30`,
                   }}>
@@ -703,7 +703,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   </span>
                 ))}
               </div>
-              <div className="flex gap-4 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <div className="flex gap-4 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
                 <span>Rank #{claimResult.rank}</span>
                 <span>{claimResult.contributionPercent}% contribution</span>
               </div>
@@ -712,7 +712,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   {claimResult.rewards.some(r => r.type === "unique-drop" || r.type === "legendary-drop") && (
                     <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "#f59e0b", cursor: "pointer" }}>View in Character →</button>
                   )}
-                  <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>View in Forge →</button>
+                  <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer" }}>View in Forge →</button>
                 </div>
               )}
             </div>
@@ -722,7 +722,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
       {/* Your Contribution */}
       {playerContribution && (
-        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-3">Your Contribution</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
             <div>
@@ -767,7 +767,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           <div className="flex items-center justify-between mb-2">
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(239,68,68,0.6)" }}>Damage per Quest</p>
             <TipCustom title="Damage Calculation" icon="◆" accent="#ef4444" body={<><p>Base damage depends on quest rarity. Your Gear Score adds a multiplier: +10% per 50 GS (max +100%).</p><p style={{ marginTop: 4, opacity: 0.7 }}>Your GS: {projectedDamage.gearScore} → ×{projectedDamage.gsMultiplier.toFixed(1)}</p></>}>
-              <span className="text-xs cursor-help" style={{ color: "rgba(255,255,255,0.3)" }}>GS {projectedDamage.gearScore} · ×{projectedDamage.gsMultiplier.toFixed(1)}</span>
+              <span className="text-xs cursor-help" style={{ color: "rgba(255,255,255,0.45)" }}>GS {projectedDamage.gearScore} · ×{projectedDamage.gsMultiplier.toFixed(1)}</span>
             </TipCustom>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -776,7 +776,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               if (!dmg) return null;
               const RARITY_CLR: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" };
               return (
-                <div key={rarity} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                <div key={rarity} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.05)" }}>
                   <span className="w-2 h-2 rounded-full" style={{ background: RARITY_CLR[rarity] }} />
                   <span className="text-xs font-mono font-bold" style={{ color: RARITY_CLR[rarity] }}>{dmg}</span>
                 </div>
@@ -788,7 +788,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
       {/* Contribution Leaderboard */}
       {leaderboard.length > 0 && (
-        <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
             <p className="text-xs font-semibold uppercase tracking-wider text-w25">Contribution Leaderboard</p>
           </div>
@@ -816,7 +816,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   <span className="text-xs font-mono" style={{ color: "#ef4444" }}>
                     {formatNumber(entry.damage)} dmg
                   </span>
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)", minWidth: 40, textAlign: "right" }}>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)", minWidth: 40, textAlign: "right" }}>
                     {entry.quests}q
                   </span>
                 </div>
@@ -843,7 +843,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               {bossHistory.map((h, i) => {
                 const contributorCount = h.contributions ? Object.keys(h.contributions).length : 0;
                 return (
-                  <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)" }}>
                     <div className="flex items-center gap-2">
                       <span style={{ color: h.defeated ? "#22c55e" : "#ef4444" }}>{h.defeated ? "Slain" : "Escaped"}</span>
                       <span className="text-w40">{(h.bossId || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>

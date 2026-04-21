@@ -139,8 +139,8 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   if (!playerName) {
     return (
-      <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>Log in to view the Season Pass.</p>
+      <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>Log in to view the Season Pass.</p>
       </div>
     );
   }
@@ -203,7 +203,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
             }}
           />
         </div>
-        <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
           <Tip k="bp_xp_sources"><span style={{ cursor: "help" }}>Total: {player.xp} XP · {config.xpPerLevel} per level</span></Tip>
           {unclaimedCount > 0 && <span style={{ color: "#22c55e", fontWeight: 600 }}> · {unclaimedCount} unclaimed</span>}
         </p>
@@ -342,17 +342,17 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                     )}
                   </p>
                   {r.type === "title" && r.titleRarity && (
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                       {r.titleRarity.charAt(0).toUpperCase() + r.titleRarity.slice(1)} Title
                     </p>
                   )}
                   {onNavigate && (r.type === "title" || r.type === "frame") && (
-                    <button onClick={(e) => { e.stopPropagation(); onNavigate("character"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("character"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.4)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
                       View in Character {"\u2192"}
                     </button>
                   )}
                   {onNavigate && r.type === "material" && (
-                    <button onClick={(e) => { e.stopPropagation(); onNavigate("forge"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("forge"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.4)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
                       View in Forge {"\u2192"}
                     </button>
                   )}

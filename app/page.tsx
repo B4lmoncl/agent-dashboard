@@ -123,11 +123,11 @@ const MAT_SOURCES: Record<string, string> = {
 // Suspense fallback for lazy-loaded views — skeleton cards matching view layout
 const ViewFallback = () => (
   <div className="space-y-3 tab-content-enter">
-    <div className="skeleton-pulse rounded-xl" style={{ height: 48, background: "rgba(255,255,255,0.03)" }} />
-    <div className="skeleton-pulse rounded-xl" style={{ height: 120, background: "rgba(255,255,255,0.02)" }} />
+    <div className="skeleton-pulse rounded-xl" style={{ height: 48, background: "rgba(255,255,255,0.05)" }} />
+    <div className="skeleton-pulse rounded-xl" style={{ height: 120, background: "rgba(255,255,255,0.06)" }} />
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
-      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.06)" }} />
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.06)" }} />
     </div>
   </div>
 );
@@ -1483,7 +1483,7 @@ export default function Dashboard() {
                                 <div className="flex items-center gap-2 mt-0.5">
                                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>Lv.{level}/10</span>
                                   {nextThreshold != null && xpForLevel > 0 ? (
-                                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{xpInLevel}/{xpForLevel} XP</span>
+                                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{xpInLevel}/{xpForLevel} XP</span>
                                   ) : level >= 10 ? (
                                     <span className="text-xs font-mono" style={{ color: "#f59e0b" }}>MAX</span>
                                   ) : null}
@@ -1507,7 +1507,7 @@ export default function Dashboard() {
                   {/* Materials Inventory — filtered to chosen professions */}
                   <div className="mb-2">
                     <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
-                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>
+                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
                       {chosen.length > 0 ? "Materials for your chosen professions." : "Choose a profession to see relevant materials."}
                     </p>
                     {matDefs.length > 0 ? (
@@ -1534,7 +1534,7 @@ export default function Dashboard() {
                                 </div>
                                 <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
                               </div>
-                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{source}</p>
+                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>{source}</p>
                             </div>
                           );
                         })}
@@ -1603,7 +1603,7 @@ export default function Dashboard() {
                 <button
                   onClick={() => setTowerMapOpen(true)}
                   className="px-2.5 py-1.5 rounded-t-lg text-xs flex-shrink-0 inline-flex items-center gap-1"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", transition: "background 0.15s, color 0.15s" }}
+                  style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.35)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", transition: "background 0.15s, color 0.15s" }}
                   onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
                   onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
                   title="Tower Map — Navigate all floors and rooms"
@@ -1629,7 +1629,7 @@ export default function Dashboard() {
                       style={{
                         background: isActive ? "#111" : "transparent",
                         color: isActive ? floor.color : "rgba(255,255,255,0.3)",
-                        borderBottom: isActive ? "none" : "1px solid rgba(255,255,255,0.06)",
+                        borderBottom: isActive ? "none" : "1px solid rgba(255,255,255,0.10)",
                         letterSpacing: "0.03em",
                       }}
                     >
@@ -1823,7 +1823,7 @@ export default function Dashboard() {
             <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#f97316" ? "249,115,22" : "251,191,36"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
               <img src="/images/icons/nav-observatory.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
               <p className="text-lg font-bold mb-2" style={{ color: `${currentFloorColor}88` }}>Coming Soon</p>
-              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.2)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.35)" }}>The Observatory will open soon. Watch for the stars.</p>
               <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg btn-press" style={{ background: `${currentFloorColor}10`, color: `${currentFloorColor}80`, border: `1px solid ${currentFloorColor}25`, cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
@@ -1909,7 +1909,7 @@ export default function Dashboard() {
               <div key={entry.date} className="space-y-1.5">
                 <div
                   className="text-xs font-semibold uppercase tracking-widest pt-2 pb-1 text-w35"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}
                 >
                   {entry.date}
                 </div>
@@ -1926,7 +1926,7 @@ export default function Dashboard() {
                     <div
                       key={i}
                       className="flex items-start gap-2 px-3 py-2 rounded"
-                      style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.05)" }}
+                      style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.08)" }}
                     >
                       <span
                         className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0"
@@ -2044,7 +2044,7 @@ export default function Dashboard() {
                               </span>
                             </TipCustom>
                             {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
-                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
                                 {Math.ceil((6 * 3600 * 1000 - (Date.now() - lastPoolRefresh.getTime())) / 3600000)}h
                               </span>
                             )}
@@ -2060,7 +2060,7 @@ export default function Dashboard() {
                       <div className="flex items-center justify-between mb-2">
                         <Tip k="daily_missions" heading><span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)", cursor: "help" }}>Daily Missions</span></Tip>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
                             {(() => { const ms = new Date().setHours(24,0,0,0) - Date.now(); const h = Math.floor(ms / 3600000); const m = Math.floor((ms % 3600000) / 60000); return `${h}h ${m}m`; })()}
                           </span>
                           <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
@@ -2201,7 +2201,7 @@ export default function Dashboard() {
                     <div className="flex gap-1 mb-2">
                       <div className="flex-1 relative">
                         <input data-feedback-id="quest-board.search" type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded input-dark border-w8" style={{ paddingRight: searchFilter ? 24 : 8 }} onKeyDown={e => { if (e.key === "Escape") { setSearchFilter(""); (e.target as HTMLInputElement).blur(); } }} />
-                        {searchFilter && <button onClick={() => setSearchFilter("")} className="absolute right-1.5 top-1/2 -translate-y-1/2" style={{ color: "rgba(255,255,255,0.3)", fontSize: 14, cursor: "pointer", lineHeight: 1, background: "none", border: "none", padding: 0 }} title="Clear search">×</button>}
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="absolute right-1.5 top-1/2 -translate-y-1/2" style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, cursor: "pointer", lineHeight: 1, background: "none", border: "none", padding: 0 }} title="Clear search">×</button>}
                       </div>
                       <button
                         data-feedback-id="quest-board.sort"
@@ -2271,7 +2271,7 @@ export default function Dashboard() {
                         </button>
                       </div>
                     ) :
-                    loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse bg-card" style={{ border: "1px solid rgba(255,255,255,0.05)" }} />) :
+                    loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse bg-card" style={{ border: "1px solid rgba(255,255,255,0.08)" }} />) :
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-6 text-center bg-card border-w6 space-y-3">
                         <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -2371,7 +2371,7 @@ export default function Dashboard() {
             <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#3b82f6" ? "59,130,246" : "96,165,250"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
               <img src="/images/icons/nav-arcanum.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
               <p className="text-lg font-bold mb-2" style={{ color: `${currentFloorColor}88` }}>Coming Soon</p>
-              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.2)" }}>The Arcanum gathers its scrolls. Class quests and skill trees await.</p>
+              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.35)" }}>The Arcanum gathers its scrolls. Class quests and skill trees await.</p>
               <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg btn-press" style={{ background: `${currentFloorColor}10`, color: `${currentFloorColor}80`, border: `1px solid ${currentFloorColor}25`, cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
@@ -2473,7 +2473,7 @@ export default function Dashboard() {
               <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w4 text-w20">
                 {quests.rejected.length}
               </span>
-              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                 {rejectedOpen ? "▲" : "▼"}
               </span>
             </button>
@@ -2488,7 +2488,7 @@ export default function Dashboard() {
                     <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>x</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs truncate text-w25" style={{ textDecoration: "line-through" }}>{q.title}</p>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>by {q.createdBy ?? "unknown"}</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>by {q.createdBy ?? "unknown"}</span>
                     </div>
                     {q.rarity && <span className="text-xs px-1 rounded" style={{ color: ({ common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" } as Record<string, string>)[q.rarity] || "#9ca3af" }}>{q.rarity}</span>}
                   </div>
@@ -2793,7 +2793,7 @@ export default function Dashboard() {
       <footer data-feedback-id="footer" className="mt-12 py-4" style={{ position: "relative", zIndex: 2 }}>
         {/* Gradient separator */}
         <div style={{ height: 1, background: `linear-gradient(90deg, transparent 0%, ${currentFloorColor}18 30%, ${currentFloorColor}25 50%, ${currentFloorColor}18 70%, transparent 100%)`, marginBottom: 16 }} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
           <span>Quest Hall v{gameVersion}</span>
           <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
           <span style={{ color: `${currentFloorColor}40` }}>{CURRENT_SEASON.name}</span>
@@ -2896,7 +2896,7 @@ export default function Dashboard() {
             }}
           >
             {/* Header with tabs */}
-            <div style={{ padding: "1rem 1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ padding: "1rem 1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.11)", display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ display: "flex", gap: 4, flex: 1 }}>
                 {[
                   { key: "roadmap",   label: "Roadmap" },
@@ -2956,7 +2956,7 @@ export default function Dashboard() {
                         </span>
                       </button>
                       {changelogExpanded === entry.version && (
-                        <ul className="px-4 py-3 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "rgba(0,0,0,0.2)" }}>
+                        <ul className="px-4 py-3 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.10)", background: "rgba(0,0,0,0.2)" }}>
                           {entry.changes.map((change, i) => (
                             <li key={i} className="flex items-start gap-2 text-sm text-w60">
                               <span className="shrink-0" style={{ color: "rgba(255,68,68,0.6)", marginTop: 2 }}>•</span>
@@ -3079,13 +3079,13 @@ export default function Dashboard() {
               <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v1.6.0 — The Artisan&apos;s Update</p>
             </div>
             <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>New Systems</p>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>New Systems</p>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Ätherwürfel — extract and equip legendary effects permanently</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls crafted by Verzauberer</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Quality of Life</p>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Quality of Life</p>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from accidental salvage, trade, or discard</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs and 2-step confirmation</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search (unlimited, no cap)</p></div>
@@ -3094,7 +3094,7 @@ export default function Dashboard() {
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Notification badges on navigation tabs for pending actions</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Timer overview in Today Drawer (weekly reset, season end, active content)</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Collect All for mail and Battle Pass rewards</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Progression</p>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Progression</p>
               <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Level-gated progression: Lv1 Quests/Character/Social, Lv3 Challenges, Lv5 Forge/Gacha, Lv8 Rift/Leaderboard, Lv10 Factions/BP, Lv12 Dungeons, Lv15 World Boss</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Batch craft animation with sequential reveal</p></div>
             </div>

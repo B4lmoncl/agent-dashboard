@@ -36,7 +36,7 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
     >
       {inline ? (
         <>
-          <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
+          <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>{label}</p>
           <div className="flex items-baseline gap-2">
             <span className={`text-xl font-bold font-mono${flashClass ? ` ${flashClass}` : ""}`} style={{ color: accent }}>{typeof value === "number" ? <CountUp value={value} duration={700} /> : value}</span>
             {value2 && (
@@ -62,7 +62,7 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
       ) : (
         <>
           <div className="flex items-center gap-1">
-            <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
+            <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>{label}</p>
           </div>
           <div className="flex items-baseline gap-2">
             <p className={`text-2xl font-bold${flashClass ? ` ${flashClass}` : ""}`} style={{ color: accent }}>{typeof value === "number" ? <CountUp value={value} duration={700} /> : value}</p>

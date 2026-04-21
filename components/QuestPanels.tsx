@@ -25,7 +25,7 @@ const BLOOD_PACT_MULTIPLIER_VOW: Record<string, number> = {
 };
 
 const COMMITMENT_TIERS_VOW = [
-  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.25)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
+  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.4)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
   { id: "spark",    label: "Spark",    days: 7,   color: "#94a3b8",                bonusGold: 3,  bonusXp: 5,  flavorShort: "First spark" },
   { id: "flame",    label: "Flame",    days: 21,  color: "#6366f1",                bonusGold: 7,  bonusXp: 10, flavorShort: "Renunciation forms" },
   { id: "ember",    label: "Ember",    days: 60,  color: "#818cf8",                bonusGold: 13, bonusXp: 20, flavorShort: "Deep-rooted" },
@@ -386,10 +386,10 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               ))}
             </div>
           ) : antiRituals.length === 0 ? (
-            <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-2xl mb-2">×</p>
               <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -488,7 +488,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
                         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
-                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                       </button>
                     ))}
                   </div>
@@ -515,7 +515,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.45)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>
                 </div>
                 <div className="flex gap-2 pt-1">
-                  <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                  <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                   <button onClick={createAntiRitual} disabled={vowCreating} title={vowCreating ? "Action in progress…" : undefined} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)", cursor: vowCreating ? "not-allowed" : "pointer" }}>{vowCreating ? "Sealing..." : "Seal Vow"}</button>
                 </div>
               </div>
@@ -600,7 +600,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     </div>
                   </div>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
                       title={!canExtend ? "Select a commitment tier first" : undefined}
@@ -663,7 +663,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     &ldquo;Every great warrior has tasted the dirt. The ones who matter are the ones who stood back up.&rdquo;
                   </p>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={() => setRecommitId(null)} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Not Yet</button>
+                    <button onClick={() => setRecommitId(null)} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Not Yet</button>
                     <button
                       onClick={async () => {
                         try {
@@ -1011,7 +1011,7 @@ export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; 
         <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(168,85,247,0.12)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}>
           {visible.length}
         </span>
-        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
           {open ? "▲" : "▼"}
         </span>
       </button>
@@ -1032,7 +1032,7 @@ export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; 
               <button
                 onClick={() => dismiss(s.id)}
                 className="flex-shrink-0 text-xs px-2 py-1 rounded transition-all"
-                style={{ color: "rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.04)" }}
+                style={{ color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.06)" }}
                 title="Dismiss"
               >
                 x

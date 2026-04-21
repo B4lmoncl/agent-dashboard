@@ -117,7 +117,7 @@ export default function ItemTooltip({ item, onClose, anchorRect, children }: Pro
                 {item.slot ? ` · ${item.slot.charAt(0).toUpperCase() + item.slot.slice(1)}` : ""}
               </p>
               {item.minLevel && item.minLevel > 0 && (
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Req. Level {item.minLevel}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Req. Level {item.minLevel}</p>
               )}
             </div>
           </div>
@@ -158,7 +158,7 @@ export default function ItemTooltip({ item, onClose, anchorRect, children }: Pro
                   }} title={s || "Empty"} />
                 ))}
               </div>
-              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{filledSockets}/{sockets.length}</span>
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{filledSockets}/{sockets.length}</span>
             </div>
           )}
 
@@ -191,7 +191,7 @@ export default function ItemTooltip({ item, onClose, anchorRect, children }: Pro
 
           {/* Flavor Text */}
           {item.flavorText && (
-            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>
+            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.45)" }}>&ldquo;{item.flavorText}&rdquo;</p>
           )}
 
           {/* Suffix */}

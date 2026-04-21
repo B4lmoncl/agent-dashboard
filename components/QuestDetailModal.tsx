@@ -93,7 +93,7 @@ export default function QuestDetailModal({
         {/* Rarity header bar */}
         <div style={{ height: 6, background: `linear-gradient(90deg, transparent, ${rarityColor}, transparent)`, boxShadow: `0 2px 8px ${rarityColor}40` }} />
         {/* Header */}
-        <div className="px-5 pt-4 pb-3 flex items-start justify-between gap-3" style={{ borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+        <div className="px-5 pt-4 pb-3 flex items-start justify-between gap-3" style={{ borderBottom: `1px solid rgba(255,255,255,0.11)` }}>
           <div className="flex items-start gap-3 flex-1 min-w-0">
             <span className="text-2xl flex-shrink-0">{typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={28} height={28} className="img-render-auto" onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : typeCfg.icon}</span>
             <div className="flex-1 min-w-0">
@@ -159,14 +159,14 @@ export default function QuestDetailModal({
           </div>
           {/* Task */}
           {q.description && (
-            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `3px solid ${rarityColor}55`, border: `1px solid rgba(255,255,255,0.06)`, borderLeftColor: `${rarityColor}66` }}>
+            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.05)", borderLeft: `3px solid ${rarityColor}55`, border: `1px solid rgba(255,255,255,0.10)`, borderLeftColor: `${rarityColor}66` }}>
               <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: `${rarityColor}99` }}>Task</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{q.description}</p>
             </div>
           )}
           {/* Checklist */}
           {q.checklist && q.checklist.length > 0 && (
-            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Checklist ({q.checklist.filter(c => c.done).length}/{q.checklist.length})</p>
               <div className="space-y-1">
                 {q.checklist.map((item, i) => (
@@ -198,7 +198,7 @@ export default function QuestDetailModal({
           })()}
           {/* Requirements */}
           {((q.minLevel != null && q.minLevel > 1) || q.classRequired) && (
-            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>Voraussetzungen</p>
               <div className="flex flex-wrap gap-x-4 gap-y-1">
                 {q.minLevel != null && q.minLevel > 1 && (() => {
@@ -240,7 +240,7 @@ export default function QuestDetailModal({
           )}
         </div>
         {/* Action footer */}
-        <div className="px-5 py-4 flex items-center justify-end gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="px-5 py-4 flex items-center justify-end gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.11)" }}>
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
               disabled={actionLoading}

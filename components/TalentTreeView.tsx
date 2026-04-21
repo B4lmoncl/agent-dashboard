@@ -267,14 +267,14 @@ export default function TalentTreeView({
         {/* Header skeleton */}
         <div className="flex items-center justify-between mb-2">
           <div className="skeleton-pulse h-5 w-36 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
-          <div className="skeleton-pulse h-4 w-24 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+          <div className="skeleton-pulse h-4 w-24 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
         </div>
         {/* SVG circle skeleton */}
         <div className="flex justify-center">
-          <div className="skeleton-pulse rounded-full" style={{ width: 320, height: 320, background: "rgba(255,255,255,0.04)" }} />
+          <div className="skeleton-pulse rounded-full" style={{ width: 320, height: 320, background: "rgba(255,255,255,0.06)" }} />
         </div>
         {/* Node detail panel skeleton */}
-        <div className="skeleton-pulse rounded-lg h-24" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="skeleton-pulse rounded-lg h-24" style={{ background: "rgba(255,255,255,0.06)" }} />
       </div>
     );
   }
@@ -597,7 +597,7 @@ export default function TalentTreeView({
             <div
               className="rounded-xl p-4"
               style={{
-                background: "rgba(255,255,255,0.03)",
+                background: "rgba(255,255,255,0.05)",
                 border: `1px solid ${getNodeThemeColor(selected.id, data.meta.themes)}22`,
               }}
             >
@@ -795,7 +795,7 @@ export default function TalentTreeView({
               )}
             </div>
           ) : (
-            <div className="rounded-xl p-6 text-center" style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div className="rounded-xl p-6 text-center" style={{ background: "rgba(255,255,255,0.06)" }}>
               <p className="text-xs text-w20">Wähle einen Knoten im Baum, um Details zu sehen</p>
               <div className="flex flex-col gap-2 mt-4">
                 <div className="flex items-center gap-2 text-xs text-w25">
@@ -807,7 +807,7 @@ export default function TalentTreeView({
                   <span>Freigeschaltet</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-w25">
-                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }} />
+                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }} />
                   <span>Gesperrt</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-w25">
@@ -820,7 +820,7 @@ export default function TalentTreeView({
 
           {/* Allocated talents summary */}
           {data.totalSpent > 0 && (
-            <div className="mt-4 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div className="mt-4 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.06)" }}>
               <p className="text-xs font-semibold text-w30 uppercase tracking-widest mb-2">Aktive Talente</p>
               <div className="flex flex-wrap gap-1.5">
                 {data.nodes.filter(n => !!data.allocated[n.id]).map(n => (

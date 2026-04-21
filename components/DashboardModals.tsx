@@ -211,13 +211,13 @@ export default function DashboardModals({
                   <button
                     onClick={() => setConversionOpen(!conversionOpen)}
                     className="w-full text-xs font-semibold py-1.5 rounded-lg"
-                    style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                    style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                   >
                     {conversionOpen ? "Ausblenden" : "Währungen tauschen"} {conversionOpen ? "▲" : "▼"}
                   </button>
 
                   {conversionOpen && (
-                    <div className="mt-2 rounded-xl p-3 space-y-2 tab-content-enter" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="mt-2 rounded-xl p-3 space-y-2 tab-content-enter" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
                       <p className="text-xs text-w30">20% tax on all conversions</p>
 
                       {/* From / To selectors */}
@@ -270,7 +270,7 @@ export default function DashboardModals({
 
                       {/* Preview */}
                       {convAmtNum > 0 && currentPair && (
-                        <div className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
+                        <div className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)" }}>
                           <span className="text-xs text-w40">You receive</span>
                           <span className="text-xs font-mono font-bold" style={{ color: convReceived > 0 ? "#22c55e" : "#ef4444" }}>
                             {convReceived > 0 ? convReceived.toLocaleString() : "0 (too small)"} {convTo}

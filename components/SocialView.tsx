@@ -295,7 +295,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
           <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Pending Requests</p>
           <div className="space-y-1">
             {outgoing.map(req => (
-              <div key={req.id} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div key={req.id} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)" }}>
                 <span className="text-w40">Sent to <span className="font-semibold text-w60">{req.toName}</span></span>
                 <span className="text-w20">{timeAgo(req.createdAt)}</span>
               </div>
@@ -317,7 +317,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
               const bStatus = b.onlineStatus || (b.isOnline ? "online" : "offline");
               return (order[aStatus] ?? 2) - (order[bStatus] ?? 2);
             }).map(f => (
-              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
+              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
@@ -551,7 +551,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
                   key={f.id}
                   onClick={() => { setShowNewMsg(false); openConvo(f.id); }}
                   className="btn-interactive flex items-center gap-2 rounded-lg px-2.5 py-2 text-left"
-                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}
                 >
                   <PlayerBadge name={f.name} avatar={f.avatar} color={f.color} size={24} />
                   <span className="text-xs font-semibold truncate" style={{ color: "#e8e8e8" }}>{f.name}</span>
@@ -637,7 +637,7 @@ function TradeOfferDisplay({ offer, label, color, onItemClick }: { offer: TradeO
                   {item.setName && <p className="text-xs mt-1" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
                 </>}
               >
-                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left hover:brightness-125" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}`, cursor: "pointer", transition: "background 0.15s ease, filter 0.15s ease" }}
+                <button onClick={() => onItemClick?.(item)} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded w-full text-left hover:brightness-125" style={{ background: "rgba(255,255,255,0.05)", borderLeft: `2px solid ${rc}`, cursor: "pointer", transition: "background 0.15s ease, filter 0.15s ease" }}
                   onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; }}
                   onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}>
                   {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />}
@@ -694,7 +694,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
           ))}
         </div>
       )}
-      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.10)", scrollbarWidth: "thin" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
           {sorted.map(item => {
             const selected = selectedIds.includes(item.id);
@@ -715,7 +715,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
                     <p className="text-xs font-semibold" style={{ color: "#f97316" }}>Bind on Pickup — cannot be traded</p>
                   ) : null}
                   {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>{item.desc}</p>}
-                  {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                  {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
                   {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   {item.stats && Object.entries(item.stats).filter(([, v]) => v > 0).length > 0 && (
                     <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
@@ -963,7 +963,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
             {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
 
             {/* Counter-offer (shown first so player can adjust before deciding) */}
-            <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-3">Counter-Offer</p>
               <div className="flex gap-3 mb-3">
                 <div className="flex-1">
@@ -1356,7 +1356,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
         <button
           onClick={() => setCompactView(v => !v)}
           className="btn-interactive text-xs px-2 py-1 rounded"
-          style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.06)" }}
+          style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.10)" }}
           title={compactView ? "Switch to detailed view" : "Switch to compact view"}
         >
           {compactView ? "⊞ Detailed" : "⊟ Compact"}
@@ -1434,7 +1434,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
         }
 
         return (
-          <div key={event.id} className={`cv-auto flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <div key={event.id} className={`cv-auto flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
             {iconSrc ? <img src={iconSrc} alt="" width={18} height={18} className="img-render-auto flex-shrink-0 mt-0.5" onError={e => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} /> : null}
             <span className="text-sm flex-shrink-0 mt-0.5" style={{ display: iconSrc ? "none" : "inline" }}>{icon}</span>
             <div className="flex-1 min-w-0">
@@ -1711,7 +1711,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                 </button>
                 {/* Expanded mail */}
                 {isSelected && (
-                  <div className="tab-content-enter rounded-lg p-3 mt-1 space-y-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="tab-content-enter rounded-lg p-3 mt-1 space-y-2" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
                     {mail.body && <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{mail.body}</p>}
                     {/* Attachments */}
                     {(mail.gold > 0 || mail.items.length > 0) && (
@@ -1748,7 +1748,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                           <button
                             onClick={() => setConfirmDeleteId(null)}
                             className="text-xs py-1.5 px-2 rounded-lg"
-                            style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                            style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                           >
                             Cancel
                           </button>
@@ -1980,7 +1980,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Pakt mit {proposalTarget.name}</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Wähle die Dauer eures Bundes.</p>
               </div>
-              <button onClick={() => setProposalTarget(null)} className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.25)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+              <button onClick={() => setProposalTarget(null)} className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {([
@@ -2003,7 +2003,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 </button>
               ))}
             </div>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
               {proposalDuration === "4w" ? "Ideal zum Ausprobieren. 4 wöchentliche Ziele, danach endet der Pakt automatisch." :
                proposalDuration === "8w" ? "Der Standard-Pakt. 8 wöchentliche Ziele mit stärkeren Belohnungen ab Woche 5." :
                "Kein Ende in Sicht. Der Pakt läuft bis einer von euch ihn bricht. Höchste Duo-Streak-Boni."}
@@ -2020,7 +2020,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               <button
                 onClick={() => setProposalTarget(null)}
                 className="px-4 py-2.5 rounded-lg text-xs"
-                style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.10)", cursor: "pointer" }}
               >
                 Abbrechen
               </button>
@@ -2152,7 +2152,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <span className="text-xs w-12 text-right truncate" style={{ color: "#818cf8" }}>You</span>
-                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
                     width: `${Math.min(100, Math.round((obj.progress.mine / obj.targetPerPlayer) * 100))}%`,
                     background: obj.progress.mine >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #818cf8, #6366f1)",
@@ -2162,7 +2162,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs w-12 text-right truncate" style={{ color: bond.partner.color }}>{bond.partner.name.slice(0, 6)}</span>
-                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
                     width: `${Math.min(100, Math.round((obj.progress.partner / obj.targetPerPlayer) * 100))}%`,
                     background: obj.progress.partner >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : `linear-gradient(90deg, ${bond.partner.color}, ${bond.partner.color})`,
@@ -2176,7 +2176,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
             <>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-mono font-bold w-8 text-right" style={{ color: "#818cf8" }}>{obj.progress.mine}</span>
-                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
                     width: `${progressPct}%`,
                     background: obj.completed
@@ -2225,7 +2225,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
             <button disabled={actionLoading} onClick={breakBond} className="text-xs font-semibold px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", cursor: actionLoading ? "not-allowed" : "pointer" }}>
               {actionLoading ? "..." : "Confirm"}
             </button>
-            <button onClick={() => setConfirmBreak(false)} className="text-xs px-2 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>
+            <button onClick={() => setConfirmBreak(false)} className="text-xs px-2 py-1 rounded" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer" }}>
               Cancel
             </button>
           </div>
@@ -2314,7 +2314,7 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Sent Challenges</p>
           <div className="space-y-2">
             {pending.filter(c => c.challengerId === uid).map(c => (
-              <div key={c.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div key={c.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
                 <p className="text-xs text-w40">Waiting for <span className="font-semibold text-w60">{c.targetName}</span> to accept</p>
                 <p className="text-xs text-w20 mt-0.5">{CHALLENGE_TYPE_LABELS[c.type] || c.type} · {c.wager}g wager</p>
               </div>
@@ -2362,7 +2362,7 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
               const won = c.winner === uid;
               const opponentName = c.challengerId === uid ? c.targetName : c.challengerName;
               return (
-                <div key={c.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+                <div key={c.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <span className="text-xs font-bold" style={{ color: won ? "#22c55e" : "#ef4444" }}>{won ? "W" : "L"}</span>
                   <span className="text-xs text-w40">vs {opponentName}</span>
                   <span className="text-xs text-w20 ml-auto">{c.wager}g</span>
@@ -2375,7 +2375,7 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
 
       {/* Empty state */}
       {challenges.length === 0 && (
-        <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-xl p-8 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <p className="text-sm font-bold text-w25 mb-1">No Challenges</p>
           <p className="text-xs text-w15">Challenge friends from their profile card in the Friends tab.</p>
         </div>
@@ -2394,7 +2394,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
 
   if (!playerName || !reviewApiKey) {
     return (
-      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <p className="text-sm font-bold mb-1 text-w25">Log in to enter The Breakaway</p>
         <p className="text-xs text-w15">Connect with other adventurers, send messages, and trade items.</p>
       </div>
@@ -2408,7 +2408,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         <div className="flex items-center gap-2">
           <Tip k="breakaway" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span></Tip>
         </div>
-        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach.</p>
+        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach.</p>
       </div>
 
       {/* Tab navigation */}

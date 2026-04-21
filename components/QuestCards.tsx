@@ -57,7 +57,7 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
         <div className="flex-1 min-w-0">
           <p className="text-xs font-medium truncate" title={quest.title} style={{ color: "rgba(255,255,255,0.6)" }}>{quest.title}</p>
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
               by <span style={{ color: "rgba(255,255,255,0.35)" }}>{quest.completedBy}</span>
             </span>
             {quest.humanInputRequired && (
@@ -65,10 +65,10 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
             )}
           </div>
         </div>
-        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.35)" }}>
           {quest.completedAt ? timeAgo(quest.completedAt) : "—"}
         </span>
-        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.35)" }}>
           {expanded ? "▲" : "▼"}
         </span>
       </button>
@@ -94,7 +94,7 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
               {quest.lore}
             </p>
           )}
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
             Completed {quest.completedAt ? timeAgo(quest.completedAt) : "—"} · by {quest.completedBy}
           </p>
         </div>
@@ -281,7 +281,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           <div className="flex items-center gap-1.5">
             <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, letterSpacing: "0.06em" }}>{rarity}</span>
             {quest.estimatedMinutes != null && quest.estimatedMinutes > 0 && (
-              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }} title="Estimated time">~{quest.estimatedMinutes}m</span>
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }} title="Estimated time">~{quest.estimatedMinutes}m</span>
             )}
           </div>
         </div>
@@ -406,7 +406,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                     }}
                   />
                 </div>
-                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{coopCompletions.length}/{coopPartners.length}</span>
+                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{coopCompletions.length}/{coopPartners.length}</span>
               </div>
               <div className="flex items-center gap-1.5 flex-wrap">
                 {coopPartners.map(p => {
@@ -481,9 +481,9 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
               <span style={{ fontSize: "0.75rem", color: "rgba(179,157,219,0.6)" }}>{(quest.rewards?.xp != null && quest.rewards.xp > 0) ? quest.rewards.xp : ({ legendary: 80, epic: 50, rare: 30, uncommon: 18, common: 10, companion: 10 }[quest.rarity || "common"] ?? 10)} XP</span>
               <span style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.6)" }}><img src="/images/icons/currency-gold.png" alt="" style={{width:14,height:14,display:"inline",verticalAlign:"middle",marginRight:2}} onError={e => { e.currentTarget.style.display = "none"; }} /> {(quest.rewards?.gold != null && quest.rewards.gold > 0) ? quest.rewards.gold : ({ legendary: 65, epic: 40, rare: 24, uncommon: 14, common: 8, companion: 8 }[quest.rarity || "common"] ?? 9)}</span>
               {quest.estimatedMinutes != null && quest.estimatedMinutes > 0 && (
-                <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.25)" }} title="Estimated time">~{quest.estimatedMinutes} min</span>
+                <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }} title="Estimated time">~{quest.estimatedMinutes} min</span>
               )}
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{timeAgo(quest.createdAt)}</p>
             </div>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
@@ -548,7 +548,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,165,0,0.7)" }}>◆</span>
               <p className="text-xs font-semibold truncate flex-1" title={quest.title} style={{ color: "#e8e8e8" }}>{quest.title}</p>
               {quest.humanInputRequired && <HumanInputBadge />}
-              <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
+              <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.35)" }}>
                 {expanded ? "▲" : "▼"}
               </span>
             </div>
@@ -576,12 +576,12 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
                         }}
                       />
                     </div>
-                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>{progress.completed}/{progress.total} sub-quests dealt damage</p>
+                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>{progress.completed}/{progress.total} sub-quests dealt damage</p>
                   </>
                 ) : (
                   <>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
                         {progress.completed}/{progress.total} sub-quests
                       </span>
                       <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "rgba(255,165,0,0.7)" }}>
@@ -621,7 +621,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
       </div>
       {/* Sub-quests */}
       {expanded && children.length > 0 && (
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           {children.map((child, i) => (
             <div
               key={child.id}

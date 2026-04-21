@@ -66,7 +66,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               {!isDone && q.claimedBy && (
                 <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>Claimed by {q.claimedBy}</p>
               )}
-              {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>(quest deleted)</p>}
+              {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>(quest deleted)</p>}
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         {/* Quest Chain Timeline */}
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "rgba(167,139,250,0.6)" }}>Quest Chain</h3>
-          {cq.length === 0 && <p className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>No quests in this campaign yet.</p>}
+          {cq.length === 0 && <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>No quests in this campaign yet.</p>}
           <div>
             {cq.map((q, idx) => {
               const isBoss = q.id === expandedCampaign.bossQuestId;
@@ -234,9 +234,9 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 
       {/* Empty state */}
       {campaigns.length === 0 && (
-        <div className="text-center py-20" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <div className="text-center py-20" style={{ color: "rgba(255,255,255,0.35)" }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>◆</div>
-          <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>No active campaigns</p>
+          <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>No active campaigns</p>
           <p className="text-xs">Start a quest chain to begin your saga!</p>
         </div>
       )}
@@ -325,7 +325,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 <div className="flex flex-wrap gap-1">
                   {CAMPAIGN_ICONS.map(ic => (
                     <button key={ic} onClick={() => setForm(f => ({ ...f, icon: ic }))} className="w-8 h-8 rounded text-base flex items-center justify-center transition-all"
-                      style={{ background: form.icon === ic ? "rgba(139,92,246,0.3)" : "rgba(255,255,255,0.04)", border: form.icon === ic ? "1px solid rgba(139,92,246,0.6)" : "1px solid rgba(255,255,255,0.06)" }}>
+                      style={{ background: form.icon === ic ? "rgba(139,92,246,0.3)" : "rgba(255,255,255,0.04)", border: form.icon === ic ? "1px solid rgba(139,92,246,0.6)" : "1px solid rgba(255,255,255,0.10)" }}>
                       {ic}
                     </button>
                   ))}
@@ -407,7 +407,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                   {submitting ? "Creating…" : !reviewApiKey ? "API key required" : "Create Campaign"}
                 </button>
                 <button onClick={() => setCreateOpen(false)} className="px-4 py-2 rounded-lg text-sm transition-all"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   Cancel
                 </button>
               </div>

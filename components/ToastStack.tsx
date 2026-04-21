@@ -92,7 +92,7 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
         <p className="text-sm font-bold" style={{ color }}>{toast.message}</p>
         {label && <p className="text-xs mt-0.5 truncate font-medium" style={{ color }}>{label}</p>}
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -112,7 +112,7 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
-      <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
+      <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ color: "rgba(255,255,255,0.45)" }}>×</button>
     </div>
   );
 }
@@ -158,13 +158,13 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
             <button
               onClick={onClose}
               className="text-xs px-2 py-1.5 rounded"
-              style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               Skip
             </button>
           </div>
         </div>
-        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
       </div>
     </div>
   );
@@ -184,7 +184,7 @@ function ItemToastContent({ toast, onClose }: { toast: { itemName: string; messa
         <p className="text-sm font-bold" style={{ color: rs.color }}>{toast.itemName}</p>
         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.6)" }}>{toast.message}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -197,7 +197,7 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
     >
       <span style={{ fontSize: "16px" }}>—</span>
       <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{message}</span>
-      <button onClick={onClose} className="ml-auto" style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} className="ml-auto" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -227,7 +227,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
           <p className="text-base font-bold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
           <p className="text-xs font-semibold" style={{ color: "rgba(255,107,157,0.7)" }}>{toast.bondTitle}</p>
         </div>
-        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
       </div>
     );
   }
@@ -242,7 +242,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{toast.bondTitle}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -260,7 +260,7 @@ function ErrorToastContent({ message, onClose, onRetry }: { message: string; onC
           Retry
         </button>
       )}
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }

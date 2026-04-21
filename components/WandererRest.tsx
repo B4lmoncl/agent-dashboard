@@ -150,7 +150,7 @@ export function WandererRest({
             <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{petName ?? "Your companion"} sent you here. Check {petName ?? "Companion"}&apos;s Demands below!</p>
           </div>
-          <button onClick={() => setNpcBoardFilter(null)} style={{ color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer", fontSize: 16 }}>×</button>
+          <button onClick={() => setNpcBoardFilter(null)} style={{ color: "rgba(255,255,255,0.45)", background: "none", border: "none", cursor: "pointer", fontSize: 16 }}>×</button>
         </div>
       )}
 
@@ -162,11 +162,11 @@ export function WandererRest({
             <Tip k="npc_quest_board" heading accent="rgba(255,215,0,0.6)"><span style={{ fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer&#39;s Rest ◆</span></Tip>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
           </div>
-          <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>Reisende Seelen und ihre unerzählten Geschichten. Sie kommen. Sie gehen. Sie kehren immer zurück.</p>
+          <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.45)" }}>Reisende Seelen und ihre unerzählten Geschichten. Sie kommen. Sie gehen. Sie kehren immer zurück.</p>
         </div>
         {activeNpcs.length === 0 ? (
-          <div className="rounded-xl px-4 py-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.25)" }}>The hall is quiet... for now.</p>
+          <div className="rounded-xl px-4 py-8 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.4)" }}>The hall is quiet... for now.</p>
           </div>
         ) : (
           <>
@@ -206,7 +206,7 @@ export function WandererRest({
                           onError={e => { e.currentTarget.style.display = "none"; }}
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 56 }}>
+                        <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.06)", fontSize: 56 }}>
                           {npc.emoji && npc.emoji !== "x" && npc.emoji !== "" ? npc.emoji : null}
                         </div>
                       )}
@@ -249,7 +249,7 @@ export function WandererRest({
                 );
               })}
             </div>
-            <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>Click a visitor to see their quest...</p>
+            <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Click a visitor to see their quest...</p>
           </>
         )}
       </section>
@@ -260,11 +260,11 @@ export function WandererRest({
           <div className="rounded-2xl w-full max-w-md overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(255,215,0,0.3)", boxShadow: "0 0 60px rgba(255,200,0,0.1)", maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
               <h2 className="text-sm font-bold" style={{ color: "#FFD700" }}>The Wanderer&apos;s Rest</h2>
-              <button onClick={() => setNpcInfoOpen(false)} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
+              <button onClick={() => setNpcInfoOpen(false)} style={{ color: "rgba(255,255,255,0.45)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
             </div>
             <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.7 }}>
               <p>Reisende NPCs besuchen die Quest Hall — jeder mit eigenen Quest-Ketten und Persönlichkeit.</p>
-              <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
                 <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>Wie es funktioniert</p>
                 <ul className="space-y-1">
                   <li>• NPCs kommen und gehen — sie bleiben <span style={{ color: "#f59e0b" }}>2-4 Tage</span>, dann ziehen sie weiter.</li>
@@ -273,7 +273,7 @@ export function WandererRest({
                   <li>• Schließe Quests ab bevor der NPC aufbricht.</li>
                 </ul>
               </div>
-              <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
                 <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>NPC Raritäten</p>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2"><span style={{ color: "#9ca3af" }}>★ Common</span><span>— 2-3 Ketten, gemütliches Tempo</span></div>
@@ -414,12 +414,12 @@ export function WandererRest({
               )}
 
               {/* NPC Header */}
-              <div className="relative px-5 pt-5 pb-4 flex items-start gap-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", zIndex: 1 }}>
+              <div className="relative px-5 pt-5 pb-4 flex items-start gap-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.11)", zIndex: 1 }}>
                 <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, background: "#0a0a15", border: `3px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.6)`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : `0 0 12px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.25)` }}>
                   {npc.portrait ? (
                     <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 40 }}>{npc.emoji && npc.emoji !== "x" && npc.emoji !== "" ? npc.emoji : null}</div>
+                    <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.06)", fontSize: 40 }}>{npc.emoji && npc.emoji !== "x" && npc.emoji !== "" ? npc.emoji : null}</div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0 pt-1">
@@ -439,7 +439,7 @@ export function WandererRest({
 
               {/* Greeting / Speech bubble */}
               {npc.greeting && (
-                <div className="relative mx-5 mt-4 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", zIndex: 1 }}>
+                <div className="relative mx-5 mt-4 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", zIndex: 1 }}>
                   <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>&ldquo;{npc.greeting}&rdquo;</p>
                 </div>
               )}
@@ -478,14 +478,14 @@ export function WandererRest({
                   ) : currentQuest ? (
                     <>
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.3)" }}>
+                        <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.45)" }}>
                           Quest {currentQuest.position}/{totalCount}
                         </p>
                         {completedCount > 0 && (
                           <p className="text-xs" style={{ color: "#22c55e" }}>{completedCount} completed</p>
                         )}
                       </div>
-                      <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                      <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <p className="text-sm font-bold leading-snug" style={{ color: "#f0f0f0" }}>{currentQuest.title?.replace(/^x\s+/i, "")}</p>
                         {currentQuest.flavorText && (
                           <p className="mt-1.5 text-sm leading-relaxed" style={{ fontStyle: "italic", color: "rgba(255,255,255,0.5)" }}>{currentQuest.flavorText}</p>
@@ -547,7 +547,7 @@ export function WandererRest({
                       </div>
                     </>
                   ) : (
-                    <p className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.3)" }}>No active quests.</p>
+                    <p className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.45)" }}>No active quests.</p>
                   )}
 
                   {/* Chain progress dots */}
@@ -607,14 +607,14 @@ export function WandererRest({
                       <div
                         key={label}
                         className="flex items-center gap-3 rounded-lg px-3 py-2.5"
-                        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", opacity: 0.45, cursor: "not-allowed" }}
+                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", opacity: 0.45, cursor: "not-allowed" }}
                       >
                         <span style={{ fontSize: 16, filter: "grayscale(0.7)" }}>{icon}</span>
                         <div>
                           <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.45)" }}>{label}</p>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{sub}</p>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{sub}</p>
                         </div>
-                        <span className="ml-auto text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.07)" }}>Soon</span>
+                        <span className="ml-auto text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.35)", border: "1px solid rgba(255,255,255,0.11)" }}>Soon</span>
                       </div>
                     ))}
                   </div>
@@ -635,7 +635,7 @@ export function WandererRest({
                   <div className="flex items-center gap-1.5">
                     <Tip k="npc_quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#8b5cf6" }}>NPC Quest Board</h2></Tip>
                   </div>
-                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{devVisibleOpen.length} open · {devVisibleInProgress.length} in progress</p>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{devVisibleOpen.length} open · {devVisibleInProgress.length} in progress</p>
                 </div>
                 <div className="flex items-center gap-1">
                   <button onClick={() => setSortMode(s => s === "rarity" ? "newest" : "rarity")} className="text-xs px-2 py-1 rounded" style={{ background: sortMode === "rarity" ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "rarity" ? "#a78bfa" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "rarity" ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.08)"}` }}>
@@ -646,19 +646,19 @@ export function WandererRest({
               <input type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search agent quests…" className="w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
             </div>
             <div className="space-y-2">
-              {loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)" }} />) :
+              {loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.08)" }} />) :
               devVisibleOpen.length === 0 && devVisibleInProgress.length === 0 ? (
-                <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match" : "No development quests"}</p>
+                <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{searchFilter ? "No quests match" : "No development quests"}</p>
                 </div>
               ) : (
                 <>
                   {devVisibleOpen.length > 0 && (
                     <>
                       <button onClick={() => setDevOpenCollapsed(v => !v)} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
-                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
-                        <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{devVisibleOpen.length}</span>
-                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{devOpenCollapsed ? "►" : "▼"}</span>
+                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>Open</span>
+                        <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.35)" }}>{devVisibleOpen.length}</span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{devOpenCollapsed ? "►" : "▼"}</span>
                       </button>
                       {!devOpenCollapsed && devVisibleOpen.map(q =>
                         q.children && q.children.length > 0
@@ -670,9 +670,9 @@ export function WandererRest({
                   {devVisibleInProgress.length > 0 && (
                     <>
                       <button onClick={() => setDevInProgressCollapsed(v => !v)} className="flex items-center gap-2 w-full text-left pt-2 pb-0.5">
-                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>In Progress</span>
+                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>In Progress</span>
                         <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{devVisibleInProgress.length}</span>
-                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{devInProgressCollapsed ? "►" : "▼"}</span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{devInProgressCollapsed ? "►" : "▼"}</span>
                       </button>
                       {!devInProgressCollapsed && devVisibleInProgress.map(q =>
                         q.children && q.children.length > 0

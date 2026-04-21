@@ -338,7 +338,7 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
           <StreakFlame streak={streakDays} />
           <span className="text-xs font-bold font-mono" style={{ color: streakDays > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>
             {streakDays}
-            <span className="font-normal" style={{ color: "rgba(255,255,255,0.3)" }}> day{streakDays !== 1 ? "s" : ""}</span>
+            <span className="font-normal" style={{ color: "rgba(255,255,255,0.45)" }}> day{streakDays !== 1 ? "s" : ""}</span>
           </span>
         </div>
       </div>
@@ -358,7 +358,7 @@ function TodayProgressWidget({ questsToday, streakDays }: TodayProgressProps) {
         {/* DR Tier */}
         <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="flex items-center gap-1.5 mb-0.5">
-            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>◆</span>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.45)" }}>◆</span>
             <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>DR Tier</span>
           </div>
           <span className="text-xs font-semibold" style={{ color: drTier.color, fontSize: 12 }}>{drTier.label}</span>
@@ -884,7 +884,7 @@ export default function TodayDrawer({
         style={{
           width: "min(95vw, 720px)",
           background: timeInfo.bg,
-          borderLeft: "1px solid rgba(255,255,255,0.06)",
+          borderLeft: "1px solid rgba(255,255,255,0.10)",
           boxShadow: "-12px 0 40px rgba(0,0,0,0.7)",
           animation: open ? "today-drawer-in 0.3s cubic-bezier(0.34,1.56,0.64,1)" : "none",
         }}
@@ -894,7 +894,7 @@ export default function TodayDrawer({
         {isNight && <NightStars />}
 
         {/* ─── Header + Task Arc ────────────────────────────────────── */}
-        <div className="relative px-5 pt-4 pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", zIndex: 1 }}>
+        <div className="relative px-5 pt-4 pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)", zIndex: 1 }}>
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-2.5">
               <span className="text-base">{timeInfo.icon}</span>
@@ -928,7 +928,7 @@ export default function TodayDrawer({
         </div>
 
         {/* ─── Hero Section: Horizontal layout ─────────────────────── */}
-        <div className="relative px-5 pt-3 pb-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", zIndex: 1 }}>
+        <div className="relative px-5 pt-3 pb-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)", zIndex: 1 }}>
           <div className="absolute inset-0 pointer-events-none" style={{
             background: `radial-gradient(ellipse at 50% 40%, ${timeInfo.accentGlow} 0%, transparent 70%)`,
             animation: "today-hero-breathe 4s ease-in-out infinite",
@@ -947,7 +947,7 @@ export default function TodayDrawer({
               style={{ minWidth: 100, cursor: "pointer",
               background: streak > 0 ? "linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%)" : "rgba(255,255,255,0.02)",
               border: `1px solid ${streak > 0 ? "rgba(249,115,22,0.15)" : "rgba(255,255,255,0.04)"}`,
-              boxShadow: streak > 7 ? "inset 0 1px 0 rgba(249,115,22,0.1)" : "inset 0 1px 0 rgba(255,255,255,0.04)",
+              boxShadow: streak > 7 ? "inset 0 1px 0 rgba(249,115,22,0.1)" : "inset 0 1px 0 rgba(255,255,255,0.07)",
             }}>
               <div className="flex items-center gap-2">
                 <StreakFlame streak={streak} />
@@ -1005,14 +1005,14 @@ export default function TodayDrawer({
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-lg font-bold font-mono" style={{ color: levelInfo.color, lineHeight: 1 }}>{levelInfo.level}</span>
-                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>LVL</span>
+                    <span style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>LVL</span>
                   </div>
                 </div>
               </div>
               {/* XP percentage text */}
               <div className="mt-1.5 text-center">
                 <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title}</span>
-                <span className="text-xs font-mono ml-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}% XP</span>
+                <span className="text-xs font-mono ml-1.5" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>{Math.round(xpProgress * 100)}% XP</span>
               </div>
             </div>
 
@@ -1029,7 +1029,7 @@ export default function TodayDrawer({
               style={{ minWidth: 100, cursor: "pointer",
               background: forgeTemp > 0 ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)` : "rgba(255,255,255,0.02)",
               border: `1px solid ${forgeTemp > 0 ? `${forgeTempColor}25` : "rgba(255,255,255,0.04)"}`,
-              boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15` : "inset 0 1px 0 rgba(255,255,255,0.04)",
+              boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15` : "inset 0 1px 0 rgba(255,255,255,0.07)",
               animation: forgeTemp >= 80 ? "today-forge-pulse 5s ease-in-out infinite" : "none",
               "--forge-color": forgeTempColor,
             } as React.CSSProperties}>
@@ -1070,7 +1070,7 @@ export default function TodayDrawer({
                 const allDone = missions.every(m => m.done);
 
                 return (
-                  <div className="rounded-xl p-3 mt-2 mb-1" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="rounded-xl p-3 mt-2 mb-1" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
                     {/* Milestone bar header */}
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold uppercase tracking-widest" style={{ color: allDone ? "rgba(34,197,94,0.6)" : "rgba(251,191,36,0.6)" }}>

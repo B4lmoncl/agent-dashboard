@@ -302,7 +302,7 @@ function SinglePullReveal({ result, onDone, onNavigate }: { result: GachaPullRes
             <button
               onClick={() => { onDone(); onNavigate("character"); }}
               className="text-xs cursor-pointer mt-1"
-              style={{ color: "rgba(255,255,255,0.25)" }}
+              style={{ color: "rgba(255,255,255,0.4)" }}
               onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}
             >
@@ -502,7 +502,7 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
                   <p className="text-xs sm:text-sm font-semibold text-center leading-tight" style={{ color: cfg.color }}>
                     {result.item.name}
                   </p>
-                  <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)" }}>
                     {cfg.label}
                   </span>
                   {result.isDuplicate && (
@@ -554,7 +554,7 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
             <button
               onClick={() => { onDone(); onNavigate("character"); }}
               className="text-xs cursor-pointer mt-1"
-              style={{ color: "rgba(255,255,255,0.25)" }}
+              style={{ color: "rgba(255,255,255,0.4)" }}
               onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}
             >
