@@ -103,7 +103,7 @@ export const CompletedQuestRow = memo(function CompletedQuestRow({ quest, isLast
   );
 });
 
-export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName, playerLevel, gridMode, onDetails, isFavorite, onToggleFavorite, loadingAction }: {
+export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName, playerLevel, gridMode, onDetails, isFavorite, onToggleFavorite, loadingQuestId }: {
   quest: Quest;
   selected?: boolean;
   onToggle?: (id: string) => void;
@@ -118,16 +118,16 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   onDetails?: (quest: Quest) => void;
   isFavorite?: boolean;
   onToggleFavorite?: (id: string) => void;
-  loadingAction?: { questId: string; action: string } | null;
+  loadingQuestId?: string | null;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [starAnimating, setStarAnimating] = useState(false);
   const [actionAnim, setActionAnim] = useState<"claim" | "complete" | null>(null);
-  const isLoading = loadingAction?.questId === quest.id;
+  const isLoading = loadingQuestId === quest.id;
   // Trigger animation on successful action (loading stops = action completed)
   const prevLoadingRef = useRef(false);
   useEffect(() => {
-    if (prevLoadingRef.current && !isLoading && loadingAction === null) {
+    if (prevLoadingRef.current && !isLoading && !loadingQuestId) {
       // Determine which action just completed
       const action = quest.status === "in_progress" && quest.claimedBy ? "claim" : "complete";
       setActionAnim(action);
@@ -135,7 +135,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
       return () => clearTimeout(t);
     }
     prevLoadingRef.current = isLoading;
-  }, [isLoading, loadingAction, quest.status, quest.claimedBy]);
+  }, [isLoading, loadingQuestId, quest.status, quest.claimedBy]);
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();

@@ -180,6 +180,7 @@ export function useCountUp(target: number, decimals = 0, duration = 1000): strin
   const [display, setDisplay] = useState("0");
   const prevRef = useRef(-1);
   const rafRef = useRef<number | null>(null);
+  const lastDisplayRef = useRef("0");
   useEffect(() => {
     if (prevRef.current === target) return;
     const from = prevRef.current < 0 ? 0 : prevRef.current;
@@ -189,7 +190,8 @@ export function useCountUp(target: number, decimals = 0, duration = 1000): strin
     function tick(now: number) {
       const p = Math.min((now - t0) / duration, 1);
       const eased = 1 - (1 - p) ** 3;
-      setDisplay((from + (target - from) * eased).toFixed(decimals));
+      const val = (from + (target - from) * eased).toFixed(decimals);
+      if (val !== lastDisplayRef.current) { lastDisplayRef.current = val; setDisplay(val); }
       if (p < 1) rafRef.current = requestAnimationFrame(tick);
     }
     rafRef.current = requestAnimationFrame(tick);

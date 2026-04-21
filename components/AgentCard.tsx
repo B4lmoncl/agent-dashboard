@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, memo } from "react";
-import { LB_LEVELS, getLbLevel, getLbXpProgress } from "@/app/utils";
+import { LB_LEVELS, getLbLevel, getLbXpProgress, useCountUp } from "@/app/utils";
 
 interface Agent {
   id: string;
@@ -31,27 +31,6 @@ interface Quest {
   status: "open" | "in_progress" | "completed" | "suggested" | "rejected";
 }
 
-function useCountUp(target: number, decimals = 0, duration = 1000): string {
-  const [display, setDisplay] = useState("0");
-  const prevRef = useRef(-1);
-  const rafRef = useRef<number | null>(null);
-  useEffect(() => {
-    if (prevRef.current === target) return;
-    const from = prevRef.current < 0 ? 0 : prevRef.current;
-    prevRef.current = target;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    const t0 = performance.now();
-    function tick(now: number) {
-      const p = Math.min((now - t0) / duration, 1);
-      const eased = 1 - (1 - p) ** 3;
-      setDisplay((from + (target - from) * eased).toFixed(decimals));
-      if (p < 1) rafRef.current = requestAnimationFrame(tick);
-    }
-    rafRef.current = requestAnimationFrame(tick);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [target, decimals, duration]);
-  return display;
-}
 
 function formatDuration(seconds: number): string {
   if (!seconds || seconds <= 0) return "—";

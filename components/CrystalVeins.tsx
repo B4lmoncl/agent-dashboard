@@ -135,6 +135,7 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
 
   const draw = useCallback((time: number) => {
     const canvas = canvasRef.current;
+    if (document.visibilityState === "hidden") { animRef.current = requestAnimationFrame(draw); return; }
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;

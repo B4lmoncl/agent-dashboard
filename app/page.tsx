@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } from "react";
 import StatBar from "@/components/StatBar";
-import OnboardingWizard from "@/components/OnboardingWizard";
+const OnboardingWizard = lazy(() => import("@/components/OnboardingWizard"));
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CrystalVeins from "@/components/CrystalVeins";
 import TowerMap from "@/components/TowerMap";
@@ -26,12 +26,12 @@ const DungeonView = lazy(() => import("@/components/DungeonView"));
 const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
-import TodayDrawer from "@/components/TodayDrawer";
+const TodayDrawer = lazy(() => import("@/components/TodayDrawer"));
 
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
-// DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
-import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
+const GuideModalLazy = lazy(() => import("@/components/TutorialModal").then(m => ({ default: m.GuideModal })));
+import { GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, AntiRitualePanel,
   CompletedQuestRow, EpicQuestCard, QuestCard,
@@ -41,13 +41,13 @@ import {
 import { ToastStack, useToastStack } from "@/components/ToastStack";
 import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCelebration";
 import { useFloatingRewards, FloatingRewardsLayer } from "@/components/FloatingRewards";
-import { CompanionsWidget } from "@/components/CompanionsWidget";
+const CompanionsWidget = lazy(() => import("@/components/CompanionsWidget").then(m => ({ default: m.CompanionsWidget })));
+const WandererRest = lazy(() => import("@/components/WandererRest").then(m => ({ default: m.WandererRest })));
 import { RoadmapView } from "@/components/RoadmapView";
 import { Tip, TipCustom } from "@/components/GameTooltip";
-import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
 import FloorAmbientParticles from "@/components/FloorAmbientParticles";
-import FeedbackOverlay from "@/components/FeedbackOverlay";
+const FeedbackOverlay = lazy(() => import("@/components/FeedbackOverlay"));
 import { ModalPortal, useModalBehavior, ModalOverlay } from "@/components/ModalPortal";
 import DashboardHeader from "@/components/DashboardHeader";
 import DashboardModals from "@/components/DashboardModals";
@@ -2308,7 +2308,7 @@ export default function Dashboard() {
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
                                         isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
-                                        loadingAction={loadingAction} />
+                                        loadingQuestId={loadingAction?.questId || null} />
                                 )}
                               </div>
                             )}
@@ -2341,7 +2341,7 @@ export default function Dashboard() {
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
                                         isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
-                                        loadingAction={loadingAction} /></div>
+                                        loadingQuestId={loadingAction?.questId || null} /></div>
                                 )}
                               </div>
                             )}
@@ -2881,7 +2881,7 @@ export default function Dashboard() {
       )}
 
       {/* Guide Modal (legacy fallback) */}
-      {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} onRestartTutorial={handleRestartTutorial} />}
+      {guideOpen && <Suspense fallback={null}><GuideModalLazy onClose={() => setGuideOpen(false)} onRestartTutorial={handleRestartTutorial} /></Suspense>}
 
       {/* Info Overlay */}
       {infoOverlayOpen && (
