@@ -73,7 +73,7 @@ function WhatsNewHero({ color, title, short, long, bg, icon }: { color: string; 
   const [expanded, setExpanded] = useState(false);
   return (
     <button onClick={() => setExpanded(v => !v)} className="w-full text-left rounded-lg overflow-hidden relative" style={{ border: `1px solid ${color}25`, cursor: "pointer" }}>
-      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none" style={{ background: `url(${bg}) no-repeat center/contain`, opacity: 0.08, filter: "blur(1px)" }} />
+      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none" style={{ background: `url(${bg}) no-repeat center/contain`, opacity: 0.12, filter: "blur(0.5px)" }} />
       <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}0A 0%, transparent 60%)`, borderLeft: `3px solid ${color}60` }}>
         <img src={icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 6px ${color}50)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
         <div className="min-w-0 flex-1">
@@ -3155,11 +3155,11 @@ export default function Dashboard() {
                     "Stormlight Gem-Glow",
                     "Highstorm VFX",
                     "Talent-Baum Energie",
-                    "Ornate Borders",
+                    "Ornate Panel-Borders",
                     "Floor-Akzentfarben",
-                    "Kontrast-Boost",
-                    "175 Gear-Icons",
-                    "87 NPC-Reward-Icons",
+                    "Kontrast-Boost seitenweit",
+                    "Hover-Transitions",
+                    "Leaderboard #1 Glow",
                   ].map((t, i) => (
                     <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(129,140,248,0.04)" }}>
                       <span style={{ color: "#818cf8", fontSize: 8 }}>&#9670;</span>
@@ -3171,13 +3171,13 @@ export default function Dashboard() {
 
               {/* Stats bar */}
               <div className="flex items-center justify-center gap-4 pt-2 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#22c55e" }}>40+</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Bugs fixed</p></div>
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#22c55e" }}>40+</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Bugs gefixt</p></div>
                 <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#3b82f6" }}>80%</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Faster loads</p></div>
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#3b82f6" }}>80%</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Schneller</p></div>
                 <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#f97316" }}>1458</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Recipes polished</p></div>
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#f97316" }}>1458</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Rezepte poliert</p></div>
                 <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#a855f7" }}>262</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>New icons</p></div>
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#a855f7" }}>262</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Neue Icons</p></div>
               </div>
             </div>
 
