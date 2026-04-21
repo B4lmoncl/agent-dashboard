@@ -1226,7 +1226,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .gt-trigger.gt-heading::before {
   content: ""; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, var(--floor-color, rgba(129,140,248,0.25)), transparent);
-  opacity: 0.6;
+  opacity: 0.25;
 }
 
 /* Loading bar — golden line fills under trigger during hover delay (headings only) */
@@ -2119,7 +2119,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   border-radius: 1px;
   background: var(--floor-color, rgba(255,255,255,0.3));
   box-shadow: 0 0 8px var(--floor-color, rgba(255,255,255,0.15));
-  opacity: 0.7;
+  opacity: 0.45;
 }
 
 /* Floor-tinted section header underline */
@@ -2135,7 +2135,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, var(--floor-color, rgba(255,255,255,0.15)), transparent);
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 /* Floor-tinted card border — subtle top accent line via pseudo-element (avoids box-shadow conflicts) */
