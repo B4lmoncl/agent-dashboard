@@ -141,7 +141,7 @@ export default function Dashboard() {
   const [quests, setQuests] = useState<QuestsData>({ open: [], inProgress: [], completed: [], suggested: [], rejected: [] });
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
-  const [secondsAgo, setSecondsAgo] = useState(0);
+  // secondsAgo moved to isolated LastUpdated component to avoid full Dashboard re-render every second
   const [apiLive, setApiLive] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
@@ -579,9 +579,6 @@ export default function Dashboard() {
         try { const r = await fetch(`/api/player/${encodeURIComponent(pName.toLowerCase())}/favorites`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); setFavorites(d.favorites || []); } } catch { /* ignore */ }
       }
     }
-    // These lightweight calls remain separate (rarely change, small payloads)
-    try { const r = await fetch(`/api/game-version`, { signal: AbortSignal.timeout(1500) }); if (r.ok) { const d = await r.json(); setGameVersion(d.version || "1.5.1"); } } catch { /* ignore */ }
-    try { const r = await fetch(`/api/changelog-data`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); } } catch { /* ignore */ }
     if (pName) {
       try { const r = await fetch(`/api/quests/pool?player=${encodeURIComponent(pName)}`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (d.lastRefresh) setLastPoolRefresh(new Date(d.lastRefresh)); } } catch { /* ignore */ }
     }
@@ -684,7 +681,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     refresh();
-    const interval = setInterval(refresh, 30_000);
+    // Static data fetched once on mount — not repeated every 30s
+    (async () => {
+      try { const r = await fetch("/api/game-version", { signal: AbortSignal.timeout(1500) }); if (r.ok) { const d = await r.json(); setGameVersion(d.version || CURRENT_VERSION); } } catch { /* ignore */ }
+      try { const r = await fetch("/api/changelog-data", { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); } } catch { /* ignore */ }
+    })();
+    const interval = setInterval(() => {
+      if (document.visibilityState === "visible") refresh();
+    }, 30_000);
     return () => clearInterval(interval);
   }, [refresh]);
 
@@ -743,12 +747,7 @@ export default function Dashboard() {
       .catch(e => console.error('[page]', e));
   }, []);
 
-  useEffect(() => {
-    const tick = setInterval(() => {
-      if (lastRefresh) setSecondsAgo(Math.floor((Date.now() - lastRefresh.getTime()) / 1000));
-    }, 1000);
-    return () => clearInterval(tick);
-  }, [lastRefresh]);
+  // secondsAgo timer moved to isolated LastUpdated component
 
   // Auto-trigger tutorial on first visit (no login required)
   useEffect(() => {
@@ -958,9 +957,7 @@ export default function Dashboard() {
   const animCompleted = useCountUp(playerCompletedTotal, 0);
   const animGold      = useCountUp(playerGold, 0);
 
-  const lastUpdatedStr = lastRefresh
-    ? secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`
-    : "—";
+  const lastUpdatedStr = ""; // rendered by LastUpdated component
 
   // Quest search + sort + type filter
   const applyFilter = useCallback((qs: Quest[]) => {
@@ -1023,7 +1020,7 @@ export default function Dashboard() {
         needsAttention={needsAttention}
         suggestedCount={quests.suggested.length}
         apiLive={apiLive}
-        lastUpdatedStr={lastUpdatedStr}
+        lastRefresh={lastRefresh}
         refresh={refresh}
         setOnboardingOpen={setOnboardingOpen}
         setInfoOverlayOpen={setInfoOverlayOpen}
@@ -1041,7 +1038,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.88)", borderRadius: 16, marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
         {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}

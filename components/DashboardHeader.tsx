@@ -3,6 +3,18 @@
 import { useRef, useEffect, useState } from "react";
 import type { User, Quest, QuestsData } from "@/app/types";
 import { createStarterQuestsIfNew, CURRENT_SEASON } from "@/app/utils";
+
+function LastUpdated({ lastRefresh }: { lastRefresh: Date | null }) {
+  const [secondsAgo, setSecondsAgo] = useState(0);
+  useEffect(() => {
+    if (!lastRefresh) return;
+    setSecondsAgo(Math.floor((Date.now() - lastRefresh.getTime()) / 1000));
+    const tick = setInterval(() => setSecondsAgo(Math.floor((Date.now() - lastRefresh.getTime()) / 1000)), 1000);
+    return () => clearInterval(tick);
+  }, [lastRefresh]);
+  if (!lastRefresh) return <span>—</span>;
+  return <span>{secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`}</span>;
+}
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
 import { TipCustom } from "@/components/GameTooltip";
@@ -22,7 +34,7 @@ interface DashboardHeaderProps {
   needsAttention: number;
   suggestedCount: number;
   apiLive: boolean;
-  lastUpdatedStr: string;
+  lastRefresh: Date | null;
   refresh: () => Promise<void>;
   setOnboardingOpen: (v: boolean) => void;
   setInfoOverlayOpen: (v: boolean) => void;
@@ -38,7 +50,7 @@ export default function DashboardHeader({
   reviewApiKey, setReviewApiKey,
   isAdmin, setIsAdmin,
   needsAttention, suggestedCount,
-  apiLive, lastUpdatedStr,
+  apiLive, lastRefresh,
   refresh,
   setOnboardingOpen,
   setInfoOverlayOpen, setInfoOverlayTab,
@@ -479,7 +491,7 @@ export default function DashboardHeader({
           })()}
           <div className="text-xs font-mono flex items-center gap-1.5 text-w25">
             <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: "rgba(255,102,51,0.5)" }} />
-            Updated <span style={{ display: "inline-block", minWidth: "4rem" }}>{lastUpdatedStr}</span>
+            Updated <span style={{ display: "inline-block", minWidth: "4rem" }}><LastUpdated lastRefresh={lastRefresh} /></span>
           </div>
         </div>
       </div>

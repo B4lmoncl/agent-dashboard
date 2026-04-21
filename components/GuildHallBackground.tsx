@@ -647,14 +647,18 @@ export default function GuildHallBackground() {
         drawParticle(ctx, p, season, t);
       }
 
-      animId = requestAnimationFrame(frame);
+      if (document.visibilityState === "visible") animId = requestAnimationFrame(frame);
     };
 
     frame();
 
+    const onVis = () => { if (document.visibilityState === "visible") frame(); };
+    document.addEventListener("visibilitychange", onVis);
+
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVis);
     };
   }, [tod]);
 
