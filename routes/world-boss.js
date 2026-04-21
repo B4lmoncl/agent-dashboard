@@ -495,7 +495,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
           trackUniqueInCollection(uid, dropId);
           if (!user.collectionLogDates) user.collectionLogDates = {};
           user.collectionLogDates[dropId] = new Date().toISOString();
-          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, slot: uniqueTemplate.slot, icon: uniqueTemplate.icon || null });
+          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, rarity: uniqueTemplate.rarity || 'unique', slot: uniqueTemplate.slot, icon: uniqueTemplate.icon || null, stats: gearInstance.stats || null, desc: uniqueTemplate.desc || null, flavorText: uniqueTemplate.flavorText || null, legendaryEffect: uniqueTemplate.legendaryEffect || null });
         }
       } else {
         // Fallback: unique template not found, use legacy behavior
@@ -531,7 +531,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
       const instance = rollSuffix(createGearInstance(template));
       if (!user.inventory) user.inventory = [];
       user.inventory.push(instance);
-      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null });
+      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null, stats: instance.stats || null, desc: instance.desc || template.desc || null, legendaryEffect: instance.legendaryEffect || null, instanceId: instance.id });
     }
   }
 

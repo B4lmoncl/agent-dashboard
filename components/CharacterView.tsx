@@ -2203,8 +2203,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         if (r.ok) {
                           setEquippedTitleId(titleId);
                           addToast?.({ type: "purchase", message: titleId ? `Title equipped: ${allTitles.find(t => t.id === titleId)?.name || titleId}` : "Title removed" });
+                        } else {
+                          const d = await r.json().catch(() => ({}));
+                          addToast?.({ type: "error", message: d.error || "Failed to equip title" });
                         }
-                      } catch { /* ignore */ }
+                      } catch { addToast?.({ type: "error", message: "Network error" }); }
                       setTitleEquipping(null);
                     };
 

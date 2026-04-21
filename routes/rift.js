@@ -500,7 +500,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     const instance = rollSuffix(createGearInstance(template));
     if (!u.inventory) u.inventory = [];
     u.inventory.push(instance);
-    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null };
+    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot, icon: instance.icon || null, stats: instance.stats || null, desc: instance.desc || template.desc || null, legendaryEffect: instance.legendaryEffect || null, instanceId: instance.id, setId: instance.setId || null };
   }
 
   // ── Material drops from rift stage (content-tier based) ──

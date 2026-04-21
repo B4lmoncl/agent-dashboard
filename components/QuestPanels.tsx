@@ -67,6 +67,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
   const [extendCommitment, setExtendCommitment] = useState("none");
   const [recommitId, setRecommitId] = useState<string | null>(null);
   const [vowError, setVowError] = useState<string | null>(null);
+  const [vowChecking, setVowChecking] = useState<string | null>(null);
   useEffect(() => { if (vowError) { const t = setTimeout(() => setVowError(null), 5000); return () => clearTimeout(t); } }, [vowError]);
   const [slipAnimId, setSlipAnimId] = useState<string | null>(null);
   const [vowActionError, setVowActionError] = useState<string | null>(null);
@@ -269,7 +270,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               <>
                 <button
                   onClick={async () => {
-                    if (!reviewApiKey || !playerName || vowDoneToday) return;
+                    if (!reviewApiKey || !playerName || vowDoneToday || vowChecking) return;
+                    setVowChecking(ar.id);
                     try {
                       const r = await fetch(`/api/rituals/${ar.id}/complete`, {
                         method: "POST",
@@ -290,10 +292,12 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                             pactBonus: data.pactCompletion || null,
                           });
                         }
+                      } else {
+                        setVowError(data.error || "Failed to complete vow");
                       }
-                    } catch { /* ignore */ }
+                    } catch { setVowError("Network error"); } finally { setVowChecking(null); }
                   }}
-                  disabled={vowDoneToday || !reviewApiKey}
+                  disabled={vowDoneToday || !reviewApiKey || vowChecking === ar.id}
                   className="text-xs px-2 py-1 rounded transition-all"
                   style={{
                     background: vowDoneToday ? "rgba(34,197,94,0.08)" : "rgba(99,102,241,0.12)",
@@ -909,9 +913,10 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
           });
         }
         if (questId) setJustAccepted(prev => new Map(prev).set(q.id, questId));
+        setCompleteFeedback(`Quest accepted: ${q.title}`);
         onRefresh();
       }
-    } catch { /* ignore */ } finally { setCreating(null); }
+    } catch { setCompleteFeedback("Network error — could not create quest"); } finally { setCreating(null); }
   };
 
   const completeDobbieQuest = async (templateId: string) => {

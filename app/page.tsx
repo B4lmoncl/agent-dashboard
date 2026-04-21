@@ -66,6 +66,9 @@ import {
   GUILD_LEVELS, getUserLevel, getUserXpProgress,
   getQuestRarity,
 } from "@/app/utils";
+
+const CURRENT_VERSION = "1.6.0";
+
 import {
   typeConfig,
   FLOORS, getFloorForRoom,
@@ -382,7 +385,7 @@ export default function Dashboard() {
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [gameVersion, setGameVersion] = useState<string>("1.6.0");
+  const [gameVersion, setGameVersion] = useState<string>(CURRENT_VERSION);
   const [versionPopupOpen, setVersionPopupOpen] = useState(false);
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
   const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);
@@ -454,7 +457,7 @@ export default function Dashboard() {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
             // Don't show version popup if What's New popup already handled it
-            try { if (localStorage.getItem("whatsNewSeen") !== "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
+            try { if (localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
           }
         }
       } catch { /* ignore */ }
@@ -767,7 +770,7 @@ export default function Dashboard() {
 
   // What's New splash — show once per version
   useEffect(() => {
-    const CURRENT_VERSION = "1.6.0";
+    // CURRENT_VERSION is now module-level constant
     try {
       if (playerName && localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) {
         const t = setTimeout(() => setWhatsNewOpen(true), 1500);
@@ -3078,7 +3081,7 @@ export default function Dashboard() {
 
       {/* What's New Splash */}
       {whatsNewOpen && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}>
           <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             <div className="px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v1.6.0 — The Artisan&apos;s Update</p>
@@ -3104,7 +3107,7 @@ export default function Dashboard() {
               <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Batch craft animation with sequential reveal</p></div>
             </div>
             <div className="px-5 pb-4">
-              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
+              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
             </div>
           </div>
         </div>

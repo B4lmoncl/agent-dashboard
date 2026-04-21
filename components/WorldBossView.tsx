@@ -175,6 +175,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   const { playerName, reviewApiKey } = useDashboard();
   const [data, setData] = useState<BossData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [boosting, setBoosting] = useState(false);
   const [claimResult, setClaimResult] = useState<{ rewards: ClaimReward[]; rank: number; contributionPercent: number } | null>(null);
@@ -194,8 +195,11 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       if (r.ok) {
         const d = await r.json();
         setData(d);
+        setFetchError(false);
+      } else {
+        setFetchError(true);
       }
-    } catch { /* ignore */ }
+    } catch { setFetchError(true); }
     setLoading(false);
   }, [playerName]);
 
@@ -306,6 +310,11 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
     return (
       <div className="space-y-5 tab-content-enter relative">
         <TutorialMomentBanner viewId="worldboss" playerLevel={1} />
+        {fetchError && (
+          <p className="text-xs px-3 py-2 rounded-lg mb-2" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>
+            Could not load World Boss data. <button onClick={fetchBoss} style={{ textDecoration: "underline", cursor: "pointer", color: "#ef4444" }}>Retry</button>
+          </p>
+        )}
         {/* Ambient ember particles — dark gold/amber for the graveyard of titans */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {Array.from({ length: 8 }, (_, i) => (

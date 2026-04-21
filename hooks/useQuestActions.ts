@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 import { SFX } from "@/lib/sounds";
 import type { Quest, ActiveNpc, Ritual } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
@@ -45,6 +45,8 @@ export function useQuestActions({
   const [shopUserId, setShopUserId] = useState<string | null>(null);
   // Tracks which quest+action is currently in-flight to prevent double-clicks
   const [loadingAction, setLoadingAction] = useState<{ questId: string; action: string } | null>(null);
+  const loadingRef = useRef(loadingAction);
+  loadingRef.current = loadingAction;
 
   const updateNpcQuestStatus = useCallback((questId: string, status: string, claimedBy: string | null) => {
     const updateChain = (npc: ActiveNpc): ActiveNpc => ({
@@ -63,7 +65,7 @@ export function useQuestActions({
   }, [setActiveNpcs, setSelectedNpc]);
 
   const handleApprove = useCallback(async (id: string, comment?: string) => {
-    if (!reviewApiKey || loadingAction) return;
+    if (!reviewApiKey || loadingRef.current) return;
     setLoadingAction({ questId: id, action: "approve" });
     try {
       const body = comment ? JSON.stringify({ comment }) : undefined;
@@ -84,10 +86,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, refresh, addToast]);
 
   const handleReject = useCallback(async (id: string, comment?: string) => {
-    if (!reviewApiKey || loadingAction) return;
+    if (!reviewApiKey || loadingRef.current) return;
     setLoadingAction({ questId: id, action: "reject" });
     try {
       const body = comment ? JSON.stringify({ comment }) : undefined;
@@ -108,7 +110,7 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, refresh, addToast]);
 
   const toggleSelect = useCallback((id: string) => {
     setSelectedIds(prev => {
@@ -158,7 +160,7 @@ export function useQuestActions({
   }, [reviewApiKey, playerName, addToast]);
 
   const handleClaim = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "claim" });
     try {
       const r = await fetch(`/api/quest/${questId}/claim`, {
@@ -180,10 +182,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, updateNpcQuestStatus, addToast]);
+  }, [reviewApiKey, playerName, refresh, updateNpcQuestStatus, addToast]);
 
   const handleUnclaim = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "unclaim" });
     try {
       const r = await fetch(`/api/quest/${questId}/unclaim`, {
@@ -203,10 +205,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, updateNpcQuestStatus, addToast]);
+  }, [reviewApiKey, playerName, refresh, updateNpcQuestStatus, addToast]);
 
   const handleCoopClaim = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "coopClaim" });
     try {
       const r = await fetch(`/api/quest/${questId}/coop-claim`, {
@@ -225,10 +227,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, playerName, refresh, addToast]);
 
   const handleCoopComplete = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "coopComplete" });
     try {
       const r = await fetch(`/api/quest/${questId}/coop-complete`, {
@@ -258,10 +260,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, playerName, refresh, addToast]);
 
   const handleComplete = useCallback(async (questId: string, questTitle: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "complete" });
     try {
       const r = await fetch(`/api/quest/${questId}/complete`, {
@@ -443,7 +445,7 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, setChainOffer, setRewardCelebration, pendingLevelUpRef, setActiveNpcs, setSelectedNpc, addToast]);
+  }, [reviewApiKey, playerName, refresh, setChainOffer, setRewardCelebration, pendingLevelUpRef, setActiveNpcs, setSelectedNpc, addToast]);
 
   const handleChainAccept = useCallback(async (chainOffer: { template: Record<string, unknown>; parentTitle: string } | null) => {
     if (!reviewApiKey || !chainOffer) return;
@@ -489,7 +491,7 @@ export function useQuestActions({
   }, [playerName, reviewApiKey, poolRefreshing, refresh, setApiErrorWithAutoClose, addToast, setLastPoolRefresh]);
 
   const handleShopBuy = useCallback(async (userId: string, itemId: string) => {
-    if (!reviewApiKey || !userId || loadingAction) return;
+    if (!reviewApiKey || !userId || loadingRef.current) return;
     setLoadingAction({ questId: itemId, action: "shopBuy" });
     try {
       const r = await fetch("/api/shop/buy", {
@@ -519,10 +521,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast, setRewardCelebration]);
+  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
 
   const handleGearBuy = useCallback(async (userId: string, gearId: string) => {
-    if (!reviewApiKey || !userId || loadingAction) return;
+    if (!reviewApiKey || !userId || loadingRef.current) return;
     setLoadingAction({ questId: gearId, action: "gearBuy" });
     try {
       const r = await fetch("/api/shop/gear/buy", {
@@ -552,7 +554,7 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast, setRewardCelebration]);
+  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
 
   return {
     // State
