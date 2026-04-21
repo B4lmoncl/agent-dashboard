@@ -412,6 +412,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     rift.failedAt = now();
     rift.failReason = 'time_expired';
     delete u._riftNecroticActive;
+    delete u._riftSkipsUsed;
     // Apply fail cooldown (Mythic+ has no cooldown)
     const expTier = RIFT_TIERS[rift.tier];
     if (expTier && !expTier.isMythic) {
@@ -544,6 +545,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     rift.completedAt = now();
     u._riftCompletions = (u._riftCompletions || 0) + 1;
     delete u._riftNecroticActive;
+    delete u._riftSkipsUsed;
 
     // Award completion bonus currencies (raw — these are bonus on top of quest rewards)
     const tier = RIFT_TIERS[rift.tier];
@@ -676,6 +678,7 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
   rift.failed = true;
   rift.failedAt = now();
   delete u._riftNecroticActive;
+  delete u._riftSkipsUsed;
 
   // Apply cooldown — Mythic+ has no fail cooldown (retry immediately per spec)
   const isMythic = tier?.isMythic;

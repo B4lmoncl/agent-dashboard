@@ -66,6 +66,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
   const [extendId, setExtendId] = useState<string | null>(null);
   const [extendCommitment, setExtendCommitment] = useState("none");
   const [recommitId, setRecommitId] = useState<string | null>(null);
+  const [vowError, setVowError] = useState<string | null>(null);
+  useEffect(() => { if (vowError) { const t = setTimeout(() => setVowError(null), 5000); return () => clearTimeout(t); } }, [vowError]);
   const [slipAnimId, setSlipAnimId] = useState<string | null>(null);
   const [vowActionError, setVowActionError] = useState<string | null>(null);
 
@@ -379,6 +381,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               </button>
             )}
           </div>
+          {vowError && (
+            <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>{vowError}</p>
+          )}
           {vowsLoading ? (
             <div className="space-y-2">
               {[0, 1].map(i => (
@@ -614,7 +619,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                           });
                           closeExtend();
                           loadAntiRituals();
-                        } catch { /* ignore */ }
+                        } catch { setVowError("Network error — could not extend vow"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: canExtend ? "rgba(67,56,202,0.32)" : "rgba(255,255,255,0.04)", color: canExtend ? "#a5b4fc" : "rgba(255,255,255,0.2)", border: `1px solid ${canExtend ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.08)"}`, cursor: canExtend ? "pointer" : "not-allowed" }}
@@ -674,7 +679,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                           });
                           setRecommitId(null);
                           loadAntiRituals();
-                        } catch { /* ignore */ }
+                        } catch { setVowError("Network error — could not recommit vow"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 0 16px rgba(139,92,246,0.12)", cursor: "pointer" }}
@@ -857,6 +862,8 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
   const resolvedProfile = resolveProfileName(rawProfile, petName || user?.companion?.name || "Companion");
   const COMPANION_QUESTS = resolvedProfile.quests;
   const dobbieMood = computeCompanionMood(streak ?? 0, user, resolvedProfile.moodQuotes);
+  const [completeFeedback, setCompleteFeedback] = useState<string | null>(null);
+  useEffect(() => { if (completeFeedback) { const t = setTimeout(() => setCompleteFeedback(null), 4000); return () => clearTimeout(t); } }, [completeFeedback]);
 
   // Derive Map<templateId, questId> for all active Dobbie quests
   const activeQuestMap = useMemo(() => {
@@ -917,15 +924,22 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ agentId: playerName }),
       });
+      const data = await r.json().catch(() => ({}));
       if (r.ok) {
         setJustAccepted(prev => { const m = new Map(prev); m.delete(templateId); return m; });
+        setCompleteFeedback(`+${data.xpEarned || 0} XP, +${data.goldEarned || 0} Gold`);
         onRefresh();
+      } else {
+        setCompleteFeedback(data.error || "Failed to complete quest");
       }
-    } catch { /* ignore */ } finally { setCompleting(null); }
+    } catch { setCompleteFeedback("Network error"); } finally { setCompleting(null); }
   };
 
   return (
     <div>
+      {completeFeedback && (
+        <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: completeFeedback.startsWith("+") ? "rgba(34,197,94,0.1)" : "rgba(239,68,68,0.1)", color: completeFeedback.startsWith("+") ? "#22c55e" : "#ef4444", border: `1px solid ${completeFeedback.startsWith("+") ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)"}` }}>{completeFeedback}</p>
+      )}
       <div className="flex items-center justify-between mb-1">
         <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</p>
         <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: dobbieMood.color, background: `${dobbieMood.color}18`, border: `1px solid ${dobbieMood.color}40` }}>{dobbieMood.label}</span>

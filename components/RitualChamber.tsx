@@ -64,6 +64,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [extendRitualId, setExtendRitualId] = useState<string | null>(null);
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
   const [recommitRitualId, setRecommitRitualId] = useState<string | null>(null);
+  const [ritualError, setRitualError] = useState<string | null>(null);
+  useEffect(() => { if (ritualError) { const t = setTimeout(() => setRitualError(null), 5000); return () => clearTimeout(t); } }, [ritualError]);
 
   // ─── Habit System ─────────────────────────────────────────────────────────
   interface Habit { id: string; title: string; positive: boolean; negative: boolean; color: string; score: number; playerId: string; createdAt: string; }
@@ -329,6 +331,9 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   return (
     <>
       <TutorialMomentBanner viewId="rituals" playerLevel={1} />
+      {ritualError && (
+        <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>{ritualError}</p>
+      )}
       <div data-feedback-id="ritual-chamber" className="section-ritual tab-content-enter">
         {isResting && (
           <div className="mb-3 px-3 py-2 rounded-lg text-xs" style={{ background: "rgba(217,119,6,0.08)", color: "#d97706", border: "1px solid rgba(217,119,6,0.2)" }}>
@@ -684,7 +689,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                           });
                           closeExtend();
                           if (playerName) { const updated = await fetchRituals(playerName); setRituals(updated); }
-                        } catch { /* ignore */ }
+                        } catch { setRitualError("Network error — could not extend ritual"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: canExtend ? "rgba(180,130,50,0.32)" : "rgba(255,255,255,0.04)", color: canExtend ? "#e8d5a3" : "rgba(255,255,255,0.2)", border: `1px solid ${canExtend ? "rgba(245,158,11,0.6)" : "rgba(255,255,255,0.08)"}`, cursor: canExtend ? "pointer" : "not-allowed" }}
@@ -742,7 +747,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                           });
                           setRecommitRitualId(null);
                           if (playerName) fetchRituals(playerName).then(setRituals);
-                        } catch { /* ignore */ }
+                        } catch { setRitualError("Network error — could not recommit ritual"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: "rgba(167,139,250,0.2)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.5)", boxShadow: "0 0 16px rgba(167,139,250,0.12)", cursor: "pointer" }}

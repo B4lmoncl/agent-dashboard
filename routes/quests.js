@@ -832,6 +832,7 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
     }
   }
   saveQuests();
+  saveUsers();
   res.json({ ok: true, quest });
 });
 
@@ -894,7 +895,7 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
     }
     updated.push(id);
   }
-  if (updated.length > 0) { saveQuests(); }
+  if (updated.length > 0) { saveQuests(); saveUsers(); }
   console.log(`[bulk-update] status=${status} updated=${updated.length} notFound=${notFound.length}`);
   res.json({ ok: true, updated, notFound });
 });

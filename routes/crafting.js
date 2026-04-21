@@ -1563,8 +1563,8 @@ router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
 
 // ─── POST /api/professions/fever/claim — claim bonus cache from Schmiedefieber ──
 router.post('/api/professions/fever/claim', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
-  const u = state.usersByName.get(uid) || state.usersByApiKey.get(req.headers['x-api-key']);
+  const uid = req.auth?.userId;
+  const u = state.usersByName.get(uid);
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
   const fever = getForgeFever();
