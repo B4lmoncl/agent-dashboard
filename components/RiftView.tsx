@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
+import HighstormVFX from "@/components/HighstormVFX";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
@@ -239,6 +240,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   return (
     <div data-feedback-id="rift-view" className="space-y-5 tab-content-enter relative">
+      <HighstormVFX active={!!activeRift && !activeRift.completed} intensity="major" color="#a855f7" />
       <TutorialMomentBanner viewId="rift" playerLevel={1} />
       {/* Purple rift energy fragments */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

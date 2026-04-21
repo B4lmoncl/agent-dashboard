@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
 import { useDashboard } from "@/app/DashboardContext";
+import HighstormVFX from "@/components/HighstormVFX";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { formatLegendaryLabel } from "@/app/utils";
@@ -471,6 +472,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
   return (
     <div data-feedback-id="worldboss-view" className="space-y-5 tab-content-enter relative">
+      <HighstormVFX active={!boss.defeated} intensity="cataclysm" color="#ef4444" duration={5000} />
       {/* Red/orange chaos embers — only when boss is active */}
       {!boss.defeated && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">

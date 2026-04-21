@@ -1038,7 +1038,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.88)", borderRadius: 16, marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.88)", borderRadius: 16, marginTop: 8, "--floor-color": currentFloorColor } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
         {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}
@@ -1273,7 +1273,7 @@ export default function Dashboard() {
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)}>
                       <Tip k={c.key}>
-                        {c.iconSrc ? <img src={c.iconSrc} alt="" width={24} height={24} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                        {c.iconSrc ? <img src={c.iconSrc} alt="" width={24} height={24} className={`currency-infused currency-${c.key} ${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                         <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
                           {c.value}
                         </span>
@@ -1772,7 +1772,7 @@ export default function Dashboard() {
                       key={room.key}
                       data-feedback-id={`nav.tab.${room.key}`}
                       onClick={() => setDashView(room.key as typeof dashView)}
-                      className="btn-interactive text-sm font-semibold px-2 sm:px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
+                      className={`btn-interactive text-sm font-semibold px-2 sm:px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative${isActive ? " room-tab-active" : ""}`}
                       style={{
                         background: isActive ? "#252525" : "transparent",
                         color: isActive ? "#f0f0f0" : "rgba(255,255,255,0.3)",

@@ -456,6 +456,24 @@ export default function TalentTreeView({
               });
             })}
 
+            {/* Energy flow particles traveling along active connections */}
+            {data.nodes.map(n => {
+              const pos = nodePositions.get(n.id);
+              if (!pos || !n.requires.length) return null;
+              return n.requires.map(reqId => {
+                const reqPos = nodePositions.get(reqId);
+                if (!reqPos || !data.allocated[n.id] || !data.allocated[reqId]) return null;
+                const col = getNodeThemeColor(n.id, data.meta.themes);
+                return [0, 1].map(pi => (
+                  <circle key={`flow-${n.id}-${reqId}-${pi}`} r="2" fill={col} opacity="0">
+                    <animate attributeName="cx" values={`${reqPos.x};${pos.x}`} dur="2.5s" begin={`${pi * 1.25}s`} repeatCount="indefinite" />
+                    <animate attributeName="cy" values={`${reqPos.y};${pos.y}`} dur="2.5s" begin={`${pi * 1.25}s`} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.8;0.8;0" dur="2.5s" begin={`${pi * 1.25}s`} repeatCount="indefinite" />
+                  </circle>
+                ));
+              });
+            })}
+
             {/* Particle effects on allocated nodes — slow rising sparkles via SMIL */}
             {data.nodes.filter(n => !!data.allocated[n.id]).map(n => {
               const pos = nodePositions.get(n.id);
