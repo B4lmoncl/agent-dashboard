@@ -1867,7 +1867,7 @@ export default function Dashboard() {
         {dashView === "gacha" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
-            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string; desc?: string; flavorText?: string; stats?: Record<string, number>; legendaryEffect?: { type: string; label?: string; value?: number } } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common", item: item.item ? { name: item.item.name || "Item", rarity: item.item.rarity || "common", icon: item.item.icon || null, desc: item.item.desc || null, flavorText: item.item.flavorText || null, stats: item.item.stats || null, legendaryEffect: item.item.legendaryEffect || null } : undefined }), i * 50); }); }}
             onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}

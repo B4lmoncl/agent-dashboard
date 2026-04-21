@@ -1120,7 +1120,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped`, icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped`, icon: item.icon, rarity: displayRarity(item), item: { ...item, icon: item.icon || null, rarity: displayRarity(item) } });
         }
       } else {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
@@ -1161,7 +1161,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item used.", icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used.", icon: item.icon, rarity: displayRarity(item), item: { ...item, icon: item.icon || null, rarity: displayRarity(item) } });
         }
       } else if (addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
@@ -1201,7 +1201,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
-        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item) });
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item), item: { ...item, icon: item.icon || null, rarity: displayRarity(item) } });
       } else if (addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Discard failed" });

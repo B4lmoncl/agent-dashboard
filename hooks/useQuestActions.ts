@@ -340,7 +340,14 @@ export function useQuestActions({
         }
         // Toast for gem drops
         if (data.gemDrop) {
-          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped.", rarity: "rare" });
+          addToast({
+            type: "item",
+            itemName: data.gemDrop.name,
+            message: "Gem dropped.",
+            icon: data.gemDrop.icon,
+            rarity: data.gemDrop.rarity || "rare",
+            item: { name: data.gemDrop.name, rarity: data.gemDrop.rarity || "rare", icon: data.gemDrop.icon || null, desc: data.gemDrop.desc || null, stats: data.gemDrop.stats || null },
+          });
         }
         // Toast for material drops
         if (data.materialDrops && Array.isArray(data.materialDrops) && data.materialDrops.length > 0) {

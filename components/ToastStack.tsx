@@ -4,23 +4,24 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { EarnedAchievement } from "@/app/types";
 import { typeConfig } from "@/app/config";
 import { SFX } from "@/lib/sounds";
+import { ItemHoverCard, type TooltipItem } from "@/components/ItemTooltip";
 
 // ─── Toast Types ─────────────────────────────────────────────────────────────
 export type ToastItem =
-  | { type: "flavor"; id: string; message: string; icon: string; sub?: string }
+  | { type: "flavor"; id: string; message: string; icon: string; sub?: string; item?: TooltipItem }
   | { type: "achievement"; id: string; achievement: EarnedAchievement }
   | { type: "chain"; id: string; parentTitle: string; template: { title: string; description?: string | null; type?: string }; onAccept: () => void }
   | { type: "purchase"; id: string; message: string }
-  | { type: "item"; id: string; itemName: string; message: string; icon?: string; rarity: string }
+  | { type: "item"; id: string; itemName: string; message: string; icon?: string; rarity: string; item?: TooltipItem }
   | { type: "companionBond"; id: string; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
   | { type: "error"; id: string; message: string; onRetry?: () => void };
 
 export type ToastInput =
-  | { type: "flavor"; message: string; icon: string; sub?: string }
+  | { type: "flavor"; message: string; icon: string; sub?: string; item?: TooltipItem }
   | { type: "achievement"; achievement: EarnedAchievement }
   | { type: "chain"; parentTitle: string; template: { title: string; description?: string | null; type?: string }; onAccept: () => void }
   | { type: "purchase"; message: string }
-  | { type: "item"; itemName: string; message: string; icon?: string; rarity: string }
+  | { type: "item"; itemName: string; message: string; icon?: string; rarity: string; item?: TooltipItem }
   | { type: "companionBond"; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
   | { type: "error"; message: string; onRetry?: () => void };
 
@@ -74,7 +75,7 @@ const RARITY_TOAST_STYLE: Record<string, { bg: string; border: string; shadow: s
   common:    { bg: "#1e2a1e", border: "rgba(156,163,175,0.4)", shadow: "rgba(156,163,175,0.15)", color: "#9ca3af", label: "Common" },
 };
 
-function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon: string; sub?: string }; onClose: () => void }) {
+function FlavorToastContent({ toast, onClose, onHoverChange }: { toast: { message: string; icon: string; sub?: string; item?: TooltipItem }; onClose: () => void; onHoverChange?: (h: boolean) => void }) {
   const rs = (toast.sub && RARITY_TOAST_STYLE[toast.sub]) || null;
   const bg = rs?.bg || "#1e2a1e";
   const border = rs?.border || "rgba(34,197,94,0.4)";
@@ -82,16 +83,25 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
   const color = rs?.color || "#22c55e";
   const label = rs?.label || toast.sub;
 
+  const iconEl = toast.icon && toast.icon.startsWith("/")
+    ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+    : <span className="text-2xl flex-shrink-0">{toast.icon}</span>;
+  const content = (
+    <>
+      {toast.item ? <ItemHoverCard item={toast.item} onHoverChange={onHoverChange}>{iconEl}</ItemHoverCard> : iconEl}
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-bold" style={{ color }}>{toast.message}</p>
+        {label && <p className="text-xs mt-0.5 truncate font-medium" style={{ color }}>{label}</p>}
+      </div>
+    </>
+  );
+
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
       style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: "100%", width: "100%" }}
     >
-      {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-bold" style={{ color }}>{toast.message}</p>
-        {label && <p className="text-xs mt-0.5 truncate font-medium" style={{ color }}>{label}</p>}
-      </div>
+      {content}
       <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
@@ -170,18 +180,26 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
   );
 }
 
-function ItemToastContent({ toast, onClose }: { toast: { itemName: string; message: string; icon?: string; rarity: string }; onClose: () => void }) {
+function ItemToastContent({ toast, onClose, onHoverChange }: { toast: { itemName: string; message: string; icon?: string; rarity: string; item?: TooltipItem }; onClose: () => void; onHoverChange?: (h: boolean) => void }) {
   const rs = RARITY_TOAST_STYLE[toast.rarity] || RARITY_TOAST_STYLE.common;
+  // Synthesize a minimal TooltipItem if no full item was passed — still enables hover
+  // so the user at least sees the rarity badge and name in the tooltip style.
+  const hoverItem: TooltipItem = toast.item || { name: toast.itemName, rarity: toast.rarity, icon: toast.icon || null };
+  const iconEl = toast.icon && toast.icon.startsWith("/")
+    ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+    : <span className="text-2xl flex-shrink-0" style={{ color: rs.color }}>◆</span>;
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
       style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: "100%", width: "100%" }}
     >
-      {toast.icon && toast.icon.startsWith("/")
-        ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-        : <span className="text-2xl flex-shrink-0" style={{ color: rs.color }}>◆</span>}
+      <ItemHoverCard item={hoverItem} onHoverChange={onHoverChange}>
+        {iconEl}
+      </ItemHoverCard>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-bold" style={{ color: rs.color }}>{toast.itemName}</p>
+        <ItemHoverCard item={hoverItem} onHoverChange={onHoverChange}>
+          <span className="text-sm font-bold block" style={{ color: rs.color }}>{toast.itemName}</span>
+        </ItemHoverCard>
         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.6)" }}>{toast.message}</p>
       </div>
       <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
@@ -271,34 +289,51 @@ function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: T
   const [exiting, setExiting] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pausedRef = useRef(false);
 
-  useEffect(() => {
-    const enterTimer = setTimeout(() => setVisible(true), 20);
-    const duration = TOAST_DURATION[toast.type];
+  const scheduleDismiss = useCallback((ms: number) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       setExiting(true);
       setTimeout(() => onRemove(toast.id), 300);
-    }, duration);
+    }, ms);
+  }, [toast.id, onRemove]);
+
+  useEffect(() => {
+    const enterTimer = setTimeout(() => setVisible(true), 20);
+    scheduleDismiss(TOAST_DURATION[toast.type]);
     return () => { clearTimeout(enterTimer); if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [toast.id, toast.type, onRemove]);
+  }, [toast.id, toast.type, scheduleDismiss]);
+
+  const pauseTimer = useCallback(() => {
+    pausedRef.current = true;
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+  }, []);
+
+  const resumeTimer = useCallback(() => {
+    if (!pausedRef.current) return;
+    pausedRef.current = false;
+    // Give a fresh 1.5s grace period after hover ends so users can read the result
+    scheduleDismiss(1500);
+  }, [scheduleDismiss]);
 
   const handleClose = useCallback(() => {
     setExiting(true);
     setTimeout(() => onRemove(toast.id), 300);
   }, [toast.id, onRemove]);
 
-  const handleExpand = useCallback(() => {
-    setExpanded(e => !e);
-    // Pause auto-dismiss when expanded
-    if (!expanded && timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  }, [expanded]);
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    // Don't toggle when clicking interactive children (buttons, links)
+    if ((e.target as HTMLElement).closest("button, a")) return;
+    setExpanded(v => !v);
+    if (!expanded) pauseTimer(); else resumeTimer();
+  }, [expanded, pauseTimer, resumeTimer]);
 
   return (
     <div
-      onClick={handleExpand}
+      onClick={handleClick}
+      onMouseEnter={pauseTimer}
+      onMouseLeave={resumeTimer}
       style={{
         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         opacity: visible && !exiting ? 1 : 0,
@@ -310,11 +345,11 @@ function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: T
       }}
       title={expanded ? "Click to collapse" : "Click to expand"}
     >
-      {toast.type === "flavor" && <FlavorToastContent toast={toast} onClose={handleClose} />}
+      {toast.type === "flavor" && <FlavorToastContent toast={toast} onClose={handleClose} onHoverChange={h => h ? pauseTimer() : resumeTimer()} />}
       {toast.type === "achievement" && <AchievementToastContent achievement={toast.achievement} onClose={handleClose} onAchievementClick={onAchievementClick} />}
       {toast.type === "chain" && <ChainToastContent parentTitle={toast.parentTitle} template={toast.template} onAccept={toast.onAccept} onClose={handleClose} />}
       {toast.type === "purchase" && <PurchaseToastContent message={toast.message} onClose={handleClose} />}
-      {toast.type === "item" && <ItemToastContent toast={toast} onClose={handleClose} />}
+      {toast.type === "item" && <ItemToastContent toast={toast} onClose={handleClose} onHoverChange={h => h ? pauseTimer() : resumeTimer()} />}
       {toast.type === "companionBond" && <CompanionBondToastContent toast={toast} onClose={handleClose} />}
       {toast.type === "error" && <ErrorToastContent message={toast.message} onClose={handleClose} onRetry={toast.onRetry} />}
     </div>
