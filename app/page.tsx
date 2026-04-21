@@ -1799,7 +1799,7 @@ export default function Dashboard() {
         {dashView === "leaderboard" && (
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <Tip k="proving_grounds" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Proving Grounds</span></Tip>
+              <Tip k="proving_grounds" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">The Proving Grounds</span></Tip>
             </div>
             {/* Player cards */}
             {users.filter(u => !agents.some(a => a.id === u.id)).length > 0 && (
@@ -1823,7 +1823,7 @@ export default function Dashboard() {
         {dashView === "campaign" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Tip k="campaigns" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Observatory</span></Tip>
+              <Tip k="campaigns" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">The Observatory</span></Tip>
             </div>
             <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#f97316" ? "249,115,22" : "251,191,36"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
               <img src="/images/icons/nav-observatory.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -1901,7 +1901,7 @@ export default function Dashboard() {
         {dashView === "changelog" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-w35">Changelog</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">Changelog</span>
               <span className="text-xs text-w20">— recent commits from GitHub</span>
             </div>
             {changelogLoading && (
@@ -2939,7 +2939,7 @@ export default function Dashboard() {
               {infoOverlayTab === "changelog" && (
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 pb-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-w35">Changelog</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">Changelog</span>
                   </div>
                   {changelogData.length === 0 && (
                     <div className="text-sm text-w25">No changelog data available.</div>
