@@ -2810,9 +2810,9 @@ export default function Dashboard() {
             <>
               <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
               <button
-                data-feedback-id="footer.alpha-button"
+                data-feedback-id="footer.beta-button"
                 onClick={() => setFeedbackMode(v => !v)}
-                title={feedbackMode ? "Exit Feedback Mode (Esc)" : "Enter Alpha Feedback Mode"}
+                title={feedbackMode ? "Exit Feedback Mode (Esc)" : "Feedback Mode — click any element to report bugs or suggest improvements"}
                 style={{
                   background: "none",
                   cursor: "pointer",
@@ -2826,7 +2826,7 @@ export default function Dashboard() {
                   transition: "color 0.2s, border-color 0.2s",
                 }}
               >
-                (α) Alpha v{gameVersion}
+                (β) Beta v{gameVersion} — Feedback
               </button>
             </>
           )}
