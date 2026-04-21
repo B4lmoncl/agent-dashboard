@@ -1026,6 +1026,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [collectionOpen, setCollectionOpen] = useState(false);
   const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string } | null }[]; completion: number } | null>(null);
   const [collectionLoading, setCollectionLoading] = useState(false);
+  const [collectionError, setCollectionError] = useState(false);
   const [collectionFilter, setCollectionFilter] = useState<string>("all");
 
   // Scroll lock + ESC for title and collection modals
@@ -2601,15 +2602,18 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       <button
         onClick={async () => {
           setCollectionOpen(true);
-          if (!collectionData && !collectionLoading && playerName) {
+          if (!collectionData && !collectionLoading && !collectionError && playerName) {
             setCollectionLoading(true);
+            setCollectionError(false);
             try {
               const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/collection`);
               if (r.ok) {
                 const d = await r.json();
                 setCollectionData({ items: d.uniques || [], completion: (d.completionPercent ?? 0) / 100 });
               }
-            } catch { /* ignore */ }
+            } catch {
+              setCollectionError(true);
+            }
             setCollectionLoading(false);
           }
         }}
@@ -2739,7 +2743,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {/* Items grouped by source */}
           <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(85vh - 220px)" }}>
             {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Loading collection...</p>}
-            {!collectionLoading && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Could not load collection data.</p>}
+            {!collectionLoading && collectionError && (
+              <div className="text-center py-8">
+                <p className="text-xs" style={{ color: "#ef4444" }}>Failed to load collection data.</p>
+                <button onClick={() => { setCollectionError(false); }} className="text-xs mt-2 px-3 py-1 rounded" style={{ color: "rgba(96,165,250,0.7)", background: "rgba(96,165,250,0.08)", border: "none", cursor: "pointer" }}>Retry</button>
+              </div>
+            )}
+            {!collectionLoading && !collectionError && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Could not load collection data.</p>}
             {collectionData && (() => {
               const sourceDisplayNames: Record<string, string> = {
                 "world_boss:procrastination-wyrm": "◆ The Procrastination Wyrm",

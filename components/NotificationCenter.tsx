@@ -55,6 +55,7 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [markReadError, setMarkReadError] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   useModalBehavior(open, useCallback(() => setOpen(false), []));
@@ -95,7 +96,10 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
         setUnreadCount(0);
         setNotifications(prev => prev.map(n => ({ ...n, read: true })));
       }
-    } catch { /* ignore */ }
+    } catch {
+      setMarkReadError(true);
+      setTimeout(() => setMarkReadError(false), 5000);
+    }
   }, [playerName, reviewApiKey, unreadCount]);
 
   const handleOpen = useCallback(() => {
@@ -163,6 +167,12 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
               </button>
             )}
           </div>
+
+          {markReadError && (
+            <div className="px-4 py-1.5 text-xs" style={{ color: "#ef4444", background: "rgba(239,68,68,0.06)" }}>
+              Failed to mark as read
+            </div>
+          )}
 
           {/* Notification List */}
           <div className="overflow-y-auto scrollbar-rpg" style={{ maxHeight: 420, overscrollBehavior: "contain" }}>

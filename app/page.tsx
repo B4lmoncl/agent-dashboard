@@ -606,7 +606,7 @@ export default function Dashboard() {
     reviewApiKey, playerName, refresh,
     setActiveNpcs, setSelectedNpc,
     setChainOffer, setRewardCelebration,
-    pendingLevelUpRef, setRituals,
+    pendingLevelUpRef,
     addToast, setApiErrorWithAutoClose,
     lastPoolRefresh, setLastPoolRefresh,
   });

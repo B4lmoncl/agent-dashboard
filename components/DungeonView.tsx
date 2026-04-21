@@ -409,9 +409,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               </span></Tip>
             )}
             {(collectResult.rewards.materialCount || 0) > 0 && (
-              <span className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
+              <Tip k="materials"><span className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
                 +{collectResult.rewards.materialCount} Materials
-              </span>
+              </span></Tip>
             )}
             {collectResult.rewards.gemDrop && (
               <span className="text-xs px-2 py-1 rounded font-semibold" style={{ background: `${collectResult.rewards.gemDrop.color || '#a855f7'}12`, color: collectResult.rewards.gemDrop.color || '#a855f7' }}>
