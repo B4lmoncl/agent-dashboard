@@ -248,7 +248,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.92)" }}
-      onClick={onClose}
+      onClick={e => e.stopPropagation()}
     >
       <div
         className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden"

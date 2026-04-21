@@ -875,13 +875,20 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
   const validStatuses = ['open', 'in_progress', 'completed', 'suggested', 'rejected'];
   if (!validStatuses.includes(status)) return res.status(400).json({ error: `Invalid status. Use: ${validStatuses.join(', ')}` });
 
+  const authUser = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
   const updated = [];
   const notFound = [];
+  const forbidden = [];
   // Build index for O(1) lookups instead of O(n) per id
   const questMap = new Map(state.quests.map(q => [q.id, q]));
   for (const id of ids) {
     const quest = questMap.get(id);
     if (!quest) { notFound.push(id); continue; }
+    // Non-admin users can only complete quests they claimed themselves
+    if (status === 'completed' && !req.auth?.isAdmin && quest.claimedBy) {
+      const claimant = quest.claimedBy.toLowerCase();
+      if (authUser && claimant !== authUser) { forbidden.push(id); continue; }
+    }
     const wasNotCompleted = quest.status !== 'completed';
     quest.status = status;
     if (status === 'completed' && !quest.completedAt) {
@@ -896,8 +903,8 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
     updated.push(id);
   }
   if (updated.length > 0) { saveQuests(); saveUsers(); }
-  console.log(`[bulk-update] status=${status} updated=${updated.length} notFound=${notFound.length}`);
-  res.json({ ok: true, updated, notFound });
+  console.log(`[bulk-update] status=${status} updated=${updated.length} notFound=${notFound.length} forbidden=${forbidden.length}`);
+  res.json({ ok: true, updated, notFound, forbidden });
 });
 
 // POST /api/quests/import — bulk create quests from a JSON array (Batch API pipeline)

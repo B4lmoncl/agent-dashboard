@@ -1997,7 +1997,11 @@ export default function Dashboard() {
               {/* Quest Board — player types only */}
               <div>
                 <aside className="w-full">
-                  <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} />
+                  <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} conditions={{
+                    first_claim: (quests.inProgress?.length || 0) > 0,
+                    first_reward: (loggedInUser?.questsCompleted || 0) > 0,
+                    streak_intro: (loggedInUser?.streakDays || 0) >= 1,
+                  }} />
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
                       <div>
