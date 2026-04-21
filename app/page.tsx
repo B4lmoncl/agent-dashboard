@@ -69,6 +69,28 @@ import {
 
 const CURRENT_VERSION = "2.0.0";
 
+function WhatsNewHero({ color, title, short, long, bg, icon }: { color: string; title: string; short: string; long: string; bg: string; icon: string }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <button onClick={() => setExpanded(v => !v)} className="w-full text-left rounded-lg overflow-hidden relative" style={{ border: `1px solid ${color}25`, cursor: "pointer" }}>
+      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none" style={{ background: `url(${bg}) no-repeat center/contain`, opacity: 0.08, filter: "blur(1px)" }} />
+      <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}0A 0%, transparent 60%)`, borderLeft: `3px solid ${color}60` }}>
+        <img src={icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 6px ${color}50)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-bold" style={{ color }}>{title}</p>
+            <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}60`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>&#9662;</span>
+          </div>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{short}</p>
+          {expanded && (
+            <p className="text-xs mt-2 leading-relaxed tab-content-enter" style={{ color: "rgba(255,255,255,0.45)", borderTop: `1px solid ${color}15`, paddingTop: 8 }}>{long}</p>
+          )}
+        </div>
+      </div>
+    </button>
+  );
+}
+
 import {
   typeConfig,
   FLOORS, getFloorForRoom,
@@ -3095,18 +3117,12 @@ export default function Dashboard() {
             <div className="px-5 py-4 max-h-[55vh] overflow-y-auto space-y-3" style={{ scrollbarWidth: "thin" }}>
               {/* Hero Feature Cards */}
               {[
-                { color: "#f97316", title: "Schmiedefieber", desc: "Alle 48 Stunden brennt eine Profession. -50% Materialkosten, 2x Skill-XP. Wer schnell genug ist, bekommt einen Bonus-Cache.", icon: "/images/icons/nav-artisan.png" },
-                { color: "#a855f7", title: "Mythic+ Affixe", desc: "10 wöchentlich rotierende Modifikatoren ab M+2. Tyrannical, Necrotic, Volcanic — der Rift wird persönlich.", icon: "/images/icons/currency-runensplitter.png" },
-                { color: "#67e8f9", title: "Rested XP", desc: "Baut sich offline auf, verdoppelt XP bis verbraucht. WoW-Classic-Style. Pausen werden belohnt.", icon: "/images/icons/currency-essenz.png" },
-                { color: "#818cf8", title: "D3-Style Balance", desc: "Gleiche Bonus-Typen addieren sich. Verschiedene Kategorien multiplizieren. Diversifizierung schlägt Stacking.", icon: "/images/icons/equip-amulet.png" },
+                { color: "#f97316", title: "Schmiedefieber", short: "Alle 48h brennt eine Profession. Materialkosten halbiert, doppelte Skill-XP.", long: "Ein zufälliger Beruf wird alle 48 Stunden für genau 4 Stunden aktiviert. Während des Fiebers: alle Materialkosten -50%, Skill-XP verdoppelt. Wer innerhalb des Fensters 5+ Rezepte craftet, bekommt einen Bonus-Cache mit seltenen Materialien. Das Fieber wird nie zweimal hintereinander denselben Beruf treffen.", bg: "/images/icons/loot-forge-ember.png", icon: "/images/icons/nav-forge.png" },
+                { color: "#a855f7", title: "Mythic+ Affixe", short: "10 wöchentlich rotierende Modifikatoren ab M+2.", long: "Ab Mythic+2 bekommst du 2 wöchentlich rotierende Affixe. Tyrannical verstärkt den letzten Boss um 50%. Necrotic blockiert all deinen Streak-Schutz. Volcanic erzwingt Fitness-Quests bei jeder dritten Stage. Fortified verstärkt alle Zwischen-Stages. Inspiring verdoppelt Social-Quest-XP. Jede Woche eine neue Kombination — plane deine Runs entsprechend.", bg: "/images/icons/ach-mythic.png", icon: "/images/icons/nav-rift.png" },
+                { color: "#67e8f9", title: "Rested XP", short: "Baut sich offline auf. Verdoppelt XP bis verbraucht.", long: "Alle 8 Stunden offline sammelt sich 5% deines Level-XP als Rested Pool an (max 150% eines Levels). Deine nächsten Quests geben doppelte XP bis der Pool aufgebraucht ist. Die blaue Zone in deiner XP-Bar zeigt den Rested-Anteil. Pausen lohnen sich — wie in WoW Classic.", bg: "/images/icons/loot-xp-scroll.png", icon: "/images/icons/currency-essenz.png" },
+                { color: "#818cf8", title: "D3-Style Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt jetzt Diablo-3-inspirierte Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge x Gear x Companion x Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
               ].map((f, i) => (
-                <div key={i} className="rounded-lg p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${f.color}08 0%, ${f.color}03 100%)`, border: `1px solid ${f.color}25`, borderLeft: `3px solid ${f.color}60` }}>
-                  <img src={f.icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 4px ${f.color}40)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold" style={{ color: f.color }}>{f.title}</p>
-                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{f.desc}</p>
-                  </div>
-                </div>
+                <WhatsNewHero key={i} {...f} />
               ))}
 
               {/* Compact sections */}

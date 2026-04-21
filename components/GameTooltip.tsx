@@ -252,7 +252,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     body: (
       <>
         <p>Gacha safety net. Guarantees rare drops after a set number of pulls.</p>
-        <div className="gt-stat-row"><span>Soft Pity (55)</span><span>+2.5% Legendary chance/pull</span></div>
+        <div className="gt-stat-row"><span>Soft Pity (60)</span><span>+2.5% Legendary chance/pull</span></div>
         <div className="gt-stat-row"><span>Hard Pity (75)</span><span>Guaranteed Legendary</span></div>
         <div className="gt-stat-row"><span>Epic Pity (10)</span><span>Guaranteed Epic+ every 10</span></div>
         <p className="gt-source">Pity wird pro Banner separat gezählt — Pulls auf Banner A zählen nicht für Banner B.</p>
@@ -1029,7 +1029,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Wheel of Stars</span><span>Standard · costs <GTRef k="runensplitter">Rune Shards</GTRef></span></div>
         <div className="gt-stat-row"><span>Astral Radiance</span><span>Featured · costs <GTRef k="stardust">Stardust</GTRef></span></div>
         <p>Featured banners have a 50/50 system: lose the coin flip once, and your next Legendary is guaranteed to be the featured item.</p>
-        <p className="gt-source"><GTRef k="pity">Pity</GTRef> counter is shared across all banners.</p>
+        <p className="gt-source"><GTRef k="pity">Pity</GTRef> counter is tracked separately per banner.</p>
       </>
     ),
   },
@@ -1055,8 +1055,8 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     body: (
       <>
         <p>Your current <GTRef k="xp">XP</GTRef> and <GTRef k="gold">Gold</GTRef> multipliers. These combine all active bonuses:</p>
-        <div className="gt-stat-row"><span><GTRef k="forge_temp">Forge Temp</GTRef></span><span>×0.5 to ×1.5</span></div>
-        <div className="gt-stat-row"><span><GTRef k="streak">Streak</GTRef></span><span>up to +45% <GTRef k="gold">Gold</GTRef></span></div>
+        <div className="gt-stat-row"><span><GTRef k="forge_temp">Forge Temp</GTRef></span><span>×0.6 to ×1.25</span></div>
+        <div className="gt-stat-row"><span><GTRef k="streak">Streak</GTRef></span><span>up to ~+20% <GTRef k="gold">Gold</GTRef></span></div>
         <div className="gt-stat-row"><span><GTRef k="gear">Gear</GTRef> Stats</span><span><GTRef k="kraft">Kraft</GTRef>, <GTRef k="weisheit">Weisheit</GTRef></span></div>
         <div className="gt-stat-row"><span>Buffs</span><span>Shop scrolls, potions</span></div>
         <div className="gt-stat-row"><span><GTRef k="hoarding">Hoarding</GTRef></span><span>Penalty if 20+ quests</span></div>

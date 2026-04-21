@@ -54,7 +54,7 @@ router.get('/api/config', (req, res) => {
         decayPerHour: 2,
         gainPerQuest: 10,
       },
-      streak: { bonusPerDay: 0.015, maxBonus: 0.45, maxDays: 30 },
+      streak: { bonusPerDay: 0.015, maxBonus: 0.20, softCap: 30 },
       hoarding: { freeLimit: 20, penaltyPerQuest: 10, softCap: 50, hardCap: 80, hardCapAt: 30 },
       gacha: {
         legendaryRate: 0.008,
