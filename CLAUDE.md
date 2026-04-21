@@ -71,14 +71,14 @@ cd electron-quest-app && npm install && npm start
 
 ```
 app/                  # Next.js app directory
-  page.tsx            # Main dashboard component (~2350 lines)
-  types.ts            # Shared TypeScript interfaces (~725 lines)
-  utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~350 lines)
+  page.tsx            # Main dashboard component (~3300 lines)
+  types.ts            # Shared TypeScript interfaces (~764 lines)
+  utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~367 lines)
   config.ts           # UI configuration constants
-  globals.css         # Tailwind + CSS utilities + animations (~1165 lines)
+  globals.css         # Tailwind + CSS utilities + animations (~2150 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (58 files, ~28k lines)
+components/           # React UI components (62 files, ~37k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -99,22 +99,27 @@ components/           # React UI components (58 files, ~28k lines)
   TavernView.tsx      # The Hearth: rest mode with streak/forge freeze
   RiftView.tsx        # The Rift: timed dungeon quest chains
   DungeonView.tsx     # The Undercroft: cooperative group dungeons (lazy-loaded)
-  ...                 # 27 more components
+  HighstormVFX.tsx    # Stormlight-inspired storm VFX on boss/rift events
+  ToastStack.tsx      # Toast notification system with item hover support
+  ItemTooltip.tsx     # Item tooltips (exports ItemHoverCard + ItemTooltipBody)
+  ...                 # 28 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
-lib/                  # Backend business logic (8 files, ~3950 lines)
-  state.js            # Central state, Maps, JSON persistence (~1230 lines)
-  helpers.js          # Utility functions, paginate() (~1690 lines)
+  useFirstVisit.ts    # First-visit detection hook
+lib/                  # Backend business logic (9 files, ~5000 lines)
+  state.js            # Central state, Maps, JSON persistence (~1430 lines)
+  helpers.js          # Utility functions, paginate() (~2380 lines)
   auth.js             # JWT, refresh tokens, API key auth
   quest-catalog.js    # Quest template seeding
   npc-engine.js       # NPC rotation & spawning
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (31 files, ~14000 lines)
-  quests.js           # Quest CRUD, claim, complete (~855 lines)
-  habits-inventory.js # Rituals, gear, inventory, effects (~880 lines)
-  config-admin.js     # Game config, leaderboard, /api/dashboard batch (~607 lines)
+  email.js            # Email utilities
+routes/               # Express API routes (32 files, ~18600 lines)
+  quests.js           # Quest CRUD, claim, complete (~995 lines)
+  habits-inventory.js # Rituals, gear, inventory, effects (~1100 lines)
+  config-admin.js     # Game config, leaderboard, /api/dashboard batch (~1000 lines)
   docs.js             # OpenAPI/Swagger documentation (~650 lines)
   agents.js           # Agent CRUD & status
   gacha.js            # Banner pulls with pull lock, pity tracking
