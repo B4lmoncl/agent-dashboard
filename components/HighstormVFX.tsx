@@ -24,7 +24,7 @@ export default function HighstormVFX({ active, intensity = "major", color = "#81
   }, [active, duration]);
 
   // Reset when event ends so it can trigger again next time
-  useEffect(() => { if (!active) shownRef.current = false; }, [active]);
+  useEffect(() => { if (!active) { shownRef.current = false; setVisible(false); setFading(false); } }, [active]);
 
   if (!visible) return null;
 
