@@ -815,7 +815,12 @@ export default function Dashboard() {
   };
 
   const handleRestartTutorial = () => {
-    try { localStorage.removeItem("tutorialCompleted"); } catch { /* ignore */ }
+    try {
+      localStorage.removeItem("tutorialCompleted");
+      localStorage.removeItem("qh_tutorial_seen");
+    } catch { /* ignore */ }
+    // Re-scan any mounted tutorial banners so contextual moments re-appear
+    if (typeof window !== "undefined") window.dispatchEvent(new Event("qh-tutorial-advance"));
     setGuideOpen(false);
     setTutorialStep(0);
     setShowTutorial(true);

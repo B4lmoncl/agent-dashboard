@@ -6,6 +6,7 @@ import type { Quest, ActiveNpc, Ritual } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { advanceTutorial } from "@/components/ContextualTutorial";
 
 
 interface UseQuestActionsParams {
@@ -168,6 +169,7 @@ export function useQuestActions({
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
         addToast({ type: "flavor", message: "Quest claimed.", icon: "/images/icons/nav-great-hall.png" });
+        advanceTutorial();
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
@@ -282,6 +284,7 @@ export function useQuestActions({
             if (rg.gained > 0) currencies.push({ name: `${rg.factionName} Rep`, amount: rg.gained, color: rg.factionIcon === "\u{1F702}" ? "#ef4444" : rg.factionIcon === "\u{1F704}" ? "#3b82f6" : rg.factionIcon === "\u{1F701}" ? "#f59e0b" : "#ec4899" });
           }
         }
+        advanceTutorial();
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
           title: data.npcFinalReward ? `${questTitle} — Chain Complete` : questTitle,
