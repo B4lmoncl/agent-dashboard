@@ -321,7 +321,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
       onClick={() => { if (onCollect) onCollect(data); onClose(); }}
     >
       <div
-        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
+        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden panel-ornate panel-ornate-inner${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
         style={{
           background: `linear-gradient(180deg, ${gradientTop} 0%, #0d0d14 60%)`,
           border: `2px solid rgba(${accentRgb},0.5)`,

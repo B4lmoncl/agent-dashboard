@@ -2254,18 +2254,18 @@ export default function Dashboard() {
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.12)" }}>
                           <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
                           <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>
-                            Full rewards reached for today. Next quests earn <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>75%</span> rewards.
+                            Full rewards reached for today. Next quests earn <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>90%</span> rewards.
                           </p>
                         </div>
                       );
-                      const rate = dailyCount >= 21 ? 25 : dailyCount >= 11 ? 50 : 75;
-                      const label = dailyCount >= 21 ? "25%" : dailyCount >= 11 ? "50%" : "75%";
+                      const rate = dailyCount >= 21 ? 25 : dailyCount >= 16 ? 50 : dailyCount >= 11 ? 60 : dailyCount >= 8 ? 75 : 90;
+                      const label = `${rate}%`;
                       return (
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)" }}>
                           <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
-                          <p className="text-xs" style={{ color: "rgba(245,158,11,0.7)" }}>
+                          <Tip k="daily_diminishing"><p className="text-xs cursor-help" style={{ color: "rgba(245,158,11,0.7)" }}>
                             Rewards at <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>{label}</span> — {dailyCount} quests completed today. First 5 give full rewards.
-                          </p>
+                          </p></Tip>
                           <span className="ml-auto font-mono text-xs" style={{ color: `rgba(${rate === 25 ? "239,68,68" : rate === 50 ? "245,158,11" : "163,163,163"},0.5)` }}>{rate}%</span>
                         </div>
                       );
@@ -3083,49 +3083,89 @@ export default function Dashboard() {
       {/* What's New Splash */}
       {whatsNewOpen && (
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}>
-          <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
-            <div className="px-5 py-3" style={{ background: "linear-gradient(135deg, rgba(129,140,248,0.08), rgba(249,115,22,0.06))", borderBottom: "1px solid rgba(129,140,248,0.2)" }}>
-              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v2.0.0 — Open Beta</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Quest Hall verlässt die Alpha. 111 Commits. Alles ist besser.</p>
+          <div className="w-full max-w-lg rounded-xl overflow-hidden tab-content-enter panel-ornate panel-ornate-inner" style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.2)", boxShadow: "0 20px 80px rgba(0,0,0,0.9), 0 0 40px rgba(129,140,248,0.08)" }} onClick={e => e.stopPropagation()}>
+            {/* Hero Header */}
+            <div className="relative px-6 py-5 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(129,140,248,0.12) 0%, rgba(129,140,248,0.03) 60%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.15)" }}>
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.15) 0%, transparent 70%)" }} />
+              <p className="text-lg font-bold tracking-wide relative" style={{ color: "#e6cc80", textShadow: "0 0 20px rgba(230,204,128,0.3)" }}>v2.0.0</p>
+              <p className="text-sm font-semibold mt-0.5 relative" style={{ color: "#818cf8" }}>Open Beta</p>
+              <p className="text-xs mt-2 relative" style={{ color: "rgba(255,255,255,0.45)", maxWidth: 320, margin: "8px auto 0" }}>Die Tore der Halle stehen offen. Was als Experiment begann, ist jetzt ein Zuhause.</p>
             </div>
-            <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>New Features</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Schmiedefieber — alle 48h brennt eine Profession: -50% Material, 2x Skill-XP, Bonus-Cache</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixe — 7 Affixe mit echtem Gameplay-Impact (Tyrannical, Necrotic, Volcanic...)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Rested XP — WoW-Classic-Style: baut sich offline auf, verdoppelt XP bis verbraucht</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Per-Banner Gacha Pity — jeder Banner hat eigenen Mitleidszähler</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Highstorm VFX — dramatischer Sturm-Effekt beim Betreten von Boss- und Rift-Seiten</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Notifications &amp; Feedback</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Hover Tooltips — jedes Item in Toasts und Celebrations ist jetzt hoverbar</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Crafting-Material-Drops werden jetzt als Toast angezeigt</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Fraktions-Rep in Quest-Celebration sichtbar</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>World Boss Defeat, Expedition Checkpoint, Bond Objective — alles meldet sich jetzt</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Bond Level 5 Ultimate Unlock, Achievement-Meilensteine, Battle Pass Level-Up</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>DR-Indikator, Completed-Today-Badge, XP-Hover mit Breakdown</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#fbbf24" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Contextual Tutorial — Lyra erklärt Features wenn du sie entdeckst, nicht vorher</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Balance &amp; Mechanik</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>D3-Style Bucket System — Buffs/Gear/Legendary additiv innerhalb, multiplikativ zwischen Kategorien</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Diminishing Returns — glatte 6-Stufen-Kurve (100/90/75/60/50/25%)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Tavern Rest — serverseitige Dauer-Prüfung, kein ewiger Streak-Freeze mehr</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Battle Pass XP für Rift-Stages, fehlende Season 4+5 Titel ergänzt</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Visuell</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Stormlight Gem-Infusion — Currency-Icons pulsieren wie infundierte Sphären</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Talent-Baum Energie-Fluss — Lichtpartikel fließen entlang aktiver Verbindungen</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kontrast-Boost seitenweit + Floor-Akzentfarben in Navigation und Headers</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Ornate Panel-Borders — WoW-Style dekorative Ecken auf wichtigen Panels</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#818cf8" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Hover-Transitions, Click-Targets vergrößert, Button-States standardisiert</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Performance</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Dashboard-Payload ~80% kleiner — schnelleres Laden, weniger Traffic</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>60 unnötige Re-Renders/Minute eliminiert — spürbar flüssigere UI</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Canvas-Animationen pausieren in Hintergrund-Tabs — weniger Akkuverbrauch</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>Quality</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>40+ Bugs gefixt — 3 Audit-Durchläufe (Frontend, Backend, Spielmechanik)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Jede Aktion gibt Feedback — keine stillen Fehler, keine stummen Catches mehr</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Alle 1.458 Rezeptbeschreibungen überarbeitet</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#a855f7" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item-Duplikation, Auth-Lücken, Bond-Expiry und Buff-Decrement Bugs gefixt</p></div>
+
+            <div className="px-5 py-4 max-h-[55vh] overflow-y-auto space-y-3" style={{ scrollbarWidth: "thin" }}>
+              {/* Hero Feature Cards */}
+              {[
+                { color: "#f97316", title: "Schmiedefieber", desc: "Alle 48 Stunden brennt eine Profession. -50% Materialkosten, 2x Skill-XP. Wer schnell genug ist, bekommt einen Bonus-Cache.", icon: "/images/icons/nav-artisan.png" },
+                { color: "#a855f7", title: "Mythic+ Affixe", desc: "10 wöchentlich rotierende Modifikatoren ab M+2. Tyrannical, Necrotic, Volcanic — der Rift wird persönlich.", icon: "/images/icons/currency-runensplitter.png" },
+                { color: "#67e8f9", title: "Rested XP", desc: "Baut sich offline auf, verdoppelt XP bis verbraucht. WoW-Classic-Style. Pausen werden belohnt.", icon: "/images/icons/currency-essenz.png" },
+                { color: "#818cf8", title: "D3-Style Balance", desc: "Gleiche Bonus-Typen addieren sich. Verschiedene Kategorien multiplizieren. Diversifizierung schlägt Stacking.", icon: "/images/icons/equip-amulet.png" },
+              ].map((f, i) => (
+                <div key={i} className="rounded-lg p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${f.color}08 0%, ${f.color}03 100%)`, border: `1px solid ${f.color}25`, borderLeft: `3px solid ${f.color}60` }}>
+                  <img src={f.icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 4px ${f.color}40)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold" style={{ color: f.color }}>{f.title}</p>
+                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+
+              {/* Compact sections */}
+              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(251,191,36,0.6)" }}>Spielgefühl</p>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {[
+                    "Item Hover Tooltips",
+                    "Material-Drop Toasts",
+                    "Fraktions-Rep sichtbar",
+                    "Boss/Bond/Expedition Alerts",
+                    "Contextual Tutorial",
+                    "DR-Indikator live",
+                    "Per-Banner Gacha Pity",
+                    "Rezept-Suche + Filter",
+                  ].map((t, i) => (
+                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(251,191,36,0.04)" }}>
+                      <span style={{ color: "#fbbf24", fontSize: 8 }}>&#9670;</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(129,140,248,0.6)" }}>Visuell</p>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {[
+                    "Stormlight Gem-Glow",
+                    "Highstorm VFX",
+                    "Talent-Baum Energie",
+                    "Ornate Borders",
+                    "Floor-Akzentfarben",
+                    "Kontrast-Boost",
+                    "175 Gear-Icons",
+                    "87 NPC-Reward-Icons",
+                  ].map((t, i) => (
+                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(129,140,248,0.04)" }}>
+                      <span style={{ color: "#818cf8", fontSize: 8 }}>&#9670;</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Stats bar */}
+              <div className="flex items-center justify-center gap-4 pt-2 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#22c55e" }}>40+</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Bugs fixed</p></div>
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#3b82f6" }}>80%</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Faster loads</p></div>
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#f97316" }}>1458</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Recipes polished</p></div>
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#a855f7" }}>262</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>New icons</p></div>
+              </div>
             </div>
-            <div className="px-5 pb-4">
-              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
+
+            <div className="px-5 pb-4 pt-2">
+              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-sm py-2.5 rounded-lg font-bold" style={{ background: "linear-gradient(135deg, rgba(230,204,128,0.15), rgba(129,140,248,0.12))", color: "#e6cc80", border: "1px solid rgba(230,204,128,0.3)", cursor: "pointer", boxShadow: "0 0 20px rgba(230,204,128,0.08)" }}>Die Halle erwartet dich</button>
             </div>
           </div>
         </div>

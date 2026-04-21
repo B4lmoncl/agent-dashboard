@@ -324,7 +324,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-bold text-bright">Modifikator-Übersicht</h3>
+                <Tip k="bonus_stacking"><h3 className="text-sm font-bold text-bright cursor-help">Modifikator-Übersicht</h3></Tip>
                 <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Schließen">×</button>
               </div>
               <div className="mb-4">

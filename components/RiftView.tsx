@@ -662,7 +662,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           {/* Weekly Affixes (M+2 and above) */}
           {selectedMythicLevel >= 2 && weeklyAffixes.length > 0 && (
             <div className="rounded-lg px-3 py-2 space-y-1.5" style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.12)" }}>
-              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,68,68,0.5)" }}>Weekly Affixes</p>
+              <Tip k="mythic_affixes"><p className="text-xs font-semibold uppercase tracking-wider cursor-help" style={{ color: "rgba(255,68,68,0.5)" }}>Weekly Affixes</p></Tip>
               {weeklyAffixes.map(affix => (
                 <div key={affix.id} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: affix.color }} />

@@ -80,7 +80,7 @@ export default function QuestDetailModal({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-2xl flex flex-col bg-surface-alt"
+        className="w-full max-w-md rounded-2xl flex flex-col bg-surface-alt panel-ornate panel-ornate-inner"
         style={{
           border: `2px solid ${rarityColor}66`,
           boxShadow: isLegendary ? `0 0 40px ${rarityColor}30` : "0 20px 60px rgba(0,0,0,0.6)",

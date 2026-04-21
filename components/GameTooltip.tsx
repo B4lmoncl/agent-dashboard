@@ -255,6 +255,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Soft Pity (55)</span><span>+2.5% Legendary chance/pull</span></div>
         <div className="gt-stat-row"><span>Hard Pity (75)</span><span>Guaranteed Legendary</span></div>
         <div className="gt-stat-row"><span>Epic Pity (10)</span><span>Guaranteed Epic+ every 10</span></div>
+        <p className="gt-source">Pity wird pro Banner separat gezählt — Pulls auf Banner A zählen nicht für Banner B.</p>
       </>
     ),
   },
@@ -1544,6 +1545,19 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
         <div className="gt-stat-row"><span>Milestones</span><span>25% · 50% · 75% · 100%</span></div>
         <div className="gt-stat-row"><span>Rewards</span><span>Gold, Essenz, Runensplitter, Titles, Frames</span></div>
         <p className="gt-source">100% a floor to earn its exclusive title. 100% all floors for the ultimate Turmkronenwächter title + frame.</p>
+      </>
+    ),
+  },
+  bonus_stacking: {
+    title: "Bonus-Stacking (D3-Style)",
+    icon: "◈",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Boni derselben Kategorie (z.B. mehrere Gear-Boni) werden <strong>additiv</strong> zusammengerechnet. Boni verschiedener Kategorien (Forge, Gear, Companion, Buffs) werden <strong>multiplikativ</strong> miteinander verrechnet.</p>
+        <div className="gt-stat-row"><span>Gleiche Kategorie</span><span>Additiv (+5% + +3% = +8%)</span></div>
+        <div className="gt-stat-row"><span>Verschiedene Kategorien</span><span>Multiplikativ (1.08 × 1.05 × ...)</span></div>
+        <p className="gt-source">Diversifizierung lohnt sich: Boni aus verschiedenen Quellen (Forge, Gear, Companions, Buffs) bringen mehr als alles in eine Kategorie zu stecken.</p>
       </>
     ),
   },

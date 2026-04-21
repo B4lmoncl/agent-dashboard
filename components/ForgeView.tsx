@@ -935,7 +935,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           )}
           {forgeFever && (
             <div className="mt-2">
-              <TipCustom title="Schmiedefieber" accent="#f97316" body={<p className="text-xs">Alle 48 Stunden bricht in einer zufälligen Profession das Schmiedefieber aus. 4 Stunden lang: Materialkosten halbiert, doppelte Skill-XP. Bei 5+ Crafts gibt es einen Bonus-Cache mit seltenen Materialien.</p>}>
+              <Tip k="forge_fever">
                 <div className="text-xs font-semibold px-3 py-2 rounded-lg inline-flex items-center gap-3 cursor-help" style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.35)", boxShadow: "0 0 12px rgba(249,115,22,0.15)" }}>
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#f97316", boxShadow: "0 0 8px #f97316", animation: "ambient-spark 1.5s ease-in-out infinite" }} />
                   <span style={{ color: "#f97316" }}>
@@ -976,7 +976,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <span className="text-xs" style={{ color: "rgba(34,197,94,0.5)" }}>✓</span>
                   )}
                 </div>
-              </TipCustom>
+              </Tip>
             </div>
           )}
         </div>
