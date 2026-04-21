@@ -124,7 +124,7 @@
       "description": "Die Klangwirker und Brückenbauer. Sie glauben, dass Verbindungen zwischen Menschen die wahre Magie sind. Ihre Kraft liegt im Miteinander, im geteilten Wort, im Echo das zurückkehrt.",
       "questTypes": [
         "social",
-        "creative"
+        "relationship-coop"
       ],
       "npcPatron": null,
       "symbol": "🜃",

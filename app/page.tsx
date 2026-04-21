@@ -3131,14 +3131,16 @@ export default function Dashboard() {
                 <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(251,191,36,0.6)" }}>Spielgefühl</p>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
+                    "Sworn Bonds — Duo-Pakte",
+                    "Companion-Expeditionen",
+                    "Phönixasche-Talent",
+                    "Almost-There Nudges",
                     "Item Hover Tooltips",
-                    "Material-Drop Toasts",
                     "Fraktions-Rep sichtbar",
-                    "Boss/Bond/Expedition Alerts",
-                    "Contextual Tutorial",
-                    "DR-Indikator live",
                     "Per-Banner Gacha Pity",
-                    "Rezept-Suche + Filter",
+                    "DR-Indikator live",
+                    "Material-Drop Toasts",
+                    "First-Visit Hints (6 Views)",
                   ].map((t, i) => (
                     <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(251,191,36,0.04)" }}>
                       <span style={{ color: "#fbbf24", fontSize: 8 }}>&#9670;</span>

@@ -535,8 +535,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     }
   }
 
-  // Battle Pass XP for each rift stage completed
-  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'rift_stage'); } catch (e) { console.warn('[bp-xp] rift_stage:', e.message); }
+  // BP XP already granted via onQuestCompletedByUser → grantBattlePassXP('quest_complete')
 
   // Check if rift is fully completed
   const allDone = rift.quests.every(q => q.completed);

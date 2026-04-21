@@ -102,7 +102,7 @@ components/           # React UI components (62 files, ~37k lines)
   HighstormVFX.tsx    # Stormlight-inspired storm VFX on boss/rift events
   ToastStack.tsx      # Toast notification system with item hover support
   ItemTooltip.tsx     # Item tooltips (exports ItemHoverCard + ItemTooltipBody)
-  ...                 # 28 more components
+  ...                 # 39 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
   useFirstVisit.ts    # First-visit detection hook
@@ -142,15 +142,22 @@ routes/               # Express API routes (32 files, ~18600 lines)
   gems.js             # Gem/Socket system: 6 gem types, 5 tiers, socketing/upgrading
   dungeons.js         # Dungeon system: async coop group dungeons (2-4 players)
   sworn-bonds.js      # Sworn Bonds: 1-on-1 pact, weekly objectives, contribution tracking
+  talent-tree.js      # Passive Talent Tree: allocate/deallocate/reset
+  adventure-tome.js   # Adventure Tome: per-floor completionist tracker
+  codex.js            # Codex system: knowledge entries, unlockable lore
+  enchanting.js       # Enchanting: D3-style stat reroll (Mystic)
+  kanais-cube.js      # Kanai's Cube: extract/equip legendary powers
+  mail.js             # In-game mail system
+  schmiedekunst.js    # Schmiedekunst: salvage, transmute
 public/
-  data/               # Game template data (43 JSON files)
-  images/             # Pixel art assets (~284 files)
+  data/               # Game template data (56 JSON files)
+  images/             # Pixel art assets (~885 files)
     portraits/        # NPC and character portraits
     companions/       # Companion icons
     npcs/             # NPC portraits
-electron-quest-app/   # Electron desktop companion app (10 files)
-scripts/              # Asset generation & data validation (5 files)
-server.js             # Express entry point, boot sequence (~322 lines)
+electron-quest-app/   # Electron desktop companion app (8 files)
+scripts/              # Asset generation & data validation (10 files)
+server.js             # Express entry point, boot sequence (~337 lines)
 ```
 
 ## Architecture
@@ -411,9 +418,14 @@ These rules ensure visual consistency across all features. Follow them for EVERY
 |----------|---------|
 | `API_KEY` / `API_KEYS` | API authentication keys |
 | `MASTER_KEY` | Admin operations key |
+| `JWT_SECRET` | JWT signing secret (auto-generated if not set) |
+| `JWT_REFRESH_SECRET` | JWT refresh token secret (auto-generated if not set) |
 | `PORT` | Server port (default: 3001) |
 | `NODE_ENV` | `production` or `development` |
 | `GITHUB_WEBHOOK_SECRET` | Webhook HMAC-SHA256 verification |
+| `AGENTMAIL_API_KEY` | AgentMail API key for password reset & verification |
+| `AGENTMAIL_FROM` | AgentMail sender address |
+| `BASE_URL` | Public base URL for email links |
 
 Template: `.env.example`
 
@@ -478,18 +490,18 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 
 | File | Role |
 |------|------|
-| `app/page.tsx` | Main dashboard UI (~2350 lines) |
-| `app/types.ts` | All TypeScript interfaces (~725 lines) |
+| `app/page.tsx` | Main dashboard UI (~3300 lines) |
+| `app/types.ts` | All TypeScript interfaces (~764 lines) |
 | `app/utils.ts` | Fetch helpers, `fetchDashboard()` batch, level system |
-| `app/globals.css` | CSS utility classes + animations (~1165 lines) |
-| `lib/state.js` | State management, Maps, persistence (~1230 lines) |
-| `lib/helpers.js` | Shared utilities, `paginate()` (~1690 lines) |
+| `app/globals.css` | CSS utility classes + animations (~2150 lines) |
+| `lib/state.js` | State management, Maps, persistence (~1430 lines) |
+| `lib/helpers.js` | Shared utilities, `paginate()` (~2380 lines) |
 | `lib/auth.js` | JWT auth, refresh tokens, API key resolution |
 | `server.js` | Express entry, boot sequence, memory pruning |
-| `routes/quests.js` | Core quest API (~855 lines) |
-| `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch |
-| `routes/habits-inventory.js` | Rituals, gear, inventory (~880 lines) |
-| `public/data/*.json` | Game data templates (43 files) |
+| `routes/quests.js` | Core quest API (~995 lines) |
+| `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch (~1000 lines) |
+| `routes/habits-inventory.js` | Rituals, gear, inventory (~1100 lines) |
+| `public/data/*.json` | Game data templates (56 files) |
 | `public/data/titles.json` | Title definitions with conditions |
 | `public/data/gearTemplates.json` | Gear items, set bonuses, legendary effects |
 | `public/data/professions.json` | Crafting professions, materials, recipes |
@@ -532,6 +544,14 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 | `components/AdventureTomeView.tsx` | Abenteuerbuch UI: floor cards, objectives, milestone claims |
 | `routes/sworn-bonds.js` | Sworn Bonds: 1-on-1 pact, weekly objectives, chest claims, contribution tracking |
 | `public/data/talentTree.json` | 44 talent nodes, 3 rings, connections, choice groups, archetypes |
+| `components/HighstormVFX.tsx` | Stormlight-inspired storm VFX on boss/rift events |
+| `components/ToastStack.tsx` | Toast notification system with item hover support |
+| `components/ItemTooltip.tsx` | Item tooltips (exports ItemHoverCard + ItemTooltipBody) |
+| `routes/codex.js` | Codex system: knowledge entries, unlockable lore |
+| `routes/enchanting.js` | Enchanting: D3-style stat reroll (Mystic) |
+| `routes/kanais-cube.js` | Kanai's Cube: extract/equip legendary powers |
+| `routes/schmiedekunst.js` | Schmiedekunst: salvage, transmute |
+| `routes/mail.js` | In-game mail system |
 
 ## Pixellab Asset Generation Rules
 
