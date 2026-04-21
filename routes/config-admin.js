@@ -118,11 +118,16 @@ router.get('/api/dashboard', (req, res) => {
         equippedFrame: u.equippedFrame || null,
         gearScore: u.gearScore || 0,
         achievementPoints: u.achievementPoints || 0,
+        questsCompleted: u.questsCompleted || 0,
+        seasonXp: u.seasonXp || 0,
         classId: u.classId || null,
+        color: u.color || null,
+        avatarStyle: u.avatarStyle || null,
         companion: u.companion ? { name: u.companion.name, type: u.companion.type, bondLevel: u.companion.bondLevel } : null,
         appearance: u.appearance || null,
         avatar: u.avatar || null,
         lastActiveAt: u.lastActiveAt || null,
+        earnedAchievements: (u.earnedAchievements || []).map(a => ({ id: a.id, rarity: a.rarity })),
         _isSummary: true,
       };
     }
@@ -426,7 +431,7 @@ router.get('/api/dashboard', (req, res) => {
       const today = getTodayBerlin();
       const pp = state.playerProgress[playerLower] || {};
       // Count quests completed today (cq.at is ISO timestamp — compare date portion in Berlin TZ)
-      const questsToday = u._dailyCompletions || Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
+      const questsToday = (u._dailyCompletions?.date === today ? u._dailyCompletions.count : 0) || Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
       // Check daily bonus claimed
       const dailyClaimed = u.dailyBonusLastClaim === today;
       // Check rituals completed today
