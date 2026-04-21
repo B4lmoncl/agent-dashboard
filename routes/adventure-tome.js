@@ -255,13 +255,11 @@ function evaluateFloor(floor, user, progress) {
           current = user.companion?.bondLevel || user._companionBondMax || 0;
           break;
         case "_vowsCompleted": {
-          // Count completed blood pacts from ritual data
-          const uid = user.name?.toLowerCase() || user.id;
-          const rituals = state.rituals?.[uid] || [];
-          current = rituals.filter(r => r.bloodPact && r.pactCompleted).length;
+          const vowUid = user.name?.toLowerCase() || user.id;
+          const vowRituals = (Array.isArray(state.rituals) ? state.rituals : []).filter(r => r.playerId === vowUid);
+          current = vowRituals.filter(r => r.bloodPact && r.pactCompleted).length;
           break;
         }
-          break;
         case "_achievementCount":
           current = (user.achievements || []).length;
           break;
@@ -339,8 +337,8 @@ function evaluateFloor(floor, user, progress) {
       current = count;
     }
 
-    // Talent: tome_progress_bonus — adds flat bonus to each objective's counter
-    if (tomeBonusValue > 0) current += tomeBonusValue;
+    // Talent: tome_progress_bonus — adds flat bonus only to objectives with existing progress
+    if (tomeBonusValue > 0 && current > 0) current += tomeBonusValue;
 
     results.push({
       id: obj.id,

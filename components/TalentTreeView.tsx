@@ -871,7 +871,7 @@ export default function TalentTreeView({
           <div className="rounded-2xl p-6 max-w-sm w-full" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
             <h3 className="text-sm font-bold text-w70 mb-2">Talente zurücksetzen?</h3>
             <p className="text-xs text-w40 mb-4">
-              Kosten: <span className="font-bold text-yellow-400">{data.totalSpent * 50}g</span> ({data.totalSpent} Knoten x 50g)
+              Kosten: <span className="font-bold text-yellow-400">500g + 50 Essenz</span> ({data.totalSpent} Knoten werden zurückgesetzt)
             </p>
             <div className="flex gap-2">
               <button

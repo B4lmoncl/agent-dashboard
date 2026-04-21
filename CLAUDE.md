@@ -130,7 +130,7 @@ routes/               # Express API routes (32 files, ~18600 lines)
   campaigns.js        # Campaign quest chains
   currency.js         # Multi-currency system, daily bonus
   integrations.js     # GitHub webhook (HMAC verified), catalog API
-  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedekunst
+  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedefieber
   challenges-weekly.js # Sternenpfad: 3-stage solo weekly challenges with star ratings
   expedition.js       # Expedition: cooperative weekly challenge with shared checkpoints
   npcs-misc.js        # NPC endpoints, feedback (admin-only), SPA fallback
