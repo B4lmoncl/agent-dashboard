@@ -87,7 +87,19 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     const parent = state.questsById.get(parentQuestId);
     if (!parent) return res.status(400).json({ error: `Parent quest not found: ${parentQuestId}` });
   }
-  const resolvedCreatedBy = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
+  // Auth: non-admin users can only create quests under their own name, 'system', 'dobbie' (companion-auto), or NPC givers.
+  // Prevents spoofing createdBy to bypass the agent-created → "suggested" filter.
+  const requestedCreator = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
+  const authUid = (req.auth?.userId || '').toLowerCase();
+  const isAdmin = !!req.auth?.isAdmin;
+  const SYSTEM_CREATORS = ['system', 'dobbie', 'lyra'];
+  const isNpcCreator = NPC_NAMES.includes(requestedCreator.toLowerCase());
+  const isSystemCreator = SYSTEM_CREATORS.includes(requestedCreator.toLowerCase());
+  const isSelf = authUid && requestedCreator.toLowerCase() === authUid;
+  if (!isAdmin && !isSelf && !isSystemCreator && !isNpcCreator) {
+    return res.status(403).json({ error: `Cannot create quest as ${requestedCreator}` });
+  }
+  const resolvedCreatedBy = requestedCreator;
   // Dobbie quest dedup: if same title was already created by dobbie today, return existing
   if (resolvedCreatedBy === 'dobbie') {
     const today = getTodayBerlin();
@@ -197,6 +209,10 @@ router.patch('/api/quest/:id/checklist', requireApiKey, (req, res) => {
 // POST /api/quests/household-rotate — rotate auto_assign for recurring household quests
 // Cycles through the provided assignees list and assigns the next person
 router.post('/api/quests/household-rotate', requireApiKey, (req, res) => {
+  // Admin-only: reassigning recurring quests to arbitrary players must be gated
+  if (!req.auth?.isAdmin) {
+    return res.status(403).json({ error: 'Admin only' });
+  }
   const { assignees } = req.body; // e.g. ["leon", "user2"]
   if (!Array.isArray(assignees) || assignees.length === 0) {
     return res.status(400).json({ error: 'assignees must be a non-empty array' });
@@ -219,6 +235,10 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+  // Auth: non-admin may only claim quests as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== agentKey) {
+    return res.status(403).json({ error: 'Cannot claim quests as another player' });
+  }
 
   // NPC quests: per-player tracking (quest stays globally open for others)
   if (quest.npcGiverId && state.users[agentKey]) {
@@ -278,6 +298,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+  // Auth: non-admin may only complete quests as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== agentKey) {
+    return res.status(403).json({ error: 'Cannot complete quests as another player' });
+  }
 
   // Per-player lock prevents concurrent double-complete
   if (!questCompleteLock.acquire(agentKey)) {
@@ -553,6 +577,10 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+  // Auth: non-admin may only unclaim their own quests
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== agentKey) {
+    return res.status(403).json({ error: 'Cannot unclaim another player quest' });
+  }
 
   // NPC quests: per-player tracking via playerProgress.npcQuests
   if (quest.npcGiverId && state.users[agentKey]) {
@@ -601,6 +629,10 @@ router.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
   const { userId } = req.body;
   if (!userId) return res.status(400).json({ error: 'userId is required' });
   const uid = userId.toLowerCase();
+  // Auth: non-admin may only coop-claim as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== uid) {
+    return res.status(403).json({ error: 'Cannot coop-claim as another player' });
+  }
   if (quest.coopPartners && !quest.coopPartners.includes(uid)) {
     return res.status(403).json({ error: 'User is not a co-op partner for this quest' });
   }
@@ -623,6 +655,10 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
   const { userId } = req.body;
   if (!userId) return res.status(400).json({ error: 'userId is required' });
   const uid = userId.toLowerCase();
+  // Auth: non-admin may only coop-complete as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== uid) {
+    return res.status(403).json({ error: 'Cannot coop-complete as another player' });
+  }
   if (!questCompleteLock.acquire(uid)) return res.status(429).json({ error: 'Completion in progress' });
   try {
   const quest = state.questsById.get(req.params.id);
@@ -822,6 +858,20 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
   const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { proof, title, description, status, claimedBy } = req.body;
+  // Auth: non-admin may only edit quests they created OR claimed (proof submission), and cannot reassign claimedBy to other players
+  const authUid = (req.auth?.userId || '').toLowerCase();
+  const isAdmin = !!req.auth?.isAdmin;
+  if (!isAdmin) {
+    const qOwner = (quest.createdBy || '').toLowerCase();
+    const qClaimer = (quest.claimedBy || '').toLowerCase();
+    if (authUid !== qOwner && authUid !== qClaimer) {
+      return res.status(403).json({ error: 'Cannot modify quests you did not create or claim' });
+    }
+    // Prevent reassigning claimedBy to anyone but self, and prevent completing as another player
+    if (claimedBy !== undefined && claimedBy && claimedBy.toLowerCase() !== authUid) {
+      return res.status(403).json({ error: 'Cannot assign quest to another player' });
+    }
+  }
   if (proof !== undefined) quest.proof = String(proof).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (title !== undefined) quest.title = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;');
   if (description !== undefined) quest.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');

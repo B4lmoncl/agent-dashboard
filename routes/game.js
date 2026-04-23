@@ -321,6 +321,10 @@ router.post('/api/rituals', requireApiKey, (req, res) => {
   const { title, description, schedule, difficulty, rewards, playerId, createdBy, isAntiRitual, category, commitment, commitmentDays, bloodPact } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  // Auth: non-admin may only create rituals for themselves
+  if (!req.auth?.isAdmin && req.auth?.userId !== (playerId || '').toLowerCase()) {
+    return res.status(403).json({ error: 'Cannot create rituals for another player' });
+  }
   const ritual = {
     id: `ritual-${Date.now()}`,
     title,

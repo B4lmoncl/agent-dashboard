@@ -87,6 +87,10 @@ router.post('/api/webhooks/github', (req, res) => {
 router.post('/api/integrations/spotify/connect', requireApiKey, (req, res) => {
   const { userId, accessToken, refreshToken } = req.body || {};
   if (!userId) return res.status(400).json({ error: 'userId required' });
+  // Auth: non-admin may only connect Spotify to their own account
+  if (!req.auth?.isAdmin && req.auth?.userId !== (userId || '').toLowerCase()) {
+    return res.status(403).json({ error: 'Cannot connect Spotify to another account' });
+  }
   const u = state.users[userId];
   if (!u) return res.status(404).json({ error: 'User not found' });
   u.spotify = { connected: true, connectedAt: new Date().toISOString(), accessToken: accessToken || null, refreshToken: refreshToken || null };

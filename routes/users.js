@@ -101,6 +101,10 @@ router.get('/api/users/:id', (req, res) => {
 // POST /api/users/:id/register — create or update user
 router.post('/api/users/:id/register', requireAuth, (req, res) => {
   const id = req.params.id.toLowerCase();
+  // Auth: only the user themselves OR admin can register/update their profile
+  if (!req.auth?.isAdmin && req.auth?.userId !== id) {
+    return res.status(403).json({ error: 'Cannot modify another player profile' });
+  }
   const { name, avatar, color } = req.body;
   if (!state.users[id]) {
     state.users[id] = { id, name: name || id, avatar: avatar || id[0].toUpperCase(), color: color || '#f59e0b', xp: 0, questsCompleted: 0, achievements: [], earnedAchievements: [], streakDays: 0, streakLastDate: null, forgeTemp: 0, currencies: { ...DEFAULT_CURRENCIES }, _allCompletedTypes: [], createdAt: now() };
