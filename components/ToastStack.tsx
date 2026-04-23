@@ -284,7 +284,7 @@ function ErrorToastContent({ message, onClose, onRetry }: { message: string; onC
 }
 
 // ─── Single Toast Wrapper with auto-dismiss + slide animation ────────────────
-function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: ToastItem; index: number; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
+function ToastWrapper({ toast, onRemove, onAchievementClick }: { toast: ToastItem; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -372,8 +372,8 @@ export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: T
         maxWidth: "100%",
       }}
     >
-      {toasts.map((toast, i) => (
-        <ToastWrapper key={toast.id} toast={toast} index={i} onRemove={onRemove} onAchievementClick={onAchievementClick} />
+      {toasts.map(toast => (
+        <ToastWrapper key={toast.id} toast={toast} onRemove={onRemove} onAchievementClick={onAchievementClick} />
       ))}
     </div>
   );

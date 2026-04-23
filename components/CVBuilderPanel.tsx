@@ -97,13 +97,17 @@ export default function CVBuilderPanel({ quests, users, playerName, reviewApiKey
             <>
               <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(251,191,36,0.7)" }}>Certifications</h3>
               <div className="space-y-1">
-                {cvData.certifications.map((cert, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs">
-                    <span style={{ color: "#fbbf24" }}>★</span>
-                    <span style={{ color: "#e8e8e8" }}>{cert.title}</span>
-                    {cert.earnedAt && <span style={{ color: "rgba(255,255,255,0.45)" }}>{new Date(cert.earnedAt).toLocaleDateString()}</span>}
-                  </div>
-                ))}
+                {cvData.certifications.map((cert, i) => {
+                  const earnedDate = cert.earnedAt ? new Date(cert.earnedAt) : null;
+                  const earnedValid = earnedDate && Number.isFinite(earnedDate.getTime());
+                  return (
+                    <div key={`${cert.title}-${cert.earnedAt || i}`} className="flex items-center gap-2 text-xs">
+                      <span style={{ color: "#fbbf24" }}>★</span>
+                      <span style={{ color: "#e8e8e8" }}>{cert.title}</span>
+                      {earnedValid && <span style={{ color: "rgba(255,255,255,0.45)" }}>{earnedDate!.toLocaleDateString()}</span>}
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}

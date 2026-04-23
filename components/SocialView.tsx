@@ -2080,7 +2080,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
   // ── Active bond ──
   const obj = bond.weeklyObjective;
   const totalProgress = obj ? (obj.progress.mine + obj.progress.partner) : 0;
-  const progressPct = obj ? Math.min(100, Math.round((totalProgress / obj.target) * 100)) : 0;
+  const progressPct = obj && obj.target > 0 ? Math.min(100, Math.round((totalProgress / obj.target) * 100)) : 0;
   const bondXpPct = bond.bondXpToNext > 0 ? Math.min(100, Math.round((bond.bondXp / bond.bondXpToNext) * 100)) : 100;
 
   return (
@@ -2154,7 +2154,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <span className="text-xs w-12 text-right truncate" style={{ color: "#818cf8" }}>You</span>
                 <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
-                    width: `${Math.min(100, Math.round((obj.progress.mine / obj.targetPerPlayer) * 100))}%`,
+                    width: `${obj.targetPerPlayer > 0 ? Math.min(100, Math.round((obj.progress.mine / obj.targetPerPlayer) * 100)) : 0}%`,
                     background: obj.progress.mine >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #818cf8, #6366f1)",
                   }} />
                 </div>
@@ -2164,7 +2164,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <span className="text-xs w-12 text-right truncate" style={{ color: bond.partner.color }}>{bond.partner.name.slice(0, 6)}</span>
                 <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
-                    width: `${Math.min(100, Math.round((obj.progress.partner / obj.targetPerPlayer) * 100))}%`,
+                    width: `${obj.targetPerPlayer > 0 ? Math.min(100, Math.round((obj.progress.partner / obj.targetPerPlayer) * 100)) : 0}%`,
                     background: obj.progress.partner >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : `linear-gradient(90deg, ${bond.partner.color}, ${bond.partner.color})`,
                   }} />
                 </div>
