@@ -301,6 +301,26 @@ export default function Dashboard() {
   // closeLootDrop + useModalBehavior removed — dead code after RewardCelebration migration
   const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
   useModalBehavior(!!levelUpCelebration, closeLevelUp);
+  // ─── Level-up side-effect toasts: talent points + floor unlocks ──────────────
+  useEffect(() => {
+    if (!levelUpCelebration) return;
+    const newLevel = levelUpCelebration.level;
+    // Talent points granted at levels 5+ on every EVEN level
+    if (newLevel >= 5 && newLevel % 2 === 0) {
+      setTimeout(() => addToast({ type: "flavor", message: "Talent-Punkt verdient.", icon: "/images/icons/nav-talents.png", sub: `Level ${newLevel} — Schicksalsbaum verteilen` }), 1200);
+    }
+    // Floor / room unlocks (check against FLOORS config)
+    const unlocks: string[] = [];
+    FLOORS.forEach(floor => {
+      if (floor.minLevel === newLevel) unlocks.push(`Stockwerk freigeschaltet: ${floor.name}`);
+      floor.rooms.forEach(room => {
+        if (room.minLevel === newLevel) unlocks.push(`Raum freigeschaltet: ${room.label}`);
+      });
+    });
+    unlocks.forEach((msg, i) => {
+      setTimeout(() => addToast({ type: "flavor", message: msg, icon: "/images/icons/nav-great-hall.png" }), 1500 + i * 400);
+    });
+  }, [levelUpCelebration?.level]); // eslint-disable-line react-hooks/exhaustive-deps
   const pendingLevelUpRef = useRef<{ level: number; title: string } | null>(null);
   const closeRewardCelebration = useCallback(() => {
     setRewardCelebration(null);
@@ -363,26 +383,30 @@ export default function Dashboard() {
     const currentLevel = lvlInfo.level;
     const currentTitle = lvlInfo.title;
     if (prevLevelRef.current > 0 && currentLevel > prevLevelRef.current) {
-      const lu = pendingLevelUpRef.current || { level: currentLevel, title: currentTitle };
-      pendingLevelUpRef.current = null;
+      // If a celebration is already queued or showing, don't double-fire
+      if (levelUpCelebration || pendingLevelUpRef.current) {
+        prevLevelRef.current = currentLevel;
+        return;
+      }
+      const lu = { level: currentLevel, title: currentTitle };
       if (rewardCelebration) {
         pendingLevelUpRef.current = lu;
-      } else if (!levelUpCelebration) {
+      } else {
         setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 300);
       }
     }
     prevLevelRef.current = currentLevel;
   }, [playerXpForLevelWatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ─── Backup trigger #2: force-show level-up if pending > 10s (user didn't close reward popup) ───
+  // ─── Backup trigger #2: force-show level-up if pending > 10s and NO active reward popup ───
+  // Guard: don't close a reward popup — only fire if there's truly no popup currently showing
   useEffect(() => {
-    if (!pendingLevelUpRef.current) return;
+    if (!pendingLevelUpRef.current || rewardCelebration) return;
     const timer = setTimeout(() => {
-      if (pendingLevelUpRef.current && !levelUpCelebration) {
+      if (pendingLevelUpRef.current && !levelUpCelebration && !rewardCelebration) {
         const lu = pendingLevelUpRef.current;
         pendingLevelUpRef.current = null;
-        setRewardCelebration(null); // close reward popup if still open
-        setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 100);
+        setLevelUpCelebration(lu); SFX.levelUp();
       }
     }, 10000);
     return () => clearTimeout(timer);
