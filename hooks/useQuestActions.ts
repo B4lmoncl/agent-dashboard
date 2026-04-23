@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 import { SFX } from "@/lib/sounds";
-import type { Quest, ActiveNpc, Ritual } from "@/app/types";
+import type { Quest, ActiveNpc } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type { ToastInput } from "@/components/ToastStack";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { advanceTutorial } from "@/components/ContextualTutorial";
 
 
 interface UseQuestActionsParams {
@@ -17,7 +18,6 @@ interface UseQuestActionsParams {
   setChainOffer: (v: { template: { title: string; description?: string | null; type?: string; priority?: string }; parentTitle: string } | null) => void;
   setRewardCelebration: (v: RewardCelebrationData | null) => void;
   pendingLevelUpRef: React.MutableRefObject<{ level: number; title: string } | null>;
-  setRituals: React.Dispatch<React.SetStateAction<Ritual[]>>;
   addToast: (t: ToastInput) => void;
   setApiErrorWithAutoClose: (msg: string | null) => void;
   lastPoolRefresh: Date | null;
@@ -44,6 +44,8 @@ export function useQuestActions({
   const [shopUserId, setShopUserId] = useState<string | null>(null);
   // Tracks which quest+action is currently in-flight to prevent double-clicks
   const [loadingAction, setLoadingAction] = useState<{ questId: string; action: string } | null>(null);
+  const loadingRef = useRef(loadingAction);
+  loadingRef.current = loadingAction;
 
   const updateNpcQuestStatus = useCallback((questId: string, status: string, claimedBy: string | null) => {
     const updateChain = (npc: ActiveNpc): ActiveNpc => ({
@@ -62,7 +64,7 @@ export function useQuestActions({
   }, [setActiveNpcs, setSelectedNpc]);
 
   const handleApprove = useCallback(async (id: string, comment?: string) => {
-    if (!reviewApiKey || loadingAction) return;
+    if (!reviewApiKey || loadingRef.current) return;
     setLoadingAction({ questId: id, action: "approve" });
     try {
       const body = comment ? JSON.stringify({ comment }) : undefined;
@@ -83,10 +85,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, refresh, addToast]);
 
   const handleReject = useCallback(async (id: string, comment?: string) => {
-    if (!reviewApiKey || loadingAction) return;
+    if (!reviewApiKey || loadingRef.current) return;
     setLoadingAction({ questId: id, action: "reject" });
     try {
       const body = comment ? JSON.stringify({ comment }) : undefined;
@@ -107,7 +109,7 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, refresh, addToast]);
 
   const toggleSelect = useCallback((id: string) => {
     setSelectedIds(prev => {
@@ -157,7 +159,7 @@ export function useQuestActions({
   }, [reviewApiKey, playerName, addToast]);
 
   const handleClaim = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "claim" });
     try {
       const r = await fetch(`/api/quest/${questId}/claim`, {
@@ -168,6 +170,7 @@ export function useQuestActions({
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
         addToast({ type: "flavor", message: "Quest claimed.", icon: "/images/icons/nav-great-hall.png" });
+        advanceTutorial();
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
@@ -178,10 +181,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, updateNpcQuestStatus, addToast]);
+  }, [reviewApiKey, playerName, refresh, updateNpcQuestStatus, addToast]);
 
   const handleUnclaim = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "unclaim" });
     try {
       const r = await fetch(`/api/quest/${questId}/unclaim`, {
@@ -201,10 +204,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, updateNpcQuestStatus, addToast]);
+  }, [reviewApiKey, playerName, refresh, updateNpcQuestStatus, addToast]);
 
   const handleCoopClaim = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "coopClaim" });
     try {
       const r = await fetch(`/api/quest/${questId}/coop-claim`, {
@@ -223,10 +226,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, playerName, refresh, addToast]);
 
   const handleCoopComplete = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "coopComplete" });
     try {
       const r = await fetch(`/api/quest/${questId}/coop-complete`, {
@@ -256,10 +259,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, addToast]);
+  }, [reviewApiKey, playerName, refresh, addToast]);
 
   const handleComplete = useCallback(async (questId: string, questTitle: string) => {
-    if (!reviewApiKey || !playerName || loadingAction) return;
+    if (!reviewApiKey || !playerName || loadingRef.current) return;
     setLoadingAction({ questId, action: "complete" });
     try {
       const r = await fetch(`/api/quest/${questId}/complete`, {
@@ -277,6 +280,12 @@ export function useQuestActions({
         if (data.runensplitterEarned > 0) currencies.push({ name: "Runensplitter", amount: data.runensplitterEarned, color: "#818cf8" });
         if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
         if (data.restedBonusXp > 0) currencies.push({ name: "Rested Bonus", amount: data.restedBonusXp, color: "#60a5fa" });
+        if (data.repGains && Array.isArray(data.repGains)) {
+          for (const rg of data.repGains) {
+            if (rg.gained > 0) currencies.push({ name: `${rg.factionName} Rep`, amount: rg.gained, color: rg.factionIcon === "\u{1F702}" ? "#ef4444" : rg.factionIcon === "\u{1F704}" ? "#3b82f6" : rg.factionIcon === "\u{1F701}" ? "#f59e0b" : "#ec4899" });
+          }
+        }
+        advanceTutorial();
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
           title: data.npcFinalReward ? `${questTitle} — Chain Complete` : questTitle,
@@ -316,6 +325,7 @@ export function useQuestActions({
         // Fire companion bond toast if companion quest awarded bond XP
         if (data.companionReward) {
           const cr = data.companionReward;
+          const isUltimateUnlock = cr.bondLevelUp === 5;
           addToast({
             type: "companionBond",
             companionName: cr.companionName || "Companion",
@@ -325,13 +335,28 @@ export function useQuestActions({
             bondTitle: cr.bondTitle || "Stranger",
             bondLevelUp: !!cr.bondLevelUp,
           });
+          if (isUltimateUnlock) {
+            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} has awakened their Ultimate Ability.`, icon: "★", sub: "Bond Level 5 — a new power stirs." });
+          }
         }
         if (data.levelUp) {
           pendingLevelUpRef.current = data.levelUp;
         }
         // Toast for gem drops
         if (data.gemDrop) {
-          addToast({ type: "item", itemName: data.gemDrop.name, message: "Gem dropped.", rarity: "rare" });
+          addToast({
+            type: "item",
+            itemName: data.gemDrop.name,
+            message: "Gem dropped.",
+            icon: data.gemDrop.icon,
+            rarity: data.gemDrop.rarity || "rare",
+            item: { name: data.gemDrop.name, rarity: data.gemDrop.rarity || "rare", icon: data.gemDrop.icon || null, desc: data.gemDrop.desc || null, stats: data.gemDrop.stats || null },
+          });
+        }
+        // Toast for material drops
+        if (data.materialDrops && Array.isArray(data.materialDrops) && data.materialDrops.length > 0) {
+          const matNames = data.materialDrops.map((m: { name?: string; id: string; amount: number }) => `${m.amount}x ${m.name || m.id}`).join(", ");
+          addToast({ type: "item", itemName: matNames, message: "Materials found.", rarity: "uncommon" });
         }
         // Warning: inventory was full, loot was lost
         if (data.inventoryFull) {
@@ -352,6 +377,12 @@ export function useQuestActions({
             addToast({ type: "flavor", message: `Codex: ${entry.title || "New entry"} discovered.`, icon: "◆" });
           }
         }
+        // Toast for achievement point milestone unlocks (frames, titles)
+        if (data.milestoneUnlocks && Array.isArray(data.milestoneUnlocks)) {
+          for (const ml of data.milestoneUnlocks) {
+            addToast({ type: "flavor", message: `${ml.type === "frame" ? "Frame" : "Title"} Unlocked: ${ml.name}`, icon: "★", sub: `${ml.atPoints} Achievement Points` });
+          }
+        }
         // Toast for battle pass level-up
         if (data.battlePassLevelUp) {
           addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Reward available.`, icon: "◆" });
@@ -363,6 +394,18 @@ export function useQuestActions({
               addToast({ type: "flavor", message: `${rg.factionName}: ${rg.standingName}!`, icon: rg.factionIcon || "◆", sub: `+${rg.gained} Rep` });
             }
           }
+        }
+        // Bond objective completed notification
+        if (data.bondObjectiveCompleted) {
+          addToast({ type: "flavor", message: "Sworn Bond objective complete. Chest ready.", icon: "★", sub: "Visit your Bond to claim." });
+        }
+        // Expedition checkpoint reached notification
+        if (data.expeditionCheckpoint) {
+          addToast({ type: "flavor", message: "Expedition checkpoint reached. Rewards available.", icon: "◆", sub: "The guild advances together." });
+        }
+        // World Boss defeated notification
+        if (data.worldBossDefeated) {
+          addToast({ type: "flavor", message: "World Boss defeated. Claim your rewards in the Colosseum.", icon: "★", sub: "Your blow was the last." });
         }
         // Diminishing returns notification — warn early, then each tier
         if (data.dailyQuestCount === 5) addToast({ type: "flavor", message: "Full rewards reached for today", icon: "◆", sub: "Next quests earn 75% — the forge cools" });
@@ -401,7 +444,7 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, playerName, loadingAction, refresh, setChainOffer, setRewardCelebration, pendingLevelUpRef, setActiveNpcs, setSelectedNpc, addToast]);
+  }, [reviewApiKey, playerName, refresh, setChainOffer, setRewardCelebration, pendingLevelUpRef, setActiveNpcs, setSelectedNpc, addToast]);
 
   const handleChainAccept = useCallback(async (chainOffer: { template: Record<string, unknown>; parentTitle: string } | null) => {
     if (!reviewApiKey || !chainOffer) return;
@@ -447,7 +490,7 @@ export function useQuestActions({
   }, [playerName, reviewApiKey, poolRefreshing, refresh, setApiErrorWithAutoClose, addToast, setLastPoolRefresh]);
 
   const handleShopBuy = useCallback(async (userId: string, itemId: string) => {
-    if (!reviewApiKey || !userId || loadingAction) return;
+    if (!reviewApiKey || !userId || loadingRef.current) return;
     setLoadingAction({ questId: itemId, action: "shopBuy" });
     try {
       const r = await fetch("/api/shop/buy", {
@@ -477,10 +520,10 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast, setRewardCelebration]);
+  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
 
   const handleGearBuy = useCallback(async (userId: string, gearId: string) => {
-    if (!reviewApiKey || !userId || loadingAction) return;
+    if (!reviewApiKey || !userId || loadingRef.current) return;
     setLoadingAction({ questId: gearId, action: "gearBuy" });
     try {
       const r = await fetch("/api/shop/gear/buy", {
@@ -510,7 +553,7 @@ export function useQuestActions({
     } finally {
       setLoadingAction(null);
     }
-  }, [reviewApiKey, loadingAction, refresh, addToast, setRewardCelebration]);
+  }, [reviewApiKey, refresh, addToast, setRewardCelebration]);
 
   return {
     // State

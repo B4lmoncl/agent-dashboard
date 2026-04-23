@@ -224,11 +224,11 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
       {/* ── XP Bar ── */}
       <div className="px-3 pb-2">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
             {nextLvlEntry ? <><CountUp value={xp - lvl.xpRequired} duration={800} /> / {(nextLvlEntry.xpRequired - lvl.xpRequired).toLocaleString()}</> : "MAX"}
           </span>
         </div>
-        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }}>
+        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`} style={{ position: "relative" }} title={nextLvlEntry ? `${(nextLvlEntry.xpRequired - xp).toLocaleString()} XP to Level ${lvl.level + 1} (${lvl.title})` : "Max level reached"}>
           <div
             className="progress-bar-diablo-fill progress-shimmer"
             style={{
@@ -281,23 +281,23 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
           {/* Quests */}
           <div
             className="rounded-lg px-2 py-1.5 text-center"
-            style={{ background: "rgba(255,255,255,0.03)", cursor: onNavigate ? "pointer" : undefined }}
+            style={{ background: "rgba(255,255,255,0.05)", cursor: onNavigate ? "pointer" : undefined }}
             onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("questBoard"); } : undefined}
             title={onNavigate ? "Go to Quest Board" : undefined}
           >
             <p className="text-xs font-mono font-bold" style={{ color: "#8b5cf6" }}>{user.questsCompleted ?? 0}</p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Quests</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>Quests</p>
           </div>
           {/* Achievement Points */}
           <Tip k="achievements">
             <div
               className="rounded-lg px-2 py-1.5 text-center"
-              style={{ background: "rgba(255,255,255,0.03)", cursor: onNavigate ? "pointer" : undefined }}
+              style={{ background: "rgba(255,255,255,0.05)", cursor: onNavigate ? "pointer" : undefined }}
               onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("honors"); } : undefined}
               title={onNavigate ? "Go to Hall of Honors" : undefined}
             >
               <p className="text-xs font-mono font-bold" style={{ color: "#d4a64a" }}>{user.achievementPoints ?? 0}</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Points</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>Points</p>
             </div>
           </Tip>
         </div>
@@ -328,7 +328,7 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
             }
           >
             <div className="flex items-center gap-1.5 pt-2 cursor-help">
-              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
+              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>
                 Next unlock
               </span>
               <span className="text-xs font-bold font-mono" style={{ color: nextUnlock.color }}>
@@ -343,7 +343,7 @@ export const UserCard = memo(function UserCard({ user, classes = [], onClick, on
       ) : (
         currentLevel >= 15 && (
           <div className="px-3 pb-2.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
+            <p className="text-xs pt-2" style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>
               All features unlocked
             </p>
           </div>

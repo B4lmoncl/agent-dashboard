@@ -178,7 +178,7 @@ export default function DashboardModals({
                         style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
                         onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
                       >
-                        <img src={c.iconSrc} alt="" width={32} height={32} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                        <img src={c.iconSrc} alt="" width={32} height={32} className={`currency-infused currency-${c.key} ${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""}`} style={{ imageRendering: "auto" }} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                           <p className="text-xs text-w30">{c.desc}</p>
@@ -211,13 +211,13 @@ export default function DashboardModals({
                   <button
                     onClick={() => setConversionOpen(!conversionOpen)}
                     className="w-full text-xs font-semibold py-1.5 rounded-lg"
-                    style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                    style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                   >
                     {conversionOpen ? "Ausblenden" : "Währungen tauschen"} {conversionOpen ? "▲" : "▼"}
                   </button>
 
                   {conversionOpen && (
-                    <div className="mt-2 rounded-xl p-3 space-y-2 tab-content-enter" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="mt-2 rounded-xl p-3 space-y-2 tab-content-enter" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
                       <p className="text-xs text-w30">20% tax on all conversions</p>
 
                       {/* From / To selectors */}
@@ -270,7 +270,7 @@ export default function DashboardModals({
 
                       {/* Preview */}
                       {convAmtNum > 0 && currentPair && (
-                        <div className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
+                        <div className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)" }}>
                           <span className="text-xs text-w40">You receive</span>
                           <span className="text-xs font-mono font-bold" style={{ color: convReceived > 0 ? "#22c55e" : "#ef4444" }}>
                             {convReceived > 0 ? convReceived.toLocaleString() : "0 (too small)"} {convTo}
@@ -324,7 +324,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-bold text-bright">Modifikator-Übersicht</h3>
+                <Tip k="bonus_stacking"><h3 className="text-sm font-bold text-bright cursor-help">Modifikator-Übersicht</h3></Tip>
                 <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Schließen">×</button>
               </div>
               <div className="mb-4">

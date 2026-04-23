@@ -42,18 +42,18 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
       <div
         className="w-full max-w-md sm:max-w-lg rounded-2xl overflow-hidden tab-content-enter"
-        style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 25px 100px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
+        style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 25px 100px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
         <div className="sticky top-0 z-10 px-5 py-4 flex items-center justify-between" style={{ background: "linear-gradient(180deg, #0d0e12 60%, transparent)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
           <div>
             <p className="text-base font-bold tracking-wide" style={{ color: "#e8e8e8" }}>Quest Hall</p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
               Level {playerLevel} · {FLOORS.filter(f => playerLevel >= (f.minLevel || 1)).length}/{FLOORS.length} Floors
             </p>
           </div>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.10)" }}>
             <span className="text-xs font-mono">ESC</span>
           </button>
         </div>
@@ -161,7 +161,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                       {!floorLocked && (() => {
                         const unlockedRooms = floor.rooms.filter(r => !r.minLevel || playerLevel >= r.minLevel).length;
                         return unlockedRooms < floor.rooms.length ? (
-                          <span style={{ marginLeft: 6, color: "rgba(255,255,255,0.25)" }}>{unlockedRooms}/{floor.rooms.length}</span>
+                          <span style={{ marginLeft: 6, color: "rgba(255,255,255,0.4)" }}>{unlockedRooms}/{floor.rooms.length}</span>
                         ) : null;
                       })()}
                     </p>
@@ -183,7 +183,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   )}
 
                   {floorLocked && (
-                    <span className="text-xs flex-shrink-0 px-2 py-0.5 rounded" style={{ color: "rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    <span className="text-xs flex-shrink-0 px-2 py-0.5 rounded" style={{ color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
                       Lv.{floor.minLevel}
                     </span>
                   )}
@@ -195,7 +195,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   const total = floor.rooms.length;
                   if (unlocked >= total) return null;
                   return (
-                    <div className="relative mx-4 mb-1.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.04)" }}>
+                    <div className="relative mx-4 mb-1.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
                       <div style={{ height: "100%", width: `${(unlocked / total) * 100}%`, background: `${floor.color}50`, borderRadius: 2 }} />
                     </div>
                   );

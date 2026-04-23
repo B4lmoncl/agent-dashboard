@@ -24,7 +24,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
           </div>
           <div>
             <p className="text-sm font-bold" style={{ color: "#ef4444" }}>Something broke.</p>
-            <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>
               {this.props.fallbackLabel || "This view"} encountered an error. The Hall is investigating. Reluctantly.
             </p>
           </div>

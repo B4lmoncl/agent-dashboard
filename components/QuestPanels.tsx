@@ -25,7 +25,7 @@ const BLOOD_PACT_MULTIPLIER_VOW: Record<string, number> = {
 };
 
 const COMMITMENT_TIERS_VOW = [
-  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.25)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
+  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.4)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
   { id: "spark",    label: "Spark",    days: 7,   color: "#94a3b8",                bonusGold: 3,  bonusXp: 5,  flavorShort: "First spark" },
   { id: "flame",    label: "Flame",    days: 21,  color: "#6366f1",                bonusGold: 7,  bonusXp: 10, flavorShort: "Renunciation forms" },
   { id: "ember",    label: "Ember",    days: 60,  color: "#818cf8",                bonusGold: 13, bonusXp: 20, flavorShort: "Deep-rooted" },
@@ -66,6 +66,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
   const [extendId, setExtendId] = useState<string | null>(null);
   const [extendCommitment, setExtendCommitment] = useState("none");
   const [recommitId, setRecommitId] = useState<string | null>(null);
+  const [vowError, setVowError] = useState<string | null>(null);
+  const [vowChecking, setVowChecking] = useState<string | null>(null);
+  useEffect(() => { if (vowError) { const t = setTimeout(() => setVowError(null), 5000); return () => clearTimeout(t); } }, [vowError]);
   const [slipAnimId, setSlipAnimId] = useState<string | null>(null);
   const [vowActionError, setVowActionError] = useState<string | null>(null);
 
@@ -267,7 +270,8 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               <>
                 <button
                   onClick={async () => {
-                    if (!reviewApiKey || !playerName || vowDoneToday) return;
+                    if (!reviewApiKey || !playerName || vowDoneToday || vowChecking) return;
+                    setVowChecking(ar.id);
                     try {
                       const r = await fetch(`/api/rituals/${ar.id}/complete`, {
                         method: "POST",
@@ -288,10 +292,12 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                             pactBonus: data.pactCompletion || null,
                           });
                         }
+                      } else {
+                        setVowError(data.error || "Failed to complete vow");
                       }
-                    } catch { /* ignore */ }
+                    } catch { setVowError("Network error"); } finally { setVowChecking(null); }
                   }}
-                  disabled={vowDoneToday || !reviewApiKey}
+                  disabled={vowDoneToday || !reviewApiKey || vowChecking === ar.id}
                   className="text-xs px-2 py-1 rounded transition-all"
                   style={{
                     background: vowDoneToday ? "rgba(34,197,94,0.08)" : "rgba(99,102,241,0.12)",
@@ -379,6 +385,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               </button>
             )}
           </div>
+          {vowError && (
+            <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>{vowError}</p>
+          )}
           {vowsLoading ? (
             <div className="space-y-2">
               {[0, 1].map(i => (
@@ -386,10 +395,10 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               ))}
             </div>
           ) : antiRituals.length === 0 ? (
-            <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-2xl mb-2">×</p>
               <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -488,7 +497,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
                         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
-                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                       </button>
                     ))}
                   </div>
@@ -515,7 +524,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.45)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>
                 </div>
                 <div className="flex gap-2 pt-1">
-                  <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                  <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                   <button onClick={createAntiRitual} disabled={vowCreating} title={vowCreating ? "Action in progress…" : undefined} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)", cursor: vowCreating ? "not-allowed" : "pointer" }}>{vowCreating ? "Sealing..." : "Seal Vow"}</button>
                 </div>
               </div>
@@ -600,7 +609,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     </div>
                   </div>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
                       title={!canExtend ? "Select a commitment tier first" : undefined}
@@ -614,7 +623,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                           });
                           closeExtend();
                           loadAntiRituals();
-                        } catch { /* ignore */ }
+                        } catch { setVowError("Network error — could not extend vow"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: canExtend ? "rgba(67,56,202,0.32)" : "rgba(255,255,255,0.04)", color: canExtend ? "#a5b4fc" : "rgba(255,255,255,0.2)", border: `1px solid ${canExtend ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.08)"}`, cursor: canExtend ? "pointer" : "not-allowed" }}
@@ -663,7 +672,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     &ldquo;Every great warrior has tasted the dirt. The ones who matter are the ones who stood back up.&rdquo;
                   </p>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={() => setRecommitId(null)} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Not Yet</button>
+                    <button onClick={() => setRecommitId(null)} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Not Yet</button>
                     <button
                       onClick={async () => {
                         try {
@@ -674,7 +683,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                           });
                           setRecommitId(null);
                           loadAntiRituals();
-                        } catch { /* ignore */ }
+                        } catch { setVowError("Network error — could not recommit vow"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 0 16px rgba(139,92,246,0.12)", cursor: "pointer" }}
@@ -857,6 +866,8 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
   const resolvedProfile = resolveProfileName(rawProfile, petName || user?.companion?.name || "Companion");
   const COMPANION_QUESTS = resolvedProfile.quests;
   const dobbieMood = computeCompanionMood(streak ?? 0, user, resolvedProfile.moodQuotes);
+  const [completeFeedback, setCompleteFeedback] = useState<string | null>(null);
+  useEffect(() => { if (completeFeedback) { const t = setTimeout(() => setCompleteFeedback(null), 4000); return () => clearTimeout(t); } }, [completeFeedback]);
 
   // Derive Map<templateId, questId> for all active Dobbie quests
   const activeQuestMap = useMemo(() => {
@@ -902,9 +913,10 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
           });
         }
         if (questId) setJustAccepted(prev => new Map(prev).set(q.id, questId));
+        setCompleteFeedback(`Quest accepted: ${q.title}`);
         onRefresh();
       }
-    } catch { /* ignore */ } finally { setCreating(null); }
+    } catch { setCompleteFeedback("Network error — could not create quest"); } finally { setCreating(null); }
   };
 
   const completeDobbieQuest = async (templateId: string) => {
@@ -917,15 +929,22 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ agentId: playerName }),
       });
+      const data = await r.json().catch(() => ({}));
       if (r.ok) {
         setJustAccepted(prev => { const m = new Map(prev); m.delete(templateId); return m; });
+        setCompleteFeedback(`+${data.xpEarned || 0} XP, +${data.goldEarned || 0} Gold`);
         onRefresh();
+      } else {
+        setCompleteFeedback(data.error || "Failed to complete quest");
       }
-    } catch { /* ignore */ } finally { setCompleting(null); }
+    } catch { setCompleteFeedback("Network error"); } finally { setCompleting(null); }
   };
 
   return (
     <div>
+      {completeFeedback && (
+        <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: completeFeedback.startsWith("+") ? "rgba(34,197,94,0.1)" : "rgba(239,68,68,0.1)", color: completeFeedback.startsWith("+") ? "#22c55e" : "#ef4444", border: `1px solid ${completeFeedback.startsWith("+") ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)"}` }}>{completeFeedback}</p>
+      )}
       <div className="flex items-center justify-between mb-1">
         <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</p>
         <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: dobbieMood.color, background: `${dobbieMood.color}18`, border: `1px solid ${dobbieMood.color}40` }}>{dobbieMood.label}</span>
@@ -1011,7 +1030,7 @@ export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; 
         <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(168,85,247,0.12)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}>
           {visible.length}
         </span>
-        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
           {open ? "▲" : "▼"}
         </span>
       </button>
@@ -1032,7 +1051,7 @@ export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; 
               <button
                 onClick={() => dismiss(s.id)}
                 className="flex-shrink-0 text-xs px-2 py-1 rounded transition-all"
-                style={{ color: "rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.04)" }}
+                style={{ color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.06)" }}
                 title="Dismiss"
               >
                 x

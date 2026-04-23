@@ -134,9 +134,9 @@ export default function AdventureTomeView({
     return (
       <div
         className="rounded-xl p-8 text-center"
-        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
+        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}
       >
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
           Could not load Adventure Tome data.
         </p>
       </div>
@@ -193,7 +193,7 @@ export default function AdventureTomeView({
           </div>
         </div>
         </Tip>
-        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.35)" }}>
           Gesamtfortschritt durch den Turm
         </p>
       </div>
@@ -237,7 +237,7 @@ export default function AdventureTomeView({
                   <p className="text-sm font-bold" style={{ color: floor.color }}>
                     {floor.name}
                   </p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
                     {floor.subtitle} — {floor.completed}/{floor.total} objectives
                   </p>
                 </div>
@@ -258,7 +258,7 @@ export default function AdventureTomeView({
                 <span
                   className="text-xs flex-shrink-0"
                   style={{
-                    color: "rgba(255,255,255,0.2)",
+                    color: "rgba(255,255,255,0.35)",
                     transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
                     transition: "transform 0.2s ease",
                     display: "inline-block",
@@ -396,7 +396,7 @@ export default function AdventureTomeView({
                           {!obj.completed && (
                             <span
                               className="text-xs font-mono flex-shrink-0"
-                              style={{ color: "rgba(255,255,255,0.2)" }}
+                              style={{ color: "rgba(255,255,255,0.35)" }}
                             >
                               {obj.current}/{obj.target}
                             </span>

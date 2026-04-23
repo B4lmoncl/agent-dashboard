@@ -215,7 +215,7 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
             ? <img src={`/images/portraits/companion-${companion.type}.png`} alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             : companion.type === "cat" && companion.name?.toLowerCase() === "dobbie"
               ? <img src="/images/portraits/companion-dobbie.png" alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xl" style={{ color: "rgba(255,255,255,0.3)" }}>◆</span>
+              : <span className="text-xl" style={{ color: "rgba(255,255,255,0.45)" }}>◆</span>
           }
           <span className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{companion.name}</span>
         </div>
@@ -303,14 +303,14 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
         {/* Frame Selection */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
           <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Kosmetischer Rahmen</label>
-          <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.2)" }}>
+          <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
             Rahmen fügen deiner Spielerkarte einen farbigen Rand und Leuchteffekt hinzu, sichtbar für alle. Verdiene Rahmen durch Fraktionsruf (Verehrt), den Season Pass, Weltboss-Rang 1, Dungeon-Erstdurchquerungen und die Währungsshops.
           </p>
 
           {/* Preview: how current frame looks */}
           <div className="rounded-lg p-3 mb-3 flex items-center gap-3" style={{
-            background: "rgba(255,255,255,0.02)",
-            border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}80` : "1px solid rgba(255,255,255,0.06)",
+            background: "rgba(255,255,255,0.06)",
+            border: equippedFrameId ? `2px solid ${frames.find(f => f.id === equippedFrameId)?.color || "#555"}80` : "1px solid rgba(255,255,255,0.10)",
             boxShadow: equippedFrameId && frames.find(f => f.id === equippedFrameId)?.glow ? `0 0 12px ${frames.find(f => f.id === equippedFrameId)?.color}30` : "none",
           }}>
             <img src={`/images/portraits/hero-${avatarStyle}.png`} alt="" className="w-12 h-12 rounded-lg object-cover" onError={e => { e.currentTarget.style.display = "none"; }} style={{
@@ -321,22 +321,22 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
               <p className="text-xs font-semibold" style={{ color: equippedFrameId ? frames.find(f => f.id === equippedFrameId)?.color : "rgba(255,255,255,0.4)" }}>
                 {equippedFrameId ? frames.find(f => f.id === equippedFrameId)?.name || "Frame" : "No Frame"}
               </p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                 {equippedFrameId ? "Your player card glows with this color" : "Your player card has no special border"}
               </p>
             </div>
           </div>
 
           {frames.length === 0 ? (
-            <div className="rounded-lg p-4 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No frames unlocked yet.</p>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>Earn frames from:</p>
+            <div className="rounded-lg p-4 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>No frames unlocked yet.</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Earn frames from:</p>
               <div className="flex flex-wrap gap-1 mt-2 justify-center">
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Factions (Revered)</span>
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Season Pass</span>
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>World Boss #1</span>
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Dungeon First-Clear</span>
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)" }}>Währungsshops</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Factions (Revered)</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Season Pass</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>World Boss #1</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Dungeon First-Clear</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Währungsshops</span>
               </div>
             </div>
           ) : (
@@ -384,12 +384,12 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                     />
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold" style={{ color: isActive ? f.color : "rgba(255,255,255,0.6)" }}>{f.name}</p>
-                      <p style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
+                      <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>
                         {f.source || (f.glow ? "Glowing border + card effect" : "Colored border")}
                       </p>
                     </div>
                     {isActive && <span className="text-xs font-semibold" style={{ color: f.color }}>Equipped</span>}
-                    {frameLoading === f.id && <span style={{ color: "rgba(255,255,255,0.3)" }}>...</span>}
+                    {frameLoading === f.id && <span style={{ color: "rgba(255,255,255,0.45)" }}>...</span>}
                   </button>
                 );
               })}
@@ -549,7 +549,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           <p className="text-sm font-bold" style={{ color: rarityColor, textShadow: `0 0 12px ${rarityColor}40` }}>{item.name}</p>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: `${rarityColor}cc` }}>{RARITY_LABELS[dRarity] || item.rarity}</span>
-            {item.slot && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{item.slot.charAt(0).toUpperCase() + item.slot.slice(1)}</span>}
+            {item.slot && <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{item.slot.charAt(0).toUpperCase() + item.slot.slice(1)}</span>}
             {(() => { const rl = (item as Record<string, unknown>).reqLevel as number | undefined; return rl ? <span className="text-xs" style={{ color: playerLevel && playerLevel < rl ? "#ef4444" : "rgba(255,255,255,0.25)" }}>Req. Lv {rl}</span> : null; })()}
           </div>
         </div>
@@ -618,7 +618,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
                       <span className="font-mono font-semibold" style={{ color: val > 0 ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
                         {val > 0 ? `+${val}` : val}
                       </span>
-                      {range && <span className="font-mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>[{range.min}-{range.max}]</span>}
+                      {range && <span className="font-mono" style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>[{range.min}-{range.max}]</span>}
                       {showDiff && (
                         <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : diff < 0 ? "#ef4444" : "rgba(255,255,255,0.2)", fontSize: 12 }}>
                           {diff > 0 ? `▲${diff}` : diff < 0 ? `▼${Math.abs(diff)}` : "="}
@@ -634,9 +634,9 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
               const minorEntries = [...allStatKeys].filter(s => minorStats.has(s));
               const otherEntries = [...allStatKeys].filter(s => !primaryStats.has(s) && !minorStats.has(s));
               return (<>
-                {hasSections && primaryEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.25)", marginBottom: 2 }}>Primary</p>}
+                {hasSections && primaryEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)", marginBottom: 2 }}>Primary</p>}
                 {primaryEntries.map(renderStat)}
-                {hasSections && minorEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.2)", marginTop: 4, marginBottom: 2 }}>Minor</p>}
+                {hasSections && minorEntries.length > 0 && <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)", marginTop: 4, marginBottom: 2 }}>Minor</p>}
                 {minorEntries.map(renderStat)}
                 {otherEntries.map(renderStat)}
               </>);
@@ -661,9 +661,9 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           const qColor = quality >= 90 ? "#22c55e" : quality >= 70 ? "#eab308" : quality >= 50 ? "#f97316" : "#ef4444";
           const qLabel = quality >= 90 ? "Perfect" : quality >= 70 ? "Good" : quality >= 50 ? "Average" : "Low";
           return (
-            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
               <div className="flex items-center justify-between text-xs">
-                <Tip k="roll_quality"><span style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>Roll Quality</span></Tip>
+                <Tip k="roll_quality"><span style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>Roll Quality</span></Tip>
                 <span className="font-mono font-semibold" style={{ color: qColor }}>{quality}% {qLabel}</span>
               </div>
               <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
@@ -679,8 +679,8 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           if (!sockets || sockets.length === 0) return null;
           const GEM_COLORS: Record<string, string> = { ruby: "#ef4444", sapphire: "#3b82f6", emerald: "#22c55e", topaz: "#f59e0b", amethyst: "#a855f7", diamond: "#e0e7ff" };
           return (
-            <div className="pt-1 flex items-center gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Sockets:</span>
+            <div className="pt-1 flex items-center gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Sockets:</span>
               {sockets.map((s, idx) => (
                 <div key={idx} className="w-4 h-4 rounded-sm" style={{
                   background: s ? (GEM_COLORS[s.split("-")[0] || ""] || "#888") : "rgba(255,255,255,0.06)",
@@ -697,8 +697,8 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           const ESSENZ_BY_RARITY: Record<string, number> = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
           const essenz = ESSENZ_BY_RARITY[item.rarity] || 2;
           return (
-            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                 Salvage: +{essenz} Essenz {item.rarity !== "common" ? "+ chance for materials" : ""}
               </p>
             </div>
@@ -712,10 +712,10 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           }, 0);
           const eqRarityColor = RARITY_COLORS[equippedItem.rarity] || "#9ca3af";
           return (
-            <div className="pt-1.5 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="pt-1.5 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>vs</span>
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>vs</span>
                   <span className="text-xs font-semibold truncate" style={{ color: eqRarityColor }}>{equippedItem.name}</span>
                 </div>
                 <span className="text-xs font-bold font-mono flex-shrink-0" style={{ color: totalDiff > 0 ? "#4ade80" : totalDiff < 0 ? "#ef4444" : "rgba(255,255,255,0.3)" }}>
@@ -725,7 +725,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
               {/* Equipped item mini-stats */}
               <div className="flex flex-wrap gap-x-3 gap-y-0.5">
                 {Object.entries(eqStats).filter(([, v]) => (v as number) > 0).map(([k, v]) => (
-                  <span key={k} className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                  <span key={k} className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                     {STAT_LABELS[k] || k}: +{v as number}
                   </span>
                 ))}
@@ -735,7 +735,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
         })()}
 
         {/* Level requirement + Slot type + Item Level (Gear Score) */}
-        <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
           <div className="flex items-center justify-between">
             <span style={{ color: "rgba(255,255,255,0.4)" }}>Item Level</span>
             <span className="font-mono font-bold" style={{ color: "#fbbf24" }}>
@@ -748,7 +748,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
             </p>
           )}
           {item.slot && (
-            <p style={{ color: "rgba(255,255,255,0.3)" }}>
+            <p style={{ color: "rgba(255,255,255,0.45)" }}>
               {item.type || item.slot}
             </p>
           )}
@@ -930,7 +930,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
             ? <ItemImg src={item.icon} alt={item.name} size={40} rarity={item.rarity} />
             : iconSrc
               ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.4 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{label.slice(0, 3)}</span>
+              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{label.slice(0, 3)}</span>
           }
         </div>
         {item && (
@@ -942,7 +942,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           </div>
         )}
         {!item && (
-          <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.2)", lineHeight: 1.2 }}>{label}</p>
+          <p className="text-center mt-0.5" style={{ fontSize: 12, width: 56, color: "rgba(255,255,255,0.35)", lineHeight: 1.2 }}>{label}</p>
         )}
         {hovered && item && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
       </>
@@ -953,7 +953,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     <>
       <div
         className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
-        style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${borderColor}` }}
+        style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${borderColor}` }}
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
@@ -965,9 +965,9 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
           <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
             {item
               ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={36} height={36} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
-              : <span style={{ color: "rgba(255,255,255,0.2)" }}>Empty</span>}
+              : <span style={{ color: "rgba(255,255,255,0.35)" }}>Empty</span>}
           </p>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{label}</p>
         </div>
         {item && (
           <button
@@ -1026,6 +1026,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [collectionOpen, setCollectionOpen] = useState(false);
   const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string } | null }[]; completion: number } | null>(null);
   const [collectionLoading, setCollectionLoading] = useState(false);
+  const [collectionError, setCollectionError] = useState(false);
   const [collectionFilter, setCollectionFilter] = useState<string>("all");
 
   // Scroll lock + ESC for title and collection modals
@@ -1120,7 +1121,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped`, icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped`, icon: item.icon, rarity: displayRarity(item), item: { ...item, icon: item.icon || null, rarity: displayRarity(item) } });
         }
       } else {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
@@ -1161,7 +1162,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item used.", icon: item.icon, rarity: displayRarity(item) });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used.", icon: item.icon, rarity: displayRarity(item), item: { ...item, icon: item.icon || null, rarity: displayRarity(item) } });
         }
       } else if (addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
@@ -1201,7 +1202,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
-        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item) });
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item), item: { ...item, icon: item.icon || null, rarity: displayRarity(item) } });
       } else if (addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Discard failed" });
@@ -1352,14 +1353,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               placeholder="Search..."
               className="w-full text-xs px-2.5 py-1.5 rounded-lg"
               style={{
-                background: "rgba(255,255,255,0.04)",
+                background: "rgba(255,255,255,0.06)",
                 border: "1px solid rgba(255,255,255,0.1)",
                 color: "#e8e8e8",
                 outline: "none",
                 paddingLeft: 26,
               }}
             />
-            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.25)", pointerEvents: "none" }}>◇</span>
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.4)", pointerEvents: "none" }}>◇</span>
             {invSearch && (
               <button
                 onClick={() => setInvSearch("")}
@@ -1385,7 +1386,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             {pinnedItem && (
               <div className="flex items-center gap-1 text-xs flex-1 min-w-0 px-2 py-0.5 rounded" style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)" }}>
                 <span className="font-semibold truncate" style={{ color: RARITY_COLORS[pinnedItem.rarity] || "#888" }}>{pinnedItem.name}</span>
-                <button onClick={() => setPinnedItem(null)} className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer", background: "none", border: "none" }}>clear</button>
+                <button onClick={() => setPinnedItem(null)} className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer", background: "none", border: "none" }}>clear</button>
               </div>
             )}
           </div>
@@ -1797,7 +1798,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         <div
                           key={item.id}
                           className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
-                          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+                          style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.11)" }}
                         >
                           {item.icon
                             ? <img src={item.icon} alt={item.name} width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -1835,7 +1836,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         const pct = Math.min(s.count / s.total, 1);
                         const barColor = s.isComplete ? "#4ade80" : s.rarity === "legendary" ? "#f97316" : s.rarity === "epic" ? "#a855f7" : "#a78bfa";
                         return (
-                          <div key={s.name} className="rounded-lg px-2.5 py-2" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${s.isComplete ? "rgba(74,222,128,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                          <div key={s.name} className="rounded-lg px-2.5 py-2" style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${s.isComplete ? "rgba(74,222,128,0.3)" : "rgba(255,255,255,0.06)"}` }}>
                             <div className="flex items-center justify-between mb-1">
                               <span className="text-xs font-semibold" style={{ color: s.isComplete ? "#4ade80" : "rgba(255,255,255,0.6)" }}>
                                 {s.isComplete ? "✓ " : ""}{s.name}
@@ -1934,11 +1935,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             {bonus > 0 && (
                               <span className="text-xs font-mono" style={{ color: "#4ade80" }}>(+{bonus})</span>
                             )}
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
                           </button>
                         </Tip>
                         {isExpanded && sources.length > 0 && (
-                          <div className="tab-content-enter ml-5 mt-1 mb-2 space-y-0.5 pl-2" style={{ borderLeft: "2px solid rgba(255,255,255,0.06)" }}>
+                          <div className="tab-content-enter ml-5 mt-1 mb-2 space-y-0.5 pl-2" style={{ borderLeft: "2px solid rgba(255,255,255,0.10)" }}>
                             {sources.map((src, i) => (
                               <div key={i} className="flex items-center justify-between text-xs">
                                 <span style={{ color: src.type === "gem" ? "#a855f7" : src.type === "set" ? "#22c55e" : src.type === "trait" ? "#f59e0b" : "rgba(255,255,255,0.35)" }}>{src.source}</span>
@@ -1948,7 +1949,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           </div>
                         )}
                         {isExpanded && sources.length === 0 && (
-                          <p className="ml-5 mt-1 mb-2 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No gear contributions</p>
+                          <p className="ml-5 mt-1 mb-2 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>No gear contributions</p>
                         )}
                       </div>
                     );
@@ -1957,7 +1958,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
                 {/* Minor Stats */}
                 {hasMinorStats && (
-                  <div className="space-y-1.5 mb-4 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="space-y-1.5 mb-4 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
                     <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Sekundär-Stats</p>
                     {minorStatRows.filter(s => s.val > 0).map(s => {
                       const tipKey = s.label.toLowerCase().replace("ä", "ae") as string;
@@ -1979,7 +1980,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {/* Gear Score — prominent, right after stats */}
                 {charData.gearScore && charData.gearScore.gearScore > 0 && (
                   <Tip k="gear_score">
-                  <div className="cursor-help mb-3 px-2 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="cursor-help mb-3 px-2 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Score</span>
                       <span className="text-sm font-mono font-bold" style={{ color: charData.gearScore.gearScore >= 400 ? "#f97316" : charData.gearScore.gearScore >= 200 ? "#fbbf24" : charData.gearScore.gearScore >= 100 ? "#22c55e" : "#9ca3af" }}>
@@ -2020,7 +2021,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <div key={p.id} className="flex items-center gap-1.5 text-xs">
                               <span style={{ color: p.equipped ? "#22c55e" : "rgba(255,255,255,0.25)", fontSize: 12 }}>{p.equipped ? "●" : "○"}</span>
                               <span className="flex-1 truncate" style={{ color: p.equipped ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)" }}>{p.name}</span>
-                              <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{p.slot}</span>
+                              <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>{p.slot}</span>
                             </div>
                           ))}
                         </div>
@@ -2036,7 +2037,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     {(charData.legendaryEffects ?? []).map((e, i) => (
                       <div key={i} className="flex items-center justify-between gap-1">
                         <span className="text-xs flex-1 truncate" style={{ color: "rgba(249,115,22,0.7)" }}>{e.label}{e.value ? ` (${e.value}%)` : ""}</span>
-                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>{e.itemName}</span>
+                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.35)" }}>{e.itemName}</span>
                       </div>
                     ))}
                   </div>
@@ -2046,7 +2047,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1">
                     <Tip k="player_level"><span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span></Tip>
-                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
                       {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
                     </span></Tip>
                   </div>
@@ -2059,7 +2060,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
                     />
                   </div>
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>{charData.title}</p>
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>{charData.title}</p>
                 </div>
 
                 {/* Class */}
@@ -2108,11 +2109,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       <span className="text-xs font-semibold" style={{ color: "#fbbf24" }}>
                         {charData.equippedTitle?.name || "No Title"}
                       </span>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                         ({charData.earnedTitleCount ?? 0} earned)
                       </span>
                     </div>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{titlesOpen ? "▲" : "▼"}</span>
                   </button>
                   {titlesOpen && createPortal((() => {
                     const earnedIds = new Set(earnedTitles.map(t => t.id));
@@ -2203,8 +2204,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         if (r.ok) {
                           setEquippedTitleId(titleId);
                           addToast?.({ type: "purchase", message: titleId ? `Title equipped: ${allTitles.find(t => t.id === titleId)?.name || titleId}` : "Title removed" });
+                        } else {
+                          const d = await r.json().catch(() => ({}));
+                          addToast?.({ type: "error", message: d.error || "Failed to equip title" });
                         }
-                      } catch { /* ignore */ }
+                      } catch { addToast?.({ type: "error", message: "Network error" }); }
                       setTitleEquipping(null);
                     };
 
@@ -2216,7 +2220,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       <div className="w-full max-w-lg max-h-[80vh] rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(251,191,36,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between px-4 py-3" style={{ background: "rgba(251,191,36,0.06)", borderBottom: "1px solid rgba(251,191,36,0.15)" }}>
                           <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>Titles ({earnedTitles.length} earned)</p>
-                          <button onClick={() => setTitlesOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
+                          <button onClick={() => setTitlesOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
                         </div>
                         <div className="p-4 overflow-y-auto" style={{ maxHeight: "calc(80vh - 56px)", scrollbarWidth: "thin" }}>
                         {/* Equipped Title Display */}
@@ -2251,7 +2255,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         {/* Section Header */}
                         <div className="flex items-center justify-between mb-2 px-1">
                           <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>Titles</p>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
                             {earnedTitles.length} / {allTitleDefs.length || earnedTitles.length} earned
                           </p>
                         </div>
@@ -2270,7 +2274,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               }}
                               onClick={() => setTitleCategory(cat.key)}
                             >
-                              {cat.label} {cat.key !== "all" && <span style={{ color: "rgba(255,255,255,0.2)" }}>{cat.earned}/{cat.total}</span>}
+                              {cat.label} {cat.key !== "all" && <span style={{ color: "rgba(255,255,255,0.35)" }}>{cat.earned}/{cat.total}</span>}
                             </button>
                           ))}
                         </div>
@@ -2291,13 +2295,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 style={{
                                   opacity: isEarned ? 1 : 0.4,
                                   cursor: !isEarned || titleEquipping ? "not-allowed" : isEquipped ? "default" : "pointer",
-                                  border: isEquipped ? `1px solid ${c}60` : "1px solid rgba(255,255,255,0.06)",
+                                  border: isEquipped ? `1px solid ${c}60` : "1px solid rgba(255,255,255,0.10)",
                                   background: isEquipped
                                     ? `linear-gradient(90deg, ${c}14 0%, transparent 100%)`
                                     : "rgba(255,255,255,0.02)",
                                   boxShadow: isEquipped
                                     ? `inset 0 1px 0 rgba(255,255,255,0.05), 0 0 8px ${c}15`
-                                    : "inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.2)",
+                                    : "inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.2)",
                                   overflow: "hidden",
                                 }}
                                 disabled={!isEarned || !!titleEquipping}
@@ -2325,7 +2329,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                         </span>
                                       )}
                                     </div>
-                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>
+                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.45)" }}>
                                       {t.description || condLabel(t.condition)}
                                     </p>
                                   </div>
@@ -2335,10 +2339,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                     {isEarned ? (
                                       <div className="flex flex-col items-end">
                                         <span style={{ color: "#22c55e", fontSize: 12 }}>✓</span>
-                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{earnedDate}</span>}
+                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>{earnedDate}</span>}
                                       </div>
                                     ) : (
-                                      <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{"\u25CB"}</span>
+                                      <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>{"\u25CB"}</span>
                                     )}
                                   </div>
                                 </div>
@@ -2346,7 +2350,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             );
                           })}
                           {sorted.length === 0 && (
-                            <p className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.25)" }}>No titles in this category</p>
+                            <p className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.4)" }}>No titles in this category</p>
                           )}
                         </div>
                       </div>
@@ -2362,7 +2366,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           })()}
 
           {/* Gems tab */}
-          {rightTab === "gems" && gemsLoading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Loading gems...</p>}
+          {rightTab === "gems" && gemsLoading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Loading gems...</p>}
           {rightTab === "gems" && !gemsLoading && gemData && (() => {
             const GEM_COLORS: Record<string, string> = { Ruby: "#ef4444", Sapphire: "#3b82f6", Emerald: "#22c55e", Topaz: "#f59e0b", Amethyst: "#a855f7", Diamond: "#e2e8f0" };
             // Group inventory by type
@@ -2405,12 +2409,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     <p className="text-xs font-semibold mb-1" style={{ color: GEM_COLORS[type] || "#9ca3af" }}>{type}</p>
                     <div className="space-y-0.5">
                       {entries.sort((a, b) => a.tier - b.tier).map(({ gemKey, gem, count, tier, statBonus }) => (
-                        <div key={gemKey} className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
+                        <div key={gemKey} className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)" }}>
                           <div className="flex items-center gap-1.5">
                             <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: GEM_COLORS[gem.type] || "#9ca3af" }} />
                             <span className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{gem.name}</span>
                             <span className="text-xs text-w20">T{tier}</span>
-                            {gem.stat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>+{statBonus ?? "?"} {gem.stat}</span>}
+                            {gem.stat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>+{statBonus ?? "?"} {gem.stat}</span>}
                           </div>
                           <div className="flex items-center gap-1.5">
                             <span className="text-xs font-mono" style={{ color: GEM_COLORS[gem.type] || "#9ca3af" }}>x{count}</span>
@@ -2448,7 +2452,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <>
                     <p className="text-xs font-bold uppercase tracking-wider mt-3" style={{ color: "rgba(255,255,255,0.35)" }}>Sockets</p>
                     {Object.entries(gemData.socketedGems).map(([instanceId, data]) => (
-                      <div key={instanceId} className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div key={instanceId} className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
                         <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(255,255,255,0.55)" }}>{(data as { itemName?: string; slot: string }).itemName || (data as { slot: string }).slot}</p>
                         <div className="flex gap-1.5">
                           {data.sockets.map((socket, si) => (
@@ -2464,7 +2468,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 {socket ? (
                                   <span className="w-2 h-2 rounded-full" style={{ background: GEM_COLORS[socket.gemType] || "#9ca3af" }} />
                                 ) : (
-                                  <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>+</span>
+                                  <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>+</span>
                                 )}
                               </div>
                               <div className="flex gap-0.5">
@@ -2598,15 +2602,18 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       <button
         onClick={async () => {
           setCollectionOpen(true);
-          if (!collectionData && !collectionLoading && playerName) {
+          if (!collectionData && !collectionLoading && !collectionError && playerName) {
             setCollectionLoading(true);
+            setCollectionError(false);
             try {
               const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/collection`);
               if (r.ok) {
                 const d = await r.json();
                 setCollectionData({ items: d.uniques || [], completion: (d.completionPercent ?? 0) / 100 });
               }
-            } catch { /* ignore */ }
+            } catch {
+              setCollectionError(true);
+            }
             setCollectionLoading(false);
           }
         }}
@@ -2639,7 +2646,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               ? <img src={`/images/portraits/companion-${comp.type}.png`} alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
               : comp.type === "cat" && comp.name?.toLowerCase() === "dobbie"
                 ? <img src="/images/portraits/companion-dobbie.png" alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                : <span className="text-xl" style={{ color: "rgba(255,255,255,0.3)" }}>◆</span>
+                : <span className="text-xl" style={{ color: "rgba(255,255,255,0.45)" }}>◆</span>
             }
             <div>
               <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>{comp.name}</p>
@@ -2648,7 +2655,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div style={{ width: `${bondProgress * 100}%`, height: "100%", background: "linear-gradient(90deg, #ec4899, #f9a8d4)", borderRadius: 9999 }} />
               </div>
               {nextBond && (
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", marginTop: 1 }}>{xpToNext} XP → {nextBond.title}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", marginTop: 1 }}>{xpToNext} XP → {nextBond.title}</p>
               )}
             </div>
           </div></Tip>
@@ -2684,7 +2691,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               <button
                 onClick={() => setCollectionOpen(false)}
                 className="text-sm px-2 py-1 rounded-lg"
-                style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}
+                style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}
               >
                 ESC
               </button>
@@ -2692,7 +2699,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>
               Handcrafted legendary artifacts from the most dangerous encounters in Aethermoor. Each one is unique — once obtained, it&apos;s yours forever.
             </p>
-            <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+            <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
               Some heroes collect stamps. You collect the impossible.
             </p>
           </div>
@@ -2703,7 +2710,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               <div className="rounded-full overflow-hidden" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>
                 <div className="h-full rounded-full" style={{ width: `${collectionData.completion * 100}%`, background: "linear-gradient(90deg, #3b82f6, #60a5fa)", transition: "width 0.3s" }} />
               </div>
-              <p className="text-xs text-right mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <p className="text-xs text-right mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>
                 {collectionData.items.filter(i => i.obtained).length}/{collectionData.items.length} items
               </p>
             </div>
@@ -2735,8 +2742,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
           {/* Items grouped by source */}
           <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(85vh - 220px)" }}>
-            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Loading collection...</p>}
-            {!collectionLoading && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Could not load collection data.</p>}
+            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Loading collection...</p>}
+            {!collectionLoading && collectionError && (
+              <div className="text-center py-8">
+                <p className="text-xs" style={{ color: "#ef4444" }}>Failed to load collection data.</p>
+                <button onClick={() => { setCollectionError(false); }} className="text-xs mt-2 px-3 py-1 rounded" style={{ color: "rgba(96,165,250,0.7)", background: "rgba(96,165,250,0.08)", border: "none", cursor: "pointer" }}>Retry</button>
+              </div>
+            )}
+            {!collectionLoading && !collectionError && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Could not load collection data.</p>}
             {collectionData && (() => {
               const sourceDisplayNames: Record<string, string> = {
                 "world_boss:procrastination-wyrm": "◆ The Procrastination Wyrm",
@@ -2798,7 +2811,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
 
               if (sortedSources.length === 0) {
-                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>No items in this category.</p>;
+                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>No items in this category.</p>;
               }
 
               return (
@@ -2809,7 +2822,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     return (
                       <div key={source}>
                         {/* Section header */}
-                        <div className="flex items-center justify-between mb-2 pb-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <div className="flex items-center justify-between mb-2 pb-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
                           <p className="text-xs font-bold" style={{ color: "rgba(255,255,255,0.7)" }}>
                             {getSourceDisplayName(source)}
                           </p>
@@ -2833,7 +2846,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                     <>
                                       <p className="text-xs capitalize" style={{ color }}>Legendary {item.slot}</p>
                                       {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
-                                      {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                                      {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
                                       {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                                       {item.stats && Object.keys(item.stats).length > 0 && (
                                         <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
@@ -2846,14 +2859,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                         </div>
                                       )}
                                       <div className="mt-1.5 pt-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Drops from: {sourceLabel}</p>
+                                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Drops from: {sourceLabel}</p>
                                         <p className="text-xs font-semibold mt-0.5" style={{ color: "#4ade80" }}>Obtained ✓</p>
                                       </div>
                                     </>
                                   ) : (
                                     <>
                                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Not yet discovered.</p>
-                                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>Drops from: {sourceLabel}</p>
+                                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>Drops from: {sourceLabel}</p>
                                     </>
                                   )}
                                 </>}
@@ -2878,8 +2891,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                   </>
                                 ) : (
                                   <>
-                                    <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
-                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.slot}</p>
+                                    <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>???</p>
+                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>{item.slot}</p>
                                   </>
                                 )}
                               </div>

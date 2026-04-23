@@ -133,7 +133,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
         <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>
           {templates.length}
         </span>
-        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
           {collapsed ? "▸" : "▾"}
         </span>
       </button>
@@ -172,13 +172,13 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
                 {t.checklist && (
                   <ul className="space-y-0.5">
                     {t.checklist.slice(0, 3).map((item, i) => (
-                      <li key={i} className="text-xs flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      <li key={i} className="text-xs flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>
                         <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: tc.color }} />
                         {item.text}
                       </li>
                     ))}
                     {t.checklist.length > 3 && (
-                      <li className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>+{t.checklist.length - 3} more steps</li>
+                      <li className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>+{t.checklist.length - 3} more steps</li>
                     )}
                   </ul>
                 )}
@@ -384,14 +384,14 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
         </p>
         <div className="flex gap-2 flex-wrap">
           <div className="flex flex-col gap-1">
-            <label className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Partner 1</label>
+            <label className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Partner 1</label>
             <select value={partner1} onChange={e => setPartner1(e.target.value)} className="text-xs px-2 py-1.5 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }}>
               <option value="">Select player…</option>
               {userIds.map(id => <option key={id} value={id}>{id}</option>)}
             </select>
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Partner 2</label>
+            <label className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Partner 2</label>
             <select value={partner2} onChange={e => setPartner2(e.target.value)} className="text-xs px-2 py-1.5 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }}>
               <option value="">Select player…</option>
               {userIds.map(id => <option key={id} value={id}>{id}</option>)}
@@ -423,7 +423,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
                   {isDone ? "✓ Co-op Quest Created" : isCreating ? "Creating…" : canCreate ? "Create Co-op Quest" : "Select both partners first"}
                 </button>
               ) : (
-                <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>
+                <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.35)" }}>Login to create</p>
               )}
             </div>
           );
@@ -570,7 +570,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
                   {isDone ? "✓ Quest Chain Created" : isCreating ? "Creating…" : "Start Quest Chain"}
                 </button>
               ) : (
-                <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>
+                <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.35)" }}>Login to create</p>
               )}
             </div>
           );
@@ -681,7 +681,7 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
         </div>
       ) : (
         <div className="rounded-xl p-3 mb-3" style={{ background: "#252525", border: "1px solid rgba(34,197,94,0.1)" }}>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No recurring household chores yet. Add some below.</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>No recurring household chores yet. Add some below.</p>
         </div>
       )}
 
@@ -697,7 +697,7 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
               style={{
                 background: adding === c.title ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.03)",
                 color: "rgba(255,255,255,0.4)",
-                border: "1px solid rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.11)",
                 cursor: adding ? "not-allowed" : "pointer",
               }}
             >
@@ -798,7 +798,7 @@ export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
         ))}
       </div>
       {!reviewApiKey && (
-        <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Log in to create social quests</p>
+        <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.35)" }}>Log in to create social quests</p>
       )}
     </section>
   );

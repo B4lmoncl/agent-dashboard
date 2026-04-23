@@ -126,7 +126,7 @@ function BannerPreviewCard({
       style={{
         background: `linear-gradient(160deg, ${isFeatured ? "#1c1328" : "#16123a"} 0%, #0c0c18 70%, ${isFeatured ? "#120e1e" : "#0e0e2a"} 100%)`,
         border: `1px solid ${isFeatured ? "rgba(167,139,250,0.3)" : "rgba(129,140,248,0.35)"}`,
-        boxShadow: `0 0 50px ${glowColor}, 0 0 20px ${isFeatured ? "rgba(167,139,250,0.06)" : "rgba(129,140,248,0.08)"}, inset 0 1px 0 rgba(255,255,255,0.03)`,
+        boxShadow: `0 0 50px ${glowColor}, 0 0 20px ${isFeatured ? "rgba(167,139,250,0.06)" : "rgba(129,140,248,0.08)"}, inset 0 1px 0 rgba(255,255,255,0.06)`,
         cursor: "pointer",
       }}
     >
@@ -270,7 +270,7 @@ function BannerPreviewCard({
         </div>
 
         {/* Lore text */}
-        <p className="text-sm italic leading-relaxed pr-32" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <p className="text-sm italic leading-relaxed pr-32" style={{ color: "rgba(255,255,255,0.45)" }}>
           {banner.lore}
         </p>
 
@@ -509,7 +509,7 @@ function BannerPullModal({
               </div>
               <button onClick={onClose} className="btn-close" aria-label="Schließen" style={{ position: "absolute", top: 12, right: 12, zIndex: 10 }}>×</button>
             </div>
-            <p className="text-sm italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.3)", maxWidth: portraitSrc ? "55%" : undefined }}>
+            <p className="text-sm italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.45)", maxWidth: portraitSrc ? "55%" : undefined }}>
               {banner.lore}
             </p>
           </div>
@@ -517,7 +517,7 @@ function BannerPullModal({
 
         <div className="px-5 pb-5 space-y-4">
           {/* Cost / Balance */}
-          <div data-feedback-id="gacha-view.banner-modal.cost-row" className="flex items-center gap-3 rounded-xl px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div data-feedback-id="gacha-view.banner-modal.cost-row" className="flex items-center gap-3 rounded-xl px-3 py-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)" }}>
             <div className="flex-1">
               <p className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Cost per pull</p>
               <p className="text-sm font-mono font-bold" style={{ color: ci.color }}>{banner.costSingle} {ci.label}</p>
@@ -552,7 +552,7 @@ function BannerPullModal({
 
           {/* Pity progress bar — always visible */}
           {pity && (
-            <div className="rounded-lg px-3 py-2 mt-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-lg px-3 py-2 mt-1" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
               <div className="flex items-center justify-between text-xs mb-1">
                 <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.45)" }}>
                   {inSoftPity ? "Soft Pity Active" : "Pity Progress"}
@@ -759,7 +759,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         <div className="text-center py-16 space-y-3">
           <img src="/images/icons/vault-of-fate.png" alt="" style={{ width: 96, height: 96, imageRendering: "auto", margin: "0 auto", display: "block", filter: "drop-shadow(0 0 12px rgba(167,139,250,0.6)) drop-shadow(0 0 30px rgba(167,139,250,0.3))" }} onError={e => { e.currentTarget.style.display = "none"; }} />
           <p className="text-base font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>The Vault of Fate</p>
-          <p className="text-sm italic max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.25)" }}>
+          <p className="text-sm italic max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.4)" }}>
             A circular chamber with a single, floating astrolabe at its center. Sign in to step before the Wheel of Stars.
           </p>
         </div>
@@ -796,7 +796,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
             data-feedback-id="gacha-view.history-btn"
             onClick={loadHistory}
             className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
-            style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
           >
             Pull History
           </button>
@@ -804,7 +804,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
             data-feedback-id="gacha-view.pool-btn"
             onClick={() => setPoolOpen(true)}
             className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
-            style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
           >
             Item Pool
           </button>
@@ -865,7 +865,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
             <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Schließen">✕</button>
           </div>
           {history.length === 0 ? (
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No pulls yet.</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>No pulls yet.</p>
           ) : (
             <div className="space-y-2">
               {history.slice(0, 50).map((h, i) => {
@@ -923,7 +923,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
                               : <span className="text-sm font-medium relative z-10" style={{ color: "rgba(255,255,255,0.4)" }}>{item.name?.slice(0, 2)}</span>
                           }
                           <span className="text-sm font-semibold leading-tight relative z-10" style={{ color: cfg.color }}>{item.name}</span>
-                          <span className="text-xs uppercase font-medium relative z-10" style={{ color: "rgba(255,255,255,0.3)" }}>
+                          <span className="text-xs uppercase font-medium relative z-10" style={{ color: "rgba(255,255,255,0.45)" }}>
                             {item.type === "weapon" ? "Weapon" : item.type === "armor" ? "Armor" : item.type === "consumable" ? "Consumable" : "Artifact"}
                           </span>
                         </button>

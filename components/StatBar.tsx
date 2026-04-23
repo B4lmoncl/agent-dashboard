@@ -30,13 +30,13 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
 
   return (
     <div
-      className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative h-full stat-card-depth crystal-breathe"
+      className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative h-full stat-card-depth crystal-breathe card-floor-border"
       style={{ background: "#181818", border: "1px solid rgba(255,68,68,0.15)", cursor: onClick ? "pointer" : "default", "--glow-color": `${accent}18` } as React.CSSProperties}
       onClick={onClick}
     >
       {inline ? (
         <>
-          <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
+          <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>{label}</p>
           <div className="flex items-baseline gap-2">
             <span className={`text-xl font-bold font-mono${flashClass ? ` ${flashClass}` : ""}`} style={{ color: accent }}>{typeof value === "number" ? <CountUp value={value} duration={700} /> : value}</span>
             {value2 && (
@@ -62,7 +62,7 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
       ) : (
         <>
           <div className="flex items-center gap-1">
-            <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
+            <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>{label}</p>
           </div>
           <div className="flex items-baseline gap-2">
             <p className={`text-2xl font-bold${flashClass ? ` ${flashClass}` : ""}`} style={{ color: accent }}>{typeof value === "number" ? <CountUp value={value} duration={700} /> : value}</p>

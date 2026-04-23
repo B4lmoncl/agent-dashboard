@@ -145,10 +145,10 @@ export default function TalentTreeView({
         _toast({ type: "flavor", icon: "/images/icons/nav-character.png", message: `Talent: ${d.node.name}`, sub: d.node.effectDesc || "Freigeschaltet." });
         fetchTalents();
       } else {
-        _toast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Network error" });
     } finally {
       setAllocating(false);
     }
@@ -169,10 +169,10 @@ export default function TalentTreeView({
         _toast({ type: "flavor", icon: "◆", message: "Talent entfernt" });
         fetchTalents();
       } else {
-        _toast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Network error" });
     } finally {
       setAllocating(false);
     }
@@ -193,10 +193,10 @@ export default function TalentTreeView({
         setConfirmReset(false);
         fetchTalents();
       } else {
-        _toast({ type: "error", message: d.error || "Fehler" });
+        _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Netzwerkfehler" });
+      _toast({ type: "error", message: "Network error" });
     } finally {
       setResetting(false);
     }
@@ -267,14 +267,14 @@ export default function TalentTreeView({
         {/* Header skeleton */}
         <div className="flex items-center justify-between mb-2">
           <div className="skeleton-pulse h-5 w-36 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
-          <div className="skeleton-pulse h-4 w-24 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+          <div className="skeleton-pulse h-4 w-24 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
         </div>
         {/* SVG circle skeleton */}
         <div className="flex justify-center">
-          <div className="skeleton-pulse rounded-full" style={{ width: 320, height: 320, background: "rgba(255,255,255,0.04)" }} />
+          <div className="skeleton-pulse rounded-full" style={{ width: 320, height: 320, background: "rgba(255,255,255,0.06)" }} />
         </div>
         {/* Node detail panel skeleton */}
-        <div className="skeleton-pulse rounded-lg h-24" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="skeleton-pulse rounded-lg h-24" style={{ background: "rgba(255,255,255,0.06)" }} />
       </div>
     );
   }
@@ -456,6 +456,24 @@ export default function TalentTreeView({
               });
             })}
 
+            {/* Energy flow particles traveling along active connections */}
+            {data.nodes.map(n => {
+              const pos = nodePositions.get(n.id);
+              if (!pos || !n.requires.length) return null;
+              return n.requires.map(reqId => {
+                const reqPos = nodePositions.get(reqId);
+                if (!reqPos || !data.allocated[n.id] || !data.allocated[reqId]) return null;
+                const col = getNodeThemeColor(n.id, data.meta.themes);
+                return [0, 1].map(pi => (
+                  <circle key={`flow-${n.id}-${reqId}-${pi}`} r="2" fill={col} opacity="0">
+                    <animate attributeName="cx" values={`${reqPos.x};${pos.x}`} dur="2.5s" begin={`${pi * 1.25}s`} repeatCount="indefinite" />
+                    <animate attributeName="cy" values={`${reqPos.y};${pos.y}`} dur="2.5s" begin={`${pi * 1.25}s`} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.8;0.8;0" dur="2.5s" begin={`${pi * 1.25}s`} repeatCount="indefinite" />
+                  </circle>
+                ));
+              });
+            })}
+
             {/* Particle effects on allocated nodes — slow rising sparkles via SMIL */}
             {data.nodes.filter(n => !!data.allocated[n.id]).map(n => {
               const pos = nodePositions.get(n.id);
@@ -597,7 +615,7 @@ export default function TalentTreeView({
             <div
               className="rounded-xl p-4"
               style={{
-                background: "rgba(255,255,255,0.03)",
+                background: "rgba(255,255,255,0.05)",
                 border: `1px solid ${getNodeThemeColor(selected.id, data.meta.themes)}22`,
               }}
             >
@@ -780,7 +798,7 @@ export default function TalentTreeView({
                               _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();
                             }
-                          } catch { _toast({ type: "error", message: "Netzwerkfehler" }); }
+                          } catch { _toast({ type: "error", message: "Network error" }); }
                         });
                       }}
                       className="text-xs px-3 py-1.5 rounded font-semibold"
@@ -795,7 +813,7 @@ export default function TalentTreeView({
               )}
             </div>
           ) : (
-            <div className="rounded-xl p-6 text-center" style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div className="rounded-xl p-6 text-center" style={{ background: "rgba(255,255,255,0.06)" }}>
               <p className="text-xs text-w20">Wähle einen Knoten im Baum, um Details zu sehen</p>
               <div className="flex flex-col gap-2 mt-4">
                 <div className="flex items-center gap-2 text-xs text-w25">
@@ -807,7 +825,7 @@ export default function TalentTreeView({
                   <span>Freigeschaltet</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-w25">
-                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }} />
+                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }} />
                   <span>Gesperrt</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-w25">
@@ -820,7 +838,7 @@ export default function TalentTreeView({
 
           {/* Allocated talents summary */}
           {data.totalSpent > 0 && (
-            <div className="mt-4 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div className="mt-4 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.06)" }}>
               <p className="text-xs font-semibold text-w30 uppercase tracking-widest mb-2">Aktive Talente</p>
               <div className="flex flex-wrap gap-1.5">
                 {data.nodes.filter(n => !!data.allocated[n.id]).map(n => (
@@ -853,7 +871,7 @@ export default function TalentTreeView({
           <div className="rounded-2xl p-6 max-w-sm w-full" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
             <h3 className="text-sm font-bold text-w70 mb-2">Talente zurücksetzen?</h3>
             <p className="text-xs text-w40 mb-4">
-              Kosten: <span className="font-bold text-yellow-400">{data.totalSpent * 50}g</span> ({data.totalSpent} Knoten x 50g)
+              Kosten: <span className="font-bold text-yellow-400">500g + 50 Essenz</span> ({data.totalSpent} Knoten werden zurückgesetzt)
             </p>
             <div className="flex gap-2">
               <button

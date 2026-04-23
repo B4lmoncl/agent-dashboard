@@ -98,10 +98,10 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
             <div className="text-right">
               <Tip k="streak"><p className="text-sm font-bold" style={{ color: "#fbbf24", cursor: "help" }}>{streakDays} Day Streak</p></Tip>
               <TipCustom title="Monatlicher Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anzahl der beanspruchten Tagesbelohnungen in diesem Monat.</p>}>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{claimedThisMonth}/{daysInMonth} this month</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>{claimedThisMonth}/{daysInMonth} this month</p>
               </TipCustom>
             </div>
-            <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg transition-all hover:bg-w8" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
+            <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg transition-all hover:bg-w8" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}>ESC</button>
           </div>
         </div>
         {!alreadyClaimedToday && apiKey ? (
@@ -147,7 +147,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               {/* Day labels */}
               <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 mb-1">
                 {dayLabels.map(label => (
-                  <div key={label} className="text-center text-xs font-semibold py-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <div key={label} className="text-center text-xs font-semibold py-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>
                     {label}
                   </div>
                 ))}

@@ -40,7 +40,7 @@ function Stars({ earned, max = 3, animated = false }: { earned: number; max?: nu
             key={i}
             className={isEarned && animated ? "star-earned" : ""}
             style={{
-              color: isEarned ? "#fbbf24" : "rgba(255,255,255,0.22)",
+              color: isEarned ? "#fbbf24" : "rgba(255,255,255,0.35)",
               fontSize: 16,
               display: "inline-block",
               animationDelay: animated && isEarned ? `${i * 0.15}s` : undefined,
@@ -77,7 +77,7 @@ function WeeklyResetTimer() {
   }, []);
 
   return (
-    <span className="text-xs px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)" }}>
+    <span className="text-xs px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.35)" }}>
       Resets in {timeLeft}
     </span>
   );
@@ -114,7 +114,7 @@ function SternenpfadView({
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{challenge.name}</h3>
             <p className="text-xs text-w30">Week {challenge.weekId}</p>
-            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>Die Sterne messen dich. Nicht dein Level — dich.</p>
+            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.35)" }}>Die Sterne messen dich. Nicht dein Level — dich.</p>
           </div>
         </div>
         <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star.</p></>}>
@@ -165,7 +165,7 @@ function SternenpfadView({
                     {claimed ? "✓" : claimingMilestone === ms.stars ? "…" : ms.stars}
                   </div>
                   <span className="text-xs font-bold" style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{ms.label}</span>
-                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.22)", fontSize: 12 }}>{ms.reward}</span>
+                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.38)", fontSize: 12 }}>{ms.reward}</span>
                   {canClaim && <span className="text-xs font-semibold" style={{ color: "#fbbf24", fontSize: 12 }}>Claim!</span>}
                 </button>
               );
@@ -443,7 +443,7 @@ function ExpeditionView({
       </div>
 
       {/* Global progress */}
-      <div className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <div className="flex items-center justify-between text-xs mb-2">
           <span className="font-semibold text-w50">Guild Progress</span>
           <span className="font-bold" style={{ color: "#4ade80" }}>{expedition.progress} Quests</span>
@@ -493,7 +493,7 @@ function ExpeditionView({
         const msgIdx = pct >= 0.75 ? 2 : pct >= 0.50 ? 1 : pct >= 0.25 ? 0 : -1;
         if (msgIdx < 0 || !msgs[msgIdx]) return null;
         return (
-          <p className="text-xs italic text-center py-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <p className="text-xs italic text-center py-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>
             &ldquo;{msgs[msgIdx]}&rdquo;
           </p>
         );
@@ -548,7 +548,7 @@ function ExpeditionView({
                       {cp.isBonus && <span className="ml-1 text-xs text-w20">(Bonus)</span>}
                     </p>
                     {cp.flavor && (cp.reached || isCurrent) && (
-                      <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.4 }}>
+                      <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.42)", lineHeight: 1.4 }}>
                         {cp.flavor}
                       </p>
                     )}
@@ -597,7 +597,7 @@ function ExpeditionView({
       </div>
 
       {/* Player contribution + leaderboard */}
-      <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <div className="flex items-center justify-between mb-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-w35">Contributions</span>
           <span className="text-xs font-bold" style={{ color: "#4ade80" }}>
@@ -632,7 +632,7 @@ function ExpeditionView({
                         <span className="text-xs ml-1" style={{ color: "#f87171", fontSize: 12 }}>&#9660;</span>
                       )}
                     </div>
-                    <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
+                    <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.06)" }}>
                       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: aboveFair ? "#4ade80" : "#f8717180" }} />
                       {/* Fair share target line */}
                       <TipCustom title="Fair Share" icon="◆" accent="#fbbf24" body={<p>Each player&apos;s fair share is <strong>{fairShare} quests</strong>. Active players compensate for inactive ones.</p>}>
@@ -871,8 +871,8 @@ export default function ChallengesView({
             claimingMilestone={claimingMilestone}
           />
         ) : (
-          <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>★</p>
+          <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.06)" }}>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>★</p>
             <p className="text-sm font-bold mb-1 text-w25">No Star Path active</p>
             <p className="text-xs text-w25">{playerName ? "The Star Path resets every Monday. A new challenge awaits." : "Log in to view the Star Path."}</p>
           </div>
@@ -887,8 +887,8 @@ export default function ChallengesView({
             claiming={claimingCheckpoint}
           />
         ) : (
-          <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
-            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>▲</p>
+          <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.06)" }}>
+            <p className="text-2xl mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>▲</p>
             <p className="text-sm font-bold mb-1 text-w25">No Expedition active</p>
             <p className="text-xs text-w25">The Expedition resets every Monday.</p>
           </div>

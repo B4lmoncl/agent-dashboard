@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useModalBehavior } from "./ModalPortal";
 
 interface ClassDef {
@@ -52,8 +52,13 @@ const PET_EMOJI: Record<string, string> = {
 };
 
 export default function OnboardingWizard({ onComplete, onClose }: OnboardingWizardProps) {
-  useModalBehavior(true, onClose);
   const [step, setStep] = useState(0);
+  // Only allow ESC/backdrop dismiss on step 0 (before any data is entered).
+  // After step 0, closing would lose registration progress.
+  const safeClose = useCallback(() => {
+    if (step === 0) onClose();
+  }, [step, onClose]);
+  useModalBehavior(true, safeClose);
 
   // Step 0 fields
   const [name, setName] = useState("");
@@ -240,7 +245,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   const btnDisabled: React.CSSProperties = {
     ...btnPrimary,
     background: "rgba(255,255,255,0.07)",
-    color: "rgba(255,255,255,0.3)",
+    color: "rgba(255,255,255,0.45)",
     cursor: "not-allowed",
   };
 
@@ -248,7 +253,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.92)" }}
-      onClick={onClose}
+      onClick={e => e.stopPropagation()}
     >
       <div
         className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden"
@@ -268,7 +273,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.6)" }}>
               {["Create Hero", "About You", "Choose Path", "Status", "Companion", "Summary"][step]}
             </span>
-            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{step + 1}/6</span>
+            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{step + 1}/6</span>
           </div>
           <div className="flex items-center gap-1.5">
             {[0, 1, 2, 3, 4, 5].map(i => (
@@ -319,7 +324,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   onChange={e => setEmail(e.target.value)}
                   placeholder="your@email.com"
                 />
-                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>Required for password recovery</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Required for password recovery</p>
               </div>
               <div>
                 <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Password</label>
@@ -464,7 +469,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 </button>
               ))}
               {classes.length === 0 && (
-                <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.3)" }}>Loading classes...</p>
+                <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.45)" }}>Loading classes...</p>
               )}
             </div>
 
@@ -502,7 +507,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
 
             {/* Custom class form */}
             {showCustomClass && !customClassSubmitted && (
-              <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)" }}>
+              <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Submit Custom Class</p>
                 <div>
                   <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>What do you do for a living?</label>
@@ -539,7 +544,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   >
                     Submit Class
                   </button>
-                  <button onClick={() => setShowCustomClass(false)} className="text-xs px-3 py-1.5 rounded-lg" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <button onClick={() => setShowCustomClass(false)} className="text-xs px-3 py-1.5 rounded-lg" style={{ color: "rgba(255,255,255,0.45)" }}>
                     Cancel
                   </button>
                 </div>
@@ -682,7 +687,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                           </span>
                         ))}
                       </div>
-                      <p className="text-xs mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>These quests will be created daily/weekly for you.</p>
+                      <p className="text-xs mt-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>These quests will be created daily/weekly for you.</p>
                     </div>
                   ) : null;
                 })()}
@@ -776,7 +781,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             </div>
 
             {/* Summary card */}
-            <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
               <div className="flex justify-between text-xs">
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Name</span>
                 <span style={{ color: "#f0f0f0", fontWeight: 600 }}>{name}</span>
@@ -824,19 +829,19 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             <div className="rounded-xl p-4 space-y-2.5" style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.12)" }}>
               <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(251,191,36,0.6)" }}>The Basics</p>
               <div className="grid grid-cols-2 gap-2">
-                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <p className="text-xs font-bold" style={{ color: "#a78bfa" }}>Quests</p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Your real tasks, gamified. Claim, do, complete. XP and Gold follow.</p>
                 </div>
-                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <p className="text-xs font-bold" style={{ color: "#f97316" }}>The Forge</p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Complete quests to heat the forge. Hotter forge = better rewards. Cold forge judges you.</p>
                 </div>
-                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <p className="text-xs font-bold" style={{ color: "#ef4444" }}>Streaks</p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>One quest a day keeps the streak alive. Miss a day and the flame remembers.</p>
                 </div>
-                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <p className="text-xs font-bold" style={{ color: "#3b82f6" }}>The Tower</p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Five floors, each with its own rooms. The higher you climb, the more opens up.</p>
                 </div>

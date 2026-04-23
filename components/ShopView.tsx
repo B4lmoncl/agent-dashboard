@@ -146,7 +146,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
       <div className="flex flex-col items-center justify-center py-16 space-y-3">
         <span className="text-4xl">○</span>
         <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>The Bazaar</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Sign in to enter the Bazaar and spend your hard-earned gold!</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Sign in to enter the Bazaar and spend your hard-earned gold!</p>
       </div>
     );
   }
@@ -158,7 +158,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
       <div className="flex items-center gap-3 flex-wrap">
         <div>
           <Tip k="bazaar" heading><span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span></Tip>
-          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Handel und Komfort. Jeder Held braucht eine Pause zwischen den Quests.</p>
+          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>Handel und Komfort. Jeder Held braucht eine Pause zwischen den Quests.</p>
         </div>
         <div className="flex items-center gap-2 ml-auto" style={{ textShadow: "0 0 8px rgba(245,158,11,0.3)" }}>
           <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
@@ -217,7 +217,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
 
       {/* Self-Care Rewards */}
       <div>
-        <Tip k="bazaar"><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>Self-Care Rewards</p></Tip>
+        <Tip k="bazaar"><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>Self-Care Rewards</p></Tip>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {SHOP_ITEMS_LIST.filter(i => !i.category || i.category === "self-care").map(item => {
             const canAfford = gold >= item.cost;
@@ -226,7 +226,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
               <div
                 key={item.id}
                 className={`flex items-center gap-3 p-3 rounded-xl${glowColor ? " crystal-breathe" : ""}`}
-                style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)", ...(glowColor ? { ["--glow-color" as string]: glowColor } : {}) }}
+                style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.11)", ...(glowColor ? { ["--glow-color" as string]: glowColor } : {}) }}
               >
                 {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
                 <div className="flex-1 min-w-0">
@@ -255,7 +255,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
       </div>
 
       {/* ─── Currency Shops (Sternentaler, Gildentaler, Mondstaub) ─── */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 16 }}>
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.10)", paddingTop: 16 }}>
         <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>Specialty Shops</p>
         {/* Tab bar */}
         <div className="flex gap-1 mb-3">
@@ -318,8 +318,8 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
                     {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 36, height: 36, imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xl flex-shrink-0" style={{ color: shopConf.color }}>◆</span>}
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold" style={{ color: shopConf.color }}>{item.name}</p>
-                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{item.desc}</p>
-                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{item.desc}</p>
+                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
                         {item.type === "frame" ? "Frame" : item.type === "title" ? "Title" : item.type === "boost" ? "Boost" : item.type === "cosmetic" ? "Cosmetic" : "Item"}
                       </p>
                     </div>

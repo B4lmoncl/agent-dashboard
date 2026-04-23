@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Quest Hall / Agent Dashboard** (v1.6.0) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
+**Quest Hall / Agent Dashboard** (v2.0.0 Open Beta) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
 
 ## Game Design References (Primäre Vorbilder)
 
@@ -71,14 +71,14 @@ cd electron-quest-app && npm install && npm start
 
 ```
 app/                  # Next.js app directory
-  page.tsx            # Main dashboard component (~2350 lines)
-  types.ts            # Shared TypeScript interfaces (~725 lines)
-  utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~350 lines)
+  page.tsx            # Main dashboard component (~3300 lines)
+  types.ts            # Shared TypeScript interfaces (~764 lines)
+  utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~367 lines)
   config.ts           # UI configuration constants
-  globals.css         # Tailwind + CSS utilities + animations (~1165 lines)
+  globals.css         # Tailwind + CSS utilities + animations (~2150 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (58 files, ~28k lines)
+components/           # React UI components (62 files, ~37k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -99,22 +99,27 @@ components/           # React UI components (58 files, ~28k lines)
   TavernView.tsx      # The Hearth: rest mode with streak/forge freeze
   RiftView.tsx        # The Rift: timed dungeon quest chains
   DungeonView.tsx     # The Undercroft: cooperative group dungeons (lazy-loaded)
-  ...                 # 27 more components
+  HighstormVFX.tsx    # Stormlight-inspired storm VFX on boss/rift events
+  ToastStack.tsx      # Toast notification system with item hover support
+  ItemTooltip.tsx     # Item tooltips (exports ItemHoverCard + ItemTooltipBody)
+  ...                 # 39 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
-lib/                  # Backend business logic (8 files, ~3950 lines)
-  state.js            # Central state, Maps, JSON persistence (~1230 lines)
-  helpers.js          # Utility functions, paginate() (~1690 lines)
+  useFirstVisit.ts    # First-visit detection hook
+lib/                  # Backend business logic (9 files, ~5000 lines)
+  state.js            # Central state, Maps, JSON persistence (~1430 lines)
+  helpers.js          # Utility functions, paginate() (~2380 lines)
   auth.js             # JWT, refresh tokens, API key auth
   quest-catalog.js    # Quest template seeding
   npc-engine.js       # NPC rotation & spawning
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (31 files, ~14000 lines)
-  quests.js           # Quest CRUD, claim, complete (~855 lines)
-  habits-inventory.js # Rituals, gear, inventory, effects (~880 lines)
-  config-admin.js     # Game config, leaderboard, /api/dashboard batch (~607 lines)
+  email.js            # Email utilities
+routes/               # Express API routes (32 files, ~18600 lines)
+  quests.js           # Quest CRUD, claim, complete (~995 lines)
+  habits-inventory.js # Rituals, gear, inventory, effects (~1100 lines)
+  config-admin.js     # Game config, leaderboard, /api/dashboard batch (~1000 lines)
   docs.js             # OpenAPI/Swagger documentation (~650 lines)
   agents.js           # Agent CRUD & status
   gacha.js            # Banner pulls with pull lock, pity tracking
@@ -125,7 +130,7 @@ routes/               # Express API routes (31 files, ~14000 lines)
   campaigns.js        # Campaign quest chains
   currency.js         # Multi-currency system, daily bonus
   integrations.js     # GitHub webhook (HMAC verified), catalog API
-  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedekunst
+  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedefieber
   challenges-weekly.js # Sternenpfad: 3-stage solo weekly challenges with star ratings
   expedition.js       # Expedition: cooperative weekly challenge with shared checkpoints
   npcs-misc.js        # NPC endpoints, feedback (admin-only), SPA fallback
@@ -137,15 +142,22 @@ routes/               # Express API routes (31 files, ~14000 lines)
   gems.js             # Gem/Socket system: 6 gem types, 5 tiers, socketing/upgrading
   dungeons.js         # Dungeon system: async coop group dungeons (2-4 players)
   sworn-bonds.js      # Sworn Bonds: 1-on-1 pact, weekly objectives, contribution tracking
+  talent-tree.js      # Passive Talent Tree: allocate/deallocate/reset
+  adventure-tome.js   # Adventure Tome: per-floor completionist tracker
+  codex.js            # Codex system: knowledge entries, unlockable lore
+  enchanting.js       # Enchanting: D3-style stat reroll (Mystic)
+  kanais-cube.js      # Kanai's Cube: extract/equip legendary powers
+  mail.js             # In-game mail system
+  schmiedekunst.js    # Schmiedekunst: salvage, transmute
 public/
-  data/               # Game template data (43 JSON files)
-  images/             # Pixel art assets (~284 files)
+  data/               # Game template data (56 JSON files)
+  images/             # Pixel art assets (~885 files)
     portraits/        # NPC and character portraits
     companions/       # Companion icons
     npcs/             # NPC portraits
-electron-quest-app/   # Electron desktop companion app (10 files)
-scripts/              # Asset generation & data validation (5 files)
-server.js             # Express entry point, boot sequence (~322 lines)
+electron-quest-app/   # Electron desktop companion app (8 files)
+scripts/              # Asset generation & data validation (10 files)
+server.js             # Express entry point, boot sequence (~337 lines)
 ```
 
 ## Architecture
@@ -185,7 +197,7 @@ Inspired by WoW Classic (item budget system, source exclusivity, set design) and
 
 **Rarity determines HOW MANY stats roll.** A level 30 common and a level 30 legendary roll from the **same value ranges** — the legendary just has more affix slots.
 
-**Level determines the VALUE RANGES** of individual affixes. Higher level = higher per-affix values, but scaling is deliberately flat (small numbers matter because all multipliers stack multiplicatively).
+**Level determines the VALUE RANGES** of individual affixes. Higher level = higher per-affix values, but scaling is deliberately flat (small numbers matter because multipliers use a D3-style bucket system — see Multiplier Stacking Rules below).
 
 ### Affix Slot Counts by Rarity (D3-style)
 
@@ -223,7 +235,7 @@ These ranges apply **identically regardless of rarity**. In practice, items use 
 
 ### Legendary Effect Value Ranges
 
-Legendary effects are multiplicative with other systems — keep values **small**.
+Legendary effects are **additive** with other equipment effects within their bucket, then **multiplicative** between buckets — keep values **small**.
 
 | Item Level | Effect % Range | Example |
 |-----------|---------------|---------|
@@ -290,6 +302,35 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 4. Does the affix pool have 2–3 primary and 1–3 minor options (variety for rolling)?
 5. Is the item source-appropriate (no legendaries in general pool, no commons in raids)?
 6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 7-slot build?
+
+## Multiplier Stacking Rules (D3-Style Buckets)
+
+Inspired by Diablo 3's damage formula: **additive within a bucket, multiplicative between buckets.** This prevents exponential scaling from stacking the same bonus type while rewarding diversification across categories.
+
+### XP Formula
+
+```
+finalXP = xpBase × forgeBucket × gearBucket × companionBucket × equipBucket × buffBucket × situationalBucket × procMulti × hoardingMalus × dailyDR + restedBonus
+```
+
+| Bucket | Contains (additive within) | Example |
+|--------|---------------------------|---------|
+| **Forge** | Forge temp bonus + Kraft stat bonus | 1 + 0.25 + 0.15 = 1.40 |
+| **Gear** | Gear tier XP% + Armor trait + Codex XP | 1 + 0.05 + 0.07 + 0.05 = 1.17 |
+| **Companion** | Companion achievements + Bond level | 1 + 0.06 + 0.04 = 1.10 |
+| **Equipment Effects** | Passive item XP% + Legendary xpBonus | 1 + 0.10 + 0.05 = 1.15 |
+| **Buffs** | All active buffs (potions, feast, night, berserker, weekend) | 1 + 0.10 + 0.25 + 1.0 = 2.35 |
+| **Situational** | Variety bonus + Chain bonus + Nth bonus | 1 + 0.15 + 0.10 + 0.05 = 1.30 |
+| **Procs** | Crit (2x) × Double-quest (2x) × Gamble (2x/0.5x) | Each is its own multiplier (binary) |
+| **Penalties** | Hoarding malus × Daily DR | Multiplicative debuffs |
+
+### Gold Formula
+
+Same bucket pattern. Forge bucket (forge + weisheit + workshop) is additive within, then multiplicative with streak gold and legendary gold bonuses.
+
+### Key Rule
+
+When adding a new XP/Gold modifier: **identify which bucket it belongs to and ADD it** (`+= bonus`), don't multiply. Only create a NEW bucket if the bonus comes from a genuinely different game system.
 
 ## UI Design Guidelines
 
@@ -377,9 +418,14 @@ These rules ensure visual consistency across all features. Follow them for EVERY
 |----------|---------|
 | `API_KEY` / `API_KEYS` | API authentication keys |
 | `MASTER_KEY` | Admin operations key |
+| `JWT_SECRET` | JWT signing secret (auto-generated if not set) |
+| `JWT_REFRESH_SECRET` | JWT refresh token secret (auto-generated if not set) |
 | `PORT` | Server port (default: 3001) |
 | `NODE_ENV` | `production` or `development` |
 | `GITHUB_WEBHOOK_SECRET` | Webhook HMAC-SHA256 verification |
+| `AGENTMAIL_API_KEY` | AgentMail API key for password reset & verification |
+| `AGENTMAIL_FROM` | AgentMail sender address |
+| `BASE_URL` | Public base URL for email links |
 
 Template: `.env.example`
 
@@ -444,18 +490,18 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 
 | File | Role |
 |------|------|
-| `app/page.tsx` | Main dashboard UI (~2350 lines) |
-| `app/types.ts` | All TypeScript interfaces (~725 lines) |
+| `app/page.tsx` | Main dashboard UI (~3300 lines) |
+| `app/types.ts` | All TypeScript interfaces (~764 lines) |
 | `app/utils.ts` | Fetch helpers, `fetchDashboard()` batch, level system |
-| `app/globals.css` | CSS utility classes + animations (~1165 lines) |
-| `lib/state.js` | State management, Maps, persistence (~1230 lines) |
-| `lib/helpers.js` | Shared utilities, `paginate()` (~1690 lines) |
+| `app/globals.css` | CSS utility classes + animations (~2150 lines) |
+| `lib/state.js` | State management, Maps, persistence (~1430 lines) |
+| `lib/helpers.js` | Shared utilities, `paginate()` (~2380 lines) |
 | `lib/auth.js` | JWT auth, refresh tokens, API key resolution |
 | `server.js` | Express entry, boot sequence, memory pruning |
-| `routes/quests.js` | Core quest API (~855 lines) |
-| `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch |
-| `routes/habits-inventory.js` | Rituals, gear, inventory (~880 lines) |
-| `public/data/*.json` | Game data templates (43 files) |
+| `routes/quests.js` | Core quest API (~995 lines) |
+| `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch (~1000 lines) |
+| `routes/habits-inventory.js` | Rituals, gear, inventory (~1100 lines) |
+| `public/data/*.json` | Game data templates (56 files) |
 | `public/data/titles.json` | Title definitions with conditions |
 | `public/data/gearTemplates.json` | Gear items, set bonuses, legendary effects |
 | `public/data/professions.json` | Crafting professions, materials, recipes |
@@ -498,6 +544,14 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 | `components/AdventureTomeView.tsx` | Abenteuerbuch UI: floor cards, objectives, milestone claims |
 | `routes/sworn-bonds.js` | Sworn Bonds: 1-on-1 pact, weekly objectives, chest claims, contribution tracking |
 | `public/data/talentTree.json` | 44 talent nodes, 3 rings, connections, choice groups, archetypes |
+| `components/HighstormVFX.tsx` | Stormlight-inspired storm VFX on boss/rift events |
+| `components/ToastStack.tsx` | Toast notification system with item hover support |
+| `components/ItemTooltip.tsx` | Item tooltips (exports ItemHoverCard + ItemTooltipBody) |
+| `routes/codex.js` | Codex system: knowledge entries, unlockable lore |
+| `routes/enchanting.js` | Enchanting: D3-style stat reroll (Mystic) |
+| `routes/kanais-cube.js` | Kanai's Cube: extract/equip legendary powers |
+| `routes/schmiedekunst.js` | Schmiedekunst: salvage, transmute |
+| `routes/mail.js` | In-game mail system |
 
 ## Pixellab Asset Generation Rules
 

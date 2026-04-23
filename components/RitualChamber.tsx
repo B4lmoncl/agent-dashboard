@@ -13,7 +13,7 @@ import { Tip } from "@/components/GameTooltip";
 
 // ─── Ritual / Vow Commitment Tiers ───────────────────────────────────────────
 const COMMITMENT_TIERS = [
-  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.25)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
+  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.4)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
   { id: "spark",    label: "Spark",    days: 7,   color: "#94a3b8",                bonusGold: 3,  bonusXp: 5,  flavorShort: "First spark" },
   { id: "flame",    label: "Flame",    days: 21,  color: "#cd7f32",                bonusGold: 7,  bonusXp: 10, flavorShort: "Habit forms" },
   { id: "ember",    label: "Ember",    days: 60,  color: "#f59e0b",                bonusGold: 13, bonusXp: 20, flavorShort: "Deeply anchored" },
@@ -64,6 +64,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   const [extendRitualId, setExtendRitualId] = useState<string | null>(null);
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
   const [recommitRitualId, setRecommitRitualId] = useState<string | null>(null);
+  const [ritualError, setRitualError] = useState<string | null>(null);
+  useEffect(() => { if (ritualError) { const t = setTimeout(() => setRitualError(null), 5000); return () => clearTimeout(t); } }, [ritualError]);
 
   // ─── Habit System ─────────────────────────────────────────────────────────
   interface Habit { id: string; title: string; positive: boolean; negative: boolean; color: string; score: number; playerId: string; createdAt: string; }
@@ -329,6 +331,9 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
   return (
     <>
       <TutorialMomentBanner viewId="rituals" playerLevel={1} />
+      {ritualError && (
+        <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>{ritualError}</p>
+      )}
       <div data-feedback-id="ritual-chamber" className="section-ritual tab-content-enter">
         {isResting && (
           <div className="mb-3 px-3 py-2 rounded-lg text-xs" style={{ background: "rgba(217,119,6,0.08)", color: "#d97706", border: "1px solid rgba(217,119,6,0.2)" }}>
@@ -378,7 +383,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         )}
         {/* ─── Habits Section ─── */}
         {playerName && reviewApiKey && (
-          <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
             <button
               onClick={() => setHabitsOpen(!habitsOpen)}
               className="flex items-center justify-between w-full mb-3"
@@ -386,9 +391,9 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             >
               <div className="flex items-center gap-2">
                 <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Habits</span>
-                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{habits.length}</span>
+                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{habits.length}</span>
               </div>
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{habitsOpen ? "▲" : "▼"}</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{habitsOpen ? "▲" : "▼"}</span>
             </button>
 
             {habitsOpen && (
@@ -428,7 +433,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     <div
                       key={h.id}
                       className="flex items-center gap-2 px-3 py-2 rounded-lg"
-                      style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${color}25` }}
+                      style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${color}25` }}
                     >
                       <button
                         onClick={() => scoreHabit(h.id, "up")}
@@ -452,7 +457,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         onClick={() => setConfirmDeleteHabitId(h.id)}
                         title="Delete habit (permanent)"
                         className="text-xs w-7 h-7 rounded flex items-center justify-center"
-                        style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+                        style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.35)", border: "1px solid rgba(255,255,255,0.10)", cursor: "pointer" }}
                       >x</button>
                     </div>
                   );
@@ -684,7 +689,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                           });
                           closeExtend();
                           if (playerName) { const updated = await fetchRituals(playerName); setRituals(updated); }
-                        } catch { /* ignore */ }
+                        } catch { setRitualError("Network error — could not extend ritual"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: canExtend ? "rgba(180,130,50,0.32)" : "rgba(255,255,255,0.04)", color: canExtend ? "#e8d5a3" : "rgba(255,255,255,0.2)", border: `1px solid ${canExtend ? "rgba(245,158,11,0.6)" : "rgba(255,255,255,0.08)"}`, cursor: canExtend ? "pointer" : "not-allowed" }}
@@ -742,7 +747,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                           });
                           setRecommitRitualId(null);
                           if (playerName) fetchRituals(playerName).then(setRituals);
-                        } catch { /* ignore */ }
+                        } catch { setRitualError("Network error — could not recommit ritual"); }
                       }}
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: "rgba(167,139,250,0.2)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.5)", boxShadow: "0 0 16px rgba(167,139,250,0.12)", cursor: "pointer" }}

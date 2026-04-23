@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } from "react";
 import StatBar from "@/components/StatBar";
-import OnboardingWizard from "@/components/OnboardingWizard";
+const OnboardingWizard = lazy(() => import("@/components/OnboardingWizard"));
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CrystalVeins from "@/components/CrystalVeins";
 import TowerMap from "@/components/TowerMap";
@@ -26,12 +26,12 @@ const DungeonView = lazy(() => import("@/components/DungeonView"));
 const CodexView = lazy(() => import("@/components/CodexView"));
 const TalentTreeView = lazy(() => import("@/components/TalentTreeView"));
 const AdventureTomeView = lazy(() => import("@/components/AdventureTomeView"));
-import TodayDrawer from "@/components/TodayDrawer";
+const TodayDrawer = lazy(() => import("@/components/TodayDrawer"));
 
 import { TutorialMomentBanner } from "@/components/ContextualTutorial";
-// DailyHub removed — all daily info lives in TodayDrawer
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
-import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
+const GuideModalLazy = lazy(() => import("@/components/TutorialModal").then(m => ({ default: m.GuideModal })));
+import { GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, AntiRitualePanel,
   CompletedQuestRow, EpicQuestCard, QuestCard,
@@ -41,13 +41,13 @@ import {
 import { ToastStack, useToastStack } from "@/components/ToastStack";
 import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCelebration";
 import { useFloatingRewards, FloatingRewardsLayer } from "@/components/FloatingRewards";
-import { CompanionsWidget } from "@/components/CompanionsWidget";
+const CompanionsWidget = lazy(() => import("@/components/CompanionsWidget").then(m => ({ default: m.CompanionsWidget })));
+const WandererRest = lazy(() => import("@/components/WandererRest").then(m => ({ default: m.WandererRest })));
 import { RoadmapView } from "@/components/RoadmapView";
 import { Tip, TipCustom } from "@/components/GameTooltip";
-import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
 import FloorAmbientParticles from "@/components/FloorAmbientParticles";
-import FeedbackOverlay from "@/components/FeedbackOverlay";
+const FeedbackOverlay = lazy(() => import("@/components/FeedbackOverlay"));
 import { ModalPortal, useModalBehavior, ModalOverlay } from "@/components/ModalPortal";
 import DashboardHeader from "@/components/DashboardHeader";
 import DashboardModals from "@/components/DashboardModals";
@@ -66,6 +66,31 @@ import {
   GUILD_LEVELS, getUserLevel, getUserXpProgress,
   getQuestRarity,
 } from "@/app/utils";
+
+const CURRENT_VERSION = "2.0.0";
+
+function WhatsNewHero({ color, title, short, long, bg, icon }: { color: string; title: string; short: string; long: string; bg: string; icon: string }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <button onClick={() => setExpanded(v => !v)} className="w-full text-left rounded-lg overflow-hidden relative" style={{ border: `1px solid ${color}25`, cursor: "pointer" }}>
+      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none" style={{ background: `url(${bg}) no-repeat center/contain`, opacity: 0.12, filter: "blur(0.5px)" }} />
+      <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}0A 0%, transparent 60%)`, borderLeft: `3px solid ${color}60` }}>
+        <img src={icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 6px ${color}50)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-bold" style={{ color }}>{title}</p>
+            <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}60`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>&#9662;</span>
+          </div>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{short}</p>
+          {expanded && (
+            <p className="text-xs mt-2 leading-relaxed tab-content-enter" style={{ color: "rgba(255,255,255,0.45)", borderTop: `1px solid ${color}15`, paddingTop: 8 }}>{long}</p>
+          )}
+        </div>
+      </div>
+    </button>
+  );
+}
+
 import {
   typeConfig,
   FLOORS, getFloorForRoom,
@@ -123,11 +148,11 @@ const MAT_SOURCES: Record<string, string> = {
 // Suspense fallback for lazy-loaded views — skeleton cards matching view layout
 const ViewFallback = () => (
   <div className="space-y-3 tab-content-enter">
-    <div className="skeleton-pulse rounded-xl" style={{ height: 48, background: "rgba(255,255,255,0.03)" }} />
-    <div className="skeleton-pulse rounded-xl" style={{ height: 120, background: "rgba(255,255,255,0.02)" }} />
+    <div className="skeleton-pulse rounded-xl" style={{ height: 48, background: "rgba(255,255,255,0.05)" }} />
+    <div className="skeleton-pulse rounded-xl" style={{ height: 120, background: "rgba(255,255,255,0.06)" }} />
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
-      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.02)" }} />
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.06)" }} />
+      <div className="skeleton-pulse rounded-xl" style={{ height: 80, background: "rgba(255,255,255,0.06)" }} />
     </div>
   </div>
 );
@@ -138,7 +163,7 @@ export default function Dashboard() {
   const [quests, setQuests] = useState<QuestsData>({ open: [], inProgress: [], completed: [], suggested: [], rejected: [] });
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
-  const [secondsAgo, setSecondsAgo] = useState(0);
+  // secondsAgo moved to isolated LastUpdated component to avoid full Dashboard re-render every second
   const [apiLive, setApiLive] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
@@ -382,7 +407,7 @@ export default function Dashboard() {
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [gameVersion, setGameVersion] = useState<string>("1.6.0");
+  const [gameVersion, setGameVersion] = useState<string>(CURRENT_VERSION);
   const [versionPopupOpen, setVersionPopupOpen] = useState(false);
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
   const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);
@@ -454,7 +479,7 @@ export default function Dashboard() {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
             // Don't show version popup if What's New popup already handled it
-            try { if (localStorage.getItem("whatsNewSeen") !== "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
+            try { if (localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
           }
         }
       } catch { /* ignore */ }
@@ -576,9 +601,6 @@ export default function Dashboard() {
         try { const r = await fetch(`/api/player/${encodeURIComponent(pName.toLowerCase())}/favorites`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); setFavorites(d.favorites || []); } } catch { /* ignore */ }
       }
     }
-    // These lightweight calls remain separate (rarely change, small payloads)
-    try { const r = await fetch(`/api/game-version`, { signal: AbortSignal.timeout(1500) }); if (r.ok) { const d = await r.json(); setGameVersion(d.version || "1.5.1"); } } catch { /* ignore */ }
-    try { const r = await fetch(`/api/changelog-data`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); } } catch { /* ignore */ }
     if (pName) {
       try { const r = await fetch(`/api/quests/pool?player=${encodeURIComponent(pName)}`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (d.lastRefresh) setLastPoolRefresh(new Date(d.lastRefresh)); } } catch { /* ignore */ }
     }
@@ -603,7 +625,7 @@ export default function Dashboard() {
     reviewApiKey, playerName, refresh,
     setActiveNpcs, setSelectedNpc,
     setChainOffer, setRewardCelebration,
-    pendingLevelUpRef, setRituals,
+    pendingLevelUpRef,
     addToast, setApiErrorWithAutoClose,
     lastPoolRefresh, setLastPoolRefresh,
   });
@@ -681,7 +703,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     refresh();
-    const interval = setInterval(refresh, 30_000);
+    // Static data fetched once on mount — not repeated every 30s
+    (async () => {
+      try { const r = await fetch("/api/game-version", { signal: AbortSignal.timeout(1500) }); if (r.ok) { const d = await r.json(); setGameVersion(d.version || CURRENT_VERSION); } } catch { /* ignore */ }
+      try { const r = await fetch("/api/changelog-data", { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); } } catch { /* ignore */ }
+    })();
+    const interval = setInterval(() => {
+      if (document.visibilityState === "visible") refresh();
+    }, 30_000);
     return () => clearInterval(interval);
   }, [refresh]);
 
@@ -740,12 +769,7 @@ export default function Dashboard() {
       .catch(e => console.error('[page]', e));
   }, []);
 
-  useEffect(() => {
-    const tick = setInterval(() => {
-      if (lastRefresh) setSecondsAgo(Math.floor((Date.now() - lastRefresh.getTime()) / 1000));
-    }, 1000);
-    return () => clearInterval(tick);
-  }, [lastRefresh]);
+  // secondsAgo timer moved to isolated LastUpdated component
 
   // Auto-trigger tutorial on first visit (no login required)
   useEffect(() => {
@@ -767,7 +791,7 @@ export default function Dashboard() {
 
   // What's New splash — show once per version
   useEffect(() => {
-    const CURRENT_VERSION = "1.6.0";
+    // CURRENT_VERSION is now module-level constant
     try {
       if (playerName && localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) {
         const t = setTimeout(() => setWhatsNewOpen(true), 1500);
@@ -815,7 +839,12 @@ export default function Dashboard() {
   };
 
   const handleRestartTutorial = () => {
-    try { localStorage.removeItem("tutorialCompleted"); } catch { /* ignore */ }
+    try {
+      localStorage.removeItem("tutorialCompleted");
+      localStorage.removeItem("qh_tutorial_seen");
+    } catch { /* ignore */ }
+    // Re-scan any mounted tutorial banners so contextual moments re-appear
+    if (typeof window !== "undefined") window.dispatchEvent(new Event("qh-tutorial-advance"));
     setGuideOpen(false);
     setTutorialStep(0);
     setShowTutorial(true);
@@ -950,9 +979,7 @@ export default function Dashboard() {
   const animCompleted = useCountUp(playerCompletedTotal, 0);
   const animGold      = useCountUp(playerGold, 0);
 
-  const lastUpdatedStr = lastRefresh
-    ? secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`
-    : "—";
+  const lastUpdatedStr = ""; // rendered by LastUpdated component
 
   // Quest search + sort + type filter
   const applyFilter = useCallback((qs: Quest[]) => {
@@ -1015,7 +1042,7 @@ export default function Dashboard() {
         needsAttention={needsAttention}
         suggestedCount={quests.suggested.length}
         apiLive={apiLive}
-        lastUpdatedStr={lastUpdatedStr}
+        lastRefresh={lastRefresh}
         refresh={refresh}
         setOnboardingOpen={setOnboardingOpen}
         setInfoOverlayOpen={setInfoOverlayOpen}
@@ -1033,7 +1060,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.88)", borderRadius: 16, marginTop: 8, "--floor-color": currentFloorColor } as React.CSSProperties}>
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
         {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}
@@ -1268,7 +1295,7 @@ export default function Dashboard() {
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)}>
                       <Tip k={c.key}>
-                        {c.iconSrc ? <img src={c.iconSrc} alt="" width={24} height={24} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                        {c.iconSrc ? <img src={c.iconSrc} alt="" width={24} height={24} className={`currency-infused currency-${c.key} ${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                         <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
                           {c.value}
                         </span>
@@ -1483,7 +1510,7 @@ export default function Dashboard() {
                                 <div className="flex items-center gap-2 mt-0.5">
                                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>Lv.{level}/10</span>
                                   {nextThreshold != null && xpForLevel > 0 ? (
-                                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{xpInLevel}/{xpForLevel} XP</span>
+                                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{xpInLevel}/{xpForLevel} XP</span>
                                   ) : level >= 10 ? (
                                     <span className="text-xs font-mono" style={{ color: "#f59e0b" }}>MAX</span>
                                   ) : null}
@@ -1507,7 +1534,7 @@ export default function Dashboard() {
                   {/* Materials Inventory — filtered to chosen professions */}
                   <div className="mb-2">
                     <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
-                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>
+                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
                       {chosen.length > 0 ? "Materials for your chosen professions." : "Choose a profession to see relevant materials."}
                     </p>
                     {matDefs.length > 0 ? (
@@ -1534,7 +1561,7 @@ export default function Dashboard() {
                                 </div>
                                 <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
                               </div>
-                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{source}</p>
+                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>{source}</p>
                             </div>
                           );
                         })}
@@ -1603,7 +1630,7 @@ export default function Dashboard() {
                 <button
                   onClick={() => setTowerMapOpen(true)}
                   className="px-2.5 py-1.5 rounded-t-lg text-xs flex-shrink-0 inline-flex items-center gap-1"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", transition: "background 0.15s, color 0.15s" }}
+                  style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.35)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", transition: "background 0.15s, color 0.15s" }}
                   onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
                   onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
                   title="Tower Map — Navigate all floors and rooms"
@@ -1629,7 +1656,7 @@ export default function Dashboard() {
                       style={{
                         background: isActive ? "#111" : "transparent",
                         color: isActive ? floor.color : "rgba(255,255,255,0.3)",
-                        borderBottom: isActive ? "none" : "1px solid rgba(255,255,255,0.06)",
+                        borderBottom: isActive ? "none" : "1px solid rgba(255,255,255,0.10)",
                         letterSpacing: "0.03em",
                       }}
                     >
@@ -1767,7 +1794,7 @@ export default function Dashboard() {
                       key={room.key}
                       data-feedback-id={`nav.tab.${room.key}`}
                       onClick={() => setDashView(room.key as typeof dashView)}
-                      className="btn-interactive text-sm font-semibold px-2 sm:px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
+                      className={`btn-interactive text-sm font-semibold px-2 sm:px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative${isActive ? " room-tab-active" : ""}`}
                       style={{
                         background: isActive ? "#252525" : "transparent",
                         color: isActive ? "#f0f0f0" : "rgba(255,255,255,0.3)",
@@ -1794,7 +1821,7 @@ export default function Dashboard() {
         {dashView === "leaderboard" && (
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <Tip k="proving_grounds" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Proving Grounds</span></Tip>
+              <Tip k="proving_grounds" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">The Proving Grounds</span></Tip>
             </div>
             {/* Player cards */}
             {users.filter(u => !agents.some(a => a.id === u.id)).length > 0 && (
@@ -1818,12 +1845,12 @@ export default function Dashboard() {
         {dashView === "campaign" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Tip k="campaigns" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Observatory</span></Tip>
+              <Tip k="campaigns" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">The Observatory</span></Tip>
             </div>
             <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#f97316" ? "249,115,22" : "251,191,36"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
               <img src="/images/icons/nav-observatory.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
               <p className="text-lg font-bold mb-2" style={{ color: `${currentFloorColor}88` }}>Coming Soon</p>
-              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.2)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.35)" }}>The Observatory will open soon. Watch for the stars.</p>
               <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg btn-press" style={{ background: `${currentFloorColor}10`, color: `${currentFloorColor}80`, border: `1px solid ${currentFloorColor}25`, cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
@@ -1867,7 +1894,7 @@ export default function Dashboard() {
         {dashView === "gacha" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
-            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string; desc?: string; flavorText?: string; stats?: Record<string, number>; legendaryEffect?: { type: string; label?: string; value?: number } } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common", item: item.item ? { name: item.item.name || "Item", rarity: item.item.rarity || "common", icon: item.item.icon || null, desc: item.item.desc || null, flavorText: item.item.flavorText || null, stats: item.item.stats || null, legendaryEffect: item.item.legendaryEffect || null } : undefined }), i * 50); }); }}
             onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}
@@ -1896,7 +1923,7 @@ export default function Dashboard() {
         {dashView === "changelog" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-w35">Changelog</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">Changelog</span>
               <span className="text-xs text-w20">— recent commits from GitHub</span>
             </div>
             {changelogLoading && (
@@ -1909,7 +1936,7 @@ export default function Dashboard() {
               <div key={entry.date} className="space-y-1.5">
                 <div
                   className="text-xs font-semibold uppercase tracking-widest pt-2 pb-1 text-w35"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}
                 >
                   {entry.date}
                 </div>
@@ -1926,7 +1953,7 @@ export default function Dashboard() {
                     <div
                       key={i}
                       className="flex items-start gap-2 px-3 py-2 rounded"
-                      style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.05)" }}
+                      style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.08)" }}
                     >
                       <span
                         className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0"
@@ -1985,23 +2012,35 @@ export default function Dashboard() {
               {/* Companions Widget — full experience in the Great Hall */}
               {playerName && (
                 <div className="mb-5" style={{ minHeight: 100 }}>
-                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} />
+                  <Suspense fallback={null}><CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense>
                 </div>
               )}
 
               {/* Quest Board — player types only */}
               <div>
                 <aside className="w-full">
-                  <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} />
+                  <TutorialMomentBanner viewId="questBoard" playerLevel={currentPlayerLevel ?? 1} conditions={{
+                    first_claim: (quests.inProgress?.length || 0) > 0,
+                    first_reward: (loggedInUser?.questsCompleted || 0) > 0,
+                    streak_intro: (loggedInUser?.streakDays || 0) >= 1,
+                  }} />
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40">Quest Board</h2></Tip>
+                          <Tip k="quest_board" heading><h2 className="text-xs font-semibold uppercase tracking-widest text-w40 section-header-floor">Quest Board</h2></Tip>
                         </div>
                         <p className="text-xs mt-0.5 text-w25">
                           {playerName
-                            ? `${boardOpen.length} open · ${playerVisibleInProgress.length} in progress`
+                            ? (() => {
+                                const today = new Date().toISOString().slice(0, 10);
+                                const doneToday = quests.completed.filter(q => q.completedBy?.toLowerCase() === playerName.toLowerCase() && q.completedAt?.slice(0, 10) === today).length;
+                                const drPct = doneToday <= 5 ? 100 : doneToday <= 7 ? 90 : doneToday <= 10 ? 75 : doneToday <= 15 ? 60 : doneToday <= 20 ? 50 : 25;
+                                return <>
+                                  {boardOpen.length} open · {playerVisibleInProgress.length} in progress
+                                  {doneToday > 0 && <> · <span style={{ color: drPct < 100 ? "#f59e0b" : "#4ade80" }}>{doneToday} done{drPct < 100 ? ` (${drPct}%)` : ""}</span></>}
+                                </>;
+                              })()
                             : "Log in · 0 available"}
                         </p>
                       </div>
@@ -2036,7 +2075,7 @@ export default function Dashboard() {
                               </span>
                             </TipCustom>
                             {lastPoolRefresh && Date.now() - lastPoolRefresh.getTime() < 6 * 3600 * 1000 && (
-                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
                                 {Math.ceil((6 * 3600 * 1000 - (Date.now() - lastPoolRefresh.getTime())) / 3600000)}h
                               </span>
                             )}
@@ -2052,7 +2091,7 @@ export default function Dashboard() {
                       <div className="flex items-center justify-between mb-2">
                         <Tip k="daily_missions" heading><span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)", cursor: "help" }}>Daily Missions</span></Tip>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
                             {(() => { const ms = new Date().setHours(24,0,0,0) - Date.now(); const h = Math.floor(ms / 3600000); const m = Math.floor((ms % 3600000) / 60000); return `${h}h ${m}m`; })()}
                           </span>
                           <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
@@ -2193,7 +2232,7 @@ export default function Dashboard() {
                     <div className="flex gap-1 mb-2">
                       <div className="flex-1 relative">
                         <input data-feedback-id="quest-board.search" type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded input-dark border-w8" style={{ paddingRight: searchFilter ? 24 : 8 }} onKeyDown={e => { if (e.key === "Escape") { setSearchFilter(""); (e.target as HTMLInputElement).blur(); } }} />
-                        {searchFilter && <button onClick={() => setSearchFilter("")} className="absolute right-1.5 top-1/2 -translate-y-1/2" style={{ color: "rgba(255,255,255,0.3)", fontSize: 14, cursor: "pointer", lineHeight: 1, background: "none", border: "none", padding: 0 }} title="Clear search">×</button>}
+                        {searchFilter && <button onClick={() => setSearchFilter("")} className="absolute right-1.5 top-1/2 -translate-y-1/2" style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, cursor: "pointer", lineHeight: 1, background: "none", border: "none", padding: 0 }} title="Clear search">×</button>}
                       </div>
                       <button
                         data-feedback-id="quest-board.sort"
@@ -2237,18 +2276,18 @@ export default function Dashboard() {
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.12)" }}>
                           <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
                           <p className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>
-                            Full rewards reached for today. Next quests earn <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>75%</span> rewards.
+                            Full rewards reached for today. Next quests earn <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>90%</span> rewards.
                           </p>
                         </div>
                       );
-                      const rate = dailyCount >= 21 ? 25 : dailyCount >= 11 ? 50 : 75;
-                      const label = dailyCount >= 21 ? "25%" : dailyCount >= 11 ? "50%" : "75%";
+                      const rate = dailyCount >= 21 ? 25 : dailyCount >= 16 ? 50 : dailyCount >= 11 ? 60 : dailyCount >= 8 ? 75 : 90;
+                      const label = `${rate}%`;
                       return (
                         <div className="rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)" }}>
                           <span style={{ color: "#f59e0b", fontSize: 12, flexShrink: 0 }}>◆</span>
-                          <p className="text-xs" style={{ color: "rgba(245,158,11,0.7)" }}>
+                          <Tip k="daily_diminishing"><p className="text-xs cursor-help" style={{ color: "rgba(245,158,11,0.7)" }}>
                             Rewards at <span className="font-bold font-mono" style={{ color: "#f59e0b" }}>{label}</span> — {dailyCount} quests completed today. First 5 give full rewards.
-                          </p>
+                          </p></Tip>
                           <span className="ml-auto font-mono text-xs" style={{ color: `rgba(${rate === 25 ? "239,68,68" : rate === 50 ? "245,158,11" : "163,163,163"},0.5)` }}>{rate}%</span>
                         </div>
                       );
@@ -2263,7 +2302,7 @@ export default function Dashboard() {
                         </button>
                       </div>
                     ) :
-                    loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse bg-card" style={{ border: "1px solid rgba(255,255,255,0.05)" }} />) :
+                    loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse bg-card" style={{ border: "1px solid rgba(255,255,255,0.08)" }} />) :
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-6 text-center bg-card border-w6 space-y-3">
                         <img src="/images/icons/nav-great-hall.png" alt="" width={48} height={48} className="img-render-auto mx-auto" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -2295,7 +2334,7 @@ export default function Dashboard() {
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
                                         isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
-                                        loadingAction={loadingAction} />
+                                        loadingQuestId={loadingAction?.questId || null} />
                                 )}
                               </div>
                             )}
@@ -2328,7 +2367,7 @@ export default function Dashboard() {
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
                                         onDetails={setQuestDetailModal}
                                         isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined}
-                                        loadingAction={loadingAction} /></div>
+                                        loadingQuestId={loadingAction?.questId || null} /></div>
                                 )}
                               </div>
                             )}
@@ -2358,12 +2397,12 @@ export default function Dashboard() {
         {dashView === "klassenquests" && (
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Tip k="classes" heading><h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2></Tip>
+              <Tip k="classes" heading><h2 className="text-xs font-semibold uppercase tracking-widest section-header-floor" style={{ color: "#60a5fa" }}>The Arcanum</h2></Tip>
             </div>
             <div className="rounded-xl px-6 py-16 text-center crystal-breathe" style={{ background: `rgba(${currentFloorColor === "#3b82f6" ? "59,130,246" : "96,165,250"},0.03)`, border: `1px solid ${currentFloorColor}20`, borderLeft: `3px solid ${currentFloorColor}40`, ["--glow-color" as string]: `${currentFloorColor}15` }}>
               <img src="/images/icons/nav-arcanum.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-3" style={{ opacity: 0.25, filter: `drop-shadow(0 0 8px ${currentFloorColor}30)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
               <p className="text-lg font-bold mb-2" style={{ color: `${currentFloorColor}88` }}>Coming Soon</p>
-              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.2)" }}>The Arcanum gathers its scrolls. Class quests and skill trees await.</p>
+              <p className="text-xs mb-4 italic" style={{ color: "rgba(255,255,255,0.35)" }}>The Arcanum gathers its scrolls. Class quests and skill trees await.</p>
               <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg btn-press" style={{ background: `${currentFloorColor}10`, color: `${currentFloorColor}80`, border: `1px solid ${currentFloorColor}25`, cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
@@ -2414,7 +2453,7 @@ export default function Dashboard() {
           const lyraQuestsInProgress = applySort(applyFilter(quests.inProgress.filter(q => (q.createdBy ?? "").toLowerCase() === "lyra")));
           const lyraAllQuests = lyraQuestsOpen.concat(lyraQuestsInProgress);
           return (
-            <WandererRest
+            <Suspense fallback={null}><WandererRest
               npcBoardFilter={npcBoardFilter}
               setNpcBoardFilter={setNpcBoardFilter}
               activeNpcs={activeNpcs}
@@ -2448,7 +2487,7 @@ export default function Dashboard() {
               handleComplete={handleComplete}
               streak={playerStreak}
               user={loggedInUser}
-            />
+            /></Suspense>
           );
         })()}
 
@@ -2465,7 +2504,7 @@ export default function Dashboard() {
               <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w4 text-w20">
                 {quests.rejected.length}
               </span>
-              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                 {rejectedOpen ? "▲" : "▼"}
               </span>
             </button>
@@ -2480,7 +2519,7 @@ export default function Dashboard() {
                     <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>x</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs truncate text-w25" style={{ textDecoration: "line-through" }}>{q.title}</p>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>by {q.createdBy ?? "unknown"}</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>by {q.createdBy ?? "unknown"}</span>
                     </div>
                     {q.rarity && <span className="text-xs px-1 rounded" style={{ color: ({ common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" } as Record<string, string>)[q.rarity] || "#9ca3af" }}>{q.rarity}</span>}
                   </div>
@@ -2520,6 +2559,11 @@ export default function Dashboard() {
                 <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w6 text-w30">
                   {journalQuests.length}
                 </span>
+                {(() => {
+                  const today = new Date().toISOString().slice(0, 10);
+                  const todayCount = journalQuests.filter(q => q.completedAt?.slice(0, 10) === today).length;
+                  return todayCount > 0 ? <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(34,197,94,0.12)", color: "#4ade80" }}>{todayCount} today</span> : null;
+                })()}
                 <span className="ml-auto text-xs text-w20">
                   {completedOpen ? "▲" : "▼"}
                 </span>
@@ -2657,7 +2701,7 @@ export default function Dashboard() {
 
       {/* Today Drawer */}
       {playerName && (
-        <TodayDrawer
+        <Suspense fallback={null}><TodayDrawer
           open={todayOpen}
           onClose={() => setTodayOpen(false)}
           onNavigate={(v) => { setDashView(v as typeof dashView); }}
@@ -2704,7 +2748,7 @@ export default function Dashboard() {
               }
             } catch { /* ignore */ }
           }}
-        />
+        /></Suspense>
       )}
 
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
@@ -2780,7 +2824,7 @@ export default function Dashboard() {
       <footer data-feedback-id="footer" className="mt-12 py-4" style={{ position: "relative", zIndex: 2 }}>
         {/* Gradient separator */}
         <div style={{ height: 1, background: `linear-gradient(90deg, transparent 0%, ${currentFloorColor}18 30%, ${currentFloorColor}25 50%, ${currentFloorColor}18 70%, transparent 100%)`, marginBottom: 16 }} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
           <span>Quest Hall v{gameVersion}</span>
           <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
           <span style={{ color: `${currentFloorColor}40` }}>{CURRENT_SEASON.name}</span>
@@ -2788,9 +2832,9 @@ export default function Dashboard() {
             <>
               <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
               <button
-                data-feedback-id="footer.alpha-button"
+                data-feedback-id="footer.beta-button"
                 onClick={() => setFeedbackMode(v => !v)}
-                title={feedbackMode ? "Exit Feedback Mode (Esc)" : "Enter Alpha Feedback Mode"}
+                title={feedbackMode ? "Exit Feedback Mode (Esc)" : "Feedback Mode — click any element to report bugs or suggest improvements"}
                 style={{
                   background: "none",
                   cursor: "pointer",
@@ -2804,7 +2848,7 @@ export default function Dashboard() {
                   transition: "color 0.2s, border-color 0.2s",
                 }}
               >
-                (α) Alpha v{gameVersion}
+                (β) Beta v{gameVersion} — Feedback
               </button>
             </>
           )}
@@ -2863,7 +2907,7 @@ export default function Dashboard() {
       )}
 
       {/* Guide Modal (legacy fallback) */}
-      {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} onRestartTutorial={handleRestartTutorial} />}
+      {guideOpen && <Suspense fallback={null}><GuideModalLazy onClose={() => setGuideOpen(false)} onRestartTutorial={handleRestartTutorial} /></Suspense>}
 
       {/* Info Overlay */}
       {infoOverlayOpen && (
@@ -2883,7 +2927,7 @@ export default function Dashboard() {
             }}
           >
             {/* Header with tabs */}
-            <div style={{ padding: "1rem 1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ padding: "1rem 1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.11)", display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ display: "flex", gap: 4, flex: 1 }}>
                 {[
                   { key: "roadmap",   label: "Roadmap" },
@@ -2917,7 +2961,7 @@ export default function Dashboard() {
               {infoOverlayTab === "changelog" && (
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 pb-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-w35">Changelog</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-w35 section-header-floor">Changelog</span>
                   </div>
                   {changelogData.length === 0 && (
                     <div className="text-sm text-w25">No changelog data available.</div>
@@ -2943,7 +2987,7 @@ export default function Dashboard() {
                         </span>
                       </button>
                       {changelogExpanded === entry.version && (
-                        <ul className="px-4 py-3 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "rgba(0,0,0,0.2)" }}>
+                        <ul className="px-4 py-3 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.10)", background: "rgba(0,0,0,0.2)" }}>
                           {entry.changes.map((change, i) => (
                             <li key={i} className="flex items-start gap-2 text-sm text-w60">
                               <span className="shrink-0" style={{ color: "rgba(255,68,68,0.6)", marginTop: 2 }}>•</span>
@@ -2968,14 +3012,14 @@ export default function Dashboard() {
 
       {/* Onboarding Wizard */}
       {/* Alpha Feedback Overlay */}
-      <FeedbackOverlay
+      <Suspense fallback={null}><FeedbackOverlay
         active={feedbackMode}
         onExit={() => setFeedbackMode(false)}
         playerName={playerName || undefined}
-      />
+      /></Suspense>
 
       {onboardingOpen && (
-        <OnboardingWizard
+        <Suspense fallback={null}><OnboardingWizard
           onClose={() => setOnboardingOpen(false)}
           onComplete={async ({ name: newName, apiKey, accessToken: token }) => {
             setOnboardingOpen(false);
@@ -2991,7 +3035,7 @@ export default function Dashboard() {
             setTodayOpen(true); // Auto-open TodayDrawer for new players
             // Tutorial moments will fire contextually on each view — no upfront wizard
           }}
-        />
+        /></Suspense>
       )}
 
       {/* Email Migration Modal (forced for existing users without email) */}
@@ -3060,33 +3104,87 @@ export default function Dashboard() {
 
       {/* What's New Splash */}
       {whatsNewOpen && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }}>
-          <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
-            <div className="px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
-              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v1.6.0 — The Artisan&apos;s Update</p>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}>
+          <div className="w-full max-w-lg rounded-xl overflow-hidden tab-content-enter panel-ornate panel-ornate-inner" style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.2)", boxShadow: "0 20px 80px rgba(0,0,0,0.9), 0 0 40px rgba(129,140,248,0.08)" }} onClick={e => e.stopPropagation()}>
+            {/* Hero Header */}
+            <div className="relative px-6 py-5 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(129,140,248,0.12) 0%, rgba(129,140,248,0.03) 60%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.15)" }}>
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.15) 0%, transparent 70%)" }} />
+              <p className="text-lg font-bold tracking-wide relative" style={{ color: "#e6cc80", textShadow: "0 0 20px rgba(230,204,128,0.3)" }}>v2.0.0</p>
+              <p className="text-sm font-semibold mt-0.5 relative" style={{ color: "#818cf8" }}>Open Beta</p>
+              <p className="text-xs mt-2 relative" style={{ color: "rgba(255,255,255,0.45)", maxWidth: 320, margin: "8px auto 0" }}>Die Tore der Halle stehen offen. Was als Experiment begann, ist jetzt ein Zuhause.</p>
             </div>
-            <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>New Systems</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Ätherwürfel — extract and equip legendary effects permanently</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls crafted by Verzauberer</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Quality of Life</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from accidental salvage, trade, or discard</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs and 2-step confirmation</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search (unlimited, no cap)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Recipe Discovery — undiscovered recipes shown as ??? with source hints</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>NEW badges on inventory items, craftability icons on recipes</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Notification badges on navigation tabs for pending actions</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Timer overview in Today Drawer (weekly reset, season end, active content)</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Collect All for mail and Battle Pass rewards</p></div>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Progression</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Level-gated progression: Lv1 Quests/Character/Social, Lv3 Challenges, Lv5 Forge/Gacha, Lv8 Rift/Leaderboard, Lv10 Factions/BP, Lv12 Dungeons, Lv15 World Boss</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Batch craft animation with sequential reveal</p></div>
+
+            <div className="px-5 py-4 max-h-[55vh] overflow-y-auto space-y-3" style={{ scrollbarWidth: "thin" }}>
+              {/* Hero Feature Cards */}
+              {[
+                { color: "#f97316", title: "Schmiedefieber", short: "Alle 48h brennt eine Profession. Materialkosten halbiert, doppelte Skill-XP.", long: "Ein zufälliger Beruf wird alle 48 Stunden für genau 4 Stunden aktiviert. Während des Fiebers: alle Materialkosten -50%, Skill-XP verdoppelt. Wer innerhalb des Fensters 5+ Rezepte craftet, bekommt einen Bonus-Cache mit seltenen Materialien. Das Fieber wird nie zweimal hintereinander denselben Beruf treffen.", bg: "/images/icons/loot-forge-ember.png", icon: "/images/icons/nav-forge.png" },
+                { color: "#a855f7", title: "Mythic+ Affixe", short: "10 wöchentlich rotierende Modifikatoren ab M+2.", long: "Ab Mythic+2 bekommst du 2 wöchentlich rotierende Affixe. Tyrannical verstärkt den letzten Boss um 50%. Necrotic blockiert all deinen Streak-Schutz. Volcanic erzwingt Fitness-Quests bei jeder dritten Stage. Fortified verstärkt alle Zwischen-Stages. Inspiring verdoppelt Social-Quest-XP. Jede Woche eine neue Kombination — plane deine Runs entsprechend.", bg: "/images/icons/ach-mythic.png", icon: "/images/icons/nav-rift.png" },
+                { color: "#67e8f9", title: "Rested XP", short: "Baut sich offline auf. Verdoppelt XP bis verbraucht.", long: "Alle 8 Stunden offline sammelt sich 5% deines Level-XP als Rested Pool an (max 150% eines Levels). Deine nächsten Quests geben doppelte XP bis der Pool aufgebraucht ist. Die blaue Zone in deiner XP-Bar zeigt den Rested-Anteil. Pausen lohnen sich — wie in WoW Classic.", bg: "/images/icons/loot-xp-scroll.png", icon: "/images/icons/currency-essenz.png" },
+                { color: "#818cf8", title: "D3-Style Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt jetzt Diablo-3-inspirierte Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge x Gear x Companion x Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
+                { color: "#e6cc80", title: "262 neue Portraits & Icons", short: "175 Gear-Icons, 87 NPC-Rewards, Companions, Bosse — alles handgezeichnet.", long: "Jedes Item, jeder NPC und jeder Boss hat jetzt ein eigenes Portrait. Dass sich manche Bewohner ähneln ist kein Bug — der Aetherstrom des Turms formt die Gesichtszüge derer, die lange genug in seiner Nähe leben. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich, das Thema zu diskutieren.", bg: "/images/npcs/starweaver-final.png", icon: "/images/icons/nav-wanderer.png" },
+              ].map((f, i) => (
+                <WhatsNewHero key={i} {...f} />
+              ))}
+
+              {/* Compact sections */}
+              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(251,191,36,0.6)" }}>Spielgefühl</p>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {[
+                    "Sworn Bonds — Duo-Pakte",
+                    "Companion-Expeditionen",
+                    "Phönixasche-Talent",
+                    "Almost-There Nudges",
+                    "Item Hover Tooltips",
+                    "Fraktions-Rep sichtbar",
+                    "Per-Banner Gacha Pity",
+                    "DR-Indikator live",
+                    "Material-Drop Toasts",
+                    "First-Visit Hints (6 Views)",
+                  ].map((t, i) => (
+                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(251,191,36,0.04)" }}>
+                      <span style={{ color: "#fbbf24", fontSize: 8 }}>&#9670;</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(129,140,248,0.6)" }}>Visuell</p>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {[
+                    "Stormlight Gem-Glow",
+                    "Highstorm VFX",
+                    "Talent-Baum Energie",
+                    "Ornate Panel-Borders",
+                    "Floor-Akzentfarben",
+                    "Kontrast-Boost seitenweit",
+                    "Hover-Transitions",
+                    "Leaderboard #1 Glow",
+                  ].map((t, i) => (
+                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(129,140,248,0.04)" }}>
+                      <span style={{ color: "#818cf8", fontSize: 8 }}>&#9670;</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Stats bar */}
+              <div className="flex items-center justify-center gap-4 pt-2 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#22c55e" }}>40+</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Bugs gefixt</p></div>
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#3b82f6" }}>80%</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Schneller</p></div>
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#f97316" }}>1458</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Rezepte poliert</p></div>
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
+                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#a855f7" }}>262</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Neue Icons</p></div>
+              </div>
             </div>
-            <div className="px-5 pb-4">
-              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
+
+            <div className="px-5 pb-4 pt-2">
+              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-sm py-2.5 rounded-lg font-bold" style={{ background: "linear-gradient(135deg, rgba(230,204,128,0.15), rgba(129,140,248,0.12))", color: "#e6cc80", border: "1px solid rgba(230,204,128,0.3)", cursor: "pointer", boxShadow: "0 0 20px rgba(230,204,128,0.08)" }}>Die Halle erwartet dich</button>
             </div>
           </div>
         </div>

@@ -151,10 +151,10 @@ export async function createStarterQuestsIfNew(playerName: string, apiKey: strin
     localStorage.setItem(key, "true");
     const headers = { "Content-Type": "application/json", ...getAuthHeaders(apiKey) };
     const starterQuests = [
-      { title: "x Welcome to the Guild", description: "Complete this quest to earn your first companion — Dobbie the Cat. Click 'Complete' to claim your reward. This teaches you the claim → complete flow.", type: "personal", rarity: "rare", createdBy: "system" },
-      { title: "x Organize Your Desk", description: "Tidy up your workspace. A clear desk leads to a clear mind.", type: "personal", rarity: "common", createdBy: "system" },
-      { title: "x Read for 30 Minutes", description: "Pick any book, article, or topic you're curious about and read for 30 minutes.", type: "learning", rarity: "common", createdBy: "system" },
-      { title: "x 10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving.", type: "fitness", rarity: "common", createdBy: "system" },
+      { title: "Welcome to the Guild", description: "Complete this quest to earn your first companion — Dobbie the Cat. Click 'Complete' to claim your reward. This teaches you the claim → complete flow.", type: "personal", rarity: "rare", createdBy: "system" },
+      { title: "Organize Your Desk", description: "Tidy up your workspace. A clear desk leads to a clear mind.", type: "personal", rarity: "common", createdBy: "system" },
+      { title: "Read for 30 Minutes", description: "Pick any book, article, or topic you're curious about and read for 30 minutes.", type: "learning", rarity: "common", createdBy: "system" },
+      { title: "10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving.", type: "fitness", rarity: "common", createdBy: "system" },
     ];
     await Promise.all(starterQuests.map(q =>
       fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(5000) })
@@ -180,6 +180,7 @@ export function useCountUp(target: number, decimals = 0, duration = 1000): strin
   const [display, setDisplay] = useState("0");
   const prevRef = useRef(-1);
   const rafRef = useRef<number | null>(null);
+  const lastDisplayRef = useRef("0");
   useEffect(() => {
     if (prevRef.current === target) return;
     const from = prevRef.current < 0 ? 0 : prevRef.current;
@@ -189,7 +190,8 @@ export function useCountUp(target: number, decimals = 0, duration = 1000): strin
     function tick(now: number) {
       const p = Math.min((now - t0) / duration, 1);
       const eased = 1 - (1 - p) ** 3;
-      setDisplay((from + (target - from) * eased).toFixed(decimals));
+      const val = (from + (target - from) * eased).toFixed(decimals);
+      if (val !== lastDisplayRef.current) { lastDisplayRef.current = val; setDisplay(val); }
       if (p < 1) rafRef.current = requestAnimationFrame(tick);
     }
     rafRef.current = requestAnimationFrame(tick);

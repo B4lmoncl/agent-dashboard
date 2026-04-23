@@ -54,7 +54,7 @@ router.get('/api/config', (req, res) => {
         decayPerHour: 2,
         gainPerQuest: 10,
       },
-      streak: { bonusPerDay: 0.015, maxBonus: 0.45, maxDays: 30 },
+      streak: { bonusPerDay: 0.015, maxBonus: 0.20, softCap: 30 },
       hoarding: { freeLimit: 20, penaltyPerQuest: 10, softCap: 50, hardCap: 80, hardCapAt: 30 },
       gacha: {
         legendaryRate: 0.008,
@@ -108,7 +108,30 @@ router.get('/api/dashboard', (req, res) => {
   const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
   const users = Object.values(state.users).map(u => {
     const isRequestingPlayer = playerLower && u.id === playerLower;
-    const ft = calcDynamicForgeTemp(u.id);
+
+    // Non-requesting users: return summary only (saves ~90% payload per user)
+    if (!isRequestingPlayer) {
+      return {
+        id: u.id, name: u.name, xp: u.xp || 0,
+        streakDays: u.streakDays || 0, forgeTemp: u.forgeTemp || 0,
+        equippedTitle: u.equippedTitle || null,
+        equippedFrame: u.equippedFrame || null,
+        gearScore: u.gearScore || 0,
+        achievementPoints: u.achievementPoints || 0,
+        questsCompleted: u.questsCompleted || 0,
+        seasonXp: u.seasonXp || 0,
+        classId: u.classId || null,
+        color: u.color || null,
+        avatarStyle: u.avatarStyle || null,
+        companion: u.companion ? { name: u.companion.name, type: u.companion.type, bondLevel: u.companion.bondLevel } : null,
+        appearance: u.appearance || null,
+        avatar: u.avatar || null,
+        lastActiveAt: u.lastActiveAt || null,
+        earnedAchievements: (u.earnedAchievements || []).map(a => ({ id: a.id, rarity: a.rarity })),
+        _isSummary: true,
+      };
+    }
+
     const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = u;
     if (Array.isArray(safeUser.earnedAchievements)) {
       safeUser.earnedAchievements = safeUser.earnedAchievements.map(a => {
@@ -119,11 +142,11 @@ router.get('/api/dashboard', (req, res) => {
     }
     const result = {
       ...safeUser,
-      forgeTemp: ft,
+      forgeTemp: calcDynamicForgeTemp(u.id),
       equippedTitle: u.equippedTitle || null,
     };
-    // Only compute expensive modifiers for the requesting player (not all users)
-    if (isRequestingPlayer) {
+    // Compute expensive modifiers only for the requesting player
+    {
       // Live rested XP pool (stale snapshot → live calculation, like calcDynamicForgeTemp)
       result._restedXpPool = calcRestedXpPool(u.id);
       const forgeXpPure = getForgeXpBase(u.id);
@@ -140,9 +163,13 @@ router.get('/api/dashboard', (req, res) => {
       const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
       const hoarding = getQuestHoardingMalus(u.id);
       const legendaryMods = getLegendaryModifiers(u.id);
+      // D3-style bucket display: additive within bucket, multiplicative between
+      const xpGearBucket = 1 + (gear.xpBonus || 0) / 100;
+      const xpCompBucket = 1 + (compBonus - 1) + (bondBonus - 1);
+      const xpEquipBucket = 1 + ((legendaryMods.xpBonus || 1) - 1);
       result.modifiers = {
-        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoarding.multiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoarding.multiplier * legendaryMods.xpBonus).toFixed(2) },
-        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
+        xp: { forge: forgeXp, gearBucket: xpGearBucket, companionBucket: xpCompBucket, equipBucket: xpEquipBucket, hoarding: hoarding.multiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: +(forgeXp * xpGearBucket * xpCompBucket * hoarding.multiplier * xpEquipBucket).toFixed(2) },
+        gold: { forge: forgeGold, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
       };
     }
     return result;
@@ -179,7 +206,7 @@ router.get('/api/dashboard', (req, res) => {
       const giver = state.npcGivers.givers.find(g => g.id === active.giverId);
       if (!giver) return null;
       const questIds = state.npcState.npcQuestIds[active.giverId] || [];
-      const npcQuests = state.quests.filter(q => questIds.includes(q.id));
+      const npcQuests = questIds.map(id => state.questsById.get(id)).filter(Boolean);
       const depTime = active.departureTime || active.expiresAt;
       const msLeft = new Date(depTime) - npcNow;
       return {
@@ -404,7 +431,7 @@ router.get('/api/dashboard', (req, res) => {
       const today = getTodayBerlin();
       const pp = state.playerProgress[playerLower] || {};
       // Count quests completed today (cq.at is ISO timestamp — compare date portion in Berlin TZ)
-      const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && new Date(cq.at).toLocaleDateString('en-CA', { timeZone: 'Europe/Berlin' }) === today).length;
+      const questsToday = (u._dailyCompletions?.date === today ? u._dailyCompletions.count : 0) || Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
       // Check daily bonus claimed
       const dailyClaimed = u.dailyBonusLastClaim === today;
       // Check rituals completed today

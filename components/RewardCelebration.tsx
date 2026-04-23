@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { SFX } from "@/lib/sounds";
 import CountUp from "@/components/CountUp";
-import ItemTooltip from "@/components/ItemTooltip";
+import { ItemHoverCard } from "@/components/ItemTooltip";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -14,7 +14,22 @@ export interface RewardCelebrationData {
   title: string;
   xpEarned: number;
   goldEarned: number;
-  loot?: { name: string; emoji: string; rarity: string; rarityColor?: string; icon?: string } | null;
+  loot?: {
+    name: string;
+    emoji: string;
+    rarity: string;
+    rarityColor?: string;
+    icon?: string;
+    desc?: string | null;
+    flavorText?: string | null;
+    stats?: Record<string, number> | null;
+    legendaryEffect?: { type: string; label?: string; value?: number } | null;
+    slot?: string | null;
+    minLevel?: number;
+    setId?: string | null;
+    binding?: string | null;
+    sockets?: (string | null)[] | null;
+  } | null;
   bondXp?: number;
   streak?: number;
   /** Companion-specific accent (hex color) */
@@ -259,7 +274,6 @@ interface RewardCelebrationProps {
 
 export function RewardCelebration({ data, onClose, onCollect, onAchievementClick, onNavigate }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
-  const [showLootTooltip, setShowLootTooltip] = useState(false);
 
   // Play reward sound on mount
   useEffect(() => {
@@ -307,7 +321,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
       onClick={() => { if (onCollect) onCollect(data); onClose(); }}
     >
       <div
-        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
+        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden panel-ornate panel-ornate-inner${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
         style={{
           background: `linear-gradient(180deg, ${gradientTop} 0%, #0d0d14 60%)`,
           border: `2px solid rgba(${accentRgb},0.5)`,
@@ -419,28 +433,36 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
               </div>
             )}
             {data.loot && (
-              <button
-                onClick={(e) => { e.stopPropagation(); setShowLootTooltip(true); }}
-                className="reward-pill"
-                style={{
-                  background: "rgba(255,215,0,0.08)",
-                  border: "1px solid rgba(255,215,0,0.25)",
-                  cursor: "pointer",
-                }}
-              >
-                {data.loot.icon ? (
-                  <img src={data.loot.icon} alt="" width={24} height={24} className="mr-1.5" style={{ imageRendering: "auto", verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                ) : (
-                  <span className="text-sm mr-1">{data.loot.emoji}</span>
-                )}
-                <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
-              </button>
-            )}
-            {showLootTooltip && data.loot && (
-              <ItemTooltip
-                item={{ name: data.loot.name, rarity: data.loot.rarity, icon: data.loot.icon || null }}
-                onClose={() => setShowLootTooltip(false)}
-              />
+              <ItemHoverCard item={{
+                name: data.loot.name,
+                rarity: data.loot.rarity,
+                icon: data.loot.icon || null,
+                desc: data.loot.desc || null,
+                flavorText: data.loot.flavorText || null,
+                stats: data.loot.stats || null,
+                legendaryEffect: data.loot.legendaryEffect || null,
+                slot: data.loot.slot || null,
+                minLevel: data.loot.minLevel,
+                setId: data.loot.setId || null,
+                binding: data.loot.binding || null,
+                sockets: data.loot.sockets || null,
+              }}>
+                <span
+                  className="reward-pill"
+                  style={{
+                    background: "rgba(255,215,0,0.08)",
+                    border: "1px solid rgba(255,215,0,0.25)",
+                    cursor: "help",
+                  }}
+                >
+                  {data.loot.icon ? (
+                    <img src={data.loot.icon} alt="" width={24} height={24} className="mr-1.5" style={{ imageRendering: "auto", verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  ) : (
+                    <span className="text-sm mr-1">{data.loot.emoji}</span>
+                  )}
+                  <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
+                </span>
+              </ItemHoverCard>
             )}
             {data.currencies && data.currencies.map((c, i) => {
               const spendView = onNavigate ? (

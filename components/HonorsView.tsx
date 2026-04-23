@@ -115,7 +115,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
   const sortAchievements = (achs: AchievementDef[]) => achs;
 
   const getRarityLabel = (count: number) => {
-    if (count === 0) return { label: "Unearned", color: "rgba(255,255,255,0.2)" };
+    if (count === 0) return { label: "Unearned", color: "rgba(255,255,255,0.35)" };
     const pct = totalUsers > 0 ? (count / totalUsers) * 100 : 100;
     if (pct <= 10) return { label: "Legendary", color: "#f59e0b" };
     if (pct <= 25) return { label: "Rare", color: "#a78bfa" };
@@ -150,13 +150,13 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
         {/* Progress bar */}
         {loggedInUser && catalogue.length > 0 && (
           <div className="mt-3">
-            <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+            <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
               <div className={`h-full rounded-full transition-all duration-700${playerEarnedIds.size / catalogue.length > 0.8 ? " bar-pulse" : ""}`} style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
             </div>
           </div>
         )}
         {!playerName && (
-          <p className="text-xs mt-1.5 px-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+          <p className="text-xs mt-1.5 px-1" style={{ color: "rgba(255,255,255,0.35)" }}>
             Log in via the header to see your personal achievements highlighted.
           </p>
         )}
@@ -164,7 +164,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
       {catalogue.length === 0 ? (
         <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No achievements data. Connect to the API.</p>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>No achievements data. Connect to the API.</p>
         </div>
       ) : (
         <>
@@ -219,7 +219,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                       style={{ width: `${(catEarned / catTotal) * 100}%`, background: color, opacity: 0.7 }}
                     />
                   </div>
-                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>{catEarned}/{catTotal} in this category</p>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{catEarned}/{catTotal} in this category</p>
                 </div>
               ) : null;
             })()}
@@ -255,7 +255,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                 <button
                   onClick={() => { setActiveCat("all"); setEarnedFilter("all"); setSearchQuery(""); }}
                   className="text-xs px-2 py-0.5 rounded"
-                  style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.10)", cursor: "pointer" }}
                 >
                   Clear
                 </button>
@@ -265,7 +265,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
           {filteredCatalogue.length === 0 && (
             <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
-              <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No achievements match the current filters.</p>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>No achievements match the current filters.</p>
             </div>
           )}
 
@@ -281,7 +281,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                   {cat === "hidden" ? "Secret Achievements" : cat}
                 </h3>
                 {playerName && (
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                     {earnedInCat}/{catAchs.length}
                   </span>
                 )}
@@ -313,7 +313,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.45)" }}>??? Hidden Achievement</p>
-                            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Unlock to reveal...</p>
+                            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Unlock to reveal...</p>
                           </div>
                         </div>
                       </div>
@@ -373,8 +373,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                               {isHidden && myEarned && <span className="text-xs px-1 rounded" style={{ background: "rgba(138,43,226,0.2)", color: "#a855f7" }}>SECRET</span>}
                             </div>
                             {earnerCount > 0 || myEarned
-                              ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement unlocked."}</p>
-                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.25)" }}>Complete conditions to reveal description.</p>
+                              ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement unlocked."}</p>
+                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.4)" }}>Complete conditions to reveal description.</p>
                             }
                           </div>
                         </div>
@@ -387,7 +387,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                                 {rarity.label.toUpperCase()}
                               </span>
                             </Tip>
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                               {totalUsers > 0 ? Math.round((earnerCount / totalUsers) * 100) : 0}% aller Spieler
                             </span>
                           </div>

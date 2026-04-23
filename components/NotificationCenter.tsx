@@ -55,6 +55,7 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [markReadError, setMarkReadError] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   useModalBehavior(open, useCallback(() => setOpen(false), []));
@@ -95,7 +96,10 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
         setUnreadCount(0);
         setNotifications(prev => prev.map(n => ({ ...n, read: true })));
       }
-    } catch { /* ignore */ }
+    } catch {
+      setMarkReadError(true);
+      setTimeout(() => setMarkReadError(false), 5000);
+    }
   }, [playerName, reviewApiKey, unreadCount]);
 
   const handleOpen = useCallback(() => {
@@ -155,7 +159,7 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>Notifications</span>
             {unreadCount > 0 && (
               <button onClick={markAllRead} className="text-xs" style={{ color: "rgba(96,165,250,0.6)", cursor: "pointer", background: "none", border: "none" }}>
@@ -163,6 +167,12 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
               </button>
             )}
           </div>
+
+          {markReadError && (
+            <div className="px-4 py-1.5 text-xs" style={{ color: "#ef4444", background: "rgba(239,68,68,0.06)" }}>
+              Failed to mark as read
+            </div>
+          )}
 
           {/* Notification List */}
           <div className="overflow-y-auto scrollbar-rpg" style={{ maxHeight: 420, overscrollBehavior: "contain" }}>
@@ -212,10 +222,10 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold" style={{ color: n.read ? "rgba(255,255,255,0.5)" : "#e8e8e8" }}>{n.title}</p>
-                        <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.25)" }}>{n.message}</p>
+                        <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.4)" }}>{n.message}</p>
                       </div>
                       {/* Time */}
-                      <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{timeAgo(n.at)}</span>
+                      <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{timeAgo(n.at)}</span>
                       {/* Unread dot */}
                       {!n.read && (
                         <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: "#60a5fa", boxShadow: "0 0 4px #60a5fa" }} />

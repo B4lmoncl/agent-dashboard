@@ -389,7 +389,7 @@ router.get('/api/professions', (req, res) => {
         ...r,
         reqSkill,
         learned,
-        canCraft: learned && playerSkill >= reqSkill && factionRepMet && Object.entries(r.materials || {}).every(([matId, amt]) => (u?.craftingMaterials?.[matId] || 0) >= amt),
+        canCraft: learned && playerSkill >= reqSkill && factionRepMet && Object.entries(r.materials || {}).every(([matId, amt]) => (u?.craftingMaterials?.[matId] || 0) >= (fever && r.profession === fever.profession ? Math.ceil(amt * 0.5) : amt)),
         factionRepMet,
         skillUpColor: getSkillUpColor(playerSkill, reqSkill),
         skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
@@ -441,9 +441,9 @@ router.get('/api/professions', (req, res) => {
     profession: fever.profession,
     endsAt: fever.endsAt,
     remainingMs: fever.remainingMs,
-    playerCrafts: (state.forgeFever?.playerCrafts?.[uid]) || 0,
-    cacheEarned: ((state.forgeFever?.playerCrafts?.[uid]) || 0) >= FEVER_CRAFT_THRESHOLD,
-    cacheClaimed: !!(state.forgeFever?.playerClaimed?.[uid]),
+    playerCrafts: (state.forgeFever?.playerCrafts?.[u?.id]) || 0,
+    cacheEarned: ((state.forgeFever?.playerCrafts?.[u?.id]) || 0) >= FEVER_CRAFT_THRESHOLD,
+    cacheClaimed: !!(state.forgeFever?.playerClaimed?.[u?.id]),
     threshold: FEVER_CRAFT_THRESHOLD,
   } : null;
   res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, vendorReagents, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive(), favoriteRecipes, forgeFever });
@@ -1563,8 +1563,8 @@ router.post('/api/professions/buy-reagent', requireAuth, (req, res) => {
 
 // ─── POST /api/professions/fever/claim — claim bonus cache from Schmiedefieber ──
 router.post('/api/professions/fever/claim', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
-  const u = state.usersByName.get(uid) || state.usersByApiKey.get(req.headers['x-api-key']);
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
   const fever = getForgeFever();

@@ -188,26 +188,52 @@ export function useTutorialMoment(
 ): { moment: TutorialMoment | null; dismiss: () => void } {
   const [activeMoment, setActiveMoment] = useState<TutorialMoment | null>(null);
 
-  useEffect(() => {
+  const findNext = useCallback(() => {
     const seen = getSeenMoments();
-    // Find the first unseen moment for this view that the player qualifies for
-    // minLevel is informational — view access is already level-gated by TowerMap
-    const match = TUTORIAL_MOMENTS.find(m =>
+    return TUTORIAL_MOMENTS.find(m =>
       m.view === viewId &&
       !seen.has(m.id) &&
+      (m.minLevel ? playerLevel >= m.minLevel : true) &&
       (conditions ? conditions[m.id] !== false : true)
-    );
-    setActiveMoment(match || null);
+    ) || null;
   }, [viewId, playerLevel, conditions]);
 
+  useEffect(() => {
+    setActiveMoment(findNext());
+  }, [findNext, playerLevel]);
+
+  // Listen for global "advance tutorial" events so external code (e.g. after a
+  // quest completion, item purchase, companion pet) can re-scan and trigger the
+  // next contextual moment without a page reload.
+  useEffect(() => {
+    const handler = () => setActiveMoment(findNext());
+    window.addEventListener("qh-tutorial-advance", handler);
+    return () => window.removeEventListener("qh-tutorial-advance", handler);
+  }, [findNext]);
+
   const dismiss = useCallback(() => {
-    if (activeMoment) {
-      markSeen(activeMoment.id);
-      setActiveMoment(null);
-    }
-  }, [activeMoment]);
+    if (!activeMoment) return;
+    markSeen(activeMoment.id);
+    // Immediately advance to the next unseen moment on this view instead of
+    // waiting for the next remount. This is what lets users chain through all
+    // the questBoard moments (arrival → first_claim → first_reward → …) in a
+    // single sitting without leaving and returning.
+    setActiveMoment(findNext());
+  }, [activeMoment, findNext]);
 
   return { moment: activeMoment, dismiss };
+}
+
+/**
+ * Dispatch a global event to re-scan tutorial moments on any mounted
+ * TutorialMomentBanner. Call this after player actions that should reveal a
+ * contextual moment (quest completion, first gacha pull, first craft, etc.)
+ * even if the user hasn't navigated.
+ */
+export function advanceTutorial() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("qh-tutorial-advance"));
+  }
 }
 
 // ─── Component: Tutorial Moment Banner ───────────────────────────────────────

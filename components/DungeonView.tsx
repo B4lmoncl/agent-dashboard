@@ -309,7 +309,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   if (!playerName || !reviewApiKey) {
     return (
-      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <img src="/images/icons/nav-dungeons.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-2" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">Das Untergewölbe</p>
         <p className="text-xs text-w25">Einloggen, um die Dungeons zu betreten.</p>
@@ -409,9 +409,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               </span></Tip>
             )}
             {(collectResult.rewards.materialCount || 0) > 0 && (
-              <span className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)" }}>
+              <Tip k="materials"><span className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
                 +{collectResult.rewards.materialCount} Materials
-              </span>
+              </span></Tip>
             )}
             {collectResult.rewards.gemDrop && (
               <span className="text-xs px-2 py-1 rounded font-semibold" style={{ background: `${collectResult.rewards.gemDrop.color || '#a855f7'}12`, color: collectResult.rewards.gemDrop.color || '#a855f7' }}>
@@ -500,7 +500,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {activeRun.participants.map(p => (
                 <div key={p.name} className="rounded-lg p-2.5 text-center" style={{
-                  background: "rgba(255,255,255,0.03)",
+                  background: "rgba(255,255,255,0.05)",
                   border: `1px solid ${p.color}30`,
                 }}>
                   <div className="w-8 h-8 rounded-full mx-auto mb-1 flex items-center justify-center text-sm font-bold" style={{
@@ -535,7 +535,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
           {/* Combined Power Stats */}
           {activeRun.status === "active" && (
-            <div className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+            <div className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.04)" }}>
               <TipCustom title="Success Formula" icon="◆" accent="#3b82f6" body={<p>Effective Power = total Gear Score + Bond Bonus (+5 per bond level). If power ≥ threshold: 100%. At 70%: 70%, 50%: 40%, below: 15%.</p>}>
                 <p className="text-xs text-w25 mb-1 cursor-help">Gruppenstärke</p>
               </TipCustom>
@@ -675,7 +675,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                     <button
                       onClick={() => setConfirmCancel(false)}
                       className="btn-interactive text-xs px-3 py-2 rounded-lg"
-                      style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                      style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                     >
                       No
                     </button>
@@ -747,17 +747,17 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                 </div>
 
                 {/* Reward preview */}
-                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+                <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.04)" }}>
                   <p className="text-xs text-w25 mb-1">Rewards:</p>
                   <div className="flex flex-wrap gap-1">
-                    <Tip k="gold"><span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "#fbbf24" }}>
+                    <Tip k="gold"><span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "#fbbf24" }}>
                       {d.rewards.gold[0]}-{d.rewards.gold[1]}g
                     </span></Tip>
-                    <Tip k="essenz"><span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "#ef4444" }}>
+                    <Tip k="essenz"><span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "#ef4444" }}>
                       {d.rewards.essenz[0]}-{d.rewards.essenz[1]} Ess
                     </span></Tip>
                     {d.rewards.gearDrop && (
-                      <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "#a855f7" }}>
+                      <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "#a855f7" }}>
                         {Math.round(d.rewards.gearDrop.chance * 100)}% {d.rewards.gearDrop.minRarity}+ gear
                       </span>
                     )}
@@ -780,7 +780,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                         body={<>
                           <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
                           {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
-                          {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                          {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
                           {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                         </>}
                       >
@@ -796,8 +796,8 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
                 {onNavigate && (
                   <div className="flex gap-3 mt-1">
-                    {d.rewards.gearDrop && <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.25)", cursor: "pointer" }}>View in Character →</button>}
-                    <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.25)", cursor: "pointer" }}>View in Forge →</button>
+                    {d.rewards.gearDrop && <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>View in Character →</button>}
+                    <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>View in Forge →</button>
                   </div>
                 )}
 
@@ -851,11 +851,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             {/* Friends list */}
             <div>
               <p className="text-xs font-semibold text-w40 mb-1">Select Friends ({selectedFriends.length}/{maxInvites})</p>
-              <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.2)" }}>Need at least {selectedDungeonData.minPlayers - 1} friend{selectedDungeonData.minPlayers - 1 !== 1 ? "s" : ""} to start the dungeon</p>
+              <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Need at least {selectedDungeonData.minPlayers - 1} friend{selectedDungeonData.minPlayers - 1 !== 1 ? "s" : ""} to start the dungeon</p>
               {friendsLoading ? (
                 <div className="space-y-1.5 py-2">
                   {[1, 2, 3].map(i => (
-                    <div key={i} className="skeleton-pulse rounded-lg" style={{ height: 42, background: "rgba(255,255,255,0.03)" }} />
+                    <div key={i} className="skeleton-pulse rounded-lg" style={{ height: 42, background: "rgba(255,255,255,0.05)" }} />
                   ))}
                 </div>
               ) : friends.length === 0 ? (
@@ -942,7 +942,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Dungeon History</p>
           <div className="space-y-1">
             {history.map((h, i) => (
-              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.06)" }}>
                 <div className="flex items-center gap-2">
                   <span style={{ color: h.success ? "#22c55e" : "#ef4444" }}>{h.success ? "✓" : "✕"}</span>
                   <span className="text-w50 font-semibold">{h.dungeonName}</span>

@@ -689,27 +689,27 @@ button[disabled] {
 
 /* ─── Quest Hall Design System — Utility Classes ─────────────────────────── */
 /* Text colors — white at various opacities (replaces inline rgba styles)    */
-.text-w10 { color: rgba(255,255,255,0.15); }
-.text-w15 { color: rgba(255,255,255,0.22); }
-.text-w20 { color: rgba(255,255,255,0.28); }
-.text-w25 { color: rgba(255,255,255,0.32); }
-.text-w30 { color: rgba(255,255,255,0.38); }
-.text-w35 { color: rgba(255,255,255,0.42); }
-.text-w40 { color: rgba(255,255,255,0.4); }
-.text-w50 { color: rgba(255,255,255,0.5); }
-.text-w55 { color: rgba(255,255,255,0.55); }
-.text-w60 { color: rgba(255,255,255,0.6); }
-.text-w70 { color: rgba(255,255,255,0.7); }
+.text-w10 { color: rgba(255,255,255,0.18); }
+.text-w15 { color: rgba(255,255,255,0.25); }
+.text-w20 { color: rgba(255,255,255,0.35); }
+.text-w25 { color: rgba(255,255,255,0.42); }
+.text-w30 { color: rgba(255,255,255,0.48); }
+.text-w35 { color: rgba(255,255,255,0.55); }
+.text-w40 { color: rgba(255,255,255,0.6); }
+.text-w50 { color: rgba(255,255,255,0.58); }
+.text-w55 { color: rgba(255,255,255,0.65); }
+.text-w60 { color: rgba(255,255,255,0.7); }
+.text-w70 { color: rgba(255,255,255,0.78); }
 .text-primary { color: #e8e8e8; }
 .text-bright  { color: #f0f0f0; }
 
 /* Backgrounds — subtle white overlays                                       */
-.bg-w3  { background: rgba(255,255,255,0.03); }
-.bg-w4  { background: rgba(255,255,255,0.04); }
-.bg-w5  { background: rgba(255,255,255,0.05); }
-.bg-w6  { background: rgba(255,255,255,0.06); }
-.bg-w7  { background: rgba(255,255,255,0.07); }
-.bg-w8  { background: rgba(255,255,255,0.08); }
+.bg-w3  { background: rgba(255,255,255,0.05); }
+.bg-w4  { background: rgba(255,255,255,0.06); }
+.bg-w5  { background: rgba(255,255,255,0.07); }
+.bg-w6  { background: rgba(255,255,255,0.08); }
+.bg-w7  { background: rgba(255,255,255,0.09); }
+.bg-w8  { background: rgba(255,255,255,0.10); }
 
 /* Dark surface backgrounds                                                  */
 .bg-surface      { background: #1e1e22; }
@@ -717,11 +717,11 @@ button[disabled] {
 .bg-card         { background: #2a2a30; }
 
 /* Borders — white at various opacities                                      */
-.border-w6  { border: 1px solid rgba(255,255,255,0.06); }
-.border-w7  { border: 1px solid rgba(255,255,255,0.07); }
-.border-w8  { border: 1px solid rgba(255,255,255,0.08); }
-.border-w10 { border: 1px solid rgba(255,255,255,0.1); }
-.border-w12 { border: 1px solid rgba(255,255,255,0.12); }
+.border-w6  { border: 1px solid rgba(255,255,255,0.10); }
+.border-w7  { border: 1px solid rgba(255,255,255,0.11); }
+.border-w8  { border: 1px solid rgba(255,255,255,0.12); }
+.border-w10 { border: 1px solid rgba(255,255,255,0.14); }
+.border-w12 { border: 1px solid rgba(255,255,255,0.16); }
 
 /* Modal / Overlay backdrops                                                 */
 .modal-backdrop      { background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
@@ -1226,7 +1226,7 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
 .gt-trigger.gt-heading::before {
   content: ""; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, var(--floor-color, rgba(129,140,248,0.25)), transparent);
-  opacity: 0.6;
+  opacity: 0.25;
 }
 
 /* Loading bar — golden line fills under trigger during hover delay (headings only) */
@@ -1991,4 +1991,167 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   background-size: 200% 100%;
   animation: rested-xp-shimmer 4s ease-in-out infinite;
   pointer-events: none;
+}
+
+/* ─── Highstorm VFX (Stormlight-inspired event weather) ─────────────────────── */
+@keyframes highstorm-streak {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.5; }
+  100% { transform: translateX(calc(100vw + 200px)); opacity: 0; }
+}
+@keyframes highstorm-debris {
+  0% { transform: translateX(0) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.8; }
+  100% { transform: translateX(calc(100vw + 100px)) rotate(720deg); opacity: 0; }
+}
+@keyframes highstorm-flash {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes highstorm-vignette {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+/* ─── Ornate panel border (WoW-style decorative frame) ─────────────────────── */
+.panel-ornate {
+  position: relative;
+  border: 1px solid rgba(230,204,128,0.2);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(230,204,128,0.04) 0%, transparent 8%, transparent 92%, rgba(230,204,128,0.03) 100%);
+}
+.panel-ornate::before,
+.panel-ornate::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(230,204,128,0.35);
+  border-style: solid;
+  pointer-events: none;
+}
+.panel-ornate::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+  border-radius: 12px 0 0 0;
+}
+.panel-ornate::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 12px 0;
+}
+.panel-ornate-inner::before,
+.panel-ornate-inner::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(230,204,128,0.35);
+  border-style: solid;
+  pointer-events: none;
+}
+.panel-ornate-inner::before {
+  top: -1px;
+  right: -1px;
+  border-width: 2px 2px 0 0;
+  border-radius: 0 12px 0 0;
+}
+.panel-ornate-inner::after {
+  bottom: -1px;
+  left: -1px;
+  border-width: 0 0 2px 2px;
+  border-radius: 0 0 0 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highstorm-streak, .highstorm-debris, .highstorm-flash, .highstorm-vignette { animation: none !important; }
+}
+
+/* ─── Stormlight Gem-Infusion Effect — Currency Icons ────────────────────── */
+/* Pulsing radial glow that breathes like Stormlight-infused spheres (4s cycle) */
+@keyframes currency-infuse {
+  0%, 100% {
+    box-shadow: 0 0 4px var(--currency-glow, rgba(255,255,255,0.1)),
+                0 0 10px var(--currency-glow-outer, rgba(255,255,255,0.04));
+    filter: brightness(1.02);
+  }
+  50% {
+    box-shadow: 0 0 7px var(--currency-glow, rgba(255,255,255,0.2)),
+                0 0 16px var(--currency-glow-outer, rgba(255,255,255,0.08));
+    filter: brightness(1.12);
+  }
+}
+.currency-infused {
+  animation: currency-infuse 4s ease-in-out infinite;
+  border-radius: 50%;
+  will-change: box-shadow, filter;
+}
+/* Per-currency glow colors (Stormlight sphere palette) */
+.currency-gold       { --currency-glow: rgba(245, 168, 30, 0.50); --currency-glow-outer: rgba(245, 168, 30, 0.18); }
+.currency-essenz     { --currency-glow: rgba(110, 60, 220, 0.50); --currency-glow-outer: rgba(110, 60, 220, 0.18); }
+.currency-stardust   { --currency-glow: rgba(170, 190, 255, 0.45); --currency-glow-outer: rgba(170, 190, 255, 0.15); }
+.currency-runensplitter { --currency-glow: rgba(80, 220, 240, 0.48); --currency-glow-outer: rgba(80, 220, 240, 0.16); }
+.currency-sternentaler  { --currency-glow: rgba(255, 230, 140, 0.50); --currency-glow-outer: rgba(255, 230, 140, 0.18); }
+.currency-gildentaler   { --currency-glow: rgba(16, 200, 140, 0.42); --currency-glow-outer: rgba(16, 200, 140, 0.14); }
+.currency-mondstaub     { --currency-glow: rgba(200, 140, 255, 0.45); --currency-glow-outer: rgba(200, 140, 255, 0.15); }
+
+/* Disable currency infusion when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .currency-infused { animation: none !important; filter: none !important; box-shadow: none !important; }
+}
+
+/* ─── Floor Accent — Active Room Tab Indicator ───────────────────────────── */
+/* Bottom accent bar on active room tabs, colored by floor */
+.room-tab-active {
+  position: relative;
+}
+.room-tab-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--floor-color, rgba(255,255,255,0.3));
+  box-shadow: 0 0 8px var(--floor-color, rgba(255,255,255,0.15));
+  opacity: 0.45;
+}
+
+/* Floor-tinted section header underline */
+.section-header-floor {
+  position: relative;
+  display: inline-block;
+}
+.section-header-floor::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--floor-color, rgba(255,255,255,0.15)), transparent);
+  opacity: 0.3;
+}
+
+/* Floor-tinted card border — subtle top accent line via pseudo-element (avoids box-shadow conflicts) */
+.card-floor-border {
+  position: relative;
+}
+.card-floor-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  border-radius: 0 0 1px 1px;
+  background: linear-gradient(90deg, transparent, var(--floor-color, rgba(255,255,255,0.2)), transparent);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
 }

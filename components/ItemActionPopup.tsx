@@ -161,7 +161,7 @@ export default function ItemActionPopup({
                   }} title={s || "Empty socket"} />
                 ))}
               </div>
-              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
                 {filled}/{arr.length}
               </span>
             </div>
@@ -191,7 +191,7 @@ export default function ItemActionPopup({
             <button
               disabled
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
-              style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "not-allowed" }}
+              style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.35)", border: "1px solid rgba(255,255,255,0.10)", cursor: "not-allowed" }}
               title={`Level ${item.minLevel} required to equip`}
             >Lv. {item.minLevel} required</button>
           )}
@@ -237,7 +237,7 @@ export default function ItemActionPopup({
             <button
               onClick={() => setConfirmDiscard(true)}
               className="w-full py-1.5 rounded-lg text-xs"
-              style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+              style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.10)", cursor: "pointer" }}
               title="Permanently destroy this item"
             >Discard</button>
           )}
@@ -257,7 +257,7 @@ export default function ItemActionPopup({
                 <button
                   onClick={() => setConfirmDiscard(false)}
                   className="flex-1 py-1.5 rounded-lg text-xs"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                  style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                 >Cancel</button>
               </div>
             </div>

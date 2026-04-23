@@ -38,7 +38,7 @@ function getPlayerGachaState(playerId) {
 function getBannerPity(gs, bannerId) {
   if (!gs.perBanner[bannerId]) {
     // First pull on this banner — migrate from global counter if it has progress
-    gs.perBanner[bannerId] = { pity: 0, epicPity: 0 };
+    gs.perBanner[bannerId] = { pity: gs.pityCounter || 0, epicPity: gs.epicPityCounter || 0 };
   }
   return gs.perBanner[bannerId];
 }

@@ -50,13 +50,13 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
             <button
               onClick={onDismiss}
               className="text-xs px-2 py-1.5 rounded"
-              style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               Skip
             </button>
           </div>
         </div>
-        <button onClick={onDismiss} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+        <button onClick={onDismiss} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
       </div>
     </div>
   );
@@ -84,7 +84,7 @@ export function AchievementToast({ achievement, onClose }: { achievement: Earned
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)" }}>×</button>
     </div>
     </div>
   );
@@ -106,7 +106,7 @@ export function FlavorToast({ toast, onClose }: { toast: { message: string; icon
         <p className="text-sm font-bold" style={{ color: "#22c55e" }}>{toast.message}</p>
         {toast.sub && <p className="text-xs mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{toast.sub}</p>}
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -114,8 +114,8 @@ export function FlavorToast({ toast, onClose }: { toast: { message: string; icon
 // ─── Empty State ──────────────────────────────────────────────────────────────
 export function EmptyState({ message, sub }: { message: string; sub?: string }) {
   return (
-    <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-      <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>{message}</p>
+    <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
+      <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>{message}</p>
       {sub && <p className="text-xs mt-2 font-mono" style={{ color: "rgba(255,68,68,0.3)" }}>{sub}</p>}
     </div>
   );
@@ -126,7 +126,7 @@ export function SkeletonCard() {
   return (
     <div
       className="rounded-xl animate-pulse"
-      style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)", height: 260 }}
+      style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.08)", height: 260 }}
     />
   );
 }

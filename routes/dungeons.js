@@ -623,7 +623,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       const instance = rollSuffix(createGearInstance(template));
       if (!u.inventory) u.inventory = [];
       u.inventory.push(instance);
-      rewards.gearDropItem = { name: instance.name, rarity: instance.rarity, slot: instance.slot, instanceId: instance.instanceId, icon: instance.icon || null };
+      rewards.gearDropItem = { name: instance.name, rarity: instance.rarity, slot: instance.slot, instanceId: instance.instanceId || instance.id, icon: instance.icon || null, stats: instance.stats || null, desc: instance.desc || template.desc || null, legendaryEffect: instance.legendaryEffect || null, setId: instance.setId || null };
     } else {
       // Fallback: generic loot pool (for dungeons without specific items)
       for (let attempt = 0; attempt < 5; attempt++) {
@@ -636,7 +636,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       }
       if (gearItem) {
         addLootToInventory(uid, gearItem);
-        rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot, icon: gearItem.icon || null };
+        rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot, icon: gearItem.icon || null, stats: gearItem.stats || null, desc: gearItem.desc || null };
       }
     }
     delete rewards.gearDrop;

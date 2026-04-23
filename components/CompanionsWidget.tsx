@@ -659,7 +659,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             </div>
 
             {/* Flavor text / quote */}
-            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, fontStyle: "italic", marginBottom: 12 }}>
+            <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 12, fontStyle: "italic", marginBottom: 12 }}>
               &ldquo;{companionQuotes[quoteIdx % companionQuotes.length]}&rdquo;
             </p>
 
@@ -739,7 +739,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-xs font-bold uppercase tracking-widest" style={{ color: `rgba(${cColor.accentRgb},0.6)` }}>Ultimate</span>
                   {!ultimateReady && (
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
                       Cooldown: {ultimateDaysLeft}d
                     </span>
                   )}
@@ -760,14 +760,14 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     {dobbieQuests.filter(q => !completedIds.has(q.id)).map(q => (
                       <button key={q.id} onClick={() => handleUltimate("instant_complete", q.id)} disabled={!!ultimateUsing}
                         className="w-full text-left text-xs px-2 py-1.5 rounded" style={{
-                          background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", color: "#f0d0c0",
+                          background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)", color: "#f0d0c0",
                           cursor: ultimateUsing ? "not-allowed" : "pointer",
                         }}
                         title={ultimateUsing ? "Using ultimate\u2026" : undefined}>
                         {q.title}
                       </button>
                     ))}
-                    <button onClick={() => setUltimatePickQuest(false)} className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Cancel</button>
+                    <button onClick={() => setUltimatePickQuest(false)} className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Cancel</button>
                   </div>
                 )}
                 <div className="flex gap-1.5 flex-wrap">
@@ -806,7 +806,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             {bondLevel < 5 && (
               <div style={{
                 background: "#0e1018",
-                border: "1px solid rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.10)",
                 borderRadius: 2,
                 padding: "8px 10px",
                 marginBottom: 10,
@@ -815,8 +815,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 <div className="flex items-center gap-2">
                   <span style={{ fontSize: 16, filter: "grayscale(1)" }}>◆</span>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Ultimate Ability</span>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Unlocks at Bond Level 5 ({5 - bondLevel} levels away)</p>
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>Ultimate Ability</span>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Unlocks at Bond Level 5 ({5 - bondLevel} levels away)</p>
                   </div>
                 </div>
               </div>
@@ -945,7 +945,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             {user?.companion && playerName && apiKey && expeditionInitialLoading && (
               <div style={{ background: "#0e1018", border: "1px solid #1a1c28", borderRadius: 2, padding: "8px 10px", marginTop: 10 }}>
                 <div className="skeleton-pulse h-3 w-32 rounded mb-3" style={{ background: "rgba(255,255,255,0.06)" }} />
-                <div className="skeleton-pulse h-12 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+                <div className="skeleton-pulse h-12 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
               </div>
             )}
 
@@ -988,8 +988,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 {/* Active expedition */}
                 {expeditionData.active && (
                   <div style={{
-                    background: "rgba(255,255,255,0.02)",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.10)",
                     borderRadius: 2,
                     padding: "8px 10px",
                   }}>
@@ -1040,7 +1040,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
                 {/* Cooldown display */}
                 {!expeditionData.active && expeditionData.cooldownRemainingMs > 0 && (
-                  <div className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <div className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.45)" }}>
                     Your companion is resting. Available in {Math.ceil(expeditionData.cooldownRemainingMs / 60000)} minutes.
                   </div>
                 )}
@@ -1063,7 +1063,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 {/* Confirm dialog */}
                 {expeditionConfirm && (
                   <div className="rounded p-3 mb-2" style={{
-                    background: "rgba(255,255,255,0.03)",
+                    background: "rgba(255,255,255,0.05)",
                     border: "1px solid rgba(255,255,255,0.08)",
                   }}>
                     <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
@@ -1089,9 +1089,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         onClick={() => setExpeditionConfirm(null)}
                         className="flex-1 text-xs px-2 py-1.5 rounded font-semibold"
                         style={{
-                          background: "rgba(255,255,255,0.03)",
+                          background: "rgba(255,255,255,0.05)",
                           color: "rgba(255,255,255,0.4)",
-                          border: "1px solid rgba(255,255,255,0.06)",
+                          border: "1px solid rgba(255,255,255,0.10)",
                           cursor: "pointer",
                         }}
                       >
@@ -1129,10 +1129,10 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           <span className="text-xs font-bold mb-0.5" style={{ color: tc.accent, lineHeight: 1.2 }}>
                             {exp.name}
                           </span>
-                          <span className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.2)", lineHeight: 1.2 }}>
+                          <span className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.35)", lineHeight: 1.2 }}>
                             {exp.description}
                           </span>
-                          <span className="text-xs font-mono mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                          <span className="text-xs font-mono mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
                             {exp.durationHours}h
                           </span>
                           {exp.rewards.gold && (

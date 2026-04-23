@@ -186,13 +186,12 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
 
   // Sternentaler are ONLY earned from weekly challenges — not from daily bonus (except fortune)
 
-  // Streak milestone bonus rewards
+  // Streak milestone bonus rewards (fire ONLY on the exact milestone day, not every day after)
   let milestoneBonus = null;
   if (milestone && streakDays > 0) {
-    // Award extra currency based on streak length
-    if (streakDays >= 30) { rewards.runensplitter += 3; rewards.essenz += 5; milestoneBonus = milestone; }
-    else if (streakDays >= 14) { rewards.runensplitter += 2; rewards.essenz += 2; milestoneBonus = milestone; }
-    else if (streakDays >= 7) { rewards.runensplitter += 1; rewards.essenz += 1; milestoneBonus = milestone; }
+    if (streakDays === 30 || streakDays === 60 || streakDays === 90) { rewards.runensplitter += 3; rewards.essenz += 5; milestoneBonus = milestone; }
+    else if (streakDays === 14 || streakDays === 21) { rewards.runensplitter += 2; rewards.essenz += 2; milestoneBonus = milestone; }
+    else if (streakDays === 7) { rewards.runensplitter += 1; rewards.essenz += 1; milestoneBonus = milestone; }
   }
 
   // Apply rewards

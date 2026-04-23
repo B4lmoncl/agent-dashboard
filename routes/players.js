@@ -624,7 +624,7 @@ router.get('/api/player/:name/favorites', (req, res) => {
 const _versionData = (() => {
   try {
     return JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'data', 'version.json'), 'utf8'));
-  } catch { return { version: '1.6.0' }; }
+  } catch { return { version: '2.0.0' }; }
 })();
 router.get('/api/game-version', (req, res) => res.json(_versionData));
 
