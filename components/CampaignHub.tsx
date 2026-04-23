@@ -193,7 +193,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         {/* Quest Chain Timeline */}
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "rgba(167,139,250,0.6)" }}>Quest Chain</h3>
-          {cq.length === 0 && <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>No quests in this campaign yet.</p>}
+          {cq.length === 0 && <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>Noch keine Schriftrollen in dieser Kampagne. Das Buch ist leer — vorerst.</p>}
           <div>
             {cq.map((q, idx) => {
               const isBoss = q.id === expandedCampaign.bossQuestId;
@@ -236,8 +236,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       {campaigns.length === 0 && (
         <div className="text-center py-20" style={{ color: "rgba(255,255,255,0.35)" }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>◆</div>
-          <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>No active campaigns</p>
-          <p className="text-xs">Start a quest chain to begin your saga!</p>
+          <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Keine aktiven Kampagnen</p>
+          <p className="text-xs">Das Observatorium wartet auf die erste Zeile deiner Saga.</p>
         </div>
       )}
 
