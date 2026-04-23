@@ -174,25 +174,34 @@ router.get('/api/catalog/stats', (req, res) => {
 
 // POST /api/catalog/template — add new template [auth]
 router.post('/api/catalog/template', requireApiKey, (req, res) => {
+  // Admin-only: catalog templates are content authoring
+  if (!req.auth?.isAdmin) return res.status(403).json({ error: 'Admin only' });
   const { title, description, type, category, classId, minLevel, chainId, chainOrder, difficulty, estimatedTime, rewards, tags, createdBy } = req.body;
-  if (!title) return res.status(400).json({ error: 'title is required' });
+  if (!title || typeof title !== 'string') return res.status(400).json({ error: 'title is required (string)' });
   const validCategories = ['generic', 'classQuest', 'chainQuest', 'companionQuest'];
   const validDifficulties = ['starter', 'intermediate', 'advanced', 'expert'];
+  // Sanitize text fields + validate rewards shape
+  const sanitize = (s, max) => String(s || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, max);
+  const safeRewards = (rewards && typeof rewards === 'object') ? {
+    xp: Math.max(0, Math.min(10000, Math.floor(Number(rewards.xp) || 0))),
+    gold: Math.max(0, Math.min(10000, Math.floor(Number(rewards.gold) || 0))),
+  } : { xp: 0, gold: 0 };
+  const safeTags = (Array.isArray(tags) ? tags : []).slice(0, 20).map(t => sanitize(t, 50)).filter(Boolean);
   const tpl = {
     id: `tpl-${Date.now()}`,
-    title,
-    description: description || '',
+    title: sanitize(title, 500),
+    description: sanitize(description, 5000),
     type: type || 'development',
     category: validCategories.includes(category) ? category : 'generic',
     classId: classId || null,
-    minLevel: typeof minLevel === 'number' ? minLevel : 1,
+    minLevel: typeof minLevel === 'number' ? Math.max(1, Math.min(50, Math.floor(minLevel))) : 1,
     chainId: chainId || null,
     chainOrder: typeof chainOrder === 'number' ? chainOrder : null,
     difficulty: validDifficulties.includes(difficulty) ? difficulty : 'starter',
     estimatedTime: estimatedTime || null,
-    rewards: rewards || { xp: 0, gold: 0 },
-    tags: Array.isArray(tags) ? tags : [],
-    createdBy: createdBy || 'unknown',
+    rewards: safeRewards,
+    tags: safeTags,
+    createdBy: sanitize(createdBy || 'unknown', 100),
     createdAt: now(),
   };
   state.questCatalog.templates.push(tpl);

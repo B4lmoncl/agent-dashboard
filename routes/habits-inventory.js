@@ -30,11 +30,17 @@ router.get('/api/habits', (req, res) => {
 
 router.post('/api/habits', requireAuth, (req, res) => {
   const { title, positive, negative, playerId } = req.body;
-  if (!title) return res.status(400).json({ error: 'title is required' });
+  if (!title || typeof title !== 'string') return res.status(400).json({ error: 'title is required (string)' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  // Auth: non-admin may only create habits for themselves
+  if (!req.auth?.isAdmin && req.auth?.userId !== (playerId || '').toLowerCase()) {
+    return res.status(403).json({ error: 'Cannot create habits for another player' });
+  }
+  const safeTitle = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 200).trim();
+  if (!safeTitle) return res.status(400).json({ error: 'title must be non-empty' });
   const habit = {
     id: `habit-${Date.now()}`,
-    title,
+    title: safeTitle,
     positive: positive !== false,
     negative: negative === true,
     color: 'gray',

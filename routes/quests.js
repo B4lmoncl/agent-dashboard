@@ -155,7 +155,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     coopClaimed: [],
     coopCompletions: [],
     skills: Array.isArray(skills) ? skills.map(s => String(s).trim()).filter(Boolean).slice(0, 20) : [],
-    lore: typeof lore === 'string' && lore.trim() ? lore.trim() : null,
+    lore: typeof lore === 'string' && lore.trim() ? lore.trim().slice(0, 2000) : null,
     chapter: typeof chapter === 'string' && chapter.trim() ? chapter.trim() : null,
     minLevel: (typeof minLevel === 'number' && minLevel >= 1) ? Math.floor(minLevel) : 1,
     classRequired: classRequired || null,
@@ -872,11 +872,13 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
       return res.status(403).json({ error: 'Cannot assign quest to another player' });
     }
   }
-  if (proof !== undefined) quest.proof = String(proof).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (title !== undefined) quest.title = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (description !== undefined) quest.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (req.body.flavorText !== undefined) quest.flavorText = String(req.body.flavorText).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (req.body.lore !== undefined) quest.lore = String(req.body.lore).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Sanitize + enforce length limits to prevent storage bloat / DoS via multi-MB strings
+  const sanitize = (s, max) => String(s).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, max);
+  if (proof !== undefined) quest.proof = sanitize(proof, 2000);
+  if (title !== undefined) quest.title = sanitize(title, 500);
+  if (description !== undefined) quest.description = sanitize(description, 5000);
+  if (req.body.flavorText !== undefined) quest.flavorText = sanitize(req.body.flavorText, 1000);
+  if (req.body.lore !== undefined) quest.lore = sanitize(req.body.lore, 2000);
   if (claimedBy !== undefined) {
     quest.claimedBy = claimedBy;
     if (claimedBy && quest.status === 'open') quest.status = 'in_progress';
