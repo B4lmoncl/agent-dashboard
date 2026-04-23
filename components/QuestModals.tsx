@@ -104,7 +104,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
         onRefresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        setSpawnError(d.error || "Failed to add quest. Try again.");
+        setSpawnError(d.error || "Die Quest landet nicht auf dem Brett. Versuch es nochmal.");
       }
     } catch { setSpawnError("Network error. Could not add quest."); } finally {
       setSpawning(null);
@@ -233,7 +233,7 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
       });
       if (!r.ok) {
         const d = await r.json().catch(() => ({}));
-        setJoinError(d.error || "Failed to join challenge. Try again.");
+        setJoinError(d.error || "Die Herausforderung öffnet sich nicht. Versuch es nochmal.");
       } else {
         const updated = await fetch("/api/challenges").then(r2 => r2.ok ? r2.json() : challenges);
         setChallenges(updated);

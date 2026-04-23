@@ -649,7 +649,7 @@ function ExpeditionView({
             </div>
           );
         })() : (
-          <p className="text-xs text-w20 text-center py-3">No contributions this week yet</p>
+          <p className="text-xs text-w20 text-center py-3">Diese Woche hat noch niemand Hand angelegt. Das lässt sich ändern.</p>
         )}
       </div>
     </div>
@@ -710,11 +710,11 @@ export default function ChallengesView({
         }
       } else {
         const data = await resp.json().catch(() => ({}));
-        setClaimError(data.error || "Failed to claim reward");
+        setClaimError(data.error || "Die Hand bleibt leer — versuch es nochmal.");
       }
     } catch (e) {
       console.error("[challenges] claim stage failed:", e);
-      setClaimError("Network error");
+      setClaimError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
     } finally {
       setClaimingStage(false);
     }
@@ -749,11 +749,11 @@ export default function ChallengesView({
         }
       } else {
         const data = await resp.json().catch(() => ({}));
-        setClaimError(data.error || "Failed to claim milestone");
+        setClaimError(data.error || "Der Meilenstein weigert sich. Versuch es nochmal.");
       }
     } catch (e) {
       console.error("[challenges] claim milestone failed:", e);
-      setClaimError("Network error");
+      setClaimError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
     } finally {
       setClaimingMilestone(null);
     }
@@ -789,11 +789,11 @@ export default function ChallengesView({
         }
       } else {
         const data = await resp.json().catch(() => ({}));
-        setClaimError(data.error || "Failed to claim reward");
+        setClaimError(data.error || "Die Hand bleibt leer — versuch es nochmal.");
       }
     } catch (e) {
       console.error("[challenges] claim checkpoint failed:", e);
-      setClaimError("Network error");
+      setClaimError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
     } finally {
       setClaimingCheckpoint(null);
     }

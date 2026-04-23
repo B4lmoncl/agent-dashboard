@@ -156,7 +156,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       const d = await r.json();
       if (!r.ok) setMessage({ text: d.error || "Der Hallenmechanismus klemmt. Versuch es nochmal.", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -197,11 +197,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           });
         }
         if (d.skippedStage) {
-          setMessage({ text: `Schattenschritt: Stage ${d.skippedStage} auto-completed`, type: "success" });
+          setMessage({ text: `Schattenschritt: Etappe ${d.skippedStage} wurde übersprungen — niemand hat es gesehen.`, type: "success" });
         }
         fetchRift(); onRefresh?.();
       }
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -217,7 +217,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       const d = await r.json();
       if (!r.ok) setMessage({ text: d.error || "Der Hallenmechanismus klemmt. Versuch es nochmal.", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -324,12 +324,12 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                   });
                   const d = await r.json();
                   if (r.ok) {
-                    setMessage({ text: d.message || "Timer extended.", type: "success" });
+                    setMessage({ text: d.message || "Die Uhr wurde überredet, noch etwas zu bleiben.", type: "success" });
                     fetchRift();
                   } else {
-                    setMessage({ text: d.error || "Failed to extend", type: "error" });
+                    setMessage({ text: d.error || "Die Uhr bleibt stur. Kein Aufschub.", type: "error" });
                   }
-                } catch { setMessage({ text: "Network error", type: "error" }); }
+                } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
                 setTimeout(() => setMessage(null), 4000);
                 setActionLoading(false);
               }}

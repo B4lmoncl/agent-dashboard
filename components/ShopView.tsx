@@ -124,7 +124,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
         setCurrencyMsg({ text: d.error || "Purchase failed", type: "error" });
       }
     } catch {
-      setCurrencyMsg({ text: "Network error", type: "error" });
+      setCurrencyMsg({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
     }
     setCurrencyBuying(null);
     setTimeout(() => setCurrencyMsg(null), 3000);
@@ -298,7 +298,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
           const shopConf = CURRENCY_SHOPS.find(s => s.key === activeCurrencyTab);
           const items = currencyItems[activeCurrencyTab] || [];
           if (!shopConf) return null;
-          if (items.length === 0) return <p className="text-xs text-w20">No items available in this shop.</p>;
+          if (items.length === 0) return <p className="text-xs text-w20">Die Regale sind leer. Der Händler schaut verlegen — komm morgen wieder.</p>;
           const bal = currencyBalances[activeCurrencyTab] ?? 0;
           const ownedFrameIds = new Set((user?.unlockedFrames || []).map(f => f.id));
           const ownedTitleIds = new Set((user?.earnedTitles || []).map(t => t.id));

@@ -103,10 +103,10 @@ export default function AdventureTomeView({
           });
         }
       } else {
-        _toast({ type: "error", message: result.error || "Failed to claim" });
+        _toast({ type: "error", message: result.error || "Die Hand bleibt leer — versuch es nochmal." });
       }
     } catch {
-      _toast({ type: "error", message: "Network error" });
+      _toast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
     }
     setClaiming(null);
   };

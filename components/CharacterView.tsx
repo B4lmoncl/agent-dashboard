@@ -1125,7 +1125,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         }
       } else {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
-        if (addToast) addToast({ type: "error", message: data?.error || "Failed to equip item" });
+        if (addToast) addToast({ type: "error", message: data?.error || "Das Item wehrt sich. Nicht persönlich — nur mechanisch." });
       }
       await fetchChar();
     } finally { setEquipping(null); }
@@ -1142,7 +1142,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (!r.ok && addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
-        addToast({ type: "error", message: data?.error || "Failed to unequip" });
+        addToast({ type: "error", message: data?.error || "Der Verzicht klappt nicht. Auch ein kleiner Trost." });
       }
       await fetchChar();
     } catch {
@@ -1188,7 +1188,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       }
       await fetchChar();
     } catch {
-      if (addToast) addToast({ type: "error", message: "Network error" });
+      if (addToast) addToast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
     }
   };
 
@@ -2211,9 +2211,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           addToast?.({ type: "purchase", message: titleId ? `Title equipped: ${allTitles.find(t => t.id === titleId)?.name || titleId}` : "Title removed" });
                         } else {
                           const d = await r.json().catch(() => ({}));
-                          addToast?.({ type: "error", message: d.error || "Failed to equip title" });
+                          addToast?.({ type: "error", message: d.error || "Der Titel passt gerade nicht. Versuch es nochmal." });
                         }
-                      } catch { addToast?.({ type: "error", message: "Network error" }); }
+                      } catch { addToast?.({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
                       setTitleEquipping(null);
                     };
 
@@ -2399,7 +2399,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 } else {
                   addToast?.({ type: "error", message: d.error || "Der Hallenmechanismus klemmt. Versuch es nochmal." });
                 }
-              } catch { addToast?.({ type: "error", message: "Network error" }); }
+              } catch { addToast?.({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
               setGemAction(null);
             };
             return (

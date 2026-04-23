@@ -82,7 +82,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         setStandings(data.standings || []);
         setDailyQuests(data.dailyQuests || {});
       }
-    } catch { setMessage({ type: "error", text: "Failed to load faction data" }); }
+    } catch { setMessage({ type: "error", text: "Die Zirkel schweigen gerade. Versuch es nochmal." }); }
     setLoading(false);
   }, []);
 
@@ -109,11 +109,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           });
         }
       } else {
-        setMessage({ text: data.error || "Failed to claim", type: "error" });
+        setMessage({ text: data.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
         setTimeout(() => setMessage(null), 3000);
       }
     } catch {
-      setMessage({ text: "Network error", type: "error" });
+      setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
       setTimeout(() => setMessage(null), 3000);
     }
     setClaimingDaily(null);
@@ -142,10 +142,10 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           });
         }
       } else {
-        setMessage({ text: data.error || "Failed to claim", type: "error" });
+        setMessage({ text: data.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
       }
     } catch {
-      setMessage({ text: "Network error", type: "error" });
+      setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
     }
     setClaiming(null);
     setTimeout(() => setMessage(null), 3000);

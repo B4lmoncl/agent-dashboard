@@ -387,6 +387,12 @@ router.post('/api/world-boss/damage', requireAuth, (req, res) => {
   const result = dealBossDamage(uid, safeRarity);
   if (!result) return res.json({ active: false, message: 'No active boss' });
 
+  // dealBossDamage mutates user._worldBossContributions and possibly
+  // _lastWorldBossDefeated. Production path runs through onQuestCompletedByUser
+  // which saves users, but this admin debug endpoint has no outer save.
+  const { saveUsers } = require('../lib/state');
+  saveUsers();
+
   res.json({
     damage: result.damage,
     currentHp: result.currentHp,

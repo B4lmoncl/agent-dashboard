@@ -234,14 +234,14 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         body: JSON.stringify({ dungeonId: selectedDungeon, invitePlayers: selectedFriends }),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Failed to create run", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Die Expedition findet keinen Anfang. Versuch es nochmal.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
         setShowCreate(false);
         fetchDungeons();
         onRefresh?.();
       }
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -255,9 +255,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Failed to join", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Kein Platz in der Gruppe. Versuch es nochmal.", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchDungeons(); onRefresh?.(); }
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -272,7 +272,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Failed to collect", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Die Beute weigert sich. Versuch es nochmal.", type: "error" });
       else {
         setCollectResult(d);
         setMessage({ text: d.message, type: d.success ? "success" : "error" });
@@ -301,7 +301,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           });
         }
       }
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -659,9 +659,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                             body: JSON.stringify({ runId: activeRun.runId }),
                           });
                           const d = await r.json();
-                          if (!r.ok) setMessage({ text: d.error || "Failed to cancel", type: "error" });
+                          if (!r.ok) setMessage({ text: d.error || "Die Expedition lässt sich nicht abblasen. Versuch es nochmal.", type: "error" });
                           else { setMessage({ text: d.message || "Run cancelled", type: "success" }); fetchDungeons(); onRefresh?.(); }
-                        } catch { setMessage({ text: "Network error", type: "error" }); }
+                        } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
                         setActionLoading(false);
                         setConfirmCancel(false);
                       }}
@@ -832,6 +832,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setShowCreate(false)}>
           <div className="absolute inset-0 modal-backdrop" />
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Dungeon: ${selectedDungeonData.name || "Expedition"}`}
             className="relative rounded-xl p-6 w-full max-w-md space-y-4 tab-content-enter"
             style={{
               background: "#12141a",
@@ -859,7 +862,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   ))}
                 </div>
               ) : friends.length === 0 ? (
-                <div className="text-xs text-w20 py-4 text-center">No friends found. Add friends in The Breakaway first.</div>
+                <div className="text-xs text-w20 py-4 text-center">Die Gildentafel ist leer. In The Breakaway findest du Gefährten.</div>
               ) : (
                 <div className="space-y-1 max-h-48 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
                   {friends.map(f => {

@@ -36,7 +36,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
         setSubmitted(true);
         setTimeout(onClose, 1500);
       } else {
-        setError("Failed to submit. Try again.");
+        setError("Der Brief ist nicht angekommen. Versuch es nochmal.");
       }
     } catch {
       setError("Network error.");

@@ -78,7 +78,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to approve quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Die Prüfung klemmt. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not approve quest" });
@@ -102,7 +102,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to reject quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Die Prüfung klemmt. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not reject quest" });
@@ -152,7 +152,7 @@ export function useQuestActions({
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ questId, action }),
       });
-      if (!r.ok) addToast({ type: "error", message: "Failed to toggle favorite" });
+      if (!r.ok) addToast({ type: "error", message: "Der Favorit bleibt unverändert. Versuch es nochmal." });
     } catch {
       addToast({ type: "error", message: "Network error toggling favorite" });
     }
@@ -174,7 +174,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: d.error || "Failed to claim quest" });
+        addToast({ type: "error", message: d.error || "Die Quest weigert sich, gepackt zu werden. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not claim quest", onRetry: () => handleClaim(questId) });
@@ -197,7 +197,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to unclaim quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Die Quest lässt sich nicht zurücklegen. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not unclaim quest", onRetry: () => handleUnclaim(questId) });
@@ -219,7 +219,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to join co-op quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Die Gruppe hat schon zu. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not join co-op quest" });
@@ -252,7 +252,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to complete co-op quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Die Gruppe hat den Abschluss verpasst. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not complete co-op quest", onRetry: () => handleCoopComplete(questId) });
@@ -437,7 +437,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: d.error || "Failed to complete quest" });
+        addToast({ type: "error", message: d.error || "Die Quest lässt sich nicht eintragen. Versuch es nochmal." });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not complete quest", onRetry: () => handleComplete(questId, questTitle) });
@@ -456,13 +456,13 @@ export function useQuestActions({
       });
       if (!r.ok) {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to create chain quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Der Faden reißt. Versuch es nochmal." });
         return;
       }
       setChainOffer(null);
       await refresh();
     } catch {
-      addToast({ type: "error", message: "Failed to accept chain quest" });
+      addToast({ type: "error", message: "Der Faden findet keinen Halt. Versuch es nochmal." });
     }
   }, [reviewApiKey, playerName, refresh, setChainOffer, addToast]);
 

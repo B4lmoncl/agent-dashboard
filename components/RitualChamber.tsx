@@ -99,7 +99,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         body: JSON.stringify({ title: newHabitTitle.trim(), positive: true, negative: true, playerId: playerName }),
       });
       if (r.ok) { setNewHabitTitle(""); fetchHabits(); }
-      else { addToast?.({ type: "error", message: "Failed to create habit" }); }
+      else { addToast?.({ type: "error", message: "Das Ritual findet keinen Anfang. Versuch es nochmal." }); }
     } catch { addToast?.({ type: "error", message: "Network error — habit not created" }); }
   };
 
@@ -127,10 +127,10 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
       if (r.ok) {
         fetchHabits();
       } else {
-        if (addToast) addToast({ type: "error", message: "Failed to delete habit" });
+        if (addToast) addToast({ type: "error", message: "Das Ritual lässt sich nicht tilgen. Versuch es nochmal." });
       }
     } catch {
-      if (addToast) addToast({ type: "error", message: "Network error" });
+      if (addToast) addToast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
     }
   };
 
@@ -482,7 +482,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               fetchRituals(playerName).then(setRituals);
             } else {
               const d = await ritualRes.json().catch(() => ({}));
-              if (addToast) addToast({ type: "error", message: d.error || "Failed to create ritual" });
+              if (addToast) addToast({ type: "error", message: d.error || "Das Ritual findet keinen Anfang. Versuch es nochmal." });
             }
           };
           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];

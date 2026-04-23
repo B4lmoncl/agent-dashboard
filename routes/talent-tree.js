@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { state, saveUsers } = require("../lib/state");
+const { state, saveUsers, ensureUserCurrencies } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
 const { createPlayerLock, getLevelInfo } = require("../lib/helpers");
 const talentLock = createPlayerLock('talent');
@@ -239,19 +239,21 @@ router.post('/api/talents/reset', requireAuth, (req, res) => {
     const goldCost = RESPEC_COST.gold || 500;
     const essenzCost = RESPEC_COST.essenz || 0;
 
-    if ((user.gold || 0) < goldCost) {
+    // Canonical currency store is user.currencies; mirror to user.gold for legacy readers.
+    ensureUserCurrencies(user);
+    if ((user.currencies.gold || 0) < goldCost) {
       return res.status(400).json({ error: `Not enough gold. Reset costs ${goldCost}g` });
     }
     if (essenzCost > 0) {
-      const userEssenz = user.currencies?.essenz || 0;
+      const userEssenz = user.currencies.essenz || 0;
       if (userEssenz < essenzCost) {
         return res.status(400).json({ error: `Not enough Essenz. Reset costs ${essenzCost}` });
       }
       user.currencies.essenz -= essenzCost;
     }
 
-    user.gold -= goldCost;
-    if (user.currencies) user.currencies.gold = user.gold;
+    user.currencies.gold -= goldCost;
+    user.gold = user.currencies.gold;
     talents.allocated = {};
     talents.totalSpent = 0;
 

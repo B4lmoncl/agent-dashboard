@@ -418,11 +418,11 @@ export default function DashboardHeader({
                                   const r = await fetch("/api/auth/forgot-password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: forgotEmail }) });
                                   const d = await r.json().catch(() => ({}));
                                   if (!r.ok) {
-                                    setForgotMsg({ text: d.error || "Failed to send reset link.", ok: false });
+                                    setForgotMsg({ text: d.error || "Der Bote ist verloren gegangen — wahrscheinlich in einer Taverne.", ok: false });
                                   } else {
                                     setForgotMsg({ text: d.message || "Check your email.", ok: true });
                                   }
-                                } catch { setForgotMsg({ text: "Network error", ok: false }); }
+                                } catch { setForgotMsg({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", ok: false }); }
                               }}
                               disabled={!forgotEmail.includes("@")}
                               title={!forgotEmail.includes("@") ? "Enter a valid email address" : undefined}
@@ -529,7 +529,7 @@ export default function DashboardHeader({
                             const d = await r.json();
                             setSettingsMsg(d.message || d.error || "Done");
                             setTimeout(() => setSettingsMsg(""), 5000);
-                          } catch { setSettingsMsg("Network error"); }
+                          } catch { setSettingsMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
                         }}
                         className="text-xs px-3 py-1.5 rounded-lg font-semibold"
                         style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.25)", cursor: "pointer" }}
@@ -563,7 +563,7 @@ export default function DashboardHeader({
                             refresh();
                             setSettingsMsg("Avatar updated.");
                             setTimeout(() => setSettingsMsg(""), 3000);
-                          } catch { setSettingsMsg("Network error"); }
+                          } catch { setSettingsMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
                         }}
                         className="flex-1 rounded-lg p-2 flex flex-col items-center gap-1"
                         style={{
@@ -594,7 +594,7 @@ export default function DashboardHeader({
                               body: JSON.stringify({ relationshipStatus: s }),
                             });
                             refresh();
-                          } catch { setSettingsMsg("Failed to update relationship status"); }
+                          } catch { setSettingsMsg("Der Beziehungsstatus bleibt unverändert."); }
                         }}
                         className="text-xs px-2 py-1 rounded"
                         style={{
@@ -629,7 +629,7 @@ export default function DashboardHeader({
                       setSettingsMsg(d.message || d.error || "Done");
                       if (r.ok) { setChangePwCurrent(""); setChangePwNew(""); setChangePwConfirm(""); }
                       setTimeout(() => setSettingsMsg(""), 5000);
-                    } catch { setSettingsMsg("Network error"); }
+                    } catch { setSettingsMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
                     setChangePwLoading(false);
                   }}
                   disabled={changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm || changePwNew.length < 8}

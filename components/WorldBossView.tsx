@@ -261,7 +261,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       });
       const d = await r.json();
       if (!r.ok) {
-        setMessage({ text: d.error || "Failed to claim rewards", type: "error" });
+        setMessage({ text: d.error || "Die Belohnung weigert sich. Versuch es nochmal.", type: "error" });
       } else {
         setClaimResult(d);
         setMessage({ text: "Rewards claimed.", type: "success" });
@@ -287,7 +287,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         }
       }
     } catch {
-      setMessage({ text: "Network error", type: "error" });
+      setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
     }
     setClaiming(false);
   }, [reviewApiKey, claiming, fetchBoss, onRefresh, onRewardCelebration]);
@@ -657,7 +657,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                   } else {
                     setMessage({ text: d.error || "Boost failed", type: "error" });
                   }
-                } catch { setMessage({ text: "Network error", type: "error" }); }
+                } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
                 setBoosting(false);
                 setTimeout(() => setMessage(null), 4000);
               }}

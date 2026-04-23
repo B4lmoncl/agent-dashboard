@@ -256,6 +256,9 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
       onClick={e => e.stopPropagation()}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Willkommen im Quest Hall"
         className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
         style={{

@@ -96,17 +96,20 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
     u.currencies.essenz += bonusEssenz;
   }
 
-  // Award crafting materials from dismantle (was computed but never granted)
+  // Award crafting materials from dismantle — each drop rolls independently against its chance
   u.craftingMaterials = u.craftingMaterials || {};
   const materialsAwarded = [];
   for (const drop of matDrops) {
-    u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + drop.amount;
-    materialsAwarded.push(drop);
+    if (Math.random() < (drop.chance || 0)) {
+      const def = state.professionsData?.materials?.find(m => m.id === drop.id);
+      u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + 1;
+      materialsAwarded.push({ id: drop.id, amount: 1, name: def?.name || drop.id });
+    }
   }
 
   // Sync write — dismantle must survive container restarts
   saveUsersSync();
-  const matMsg = materialsAwarded.length > 0 ? ` + ${materialsAwarded.map(m => `${m.amount}x ${m.name || m.id}`).join(", ")}` : "";
+  const matMsg = materialsAwarded.length > 0 ? ` + ${materialsAwarded.map(m => `${m.amount}x ${m.name}`).join(", ")}` : "";
   res.json({
     message: `${item.name} dismantled! +${essenzGained + bonusEssenz} Essenz${matMsg}`,
     dismantled: { name: item.name, rarity },
@@ -202,11 +205,13 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
     let itemEssenz = DISMANTLE_ESSENZ[rarity] || 2;
     if (salvageBonusMult > 0) itemEssenz += Math.round(itemEssenz * salvageBonusMult);
     totalEssenz += itemEssenz;
-    // Award materials per item (was missing — Salvage All promised materials but delivered none)
+    // Award materials per item — roll each drop independently against its chance
     const matDrops = getDismantleMaterials(uid, rarity);
     for (const drop of matDrops) {
-      u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + drop.amount;
-      allMats[drop.id] = (allMats[drop.id] || 0) + drop.amount;
+      if (Math.random() < (drop.chance || 0)) {
+        u.craftingMaterials[drop.id] = (u.craftingMaterials[drop.id] || 0) + 1;
+        allMats[drop.id] = (allMats[drop.id] || 0) + 1;
+      }
     }
   }
   // Remove all dismantled items in one pass (O(n) instead of O(n²))

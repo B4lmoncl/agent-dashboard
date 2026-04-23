@@ -110,6 +110,7 @@ export default function TalentTreeView({
   const [confirmAction, setConfirmAction] = useState<(() => void) | null>(null);
   const [confirmMessage, setConfirmMessage] = useState("");
   useModalBehavior(confirmReset, () => setConfirmReset(false));
+  useModalBehavior(!!confirmAction, () => setConfirmAction(null));
 
   // ─── Fetch ──────────────────────────────────────────────────────────────
   const fetchTalents = useCallback(async () => {
@@ -148,7 +149,7 @@ export default function TalentTreeView({
         _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Network error" });
+      _toast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
     } finally {
       setAllocating(false);
     }
@@ -172,7 +173,7 @@ export default function TalentTreeView({
         _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Network error" });
+      _toast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
     } finally {
       setAllocating(false);
     }
@@ -196,7 +197,7 @@ export default function TalentTreeView({
         _toast({ type: "error", message: d.error || "Action failed" });
       }
     } catch (e) {
-      _toast({ type: "error", message: "Network error" });
+      _toast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
     } finally {
       setResetting(false);
     }
@@ -282,7 +283,7 @@ export default function TalentTreeView({
   if (!data) {
     return (
       <div className="tab-content-enter flex flex-col items-center justify-center py-20 gap-2">
-        <div className="text-sm" style={{ color: loadError ? "#ef4444" : "rgba(255,255,255,0.3)" }}>{loadError ? "Failed to load Talent Tree" : "Talent-System nicht verfügbar"}</div>
+        <div className="text-sm" style={{ color: loadError ? "#ef4444" : "rgba(255,255,255,0.3)" }}>{loadError ? "Der Baum schweigt. Versuch es nochmal." : "Talent-System nicht verfügbar"}</div>
         {loadError && <button onClick={() => { setLoadError(false); setLoading(true); fetchTalents(); }} className="text-xs px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}>Retry</button>}
       </div>
     );
@@ -530,7 +531,12 @@ export default function TalentTreeView({
               return (
                 <g
                   key={n.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${n.name}${state === "allocated" ? " (aktiviert)" : state === "unlockable" ? " (wählbar)" : " (gesperrt)"}`}
+                  aria-pressed={state === "allocated"}
                   onClick={() => setSelectedNode(n.id === selectedNode ? null : n.id)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedNode(n.id === selectedNode ? null : n.id); } }}
                   style={{ cursor: "pointer" }}
                   opacity={opacity}
                   filter={state === "allocated" ? "url(#node-glow)" : undefined}
@@ -798,7 +804,7 @@ export default function TalentTreeView({
                               _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();
                             }
-                          } catch { _toast({ type: "error", message: "Network error" }); }
+                          } catch { _toast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
                         });
                       }}
                       className="text-xs px-3 py-1.5 rounded font-semibold"
@@ -868,7 +874,7 @@ export default function TalentTreeView({
           className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop"
           onClick={(e) => { if (e.target === e.currentTarget) setConfirmReset(false); }}
         >
-          <div className="rounded-2xl p-6 max-w-sm w-full" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div role="dialog" aria-modal="true" aria-label="Talente zurücksetzen" className="rounded-2xl p-6 max-w-sm w-full" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
             <h3 className="text-sm font-bold text-w70 mb-2">Talente zurücksetzen?</h3>
             <p className="text-xs text-w40 mb-4">
               Kosten: <span className="font-bold text-yellow-400">500g + 50 Essenz</span> ({data.totalSpent} Knoten werden zurückgesetzt)
@@ -902,6 +908,9 @@ export default function TalentTreeView({
           onClick={() => setConfirmAction(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Bestätigung"
             className="rounded-xl p-5 max-w-sm w-full mx-4"
             style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
             onClick={e => e.stopPropagation()}

@@ -99,7 +99,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         onRefresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        setCreateError(d.error || "Failed to create campaign. Try again.");
+        setCreateError(d.error || "Die Saga weigert sich, geschrieben zu werden. Versuch es nochmal.");
       }
     } catch (err) {
       console.error("[CampaignHub] Create failed:", err);
@@ -119,7 +119,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         onRefresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        setDeleteError(d.error || "Failed to delete campaign.");
+        setDeleteError(d.error || "Die Saga lässt sich nicht tilgen. Versuch es nochmal.");
         setDeleteConfirm(null);
       }
     } catch (err) {

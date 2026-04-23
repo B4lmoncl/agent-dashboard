@@ -293,9 +293,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                           });
                         }
                       } else {
-                        setVowError(data.error || "Failed to complete vow");
+                        setVowError(data.error || "Das Gelübde weigert sich. Versuch es nochmal.");
                       }
-                    } catch { setVowError("Network error"); } finally { setVowChecking(null); }
+                    } catch { setVowError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); } finally { setVowChecking(null); }
                   }}
                   disabled={vowDoneToday || !reviewApiKey || vowChecking === ar.id}
                   className="text-xs px-2 py-1 rounded transition-all"
@@ -935,9 +935,9 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
         setCompleteFeedback(`+${data.xpEarned || 0} XP, +${data.goldEarned || 0} Gold`);
         onRefresh();
       } else {
-        setCompleteFeedback(data.error || "Failed to complete quest");
+        setCompleteFeedback(data.error || "Die Quest lässt sich nicht eintragen. Versuch es nochmal.");
       }
-    } catch { setCompleteFeedback("Network error"); } finally { setCompleting(null); }
+    } catch { setCompleteFeedback("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); } finally { setCompleting(null); }
   };
 
   return (

@@ -178,7 +178,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       setSuccessMsg(`Friend request sent to ${name}!`);
       setTimeout(() => setSuccessMsg(null), 3000);
       fetchFriends();
-    } catch { setError("Network error"); }
+    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
   };
 
   const handleRequest = async (reqId: string, action: "accept" | "decline") => {
@@ -190,7 +190,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       });
       if (!r.ok) { const d = await r.json().catch(() => ({})); setError(d.error || "Request failed"); }
       fetchFriends();
-    } catch (e) { console.error('[social]', e); setError("Network error"); }
+    } catch (e) { console.error('[social]', e); setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     setProcessingReqId(null);
   };
 
@@ -229,7 +229,8 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
             onChange={e => setAddInput(e.target.value)}
             onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
             onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
-            placeholder="Search players..."
+            placeholder="Spieler suchen…"
+            aria-label="Spieler suchen"
             maxLength={50}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
@@ -308,7 +309,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Friends ({friends.length})</p>
         {friends.length === 0 ? (
-          <p className="text-xs text-w20 text-center py-6">No friends yet. Send a request above!</p>
+          <p className="text-xs text-w20 text-center py-6">Noch niemand im Verzeichnis. Der Turm ist groß — jemand passt.</p>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {[...friends].sort((a, b) => {
@@ -317,7 +318,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
               const bStatus = b.onlineStatus || (b.isOnline ? "online" : "offline");
               return (order[aStatus] ?? 2) - (order[bStatus] ?? 2);
             }).map(f => (
-              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
+              <div key={f.id} role="button" tabIndex={0} aria-label={`Profil von ${f.name}`} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2" onClick={() => onOpenProfile?.(f.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenProfile?.(f.id); } }} style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
@@ -349,7 +350,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                         if (r.ok) setSuccessMsg("Challenge sent to " + f.name);
                         else setSuccessMsg(d.error || "Failed");
                         setTimeout(() => setSuccessMsg(null), 4000);
-                      } catch { setSuccessMsg("Network error"); }
+                      } catch { setSuccessMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
                     })();
                   }}
                   className="text-xs px-2 py-0.5 rounded mt-1"
@@ -440,7 +441,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         fetchConversations();
       } else {
         const data = await r.json().catch(() => null);
-        setSendError(data?.error || "Failed to send message");
+        setSendError(data?.error || "Die Nachricht findet keinen Empfänger. Versuch es nochmal.");
       }
     } catch (e) { console.error('[social]', e); }
     setSendingMsg(false);
@@ -493,7 +494,8 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
             value={msgInput}
             onChange={e => { setMsgInput(e.target.value); if (sendError) setSendError(""); }}
             onKeyDown={e => { if (e.key === "Enter") sendMessage(); }}
-            placeholder="Type a message..."
+            placeholder="Nachricht verfassen…"
+            aria-label="Nachricht an Freund"
             maxLength={500}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
@@ -540,10 +542,10 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         <div className="rounded-lg p-3 space-y-2" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
           <div className="flex items-center justify-between">
             <p className="text-xs font-semibold" style={{ color: "#a855f7" }}>Start conversation with:</p>
-            <button onClick={() => setShowNewMsg(false)} className="text-xs text-w30 btn-interactive px-1">✕</button>
+            <button onClick={() => setShowNewMsg(false)} aria-label="Schließen" className="text-xs text-w30 btn-interactive px-1">✕</button>
           </div>
           {friendsList.length === 0 ? (
-            <p className="text-xs text-w20 py-2">No friends available to message.</p>
+            <p className="text-xs text-w20 py-2">Noch keine Gefährten zum Anschreiben.</p>
           ) : (
             <div className="grid grid-cols-2 gap-1.5">
               {friendsList.map(f => (
@@ -857,7 +859,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       setNewTradeMsg("");
       setNewTradeItems([]);
       fetchTrades();
-    } catch { setError("Network error"); }
+    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     setActionLoading(false);
   };
 
@@ -882,7 +884,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       }
       fetchTrades();
       setSelectedTrade(null);
-    } catch { setError("Network error"); }
+    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     setActionLoading(false);
   };
 
@@ -905,7 +907,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       setCounterItems([]);
       fetchTrades();
       setSelectedTrade(null);
-    } catch { setError("Network error"); }
+    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     setActionLoading(false);
   };
 
@@ -1134,7 +1136,8 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
           <input
             value={newTradeTarget}
             onChange={e => setNewTradeTarget(e.target.value)}
-            placeholder="Trade with player..."
+            placeholder="Handel mit Spieler…"
+            aria-label="Handelspartner"
             className="input-dark w-full text-xs px-3 py-2 rounded-lg"
           />
           <div>
@@ -1293,7 +1296,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       )}
 
       {trades.length === 0 && !showNewTrade && (
-        <p className="text-xs text-w20 text-center py-8">No trades yet. Propose a trade to get started!</p>
+        <p className="text-xs text-w20 text-center py-8">Keine Handel. Der Markt wartet auf dein erstes Angebot.</p>
       )}
       {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
@@ -1522,7 +1525,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
       setActionMsg(data.message || data.error || "Done");
       setTimeout(() => setActionMsg(null), 4000);
       fetchMail();
-    } catch { setActionMsg("Network error"); }
+    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
   };
 
   const handleDelete = async (mailId: string) => {
@@ -1533,7 +1536,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
       });
       setSelectedMail(null);
       fetchMail();
-    } catch { setActionMsg("Network error"); }
+    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
   };
 
   const handleSend = async () => {
@@ -1555,7 +1558,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
         setActionMsg(data.error || "Error");
       }
       setTimeout(() => setActionMsg(null), 4000);
-    } catch { setActionMsg("Network error"); }
+    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     setSending(false);
   };
 
@@ -1593,7 +1596,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                   setActionMsg(data.message || data.error || "Done");
                   setTimeout(() => setActionMsg(null), 4000);
                   fetchMail();
-                } catch { setActionMsg("Network error"); }
+                } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
               }}
               className="text-xs px-3 py-1.5 rounded-lg font-semibold"
               style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.25)", cursor: "pointer" }}
@@ -1623,7 +1626,8 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
         <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
           <input
             type="text"
-            placeholder="To (player name)"
+            placeholder="An (Spielername)"
+            aria-label="Empfänger"
             value={sendTo}
             onChange={e => setSendTo(e.target.value)}
             className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
@@ -1631,7 +1635,8 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
           />
           <input
             type="text"
-            placeholder="Subject"
+            placeholder="Betreff"
+            aria-label="Betreff"
             value={sendSubject}
             onChange={e => setSendSubject(e.target.value)}
             maxLength={100}
@@ -1639,7 +1644,8 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
             style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
           />
           <textarea
-            placeholder="Message (optional)"
+            placeholder="Nachricht (optional)"
+            aria-label="Nachrichtentext"
             value={sendBody}
             onChange={e => setSendBody(e.target.value)}
             maxLength={500}
@@ -1824,7 +1830,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
         setBond(d.bond);
         setCooldownUntil(d.cooldownUntil);
       }
-    } catch { setMessage({ text: "Failed to load bond data", type: "error" }); }
+    } catch { setMessage({ text: "Der Pakt schweigt gerade. Versuch es nochmal.", type: "error" }); }
     setLoading(false);
   }, [apiKey, playerName]);
 
@@ -1853,8 +1859,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       });
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message || "Bond proposed", type: "success" }); setProposalTarget(null); fetchBond(); }
-      else setMessage({ text: d.error || "Failed to propose", type: "error" });
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+      else setMessage({ text: d.error || "Der Vorschlag verhallt. Versuch es nochmal.", type: "error" });
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1870,7 +1876,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message, type: "success" }); fetchBond(); }
       else setMessage({ text: d.error || `Failed to ${action}`, type: "error" });
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1885,8 +1891,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       });
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message, type: "success" }); setBond(null); setConfirmBreak(false); fetchBond(); }
-      else setMessage({ text: d.error || "Failed to break bond", type: "error" });
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+      else setMessage({ text: d.error || "Der Bund lässt sich nicht lösen. Versuch es nochmal.", type: "error" });
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1914,8 +1920,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           });
         }
         fetchBond();
-      } else setMessage({ text: d.error || "Failed to claim", type: "error" });
-    } catch { setMessage({ text: "Network error", type: "error" }); }
+      } else setMessage({ text: d.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
+    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1942,7 +1948,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           </div>
         )}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">No friends yet. Add friends first.</p>}
+          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">Die Gildentafel ist leer. Füge zuerst Gefährten hinzu.</p>}
           {friends.map(f => (
             <button
               key={f.id}
@@ -1980,7 +1986,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Pakt mit {proposalTarget.name}</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Wähle die Dauer eures Bundes.</p>
               </div>
-              <button onClick={() => setProposalTarget(null)} className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+              <button onClick={() => setProposalTarget(null)} aria-label="Abbrechen" className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {([
@@ -2055,7 +2061,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 const d = await r.json();
                 if (r.ok) { setMessage({ text: d.message || "Cancelled", type: "success" }); fetchBond(); }
                 else setMessage({ text: d.error || "Failed", type: "error" });
-              } catch { setMessage({ text: "Network error", type: "error" }); }
+              } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
               setActionLoading(false);
             }} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold mt-3" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
               {actionLoading ? "..." : "Cancel Proposal"}
@@ -2261,10 +2267,10 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
         setActionMsg("Challenge accepted.");
         setChallenges(prev => prev.map(c => c.id === challengeId ? { ...c, status: "active", startedAt: new Date().toISOString(), expiresAt: d.challenge?.expiresAt || null } : c));
       } else {
-        setActionMsg(d.error || "Failed to accept");
+        setActionMsg(d.error || "Die Annahme klemmt. Versuch es nochmal.");
       }
       setTimeout(() => setActionMsg(null), 3000);
-    } catch { setActionMsg("Network error"); }
+    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
   };
 
   if (loading) return <div className="skeleton-card h-32" />;
