@@ -198,13 +198,17 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
 
   const removeFriend = async (friendId: string) => {
     try {
-      await fetch(`/api/social/friend/${friendId}`, {
+      const r = await fetch(`/api/social/friend/${friendId}`, {
         method: "DELETE",
         headers: getAuthHeaders(apiKey),
       });
+      if (!r.ok) { setError("Der Bund lässt sich nicht lösen. Versuch es nochmal."); return; }
       setConfirmRemove(null);
       fetchFriends();
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) {
+      console.error('[social]', e);
+      setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
+    }
   };
 
   const incoming = incomingRequests;

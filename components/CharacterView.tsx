@@ -1425,9 +1425,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
           {!loading && fetchError && !charData && (
-            <div className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
-              <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Failed to load character data. Try refreshing.</p>
-              <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Retry</button>
+            <div role="alert" className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+              <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Der Charakterbogen ist unauffindbar. Der Schreiber sucht noch.</p>
+              <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Erneut versuchen</button>
             </div>
           )}
           {!loading && charData && (() => {

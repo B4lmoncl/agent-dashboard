@@ -1499,7 +1499,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#818cf8",
     body: (
       <>
-        <p>Zwischen 22:00 und 06:00 Uhr (Berlin) ist der Aetherstrom ruhiger. Items die in dieser Zeit gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>
+        <p>Zwischen 22:00 und 06:00 Uhr (Berlin) ist der Aetherstrom ruhiger. Items, die in dieser Zeit gecraftet werden, erhalten +20 % bessere Minimum-Rolls auf alle Stats.</p>
         <p className="gt-source">Effektiv: Die unterste Grenze jedes Stat-Rolls wird angehoben. Maximum bleibt gleich — aber schlechte Rolls werden seltener.</p>
       </>
     ),

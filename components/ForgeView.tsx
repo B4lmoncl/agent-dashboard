@@ -945,7 +945,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           <p className="text-xs italic mt-0.5" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{moonlightActive ? "Die Sterne sind ausgerichtet. Was im Mondlicht geschmiedet wird, trägt ein Stück Ewigkeit in sich." : "Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider."}</p>
           {moonlightActive && (
             <div className="mt-2">
-              <TipCustom title="Mondlicht-Schmiede" accent="#60a5fa" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>}>
+              <TipCustom title="Mondlicht-Schmiede" accent="#60a5fa" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items, die jetzt gecraftet werden, erhalten +20 % bessere Minimum-Rolls auf alle Stats.</p>}>
                 <span className="text-xs font-semibold px-3 py-1.5 rounded-lg cursor-help inline-flex items-center gap-2" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.35)", boxShadow: "0 0 12px rgba(96,165,250,0.2)" }}>
                   <span className="w-2 h-2 rounded-full" style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa", animation: "ambient-spark 3s ease-in-out infinite" }} />
                   Mondlicht-Schmiede aktiv

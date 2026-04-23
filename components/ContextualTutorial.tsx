@@ -82,7 +82,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "companion_intro",
     title: "Dein Companion.",
-    text: "Es folgt dir. Streichle es gelegentlich. Bei Bond Level 5 hat es Fähigkeiten die tatsächlich nützlich sind. Bis dahin ist es hauptsächlich... da. Urteilend.",
+    text: "Es folgt dir. Streichle es gelegentlich. Bei Bond Level 5 hat es Fähigkeiten, die tatsächlich nützlich sind. Bis dahin ist es hauptsächlich … da. Urteilend.",
     view: "companion",
     minLevel: 3,
   },
@@ -96,7 +96,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "gacha_intro",
     title: "Das Schicksalsrad.",
-    text: "Gib Runensplitter oder Stardust. Bekomme Items. Manchmal gute. Meistens... lehrreiche. Das System hat einen Mitleidszähler — nach 75 Pulls ohne Legendär garantiert es dir eins. Das klingt großzügig, bis du nachzählst.",
+    text: "Gib Runensplitter oder Stardust. Bekomme Items. Manchmal gute. Meistens … lehrreiche. Das System hat einen Mitleidszähler — nach 75 Pulls ohne Legendär garantiert es dir eins. Das klingt großzügig, bis du nachzählst.",
     view: "gacha",
     minLevel: 5,
   },

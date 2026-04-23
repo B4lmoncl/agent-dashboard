@@ -10435,7 +10435,7 @@
       "xp": 5,
       "description": "Verzaubert: Schwache Verzauberung der Weisheit.",
       "trainerCost": 25,
-      "desc": "Schwache Weisheit. Reicht um zu wissen dass man mehr braucht."
+      "desc": "Schwache Weisheit. Reicht, um zu wissen, dass man mehr braucht."
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-ausdauer",
@@ -15132,7 +15132,7 @@
       "description": "Stellt her: Mittlere Leder-Stiefel.",
       "dropChance": 0.1,
       "dropMinQuestRarity": "uncommon",
-      "desc": "Mittlere Stiefel. Roderic sagt, mittel sei perfekt. Für Leute die nicht wissen was sie wollen."
+      "desc": "Mittlere Stiefel. Roderic sagt, mittel sei perfekt. Für Leute, die nicht wissen, was sie wollen."
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-jagdstiefel",

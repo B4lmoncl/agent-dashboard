@@ -1927,7 +1927,7 @@
               "gold": 15
             },
             "vars": {
-              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht, wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Überfällige Rückgabe"
             },
             "rarity": "rare"
@@ -1942,7 +1942,7 @@
               "gold": 20
             },
             "vars": {
-              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht, wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Stille Lektüre"
             },
             "rarity": "rare"
@@ -1957,7 +1957,7 @@
               "gold": 20
             },
             "vars": {
-              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht, wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Katalogisierung"
             },
             "rarity": "rare"
@@ -1972,7 +1972,7 @@
               "gold": 15
             },
             "vars": {
-              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+              "quote": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht, wenn man schreit. Und ich auch nicht.",
               "realWorldTask": "Wissensaustausch"
             },
             "rarity": "rare"
@@ -3441,7 +3441,7 @@
       "name": "Apothekerin Yara",
       "emoji": null,
       "title": "Die Kräutermischerin",
-      "description": "Ihre Tränke wirken immer. Die Nebenwirkungen stehen auf einem Beipackzettel der 47 Seiten lang ist und mit 'Im Falle eines plötzlichen Leuchtens...' beginnt. Der Turm hat ihr Gesicht dem von Alter Martha angeglichen — die Turmgleichung kennt keine Gnade. Yara findet das weniger irritierend als die Tatsache, dass Marthas Tee besser ist.",
+      "description": "Ihre Tränke wirken immer. Die Nebenwirkungen stehen auf einem Beipackzettel der 47 Seiten lang ist und mit 'Im Falle eines plötzlichen Leuchtens…' beginnt. Der Turm hat ihr Gesicht dem von Alter Martha angeglichen — die Turmgleichung kennt keine Gnade. Yara findet das weniger irritierend als die Tatsache, dass Marthas Tee besser ist.",
       "stayDays": 3,
       "cooldownDays": 14,
       "questChains": [
@@ -8017,7 +8017,7 @@
       "name": "Grenzwächterin Erin",
       "emoji": null,
       "title": "Die Hüterin der Grenzen",
-      "description": "Schützt nicht Territorien — schützt Menschen vor sich selbst und vor Leuten die 'Kannst du mal kurz...' sagen und damit drei Stunden meinen.",
+      "description": "Schützt nicht Territorien — schützt Menschen vor sich selbst und vor Leuten, die 'Kannst du mal kurz …' sagen und damit drei Stunden meinen.",
       "stayDays": 2,
       "cooldownDays": 25,
       "questChains": [

@@ -139,7 +139,11 @@ router.get('/api/expedition', requireAuth, (req, res) => {
   if (!template) return res.json({ expedition: null });
 
   const playerName = (req.query.player || '').toLowerCase();
-  const u = playerName ? state.usersByName.get(playerName) : null;
+  // Claimed-checkpoint status is private — only self or admin may see which
+  // checkpoints the target player has already claimed. Public contributions
+  // stay visible below because the expedition is a shared event.
+  const isSelf = playerName && (req.auth?.userId === playerName || req.auth?.isAdmin);
+  const u = (playerName && isSelf) ? state.usersByName.get(playerName) : null;
 
   const rewards = EXPEDITION_DATA.expedition?.checkpointRewards || {};
   const bonusTitles = EXPEDITION_DATA.expedition?.bonusTitles || [];

@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const { state, saveUsers, saveQuests, SHOP_ITEMS, GEAR_TIERS, ensureUserCurrencies } = require('../lib/state');
 const { now, getUserGear, getLevelInfo, createPlayerLock } = require('../lib/helpers');
-const { requireApiKey } = require('../lib/middleware');
+const { requireApiKey, requireAuth } = require('../lib/middleware');
 const shopBuyLock = createPlayerLock('shop-buy');
 
 // ─── Apply shop item effects (buffs, instant currency) ──────────────────────
@@ -380,9 +380,12 @@ router.post('/api/shop/workshop/buy', requireApiKey, (req, res) => {
 });
 
 // GET /api/shop/workshop — get workshop upgrade definitions + player progress
-router.get('/api/shop/workshop', (req, res) => {
+router.get('/api/shop/workshop', requireAuth, (req, res) => {
   const playerName = (req.query.player || '').toLowerCase();
-  const u = playerName ? state.usersByName.get(playerName) : null;
+  // Workshop tier progress is private — only self or admin may read it. If the
+  // requester asks for someone else, serve the catalog with zeroed progress.
+  const isSelf = playerName && (req.auth?.userId === playerName || req.auth?.isAdmin);
+  const u = (playerName && isSelf) ? state.usersByName.get(playerName) : null;
   const upgrades = state.store.shopData?.workshopUpgrades || [];
   const playerUpgrades = u?.workshopUpgrades || {};
 
