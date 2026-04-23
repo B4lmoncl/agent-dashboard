@@ -305,9 +305,10 @@ export default function Dashboard() {
   useEffect(() => {
     if (!levelUpCelebration) return;
     const newLevel = levelUpCelebration.level;
+    const timers: ReturnType<typeof setTimeout>[] = [];
     // Talent points granted at levels 5+ on every EVEN level
     if (newLevel >= 5 && newLevel % 2 === 0) {
-      setTimeout(() => addToast({ type: "flavor", message: "Talent-Punkt verdient.", icon: "/images/icons/nav-talents.png", sub: `Level ${newLevel} — Schicksalsbaum verteilen` }), 1200);
+      timers.push(setTimeout(() => addToast({ type: "flavor", message: "Talent-Punkt verdient.", icon: "/images/icons/nav-talents.png", sub: `Level ${newLevel} — Schicksalsbaum verteilen` }), 1200));
     }
     // Floor / room unlocks (check against FLOORS config)
     const unlocks: string[] = [];
@@ -318,8 +319,9 @@ export default function Dashboard() {
       });
     });
     unlocks.forEach((msg, i) => {
-      setTimeout(() => addToast({ type: "flavor", message: msg, icon: "/images/icons/nav-great-hall.png" }), 1500 + i * 400);
+      timers.push(setTimeout(() => addToast({ type: "flavor", message: msg, icon: "/images/icons/nav-great-hall.png" }), 1500 + i * 400));
     });
+    return () => { timers.forEach(clearTimeout); };
   }, [levelUpCelebration?.level]); // eslint-disable-line react-hooks/exhaustive-deps
   const pendingLevelUpRef = useRef<{ level: number; title: string } | null>(null);
   const closeRewardCelebration = useCallback(() => {
@@ -401,7 +403,7 @@ export default function Dashboard() {
   // ─── Backup trigger #2: force-show level-up if pending > 10s and NO active reward popup ───
   // Guard: don't close a reward popup — only fire if there's truly no popup currently showing
   useEffect(() => {
-    if (!pendingLevelUpRef.current || rewardCelebration) return;
+    if (!pendingLevelUpRef.current || rewardCelebration || levelUpCelebration) return;
     const timer = setTimeout(() => {
       if (pendingLevelUpRef.current && !levelUpCelebration && !rewardCelebration) {
         const lu = pendingLevelUpRef.current;
@@ -410,7 +412,7 @@ export default function Dashboard() {
       }
     }, 10000);
     return () => clearTimeout(timer);
-  }, [rewardCelebration]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [rewardCelebration, levelUpCelebration]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);

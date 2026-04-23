@@ -209,6 +209,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [professions, setProfessions] = useState<ProfessionDef[]>([]);
   const [showOnlyChosen, setShowOnlyChosen] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
@@ -340,6 +341,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const fetchData = useCallback(async () => {
     if (!playerName) return;
+    let profsOk = false;
     try {
       const r = await fetch(`/api/professions?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
       if (r.ok) {
@@ -357,9 +359,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
         if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
+        profsOk = true;
+        setFetchError(null);
+      } else {
+        setFetchError("Die Werkstatt schweigt. Versuch es nochmal.");
       }
-    } catch (err) { console.error('Failed to fetch crafting data:', err); }
-    // Fetch workshop upgrades
+    } catch (err) {
+      console.error('Failed to fetch crafting data:', err);
+      setFetchError("Die Werkstatt schweigt. Versuch es nochmal.");
+    }
+    if (!profsOk) return;
+    // Fetch workshop upgrades — soft-fail (workshop is optional polish, not core)
     try {
       const wr = await fetch(`/api/shop/workshop?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
       if (wr.ok) {
@@ -394,8 +404,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const craftTimerRef = useRef<number | null>(null);
   const craftCastMsRef = useRef(3000);
   const batchIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  // Cleanup batch interval on unmount
-  useEffect(() => () => { if (batchIntervalRef.current) clearInterval(batchIntervalRef.current); }, []);
+  // Cleanup craft cast timer + batch interval on unmount — otherwise
+  // setCraftProgress/setCrafting fire on a dead component after unmount.
+  useEffect(() => () => {
+    if (batchIntervalRef.current) clearInterval(batchIntervalRef.current);
+    if (craftTimerRef.current) { clearInterval(craftTimerRef.current); craftTimerRef.current = null; }
+  }, []);
 
   const startCraftCast = (recipeId: string, count = 1) => {
     if (crafting || craftProgress || !reviewApiKey) return;
@@ -892,6 +906,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   return (
     <div data-feedback-id="forge-view" className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
       <TutorialMomentBanner viewId="forge" playerLevel={1} />
+      {fetchError && (
+        <div role="alert" className="rounded-lg px-3 py-2 flex items-center justify-between gap-3" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#fecaca" }}>
+          <span className="text-xs">{fetchError}</span>
+          <button onClick={() => fetchData()} className="btn-interactive text-xs font-semibold px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#fecaca" }}>Erneut versuchen</button>
+        </div>
+      )}
       {/* Ambient forge sparks */}
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
@@ -1851,9 +1871,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   const selectedRecipe = selectedRecipeId ? profRecipes.find(r => r.id === selectedRecipeId) : null;
 
                   return (
-                    <div className="flex" style={{ minHeight: 350, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="flex flex-col md:flex-row" style={{ minHeight: 350, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                       {/* ── Left Panel: Recipe List ──────────────────────── */}
-                      <div className="flex-shrink-0 overflow-y-auto border-r" style={{ width: "min(240px, 35%)", maxHeight: 450, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                      <div className="flex-shrink-0 overflow-y-auto border-b md:border-b-0 md:border-r w-full md:w-[min(240px,35%)]" style={{ maxHeight: 450, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
                         {/* Header: search + filters */}
                         <div className="sticky top-0 px-2 py-1.5 space-y-1" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.08)", zIndex: 2 }}>
                           <input

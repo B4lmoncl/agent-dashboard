@@ -367,13 +367,13 @@ export default function TalentTreeView({
       </div>
 
       {/* SVG Tree + Detail panel */}
-      <div className="flex gap-4">
-        {/* Circular tree */}
-        <div className="flex-shrink-0 relative" style={{ width: SVG_SIZE, height: SVG_SIZE }}>
+      <div className="flex flex-col lg:flex-row gap-4">
+        {/* Circular tree — responsive: shrink to container width on <lg, cap at SVG_SIZE on ≥lg */}
+        <div className="relative w-full" style={{ maxWidth: SVG_SIZE }}>
           <svg
-            width={SVG_SIZE} height={SVG_SIZE}
             viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
             className="select-none"
+            style={{ width: "100%", height: "auto", maxHeight: SVG_SIZE }}
           >
             {/* Theme sector backgrounds (Wolcen-style colored segments) */}
             {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme], i) => {

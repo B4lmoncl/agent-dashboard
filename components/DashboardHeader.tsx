@@ -234,7 +234,7 @@ export default function DashboardHeader({
         overflow: "visible",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between" style={{ overflow: "visible" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 min-h-16 py-2 flex flex-wrap items-center justify-between gap-y-2" style={{ overflow: "visible" }}>
         <div className="flex items-center gap-3">
           <button
             data-feedback-id="header.guild-gate"

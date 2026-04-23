@@ -132,7 +132,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
     <div data-feedback-id="leaderboard-view" className="space-y-6 tab-content-enter relative">
       <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.35)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
       {/* ── Podium ── */}
-      <div className="flex items-end justify-center gap-4 relative">
+      <div className="flex items-end justify-center gap-2 sm:gap-4 relative flex-wrap">
         {/* Gold sparkles around top 3 podium */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {Array.from({ length: 4 }, (_, i) => (
@@ -160,7 +160,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             <div
               key={entry.id}
               className={`flex flex-col items-center gap-2${isPlayerMode && onOpenProfile ? " cursor-pointer" : ""}`}
-              style={{ minWidth: 100, transition: "transform 0.15s ease, filter 0.15s ease" }}
+              style={{ minWidth: 80, transition: "transform 0.15s ease, filter 0.15s ease" }}
               onMouseEnter={e => { if (isPlayerMode && onOpenProfile) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(1.1)"; } }}
               onMouseLeave={e => { if (isPlayerMode && onOpenProfile) { e.currentTarget.style.transform = ""; e.currentTarget.style.filter = ""; } }}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}

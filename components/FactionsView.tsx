@@ -81,10 +81,13 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         setFactions(data.factions || []);
         setStandings(data.standings || []);
         setDailyQuests(data.dailyQuests || {});
+        setMessage(null);
+      } else {
+        setMessage({ type: "error", text: "Die Zirkel schweigen gerade. Versuch es nochmal." });
       }
     } catch { setMessage({ type: "error", text: "Die Zirkel schweigen gerade. Versuch es nochmal." }); }
     setLoading(false);
-  }, []);
+  }, [reviewApiKey]);
 
   useEffect(() => { fetchFactions(); }, [fetchFactions]);
 

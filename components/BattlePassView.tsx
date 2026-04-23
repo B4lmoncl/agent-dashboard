@@ -92,10 +92,13 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         setConfig(data.config);
         setRewards(data.rewards || []);
         setPlayer(data.player);
+        setMessage(null);
+      } else {
+        setMessage({ type: "error", text: "Die Saison lässt sich nicht blättern. Versuch es nochmal." });
       }
     } catch (e) { console.error("[battlepass]", e); setMessage({ type: "error", text: "Die Saison lässt sich nicht blättern. Versuch es nochmal." }); }
     setLoading(false);
-  }, []);
+  }, [reviewApiKey]);
 
   useEffect(() => { fetchBP(); }, [fetchBP]);
 

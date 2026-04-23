@@ -683,24 +683,37 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
   // Load banners
   useEffect(() => {
-    fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
+    let cancelled = false;
+    fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then(data => {
+      if (cancelled) return;
       if (Array.isArray(data)) setBanners(data);
-    }).catch(e => console.error('[gacha-view]', e)).finally(() => setLoading(false));
+    }).catch(e => {
+      if (cancelled) return;
+      console.error('[gacha-view]', e);
+      setError("Die Banner lassen sich nicht auslegen. Versuch es nochmal.");
+    }).finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, []);
 
   // Load pity
   useEffect(() => {
     if (!user?.id) return;
-    fetch(`/api/gacha/pity/${user.id}`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
+    let cancelled = false;
+    fetch(`/api/gacha/pity/${user.id}`).then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then(data => {
+      if (cancelled) return;
       if (data.pityCounter !== undefined) setPity(data);
-    }).catch(e => console.error('[gacha-view]', e));
+    }).catch(e => { if (!cancelled) console.error('[gacha-view]', e); });
+    return () => { cancelled = true; };
   }, [user?.id, pullResults]);
 
   // Pre-load pool for item name resolution
   useEffect(() => {
-    fetch("/api/gacha/pool").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
+    let cancelled = false;
+    fetch("/api/gacha/pool").then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then(data => {
+      if (cancelled) return;
       if (data.pool) setPoolInfo(data.pool);
-    }).catch(e => console.error('[gacha-view]', e));
+    }).catch(e => { if (!cancelled) console.error('[gacha-view]', e); });
+    return () => { cancelled = true; };
   }, []);
 
   const doPull = useCallback(async (bannerId: string, count: 1 | 10) => {

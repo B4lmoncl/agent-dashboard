@@ -147,7 +147,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.82)" }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div role="dialog" aria-modal="true" aria-label="Spielerprofil" className="relative w-full max-w-lg rounded-2xl overflow-hidden" style={{ background: "#141418", maxHeight: "90vh", overflowY: "auto" }}>
+      <div role="dialog" aria-modal="true" aria-label="Spielerprofil" className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden" style={{ background: "#141418", maxHeight: "90vh", overflowY: "auto" }}>
         {/* Close button */}
         <button onClick={onClose} aria-label="Schließen" className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
           <span className="text-white text-sm">&#10005;</span>
