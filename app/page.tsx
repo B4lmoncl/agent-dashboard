@@ -1195,7 +1195,7 @@ export default function Dashboard() {
               {/* Portrait */}
               <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character" style={{ transition: "filter 0.15s" }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.filter = `drop-shadow(0 0 8px ${loggedInUser.color ?? "#a78bfa"}60)`; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.filter = "none"; }}>
                 <img
-                  src={`/images/portraits/hero-${loggedInUser.avatarStyle || "male"}.png`}
+                  src={`/images/portraits/hero-${["male", "female"].includes(loggedInUser.avatarStyle || "") ? loggedInUser.avatarStyle : "male"}.png`}
                   alt={playerName}
                   className="w-28 h-28 rounded-xl object-cover img-render-auto"
                   style={{ border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
