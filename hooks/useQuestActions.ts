@@ -169,7 +169,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
-        addToast({ type: "flavor", message: "Quest claimed.", icon: "/images/icons/nav-great-hall.png" });
+        addToast({ type: "flavor", message: "Die Schriftrolle gehört dir. Das Brett notiert es.", icon: "/images/icons/nav-great-hall.png" });
         advanceTutorial();
         await refresh();
       } else {
@@ -336,7 +336,7 @@ export function useQuestActions({
             bondLevelUp: !!cr.bondLevelUp,
           });
           if (isUltimateUnlock) {
-            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} has awakened their Ultimate Ability.`, icon: "★", sub: "Bond Level 5 — a new power stirs." });
+            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} hat etwas erwachen lassen, das lange geschlafen hat.`, icon: "★", sub: "Bond Level 5 — eine lang gehaltene Luft entweicht." });
           }
         }
         if (data.levelUp) {
@@ -347,7 +347,7 @@ export function useQuestActions({
           addToast({
             type: "item",
             itemName: data.gemDrop.name,
-            message: "Gem dropped.",
+            message: "Ein Stein, aus seinem Versteck gelöst.",
             icon: data.gemDrop.icon,
             rarity: data.gemDrop.rarity || "rare",
             item: { name: data.gemDrop.name, rarity: data.gemDrop.rarity || "rare", icon: data.gemDrop.icon || null, desc: data.gemDrop.desc || null, stats: data.gemDrop.stats || null },
@@ -356,7 +356,7 @@ export function useQuestActions({
         // Toast for material drops
         if (data.materialDrops && Array.isArray(data.materialDrops) && data.materialDrops.length > 0) {
           const matNames = data.materialDrops.map((m: { name?: string; id: string; amount: number }) => `${m.amount}x ${m.name || m.id}`).join(", ");
-          addToast({ type: "item", itemName: matNames, message: "Materials found.", rarity: "uncommon" });
+          addToast({ type: "item", itemName: matNames, message: "Material aufgelesen. Nützlich, diesmal.", rarity: "uncommon" });
         }
         // Warning: inventory was full, loot was lost
         if (data.inventoryFull) {
@@ -369,7 +369,7 @@ export function useQuestActions({
         }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
-          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
+          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Ein Rezept taucht auf. Irgendwer, irgendwo, vermisst es.", rarity: "epic" });
         }
         // Toast for codex discoveries
         if (data.codexDiscovery && Array.isArray(data.codexDiscovery) && data.codexDiscovery.length > 0) {
@@ -385,7 +385,7 @@ export function useQuestActions({
         }
         // Toast for battle pass level-up
         if (data.battlePassLevelUp) {
-          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Reward available.`, icon: "◆" });
+          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Die Saison nickt dir zu.`, icon: "◆" });
         }
         // Toast for faction rep level-ups
         if (data.repGains) {

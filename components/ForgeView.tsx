@@ -2177,7 +2177,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     fetchData();
                     onRefresh?.();
                   } else {
-                    setEnchantResult(data.error || "Something went wrong. Please try again.");
+                    setEnchantResult(data.error || "Der Hallenmechanismus klemmt. Versuch es nochmal.");
                   }
                 } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);

@@ -1184,7 +1184,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const data = await r.json();
         const lockedItem = charData?.inventory.find(i => i.id === itemId);
-        if (addToast) addToast({ type: "item", message: data.locked ? "Item locked" : "Item unlocked", itemName: lockedItem?.name || "Item", rarity: lockedItem?.rarity || "common" });
+        if (addToast) addToast({ type: "item", message: data.locked ? "Gesperrt. Die Schmiede schaut anderswohin." : "Entsperrt. Das Schicksal ist wieder verhandelbar.", itemName: lockedItem?.name || "Item", rarity: lockedItem?.rarity || "common" });
       }
       await fetchChar();
     } catch {
@@ -2387,12 +2387,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 const r = await fetch(`/api/gems/${action}`, { method: "POST", headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" }, body: JSON.stringify(body) });
                 const d = await r.json();
                 if (r.ok) {
-                  addToast?.({ type: "purchase", message: d.message || "Done" });
+                  addToast?.({ type: "purchase", message: d.message || "Getan. Die Halle hat es registriert." });
                   // Refresh gem data
                   const gr = await fetch("/api/gems", { headers: getAuthHeaders(apiKey) });
                   if (gr.ok) setGemData(await gr.json());
                 } else {
-                  addToast?.({ type: "error", message: d.error || "Something went wrong. Please try again." });
+                  addToast?.({ type: "error", message: d.error || "Der Hallenmechanismus klemmt. Versuch es nochmal." });
                 }
               } catch { addToast?.({ type: "error", message: "Network error" }); }
               setGemAction(null);

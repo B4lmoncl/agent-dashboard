@@ -118,7 +118,7 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
       <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(251,191,36,0.08) 45%, rgba(251,191,36,0.15) 50%, rgba(251,191,36,0.08) 55%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.5s ease-in-out infinite" }} />
       {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
+        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Eine Tat verzeichnet</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
@@ -142,7 +142,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
       <div className="flex items-start gap-3">
         <span className="text-2xl flex-shrink-0">—</span>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Quest Chain Available!</p>
+          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Der Faden zieht sich weiter</p>
           <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
             Completed: <span style={{ color: "rgba(255,255,255,0.6)" }}>{parentTitle}</span>
           </p>
