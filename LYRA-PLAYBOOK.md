@@ -886,14 +886,20 @@ Kein Code nötig für bestehende Effekt-Typen. Neue Effekt-Typen brauchen Anpass
 **Frontend**: `components/ForgeView.tsx`
 **Backend**: `routes/crafting.js`
 
-### Profession NPCs (4 total, max 2 per player)
+### Profession NPCs (8 total, max 2 primary per player — Koch + Verzauberer are secondary, don't consume slots)
 
-| Profession | NPC | Location | Unlock | Recipes |
-|---|---|---|---|---|
-| **Blacksmith** | Grimvar the Smith | Deepforge | Lv.5 | Stat Reroll, Minor Reroll, Rarity Upgrade, Reinforce Armor |
-| **Alchemist** | Ysolde the Alchemist | Alchemist Lab | Lv.5 | Elixir of Experience/Wealth, Potion of Fortune, Elixir of Perseverance, Flask of Ambition |
-| **Enchanter** | Eldric the Enchanter | Arcanum | Lv.8 | Temporary Enchantment, Permanent Enchant, Arcane Infusion |
-| **Cook** | Bruna the Cook | Guild Kitchen | Lv.3 | Hearty Stew, Golden Soup, Forgefire Roast, Star Banquet, Endurance Ration, Champion's Feast |
+| Profession | NPC | Location | Unlock | Slot | Focus |
+|---|---|---|---|---|---|
+| **Schmied (Blacksmith)** | Grimvar | Deepforge | Lv.5 | Primary | Heavy armor (helm, armor, boots) |
+| **Schneider (Tailor)** | Selina | Weavery | Lv.5 | Primary | Cloth armor |
+| **Lederverarbeiter (Leatherworker)** | Roderic | Tannery | Lv.5 | Primary | Leather armor |
+| **Waffenschmied (Weaponsmith)** | Varn | Weapon Forge | Lv.5 | Primary | Weapons + shields |
+| **Juwelier (Jewelcrafter)** | Selindra | Gem Atelier | Lv.5 | Primary | Rings + amulets |
+| **Alchemist** | Ysolde | Alchemist Lab | Lv.5 | Primary | Potions, elixirs, flasks |
+| **Verzauberer (Enchanter)** | Eldric | Arcanum | Lv.8 | Secondary | Enchantments, vellums |
+| **Koch (Cook)** | Bruna | Guild Kitchen | Lv.3 | Secondary | Meals, feasts, rations |
+
+**Schmiedefieber (Forge Fever):** Every 48h, one random profession enters a 4h fever state — 50% material cost, 2x skill XP, bonus cache at 5+ crafts. See CLAUDE.md § Schmiedefieber for full spec.
 
 ### Adding a New Material
 
@@ -1302,7 +1308,7 @@ In `factions.json → factions[]`:
 | Zirkel der Glut | `glut` | fitness | Fire/discipline |
 | Zirkel der Tinte | `tinte` | learning | Knowledge/archives |
 | Zirkel des Amboss | `amboss` | development, personal | Craft/creation |
-| Zirkel des Echos | `echo` | social, creative | Connection/community |
+| Zirkel des Echos | `echo` | social, relationship-coop | Connection/community |
 
 ### Reputation Standings
 
@@ -1989,9 +1995,12 @@ This section documents key backend formulas that affect content design decisions
 
 - **50 levels** total (30 base + 20 prestige 31-50)
 - XP requirements scale exponentially
-- **Forge Temperature** adds XP multiplier: up to +50% at 100°C
-- **Gear stats** (kraft/weisheit) add XP/gold multipliers
+- **Forge Temperature** adds XP multiplier: up to +25% at 100°C (tiers: 20/40/60/80/100 → x0.85/x1.0/x1.10/x1.15/x1.25 XP; x1.0/x1.0/x1.08/x1.15/x1.25 Gold)
+- **Gear stats** (kraft/weisheit) add XP/gold multipliers (+0.5% per point, additive within Forge bucket)
 - **Bond level** adds +1% XP per level above 1
+- **Multiplier stacking:** D3-style bucket system — additive within bucket (Forge, Gear, Companion, Equipment Effects, Buffs, Situational), multiplicative between buckets. See CLAUDE.md § Multiplier Stacking Rules.
+- **Daily Diminishing Returns:** 6-tier curve — quests 1-5 = 100%, 6-7 = 90%, 8-10 = 75%, 11-15 = 60%, 16-20 = 50%, 21+ = 25%
+- **Rested XP:** Accumulates 5% of current level XP per 8h offline, cap 150% of level. Doubles earned XP until pool depleted.
 
 ### Gem System Mechanics
 
@@ -2031,11 +2040,12 @@ This section documents key backend formulas that affect content design decisions
 
 ### Gacha Pity System
 
-- **Soft pity at pull 55**: increased legendary drop rate
+- **Soft pity at pull 60**: increased legendary drop rate (+2.5% per pull)
 - **Hard pity at pull 75**: guaranteed legendary
 - **Epic pity at pull 10**: guaranteed epic+
 - **50/50 featured**: if you lose the 50/50, next legendary is guaranteed featured
-- **Duplicate refund**: stardust currency
+- **Duplicate refund**: runensplitter (not stardust)
+- **Per-banner pity**: each banner tracks pity separately — pulls on Banner A don't count for Banner B
 
 ---
 
@@ -2167,7 +2177,11 @@ When adding new visual content:
 - [ ] `node scripts/verify-items.js` läuft ohne Fehler
 - [ ] Server startet ohne Fehler nach der Änderung
 
-## Fehlende Assets & Content (Stand: 2026-03-25)
+## Fehlende Assets & Content
+
+> **⚠️ Diese Sektion ist OUTDATED (Stand: 2026-03-25).** Seit diesem Stand wurden 262 neue Icons generiert (175 Gear, 87 NPC Rewards, 18 Achievements). Für die **aktuelle** Asset-Liste siehe `ASSET_BACKLOG.md` — diese Datei wird mit jeder Generierungs-Runde aktualisiert.
+>
+> Die untenstehenden Tabellen bleiben als historisches Dokument / Style-Guide erhalten (welche Arten von Assets wir brauchen, wie sie benannt werden, welche Größen). Die genauen Counts stimmen NICHT mehr.
 
 Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren aber noch nicht. Müssen als PNG erstellt werden (transparenter Hintergrund).
 
