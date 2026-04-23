@@ -2495,7 +2495,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 ) : (
                                   <button
                                     onClick={() => {
-                                      setConfirmMessage(`Gem entfernen? Kostet ${gemData.unsocketCost || 50}g. Der Edelstein kann dabei zerstört werden.`);
+                                      setConfirmMessage(`Gem entfernen? Kostet ${gemData.unsocketCost || 50}g. Der Edelstein wird dabei zerstört — außer du trägst Ausrüstung mit 'Gem Preserve'-Effekt.`);
                                       setConfirmAction(() => () => doGemAction("unsocket", { instanceId, socketIndex: si }));
                                     }}
                                     disabled={!!gemAction}
