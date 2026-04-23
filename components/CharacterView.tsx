@@ -1524,6 +1524,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               return <p className="text-xs text-w20 text-center py-6">Keine Items gefunden</p>;
             }
 
+            // Empty state for truly empty inventory (new players)
+            if (unequipped.length === 0) {
+              return <div className="text-center py-12"><p className="text-xs text-w30 mb-1">Dein Inventar ist leer.</p><p className="text-xs text-w20 italic">Quests, Dungeons und der Riss füllen es schneller als du denkst.</p></div>;
+            }
+
             // Build position-based grid (only in "Standard" sort mode)
             // grid[slotIndex] = item | null
             const grid: (InventoryItem | null)[] = new Array(GRID_TOTAL).fill(null);

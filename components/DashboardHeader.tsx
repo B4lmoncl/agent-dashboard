@@ -319,7 +319,8 @@ export default function DashboardHeader({
                 </button>
                 {settingsPopupOpen && (
                   <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col bg-surface-alt border-w10 tab-content-enter" style={{ minWidth: 200, overflow: "hidden" }}>
-                    <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.11)" }}>
+                    <div className="px-4 py-3 relative" style={{ borderBottom: "1px solid rgba(255,255,255,0.11)" }}>
+                      <button onClick={() => setSettingsPopupOpen(false)} aria-label="Schließen" className="absolute top-2 right-2 w-6 h-6 rounded flex items-center justify-center" style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", cursor: "pointer", fontSize: 12 }}>✕</button>
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
                           {playerName.slice(0, 1).toUpperCase()}

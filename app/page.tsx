@@ -502,8 +502,13 @@ export default function Dashboard() {
         if (r.ok) {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
-            // Don't show version popup if What's New popup already handled it
-            try { if (localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
+            // Don't show version popup if What's New popup will open OR already dismissed.
+            // whatsNewOpen check handles the in-memory flag even when localStorage write fails.
+            try {
+              if (localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION && !whatsNewOpen) setVersionPopupOpen(true);
+            } catch {
+              if (!whatsNewOpen) setVersionPopupOpen(true);
+            }
           }
         }
       } catch { /* ignore */ }
@@ -1100,7 +1105,7 @@ export default function Dashboard() {
           <Tip k="streak"><StatBar
             label="Forge Streak"
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
-            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : "login to view"}
+            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : ""}
             subColor={playerName && playerStreak > 0 ? "#fbbf24" : undefined}
             accent={playerStreak >= 90 ? "#a78bfa" : playerStreak >= 30 ? "#818cf8" : "#f97316"}
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
@@ -1112,7 +1117,7 @@ export default function Dashboard() {
             value={loading ? "—" : playerName ? `${animActive}` : "—"}
             value2={playerName ? `✓ ${animCompleted}` : undefined}
             value2Color="#22c55e"
-            sub={playerName ? `active · ${openQuestsCount} open` : "login to view"}
+            sub={playerName ? `active · ${openQuestsCount} open` : ""}
             accent="#ef4444"
             onClick={playerName ? () => setActiveQuestsInfoOpen(true) : undefined}
             inline
@@ -1124,7 +1129,7 @@ export default function Dashboard() {
             value={loading ? "—" : playerName && loggedInUser?.modifiers ? `XP ×${loggedInUser.modifiers.xp.total}` : "—"}
             value2={playerName && loggedInUser?.modifiers ? `◆ Gold ×${loggedInUser.modifiers.gold.total}` : undefined}
             value2Color="#fbbf24"
-            sub={playerName ? "all active bonuses" : "login to view"}
+            sub={playerName ? "all active bonuses" : ""}
             accent="#a855f7"
             onClick={loggedInUser?.modifiers ? () => setModifierOpen(true) : undefined}
             inline
@@ -1139,7 +1144,7 @@ export default function Dashboard() {
                 <Tip k="artisans_quarter"><StatBar
                   label="Artisan"
                   value={loading ? "—" : playerName ? "—" : "—"}
-                  sub={playerName ? "no professions yet" : "login to view"}
+                  sub={playerName ? "no professions yet" : ""}
                   accent="#f59e0b"
                   onClick={playerName ? () => setProfessionsInfoOpen(true) : undefined}
                   inline
@@ -3133,6 +3138,12 @@ export default function Dashboard() {
             {/* Hero Header */}
             <div className="relative px-6 py-5 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(129,140,248,0.12) 0%, rgba(129,140,248,0.03) 60%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.15)" }}>
               <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.15) 0%, transparent 70%)" }} />
+              <button
+                onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}
+                aria-label="Schließen"
+                className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-opacity"
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", zIndex: 1 }}
+              >✕</button>
               <p className="text-lg font-bold tracking-wide relative" style={{ color: "#e6cc80", textShadow: "0 0 20px rgba(230,204,128,0.3)" }}>v2.0.0</p>
               <p className="text-sm font-semibold mt-0.5 relative" style={{ color: "#818cf8" }}>Open Beta</p>
               <p className="text-xs mt-2 relative" style={{ color: "rgba(255,255,255,0.45)", maxWidth: 320, margin: "8px auto 0" }}>Die Tore der Halle stehen offen. Was als Experiment begann, ist jetzt ein Zuhause.</p>
