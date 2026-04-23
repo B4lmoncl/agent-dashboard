@@ -869,7 +869,8 @@ router.get('/api/changelog', async (req, res) => {
     await fetchAndCacheChangelog();
   }
   if (!changelogCache) {
-    return res.json({ entries: [], error: 'Could not fetch changelog from GitHub' });
+    // GitHub fetch failed — signal upstream failure so the client can retry.
+    return res.status(502).json({ entries: [], error: 'Could not fetch changelog from GitHub' });
   }
   res.json(changelogCache);
 });

@@ -1245,7 +1245,7 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
   if (recipe.result?.type === 'craft_gear') {
     const templateId = recipe.result.templateId;
     const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
-    if (!template) return res.json({ ...preview, outputType: 'gear', error: 'Template not found' });
+    if (!template) return res.status(404).json({ ...preview, outputType: 'gear', error: 'Template not found' });
 
     const gemsData = state.gemsData || require('../public/data/gems.json');
     const socketRange = gemsData.socketsByRarity[template.rarity || 'common'] || [0, 0];

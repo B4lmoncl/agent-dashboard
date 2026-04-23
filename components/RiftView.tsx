@@ -131,6 +131,14 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   useEffect(() => { fetchRift(); }, [fetchRift]);
 
+  // Clean up any pending screen-shake timers + class on unmount.
+  const screenShakeTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => {
+    screenShakeTimersRef.current.forEach(clearTimeout);
+    screenShakeTimersRef.current = [];
+    document.body.classList.remove("screenshake");
+  }, []);
+
   // Auto-refresh timer + client-side countdown tick
   const [, setTick] = useState(0);
   useEffect(() => {
@@ -173,9 +181,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       if (!r.ok) setMessage({ text: d.error || "Der Hallenmechanismus klemmt. Versuch es nochmal.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
-        // Screen shake on stage clear
+        // Screen shake on stage clear. Track the timer + always clean the class
+        // on unmount so a mid-animation navigation doesn't leave the shake stuck.
         document.body.classList.add("screenshake");
-        setTimeout(() => document.body.classList.remove("screenshake"), 300);
+        const shakeTimer = setTimeout(() => document.body.classList.remove("screenshake"), 300);
+        screenShakeTimersRef.current.push(shakeTimer);
         if (onRewardCelebration) {
           const currencies: { name: string; amount: number; color: string }[] = [];
           if (d.completionBonus) {
