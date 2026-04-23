@@ -1788,7 +1788,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "Tödliche Präzision: +{value}% Crit Chance"
       },
       "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
@@ -1858,7 +1858,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "Tiefenschutz: -{value}% Forge Decay"
       },
       "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",

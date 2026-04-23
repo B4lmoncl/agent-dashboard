@@ -1977,7 +1977,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "Riss-Präzision: +{value}% Crit"
       },
       "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
@@ -2047,7 +2047,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 2,
-        "max": 5,
+        "max": 3,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
       "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",

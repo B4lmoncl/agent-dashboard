@@ -84,7 +84,6 @@
       { "from": "gold", "to": "runensplitter", "rate": 0.1 },
       { "from": "stardust", "to": "runensplitter", "rate": 2 },
       { "from": "runensplitter", "to": "gold", "rate": 0.15 },
-      { "from": "gold", "to": "gildentaler", "rate": 3 },
       { "from": "gildentaler", "to": "gold", "rate": 0.25 }
     ]
   },

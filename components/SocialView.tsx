@@ -405,19 +405,25 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpenWith, loading]);
 
-  const openConvo = async (otherPlayerId: string) => {
+  const openConvo = async (otherPlayerId: string, signal?: AbortSignal) => {
     setActiveConvo(otherPlayerId);
     try {
-      const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/messages/${encodeURIComponent(otherPlayerId)}`, { headers: getAuthHeaders(apiKey) });
+      const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/messages/${encodeURIComponent(otherPlayerId)}`, { headers: getAuthHeaders(apiKey), signal });
       if (r.ok) setMessages((await r.json()).messages || []);
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) {
+      if ((e as { name?: string })?.name === 'AbortError') return;
+      console.error('[social]', e);
+    }
   };
 
-  // Auto-refresh messages every 10s when a conversation is active
+  // Auto-refresh messages every 10s when a conversation is active. Each
+  // interval tick uses an AbortController so a rapid convo switch (or unmount)
+  // cancels in-flight fetches and prevents out-of-order setMessages writes.
   useEffect(() => {
     if (!activeConvo) return;
-    const interval = setInterval(() => { openConvo(activeConvo); }, 10000);
-    return () => clearInterval(interval);
+    const ctrl = new AbortController();
+    const interval = setInterval(() => { openConvo(activeConvo, ctrl.signal); }, 10000);
+    return () => { clearInterval(interval); ctrl.abort(); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeConvo, apiKey, playerName]);
 
