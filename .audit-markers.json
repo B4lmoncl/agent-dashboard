@@ -30,8 +30,8 @@
   },
   "components/GachaView.tsx": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Per-banner pity verified (fixed fallback bug). useModalBehavior on pullResults. Pull disabled with WHY tooltip (deficit amount). Skeleton loading. tab-content-enter. Currency-specific cost display. Banner modal with ModalOverlay.",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 29: Language Policy check clean (all UI in English already). a11y: both modals use ModalOverlay which provides role=dialog \u2014 good. title= on disabled pull buttons had embedded system explanation (\"Earn Stardust from: Level-Ups...\") violating the UI guideline against system explanations in title attrs. Simplified to \"Need X more Stardust/Runensplitter\" (dynamic disabled-reason only \u2014 how-to-earn is available in Currencies modal). companion-config.ts also clean (Wave 28).",
     "status": "clean"
   },
   "components/TutorialModal.tsx": {
@@ -797,9 +797,9 @@
     "status": "clean"
   },
   "lib/companion-config.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Pure config \u2014 12 companion colors, portrait path helper, virtual type set. No logic, no side effects.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 28: Clean. 36-line config utility. 12 companion types all have color entries. \"other\" pet type falls back to DEFAULT_COMPANION_COLOR. No user-facing strings. No a11y concerns.",
     "status": "clean"
   },
   "app/layout.tsx": {
