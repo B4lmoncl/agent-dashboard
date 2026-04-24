@@ -54,9 +54,9 @@
     "status": "clean"
   },
   "components/QuestPanels.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "milestone labels + difficulty flavors rewritten",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 61: 4 modals (create vow / confirm delete / extend vow / recommit vow) were missing role=dialog + aria-modal + aria-label. Added all three to each. Language stays mixed per user deprioritization (vow content is German-lore-toned, buttons English).",
     "status": "clean"
   },
   "components/WandererRest.tsx": {
