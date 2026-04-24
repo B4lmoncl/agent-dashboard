@@ -348,8 +348,8 @@
   },
   "routes/gems.js": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. All 5 POST endpoints have gemLock, auth, ownership checks, gold+essenz validation, gold sync. Socket/unsocket/upgrade/polish/unlock-socket all verified. Legendary gemPreserve in unsocket works correctly. parseGemKey validates type+tier. Max socket check uses socketsByRarity.",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 41: Race condition + data integrity deep-dive. All 5 POST endpoints (socket/unsocket/upgrade/unlock-socket/polish) share a single gemLock. Lock acquired before any state mutation, released in finally. Input validation on all endpoints: parseGemKey checks, ownership checks, socketIndex bounds, gold+essenz balance checks before deduction. Unsocket: gemPreserve legendary effect correctly applies random chance. Clean.",
     "status": "clean"
   },
   "routes/enchanting.js": {
