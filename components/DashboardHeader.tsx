@@ -20,7 +20,7 @@ function LastUpdated({ lastRefresh }: { lastRefresh: Date | null }) {
 }
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
-import { TipCustom } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import NotificationCenter from "@/components/NotificationCenter";
 
 interface DashboardHeaderProps {
@@ -489,15 +489,17 @@ export default function DashboardHeader({
             const isNight = h >= 22 || h < 6;
             if (!isNight) return null;
             return (
-              <div className="flex items-center gap-1 text-xs" style={{ color: "#818cf8" }} title="Mondlicht-Schmiede active (22:00-06:00 Berlin) — +20% minimum rolls on crafted gear">
-                <span style={{ fontSize: 12, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
-                <span style={{ opacity: 0.6 }}>Mondlicht</span>
-              </div>
+              <Tip k="mondlicht">
+                <div className="flex items-center gap-1 text-xs" style={{ color: "#818cf8" }}>
+                  <span style={{ fontSize: 12, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
+                  <span style={{ opacity: 0.6 }}>Mondlicht</span>
+                </div>
+              </Tip>
             );
           })()}
           <div className="text-xs font-mono flex items-center gap-1.5 text-w25">
             <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: "rgba(255,102,51,0.5)" }} />
-            Updated <span style={{ display: "inline-block", minWidth: "4rem" }}><LastUpdated lastRefresh={lastRefresh} /></span>
+            <span style={{ display: "inline-block", minWidth: "5rem" }}><LastUpdated lastRefresh={lastRefresh} /></span>
           </div>
         </div>
       </div>

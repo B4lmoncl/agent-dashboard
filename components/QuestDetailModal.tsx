@@ -244,11 +244,11 @@ export default function QuestDetailModal({
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
               disabled={actionLoading}
-              title={actionLoading ? "Quest wird angenommen…" : undefined}
+              title={actionLoading ? "Claiming quest…" : undefined}
               onClick={async () => { setActionLoading(true); try { await handleClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
               className="btn-interactive text-sm font-bold px-7 py-2.5 rounded-lg"
               style={{ background: "rgba(255,68,68,0.15)", color: "#ff4444", border: "1px solid rgba(255,68,68,0.4)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.5 : 1 }}
-            >{actionLoading ? "Packt an…" : "Quest annehmen"}</button>
+            >{actionLoading ? "Claiming…" : "Claim Quest"}</button>
           )}
           {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
             <>
@@ -257,7 +257,7 @@ export default function QuestDetailModal({
                 onClick={async () => { setActionLoading(true); try { await handleUnclaim(q.id); onClose(); } finally { setActionLoading(false); } }}
                 className="text-xs px-3 py-1.5 rounded font-medium"
                 style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
-              >{actionLoading ? "…" : "Unclaim"}</button>
+              >{actionLoading ? "Releasing…" : "Unclaim"}</button>
               <button
                 disabled={actionLoading}
                 onClick={async () => { setActionLoading(true); try { await handleComplete(q.id, q.title); onClose(); } finally { setActionLoading(false); } }}

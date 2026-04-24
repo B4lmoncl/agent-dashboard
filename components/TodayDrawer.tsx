@@ -492,7 +492,9 @@ export default function TodayDrawer({
 
     // ── DAILY ──
 
-    // Daily Bonus
+    // Daily Bonus — TodayDrawer is a navigation surface, not an action
+    // surface. Clicking the row routes to the quest board where the
+    // actual claim lives.
     daily.push({
       id: "daily-bonus",
       icon: "/images/icons/currency-gold.png",

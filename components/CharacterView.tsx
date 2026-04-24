@@ -2025,7 +2025,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {/* Minor Stats */}
                 {hasMinorStats && (
                   <div className="space-y-1.5 mb-4 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
-                    <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Sekundär-Stats</p>
+                    <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Secondary Stats</p>
                     {minorStatRows.filter(s => s.val > 0).map(s => {
                       const tipKey = s.label.toLowerCase().replace("ä", "ae") as string;
                       const registryKey = tipKey === "vitalitaet" ? "vitalitaet" : tipKey;
