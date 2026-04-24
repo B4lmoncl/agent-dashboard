@@ -413,9 +413,9 @@
     "status": "clean"
   },
   "routes/world-boss.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. wbClaimLock, wbBoostLock, double-claim guard (rewardsClaimed), level check WB_MIN_LEVEL=15, tavern rest check, unique drop ownership check, contribution-proportional rewards, auto-spawn/expiry, mondstaub boost with max-1 guard, boss-specific gear from FULL_GEAR_ITEMS.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 53: Race condition + edge case audit. 2 locks (wbClaimLock, wbBoostLock) per-player with finally release. Claim: double-claim guard pushes uid EARLY before reward calc (deliberate trade-off \u2014 never double-claim at cost of partial reward if error throws mid-logic, documented with comment). Unique/title/frame dedup via find() checks. Division by zero avoided via Math.max(delta, 1). Boost: double-boost guard, cost check, spendCurrency return check. /damage endpoint is admin-only (production damage flows through onQuestCompletedByUser). Clean.",
     "status": "clean"
   },
   "routes/mail.js": {
