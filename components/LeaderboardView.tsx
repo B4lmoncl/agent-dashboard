@@ -130,7 +130,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
 
   return (
     <div data-feedback-id="leaderboard-view" className="space-y-6 tab-content-enter relative">
-      <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.35)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
+      <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.35)" }}>The proving fields. Where legends are measured in light and resolve.</p>
       {/* ── Podium ── */}
       <div className="flex items-end justify-center gap-2 sm:gap-4 relative flex-wrap">
         {/* Gold sparkles around top 3 podium */}

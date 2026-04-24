@@ -65,9 +65,9 @@
     "status": "clean"
   },
   "components/WandererRest.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "button tooltips added",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 37 (batch): View tagline \"Reisende Seelen und ihre unerz\u00e4hlten Geschichten. Sie kommen. Sie gehen. Sie kehren immer zur\u00fcck.\" -> \"Wandering souls and their untold stories. They come. They go. They always return.\" Same view-tagline-English decision.",
     "status": "clean"
   },
   "components/BattlePassView.tsx": {
@@ -137,9 +137,9 @@
     "status": "clean"
   },
   "components/LeaderboardView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Skeleton loading. Seasonal toggle. Player profile modal integration. tab-content-enter. Achievement points display.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 37: View tagline \"Die Pr\u00fcfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.\" -> \"The proving fields. Where legends are measured in light and resolve.\" Per user decision: view taglines should be English for consistency with SocialView.",
     "status": "clean"
   },
   "components/HonorsView.tsx": {
