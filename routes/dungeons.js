@@ -508,6 +508,18 @@ router.post('/api/dungeons/:runId/join', requireAuth, (req, res) => {
     run.startedAt = now();
     run.completesAt = new Date(Date.now() + dungeon.durationHours * 3600000).toISOString();
     console.log(`[dungeons] Run ${runId} auto-started with ${run.participants.length} players (min: ${dungeon.minPlayers})`);
+    // Activity feed: notify every participant (including the creator — they
+    // may be offline and otherwise miss the 8h window entirely).
+    for (const pid of run.participants) {
+      try {
+        logActivity(pid, 'dungeon_start', {
+          dungeon: dungeon.name,
+          runId: run.runId,
+          completesAt: run.completesAt,
+          rarity: 'rare',
+        });
+      } catch (e) { console.warn('[dungeons] activity log failed:', e.message); }
+    }
   }
 
   saveDungeonState();
