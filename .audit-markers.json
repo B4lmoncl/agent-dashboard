@@ -71,9 +71,9 @@
     "status": "clean"
   },
   "components/BattlePassView.tsx": {
-    "auditCount": 4,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 4: Clean. RewardCelebration on single + claim-all. Disabled states with cursor:not-allowed. claimable-breathe animation. Season end timer. Prior CRIT hook ordering fix holds.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 33: Language Policy. 3 German TipCustom tooltip bodies translated: \"Saisonende\"/\"Verbleibende Tage...\" -> \"Season End\"/\"Days remaining...\". \"Exklusiver Titel aus dem Season Pass\" -> \"Exclusive title from the Season Pass\". \"Kosmetischer Rahmen\" -> \"Cosmetic frame for your player profile\". All UI labels were already English.",
     "status": "clean"
   },
   "components/TavernView.tsx": {
@@ -113,9 +113,9 @@
     "status": "clean"
   },
   "components/WorldBossView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration for claim (gold, essenz, stardust, unique/gear drops, rank+contribution%). Correct disabled states. Boost with not-allowed cursor. HP bar. Auto-refresh.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 32: Language Policy + Tooltip Coverage \u2014 fully clean. All TipCustom bodies English. All UI labels English. Boss names and flavor text (content) handled server-side. No German strings in component.",
     "status": "clean"
   },
   "components/DungeonView.tsx": {
