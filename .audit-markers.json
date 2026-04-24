@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Audit markers — tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
+    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
     "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
     "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
   },
@@ -265,7 +265,7 @@
   "components/GuildHallBackground.tsx": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. sky canvas, weather effects — visual only",
+    "findings": "Cycle 2: Verified in batch audit. sky canvas, weather effects \u2014 visual only",
     "status": "clean"
   },
   "components/FloorAmbientParticles.tsx": {
@@ -367,7 +367,7 @@
   "routes/social.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: HIGH FIXED: 6 challenge endpoints missing toLowerCase+userName fallback. MED FIXED: challenge rules XSS, forfeit gold ordering. Architecture FIXED: challenges moved from dual-copy u.challenges to state.socialData.challenges (central store). challengeLock added. Friendship check added. Gold validation at proposal time. Trade counter-offer materials field now validated+persisted in currentOffer.",
+    "findings": "HIGH FIXED: 6 challenge endpoints moved to central store (state.socialData.challenges). Challenge auth+XSS+gold fixes. Trade counter-offer materials fix. 4 zombie buff types wired. Friendship required for challenges.",
     "status": "clean"
   },
   "routes/quests.js": {
@@ -397,7 +397,7 @@
   "routes/expedition.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted — only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim.",
+    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted \u2014 only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim.",
     "status": "clean"
   },
   "routes/challenges-weekly.js": {
@@ -409,7 +409,7 @@
   "routes/dungeons.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: MED FIXED: deleted player blocked dungeon finalization — run.collected.length never reached run.participants.length if a participant deleted their account. Now filters for active (existing) participants. Prior fixes hold.",
+    "findings": "Cycle 3: MED FIXED: deleted player blocked dungeon finalization \u2014 run.collected.length never reached run.participants.length if a participant deleted their account. Now filters for active (existing) participants. Prior fixes hold.",
     "status": "clean"
   },
   "routes/world-boss.js": {
@@ -421,7 +421,7 @@
   "routes/mail.js": {
     "auditCount": 4,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 4: CRIT FIXED: duplicate itemIds in send caused item duplication exploit (send 1 receive N) — added seenIds dedup + type validation. HIGH FIXED: expired mail pruning destroyed uncollected gold/items — now keeps expired mail with attachments. LOW FIXED: _mailsSent tracking moved before saveUsers() for persistence.",
+    "findings": "CRIT FIXED: item duplication exploit via duplicate itemIds. HIGH FIXED: expired mail pruning destroyed uncollected items. LOW FIXED: _mailsSent tracking after saveUsers. Added type validation on itemIds elements.",
     "status": "clean"
   },
   "routes/kanais-cube.js": {
@@ -445,7 +445,7 @@
   "routes/players.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: CRIT FIXED: companion expedition collect read expedition.startedAt (nonexistent field, should be sentAt) — broke companion_expedition_bond_xp talent. HIGH FIXED: GET /api/tavern/status was unauthenticated + mutated state — now requireAuth+self-check. HIGH FIXED: companion ultimate cooldown set AFTER effect — now claimed BEFORE (crash safety). MED FIXED: companion swap mutated fields before cooldown check. MED FIXED: companion name/emoji/species unbounded input. MED FIXED: notification-center read stored unbounded quest array. MED FIXED: search query length uncapped. LOW FIXED: cv-export unauthenticated.",
+    "findings": "CRIT FIXED: expedition.startedAt\u2192sentAt. HIGH FIXED: tavern status unauthed+mutating. HIGH FIXED: ultimate cooldown ordering. MED FIXED: companion swap pre-cooldown mutation. MED FIXED: name/emoji unbounded. MED FIXED: notif-read unbounded. MED FIXED: search query unbounded. LOW FIXED: cv-export unauthed. 4 zombie buffs wired (craft_discount, rift_time_extend, dungeon_reset, expedition_speed).",
     "status": "clean"
   },
   "routes/users.js": {
@@ -461,15 +461,15 @@
     "status": "clean"
   },
   "routes/game.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Ritual complete: self-check, tavern-rest block, idempotency via lastCompleted===today (prevents double-complete without lock — safe in single-threaded Node.js), streak logic with trigger-type grace, commitment/difficulty XP scaling, blood pact multipliers. Title equip: requireSelf, simple assignment. No lock needed on non-currency mutations.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable \u2014 nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified.",
     "status": "clean"
   },
   "routes/habits-inventory.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. inventoryLock on equip/unequip/discard/lock. requireSelf on all player mutations. Gold sync on shop-equip. Cross-slot dupe check. BoE binding on equip. Lock-check on discard. Equipped-check on discard. Level-gate on equip.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners.",
     "status": "clean"
   },
   "routes/agents.js": {
@@ -487,7 +487,7 @@
   "routes/codex.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-10",
-    "findings": "Cycle 98-100: friends_count unlock added, _dungeonsCompleted→_dungeonCompletions field fix, daily_missions_completed dead condition removed. All 20 active unlock types now verified against backend tracking fields.",
+    "findings": "Cycle 98-100: friends_count unlock added, _dungeonsCompleted\u2192_dungeonCompletions field fix, daily_missions_completed dead condition removed. All 20 active unlock types now verified against backend tracking fields.",
     "status": "clean"
   },
   "lib/state.js": {
@@ -529,7 +529,7 @@
   "routes/campaigns.js": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-15",
-    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization. requireMasterKey on PATCH/DELETE.",
+    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization on create/patch. isCampaignFullyCompleted uses questsById correctly. Line 139 uses state.quests.filter for claimedBy query (necessary, not a find-by-id). requireMasterKey on PATCH/DELETE.",
     "status": "clean"
   },
   "lib/rotation.js": {
@@ -613,7 +613,7 @@
   "public/data/uniqueItems.json": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: MED content gap — 35 world boss unique drop IDs referenced in worldBosses.json but missing from uniqueItems.json. Fallback in world-boss.js:498 creates generic items. No crash, but missing stats/lore/icons for 35 boss-exclusive drops. Requires content creation.",
+    "findings": "Cycle 3: MED content gap \u2014 35 world boss unique drop IDs referenced in worldBosses.json but missing from uniqueItems.json. Fallback in world-boss.js:498 creates generic items. No crash, but missing stats/lore/icons for 35 boss-exclusive drops. Requires content creation.",
     "status": "needs-content"
   },
   "public/data/codex.json": {
@@ -661,7 +661,7 @@
   "public/data/gems.json": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. 6 types × 5 tiers = 30 gems",
+    "findings": "Cycle 2: Verified in batch audit. 6 types \u00d7 5 tiers = 30 gems",
     "status": "clean"
   },
   "public/data/talentTree.json": {
@@ -679,7 +679,7 @@
   "public/data/battlePass.json": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. 5 seasons × 40 rewards",
+    "findings": "Cycle 2: Verified in batch audit. 5 seasons \u00d7 40 rewards",
     "status": "clean"
   },
   "public/data/weeklyChallenges.json": {
@@ -721,19 +721,13 @@
   "routes/rift.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: MED FIXED: expired rift in complete-stage didn't set rift.active=false (self-healed on next GET but inconsistent). HIGH FIXED: expired rift in complete-stage didn't write fail cooldown entry — player could retry immediately after timer expiry. Bolstering affix accumulation verified correct. Mythic replay 7-day rolling window noted (design choice, not bug).",
+    "findings": "Cycle 3: MED FIXED: expired rift in complete-stage didn't set rift.active=false (self-healed on next GET but inconsistent). HIGH FIXED: expired rift in complete-stage didn't write fail cooldown entry \u2014 player could retry immediately after timer expiry. Bolstering affix accumulation verified correct. Mythic replay 7-day rolling window noted (design choice, not bug).",
     "status": "clean"
   },
   "routes/config-admin.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
     "findings": "Cycle 3: Verified new swornBondSummary/pendingBonds in socialSummary + notifications. bondChestReady + pendingBonds in notifications object. Prior findings still clean: GET-only batch, sensitive fields stripped, rested XP live-calc.",
-    "status": "clean"
-  },
-  "routes/campaigns.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
     "status": "clean"
   },
   "routes/npcs-misc.js": {
@@ -761,9 +755,9 @@
     "status": "clean"
   },
   "components/DashboardModals.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
+    "auditCount": 1,
+    "lastAuditDate": "2026-04-15",
+    "findings": "Clean. ModalPortal on currencies+modifier. ESC handler unified. Conversion: disabled title tooltips, cursor:not-allowed, preview, balance validation. Object.assign currencies update on convert success. LOW: modifier modal uses z-[9999] inline instead of ModalPortal default.",
     "status": "clean"
   },
   "lib/auth-client.ts": {
@@ -772,16 +766,10 @@
     "findings": "HIGH fixed: authFetch token refresh retry was dead code (hadToken pattern). getAuthHeaders expiry check added earlier. getValidToken still returns without expiry check (unused externally).",
     "status": "clean"
   },
-  "routes/campaigns.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization on create/patch. isCampaignFullyCompleted uses questsById correctly. Line 139 uses state.quests.filter for claimedBy query (necessary, not a find-by-id). requireMasterKey on PATCH/DELETE.",
-    "status": "clean"
-  },
   "routes/sworn-bonds.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 2: MED FIXED: timed bonds (4w/8w duration) never expired — expiresAt was set but never checked. Added auto-expiry in getActiveBondForPlayer(). brokenBy=null on expiry (no cooldown). Prior fixes hold: bondLock on all POSTs, double-claim guard, streak logic.",
+    "findings": "MED FIXED: bond expiresAt set but never checked \u2014 timed bonds never expired. Added auto-expiry in getActiveBondForPlayer. All POST endpoints have bondLock.",
     "status": "clean"
   },
   "components/ContextualTutorial.tsx": {
@@ -802,16 +790,10 @@
     "findings": "No issues. Clean 40-line component. Uses useFirstVisit hook correctly.",
     "status": "clean"
   },
-  "components/DashboardModals.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. ModalPortal on currencies+modifier. ESC handler unified. Conversion: disabled title tooltips, cursor:not-allowed, preview, balance validation. Object.assign currencies update on convert success. LOW: modifier modal uses z-[9999] inline instead of ModalPortal default.",
-    "status": "clean"
-  },
   "components/ItemTooltip.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "No bugs or security issues. Portal-based tooltip with ESC/click-outside. All images have onError. All stats have tooltips via Tip component.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 22: Lock indicator raw title= -> <Tip k=\"item_lock\"> (policy fix). Socket title \"Empty\" -> \"Empty socket\" / \"{gem} gem\" for clarity. Set ID raw printed (e.g. \"adventurer\") -> formatSetLabel() with generic-tier labels + kebab-case pretty-print for named sets. Added maxHeight 80vh + overflowY:auto on tooltip body to prevent viewport overflow when item has many stats+sockets+legendary+flavor.",
     "status": "clean"
   },
   "lib/email.js": {
@@ -823,7 +805,7 @@
   "lib/companion-config.ts": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Pure config — 12 companion colors, portrait path helper, virtual type set. No logic, no side effects.",
+    "findings": "Clean. Pure config \u2014 12 companion colors, portrait path helper, virtual type set. No logic, no side effects.",
     "status": "clean"
   },
   "hooks/useFirstVisit.ts": {
@@ -841,7 +823,7 @@
   "public/data/gachaPool.json": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-16",
-    "findings": "MED FIXED: All 6 gear items had inflated stat ranges violating T4 max (legendaries 8-20→5-8, epics 5-12→4-8, rares 4-9→4-8). Affix counts correct. Consumables OK. uniqueDrops cross-refs valid.",
+    "findings": "MED FIXED: All 6 gear items had inflated stat ranges violating T4 max (legendaries 8-20\u21925-8, epics 5-12\u21924-8, rares 4-9\u21924-8). Affix counts correct. Consumables OK. uniqueDrops cross-refs valid.",
     "status": "clean"
   },
   "public/data/bannerTemplates.json": {
@@ -866,42 +848,6 @@
     "auditCount": 1,
     "lastAuditDate": "2026-04-16",
     "findings": "Clean. 10 suffixes with level-scaled stat bonuses. Values reasonable (1-5 per stat at Lv50). Used for gear naming.",
-    "status": "clean"
-  },
-  "routes/game.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable — nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified.",
-    "status": "clean"
-  },
-  "routes/social.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "HIGH FIXED: 6 challenge endpoints moved to central store (state.socialData.challenges). Challenge auth+XSS+gold fixes. Trade counter-offer materials fix. 4 zombie buff types wired. Friendship required for challenges.",
-    "status": "clean"
-  },
-  "routes/mail.js": {
-    "auditCount": 4,
-    "lastAuditDate": "2026-04-17",
-    "findings": "CRIT FIXED: item duplication exploit via duplicate itemIds. HIGH FIXED: expired mail pruning destroyed uncollected items. LOW FIXED: _mailsSent tracking after saveUsers. Added type validation on itemIds elements.",
-    "status": "clean"
-  },
-  "routes/sworn-bonds.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-17",
-    "findings": "MED FIXED: bond expiresAt set but never checked — timed bonds never expired. Added auto-expiry in getActiveBondForPlayer. All POST endpoints have bondLock.",
-    "status": "clean"
-  },
-  "routes/players.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "CRIT FIXED: expedition.startedAt→sentAt. HIGH FIXED: tavern status unauthed+mutating. HIGH FIXED: ultimate cooldown ordering. MED FIXED: companion swap pre-cooldown mutation. MED FIXED: name/emoji unbounded. MED FIXED: notif-read unbounded. MED FIXED: search query unbounded. LOW FIXED: cv-export unauthed. 4 zombie buffs wired (craft_discount, rift_time_extend, dungeon_reset, expedition_speed).",
-    "status": "clean"
-  },
-  "routes/habits-inventory.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners.",
     "status": "clean"
   }
 }
