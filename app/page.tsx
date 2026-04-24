@@ -327,6 +327,9 @@ export default function Dashboard() {
   // after another. 0 = not locking, 1 = outer locked, 2 = mid locked, 3 = all
   // locked. On step 3 + a beat, stage switches. Reset on close/reopen.
   const [ringLockStep, setRingLockStep] = useState(0);
+  // popupClosing=true for ~280ms after the user dismisses the modal, so the
+  // stage-swap-out animation plays before React actually unmounts it.
+  const [popupClosing, setPopupClosing] = useState(false);
   // When the v2.0.0 popup closes, fire a brief Highstorm over the main page
   // as a handoff VFX. Activates for 2.2s then clears. Lazy-loaded so it
   // doesn't ship in the initial bundle for users who've already seen it.
@@ -444,7 +447,11 @@ export default function Dashboard() {
       }
       const lu = { level: currentLevel, title: currentTitle };
       if (rewardCelebration) {
-        pendingLevelUpRef.current = lu;
+        // Inject the level-up into the reward celebration instead of queueing
+        // a second full-screen modal. User sees ONE screen with both XP/gold
+        // rewards AND the level-up banner — was two sequential take-overs.
+        SFX.levelUp();
+        setRewardCelebration({ ...rewardCelebration, levelUp: lu });
       } else {
         setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 300);
       }
@@ -505,12 +512,18 @@ export default function Dashboard() {
   // useModalBehavior (ESC + body scroll lock + focus trap) can wire to it
   // from the component body. Previously the popup worked only via click-out.
   const closeWhatsNewPopup = useCallback(() => {
-    setWhatsNewOpen(false);
-    setRingLockStep(0);
+    // Persist + fire Toast/Storm immediately so they animate while the popup
+    // dissolves. Defer actual unmount to after the stage-swap-out animation.
     try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
     addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Welcome to the Open Beta", sub: "The hall registers your presence" });
     setBetaLaunchStorm(true);
     setTimeout(() => setBetaLaunchStorm(false), 2200);
+    setPopupClosing(true);
+    setTimeout(() => {
+      setWhatsNewOpen(false);
+      setRingLockStep(0);
+      setPopupClosing(false);
+    }, 280);
   }, [addToast]);
   useModalBehavior(whatsNewOpen, closeWhatsNewPopup);
 
@@ -3222,14 +3235,18 @@ export default function Dashboard() {
         // can't accidentally kill the animation with a stray click.
         const handleBackdropClick = () => { if (ringLockStep === 0) closeWhatsNewPopup(); };
         return (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4 launch-shockwave" onClick={handleBackdropClick}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4" onClick={handleBackdropClick}>
+          {/* Shockwave overlay — keyed on stage so the expanding ring animation */}
+          {/* re-fires when the user transitions from Stage 1 to Stage 2. Without */}
+          {/* this, the shockwave plays only once on open and Stage 2 lands dry. */}
+          <div key={`shockwave-${popupStage}`} className="absolute inset-0 launch-shockwave pointer-events-none" />
           {popupStage === "hero" ? (
             /* ─── STAGE 1: pure cinematic hero. No info overload — one line, one button. */
             <div
               role="dialog"
               aria-modal="true"
               aria-labelledby="whatsnew-title"
-              className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-md rounded-2xl overflow-hidden stage-swap-in panel-ornate panel-ornate-inner"
+              className={`relative w-full max-w-[calc(100vw-2rem)] sm:max-w-md rounded-2xl overflow-hidden ${popupClosing ? "stage-swap-out" : "stage-swap-in"} panel-ornate panel-ornate-inner`}
               style={{ background: "radial-gradient(ellipse at 50% 30%, #1a1428 0%, #0a0a14 70%, #050608 100%)", border: "1px solid rgba(230,204,128,0.35)", boxShadow: "0 30px 120px rgba(0,0,0,0.95), 0 0 120px rgba(230,204,128,0.18), 0 0 60px rgba(167,139,250,0.14)" }}
               onClick={e => e.stopPropagation()}
             >
@@ -3326,7 +3343,7 @@ export default function Dashboard() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="whatsnew-title"
-            className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden stage-swap-in panel-ornate panel-ornate-inner"
+            className={`w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden ${popupClosing ? "stage-swap-out" : "stage-swap-in"} panel-ornate panel-ornate-inner`}
             style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.25)", boxShadow: "0 30px 100px rgba(0,0,0,0.95), 0 0 80px rgba(230,204,128,0.12), 0 0 40px rgba(129,140,248,0.10)" }}
             onClick={e => e.stopPropagation()}
           >
@@ -3352,6 +3369,14 @@ export default function Dashboard() {
                   }}
                 />
               ))}
+              {/* Back to hero intro — left side */}
+              <button
+                onClick={() => setPopupStage("hero")}
+                aria-label="Back"
+                title="Back to intro"
+                className="absolute top-3 left-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-opacity z-20"
+                style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+              >←</button>
               <button
                 onClick={closeWhatsNewPopup}
                 aria-label="Close"

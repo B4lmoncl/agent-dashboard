@@ -405,6 +405,24 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
         {/* Flavor */}
         <div className="text-xs mb-5 text-w35">{flavor}</div>
 
+        {/* Level-Up banner — consolidates what used to be a second full-screen */}
+        {/* modal into this celebration. Only renders when the reward causes a */}
+        {/* level boundary crossing (data.levelUp is injected from page.tsx). */}
+        {data.levelUp && data.type !== "levelUp" && (
+          <div
+            className="mb-5 rounded-lg px-4 py-3 text-center relative overflow-hidden levelup-banner-in"
+            style={{
+              background: "linear-gradient(135deg, rgba(251,191,36,0.22) 0%, rgba(245,158,11,0.12) 60%, rgba(251,191,36,0.18) 100%)",
+              border: "2px solid rgba(251,191,36,0.55)",
+            }}
+          >
+            <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.12) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.5s ease-in-out infinite" }} />
+            <p className="text-xs uppercase tracking-[0.4em] font-bold mb-1 relative" style={{ color: "#fbbf24" }}>Level Up</p>
+            <p className="text-2xl font-black relative" style={{ color: "#f5e4a8", textShadow: "0 0 16px rgba(251,191,36,0.6), 0 0 32px rgba(251,191,36,0.25)" }}>Lv. {data.levelUp.level}</p>
+            <p className="text-xs font-semibold mt-0.5 relative" style={{ color: "rgba(251,191,36,0.85)" }}>{data.levelUp.title}</p>
+          </div>
+        )}
+
         {/* Rewards */}
         {hasRewards && (
           <div className="flex flex-col gap-1.5 mb-5">
