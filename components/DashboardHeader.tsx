@@ -13,10 +13,7 @@ function LastUpdated({ lastRefresh }: { lastRefresh: Date | null }) {
     return () => clearInterval(tick);
   }, [lastRefresh]);
   if (!lastRefresh) return <span>—</span>;
-  if (secondsAgo < 5) return <span>synced</span>;
-  if (secondsAgo < 60) return <span>synced {secondsAgo}s ago</span>;
-  const mins = Math.floor(secondsAgo / 60);
-  return <span>synced {mins}m ago</span>;
+  return <span>{secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`}</span>;
 }
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
@@ -499,7 +496,7 @@ export default function DashboardHeader({
           })()}
           <div className="text-xs font-mono flex items-center gap-1.5 text-w25">
             <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: "rgba(255,102,51,0.5)" }} />
-            <span style={{ display: "inline-block", minWidth: "5rem" }}><LastUpdated lastRefresh={lastRefresh} /></span>
+            Updated <span style={{ display: "inline-block", minWidth: "4rem" }}><LastUpdated lastRefresh={lastRefresh} /></span>
           </div>
         </div>
       </div>
