@@ -486,9 +486,9 @@
     "status": "clean"
   },
   "lib/npc-engine.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. weighted spawn, timezone handling",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 75: 341-line NPC spawn + departure engine. Clean. Weighted random NPC selection. Departure processing fails in-progress quests, sets cooldown, clears playerProgress NPC chains, rebuilds questsById Map. spawnNpc wires prev/next IDs for quest chains. trySpawnNpcs handles guaranteed visits (gacha), respects max-active + cooldowns. forceSpawnMinimumNpc fallback. Jittered departure time (80-120%). Quest ID generation has negligible collision risk via random.slice(2,6).",
     "status": "clean"
   },
   "lib/quest-catalog.js": {
