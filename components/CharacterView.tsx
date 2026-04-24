@@ -291,6 +291,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={onClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Equip frame"
         className="w-full max-w-sm rounded-2xl p-6 space-y-5"
         style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)", maxHeight: "85vh", overflowY: "auto", scrollbarWidth: "thin" as unknown as undefined }}
         onClick={e => e.stopPropagation()}
@@ -2289,7 +2292,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
                     return (
                       <div className="fixed inset-0 z-[150] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setTitlesOpen(false)}>
-                      <div className="w-full max-w-lg max-h-[80vh] rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(251,191,36,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+                      <div role="dialog" aria-modal="true" aria-label="Equip title" className="w-full max-w-lg max-h-[80vh] rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(251,191,36,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between px-4 py-3" style={{ background: "rgba(251,191,36,0.06)", borderBottom: "1px solid rgba(251,191,36,0.15)" }}>
                           <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>Titles ({earnedTitles.length} earned)</p>
                           <button onClick={() => setTitlesOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
@@ -2743,6 +2746,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         onClick={e => { if (e.target === e.currentTarget) setCollectionOpen(false); }}
       >
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Collection log"
           className="rounded-2xl overflow-hidden"
           style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(103,232,249,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
         >
@@ -3004,6 +3010,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           onClick={() => setConfirmAction(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm action"
             className="rounded-xl p-5 max-w-sm w-full mx-4"
             style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
             onClick={e => e.stopPropagation()}
