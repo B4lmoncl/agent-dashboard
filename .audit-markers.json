@@ -197,9 +197,9 @@
     "status": "clean"
   },
   "components/GachaPull.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. screen shake OK, charge orb OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 51: Visual reveal component. Single pull (5.5s charge -> flash -> reveal) + multi pull (8s charge -> flash -> sequential -> black -> summary). Screen shake on legendary flash. ESC + click skip after reveal phase. Charge-phase no-skip is USER-CONFIRMED INTENTIONAL (by design for dramatic tension). Background click closes during reveal. View in Inventory nav link. CSS animation name \"gacha-weiter-pulse\" uses German \"weiter\" as identifier (technical, not user-facing).",
     "status": "clean"
   },
   "components/ModalPortal.tsx": {
