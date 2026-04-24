@@ -69,21 +69,46 @@ import {
 
 const CURRENT_VERSION = "2.0.0";
 
-function WhatsNewHero({ color, title, short, long, bg, icon }: { color: string; title: string; short: string; long: string; bg: string; icon: string }) {
+function WhatsNewHero({ color, title, short, long, bg, icon, featured = false }: { color: string; title: string; short: string; long: string; bg: string; icon: string; featured?: boolean }) {
   const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
   return (
-    <button onClick={() => setExpanded(v => !v)} className="w-full text-left rounded-lg overflow-hidden relative" style={{ border: `1px solid ${color}25`, cursor: "pointer" }}>
-      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none" style={{ background: `url(${bg}) no-repeat center/contain`, opacity: 0.12, filter: "blur(0.5px)" }} />
-      <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}0A 0%, transparent 60%)`, borderLeft: `3px solid ${color}60` }}>
-        <img src={icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 6px ${color}50)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+    <button
+      onClick={() => setExpanded(v => !v)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`w-full text-left rounded-lg overflow-hidden relative group${featured ? " crystal-breathe-card" : ""}`}
+      style={{
+        border: `1px solid ${color}${featured ? "55" : hovered ? "44" : "25"}`,
+        cursor: "pointer",
+        transform: hovered ? "translateY(-2px)" : "translateY(0)",
+        transition: "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
+        boxShadow: hovered ? `0 8px 24px ${color}22, 0 0 0 1px ${color}20` : featured ? `0 4px 16px ${color}15` : "none",
+        "--glow-color": `${color}40`,
+      } as React.CSSProperties}
+    >
+      {/* Background portrait — stronger so the accent actually reads */}
+      <div className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none" style={{ background: `url(${bg}) no-repeat right center/contain`, opacity: hovered ? 0.28 : 0.18, filter: "saturate(1.1)", transition: "opacity 0.2s ease", maskImage: "linear-gradient(to left, black 30%, transparent 100%)", WebkitMaskImage: "linear-gradient(to left, black 30%, transparent 100%)" }} />
+      {/* Featured glow overlay */}
+      {featured && (
+        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at left center, ${color}15 0%, transparent 60%)` }} />
+      )}
+      <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}12 0%, ${color}04 40%, transparent 70%)`, borderLeft: `3px solid ${color}${featured ? "a0" : "70"}` }}>
+        {/* Icon in a ring — reads as a hero symbol, not just decoration */}
+        <div className="flex-shrink-0 mt-0.5 flex items-center justify-center rounded-lg" style={{ width: 44, height: 44, background: `${color}15`, border: `1px solid ${color}30`, boxShadow: `inset 0 0 8px ${color}15, 0 0 12px ${color}15` }}>
+          <img src={icon} alt="" width={32} height={32} className="img-render-auto" style={{ filter: `drop-shadow(0 0 8px ${color}60)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+        </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-bold" style={{ color }}>{title}</p>
-            <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}60`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>&#9662;</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <p className="text-sm font-bold truncate" style={{ color, textShadow: featured ? `0 0 12px ${color}40` : "none" }}>{title}</p>
+              {featured && <span className="text-xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: `${color}20`, color, border: `1px solid ${color}40` }}>Neu</span>}
+            </div>
+            <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}80`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.25s ease" }}>&#9662;</span>
           </div>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{short}</p>
+          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>{short}</p>
           {expanded && (
-            <p className="text-xs mt-2 leading-relaxed tab-content-enter" style={{ color: "rgba(255,255,255,0.45)", borderTop: `1px solid ${color}15`, paddingTop: 8 }}>{long}</p>
+            <p className="text-xs mt-2 leading-relaxed tab-content-enter" style={{ color: "rgba(255,255,255,0.5)", borderTop: `1px solid ${color}25`, paddingTop: 8 }}>{long}</p>
           )}
         </div>
       </div>
@@ -3139,70 +3164,102 @@ export default function Dashboard() {
       )}
 
       {/* What's New Splash */}
-      {whatsNewOpen && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}>
+      {whatsNewOpen && (() => {
+        const closePopup = () => {
+          setWhatsNewOpen(false);
+          try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
+          // Welcome-Toast feuert den Übergang an, statt das Modal einfach verschwinden zu lassen.
+          addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Willkommen zur Open Beta", sub: "Die Halle registriert deine Anwesenheit" });
+        };
+        return (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4" onClick={closePopup}>
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="whatsnew-title"
             className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden tab-content-enter panel-ornate panel-ornate-inner"
-            style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.2)", boxShadow: "0 20px 80px rgba(0,0,0,0.9), 0 0 40px rgba(129,140,248,0.08)" }}
+            style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.25)", boxShadow: "0 30px 100px rgba(0,0,0,0.95), 0 0 80px rgba(230,204,128,0.12), 0 0 40px rgba(129,140,248,0.10)" }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Hero Header */}
-            <div className="relative px-6 py-5 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(129,140,248,0.12) 0%, rgba(129,140,248,0.03) 60%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.15)" }}>
-              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.15) 0%, transparent 70%)" }} />
+            {/* Hero Header — Launch-Moment mit pulsating glow + floating particles */}
+            <div className="relative px-6 py-6 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(230,204,128,0.14) 0%, rgba(129,140,248,0.10) 40%, rgba(129,140,248,0.02) 80%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.2)" }}>
+              {/* Radial glow ring */}
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 10%, rgba(230,204,128,0.18) 0%, rgba(129,140,248,0.10) 30%, transparent 70%)" }} />
+              {/* Floating ascending particles — 8 stars drifting upward */}
+              {Array.from({ length: 8 }, (_, i) => (
+                <div
+                  key={`whatsnew-particle-${i}`}
+                  className="absolute pointer-events-none"
+                  style={{
+                    width: 3 + (i % 2),
+                    height: 3 + (i % 2),
+                    borderRadius: "50%",
+                    left: `${10 + (i * 11) % 80}%`,
+                    bottom: "0",
+                    background: i % 2 === 0 ? "#e6cc80" : "#818cf8",
+                    boxShadow: `0 0 8px ${i % 2 === 0 ? "#e6cc80" : "#818cf8"}`,
+                    animation: `crystal-particle-rise ${5 + (i % 3) * 1.2}s ease-out ${i * 0.4}s infinite`,
+                    opacity: 0.7,
+                  }}
+                />
+              ))}
               <button
-                onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}
+                onClick={closePopup}
                 aria-label="Schließen"
                 className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-opacity"
-                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", zIndex: 1 }}
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", zIndex: 2 }}
               >✕</button>
-              <p id="whatsnew-title" className="text-lg font-bold tracking-wide relative" style={{ color: "#e6cc80", textShadow: "0 0 20px rgba(230,204,128,0.3)" }}>v2.0.0</p>
-              <p className="text-sm font-semibold mt-0.5 relative" style={{ color: "#818cf8" }}>Open Beta</p>
-              <p className="text-xs mt-2 relative" style={{ color: "rgba(255,255,255,0.45)", maxWidth: 320, margin: "8px auto 0" }}>Die Tore der Halle stehen offen. Was als Experiment begann, ist jetzt ein Zuhause.</p>
+              <div className="relative" style={{ zIndex: 1 }}>
+                <div className="inline-flex items-center gap-2 mb-1">
+                  <span style={{ color: "#e6cc80", fontSize: 14, opacity: 0.7 }}>✦</span>
+                  <p id="whatsnew-title" className="text-2xl font-black tracking-wider crystal-breathe" style={{ color: "#e6cc80", textShadow: "0 0 24px rgba(230,204,128,0.5), 0 0 48px rgba(230,204,128,0.2)", "--glow-color": "rgba(230,204,128,0.3)" } as React.CSSProperties}>v2.0.0</p>
+                  <span style={{ color: "#e6cc80", fontSize: 14, opacity: 0.7 }}>✦</span>
+                </div>
+                <p className="text-sm font-bold uppercase tracking-[0.3em]" style={{ color: "#a78bfa" }}>Open Beta</p>
+                <p className="text-xs mt-3 italic" style={{ color: "rgba(255,255,255,0.55)", maxWidth: 360, margin: "12px auto 0", lineHeight: 1.55 }}>v2.0.0 ist die Version, bei der wir aufgehört haben, &apos;Beta&apos; defensiv zu sagen. Die Halle steht, die Tore sind offen, und die Wände erinnern sich an jeden, der je hier war.</p>
+              </div>
             </div>
 
-            <div className="px-5 py-4 max-h-[60vh] overflow-y-auto space-y-3" style={{ scrollbarWidth: "thin" }}>
-              {/* Hero Feature Cards */}
+            <div className="px-5 py-4 max-h-[60vh] overflow-y-auto space-y-2.5" style={{ scrollbarWidth: "thin" }}>
+              {/* Hero Feature Cards — emotionale und große Features zuerst, technical debt unten */}
               {[
-                { color: "#f97316", title: "Schmiedefieber", short: "Alle 48h brennt eine Profession. Materialkosten halbiert, doppelte Skill-XP.", long: "Ein zufälliger Beruf wird alle 48 Stunden für genau 4 Stunden aktiviert. Während des Fiebers: alle Materialkosten -50%, Skill-XP verdoppelt. Wer innerhalb des Fensters 5+ Rezepte craftet, bekommt einen Bonus-Cache mit seltenen Materialien. Das Fieber wird nie zweimal hintereinander denselben Beruf treffen.", bg: "/images/icons/loot-forge-ember.png", icon: "/images/icons/nav-forge.png" },
-                { color: "#a855f7", title: "Mythic+ Affixe", short: "10 wöchentlich rotierende Modifikatoren ab M+2.", long: "Ab Mythic+2 bekommst du 2 wöchentlich rotierende Affixe. Tyrannical verstärkt den letzten Boss um 50%. Necrotic blockiert all deinen Streak-Schutz. Volcanic erzwingt Fitness-Quests bei jeder dritten Stage. Fortified verstärkt alle Zwischen-Stages. Inspiring zählt Social-Quests doppelt für Rift-Progress. Jede Woche eine neue Kombination — plane deine Runs entsprechend.", bg: "/images/icons/ach-mythic.png", icon: "/images/icons/nav-rift.png" },
-                { color: "#67e8f9", title: "Rested XP", short: "Baut sich offline auf. Verdoppelt XP bis verbraucht.", long: "Alle 8 Stunden offline sammelt sich 5% deines Level-XP als Rested Pool an (max 150% eines Levels). Deine nächsten Quests geben doppelte XP bis der Pool aufgebraucht ist. Die blaue Zone in deiner XP-Bar zeigt den Rested-Anteil. Pausen lohnen sich — wie in WoW Classic.", bg: "/images/icons/loot-xp-scroll.png", icon: "/images/icons/currency-essenz.png" },
-                { color: "#f59e0b", title: "Sworn Bonds", short: "1-zu-1 Pakte mit wöchentlichen Zielen und gestaffelter Beute.", long: "Schließe einen Schwurbund mit einer Vertrauensperson (4 Wochen, 8 Wochen oder endlos). Jede Woche bekommt ihr ein geteiltes Ziel — kombinierte Quests, geteilte XP, Typen-Vielfalt. Erfolg füllt eure Truhe mit Gold, Essenz und — selten — einem gemeinsamen Rahmen. Bond-Level 1 bis 10, von Bekannte bis Ewiger Bund. Duo-Streaks stapeln sich.", bg: "/images/icons/nav-breakaway.png", icon: "/images/icons/currency-gildentaler.png" },
+                { color: "#f59e0b", title: "Sworn Bonds", short: "1-zu-1 Pakte mit wöchentlichen Zielen und gestaffelter Beute.", long: "Schließe einen Schwurbund mit einer Vertrauensperson (4 Wochen, 8 Wochen oder endlos). Jede Woche bekommt ihr ein geteiltes Ziel — kombinierte Quests, geteilte XP, Typen-Vielfalt. Erfolg füllt eure Truhe mit Gold, Essenz und — selten — einem gemeinsamen Rahmen. Bond-Level 1 bis 10, von Bekannte bis Ewiger Bund. Duo-Streaks stapeln sich.", bg: "/images/icons/nav-breakaway.png", icon: "/images/icons/currency-gildentaler.png", featured: true },
                 { color: "#22c55e", title: "Companion-Expeditionen", short: "Schick deinen Gefährten 4-24h allein los. Er bringt was mit.", long: "Vier Expeditions-Stufen — Quick Forage (4h), Deep Woods (8h), Mountain Pass (12h), Ancient Ruins (24h). Der Companion bringt Gold, Essenz, Materialien, selten Gems oder Items. Bond-Level multipliziert die Ausbeute (+10% pro Stufe). Während der Expedition keine Bond-XP aus Quests — wähle deine Momente.", bg: "/images/icons/nav-companions.png", icon: "/images/icons/equip-companion.png" },
-                { color: "#818cf8", title: "D3-Style Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt jetzt Diablo-3-inspirierte Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge × Gear × Companion × Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
+                { color: "#f97316", title: "Schmiedefieber", short: "Alle 48h brennt eine Profession. Materialkosten halbiert, doppelte Skill-XP.", long: "Ein zufälliger Beruf wird alle 48 Stunden für genau 4 Stunden aktiviert. Während des Fiebers: alle Materialkosten -50%, Skill-XP verdoppelt. Wer innerhalb des Fensters 5+ Rezepte craftet, bekommt einen Bonus-Cache mit seltenen Materialien. Das Fieber wird nie zweimal hintereinander denselben Beruf treffen.", bg: "/images/icons/loot-forge-ember.png", icon: "/images/icons/nav-forge.png" },
+                { color: "#a855f7", title: "Mythic+ Affixe", short: "10 wöchentlich rotierende Modifikatoren ab M+2. Jede Woche anders.", long: "Ab Mythic+2 bekommst du 2 wöchentlich rotierende Affixe. Tyrannical verstärkt den letzten Boss um 50%. Necrotic blockiert all deinen Streak-Schutz. Volcanic erzwingt Fitness-Quests bei jeder dritten Stage. Fortified verstärkt alle Zwischen-Stages. Inspiring zählt Social-Quests doppelt für Rift-Progress. Jede Woche eine neue Kombination — plane deine Runs entsprechend.", bg: "/images/icons/ach-mythic.png", icon: "/images/icons/nav-rift.png" },
+                { color: "#67e8f9", title: "Rested XP", short: "Baut sich offline auf. Verdoppelt XP bis verbraucht.", long: "Alle 8 Stunden offline sammelt sich 5% deines Level-XP als Rested Pool an (max 150% eines Levels). Deine nächsten Quests geben doppelte XP bis der Pool aufgebraucht ist. Die blaue Zone in deiner XP-Bar zeigt den Rested-Anteil. Pausen lohnen sich — wie in WoW Classic.", bg: "/images/icons/loot-xp-scroll.png", icon: "/images/icons/currency-essenz.png" },
                 { color: "#e6cc80", title: "262 neue Portraits & Icons", short: "175 Gear-Icons, 87 NPC-Rewards, Companions, Bosse — alles handgezeichnet.", long: "Jedes Item, jeder NPC und jeder Boss hat jetzt ein eigenes Portrait. Dass sich manche Bewohner ähneln ist kein Bug — der Aetherstrom des Turms formt die Gesichtszüge derer, die lange genug in seiner Nähe leben. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich, das Thema zu diskutieren.", bg: "/images/npcs/starweaver-final.png", icon: "/images/icons/nav-wanderer.png" },
+                { color: "#818cf8", title: "D3-Style Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt jetzt Diablo-3-inspirierte Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge × Gear × Companion × Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
               ].map((f, i) => (
                 <WhatsNewHero key={i} {...f} />
               ))}
 
-              {/* Compact sections — only verified features */}
-              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(251,191,36,0.6)" }}>Systeme</p>
+              {/* Compact sections — with actual icons per item */}
+              <div className="pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: "rgba(251,191,36,0.7)" }}>Systeme</p>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    "World Boss — Community-Raids",
-                    "Dungeons — Async Co-op",
-                    "Die Vier Zirkel — Factions",
-                    "Season Pass — 40 Stufen",
-                    "Abenteuerbuch — 5 Floors",
-                    "Kanai's Cube — Powers",
-                    "Enchanting — Stat-Reroll",
-                    "Gems & Sockets",
-                    "Schicksalsbaum — Talente",
-                    "Per-Banner Gacha Pity",
-                  ].map((t, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(251,191,36,0.04)" }}>
-                      <span style={{ color: "#fbbf24", fontSize: 8 }}>&#9670;</span>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    { label: "World Boss", icon: "/images/icons/nav-worldboss.png" },
+                    { label: "Dungeons (Undercroft)", icon: "/images/icons/nav-dungeons.png" },
+                    { label: "Die Vier Zirkel", icon: "/images/icons/nav-factions.png" },
+                    { label: "Season Pass · 40 Stufen", icon: "/images/icons/nav-season.png" },
+                    { label: "Abenteuerbuch · 5 Floors", icon: "/images/icons/nav-tome.png" },
+                    { label: "Kanai's Cube", icon: "/images/icons/nav-arcanum.png" },
+                    { label: "Enchanting · Stat-Reroll", icon: "/images/icons/nav-enchanting.png" },
+                    { label: "Gems & Sockets", icon: "/images/icons/currency-runensplitter.png" },
+                    { label: "Schicksalsbaum", icon: "/images/icons/nav-talents.png" },
+                    { label: "Per-Banner Gacha Pity", icon: "/images/icons/vault-of-fate.png" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 px-2 py-1.5 rounded" style={{ background: "rgba(251,191,36,0.05)", border: "1px solid rgba(251,191,36,0.08)" }}>
+                      <img src={item.icon} alt="" width={16} height={16} className="flex-shrink-0 img-render-auto" style={{ filter: "drop-shadow(0 0 4px rgba(251,191,36,0.3))" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                      <span className="text-xs truncate" style={{ color: "rgba(255,255,255,0.65)" }}>{item.label}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(129,140,248,0.6)" }}>Politur</p>
+              <div className="pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: "rgba(129,140,248,0.7)" }}>Politur</p>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
                     "Highstorm VFX",
@@ -3214,32 +3271,72 @@ export default function Dashboard() {
                     "Fraktions-Rep sichtbar",
                     "Stormlight-inspirierte UI",
                   ].map((t, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(129,140,248,0.04)" }}>
-                      <span style={{ color: "#818cf8", fontSize: 8 }}>&#9670;</span>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    <div key={i} className="flex items-center gap-2 px-2 py-1.5 rounded" style={{ background: "rgba(129,140,248,0.05)", border: "1px solid rgba(129,140,248,0.08)" }}>
+                      <span style={{ color: "#818cf8", fontSize: 10 }}>&#9670;</span>
+                      <span className="text-xs truncate" style={{ color: "rgba(255,255,255,0.65)" }}>{t}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
+              {/* Thanks line before stats — acknowledgment */}
+              <div className="pt-2 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs italic" style={{ color: "rgba(230,204,128,0.55)" }}>Ihr habt die Bugs gefunden. Ihr seid die eigentliche QA. Danke.</p>
+              </div>
+
               {/* Stats bar — flex-wrap for mobile */}
-              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 pt-2 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#22c55e" }}>80+</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Bugs gefixt</p></div>
-                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#3b82f6" }}>80%</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Schneller</p></div>
-                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#f97316" }}>1458</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Rezepte poliert</p></div>
-                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#a855f7" }}>262</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Neue Icons</p></div>
+              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 pt-3">
+                <div className="text-center">
+                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#22c55e", textShadow: "0 0 12px rgba(34,197,94,0.4)" }}>80+</p>
+                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Bugs gefixt</p>
+                </div>
+                <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+                <div className="text-center">
+                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#3b82f6", textShadow: "0 0 12px rgba(59,130,246,0.4)" }}>80%</p>
+                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Schneller</p>
+                </div>
+                <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+                <div className="text-center">
+                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#f97316", textShadow: "0 0 12px rgba(249,115,22,0.4)" }}>1458</p>
+                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Rezepte poliert</p>
+                </div>
+                <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+                <div className="text-center">
+                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#a855f7", textShadow: "0 0 12px rgba(168,85,247,0.4)" }}>262</p>
+                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Neue Icons</p>
+                </div>
               </div>
             </div>
 
-            <div className="px-5 pb-4 pt-2">
-              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-sm py-2.5 rounded-lg font-bold" style={{ background: "linear-gradient(135deg, rgba(230,204,128,0.15), rgba(129,140,248,0.12))", color: "#e6cc80", border: "1px solid rgba(230,204,128,0.3)", cursor: "pointer", boxShadow: "0 0 20px rgba(230,204,128,0.08)" }}>Die Halle erwartet dich</button>
+            {/* CTA — shimmer sweep + breath glow */}
+            <div className="px-5 pb-5 pt-3">
+              <button
+                onClick={closePopup}
+                className="w-full text-sm py-3 rounded-lg font-bold relative overflow-hidden crystal-breathe group"
+                style={{
+                  background: "linear-gradient(135deg, rgba(230,204,128,0.22), rgba(167,139,250,0.18))",
+                  color: "#f5e4a8",
+                  border: "1px solid rgba(230,204,128,0.45)",
+                  cursor: "pointer",
+                  boxShadow: "0 0 24px rgba(230,204,128,0.15), inset 0 1px 0 rgba(255,255,255,0.08)",
+                  textShadow: "0 0 12px rgba(230,204,128,0.5)",
+                  letterSpacing: "0.04em",
+                  "--glow-color": "rgba(230,204,128,0.35)",
+                } as React.CSSProperties}
+              >
+                {/* Legendary shimmer sweep across the button */}
+                <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.15) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 3s ease-in-out infinite" }} />
+                <span className="relative inline-flex items-center justify-center gap-2">
+                  <span style={{ fontSize: 12, opacity: 0.7 }}>✦</span>
+                  Die Halle erwartet dich
+                  <span style={{ fontSize: 12, opacity: 0.7 }}>✦</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
-      )}
+        );
+      })()}
 
       {/* Class Activation Notification */}
       {classActivatedNotif && (
