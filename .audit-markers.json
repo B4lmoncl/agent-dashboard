@@ -755,9 +755,9 @@
     "status": "clean"
   },
   "components/DashboardModals.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. ModalPortal on currencies+modifier. ESC handler unified. Conversion: disabled title tooltips, cursor:not-allowed, preview, balance validation. Object.assign currencies update on convert success. LOW: modifier modal uses z-[9999] inline instead of ModalPortal default.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 27: Language Policy sweep + a11y. UI-shell strings translated: Waehrungen -> Currencies, Ausblenden/Waehrungen tauschen -> Hide/Currency Exchange (per user), Modifikator-Uebersicht -> Modifier Breakdown, Aktueller Streak -> Current Streak. Dropdown currency names capitalized (gold -> Gold, runensplitter -> Runensplitter etc. per user). All 5 modals got role=dialog + aria-modal=true + aria-label (Currencies / Modifier breakdown / Forge streak details / Quests overview / How XP works). Currency description flavor text kept German (content per policy).",
     "status": "clean"
   },
   "lib/auth-client.ts": {
