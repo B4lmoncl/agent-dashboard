@@ -902,7 +902,7 @@ const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?:
   { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
-function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compact }: {
+function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compact, onSelect }: {
   slot: string;
   iconSrc?: string;
   label: string;
@@ -910,6 +910,10 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
   onUnequip: (slot: string) => void;
   unequipping: string | null;
   compact?: boolean;
+  // Paper-doll (compact) uses this to open the ItemActionPopup on click so
+  // equipped items can be unequipped / inspected from the slot itself, not
+  // just from inventory (which filters them out).
+  onSelect?: (item: InventoryItem, rect: { x: number; y: number; width: number; height: number }) => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
@@ -919,12 +923,29 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     return (
       <>
         <div
+          role={item && onSelect ? "button" : undefined}
+          tabIndex={item && onSelect ? 0 : undefined}
+          aria-label={item ? `${item.name} — click to inspect or unequip` : undefined}
           className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse empty-slot-dashed" : item.rarity === "legendary" ? " legendary-ambient legendary-item-glow" : item.rarity === "epic" ? " epic-ambient" : ""}`}
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item ? "help" : "default", boxShadow: item && item.rarity === "legendary" ? `0 0 18px ${borderColor}80, 0 0 36px ${borderColor}40, inset 0 0 12px ${borderColor}20` : item && item.rarity === "epic" ? `0 0 12px ${borderColor}60, inset 0 0 8px ${borderColor}15` : undefined }}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item && onSelect ? "pointer" : item ? "help" : "default", boxShadow: item && item.rarity === "legendary" ? `0 0 18px ${borderColor}80, 0 0 36px ${borderColor}40, inset 0 0 12px ${borderColor}20` : item && item.rarity === "epic" ? `0 0 12px ${borderColor}60, inset 0 0 8px ${borderColor}15` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
-          title={item ? item.name : `Klicke auf ein Item im Inventar um es auszurüsten`}
+          onClick={(e) => {
+            if (item && onSelect) {
+              const r = e.currentTarget.getBoundingClientRect();
+              onSelect(item, { x: r.left, y: r.top, width: r.width, height: r.height });
+              setHovered(false);
+            }
+          }}
+          onKeyDown={(e) => {
+            if ((e.key === "Enter" || e.key === " ") && item && onSelect) {
+              e.preventDefault();
+              const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+              onSelect(item, { x: r.left, y: r.top, width: r.width, height: r.height });
+            }
+          }}
+          title={item ? item.name : "Click an inventory item to equip this slot"}
         >
           {item?.icon
             ? <ItemImg src={item.icon} alt={item.name} size={40} rarity={item.rarity} />
@@ -1281,8 +1302,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
         {/* LEFT: Inventory Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-2 overflow-y-auto scrollbar-rpg"
-          style={{ width: "100%", maxWidth: 310, maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
+          className="flex-shrink-0 rounded-xl p-2 overflow-y-auto scrollbar-rpg w-full md:max-w-[310px]"
+          style={{ maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
@@ -1674,8 +1695,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
         {/* RIGHT: Stats / Gear Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto scrollbar-rpg"
-          style={{ width: "100%", maxWidth: 250, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
+          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto scrollbar-rpg w-full md:max-w-[250px]"
+          style={{ maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
@@ -1709,8 +1730,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {/* Gear tab — Paper Doll Layout. key re-animates on tab change. */}
           {rightTab === "equipment" && (
             <div key="equipment" className="tab-content-enter">
-              {/* Paper Doll Grid */}
-              <div className="relative mx-auto" style={{ width: 240, height: 250 }}>
+              {/* Paper Doll Grid — 240×250 design size, scales down with container width while preserving the aspect ratio */}
+              <div className="relative mx-auto" style={{ width: "100%", maxWidth: 240, aspectRatio: "240/250" }}>
                 {/* Legendary equipment shimmer particles */}
                 {(() => {
                   const hasLegendary = charData && Object.values(charData.equipment).some(v => {
@@ -1773,6 +1794,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         item={item}
                         onUnequip={handleUnequip}
                         unequipping={unequipping}
+                        onSelect={(itm, rect) => setSelectedItem({ item: itm, rect })}
                         compact
                       />
                       {/* Gem Quick-View dots */}
@@ -1902,6 +1924,29 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
             return (
               <div key="stats-content" className="tab-content-enter">
+                {/* Level + XP bar — lifted to the top so the player's core */}
+                {/* identity (who am I, how close is next level, how much */}
+                {/* rested XP am I sitting on) reads first instead of buried */}
+                {/* 160 lines down between set bonuses and legendary effects. */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <Tip k="player_level"><span className="text-sm font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span></Tip>
+                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
+                      {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
+                    </span></Tip>
+                  </div>
+                  <div className="rounded-full overflow-hidden relative" style={{ height: 7, background: "rgba(255,255,255,0.07)" }}>
+                    {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
+                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))", borderRight: "2px solid rgba(103,232,249,0.5)", boxShadow: "0 0 8px rgba(103,232,249,0.15)" }} />
+                    ) : null}
+                    <div
+                      className="h-full rounded-full relative"
+                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
+                    />
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>{charData.title}</p>
+                </div>
+
                 {/* Hero Numbers */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
                   <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
@@ -2048,25 +2093,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </div>
                 )}
 
-                {/* Level bar */}
-                <div className="mb-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <Tip k="player_level"><span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span></Tip>
-                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
-                      {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
-                    </span></Tip>
-                  </div>
-                  <div className="rounded-full overflow-hidden relative" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
-                    {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
-                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))", borderRight: "2px solid rgba(103,232,249,0.5)", boxShadow: "0 0 8px rgba(103,232,249,0.15)" }} />
-                    ) : null}
-                    <div
-                      className="h-full rounded-full relative"
-                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
-                    />
-                  </div>
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>{charData.title}</p>
-                </div>
+                {/* (Level bar moved to top of stats tab in wave 16) */}
 
                 {/* Class */}
                 {cls && (
