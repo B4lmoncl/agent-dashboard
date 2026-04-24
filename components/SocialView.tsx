@@ -103,6 +103,17 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  // Auto-dismiss error + success banners after 5s per CLAUDE.md.
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(() => setError(null), 5000);
+    return () => clearTimeout(t);
+  }, [error]);
+  useEffect(() => {
+    if (!successMsg) return;
+    const t = setTimeout(() => setSuccessMsg(null), 5000);
+    return () => clearTimeout(t);
+  }, [successMsg]);
   const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -789,6 +800,12 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Auto-dismiss trade errors after 5s (same pattern as FriendsPanel above).
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(() => setError(null), 5000);
+    return () => clearTimeout(t);
+  }, [error]);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   // New trade form

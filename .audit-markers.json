@@ -84,9 +84,9 @@
     "status": "clean"
   },
   "components/SocialView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: SwornBondTab added and verified. Propose/accept/decline/break/claim flows with actionLoading guard. RewardCelebration on chest claim. Per-player progress bars for individual objectives. 2-step break confirmation. Cooldown display. Friends-fetch gated on !bond. Error handling on all fetches. Tab tooltip mapped to sworn_bonds.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 72: SocialView is 2484 lines. FriendsPanel has error + successMsg states, TradesTab has separate error state \u2014 all never auto-dismissed. Same pattern as waves 43-46 bug. Added 3 useEffect auto-dismiss hooks (5s). The 44+ setError/setMessage calls across the file now all benefit.",
     "status": "clean"
   },
   "components/ShopView.tsx": {
