@@ -76,8 +76,8 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
     });
   }
 
-  const monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-  const dayLabels = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const dayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const claimedThisMonth = days.filter(d => d.claimed).length;
 

@@ -47,9 +47,9 @@
     "status": "clean"
   },
   "components/ForgeView.tsx": {
-    "auditCount": 4,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 4: Clean. 5 useModalBehavior calls. Extensive cursor:not-allowed states. Profession slot limit UI. Skill-up color coding. Batch crafting. Auto-salvage modal. Cube modal. Enchanting slot recipes.",
+    "auditCount": 5,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 39: All 8 SYNERGY_HINTS reason texts translated DE->EN. Stat proper nouns (Kraft, Ausdauer) kept German.",
     "status": "clean"
   },
   "components/RitualChamber.tsx": {
@@ -89,9 +89,9 @@
     "status": "clean"
   },
   "components/CharacterView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. useModalBehavior on modals. tab-content-enter. Legendary/unique glow+shimmer. Rarity colors. Disabled states with cursor:not-allowed on frame/title/gem actions. Gear tooltip with legendary effect label. 2-step confirm for discard. Collection log filter.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 38: Frame section label \"Kosmetischer Rahmen\" -> \"Cosmetic Frame\", explanation body -> English, \"W\u00e4hrungsshops\" -> \"Currency Shops\".",
     "status": "clean"
   },
   "components/SocialView.tsx": {
@@ -191,9 +191,9 @@
     "status": "clean"
   },
   "components/DailyLoginCalendar.tsx": {
-    "auditCount": 3,
+    "auditCount": 4,
     "lastAuditDate": "2026-04-24",
-    "findings": "Wave 35: 2 German TipCustom tooltips translated \u2014 \"Monatlicher Fortschritt\" -> \"Monthly Progress\" with body, \"Streak-Meilensteine\" -> \"Streak Milestones\" (title + body + inner label).",
+    "findings": "Wave 35: 2 German TipCustom tooltips translated \u2014 \"Monatlicher Fortschritt\" -> \"Monthly Progress\" with body, \"Streak-Meilensteine\" -> \"Streak Milestones\" (title + body + inner label). Wave 38: German month names -> English, day labels Di/Mi/Do -> Tue/Wed/Thu.",
     "status": "clean"
   },
   "components/GachaPull.tsx": {

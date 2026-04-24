@@ -106,14 +106,14 @@ const SLOT_LABELS: Record<string, string> = {
 
 // ─── Synergy hints (profession pairing suggestions) ─────────────────────────
 const SYNERGY_HINTS: Record<string, { partner: string; label: string; reason: string }> = {
-  schmied: { partner: "verzauberer", label: "Gear Mastery", reason: "Du schmiedest die Rüstung, der Verzauberer verbessert sie. Permanente Enchants auf selbst geschmiedeten Plates sind der schnellste Weg zu hohem Gear Score — ohne Handelskosten." },
-  verzauberer: { partner: "schmied", label: "Gear Mastery", reason: "Deine Enchants sind nur so gut wie das Gear darunter. Ein Schmied liefert dir die Rüstung, du machst sie legendär. Permanente Verzauberungen auf frisch geschmiedeter Platte = maximaler Gear Score." },
-  schneider: { partner: "verzauberer", label: "Arcane Mastery", reason: "Stoff-Rüstung hat den besten XP-Bonus pro Piece (+1% via Cloth Trait). Der Verzauberer packt noch Enchants drauf. Zusammen: beste XP-Multiplikator-Kombi im Spiel." },
-  alchemist: { partner: "koch", label: "Sustenance", reason: "Tränke boosten einzelne Stats temporär, Mahlzeiten geben breite Buffs. Beides gleichzeitig aktiv = du stackst Alchemie-Präzision mit Koch-Breite. Kein anderes Paar gibt dir so viele aktive Buffs." },
-  koch: { partner: "alchemist", label: "Sustenance", reason: "Deine Mahlzeiten geben breite Stat-Buffs, seine Tränke präzise Einzel-Boosts. Zusammen deckst du alle 8 Stats ab. Beide Berufe sind Nebenberufe — belegen keinen der 2 Hauptslots." },
-  lederverarbeiter: { partner: "alchemist", label: "Wilderness", reason: "Leder-Rüstung hat den besten Ausdauer-Bonus (Forge-Decay-Schutz). Alchemie-Tränke kompensieren die fehlende Kraft. Beides braucht dieselben Wildnis-Materialien — du farmst einmal, profitierst doppelt." },
-  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery", reason: "Du schmiedest die Waffe, der Lederverarbeiter den Griff. Waffen + Schilde vom Waffenschmied plus Verstärkungen vom Lederverarbeiter = komplettes Offensiv-Setup aus einer Hand." },
-  juwelier: { partner: "alchemist", label: "Transmutation", reason: "Gems sockeln ist teuer — der Alchemist liefert Transmutations-Materialien billiger als der Markt. Beide Berufe teilen seltene Kristall-Reagenzien. Zusammen: Gems + Tränke aus denselben Farm-Runs." },
+  schmied: { partner: "verzauberer", label: "Gear Mastery", reason: "You forge the armor, the Enchanter improves it. Permanent enchants on self-forged plates are the fastest path to high Gear Score — no trade costs." },
+  verzauberer: { partner: "schmied", label: "Gear Mastery", reason: "Your enchants are only as good as the gear beneath them. A Blacksmith provides the armor, you make it legendary. Permanent enchantments on freshly forged plate = maximum Gear Score." },
+  schneider: { partner: "verzauberer", label: "Arcane Mastery", reason: "Cloth armor has the best XP bonus per piece (+1% via Cloth Trait). The Enchanter adds enchants on top. Together: best XP multiplier combo in the game." },
+  alchemist: { partner: "koch", label: "Sustenance", reason: "Potions boost individual stats temporarily, meals give broad buffs. Both active simultaneously = you stack Alchemy precision with Cook breadth. No other pair gives you as many active buffs." },
+  koch: { partner: "alchemist", label: "Sustenance", reason: "Your meals give broad stat buffs, their potions precise single-stat boosts. Together you cover all 8 stats. Both professions are secondary — they don't use your 2 main slots." },
+  lederverarbeiter: { partner: "alchemist", label: "Wilderness", reason: "Leather armor has the best Ausdauer bonus (forge decay protection). Alchemy potions compensate for missing Kraft. Both need the same wilderness materials — farm once, profit twice." },
+  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery", reason: "You forge the weapon, the Leatherworker crafts the grip. Weapons + shields plus leather reinforcements = complete offensive setup from two crafters." },
+  juwelier: { partner: "alchemist", label: "Transmutation", reason: "Socketing gems is expensive — the Alchemist provides transmutation materials cheaper than the market. Both professions share rare crystal reagents. Together: gems + potions from the same farm runs." },
 };
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
