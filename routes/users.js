@@ -390,6 +390,10 @@ router.post('/api/register', authLimiter, async (req, res) => {
     relationshipStatus: (['single', 'relationship', 'married', 'complicated', 'other'].includes(relationshipStatus)) ? relationshipStatus : 'single',
     partnerName: partnerName || null,
     pronouns: (['he/him', 'she/her', 'they/them', 'other', 'prefer_not_to_say'].includes(pronouns)) ? pronouns : null,
+    // Derive portrait style from pronouns so she/her players don't default to
+    // hero-male.png. "they/them" and "other" get male-presenting as a neutral
+    // fallback (there is no non-binary portrait asset yet).
+    avatarStyle: pronouns === 'she/her' ? 'female' : 'male',
     classId: resolvedClassId,
     classPending,
     classPendingNotified: false,

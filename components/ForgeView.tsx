@@ -3399,9 +3399,19 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 </div>
               )}
 
-              {/* Extract section: show legendary items in inventory */}
+              {/* Extract section: show legendary items in inventory.
+                  Cost scales with cube.library.length: 500+n*250 Essenz + 1000+n*1000 Gold. */}
+              {(() => {
+                const extractionCount = cubeData?.library?.length || 0;
+                const nextEssenz = 500 + extractionCount * 250;
+                const nextGold = 1000 + extractionCount * 1000;
+                return (
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Extract Effect (destroys item, costs {nextEssenz} Essenz + {nextGold}g)</p>
+                  </div>
+                );
+              })()}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Extract Effect (destroys item, costs 500 Essenz)</p>
                 {(() => {
                   const cubeInv = getUserInventory(loggedInUser);
                   const legendaryInv = cubeInv.filter(
@@ -3451,15 +3461,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </p>
                       <div className="flex gap-2">
                         <button onClick={() => setCubeExtractId(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
-                        <button
-                          onClick={() => handleCubeExtract(cubeExtractId)}
-                          disabled={cubeLoading}
-                          title={cubeLoading ? "Extraction läuft..." : undefined}
-                          className="flex-1 text-xs py-2 rounded-lg font-semibold"
-                          style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
-                        >
-                          {cubeLoading ? "Extracting..." : "Extract (500 Essenz)"}
-                        </button>
+                        {(() => {
+                          const n = cubeData?.library?.length || 0;
+                          const essenz = 500 + n * 250;
+                          const gold = 1000 + n * 1000;
+                          return (
+                            <button
+                              onClick={() => handleCubeExtract(cubeExtractId)}
+                              disabled={cubeLoading}
+                              title={cubeLoading ? "Extraktion läuft…" : `Kosten: ${essenz} Essenz + ${gold}g (steigt je Extraktion)`}
+                              className="flex-1 text-xs py-2 rounded-lg font-semibold"
+                              style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
+                            >
+                              {cubeLoading ? "Extrahiert…" : `Extract (${essenz} Essenz + ${gold}g)`}
+                            </button>
+                          );
+                        })()}
                       </div>
                     </div>
                   );

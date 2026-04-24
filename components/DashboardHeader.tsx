@@ -378,6 +378,7 @@ export default function DashboardHeader({
                           value={playerNameInput}
                           onChange={e => setPlayerNameInput(e.target.value)}
                           placeholder="E-Mail oder Name"
+                          autoComplete="username"
                           className="text-xs px-2 py-1 rounded input-dark"
                         />
                         <input
@@ -385,6 +386,7 @@ export default function DashboardHeader({
                           value={reviewKeyInput}
                           onChange={e => setReviewKeyInput(e.target.value)}
                           placeholder="Passwort"
+                          autoComplete="current-password"
                           className="text-xs px-2 py-1 rounded input-dark"
                           onKeyDown={e => { if (e.key === "Enter") handleLogin(); }}
                         />

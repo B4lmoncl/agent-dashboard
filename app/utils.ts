@@ -150,11 +150,15 @@ export async function createStarterQuestsIfNew(playerName: string, apiKey: strin
     if (localStorage.getItem(key) === "true") return;
     localStorage.setItem(key, "true");
     const headers = { "Content-Type": "application/json", ...getAuthHeaders(apiKey) };
+    // Note: we intentionally don't mention a specific companion name here —
+    // the player picked one in the wizard already, so promising "Dobbie the
+    // Cat" would contradict whatever they chose. The quest teaches the
+    // claim → complete flow; the companion is already theirs.
     const starterQuests = [
-      { title: "Welcome to the Guild", description: "Complete this quest to earn your first companion — Dobbie the Cat. Click 'Complete' to claim your reward. This teaches you the claim → complete flow.", type: "personal", rarity: "rare", createdBy: "system" },
-      { title: "Organize Your Desk", description: "Tidy up your workspace. A clear desk leads to a clear mind.", type: "personal", rarity: "common", createdBy: "system" },
-      { title: "Read for 30 Minutes", description: "Pick any book, article, or topic you're curious about and read for 30 minutes.", type: "learning", rarity: "common", createdBy: "system" },
-      { title: "10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving.", type: "fitness", rarity: "common", createdBy: "system" },
+      { title: "Willkommen in der Halle", description: "Deine erste Quest. Klicke auf 'Abschließen', um die Belohnung einzusammeln. So funktioniert der Claim → Complete Flow — der Rest ergibt sich.", type: "personal", rarity: "rare", createdBy: "system" },
+      { title: "Schreibtisch ordnen", description: "Räume deinen Arbeitsplatz auf. Ein klarer Tisch — nun ja. Man sagt es helfe.", type: "personal", rarity: "common", createdBy: "system" },
+      { title: "30 Minuten lesen", description: "Such dir ein Buch, einen Artikel, irgendetwas was dich interessiert. 30 Minuten. Das Archiv registriert es.", type: "learning", rarity: "common", createdBy: "system" },
+      { title: "10 Minuten dehnen", description: "Eine kurze Dehnroutine. Der Körper ist das einzige Werkzeug das du nicht tauschen kannst — also pfleg es.", type: "fitness", rarity: "common", createdBy: "system" },
     ];
     await Promise.all(starterQuests.map(q =>
       fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(5000) })

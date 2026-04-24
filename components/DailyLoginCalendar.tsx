@@ -139,13 +139,13 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
         )}
 
         {loading ? (
-          <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
+          <div className="grid grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
         ) : (
           <>
             {/* Calendar Grid */}
             <div>
               {/* Day labels */}
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 mb-1">
+              <div className="grid grid-cols-7 gap-1 mb-1">
                 {dayLabels.map(label => (
                   <div key={label} className="text-center text-xs font-semibold py-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>
                     {label}
@@ -154,7 +154,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               </div>
 
               {/* Calendar cells */}
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1">
+              <div className="grid grid-cols-7 gap-1">
                 {/* Empty cells for offset */}
                 {Array.from({ length: firstDayOfWeek }).map((_, i) => (
                   <div key={`empty-${i}`} style={{ width: "100%", aspectRatio: "1" }} />
