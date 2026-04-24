@@ -330,7 +330,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                     <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-2 py-1 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
-                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100" style={{ transition: "opacity 0.15s ease" }} title="Remove friend">✕</button>
+                  <button onClick={(e) => { e.stopPropagation(); setConfirmRemove(f.id); }} onKeyDown={(e) => e.stopPropagation()} aria-label={`Remove friend: ${f.name}`} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100 focus-visible:opacity-100" style={{ transition: "opacity 0.15s ease" }} title="Remove friend">✕</button>
                 )}
                 <div className="relative mb-1.5">
                   <PlayerBadge name={f.name} avatar={f.avatar} color={f.color} size={36} />
@@ -453,7 +453,13 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         const data = await r.json().catch(() => null);
         setSendError(data?.error || "Failed to send message");
       }
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) {
+      console.error('[social]', e);
+      // Surface network failures instead of silently swallowing them —
+      // otherwise the user presses Send, nothing happens, and they don't
+      // know whether the message went through.
+      setSendError("Network error — message not sent");
+    }
     setSendingMsg(false);
   };
 

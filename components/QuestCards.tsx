@@ -169,6 +169,9 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
+        role={onDetails ? "button" : undefined}
+        tabIndex={onDetails ? 0 : undefined}
+        aria-label={onDetails ? `Open quest details: ${quest.title}` : undefined}
         className={`cv-auto rounded-xl flex flex-col${onDetails ? " cursor-pointer" : ""} relative overflow-hidden quest-card-emboss card-hover-depth card-hover-lift${isLegendary ? " crystal-breathe-card" : isEpic ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}`}
         title={`${quest.title}${quest.npcName ? ` — from ${quest.npcName}` : ""}${quest.checklist ? ` (${quest.checklist.filter(c => c.done).length}/${quest.checklist.length} steps)` : ""}${QUEST_TYPE_FACTION[quest.type ?? ""] ? ` · +Rep ${QUEST_TYPE_FACTION[quest.type ?? ""].name}` : ""}`}
         style={{
@@ -181,6 +184,15 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           ...(isLegendary ? { "--glow-color": `${rarityColor}55`, "--card-base-shadow": `0 0 20px ${rarityColor}55, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}` } as React.CSSProperties : isEpic ? { "--glow-color": `${rarityColor}44` } as React.CSSProperties : {}),
         }}
         onClick={onDetails ? () => onDetails(quest) : undefined}
+        onKeyDown={onDetails ? (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            // Only trigger when the quest card itself has focus — nested buttons handle their own keys.
+            if (e.target === e.currentTarget) {
+              e.preventDefault();
+              onDetails(quest);
+            }
+          }
+        } : undefined}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
           el.style.borderColor = `${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "cc"}`;
@@ -292,6 +304,10 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   return (
     <div
       data-feedback-id={`quest-board.quest-card.${quest.id}`}
+      role="button"
+      tabIndex={0}
+      aria-label={`${expanded ? "Collapse" : "Expand"} quest: ${quest.title}`}
+      aria-expanded={expanded}
       className={`cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden${isLegendary && !selected ? " crystal-breathe-card" : isEpic && !selected ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}${quest.npcGiverId && !isLoading ? " npc-quest-pulse" : ""}${actionAnim === "claim" ? " quest-card-claimed" : actionAnim === "complete" ? " quest-card-completing" : ""}`}
       style={{
         background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
@@ -302,6 +318,12 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         ...(isLegendary && !selected ? { "--glow-color": `${rarityColor}55`, "--card-base-shadow": `0 0 18px ${rarityColor}44${topGlow}` } as React.CSSProperties : isEpic && !selected ? { "--glow-color": `${rarityColor}44` } as React.CSSProperties : {}),
       }}
       onClick={() => setExpanded(v => !v)}
+      onKeyDown={(e) => {
+        if ((e.key === "Enter" || e.key === " ") && e.target === e.currentTarget) {
+          e.preventDefault();
+          setExpanded(v => !v);
+        }
+      }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
         el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}${isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "77"}`;
