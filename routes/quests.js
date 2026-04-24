@@ -816,8 +816,13 @@ function getQuestsData(playerParam, typeFilter) {
       ? pp.activeQuestPool
       : (pp.generatedQuests || []).slice(0, 11);
     const visibleIds = new Set(poolIds);
+    // Non-templated quests (starter quests from createStarterQuestsIfNew,
+    // hand-created quests, NPC quests that were re-opened via recurrence)
+    // can't appear in the generated pool (they have no templateId), so
+    // they were silently dropped for new players whose pool populated
+    // before the dashboard render. Always include non-templated quests.
     const poolFilteredOpen = visibleIds.size > 0
-      ? openPlayer.filter(q => visibleIds.has(q.id))
+      ? openPlayer.filter(q => visibleIds.has(q.id) || !q.templateId)
       : openPlayer;
 
     // Dev quest types use global status as-is
