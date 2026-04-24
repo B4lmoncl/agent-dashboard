@@ -1320,7 +1320,7 @@ export default function Dashboard() {
                     ) : null;
                   })()}
                 </div>
-                <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
+                <p className="text-xs mb-1.5" style={{ color: "#a78bfa", textShadow: playerLevelInfo.progress > 0.9 ? "0 0 10px rgba(167,139,250,0.8), 0 0 20px rgba(167,139,250,0.4)" : "none", transition: "text-shadow 0.3s ease" }}><Tip k="player_level"><span style={{ fontWeight: playerLevelInfo.progress > 0.9 ? 700 : 400 }}>Lv.{playerLevelInfo.level}</span></Tip> · {playerLevelInfo.title}</p>
                 {/* XP progress bar — Diablo style + WoW rested XP blue zone */}
                 <div className={`progress-bar-diablo relative${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   {/* Rested XP zone — WoW-style blue shimmer showing 2x bonus range */}
