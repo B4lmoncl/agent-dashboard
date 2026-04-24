@@ -377,9 +377,9 @@
     "status": "clean"
   },
   "routes/gacha.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Per-banner pity refactor verified. getBannerPity creates per-banner entry. guaranteed5050 correctly global (cross-banner featured guarantee, same as Genshin). 10-pull epic guarantee uses per-banner epicPity. Pull lock. Self-check. Duplicate refund. Talent bonuses (lucky streak, weekly epic). History capped at 100.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 40: Deep race-condition + exploit audit. Pull locks (acquirePullLock) are per-player, cover both /pull and /pull10, released in finally blocks. No cross-endpoint leak. Inventory cap checked before pulls. 10-pull epic guarantee correctly removes replaced item from inventory (skips if duplicate). Epic pity reset on guarantee works. Mid-loop pool-empty refund is proportional to 10-pull cost (player-favorable edge case, not exploitable). Duplicate detection uses base itemId (correct). No achievements crash can block pull (try/catch). Clean.",
     "status": "clean"
   },
   "routes/battlepass.js": {
