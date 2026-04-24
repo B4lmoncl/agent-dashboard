@@ -35,9 +35,9 @@
     "status": "clean"
   },
   "components/TutorialModal.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "password fix, emoji fix, 3 new guide tabs",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 60: Added role=dialog + aria-modal + aria-label to GuideModal. Wave 196f9fc earlier in session: removed Urithiru/Wolcen/Lost Ark IP leaks from guide sections. TutorialModal and ContextualTutorial content stays German per policy. ESC + scroll-lock via useModalBehavior.",
     "status": "clean"
   },
   "components/CompanionsWidget.tsx": {

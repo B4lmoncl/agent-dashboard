@@ -971,6 +971,9 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
       onWheel={e => e.stopPropagation()}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Guide"
         className="rounded-2xl w-full max-w-[calc(100vw-2rem)] sm:max-w-lg overflow-hidden"
         style={{ background: "#1a1a1a", border: "1px solid rgba(255,140,68,0.3)", boxShadow: "0 0 60px rgba(255,100,0,0.15)", maxHeight: "90vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
