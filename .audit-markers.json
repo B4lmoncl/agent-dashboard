@@ -773,9 +773,9 @@
     "status": "clean"
   },
   "components/ContextualTutorial.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "LOW FIXED: fontSize 11 -> 12 (min font violation line 241). No bugs, no security issues. Clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 24: Room-name policy violations in German tutorial titles - \"Der Riss\" -> \"The Rift\", \"Das Untergewoelbe\" -> \"The Undercroft\" (explicit in room-names English list). User decisions: \"Der Basar\" -> \"The Bazaar\" (room-name consistency), \"Der Season Pass\" -> \"Season Pass\" (drop German article from English name). OK/Verstanden inconsistency (two dismiss buttons same function): both now \"Verstanden\" per Contextual Tutorial = German policy. Added aria-labels to all three dismiss buttons including moment title so screenreaders announce context.",
     "status": "clean"
   },
   "components/CountUp.tsx": {

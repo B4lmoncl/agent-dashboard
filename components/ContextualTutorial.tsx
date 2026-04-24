@@ -111,14 +111,14 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   {
     id: "rift_intro",
-    title: "Der Riss.",
+    title: "The Rift.",
     text: "Zeitbegrenzte Quest-Ketten. Normal: 3 Quests in 72 Stunden. Hard: 5 in 48. Legendary: 7 in 36. Scheitern kostet Tage Cooldown. Schaffst du Legendary, wartet Mythic+ — endlos skalierend, kein Limit, kein Mitleid.",
     view: "rift",
     minLevel: 10,
   },
   {
     id: "dungeon_intro",
-    title: "Das Untergewölbe.",
+    title: "The Undercroft.",
     text: "Lade Freunde ein. Der Dungeon läuft im Hintergrund. Eure Gear Score entscheidet ob ihr gewinnt. Eure Freundschaft entscheidet ob ihr danach noch redet.",
     view: "dungeons",
     minLevel: 10,
@@ -139,7 +139,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   {
     id: "shop_intro",
-    title: "Der Basar.",
+    title: "The Bazaar.",
     text: "Zwei Abteilungen. Self-Care: Dinge die gut für dich sind. Boosts: Dinge die gut für deine Stats sind. Der Unterschied ist subtiler als du denkst. Manche Items geben temporäre Buffs. Die meisten kosten Gold. Alle kosten Überwindung.",
     view: "shop",
     minLevel: 3,
@@ -167,7 +167,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   {
     id: "battlepass_intro",
-    title: "Der Season Pass.",
+    title: "Season Pass.",
     text: "40 Level. Quests geben Pass-XP. Belohnungen pro Level. Am Ende der Saison verfällt alles was du nicht abgeholt hast. Die Uhr tickt. Sie tickt immer.",
     view: "season",
     minLevel: 5,
@@ -267,6 +267,7 @@ export function TutorialMomentBanner({ viewId, playerLevel: playerLevelProp, con
       return (
         <button
           onClick={() => setReopened(true)}
+          aria-label={`Re-open tutorial hint: ${lastMoment.title}`}
           className="text-xs mb-2 px-2 py-1 rounded-lg flex items-center gap-1.5 transition-opacity hover:opacity-100"
           style={{ background: "rgba(233,168,76,0.06)", color: "rgba(233,168,76,0.4)", border: "1px solid rgba(233,168,76,0.12)", cursor: "pointer", opacity: 0.5 }}
           title="Show tutorial hint"
@@ -290,8 +291,13 @@ export function TutorialMomentBanner({ viewId, playerLevel: playerLevelProp, con
           <p className="text-xs font-bold" style={{ color: accent }}>{lastMoment.title}</p>
           <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{lastMoment.text}</p>
         </div>
-        <button onClick={() => setReopened(false)} className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5" style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}>
-          OK
+        <button
+          onClick={() => setReopened(false)}
+          aria-label={`Close tutorial hint: ${lastMoment.title}`}
+          className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5"
+          style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}
+        >
+          Verstanden
         </button>
       </div>
     );
@@ -324,6 +330,7 @@ export function TutorialMomentBanner({ viewId, playerLevel: playerLevelProp, con
       </div>
       <button
         onClick={dismiss}
+        aria-label={`Dismiss tutorial hint: ${moment.title}`}
         className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5"
         style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}
       >
