@@ -131,9 +131,9 @@
     "status": "clean"
   },
   "components/ChallengesView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration on stage+milestone claim. Disabled states. Star display. Weekly reset timer. Modifier display. Expedition progress+claim. Speed bonus indicator.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 34: 2 German title attrs translated \u2014 star threshold tooltip \"abgeschlossen f\u00fcr X Sterne\" -> \"completed for X stars\", reward bonus tooltip \"Belohnungsbonus f\u00fcr X Sterne\" -> \"Reward bonus for X stars\".",
     "status": "clean"
   },
   "components/LeaderboardView.tsx": {
@@ -191,9 +191,9 @@
     "status": "clean"
   },
   "components/DailyLoginCalendar.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. modal behavior OK, streak milestones OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 35: 2 German TipCustom tooltips translated \u2014 \"Monatlicher Fortschritt\" -> \"Monthly Progress\" with body, \"Streak-Meilensteine\" -> \"Streak Milestones\" (title + body + inner label).",
     "status": "clean"
   },
   "components/GachaPull.tsx": {

@@ -97,7 +97,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
           <div className="flex items-center gap-3">
             <div className="text-right">
               <Tip k="streak"><p className="text-sm font-bold" style={{ color: "#fbbf24", cursor: "help" }}>{streakDays} Day Streak</p></Tip>
-              <TipCustom title="Monatlicher Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anzahl der beanspruchten Tagesbelohnungen in diesem Monat.</p>}>
+              <TipCustom title="Monthly Progress" icon="◆" accent="#fbbf24" body={<p>Number of daily rewards claimed this month.</p>}>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>{claimedThisMonth}/{daysInMonth} this month</p>
               </TipCustom>
             </div>
@@ -205,8 +205,8 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
 
             {/* Milestone Progress */}
             <div className="space-y-1.5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-              <TipCustom title="Streak-Meilensteine" icon="★" accent="#fbbf24" body={<p>Belohnungen f&uuml;r ununterbrochene Login-Streaks. Je l&auml;nger der Streak, desto besser die Boni.</p>}>
-                <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Streak-Meilensteine</p>
+              <TipCustom title="Streak Milestones" icon="★" accent="#fbbf24" body={<p>Rewards for consecutive login streaks. The longer the streak, the better the bonuses.</p>}>
+                <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Streak Milestones</p>
               </TipCustom>
               {MILESTONES.map(m => {
                 const reached = streakDays >= m.days;
