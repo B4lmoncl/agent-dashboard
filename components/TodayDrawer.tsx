@@ -882,6 +882,9 @@ export default function TodayDrawer({
 
       {/* Drawer */}
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Daily checklist"
         className="fixed top-0 right-0 z-[91] h-full flex flex-col"
         style={{
           width: "min(95vw, 720px)",

@@ -257,7 +257,7 @@ export function WandererRest({
       {/* ── NPC Info Popup (portal for viewport centering) ── */}
       {npcInfoOpen && createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setNpcInfoOpen(false)}>
-          <div className="rounded-2xl w-full max-w-md overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(255,215,0,0.3)", boxShadow: "0 0 60px rgba(255,200,0,0.1)", maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Wanderer's Rest info" className="rounded-2xl w-full max-w-md overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(255,215,0,0.3)", boxShadow: "0 0 60px rgba(255,200,0,0.1)", maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
               <h2 className="text-sm font-bold" style={{ color: "#FFD700" }}>The Wanderer&apos;s Rest</h2>
               <button onClick={() => setNpcInfoOpen(false)} style={{ color: "rgba(255,255,255,0.45)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
@@ -397,7 +397,7 @@ export function WandererRest({
             style={{ background: "rgba(0,0,0,0.82)" }}
             onClick={e => { if (e.target === e.currentTarget) setSelectedNpc(null); }}
           >
-            <div className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : `linear-gradient(180deg, #12121f 0%, #0d0d1a 40%, #0a0a15 100%)`, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.5)`}`, boxShadow: isStarweaver ? undefined : `0 0 20px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.1)`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
+            <div role="dialog" aria-modal="true" aria-label={`${npc.name || "NPC"} interaction`} className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : `linear-gradient(180deg, #12121f 0%, #0d0d1a 40%, #0a0a15 100%)`, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.5)`}`, boxShadow: isStarweaver ? undefined : `0 0 20px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.1)`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
               {/* Close */}
               <button
                 onClick={() => setSelectedNpc(null)}

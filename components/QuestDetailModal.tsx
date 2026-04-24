@@ -80,6 +80,9 @@ export default function QuestDetailModal({
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Quest details"
         className="w-full max-w-md rounded-2xl flex flex-col bg-surface-alt panel-ornate panel-ornate-inner"
         style={{
           border: `2px solid ${rarityColor}66`,
