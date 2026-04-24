@@ -2370,10 +2370,10 @@ export default function Dashboard() {
                     })()}
                     {!playerName && !loading ? (
                       <div className="rounded-xl p-8 text-center bg-card border-w6">
-                        <p className="text-base mb-2">×</p>
+                        <p className="text-2xl mb-2" style={{ color: "rgba(167,139,250,0.35)" }}>◆</p>
                         <p className="text-sm font-semibold mb-1 text-w50">Log in to view your quests</p>
-                        <p className="text-xs mb-3 text-w25">Deine Quests warten hinter der Tür. Die Tür wüsste gern deinen Namen.</p>
-                        <button onClick={() => setOnboardingOpen(true)} className="text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
+                        <p className="text-xs italic mb-3 text-w25">Deine Quests warten hinter der Tür. Die Tür wüsste gern deinen Namen.</p>
+                        <button onClick={() => setOnboardingOpen(true)} className="btn-interactive text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
                           Login
                         </button>
                       </div>

@@ -2816,7 +2816,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
 
               if (sortedSources.length === 0) {
-                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>No items in this category.</p>;
+                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>This shelf is empty. Loot more, hoard better.</p>;
               }
 
               return (

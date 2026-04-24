@@ -2758,7 +2758,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   )}
 
                   {!hasItems ? (
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>No items in inventory to dismantle.</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Nothing to take apart. The anvil is disappointed.</p>
                   ) : (
                     <div className="space-y-3">
                       {RARITY_ORDER.filter(r => grouped[r]?.length).map(rarity => (

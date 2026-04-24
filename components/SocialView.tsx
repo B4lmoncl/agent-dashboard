@@ -313,7 +313,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Friends ({friends.length})</p>
         {friends.length === 0 ? (
-          <p className="text-xs text-w20 text-center py-6">No friends yet. Send a request above!</p>
+          <p className="text-xs text-w20 text-center py-6">No one in the registry yet. The tower is large — someone fits.</p>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {[...friends].sort((a, b) => {
@@ -561,7 +561,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
             <button onClick={() => setShowNewMsg(false)} aria-label="Close" className="text-xs text-w30 btn-interactive px-1">✕</button>
           </div>
           {friendsList.length === 0 ? (
-            <p className="text-xs text-w20 py-2">No friends available to message.</p>
+            <p className="text-xs text-w20 py-2">No one to write to. Silence is a kind of correspondence too.</p>
           ) : (
             <div className="grid grid-cols-2 gap-1.5">
               {friendsList.map(f => (
@@ -1312,7 +1312,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       )}
 
       {trades.length === 0 && !showNewTrade && (
-        <p className="text-xs text-w20 text-center py-8">No trades yet. Propose a trade to get started!</p>
+        <p className="text-xs text-w20 text-center py-8">No deals on the table. The market is waiting for your opening bid.</p>
       )}
       {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
@@ -1964,7 +1964,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           </div>
         )}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">No friends yet. Add friends first.</p>}
+          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">The guild roster is empty. Add people over in The Breakaway first.</p>}
           {friends.map(f => (
             <button
               key={f.id}
