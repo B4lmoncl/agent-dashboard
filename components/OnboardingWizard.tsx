@@ -274,7 +274,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         <div className="pt-5 pb-2 px-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.6)" }}>
-              {["Create Hero", "About You", "Choose Path", "Status", "Companion", "Summary"][step]}
+              {["Sign Up", "About You", "Choose Path", "Bonds", "Companion", "Summary"][step]}
             </span>
             <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{step + 1}/6</span>
           </div>

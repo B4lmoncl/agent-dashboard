@@ -406,7 +406,7 @@ export default function DashboardHeader({
                             className="text-xs px-3 py-1 rounded font-medium"
                             style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
                           >
-                            Registrieren
+                            Register
                           </button>
                         </div>
                         {!forgotOpen ? (
@@ -427,7 +427,7 @@ export default function DashboardHeader({
                                 } catch { setForgotMsg({ text: "Network error", ok: false }); }
                               }}
                               disabled={!forgotEmail.includes("@")}
-                              title={!forgotEmail.includes("@") ? "Gültige E-Mail-Adresse eingeben" : undefined}
+                              title={!forgotEmail.includes("@") ? "Enter a valid email address" : undefined}
                               className="text-xs px-3 py-1 rounded font-medium w-full"
                               style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: forgotEmail.includes("@") ? "pointer" : "not-allowed" }}
                             >Send Reset Link</button>
