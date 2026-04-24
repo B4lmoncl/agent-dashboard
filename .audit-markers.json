@@ -101,15 +101,15 @@
     "status": "clean"
   },
   "components/ShopView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration on purchase. Disabled states with cursor:not-allowed. Gold+currency buy flows. Deficit tooltips. Owned state tracking.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 30: Language Policy sweep \u2014 clean. All UI strings English (section headers, button labels, error messages, disabled tooltips). Modals use ModalOverlay (role=dialog handled). Title attrs are proper disabled-reasons (\"Insufficient gold (need X, have Y)\"). Bazaar heading has <Tip k=\"bazaar\"> \u2014 tooltip coverage good.",
     "status": "clean"
   },
   "components/FactionsView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration for tier claim + daily claim. Disabled states. claimable-breathe. Rep bars with standing colors. Weekly bonus display. Daily quest progress tracking.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 31: Language Policy sweep. 5 TipCustom tooltip bodies were German system explanations \u2014 translated to English. \"Rufpunkte\" title -> \"Reputation\". Standing explanation, quest-type explanation, progress-toward-next-tier all now English. Content (faction descriptions, standing names) stays German per policy. Action buttons and labels were already English.",
     "status": "clean"
   },
   "components/WorldBossView.tsx": {
