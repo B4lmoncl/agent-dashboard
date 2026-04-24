@@ -69,7 +69,21 @@ import {
 
 const CURRENT_VERSION = "2.0.0";
 
-function WhatsNewHero({ color, title, short, long, bg, icon, featured = false }: { color: string; title: string; short: string; long: string; bg: string; icon: string; featured?: boolean }) {
+// Stats pill that counts up when the popup mounts. Rendered only while the
+// modal is open so the useCountUp hook fires fresh each appearance.
+function WhatsNewStat({ value, label, color, suffix = "" }: { value: number; label: string; color: string; suffix?: string }) {
+  const display = useCountUp(value, 0, 1400);
+  return (
+    <div className="text-center">
+      <p className="text-xl font-black font-mono leading-none" style={{ color, textShadow: `0 0 12px ${color}66` }}>
+        {display}{suffix}
+      </p>
+      <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</p>
+    </div>
+  );
+}
+
+function WhatsNewHero({ color, title, short, long, bg, icon, featured = false, delay = 0 }: { color: string; title: string; short: string; long: string; bg: string; icon: string; featured?: boolean; delay?: number }) {
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
   return (
@@ -77,12 +91,13 @@ function WhatsNewHero({ color, title, short, long, bg, icon, featured = false }:
       onClick={() => setExpanded(v => !v)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`w-full text-left rounded-lg overflow-hidden relative group${featured ? " crystal-breathe-card" : ""}`}
+      className={`w-full text-left rounded-lg overflow-hidden relative group whatsnew-card-enter${featured ? " crystal-breathe-card" : ""}`}
       style={{
         border: `1px solid ${color}${featured ? "55" : hovered ? "44" : "25"}`,
         cursor: "pointer",
         transform: hovered ? "translateY(-2px)" : "translateY(0)",
         transition: "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
+        animationDelay: `${delay}ms`,
         boxShadow: hovered ? `0 8px 24px ${color}22, 0 0 0 1px ${color}20` : featured ? `0 4px 16px ${color}15` : "none",
         "--glow-color": `${color}40`,
       } as React.CSSProperties}
@@ -3231,7 +3246,7 @@ export default function Dashboard() {
                 { color: "#e6cc80", title: "262 neue Portraits & Icons", short: "175 Gear-Icons, 87 NPC-Rewards, Companions, Bosse — alles handgezeichnet.", long: "Jedes Item, jeder NPC und jeder Boss hat jetzt ein eigenes Portrait. Dass sich manche Bewohner ähneln ist kein Bug — der Aetherstrom des Turms formt die Gesichtszüge derer, die lange genug in seiner Nähe leben. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich, das Thema zu diskutieren.", bg: "/images/npcs/starweaver-final.png", icon: "/images/icons/nav-wanderer.png" },
                 { color: "#818cf8", title: "D3-Style Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt jetzt Diablo-3-inspirierte Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge × Gear × Companion × Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
               ].map((f, i) => (
-                <WhatsNewHero key={i} {...f} />
+                <WhatsNewHero key={i} {...f} delay={80 + i * 60} />
               ))}
 
               {/* Compact sections — with actual icons per item */}
@@ -3287,27 +3302,15 @@ export default function Dashboard() {
                 </p>
               </div>
 
-              {/* Stats bar — flex-wrap for mobile */}
+              {/* Stats bar — flex-wrap for mobile, numbers count up on mount */}
               <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 pt-3">
-                <div className="text-center">
-                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#22c55e", textShadow: "0 0 12px rgba(34,197,94,0.4)" }}>80+</p>
-                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Bugs gefixt</p>
-                </div>
+                <WhatsNewStat value={80} suffix="+" label="Bugs gefixt" color="#22c55e" />
                 <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
-                <div className="text-center">
-                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#3b82f6", textShadow: "0 0 12px rgba(59,130,246,0.4)" }}>80%</p>
-                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Schneller</p>
-                </div>
+                <WhatsNewStat value={80} suffix="%" label="Schneller" color="#3b82f6" />
                 <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
-                <div className="text-center">
-                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#f97316", textShadow: "0 0 12px rgba(249,115,22,0.4)" }}>1458</p>
-                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Rezepte poliert</p>
-                </div>
+                <WhatsNewStat value={1458} label="Rezepte poliert" color="#f97316" />
                 <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
-                <div className="text-center">
-                  <p className="text-xl font-black font-mono leading-none" style={{ color: "#a855f7", textShadow: "0 0 12px rgba(168,85,247,0.4)" }}>262</p>
-                  <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Neue Icons</p>
-                </div>
+                <WhatsNewStat value={262} label="Neue Icons" color="#a855f7" />
               </div>
             </div>
 

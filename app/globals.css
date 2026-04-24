@@ -934,6 +934,17 @@ button[disabled] {
   animation: tab-fade-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* What's New hero cards — staggered entry on popup open. Start 14px down + */
+/* transparent, slide up as each card's animationDelay fires. backwards fill */
+/* means the card stays invisible before its delay elapses. */
+@keyframes whatsnew-card-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.whatsnew-card-enter {
+  animation: whatsnew-card-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
 /* Mondlicht-Schmiede breathing glow on NPC cards */
 /* Milestone claim pulse — gold breathing glow on unclaimed milestone buttons */
 @keyframes milestone-pulse {
