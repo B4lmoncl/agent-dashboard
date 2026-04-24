@@ -53,9 +53,9 @@
     "status": "clean"
   },
   "components/RitualChamber.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "FIXED: ritual create silent failure, difficulty flavor rewrite",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 57 read: addToast-based error handling (no setError), no auto-dismiss bug. Loading text \"...\" on Check-off button could be \"Marking...\" but matches component context. Clean overall.",
     "status": "clean"
   },
   "components/QuestPanels.tsx": {
