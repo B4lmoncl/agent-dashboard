@@ -354,10 +354,10 @@
     "status": "clean"
   },
   "routes/battlepass.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Season rotation, locks, claim guards, grantBattlePassXP talent bonus, all reward types. No issues found.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 69: 384-line Season Pass. 2 POST endpoints (claim/:level, claim-all) both under bpClaimLock. Double-claim guard via claimedLevels.includes. Level bounds check, currentLevel reached check. All reward types handled (gold/essenz/runensplitter/stardust/sternentaler/mondstaub/material/title/frame). Code-quality finding: /claim uses inline \"if (!user.currencies) user.currencies = {}\" while /claim-all uses ensureUserCurrencies() helper \u2014 inconsistent but both work. No race, no double-grant.",
+    "status": "clean-flagged"
   },
   "routes/factions.js": {
     "auditCount": 2,
