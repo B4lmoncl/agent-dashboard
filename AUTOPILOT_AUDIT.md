@@ -126,7 +126,6 @@ Rotiere durch verschiedene Bereiche der Codebase. Vermeide es, denselben Bereich
 - `components/NotificationCenter.tsx` — Bell-icon notifications
 - `components/TutorialModal.tsx` — Info/Guide/Tutorial content
 - `components/ContextualTutorial.tsx` — In-context first-visit moments
-- `components/FirstVisitBanner.tsx` — First-visit hints per view
 - `components/OnboardingWizard.tsx` — 6-step registration wizard
 - `components/FeedbackModal.tsx` + `FeedbackOverlay.tsx` — Beta feedback mode
 
@@ -236,6 +235,20 @@ Rotiere durch verschiedene Bereiche der Codebase. Vermeide es, denselben Bereich
 - `public/data/levels.json` — Level curve
 - `public/data/roadmap.json` — Roadmap
 - `public/data/gameConfig.json` + `version.json` + `changelog.json` — Config/version
+
+### Haeufigste Befunde (aus Waves 22-27, 2026-04-24)
+
+Diese Muster tauchen in fast jedem Zyklus auf — zuerst danach suchen:
+
+1. **Language Policy Verstoesse** — Deutsche UI-Shell-Strings die English sein muessen. Buttons ("Registrieren" statt "Register"), Modal-Header ("Waehrungen" statt "Currencies"), Tooltips ("Gueltige E-Mail-Adresse eingeben"), Stat-Labels ("Aktueller Streak" statt "Current Streak"). CLAUDE.md §Language Policy definiert die Grenze klar. **Ausnahmen:** Content-Texte (Lore, Quest-Flavor, Item-Descriptions, NPC-Quotes) bleiben German. Game-world proper nouns (Kraft, Runensplitter, Schmiedefieber) NICHT uebersetzen. Room names (The Rift, The Undercroft) IMMER English — auch in deutschem Content (z.B. Tutorial-Titel "Der Riss." → "The Rift.").
+
+2. **Fehlende `role="dialog"` + `aria-modal="true"` + `aria-label`** auf Modals. Fast jedes Modal-Div hat nur einen visuellen Wrapper ohne semantische ARIA-Rolle. Screenreader sehen nur einen generischen Container. Fix: `role="dialog" aria-modal="true" aria-label="{{beschreibender Name}}"` auf die Content-Box (NICHT den Backdrop).
+
+3. **Fehlende `aria-label` auf Action-Buttons** die nur ein Symbol oder kurzen Text zeigen ("!", "×", "★", "Verstanden"). Screenreader hoeren "button" ohne Kontext. Fix: `aria-label="Claim quest: {{quest.title}}"` etc.
+
+4. **`title=` auf Status-Indikatoren statt `<Tip k="...">`** — rohe HTML-Title-Tooltips fuer System-Erklaerungen verstoessen gegen CLAUDE.md §Tooltips ("`title` attribute: Only for simple action buttons, NOT for system explanations"). Fix: umwickeln mit `<Tip k="registry_key">`.
+
+5. **Loading-Text "..." statt beschreibendem Verb** — generisches "..." auf Action-Buttons waehrend API-Calls statt "Claiming…", "Converting…", "Releasing…" per UI-Guideline.
 
 ### Fokus-Rotation
 
