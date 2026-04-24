@@ -326,10 +326,14 @@ router.post('/api/shop/gear/buy', requireApiKey, (req, res) => {
   if (!gear) return res.status(404).json({ error: 'Gear not found' });
   const currentGear = getUserGear(uid);
   if (gear.tier <= currentGear.tier) return res.status(400).json({ error: 'Already have equal or better gear' });
-  if ((u.gold || 0) < gear.cost) return res.status(400).json({ error: `Insufficient gold. Need ${gear.cost}, have ${u.gold || 0}` });
-  u.gold = (u.gold || 0) - gear.cost;
-  if (!u.currencies) u.currencies = {};
-  u.currencies.gold = u.gold;
+  // Use u.currencies.gold as source of truth (modern system). Other routes
+  // (crafting, campaigns, enchanting) write there first; shop was reading
+  // legacy u.gold first which could be stale if drift occurred.
+  ensureUserCurrencies(u);
+  const goldBalance = u.currencies.gold ?? 0;
+  if (goldBalance < gear.cost) return res.status(400).json({ error: `Insufficient gold. Need ${gear.cost}, have ${goldBalance}` });
+  u.currencies.gold = goldBalance - gear.cost;
+  u.gold = u.currencies.gold;
   u.gear = gear.id;
   saveUsers();
   console.log(`[gear] ${uid} upgraded to "${gear.name}" for ${gear.cost} gold`);
@@ -445,10 +449,12 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
   const talentDiscount = (getUserTalentEffects(uid).shop_discount || 0) * 100; // stored as decimal e.g. 0.03 → 3%
   const totalDiscount = discount + talentDiscount;
   const finalCost = Math.max(1, Math.floor(item.cost * (1 - totalDiscount / 100)));
-  if ((u.gold || 0) < finalCost) return res.status(400).json({ error: `Insufficient gold. Need ${finalCost}, have ${u.gold || 0}` });
-  u.gold = (u.gold || 0) - finalCost;
-  if (!u.currencies) u.currencies = {};
-  u.currencies.gold = u.gold;
+  // u.currencies.gold is source of truth (matches crafting/campaigns/enchanting).
+  ensureUserCurrencies(u);
+  const goldBalance = u.currencies.gold ?? 0;
+  if (goldBalance < finalCost) return res.status(400).json({ error: `Insufficient gold. Need ${finalCost}, have ${goldBalance}` });
+  u.currencies.gold = goldBalance - finalCost;
+  u.gold = u.currencies.gold;
   u.purchases = u.purchases || [];
   u.purchases.push({ itemId: item.id, name: item.name, cost: finalCost, originalCost: item.cost, at: now() });
   const effectMsg = applyShopEffect(u, item);

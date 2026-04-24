@@ -312,9 +312,9 @@
     "status": "clean"
   },
   "routes/shop.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. shopBuyLock, self-check, buff cap 50, faction+talent discount, applyShopEffect covers 15 effect types, gold/currency buy, rift extend guard, workshop upgrades with tier validation.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 73: Gold source-of-truth inconsistency. shop.js /gear/buy and /shop/buy used legacy u.gold as read source, while crafting/campaigns/enchanting use u.currencies.gold. If the two fields drifted (any endpoint writes only to one), shop would see stale balance. Fixed: both endpoints now read u.currencies.gold first (calling ensureUserCurrencies), deduct from there, then sync u.gold = u.currencies.gold. /workshop/buy already used the correct pattern.",
     "status": "clean"
   },
   "routes/gems.js": {
