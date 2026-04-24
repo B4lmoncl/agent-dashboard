@@ -2944,27 +2944,39 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 </>}
                               >
                               <div
-                                className="rounded-lg p-2.5 cursor-help"
+                                className={`rounded-lg p-2.5 cursor-help relative overflow-hidden${item.obtained && item.rarity === "legendary" ? " crystal-breathe" : ""}`}
                                 style={{
-                                  background: item.obtained ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
-                                  border: `1px solid ${item.obtained ? `${color}30` : "rgba(255,255,255,0.04)"}`,
-                                  borderTop: item.obtained ? `2px solid ${color}` : undefined,
-                                  opacity: item.obtained ? 1 : 0.45,
-                                  filter: item.obtained ? "none" : "grayscale(1)",
-                                }}
+                                  background: item.obtained ? `radial-gradient(ellipse at 50% 0%, ${color}18 0%, rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.2) 100%)` : "linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(0,0,0,0.3) 100%)",
+                                  border: `1px solid ${item.obtained ? `${color}40` : "rgba(255,255,255,0.05)"}`,
+                                  borderTop: item.obtained ? `2px solid ${color}` : "1px solid rgba(255,255,255,0.05)",
+                                  boxShadow: item.obtained && item.rarity === "legendary" ? `0 8px 16px -4px ${color}30, inset 0 0 12px ${color}15` : item.obtained && item.rarity === "epic" ? `0 6px 12px -4px ${color}25` : "0 4px 8px -2px rgba(0,0,0,0.3)",
+                                  "--glow-color": `${color}30`,
+                                } as React.CSSProperties}
                               >
+                                {/* Icon pedestal — slot silhouette or rune glyph, centered at the top of the tile */}
+                                <div className="flex items-center justify-center mb-1.5" style={{ height: 48 }}>
+                                  {item.obtained ? (
+                                    <div className="flex items-center justify-center rounded-lg" style={{ width: 44, height: 44, background: `${color}10`, border: `1px solid ${color}30`, boxShadow: item.rarity === "legendary" ? `0 0 14px ${color}50, inset 0 0 8px ${color}20` : `inset 0 0 6px ${color}15` }}>
+                                      <img src={`/images/icons/equip-${item.slot}.png`} alt={item.slot} width={32} height={32} style={{ imageRendering: "auto", filter: `drop-shadow(0 0 6px ${color}60)` }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+                                    </div>
+                                  ) : (
+                                    <div className="flex items-center justify-center rounded-lg" style={{ width: 44, height: 44, background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.1)" }}>
+                                      <span style={{ fontSize: 20, color: "rgba(255,255,255,0.18)", fontWeight: 700 }}>?</span>
+                                    </div>
+                                  )}
+                                </div>
                                 {item.obtained ? (
                                   <>
-                                    <p className="text-xs font-semibold truncate" title={item.name} style={{ color }}>{item.name}</p>
-                                    <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
+                                    <p className="text-xs font-semibold truncate text-center" title={item.name} style={{ color }}>{item.name}</p>
+                                    <p className="text-xs text-w20 truncate capitalize text-center">{item.slot}</p>
                                     {item.legendaryEffect?.label && (
-                                      <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
+                                      <p className="text-xs mt-1 truncate text-center" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
                                     )}
                                   </>
                                 ) : (
                                   <>
-                                    <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>???</p>
-                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>{item.slot}</p>
+                                    <p className="text-xs font-semibold text-center" style={{ color: "rgba(255,255,255,0.45)" }}>???</p>
+                                    <p className="text-xs mt-1 text-center capitalize" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.slot}</p>
                                   </>
                                 )}
                               </div>
