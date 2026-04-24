@@ -420,10 +420,10 @@
     "status": "clean"
   },
   "routes/users.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. authLimiter 10/min, bcrypt password hash, timing-safe legacy API key compare, sensitive field stripping (passwordHash/apiKey/refreshTokens/resetToken/emailVerifyToken), JWT token pair generation, refresh token rotation, email validation regex, password policy (8+ chars, uppercase, number).",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 71: Security deep-dive. 2 flagged issues (not fixed in-stream, need dedicated security audit): (1) /api/auth/login has timing-oracle \u2014 user-not-found returns in ~1ms, user-wrong-password after ~100ms bcrypt delay. Attacker can enumerate valid usernames. Fix: always run bcrypt.compare (use a dummy hash for nonexistent users). (2) /api/register has async race \u2014 between await bcrypt.hash and state.users write, a concurrent request with same name can interleave. Both see empty usersByName, both create user, last write wins. Node single-thread limits interleave points to awaits but bcrypt.hash IS one. Fix: lock around register, or re-check name after bcrypt. Clean otherwise: authLimiter rate limit, timingSafeEqual for legacy apiKey path, proper token pair generation.",
+    "status": "clean-flagged"
   },
   "routes/currency.js": {
     "auditCount": 3,
