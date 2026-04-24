@@ -593,10 +593,10 @@
     "status": "clean"
   },
   "hooks/useQuestActions.ts": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-10",
-    "findings": "MED fixed: handleShopBuy+handleGearBuy double-click protection added. handleToggleFavorite now shows error toast instead of console.warn. All 12 handlers verified with reviewApiKey.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 48: Inconsistent retry behavior on network errors. 4 actions have onRetry callback (claim, unclaim, coop-complete, complete). 7 do NOT (approve, reject, favorite toggle, coop-claim, pool refresh, purchase, gear purchase). Adding blanket retry is risky \u2014 purchase is NOT idempotent, retrying a successful purchase that timed out reading response could double-charge. FLAGGED (requires backend-behavior audit per endpoint). All non-network errors have proper d.error fallback. loadingAction state prevents double-clicks. Overall sound.",
+    "status": "clean-flagged"
   },
   "lib/sounds.ts": {
     "auditCount": 2,
