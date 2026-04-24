@@ -178,7 +178,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       setSuccessMsg(`Friend request sent to ${name}!`);
       setTimeout(() => setSuccessMsg(null), 3000);
       fetchFriends();
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
   };
 
   const handleRequest = async (reqId: string, action: "accept" | "decline") => {
@@ -190,7 +190,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       });
       if (!r.ok) { const d = await r.json().catch(() => ({})); setError(d.error || "Request failed"); }
       fetchFriends();
-    } catch (e) { console.error('[social]', e); setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch (e) { console.error('[social]', e); setError("Network error"); }
     setProcessingReqId(null);
   };
 
@@ -202,12 +202,12 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
         method: "DELETE",
         headers: getAuthHeaders(apiKey),
       });
-      if (!r.ok) { setError("Der Bund lässt sich nicht lösen. Versuch es nochmal."); return; }
+      if (!r.ok) { setError("Failed to remove friend"); return; }
       setConfirmRemove(null);
       fetchFriends();
     } catch (e) {
       console.error('[social]', e);
-      setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
+      setError("Network error");
     }
   };
 
@@ -233,8 +233,8 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
             onChange={e => setAddInput(e.target.value)}
             onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
             onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
-            placeholder="Spieler suchen…"
-            aria-label="Spieler suchen"
+            placeholder="Search players..."
+            aria-label="Search players"
             maxLength={50}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
@@ -313,7 +313,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Friends ({friends.length})</p>
         {friends.length === 0 ? (
-          <p className="text-xs text-w20 text-center py-6">Noch niemand im Verzeichnis. Der Turm ist groß — jemand passt.</p>
+          <p className="text-xs text-w20 text-center py-6">No friends yet. Send a request above!</p>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {[...friends].sort((a, b) => {
@@ -354,7 +354,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                         if (r.ok) setSuccessMsg("Challenge sent to " + f.name);
                         else setSuccessMsg(d.error || "Failed");
                         setTimeout(() => setSuccessMsg(null), 4000);
-                      } catch { setSuccessMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                      } catch { setSuccessMsg("Network error"); }
                     })();
                   }}
                   className="text-xs px-2 py-0.5 rounded mt-1"
@@ -451,7 +451,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         fetchConversations();
       } else {
         const data = await r.json().catch(() => null);
-        setSendError(data?.error || "Die Nachricht findet keinen Empfänger. Versuch es nochmal.");
+        setSendError(data?.error || "Failed to send message");
       }
     } catch (e) { console.error('[social]', e); }
     setSendingMsg(false);
@@ -504,8 +504,8 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
             value={msgInput}
             onChange={e => { setMsgInput(e.target.value); if (sendError) setSendError(""); }}
             onKeyDown={e => { if (e.key === "Enter") sendMessage(); }}
-            placeholder="Nachricht verfassen…"
-            aria-label="Nachricht an Freund"
+            placeholder="Type a message..."
+            aria-label="Message to friend"
             maxLength={500}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
@@ -552,10 +552,10 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         <div className="rounded-lg p-3 space-y-2" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
           <div className="flex items-center justify-between">
             <p className="text-xs font-semibold" style={{ color: "#a855f7" }}>Start conversation with:</p>
-            <button onClick={() => setShowNewMsg(false)} aria-label="Schließen" className="text-xs text-w30 btn-interactive px-1">✕</button>
+            <button onClick={() => setShowNewMsg(false)} aria-label="Close" className="text-xs text-w30 btn-interactive px-1">✕</button>
           </div>
           {friendsList.length === 0 ? (
-            <p className="text-xs text-w20 py-2">Noch keine Gefährten zum Anschreiben.</p>
+            <p className="text-xs text-w20 py-2">No friends available to message.</p>
           ) : (
             <div className="grid grid-cols-2 gap-1.5">
               {friendsList.map(f => (
@@ -869,7 +869,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       setNewTradeMsg("");
       setNewTradeItems([]);
       fetchTrades();
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
     setActionLoading(false);
   };
 
@@ -894,7 +894,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       }
       fetchTrades();
       setSelectedTrade(null);
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
     setActionLoading(false);
   };
 
@@ -917,7 +917,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       setCounterItems([]);
       fetchTrades();
       setSelectedTrade(null);
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
     setActionLoading(false);
   };
 
@@ -1146,8 +1146,8 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
           <input
             value={newTradeTarget}
             onChange={e => setNewTradeTarget(e.target.value)}
-            placeholder="Handel mit Spieler…"
-            aria-label="Handelspartner"
+            placeholder="Trade with player..."
+            aria-label="Trade target"
             className="input-dark w-full text-xs px-3 py-2 rounded-lg"
           />
           <div>
@@ -1306,7 +1306,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       )}
 
       {trades.length === 0 && !showNewTrade && (
-        <p className="text-xs text-w20 text-center py-8">Keine Handel. Der Markt wartet auf dein erstes Angebot.</p>
+        <p className="text-xs text-w20 text-center py-8">No trades yet. Propose a trade to get started!</p>
       )}
       {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
@@ -1535,7 +1535,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
       setActionMsg(data.message || data.error || "Done");
       setTimeout(() => setActionMsg(null), 4000);
       fetchMail();
-    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setActionMsg("Network error"); }
   };
 
   const handleDelete = async (mailId: string) => {
@@ -1546,7 +1546,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
       });
       setSelectedMail(null);
       fetchMail();
-    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setActionMsg("Network error"); }
   };
 
   const handleSend = async () => {
@@ -1568,7 +1568,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
         setActionMsg(data.error || "Error");
       }
       setTimeout(() => setActionMsg(null), 4000);
-    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setActionMsg("Network error"); }
     setSending(false);
   };
 
@@ -1606,7 +1606,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
                   setActionMsg(data.message || data.error || "Done");
                   setTimeout(() => setActionMsg(null), 4000);
                   fetchMail();
-                } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                } catch { setActionMsg("Network error"); }
               }}
               className="text-xs px-3 py-1.5 rounded-lg font-semibold"
               style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.25)", cursor: "pointer" }}
@@ -1636,8 +1636,8 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
         <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
           <input
             type="text"
-            placeholder="An (Spielername)"
-            aria-label="Empfänger"
+            placeholder="To (player name)"
+            aria-label="Recipient"
             value={sendTo}
             onChange={e => setSendTo(e.target.value)}
             className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
@@ -1645,8 +1645,8 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
           />
           <input
             type="text"
-            placeholder="Betreff"
-            aria-label="Betreff"
+            placeholder="Subject"
+            aria-label="Subject"
             value={sendSubject}
             onChange={e => setSendSubject(e.target.value)}
             maxLength={100}
@@ -1654,8 +1654,8 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
             style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
           />
           <textarea
-            placeholder="Nachricht (optional)"
-            aria-label="Nachrichtentext"
+            placeholder="Message (optional)"
+            aria-label="Message body"
             value={sendBody}
             onChange={e => setSendBody(e.target.value)}
             maxLength={500}
@@ -1840,7 +1840,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
         setBond(d.bond);
         setCooldownUntil(d.cooldownUntil);
       }
-    } catch { setMessage({ text: "Der Pakt schweigt gerade. Versuch es nochmal.", type: "error" }); }
+    } catch { setMessage({ text: "Failed to load bond data", type: "error" }); }
     setLoading(false);
   }, [apiKey, playerName]);
 
@@ -1869,8 +1869,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       });
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message || "Bond proposed", type: "success" }); setProposalTarget(null); fetchBond(); }
-      else setMessage({ text: d.error || "Der Vorschlag verhallt. Versuch es nochmal.", type: "error" });
-    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
+      else setMessage({ text: d.error || "Failed to propose", type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1886,7 +1886,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message, type: "success" }); fetchBond(); }
       else setMessage({ text: d.error || `Failed to ${action}`, type: "error" });
-    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
+    } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1901,8 +1901,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       });
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message, type: "success" }); setBond(null); setConfirmBreak(false); fetchBond(); }
-      else setMessage({ text: d.error || "Der Bund lässt sich nicht lösen. Versuch es nochmal.", type: "error" });
-    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
+      else setMessage({ text: d.error || "Failed to remove friend", type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1930,8 +1930,8 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           });
         }
         fetchBond();
-      } else setMessage({ text: d.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
-    } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
+      } else setMessage({ text: d.error || "Failed to claim", type: "error" });
+    } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
 
@@ -1958,7 +1958,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           </div>
         )}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">Die Gildentafel ist leer. Füge zuerst Gefährten hinzu.</p>}
+          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">No friends yet. Add friends first.</p>}
           {friends.map(f => (
             <button
               key={f.id}
@@ -1996,7 +1996,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Pakt mit {proposalTarget.name}</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Wähle die Dauer eures Bundes.</p>
               </div>
-              <button onClick={() => setProposalTarget(null)} aria-label="Abbrechen" className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+              <button onClick={() => setProposalTarget(null)} aria-label="Cancel" className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {([
@@ -2071,7 +2071,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 const d = await r.json();
                 if (r.ok) { setMessage({ text: d.message || "Cancelled", type: "success" }); fetchBond(); }
                 else setMessage({ text: d.error || "Failed", type: "error" });
-              } catch { setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" }); }
+              } catch { setMessage({ text: "Network error", type: "error" }); }
               setActionLoading(false);
             }} className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold mt-3" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
               {actionLoading ? "..." : "Cancel Proposal"}
@@ -2277,10 +2277,10 @@ function ChallengesTab({ apiKey, playerName }: { apiKey: string; playerName: str
         setActionMsg("Challenge accepted.");
         setChallenges(prev => prev.map(c => c.id === challengeId ? { ...c, status: "active", startedAt: new Date().toISOString(), expiresAt: d.challenge?.expiresAt || null } : c));
       } else {
-        setActionMsg(d.error || "Die Annahme klemmt. Versuch es nochmal.");
+        setActionMsg(d.error || "Failed to accept");
       }
       setTimeout(() => setActionMsg(null), 3000);
-    } catch { setActionMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setActionMsg("Network error"); }
   };
 
   if (loading) return <div className="skeleton-card h-32" />;

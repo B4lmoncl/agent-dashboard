@@ -362,11 +362,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         profsOk = true;
         setFetchError(null);
       } else {
-        setFetchError("Die Werkstatt schweigt. Versuch es nochmal.");
+        setFetchError("Failed to load crafting data");
       }
     } catch (err) {
       console.error('Failed to fetch crafting data:', err);
-      setFetchError("Die Werkstatt schweigt. Versuch es nochmal.");
+      setFetchError("Failed to load crafting data");
     }
     if (!profsOk) return;
     // Fetch workshop upgrades — soft-fail (workshop is optional polish, not core)
@@ -557,7 +557,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       }
     } catch (err) {
       console.error('Crafting network error:', err);
-      setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
+      setCraftResult("Network error");
     }
     setCrafting(false);
     // Auto-scroll craft result into view, then auto-dismiss after 5s
@@ -580,7 +580,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const data = await r.json();
       if (r.ok) setCraftPreview({ recipeId, data });
       else setCraftResult(data.error || "Preview failed");
-    } catch { setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setCraftResult("Network error"); }
     setPreviewLoading(null);
   };
 
@@ -601,11 +601,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         fetchData();
         onRefresh?.();
       } else {
-        setCraftResult(data.error || "Das Rezept bleibt in der Feder stecken. Versuch es nochmal.");
+        setCraftResult(data.error || "Failed to learn recipe");
       }
     } catch (err) {
       console.error('Learn recipe network error:', err);
-      setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
+      setCraftResult("Network error");
     }
     setCrafting(false);
   };
@@ -646,7 +646,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTimeout(() => setDismantleResult(null), 5000);
       fetchData();
       onRefresh?.();
-    } catch (err) { console.error('[forge] dismantle error:', err); setDismantleResult({ message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+    } catch (err) { console.error('[forge] dismantle error:', err); setDismantleResult({ message: "Network error" }); }
   };
 
   const handleDismantleAll = async (rarity: string, count?: number) => {
@@ -680,7 +680,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTimeout(() => setDismantleResult(null), 6000);
       fetchData();
       onRefresh?.();
-    } catch (err) { console.error('[forge] dismantle_all error:', err); setDismantleResult({ message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+    } catch (err) { console.error('[forge] dismantle_all error:', err); setDismantleResult({ message: "Network error" }); }
   };
 
   // ─── Auto-Salvage Preview+Execute ─────────────────────────────────────────
@@ -756,7 +756,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCubeResult(data.error || "Something went wrong. Try again.");
       }
-    } catch (err) { console.error('[cube] extract error:', err); setCubeResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch (err) { console.error('[cube] extract error:', err); setCubeResult("Network error"); }
     setCubeLoading(false);
   };
   const handleCubeEquip = async (slot: string, effectType: string) => {
@@ -786,7 +786,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const data = await r.json();
       if (r.ok) setCubeData(data.cube);
       else setCubeResult(data.error || "Unequip failed");
-    } catch (err) { console.error('[cube] unequip error:', err); setCubeResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch (err) { console.error('[cube] unequip error:', err); setCubeResult("Network error"); }
     setCubeLoading(false);
   };
 
@@ -822,7 +822,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         setTimeout(() => setCraftedItemCelebration(null), 4000);
       }
       if (r.ok) { fetchData(); onRefresh?.(); }
-    } catch (err) { console.error('[forge] transmute error:', err); setTransmuteResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch (err) { console.error('[forge] transmute error:', err); setTransmuteResult("Network error"); }
   };
 
   const handleChooseProfession = async (profId: string) => {
@@ -844,7 +844,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCraftResult(data.error || "Something went wrong. Try again.");
       }
-    } catch (err) { console.error('[forge] choose_profession error:', err); setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch (err) { console.error('[forge] choose_profession error:', err); setCraftResult("Network error"); }
     setChoosingProf(false);
   };
 
@@ -870,9 +870,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             fetchData();
             onRefresh?.();
           } else {
-            setCraftResult(data.error || "Die Profession hält sich fest. Versuch es nochmal.");
+            setCraftResult(data.error || "Failed to drop profession");
           }
-        } catch (err) { console.error('[forge] drop_profession error:', err); setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+        } catch (err) { console.error('[forge] drop_profession error:', err); setCraftResult("Network error"); }
       },
     });
   };
@@ -909,7 +909,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {fetchError && (
         <div role="alert" className="rounded-lg px-3 py-2 flex items-center justify-between gap-3" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#fecaca" }}>
           <span className="text-xs">{fetchError}</span>
-          <button onClick={() => fetchData()} className="btn-interactive text-xs font-semibold px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#fecaca" }}>Erneut versuchen</button>
+          <button onClick={() => fetchData()} className="btn-interactive text-xs font-semibold px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#fecaca" }}>Retry</button>
         </div>
       )}
       {/* Ambient forge sparks */}
@@ -981,7 +981,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             setCraftResult(d.cache?.length ? `Cache: ${d.cache.map((m: { name: string; qty: number }) => `${m.qty}x ${m.name}`).join(", ")}` : d.message || "Bonus collected!");
                             onRefresh?.();
                           }
-                        } catch { setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                        } catch { setCraftResult("Network error"); }
                         setFeverClaiming(false);
                       }}
                       disabled={feverClaiming}
@@ -1403,7 +1403,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* Search */}
             <input
               type="text"
-              placeholder="Material suchen…"
+              placeholder="Search materials..."
               value={matSearch}
               onChange={e => setMatSearch(e.target.value)}
               className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
@@ -1542,7 +1542,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               setTimeout(() => setWorkshopCelebration(null), 4000);
                             }
                             else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Purchase failed"); }
-                          } catch (err) { console.error('[forge] buy_tool error:', err); setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                          } catch (err) { console.error('[forge] buy_tool error:', err); setCraftResult("Network error"); }
                           setBuyingTool(null);
                         }}
                         disabled={!canBuy || buyingTool === gear.id}
@@ -1616,7 +1616,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             setTimeout(() => setWorkshopCelebration(null), 4000);
                           }
                           else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Upgrade failed"); }
-                        } catch (err) { console.error('[forge] buy_upgrade error:', err); setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                        } catch (err) { console.error('[forge] buy_upgrade error:', err); setCraftResult("Network error"); }
                         setBuyingUpgrade(null);
                       }}
                       disabled={!canAfford || buyingUpgrade === up.id}
@@ -1880,7 +1880,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             type="text"
                             value={recipeSearch}
                             onChange={e => setRecipeSearch(e.target.value)}
-                            placeholder="Suchen…"
+                            placeholder="Search..."
                             className="input-dark w-full text-xs px-2 py-1 rounded"
                             style={{ fontSize: 12 }}
                           />
@@ -2128,7 +2128,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       } else {
                                         setCraftResult(data.error || "Craft failed");
                                       }
-                                    } catch { setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                                    } catch { setCraftResult("Network error"); }
                                   },
                                 });
                               }}
@@ -2176,7 +2176,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   } else {
                     setEnchantResult(data.error || "Enchanting failed");
                   }
-                } catch (err) { console.error('[forge] enchant_roll error:', err); setEnchantResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                } catch (err) { console.error('[forge] enchant_roll error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);
               };
 
@@ -2197,9 +2197,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     fetchData();
                     onRefresh?.();
                   } else {
-                    setEnchantResult(data.error || "Der Hallenmechanismus klemmt. Versuch es nochmal.");
+                    setEnchantResult(data.error || "Action failed");
                   }
-                } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);
               };
 
@@ -2466,7 +2466,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 } else {
                                   setCraftResult(data.error || "Kauf fehlgeschlagen");
                                 }
-                              } catch { setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                              } catch { setCraftResult("Network error"); }
                               setBuyingReagent(null);
                             }}
                             disabled={!canAfford || !!buyingReagent}
@@ -2585,10 +2585,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 setTimeout(() => setRankUpCelebration(null), 3000);
                                 fetchData();
                               } else {
-                                setCraftResult(data.error || "Der Rang wehrt sich. Versuch es nochmal.");
+                                setCraftResult(data.error || "Failed to train rank");
                               }
                               setTimeout(() => setCraftResult(null), 5000);
-                            } catch { setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); setTimeout(() => setCraftResult(null), 5000); }
+                            } catch { setCraftResult("Network error"); setTimeout(() => setCraftResult(null), 5000); }
                           }}
                           disabled={!canTrainRank}
                           title={!meetsRankLevel ? `Requires player level ${nextRank.reqPlayerLevel}` : !meetsRankSkill ? `Requires skill ${nextRank.reqSkill}` : !canAffordRank ? `Need ${nextRank.cost - gold} more gold` : `Train ${nextRank.rank} for ${nextRank.cost}g`}
@@ -2655,7 +2655,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       if (res.ok) { setCraftResult(`Learned: ${r.name}`); fetchData(); }
                                       else setCraftResult(data.error || "Failed");
                                       setTimeout(() => setCraftResult(null), 3000);
-                                    } catch { setCraftResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                                    } catch { setCraftResult("Network error"); }
                                   }}
                                   disabled={!canAfford || learned || aboveCap}
                                   title={aboveCap ? `Requires higher rank (Cap ${recipeSkill}+)` : !canAfford ? `Need ${(r.trainerCost || 0) - gold} more gold` : `Learn for ${r.trainerCost}g`}
@@ -2840,7 +2840,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                         setTimeout(() => setDismantleResult(null), 5000);
                                         fetchData();
                                         onRefresh?.();
-                                      } catch (err) { console.error('[forge] reforge-stats error:', err); setDismantleResult({ message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+                                      } catch (err) { console.error('[forge] reforge-stats error:', err); setDismantleResult({ message: "Network error" }); }
                                     },
                                   });
                                 }}
@@ -2890,7 +2890,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       setTimeout(() => setDismantleResult(null), 5000);
                                       fetchData();
                                       onRefresh?.();
-                                    } catch (err) { console.error('[forge] reforge error:', err); setDismantleResult({ message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+                                    } catch (err) { console.error('[forge] reforge error:', err); setDismantleResult({ message: "Network error" }); }
                                   },
                                 });
                               }}
@@ -3469,11 +3469,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <button
                               onClick={() => handleCubeExtract(cubeExtractId)}
                               disabled={cubeLoading}
-                              title={cubeLoading ? "Extraktion läuft…" : `Kosten: ${essenz} Essenz + ${gold}g (steigt je Extraktion)`}
+                              title={cubeLoading ? "Extracting..." : `Cost: ${essenz} Essenz + ${gold}g (scales per extraction)`}
                               className="flex-1 text-xs py-2 rounded-lg font-semibold"
                               style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
                             >
-                              {cubeLoading ? "Extrahiert…" : `Extract (${essenz} Essenz + ${gold}g)`}
+                              {cubeLoading ? "Extracting..." : `Extract (${essenz} Essenz + ${gold}g)`}
                             </button>
                           );
                         })()}

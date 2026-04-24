@@ -332,11 +332,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         await fetchExpeditions();
         if (onUserRefresh) onUserRefresh();
       } else {
-        setExpeditionError(d.error || "Der Gefährte bleibt sitzen. Versuch es nochmal.");
+        setExpeditionError(d.error || "Failed to send companion");
         safeTimeout(() => setExpeditionError(null), 5000);
       }
     } catch {
-      setExpeditionError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
+      setExpeditionError("Network error");
       safeTimeout(() => setExpeditionError(null), 5000);
     }
     setExpeditionSending(null);
@@ -378,11 +378,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         await fetchExpeditions();
         if (onUserRefresh) onUserRefresh();
       } else {
-        setExpeditionError(d.error || "Die Beute weigert sich. Versuch es nochmal.");
+        setExpeditionError(d.error || "Failed to collect");
         safeTimeout(() => setExpeditionError(null), 5000);
       }
     } catch {
-      setExpeditionError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal.");
+      setExpeditionError("Network error");
       safeTimeout(() => setExpeditionError(null), 5000);
     }
     setExpeditionCollecting(false);
@@ -435,7 +435,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           if (onUserRefresh) onUserRefresh();
         }, 2000);
       }
-    } catch { setPetError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); safeTimeout(() => setPetError(""), 3000); }
+    } catch { setPetError("Network error"); safeTimeout(() => setPetError(""), 3000); }
     setCompletingId(null);
   };
 
@@ -538,7 +538,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         setUltimateResult(d.error || "Error");
         safeTimeout(() => setUltimateResult(null), 4000);
       }
-    } catch { setUltimateResult("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); safeTimeout(() => setUltimateResult(null), 3000); }
+    } catch { setUltimateResult("Network error"); safeTimeout(() => setUltimateResult(null), 3000); }
     setUltimateUsing(null);
   };
 

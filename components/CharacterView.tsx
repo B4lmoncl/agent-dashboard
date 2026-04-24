@@ -1125,7 +1125,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         }
       } else {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
-        if (addToast) addToast({ type: "error", message: data?.error || "Das Item wehrt sich. Nicht persönlich — nur mechanisch." });
+        if (addToast) addToast({ type: "error", message: data?.error || "Failed to equip item" });
       }
       await fetchChar();
     } finally { setEquipping(null); }
@@ -1142,7 +1142,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (!r.ok && addToast) {
         const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
-        addToast({ type: "error", message: data?.error || "Der Verzicht klappt nicht. Auch ein kleiner Trost." });
+        addToast({ type: "error", message: data?.error || "Failed to unequip" });
       }
       await fetchChar();
     } catch {
@@ -1184,11 +1184,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const data = await r.json();
         const lockedItem = charData?.inventory.find(i => i.id === itemId);
-        if (addToast) addToast({ type: "item", message: data.locked ? "Gesperrt. Die Schmiede schaut anderswohin." : "Entsperrt. Das Schicksal ist wieder verhandelbar.", itemName: lockedItem?.name || "Item", rarity: lockedItem?.rarity || "common" });
+        if (addToast) addToast({ type: "item", message: data.locked ? "Item locked" : "Item unlocked", itemName: lockedItem?.name || "Item", rarity: lockedItem?.rarity || "common" });
       }
       await fetchChar();
     } catch {
-      if (addToast) addToast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
+      if (addToast) addToast({ type: "error", message: "Network error" });
     }
   };
 
@@ -1350,7 +1350,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               type="text"
               value={invSearch}
               onChange={e => setInvSearch(e.target.value)}
-              placeholder="Suchen…"
+              placeholder="Search..."
               className="w-full text-xs px-2.5 py-1.5 rounded-lg"
               style={{
                 background: "rgba(255,255,255,0.06)",
@@ -1426,8 +1426,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
           {!loading && fetchError && !charData && (
             <div role="alert" className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
-              <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Der Charakterbogen ist unauffindbar. Der Schreiber sucht noch.</p>
-              <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Erneut versuchen</button>
+              <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Failed to load character data. Try refreshing.</p>
+              <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Retry</button>
             </div>
           )}
           {!loading && charData && (() => {
@@ -2211,9 +2211,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           addToast?.({ type: "purchase", message: titleId ? `Title equipped: ${allTitles.find(t => t.id === titleId)?.name || titleId}` : "Title removed" });
                         } else {
                           const d = await r.json().catch(() => ({}));
-                          addToast?.({ type: "error", message: d.error || "Der Titel passt gerade nicht. Versuch es nochmal." });
+                          addToast?.({ type: "error", message: d.error || "Failed to equip title" });
                         }
-                      } catch { addToast?.({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+                      } catch { addToast?.({ type: "error", message: "Network error" }); }
                       setTitleEquipping(null);
                     };
 
@@ -2392,14 +2392,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 const r = await fetch(`/api/gems/${action}`, { method: "POST", headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" }, body: JSON.stringify(body) });
                 const d = await r.json();
                 if (r.ok) {
-                  addToast?.({ type: "purchase", message: d.message || "Getan. Die Halle hat es registriert." });
+                  addToast?.({ type: "purchase", message: d.message || "Item used" });
                   // Refresh gem data
                   const gr = await fetch("/api/gems", { headers: getAuthHeaders(apiKey) });
                   if (gr.ok) setGemData(await gr.json());
                 } else {
-                  addToast?.({ type: "error", message: d.error || "Der Hallenmechanismus klemmt. Versuch es nochmal." });
+                  addToast?.({ type: "error", message: d.error || "Action failed" });
                 }
-              } catch { addToast?.({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+              } catch { addToast?.({ type: "error", message: "Network error" }); }
               setGemAction(null);
             };
             return (

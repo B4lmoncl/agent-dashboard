@@ -94,9 +94,9 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         setPlayer(data.player);
         setMessage(null);
       } else {
-        setMessage({ type: "error", text: "Die Saison lässt sich nicht blättern. Versuch es nochmal." });
+        setMessage({ type: "error", text: "Failed to load Season Pass data" });
       }
-    } catch (e) { console.error("[battlepass]", e); setMessage({ type: "error", text: "Die Saison lässt sich nicht blättern. Versuch es nochmal." }); }
+    } catch (e) { console.error("[battlepass]", e); setMessage({ type: "error", text: "Failed to load Season Pass data" }); }
     setLoading(false);
   }, [reviewApiKey]);
 
@@ -131,10 +131,10 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           });
         }
       } else {
-        setMessage({ text: data.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
+        setMessage({ text: data.error || "Failed to claim", type: "error" });
       }
     } catch {
-      setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
+      setMessage({ text: "Network error", type: "error" });
     }
     setClaiming(null);
     setTimeout(() => setMessage(null), 3000);
@@ -246,7 +246,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                   setMessage({ type: "error", text: data.error || "Claim failed" });
                 }
                 setTimeout(() => setMessage(null), 5000);
-              } catch { setMessage({ type: "error", text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." }); }
+              } catch { setMessage({ type: "error", text: "Network error" }); }
               setClaimingAll(false);
             }}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold mt-2 btn-press"

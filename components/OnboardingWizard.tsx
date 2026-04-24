@@ -258,7 +258,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Willkommen im Quest Hall"
+        aria-label="Welcome to Quest Hall"
         className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
         style={{
@@ -325,7 +325,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="deine@email.com"
+                  placeholder="your@email.com"
                 />
                 <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Required for password recovery</p>
               </div>
@@ -336,7 +336,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Min. 8 Zeichen, 1 Großbuchstabe, 1 Zahl"
+                  placeholder="Min. 8 characters, 1 uppercase, 1 number"
                 />
               </div>
               <div>
@@ -346,7 +346,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={passwordConfirm}
                   onChange={e => setPasswordConfirm(e.target.value)}
-                  placeholder="Passwort bestätigen"
+                  placeholder="Confirm password"
                   onKeyDown={e => { if (e.key === "Enter" && canProceedStep0) setStep(1); }}
                 />
                 {password && passwordConfirm && password !== passwordConfirm && (

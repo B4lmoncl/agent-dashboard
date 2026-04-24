@@ -697,7 +697,7 @@ export default function Dashboard() {
         addToast({ type: "flavor", message: data.error || "Could not claim daily bonus", icon: "/images/icons/currency-essenz.png" });
       }
     } catch {
-      addToast({ type: "flavor", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", icon: "/images/icons/currency-essenz.png" });
+      addToast({ type: "flavor", message: "Network error", icon: "/images/icons/currency-essenz.png" });
     } finally {
       setClaimingDailyBonus(false);
     }
@@ -3094,7 +3094,7 @@ export default function Dashboard() {
                     const d = await r.json();
                     if (r.ok) { setMigMsg(d.message || "Email added!"); setTimeout(() => setEmailMigrationOpen(false), 1500); }
                     else setMigMsg(d.error || "Failed");
-                  } catch { setMigMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                  } catch { setMigMsg("Network error"); }
                   setMigLoading(false);
                 }}
                 disabled={migLoading || !migEmail.includes("@")}
@@ -3126,7 +3126,7 @@ export default function Dashboard() {
                     const d = await r.json();
                     setRpMsg(d.message || d.error || "Done");
                     if (r.ok) setTimeout(() => { setResetPasswordOpen(false); setResetToken(null); }, 2000);
-                  } catch { setRpMsg("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+                  } catch { setRpMsg("Network error"); }
                   setRpLoading(false);
                 }}
                 disabled={rpLoading || !(rpw.length >= 8 && /[A-Z]/.test(rpw) && /[0-9]/.test(rpw) && rpw === rpwConfirm)}

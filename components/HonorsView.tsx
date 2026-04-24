@@ -166,7 +166,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
       {catalogue.length === 0 ? (
         <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>Die Ehrentafel schweigt — der Kurier bringt sie gleich nach.</p>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>No achievements data. Connect to the API.</p>
         </div>
       ) : (
         <>
@@ -267,7 +267,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
           {filteredCatalogue.length === 0 && (
             <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
-              <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>Kein Eintrag passt. Die Filter sind streng, vielleicht zu streng.</p>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>No achievements match the current filters.</p>
             </div>
           )}
 

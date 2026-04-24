@@ -155,10 +155,10 @@ export async function createStarterQuestsIfNew(playerName: string, apiKey: strin
     // Cat" would contradict whatever they chose. The quest teaches the
     // claim → complete flow; the companion is already theirs.
     const starterQuests = [
-      { title: "Willkommen in der Halle", description: "Deine erste Quest. Klicke auf 'Abschließen', um die Belohnung einzusammeln. So funktioniert der Claim → Complete Flow — der Rest ergibt sich.", type: "personal", rarity: "rare", createdBy: "system" },
-      { title: "Schreibtisch ordnen", description: "Räume deinen Arbeitsplatz auf. Ein klarer Tisch — nun ja. Man sagt es helfe.", type: "personal", rarity: "common", createdBy: "system" },
-      { title: "30 Minuten lesen", description: "Such dir ein Buch, einen Artikel, irgendetwas was dich interessiert. 30 Minuten. Das Archiv registriert es.", type: "learning", rarity: "common", createdBy: "system" },
-      { title: "10 Minuten dehnen", description: "Eine kurze Dehnroutine. Der Körper ist das einzige Werkzeug das du nicht tauschen kannst — also pfleg es.", type: "fitness", rarity: "common", createdBy: "system" },
+      { title: "Willkommen in der Halle", description: "Deine erste Quest. Klick auf 'Abschließen' und die Belohnung gehört dir. So funktioniert der gesamte Turm — mit deutlich mehr Schritten dazwischen, und mindestens einer Explosion.", type: "personal", rarity: "rare", createdBy: "system" },
+      { title: "Schreibtisch ordnen", description: "Räum deinen Arbeitsplatz auf. Die Produktivitätsforschung nennt das 'Umweltoptimierung'. Der Rest der Welt nennt es 'endlich'.", type: "personal", rarity: "common", createdBy: "system" },
+      { title: "30 Minuten lesen", description: "Such dir irgendetwas zum Lesen. Ein Buch, einen Artikel, die Rückseite einer Müslipackung — das Archiv ist nicht wählerisch. Es zählt nur die Minuten.", type: "learning", rarity: "common", createdBy: "system" },
+      { title: "10 Minuten dehnen", description: "Eine kurze Dehnroutine. Der Körper ist das einzige Werkzeug, das du nicht ersetzen kannst. Er erinnert dich gelegentlich daran. Meistens im Ungünstigsten Moment.", type: "fitness", rarity: "common", createdBy: "system" },
     ];
     await Promise.all(starterQuests.map(q =>
       fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(5000) })

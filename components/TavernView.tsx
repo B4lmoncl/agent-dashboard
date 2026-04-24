@@ -59,7 +59,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
     try {
       const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) setStatus(await r.json());
-    } catch { setError("Die Taverne bleibt verschlossen. Versuch es nochmal."); }
+    } catch { setError("Failed to load tavern status"); }
     setLoading(false);
   }, [playerName]);
 
@@ -83,13 +83,13 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         body: JSON.stringify({ days: selectedDays, reason: reason.trim() || null }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Die Tür der Taverne bleibt zu."); } else {
+      if (!r.ok) { setError(d.error || "Failed to enter"); } else {
         setSuccess(d.message);
         setTimeout(() => setSuccess(null), 5000);
         fetchStatus();
         onRefresh?.();
       }
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
     setActionLoading(false);
   };
 
@@ -103,13 +103,13 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Die Rast lässt sich nicht beenden. Versuch es nochmal."); } else {
+      if (!r.ok) { setError(d.error || "Failed to leave"); } else {
         setSuccess(d.message);
         setTimeout(() => setSuccess(null), 5000);
         fetchStatus();
         onRefresh?.();
       }
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
     setActionLoading(false);
   };
 
@@ -272,12 +272,12 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
           {/* Reason (optional) */}
           <div>
-            <p className="text-xs font-semibold mb-1 text-w40">Grund (optional)</p>
+            <p className="text-xs font-semibold mb-1 text-w40">Reason (optional)</p>
             <input
               value={reason}
               onChange={e => setReason(e.target.value)}
-              placeholder="z. B. Urlaub, krank, Kopf auslüften…"
-              aria-label="Grund für die Rast"
+              placeholder="e.g. Vacation, sick leave, mental health break..."
+              aria-label="Reason for rest"
               maxLength={200}
               className="input-dark w-full text-xs px-3 py-2 rounded-lg"
             />

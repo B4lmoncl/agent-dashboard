@@ -78,7 +78,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Die Prüfung klemmt. Versuch es nochmal." });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to approve quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not approve quest" });
@@ -102,7 +102,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Die Prüfung klemmt. Versuch es nochmal." });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to approve quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not reject quest" });
@@ -152,7 +152,7 @@ export function useQuestActions({
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
         body: JSON.stringify({ questId, action }),
       });
-      if (!r.ok) addToast({ type: "error", message: "Der Favorit bleibt unverändert. Versuch es nochmal." });
+      if (!r.ok) addToast({ type: "error", message: "Failed to toggle favorite" });
     } catch {
       addToast({ type: "error", message: "Network error toggling favorite" });
     }
@@ -169,12 +169,12 @@ export function useQuestActions({
       });
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
-        addToast({ type: "flavor", message: "Die Schriftrolle gehört dir. Das Brett notiert es.", icon: "/images/icons/nav-great-hall.png" });
+        addToast({ type: "flavor", message: "Quest claimed", icon: "/images/icons/nav-great-hall.png" });
         advanceTutorial();
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: d.error || "Die Quest weigert sich, gepackt zu werden. Versuch es nochmal." });
+        addToast({ type: "error", message: d.error || "Failed to claim quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not claim quest", onRetry: () => handleClaim(questId) });
@@ -197,7 +197,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Die Quest lässt sich nicht zurücklegen. Versuch es nochmal." });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to unclaim quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not unclaim quest", onRetry: () => handleUnclaim(questId) });
@@ -219,7 +219,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Die Gruppe hat schon zu. Versuch es nochmal." });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to join co-op quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not join co-op quest" });
@@ -240,7 +240,7 @@ export function useQuestActions({
       if (r.ok) {
         const data = await r.json().catch(() => ({}));
         if (data.allDone) {
-          addToast({ type: "flavor", message: "Fertig. Auch die anderen haben geliefert.", icon: "/images/icons/cat-coop.png", sub: "Belohnungen eingesammelt." });
+          addToast({ type: "flavor", message: "Co-op quest complete. All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
           // Server now mirrors the single-player response shape — fire the
           // celebration so players see what they earned. Previously co-op
           // grants were silent.
@@ -254,7 +254,7 @@ export function useQuestActions({
             if ((data.lastRestedXP || 0) > 0) currencies.push({ name: "Rested Bonus", amount: data.lastRestedXP, color: "#60a5fa" });
             setRewardCelebration({
               type: "quest",
-              title: "Co-op Quest abgeschlossen",
+              title: "Co-op Quest Complete",
               xpEarned: data.xpEarned || 0,
               goldEarned: data.goldEarned || 0,
               loot: data.lootDrop || null,
@@ -263,7 +263,7 @@ export function useQuestActions({
             });
           }
         } else {
-          addToast({ type: "flavor", message: "Dein Teil liegt still. Die anderen brauchen noch einen Moment.", icon: "/images/icons/cat-coop.png" });
+          addToast({ type: "flavor", message: "Your part is done. Waiting for partners...", icon: "/images/icons/cat-coop.png" });
         }
         if (data.newAchievements?.length > 0) {
           for (const ach of data.newAchievements) {
@@ -271,12 +271,12 @@ export function useQuestActions({
           }
         }
         if (data.inventoryFull) {
-          addToast({ type: "error", message: "Deine Taschen platzen. Die Beute wurde von jemandem aufgesammelt, der weniger hortet." });
+          addToast({ type: "error", message: "Inventory full — loot item lost. Free up space." });
         }
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Die Gruppe hat den Abschluss verpasst. Versuch es nochmal." });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to complete co-op quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not complete co-op quest", onRetry: () => handleCoopComplete(questId) });
@@ -461,7 +461,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: d.error || "Die Quest lässt sich nicht eintragen. Versuch es nochmal." });
+        addToast({ type: "error", message: d.error || "Failed to complete quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not complete quest", onRetry: () => handleComplete(questId, questTitle) });
@@ -480,13 +480,13 @@ export function useQuestActions({
       });
       if (!r.ok) {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Der Faden reißt. Versuch es nochmal." });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to create chain quest" });
         return;
       }
       setChainOffer(null);
       await refresh();
     } catch {
-      addToast({ type: "error", message: "Der Faden findet keinen Halt. Versuch es nochmal." });
+      addToast({ type: "error", message: "Failed to accept chain quest" });
     }
   }, [reviewApiKey, playerName, refresh, setChainOffer, addToast]);
 

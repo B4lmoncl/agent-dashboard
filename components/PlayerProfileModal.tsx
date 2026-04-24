@@ -57,12 +57,12 @@ const ONLINE_COLORS: Record<string, string> = { online: "#22c55e", idle: "#eab30
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
-  if (mins < 1) return "gerade eben";
-  if (mins < 60) return `vor ${mins} Min.`;
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
   const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `vor ${hrs} Std.`;
+  if (hrs < 24) return `${hrs}h ago`;
   const days = Math.floor(hrs / 24);
-  return `vor ${days} T.`;
+  return `${days}d ago`;
 }
 
 const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; };
@@ -97,7 +97,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         setError("Player not found");
       }
     } catch {
-      setError("Das Profil bleibt verborgen. Versuch es nochmal.");
+      setError("Failed to load profile");
     }
     setLoading(false);
   }, [playerId, reviewApiKey]);
@@ -119,9 +119,9 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         onAddFriend?.(playerId);
       } else {
         const d = await r.json().catch(() => ({}));
-        setError((d as { error?: string }).error || "Die Anfrage findet keinen Empfänger. Versuch es nochmal.");
+        setError((d as { error?: string }).error || "Failed to send friend request");
       }
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
   };
 
   const handleRemoveFriend = async () => {
@@ -137,9 +137,9 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         setConfirmRemove(false);
       } else {
         const d = await r.json().catch(() => ({}));
-        setError((d as { error?: string }).error || "Der Bund lässt sich nicht lösen. Versuch es nochmal.");
+        setError((d as { error?: string }).error || "Failed to remove friend");
       }
-    } catch { setError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
+    } catch { setError("Network error"); }
     setRemovingFriend(false);
   };
 
@@ -147,9 +147,9 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.82)" }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div role="dialog" aria-modal="true" aria-label="Spielerprofil" className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden" style={{ background: "#141418", maxHeight: "90vh", overflowY: "auto" }}>
+      <div role="dialog" aria-modal="true" aria-label="Player profile" className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden" style={{ background: "#141418", maxHeight: "90vh", overflowY: "auto" }}>
         {/* Close button */}
-        <button onClick={onClose} aria-label="Schließen" className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
+        <button onClick={onClose} aria-label="Close" className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
           <span className="text-white text-sm">&#10005;</span>
         </button>
 

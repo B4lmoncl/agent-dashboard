@@ -83,9 +83,9 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         setDailyQuests(data.dailyQuests || {});
         setMessage(null);
       } else {
-        setMessage({ type: "error", text: "Die Zirkel schweigen gerade. Versuch es nochmal." });
+        setMessage({ type: "error", text: "Failed to load faction data" });
       }
-    } catch { setMessage({ type: "error", text: "Die Zirkel schweigen gerade. Versuch es nochmal." }); }
+    } catch { setMessage({ type: "error", text: "Failed to load faction data" }); }
     setLoading(false);
   }, [reviewApiKey]);
 
@@ -112,11 +112,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           });
         }
       } else {
-        setMessage({ text: data.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
+        setMessage({ text: data.error || "Failed to claim", type: "error" });
         setTimeout(() => setMessage(null), 3000);
       }
     } catch {
-      setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
+      setMessage({ text: "Network error", type: "error" });
       setTimeout(() => setMessage(null), 3000);
     }
     setClaimingDaily(null);
@@ -145,10 +145,10 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           });
         }
       } else {
-        setMessage({ text: data.error || "Die Hand bleibt leer — versuch es nochmal.", type: "error" });
+        setMessage({ text: data.error || "Failed to claim", type: "error" });
       }
     } catch {
-      setMessage({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
+      setMessage({ text: "Network error", type: "error" });
     }
     setClaiming(null);
     setTimeout(() => setMessage(null), 3000);

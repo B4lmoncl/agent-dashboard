@@ -690,7 +690,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
     }).catch(e => {
       if (cancelled) return;
       console.error('[gacha-view]', e);
-      setError("Die Banner lassen sich nicht auslegen. Versuch es nochmal.");
+      setError("Failed to load banners");
     }).finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, []);

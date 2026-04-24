@@ -36,7 +36,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
         setSubmitted(true);
         setTimeout(onClose, 1500);
       } else {
-        setError("Der Brief ist nicht angekommen. Versuch es nochmal.");
+        setError("Failed to submit. Try again.");
       }
     } catch {
       setError("Network error.");
@@ -128,7 +128,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
                 <textarea
                   value={text}
                   onChange={e => setText(e.target.value)}
-                  placeholder="Beschreib den Fehler oder den Vorschlag…"
+                  placeholder="Describe the issue or suggestion..."
                   rows={4}
                   maxLength={2000}
                   className="w-full text-xs px-3 py-2 rounded-lg resize-none"

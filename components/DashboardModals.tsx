@@ -114,7 +114,7 @@ export default function DashboardModals({
         setConvResult({ text: d.error || "Conversion failed", type: "error" });
       }
     } catch {
-      setConvResult({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", type: "error" });
+      setConvResult({ text: "Network error", type: "error" });
     }
     setConvConverting(false);
     setTimeout(() => setConvResult(null), 3000);

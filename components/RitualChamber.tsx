@@ -99,7 +99,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         body: JSON.stringify({ title: newHabitTitle.trim(), positive: true, negative: true, playerId: playerName }),
       });
       if (r.ok) { setNewHabitTitle(""); fetchHabits(); }
-      else { addToast?.({ type: "error", message: "Das Ritual findet keinen Anfang. Versuch es nochmal." }); }
+      else { addToast?.({ type: "error", message: "Failed to create habit" }); }
     } catch { addToast?.({ type: "error", message: "Network error — habit not created" }); }
   };
 
@@ -127,10 +127,10 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
       if (r.ok) {
         fetchHabits();
       } else {
-        if (addToast) addToast({ type: "error", message: "Das Ritual lässt sich nicht tilgen. Versuch es nochmal." });
+        if (addToast) addToast({ type: "error", message: "Failed to delete habit" });
       }
     } catch {
-      if (addToast) addToast({ type: "error", message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." });
+      if (addToast) addToast({ type: "error", message: "Network error" });
     }
   };
 
@@ -482,7 +482,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               fetchRituals(playerName).then(setRituals);
             } else {
               const d = await ritualRes.json().catch(() => ({}));
-              if (addToast) addToast({ type: "error", message: d.error || "Das Ritual findet keinen Anfang. Versuch es nochmal." });
+              if (addToast) addToast({ type: "error", message: d.error || "Failed to create habit" });
             }
           };
           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
@@ -621,7 +621,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     try {
                       await fetch(`/api/rituals/${id}`, { method: 'DELETE', headers: { ...getAuthHeaders(reviewApiKey) } });
                       if (playerName) fetchRituals(playerName).then(setRituals);
-                    } catch { addToast?.({ type: "error", message: "Ritual konnte nicht gelöscht werden. Versuch es nochmal." }); }
+                    } catch { addToast?.({ type: "error", message: "Failed to delete ritual" }); }
                   }}
                   className="flex-1 text-sm py-2 rounded-lg font-semibold"
                   style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}

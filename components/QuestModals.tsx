@@ -104,7 +104,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
         onRefresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        setSpawnError(d.error || "Die Quest landet nicht auf dem Brett. Versuch es nochmal.");
+        setSpawnError(d.error || "Failed to add quest. Try again.");
       }
     } catch { setSpawnError("Network error. Could not add quest."); } finally {
       setSpawning(null);
@@ -233,7 +233,7 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
       });
       if (!r.ok) {
         const d = await r.json().catch(() => ({}));
-        setJoinError(d.error || "Die Herausforderung öffnet sich nicht. Versuch es nochmal.");
+        setJoinError(d.error || "Failed to join challenge. Try again.");
       } else {
         const updated = await fetch("/api/challenges").then(r2 => r2.ok ? r2.json() : challenges);
         setChallenges(updated);
@@ -363,7 +363,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
       } else {
         const d = await res.json().catch(() => ({}));
         console.error("[coop] create failed:", d);
-        setCoopError(d.error || "Fehler beim Erstellen der Co-op Quest. Versuch es nochmal.");
+        setCoopError(d.error || "Failed to create co-op quest. Try again.");
       }
     } catch { setCoopError("Netzwerkfehler — Quest konnte nicht erstellt werden."); } finally { setCreating(null); }
   };
