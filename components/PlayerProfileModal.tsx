@@ -78,7 +78,18 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
   const { playerName, reviewApiKey } = useDashboard();
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Split errors: loadError replaces the profile (fatal — profile couldn't
+  // load), actionError renders as a banner above the profile (transient —
+  // friend request failed but profile is still viewable).
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+  // Auto-dismiss action errors after 5s. Load errors stay until profile
+  // is re-fetched.
+  useEffect(() => {
+    if (!actionError) return;
+    const t = setTimeout(() => setActionError(null), 5000);
+    return () => clearTimeout(t);
+  }, [actionError]);
   const [friendRequestSent, setFriendRequestSent] = useState(false);
   const [removingFriend, setRemovingFriend] = useState(false);
   const [confirmRemove, setConfirmRemove] = useState(false);
@@ -87,17 +98,17 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
   useModalBehavior(true, onClose);
 
   const fetchProfile = useCallback(async () => {
-    if (!playerId) { setError("No player ID"); setLoading(false); return; }
+    if (!playerId) { setLoadError("No player ID"); setLoading(false); return; }
     try {
       const headers = reviewApiKey ? getAuthHeaders(reviewApiKey) : {};
       const r = await fetch(`/api/player/${encodeURIComponent(playerId)}/public-profile`, { headers });
       if (r.ok) {
         setProfile(await r.json());
       } else {
-        setError("Player not found");
+        setLoadError("Player not found");
       }
     } catch {
-      setError("Failed to load profile");
+      setLoadError("Failed to load profile");
     }
     setLoading(false);
   }, [playerId, reviewApiKey]);
@@ -119,9 +130,9 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         onAddFriend?.(playerId);
       } else {
         const d = await r.json().catch(() => ({}));
-        setError((d as { error?: string }).error || "Failed to send friend request");
+        setActionError((d as { error?: string }).error || "Failed to send friend request");
       }
-    } catch { setError("Network error"); }
+    } catch { setActionError("Network error"); }
   };
 
   const handleRemoveFriend = async () => {
@@ -137,9 +148,9 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         setConfirmRemove(false);
       } else {
         const d = await r.json().catch(() => ({}));
-        setError((d as { error?: string }).error || "Failed to remove friend");
+        setActionError((d as { error?: string }).error || "Failed to remove friend");
       }
-    } catch { setError("Network error"); }
+    } catch { setActionError("Network error"); }
     setRemovingFriend(false);
   };
 
@@ -158,10 +169,16 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             <div className="flex items-center gap-4"><div className="skeleton w-16 h-16 rounded-2xl" /><div className="space-y-2 flex-1"><div className="skeleton skeleton-text w-32" /><div className="skeleton skeleton-text w-20" /></div></div>
             <div className="skeleton-card h-20" /><div className="skeleton-card h-32" />
           </div>
-        ) : error ? (
-          <div className="p-8 text-center"><p className="text-sm" style={{ color: "#ef4444" }}>{error}</p></div>
+        ) : loadError ? (
+          <div className="p-8 text-center"><p className="text-sm" style={{ color: "#ef4444" }}>{loadError}</p></div>
         ) : profile ? (
           <div className="tab-content-enter">
+            {/* Action error banner — auto-dismisses after 5s */}
+            {actionError && (
+              <div className="mx-4 mt-3 px-3 py-2 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)" }}>
+                <p className="text-xs" style={{ color: "#ef4444" }}>{actionError}</p>
+              </div>
+            )}
             {/* Header — name, level, title, online status */}
             <div className="p-6 pb-4" style={{ background: `linear-gradient(180deg, ${profile.color}15 0%, transparent 100%)`, borderBottom: `1px solid ${profile.color}20` }}>
               <div className="flex items-center gap-4">

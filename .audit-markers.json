@@ -239,9 +239,9 @@
     "status": "clean"
   },
   "components/PlayerProfileModal.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. FIXED: ring slot missing, 4 professions missing",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 45: Real UX bug \u2014 single error state caused profile to vanish and be replaced by error text when ANY action (add friend / remove friend) failed. Split into loadError (fatal, replaces profile) and actionError (transient, rendered as banner above profile, auto-dismissed after 5s). Add Friend and Remove Friend failures now show inline banner without hiding the profile.",
     "status": "clean"
   },
   "components/ShopModal.tsx": {
