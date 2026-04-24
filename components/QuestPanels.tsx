@@ -398,7 +398,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-2xl mb-2">×</p>
               <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Count the days you walk away from a bad habit. They stack.</p>
             </div>
           ) : (
             <div className="space-y-2">

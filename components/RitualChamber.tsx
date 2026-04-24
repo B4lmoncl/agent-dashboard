@@ -782,12 +782,12 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 onClick={() => setConfirmDeleteHabitId(null)}
                 className="text-xs px-4 py-2 rounded-lg"
                 style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
-              >Abbrechen</button>
+              >Cancel</button>
               <button
                 onClick={() => { deleteHabit(confirmDeleteHabitId); setConfirmDeleteHabitId(null); }}
                 className="text-xs px-4 py-2 rounded-lg font-bold"
                 style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
-              >Löschen</button>
+              >Delete</button>
             </div>
           </div>
         </div>

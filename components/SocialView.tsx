@@ -1950,7 +1950,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
         <div className="text-center py-4">
           <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Sworn Bonds</p>
           <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
-            Wähle einen Freund. Schwört einen Pakt. Erfüllt gemeinsame Ziele. Die stärksten Bande halten länger als Stahl.
+            Pick a friend. Swear a pact. Work the weekly objective together. The strongest bonds outlast steel.
           </p>
         </div>
         {cooldownUntil && (
@@ -1999,16 +1999,16 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 {proposalTarget.avatar || proposalTarget.name?.slice(0, 2).toUpperCase()}
               </div>
               <div>
-                <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Pakt mit {proposalTarget.name}</p>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Wähle die Dauer eures Bundes.</p>
+                <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Swear a bond with {proposalTarget.name}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Choose how long this pact runs.</p>
               </div>
               <button onClick={() => setProposalTarget(null)} aria-label="Cancel" className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {([
-                { key: "4w" as const, label: "Kurzpakt", desc: "4 Wochen", detail: "Ideal zum Ausprobieren. 4 wöchentliche Ziele." },
-                { key: "8w" as const, label: "Schwurbund", desc: "8 Wochen", detail: "Der Standard-Pakt. Mehr Zeit, stärkere Belohnungen." },
-                { key: "endless" as const, label: "Ewiger Eid", desc: "Unbegrenzt", detail: "Bis einer von euch bricht. Höchste Duo-Streak-Boni." },
+                { key: "4w" as const, label: "Short Pact", desc: "4 weeks", detail: "Good for a trial run. Four weekly objectives, then it ends." },
+                { key: "8w" as const, label: "Sworn Accord", desc: "8 weeks", detail: "The standard pact. More time, stronger rewards." },
+                { key: "endless" as const, label: "Eternal Oath", desc: "Open-ended", detail: "Until one of you breaks it. Highest duo-streak bonuses." },
               ]).map(opt => (
                 <button
                   key={opt.key}
@@ -2026,9 +2026,9 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               ))}
             </div>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
-              {proposalDuration === "4w" ? "Ideal zum Ausprobieren. 4 wöchentliche Ziele, danach endet der Pakt automatisch." :
-               proposalDuration === "8w" ? "Der Standard-Pakt. 8 wöchentliche Ziele mit stärkeren Belohnungen ab Woche 5." :
-               "Kein Ende in Sicht. Der Pakt läuft bis einer von euch ihn bricht. Höchste Duo-Streak-Boni."}
+              {proposalDuration === "4w" ? "Good for a trial run. Four weekly objectives, then the pact ends on its own." :
+               proposalDuration === "8w" ? "The standard pact. Eight weekly objectives, stronger rewards from week 5." :
+               "No end in sight. The pact runs until one of you breaks it. Highest duo-streak bonuses."}
             </p>
             <div className="flex gap-2">
               <button
@@ -2430,7 +2430,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         <div className="flex items-center gap-2">
           <Tip k="breakaway" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span></Tip>
         </div>
-        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach.</p>
+        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>The strongest bonds aren&apos;t forged in the fight. They&apos;re forged after.</p>
       </div>
 
       {/* Tab navigation */}

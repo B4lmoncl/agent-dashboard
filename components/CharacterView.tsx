@@ -919,8 +919,8 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     return (
       <>
         <div
-          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse empty-slot-dashed" : item.rarity === "legendary" ? " legendary-ambient" : item.rarity === "epic" ? " epic-ambient" : ""}`}
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
+          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse empty-slot-dashed" : item.rarity === "legendary" ? " legendary-ambient legendary-item-glow" : item.rarity === "epic" ? " epic-ambient" : ""}`}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item ? "help" : "default", boxShadow: item && item.rarity === "legendary" ? `0 0 18px ${borderColor}80, 0 0 36px ${borderColor}40, inset 0 0 12px ${borderColor}20` : item && item.rarity === "epic" ? `0 0 12px ${borderColor}60, inset 0 0 8px ${borderColor}15` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
@@ -930,7 +930,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
             ? <ItemImg src={item.icon} alt={item.name} size={40} rarity={item.rarity} />
             : iconSrc
               ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.4 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{label.slice(0, 3)}</span>
+              : <span className="text-2xl" style={{ color: "rgba(255,255,255,0.18)", lineHeight: 1 }} title={`Equip a ${label}`}>+</span>
           }
         </div>
         {item && (
@@ -1878,7 +1878,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           )}
 
           {/* Stats tab */}
-          {rightTab === "stats" && loading && <div className="space-y-2">{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 32 }}><div className="skeleton skeleton-text w-24" /></div>)}</div>}
+          {rightTab === "stats" && loading && <div key="stats-loading" className="space-y-2 tab-content-enter">{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 32 }}><div className="skeleton skeleton-text w-24" /></div>)}</div>}
           {rightTab === "stats" && !loading && charData && (() => {
             const { kraft = 0, ausdauer = 0, weisheit = 0, glueck = 0, fokus = 0, vitalitaet = 0, charisma = 0, tempo = 0 } = charData.stats || {};
             const base = charData.baseStats || { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
@@ -1901,7 +1901,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const heroUtility = Math.round(weisheit * 2 + glueck * 2 + (charisma || 0) * 1.5 + (tempo || 0) * 1.5);
 
             return (
-              <>
+              <div key="stats-content" className="tab-content-enter">
                 {/* Hero Numbers */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
                   <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
@@ -2366,12 +2366,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 </div>
 
                 {/* Gear Score moved to stats tab — above set bonuses */}
-              </>
+              </div>
             );
           })()}
 
           {/* Gems tab */}
-          {rightTab === "gems" && gemsLoading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Loading gems...</p>}
+          {rightTab === "gems" && gemsLoading && <p key="gems-loading" className="text-xs tab-content-enter" style={{ color: "rgba(255,255,255,0.45)" }}>The jeweler is still counting…</p>}
           {rightTab === "gems" && !gemsLoading && gemData && (() => {
             const GEM_COLORS: Record<string, string> = { Ruby: "#ef4444", Sapphire: "#3b82f6", Emerald: "#22c55e", Topaz: "#f59e0b", Amethyst: "#a855f7", Diamond: "#e2e8f0" };
             // Group inventory by type
@@ -2403,7 +2403,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               setGemAction(null);
             };
             return (
-              <div className="space-y-3">
+              <div key="gems-content" className="space-y-3 tab-content-enter">
                 {/* Gem Inventory */}
                 <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Gem Inventory</p>
                 {Object.keys(grouped).length === 0 && (

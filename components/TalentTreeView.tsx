@@ -190,7 +190,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt. ${d.goldSpent}g bezahlt.` });
+        _toast({ type: "flavor", icon: "◆", message: `All talents refunded. ${d.goldSpent}g paid.` });
         setConfirmReset(false);
         fetchTalents();
       } else {

@@ -360,7 +360,7 @@ export function useQuestActions({
             bondLevelUp: !!cr.bondLevelUp,
           });
           if (isUltimateUnlock) {
-            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} hat etwas erwachen lassen, das lange geschlafen hat.`, icon: "★", sub: "Bond Level 5 — eine lang gehaltene Luft entweicht." });
+            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} stirred something that had been sleeping a long time.`, icon: "★", sub: "Bond Level 5 — a long-held breath lets out." });
           }
         }
         if (data.levelUp) {
@@ -371,7 +371,7 @@ export function useQuestActions({
           addToast({
             type: "item",
             itemName: data.gemDrop.name,
-            message: "Ein Stein, aus seinem Versteck gelöst.",
+            message: "A stone, pried loose from its hiding place.",
             icon: data.gemDrop.icon,
             rarity: data.gemDrop.rarity || "rare",
             item: { name: data.gemDrop.name, rarity: data.gemDrop.rarity || "rare", icon: data.gemDrop.icon || null, desc: data.gemDrop.desc || null, stats: data.gemDrop.stats || null },
@@ -380,7 +380,7 @@ export function useQuestActions({
         // Toast for material drops
         if (data.materialDrops && Array.isArray(data.materialDrops) && data.materialDrops.length > 0) {
           const matNames = data.materialDrops.map((m: { name?: string; id: string; amount: number }) => `${m.amount}x ${m.name || m.id}`).join(", ");
-          addToast({ type: "item", itemName: matNames, message: "Material aufgelesen. Nützlich, diesmal.", rarity: "uncommon" });
+          addToast({ type: "item", itemName: matNames, message: "Materials scavenged. Useful, this time.", rarity: "uncommon" });
         }
         // Warning: inventory was full, loot was lost
         if (data.inventoryFull) {
@@ -393,7 +393,7 @@ export function useQuestActions({
         }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
-          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Ein Rezept taucht auf. Irgendwer, irgendwo, vermisst es.", rarity: "epic" });
+          addToast({ type: "item", itemName: data.recipeDrop.name, message: "A recipe surfaces. Somebody, somewhere, is missing it.", rarity: "epic" });
         }
         // Toast for codex discoveries
         if (data.codexDiscovery && Array.isArray(data.codexDiscovery) && data.codexDiscovery.length > 0) {
@@ -409,7 +409,7 @@ export function useQuestActions({
         }
         // Toast for battle pass level-up
         if (data.battlePassLevelUp) {
-          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Die Saison nickt dir zu.`, icon: "◆" });
+          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. The season nods at you.`, icon: "◆" });
         }
         // Toast for faction rep level-ups
         if (data.repGains) {

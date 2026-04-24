@@ -2130,7 +2130,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <button
                               onClick={() => {
                                 setConfirmAction({
-                                  message: `"${item.name}" (${item.rarity}) entzaubern?\n\nDas Item wird zerstört und in Verzauberungsmaterialien umgewandelt. Dies kann nicht rückgängig gemacht werden.`,
+                                  message: `Disenchant "${item.name}" (${item.rarity})?\n\nThe item is destroyed and turned into enchanting materials. This can't be undone.`,
                                   onConfirm: async () => {
                                     setConfirmAction(null);
                                     try {
@@ -2141,7 +2141,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       });
                                       const data = await r.json();
                                       if (r.ok) {
-                                        setCraftResult(data.message || "Entzaubert.");
+                                        setCraftResult(data.message || "Disenchanted.");
                                         setDisenchantInv(prev => prev.filter(i => (i.instanceId || i.id) !== (item.instanceId || item.id)));
                                         if (onRefresh) onRefresh();
                                         fetchData();
