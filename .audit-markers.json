@@ -521,9 +521,9 @@
     "status": "clean"
   },
   "lib/quest-catalog.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. Idempotent seed (checks quest-seed-001). push+questsById.set correct. Metadata rebuild. No mutations outside boot.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 58: Clean. 96-line catalog utility. rebuildCatalogMeta: simple aggregation by category/class. seedQuestCatalog: idempotent (checks quest-seed-001 before seeding). Template map uses rarityMap with safe \"common\" fallback. Correctly maintains state.questsById Map per project convention. No findings.",
     "status": "clean"
   },
   "routes/campaigns.js": {
