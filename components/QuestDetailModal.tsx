@@ -129,7 +129,7 @@ export default function QuestDetailModal({
                 {favorites.includes(q.id) ? "\u2605" : "\u2606"}
               </button>
             )}
-            <button onClick={onClose} className="btn-close" aria-label="Schließen" style={{ fontSize: 20, lineHeight: 1 }}>×</button>
+            <button onClick={onClose} className="btn-close" aria-label="Close" style={{ fontSize: 20, lineHeight: 1 }}>×</button>
           </div>
         </div>
         {/* Body */}

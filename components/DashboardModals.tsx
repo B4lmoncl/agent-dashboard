@@ -160,7 +160,7 @@ export default function DashboardModals({
                 onClick={e => e.stopPropagation()}>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-semibold text-primary">Währungen</h3>
-                  <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Schließen">×</button>
+                  <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Close">×</button>
                 </div>
                 <div className="space-y-2 overflow-y-auto flex-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" as const }}>
                   {[
@@ -325,7 +325,7 @@ export default function DashboardModals({
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
                 <Tip k="bonus_stacking"><h3 className="text-sm font-bold text-bright cursor-help">Modifikator-Übersicht</h3></Tip>
-                <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
@@ -387,7 +387,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#f97316" }}>Forge Streak</h3>
-                <button onClick={() => setStreakInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setStreakInfoOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-3 text-w60">
                 Your consecutive days of quest completion. Keep the streak alive to earn bonus XP and keep companions happy.
@@ -415,7 +415,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#ef4444" }}>Quests</h3>
-                <button onClick={() => setActiveQuestsInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setActiveQuestsInfoOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-3 text-w60">
                 Your quest overview. Claiming too many quests at once (&gt;20) will apply an XP hoarding penalty.
@@ -451,7 +451,7 @@ export default function DashboardModals({
             <div className="relative rounded-2xl p-5 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400 }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#a78bfa" }}>How XP Works</h3>
-                <button onClick={() => setXpInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setXpInfoOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-4 text-w55">
                 XP scales with quest rarity. Higher rarity quests reward significantly more experience.

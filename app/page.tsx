@@ -118,7 +118,7 @@ function WhatsNewHero({ color, title, short, long, bg, icon, featured = false, d
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 min-w-0">
               <p className="text-sm font-bold truncate" style={{ color, textShadow: featured ? `0 0 12px ${color}40` : "none" }}>{title}</p>
-              {featured && <span className="text-xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: `${color}20`, color, border: `1px solid ${color}40` }}>Neu</span>}
+              {featured && <span className="text-xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: `${color}20`, color, border: `1px solid ${color}40` }}>New</span>}
             </div>
             <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}80`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.25s ease" }}>&#9662;</span>
           </div>
@@ -501,6 +501,18 @@ export default function Dashboard() {
   useModalBehavior(xpInfoOpen, closeXpInfo);
   useModalBehavior(modifierOpen, closeModifier);
   useModalBehavior(professionsInfoOpen, closeProfessionsInfo);
+  // What's New popup close handler — pulled out of the render-body IIFE so
+  // useModalBehavior (ESC + body scroll lock + focus trap) can wire to it
+  // from the component body. Previously the popup worked only via click-out.
+  const closeWhatsNewPopup = useCallback(() => {
+    setWhatsNewOpen(false);
+    setRingLockStep(0);
+    try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
+    addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Welcome to the Open Beta", sub: "The hall registers your presence" });
+    setBetaLaunchStorm(true);
+    setTimeout(() => setBetaLaunchStorm(false), 2200);
+  }, [addToast]);
+  useModalBehavior(whatsNewOpen, closeWhatsNewPopup);
 
   // Currencies modal — ESC to close + scroll lock
   const closeCurrencies = useCallback(() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }, []);
@@ -2855,7 +2867,7 @@ export default function Dashboard() {
 
       {/* Level Up Celebration */}
       {levelUpCelebration && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }}>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeLevelUp}>
           <div className="levelup-modal w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1a1400 0%, #0d0d14 60%)", border: "2px solid rgba(255,215,0,0.5)", boxShadow: "0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(255,215,0,0.1)" }}
             onClick={e => e.stopPropagation()}>
             {/* Sparkle particles */}
@@ -3196,16 +3208,6 @@ export default function Dashboard() {
 
       {/* What's New Splash */}
       {whatsNewOpen && (() => {
-        const closePopup = () => {
-          setWhatsNewOpen(false);
-          setRingLockStep(0);
-          try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
-          // Welcome-Toast feuert den Übergang an, statt das Modal einfach verschwinden zu lassen.
-          addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Willkommen zur Open Beta", sub: "Die Halle registriert deine Anwesenheit" });
-          // Kurzer Highstorm über die Hauptseite — der Launch hinterlässt Spuren, nicht nur Text.
-          setBetaLaunchStorm(true);
-          setTimeout(() => setBetaLaunchStorm(false), 2200);
-        };
         // Stage 1 → Stage 2 lock-in: three rings seal one at a time. On the
         // third seal (~440ms), we hold ~320ms so the user registers the
         // tableau, then swap stages. Guard against double-click.
@@ -3216,8 +3218,11 @@ export default function Dashboard() {
           setTimeout(() => setRingLockStep(3), 520);
           setTimeout(() => { setPopupStage("details"); setRingLockStep(0); }, 860);
         };
+        // Disable click-out + close-X while rings are mid-seal so the user
+        // can't accidentally kill the animation with a stray click.
+        const handleBackdropClick = () => { if (ringLockStep === 0) closeWhatsNewPopup(); };
         return (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4 launch-shockwave" onClick={closePopup}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4 launch-shockwave" onClick={handleBackdropClick}>
           {popupStage === "hero" ? (
             /* ─── STAGE 1: pure cinematic hero. No info overload — one line, one button. */
             <div
@@ -3228,31 +3233,32 @@ export default function Dashboard() {
               style={{ background: "radial-gradient(ellipse at 50% 30%, #1a1428 0%, #0a0a14 70%, #050608 100%)", border: "1px solid rgba(230,204,128,0.35)", boxShadow: "0 30px 120px rgba(0,0,0,0.95), 0 0 120px rgba(230,204,128,0.18), 0 0 60px rgba(167,139,250,0.14)" }}
               onClick={e => e.stopPropagation()}
             >
-              {/* Close button */}
+              {/* Close button — disabled while the rings are mid-seal so */}
+              {/* a stray tap can't kill the animation. */}
               <button
-                onClick={closePopup}
+                onClick={handleBackdropClick}
+                disabled={ringLockStep > 0}
                 aria-label="Dismiss"
                 className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold z-20 transition-opacity"
-                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: ringLockStep > 0 ? "not-allowed" : "pointer", opacity: ringLockStep > 0 ? 0.35 : 1 }}
               >✕</button>
 
               {/* Rotating rune orbits behind the text. When the Stage 1 CTA */}
               {/* is clicked they lock in sequence (outer → mid → inner) and */}
               {/* each gets a gold glow; on the third lock the stage switches. */}
-              {/* `ring-just-locked` fires the one-shot flash keyframe only on */}
-              {/* the exact step that triggered this ring, then .ring-locked */}
-              {/* holds the steady-state glow. */}
+              {/* Sizes use min(fixed, vw) so the rings fit inside 320px phones */}
+              {/* without being clipped by overflow:hidden on the panel. */}
               <div
                 className={`absolute left-1/2 top-1/2 pointer-events-none hero-orbit-slow${ringLockStep >= 1 ? " ring-locked" : ""}${ringLockStep === 1 ? " ring-just-locked" : ""}`}
-                style={{ width: 360, height: 360, borderRadius: "50%", border: "1px dashed rgba(230,204,128,0.22)", transform: "translate(-50%,-50%)", zIndex: 1 }}
+                style={{ width: "min(360px, 84vw)", height: "min(360px, 84vw)", borderRadius: "50%", border: "1px dashed rgba(230,204,128,0.22)", transform: "translate(-50%,-50%)", zIndex: 1 }}
               />
               <div
                 className={`absolute left-1/2 top-1/2 pointer-events-none hero-orbit-med${ringLockStep >= 2 ? " ring-locked" : ""}${ringLockStep === 2 ? " ring-just-locked" : ""}`}
-                style={{ width: 260, height: 260, borderRadius: "50%", border: "1px dashed rgba(167,139,250,0.25)", transform: "translate(-50%,-50%)", zIndex: 1 }}
+                style={{ width: "min(260px, 62vw)", height: "min(260px, 62vw)", borderRadius: "50%", border: "1px dashed rgba(167,139,250,0.25)", transform: "translate(-50%,-50%)", zIndex: 1 }}
               />
               <div
                 className={`absolute left-1/2 top-1/2 pointer-events-none hero-orbit-slow${ringLockStep >= 3 ? " ring-locked" : ""}${ringLockStep === 3 ? " ring-just-locked" : ""}`}
-                style={{ width: 170, height: 170, borderRadius: "50%", border: "1px solid rgba(230,204,128,0.12)", transform: "translate(-50%,-50%)", zIndex: 1 }}
+                style={{ width: "min(170px, 42vw)", height: "min(170px, 42vw)", borderRadius: "50%", border: "1px solid rgba(230,204,128,0.12)", transform: "translate(-50%,-50%)", zIndex: 1 }}
               />
 
               {/* Dense floating particles — 18 stars */}
@@ -3309,7 +3315,7 @@ export default function Dashboard() {
                   } as React.CSSProperties}
                 >
                   <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.8s ease-in-out infinite" }} />
-                  <span className="relative">{ringLockStep > 0 ? "Sealing…" : "See what’s new"}</span>
+                  <span className="relative">{ringLockStep > 0 ? "Sealing…" : "What changed"}</span>
                   <span className="relative" style={{ fontSize: 14, opacity: ringLockStep > 0 ? 0.4 : 1 }}>→</span>
                 </button>
                 <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>oder weitermachen — das Update ist eh schon installiert.</p>
@@ -3347,8 +3353,8 @@ export default function Dashboard() {
                 />
               ))}
               <button
-                onClick={closePopup}
-                aria-label="Schließen"
+                onClick={closeWhatsNewPopup}
+                aria-label="Close"
                 className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-opacity"
                 style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", zIndex: 2 }}
               >✕</button>
@@ -3359,7 +3365,7 @@ export default function Dashboard() {
                   <span style={{ color: "#e6cc80", fontSize: 14, opacity: 0.7 }}>✦</span>
                 </div>
                 <p className="text-sm font-bold uppercase tracking-[0.3em]" style={{ color: "#a78bfa" }}>Open Beta</p>
-                <p className="text-xs mt-3 italic" style={{ color: "rgba(255,255,255,0.55)", maxWidth: 360, margin: "12px auto 0", lineHeight: 1.55 }}>v2.0.0 ist die Version, bei der wir aufgehört haben, &apos;Beta&apos; defensiv zu sagen. Die Halle steht, die Tore sind offen, und die Wände erinnern sich an jeden, der je hier war.</p>
+                <p className="text-xs mt-3 italic" style={{ color: "rgba(255,255,255,0.55)", maxWidth: 360, margin: "12px auto 0", lineHeight: 1.55 }}>Hier ist, was sich verändert hat. Manches davon ist absichtlich.</p>
               </div>
             </div>
 
@@ -3426,7 +3432,7 @@ export default function Dashboard() {
               <div className="pt-3 pb-1 text-center space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <p className="text-xs italic" style={{ color: "rgba(230,204,128,0.6)" }}>Ihr habt die Bugs gefunden. Ihr seid die eigentliche QA. Danke.</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                  Der <span style={{ color: "rgba(129,140,248,0.7)", fontFamily: "monospace" }}>(β)</span> Button unten im Footer hat wieder Strom. Falls ihr noch welche findet.
+                  Der <span style={{ color: "rgba(129,140,248,0.7)", fontFamily: "monospace" }}>(β)</span> Button unten im Footer hat wieder Strom. Falls ihr noch Bugs findet.
                 </p>
               </div>
 
@@ -3438,14 +3444,14 @@ export default function Dashboard() {
                 <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
                 <WhatsNewStat value={1458} label="Rezepte poliert" color="#f97316" />
                 <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
-                <WhatsNewStat value={262} label="Neue Icons" color="#a855f7" />
+                <WhatsNewStat value={168} label="Achievements" color="#a855f7" />
               </div>
             </div>
 
             {/* CTA — shimmer sweep + breath glow */}
             <div className="px-5 pb-5 pt-3">
               <button
-                onClick={closePopup}
+                onClick={closeWhatsNewPopup}
                 className="w-full text-sm py-3 rounded-lg font-bold relative overflow-hidden crystal-breathe group"
                 style={{
                   background: "linear-gradient(135deg, rgba(230,204,128,0.22), rgba(167,139,250,0.18))",

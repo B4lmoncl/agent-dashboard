@@ -262,7 +262,7 @@ export default function CodexView() {
                   <p className="text-sm font-bold" style={{ color: categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24" }}>{selectedEntry.title}</p>
                   <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{categories.find(c => c.id === selectedEntry.category)?.name}</p>
                 </div>
-                <button onClick={() => setSelectedEntry(null)} aria-label="Schließen" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}>×</button>
+                <button onClick={() => setSelectedEntry(null)} aria-label="Close" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}>×</button>
               </div>
             </div>
             {selectedEntry.text && (

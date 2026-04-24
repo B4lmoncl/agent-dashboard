@@ -78,7 +78,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
               </p>
             )}
           </div>
-          <button onClick={onClose} aria-label="Schließen" className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.10)" }}>
+          <button onClick={onClose} aria-label="Close" className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.10)" }}>
             <span className="text-xs font-mono">ESC</span>
           </button>
         </div>

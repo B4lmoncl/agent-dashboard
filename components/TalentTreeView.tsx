@@ -799,7 +799,7 @@ export default function TalentTreeView({
                               body: JSON.stringify({ instanceId: item.instanceId || item.id }),
                             });
                             const d = await r.json();
-                            if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
+                            if (!r.ok) _toast({ type: "error", message: d.error || "Sacrifice failed" });
                             else {
                               _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();

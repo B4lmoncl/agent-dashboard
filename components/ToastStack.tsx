@@ -359,8 +359,31 @@ function ToastWrapper({ toast, onRemove, onAchievementClick }: { toast: ToastIte
 // ─── Toast Stack Container ───────────────────────────────────────────────────
 export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: ToastItem[]; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   if (toasts.length === 0) return null;
+  // Split error toasts into a separate live-region: errors get role="alert" +
+  // aria-live="assertive" (interrupt the screen reader immediately), while
+  // flavor/achievement/purchase/item toasts stay polite so they don't talk
+  // over the user. Both regions are positioned identically; errors stack
+  // slightly above to read first.
+  const errorToasts = toasts.filter(t => t.type === "error");
+  const politeToasts = toasts.filter(t => t.type !== "error");
 
   return (
+    <>
+    <div
+      className="fixed z-[151] flex flex-col-reverse items-end"
+      role="alert"
+      aria-live="assertive"
+      style={{
+        bottom: 24,
+        right: 24,
+        pointerEvents: "none",
+        maxWidth: "100%",
+      }}
+    >
+      {errorToasts.map(toast => (
+        <ToastWrapper key={toast.id} toast={toast} onRemove={onRemove} onAchievementClick={onAchievementClick} />
+      ))}
+    </div>
     <div
       className="fixed z-[150] flex flex-col-reverse items-end"
       role="status"
@@ -372,9 +395,10 @@ export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: T
         maxWidth: "100%",
       }}
     >
-      {toasts.map(toast => (
+      {politeToasts.map(toast => (
         <ToastWrapper key={toast.id} toast={toast} onRemove={onRemove} onAchievementClick={onAchievementClick} />
       ))}
     </div>
+    </>
   );
 }

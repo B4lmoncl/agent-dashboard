@@ -957,13 +957,21 @@ button[disabled] {
   animation: stage-swap-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Hero intro heartbeat — used on the giant v2.0.0 text. 2-beat pulse, slow. */
+/* Hero intro heartbeat — used on the giant v2.0.0 text. Fires 3 beats on mount
+   (~7.2s), then settles into a gentler steady glow. Keeps the text feeling
+   alive without pulsing forever — too much motion gets read as broken. */
 @keyframes hero-intro-beat {
   0%, 100% { text-shadow: 0 0 32px rgba(230,204,128,0.55), 0 0 64px rgba(230,204,128,0.22); transform: scale(1); }
   50%      { text-shadow: 0 0 56px rgba(230,204,128,0.85), 0 0 120px rgba(230,204,128,0.45); transform: scale(1.02); }
 }
+@keyframes hero-intro-settle {
+  from { text-shadow: 0 0 32px rgba(230,204,128,0.55), 0 0 64px rgba(230,204,128,0.22); }
+  to   { text-shadow: 0 0 24px rgba(230,204,128,0.4), 0 0 48px rgba(230,204,128,0.15); }
+}
 .hero-intro-beat {
-  animation: hero-intro-beat 2.4s ease-in-out infinite;
+  animation:
+    hero-intro-beat 2.4s ease-in-out 3,
+    hero-intro-settle 1.2s ease-out 7.2s forwards;
 }
 
 /* Rotating rune orbit — 3 concentric dotted rings rotating at different speeds.
@@ -995,8 +1003,12 @@ button[disabled] {
   40%  { box-shadow: 0 0 90px rgba(230,204,128,1.0), 0 0 160px rgba(230,204,128,0.55), inset 0 0 40px rgba(230,204,128,0.5); }
   100% { box-shadow: 0 0 40px rgba(230,204,128,0.55), 0 0 80px rgba(230,204,128,0.22), inset 0 0 22px rgba(230,204,128,0.18); }
 }
+/* Flash runs 240ms — shorter than the 260ms step gap so the keyframe doesn't */
+/* get abruptly cancelled when the next step replaces the ring-just-locked */
+/* class on this element (the flash is on a different ring anyway, but keeps */
+/* overlap margins clean). */
 .ring-locked.ring-just-locked {
-  animation: ring-lock-flash 0.55s cubic-bezier(0.16, 0.84, 0.3, 1) forwards !important;
+  animation: ring-lock-flash 0.24s cubic-bezier(0.16, 0.84, 0.3, 1) forwards !important;
 }
 
 /* Launch shockwave — a single expanding gold ring behind the What's New modal */

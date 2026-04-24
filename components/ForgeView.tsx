@@ -2484,7 +2484,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   setCurrencies(prev => ({ ...prev, gold: (prev.gold || 0) - totalCost }));
                                   setMaterials(prev => ({ ...prev, [reagent.id]: (prev[reagent.id] || 0) + count }));
                                 } else {
-                                  setCraftResult(data.error || "Kauf fehlgeschlagen");
+                                  setCraftResult(data.error || "Purchase failed");
                                 }
                               } catch { setCraftResult("Network error"); }
                               setBuyingReagent(null);
