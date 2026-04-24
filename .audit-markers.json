@@ -408,8 +408,8 @@
   },
   "routes/dungeons.js": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: MED FIXED: deleted player blocked dungeon finalization \u2014 run.collected.length never reached run.participants.length if a participant deleted their account. Now filters for active (existing) participants. Prior fixes hold.",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 42: Race condition deep-dive. 3 locks: dungeonCreateLock (create), dungeonJoinLock (join), collectLock (collect rewards). All per-player with finally-block release. Join: maxPlayers check + push is synchronous in Node single-thread \u2192 no cross-player race. Double-join guarded by participants.includes(uid). Cancel: no lock but safe (creator-only check + forming-only + Node atomicity). Collect: collected.push(uid) happens BEFORE success calc to prevent partial state. Double-collect guarded by collected.includes. Clean.",
     "status": "clean"
   },
   "routes/world-boss.js": {
