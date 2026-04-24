@@ -149,9 +149,9 @@
     "status": "clean"
   },
   "components/CodexView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "read state persistent, overscroll-contain added",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 36: 4 German TipCustom tooltip bodies translated. \"Living Codex\" body: Sammlung... -> Collection of all discovered lore entries. \"Fortschritt\" -> \"Progress\" (title+body). Category tooltip \"Lore-Kategorie mit X Eintraegen\" -> \"Lore category with X entries. Y discovered.\" \"Unentdeckt\" -> \"Undiscovered\" (title+body). Companion descriptions (lines 310-314) stay German \u2014 content per policy.",
     "status": "clean"
   },
   "components/CampaignHub.tsx": {

@@ -108,10 +108,10 @@ export default function CodexView() {
       </div>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <TipCustom title="Living Codex" icon="◆" accent="#fbbf24" heading body={<p>Sammlung aller entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, Events und Erkundung freigeschaltet.</p>}>
+        <TipCustom title="Living Codex" icon="◆" accent="#fbbf24" heading body={<p>Collection of all discovered lore entries. New entries unlock through quests, events, and exploration.</p>}>
           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
         </TipCustom>
-        <TipCustom title="Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anteil der entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, NPCs und besondere Events freigeschaltet.</p>}>
+        <TipCustom title="Progress" icon="◆" accent="#fbbf24" body={<p>Percentage of discovered lore entries. New entries unlock through quests, NPCs, and special events.</p>}>
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)", cursor: "help" }}>
             {discoveredCount}/{totalCount} discovered
           </span>
@@ -150,7 +150,7 @@ export default function CodexView() {
                 cursor: "pointer",
               }}
             >
-              <TipCustom title={cat.name} icon="◆" accent={cat.color} body={<p>Lore-Kategorie mit {catTotal} Eintr&auml;gen. {catCount} davon entdeckt.</p>}>
+              <TipCustom title={cat.name} icon="◆" accent={cat.color} body={<p>Lore category with {catTotal} entries. {catCount} discovered.</p>}>
                 <span>{cat.name} ({catCount}/{catTotal})</span>
               </TipCustom>
             </button>
@@ -280,7 +280,7 @@ export default function CodexView() {
       {/* Undiscovered entries */}
       {undiscoveredFiltered.length > 0 && (
         <div className="space-y-1 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-          <TipCustom title="Unentdeckt" icon="?" accent="#6b7280" body={<p>Noch nicht freigeschaltete Eintr&auml;ge. Schlie&szlig;e Quests ab und erkunde die Welt, um sie zu entdecken.</p>}>
+          <TipCustom title="Undiscovered" icon="?" accent="#6b7280" body={<p>Entries not yet unlocked. Complete quests and explore the world to discover them.</p>}>
             <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.4)", cursor: "help" }}>
               Undiscovered ({undiscoveredFiltered.length})
             </p>
