@@ -1368,7 +1368,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
         return (
           <div className="fixed inset-0 z-[100] flex items-center justify-center modal-backdrop" onClick={() => setSelectedMaterial(null)}>
-            <div className="rounded-xl p-5 w-full max-w-sm space-y-3 tab-content-enter" style={{ background: "#141418", border: `1px solid ${rc}30` }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Material details" className="rounded-xl p-5 w-full max-w-sm space-y-3 tab-content-enter" style={{ background: "#141418", border: `1px solid ${rc}30` }} onClick={e => e.stopPropagation()}>
               <div className="flex items-start gap-3">
                 {m.icon ? <img src={m.icon} alt="" width={48} height={48} className="img-render-auto flex-shrink-0 rounded" onError={hideOnError} /> : <span className="flex items-center justify-center rounded" style={{ width: 48, height: 48, background: `${rc}15`, color: rc, fontSize: 24 }}>◆</span>}
                 <div className="min-w-0 flex-1">
@@ -1669,7 +1669,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           style={{ background: "rgba(0,0,0,0.82)" }}
           onClick={e => { if (e.target === e.currentTarget) closeNpcModal(); }}
         >
-          <div className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
+          <div role="dialog" aria-modal="true" aria-label={`${selectedNpc.name || "Artisan"} workshop`} className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
             {/* Close */}
             <button onClick={closeNpcModal} className="forge-btn absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
               <span className="text-white text-sm">&#10005;</span>
@@ -3051,6 +3051,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {confirmProf && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => setConfirmProf(null)}>
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm profession switch"
             className="rounded-2xl p-6 w-full max-w-md space-y-4"
             onClick={e => e.stopPropagation()}
             style={{ background: "#14161c", border: `1px solid ${confirmProf.color}30`, boxShadow: `0 0 40px ${confirmProf.color}10` }}
@@ -3128,7 +3131,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* Confirmation modal (replaces window.confirm) */}
       {confirmAction && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setConfirmAction(null)}>
-          <div className="w-full max-w-sm rounded-xl p-5" style={{ background: "#1a1509", border: "1px solid rgba(180,140,70,0.35)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Confirm action" className="w-full max-w-sm rounded-xl p-5" style={{ background: "#1a1509", border: "1px solid rgba(180,140,70,0.35)" }} onClick={e => e.stopPropagation()}>
             <p className="text-sm font-semibold mb-1" style={{ color: "#fbbf24" }}>Confirm Action</p>
             <p className="text-xs mb-4 whitespace-pre-line" style={{ color: "rgba(255,255,255,0.6)" }}>{confirmAction.message}</p>
             <div className="flex gap-2">
@@ -3143,7 +3146,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Workshop Upgrade Celebration ──────────────────────────────────── */}
       {workshopCelebration && createPortal(
         <div className="fixed inset-0 z-[160] flex items-center justify-center pointer-events-none" style={{ background: "rgba(0,0,0,0.4)" }}>
-          <div className="reward-burst-enter pointer-events-auto px-8 py-6 rounded-2xl text-center max-w-xs" style={{
+          <div role="dialog" aria-modal="true" aria-label="Workshop upgrade" className="reward-burst-enter pointer-events-auto px-8 py-6 rounded-2xl text-center max-w-xs" style={{
             background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(11,13,17,0.95))",
             border: "2px solid rgba(168,85,247,0.5)",
             boxShadow: "0 0 60px rgba(168,85,247,0.2), 0 0 120px rgba(168,85,247,0.1)",
@@ -3162,7 +3165,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
       {profCelebration && createPortal(
         <div className="fixed inset-0 z-[160] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} onClick={() => setProfCelebration(null)}>
-          <div className="w-full max-w-md mx-4 rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Profession tier reached" className="w-full max-w-md mx-4 rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
             {/* Accent bar */}
             <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
             <div className="p-6 space-y-5">
@@ -3244,7 +3247,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Auto-Salvage Modal ──────────────────────────────────────────── */}
       {autoSalvageOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeAutoSalvage}>
-          <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Auto salvage" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(255,140,0,0.06)", borderBottom: "1px solid rgba(255,140,0,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#ff8c00" }}>Auto-Salvage</p>
@@ -3366,7 +3369,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Ätherwürfel Modal ──────────────────────────────────────────── */}
       {cubeOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeCube}>
-          <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Ätherwürfel" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(249,115,22,0.06)", borderBottom: "1px solid rgba(249,115,22,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#f97316" }}>Ätherwürfel</p>
