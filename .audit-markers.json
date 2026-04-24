@@ -368,13 +368,13 @@
   "routes/expedition.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted \u2014 only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim.",
+    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted \u2014 only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim. XP-CASCADE-FLAG (wave 78): XP level-up cascade missing at line 238. Large expedition rewards can cross level threshold silently.",
     "status": "clean"
   },
   "routes/challenges-weekly.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Claim lock, double-claim guard (completedStages check), star calculation with speed bonus + legendary challengeScoreBonus, modifier system with effective progress tracking, milestone claim with cumulative star check. Week rotation deterministic.",
+    "findings": "Cycle 2: Clean. Claim lock, double-claim guard (completedStages check), star calculation with speed bonus + legendary challengeScoreBonus, modifier system with effective progress tracking, milestone claim with cumulative star check. Week rotation deterministic. XP-CASCADE-FLAG (wave 78): PARTIAL: line 358 detects level-up and awards stardust but does NOT return levelUp field in response \u2014 frontend cannot show celebration.",
     "status": "clean"
   },
   "routes/dungeons.js": {
@@ -422,7 +422,7 @@
   "routes/users.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-24",
-    "findings": "Wave 71: Security deep-dive. 2 flagged issues (not fixed in-stream, need dedicated security audit): (1) /api/auth/login has timing-oracle \u2014 user-not-found returns in ~1ms, user-wrong-password after ~100ms bcrypt delay. Attacker can enumerate valid usernames. Fix: always run bcrypt.compare (use a dummy hash for nonexistent users). (2) /api/register has async race \u2014 between await bcrypt.hash and state.users write, a concurrent request with same name can interleave. Both see empty usersByName, both create user, last write wins. Node single-thread limits interleave points to awaits but bcrypt.hash IS one. Fix: lock around register, or re-check name after bcrypt. Clean otherwise: authLimiter rate limit, timingSafeEqual for legacy apiKey path, proper token pair generation. Wave 71.1 FIXED: (1) Timing-oracle fixed \u2014 pre-compute DUMMY_PASSWORD_HASH at module load, always run bcrypt.compare in login even for nonexistent users. (2) Register race fixed \u2014 _registrationInProgress Set gates same-name concurrent registrations; also re-check usersByName AFTER bcrypt.hash as belt-and-suspenders. finally{} releases the Set slot.",
+    "findings": "Wave 71: Security deep-dive. 2 flagged issues (not fixed in-stream, need dedicated security audit): (1) /api/auth/login has timing-oracle \u2014 user-not-found returns in ~1ms, user-wrong-password after ~100ms bcrypt delay. Attacker can enumerate valid usernames. Fix: always run bcrypt.compare (use a dummy hash for nonexistent users). (2) /api/register has async race \u2014 between await bcrypt.hash and state.users write, a concurrent request with same name can interleave. Both see empty usersByName, both create user, last write wins. Node single-thread limits interleave points to awaits but bcrypt.hash IS one. Fix: lock around register, or re-check name after bcrypt. Clean otherwise: authLimiter rate limit, timingSafeEqual for legacy apiKey path, proper token pair generation. Wave 71.1 FIXED: (1) Timing-oracle fixed \u2014 pre-compute DUMMY_PASSWORD_HASH at module load, always run bcrypt.compare in login even for nonexistent users. (2) Register race fixed \u2014 _registrationInProgress Set gates same-name concurrent registrations; also re-check usersByName AFTER bcrypt.hash as belt-and-suspenders. finally{} releases the Set slot. XP-CASCADE-FLAG (wave 78): Admin /users/:id/xp at line 158 missing cascade. Admin tool, lower priority but should still detect level crossing.",
     "status": "clean"
   },
   "routes/currency.js": {
@@ -434,13 +434,13 @@
   "routes/game.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable \u2014 nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified.",
+    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable \u2014 nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified. XP-CASCADE-FLAG (wave 78): Two XP sites missing cascade: line 493 (ritual XP + streak bonus) and line 510 (Blood Pact completion bonus, can be 3-5x normal). Large XP gains most likely to cross levels.",
     "status": "clean"
   },
   "routes/habits-inventory.js": {
     "auditCount": 4,
     "lastAuditDate": "2026-04-24",
-    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners. Wave 73.1: Same gold source-of-truth bug as shop.js \u2014 /player/:name/equip/:itemId when buying gear read legacy u.gold first. If currencies.gold drifted higher, user saw \"Insufficient gold\" despite having enough. Fixed to read u.currencies.gold first (matches shop.js fix).",
+    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners. Wave 73.1: Same gold source-of-truth bug as shop.js \u2014 /player/:name/equip/:itemId when buying gear read legacy u.gold first. If currencies.gold drifted higher, user saw \"Insufficient gold\" despite having enough. Fixed to read u.currencies.gold first (matches shop.js fix). XP-CASCADE-FLAG (wave 78): Three XP sites missing cascade: line 87 (habit bond XP), line 175 (ritual-effect xp), line 475 (multi_reward xp).",
     "status": "clean"
   },
   "routes/agents.js": {
@@ -470,7 +470,7 @@
   "lib/helpers.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-05",
-    "findings": "gold sync centralized, variety bonus OK, rested XP OK",
+    "findings": "gold sync centralized, variety bonus OK, rested XP OK XP-CASCADE-FLAG (wave 78): Two XP sites missing cascade in helpers: line 1324 (loot auto-consume XP) and line 2064 (friend echo XP passive). Friend echo silently levels up friends without seasonXp/BP/stardust.",
     "status": "clean"
   },
   "lib/auth.js": {
@@ -500,7 +500,7 @@
   "routes/campaigns.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-24",
-    "findings": "Re-audit focus Language Policy: all 15 API error strings are English (Admin only / Campaign not found / title required / Auth required / Reward already claimed etc.) - clean. Status 429 for \"Request already in progress\" is consistent with gacha.js. Sanitize / lock / double-claim-guard / reward-clamp all intact. FLAGGED (not fixed, cross-system): line 199 `u.xp += baseXp` raw add without level-up detection \u2014 if campaign-claim pushes player over a level threshold, celebration may not fire. Deferred to cross-system XP-pipeline audit.",
+    "findings": "Re-audit focus Language Policy: all 15 API error strings are English (Admin only / Campaign not found / title required / Auth required / Reward already claimed etc.) - clean. Status 429 for \"Request already in progress\" is consistent with gacha.js. Sanitize / lock / double-claim-guard / reward-clamp all intact. FLAGGED (not fixed, cross-system): line 199 `u.xp += baseXp` raw add without level-up detection \u2014 if campaign-claim pushes player over a level threshold, celebration may not fire. Deferred to cross-system XP-pipeline audit. XP-CASCADE-FLAG (wave 78): XP level-up cascade missing (raw u.xp += baseXp). Player crossing level threshold via campaign claim gets no celebration, no stardust, no BP XP, no codex/achievement check. Already flagged wave 23 \u2014 still broken.",
     "status": "clean-flagged"
   },
   "lib/rotation.js": {
