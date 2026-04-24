@@ -59,7 +59,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
     try {
       const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`, { headers: getAuthHeaders(reviewApiKey) });
       if (r.ok) setStatus(await r.json());
-    } catch { setError("Failed to load tavern status"); }
+    } catch { setError("Failed to load tavern status"); setTimeout(() => setError(null), 5000); }
     setLoading(false);
   }, [playerName]);
 
@@ -83,13 +83,13 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         body: JSON.stringify({ days: selectedDays, reason: reason.trim() || null }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed to enter"); } else {
+      if (!r.ok) { setError(d.error || "Failed to enter"); setTimeout(() => setError(null), 5000); } else {
         setSuccess(d.message);
         setTimeout(() => setSuccess(null), 5000);
         fetchStatus();
         onRefresh?.();
       }
-    } catch { setError("Network error"); }
+    } catch { setError("Network error"); setTimeout(() => setError(null), 5000); }
     setActionLoading(false);
   };
 
@@ -103,13 +103,13 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed to leave"); } else {
+      if (!r.ok) { setError(d.error || "Failed to leave"); setTimeout(() => setError(null), 5000); } else {
         setSuccess(d.message);
         setTimeout(() => setSuccess(null), 5000);
         fetchStatus();
         onRefresh?.();
       }
-    } catch { setError("Network error"); }
+    } catch { setError("Network error"); setTimeout(() => setError(null), 5000); }
     setActionLoading(false);
   };
 
@@ -229,9 +229,9 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
             style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-            title={actionLoading ? "Action in progress..." : "Leave rest mode (triggers 30-day cooldown)"}
+            title={actionLoading ? "Leaving the Hearth..." : "Leave rest mode (triggers 30-day cooldown)"}
           >
-            {actionLoading ? "..." : "Leave the Hearth"}
+            {actionLoading ? "Leaving..." : "Leave the Hearth"}
           </button>
         </div>
       )}
@@ -325,7 +325,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
               <div className="flex gap-2">
                 <button onClick={() => setConfirmEnter(false)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
                 <button onClick={() => { setConfirmEnter(false); enterTavern(); }} disabled={actionLoading} className="flex-1 text-xs py-2 rounded-lg font-bold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}>
-                  {actionLoading ? "..." : "Confirm Rest"}
+                  {actionLoading ? "Entering..." : "Confirm Rest"}
                 </button>
               </div>
             </div>
@@ -387,6 +387,9 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           onClick={() => setConfirmAction(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm action"
             className="rounded-xl p-5 max-w-sm w-full mx-4"
             style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
             onClick={e => e.stopPropagation()}

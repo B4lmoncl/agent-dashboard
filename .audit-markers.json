@@ -78,8 +78,8 @@
   },
   "components/TavernView.tsx": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. card alignment mx-auto maxWidth:600",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 43: Loading text \"...\" -> \"Leaving...\"/\"Entering...\" on action buttons. Leave button title \"Action in progress\" -> \"Leaving the Hearth...\". Confirmation modal: added role=dialog + aria-modal + aria-label. Bug fix: errors never auto-dismissed (CLAUDE.md says 5s) \u2014 added setTimeout auto-clear on all 4 setError calls (fetch, enter, leave, network). Success messages already auto-dismiss. Ember particles animation name ember-float confirmed in globals.css.",
     "status": "clean"
   },
   "components/DailyHub.tsx": {
