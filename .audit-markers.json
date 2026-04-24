@@ -425,9 +425,9 @@
     "status": "clean"
   },
   "routes/kanais-cube.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. cubeExtractLock+cubeEquipLock. Locked item check. Gold sync. Escalating cost by extraction count. Max 3 equipped passives. Unique+BoP check.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 56: 235-line cube system. 3 endpoints (extract/equip/unequip), 2 separate locks. Extract validates: locked item check, legendary effect presence, cost (essenz+gold escalating), library cap 50, duplicate type check. Forces MINIMUM value on extraction (D3-style anti-exploit for keeping good rolls on gear). Equip validates slot name + category/slot match. Splice destroys item permanently, no rollback if saveUsers fails (acceptable risk \u2014 saveUsers rarely fails).",
     "status": "clean"
   },
   "routes/talent-tree.js": {
