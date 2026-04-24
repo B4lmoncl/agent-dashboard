@@ -966,11 +966,38 @@ button[disabled] {
   animation: hero-intro-beat 2.4s ease-in-out infinite;
 }
 
-/* Rotating rune orbit — 3 concentric dotted rings rotating at different speeds */
+/* Rotating rune orbit — 3 concentric dotted rings rotating at different speeds.
+   When .ring-locked is applied, the rotation pauses where it is (mid-angle) and
+   the ring switches from dashed/dim to solid + gold glow. This is the visual
+   payoff for clicking "See what's new" — three rings lock in sequence. */
 @keyframes orbit-slow     { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes orbit-med      { from { transform: translate(-50%,-50%) rotate(360deg); } to { transform: translate(-50%,-50%) rotate(0deg); } }
-.hero-orbit-slow { animation: orbit-slow 22s linear infinite; }
-.hero-orbit-med  { animation: orbit-med 14s linear infinite; }
+.hero-orbit-slow { animation: orbit-slow 22s linear infinite; transition: border-color 0.25s ease, border-style 0.25s ease, box-shadow 0.4s ease, border-width 0.25s ease; }
+.hero-orbit-med  { animation: orbit-med 14s linear infinite;  transition: border-color 0.25s ease, border-style 0.25s ease, box-shadow 0.4s ease, border-width 0.25s ease; }
+/* Ring-lock state — applied sequentially (outer → mid → inner) when the */
+/* Stage 1 CTA is clicked. Rotation pauses, border fills solid gold, ring */
+/* glows with layered shadow. The transition duration overlaps with the */
+/* next ring's lock so the effect reads as a mechanism sealing itself. */
+.ring-locked {
+  animation-play-state: paused !important;
+  border-color: rgba(230, 204, 128, 0.95) !important;
+  border-style: solid !important;
+  border-width: 2px !important;
+  box-shadow:
+    0 0 40px rgba(230, 204, 128, 0.55),
+    0 0 80px rgba(230, 204, 128, 0.22),
+    inset 0 0 22px rgba(230, 204, 128, 0.18) !important;
+}
+/* Brief flash that fires in the instant a ring locks — extra box-shadow */
+/* pulse that decays over 500ms, layered on top of the steady glow. */
+@keyframes ring-lock-flash {
+  0%   { box-shadow: 0 0 10px rgba(230,204,128,0.2), inset 0 0 10px rgba(230,204,128,0.1); }
+  40%  { box-shadow: 0 0 90px rgba(230,204,128,1.0), 0 0 160px rgba(230,204,128,0.55), inset 0 0 40px rgba(230,204,128,0.5); }
+  100% { box-shadow: 0 0 40px rgba(230,204,128,0.55), 0 0 80px rgba(230,204,128,0.22), inset 0 0 22px rgba(230,204,128,0.18); }
+}
+.ring-locked.ring-just-locked {
+  animation: ring-lock-flash 0.55s cubic-bezier(0.16, 0.84, 0.3, 1) forwards !important;
+}
 
 /* Launch shockwave — a single expanding gold ring behind the What's New modal */
 /* when it mounts. Uses ::before on an absolute wrapper so it doesn't clip. Fires */
