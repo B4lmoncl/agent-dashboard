@@ -233,10 +233,10 @@
     "status": "clean"
   },
   "components/ItemActionPopup.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. 2-step discard confirm, lock system OK",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 55: Lock indicator used raw title=\"Locked\" on status icon \u2014 same pattern fixed in ItemTooltip Wave 22. Wrapped in <Tip k=\"item_lock\">. Socket title already says \"Empty socket\" (good). ESC + click-outside handling present. Disabled button titles use \"Action in progress\u2026\" (language low prio). FLAGGED: popup is an anchored context menu of actions but lacks role=\"menu\"/role=\"menuitem\" semantic \u2014 substantial a11y change, deferred.",
+    "status": "clean-flagged"
   },
   "components/PlayerProfileModal.tsx": {
     "auditCount": 3,

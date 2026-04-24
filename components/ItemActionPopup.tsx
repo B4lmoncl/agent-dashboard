@@ -96,7 +96,11 @@ export default function ItemActionPopup({
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5">
               <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
-              {item.locked && <span title="Locked" style={{ color: "#fbbf24", fontSize: 12, flexShrink: 0 }}>{"\u29BF"}</span>}
+              {item.locked && (
+                <Tip k="item_lock">
+                  <span style={{ color: "#fbbf24", fontSize: 12, flexShrink: 0, cursor: "help" }}>{"\u29BF"}</span>
+                </Tip>
+              )}
             </div>
             <p className="text-xs font-semibold" style={{ color: rarityColor }}>
               {item.rarity?.charAt(0).toUpperCase() + item.rarity?.slice(1)}
