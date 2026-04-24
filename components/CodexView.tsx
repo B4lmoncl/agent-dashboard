@@ -247,6 +247,9 @@ export default function CodexView() {
           onClick={() => setSelectedEntry(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Codex entry"
             className="rounded-xl overflow-hidden w-full max-w-[calc(100vw-2rem)] sm:max-w-lg max-h-[80vh] overflow-y-auto discovery-reveal"
             style={{
               background: "#111318",
