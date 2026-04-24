@@ -3463,7 +3463,7 @@ export default function Dashboard() {
                     "Item Hover Tooltips",
                     "Phönixasche-Talent",
                     "Fraktions-Rep sichtbar",
-                    "Stormlight-inspirierte UI",
+                    "Atmosphärische Sturm-VFX",
                   ].map((t, i) => (
                     <div key={i} className="flex items-center gap-2 px-2 py-1.5 rounded" style={{ background: "rgba(129,140,248,0.05)", border: "1px solid rgba(129,140,248,0.08)" }}>
                       <span style={{ color: "#818cf8", fontSize: 10 }}>&#9670;</span>
