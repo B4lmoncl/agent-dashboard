@@ -161,10 +161,10 @@
     "status": "clean"
   },
   "components/TalentTreeView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Toast on allocate/deallocate/reset. Disabled states. SVG ring rendering. Choice group UI. Respec cost display.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 52: Accessibility is excellent \u2014 nodes have role=button + aria-label + aria-pressed, 2 modals have role=dialog + aria-modal + aria-label. Double-click protection via allocating/deallocating state. TipCustom on every stat explanation. FLAGGED: choiceGroups data is fetched from server but NEVER rendered in the UI. Players cannot see which nodes are mutually exclusive until they try to pick and get rejected server-side. Substantial UI work needed (new section). useCallback missing reviewApiKey in deps but stable via DashboardContext so effectively non-issue.",
+    "status": "clean-flagged"
   },
   "components/AdventureTomeView.tsx": {
     "auditCount": 2,
