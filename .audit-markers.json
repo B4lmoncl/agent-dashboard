@@ -784,12 +784,6 @@
     "findings": "No issues. Clean utility component (67 lines). Proper RAF cleanup.",
     "status": "clean"
   },
-  "components/FirstVisitBanner.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "No issues. Clean 40-line component. Uses useFirstVisit hook correctly.",
-    "status": "clean"
-  },
   "components/ItemTooltip.tsx": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-24",
@@ -808,16 +802,10 @@
     "findings": "Clean. Pure config \u2014 12 companion colors, portrait path helper, virtual type set. No logic, no side effects.",
     "status": "clean"
   },
-  "hooks/useFirstVisit.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. localStorage hook with try/catch. Proper initial state via useState callback.",
-    "status": "clean"
-  },
   "app/layout.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Standard Next.js layout. Geist fonts. viewport maximumScale=5. lang=en correct per translation rules.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 26: Added themeColor #0b0d11 + colorScheme dark to viewport config. Mobile browsers (chrome/safari) now paint the address bar/notification area to match body bg instead of default white. User decisions: OG tags skipped (beta not shared externally), meta description kept as \"Your adventure awaits.\" Also stale markers cleaned up: hooks/useFirstVisit.ts and components/FirstVisitBanner.tsx did not exist in codebase, removed from tracker + CLAUDE.md reference.",
     "status": "clean"
   },
   "public/data/gachaPool.json": {

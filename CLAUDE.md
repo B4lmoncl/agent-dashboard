@@ -105,7 +105,6 @@ components/           # React UI components (62 files, ~37k lines)
   ...                 # 39 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
-  useFirstVisit.ts    # First-visit detection hook
 lib/                  # Backend business logic (9 files, ~5000 lines)
   state.js            # Central state, Maps, JSON persistence (~1430 lines)
   helpers.js          # Utility functions, paginate() (~2380 lines)
