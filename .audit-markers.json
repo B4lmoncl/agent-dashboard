@@ -527,10 +527,10 @@
     "status": "clean"
   },
   "routes/campaigns.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization on create/patch. isCampaignFullyCompleted uses questsById correctly. Line 139 uses state.quests.filter for claimedBy query (necessary, not a find-by-id). requireMasterKey on PATCH/DELETE.",
-    "status": "clean"
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Re-audit focus Language Policy: all 15 API error strings are English (Admin only / Campaign not found / title required / Auth required / Reward already claimed etc.) - clean. Status 429 for \"Request already in progress\" is consistent with gacha.js. Sanitize / lock / double-claim-guard / reward-clamp all intact. FLAGGED (not fixed, cross-system): line 199 `u.xp += baseXp` raw add without level-up detection \u2014 if campaign-claim pushes player over a level threshold, celebration may not fire. Deferred to cross-system XP-pipeline audit.",
+    "status": "clean-flagged"
   },
   "lib/rotation.js": {
     "auditCount": 2,
