@@ -168,10 +168,10 @@
     "status": "clean-flagged"
   },
   "components/TodayDrawer.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. no font violations, no empty catches",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 70: Deep review after a11y pass (Wave 63 added role=dialog). 1365 lines. Proper useEffect cleanup, ESC handling, time refresh every 60s, ref-counted body scroll lock. Milestone nodes click-handler correctly navigates to questBoard daily-missions section (consistent with REJ-024 no-inline-claim). Subjective finding flagged: milestone button title \"Claim: 50 gold\" may mislead users into thinking they claim here \u2014 actually navigates. Could be \"Go to Daily Missions: 50 gold\" but changing the wording is subjective.",
+    "status": "clean-flagged"
   },
   "components/DailyLoginCalendar.tsx": {
     "auditCount": 4,
