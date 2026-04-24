@@ -240,14 +240,38 @@ export function useQuestActions({
       if (r.ok) {
         const data = await r.json().catch(() => ({}));
         if (data.allDone) {
-          addToast({ type: "flavor", message: "Co-op quest complete. All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
+          addToast({ type: "flavor", message: "Fertig. Auch die anderen haben geliefert.", icon: "/images/icons/cat-coop.png", sub: "Belohnungen eingesammelt." });
+          // Server now mirrors the single-player response shape — fire the
+          // celebration so players see what they earned. Previously co-op
+          // grants were silent.
+          if ((data.xpEarned || 0) > 0 || (data.goldEarned || 0) > 0 || data.lootDrop) {
+            const currencies: { name: string; amount: number; color: string }[] = [];
+            if (data.currencies) {
+              if (data.currencies.runensplitter > 0) currencies.push({ name: "Runensplitter", amount: data.currencies.runensplitter, color: "#818cf8" });
+              if (data.currencies.gildentaler > 0) currencies.push({ name: "Gildentaler", amount: data.currencies.gildentaler, color: "#10b981" });
+              if (data.currencies.essenz > 0) currencies.push({ name: "Essenz", amount: data.currencies.essenz, color: "#ef4444" });
+            }
+            if ((data.lastRestedXP || 0) > 0) currencies.push({ name: "Rested Bonus", amount: data.lastRestedXP, color: "#60a5fa" });
+            setRewardCelebration({
+              type: "quest",
+              title: "Co-op Quest abgeschlossen",
+              xpEarned: data.xpEarned || 0,
+              goldEarned: data.goldEarned || 0,
+              loot: data.lootDrop || null,
+              achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
+              ...(currencies.length > 0 ? { currencies } : {}),
+            });
+          }
         } else {
-          addToast({ type: "flavor", message: "Your part is done. Waiting for partners...", icon: "/images/icons/cat-coop.png" });
+          addToast({ type: "flavor", message: "Dein Teil liegt still. Die anderen brauchen noch einen Moment.", icon: "/images/icons/cat-coop.png" });
         }
         if (data.newAchievements?.length > 0) {
           for (const ach of data.newAchievements) {
             addToast({ type: "achievement", achievement: ach });
           }
+        }
+        if (data.inventoryFull) {
+          addToast({ type: "error", message: "Deine Taschen platzen. Die Beute wurde von jemandem aufgesammelt, der weniger hortet." });
         }
         await refresh();
       } else {

@@ -2452,7 +2452,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         })}
       </div>
 
-      <TutorialMomentBanner viewId="social" playerLevel={1} />
+      <TutorialMomentBanner viewId="social" />
 
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">

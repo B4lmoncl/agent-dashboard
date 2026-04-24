@@ -161,7 +161,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   return (
     <div data-feedback-id="battlepass-view" className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="season" playerLevel={1} />
+      <TutorialMomentBanner viewId="season" />
       {/* Header */}
       <div className="rounded-xl p-5" style={{
         background: `linear-gradient(135deg, ${config.seasonAccent}12 0%, rgba(14,14,18,0.95) 100%)`,

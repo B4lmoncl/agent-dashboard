@@ -13,7 +13,7 @@ function LastUpdated({ lastRefresh }: { lastRefresh: Date | null }) {
     return () => clearInterval(tick);
   }, [lastRefresh]);
   if (!lastRefresh) return <span>—</span>;
-  return <span>{secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`}</span>;
+  return <span>{secondsAgo < 5 ? "gerade eben" : `vor ${secondsAgo}s`}</span>;
 }
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
@@ -169,19 +169,19 @@ export default function DashboardHeader({
         setTimeout(() => onNeedsEmail(), 500);
       }
     } else {
-      setLoginError(data.error || "Invalid credentials");
+      setLoginError(data.error || "Name oder Passwort stimmen nicht.");
     }
-    } catch { setLoginError("Connection error"); }
+    } catch { setLoginError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     finally { setAuthLoading(false); }
   };
 
   const handleRegister = async () => {
     if (!registerName.trim() || authLoading) return;
-    if (!registerEmail.trim() || !registerEmail.includes("@")) { setRegisterError("Valid email is required"); return; }
-    if (registerPassword.length < 8) { setRegisterError("Password must be at least 8 characters"); return; }
-    if (!/[A-Z]/.test(registerPassword)) { setRegisterError("Password must contain at least one uppercase letter"); return; }
-    if (!/[0-9]/.test(registerPassword)) { setRegisterError("Password must contain at least one number"); return; }
-    if (registerPassword !== registerPasswordConfirm) { setRegisterError("Passwords do not match"); return; }
+    if (!registerEmail.trim() || !registerEmail.includes("@")) { setRegisterError("Gültige E-Mail-Adresse erforderlich."); return; }
+    if (registerPassword.length < 8) { setRegisterError("Passwort muss mindestens 8 Zeichen lang sein."); return; }
+    if (!/[A-Z]/.test(registerPassword)) { setRegisterError("Passwort braucht mindestens einen Großbuchstaben."); return; }
+    if (!/[0-9]/.test(registerPassword)) { setRegisterError("Passwort braucht mindestens eine Zahl."); return; }
+    if (registerPassword !== registerPasswordConfirm) { setRegisterError("Passwörter stimmen nicht überein."); return; }
     setAuthLoading(true);
     try {
     const r = await fetch("/api/register", {
@@ -204,9 +204,9 @@ export default function DashboardHeader({
       await createStarterQuestsIfNew(data.name, data.apiKey);
       await refresh();
     } else {
-      setRegisterError(data.error || "Registration failed");
+      setRegisterError(data.error || "Anmeldung fehlgeschlagen.");
     }
-    } catch { setRegisterError("Connection error"); }
+    } catch { setRegisterError("Die Leitungen nach Aethermoor flackern. Versuch es nochmal."); }
     finally { setAuthLoading(false); }
   };
 
@@ -377,14 +377,14 @@ export default function DashboardHeader({
                           type="text"
                           value={playerNameInput}
                           onChange={e => setPlayerNameInput(e.target.value)}
-                          placeholder="Email or Username"
+                          placeholder="E-Mail oder Name"
                           className="text-xs px-2 py-1 rounded input-dark"
                         />
                         <input
                           type="password"
                           value={reviewKeyInput}
                           onChange={e => setReviewKeyInput(e.target.value)}
-                          placeholder="Password"
+                          placeholder="Passwort"
                           className="text-xs px-2 py-1 rounded input-dark"
                           onKeyDown={e => { if (e.key === "Enter") handleLogin(); }}
                         />
@@ -393,25 +393,25 @@ export default function DashboardHeader({
                           <button
                             onClick={handleLogin}
                             disabled={authLoading}
-                            title={authLoading ? "Signing in..." : "Sign in to your account"}
+                            title={authLoading ? "Meldet an…" : "In deinen Account einloggen"}
                             className="flex-1 text-xs px-3 py-2 rounded-lg font-bold btn-interactive"
                             style={{ background: "linear-gradient(135deg, rgba(167,139,250,0.25), rgba(139,92,246,0.2))", color: "#c4b5fd", border: "1px solid rgba(167,139,250,0.5)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}
                           >
-                            {authLoading ? "Signing in…" : "Sign In"}
+                            {authLoading ? "Meldet an…" : "Anmelden"}
                           </button>
                           <button
                             onClick={() => { setLoginOpen(false); setOnboardingOpen(true); }}
                             className="text-xs px-3 py-1 rounded font-medium"
                             style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
                           >
-                            Register
+                            Registrieren
                           </button>
                         </div>
                         {!forgotOpen ? (
-                          <button onClick={() => setForgotOpen(true)} className="text-xs" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "none", border: "none", padding: 0 }}>Forgot password?</button>
+                          <button onClick={() => setForgotOpen(true)} className="text-xs" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "none", border: "none", padding: 0 }}>Passwort vergessen?</button>
                         ) : (
                           <div className="space-y-1.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
-                            <input type="email" value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} placeholder="Your email address" className="text-xs px-2 py-1 rounded input-dark w-full" />
+                            <input type="email" value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} placeholder="Deine E-Mail-Adresse" className="text-xs px-2 py-1 rounded input-dark w-full" />
                             <button
                               onClick={async () => {
                                 try {
@@ -420,12 +420,12 @@ export default function DashboardHeader({
                                   if (!r.ok) {
                                     setForgotMsg({ text: d.error || "Der Bote ist verloren gegangen — wahrscheinlich in einer Taverne.", ok: false });
                                   } else {
-                                    setForgotMsg({ text: d.message || "Check your email.", ok: true });
+                                    setForgotMsg({ text: d.message || "Schau in deinen Posteingang.", ok: true });
                                   }
                                 } catch { setForgotMsg({ text: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal.", ok: false }); }
                               }}
                               disabled={!forgotEmail.includes("@")}
-                              title={!forgotEmail.includes("@") ? "Enter a valid email address" : undefined}
+                              title={!forgotEmail.includes("@") ? "Gültige E-Mail-Adresse eingeben" : undefined}
                               className="text-xs px-3 py-1 rounded font-medium w-full"
                               style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: forgotEmail.includes("@") ? "pointer" : "not-allowed" }}
                             >Send Reset Link</button>
@@ -448,13 +448,13 @@ export default function DashboardHeader({
                     ) : (
                       <div className="flex flex-col gap-2">
                         <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Create Account</p>
-                        <input type="text" value={registerName} onChange={e => setRegisterName(e.target.value)} placeholder="Choose a name" className="text-xs px-2 py-1 rounded input-dark" />
-                        <input type="email" value={registerEmail} onChange={e => setRegisterEmail(e.target.value)} placeholder="Email address" className="text-xs px-2 py-1 rounded input-dark" />
-                        <input type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} placeholder="Password (8+ chars, A-Z, 0-9)" className="text-xs px-2 py-1 rounded input-dark" />
-                        <input type="password" value={registerPasswordConfirm} onChange={e => setRegisterPasswordConfirm(e.target.value)} placeholder="Confirm password" className="text-xs px-2 py-1 rounded input-dark" />
+                        <input type="text" value={registerName} onChange={e => setRegisterName(e.target.value)} placeholder="Name wählen" className="text-xs px-2 py-1 rounded input-dark" />
+                        <input type="email" value={registerEmail} onChange={e => setRegisterEmail(e.target.value)} placeholder="E-Mail-Adresse" className="text-xs px-2 py-1 rounded input-dark" />
+                        <input type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} placeholder="Passwort (8+ Zeichen, A-Z, 0-9)" className="text-xs px-2 py-1 rounded input-dark" />
+                        <input type="password" value={registerPasswordConfirm} onChange={e => setRegisterPasswordConfirm(e.target.value)} placeholder="Passwort bestätigen" className="text-xs px-2 py-1 rounded input-dark" />
                         {registerError && <p role="alert" className="text-xs" style={{ color: "#ef4444" }}>{registerError}</p>}
                         <div className="flex gap-1">
-                          <button onClick={handleRegister} disabled={authLoading} title={authLoading ? "Creating account..." : "Create your account"} className="flex-1 text-xs px-3 py-1 rounded font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}>{authLoading ? "Creating…" : "Create"}</button>
+                          <button onClick={handleRegister} disabled={authLoading} title={authLoading ? "Account wird erstellt…" : "Account erstellen"} className="flex-1 text-xs px-3 py-1 rounded font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}>{authLoading ? "Wird erstellt…" : "Erstellen"}</button>
                           <button onClick={() => { setRegisterOpen(false); setRegisterError(""); setRegisterPassword(""); setRegisterPasswordConfirm(""); }} className="text-xs px-2 py-1 rounded text-w30 bg-w4 border-w8">Back</button>
                         </div>
                       </div>
@@ -503,7 +503,7 @@ export default function DashboardHeader({
       <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => setSettingsModalOpen(false)}>
         <div className="w-full max-w-md rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
           <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
-            <p className="text-sm font-bold" style={{ color: "#818cf8" }}>Settings</p>
+            <p className="text-sm font-bold" style={{ color: "#818cf8" }}>Einstellungen</p>
             <button onClick={() => setSettingsModalOpen(false)} className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
           </div>
           <div className="px-5 py-4 space-y-4 max-h-[70vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
@@ -516,12 +516,12 @@ export default function DashboardHeader({
                     <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{emailStatus.email}</span>
                     {emailStatus.emailVerified
                       ? <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>Verified</span>
-                      : <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b" }}>Not verified</span>
+                      : <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b" }}>Nicht verifiziert</span>
                     }
                   </div>
                   {!emailStatus.emailVerified && (
                     <div className="space-y-1">
-                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Password reset requires a verified email.</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Passwort-Reset braucht eine verifizierte E-Mail.</p>
                       <button
                         onClick={async () => {
                           try {
@@ -614,9 +614,9 @@ export default function DashboardHeader({
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Change Password</p>
               <div className="space-y-2">
-                <input type="password" value={changePwCurrent} onChange={e => setChangePwCurrent(e.target.value)} placeholder="Current password" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
-                <input type="password" value={changePwNew} onChange={e => setChangePwNew(e.target.value)} placeholder="New password (8+ chars, 1 uppercase, 1 number)" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
-                <input type="password" value={changePwConfirm} onChange={e => setChangePwConfirm(e.target.value)} placeholder="Confirm new password" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+                <input type="password" value={changePwCurrent} onChange={e => setChangePwCurrent(e.target.value)} placeholder="Aktuelles Passwort" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+                <input type="password" value={changePwNew} onChange={e => setChangePwNew(e.target.value)} placeholder="Neues Passwort (8+ Zeichen, 1 Großbuchstabe, 1 Zahl)" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+                <input type="password" value={changePwConfirm} onChange={e => setChangePwConfirm(e.target.value)} placeholder="Neues Passwort bestätigen" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
                 {changePwNew && changePwConfirm && changePwNew !== changePwConfirm && (
                   <p className="text-xs" style={{ color: "#ef4444" }}>Passwords don&apos;t match</p>
                 )}
@@ -633,7 +633,7 @@ export default function DashboardHeader({
                     setChangePwLoading(false);
                   }}
                   disabled={changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm || changePwNew.length < 8}
-                  title={changePwLoading ? "Changing password..." : !changePwCurrent ? "Enter current password" : !changePwNew || changePwNew.length < 8 ? "New password must be at least 8 characters" : changePwNew !== changePwConfirm ? "Passwords do not match" : undefined}
+                  title={changePwLoading ? "Changing password..." : !changePwCurrent ? "Enter current password" : !changePwNew || changePwNew.length < 8 ? "New password must be at least 8 characters" : changePwNew !== changePwConfirm ? "Passwörter stimmen nicht überein." : undefined}
                   className="w-full text-xs py-2 rounded-lg font-semibold"
                   style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm ? "not-allowed" : "pointer", opacity: changePwLoading ? 0.5 : 1 }}
                 >{changePwLoading ? "Changing..." : "Change Password"}</button>

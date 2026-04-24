@@ -176,7 +176,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   return (
     <div data-feedback-id="factions-view" className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="factions" playerLevel={1} />
+      <TutorialMomentBanner viewId="factions" />
       {/* Header */}
       <div className="text-center space-y-2">
         <img src="/images/icons/nav-factions.png" alt="" width={96} height={96} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />

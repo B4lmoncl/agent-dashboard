@@ -1219,7 +1219,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
   return (
     <div data-feedback-id="character-view" className="tab-content-enter">
-    <TutorialMomentBanner viewId="character" playerLevel={1} />
+    <TutorialMomentBanner viewId="character" />
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
@@ -1350,7 +1350,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               type="text"
               value={invSearch}
               onChange={e => setInvSearch(e.target.value)}
-              placeholder="Search..."
+              placeholder="Suchen…"
               className="w-full text-xs px-2.5 py-1.5 rounded-lg"
               style={{
                 background: "rgba(255,255,255,0.06)",

@@ -325,7 +325,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="your@email.com"
+                  placeholder="deine@email.com"
                 />
                 <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Required for password recovery</p>
               </div>
@@ -336,7 +336,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Min. 8 characters, 1 uppercase, 1 number"
+                  placeholder="Min. 8 Zeichen, 1 Großbuchstabe, 1 Zahl"
                 />
               </div>
               <div>
@@ -346,7 +346,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={passwordConfirm}
                   onChange={e => setPasswordConfirm(e.target.value)}
-                  placeholder="Confirm password"
+                  placeholder="Passwort bestätigen"
                   onKeyDown={e => { if (e.key === "Enter" && canProceedStep0) setStep(1); }}
                 />
                 {password && passwordConfirm && password !== passwordConfirm && (

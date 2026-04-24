@@ -142,7 +142,7 @@ export function WandererRest({
 
   return (
     <div className="space-y-6 tab-content-enter">
-      <TutorialMomentBanner viewId="wanderer" playerLevel={1} />
+      <TutorialMomentBanner viewId="wanderer" />
       {/* Dobbie filter banner */}
       {npcBoardFilter === "dobbie" && (
         <div className="rounded-xl px-4 py-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.07)", border: "1px solid #2a2a3e" }}>

@@ -133,7 +133,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   if (loading) {
     return (
       <div className="space-y-3 tab-content-enter">
-      <TutorialMomentBanner viewId="shop" playerLevel={1} />
+      <TutorialMomentBanner viewId="shop" />
         {Array.from({ length: 3 }, (_, i) => (
           <div key={i} className="skeleton-card h-20 rounded-lg" />
         ))}
@@ -153,7 +153,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
 
   return (
     <div data-feedback-id="shop-view" className="space-y-4 tab-content-enter">
-      <TutorialMomentBanner viewId="shop" playerLevel={1} />
+      <TutorialMomentBanner viewId="shop" />
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <div>

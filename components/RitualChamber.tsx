@@ -330,7 +330,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
 
   return (
     <>
-      <TutorialMomentBanner viewId="rituals" playerLevel={1} />
+      <TutorialMomentBanner viewId="rituals" />
       {ritualError && (
         <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>{ritualError}</p>
       )}

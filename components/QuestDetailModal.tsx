@@ -244,12 +244,11 @@ export default function QuestDetailModal({
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
               disabled={actionLoading}
-              title={actionLoading ? "Action in progress..." : undefined}
+              title={actionLoading ? "Quest wird angenommen…" : undefined}
               onClick={async () => { setActionLoading(true); try { await handleClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
-              style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
-              onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(180deg, #2a2a2a, #1a1a1a)"; (e.currentTarget as HTMLButtonElement).style.color = "#FFD700"; }}
-            >{actionLoading ? "Claiming…" : "Claim Quest"}</button>
+              className="btn-interactive text-sm font-bold px-7 py-2.5 rounded-lg"
+              style={{ background: "rgba(255,68,68,0.15)", color: "#ff4444", border: "1px solid rgba(255,68,68,0.4)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.5 : 1 }}
+            >{actionLoading ? "Packt an…" : "Quest annehmen"}</button>
           )}
           {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
             <>

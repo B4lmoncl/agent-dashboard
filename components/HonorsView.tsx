@@ -117,10 +117,12 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
   const getRarityLabel = (count: number) => {
     if (count === 0) return { label: "Unearned", color: "rgba(255,255,255,0.35)" };
     const pct = totalUsers > 0 ? (count / totalUsers) * 100 : 100;
-    if (pct <= 10) return { label: "Legendary", color: "#f59e0b" };
-    if (pct <= 25) return { label: "Rare", color: "#a78bfa" };
-    if (pct <= 50) return { label: "Uncommon", color: "#3b82f6" };
-    return { label: "Common", color: "#22c55e" };
+    // Canonical rarity palette per CLAUDE.md: common/uncommon/rare/epic/legendary.
+    if (pct <= 5) return { label: "Legendary", color: "#f97316" };
+    if (pct <= 15) return { label: "Epic", color: "#a855f7" };
+    if (pct <= 30) return { label: "Rare", color: "#3b82f6" };
+    if (pct <= 60) return { label: "Uncommon", color: "#22c55e" };
+    return { label: "Common", color: "#9ca3af" };
   };
 
   if (loading) {
@@ -150,8 +152,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
         {/* Progress bar */}
         {loggedInUser && catalogue.length > 0 && (
           <div className="mt-3">
-            <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-              <div className={`h-full rounded-full transition-all duration-700${playerEarnedIds.size / catalogue.length > 0.8 ? " bar-pulse" : ""}`} style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
+            <div className={`progress-bar-diablo${playerEarnedIds.size / catalogue.length > 0.8 ? " bar-pulse" : ""}`}>
+              <div className="progress-bar-diablo-fill" style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
             </div>
           </div>
         )}

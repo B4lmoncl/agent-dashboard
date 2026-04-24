@@ -677,6 +677,7 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
   const partners = quest.coopPartners || quest.coopClaimed || [];
   const allDone = partners.length > 0 && partners.every(p => quest.coopCompletions.includes(p));
   let newAchievements = [];
+  let callerRewards = null;
   if (allDone) {
     quest.status = 'completed';
     quest.completedAt = now();
@@ -687,10 +688,25 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
         newAchievements = [...newAchievements, ...achs];
       }
     }
+    // Mirror the single-player response shape for the caller so the client
+    // can fire the reward celebration. Without this, co-op quests grant XP,
+    // gold and loot silently — players never see what they earned.
+    const self = state.users[uid];
+    if (self) {
+      callerRewards = {
+        xpEarned: self._lastXpEarned || 0,
+        goldEarned: self._lastGoldEarned || 0,
+        lootDrop: self._lastLoot || null,
+        currencies: self._lastCurrencies || null,
+        inventoryFull: !!self._inventoryFull,
+        lastRestedXP: self._lastRestedXP || 0,
+        hoardingMalus: self._lastHoardingMalus || 0,
+      };
+    }
   }
   saveQuests();
   qlog(`[coop] ${quest.id} part completed by ${uid} — allDone: ${allDone}`);
-  res.json({ ok: true, quest, allDone, newAchievements });
+  res.json({ ok: true, quest, allDone, newAchievements, ...(callerRewards || {}) });
   } finally { questCompleteLock.release(uid); }
 });
 

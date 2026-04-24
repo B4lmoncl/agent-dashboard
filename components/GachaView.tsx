@@ -782,7 +782,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
   return (
     <div className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="gacha" playerLevel={1} />
+      <TutorialMomentBanner viewId="gacha" />
       {/* Pull animation overlay */}
       {pullResults && (
         <GachaPull

@@ -905,7 +905,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   return (
     <div data-feedback-id="forge-view" className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
-      <TutorialMomentBanner viewId="forge" playerLevel={1} />
+      <TutorialMomentBanner viewId="forge" />
       {fetchError && (
         <div role="alert" className="rounded-lg px-3 py-2 flex items-center justify-between gap-3" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#fecaca" }}>
           <span className="text-xs">{fetchError}</span>
@@ -1403,7 +1403,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* Search */}
             <input
               type="text"
-              placeholder="Search materials..."
+              placeholder="Material suchen…"
               value={matSearch}
               onChange={e => setMatSearch(e.target.value)}
               className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
@@ -1880,7 +1880,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             type="text"
                             value={recipeSearch}
                             onChange={e => setRecipeSearch(e.target.value)}
-                            placeholder="Search..."
+                            placeholder="Suchen…"
                             className="input-dark w-full text-xs px-2 py-1 rounded"
                             style={{ fontSize: 12 }}
                           />

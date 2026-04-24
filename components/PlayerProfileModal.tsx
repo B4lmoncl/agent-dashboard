@@ -57,12 +57,12 @@ const ONLINE_COLORS: Record<string, string> = { online: "#22c55e", idle: "#eab30
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${mins}m ago`;
+  if (mins < 1) return "gerade eben";
+  if (mins < 60) return `vor ${mins} Min.`;
   const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
+  if (hrs < 24) return `vor ${hrs} Std.`;
   const days = Math.floor(hrs / 24);
-  return `${days}d ago`;
+  return `vor ${days} T.`;
 }
 
 const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; };

@@ -301,7 +301,7 @@ export default function TalentTreeView({
 
   return (
     <div className="tab-content-enter">
-      <TutorialMomentBanner viewId="talents" playerLevel={1} />
+      <TutorialMomentBanner viewId="talents" />
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>

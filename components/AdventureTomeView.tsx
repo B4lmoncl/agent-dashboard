@@ -147,7 +147,7 @@ export default function AdventureTomeView({
 
   return (
     <div className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="tome" playerLevel={1} />
+      <TutorialMomentBanner viewId="tome" />
       {/* ─── Header ────────────────────────────────────────────────────────── */}
       <div className="text-center space-y-2">
         <Tip k="adventure_tome" heading>

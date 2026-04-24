@@ -251,7 +251,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   return (
     <div data-feedback-id="rift-view" className="space-y-5 tab-content-enter relative">
       <HighstormVFX active={!!activeRift && !activeRift.completed} intensity="major" color="#a855f7" />
-      <TutorialMomentBanner viewId="rift" playerLevel={1} />
+      <TutorialMomentBanner viewId="rift" />
       {/* Purple rift energy fragments */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 6 }, (_, i) => (

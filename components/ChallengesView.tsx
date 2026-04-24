@@ -860,7 +860,7 @@ export default function ChallengesView({
 
       {/* Content */}
       <div key={activeTab} className="tab-content-enter">
-      <TutorialMomentBanner viewId="challenges" playerLevel={1} />
+      <TutorialMomentBanner viewId="challenges" />
       {activeTab === "sternenpfad" && (
         weeklyChallenge ? (
           <SternenpfadView

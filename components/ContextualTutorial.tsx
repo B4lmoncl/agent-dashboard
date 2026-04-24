@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useDashboard } from "@/app/DashboardContext";
+import { getUserLevel } from "@/app/utils";
 
 // ─── Lyra's Contextual Tutorial Moments ──────────────────────────────────────
 // Each moment fires ONCE when a condition is met. Stored in localStorage.
@@ -240,12 +242,17 @@ export function advanceTutorial() {
 // Inline banner that appears at the top of a view. NPC portrait + text.
 // Dismisses with a click. Never blocks interaction.
 
-export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
+export function TutorialMomentBanner({ viewId, playerLevel: playerLevelProp, conditions }: {
   viewId: string;
-  playerLevel: number;
+  // Optional — if omitted, we resolve the level from the logged-in user via
+  // DashboardContext. Historically all 16 call sites passed a hardcoded 1,
+  // which silently disabled level-gated tutorials from level 3 onward.
+  playerLevel?: number;
   conditions?: Record<string, boolean>;
 }) {
-  const { moment, dismiss } = useTutorialMoment(viewId, playerLevel, conditions);
+  const { loggedInUser } = useDashboard();
+  const resolvedLevel = playerLevelProp ?? (loggedInUser ? getUserLevel(loggedInUser.xp || 0).level : 1);
+  const { moment, dismiss } = useTutorialMoment(viewId, resolvedLevel, conditions);
   const [reopened, setReopened] = useState(false);
 
   // If no active moment, show a small "?" to re-open the last tutorial for this view
