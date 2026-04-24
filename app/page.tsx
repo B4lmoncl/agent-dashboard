@@ -3279,9 +3279,26 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Thanks line before stats — acknowledgment */}
-              <div className="pt-2 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                <p className="text-xs italic" style={{ color: "rgba(230,204,128,0.55)" }}>Ihr habt die Bugs gefunden. Ihr seid die eigentliche QA. Danke.</p>
+              {/* Thanks line before stats — acknowledgment with a real CTA into feedback mode */}
+              <div className="pt-3 pb-1 text-center space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs italic" style={{ color: "rgba(230,204,128,0.6)" }}>Ihr habt die Bugs gefunden. Ihr seid die eigentliche QA. Danke.</p>
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => {
+                      setWhatsNewOpen(false);
+                      try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
+                      setFeedbackMode(true);
+                      addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Feedback-Modus aktiv", sub: "Klick auf irgendetwas, das dich stört — die Halle hört zu." });
+                    }}
+                    className="btn-interactive text-xs font-semibold px-3 py-1.5 rounded-full inline-flex items-center gap-1.5"
+                    style={{ background: "rgba(129,140,248,0.12)", color: "#a78bfa", border: "1px solid rgba(129,140,248,0.35)", cursor: "pointer" }}
+                    title="Feedback-Modus starten — klick danach auf ein beliebiges Element zum Melden"
+                  >
+                    <span style={{ fontSize: 10 }}>β</span>
+                    <span>Weiterhin Bugs melden</span>
+                  </button>
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>oder der <span style={{ color: "rgba(129,140,248,0.55)", fontFamily: "monospace" }}>(β)</span> Button unten im Footer</span>
+                </div>
               </div>
 
               {/* Stats bar — flex-wrap for mobile */}
