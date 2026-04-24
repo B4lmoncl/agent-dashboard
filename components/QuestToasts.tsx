@@ -122,11 +122,9 @@ export function EmptyState({ message, sub }: { message: string; sub?: string }) 
 }
 
 // ─── Skeleton Card ────────────────────────────────────────────────────────────
+// Uses the shared .skeleton-card class (shimmer gradient + RPG-toned base)
+// instead of a flat grey animate-pulse — keeps the quest-board first-impression
+// consistent with every other view's loading state.
 export function SkeletonCard() {
-  return (
-    <div
-      className="rounded-xl animate-pulse"
-      style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.08)", height: 260 }}
-    />
-  );
+  return <div className="rounded-xl skeleton-card" style={{ height: 260 }} />;
 }

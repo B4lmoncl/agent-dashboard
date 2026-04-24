@@ -341,7 +341,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                     <div
                       key={ach.id}
                       ref={isHighlighted ? highlightRef : undefined}
-                      className={`rounded-xl overflow-hidden group${myEarned && (rarity.label === "Legendary" || rarity.label === "Rare") ? " crystal-breathe" : ""}`}
+                      className={`rounded-xl overflow-hidden group card-hover-lift${myEarned && (rarity.label === "Legendary" || rarity.label === "Rare") ? " crystal-breathe" : ""}`}
                       style={{
                         background: bgColor,
                         border: `2px solid ${isHighlighted ? "#f59e0b" : frameColor}`,

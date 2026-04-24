@@ -712,7 +712,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
           ))}
         </div>
       )}
-      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.10)", scrollbarWidth: "thin" }}>
+      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto scrollbar-rpg" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.10)", scrollbarWidth: "thin" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
           {sorted.map(item => {
             const selected = selectedIds.includes(item.id);
@@ -1097,7 +1097,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         {t.rounds.length > 0 && (
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Negotiation History</p>
-            <div className="space-y-2 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+            <div className="space-y-2 max-h-[200px] overflow-y-auto scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
               {t.rounds.map((round, i) => {
                 const isMe = round.by.toLowerCase() === playerName.toLowerCase();
                 return (

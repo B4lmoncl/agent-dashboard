@@ -695,7 +695,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             const onCd = d.cooldown.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={d.id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
+              <div key={d.id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe card-hover-lift" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${d.accent}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${d.accent}25`}`,
                 opacity: locked ? 0.5 : 1,

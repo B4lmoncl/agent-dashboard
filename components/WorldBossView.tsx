@@ -227,7 +227,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           setBossHistory(d.history.slice(-5).reverse());
         }
       }
-    } catch { setMessage({ text: "Boss-Chronik konnte nicht geladen werden.", type: "error" }); }
+    } catch { setMessage({ text: "Failed to load boss chronicle.", type: "error" }); }
   }, []);
 
   // Load history once boss data is known to be inactive (for Hall of Fallen Titans)

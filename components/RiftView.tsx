@@ -494,7 +494,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             const onCd = tier.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
+              <div key={id} className={`rounded-xl p-4 space-y-3${!locked && canEnter ? " crystal-breathe card-hover-lift" : !locked ? " crystal-breathe" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${tier.color}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${tier.color}25`}`,
                 opacity: locked ? 0.5 : 1,

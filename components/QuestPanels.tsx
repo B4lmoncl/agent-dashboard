@@ -553,7 +553,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       await fetch(`/api/rituals/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
                       loadAntiRituals();
                     } catch {
-                      setVowActionError("Schwur konnte nicht aufgegeben werden. Der Server antwortet nicht.");
+                      setVowActionError("Failed to abandon vow. The server isn't answering.");
                       setTimeout(() => setVowActionError(null), 5000);
                     }
                   }}

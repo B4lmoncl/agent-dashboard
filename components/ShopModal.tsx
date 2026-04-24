@@ -36,7 +36,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
           </div>
           <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)" }}>×</button>
         </div>
-        <div className="space-y-2 max-h-96 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
+        <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-rpg" style={{ overscrollBehavior: "contain", scrollbarWidth: "thin" }}>
           {ITEMS.map(item => (
             <div
               key={item.id}

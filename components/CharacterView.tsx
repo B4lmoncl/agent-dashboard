@@ -2227,7 +2227,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>Titles ({earnedTitles.length} earned)</p>
                           <button onClick={() => setTitlesOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
                         </div>
-                        <div className="p-4 overflow-y-auto" style={{ maxHeight: "calc(80vh - 56px)", scrollbarWidth: "thin" }}>
+                        <div className="p-4 overflow-y-auto scrollbar-rpg" style={{ maxHeight: "calc(80vh - 56px)", scrollbarWidth: "thin" }}>
                         {/* Equipped Title Display */}
                         {equippedDef && (
                           <div
@@ -2746,8 +2746,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {/* Items grouped by source */}
-          <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(85vh - 220px)" }}>
-            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Loading collection...</p>}
+          <div className="p-5 overflow-y-auto scrollbar-rpg" style={{ maxHeight: "calc(85vh - 220px)", scrollbarWidth: "thin" }}>
+            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>The archive is still retrieving the entries…</p>}
             {!collectionLoading && collectionError && (
               <div className="text-center py-8">
                 <p className="text-xs" style={{ color: "#ef4444" }}>Failed to load collection data.</p>

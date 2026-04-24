@@ -210,6 +210,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [professions, setProfessions] = useState<ProfessionDef[]>([]);
   const [showOnlyChosen, setShowOnlyChosen] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
+  // loading=true until the first fetchData resolves — prevents a blank-white
+  // flash on first Forge visit while /api/professions is in flight.
+  const [loading, setLoading] = useState(true);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
@@ -368,6 +371,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       console.error('Failed to fetch crafting data:', err);
       setFetchError("Failed to load crafting data");
     }
+    setLoading(false);
     if (!profsOk) return;
     // Fetch workshop upgrades — soft-fail (workshop is optional polish, not core)
     try {
@@ -894,7 +898,23 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       <div className="flex flex-col items-center justify-center py-16 space-y-3">
         <span className="text-4xl" style={{ opacity: 0.3 }}>&#9876;</span>
         <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>{"Artisan's Quarter"}</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{"Einloggen, um das Artisan's Quarter zu betreten."}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{"Log in to enter the Artisan's Quarter."}</p>
+      </div>
+    );
+  }
+
+  // Show skeleton on first visit while /api/professions is in flight so the
+  // user isn't staring at a blank white panel for up to 3s on slow networks.
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        <div className="skeleton-card rounded-xl" style={{ height: 80 }} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+        </div>
       </div>
     );
   }

@@ -365,7 +365,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
         console.error("[coop] create failed:", d);
         setCoopError(d.error || "Failed to create co-op quest. Try again.");
       }
-    } catch { setCoopError("Netzwerkfehler — Quest konnte nicht erstellt werden."); } finally { setCreating(null); }
+    } catch { setCoopError("Network error — quest could not be created."); } finally { setCreating(null); }
   };
 
   return (

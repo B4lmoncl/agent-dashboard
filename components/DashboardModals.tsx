@@ -162,7 +162,7 @@ export default function DashboardModals({
                   <h3 className="text-sm font-semibold text-primary">Währungen</h3>
                   <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Schließen">×</button>
                 </div>
-                <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
+                <div className="space-y-2 overflow-y-auto flex-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" as const }}>
                   {[
                     { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
                     { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },

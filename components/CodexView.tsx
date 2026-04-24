@@ -90,7 +90,7 @@ export default function CodexView() {
   return (
     <div className="tab-content-enter space-y-4 relative">
       <TutorialMomentBanner viewId="codex" />
-      {markReadError && <p className="text-xs px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>Lesefortschritt konnte nicht gespeichert werden.</p>}
+      {markReadError && <p className="text-xs px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>Failed to save read progress.</p>}
       {/* Ambient lore dust particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (
