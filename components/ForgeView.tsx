@@ -1554,7 +1554,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             const r = await fetch("/api/shop/gear/buy", {
                               method: "POST",
                               headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-                              body: JSON.stringify({ gearId: gear.id }),
+                              body: JSON.stringify({ userId: playerName, gearId: gear.id }),
                             });
                             if (r.ok) {
                               onRefresh?.(); fetchData();

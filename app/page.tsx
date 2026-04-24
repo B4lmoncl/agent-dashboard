@@ -828,7 +828,7 @@ export default function Dashboard() {
     if (!playerName || !reviewApiKey) return;
     const pollFriendActivity = async () => {
       try {
-        const r = await fetch(`/api/social/activity-feed?player=${encodeURIComponent(playerName)}&limit=5`, { headers: getAuthHeaders(reviewApiKey) });
+        const r = await fetch(`/api/social/${encodeURIComponent(playerName.toLowerCase())}/activity-feed?limit=5`, { headers: getAuthHeaders(reviewApiKey) });
         if (!r.ok) return;
         const data = await r.json();
         const events = data.events || data.feed || [];
