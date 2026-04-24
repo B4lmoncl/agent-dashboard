@@ -10,7 +10,7 @@ const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus, getStatBreakdown,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
   getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment, getGearScore,
-  getTodayBerlin, createPlayerLock, INVENTORY_CAP,
+  getTodayBerlin, createPlayerLock, INVENTORY_CAP, grantPlayerXp,
 } = require('../lib/helpers');
 const inventoryLock = createPlayerLock('inventory');
 const { requireAuth, requireSelf } = require('../lib/middleware');
@@ -84,7 +84,7 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
       u._habitCompletedToday[habitKey] = true;
       const bondLevel = u.companion?.bondLevel ?? 1;
       const bondBonus = 1 + 0.01 * Math.max(0, bondLevel - 1);
-      u.xp = (u.xp || 0) + Math.round(3 * bondBonus);
+      grantPlayerXp(u, Math.round(3 * bondBonus));
       const dropBonus = getUserDropBonus(uid);
       const { level: habitPlayerLevel } = getLevelInfo(u.xp || 0);
       const dropped = rollLoot(0.05 + dropBonus, habitPlayerLevel);
@@ -172,7 +172,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     }
     case 'xp': {
       const amt = effect.amount || 0;
-      u.xp = (u.xp || 0) + amt;
+      grantPlayerXp(u, amt);
       updatedValues.xp = u.xp;
       message = `+${amt} XP erhalten`;
       break;
@@ -472,7 +472,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const xp = effect.xp || 0;
       const gold = effect.gold || 0;
       const essenz = effect.essenz || 0;
-      u.xp = (u.xp || 0) + xp;
+      grantPlayerXp(u, xp);
       ensureUserCurrencies(u);
       u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) + gold;
       u.gold = u.currencies.gold;

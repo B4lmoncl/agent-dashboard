@@ -10,6 +10,7 @@ const {
   hasPassiveEffect, consumePassiveEffect, awardUserGold,
   getUserDropBonus, rollLoot, addLootToInventory, resetLootPity,
   checkAndAwardAchievements, checkAndAwardTitles, getLegendaryModifiers,
+  grantPlayerXp,
 } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
@@ -490,7 +491,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     const streakBonusXp = Math.round(xpBase * (u.streakDays || 0) * (ritualMods.ritualStreakBonus || 0));
     xpAmount += streakBonusXp;
 
-    u.xp = (u.xp || 0) + xpAmount;
+    const ritualXpResult = grantPlayerXp(u, xpAmount);
 
     // Gold with full multiplier chain
     const goldBase = (ritual.rewards.gold || 5) + commitGold;
@@ -507,7 +508,10 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
       const pactMulti = BLOOD_PACT_MULTI[ritual.commitment] || 3;
       pactCompletionXp = Math.round(commitBonus.xp * diffScale * pactMulti);
       pactCompletionGold = Math.round(commitBonus.gold * diffScale * pactMulti);
-      u.xp = (u.xp || 0) + pactCompletionXp;
+      // Use grantPlayerXp so a Blood Pact completion crossing a level threshold
+      // (easily possible — pactMulti is 3-5x) triggers level-up stardust
+      // reward and returns levelUp info for the frontend.
+      grantPlayerXp(u, pactCompletionXp);
       u.currencies.gold = (u.currencies.gold ?? 0) + pactCompletionGold;
       u.gold = u.currencies.gold;
       ritual.pactCompleted = true;
@@ -577,7 +581,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   const goldEarned = pactCompletionGold > 0 ? goldEarnedAmount + pactCompletionGold : goldEarnedAmount;
   const streakMilestone = u?._lastStreakMilestone || null;
   if (u) delete u._lastStreakMilestone;
-  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, streakMilestone, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
+  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, streakMilestone, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}), levelUp: ritualXpResult && ritualXpResult.leveledUp ? { level: ritualXpResult.newLevel, title: ritualXpResult.title } : null });
 });
 
 // PATCH /api/rituals/:id/extend — extend ritual/vow deadline [auth]

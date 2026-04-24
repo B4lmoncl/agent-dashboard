@@ -12,7 +12,7 @@ const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const _claimLocks = new Map();
 function acquireClaimLock(uid) { if (_claimLocks.has(uid)) return false; _claimLocks.set(uid, true); return true; }
 function releaseClaimLock(uid) { _claimLocks.delete(uid); }
-const { now, getLevelInfo, awardCurrency, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getLegendaryModifiers, grantPlayerXp } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Load weekly challenge data ─────────────────────────────────────────────
@@ -354,13 +354,8 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
   if (rewards.runensplitter) awardCurrency(uid, 'runensplitter', rewards.runensplitter);
   if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);
   if (rewards.sternentaler) awardCurrency(uid, 'sternentaler', rewards.sternentaler);
-  const prevLevel = rewards.xp ? getLevelInfo(u.xp || 0).level : 0;
-  if (rewards.xp) { u.xp = (u.xp || 0) + rewards.xp; }
-  // Award stardust on level-up (same logic as quest completion)
-  if (rewards.xp) {
-    const newLevel = getLevelInfo(u.xp).level;
-    if (newLevel > prevLevel) awardCurrency(uid, 'stardust', 5 + newLevel);
-  }
+  // grantPlayerXp handles seasonXp + level-up detection + stardust reward
+  const xpResult = rewards.xp ? grantPlayerXp(u, rewards.xp) : { leveledUp: false };
 
   // Battle Pass XP — award per star earned
   try { const { grantBattlePassXP } = require('./battlepass'); for (let s = 0; s < stageStars; s++) grantBattlePassXP(u, 'sternenpfad_star'); } catch (e) { console.warn('[bp-xp] sternenpfad_star:', e.message); }
@@ -385,6 +380,7 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
       completedStages: u.weeklyChallenge.completedStages,
       stars: u.weeklyChallenge.stars,
     },
+    levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null,
   });
   } finally { releaseClaimLock(uid); }
 });

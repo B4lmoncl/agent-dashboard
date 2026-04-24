@@ -12,7 +12,7 @@ const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir } 
 const _expClaimLocks = new Map();
 function acquireExpClaimLock(uid) { if (_expClaimLocks.has(uid)) return false; _expClaimLocks.set(uid, true); return true; }
 function releaseExpClaimLock(uid) { _expClaimLocks.delete(uid); }
-const { now, awardCurrency } = require('../lib/helpers');
+const { now, awardCurrency, grantPlayerXp } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { getWeekId } = require('./challenges-weekly');
 
@@ -235,7 +235,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
   const rewards = { ...(EXPEDITION_DATA.expedition?.checkpointRewards[rewardKey] || {}) };
 
   ensureUserCurrencies(u);
-  if (rewards.xp) u.xp = (u.xp || 0) + rewards.xp;
+  const xpResult = rewards.xp ? grantPlayerXp(u, rewards.xp) : { leveledUp: false };
   if (rewards.gold) awardCurrency(uid, 'gold', rewards.gold);
   if (rewards.runensplitter) awardCurrency(uid, 'runensplitter', rewards.runensplitter);
   if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);
@@ -265,6 +265,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
     message: `Checkpoint ${cpNum} reward claimed`,
     checkpoint: cpNum,
     rewards,
+    levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null,
   });
   } finally { releaseExpClaimLock(uid); }
 });

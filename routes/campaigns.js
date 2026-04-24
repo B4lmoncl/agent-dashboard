@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { state, saveCampaigns, saveUsers, ensureUserCurrencies, rebuildCampaignsById } = require('../lib/state');
-const { now, createPlayerLock } = require('../lib/helpers');
+const { now, createPlayerLock, grantPlayerXp } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
 const campaignClaimLock = createPlayerLock('campaign-claim');
@@ -196,7 +196,7 @@ router.post('/api/campaigns/:id/claim', requireApiKey, (req, res) => {
     ensureUserCurrencies(u);
     u.currencies.gold = (u.currencies.gold || 0) + baseGold;
     u.gold = u.currencies.gold;
-    u.xp = (u.xp || 0) + baseXp;
+    const xpResult = grantPlayerXp(u, baseXp);
 
     if (titleReward && !u.unlockedTitles?.includes(titleReward)) {
       u.unlockedTitles = u.unlockedTitles || [];
@@ -209,8 +209,8 @@ router.post('/api/campaigns/:id/claim', requireApiKey, (req, res) => {
     saveUsers();
 
     const awarded = { gold: baseGold, xp: baseXp, title: titleReward || undefined };
-    console.log(`[campaigns] ${uid} claimed reward for campaign ${campaign.id}: +${baseGold}g +${baseXp}xp`);
-    res.json({ ok: true, awarded, campaign: { id: campaign.id, title: campaign.title } });
+    console.log(`[campaigns] ${uid} claimed reward for campaign ${campaign.id}: +${baseGold}g +${baseXp}xp${xpResult.leveledUp ? ` (Level ${xpResult.prevLevel} → ${xpResult.newLevel})` : ''}`);
+    res.json({ ok: true, awarded, campaign: { id: campaign.id, title: campaign.title }, levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null });
   } finally {
     campaignClaimLock.release(uid);
   }

@@ -3,7 +3,7 @@
  */
 const crypto = require('crypto');
 const { state, LEVELS, QUEST_FLAVOR, CAMPAIGN_NPCS, DEFAULT_CURRENCIES, ensureUserCurrencies, saveUsers, saveClasses, saveManagedKeys, rebuildUserIndexes } = require('../lib/state');
-const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate } = require('../lib/helpers');
+const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate, grantPlayerXp } = require('../lib/helpers');
 const { requireAuth, requireSelf, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { generateTokenPair, setRefreshCookie, clearRefreshCookie, getRefreshTokenFromRequest, verifyRefreshToken, revokeRefreshToken, resolveAuth } = require('../lib/auth');
 const { isEmailConfigured, sendPasswordResetEmail, sendVerificationEmail } = require('../lib/email');
@@ -155,13 +155,13 @@ router.post('/api/users/:id/award-xp', requireAuth, (req, res) => {
   const { amount = 10, reason } = req.body;
   const xpAmount = Math.max(0, Math.min(100000, parseInt(amount, 10) || 0));
   if (xpAmount <= 0) return res.status(400).json({ error: 'Amount must be positive' });
-  state.users[id].xp = (state.users[id].xp || 0) + xpAmount;
+  const xpResult = grantPlayerXp(state.users[id], xpAmount);
   if (reason) {
     state.users[id].achievements = state.users[id].achievements || [];
     state.users[id].achievements.push({ reason, xp: amount, at: now() });
   }
   saveUsers();
-  res.json({ ok: true, xp: state.users[id].xp });
+  res.json({ ok: true, xp: state.users[id].xp, levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null });
 });
 
 // GET /api/streaks — get streak info for all users and agents
