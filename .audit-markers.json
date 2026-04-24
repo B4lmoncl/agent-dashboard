@@ -150,10 +150,10 @@
     "status": "clean-flagged"
   },
   "components/AdventureTomeView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration on milestone claim. Disabled states. Per-floor objective tracking. Progress bars. Title rewards.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 68: Clean. Claiming state prevents double-claims via claimKey. Toast-based error handling. RewardCelebration fired on successful claim. Visual: progress-bar-diablo with milestone markers, floor cards with expand/collapse. Flagged (fragile, not bug): line 99-101 parses gold amount from result.granted string via regex (\"contains Gold\" + \\D replace). Would break if backend changes grant format. Better: have backend return structured { gold: N } shape.",
+    "status": "clean-flagged"
   },
   "components/StatBar.tsx": {
     "auditCount": 2,
