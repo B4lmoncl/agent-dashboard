@@ -74,7 +74,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
             </p>
             {nextUnlock && (
               <p className="text-xs mt-0.5" style={{ color: "rgba(230,204,128,0.55)" }}>
-                Als nächstes bei Lv{nextUnlock.level}: <span className="font-semibold">{nextUnlock.label}</span>
+                Next at Lv{nextUnlock.level}: <span className="font-semibold">{nextUnlock.label}</span>
               </p>
             )}
           </div>

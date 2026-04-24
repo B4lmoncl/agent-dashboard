@@ -18,15 +18,19 @@ interface CountUpProps {
  * Detects value changes and auto-animates.
  */
 export default function CountUp({ value, duration = 800, className, style, format, prefix, suffix }: CountUpProps) {
-  const [display, setDisplay] = useState(value);
-  const prevRef = useRef(value);
+  // Initial display is 0 so the first mount also animates — previously we
+  // stored `value` directly, which meant the effect saw prev === value on
+  // mount and skipped the animation. Every "+1000 XP" popped in at final
+  // value instead of counting up from 0.
+  const [display, setDisplay] = useState(0);
+  const prevRef = useRef(0);
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const prev = prevRef.current;
     prevRef.current = value;
 
-    // Skip animation on first render or if value didn't change
+    // Skip if value didn't change since last effect run.
     if (prev === value) return;
 
     const startTime = performance.now();

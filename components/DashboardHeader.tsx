@@ -13,7 +13,10 @@ function LastUpdated({ lastRefresh }: { lastRefresh: Date | null }) {
     return () => clearInterval(tick);
   }, [lastRefresh]);
   if (!lastRefresh) return <span>—</span>;
-  return <span>{secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`}</span>;
+  if (secondsAgo < 5) return <span>synced</span>;
+  if (secondsAgo < 60) return <span>synced {secondsAgo}s ago</span>;
+  const mins = Math.floor(secondsAgo / 60);
+  return <span>synced {mins}m ago</span>;
 }
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";

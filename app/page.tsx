@@ -1177,9 +1177,9 @@ export default function Dashboard() {
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
         {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
+        <div className={`grid grid-cols-1 gap-3 ${playerLevelInfo.level < 5 ? "sm:grid-cols-3" : "sm:grid-cols-4"}`} data-tutorial="stat-cards">
           {!playerName && !loading && (
-            <div className="col-span-1 sm:col-span-4 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
+            <div className={`col-span-1 ${playerLevelInfo.level < 5 ? "sm:col-span-3" : "sm:col-span-4"} rounded-xl p-3 text-center`} style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
               <p className="text-xs text-w35">
                 <button onClick={() => setOnboardingOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
               </p>
@@ -1189,7 +1189,7 @@ export default function Dashboard() {
           <Tip k="streak"><StatBar
             label="Forge Streak"
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
-            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : ""}
+            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "complete a quest to start") : ""}
             subColor={playerName && playerStreak > 0 ? "#fbbf24" : undefined}
             accent={playerStreak >= 90 ? "#a78bfa" : playerStreak >= 30 ? "#818cf8" : "#f97316"}
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
@@ -1219,6 +1219,10 @@ export default function Dashboard() {
             inline
           /></Tip>
           </div>
+          {/* Artisan card — hidden below Lv5 so we don't render a permanent
+              "—" placeholder for players who can't even pick a profession yet.
+              Matches the Forge room min-level. */}
+          {playerLevelInfo.level >= 5 && (
           <div data-feedback-id="stats.professions">
           {(() => {
             const profs = loggedInUser?.professions;
@@ -1255,6 +1259,7 @@ export default function Dashboard() {
             );
           })()}
           </div>
+          )}
         </div>
 
         {/* Player Card — skeleton while playerName is set but user data hasn't loaded yet */}
@@ -1397,7 +1402,7 @@ export default function Dashboard() {
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
                 {/* Currency bar */}
                 <div className="flex items-center gap-3 rounded-xl px-3 py-2 bg-w4 border-w8 transition-colors" style={{ cursor: "pointer" }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.06)"; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = ""; }}>
-                  {[
+                  {([
                     { emoji: "", key: "gold" as const, value: Number(loggedInUser?.currencies?.gold ?? animGold), color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
                     { emoji: "", key: "stardust" as const, value: Number(loggedInUser?.currencies?.stardust ?? 0), color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
                     { emoji: "", key: "runensplitter" as const, value: Number(loggedInUser?.currencies?.runensplitter ?? 0), color: "#818cf8", iconSrc: "/images/icons/currency-runensplitter.png" },
@@ -1405,7 +1410,14 @@ export default function Dashboard() {
                     { emoji: "", key: "gildentaler" as const, value: Number(loggedInUser?.currencies?.gildentaler ?? 0), color: "#10b981", iconSrc: "/images/icons/currency-gildentaler.png" },
                     { emoji: "", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
                     { emoji: "", key: "sternentaler" as const, value: Number(loggedInUser?.currencies?.sternentaler ?? 0), color: "#fbbf24", iconSrc: "/images/icons/currency-sternentaler.png" },
-                  ].map(c => (
+                  // Low-level players drown in zeroed-out currencies they haven't unlocked yet.
+                  // Below Lv10, hide any non-gold currency that's still at zero so the bar
+                  // shows only what's relevant. Gold always stays so the row never collapses.
+                  ] as const).filter(c => {
+                    if (playerLevelInfo.level >= 10) return true;
+                    if (c.key === "gold") return true;
+                    return c.value > 0;
+                  }).map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)}>
                       <Tip k={c.key}>
                         {c.iconSrc ? <img src={c.iconSrc} alt="" width={24} height={24} className={`currency-infused currency-${c.key} ${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
@@ -1804,10 +1816,12 @@ export default function Dashboard() {
                 <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${currentFloor.color}cc 0%, ${currentFloor.color}55 25%, transparent 50%)` }} />
                 {/* Dark scrim for text legibility (left-heavy) */}
                 <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 30%, transparent 50%)" }} />
-                {/* Text */}
-                <div className="absolute bottom-5 left-5 z-10">
-                  <span className="text-base font-black uppercase tracking-widest" style={{ color: currentFloor.color, textShadow: `0 1px 12px rgba(0,0,0,0.8), 0 0 20px ${currentFloor.color}30` }}>{currentFloor.name}</span>
-                  <span className="text-sm ml-2.5 font-semibold" style={{ color: "rgba(255,255,255,0.65)", textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>— {currentFloor.subtitle}</span>
+                {/* Text — floor name now reads as a theatrical welcome: larger, */}
+                {/* vertically centered on the left quarter, subtitle as its own line */}
+                {/* below. Previously the 200px banner held tiny text in the bottom corner. */}
+                <div className="absolute top-1/2 -translate-y-1/2 left-5 sm:left-8 z-10">
+                  <span className="block text-2xl sm:text-3xl font-black uppercase tracking-[0.2em] leading-none" style={{ color: currentFloor.color, textShadow: `0 2px 16px rgba(0,0,0,0.85), 0 0 32px ${currentFloor.color}40` }}>{currentFloor.name}</span>
+                  <span className="block text-xs sm:text-sm font-semibold mt-2" style={{ color: "rgba(255,255,255,0.7)", textShadow: "0 1px 6px rgba(0,0,0,0.85)", letterSpacing: "0.05em" }}>{currentFloor.subtitle}</span>
                 </div>
                 {/* Decorative overlay pattern */}
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />
@@ -2867,8 +2881,14 @@ export default function Dashboard() {
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
         <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onNavigate={(v) => setDashView(v as typeof dashView)} onCollect={(rd) => {
-          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory`);
-          if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
+          // Achievement and loot toasts used to fire synchronously with the
+          // celebration's exit animation (220ms). The toast stack sits at
+          // z-[150] while the celebration is at z-[200], so the toast
+          // rendered behind the dimming backdrop and users never saw it.
+          // Defer them until the modal has finished unmounting.
+          const TOAST_DELAY = 260;
+          if (rd.loot) setTimeout(() => setPurchaseToast(`${rd.loot!.name} added to inventory`), TOAST_DELAY);
+          if (rd.achievement) setTimeout(() => addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement }), TOAST_DELAY);
           // Trigger floating reward numbers
           const floats: { text: string; color: string }[] = [];
           if (rd.xpEarned > 0) floats.push({ text: `+${rd.xpEarned} XP`, color: "#a78bfa" });
@@ -2881,7 +2901,7 @@ export default function Dashboard() {
       {/* Level Up Celebration */}
       {levelUpCelebration && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeLevelUp}>
-          <div className="levelup-modal w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1a1400 0%, #0d0d14 60%)", border: "2px solid rgba(255,215,0,0.5)", boxShadow: "0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(255,215,0,0.1)" }}
+          <div role="dialog" aria-modal="true" aria-label={`Level up to ${levelUpCelebration.level}`} className="levelup-modal w-full max-w-[calc(100vw-2rem)] sm:max-w-sm rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1a1400 0%, #0d0d14 60%)", border: "2px solid rgba(255,215,0,0.5)", boxShadow: "0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(255,215,0,0.1)" }}
             onClick={e => e.stopPropagation()}>
             {/* Sparkle particles */}
             {Array.from({ length: 12 }).map((_, i) => (
