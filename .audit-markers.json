@@ -450,9 +450,9 @@
     "status": "clean"
   },
   "routes/integrations.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. HMAC-SHA256 fail-closed, timing-safe compare, raw body for signature, XSS sanitization on PR title/body.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 77: 214-line integrations. GitHub webhook HMAC-SHA256 implementation is solid: fail-closed (no secret = reject), uses req.rawBody (fallback to re-serialized JSON which almost certainly fails HMAC \u2014 acceptable fail-closed), length check before timingSafeEqual. Forge-temp-decay requireApiKey. Minor DST edge case in yesterday computation via Date.now()-86400000 \u2014 at DST transitions yields 23h/25h offset, not actionable. Clean.",
     "status": "clean"
   },
   "routes/codex.js": {
