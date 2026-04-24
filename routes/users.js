@@ -249,16 +249,19 @@ router.post('/api/auth/login', authLimiter, async (req, res) => {
     const hashForTiming = user?.passwordHash || DUMMY_PASSWORD_HASH;
     const bcryptMatch = await bcrypt.compare(password, hashForTiming);
 
+    // Always return the same error message so the response body can't be
+    // used to enumerate valid usernames either (paired with the timing fix
+    // above, which already equalized response time).
     if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
     // Support both new password login and legacy API-key-as-password login
     if (user.passwordHash) {
-      if (!bcryptMatch) return res.status(401).json({ error: 'Invalid name or password' });
+      if (!bcryptMatch) return res.status(401).json({ error: 'Invalid credentials' });
     } else {
       // Legacy: user has no password yet, check if password matches apiKey (timing-safe)
       const a = Buffer.from(String(password));
       const b = Buffer.from(String(user.apiKey || ''));
-      if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return res.status(401).json({ error: 'Invalid name or password' });
+      if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const admin = isUserAdmin(user);
