@@ -504,9 +504,9 @@
     "status": "clean-flagged"
   },
   "lib/rotation.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. seeded random, rarity assignment",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 74: 283-line daily rotation. Clean. Double-rotation guard (lastDailyRotation === todayStr). Midnight-guard on restart (ms<=60000 \u2192 +24h). Recurring quest interval reset with playerProgress completion clearing. System quest cleanup filter preserves NPC/companion quests. Per-player pool reset on rotation (aggressive but intentional). Schmiedefieber rotation wrapped in try/catch. Recursive setTimeout resilient to errors.",
     "status": "clean"
   },
   "lib/quest-templates.js": {
