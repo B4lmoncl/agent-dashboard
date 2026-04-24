@@ -163,9 +163,9 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   switch (effectType) {
     case 'gold': {
       const amt = effect.amount || 0;
-      u.gold = (u.gold || 0) + amt;
       ensureUserCurrencies(u);
-      u.currencies.gold = u.gold;
+      u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) + amt;
+      u.gold = u.currencies.gold;
       updatedValues.gold = u.gold;
       message = `+${amt} Gold erhalten`;
       break;
@@ -473,9 +473,9 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const gold = effect.gold || 0;
       const essenz = effect.essenz || 0;
       u.xp = (u.xp || 0) + xp;
-      u.gold = (u.gold || 0) + gold;
       ensureUserCurrencies(u);
-      u.currencies.gold = u.gold;
+      u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) + gold;
+      u.gold = u.currencies.gold;
       u.currencies.essenz = (u.currencies.essenz || 0) + essenz;
       updatedValues.xp = u.xp;
       updatedValues.gold = u.gold;
