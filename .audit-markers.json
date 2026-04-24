@@ -767,10 +767,10 @@
     "status": "clean"
   },
   "routes/sworn-bonds.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-17",
-    "findings": "MED FIXED: bond expiresAt set but never checked \u2014 timed bonds never expired. Added auto-expiry in getActiveBondForPlayer. All POST endpoints have bondLock.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 50: Deep race-condition audit. All 6 mutation endpoints (propose/accept/cancel/decline/break/claim-chest) have bondLock.acquire/release with finally. Status transitions (pending->active->broken) checked before every mutation. Propose checks both players for existing bonds. Accept double-checks acceptor for concurrent bond. Node single-thread makes concurrent accept+cancel safe. FLAGGED (low-priority per user): line 470 break confirmation message is German (\"Schwurbund wirklich brechen? 7 Tage Abklingzeit.\") \u2014 UI shell should be English. Break endpoint uses non-standard 200+ok:false for confirmation prompt pattern but functional.",
+    "status": "clean-flagged"
   },
   "components/ContextualTutorial.tsx": {
     "auditCount": 2,
