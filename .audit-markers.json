@@ -1,9 +1,4 @@
 {
-  "_meta": {
-    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
-    "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
-    "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
-  },
   "components/OnboardingWizard.tsx": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-05",
@@ -82,12 +77,6 @@
     "findings": "Wave 43: Loading text \"...\" -> \"Leaving...\"/\"Entering...\" on action buttons. Leave button title \"Action in progress\" -> \"Leaving the Hearth...\". Confirmation modal: added role=dialog + aria-modal + aria-label. Bug fix: errors never auto-dismissed (CLAUDE.md says 5s) \u2014 added setTimeout auto-clear on all 4 setError calls (fetch, enter, leave, network). Success messages already auto-dismiss. Ember particles animation name ember-float confirmed in globals.css.",
     "status": "clean"
   },
-  "components/DailyHub.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "created, slimmed to avoid TodayDrawer dupe, unlock hint added",
-    "status": "clean"
-  },
   "components/CharacterView.tsx": {
     "auditCount": 4,
     "lastAuditDate": "2026-04-24",
@@ -152,12 +141,6 @@
     "auditCount": 3,
     "lastAuditDate": "2026-04-24",
     "findings": "Wave 36: 4 German TipCustom tooltip bodies translated. \"Living Codex\" body: Sammlung... -> Collection of all discovered lore entries. \"Fortschritt\" -> \"Progress\" (title+body). Category tooltip \"Lore-Kategorie mit X Eintraegen\" -> \"Lore category with X entries. Y discovered.\" \"Unentdeckt\" -> \"Undiscovered\" (title+body). Companion descriptions (lines 310-314) stay German \u2014 content per policy.",
-    "status": "clean"
-  },
-  "components/CampaignHub.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "error handling OK, overscroll-contain added",
     "status": "clean"
   },
   "components/TalentTreeView.tsx": {
@@ -308,18 +291,6 @@
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
     "findings": "Cycle 2: Verified in batch audit. skeleton loading OK",
-    "status": "clean"
-  },
-  "components/CVBuilderPanel.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. niche admin feature, silent catch acceptable",
-    "status": "clean"
-  },
-  "components/InfoTooltip.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. thin alias for GameTooltip",
     "status": "clean"
   },
   "components/QuestToasts.tsx": {
@@ -837,5 +808,10 @@
     "lastAuditDate": "2026-04-16",
     "findings": "Clean. 10 suffixes with level-scaled stat bonuses. Values reasonable (1-5 per stat at Lv50). Used for gear naming.",
     "status": "clean"
+  },
+  "_meta": {
+    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
+    "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
+    "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
   }
 }
