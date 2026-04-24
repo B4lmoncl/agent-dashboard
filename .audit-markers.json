@@ -119,9 +119,9 @@
     "status": "clean"
   },
   "components/DungeonView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration for collect (gold, essenz, runensplitter, sternentaler, unique/gear/gem drops). Correct disabled states with cursor:not-allowed. 2-step cancel. Friend picker with level display. Error handling.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 44: Loading state polish + bug fix. Join button \"...\" -> \"Joining...\" + title \"Joining dungeon...\". Collect button \"...\" -> \"Collecting...\" + title \"Collecting rewards...\". Bug: messages (success+error) never auto-dismissed, only cleared by next action. Added useEffect auto-dismiss after 5s matching CLAUDE.md guidance. Create modal already has role=dialog.",
     "status": "clean"
   },
   "components/RiftView.tsx": {

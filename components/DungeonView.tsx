@@ -147,6 +147,14 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
+  // Auto-dismiss messages after 5s (success OR error). Without this, errors
+  // from rejected joins/collects stick around until the next action clears them.
+  useEffect(() => {
+    if (!message) return;
+    const t = setTimeout(() => setMessage(null), 5000);
+    return () => clearTimeout(t);
+  }, [message]);
+
   // Create modal state
   const [showCreate, setShowCreate] = useState(false);
   const [selectedDungeon, setSelectedDungeon] = useState<string | null>(null);
@@ -579,9 +587,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   opacity: actionLoading ? 0.5 : 1,
                   cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
-                title={actionLoading ? "Action in progress..." : undefined}
+                title={actionLoading ? "Joining dungeon..." : undefined}
               >
-                {actionLoading ? "..." : "Join Dungeon"}
+                {actionLoading ? "Joining..." : "Join Dungeon"}
               </button>
             )}
 
@@ -599,9 +607,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   opacity: actionLoading ? 0.5 : 1,
                   cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
-                title={actionLoading ? "Action in progress..." : undefined}
+                title={actionLoading ? "Collecting rewards..." : undefined}
               >
-                {actionLoading ? "..." : "Collect Rewards"}
+                {actionLoading ? "Collecting..." : "Collect Rewards"}
               </button>
             )}
 
