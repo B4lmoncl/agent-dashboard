@@ -678,6 +678,14 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Auto-dismiss error after 5s per CLAUDE.md. Pull failures and network
+  // errors shouldn't stick around forever once the user has acknowledged.
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(() => setError(null), 5000);
+    return () => clearTimeout(t);
+  }, [error]);
+
   const loggedIn = playerName && reviewApiKey;
   const user = loggedIn ? users.find(u => (u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) : null;
 

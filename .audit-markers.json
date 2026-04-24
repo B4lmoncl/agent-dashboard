@@ -29,9 +29,9 @@
     "status": "clean"
   },
   "components/GachaView.tsx": {
-    "auditCount": 3,
+    "auditCount": 4,
     "lastAuditDate": "2026-04-24",
-    "findings": "Wave 29: Language Policy check clean (all UI in English already). a11y: both modals use ModalOverlay which provides role=dialog \u2014 good. title= on disabled pull buttons had embedded system explanation (\"Earn Stardust from: Level-Ups...\") violating the UI guideline against system explanations in title attrs. Simplified to \"Need X more Stardust/Runensplitter\" (dynamic disabled-reason only \u2014 how-to-earn is available in Currencies modal). companion-config.ts also clean (Wave 28).",
+    "findings": "Waves 29+46: Wave 29 fixed disabled-button title embedded system explanation. Wave 46: Error state rendered as banner (not view-replacing \u2014 no profile-vanishing bug). But error persisted forever. Added useEffect auto-dismiss after 5s for transient pull errors and network errors.",
     "status": "clean"
   },
   "components/TutorialModal.tsx": {
