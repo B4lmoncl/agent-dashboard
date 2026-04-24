@@ -132,9 +132,9 @@
     "status": "clean"
   },
   "components/HonorsView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. points display exists, categories OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 67: Real UX bug \u2014 when navigating to HonorsView with highlightedAchievementId (e.g. from a notification click), the target could be hidden by active category/earned/search filters, making scrollIntoView a silent no-op. Fixed: reset all 3 filters when highlightedAchievementId changes, then defer scrollIntoView via requestAnimationFrame to wait for the re-render with fresh filters. Clean otherwise: debounced search, proper useEffect cleanup, no modals.",
     "status": "clean"
   },
   "components/CodexView.tsx": {

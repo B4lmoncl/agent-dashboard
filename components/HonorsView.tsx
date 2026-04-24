@@ -59,12 +59,23 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
   }, [catalogue.length]);
 
   useEffect(() => {
-    if (highlightedAchievementId && highlightRef.current) {
-      highlightRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      // Clear after a delay so user sees the highlight then it fades
-      const timer = setTimeout(() => { if (onHighlightClear) onHighlightClear(); }, 3000);
-      return () => clearTimeout(timer);
-    }
+    if (!highlightedAchievementId) return;
+    // Reset filters first — the target achievement may be hidden by the current
+    // category/earned/search filter, which would make scrollIntoView a no-op
+    // (ref is null because the DOM node isn't rendered). Clicking a notification
+    // "View in Honors" should always land on the target.
+    setActiveCat("all");
+    setEarnedFilter("all");
+    setSearchQuery("");
+    // Defer scrollIntoView to next tick so the re-render with reset filters
+    // completes and the target's DOM node is mounted before we scroll to it.
+    const raf = requestAnimationFrame(() => {
+      if (highlightRef.current) {
+        highlightRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+    const timer = setTimeout(() => { if (onHighlightClear) onHighlightClear(); }, 3000);
+    return () => { cancelAnimationFrame(raf); clearTimeout(timer); };
   }, [highlightedAchievementId, onHighlightClear]);
 
   // Debounce search input by 200ms
