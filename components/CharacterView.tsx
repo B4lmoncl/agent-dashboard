@@ -1684,12 +1684,28 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           })()}
         </div>
 
-        {/* CENTER: Character Area */}
+        {/* CENTER: Character Area — uses the tier-reactive PixelCharacter canvas
+            (defined above in this file) so the hero renders with actual armor
+            coloring based on equipped tier + bobbing + blink animation, and
+            the companion orbits alongside. Falls back gracefully if canvas
+            fails — the container still has a subtle violet frame either way. */}
         <div className="flex-1 flex flex-col items-center justify-center relative" style={{ minHeight: 360 }}>
           <div className="flex flex-col items-center justify-center gap-3" style={{ minHeight: 200 }}>
-            <div className="flex items-center justify-center overflow-hidden" style={{ width: 160, height: 160, borderRadius: 16, background: "rgba(167,139,250,0.06)", border: "2px solid rgba(167,139,250,0.2)" }}>
-              <img src="/images/portraits/hero-male.png" alt="Hero" width={160} height={160} style={{ imageRendering: "auto", objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            <div className="flex items-center justify-center overflow-hidden" style={{ width: 160, height: 200, borderRadius: 16, background: "radial-gradient(ellipse at 50% 30%, rgba(167,139,250,0.14) 0%, rgba(167,139,250,0.04) 60%, transparent 100%)", border: "2px solid rgba(167,139,250,0.25)", boxShadow: "0 0 32px rgba(167,139,250,0.1), inset 0 0 24px rgba(167,139,250,0.05)" }}>
+              <PixelCharacter
+                appearance={{
+                  skinColor: (loggedInUser as unknown as { appearance?: { skinColor?: string } }).appearance?.skinColor || "medium",
+                  hairColor: (loggedInUser as unknown as { appearance?: { hairColor?: string } }).appearance?.hairColor || "brown",
+                  hairStyle: (loggedInUser as unknown as { appearance?: { hairStyle?: string } }).appearance?.hairStyle || "short",
+                }}
+                equipment={(charData?.equipment || {}) as Record<string, string>}
+                companion={loggedInUser.companion ? { type: loggedInUser.companion.type, name: loggedInUser.companion.name, emoji: loggedInUser.companion.emoji || "" } : null}
+              />
             </div>
+            {/* Equipped title + frame colour surface right under the character */}
+            {charData?.title && (
+              <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.7)" }}>{charData.title}</p>
+            )}
           </div>
         </div>
 
@@ -2197,22 +2213,46 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       return (rarityWeight[b.rarity] ?? 0) - (rarityWeight[a.rarity] ?? 0);
                     });
 
-                    // Condition label helper
+                    // Condition label helper — now appends the player's current
+                    // progress toward the condition where a simple numeric
+                    // mapping exists (level, streak, quests etc.). Turns
+                    // "Reach Level 30" into "Reach Level 30 (Lv 24)" so the
+                    // player knows how close they are instead of guessing.
+                    const currentFor = (type: string): number | null => {
+                      if (!charData) return null;
+                      const full = charData as unknown as Record<string, unknown>;
+                      switch (type) {
+                        case "level": return charData.level ?? 0;
+                        case "quests_completed": return typeof full.questsCompleted === "number" ? full.questsCompleted : null;
+                        case "streak": return typeof full.streakDays === "number" ? full.streakDays : null;
+                        case "inventory_count": return charData.inventory?.length ?? 0;
+                        case "gold": return typeof full.gold === "number" ? full.gold : null;
+                        case "forge_temp": return typeof full.forgeTemp === "number" ? full.forgeTemp : null;
+                        case "achievement_points": return typeof full.achievementPoints === "number" ? full.achievementPoints : null;
+                        case "battlepass_level": {
+                          const bp = full.battlePass as { level?: number } | undefined;
+                          return bp?.level ?? null;
+                        }
+                        default: return null;
+                      }
+                    };
                     const condLabel = (cond?: { type: string; value: number }) => {
                       if (!cond) return "Dynamically earned";
                       const v = cond.value;
+                      const cur = currentFor(cond.type);
+                      const progress = cur !== null ? ` (${cur.toLocaleString()}/${v.toLocaleString()})` : "";
                       switch (cond.type) {
-                        case "level": return `Reach Level ${v}`;
-                        case "quests_completed": return `Complete ${v} Quests`;
-                        case "streak": return `${v}-Day Streak`;
-                        case "inventory_count": return `${v} Items in Inventory`;
-                        case "gold": return `Collect ${v.toLocaleString()} Gold`;
+                        case "level": return `Reach Level ${v}${progress}`;
+                        case "quests_completed": return `Complete ${v} Quests${progress}`;
+                        case "streak": return `${v}-Day Streak${progress}`;
+                        case "inventory_count": return `${v} Items in Inventory${progress}`;
+                        case "gold": return `Collect ${v.toLocaleString()} Gold${progress}`;
                         case "npc_chains": return `${v} NPC Chains Completed`;
-                        case "forge_temp": return `Forge Temp ${v}%`;
+                        case "forge_temp": return `Forge Temp ${v}%${progress}`;
                         case "gacha_legendary": return `${v} Legendary Gacha Pull${v > 1 ? "s" : ""}`;
                         case "full_equipment": return "All 6 Slots Equipped";
-                        case "achievement_points": return `${v.toLocaleString()} Achievement Points`;
-                        case "battlepass_level": return `Season Pass Level ${v}`;
+                        case "achievement_points": return `${v.toLocaleString()} Achievement Points${progress}`;
+                        case "battlepass_level": return `Season Pass Level ${v}${progress}`;
                         default: return "Dynamically earned";
                       }
                     };
