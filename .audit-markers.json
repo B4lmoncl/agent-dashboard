@@ -281,9 +281,9 @@
     "status": "clean"
   },
   "components/TowerMap.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. modal-backdrop OK, ESC OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 54: Fixed mixed-language teaser \"Next at Lv12: Stockwerk: Der Hochmut\" \u2014 \"Stockwerk\" -> \"Floor\" (English prefix with German inline word = UI consistency bug, not lore). Added role=dialog + aria-modal + aria-label to the modal wrapper div. ESC handler present. FLAGGED (language, per user low prio): line 280 German tagline \"Der Turm erinnert sich...\" \u2014 matches Wave 37 view-tagline pattern but deprioritized.",
     "status": "clean"
   },
   "components/FloatingRewards.tsx": {

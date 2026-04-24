@@ -49,7 +49,7 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
   // Find the nearest unlock (floor OR room) above current level for "Next unlock" teaser
   const upcomingUnlocks: { level: number; label: string }[] = [];
   FLOORS.forEach(f => {
-    if ((f.minLevel || 1) > playerLevel) upcomingUnlocks.push({ level: f.minLevel || 1, label: `Stockwerk: ${f.name}` });
+    if ((f.minLevel || 1) > playerLevel) upcomingUnlocks.push({ level: f.minLevel || 1, label: `Floor: ${f.name}` });
     f.rooms.forEach(r => {
       const rLvl = r.minLevel || f.minLevel || 1;
       if (rLvl > playerLevel) upcomingUnlocks.push({ level: rLvl, label: `${r.label}` });
@@ -61,6 +61,9 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Tower map navigation"
         className="w-full max-w-md sm:max-w-lg rounded-2xl overflow-hidden tab-content-enter"
         style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 25px 100px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
