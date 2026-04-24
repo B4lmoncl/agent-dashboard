@@ -797,9 +797,9 @@
     "status": "clean"
   },
   "lib/email.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Plaintext email (no XSS). encodeURIComponent on URL params. API key from env. Graceful error handling. Inbox caching.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 25: Doc/code env-var mismatch fixed. CLAUDE.md+.env.example documented AGENTMAIL_FROM (full email) but code read AGENTMAIL_USERNAME. resolveUsername() now accepts both (extracts username from FROM if full email, falls back to USERNAME, then default). No breaking change. User-facing tone: plain functional templates -> full Skulduggery-tone per user decision. Subject lines unchanged (spam-filter-safe). Password reset + verification emails now match in-world Hall voice.",
     "status": "clean"
   },
   "lib/companion-config.ts": {
