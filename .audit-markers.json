@@ -227,9 +227,9 @@
     "status": "clean"
   },
   "components/NotificationCenter.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. useModalBehavior OK, badge-enter animation",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 49: Silent dead-click bug \u2014 5 notification types (quest_milestone, season_reset, daily_reset, class_activated, system) had cursor:pointer but no navMap entry, so clicking them did nothing. Expanded navMap to cover quest_milestone/season_reset/class_activated. system+daily_reset stay non-navigable by design but now render with cursor:default + disabled=true to signal non-clickability. Added aria-label with unread count on bell button + aria-expanded. Per-item aria-label on notifications.",
     "status": "clean"
   },
   "components/ItemActionPopup.tsx": {
