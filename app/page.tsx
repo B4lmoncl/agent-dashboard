@@ -320,6 +320,9 @@ export default function Dashboard() {
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [whatsNewOpen, setWhatsNewOpen] = useState(false);
+  // Two-stage popup: first a cinematic v2.0.0 hero screen, then the detail
+  // cards. Defaults back to "hero" every time the popup opens.
+  const [popupStage, setPopupStage] = useState<"hero" | "details">("hero");
   // When the v2.0.0 popup closes, fire a brief Highstorm over the main page
   // as a handoff VFX. Activates for 2.2s then clears. Lazy-loaded so it
   // doesn't ship in the initial bundle for users who've already seen it.
@@ -876,7 +879,7 @@ export default function Dashboard() {
       const completedCount = loggedInUser?.questsCompleted ?? 0;
       const level = loggedInUser ? getUserLevel(loggedInUser.xp || 0).level : 1;
       if (completedCount < 3 && level < 2) return; // first-timer guard
-      const t = setTimeout(() => setWhatsNewOpen(true), 1500);
+      const t = setTimeout(() => { setPopupStage("hero"); setWhatsNewOpen(true); }, 1500);
       return () => clearTimeout(t);
     } catch { /* ignore */ }
   }, [playerName, loggedInUser]);
@@ -3200,11 +3203,91 @@ export default function Dashboard() {
         };
         return (
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4 launch-shockwave" onClick={closePopup}>
+          {popupStage === "hero" ? (
+            /* ─── STAGE 1: pure cinematic hero. No info overload — one line, one button. */
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="whatsnew-title"
+              className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-md rounded-2xl overflow-hidden stage-swap-in panel-ornate panel-ornate-inner"
+              style={{ background: "radial-gradient(ellipse at 50% 30%, #1a1428 0%, #0a0a14 70%, #050608 100%)", border: "1px solid rgba(230,204,128,0.35)", boxShadow: "0 30px 120px rgba(0,0,0,0.95), 0 0 120px rgba(230,204,128,0.18), 0 0 60px rgba(167,139,250,0.14)" }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={closePopup}
+                aria-label="Dismiss"
+                className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold z-20 transition-opacity"
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
+              >✕</button>
+
+              {/* Rotating rune orbits behind the text */}
+              <div className="absolute left-1/2 top-1/2 pointer-events-none hero-orbit-slow" style={{ width: 360, height: 360, borderRadius: "50%", border: "1px dashed rgba(230,204,128,0.22)", transform: "translate(-50%,-50%)", zIndex: 1 }} />
+              <div className="absolute left-1/2 top-1/2 pointer-events-none hero-orbit-med" style={{ width: 260, height: 260, borderRadius: "50%", border: "1px dashed rgba(167,139,250,0.25)", transform: "translate(-50%,-50%)", zIndex: 1 }} />
+              <div className="absolute left-1/2 top-1/2 pointer-events-none hero-orbit-slow" style={{ width: 170, height: 170, borderRadius: "50%", border: "1px solid rgba(230,204,128,0.12)", transform: "translate(-50%,-50%)", zIndex: 1 }} />
+
+              {/* Dense floating particles — 18 stars */}
+              {Array.from({ length: 18 }, (_, i) => (
+                <div
+                  key={`hero-particle-${i}`}
+                  className="absolute pointer-events-none"
+                  style={{
+                    width: 2 + (i % 3),
+                    height: 2 + (i % 3),
+                    borderRadius: "50%",
+                    left: `${5 + (i * 7.3) % 90}%`,
+                    bottom: "-5%",
+                    background: i % 3 === 0 ? "#e6cc80" : i % 3 === 1 ? "#a78bfa" : "#818cf8",
+                    boxShadow: `0 0 10px ${i % 3 === 0 ? "#e6cc80" : i % 3 === 1 ? "#a78bfa" : "#818cf8"}`,
+                    animation: `crystal-particle-rise ${4 + (i % 4) * 1.5}s ease-out ${i * 0.25}s infinite`,
+                    opacity: 0.8,
+                    zIndex: 2,
+                  }}
+                />
+              ))}
+
+              {/* Centerpiece */}
+              <div className="relative px-8 py-16 text-center" style={{ zIndex: 3 }}>
+                <p className="text-xs font-semibold uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(167,139,250,0.7)" }}>Now Live</p>
+                <p id="whatsnew-title" className="text-6xl sm:text-7xl font-black tracking-tight hero-intro-beat" style={{ color: "#e6cc80", fontFamily: "inherit", lineHeight: 1 }}>
+                  v2.0.0
+                </p>
+                <div className="flex items-center justify-center gap-3 mt-3">
+                  <span style={{ height: 1, width: 40, background: "linear-gradient(to right, transparent, rgba(230,204,128,0.5))" }} />
+                  <p className="text-sm font-bold uppercase tracking-[0.35em]" style={{ color: "#e6cc80" }}>Open Beta</p>
+                  <span style={{ height: 1, width: 40, background: "linear-gradient(to left, transparent, rgba(230,204,128,0.5))" }} />
+                </div>
+                <p className="text-sm italic mt-6" style={{ color: "rgba(255,255,255,0.55)", maxWidth: 340, margin: "24px auto 0", lineHeight: 1.6 }}>
+                  Die Halle ist wieder offen. Die Tore waren nie wirklich zu — wir haben nur so getan.
+                </p>
+
+                <button
+                  onClick={() => setPopupStage("details")}
+                  className="mt-10 text-sm py-3 px-8 rounded-lg font-bold relative overflow-hidden crystal-breathe inline-flex items-center gap-2"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(230,204,128,0.22), rgba(167,139,250,0.2))",
+                    color: "#f5e4a8",
+                    border: "1px solid rgba(230,204,128,0.5)",
+                    cursor: "pointer",
+                    boxShadow: "0 0 32px rgba(230,204,128,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+                    textShadow: "0 0 12px rgba(230,204,128,0.6)",
+                    letterSpacing: "0.05em",
+                    "--glow-color": "rgba(230,204,128,0.4)",
+                  } as React.CSSProperties}
+                >
+                  <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.8s ease-in-out infinite" }} />
+                  <span className="relative">See what&apos;s new</span>
+                  <span className="relative" style={{ fontSize: 14 }}>→</span>
+                </button>
+                <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>or dismiss — the hall forgives absence</p>
+              </div>
+            </div>
+          ) : (
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="whatsnew-title"
-            className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden tab-content-enter panel-ornate panel-ornate-inner"
+            className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden stage-swap-in panel-ornate panel-ornate-inner"
             style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.25)", boxShadow: "0 30px 100px rgba(0,0,0,0.95), 0 0 80px rgba(230,204,128,0.12), 0 0 40px rgba(129,140,248,0.10)" }}
             onClick={e => e.stopPropagation()}
           >
@@ -3352,6 +3435,7 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
+          )}
         </div>
         );
       })()}

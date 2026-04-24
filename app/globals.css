@@ -945,6 +945,33 @@ button[disabled] {
   animation: whatsnew-card-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
+/* Stage swap — when the v2.0.0 popup transitions from its hero intro stage to */
+/* the details stage, the new stage fades in while scaling from 1.04 down to 1. */
+/* Paired with tab-content-enter via key={stage} unmount/mount. */
+@keyframes stage-swap-in {
+  0%   { opacity: 0; transform: scale(1.04); filter: blur(4px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+.stage-swap-in {
+  animation: stage-swap-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hero intro heartbeat — used on the giant v2.0.0 text. 2-beat pulse, slow. */
+@keyframes hero-intro-beat {
+  0%, 100% { text-shadow: 0 0 32px rgba(230,204,128,0.55), 0 0 64px rgba(230,204,128,0.22); transform: scale(1); }
+  50%      { text-shadow: 0 0 56px rgba(230,204,128,0.85), 0 0 120px rgba(230,204,128,0.45); transform: scale(1.02); }
+}
+.hero-intro-beat {
+  animation: hero-intro-beat 2.4s ease-in-out infinite;
+}
+
+/* Rotating rune orbit — 3 concentric dotted rings rotating at different speeds */
+@keyframes orbit-slow     { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes orbit-med      { from { transform: translate(-50%,-50%) rotate(360deg); } to { transform: translate(-50%,-50%) rotate(0deg); } }
+.hero-orbit-slow { animation: orbit-slow 22s linear infinite; }
+.hero-orbit-med  { animation: orbit-med 14s linear infinite; }
+
 /* Launch shockwave — a single expanding gold ring behind the What's New modal */
 /* when it mounts. Uses ::before on an absolute wrapper so it doesn't clip. Fires */
 /* once, 900ms, dissolves into the backdrop. Sends the message: something landed. */
