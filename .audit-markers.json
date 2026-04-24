@@ -41,9 +41,9 @@
     "status": "clean"
   },
   "components/CompanionsWidget.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. quote rewrite, safeTimeout cleanup verified",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. quote rewrite, safeTimeout cleanup verified Wave 59: UI/UX focus. safeTimeout with useRef cleanup on unmount verified. All 4 setExpeditionError calls have auto-dismiss via safeTimeout 5000. Timer countdown updates 1/sec. Minor: interval keeps running after expedition ready (re-sets same state, no re-render, wasteful but not bug).",
     "status": "clean"
   },
   "components/ForgeView.tsx": {
