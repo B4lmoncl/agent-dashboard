@@ -179,10 +179,10 @@
     "status": "clean"
   },
   "components/UserCard.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. unlock milestones OK, rested XP bar OK",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 47: Deep UI/UX audit. Solid overall. memo() wrapper correct. Portrait fallback with letter avatar works. XP bar shows MAX at cap. Rested XP blue zone with tooltip. Forge tier color transitions. Achievement icon row with title per icon. Milestone level glow for Lv10/20/30. FLAGGED (not fixed): line 119-126 hardcodes virtual companion types + Dobbie check duplicating getCompanionPortrait() from lib/companion-config.ts \u2014 pure DRY opportunity, no UX impact.",
+    "status": "clean-flagged"
   },
   "components/TodayDrawer.tsx": {
     "auditCount": 2,
