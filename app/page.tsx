@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } from "react";
 import StatBar from "@/components/StatBar";
 const OnboardingWizard = lazy(() => import("@/components/OnboardingWizard"));
+const HighstormVFX = lazy(() => import("@/components/HighstormVFX"));
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CrystalVeins from "@/components/CrystalVeins";
 import TowerMap from "@/components/TowerMap";
@@ -319,6 +320,10 @@ export default function Dashboard() {
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [whatsNewOpen, setWhatsNewOpen] = useState(false);
+  // When the v2.0.0 popup closes, fire a brief Highstorm over the main page
+  // as a handoff VFX. Activates for 2.2s then clears. Lazy-loaded so it
+  // doesn't ship in the initial bundle for users who've already seen it.
+  const [betaLaunchStorm, setBetaLaunchStorm] = useState(false);
   const [emailMigrationOpen, setEmailMigrationOpen] = useState(false);
   const [migEmail, setMigEmail] = useState("");
   const [migMsg, setMigMsg] = useState("");
@@ -3093,6 +3098,10 @@ export default function Dashboard() {
         onExit={() => setFeedbackMode(false)}
         playerName={playerName || undefined}
       /></Suspense>
+      {/* Beta launch Highstorm — briefly visible after closing the v2.0.0 popup. */}
+      <Suspense fallback={null}>
+        <HighstormVFX active={betaLaunchStorm} intensity="minor" color="#e6cc80" duration={2200} />
+      </Suspense>
 
       {onboardingOpen && (
         <Suspense fallback={null}><OnboardingWizard
@@ -3185,9 +3194,12 @@ export default function Dashboard() {
           try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
           // Welcome-Toast feuert den Übergang an, statt das Modal einfach verschwinden zu lassen.
           addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Willkommen zur Open Beta", sub: "Die Halle registriert deine Anwesenheit" });
+          // Kurzer Highstorm über die Hauptseite — der Launch hinterlässt Spuren, nicht nur Text.
+          setBetaLaunchStorm(true);
+          setTimeout(() => setBetaLaunchStorm(false), 2200);
         };
         return (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4" onClick={closePopup}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4 launch-shockwave" onClick={closePopup}>
           <div
             role="dialog"
             aria-modal="true"

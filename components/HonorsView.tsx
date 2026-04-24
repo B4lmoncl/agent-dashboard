@@ -271,6 +271,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
             </div>
           )}
 
+          {/* key on the category list forces re-animate when the active filter changes */}
+          <div key={`${activeCat}-${earnedFilter}-${debouncedSearch}`} className="tab-content-enter">
           {categories.map(cat => {
           const catAchs = filteredCatalogue.filter(a => a.category === cat);
           if (catAchs.length === 0) return null;
@@ -428,6 +430,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
             </div>
           );
         })}
+        </div>
         </>
       )}
     </div>

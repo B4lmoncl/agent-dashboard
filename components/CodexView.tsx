@@ -158,9 +158,9 @@ export default function CodexView() {
         })}
       </div>
 
-      {/* Entries grouped by category — visual variety */}
+      {/* Entries grouped by category — visual variety. key re-animates on filter change. */}
       {activeCat === "all" ? (
-        <div className="space-y-6">
+        <div key={activeCat} className="space-y-6 tab-content-enter">
           {categories.map(cat => {
             const catDiscovered = entries.filter(e => e.category === cat.id && e.discovered);
             const catTotal = entries.filter(e => e.category === cat.id).length;
@@ -211,8 +211,8 @@ export default function CodexView() {
           })}
         </div>
       ) : (
-        /* Single category view — standard grid */
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        /* Single category view — standard grid. key re-animates on category change. */
+        <div key={activeCat} className="grid grid-cols-2 sm:grid-cols-3 gap-2 tab-content-enter">
           {discoveredFiltered.map(entry => {
             const cat = categories.find(c => c.id === entry.category);
             const isUnread = !readEntries.has(entry.id);

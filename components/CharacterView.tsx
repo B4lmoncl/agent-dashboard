@@ -1706,9 +1706,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             ))}
           </div>
 
-          {/* Gear tab — Paper Doll Layout */}
+          {/* Gear tab — Paper Doll Layout. key re-animates on tab change. */}
           {rightTab === "equipment" && (
-            <div>
+            <div key="equipment" className="tab-content-enter">
               {/* Paper Doll Grid */}
               <div className="relative mx-auto" style={{ width: 240, height: 250 }}>
                 {/* Legendary equipment shimmer particles */}
