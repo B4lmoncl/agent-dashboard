@@ -676,7 +676,11 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   const shopItem = state.gearById.get(req.params.itemId);
   if (shopItem) {
     if (level < shopItem.minLevel) return res.status(400).json({ error: `Requires level ${shopItem.minLevel}` });
-    if ((u.gold || 0) < shopItem.cost) return res.status(400).json({ error: `Insufficient gold. Need ${shopItem.cost}, have ${u.gold || 0}` });
+    // u.currencies.gold is source of truth — u.gold can be stale if another
+    // route wrote only to currencies. Matches the fix in shop.js wave 73.
+    ensureUserCurrencies(u);
+    const goldBalance = u.currencies.gold ?? 0;
+    if (goldBalance < shopItem.cost) return res.status(400).json({ error: `Insufficient gold. Need ${shopItem.cost}, have ${goldBalance}` });
     // Check if same template already equipped in that slot
     const currentSlotItem = u.equipment[shopItem.slot];
     if (currentSlotItem && typeof currentSlotItem === 'object' && currentSlotItem.templateId === shopItem.id) {
@@ -696,9 +700,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
 
     const cost = Number(shopItem.cost) || 0;
     if (!isFinite(cost) || cost < 0) return res.status(400).json({ error: 'Invalid cost' });
-    u.gold = (u.gold || 0) - cost;
-    ensureUserCurrencies(u);
-    u.currencies.gold = u.gold;
+    u.currencies.gold = goldBalance - cost;
+    u.gold = u.currencies.gold;
     // Roll stats for the new item
     const instance = createGearInstance(shopItem);
     // BoE items become bound on equip

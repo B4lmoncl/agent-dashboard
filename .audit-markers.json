@@ -438,9 +438,9 @@
     "status": "clean"
   },
   "routes/habits-inventory.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners. Wave 73.1: Same gold source-of-truth bug as shop.js \u2014 /player/:name/equip/:itemId when buying gear read legacy u.gold first. If currencies.gold drifted higher, user saw \"Insufficient gold\" despite having enough. Fixed to read u.currencies.gold first (matches shop.js fix).",
     "status": "clean"
   },
   "routes/agents.js": {
