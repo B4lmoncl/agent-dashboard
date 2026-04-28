@@ -131,6 +131,14 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
 
   useEffect(() => { fetchRift(); }, [fetchRift]);
 
+  // Clean up any pending screen-shake timers + class on unmount.
+  const screenShakeTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => {
+    screenShakeTimersRef.current.forEach(clearTimeout);
+    screenShakeTimersRef.current = [];
+    document.body.classList.remove("screenshake");
+  }, []);
+
   // Auto-refresh timer + client-side countdown tick
   const [, setTick] = useState(0);
   useEffect(() => {
@@ -154,7 +162,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         body: JSON.stringify(body),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Action failed", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
@@ -170,12 +178,14 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Action failed", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
-        // Screen shake on stage clear
+        // Screen shake on stage clear. Track the timer + always clean the class
+        // on unmount so a mid-animation navigation doesn't leave the shake stuck.
         document.body.classList.add("screenshake");
-        setTimeout(() => document.body.classList.remove("screenshake"), 300);
+        const shakeTimer = setTimeout(() => document.body.classList.remove("screenshake"), 300);
+        screenShakeTimersRef.current.push(shakeTimer);
         if (onRewardCelebration) {
           const currencies: { name: string; amount: number; color: string }[] = [];
           if (d.completionBonus) {
@@ -197,7 +207,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           });
         }
         if (d.skippedStage) {
-          setMessage({ text: `Schattenschritt: Stage ${d.skippedStage} auto-completed`, type: "success" });
+          setMessage({ text: `Schattenschritt skipped stage ${d.skippedStage} for you. Nobody saw a thing.`, type: "success" });
         }
         fetchRift(); onRefresh?.();
       }
@@ -215,7 +225,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Action failed", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
@@ -241,7 +251,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   return (
     <div data-feedback-id="rift-view" className="space-y-5 tab-content-enter relative">
       <HighstormVFX active={!!activeRift && !activeRift.completed} intensity="major" color="#a855f7" />
-      <TutorialMomentBanner viewId="rift" playerLevel={1} />
+      <TutorialMomentBanner viewId="rift" />
       {/* Purple rift energy fragments */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 6 }, (_, i) => (
@@ -266,7 +276,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         </div>
       </div>
       <div className="rounded-lg px-4 py-2.5" style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.06) 0%, transparent 80%)", borderLeft: "2px solid rgba(168,85,247,0.2)" }}>
-        <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)", maxWidth: 520 }}>Die Risse flüstern. Hör nicht hin. Seit der Wiederkehr öffnen sich die Risse im Aetherstrom häufiger — fragmentierte Realitäten sickern hindurch.</p>
+        <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)", maxWidth: 520 }}>The rifts whisper. Don&apos;t listen. Since the Return they&apos;ve opened more often — fragmented realities bleeding through.</p>
       </div>
 
       {/* Messages */}
@@ -484,7 +494,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             const onCd = tier.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
+              <div key={id} className={`rounded-xl p-4 space-y-3${!locked && canEnter ? " crystal-breathe card-hover-lift" : !locked ? " crystal-breathe" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${tier.color}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${tier.color}25`}`,
                 opacity: locked ? 0.5 : 1,

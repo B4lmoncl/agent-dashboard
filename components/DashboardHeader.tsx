@@ -17,7 +17,7 @@ function LastUpdated({ lastRefresh }: { lastRefresh: Date | null }) {
 }
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
-import { TipCustom } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import NotificationCenter from "@/components/NotificationCenter";
 
 interface DashboardHeaderProps {
@@ -171,7 +171,7 @@ export default function DashboardHeader({
     } else {
       setLoginError(data.error || "Invalid credentials");
     }
-    } catch { setLoginError("Connection error"); }
+    } catch { setLoginError("Network error"); }
     finally { setAuthLoading(false); }
   };
 
@@ -206,7 +206,7 @@ export default function DashboardHeader({
     } else {
       setRegisterError(data.error || "Registration failed");
     }
-    } catch { setRegisterError("Connection error"); }
+    } catch { setRegisterError("Network error"); }
     finally { setAuthLoading(false); }
   };
 
@@ -234,7 +234,7 @@ export default function DashboardHeader({
         overflow: "visible",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between" style={{ overflow: "visible" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 min-h-16 py-2 flex flex-wrap items-center justify-between gap-y-2" style={{ overflow: "visible" }}>
         <div className="flex items-center gap-3">
           <button
             data-feedback-id="header.guild-gate"
@@ -319,7 +319,8 @@ export default function DashboardHeader({
                 </button>
                 {settingsPopupOpen && (
                   <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col bg-surface-alt border-w10 tab-content-enter" style={{ minWidth: 200, overflow: "hidden" }}>
-                    <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.11)" }}>
+                    <div className="px-4 py-3 relative" style={{ borderBottom: "1px solid rgba(255,255,255,0.11)" }}>
+                      <button onClick={() => setSettingsPopupOpen(false)} aria-label="Close" className="absolute top-2 right-2 w-6 h-6 rounded flex items-center justify-center" style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", cursor: "pointer", fontSize: 12 }}>✕</button>
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
                           {playerName.slice(0, 1).toUpperCase()}
@@ -377,6 +378,7 @@ export default function DashboardHeader({
                           value={playerNameInput}
                           onChange={e => setPlayerNameInput(e.target.value)}
                           placeholder="Email or Username"
+                          autoComplete="username"
                           className="text-xs px-2 py-1 rounded input-dark"
                         />
                         <input
@@ -384,6 +386,7 @@ export default function DashboardHeader({
                           value={reviewKeyInput}
                           onChange={e => setReviewKeyInput(e.target.value)}
                           placeholder="Password"
+                          autoComplete="current-password"
                           className="text-xs px-2 py-1 rounded input-dark"
                           onKeyDown={e => { if (e.key === "Enter") handleLogin(); }}
                         />
@@ -483,10 +486,12 @@ export default function DashboardHeader({
             const isNight = h >= 22 || h < 6;
             if (!isNight) return null;
             return (
-              <div className="flex items-center gap-1 text-xs" style={{ color: "#818cf8" }} title="Mondlicht-Schmiede active (22:00-06:00 Berlin) — +20% minimum rolls on crafted gear">
-                <span style={{ fontSize: 12, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
-                <span style={{ opacity: 0.6 }}>Mondlicht</span>
-              </div>
+              <Tip k="mondlicht">
+                <div className="flex items-center gap-1 text-xs" style={{ color: "#818cf8" }}>
+                  <span style={{ fontSize: 12, animation: "crystal-breathe 3s ease-in-out infinite", ["--glow-color" as string]: "rgba(129,140,248,0.4)" }}>☽</span>
+                  <span style={{ opacity: 0.6 }}>Mondlicht</span>
+                </div>
+              </Tip>
             );
           })()}
           <div className="text-xs font-mono flex items-center gap-1.5 text-w25">
@@ -500,12 +505,12 @@ export default function DashboardHeader({
     {/* Settings Modal */}
     {settingsModalOpen && (
       <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => setSettingsModalOpen(false)}>
-        <div className="w-full max-w-md rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+        <div role="dialog" aria-modal="true" aria-label="Settings" className="w-full max-w-md rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
           <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
             <p className="text-sm font-bold" style={{ color: "#818cf8" }}>Settings</p>
             <button onClick={() => setSettingsModalOpen(false)} className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
           </div>
-          <div className="px-5 py-4 space-y-4 max-h-[70vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+          <div className="px-5 py-4 space-y-4 max-h-[70vh] overflow-y-auto scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
             {/* Email Section */}
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Email</p>

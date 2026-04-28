@@ -105,7 +105,6 @@ components/           # React UI components (62 files, ~37k lines)
   ...                 # 39 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
-  useFirstVisit.ts    # First-visit detection hook
 lib/                  # Backend business logic (9 files, ~5000 lines)
   state.js            # Central state, Maps, JSON persistence (~1430 lines)
   helpers.js          # Utility functions, paginate() (~2380 lines)
@@ -349,6 +348,32 @@ These rules ensure visual consistency across all features. Follow them for EVERY
 - **Rarity colors:** common `#9ca3af`, uncommon `#22c55e`, rare `#3b82f6`, epic `#a855f7`, legendary `#f97316`, unique `#e6cc80` (WoW artifact gold — handcrafted items only)
 - **Stat names** (Kraft, Weisheit, etc.) are German game-world proper nouns — do NOT translate
 - **Currency names** (Runensplitter, Sternentaler, etc.) are German proper nouns — do NOT translate
+
+### Language Policy (MANDATORY — established 2026-03-27)
+
+Quest Hall uses a **bilingual split by context**. A previous session migrated 200+ German strings to English to lock this in. Do NOT translate either direction without explicit authorization.
+
+| Context | Language |
+|---------|----------|
+| Interactive UI (buttons, labels, form placeholders, errors, toasts, empty states) | **English** |
+| Backend API error messages (`res.status(...).json({ error: "..." })`) | **English** |
+| TutorialModal / Contextual Tutorial / Guide / Codex entries | **German** (keep) |
+| Gear/Item `name`, `desc`, `flavorText`, `lore` | **German** (keep, Kingkiller Chronicle tone) |
+| Quest `title`, `description`, `flavor` (content-authored) | **German** (keep, Skulduggery tone) |
+| NPC `greeting`, `title`, quest `vars.quote` | **German** (keep, Skulduggery tone) |
+| Achievement `description` | **German** (keep) |
+| Talent-Tree `flavor` | **German** (keep) |
+| Game-world proper nouns (stat names, currency names, Die Vier Zirkel, Schmiedefieber, Sternenpfad, Schicksalsbaum, Abenteuerbuch) | **German** (do not translate) |
+| Room names (The Rift, The Hearth, The Breakaway, The Undercroft, Artisan's Quarter, Vault of Fate, Sunken Archive, Shattered Spire, Hollow Core, Wanderer's Rest) | **English** (intentional — in-world naming) |
+
+**Examples:**
+- ✅ `addToast({ type: "error", message: "Network error" })` — Interactive UI → English
+- ✅ `res.status(400).json({ error: "Quest already claimed" })` — API error → English
+- ✅ Item desc: `"Solide Verarbeitung. Der vorherige Besitzer hat sie freiwillig abgegeben."` — Content → German
+- ❌ `addToast({ message: "Die Leitungen nach Aethermoor flackern. Versuch es nochmal." })` — UI error dressed up as flavor text, violates the split
+- ❌ `setError("Name oder Passwort stimmen nicht.")` — login error should be `"Invalid credentials"`
+
+**Agent trap (from AUDIT_REPORT.md §Appendix A):** "Don't translate German lore/flavor text" (one direction). Equivalently: don't translate English UI shell to German (the other direction). Both are regressions.
 
 ### Interactive Elements
 - **Buttons:** Always use `cursor: pointer` when enabled, `cursor: not-allowed` + dimmed opacity when disabled

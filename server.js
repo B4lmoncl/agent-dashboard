@@ -166,57 +166,69 @@ try {
   console.error(`  Fix: run 'chown -R appuser:appgroup ${RUNTIME_DIR}' or check Docker volume permissions`);
   console.error(`${'='.repeat(70)}\n`);
 }
-ensureDataDir();
-ensureRuntimeFiles();
-seedMutableFiles();
-ensureTemplateFiles();
-initStore();
-loadData();
-loadQuests();
-loadCampaigns();
-autoCreateCampaigns();
-loadManagedKeys();
+// Guarded boot: each loader is wrapped so a single malformed JSON doesn't
+// crash the whole server with a raw stack trace. Errors are logged and the
+// system continues with defaults for that subsystem.
+function safeBoot(label, fn) {
+  try {
+    fn();
+  } catch (e) {
+    console.error(`[boot] ${label} FAILED — ${e.message}`);
+    console.error(`[boot] ${label} — continuing with defaults; fix the data file and restart to enable this subsystem`);
+  }
+}
+
+safeBoot('ensureDataDir', ensureDataDir);
+safeBoot('ensureRuntimeFiles', ensureRuntimeFiles);
+safeBoot('seedMutableFiles', seedMutableFiles);
+safeBoot('ensureTemplateFiles', ensureTemplateFiles);
+safeBoot('initStore', initStore);
+safeBoot('loadData', loadData);
+safeBoot('loadQuests', loadQuests);
+safeBoot('loadCampaigns', loadCampaigns);
+safeBoot('autoCreateCampaigns', autoCreateCampaigns);
+safeBoot('loadManagedKeys', loadManagedKeys);
 
 // Add managed keys to validApiKeys
 for (const k of state.managedKeys) {
   validApiKeys.add(k.key);
 }
 
-loadUsers();
-loadPlayerProgress();
-loadQuestCatalog();
-seedQuestCatalog();
-loadClasses();
-loadCompanionsData();
-loadRoadmap();
-loadRituals();
-loadHabits();
-loadLootTables();
-loadGearTemplates();
-loadNpcGivers();
-loadNpcState();
-loadAppState();
-loadFeedback();
-initAchievementCatalogue();
-loadCurrencyTemplates();
-loadGachaPool();
-loadBannerTemplates();
-loadGachaState();
-loadItemTemplates();
-loadTitles();
-loadUniqueItems();
-loadSocialData();
-require('./routes/crafting').loadProfessions();
-require('./routes/challenges-weekly').loadWeeklyChallenges();
-require('./routes/expedition').loadExpeditions();
-require('./routes/expedition').loadExpeditionState();
-require('./routes/world-boss').loadWorldBossState();
-require('./routes/world-boss').checkAutoSpawn();
-require('./routes/gems').loadGems();
-require('./routes/players').loadCompanionExpeditions();
-require('./routes/dungeons').loadDungeonTemplates();
-require('./routes/dungeons').loadDungeonState();
-require('./routes/codex').loadCodex();
+safeBoot('loadUsers', loadUsers);
+safeBoot('loadPlayerProgress', loadPlayerProgress);
+safeBoot('loadQuestCatalog', loadQuestCatalog);
+safeBoot('seedQuestCatalog', seedQuestCatalog);
+safeBoot('loadClasses', loadClasses);
+safeBoot('loadCompanionsData', loadCompanionsData);
+safeBoot('loadRoadmap', loadRoadmap);
+safeBoot('loadRituals', loadRituals);
+safeBoot('loadHabits', loadHabits);
+safeBoot('loadLootTables', loadLootTables);
+safeBoot('loadGearTemplates', loadGearTemplates);
+safeBoot('loadNpcGivers', loadNpcGivers);
+safeBoot('loadNpcState', loadNpcState);
+safeBoot('loadAppState', loadAppState);
+safeBoot('loadFeedback', loadFeedback);
+safeBoot('initAchievementCatalogue', initAchievementCatalogue);
+safeBoot('loadCurrencyTemplates', loadCurrencyTemplates);
+safeBoot('loadGachaPool', loadGachaPool);
+safeBoot('loadBannerTemplates', loadBannerTemplates);
+safeBoot('loadGachaState', loadGachaState);
+safeBoot('loadItemTemplates', loadItemTemplates);
+safeBoot('loadTitles', loadTitles);
+safeBoot('loadUniqueItems', loadUniqueItems);
+safeBoot('loadSocialData', loadSocialData);
+safeBoot('loadProfessions', () => require('./routes/crafting').loadProfessions());
+safeBoot('loadWeeklyChallenges', () => require('./routes/challenges-weekly').loadWeeklyChallenges());
+safeBoot('loadExpeditions', () => require('./routes/expedition').loadExpeditions());
+safeBoot('loadExpeditionState', () => require('./routes/expedition').loadExpeditionState());
+safeBoot('loadWorldBossState', () => require('./routes/world-boss').loadWorldBossState());
+safeBoot('checkAutoSpawn', () => require('./routes/world-boss').checkAutoSpawn());
+safeBoot('loadGems', () => require('./routes/gems').loadGems());
+safeBoot('loadCompanionExpeditions', () => require('./routes/players').loadCompanionExpeditions());
+safeBoot('loadDungeonTemplates', () => require('./routes/dungeons').loadDungeonTemplates());
+safeBoot('loadDungeonState', () => require('./routes/dungeons').loadDungeonState());
+safeBoot('loadCodex', () => require('./routes/codex').loadCodex());
 
 // Migrate legacy equipment (string IDs → rolled instances) — only if needed
 {

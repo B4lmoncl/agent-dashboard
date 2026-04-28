@@ -106,8 +106,8 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ol>
               </GuideSection>
 
-              <GuideSection title="Die 5 Stockwerke von Urithiru" icon="◆" accent="rgba(251,191,36,0.3)">
-                Die Quest Hall ist wie der Turm Urithiru in Stockwerke gegliedert:
+              <GuideSection title="Die 5 Stockwerke des Turms" icon="◆" accent="rgba(251,191,36,0.3)">
+                Die Quest Hall ist ein Turm mit 5 Stockwerken:
                 <div className="grid gap-1.5 mt-2">
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(251,191,36,0.06)" }}>
                     <span style={{ color: "#fbbf24", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>▲</span>
@@ -932,7 +932,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Schicksalsbaum — Passiver Talentbaum" icon="◇" accent="rgba(167,139,250,0.3)">
-                Kreisförmiger Skill-Tree mit 44 Knoten in 3 Ringen — inspiriert von Wolcen:
+                Kreisförmiger Skill-Tree mit 44 Knoten in 3 Ringen:
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#818cf8">Grundstein</Stat> (Innen) — 12 grundlegende Boni: Forge-Schutz, Streak-Gnade, Quest-Pool.</li>
                   <li>• <Stat color="#a855f7">Zwielicht</Stat> (Mitte) — 18 Spezialisierungen mit Tradeoffs.</li>
@@ -943,7 +943,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Abenteuerbuch — Per-Stockwerk Komplettierer" icon="◆" accent="rgba(245,158,11,0.3)">
-                Lost-Ark-inspirierter Tracker mit Zielen pro Stockwerk:
+                Completionist-Tracker mit Zielen pro Stockwerk:
                 <ul className="space-y-1 mt-2">
                   <li>• 5 Stockwerke mit je 8-12 Zielen (Quests, Rifts, Dungeons, Crafts, etc.).</li>
                   <li>• Meilenstein-Belohnungen bei 25%, 50%, 75% und 100% pro Stockwerk.</li>
@@ -971,7 +971,10 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
       onWheel={e => e.stopPropagation()}
     >
       <div
-        className="rounded-2xl w-full max-w-lg overflow-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Guide"
+        className="rounded-2xl w-full max-w-[calc(100vw-2rem)] sm:max-w-lg overflow-hidden"
         style={{ background: "#1a1a1a", border: "1px solid rgba(255,140,68,0.3)", boxShadow: "0 0 60px rgba(255,100,0,0.15)", maxHeight: "90vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
       >
@@ -1017,7 +1020,7 @@ export const TUTORIAL_STEPS = [
   },
   {
     key: "nav-overview",
-    title: "6 Stockwerke von Urithiru",
+    title: "6 Stockwerke der Quest Hall",
     desc: "Die Quest Hall ist in Stockwerke gegliedert: The Pinnacle (oben), Great Halls, Trading District, Inner Sanctum, Breakaway und The Hearth.",
     target: "nav-bar",
     position: "bottom" as const,

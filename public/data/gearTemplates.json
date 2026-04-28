@@ -5416,7 +5416,7 @@
       "reqLevel": 21,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stein scheint dich anzusehen. Nicht unangenehm. Aber auch nicht... nicht.",
+      "desc": "Der Stein scheint dich anzusehen. Nicht unangenehm. Aber auch nicht… nicht.",
       "icon": "/images/icons/gacha-amulet-crystal-shard.png",
       "shopHidden": true,
       "affixes": {
@@ -9071,7 +9071,7 @@
       "reqLevel": 16,
       "rarity": "rare",
       "price": 0,
-      "desc": "Die Konturen verschwimmen. Nicht beschädigt — die Realität hier ist einfach... weicher.",
+      "desc": "Die Konturen verschwimmen. Nicht beschädigt — die Realität hier ist einfach… weicher.",
       "icon": "/images/icons/gacha-armor-elven-mantle.png",
       "shopHidden": true,
       "affixes": {
@@ -12548,7 +12548,7 @@
       "reqLevel": 5,
       "rarity": "uncommon",
       "price": 0,
-      "desc": "Jede Saison eine neue Farbe. Diese hier ist... interessant.",
+      "desc": "Jede Saison eine neue Farbe. Diese hier ist… interessant.",
       "icon": "/images/icons/gacha-helm-circlet.png",
       "shopHidden": true,
       "affixes": {
@@ -23540,7 +23540,7 @@
       "reqLevel": 23,
       "rarity": "rare",
       "price": 0,
-      "desc": "Wams für Jäger die wissen dass die Jagd kein Sprint ist. Sondern Sitzen. Und Warten.",
+      "desc": "Wams für Jäger, die wissen, dass die Jagd kein Sprint ist. Sondern Sitzen. Und Warten.",
       "icon": "/images/icons/gacha-armor-bone-harness.png",
       "shopHidden": true,
       "affixes": {
@@ -32977,7 +32977,7 @@
       "reqLevel": 15,
       "rarity": "rare",
       "price": 0,
-      "desc": "Für Reisende die wissen dass der Weg das Ziel ist. Und dass das Ziel warme Füße hat.",
+      "desc": "Für Reisende, die wissen, dass der Weg das Ziel ist. Und dass das Ziel warme Füße hat.",
       "icon": "/images/icons/gacha-boots-shadow-steps.png",
       "shopHidden": true,
       "affixes": {
@@ -36769,7 +36769,7 @@
       "reqLevel": 31,
       "rarity": "epic",
       "price": 0,
-      "desc": "Für Weise die wissen dass Weisheit nicht vom Ring kommt. Aber er schadet nicht.",
+      "desc": "Für Weise, die wissen, dass Weisheit nicht vom Ring kommt. Aber er schadet nicht.",
       "icon": "/images/icons/gacha-amulet-leather-cord.png",
       "shopHidden": true,
       "affixes": {
@@ -52777,7 +52777,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Die Farbe ist weg. Der Schutz... größtenteils auch. Aber die Form stimmt.",
+      "desc": "Die Farbe ist weg. Der Schutz… größtenteils auch. Aber die Form stimmt.",
       "icon": "/images/icons/gacha-helm-chain-coif.png",
       "affixes": {
         "primary": {
@@ -52845,7 +52845,7 @@
       "rarity": "common",
       "price": 5,
       "shopHidden": false,
-      "desc": "Die Herkunft ist... unklar. Absichtlich.",
+      "desc": "Die Herkunft ist… unklar. Absichtlich.",
       "icon": "/images/icons/gacha-helm-cloth-hood.png",
       "affixes": {
         "primary": {
@@ -59849,7 +59849,7 @@
       "rarity": "common",
       "price": 4,
       "shopHidden": false,
-      "desc": "Besitzerwechsel. Die Details sind... unwichtig.",
+      "desc": "Besitzerwechsel. Die Details sind… unwichtig.",
       "icon": "/images/icons/gacha-helm-mage-hat.png",
       "affixes": {
         "primary": {

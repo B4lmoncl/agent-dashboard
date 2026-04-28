@@ -360,7 +360,7 @@
       "category": "fitness",
       "vars": {
         "description": "Kalt duschen. Mindestens 30 Sekunden. Schreien ist erlaubt.",
-        "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
+        "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch… Lumi.",
         "difficulty": "intermediate"
       },
       "rewards": {
@@ -2296,7 +2296,7 @@
       "category": "boss",
       "vars": {
         "description": "Heute läuft alles nach Plan. Morgenroutine, Training, Arbeit, Social, Abend. Kein Ausrutscher.",
-        "flavor": "Perfektion ist nicht das Ziel. Aber einmal zu sehen wie sie aussieht... das ist Gold wert.",
+        "flavor": "Perfektion ist nicht das Ziel. Aber einmal zu sehen wie sie aussieht… das ist Gold wert.",
         "difficulty": "intermediate"
       },
       "rewards": {
@@ -3209,7 +3209,7 @@
       "category": "personal",
       "vars": {
         "description": "Lösch drei Apps von deinem Handy die du seit Monaten nicht benutzt hast. Lass los.",
-        "flavor": "Nicht alles was in deinem Inventar liegt verdient einen Platz. Manche Dinge tragen wir nur mit weil wir vergessen haben sie abzulegen. Die besten Wanderer reisen leicht.",
+        "flavor": "Nicht alles, was in deinem Inventar liegt, verdient einen Platz. Manche Dinge tragen wir nur mit, weil wir vergessen haben, sie abzulegen. Die besten Wanderer reisen leicht.",
         "difficulty": "starter"
       },
       "rewards": {
@@ -6757,7 +6757,7 @@
       "category": "social",
       "vars": {
         "description": "Engagiere dich in einer Online-Community: Forum, Discord, Subreddit.",
-        "flavor": "Das Internet ist voll von Fremden. Manche davon werden Freunde. Der Rest bleibt... interessant.",
+        "flavor": "Das Internet ist voll von Fremden. Manche davon werden Freunde. Der Rest bleibt… interessant.",
         "difficulty": "starter"
       },
       "rewards": {
@@ -7381,7 +7381,7 @@
       "category": "boss",
       "vars": {
         "description": "Komplettes Wardrobe-Audit: Alles raus, anprobieren, entscheiden, sortieren.",
-        "flavor": "Lin: 'Mode ist vergänglich. Stil ist ewig. Dein Kleiderschrank ist... eine Herausforderung.'",
+        "flavor": "Lin: 'Mode ist vergänglich. Stil ist ewig. Dein Kleiderschrank ist… eine Herausforderung.'",
         "difficulty": "advanced"
       },
       "rewards": {
@@ -7806,7 +7806,7 @@
       "category": "boss",
       "vars": {
         "description": "Euer Team nimmt sich ein gemeinsames Projekt vor — das keiner allein schaffen würde.",
-        "flavor": "Einzeln sind wir beeindruckend. Zusammen sind wir... auch beeindruckend. Nur lauter.",
+        "flavor": "Einzeln sind wir beeindruckend. Zusammen sind wir… auch beeindruckend. Nur lauter.",
         "difficulty": "expert"
       },
       "rewards": {
@@ -8478,7 +8478,7 @@
       "category": "learning",
       "vars": {
         "description": "UX Prinzipien lernen: Nielsen's Heuristics, User Flows, Wireframing.",
-        "flavor": "Gutes Design ist unsichtbar. Schlechtes Design ist... der Rest des Internets.",
+        "flavor": "Gutes Design ist unsichtbar. Schlechtes Design ist… der Rest des Internets.",
         "difficulty": "intermediate"
       },
       "rewards": {
@@ -8638,7 +8638,7 @@
       "category": "learning",
       "vars": {
         "description": "CompTIA Exam Prep: 45 Minuten Practice Questions.",
-        "flavor": "Zertifizierungen sind Beweise. Wissen ohne Beweis ist... Glauben.",
+        "flavor": "Zertifizierungen sind Beweise. Wissen ohne Beweis ist… Glauben.",
         "difficulty": "advanced"
       },
       "rewards": {
@@ -9429,7 +9429,7 @@
       "category": "learning",
       "vars": {
         "description": "Tmux Setup: Sessions, Windows, Panes, Shortcuts.",
-        "flavor": "Ein Terminal ist nie genug. Zehn sind perfekt. Zwanzig sind... ambitioniert.",
+        "flavor": "Ein Terminal ist nie genug. Zehn sind perfekt. Zwanzig sind… ambitioniert.",
         "difficulty": "intermediate"
       },
       "rewards": {

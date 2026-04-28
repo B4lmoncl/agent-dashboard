@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { state, saveCampaigns, saveUsers, ensureUserCurrencies, rebuildCampaignsById } = require('../lib/state');
-const { now, createPlayerLock } = require('../lib/helpers');
+const { now, createPlayerLock, grantPlayerXp } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
 const campaignClaimLock = createPlayerLock('campaign-claim');
@@ -45,20 +45,28 @@ router.get('/api/campaigns', (req, res) => {
 
 // POST /api/campaigns — create a campaign
 router.post('/api/campaigns', requireApiKey, (req, res) => {
+  // Admin-only: campaign creation is content authoring
+  if (!req.auth?.isAdmin) return res.status(403).json({ error: 'Admin only' });
   const { title, description, icon, lore, createdBy, questIds, bossQuestId, rewards } = req.body;
   if (!title || !String(title).trim()) return res.status(400).json({ error: 'title required' });
+  const sanitize = (s, max) => String(s || '').trim().replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, max);
   const campaign = {
     id: `campaign-${Date.now()}`,
-    title: String(title).trim().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-    description: String(description || '').trim().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+    title: sanitize(title, 500),
+    description: sanitize(description, 5000),
     icon: icon || null,
-    lore: String(lore || '').trim().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-    createdBy: createdBy || 'unknown',
+    lore: sanitize(lore, 5000),
+    createdBy: sanitize(createdBy || 'unknown', 100),
     createdAt: now(),
     status: 'active',
-    questIds: Array.isArray(questIds) ? questIds.filter(id => state.questsById.has(id)) : [],
+    questIds: Array.isArray(questIds) ? questIds.filter(id => state.questsById.has(id)).slice(0, 50) : [],
     bossQuestId: bossQuestId || null,
-    rewards: { xp: Number(rewards?.xp) || 0, gold: Number(rewards?.gold) || 0, title: rewards?.title || '' },
+    // Clamp rewards to prevent 1e300 XP exploits
+    rewards: {
+      xp: Math.max(0, Math.min(100000, Math.floor(Number(rewards?.xp) || 0))),
+      gold: Math.max(0, Math.min(100000, Math.floor(Number(rewards?.gold) || 0))),
+      title: sanitize(rewards?.title || '', 100),
+    },
   };
   state.campaigns.push(campaign);
   state.campaignsById.set(campaign.id, campaign);
@@ -87,14 +95,22 @@ router.patch('/api/campaigns/:id', requireMasterKey, (req, res) => {
   const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const { title, description, icon, lore, status, bossQuestId, rewards, questIds } = req.body;
-  if (title !== undefined) campaign.title = String(title).trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (description !== undefined) campaign.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const sanitize = (s, max) => String(s).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, max);
+  if (title !== undefined) campaign.title = sanitize(title, 500).trim();
+  if (description !== undefined) campaign.description = sanitize(description, 5000);
   if (icon !== undefined) campaign.icon = icon;
-  if (lore !== undefined) campaign.lore = String(lore).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (lore !== undefined) campaign.lore = sanitize(lore, 5000);
   if (status !== undefined && ['active', 'completed', 'archived'].includes(status)) campaign.status = status;
   if (bossQuestId !== undefined) campaign.bossQuestId = bossQuestId || null;
-  if (rewards !== undefined) campaign.rewards = { ...campaign.rewards, ...rewards };
-  if (questIds !== undefined && Array.isArray(questIds)) campaign.questIds = questIds;
+  if (rewards !== undefined) {
+    // Whitelist reward shape — prevents arbitrary nested objects or astronomical XP/gold via spread
+    campaign.rewards = {
+      xp: Math.max(0, Math.min(100000, Math.floor(Number(rewards.xp ?? campaign.rewards?.xp) || 0))),
+      gold: Math.max(0, Math.min(100000, Math.floor(Number(rewards.gold ?? campaign.rewards?.gold) || 0))),
+      title: sanitize(rewards.title ?? campaign.rewards?.title ?? '', 100),
+    };
+  }
+  if (questIds !== undefined && Array.isArray(questIds)) campaign.questIds = questIds.slice(0, 50);
   saveCampaigns();
   res.json({ ok: true, campaign });
 });
@@ -180,7 +196,7 @@ router.post('/api/campaigns/:id/claim', requireApiKey, (req, res) => {
     ensureUserCurrencies(u);
     u.currencies.gold = (u.currencies.gold || 0) + baseGold;
     u.gold = u.currencies.gold;
-    u.xp = (u.xp || 0) + baseXp;
+    const xpResult = grantPlayerXp(u, baseXp);
 
     if (titleReward && !u.unlockedTitles?.includes(titleReward)) {
       u.unlockedTitles = u.unlockedTitles || [];
@@ -193,8 +209,8 @@ router.post('/api/campaigns/:id/claim', requireApiKey, (req, res) => {
     saveUsers();
 
     const awarded = { gold: baseGold, xp: baseXp, title: titleReward || undefined };
-    console.log(`[campaigns] ${uid} claimed reward for campaign ${campaign.id}: +${baseGold}g +${baseXp}xp`);
-    res.json({ ok: true, awarded, campaign: { id: campaign.id, title: campaign.title } });
+    console.log(`[campaigns] ${uid} claimed reward for campaign ${campaign.id}: +${baseGold}g +${baseXp}xp${xpResult.leveledUp ? ` (Level ${xpResult.prevLevel} → ${xpResult.newLevel})` : ''}`);
+    res.json({ ok: true, awarded, campaign: { id: campaign.id, title: campaign.title }, levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null });
   } finally {
     campaignClaimLock.release(uid);
   }

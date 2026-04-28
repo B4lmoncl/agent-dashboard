@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useDashboard } from "@/app/DashboardContext";
+import { getUserLevel } from "@/app/utils";
 
 // ─── Lyra's Contextual Tutorial Moments ──────────────────────────────────────
 // Each moment fires ONCE when a condition is met. Stored in localStorage.
@@ -82,7 +84,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "companion_intro",
     title: "Dein Companion.",
-    text: "Es folgt dir. Streichle es gelegentlich. Bei Bond Level 5 hat es Fähigkeiten die tatsächlich nützlich sind. Bis dahin ist es hauptsächlich... da. Urteilend.",
+    text: "Es folgt dir. Streichle es gelegentlich. Bei Bond Level 5 hat es Fähigkeiten, die tatsächlich nützlich sind. Bis dahin ist es hauptsächlich … da. Urteilend.",
     view: "companion",
     minLevel: 3,
   },
@@ -96,7 +98,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   {
     id: "gacha_intro",
     title: "Das Schicksalsrad.",
-    text: "Gib Runensplitter oder Stardust. Bekomme Items. Manchmal gute. Meistens... lehrreiche. Das System hat einen Mitleidszähler — nach 75 Pulls ohne Legendär garantiert es dir eins. Das klingt großzügig, bis du nachzählst.",
+    text: "Gib Runensplitter oder Stardust. Bekomme Items. Manchmal gute. Meistens … lehrreiche. Das System hat einen Mitleidszähler — nach 75 Pulls ohne Legendär garantiert es dir eins. Das klingt großzügig, bis du nachzählst.",
     view: "gacha",
     minLevel: 5,
   },
@@ -109,14 +111,14 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   {
     id: "rift_intro",
-    title: "Der Riss.",
+    title: "The Rift.",
     text: "Zeitbegrenzte Quest-Ketten. Normal: 3 Quests in 72 Stunden. Hard: 5 in 48. Legendary: 7 in 36. Scheitern kostet Tage Cooldown. Schaffst du Legendary, wartet Mythic+ — endlos skalierend, kein Limit, kein Mitleid.",
     view: "rift",
     minLevel: 10,
   },
   {
     id: "dungeon_intro",
-    title: "Das Untergewölbe.",
+    title: "The Undercroft.",
     text: "Lade Freunde ein. Der Dungeon läuft im Hintergrund. Eure Gear Score entscheidet ob ihr gewinnt. Eure Freundschaft entscheidet ob ihr danach noch redet.",
     view: "dungeons",
     minLevel: 10,
@@ -137,7 +139,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   {
     id: "shop_intro",
-    title: "Der Basar.",
+    title: "The Bazaar.",
     text: "Zwei Abteilungen. Self-Care: Dinge die gut für dich sind. Boosts: Dinge die gut für deine Stats sind. Der Unterschied ist subtiler als du denkst. Manche Items geben temporäre Buffs. Die meisten kosten Gold. Alle kosten Überwindung.",
     view: "shop",
     minLevel: 3,
@@ -165,7 +167,7 @@ export const TUTORIAL_MOMENTS: TutorialMoment[] = [
   },
   {
     id: "battlepass_intro",
-    title: "Der Season Pass.",
+    title: "Season Pass.",
     text: "40 Level. Quests geben Pass-XP. Belohnungen pro Level. Am Ende der Saison verfällt alles was du nicht abgeholt hast. Die Uhr tickt. Sie tickt immer.",
     view: "season",
     minLevel: 5,
@@ -240,12 +242,17 @@ export function advanceTutorial() {
 // Inline banner that appears at the top of a view. NPC portrait + text.
 // Dismisses with a click. Never blocks interaction.
 
-export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
+export function TutorialMomentBanner({ viewId, playerLevel: playerLevelProp, conditions }: {
   viewId: string;
-  playerLevel: number;
+  // Optional — if omitted, we resolve the level from the logged-in user via
+  // DashboardContext. Historically all 16 call sites passed a hardcoded 1,
+  // which silently disabled level-gated tutorials from level 3 onward.
+  playerLevel?: number;
   conditions?: Record<string, boolean>;
 }) {
-  const { moment, dismiss } = useTutorialMoment(viewId, playerLevel, conditions);
+  const { loggedInUser } = useDashboard();
+  const resolvedLevel = playerLevelProp ?? (loggedInUser ? getUserLevel(loggedInUser.xp || 0).level : 1);
+  const { moment, dismiss } = useTutorialMoment(viewId, resolvedLevel, conditions);
   const [reopened, setReopened] = useState(false);
 
   // If no active moment, show a small "?" to re-open the last tutorial for this view
@@ -260,6 +267,7 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
       return (
         <button
           onClick={() => setReopened(true)}
+          aria-label={`Re-open tutorial hint: ${lastMoment.title}`}
           className="text-xs mb-2 px-2 py-1 rounded-lg flex items-center gap-1.5 transition-opacity hover:opacity-100"
           style={{ background: "rgba(233,168,76,0.06)", color: "rgba(233,168,76,0.4)", border: "1px solid rgba(233,168,76,0.12)", cursor: "pointer", opacity: 0.5 }}
           title="Show tutorial hint"
@@ -283,8 +291,13 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
           <p className="text-xs font-bold" style={{ color: accent }}>{lastMoment.title}</p>
           <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{lastMoment.text}</p>
         </div>
-        <button onClick={() => setReopened(false)} className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5" style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}>
-          OK
+        <button
+          onClick={() => setReopened(false)}
+          aria-label={`Close tutorial hint: ${lastMoment.title}`}
+          className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5"
+          style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}
+        >
+          Verstanden
         </button>
       </div>
     );
@@ -317,6 +330,7 @@ export function TutorialMomentBanner({ viewId, playerLevel, conditions }: {
       </div>
       <button
         onClick={dismiss}
+        aria-label={`Dismiss tutorial hint: ${moment.title}`}
         className="text-xs px-2 py-1 rounded-lg flex-shrink-0 mt-0.5"
         style={{ background: "rgba(233,168,76,0.1)", color: "#e9a84c", border: "1px solid rgba(233,168,76,0.2)", cursor: "pointer" }}
       >

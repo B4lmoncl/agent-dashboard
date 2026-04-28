@@ -32,7 +32,9 @@ function getPreviousWeekId(weekId) {
 }
 
 function genBondId() {
-  return `bond-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+  // crypto.randomBytes gives ~64 bits of entropy — not guessable by enumeration.
+  const crypto = require('crypto');
+  return `bond-${Date.now()}-${crypto.randomBytes(8).toString('hex')}`;
 }
 
 function areFriends(a, b) {
@@ -262,6 +264,11 @@ function pruneStaleBonds() {
 router.get('/api/social/:playerId/sworn-bond', requireAuth, (req, res) => {
   pruneStaleBonds();
   const pid = req.params.playerId.toLowerCase();
+  // Bond state (partner, objective, streak) is private — only the bonded
+  // players may read it. Admin bypass kept for support tooling.
+  if (!req.auth?.isAdmin && req.auth?.userId !== pid) {
+    return res.status(403).json({ error: 'Cannot view another player\'s sworn bond' });
+  }
   const bond = getActiveBondForPlayer(pid);
 
   if (!bond) {

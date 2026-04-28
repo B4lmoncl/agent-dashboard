@@ -1170,7 +1170,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       {rewardPopup && (
         <div className="fixed inset-0 z-[150] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.8)" }}
           onClick={() => setRewardPopup(null)}>
-          <div className="w-full max-w-xs rounded-2xl p-6 text-center" style={{
+          <div role="dialog" aria-modal="true" aria-label="Expedition reward" className="w-full max-w-xs rounded-2xl p-6 text-center" style={{
             background: "linear-gradient(180deg, #1a0d1e 0%, #0d0d14 60%)",
             border: `2px solid ${cColor.border}`,
             boxShadow: `0 0 30px rgba(${cColor.accentRgb},0.3), 0 0 60px rgba(${cColor.accentRgb},0.1)`,

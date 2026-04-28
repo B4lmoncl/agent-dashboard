@@ -947,6 +947,7 @@ function resetRecurringHandler(req, res) {
   const nowMs = Date.now();
   const INTERVAL_MS = { daily: 24*3600*1000, weekly: 7*24*3600*1000, monthly: 30*24*3600*1000 };
   let resetCount = 0;
+  const resetPlayerQuestIds = new Set();
   for (const q of state.quests) {
     if (q.status !== 'completed' || !q.recurrence) continue;
     const interval = INTERVAL_MS[q.recurrence];
@@ -958,11 +959,29 @@ function resetRecurringHandler(req, res) {
       q.completedBy = null;
       q.completedAt = null;
       resetCount++;
+      // Player-quest types track completion in pp.completedQuests keyed by
+      // quest id. Without clearing it, the next claim returns HTTP 409 forever.
+      if (PLAYER_QUEST_TYPES.includes(q.type || 'development')) {
+        resetPlayerQuestIds.add(q.id);
+      }
     }
   }
+  let progressCleared = 0;
+  if (resetPlayerQuestIds.size > 0) {
+    for (const pp of Object.values(state.playerProgress || {})) {
+      if (!pp?.completedQuests) continue;
+      for (const qid of resetPlayerQuestIds) {
+        if (pp.completedQuests[qid]) {
+          delete pp.completedQuests[qid];
+          progressCleared++;
+        }
+      }
+    }
+    if (progressCleared > 0) savePlayerProgress();
+  }
   if (resetCount > 0) saveQuests();
-  console.log(`[recurring] reset ${resetCount} recurring quest(s)`);
-  res.json({ ok: true, reset: resetCount });
+  console.log(`[recurring] reset ${resetCount} quest(s), cleared ${progressCleared} per-player completion(s)`);
+  res.json({ ok: true, reset: resetCount, progressCleared });
 }
 
 // GET /api/admin/keys

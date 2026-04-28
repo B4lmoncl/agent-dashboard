@@ -156,13 +156,13 @@ export default function DashboardModals({
           <ModalPortal>
             <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 modal-backdrop"
               onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }}>
-              <div className="w-full max-w-xs rounded-2xl p-5 bg-surface-alt border-w10" style={{ maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" }}
+              <div role="dialog" aria-modal="true" aria-label="Currencies" className="w-full max-w-xs rounded-2xl p-5 bg-surface-alt border-w10" style={{ maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" }}
                 onClick={e => e.stopPropagation()}>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-semibold text-primary">Währungen</h3>
-                  <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Schließen">×</button>
+                  <h3 className="text-sm font-semibold text-primary">Currencies</h3>
+                  <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close" aria-label="Close">×</button>
                 </div>
-                <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
+                <div className="space-y-2 overflow-y-auto flex-1 scrollbar-rpg" style={{ scrollbarWidth: "thin" as const }}>
                   {[
                     { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
                     { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },
@@ -213,7 +213,7 @@ export default function DashboardModals({
                     className="w-full text-xs font-semibold py-1.5 rounded-lg"
                     style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
                   >
-                    {conversionOpen ? "Ausblenden" : "Währungen tauschen"} {conversionOpen ? "▲" : "▼"}
+                    {conversionOpen ? "Hide" : "Currency Exchange"} {conversionOpen ? "▲" : "▼"}
                   </button>
 
                   {conversionOpen && (
@@ -231,7 +231,7 @@ export default function DashboardModals({
                             style={{ cursor: "pointer" }}
                           >
                             {[...new Set(ALLOWED_PAIRS.map(p => p.from))].map(f => (
-                              <option key={f} value={f}>{f}</option>
+                              <option key={f} value={f}>{f.charAt(0).toUpperCase() + f.slice(1)}</option>
                             ))}
                           </select>
                         </div>
@@ -245,7 +245,7 @@ export default function DashboardModals({
                             style={{ cursor: "pointer" }}
                           >
                             {ALLOWED_PAIRS.filter(p => p.from === convFrom).map(p => (
-                              <option key={p.to} value={p.to}>{p.to}</option>
+                              <option key={p.to} value={p.to}>{p.to.charAt(0).toUpperCase() + p.to.slice(1)}</option>
                             ))}
                           </select>
                         </div>
@@ -321,11 +321,11 @@ export default function DashboardModals({
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
             onClick={() => setModifierOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
+            <div role="dialog" aria-modal="true" aria-label="Modifier breakdown" className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
-                <Tip k="bonus_stacking"><h3 className="text-sm font-bold text-bright cursor-help">Modifikator-Übersicht</h3></Tip>
-                <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <Tip k="bonus_stacking"><h3 className="text-sm font-bold text-bright cursor-help">Modifier Breakdown</h3></Tip>
+                <button onClick={() => setModifierOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
@@ -384,17 +384,17 @@ export default function DashboardModals({
         <ModalPortal>
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setStreakInfoOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Forge streak details" className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#f97316" }}>Forge Streak</h3>
-                <button onClick={() => setStreakInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setStreakInfoOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-3 text-w60">
                 Your consecutive days of quest completion. Keep the streak alive to earn bonus XP and keep companions happy.
               </p>
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
-                  <span className="text-xs text-w50">Aktueller Streak</span>
+                  <span className="text-xs text-w50">Current Streak</span>
                   <span className="font-mono font-bold text-sm" style={{ color: "#f97316" }}>{loggedInUser?.streakDays ?? 0}d</span>
                 </div>
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
@@ -412,10 +412,10 @@ export default function DashboardModals({
         <ModalPortal>
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setActiveQuestsInfoOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Quests overview" className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#ef4444" }}>Quests</h3>
-                <button onClick={() => setActiveQuestsInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setActiveQuestsInfoOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-3 text-w60">
                 Your quest overview. Claiming too many quests at once (&gt;20) will apply an XP hoarding penalty.
@@ -448,10 +448,10 @@ export default function DashboardModals({
         <ModalPortal>
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setXpInfoOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400 }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="How XP works" className="relative rounded-2xl p-5 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400 }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#a78bfa" }}>How XP Works</h3>
-                <button onClick={() => setXpInfoOpen(false)} className="btn-close" aria-label="Schließen">×</button>
+                <button onClick={() => setXpInfoOpen(false)} className="btn-close" aria-label="Close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-4 text-w55">
                 XP scales with quest rarity. Higher rarity quests reward significantly more experience.

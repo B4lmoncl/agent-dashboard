@@ -291,6 +291,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={onClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Equip frame"
         className="w-full max-w-sm rounded-2xl p-6 space-y-5"
         style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)", maxHeight: "85vh", overflowY: "auto", scrollbarWidth: "thin" as unknown as undefined }}
         onClick={e => e.stopPropagation()}
@@ -302,9 +305,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
 
         {/* Frame Selection */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 12 }}>
-          <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Kosmetischer Rahmen</label>
+          <label className="text-xs font-semibold block mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Cosmetic Frame</label>
           <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
-            Rahmen fügen deiner Spielerkarte einen farbigen Rand und Leuchteffekt hinzu, sichtbar für alle. Verdiene Rahmen durch Fraktionsruf (Verehrt), den Season Pass, Weltboss-Rang 1, Dungeon-Erstdurchquerungen und die Währungsshops.
+            Frames add a colored border and glow to your player card, visible to everyone. Earn frames through faction reputation (Revered), the Season Pass, World Boss Rank 1, Dungeon first clears, and the currency shops.
           </p>
 
           {/* Preview: how current frame looks */}
@@ -336,7 +339,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Season Pass</span>
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>World Boss #1</span>
                 <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Dungeon First-Clear</span>
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Währungsshops</span>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}>Currency Shops</span>
               </div>
             </div>
           ) : (
@@ -902,7 +905,7 @@ const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?:
   { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
-function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compact }: {
+function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compact, onSelect }: {
   slot: string;
   iconSrc?: string;
   label: string;
@@ -910,6 +913,10 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
   onUnequip: (slot: string) => void;
   unequipping: string | null;
   compact?: boolean;
+  // Paper-doll (compact) uses this to open the ItemActionPopup on click so
+  // equipped items can be unequipped / inspected from the slot itself, not
+  // just from inventory (which filters them out).
+  onSelect?: (item: InventoryItem, rect: { x: number; y: number; width: number; height: number }) => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
@@ -919,18 +926,35 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compa
     return (
       <>
         <div
-          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse empty-slot-dashed" : item.rarity === "legendary" ? " legendary-ambient" : item.rarity === "epic" ? " epic-ambient" : ""}`}
-          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item ? "help" : "default", boxShadow: item && (item.rarity === "legendary" || item.rarity === "epic") ? `0 0 8px ${borderColor}40` : undefined }}
+          role={item && onSelect ? "button" : undefined}
+          tabIndex={item && onSelect ? 0 : undefined}
+          aria-label={item ? `${item.name} — click to inspect or unequip` : undefined}
+          className={`flex items-center justify-center rounded-lg${!item ? " empty-slot-pulse empty-slot-dashed" : item.rarity === "legendary" ? " legendary-ambient legendary-item-glow" : item.rarity === "epic" ? " epic-ambient" : ""}`}
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.04)", border: item ? `2px solid ${borderColor}` : undefined, cursor: item && onSelect ? "pointer" : item ? "help" : "default", boxShadow: item && item.rarity === "legendary" ? `0 0 18px ${borderColor}80, 0 0 36px ${borderColor}40, inset 0 0 12px ${borderColor}20` : item && item.rarity === "epic" ? `0 0 12px ${borderColor}60, inset 0 0 8px ${borderColor}15` : undefined }}
           onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
           onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
           onMouseLeave={() => setHovered(false)}
-          title={item ? item.name : `Klicke auf ein Item im Inventar um es auszurüsten`}
+          onClick={(e) => {
+            if (item && onSelect) {
+              const r = e.currentTarget.getBoundingClientRect();
+              onSelect(item, { x: r.left, y: r.top, width: r.width, height: r.height });
+              setHovered(false);
+            }
+          }}
+          onKeyDown={(e) => {
+            if ((e.key === "Enter" || e.key === " ") && item && onSelect) {
+              e.preventDefault();
+              const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+              onSelect(item, { x: r.left, y: r.top, width: r.width, height: r.height });
+            }
+          }}
+          title={item ? item.name : "Click an inventory item to equip this slot"}
         >
           {item?.icon
             ? <ItemImg src={item.icon} alt={item.name} size={40} rarity={item.rarity} />
             : iconSrc
               ? <img src={iconSrc} alt={label} width={36} height={36} style={{ imageRendering: "auto", opacity: 0.4 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{label.slice(0, 3)}</span>
+              : <span className="text-2xl" style={{ color: "rgba(255,255,255,0.18)", lineHeight: 1 }} title={`Equip a ${label}`}>+</span>
           }
         </div>
         {item && (
@@ -1219,7 +1243,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
   return (
     <div data-feedback-id="character-view" className="tab-content-enter">
-    <TutorialMomentBanner viewId="character" playerLevel={1} />
+    <TutorialMomentBanner viewId="character" />
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
@@ -1281,8 +1305,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
         {/* LEFT: Inventory Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-2 overflow-y-auto scrollbar-rpg"
-          style={{ width: "100%", maxWidth: 310, maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
+          className="flex-shrink-0 rounded-xl p-2 overflow-y-auto scrollbar-rpg w-full md:max-w-[310px]"
+          style={{ maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
@@ -1425,7 +1449,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
           {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
           {!loading && fetchError && !charData && (
-            <div className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+            <div role="alert" className="rounded-lg px-4 py-3 text-center" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
               <p className="text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>Failed to load character data. Try refreshing.</p>
               <button onClick={fetchChar} className="text-xs mt-2 px-3 py-1 rounded btn-interactive" style={{ color: "#ef4444", cursor: "pointer" }}>Retry</button>
             </div>
@@ -1522,6 +1546,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             // Empty state when search/filter yields no results
             if (unequipped.length === 0 && (invSearch.trim() || invFilter !== "all")) {
               return <p className="text-xs text-w20 text-center py-6">Keine Items gefunden</p>;
+            }
+
+            // Empty state for truly empty inventory (new players)
+            if (unequipped.length === 0) {
+              return <div className="text-center py-12"><p className="text-xs text-w30 mb-1">Dein Inventar ist leer.</p><p className="text-xs text-w20 italic">Quests, Dungeons und der Riss füllen es schneller als du denkst.</p></div>;
             }
 
             // Build position-based grid (only in "Standard" sort mode)
@@ -1658,19 +1687,35 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           })()}
         </div>
 
-        {/* CENTER: Character Area */}
+        {/* CENTER: Character Area — uses the tier-reactive PixelCharacter canvas
+            (defined above in this file) so the hero renders with actual armor
+            coloring based on equipped tier + bobbing + blink animation, and
+            the companion orbits alongside. Falls back gracefully if canvas
+            fails — the container still has a subtle violet frame either way. */}
         <div className="flex-1 flex flex-col items-center justify-center relative" style={{ minHeight: 360 }}>
           <div className="flex flex-col items-center justify-center gap-3" style={{ minHeight: 200 }}>
-            <div className="flex items-center justify-center overflow-hidden" style={{ width: 160, height: 160, borderRadius: 16, background: "rgba(167,139,250,0.06)", border: "2px solid rgba(167,139,250,0.2)" }}>
-              <img src="/images/portraits/hero-male.png" alt="Hero" width={160} height={160} style={{ imageRendering: "auto", objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            <div className="flex items-center justify-center overflow-hidden" style={{ width: 160, height: 200, borderRadius: 16, background: "radial-gradient(ellipse at 50% 30%, rgba(167,139,250,0.14) 0%, rgba(167,139,250,0.04) 60%, transparent 100%)", border: "2px solid rgba(167,139,250,0.25)", boxShadow: "0 0 32px rgba(167,139,250,0.1), inset 0 0 24px rgba(167,139,250,0.05)" }}>
+              <PixelCharacter
+                appearance={{
+                  skinColor: (loggedInUser as unknown as { appearance?: { skinColor?: string } }).appearance?.skinColor || "medium",
+                  hairColor: (loggedInUser as unknown as { appearance?: { hairColor?: string } }).appearance?.hairColor || "brown",
+                  hairStyle: (loggedInUser as unknown as { appearance?: { hairStyle?: string } }).appearance?.hairStyle || "short",
+                }}
+                equipment={(charData?.equipment || {}) as Record<string, string>}
+                companion={loggedInUser.companion ? { type: loggedInUser.companion.type, name: loggedInUser.companion.name, emoji: loggedInUser.companion.emoji || "" } : null}
+              />
             </div>
+            {/* Equipped title + frame colour surface right under the character */}
+            {charData?.title && (
+              <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.7)" }}>{charData.title}</p>
+            )}
           </div>
         </div>
 
         {/* RIGHT: Stats / Gear Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto scrollbar-rpg"
-          style={{ width: "100%", maxWidth: 250, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
+          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto scrollbar-rpg w-full md:max-w-[250px]"
+          style={{ maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
@@ -1701,11 +1746,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             ))}
           </div>
 
-          {/* Gear tab — Paper Doll Layout */}
+          {/* Gear tab — Paper Doll Layout. key re-animates on tab change. */}
           {rightTab === "equipment" && (
-            <div>
-              {/* Paper Doll Grid */}
-              <div className="relative mx-auto" style={{ width: 240, height: 250 }}>
+            <div key="equipment" className="tab-content-enter">
+              {/* Paper Doll Grid — 240×250 design size, scales down with container width while preserving the aspect ratio */}
+              <div className="relative mx-auto" style={{ width: "100%", maxWidth: 240, aspectRatio: "240/250" }}>
                 {/* Legendary equipment shimmer particles */}
                 {(() => {
                   const hasLegendary = charData && Object.values(charData.equipment).some(v => {
@@ -1768,6 +1813,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         item={item}
                         onUnequip={handleUnequip}
                         unequipping={unequipping}
+                        onSelect={(itm, rect) => setSelectedItem({ item: itm, rect })}
                         compact
                       />
                       {/* Gem Quick-View dots */}
@@ -1873,7 +1919,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           )}
 
           {/* Stats tab */}
-          {rightTab === "stats" && loading && <div className="space-y-2">{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 32 }}><div className="skeleton skeleton-text w-24" /></div>)}</div>}
+          {rightTab === "stats" && loading && <div key="stats-loading" className="space-y-2 tab-content-enter">{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 32 }}><div className="skeleton skeleton-text w-24" /></div>)}</div>}
           {rightTab === "stats" && !loading && charData && (() => {
             const { kraft = 0, ausdauer = 0, weisheit = 0, glueck = 0, fokus = 0, vitalitaet = 0, charisma = 0, tempo = 0 } = charData.stats || {};
             const base = charData.baseStats || { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
@@ -1896,7 +1942,30 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const heroUtility = Math.round(weisheit * 2 + glueck * 2 + (charisma || 0) * 1.5 + (tempo || 0) * 1.5);
 
             return (
-              <>
+              <div key="stats-content" className="tab-content-enter">
+                {/* Level + XP bar — lifted to the top so the player's core */}
+                {/* identity (who am I, how close is next level, how much */}
+                {/* rested XP am I sitting on) reads first instead of buried */}
+                {/* 160 lines down between set bonuses and legendary effects. */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <Tip k="player_level"><span className="text-sm font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span></Tip>
+                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
+                      {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
+                    </span></Tip>
+                  </div>
+                  <div className="rounded-full overflow-hidden relative" style={{ height: 7, background: "rgba(255,255,255,0.07)" }}>
+                    {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
+                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))", borderRight: "2px solid rgba(103,232,249,0.5)", boxShadow: "0 0 8px rgba(103,232,249,0.15)" }} />
+                    ) : null}
+                    <div
+                      className="h-full rounded-full relative"
+                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
+                    />
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>{charData.title}</p>
+                </div>
+
                 {/* Hero Numbers */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
                   <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
@@ -1959,7 +2028,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {/* Minor Stats */}
                 {hasMinorStats && (
                   <div className="space-y-1.5 mb-4 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
-                    <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Sekundär-Stats</p>
+                    <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Secondary Stats</p>
                     {minorStatRows.filter(s => s.val > 0).map(s => {
                       const tipKey = s.label.toLowerCase().replace("ä", "ae") as string;
                       const registryKey = tipKey === "vitalitaet" ? "vitalitaet" : tipKey;
@@ -2043,25 +2112,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </div>
                 )}
 
-                {/* Level bar */}
-                <div className="mb-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <Tip k="player_level"><span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span></Tip>
-                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
-                      {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
-                    </span></Tip>
-                  </div>
-                  <div className="rounded-full overflow-hidden relative" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
-                    {(charData as unknown as { restedXpPool?: number }).restedXpPool && charData.xpForLevel ? (
-                      <div className="absolute top-0 left-0 h-full rounded-full rested-xp-zone" style={{ width: `${Math.min(100, (((charData.xpInLevel ?? 0) + ((charData as unknown as { restedXpPool?: number }).restedXpPool || 0)) / charData.xpForLevel) * 100).toFixed(1)}%`, background: "linear-gradient(90deg, rgba(103,232,249,0.08), rgba(103,232,249,0.18), rgba(103,232,249,0.08))", borderRight: "2px solid rgba(103,232,249,0.5)", boxShadow: "0 0 8px rgba(103,232,249,0.15)" }} />
-                    ) : null}
-                    <div
-                      className="h-full rounded-full relative"
-                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)", zIndex: 1 }}
-                    />
-                  </div>
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>{charData.title}</p>
-                </div>
+                {/* (Level bar moved to top of stats tab in wave 16) */}
 
                 {/* Class */}
                 {cls && (
@@ -2165,22 +2216,46 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       return (rarityWeight[b.rarity] ?? 0) - (rarityWeight[a.rarity] ?? 0);
                     });
 
-                    // Condition label helper
+                    // Condition label helper — now appends the player's current
+                    // progress toward the condition where a simple numeric
+                    // mapping exists (level, streak, quests etc.). Turns
+                    // "Reach Level 30" into "Reach Level 30 (Lv 24)" so the
+                    // player knows how close they are instead of guessing.
+                    const currentFor = (type: string): number | null => {
+                      if (!charData) return null;
+                      const full = charData as unknown as Record<string, unknown>;
+                      switch (type) {
+                        case "level": return charData.level ?? 0;
+                        case "quests_completed": return typeof full.questsCompleted === "number" ? full.questsCompleted : null;
+                        case "streak": return typeof full.streakDays === "number" ? full.streakDays : null;
+                        case "inventory_count": return charData.inventory?.length ?? 0;
+                        case "gold": return typeof full.gold === "number" ? full.gold : null;
+                        case "forge_temp": return typeof full.forgeTemp === "number" ? full.forgeTemp : null;
+                        case "achievement_points": return typeof full.achievementPoints === "number" ? full.achievementPoints : null;
+                        case "battlepass_level": {
+                          const bp = full.battlePass as { level?: number } | undefined;
+                          return bp?.level ?? null;
+                        }
+                        default: return null;
+                      }
+                    };
                     const condLabel = (cond?: { type: string; value: number }) => {
                       if (!cond) return "Dynamically earned";
                       const v = cond.value;
+                      const cur = currentFor(cond.type);
+                      const progress = cur !== null ? ` (${cur.toLocaleString()}/${v.toLocaleString()})` : "";
                       switch (cond.type) {
-                        case "level": return `Reach Level ${v}`;
-                        case "quests_completed": return `Complete ${v} Quests`;
-                        case "streak": return `${v}-Day Streak`;
-                        case "inventory_count": return `${v} Items in Inventory`;
-                        case "gold": return `Collect ${v.toLocaleString()} Gold`;
+                        case "level": return `Reach Level ${v}${progress}`;
+                        case "quests_completed": return `Complete ${v} Quests${progress}`;
+                        case "streak": return `${v}-Day Streak${progress}`;
+                        case "inventory_count": return `${v} Items in Inventory${progress}`;
+                        case "gold": return `Collect ${v.toLocaleString()} Gold${progress}`;
                         case "npc_chains": return `${v} NPC Chains Completed`;
-                        case "forge_temp": return `Forge Temp ${v}%`;
+                        case "forge_temp": return `Forge Temp ${v}%${progress}`;
                         case "gacha_legendary": return `${v} Legendary Gacha Pull${v > 1 ? "s" : ""}`;
                         case "full_equipment": return "All 6 Slots Equipped";
-                        case "achievement_points": return `${v.toLocaleString()} Achievement Points`;
-                        case "battlepass_level": return `Season Pass Level ${v}`;
+                        case "achievement_points": return `${v.toLocaleString()} Achievement Points${progress}`;
+                        case "battlepass_level": return `Season Pass Level ${v}${progress}`;
                         default: return "Dynamically earned";
                       }
                     };
@@ -2217,12 +2292,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
                     return (
                       <div className="fixed inset-0 z-[150] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setTitlesOpen(false)}>
-                      <div className="w-full max-w-lg max-h-[80vh] rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(251,191,36,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+                      <div role="dialog" aria-modal="true" aria-label="Equip title" className="w-full max-w-lg max-h-[80vh] rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(251,191,36,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between px-4 py-3" style={{ background: "rgba(251,191,36,0.06)", borderBottom: "1px solid rgba(251,191,36,0.15)" }}>
                           <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>Titles ({earnedTitles.length} earned)</p>
                           <button onClick={() => setTitlesOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}><span className="text-xs font-mono" style={{ fontSize: 12 }}>ESC</span></button>
                         </div>
-                        <div className="p-4 overflow-y-auto" style={{ maxHeight: "calc(80vh - 56px)", scrollbarWidth: "thin" }}>
+                        <div className="p-4 overflow-y-auto scrollbar-rpg" style={{ maxHeight: "calc(80vh - 56px)", scrollbarWidth: "thin" }}>
                         {/* Equipped Title Display */}
                         {equippedDef && (
                           <div
@@ -2361,12 +2436,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 </div>
 
                 {/* Gear Score moved to stats tab — above set bonuses */}
-              </>
+              </div>
             );
           })()}
 
           {/* Gems tab */}
-          {rightTab === "gems" && gemsLoading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Loading gems...</p>}
+          {rightTab === "gems" && gemsLoading && <p key="gems-loading" className="text-xs tab-content-enter" style={{ color: "rgba(255,255,255,0.45)" }}>The jeweler is still counting…</p>}
           {rightTab === "gems" && !gemsLoading && gemData && (() => {
             const GEM_COLORS: Record<string, string> = { Ruby: "#ef4444", Sapphire: "#3b82f6", Emerald: "#22c55e", Topaz: "#f59e0b", Amethyst: "#a855f7", Diamond: "#e2e8f0" };
             // Group inventory by type
@@ -2387,18 +2462,18 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 const r = await fetch(`/api/gems/${action}`, { method: "POST", headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" }, body: JSON.stringify(body) });
                 const d = await r.json();
                 if (r.ok) {
-                  addToast?.({ type: "purchase", message: d.message || "Done" });
+                  addToast?.({ type: "purchase", message: d.message || "Item used" });
                   // Refresh gem data
                   const gr = await fetch("/api/gems", { headers: getAuthHeaders(apiKey) });
                   if (gr.ok) setGemData(await gr.json());
                 } else {
-                  addToast?.({ type: "error", message: d.error || "Something went wrong. Please try again." });
+                  addToast?.({ type: "error", message: d.error || "Action failed" });
                 }
               } catch { addToast?.({ type: "error", message: "Network error" }); }
               setGemAction(null);
             };
             return (
-              <div className="space-y-3">
+              <div key="gems-content" className="space-y-3 tab-content-enter">
                 {/* Gem Inventory */}
                 <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Gem Inventory</p>
                 {Object.keys(grouped).length === 0 && (
@@ -2490,7 +2565,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 ) : (
                                   <button
                                     onClick={() => {
-                                      setConfirmMessage(`Gem entfernen? Kostet ${gemData.unsocketCost || 50}g. Der Edelstein kann dabei zerstört werden.`);
+                                      setConfirmMessage(`Gem entfernen? Kostet ${gemData.unsocketCost || 50}g. Der Edelstein wird dabei zerstört — außer du trägst Ausrüstung mit 'Gem Preserve'-Effekt.`);
                                       setConfirmAction(() => () => doGemAction("unsocket", { instanceId, socketIndex: si }));
                                     }}
                                     disabled={!!gemAction}
@@ -2671,6 +2746,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         onClick={e => { if (e.target === e.currentTarget) setCollectionOpen(false); }}
       >
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Collection log"
           className="rounded-2xl overflow-hidden"
           style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(103,232,249,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
         >
@@ -2741,8 +2819,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {/* Items grouped by source */}
-          <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(85vh - 220px)" }}>
-            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>Loading collection...</p>}
+          <div className="p-5 overflow-y-auto scrollbar-rpg" style={{ maxHeight: "calc(85vh - 220px)", scrollbarWidth: "thin" }}>
+            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>The archive is still retrieving the entries…</p>}
             {!collectionLoading && collectionError && (
               <div className="text-center py-8">
                 <p className="text-xs" style={{ color: "#ef4444" }}>Failed to load collection data.</p>
@@ -2811,7 +2889,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
 
               if (sortedSources.length === 0) {
-                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>No items in this category.</p>;
+                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.45)" }}>This shelf is empty. Loot more, hoard better.</p>;
               }
 
               return (
@@ -2872,27 +2950,39 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 </>}
                               >
                               <div
-                                className="rounded-lg p-2.5 cursor-help"
+                                className={`rounded-lg p-2.5 cursor-help relative overflow-hidden${item.obtained && item.rarity === "legendary" ? " crystal-breathe" : ""}`}
                                 style={{
-                                  background: item.obtained ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
-                                  border: `1px solid ${item.obtained ? `${color}30` : "rgba(255,255,255,0.04)"}`,
-                                  borderTop: item.obtained ? `2px solid ${color}` : undefined,
-                                  opacity: item.obtained ? 1 : 0.45,
-                                  filter: item.obtained ? "none" : "grayscale(1)",
-                                }}
+                                  background: item.obtained ? `radial-gradient(ellipse at 50% 0%, ${color}18 0%, rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.2) 100%)` : "linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(0,0,0,0.3) 100%)",
+                                  border: `1px solid ${item.obtained ? `${color}40` : "rgba(255,255,255,0.05)"}`,
+                                  borderTop: item.obtained ? `2px solid ${color}` : "1px solid rgba(255,255,255,0.05)",
+                                  boxShadow: item.obtained && item.rarity === "legendary" ? `0 8px 16px -4px ${color}30, inset 0 0 12px ${color}15` : item.obtained && item.rarity === "epic" ? `0 6px 12px -4px ${color}25` : "0 4px 8px -2px rgba(0,0,0,0.3)",
+                                  "--glow-color": `${color}30`,
+                                } as React.CSSProperties}
                               >
+                                {/* Icon pedestal — slot silhouette or rune glyph, centered at the top of the tile */}
+                                <div className="flex items-center justify-center mb-1.5" style={{ height: 48 }}>
+                                  {item.obtained ? (
+                                    <div className="flex items-center justify-center rounded-lg" style={{ width: 44, height: 44, background: `${color}10`, border: `1px solid ${color}30`, boxShadow: item.rarity === "legendary" ? `0 0 14px ${color}50, inset 0 0 8px ${color}20` : `inset 0 0 6px ${color}15` }}>
+                                      <img src={`/images/icons/equip-${item.slot}.png`} alt={item.slot} width={32} height={32} style={{ imageRendering: "auto", filter: `drop-shadow(0 0 6px ${color}60)` }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+                                    </div>
+                                  ) : (
+                                    <div className="flex items-center justify-center rounded-lg" style={{ width: 44, height: 44, background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.1)" }}>
+                                      <span style={{ fontSize: 20, color: "rgba(255,255,255,0.18)", fontWeight: 700 }}>?</span>
+                                    </div>
+                                  )}
+                                </div>
                                 {item.obtained ? (
                                   <>
-                                    <p className="text-xs font-semibold truncate" title={item.name} style={{ color }}>{item.name}</p>
-                                    <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
+                                    <p className="text-xs font-semibold truncate text-center" title={item.name} style={{ color }}>{item.name}</p>
+                                    <p className="text-xs text-w20 truncate capitalize text-center">{item.slot}</p>
                                     {item.legendaryEffect?.label && (
-                                      <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
+                                      <p className="text-xs mt-1 truncate text-center" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
                                     )}
                                   </>
                                 ) : (
                                   <>
-                                    <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>???</p>
-                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>{item.slot}</p>
+                                    <p className="text-xs font-semibold text-center" style={{ color: "rgba(255,255,255,0.45)" }}>???</p>
+                                    <p className="text-xs mt-1 text-center capitalize" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.slot}</p>
                                   </>
                                 )}
                               </div>
@@ -2920,6 +3010,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           onClick={() => setConfirmAction(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm action"
             className="rounded-xl p-5 max-w-sm w-full mx-4"
             style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
             onClick={e => e.stopPropagation()}

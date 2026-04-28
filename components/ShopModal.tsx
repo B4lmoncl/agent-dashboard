@@ -25,6 +25,9 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Forge shop"
         className="rounded-2xl p-5 w-full max-w-sm"
         style={{ background: "#1e1e1e", border: "1px solid rgba(245,158,11,0.3)", boxShadow: "0 0 40px rgba(245,158,11,0.1)" }}
         onClick={e => e.stopPropagation()}
@@ -36,7 +39,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
           </div>
           <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)" }}>×</button>
         </div>
-        <div className="space-y-2 max-h-96 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
+        <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-rpg" style={{ overscrollBehavior: "contain", scrollbarWidth: "thin" }}>
           {ITEMS.map(item => (
             <div
               key={item.id}

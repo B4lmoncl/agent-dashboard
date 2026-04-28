@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useCallback, ReactNode } from "react";
+import { useEffect, useState, useCallback, useRef, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 export function ModalPortal({ children }: { children: ReactNode }) {
@@ -81,7 +81,12 @@ export function ModalOverlay({
   zIndex?: number;
   bgOpacity?: number;
 }) {
-  useModalBehavior(isOpen, onClose);
+  // Pass a containerRef so the Tab focus trap in useModalBehavior actually
+  // engages — without it the handler silently skips the trap, letting Tab
+  // escape into the background DOM. Keyboard-only users couldn't work
+  // through the modal's controls before this.
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  useModalBehavior(isOpen, onClose, containerRef);
 
   if (!isOpen) return null;
 
@@ -94,7 +99,7 @@ export function ModalOverlay({
         role="dialog"
         aria-modal="true"
       >
-        <div onClick={e => e.stopPropagation()} style={{ overscrollBehavior: "contain" }}>
+        <div ref={containerRef} onClick={e => e.stopPropagation()} style={{ overscrollBehavior: "contain" }}>
           {children}
         </div>
       </div>

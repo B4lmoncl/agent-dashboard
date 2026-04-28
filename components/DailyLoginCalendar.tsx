@@ -76,14 +76,17 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
     });
   }
 
-  const monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-  const dayLabels = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const dayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const claimedThisMonth = days.filter(d => d.claimed).length;
 
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={onClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Daily login calendar"
         className="w-full max-w-md rounded-2xl p-5 space-y-4"
         style={{ background: "#1a1a1a", border: "1px solid rgba(251,191,36,0.3)", boxShadow: "0 0 60px rgba(251,191,36,0.1)" }}
         onClick={e => e.stopPropagation()}
@@ -97,7 +100,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
           <div className="flex items-center gap-3">
             <div className="text-right">
               <Tip k="streak"><p className="text-sm font-bold" style={{ color: "#fbbf24", cursor: "help" }}>{streakDays} Day Streak</p></Tip>
-              <TipCustom title="Monatlicher Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anzahl der beanspruchten Tagesbelohnungen in diesem Monat.</p>}>
+              <TipCustom title="Monthly Progress" icon="◆" accent="#fbbf24" body={<p>Number of daily rewards claimed this month.</p>}>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>{claimedThisMonth}/{daysInMonth} this month</p>
               </TipCustom>
             </div>
@@ -139,13 +142,13 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
         )}
 
         {loading ? (
-          <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
+          <div className="grid grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
         ) : (
           <>
             {/* Calendar Grid */}
             <div>
               {/* Day labels */}
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 mb-1">
+              <div className="grid grid-cols-7 gap-1 mb-1">
                 {dayLabels.map(label => (
                   <div key={label} className="text-center text-xs font-semibold py-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>
                     {label}
@@ -154,7 +157,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
               </div>
 
               {/* Calendar cells */}
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1">
+              <div className="grid grid-cols-7 gap-1">
                 {/* Empty cells for offset */}
                 {Array.from({ length: firstDayOfWeek }).map((_, i) => (
                   <div key={`empty-${i}`} style={{ width: "100%", aspectRatio: "1" }} />
@@ -205,8 +208,8 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
 
             {/* Milestone Progress */}
             <div className="space-y-1.5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-              <TipCustom title="Streak-Meilensteine" icon="★" accent="#fbbf24" body={<p>Belohnungen f&uuml;r ununterbrochene Login-Streaks. Je l&auml;nger der Streak, desto besser die Boni.</p>}>
-                <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Streak-Meilensteine</p>
+              <TipCustom title="Streak Milestones" icon="★" accent="#fbbf24" body={<p>Rewards for consecutive login streaks. The longer the streak, the better the bonuses.</p>}>
+                <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Streak Milestones</p>
               </TipCustom>
               {MILESTONES.map(m => {
                 const reached = streakDays >= m.days;

@@ -80,6 +80,9 @@ export default function QuestDetailModal({
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Quest details"
         className="w-full max-w-md rounded-2xl flex flex-col bg-surface-alt panel-ornate panel-ornate-inner"
         style={{
           border: `2px solid ${rarityColor}66`,
@@ -129,11 +132,11 @@ export default function QuestDetailModal({
                 {favorites.includes(q.id) ? "\u2605" : "\u2606"}
               </button>
             )}
-            <button onClick={onClose} className="btn-close" aria-label="Schließen" style={{ fontSize: 20, lineHeight: 1 }}>×</button>
+            <button onClick={onClose} className="btn-close" aria-label="Close" style={{ fontSize: 20, lineHeight: 1 }}>×</button>
           </div>
         </div>
         {/* Body */}
-        <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3" style={{ scrollbarWidth: "thin" as const }}>
+        <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3 scrollbar-rpg" style={{ scrollbarWidth: "thin" as const }}>
           {/* Flavor / Lore text */}
           {q.npcGiverId && (
             <p className="text-xs font-semibold mb-1" style={{ color: RARITY_COLORS[q.npcRarity ?? "common"] ?? "#9ca3af" }}>
@@ -244,11 +247,10 @@ export default function QuestDetailModal({
           {!isCoop && reviewApiKey && playerName && q.status === "open" && (
             <button
               disabled={actionLoading}
-              title={actionLoading ? "Action in progress..." : undefined}
+              title={actionLoading ? "Claiming quest…" : undefined}
               onClick={async () => { setActionLoading(true); try { await handleClaim(q.id); onClose(); } finally { setActionLoading(false); } }}
-              style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1, transition: "background 0.15s, color 0.15s" }}
-              onMouseEnter={e => { if (!actionLoading) { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; } }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(180deg, #2a2a2a, #1a1a1a)"; (e.currentTarget as HTMLButtonElement).style.color = "#FFD700"; }}
+              className="btn-interactive text-sm font-bold px-7 py-2.5 rounded-lg"
+              style={{ background: "rgba(255,68,68,0.15)", color: "#ff4444", border: "1px solid rgba(255,68,68,0.4)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.5 : 1 }}
             >{actionLoading ? "Claiming…" : "Claim Quest"}</button>
           )}
           {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
@@ -258,7 +260,7 @@ export default function QuestDetailModal({
                 onClick={async () => { setActionLoading(true); try { await handleUnclaim(q.id); onClose(); } finally { setActionLoading(false); } }}
                 className="text-xs px-3 py-1.5 rounded font-medium"
                 style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.6 : 1 }}
-              >{actionLoading ? "…" : "Unclaim"}</button>
+              >{actionLoading ? "Releasing…" : "Unclaim"}</button>
               <button
                 disabled={actionLoading}
                 onClick={async () => { setActionLoading(true); try { await handleComplete(q.id, q.title); onClose(); } finally { setActionLoading(false); } }}

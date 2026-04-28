@@ -330,7 +330,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
 
   return (
     <>
-      <TutorialMomentBanner viewId="rituals" playerLevel={1} />
+      <TutorialMomentBanner viewId="rituals" />
       {ritualError && (
         <p className="text-xs font-semibold mb-2 px-2 py-1 rounded-lg tab-content-enter" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>{ritualError}</p>
       )}
@@ -482,7 +482,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               fetchRituals(playerName).then(setRituals);
             } else {
               const d = await ritualRes.json().catch(() => ({}));
-              if (addToast) addToast({ type: "error", message: d.error || "Failed to create ritual" });
+              if (addToast) addToast({ type: "error", message: d.error || "Failed to create habit" });
             }
           };
           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment) ?? COMMITMENT_TIERS[0];
@@ -495,7 +495,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           return (
             <ModalPortal>
             <div data-feedback-id="ritual-chamber.create-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeRitualModal}>
-              <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+              <div role="dialog" aria-modal="true" aria-label="Create ritual" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                 {/* NPC Portrait — absolute left of modal, hidden on mobile */}
                 <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                   <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -607,7 +607,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
       {deleteRitualConfirmId && (
         <ModalPortal>
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" onClick={() => setDeleteRitualConfirmId(null)}>
-          <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Confirm delete ritual" className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
             <div className="p-5 text-center">
               <p className="text-2xl mb-3">×</p>
               <p className="text-sm font-bold mb-1" style={{ color: "#e8d5a3" }}>Break this Ritual?</p>
@@ -621,7 +621,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     try {
                       await fetch(`/api/rituals/${id}`, { method: 'DELETE', headers: { ...getAuthHeaders(reviewApiKey) } });
                       if (playerName) fetchRituals(playerName).then(setRituals);
-                    } catch { addToast?.({ type: "error", message: "Ritual konnte nicht gelöscht werden. Versuch es nochmal." }); }
+                    } catch { addToast?.({ type: "error", message: "Failed to delete ritual" }); }
                   }}
                   className="flex-1 text-sm py-2 rounded-lg font-semibold"
                   style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}
@@ -647,7 +647,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         return (
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeExtend}>
-            <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Extend ritual commitment" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
@@ -712,7 +712,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         return (
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={() => setRecommitRitualId(null)}>
-            <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Recommit to ritual" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
@@ -771,6 +771,9 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           onClick={() => setConfirmDeleteHabitId(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm delete habit"
             className="rounded-xl p-5 max-w-sm w-full mx-4"
             style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
             onClick={e => e.stopPropagation()}
@@ -782,12 +785,12 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 onClick={() => setConfirmDeleteHabitId(null)}
                 className="text-xs px-4 py-2 rounded-lg"
                 style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
-              >Abbrechen</button>
+              >Cancel</button>
               <button
                 onClick={() => { deleteHabit(confirmDeleteHabitId); setConfirmDeleteHabitId(null); }}
                 className="text-xs px-4 py-2 rounded-lg font-bold"
                 style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
-              >Löschen</button>
+              >Delete</button>
             </div>
           </div>
         </div>

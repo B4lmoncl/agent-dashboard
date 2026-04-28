@@ -3,7 +3,7 @@
  */
 const crypto = require('crypto');
 const { state, LEVELS, QUEST_FLAVOR, CAMPAIGN_NPCS, DEFAULT_CURRENCIES, ensureUserCurrencies, saveUsers, saveClasses, saveManagedKeys, rebuildUserIndexes } = require('../lib/state');
-const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate } = require('../lib/helpers');
+const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate, grantPlayerXp } = require('../lib/helpers');
 const { requireAuth, requireSelf, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { generateTokenPair, setRefreshCookie, clearRefreshCookie, getRefreshTokenFromRequest, verifyRefreshToken, revokeRefreshToken, resolveAuth } = require('../lib/auth');
 const { isEmailConfigured, sendPasswordResetEmail, sendVerificationEmail } = require('../lib/email');
@@ -19,6 +19,21 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: 'Too many login attempts, please try again later' },
 });
+
+// ─── Timing-oracle protection ──────────────────────────────────────────────
+// Compute a real bcrypt hash at module load so login paths for
+// non-existent users still run bcrypt.compare — otherwise an attacker can
+// enumerate valid usernames by measuring response time (bcrypt ~100ms vs
+// fast null-lookup). Value doesn't matter, only that it's a valid hash.
+const _bcrypt = require('bcryptjs');
+const DUMMY_PASSWORD_HASH = _bcrypt.hashSync('dummy-password-for-timing-protection-only', 10);
+
+// ─── Register race protection ──────────────────────────────────────────────
+// await bcrypt.hash inside /api/register is an async boundary — two concurrent
+// registrations with the same name can both pass the usersByName check and
+// both create users. Track names currently being registered so the second
+// request fails fast.
+const _registrationInProgress = new Set();
 
 // ─── Helper: determine admin status for a user ─────────────────────────────
 function isUserAdmin(user) {
@@ -101,6 +116,10 @@ router.get('/api/users/:id', (req, res) => {
 // POST /api/users/:id/register — create or update user
 router.post('/api/users/:id/register', requireAuth, (req, res) => {
   const id = req.params.id.toLowerCase();
+  // Auth: only the user themselves OR admin can register/update their profile
+  if (!req.auth?.isAdmin && req.auth?.userId !== id) {
+    return res.status(403).json({ error: 'Cannot modify another player profile' });
+  }
   const { name, avatar, color } = req.body;
   if (!state.users[id]) {
     state.users[id] = { id, name: name || id, avatar: avatar || id[0].toUpperCase(), color: color || '#f59e0b', xp: 0, questsCompleted: 0, achievements: [], earnedAchievements: [], streakDays: 0, streakLastDate: null, forgeTemp: 0, currencies: { ...DEFAULT_CURRENCIES }, _allCompletedTypes: [], createdAt: now() };
@@ -136,13 +155,13 @@ router.post('/api/users/:id/award-xp', requireAuth, (req, res) => {
   const { amount = 10, reason } = req.body;
   const xpAmount = Math.max(0, Math.min(100000, parseInt(amount, 10) || 0));
   if (xpAmount <= 0) return res.status(400).json({ error: 'Amount must be positive' });
-  state.users[id].xp = (state.users[id].xp || 0) + xpAmount;
+  const xpResult = grantPlayerXp(state.users[id], xpAmount);
   if (reason) {
     state.users[id].achievements = state.users[id].achievements || [];
     state.users[id].achievements.push({ reason, xp: amount, at: now() });
   }
   saveUsers();
-  res.json({ ok: true, xp: state.users[id].xp });
+  res.json({ ok: true, xp: state.users[id].xp, levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null });
 });
 
 // GET /api/streaks — get streak info for all users and agents
@@ -224,18 +243,25 @@ router.post('/api/auth/login', authLimiter, async (req, res) => {
       ? state.usersByEmail.get(identifier)
       : state.usersByName.get(identifier);
 
+    // Always run bcrypt.compare, even when the user doesn't exist or uses
+    // legacy apiKey auth. This keeps the response time roughly constant and
+    // prevents username enumeration via timing.
+    const hashForTiming = user?.passwordHash || DUMMY_PASSWORD_HASH;
+    const bcryptMatch = await bcrypt.compare(password, hashForTiming);
+
+    // Always return the same error message so the response body can't be
+    // used to enumerate valid usernames either (paired with the timing fix
+    // above, which already equalized response time).
     if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
     // Support both new password login and legacy API-key-as-password login
     if (user.passwordHash) {
-      const match = await bcrypt.compare(password, user.passwordHash);
-      if (!match) return res.status(401).json({ error: 'Invalid name or password' });
+      if (!bcryptMatch) return res.status(401).json({ error: 'Invalid credentials' });
     } else {
       // Legacy: user has no password yet, check if password matches apiKey (timing-safe)
-      const crypto = require('crypto');
       const a = Buffer.from(String(password));
       const b = Buffer.from(String(user.apiKey || ''));
-      if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return res.status(401).json({ error: 'Invalid name or password' });
+      if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const admin = isUserAdmin(user);
@@ -337,10 +363,27 @@ router.post('/api/register', authLimiter, async (req, res) => {
   if (existing) return res.status(409).json({ error: 'Name already taken' });
   // Check if email already taken
   if (state.usersByEmail.get(trimmedEmail)) return res.status(409).json({ error: 'Email already registered' });
+
+  // Race protection: await bcrypt.hash below is an async boundary. A second
+  // registration request for the same name could pass the usersByName check
+  // while we're hashing and end up creating a duplicate. Gate with a Set so
+  // only one registration per name can be in flight at a time. Release in
+  // finally so future attempts (e.g. after this one fails) can proceed.
+  if (_registrationInProgress.has(nameLower)) {
+    return res.status(409).json({ error: 'Name already taken' });
+  }
+  _registrationInProgress.add(nameLower);
+  try {
   // Generate API key (legacy compat) + hash password
   const bcrypt = require('bcryptjs');
   const apiKey = crypto.randomBytes(16).toString('hex');
   const hashedPassword = await bcrypt.hash(password, 10);
+  // Re-check name after the async bcrypt boundary — belt-and-suspenders with
+  // the in-progress Set. If another request raced past the set check on a
+  // different process/restart, we still catch it here.
+  if (state.usersByName.get(nameLower)) {
+    return res.status(409).json({ error: 'Name already taken' });
+  }
   const userId = nameLower.replace(/\s+/g, '_');
   const finalId = state.users[userId] ? `${userId}_${Date.now()}` : userId;
 
@@ -386,6 +429,10 @@ router.post('/api/register', authLimiter, async (req, res) => {
     relationshipStatus: (['single', 'relationship', 'married', 'complicated', 'other'].includes(relationshipStatus)) ? relationshipStatus : 'single',
     partnerName: partnerName || null,
     pronouns: (['he/him', 'she/her', 'they/them', 'other', 'prefer_not_to_say'].includes(pronouns)) ? pronouns : null,
+    // Derive portrait style from pronouns so she/her players don't default to
+    // hero-male.png. "they/them" and "other" get male-presenting as a neutral
+    // fallback (there is no non-binary portrait asset yet).
+    avatarStyle: pronouns === 'she/her' ? 'female' : 'male',
     classId: resolvedClassId,
     classPending,
     classPendingNotified: false,
@@ -424,6 +471,11 @@ router.post('/api/register', authLimiter, async (req, res) => {
   setRefreshCookie(res, refreshToken);
 
   res.json({ name: trimmedName, accessToken, apiKey, userId: finalId });
+  } finally {
+    // Always release the in-progress slot so failed registrations don't
+    // permanently block a name.
+    _registrationInProgress.delete(nameLower);
+  }
   } catch (err) {
     console.error('[register] Error:', err.message);
     return res.status(500).json({ error: 'Registration failed' });

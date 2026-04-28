@@ -114,30 +114,41 @@ function getCurrentWeekId() {
 }
 
 function ensureUserFactions(user) {
+  let mutated = false;
   if (!user.factions) {
     user.factions = {};
     for (const f of factionsData.factions) {
       user.factions[f.id] = { rep: 0, weeklyBonusUsed: 0, claimedRewards: [] };
     }
+    mutated = true;
   }
   // Ensure all factions exist (for new factions added later)
   for (const f of factionsData.factions) {
     if (!user.factions[f.id]) {
       user.factions[f.id] = { rep: 0, weeklyBonusUsed: 0, claimedRewards: [] };
+      mutated = true;
     }
     // Migrate old German standing IDs in claimedRewards
     const pd = user.factions[f.id];
     if (pd.claimedRewards) {
+      const before = pd.claimedRewards.join(',');
       pd.claimedRewards = pd.claimedRewards.map(id => STANDING_MIGRATION[id] || id);
+      if (pd.claimedRewards.join(',') !== before) mutated = true;
     }
   }
-  // Auto-reset weekly bonus when a new week starts
+  // Auto-reset weekly bonus when a new week starts — persist so the reset
+  // survives a restart and can't be re-triggered to re-grant bonuses.
   const currentWeek = getCurrentWeekId();
   if (user._factionWeekId !== currentWeek) {
     user._factionWeekId = currentWeek;
     for (const fid of Object.keys(user.factions)) {
       user.factions[fid].weeklyBonusUsed = 0;
     }
+    mutated = true;
+  }
+  if (mutated) {
+    const { saveUsers } = require('../lib/state');
+    saveUsers();
   }
 }
 

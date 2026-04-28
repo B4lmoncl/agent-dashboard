@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { SFX } from "@/lib/sounds";
 import CountUp from "@/components/CountUp";
 import { ItemHoverCard } from "@/components/ItemTooltip";
@@ -274,6 +274,16 @@ interface RewardCelebrationProps {
 
 export function RewardCelebration({ data, onClose, onCollect, onAchievementClick, onNavigate }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
+  // Exit animation: flip `closing` before actually unmounting so the modal
+  // fades + shrinks for ~220ms instead of hard-cutting. Any onClose call goes
+  // through `requestClose`, which in turn fires the real onClose after the
+  // animation lands.
+  const [closing, setClosing] = useState(false);
+  const requestClose = useCallback(() => {
+    if (closing) return;
+    setClosing(true);
+    setTimeout(() => onClose(), 220);
+  }, [closing, onClose]);
 
   // Play reward sound on mount
   useEffect(() => {
@@ -293,7 +303,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
   // NOTE: Body scroll lock is handled by useModalBehavior in page.tsx — do NOT duplicate here
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { if (onCollect) onCollect(data); onClose(); }
+      if (e.key === "Escape") { if (onCollect) onCollect(data); requestClose(); }
     };
     document.addEventListener("keydown", handler);
     return () => {
@@ -302,15 +312,19 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
   }, [onClose, onCollect, data]);
 
   const theme = THEMES[data.type] || THEMES.quest;
-  // Allow companion-specific overrides
-  const accent = data.companionAccent || theme.accent;
-  const accentRgb = data.companionAccent ? hexToRgb(data.companionAccent) : theme.accentRgb;
+  // Allow companion-specific overrides. Unique (T5) loot also overrides the
+  // accent to WoW artifact gold #e6cc80 so it's visibly distinct from a
+  // regular legendary — which would otherwise render with the same orange
+  // glow, same particle count, same SFX.
+  const accent = data.loot?.rarity === "unique" ? "#e6cc80" : (data.companionAccent || theme.accent);
+  const accentRgb = data.loot?.rarity === "unique" ? "230,204,128" : (data.companionAccent ? hexToRgb(data.companionAccent) : theme.accentRgb);
   const gradientTop = data.type === "companion" && data.companionAccent
     ? adjustGradientTop(data.companionAccent)
     : theme.gradientTop;
   const icon = data.companionEmoji || theme.icon;
   const flavor = data.flavor || theme.flavorMessages[flavorIdx % theme.flavorMessages.length];
-  const isLegendaryDrop = data.loot?.rarity === "legendary" || data.loot?.rarity === "unique" || data.type === "levelUp";
+  const isUniqueDrop = data.loot?.rarity === "unique";
+  const isLegendaryDrop = data.loot?.rarity === "legendary" || isUniqueDrop || data.type === "levelUp";
 
   const hasRewards = data.xpEarned > 0 || data.goldEarned > 0 || data.loot || (data.bondXp && data.bondXp > 0) || (data.currencies && data.currencies.length > 0);
 
@@ -318,10 +332,13 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
     <div
       className={`fixed inset-0 z-[200] flex items-center justify-center p-4${isLegendaryDrop ? " legendary-screen-flash" : ""}`}
       style={{ background: `radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.88) 100%)` }}
-      onClick={() => { if (onCollect) onCollect(data); onClose(); }}
+      onClick={() => { if (onCollect) onCollect(data); requestClose(); }}
     >
       <div
-        className={`reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden panel-ornate panel-ornate-inner${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${theme.label} reward`}
+        className={`${closing ? "reward-burst-exit" : "reward-burst-enter"} w-full max-w-[calc(100vw-2rem)] sm:max-w-sm rounded-2xl p-8 text-center relative overflow-hidden panel-ornate panel-ornate-inner${isLegendaryDrop ? " legendary-drop-glow" : ""}`}
         style={{
           background: `linear-gradient(180deg, ${gradientTop} 0%, #0d0d14 60%)`,
           border: `2px solid rgba(${accentRgb},0.5)`,
@@ -329,8 +346,9 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Sparkle particles — more for higher-value rewards */}
-        {Array.from({ length: data.loot?.rarity === "legendary" || data.loot?.rarity === "unique" ? 18 : data.loot ? 14 : 10 }).map((_, i) => (
+        {/* Sparkle particles — more for higher-value rewards. Unique (T5) */}
+        {/* gets 24 particles so it out-bursts a regular legendary drop. */}
+        {Array.from({ length: isUniqueDrop ? 24 : data.loot?.rarity === "legendary" ? 18 : data.loot ? 14 : 10 }).map((_, i) => (
           <div key={i} className="absolute rounded-full pointer-events-none" style={{
             width: 3 + (i % 4) * 2,
             height: 3 + (i % 4) * 2,
@@ -404,6 +422,24 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
 
         {/* Flavor */}
         <div className="text-xs mb-5 text-w35">{flavor}</div>
+
+        {/* Level-Up banner — consolidates what used to be a second full-screen */}
+        {/* modal into this celebration. Only renders when the reward causes a */}
+        {/* level boundary crossing (data.levelUp is injected from page.tsx). */}
+        {data.levelUp && data.type !== "levelUp" && (
+          <div
+            className="mb-5 rounded-lg px-4 py-3 text-center relative overflow-hidden levelup-banner-in"
+            style={{
+              background: "linear-gradient(135deg, rgba(251,191,36,0.22) 0%, rgba(245,158,11,0.12) 60%, rgba(251,191,36,0.18) 100%)",
+              border: "2px solid rgba(251,191,36,0.55)",
+            }}
+          >
+            <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.12) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.5s ease-in-out infinite" }} />
+            <p className="text-xs uppercase tracking-[0.4em] font-bold mb-1 relative" style={{ color: "#fbbf24" }}>Level Up</p>
+            <p className="text-2xl font-black relative" style={{ color: "#f5e4a8", textShadow: "0 0 16px rgba(251,191,36,0.6), 0 0 32px rgba(251,191,36,0.25)" }}>Lv. {data.levelUp.level}</p>
+            <p className="text-xs font-semibold mt-0.5 relative" style={{ color: "rgba(251,191,36,0.85)" }}>{data.levelUp.title}</p>
+          </div>
+        )}
 
         {/* Rewards */}
         {hasRewards && (
@@ -480,7 +516,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                   <span className="text-sm font-semibold" style={{ color: c.color }}>+<CountUp value={c.amount} duration={500} /> {c.name}</span>
                   {spendView && (
                     <button
-                      onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate!(spendView); onClose(); }}
+                      onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate!(spendView); requestClose(); }}
                       className="ml-2 text-xs px-1.5 py-0.5 rounded"
                       style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer" }}
                     >
@@ -515,7 +551,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 e.stopPropagation();
                 onAchievementClick(data.achievement.id);
                 if (onCollect) onCollect(data);
-                onClose();
+                requestClose();
               }
             }}
           >
@@ -533,34 +569,34 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
           {onNavigate && data.loot && (
             <QuickNavBtn
               label="Inventar"
-              onClick={() => { if (onCollect) onCollect(data); onNavigate("character"); onClose(); }}
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("character"); requestClose(); }}
               accentRgb={accentRgb}
             />
           )}
           {onNavigate && data.chainQuestTemplate && (
             <QuickNavBtn
               label="Nächste Quest"
-              onClick={() => { if (onCollect) onCollect(data); onNavigate("questBoard"); onClose(); }}
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("questBoard"); requestClose(); }}
               accentRgb={accentRgb}
             />
           )}
           {onNavigate && data.levelUp && (
             <QuickNavBtn
               label="Leaderboard"
-              onClick={() => { if (onCollect) onCollect(data); onNavigate("leaderboard"); onClose(); }}
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("leaderboard"); requestClose(); }}
               accentRgb={accentRgb}
             />
           )}
           {onNavigate && data.type === "faction" && (
             <QuickNavBtn
               label="Factions"
-              onClick={() => { if (onCollect) onCollect(data); onNavigate("factions"); onClose(); }}
+              onClick={() => { if (onCollect) onCollect(data); onNavigate("factions"); requestClose(); }}
               accentRgb={accentRgb}
             />
           )}
 
           <button
-            onClick={() => { if (onCollect) onCollect(data); onClose(); }}
+            onClick={() => { if (onCollect) onCollect(data); requestClose(); }}
             className="action-btn flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
             style={{
               background: `rgba(${accentRgb},0.12)`,

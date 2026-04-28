@@ -308,7 +308,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#3b82f6",
     body: (
       <>
-        <p>Like WoW Classic Rested XP. Accumulates while offline and doubles your XP earned until depleted.</p>
+        <p>Accumulates while you're offline and doubles the XP you earn until depleted.</p>
         <div className="gt-stat-row"><span>Accumulation</span><span>5% of level XP per 8h offline</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>150% of current level XP</span></div>
         <div className="gt-stat-row"><span>Effect</span><span>+100% XP (doubled) until pool empty</span></div>
@@ -1499,7 +1499,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     accent: "#818cf8",
     body: (
       <>
-        <p>Zwischen 22:00 und 06:00 Uhr (Berlin) ist der Aetherstrom ruhiger. Items die in dieser Zeit gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>
+        <p>Zwischen 22:00 und 06:00 Uhr (Berlin) ist der Aetherstrom ruhiger. Items, die in dieser Zeit gecraftet werden, erhalten +20 % bessere Minimum-Rolls auf alle Stats.</p>
         <p className="gt-source">Effektiv: Die unterste Grenze jedes Stat-Rolls wird angehoben. Maximum bleibt gleich — aber schlechte Rolls werden seltener.</p>
       </>
     ),
@@ -1549,7 +1549,7 @@ function buildTooltipRegistry(): Record<string, TooltipEntry> {
     ),
   },
   bonus_stacking: {
-    title: "Bonus-Stacking (D3-Style)",
+    title: "Bonus Stacking",
     icon: "◈",
     accent: "#818cf8",
     body: (

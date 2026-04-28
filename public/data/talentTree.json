@@ -346,7 +346,7 @@
       "name": "Geisterhand",
       "icon": "ghost-hand",
       "desc": "Jede Herstellung hat 3%/6% Chance, keine Materialien zu verbrauchen.",
-      "flavor": "Sechs Prozent Chance dass die Materialien einfach... da bleiben. Die Handwerker nennen es Effizienz. Die Materialien nennen es Diebstahl.",
+      "flavor": "Sechs Prozent Chance dass die Materialien einfach… da bleiben. Die Handwerker nennen es Effizienz. Die Materialien nennen es Diebstahl.",
       "maxRank": 2,
       "reqPoints": 5,
       "requires": [
@@ -409,7 +409,7 @@
       "name": "Doppelgänger",
       "icon": "doppelganger",
       "desc": "Dein Companion erhält Bond-XP auch während einer Expedition (halbe Rate).",
-      "flavor": "Dein Companion ist auf Expedition, verdient aber trotzdem Bond-XP. Abwesenheit macht das Herz... effizienter.",
+      "flavor": "Dein Companion ist auf Expedition, verdient aber trotzdem Bond-XP. Abwesenheit macht das Herz… effizienter.",
       "maxRank": 1,
       "reqPoints": 5,
       "requires": [
@@ -596,7 +596,7 @@
       "ring": "inner",
       "name": "Nachtarbeiter",
       "icon": "night-worker",
-      "desc": "Quests die zwischen 22:00 und 06:00 abgeschlossen werden geben +3% XP.",
+      "desc": "Quests, die zwischen 22:00 und 06:00 abgeschlossen werden, geben +3 % XP.",
       "flavor": "Die Nacht gehört denen die nicht schlafen. Und denen die es bereuen.",
       "maxRank": 1,
       "reqPoints": 0,

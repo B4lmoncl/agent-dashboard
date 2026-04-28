@@ -12,7 +12,7 @@ const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir } 
 const _expClaimLocks = new Map();
 function acquireExpClaimLock(uid) { if (_expClaimLocks.has(uid)) return false; _expClaimLocks.set(uid, true); return true; }
 function releaseExpClaimLock(uid) { _expClaimLocks.delete(uid); }
-const { now, awardCurrency } = require('../lib/helpers');
+const { now, awardCurrency, grantPlayerXp } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { getWeekId } = require('./challenges-weekly');
 
@@ -139,7 +139,11 @@ router.get('/api/expedition', requireAuth, (req, res) => {
   if (!template) return res.json({ expedition: null });
 
   const playerName = (req.query.player || '').toLowerCase();
-  const u = playerName ? state.usersByName.get(playerName) : null;
+  // Claimed-checkpoint status is private — only self or admin may see which
+  // checkpoints the target player has already claimed. Public contributions
+  // stay visible below because the expedition is a shared event.
+  const isSelf = playerName && (req.auth?.userId === playerName || req.auth?.isAdmin);
+  const u = (playerName && isSelf) ? state.usersByName.get(playerName) : null;
 
   const rewards = EXPEDITION_DATA.expedition?.checkpointRewards || {};
   const bonusTitles = EXPEDITION_DATA.expedition?.bonusTitles || [];
@@ -231,7 +235,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
   const rewards = { ...(EXPEDITION_DATA.expedition?.checkpointRewards[rewardKey] || {}) };
 
   ensureUserCurrencies(u);
-  if (rewards.xp) u.xp = (u.xp || 0) + rewards.xp;
+  const xpResult = rewards.xp ? grantPlayerXp(u, rewards.xp) : { leveledUp: false };
   if (rewards.gold) awardCurrency(uid, 'gold', rewards.gold);
   if (rewards.runensplitter) awardCurrency(uid, 'runensplitter', rewards.runensplitter);
   if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);
@@ -261,6 +265,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
     message: `Checkpoint ${cpNum} reward claimed`,
     checkpoint: cpNum,
     rewards,
+    levelUp: xpResult.leveledUp ? { level: xpResult.newLevel, title: xpResult.title } : null,
   });
   } finally { releaseExpClaimLock(uid); }
 });

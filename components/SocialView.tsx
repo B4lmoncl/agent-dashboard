@@ -103,6 +103,17 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  // Auto-dismiss error + success banners after 5s per CLAUDE.md.
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(() => setError(null), 5000);
+    return () => clearTimeout(t);
+  }, [error]);
+  useEffect(() => {
+    if (!successMsg) return;
+    const t = setTimeout(() => setSuccessMsg(null), 5000);
+    return () => clearTimeout(t);
+  }, [successMsg]);
   const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -198,13 +209,17 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
 
   const removeFriend = async (friendId: string) => {
     try {
-      await fetch(`/api/social/friend/${friendId}`, {
+      const r = await fetch(`/api/social/friend/${friendId}`, {
         method: "DELETE",
         headers: getAuthHeaders(apiKey),
       });
+      if (!r.ok) { setError("Failed to remove friend"); return; }
       setConfirmRemove(null);
       fetchFriends();
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) {
+      console.error('[social]', e);
+      setError("Network error");
+    }
   };
 
   const incoming = incomingRequests;
@@ -230,6 +245,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
             onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
             onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
             placeholder="Search players..."
+            aria-label="Search players"
             maxLength={50}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
@@ -308,7 +324,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Friends ({friends.length})</p>
         {friends.length === 0 ? (
-          <p className="text-xs text-w20 text-center py-6">No friends yet. Send a request above!</p>
+          <p className="text-xs text-w20 text-center py-6">No one in the registry yet. The tower is large — someone fits.</p>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {[...friends].sort((a, b) => {
@@ -317,7 +333,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
               const bStatus = b.onlineStatus || (b.isOnline ? "online" : "offline");
               return (order[aStatus] ?? 2) - (order[bStatus] ?? 2);
             }).map(f => (
-              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
+              <div key={f.id} role="button" tabIndex={0} aria-label={`Profil von ${f.name}`} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer card-hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2" onClick={() => onOpenProfile?.(f.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenProfile?.(f.id); } }} style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
@@ -325,7 +341,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                     <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-2 py-1 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
-                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100" style={{ transition: "opacity 0.15s ease" }} title="Remove friend">✕</button>
+                  <button onClick={(e) => { e.stopPropagation(); setConfirmRemove(f.id); }} onKeyDown={(e) => e.stopPropagation()} aria-label={`Remove friend: ${f.name}`} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100 focus-visible:opacity-100" style={{ transition: "opacity 0.15s ease" }} title="Remove friend">✕</button>
                 )}
                 <div className="relative mb-1.5">
                   <PlayerBadge name={f.name} avatar={f.avatar} color={f.color} size={36} />
@@ -400,19 +416,25 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpenWith, loading]);
 
-  const openConvo = async (otherPlayerId: string) => {
+  const openConvo = async (otherPlayerId: string, signal?: AbortSignal) => {
     setActiveConvo(otherPlayerId);
     try {
-      const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/messages/${encodeURIComponent(otherPlayerId)}`, { headers: getAuthHeaders(apiKey) });
+      const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/messages/${encodeURIComponent(otherPlayerId)}`, { headers: getAuthHeaders(apiKey), signal });
       if (r.ok) setMessages((await r.json()).messages || []);
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) {
+      if ((e as { name?: string })?.name === 'AbortError') return;
+      console.error('[social]', e);
+    }
   };
 
-  // Auto-refresh messages every 10s when a conversation is active
+  // Auto-refresh messages every 10s when a conversation is active. Each
+  // interval tick uses an AbortController so a rapid convo switch (or unmount)
+  // cancels in-flight fetches and prevents out-of-order setMessages writes.
   useEffect(() => {
     if (!activeConvo) return;
-    const interval = setInterval(() => { openConvo(activeConvo); }, 10000);
-    return () => clearInterval(interval);
+    const ctrl = new AbortController();
+    const interval = setInterval(() => { openConvo(activeConvo, ctrl.signal); }, 10000);
+    return () => { clearInterval(interval); ctrl.abort(); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeConvo, apiKey, playerName]);
 
@@ -442,7 +464,13 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         const data = await r.json().catch(() => null);
         setSendError(data?.error || "Failed to send message");
       }
-    } catch (e) { console.error('[social]', e); }
+    } catch (e) {
+      console.error('[social]', e);
+      // Surface network failures instead of silently swallowing them —
+      // otherwise the user presses Send, nothing happens, and they don't
+      // know whether the message went through.
+      setSendError("Network error — message not sent");
+    }
     setSendingMsg(false);
   };
 
@@ -494,6 +522,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
             onChange={e => { setMsgInput(e.target.value); if (sendError) setSendError(""); }}
             onKeyDown={e => { if (e.key === "Enter") sendMessage(); }}
             placeholder="Type a message..."
+            aria-label="Message to friend"
             maxLength={500}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
@@ -540,10 +569,10 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         <div className="rounded-lg p-3 space-y-2" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
           <div className="flex items-center justify-between">
             <p className="text-xs font-semibold" style={{ color: "#a855f7" }}>Start conversation with:</p>
-            <button onClick={() => setShowNewMsg(false)} className="text-xs text-w30 btn-interactive px-1">✕</button>
+            <button onClick={() => setShowNewMsg(false)} aria-label="Close" className="text-xs text-w30 btn-interactive px-1">✕</button>
           </div>
           {friendsList.length === 0 ? (
-            <p className="text-xs text-w20 py-2">No friends available to message.</p>
+            <p className="text-xs text-w20 py-2">No one to write to. Silence is a kind of correspondence too.</p>
           ) : (
             <div className="grid grid-cols-2 gap-1.5">
               {friendsList.map(f => (
@@ -694,7 +723,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
           ))}
         </div>
       )}
-      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.10)", scrollbarWidth: "thin" }}>
+      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto scrollbar-rpg" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.10)", scrollbarWidth: "thin" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
           {sorted.map(item => {
             const selected = selectedIds.includes(item.id);
@@ -771,6 +800,12 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Auto-dismiss trade errors after 5s (same pattern as FriendsPanel above).
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(() => setError(null), 5000);
+    return () => clearTimeout(t);
+  }, [error]);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   // New trade form
@@ -1079,7 +1114,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         {t.rounds.length > 0 && (
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Negotiation History</p>
-            <div className="space-y-2 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+            <div className="space-y-2 max-h-[200px] overflow-y-auto scrollbar-rpg" style={{ scrollbarWidth: "thin" }}>
               {t.rounds.map((round, i) => {
                 const isMe = round.by.toLowerCase() === playerName.toLowerCase();
                 return (
@@ -1135,6 +1170,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
             value={newTradeTarget}
             onChange={e => setNewTradeTarget(e.target.value)}
             placeholder="Trade with player..."
+            aria-label="Trade target"
             className="input-dark w-full text-xs px-3 py-2 rounded-lg"
           />
           <div>
@@ -1293,7 +1329,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
       )}
 
       {trades.length === 0 && !showNewTrade && (
-        <p className="text-xs text-w20 text-center py-8">No trades yet. Propose a trade to get started!</p>
+        <p className="text-xs text-w20 text-center py-8">No deals on the table. The market is waiting for your opening bid.</p>
       )}
       {tooltipItem && <ItemTooltip item={tooltipItem} onClose={() => setTooltipItem(null)} />}
     </div>
@@ -1624,6 +1660,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
           <input
             type="text"
             placeholder="To (player name)"
+            aria-label="Recipient"
             value={sendTo}
             onChange={e => setSendTo(e.target.value)}
             className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
@@ -1632,6 +1669,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
           <input
             type="text"
             placeholder="Subject"
+            aria-label="Subject"
             value={sendSubject}
             onChange={e => setSendSubject(e.target.value)}
             maxLength={100}
@@ -1640,6 +1678,7 @@ function MailTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; 
           />
           <textarea
             placeholder="Message (optional)"
+            aria-label="Message body"
             value={sendBody}
             onChange={e => setSendBody(e.target.value)}
             maxLength={500}
@@ -1885,7 +1924,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
       });
       const d = await r.json();
       if (r.ok) { setMessage({ text: d.message, type: "success" }); setBond(null); setConfirmBreak(false); fetchBond(); }
-      else setMessage({ text: d.error || "Failed to break bond", type: "error" });
+      else setMessage({ text: d.error || "Failed to remove friend", type: "error" });
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
@@ -1928,7 +1967,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
         <div className="text-center py-4">
           <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Sworn Bonds</p>
           <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
-            Wähle einen Freund. Schwört einen Pakt. Erfüllt gemeinsame Ziele. Die stärksten Bande halten länger als Stahl.
+            Pick a friend. Swear a pact. Work the weekly objective together. The strongest bonds outlast steel.
           </p>
         </div>
         {cooldownUntil && (
@@ -1942,7 +1981,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
           </div>
         )}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">No friends yet. Add friends first.</p>}
+          {friends.length === 0 && <p className="col-span-full text-xs text-center text-w25">The guild roster is empty. Add people over in The Breakaway first.</p>}
           {friends.map(f => (
             <button
               key={f.id}
@@ -1977,16 +2016,16 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 {proposalTarget.avatar || proposalTarget.name?.slice(0, 2).toUpperCase()}
               </div>
               <div>
-                <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Pakt mit {proposalTarget.name}</p>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Wähle die Dauer eures Bundes.</p>
+                <p className="text-sm font-bold" style={{ color: "#f59e0b" }}>Swear a bond with {proposalTarget.name}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Choose how long this pact runs.</p>
               </div>
-              <button onClick={() => setProposalTarget(null)} className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+              <button onClick={() => setProposalTarget(null)} aria-label="Cancel" className="ml-auto text-lg" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {([
-                { key: "4w" as const, label: "Kurzpakt", desc: "4 Wochen", detail: "Ideal zum Ausprobieren. 4 wöchentliche Ziele." },
-                { key: "8w" as const, label: "Schwurbund", desc: "8 Wochen", detail: "Der Standard-Pakt. Mehr Zeit, stärkere Belohnungen." },
-                { key: "endless" as const, label: "Ewiger Eid", desc: "Unbegrenzt", detail: "Bis einer von euch bricht. Höchste Duo-Streak-Boni." },
+                { key: "4w" as const, label: "Short Pact", desc: "4 weeks", detail: "Good for a trial run. Four weekly objectives, then it ends." },
+                { key: "8w" as const, label: "Sworn Accord", desc: "8 weeks", detail: "The standard pact. More time, stronger rewards." },
+                { key: "endless" as const, label: "Eternal Oath", desc: "Open-ended", detail: "Until one of you breaks it. Highest duo-streak bonuses." },
               ]).map(opt => (
                 <button
                   key={opt.key}
@@ -2004,9 +2043,9 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
               ))}
             </div>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
-              {proposalDuration === "4w" ? "Ideal zum Ausprobieren. 4 wöchentliche Ziele, danach endet der Pakt automatisch." :
-               proposalDuration === "8w" ? "Der Standard-Pakt. 8 wöchentliche Ziele mit stärkeren Belohnungen ab Woche 5." :
-               "Kein Ende in Sicht. Der Pakt läuft bis einer von euch ihn bricht. Höchste Duo-Streak-Boni."}
+              {proposalDuration === "4w" ? "Good for a trial run. Four weekly objectives, then the pact ends on its own." :
+               proposalDuration === "8w" ? "The standard pact. Eight weekly objectives, stronger rewards from week 5." :
+               "No end in sight. The pact runs until one of you breaks it. Highest duo-streak bonuses."}
             </p>
             <div className="flex gap-2">
               <button
@@ -2080,7 +2119,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
   // ── Active bond ──
   const obj = bond.weeklyObjective;
   const totalProgress = obj ? (obj.progress.mine + obj.progress.partner) : 0;
-  const progressPct = obj ? Math.min(100, Math.round((totalProgress / obj.target) * 100)) : 0;
+  const progressPct = obj && obj.target > 0 ? Math.min(100, Math.round((totalProgress / obj.target) * 100)) : 0;
   const bondXpPct = bond.bondXpToNext > 0 ? Math.min(100, Math.round((bond.bondXp / bond.bondXpToNext) * 100)) : 100;
 
   return (
@@ -2154,7 +2193,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <span className="text-xs w-12 text-right truncate" style={{ color: "#818cf8" }}>You</span>
                 <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
-                    width: `${Math.min(100, Math.round((obj.progress.mine / obj.targetPerPlayer) * 100))}%`,
+                    width: `${obj.targetPerPlayer > 0 ? Math.min(100, Math.round((obj.progress.mine / obj.targetPerPlayer) * 100)) : 0}%`,
                     background: obj.progress.mine >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : "linear-gradient(90deg, #818cf8, #6366f1)",
                   }} />
                 </div>
@@ -2164,7 +2203,7 @@ function SwornBondTab({ apiKey, playerName, onRewardCelebration }: { apiKey: str
                 <span className="text-xs w-12 text-right truncate" style={{ color: bond.partner.color }}>{bond.partner.name.slice(0, 6)}</span>
                 <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-500" style={{
-                    width: `${Math.min(100, Math.round((obj.progress.partner / obj.targetPerPlayer) * 100))}%`,
+                    width: `${obj.targetPerPlayer > 0 ? Math.min(100, Math.round((obj.progress.partner / obj.targetPerPlayer) * 100)) : 0}%`,
                     background: obj.progress.partner >= obj.targetPerPlayer ? "linear-gradient(90deg, #22c55e, #4ade80)" : `linear-gradient(90deg, ${bond.partner.color}, ${bond.partner.color})`,
                   }} />
                 </div>
@@ -2408,13 +2447,13 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         <div className="flex items-center gap-2">
           <Tip k="breakaway" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span></Tip>
         </div>
-        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach.</p>
+        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>The strongest bonds aren&apos;t forged in the fight. They&apos;re forged after.</p>
       </div>
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5 flex-wrap" style={{ background: "#111" }}>
         {(["friends", "bonds", "messages", "mail", "trades", "challenges", "activity"] as SocialTab[]).map(tab => {
-          const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab === "bonds" ? "sworn_bonds" : tab === "mail" ? "mailbox" : tab;
+          const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab === "bonds" ? "sworn_bonds" : tab === "mail" ? "mail" : tab === "challenges" ? "weekly_challenges" : tab;
           const unreadDot = false; // Per-tab unread counts require lifting state — deferred
           return (
             <Tip key={tab} k={tipKey}>
@@ -2436,7 +2475,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement, onRewa
         })}
       </div>
 
-      <TutorialMomentBanner viewId="social" playerLevel={1} />
+      <TutorialMomentBanner viewId="social" />
 
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">

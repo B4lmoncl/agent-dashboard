@@ -227,7 +227,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           setBossHistory(d.history.slice(-5).reverse());
         }
       }
-    } catch { setMessage({ text: "Boss-Chronik konnte nicht geladen werden.", type: "error" }); }
+    } catch { setMessage({ text: "Failed to load boss chronicle.", type: "error" }); }
   }, []);
 
   // Load history once boss data is known to be inactive (for Hall of Fallen Titans)
@@ -310,7 +310,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
     return (
       <div className="space-y-5 tab-content-enter relative">
-        <TutorialMomentBanner viewId="worldboss" playerLevel={1} />
+        <TutorialMomentBanner viewId="worldboss" />
         {fetchError && (
           <p className="text-xs px-3 py-2 rounded-lg mb-2" style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>
             Could not load World Boss data. <button onClick={fetchBoss} style={{ textDecoration: "underline", cursor: "pointer", color: "#ef4444" }}>Retry</button>

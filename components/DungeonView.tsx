@@ -147,6 +147,14 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
+  // Auto-dismiss messages after 5s (success OR error). Without this, errors
+  // from rejected joins/collects stick around until the next action clears them.
+  useEffect(() => {
+    if (!message) return;
+    const t = setTimeout(() => setMessage(null), 5000);
+    return () => clearTimeout(t);
+  }, [message]);
+
   // Create modal state
   const [showCreate, setShowCreate] = useState(false);
   const [selectedDungeon, setSelectedDungeon] = useState<string | null>(null);
@@ -311,8 +319,8 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <img src="/images/icons/nav-dungeons.png" alt="" width={48} height={48} className="img-render-auto mx-auto mb-2" style={{ opacity: 0.3 }} onError={e => { e.currentTarget.style.display = "none"; }} />
-        <p className="text-sm font-bold mb-1 text-w25">Das Untergewölbe</p>
-        <p className="text-xs text-w25">Einloggen, um die Dungeons zu betreten.</p>
+        <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
+        <p className="text-xs text-w25">Log in to enter the dungeons.</p>
       </div>
     );
   }
@@ -329,7 +337,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   return (
     <div data-feedback-id="dungeon-view" className="space-y-5 tab-content-enter relative">
-      <TutorialMomentBanner viewId="dungeons" playerLevel={1} />
+      <TutorialMomentBanner viewId="dungeons" />
       {/* Dust motes in torchlight */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (
@@ -349,12 +357,12 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
       <div className="flex items-center gap-3">
         <span className="text-2xl">◆</span>
         <div>
-          <Tip k="dungeons" heading><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Das Untergewölbe</h2></Tip>
+          <Tip k="dungeons" heading><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>The Undercroft</h2></Tip>
           <p className="text-xs text-w25">Cooperative group dungeons. Invite friends, wait 8 hours, and collect rewards based on your combined power.</p>
         </div>
       </div>
       <div className="rounded-lg px-4 py-2.5" style={{ background: "linear-gradient(135deg, rgba(129,140,248,0.06) 0%, transparent 80%)", borderLeft: "2px solid rgba(129,140,248,0.2)" }}>
-        <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)", maxWidth: 520 }}>Was hier unten schläft, hat Gründe dafür. Unter dem Turm liegen vergessene Gewölbe, versiegelte Archive und Kammern, die seit Äonen niemand betreten hat.</p>
+        <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)", maxWidth: 520 }}>What sleeps down here has reasons. Beneath the tower lie forgotten vaults, sealed archives, and rooms no one has entered in an age.</p>
       </div>
 
       {/* Messages */}
@@ -537,7 +545,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           {activeRun.status === "active" && (
             <div className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.04)" }}>
               <TipCustom title="Success Formula" icon="◆" accent="#3b82f6" body={<p>Effective Power = total Gear Score + Bond Bonus (+5 per bond level). If power ≥ threshold: 100%. At 70%: 70%, 50%: 40%, below: 15%.</p>}>
-                <p className="text-xs text-w25 mb-1 cursor-help">Gruppenstärke</p>
+                <p className="text-xs text-w25 mb-1 cursor-help">Group Power</p>
               </TipCustom>
               {(() => {
                 const totalGS = activeRun.participants.reduce((sum, p) => sum + p.gearScore, 0);
@@ -555,7 +563,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   <div className="space-y-1 text-xs">
                     <div className="flex justify-between"><span className="text-w35">Gear Score</span><span className="font-mono text-w50">{totalGS}</span></div>
                     <div className="flex justify-between"><span className="text-w35">Bond-Bonus</span><span className="font-mono text-w50">+{bondBonus}</span></div>
-                    <div className="flex justify-between"><span className="text-w35">Effektive Stärke</span><span className="font-mono font-bold" style={{ color: effective >= threshold ? "#22c55e" : "#fbbf24" }}>{effective}</span></div>
+                    <div className="flex justify-between"><span className="text-w35">Effective Power</span><span className="font-mono font-bold" style={{ color: effective >= threshold ? "#22c55e" : "#fbbf24" }}>{effective}</span></div>
                     <div className="flex justify-between"><span className="text-w35">Threshold</span><span className="font-mono text-w50">{threshold}</span></div>
                     <div className="h-px my-1" style={{ background: "rgba(255,255,255,0.06)" }} />
                     <div className="flex justify-between"><span className="text-w35 font-semibold">Success Chance</span><span className="font-mono font-bold" style={{ color: chanceColor }}>{chanceLabel}</span></div>
@@ -579,9 +587,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   opacity: actionLoading ? 0.5 : 1,
                   cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
-                title={actionLoading ? "Action in progress..." : undefined}
+                title={actionLoading ? "Joining dungeon..." : undefined}
               >
-                {actionLoading ? "..." : "Join Dungeon"}
+                {actionLoading ? "Joining..." : "Join Dungeon"}
               </button>
             )}
 
@@ -599,9 +607,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                   opacity: actionLoading ? 0.5 : 1,
                   cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
-                title={actionLoading ? "Action in progress..." : undefined}
+                title={actionLoading ? "Collecting rewards..." : undefined}
               >
-                {actionLoading ? "..." : "Collect Rewards"}
+                {actionLoading ? "Collecting..." : "Collect Rewards"}
               </button>
             )}
 
@@ -695,7 +703,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             const onCd = d.cooldown.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={d.id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
+              <div key={d.id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe card-hover-lift" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${d.accent}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${d.accent}25`}`,
                 opacity: locked ? 0.5 : 1,
@@ -832,6 +840,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setShowCreate(false)}>
           <div className="absolute inset-0 modal-backdrop" />
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Dungeon: ${selectedDungeonData.name || "Expedition"}`}
             className="relative rounded-xl p-6 w-full max-w-md space-y-4 tab-content-enter"
             style={{
               background: "#12141a",

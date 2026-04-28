@@ -102,7 +102,7 @@ export function useQuestActions({
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to reject quest" });
+        addToast({ type: "error", message: (d as { error?: string }).error || "Failed to approve quest" });
       }
     } catch {
       addToast({ type: "error", message: "Network error — could not reject quest" });
@@ -169,7 +169,7 @@ export function useQuestActions({
       });
       if (r.ok) {
         updateNpcQuestStatus(questId, "in_progress", playerName.toLowerCase());
-        addToast({ type: "flavor", message: "Quest claimed.", icon: "/images/icons/nav-great-hall.png" });
+        addToast({ type: "flavor", message: "Quest claimed", icon: "/images/icons/nav-great-hall.png" });
         advanceTutorial();
         await refresh();
       } else {
@@ -241,6 +241,27 @@ export function useQuestActions({
         const data = await r.json().catch(() => ({}));
         if (data.allDone) {
           addToast({ type: "flavor", message: "Co-op quest complete. All partners finished.", icon: "/images/icons/cat-coop.png", sub: "Rewards granted" });
+          // Server now mirrors the single-player response shape — fire the
+          // celebration so players see what they earned. Previously co-op
+          // grants were silent.
+          if ((data.xpEarned || 0) > 0 || (data.goldEarned || 0) > 0 || data.lootDrop) {
+            const currencies: { name: string; amount: number; color: string }[] = [];
+            if (data.currencies) {
+              if (data.currencies.runensplitter > 0) currencies.push({ name: "Runensplitter", amount: data.currencies.runensplitter, color: "#818cf8" });
+              if (data.currencies.gildentaler > 0) currencies.push({ name: "Gildentaler", amount: data.currencies.gildentaler, color: "#10b981" });
+              if (data.currencies.essenz > 0) currencies.push({ name: "Essenz", amount: data.currencies.essenz, color: "#ef4444" });
+            }
+            if ((data.lastRestedXP || 0) > 0) currencies.push({ name: "Rested Bonus", amount: data.lastRestedXP, color: "#60a5fa" });
+            setRewardCelebration({
+              type: "quest",
+              title: "Co-op Quest Complete",
+              xpEarned: data.xpEarned || 0,
+              goldEarned: data.goldEarned || 0,
+              loot: data.lootDrop || null,
+              achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
+              ...(currencies.length > 0 ? { currencies } : {}),
+            });
+          }
         } else {
           addToast({ type: "flavor", message: "Your part is done. Waiting for partners...", icon: "/images/icons/cat-coop.png" });
         }
@@ -248,6 +269,9 @@ export function useQuestActions({
           for (const ach of data.newAchievements) {
             addToast({ type: "achievement", achievement: ach });
           }
+        }
+        if (data.inventoryFull) {
+          addToast({ type: "error", message: "Inventory full — loot item lost. Free up space." });
         }
         await refresh();
       } else {
@@ -336,7 +360,7 @@ export function useQuestActions({
             bondLevelUp: !!cr.bondLevelUp,
           });
           if (isUltimateUnlock) {
-            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} has awakened their Ultimate Ability.`, icon: "★", sub: "Bond Level 5 — a new power stirs." });
+            addToast({ type: "flavor", message: `${cr.companionName || "Companion"} stirred something that had been sleeping a long time.`, icon: "★", sub: "Bond Level 5 — a long-held breath lets out." });
           }
         }
         if (data.levelUp) {
@@ -347,7 +371,7 @@ export function useQuestActions({
           addToast({
             type: "item",
             itemName: data.gemDrop.name,
-            message: "Gem dropped.",
+            message: "A stone, pried loose from its hiding place.",
             icon: data.gemDrop.icon,
             rarity: data.gemDrop.rarity || "rare",
             item: { name: data.gemDrop.name, rarity: data.gemDrop.rarity || "rare", icon: data.gemDrop.icon || null, desc: data.gemDrop.desc || null, stats: data.gemDrop.stats || null },
@@ -356,7 +380,7 @@ export function useQuestActions({
         // Toast for material drops
         if (data.materialDrops && Array.isArray(data.materialDrops) && data.materialDrops.length > 0) {
           const matNames = data.materialDrops.map((m: { name?: string; id: string; amount: number }) => `${m.amount}x ${m.name || m.id}`).join(", ");
-          addToast({ type: "item", itemName: matNames, message: "Materials found.", rarity: "uncommon" });
+          addToast({ type: "item", itemName: matNames, message: "Materials scavenged. Useful, this time.", rarity: "uncommon" });
         }
         // Warning: inventory was full, loot was lost
         if (data.inventoryFull) {
@@ -369,7 +393,7 @@ export function useQuestActions({
         }
         // Toast for recipe discoveries
         if (data.recipeDrop) {
-          addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered.", rarity: "epic" });
+          addToast({ type: "item", itemName: data.recipeDrop.name, message: "A recipe surfaces. Somebody, somewhere, is missing it.", rarity: "epic" });
         }
         // Toast for codex discoveries
         if (data.codexDiscovery && Array.isArray(data.codexDiscovery) && data.codexDiscovery.length > 0) {
@@ -385,7 +409,7 @@ export function useQuestActions({
         }
         // Toast for battle pass level-up
         if (data.battlePassLevelUp) {
-          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. Reward available.`, icon: "◆" });
+          addToast({ type: "flavor", message: `Season Pass Level ${data.battlePassLevelUp.level}. The season nods at you.`, icon: "◆" });
         }
         // Toast for faction rep level-ups
         if (data.repGains) {

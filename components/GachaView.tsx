@@ -34,7 +34,7 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
           <h3 className="text-base font-bold flex items-center gap-2" style={{ color: "#e8e8e8" }}>
             <span style={{ fontSize: 20 }}>★</span> How the Wheel of Stars Works
           </h3>
-          <button onClick={onClose} aria-label="Schließen" className="text-xl" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
+          <button onClick={onClose} aria-label="Close" className="text-xl" style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}>×</button>
         </div>
 
         <div className="space-y-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
@@ -507,7 +507,7 @@ function BannerPullModal({
                 </span>
                 <Tip k="gacha_banners" heading><h3 className="text-lg font-bold mt-2" style={{ color: "#f0ece4" }}>{banner.name}</h3></Tip>
               </div>
-              <button onClick={onClose} className="btn-close" aria-label="Schließen" style={{ position: "absolute", top: 12, right: 12, zIndex: 10 }}>×</button>
+              <button onClick={onClose} className="btn-close" aria-label="Close" style={{ position: "absolute", top: 12, right: 12, zIndex: 10 }}>×</button>
             </div>
             <p className="text-sm italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.45)", maxWidth: portraitSrc ? "55%" : undefined }}>
               {banner.lore}
@@ -578,7 +578,7 @@ function BannerPullModal({
               data-feedback-id="gacha-view.banner-modal.pull-1x"
               onClick={() => onPull(banner.id, 1)}
               disabled={!canPull1 || pulling}
-              title={!canPull1 ? (banner.currency === "stardust" ? `Earn Stardust from: Level-Ups (+5+Level), Daily Bonus, Battle Pass, Achievements. Need ${banner.costSingle - balance} more.` : `Need ${banner.costSingle - balance} more ${ci.label}`) : ""}
+              title={!canPull1 ? `Need ${banner.costSingle - balance} more ${ci.label}` : ""}
               className="rounded-xl flex-1 min-w-[140px] transition-all group/btn btn-press"
               style={{
                 position: "relative",
@@ -615,7 +615,7 @@ function BannerPullModal({
               data-feedback-id="gacha-view.banner-modal.pull-10x"
               onClick={() => onPull(banner.id, 10)}
               disabled={!canPull10 || pulling}
-              title={!canPull10 ? (banner.currency === "stardust" ? `Earn Stardust from: Level-Ups (+5+Level), Daily Bonus, Battle Pass, Achievements. Need ${banner.cost10 - balance} more.` : `Need ${banner.cost10 - balance} more ${ci.label}`) : ""}
+              title={!canPull10 ? `Need ${banner.cost10 - balance} more ${ci.label}` : ""}
               className="rounded-xl flex-1 min-w-[140px] transition-all group/btn btn-press"
               style={{
                 position: "relative",
@@ -678,29 +678,50 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Auto-dismiss error after 5s per CLAUDE.md. Pull failures and network
+  // errors shouldn't stick around forever once the user has acknowledged.
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(() => setError(null), 5000);
+    return () => clearTimeout(t);
+  }, [error]);
+
   const loggedIn = playerName && reviewApiKey;
   const user = loggedIn ? users.find(u => (u.id || "").toLowerCase() === playerName.toLowerCase() || (u.name || "").toLowerCase() === playerName.toLowerCase()) : null;
 
   // Load banners
   useEffect(() => {
-    fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
+    let cancelled = false;
+    fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then(data => {
+      if (cancelled) return;
       if (Array.isArray(data)) setBanners(data);
-    }).catch(e => console.error('[gacha-view]', e)).finally(() => setLoading(false));
+    }).catch(e => {
+      if (cancelled) return;
+      console.error('[gacha-view]', e);
+      setError("Failed to load banners");
+    }).finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, []);
 
   // Load pity
   useEffect(() => {
     if (!user?.id) return;
-    fetch(`/api/gacha/pity/${user.id}`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
+    let cancelled = false;
+    fetch(`/api/gacha/pity/${user.id}`).then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then(data => {
+      if (cancelled) return;
       if (data.pityCounter !== undefined) setPity(data);
-    }).catch(e => console.error('[gacha-view]', e));
+    }).catch(e => { if (!cancelled) console.error('[gacha-view]', e); });
+    return () => { cancelled = true; };
   }, [user?.id, pullResults]);
 
   // Pre-load pool for item name resolution
   useEffect(() => {
-    fetch("/api/gacha/pool").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
+    let cancelled = false;
+    fetch("/api/gacha/pool").then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then(data => {
+      if (cancelled) return;
       if (data.pool) setPoolInfo(data.pool);
-    }).catch(e => console.error('[gacha-view]', e));
+    }).catch(e => { if (!cancelled) console.error('[gacha-view]', e); });
+    return () => { cancelled = true; };
   }, []);
 
   const doPull = useCallback(async (bannerId: string, count: 1 | 10) => {
@@ -769,7 +790,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
   return (
     <div className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="gacha" playerLevel={1} />
+      <TutorialMomentBanner viewId="gacha" />
       {/* Pull animation overlay */}
       {pullResults && (
         <GachaPull
@@ -822,7 +843,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         <p className="text-sm italic leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.35)" }}>
           A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars. Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
         </p>
-        <p className="text-xs italic mt-1" style={{ color: "rgba(167,139,250,0.3)" }}>Das Schicksal lässt sich nicht kaufen. Aber verhandeln... manchmal.</p>
+        <p className="text-xs italic mt-1" style={{ color: "rgba(167,139,250,0.3)" }}>Fate isn&apos;t for sale. But it can be haggled with — sometimes.</p>
       </div>
 
       {/* Banner Preview Cards — atmospheric, click to open */}
@@ -862,7 +883,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         <div data-feedback-id="gacha-view.history-modal" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl max-h-[70vh] rounded-2xl p-5 overflow-y-auto scrollbar-rpg" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Pull History (last 50)</h3>
-            <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Schließen">✕</button>
+            <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Close">✕</button>
           </div>
           {history.length === 0 ? (
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>No pulls yet.</p>
@@ -871,7 +892,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
               {history.slice(0, 50).map((h, i) => {
                 const cfg = RARITY_CONFIG[h.rarity] || RARITY_CONFIG.common;
                 return (
-                  <button key={i} onClick={() => setTooltipItem({ name: h.name, rarity: h.rarity, icon: h.icon || null, desc: h.isDuplicate ? "Duplicate — refunded as Runensplitter" : undefined })} className="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:brightness-125" style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, cursor: "pointer", transition: "filter 0.15s ease" }}>
+                  <button key={`${h.pulledAt || ""}-${h.name}-${i}`} onClick={() => setTooltipItem({ name: h.name, rarity: h.rarity, icon: h.icon || null, desc: h.isDuplicate ? "Duplicate — refunded as Runensplitter" : undefined })} className="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:brightness-125" style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, cursor: "pointer", transition: "filter 0.15s ease" }}>
                     {h.icon && h.icon.startsWith("/") ? <img src={h.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-base">{h.emoji || "?"}</span>}
                     <span className="text-xs font-semibold flex-1" style={{ color: cfg.color }}>{h.name}</span>
                     <span className="text-xs uppercase font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{cfg.label}</span>
@@ -889,7 +910,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
         <div data-feedback-id="gacha-view.pool-modal" className="w-full max-h-[88vh] rounded-2xl p-7 overflow-y-auto scrollbar-rpg" style={{ maxWidth: "1500px", background: "linear-gradient(180deg, #0f1729 0%, #1a1028 40%, #0f1729 100%)", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-5">
             <h3 className="text-base font-bold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.7)" }}>Item Pool</h3>
-            <button onClick={closePool} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Schließen">✕</button>
+            <button onClick={closePool} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }} aria-label="Close">✕</button>
           </div>
           {poolInfo && (
             <div className="space-y-6">

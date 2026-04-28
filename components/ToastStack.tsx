@@ -102,7 +102,7 @@ function FlavorToastContent({ toast, onClose, onHoverChange }: { toast: { messag
       style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: "100%", width: "100%" }}
     >
       {content}
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -118,11 +118,11 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
       <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(251,191,36,0.08) 45%, rgba(251,191,36,0.15) 50%, rgba(251,191,36,0.08) 55%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.5s ease-in-out infinite" }} />
       {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
+        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Eine Tat verzeichnet</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
-      <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ color: "rgba(255,255,255,0.45)" }}>×</button>
+      <button onClick={(e) => { e.stopPropagation(); onClose(); }} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)" }}>×</button>
     </div>
   );
 }
@@ -142,7 +142,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
       <div className="flex items-start gap-3">
         <span className="text-2xl flex-shrink-0">—</span>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Quest Chain Available!</p>
+          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Der Faden zieht sich weiter</p>
           <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
             Completed: <span style={{ color: "rgba(255,255,255,0.6)" }}>{parentTitle}</span>
           </p>
@@ -174,7 +174,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
             </button>
           </div>
         </div>
-        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+        <button onClick={onClose} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
       </div>
     </div>
   );
@@ -202,7 +202,7 @@ function ItemToastContent({ toast, onClose, onHoverChange }: { toast: { itemName
         </ItemHoverCard>
         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.6)" }}>{toast.message}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -215,7 +215,7 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
     >
       <span style={{ fontSize: "16px" }}>—</span>
       <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{message}</span>
-      <button onClick={onClose} className="ml-auto" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} aria-label="Dismiss" className="ml-auto" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -245,7 +245,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
           <p className="text-base font-bold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
           <p className="text-xs font-semibold" style={{ color: "rgba(255,107,157,0.7)" }}>{toast.bondTitle}</p>
         </div>
-        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+        <button onClick={onClose} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
       </div>
     );
   }
@@ -260,7 +260,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{toast.bondTitle}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
@@ -278,13 +278,13 @@ function ErrorToastContent({ message, onClose, onRetry }: { message: string; onC
           Retry
         </button>
       )}
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
+      <button onClick={onClose} aria-label="Dismiss" style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0 }}>×</button>
     </div>
   );
 }
 
 // ─── Single Toast Wrapper with auto-dismiss + slide animation ────────────────
-function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: ToastItem; index: number; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
+function ToastWrapper({ toast, onRemove, onAchievementClick }: { toast: ToastItem; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -359,8 +359,31 @@ function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: T
 // ─── Toast Stack Container ───────────────────────────────────────────────────
 export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: ToastItem[]; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   if (toasts.length === 0) return null;
+  // Split error toasts into a separate live-region: errors get role="alert" +
+  // aria-live="assertive" (interrupt the screen reader immediately), while
+  // flavor/achievement/purchase/item toasts stay polite so they don't talk
+  // over the user. Both regions are positioned identically; errors stack
+  // slightly above to read first.
+  const errorToasts = toasts.filter(t => t.type === "error");
+  const politeToasts = toasts.filter(t => t.type !== "error");
 
   return (
+    <>
+    <div
+      className="fixed z-[151] flex flex-col-reverse items-end"
+      role="alert"
+      aria-live="assertive"
+      style={{
+        bottom: 24,
+        right: 24,
+        pointerEvents: "none",
+        maxWidth: "100%",
+      }}
+    >
+      {errorToasts.map(toast => (
+        <ToastWrapper key={toast.id} toast={toast} onRemove={onRemove} onAchievementClick={onAchievementClick} />
+      ))}
+    </div>
     <div
       className="fixed z-[150] flex flex-col-reverse items-end"
       role="status"
@@ -372,9 +395,10 @@ export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: T
         maxWidth: "100%",
       }}
     >
-      {toasts.map((toast, i) => (
-        <ToastWrapper key={toast.id} toast={toast} index={i} onRemove={onRemove} onAchievementClick={onAchievementClick} />
+      {politeToasts.map(toast => (
+        <ToastWrapper key={toast.id} toast={toast} onRemove={onRemove} onAchievementClick={onAchievementClick} />
       ))}
     </div>
+    </>
   );
 }

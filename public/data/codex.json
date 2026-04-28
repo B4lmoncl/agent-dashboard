@@ -134,7 +134,7 @@
       "id": "inner-sanctum",
       "category": "tower",
       "title": "Das Innere Heiligtum",
-      "text": "Dein persönlicher Bereich im Turm. Inventar, Ausrüstung, Rituale — alles was dich definiert, auf drei Quadratmetern Wandfläche. Die Wände erinnern sich an jeden Gegenstand, den du je getragen hast. Manche sagen, die Wände urteilen. Die Wände sagen nichts, aber sie haben dieses Schweigen perfektioniert, das sich anfühlt wie ein gehobene Augenbraue. Besonders wenn du zum dritten Mal dieselbe Axt anlegst, die du gestern erst abgelegt hast.",
+      "text": "Dein persönlicher Bereich im Turm. Inventar, Ausrüstung, Rituale — alles was dich definiert, auf drei Quadratmetern Wandfläche. Die Wände erinnern sich an jeden Gegenstand, den du je getragen hast. Manche sagen, die Wände urteilen. Die Wände sagen nichts, aber sie haben dieses Schweigen perfektioniert, das sich anfühlt wie eine gehobene Augenbraue. Besonders wenn du zum dritten Mal dieselbe Axt anlegst, die du gestern erst abgelegt hast.",
       "unlockedBy": {
         "type": "level_reached",
         "value": 3
@@ -651,7 +651,7 @@
       "id": "versunkenes-archiv",
       "category": "world",
       "title": "Das Versunkene Archiv",
-      "text": "Der erste Dungeon. Manche sagen, er war einmal eine Bibliothek. Die Bücher sind noch da — aber die Wörter haben sich neu arrangiert. Was einmal Rezepte waren, sind jetzt Warnungen. Was einmal Warnungen waren, sind jetzt Witze. Der Humor des Archivs ist... speziell.",
+      "text": "Der erste Dungeon. Manche sagen, er war einmal eine Bibliothek. Die Bücher sind noch da — aber die Wörter haben sich neu arrangiert. Was einmal Rezepte waren, sind jetzt Warnungen. Was einmal Warnungen waren, sind jetzt Witze. Der Humor des Archivs ist… speziell.",
       "unlockedBy": {
         "type": "dungeon_completed",
         "value": 2
@@ -891,7 +891,7 @@
       "id": "hidden-turm-bewusstsein",
       "category": "tower",
       "title": "Das Bewusstsein des Turms",
-      "text": "Der Turm denkt nicht. Nicht so wie wir. Aber er... bemerkt. Bei hundert Tagen Streak vibrieren die Wände. Bei einem Unikat-Fund summen die Kristalladern. Bei einer Rückkehr nach langer Abwesenheit öffnet sich die Tür leichter als sonst. Jemand hat einmal versucht, ein Gespräch mit dem Turm zu führen. Der Turm antwortete nicht. Aber die Tür zum Klo war danach drei Tage lang verklemmt. Zufall, vermutlich.",
+      "text": "Der Turm denkt nicht. Nicht so wie wir. Aber er… bemerkt. Bei hundert Tagen Streak vibrieren die Wände. Bei einem Unikat-Fund summen die Kristalladern. Bei einer Rückkehr nach langer Abwesenheit öffnet sich die Tür leichter als sonst. Jemand hat einmal versucht, ein Gespräch mit dem Turm zu führen. Der Turm antwortete nicht. Aber die Tür zum Klo war danach drei Tage lang verklemmt. Zufall, vermutlich.",
       "unlockedBy": {
         "type": "hidden"
       }
@@ -1469,8 +1469,8 @@
     {
       "id": "forge-fever",
       "category": "systems",
-      "title": "Schmiedefieber \u2014 Wenn die Werkstatt \u00fcberhitzt",
-      "text": "Alle achtundvierzig Stunden passiert etwas, das niemand richtig erkl\u00e4ren kann. Eine zuf\u00e4llige Werkstatt im Artisan's Quarter beginnt zu gl\u00fchen. Die Essen laufen hei\u00dfer, die Materialien schmelzen bereitwilliger, und selbst die unfähigsten Hände produzieren erstaunliche Ergebnisse. Grimvar nennt es 'Inspiration'. Ysolde nennt es 'gef\u00e4hrlich'. Beide haben Recht. W\u00e4hrend des Fiebers kosten Materialien nur halb so viel und die Skill-Erfahrung verdoppelt sich. Wer f\u00fcnf oder mehr Rezepte im Fieberrausch craftet, erh\u00e4lt einen Bonus-Cache mit seltenen Materialien. Das Fieber h\u00e4lt genau vier Stunden. Danach ist die Werkstatt wieder kalt. Der Satz 'Das Fieber kommt, wenn es will, nicht wenn man es braucht' steht seit Jahren an Grimvars Amboss. Niemand wei\u00df, wer ihn geschrieben hat. Grimvar behauptet, er war schon da, als er ankam.",
+      "title": "Schmiedefieber — Wenn die Werkstatt überhitzt",
+      "text": "Alle achtundvierzig Stunden passiert etwas, das niemand richtig erklären kann. Eine zufällige Werkstatt im Artisan's Quarter beginnt zu glühen. Die Essen laufen heißer, die Materialien schmelzen bereitwilliger, und selbst die unfähigsten Hände produzieren erstaunliche Ergebnisse. Grimvar nennt es 'Inspiration'. Ysolde nennt es 'gefährlich'. Beide haben Recht. Während des Fiebers kosten Materialien nur halb so viel und die Skill-Erfahrung verdoppelt sich. Wer fünf oder mehr Rezepte im Fieberrausch craftet, erhält einen Bonus-Cache mit seltenen Materialien. Das Fieber hält genau vier Stunden. Danach ist die Werkstatt wieder kalt. Der Satz 'Das Fieber kommt, wenn es will, nicht wenn man es braucht' steht seit Jahren an Grimvars Amboss. Niemand weiß, wer ihn geschrieben hat. Grimvar behauptet, er war schon da, als er ankam.",
       "unlockedBy": {
         "type": "crafts_completed",
         "value": 5

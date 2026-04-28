@@ -10,6 +10,7 @@ const {
   hasPassiveEffect, consumePassiveEffect, awardUserGold,
   getUserDropBonus, rollLoot, addLootToInventory, resetLootPity,
   checkAndAwardAchievements, checkAndAwardTitles, getLegendaryModifiers,
+  grantPlayerXp,
 } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
@@ -321,6 +322,10 @@ router.post('/api/rituals', requireApiKey, (req, res) => {
   const { title, description, schedule, difficulty, rewards, playerId, createdBy, isAntiRitual, category, commitment, commitmentDays, bloodPact } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  // Auth: non-admin may only create rituals for themselves
+  if (!req.auth?.isAdmin && req.auth?.userId !== (playerId || '').toLowerCase()) {
+    return res.status(403).json({ error: 'Cannot create rituals for another player' });
+  }
   const ritual = {
     id: `ritual-${Date.now()}`,
     title,
@@ -453,6 +458,11 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   let pactCompletionGold = 0;
   let xpAmount = 0;
   let goldEarnedAmount = 0;
+  // Declared at function scope so res.json below the `if (u)` block can
+  // see them. Previous wave 79.1 declared these inside the block, which
+  // triggered a ReferenceError and HTTP 500 on every ritual completion.
+  let ritualXpResult = null;
+  let pactXpResult = null;
 
   if (u) {
     // ─── Commitment & difficulty bonus calculation ───
@@ -486,7 +496,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     const streakBonusXp = Math.round(xpBase * (u.streakDays || 0) * (ritualMods.ritualStreakBonus || 0));
     xpAmount += streakBonusXp;
 
-    u.xp = (u.xp || 0) + xpAmount;
+    ritualXpResult = grantPlayerXp(u, xpAmount);
 
     // Gold with full multiplier chain
     const goldBase = (ritual.rewards.gold || 5) + commitGold;
@@ -494,18 +504,21 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     const streakGoldMulti = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
     goldEarnedAmount = Math.round(goldBase * goldMulti * streakGoldMulti);
     if (consumePassiveEffect(uid, 'gold_boost_next')) goldEarnedAmount *= 2;
-    u.gold = (u.gold || 0) + goldEarnedAmount;
     ensureUserCurrencies(u);
-    u.currencies.gold = u.gold;
+    u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) + goldEarnedAmount;
+    u.gold = u.currencies.gold;
 
     // ─── Blood Pact completion bonus (one-time at end of commitment) ───
     if (ritual.bloodPact && ritual.commitmentDays && ritual.streak >= ritual.commitmentDays && !ritual.pactCompleted) {
       const pactMulti = BLOOD_PACT_MULTI[ritual.commitment] || 3;
       pactCompletionXp = Math.round(commitBonus.xp * diffScale * pactMulti);
       pactCompletionGold = Math.round(commitBonus.gold * diffScale * pactMulti);
-      u.xp = (u.xp || 0) + pactCompletionXp;
-      u.gold = (u.gold || 0) + pactCompletionGold;
-      u.currencies.gold = u.gold;
+      // Use grantPlayerXp so a Blood Pact completion crossing a level threshold
+      // (easily possible — pactMulti is 3-5x) triggers level-up stardust
+      // reward and returns levelUp info for the frontend.
+      pactXpResult = grantPlayerXp(u, pactCompletionXp);
+      u.currencies.gold = (u.currencies.gold ?? 0) + pactCompletionGold;
+      u.gold = u.currencies.gold;
       ritual.pactCompleted = true;
     }
 
@@ -573,7 +586,13 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   const goldEarned = pactCompletionGold > 0 ? goldEarnedAmount + pactCompletionGold : goldEarnedAmount;
   const streakMilestone = u?._lastStreakMilestone || null;
   if (u) delete u._lastStreakMilestone;
-  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, streakMilestone, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
+  // Pick the highest level-up across ritual XP and (if applicable) pact XP.
+  // Ritual fires first, pact second — if both cross thresholds we surface
+  // the final level (pact result). If only one crosses, surface that one.
+  const finalXpResult = (pactXpResult && pactXpResult.leveledUp) ? pactXpResult
+    : (ritualXpResult && ritualXpResult.leveledUp) ? ritualXpResult
+    : null;
+  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, streakMilestone, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}), levelUp: finalXpResult ? { level: finalXpResult.newLevel, title: finalXpResult.title } : null });
 });
 
 // PATCH /api/rituals/:id/extend — extend ritual/vow deadline [auth]

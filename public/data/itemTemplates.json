@@ -263,7 +263,7 @@
       "type": "special",
       "rarity": "rare",
       "icon": "/images/icons/loot-companion-egg.png",
-      "description": "Ein mysteriöses Ei... Was schlüpft daraus?",
+      "description": "Ein mysteriöses Ei… Was schlüpft daraus?",
       "effect": {
         "type": "companion_egg"
       },
@@ -442,7 +442,7 @@
       "type": "special",
       "rarity": "legendary",
       "icon": "/images/icons/loot-world-key.png",
-      "description": "Ein Schlüssel zu einer geheimen Quest...",
+      "description": "Ein Schlüssel zu einer geheimen Quest…",
       "effect": {
         "type": "unlock_secret_quest"
       },

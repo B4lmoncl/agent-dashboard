@@ -89,8 +89,8 @@ export default function CodexView() {
 
   return (
     <div className="tab-content-enter space-y-4 relative">
-      <TutorialMomentBanner viewId="codex" playerLevel={1} />
-      {markReadError && <p className="text-xs px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>Lesefortschritt konnte nicht gespeichert werden.</p>}
+      <TutorialMomentBanner viewId="codex" />
+      {markReadError && <p className="text-xs px-2 py-1.5 rounded-lg" style={{ color: "#ef4444", background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>Failed to save read progress.</p>}
       {/* Ambient lore dust particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 5 }, (_, i) => (
@@ -108,10 +108,10 @@ export default function CodexView() {
       </div>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <TipCustom title="Living Codex" icon="◆" accent="#fbbf24" heading body={<p>Sammlung aller entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, Events und Erkundung freigeschaltet.</p>}>
+        <TipCustom title="Living Codex" icon="◆" accent="#fbbf24" heading body={<p>Collection of all discovered lore entries. New entries unlock through quests, events, and exploration.</p>}>
           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
         </TipCustom>
-        <TipCustom title="Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anteil der entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, NPCs und besondere Events freigeschaltet.</p>}>
+        <TipCustom title="Progress" icon="◆" accent="#fbbf24" body={<p>Percentage of discovered lore entries. New entries unlock through quests, NPCs, and special events.</p>}>
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)", cursor: "help" }}>
             {discoveredCount}/{totalCount} discovered
           </span>
@@ -150,7 +150,7 @@ export default function CodexView() {
                 cursor: "pointer",
               }}
             >
-              <TipCustom title={cat.name} icon="◆" accent={cat.color} body={<p>Lore-Kategorie mit {catTotal} Eintr&auml;gen. {catCount} davon entdeckt.</p>}>
+              <TipCustom title={cat.name} icon="◆" accent={cat.color} body={<p>Lore category with {catTotal} entries. {catCount} discovered.</p>}>
                 <span>{cat.name} ({catCount}/{catTotal})</span>
               </TipCustom>
             </button>
@@ -158,9 +158,9 @@ export default function CodexView() {
         })}
       </div>
 
-      {/* Entries grouped by category — visual variety */}
+      {/* Entries grouped by category — visual variety. key re-animates on filter change. */}
       {activeCat === "all" ? (
-        <div className="space-y-6">
+        <div key={activeCat} className="space-y-6 tab-content-enter">
           {categories.map(cat => {
             const catDiscovered = entries.filter(e => e.category === cat.id && e.discovered);
             const catTotal = entries.filter(e => e.category === cat.id).length;
@@ -211,8 +211,8 @@ export default function CodexView() {
           })}
         </div>
       ) : (
-        /* Single category view — standard grid */
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        /* Single category view — standard grid. key re-animates on category change. */
+        <div key={activeCat} className="grid grid-cols-2 sm:grid-cols-3 gap-2 tab-content-enter">
           {discoveredFiltered.map(entry => {
             const cat = categories.find(c => c.id === entry.category);
             const isUnread = !readEntries.has(entry.id);
@@ -247,7 +247,10 @@ export default function CodexView() {
           onClick={() => setSelectedEntry(null)}
         >
           <div
-            className="rounded-xl overflow-hidden w-full max-w-lg max-h-[80vh] overflow-y-auto discovery-reveal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Codex entry"
+            className="rounded-xl overflow-hidden w-full max-w-[calc(100vw-2rem)] sm:max-w-lg max-h-[80vh] overflow-y-auto discovery-reveal"
             style={{
               background: "#111318",
               border: `1px solid ${categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24"}30`,
@@ -262,7 +265,7 @@ export default function CodexView() {
                   <p className="text-sm font-bold" style={{ color: categories.find(c => c.id === selectedEntry.category)?.color || "#fbbf24" }}>{selectedEntry.title}</p>
                   <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{categories.find(c => c.id === selectedEntry.category)?.name}</p>
                 </div>
-                <button onClick={() => setSelectedEntry(null)} aria-label="Schließen" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}>×</button>
+                <button onClick={() => setSelectedEntry(null)} aria-label="Close" className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}>×</button>
               </div>
             </div>
             {selectedEntry.text && (
@@ -280,7 +283,7 @@ export default function CodexView() {
       {/* Undiscovered entries */}
       {undiscoveredFiltered.length > 0 && (
         <div className="space-y-1 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-          <TipCustom title="Unentdeckt" icon="?" accent="#6b7280" body={<p>Noch nicht freigeschaltete Eintr&auml;ge. Schlie&szlig;e Quests ab und erkunde die Welt, um sie zu entdecken.</p>}>
+          <TipCustom title="Undiscovered" icon="?" accent="#6b7280" body={<p>Entries not yet unlocked. Complete quests and explore the world to discover them.</p>}>
             <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.4)", cursor: "help" }}>
               Undiscovered ({undiscoveredFiltered.length})
             </p>

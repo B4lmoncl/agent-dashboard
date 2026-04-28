@@ -15,6 +15,20 @@ const RARITY_BG: Record<string, string> = {
   unique: "rgba(230,204,128,0.12)",
 };
 
+// Generic tier sets get proper display labels. Named sets (kebab-case German
+// like "drachentoeter-arsenal") fall back to pretty-print: hyphens become
+// spaces, every word capitalized.
+const GENERIC_SET_LABELS: Record<string, string> = {
+  adventurer: "Adventurer Set (T1)",
+  veteran: "Veteran Set (T2)",
+  master: "Master Set (T3)",
+  legendary: "Legendary Set (T4)",
+};
+function formatSetLabel(setId: string): string {
+  if (GENERIC_SET_LABELS[setId]) return GENERIC_SET_LABELS[setId];
+  return setId.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
+
 /**
  * Minimal item shape — works for gear instances, inventory items, gacha pulls,
  * crafting recipes, loot drops, trade items. Each field is optional so any
@@ -70,6 +84,12 @@ export function ItemTooltipBody({ item, children }: { item: TooltipItem; childre
         border: `1px solid ${rarityColor}50`,
         borderTop: `3px solid ${rarityColor}`,
         boxShadow: `0 12px 40px rgba(0,0,0,0.8), 0 0 20px ${rarityColor}15`,
+        // Cap at 80vh so long tooltips (many stats + sockets + legendary +
+        // flavor + suffix + passive) can never overflow the viewport.
+        // Positioning logic assumes ph=420; this is the belt-and-suspenders.
+        maxHeight: "80vh",
+        overflowY: "auto",
+        overscrollBehavior: "contain",
       }}
     >
       {/* Header: Icon + Name + Rarity */}
@@ -85,7 +105,11 @@ export function ItemTooltipBody({ item, children }: { item: TooltipItem; childre
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
             <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
-            {item.locked && <span title="Locked" style={{ color: "#fbbf24", fontSize: 12, flexShrink: 0 }}>{"⦿"}</span>}
+            {item.locked && (
+              <Tip k="item_lock">
+                <span style={{ color: "#fbbf24", fontSize: 12, flexShrink: 0, cursor: "help" }}>{"⦿"}</span>
+              </Tip>
+            )}
           </div>
           <p className="text-xs font-semibold" style={{ color: rarityColor }}>
             {(item.rarity || "common").charAt(0).toUpperCase() + (item.rarity || "common").slice(1)}
@@ -130,7 +154,7 @@ export function ItemTooltipBody({ item, children }: { item: TooltipItem; childre
               <span key={i} className="w-3 h-3 rounded-full" style={{
                 background: s ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.08)",
                 border: `1.5px solid ${s ? "rgba(168,85,247,0.7)" : "rgba(255,255,255,0.18)"}`,
-              }} title={s || "Empty"} />
+              }} title={s ? `${s} gem` : "Empty socket"} />
             ))}
           </div>
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>{filledSockets}/{sockets.length}</span>
@@ -149,7 +173,7 @@ export function ItemTooltipBody({ item, children }: { item: TooltipItem; childre
 
       {/* Set ID */}
       {item.setId && (
-        <p className="text-xs" style={{ color: "#a78bfa" }}>Set: {item.setId}</p>
+        <p className="text-xs" style={{ color: "#a78bfa" }}>Set: {formatSetLabel(item.setId)}</p>
       )}
 
       {/* Passive */}

@@ -711,13 +711,19 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const { getUserTalentEffects } = require('./talent-tree');
   const talentEffects = getUserTalentEffects(uid);
   const talentDailyMod = talentEffects.profession_daily_bonus_modifier || 0;
-  const dailyMultiplier = dailyBonusAvailable ? (2 + talentDailyMod) : 1;
+  // dailyMultiplier is applied lazily inside the skill-up loop so that only
+  // the first successful craft of the day consumes the 2x bonus.
   const feverXpMultiplier = feverActive ? 2 : 1; // Schmiedefieber: 2x skill XP
-  // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
+  // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success.
+  // Daily bonus (2x) applies ONLY to the first successful skill-up of the day;
+  // otherwise a x10 batch at dawn would grant 2x skill on all 10 points.
   let totalSkillGained = 0;
+  let dailyBonusUnused = dailyBonusAvailable;
   for (let i = 0; i < effectiveCount; i++) {
     if (currentSkill + totalSkillGained < skillCap && Math.random() < skillUpChance) {
-      totalSkillGained += 1 * dailyMultiplier * feverXpMultiplier;
+      const thisDaily = dailyBonusUnused ? (2 + talentDailyMod) : 1;
+      if (dailyBonusUnused) dailyBonusUnused = false;
+      totalSkillGained += 1 * thisDaily * feverXpMultiplier;
     }
   }
   // Track fever crafts for bonus cache
@@ -1239,7 +1245,7 @@ router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
   if (recipe.result?.type === 'craft_gear') {
     const templateId = recipe.result.templateId;
     const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
-    if (!template) return res.json({ ...preview, outputType: 'gear', error: 'Template not found' });
+    if (!template) return res.status(404).json({ ...preview, outputType: 'gear', error: 'Template not found' });
 
     const gemsData = state.gemsData || require('../public/data/gems.json');
     const socketRange = gemsData.socketsByRarity[template.rarity || 'common'] || [0, 0];

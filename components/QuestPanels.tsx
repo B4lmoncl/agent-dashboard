@@ -398,7 +398,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.10)" }}>
               <p className="text-2xl mb-2">×</p>
               <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Count the days you walk away from a bad habit. They stack.</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -428,7 +428,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
         return (
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeVowModal}>
-            <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Create vow" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait — absolute right of modal, hidden on mobile */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -538,7 +538,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
       {/* Delete Confirm Modal */}
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setDeleteConfirmId(null)}>
-          <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Confirm delete vow" className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
             <div className="p-5 text-center">
               <p className="text-2xl mb-3">×</p>
               <p className="text-sm font-bold mb-1" style={{ color: "#e8d5a3" }}>Abandon this Vow?</p>
@@ -553,7 +553,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       await fetch(`/api/rituals/${id}`, { method: "DELETE", headers: { ...getAuthHeaders(reviewApiKey) } });
                       loadAntiRituals();
                     } catch {
-                      setVowActionError("Schwur konnte nicht aufgegeben werden. Der Server antwortet nicht.");
+                      setVowActionError("Failed to abandon vow. The server isn't answering.");
                       setTimeout(() => setVowActionError(null), 5000);
                     }
                   }}
@@ -580,7 +580,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
         return (
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeExtend}>
-            <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Extend vow" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -646,7 +646,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
         return (
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={() => setRecommitId(null)}>
-            <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Recommit vow" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />

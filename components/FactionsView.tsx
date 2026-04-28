@@ -81,10 +81,13 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         setFactions(data.factions || []);
         setStandings(data.standings || []);
         setDailyQuests(data.dailyQuests || {});
+        setMessage(null);
+      } else {
+        setMessage({ type: "error", text: "Failed to load faction data" });
       }
     } catch { setMessage({ type: "error", text: "Failed to load faction data" }); }
     setLoading(false);
-  }, []);
+  }, [reviewApiKey]);
 
   useEffect(() => { fetchFactions(); }, [fetchFactions]);
 
@@ -173,7 +176,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
 
   return (
     <div data-feedback-id="factions-view" className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="factions" playerLevel={1} />
+      <TutorialMomentBanner viewId="factions" />
       {/* Header */}
       <div className="text-center space-y-2">
         <img src="/images/icons/nav-factions.png" alt="" width={96} height={96} className="mx-auto img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -233,7 +236,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-bold" style={{ color: f.standingColor }}>{f.standingName}</p>
-                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Ruf wird automatisch durch passende Quests verdient (+5-35 je nach Quest-Rarit&auml;t). Weekly Bonus verdoppelt den Ruf-Gewinn.</p>}>
+                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Earned automatically from matching quests (+5-35 by quest rarity). Weekly Bonus doubles reputation gains.</p>}>
                       <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>{f.playerRep} Rep</p>
                     </TipCustom>
                   </div>
@@ -244,7 +247,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 {/* Quest types */}
                 <div className="flex gap-1.5 mt-2">
                   {f.questTypes.map(t => (
-                    <TipCustom key={t} title={QUEST_TYPE_LABELS[t] || t} icon="▣" accent={f.accent} body={<p>Quests vom Typ &quot;{QUEST_TYPE_LABELS[t] || t}&quot; geben Ruf bei {f.name}.</p>}>
+                    <TipCustom key={t} title={QUEST_TYPE_LABELS[t] || t} icon="▣" accent={f.accent} body={<p>&quot;{QUEST_TYPE_LABELS[t] || t}&quot; quests earn reputation with {f.name}.</p>}>
                       <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${f.accent}12`, color: `${f.accent}cc`, border: `1px solid ${f.accent}25`, cursor: "help" }}>
                         {QUEST_TYPE_LABELS[t] || t}
                       </span>
@@ -263,11 +266,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
               {/* Progress bar */}
               <div className="px-4 pb-3">
                 <div className="flex items-center justify-between mb-1">
-                  <TipCustom title={f.standingName} icon="◆" accent={f.standingColor} body={<p>Aktuelle Rufstufe bei {f.name}. H&ouml;here Stufen schalten exklusive Belohnungen frei.</p>}>
+                  <TipCustom title={f.standingName} icon="◆" accent={f.standingColor} body={<p>Current standing with {f.name}. Higher tiers unlock exclusive rewards.</p>}>
                     <span className="text-xs" style={{ color: f.standingColor, cursor: "help" }}>{f.standingName}</span>
                   </TipCustom>
                   {f.nextStanding && (
-                    <TipCustom title="Rufpunkte" icon="◆" accent={f.accent} body={<p>Fortschritt zur n&auml;chsten Stufe. Ruf wird durch passende Quests verdient (+5-35 je nach Rarit&auml;t).</p>}>
+                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Progress toward the next tier. Reputation is earned from matching quests (+5-35 by rarity).</p>}>
                       <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)", cursor: "help" }}>
                         {f.playerRep} / {f.nextStanding.minRep}
                       </span>
@@ -284,7 +287,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   />
                 </div>
                 {f.nextStanding && (
-                  <TipCustom title={f.nextStanding.name} icon="▲" accent={f.nextStanding.color} body={<p>N&auml;chste Stufe bei {f.nextStanding.minRep} Rep. Schaltet neue Belohnungen frei.</p>}>
+                  <TipCustom title={f.nextStanding.name} icon="▲" accent={f.nextStanding.color} body={<p>Next tier at {f.nextStanding.minRep} Rep. Unlocks new rewards.</p>}>
                     <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)", cursor: "help" }}>
                       {f.nextStanding.minRep - f.playerRep} Rep until {f.nextStanding.name}
                     </p>

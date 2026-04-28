@@ -6,6 +6,10 @@ const { requireApiKey } = require('../lib/middleware');
 const questCompleteLock = createPlayerLock('quest-complete');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
+// Dev-only logger: per-quest logs are noisy in production. Set DEBUG_QUESTS=1 or NODE_ENV=development to enable.
+const isDev = process.env.NODE_ENV !== 'production' || process.env.DEBUG_QUESTS === '1';
+const qlog = isDev ? console.log.bind(console) : () => {};
+
 // ─── Quest Pool (used by GET /api/quests and exported for config-admin) ──────
 const POOL_TYPES = ['personal', 'learning', 'fitness', 'social', 'boss'];
 const POOL_MIX = { personal: 3, learning: 3, fitness: 2, social: 2, boss: 1 };
@@ -46,7 +50,7 @@ function unlockNextChainQuest(completedQuest) {
   if (nextQuest) {
     nextQuest.status = 'open';
     saveQuests();
-    console.log(`[Chain] Unlocked quest ${nextQuest.id} (${chainId} step ${nextOrder})`);
+    qlog(`[Chain] Unlocked quest ${nextQuest.id} (${chainId} step ${nextOrder})`);
   }
 }
 
@@ -87,7 +91,19 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     const parent = state.questsById.get(parentQuestId);
     if (!parent) return res.status(400).json({ error: `Parent quest not found: ${parentQuestId}` });
   }
-  const resolvedCreatedBy = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
+  // Auth: non-admin users can only create quests under their own name, 'system', 'dobbie' (companion-auto), or NPC givers.
+  // Prevents spoofing createdBy to bypass the agent-created → "suggested" filter.
+  const requestedCreator = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
+  const authUid = (req.auth?.userId || '').toLowerCase();
+  const isAdmin = !!req.auth?.isAdmin;
+  const SYSTEM_CREATORS = ['system', 'dobbie', 'lyra'];
+  const isNpcCreator = NPC_NAMES.includes(requestedCreator.toLowerCase());
+  const isSystemCreator = SYSTEM_CREATORS.includes(requestedCreator.toLowerCase());
+  const isSelf = authUid && requestedCreator.toLowerCase() === authUid;
+  if (!isAdmin && !isSelf && !isSystemCreator && !isNpcCreator) {
+    return res.status(403).json({ error: `Cannot create quest as ${requestedCreator}` });
+  }
+  const resolvedCreatedBy = requestedCreator;
   // Dobbie quest dedup: if same title was already created by dobbie today, return existing
   if (resolvedCreatedBy === 'dobbie') {
     const today = getTodayBerlin();
@@ -143,7 +159,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     coopClaimed: [],
     coopCompletions: [],
     skills: Array.isArray(skills) ? skills.map(s => String(s).trim()).filter(Boolean).slice(0, 20) : [],
-    lore: typeof lore === 'string' && lore.trim() ? lore.trim() : null,
+    lore: typeof lore === 'string' && lore.trim() ? lore.trim().slice(0, 2000) : null,
     chapter: typeof chapter === 'string' && chapter.trim() ? chapter.trim() : null,
     minLevel: (typeof minLevel === 'number' && minLevel >= 1) ? Math.floor(minLevel) : 1,
     classRequired: classRequired || null,
@@ -178,7 +194,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     rebuildCatalogMeta();
     saveQuestCatalog();
   } catch (e) { console.warn('[quest] Failed to seed catalog template:', e.message); }
-  console.log(`[quest] created: ${quest.id} — "${title}"`);
+  qlog(`[quest] created: ${quest.id} — "${title}"`);
   res.json({ ok: true, quest });
 });
 
@@ -197,6 +213,10 @@ router.patch('/api/quest/:id/checklist', requireApiKey, (req, res) => {
 // POST /api/quests/household-rotate — rotate auto_assign for recurring household quests
 // Cycles through the provided assignees list and assigns the next person
 router.post('/api/quests/household-rotate', requireApiKey, (req, res) => {
+  // Admin-only: reassigning recurring quests to arbitrary players must be gated
+  if (!req.auth?.isAdmin) {
+    return res.status(403).json({ error: 'Admin only' });
+  }
   const { assignees } = req.body; // e.g. ["leon", "user2"]
   if (!Array.isArray(assignees) || assignees.length === 0) {
     return res.status(400).json({ error: 'assignees must be a non-empty array' });
@@ -219,6 +239,10 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+  // Auth: non-admin may only claim quests as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== agentKey) {
+    return res.status(403).json({ error: 'Cannot claim quests as another player' });
+  }
 
   // NPC quests: per-player tracking (quest stays globally open for others)
   if (quest.npcGiverId && state.users[agentKey]) {
@@ -243,7 +267,7 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
     }
     pp.npcQuests[quest.id] = { status: 'in_progress', claimedAt: now() };
     savePlayerProgress();
-    console.log(`[quest] ${quest.id} claimed (npc per-player) by ${agentKey}`);
+    qlog(`[quest] ${quest.id} claimed (npc per-player) by ${agentKey}`);
     return res.json({ ok: true, quest: { ...quest, status: 'in_progress', claimedBy: agentKey } });
   }
 
@@ -260,7 +284,7 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
     savePlayerProgress();
     // NOTE: Do NOT set quest.status globally — player quests use per-player tracking.
     // Global status stays 'open' so other players can still see/claim it.
-    console.log(`[quest] ${quest.id} claimed (per-player) by ${agentKey}`);
+    qlog(`[quest] ${quest.id} claimed (per-player) by ${agentKey}`);
     return res.json({ ok: true, quest: { ...quest, status: 'in_progress', claimedBy: agentKey } });
   }
 
@@ -269,7 +293,7 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
   quest.status = 'in_progress';
   quest.claimedBy = agentId;
   saveQuests();
-  console.log(`[quest] ${quest.id} claimed by ${agentId}`);
+  qlog(`[quest] ${quest.id} claimed by ${agentId}`);
   res.json({ ok: true, quest });
 });
 
@@ -278,6 +302,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+  // Auth: non-admin may only complete quests as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== agentKey) {
+    return res.status(403).json({ error: 'Cannot complete quests as another player' });
+  }
 
   // Per-player lock prevents concurrent double-complete
   if (!questCompleteLock.acquire(agentKey)) {
@@ -362,14 +390,14 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
         addLootToInventory(agentKey, item);
         npcFinalReward = item;
         saveUsers();
-        console.log(`[npc] Final reward '${item.id}' granted to ${agentKey} for completing ${giver.name}'s chain`);
+        qlog(`[npc] Final reward '${item.id}' granted to ${agentKey} for completing ${giver.name}'s chain`);
       }
     }
     // Activity feed
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u && newLevelInfo.level > prevLevel) logActivity(agentKey, 'level_up', { level: newLevelInfo.level, title: newLevelInfo.title });
     if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { achievementId: ach.id, name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
-    console.log(`[quest] ${quest.id} completed (npc per-player) by ${agentKey}`);
+    qlog(`[quest] ${quest.id} completed (npc per-player) by ${agentKey}`);
     return res.json({
       ok: true,
       quest: { ...quest, status: 'completed', completedBy: agentKey, completedAt: now() },
@@ -451,7 +479,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u2 && newLevelInfo2.level > prevLevel2) logActivity(agentKey, 'level_up', { level: newLevelInfo2.level, title: newLevelInfo2.title });
     if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { achievementId: ach.id, name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
-    console.log(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
+    qlog(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
     return res.json({
       ok: true,
       quest: { ...quest, status: 'completed', completedBy: agentKey, completedAt },
@@ -541,7 +569,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       logActivity(agentKey, 'rare_drop', { item: lootDrop.name || lootDrop.id, rarity: lootDrop.rarity });
     }
   }
-  console.log(`[quest] ${quest.id} completed by ${agentId}`);
+  qlog(`[quest] ${quest.id} completed by ${agentId}`);
   res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, dailyDiminishing, dailyQuestCount, gemDrop, recipeDrop, materialDrops, repGains, inventoryFull: inventoryFull3, restedBonusXp: restedBonusXp3, streakMilestone: streakMilestone3, codexDiscovery: codexDiscovery3, battlePassLevelUp: battlePassLevelUp3 ? { level: battlePassLevelUp3.level } : null, gambleResult: gambleResult3, varietyBonus: varietyBonus3, bondObjectiveCompleted: bondObjectiveCompleted3, expeditionCheckpoint: expeditionCheckpoint3, worldBossDefeated: worldBossDefeated3, milestoneUnlocks: milestoneUnlocks3, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
   } finally { questCompleteLock.release(agentKey); }
 });
@@ -553,6 +581,10 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
+  // Auth: non-admin may only unclaim their own quests
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== agentKey) {
+    return res.status(403).json({ error: 'Cannot unclaim another player quest' });
+  }
 
   // NPC quests: per-player tracking via playerProgress.npcQuests
   if (quest.npcGiverId && state.users[agentKey]) {
@@ -563,7 +595,7 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
     }
     delete pp.npcQuests[quest.id];
     savePlayerProgress();
-    console.log(`[quest] ${quest.id} unclaimed (npc per-player) by ${agentKey}`);
+    qlog(`[quest] ${quest.id} unclaimed (npc per-player) by ${agentKey}`);
     return res.json({ ok: true, quest: { ...quest, status: 'open', claimedBy: null } });
   }
 
@@ -578,7 +610,7 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
     quest.status = 'open';
     quest.claimedBy = null;
     saveQuests();
-    console.log(`[quest] ${quest.id} unclaimed (per-player) by ${agentKey}`);
+    qlog(`[quest] ${quest.id} unclaimed (per-player) by ${agentKey}`);
     return res.json({ ok: true, quest: { ...quest, status: 'open', claimedBy: null } });
   }
 
@@ -589,7 +621,7 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   quest.status = 'open';
   quest.claimedBy = null;
   saveQuests();
-  console.log(`[quest] ${quest.id} unclaimed by ${agentId}`);
+  qlog(`[quest] ${quest.id} unclaimed by ${agentId}`);
   res.json({ ok: true, quest });
 });
 
@@ -601,6 +633,10 @@ router.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
   const { userId } = req.body;
   if (!userId) return res.status(400).json({ error: 'userId is required' });
   const uid = userId.toLowerCase();
+  // Auth: non-admin may only coop-claim as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== uid) {
+    return res.status(403).json({ error: 'Cannot coop-claim as another player' });
+  }
   if (quest.coopPartners && !quest.coopPartners.includes(uid)) {
     return res.status(403).json({ error: 'User is not a co-op partner for this quest' });
   }
@@ -614,7 +650,7 @@ router.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
     quest.claimedBy = uid;
   }
   saveQuests();
-  console.log(`[coop] ${quest.id} co-claimed by ${uid}`);
+  qlog(`[coop] ${quest.id} co-claimed by ${uid}`);
   res.json({ ok: true, quest });
 });
 
@@ -623,6 +659,10 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
   const { userId } = req.body;
   if (!userId) return res.status(400).json({ error: 'userId is required' });
   const uid = userId.toLowerCase();
+  // Auth: non-admin may only coop-complete as themselves
+  if (!req.auth?.isAdmin && req.auth?.userId && req.auth.userId !== uid) {
+    return res.status(403).json({ error: 'Cannot coop-complete as another player' });
+  }
   if (!questCompleteLock.acquire(uid)) return res.status(429).json({ error: 'Completion in progress' });
   try {
   const quest = state.questsById.get(req.params.id);
@@ -637,6 +677,7 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
   const partners = quest.coopPartners || quest.coopClaimed || [];
   const allDone = partners.length > 0 && partners.every(p => quest.coopCompletions.includes(p));
   let newAchievements = [];
+  let callerRewards = null;
   if (allDone) {
     quest.status = 'completed';
     quest.completedAt = now();
@@ -647,10 +688,25 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
         newAchievements = [...newAchievements, ...achs];
       }
     }
+    // Mirror the single-player response shape for the caller so the client
+    // can fire the reward celebration. Without this, co-op quests grant XP,
+    // gold and loot silently — players never see what they earned.
+    const self = state.users[uid];
+    if (self) {
+      callerRewards = {
+        xpEarned: self._lastXpEarned || 0,
+        goldEarned: self._lastGoldEarned || 0,
+        lootDrop: self._lastLoot || null,
+        currencies: self._lastCurrencies || null,
+        inventoryFull: !!self._inventoryFull,
+        lastRestedXP: self._lastRestedXP || 0,
+        hoardingMalus: self._lastHoardingMalus || 0,
+      };
+    }
   }
   saveQuests();
-  console.log(`[coop] ${quest.id} part completed by ${uid} — allDone: ${allDone}`);
-  res.json({ ok: true, quest, allDone, newAchievements });
+  qlog(`[coop] ${quest.id} part completed by ${uid} — allDone: ${allDone}`);
+  res.json({ ok: true, quest, allDone, newAchievements, ...(callerRewards || {}) });
   } finally { questCompleteLock.release(uid); }
 });
 
@@ -760,8 +816,13 @@ function getQuestsData(playerParam, typeFilter) {
       ? pp.activeQuestPool
       : (pp.generatedQuests || []).slice(0, 11);
     const visibleIds = new Set(poolIds);
+    // Non-templated quests (starter quests from createStarterQuestsIfNew,
+    // hand-created quests, NPC quests that were re-opened via recurrence)
+    // can't appear in the generated pool (they have no templateId), so
+    // they were silently dropped for new players whose pool populated
+    // before the dashboard render. Always include non-templated quests.
     const poolFilteredOpen = visibleIds.size > 0
-      ? openPlayer.filter(q => visibleIds.has(q.id))
+      ? openPlayer.filter(q => visibleIds.has(q.id) || !q.templateId)
       : openPlayer;
 
     // Dev quest types use global status as-is
@@ -800,7 +861,7 @@ router.post('/api/quest/:id/approve', requireApiKey, (req, res) => {
   quest.status = 'open';
   if (req.body && req.body.comment) quest.comment = String(req.body.comment).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 500);
   saveQuests();
-  console.log(`[quest] ${quest.id} approved → open`);
+  qlog(`[quest] ${quest.id} approved → open`);
   res.json({ ok: true, quest });
 });
 
@@ -813,7 +874,7 @@ router.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
   quest.status = 'rejected';
   if (req.body && req.body.comment) quest.comment = String(req.body.comment).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 500);
   saveQuests();
-  console.log(`[quest] ${quest.id} rejected`);
+  qlog(`[quest] ${quest.id} rejected`);
   res.json({ ok: true, quest });
 });
 
@@ -822,11 +883,27 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
   const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { proof, title, description, status, claimedBy } = req.body;
-  if (proof !== undefined) quest.proof = String(proof).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (title !== undefined) quest.title = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (description !== undefined) quest.description = String(description).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (req.body.flavorText !== undefined) quest.flavorText = String(req.body.flavorText).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  if (req.body.lore !== undefined) quest.lore = String(req.body.lore).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Auth: non-admin may only edit quests they created OR claimed (proof submission), and cannot reassign claimedBy to other players
+  const authUid = (req.auth?.userId || '').toLowerCase();
+  const isAdmin = !!req.auth?.isAdmin;
+  if (!isAdmin) {
+    const qOwner = (quest.createdBy || '').toLowerCase();
+    const qClaimer = (quest.claimedBy || '').toLowerCase();
+    if (authUid !== qOwner && authUid !== qClaimer) {
+      return res.status(403).json({ error: 'Cannot modify quests you did not create or claim' });
+    }
+    // Prevent reassigning claimedBy to anyone but self, and prevent completing as another player
+    if (claimedBy !== undefined && claimedBy && claimedBy.toLowerCase() !== authUid) {
+      return res.status(403).json({ error: 'Cannot assign quest to another player' });
+    }
+  }
+  // Sanitize + enforce length limits to prevent storage bloat / DoS via multi-MB strings
+  const sanitize = (s, max) => String(s).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, max);
+  if (proof !== undefined) quest.proof = sanitize(proof, 2000);
+  if (title !== undefined) quest.title = sanitize(title, 500);
+  if (description !== undefined) quest.description = sanitize(description, 5000);
+  if (req.body.flavorText !== undefined) quest.flavorText = sanitize(req.body.flavorText, 1000);
+  if (req.body.lore !== undefined) quest.lore = sanitize(req.body.lore, 2000);
   if (claimedBy !== undefined) {
     quest.claimedBy = claimedBy;
     if (claimedBy && quest.status === 'open') quest.status = 'in_progress';

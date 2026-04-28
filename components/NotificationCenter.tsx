@@ -128,6 +128,8 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
       <button
         onClick={handleOpen}
         className="btn-interactive relative flex items-center justify-center"
+        aria-label={unreadCount > 0 ? `Notifications, ${unreadCount} unread` : "Notifications"}
+        aria-expanded={open}
         style={{
           width: 36, height: 36, borderRadius: 8,
           background: open ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
@@ -189,26 +191,34 @@ export default function NotificationCenter({ onNavigate }: { onNavigate?: (view:
               <div>
                 {notifications.map(n => {
                   const cfg = TYPE_CONFIG[n.type] || TYPE_CONFIG.system;
+                  // Expanded navigation map — previously missing entries caused
+                  // silent dead-clicks on quest_milestone/season_reset/
+                  // class_activated notifications (cursor was pointer, click
+                  // did nothing). system/daily_reset stay non-navigable by
+                  // design (no dedicated view) and render without cursor:pointer.
+                  const navMap: Record<string, string> = {
+                    level_up: "character", achievement: "honors", world_boss_spawn: "worldboss",
+                    world_boss_defeat: "worldboss", rift_cooldown: "rift", dungeon_complete: "dungeons",
+                    npc_quest: "npcBoard", faction_tier: "factions", bond_level_up: "character",
+                    quest_milestone: "questBoard", season_reset: "season", class_activated: "character",
+                  };
+                  const navTarget = navMap[n.type];
+                  const isClickable = !!(navTarget && onNavigate);
                   return (
                     <button
                       key={n.id}
                       className="w-full flex items-start gap-3 px-4 py-3 text-left transition-colors"
+                      aria-label={isClickable ? `Open ${n.title}` : n.title}
+                      disabled={!isClickable}
                       style={{
                         background: n.read ? "transparent" : "rgba(96,165,250,0.04)",
                         borderBottom: "1px solid rgba(255,255,255,0.03)",
-                        cursor: "pointer",
+                        cursor: isClickable ? "pointer" : "default",
                       }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"; }}
+                      onMouseEnter={e => { if (isClickable) (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = n.read ? "transparent" : "rgba(96,165,250,0.04)"; }}
                       onClick={() => {
-                        // Navigate based on notification type
-                        const navMap: Record<string, string> = {
-                          level_up: "character", achievement: "honors", world_boss_spawn: "worldboss",
-                          world_boss_defeat: "worldboss", rift_cooldown: "rift", dungeon_complete: "dungeons",
-                          npc_quest: "npcBoard", faction_tier: "factions", bond_level_up: "character",
-                        };
-                        const target = navMap[n.type];
-                        if (target && onNavigate) { onNavigate(target); setOpen(false); }
+                        if (navTarget && onNavigate) { onNavigate(navTarget); setOpen(false); }
                       }}
                     >
                       {/* Icon */}

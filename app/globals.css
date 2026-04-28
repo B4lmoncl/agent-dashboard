@@ -934,6 +934,157 @@ button[disabled] {
   animation: tab-fade-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* What's New hero cards — staggered entry on popup open. Start 14px down + */
+/* transparent, slide up as each card's animationDelay fires. backwards fill */
+/* means the card stays invisible before its delay elapses. */
+@keyframes whatsnew-card-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.whatsnew-card-enter {
+  animation: whatsnew-card-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+/* Stage swap — when the v2.0.0 popup transitions from its hero intro stage to */
+/* the details stage, the new stage fades in while scaling from 1.04 down to 1. */
+/* Paired with tab-content-enter via key={stage} unmount/mount. */
+@keyframes stage-swap-in {
+  0%   { opacity: 0; transform: scale(1.04); filter: blur(4px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+.stage-swap-in {
+  animation: stage-swap-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Reverse of stage-swap-in — plays on the modal panel during the ~280ms */
+/* window after the user dismisses it and before React unmounts it. Keeps */
+/* the close from being a hard pop. */
+@keyframes stage-swap-out {
+  from { opacity: 1; transform: scale(1); filter: blur(0); }
+  to   { opacity: 0; transform: scale(0.96); filter: blur(4px); }
+}
+.stage-swap-out {
+  animation: stage-swap-out 0.28s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Reward celebration exit — a slightly gentler fade than stage-swap-out. */
+/* Used on RewardCelebration / LevelUp / GachaPull close so the payoff */
+/* modals don't hard-cut away (the enter is a 0.6s bounce; the exit was 0ms). */
+@keyframes reward-burst-exit {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.94); }
+}
+.reward-burst-exit {
+  animation: reward-burst-exit 0.22s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Level-up banner inside RewardCelebration — pops in after the celebration */
+/* itself with a 150ms delay, scaling from 0.9 → 1 with an extra glow pulse */
+/* at the apex. Replaces the separate LevelUp full-screen modal in the */
+/* quest-completion path so the user sees one consolidated celebration. */
+@keyframes levelup-banner-in {
+  0%   { opacity: 0; transform: scale(0.85) translateY(-4px); box-shadow: 0 0 0 rgba(251,191,36,0); }
+  55%  { opacity: 1; transform: scale(1.04) translateY(0); box-shadow: 0 0 60px rgba(251,191,36,0.6), inset 0 0 30px rgba(251,191,36,0.2); }
+  100% { opacity: 1; transform: scale(1) translateY(0); box-shadow: 0 0 40px rgba(251,191,36,0.35), inset 0 0 20px rgba(251,191,36,0.12); }
+}
+.levelup-banner-in {
+  animation: levelup-banner-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s backwards;
+}
+
+/* Hero intro heartbeat — used on the giant v2.0.0 text. Fires 3 beats on mount
+   (~7.2s), then settles into a gentler steady glow. Keeps the text feeling
+   alive without pulsing forever — too much motion gets read as broken. */
+@keyframes hero-intro-beat {
+  0%, 100% { text-shadow: 0 0 32px rgba(230,204,128,0.55), 0 0 64px rgba(230,204,128,0.22); transform: scale(1); }
+  50%      { text-shadow: 0 0 56px rgba(230,204,128,0.85), 0 0 120px rgba(230,204,128,0.45); transform: scale(1.02); }
+}
+@keyframes hero-intro-settle {
+  from { text-shadow: 0 0 32px rgba(230,204,128,0.55), 0 0 64px rgba(230,204,128,0.22); }
+  to   { text-shadow: 0 0 24px rgba(230,204,128,0.4), 0 0 48px rgba(230,204,128,0.15); }
+}
+.hero-intro-beat {
+  animation:
+    hero-intro-beat 2.4s ease-in-out 3,
+    hero-intro-settle 1.2s ease-out 7.2s forwards;
+}
+
+/* Rotating rune orbit — 3 concentric dotted rings rotating at different speeds.
+   When .ring-locked is applied, the rotation pauses where it is (mid-angle) and
+   the ring switches from dashed/dim to solid + gold glow. This is the visual
+   payoff for clicking "See what's new" — three rings lock in sequence. */
+@keyframes orbit-slow     { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes orbit-med      { from { transform: translate(-50%,-50%) rotate(360deg); } to { transform: translate(-50%,-50%) rotate(0deg); } }
+.hero-orbit-slow { animation: orbit-slow 22s linear infinite; transition: border-color 0.25s ease, border-style 0.25s ease, box-shadow 0.4s ease, border-width 0.25s ease; }
+.hero-orbit-med  { animation: orbit-med 14s linear infinite;  transition: border-color 0.25s ease, border-style 0.25s ease, box-shadow 0.4s ease, border-width 0.25s ease; }
+/* Ring-lock state — applied sequentially (outer → mid → inner) when the */
+/* Stage 1 CTA is clicked. Rotation pauses, border fills solid gold, ring */
+/* glows with layered shadow. The transition duration overlaps with the */
+/* next ring's lock so the effect reads as a mechanism sealing itself. */
+.ring-locked {
+  animation-play-state: paused !important;
+  border-color: rgba(230, 204, 128, 0.95) !important;
+  border-style: solid !important;
+  border-width: 2px !important;
+  box-shadow:
+    0 0 40px rgba(230, 204, 128, 0.55),
+    0 0 80px rgba(230, 204, 128, 0.22),
+    inset 0 0 22px rgba(230, 204, 128, 0.18) !important;
+}
+/* Brief flash that fires in the instant a ring locks — extra box-shadow */
+/* pulse that decays over 500ms, layered on top of the steady glow. */
+@keyframes ring-lock-flash {
+  0%   { box-shadow: 0 0 10px rgba(230,204,128,0.2), inset 0 0 10px rgba(230,204,128,0.1); }
+  40%  { box-shadow: 0 0 90px rgba(230,204,128,1.0), 0 0 160px rgba(230,204,128,0.55), inset 0 0 40px rgba(230,204,128,0.5); }
+  100% { box-shadow: 0 0 40px rgba(230,204,128,0.55), 0 0 80px rgba(230,204,128,0.22), inset 0 0 22px rgba(230,204,128,0.18); }
+}
+/* Flash runs 240ms — shorter than the 260ms step gap so the keyframe doesn't */
+/* get abruptly cancelled when the next step replaces the ring-just-locked */
+/* class on this element (the flash is on a different ring anyway, but keeps */
+/* overlap margins clean). */
+.ring-locked.ring-just-locked {
+  animation: ring-lock-flash 0.24s cubic-bezier(0.16, 0.84, 0.3, 1) forwards !important;
+}
+
+/* Launch shockwave — a single expanding gold ring behind the What's New modal */
+/* when it mounts. Uses ::before on an absolute wrapper so it doesn't clip. Fires */
+/* once, 900ms, dissolves into the backdrop. Sends the message: something landed. */
+@keyframes launch-shockwave {
+  0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 0.8; border-width: 6px; }
+  60%  { opacity: 0.5; border-width: 2px; }
+  100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; border-width: 1px; }
+}
+.launch-shockwave::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 6px solid rgba(230, 204, 128, 0.5);
+  box-shadow: 0 0 40px rgba(230, 204, 128, 0.3), inset 0 0 40px rgba(230, 204, 128, 0.2);
+  transform: translate(-50%, -50%) scale(0.3);
+  pointer-events: none;
+  animation: launch-shockwave 0.9s cubic-bezier(0.16, 0.84, 0.3, 1) forwards;
+  z-index: 0;
+}
+/* Second ring, slightly delayed — violet, so the shockwave feels two-tone */
+.launch-shockwave::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 3px solid rgba(167, 139, 250, 0.45);
+  transform: translate(-50%, -50%) scale(0.3);
+  pointer-events: none;
+  animation: launch-shockwave 1.1s 0.12s cubic-bezier(0.16, 0.84, 0.3, 1) forwards;
+  z-index: 0;
+}
+
 /* Mondlicht-Schmiede breathing glow on NPC cards */
 /* Milestone claim pulse — gold breathing glow on unclaimed milestone buttons */
 @keyframes milestone-pulse {
@@ -1968,6 +2119,19 @@ body.moon-new .crystal-breathe { animation-duration: 6s; }
   .skeleton, .skeleton-pulse { animation: none !important; opacity: 0.06; }
   .crystal-breathe, .crystal-breathe-card, .crystal-breathe-epic { animation: none !important; }
   .progress-bar-nearly-full .progress-bar-diablo-fill { animation: none !important; }
+  /* Reward celebrations and launch effects rely on flash/pulse/shockwave
+     animations that can be vestibularly unpleasant. Strip them entirely
+     instead of just compressing duration — the 0.01ms collapse still
+     renders a single jarring frame for shockwaves and screen-flashes. */
+  .reward-burst-enter, .reward-burst-exit { animation: none !important; opacity: 1; transform: none; }
+  .legendary-screen-flash::before { animation: none !important; opacity: 0 !important; }
+  .legendary-drop-glow { animation: none !important; }
+  .launch-shockwave::before, .launch-shockwave::after { animation: none !important; opacity: 0 !important; }
+  .hero-intro-beat { animation: none !important; }
+  .ring-just-locked { animation: none !important; }
+  .stage-swap-in, .stage-swap-out { animation: none !important; opacity: 1; transform: none; }
+  .whatsnew-card-rise { animation: none !important; opacity: 1; transform: none; }
+  .hero-orbit-slow, .hero-orbit-med { animation: none !important; }
 }
 
 /* ─── Rested XP Blue Zone — WoW-style shimmer ───────────────────────────── */

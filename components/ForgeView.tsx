@@ -106,14 +106,14 @@ const SLOT_LABELS: Record<string, string> = {
 
 // ─── Synergy hints (profession pairing suggestions) ─────────────────────────
 const SYNERGY_HINTS: Record<string, { partner: string; label: string; reason: string }> = {
-  schmied: { partner: "verzauberer", label: "Gear Mastery", reason: "Du schmiedest die Rüstung, der Verzauberer verbessert sie. Permanente Enchants auf selbst geschmiedeten Plates sind der schnellste Weg zu hohem Gear Score — ohne Handelskosten." },
-  verzauberer: { partner: "schmied", label: "Gear Mastery", reason: "Deine Enchants sind nur so gut wie das Gear darunter. Ein Schmied liefert dir die Rüstung, du machst sie legendär. Permanente Verzauberungen auf frisch geschmiedeter Platte = maximaler Gear Score." },
-  schneider: { partner: "verzauberer", label: "Arcane Mastery", reason: "Stoff-Rüstung hat den besten XP-Bonus pro Piece (+1% via Cloth Trait). Der Verzauberer packt noch Enchants drauf. Zusammen: beste XP-Multiplikator-Kombi im Spiel." },
-  alchemist: { partner: "koch", label: "Sustenance", reason: "Tränke boosten einzelne Stats temporär, Mahlzeiten geben breite Buffs. Beides gleichzeitig aktiv = du stackst Alchemie-Präzision mit Koch-Breite. Kein anderes Paar gibt dir so viele aktive Buffs." },
-  koch: { partner: "alchemist", label: "Sustenance", reason: "Deine Mahlzeiten geben breite Stat-Buffs, seine Tränke präzise Einzel-Boosts. Zusammen deckst du alle 8 Stats ab. Beide Berufe sind Nebenberufe — belegen keinen der 2 Hauptslots." },
-  lederverarbeiter: { partner: "alchemist", label: "Wilderness", reason: "Leder-Rüstung hat den besten Ausdauer-Bonus (Forge-Decay-Schutz). Alchemie-Tränke kompensieren die fehlende Kraft. Beides braucht dieselben Wildnis-Materialien — du farmst einmal, profitierst doppelt." },
-  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery", reason: "Du schmiedest die Waffe, der Lederverarbeiter den Griff. Waffen + Schilde vom Waffenschmied plus Verstärkungen vom Lederverarbeiter = komplettes Offensiv-Setup aus einer Hand." },
-  juwelier: { partner: "alchemist", label: "Transmutation", reason: "Gems sockeln ist teuer — der Alchemist liefert Transmutations-Materialien billiger als der Markt. Beide Berufe teilen seltene Kristall-Reagenzien. Zusammen: Gems + Tränke aus denselben Farm-Runs." },
+  schmied: { partner: "verzauberer", label: "Gear Mastery", reason: "You forge the armor, the Enchanter improves it. Permanent enchants on self-forged plates are the fastest path to high Gear Score — no trade costs." },
+  verzauberer: { partner: "schmied", label: "Gear Mastery", reason: "Your enchants are only as good as the gear beneath them. A Blacksmith provides the armor, you make it legendary. Permanent enchantments on freshly forged plate = maximum Gear Score." },
+  schneider: { partner: "verzauberer", label: "Arcane Mastery", reason: "Cloth armor has the best XP bonus per piece (+1% via Cloth Trait). The Enchanter adds enchants on top. Together: best XP multiplier combo in the game." },
+  alchemist: { partner: "koch", label: "Sustenance", reason: "Potions boost individual stats temporarily, meals give broad buffs. Both active simultaneously = you stack Alchemy precision with Cook breadth. No other pair gives you as many active buffs." },
+  koch: { partner: "alchemist", label: "Sustenance", reason: "Your meals give broad stat buffs, their potions precise single-stat boosts. Together you cover all 8 stats. Both professions are secondary — they don't use your 2 main slots." },
+  lederverarbeiter: { partner: "alchemist", label: "Wilderness", reason: "Leather armor has the best Ausdauer bonus (forge decay protection). Alchemy potions compensate for missing Kraft. Both need the same wilderness materials — farm once, profit twice." },
+  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery", reason: "You forge the weapon, the Leatherworker crafts the grip. Weapons + shields plus leather reinforcements = complete offensive setup from two crafters." },
+  juwelier: { partner: "alchemist", label: "Transmutation", reason: "Socketing gems is expensive — the Alchemist provides transmutation materials cheaper than the market. Both professions share rare crystal reagents. Together: gems + potions from the same farm runs." },
 };
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
@@ -209,6 +209,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [professions, setProfessions] = useState<ProfessionDef[]>([]);
   const [showOnlyChosen, setShowOnlyChosen] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  // loading=true until the first fetchData resolves — prevents a blank-white
+  // flash on first Forge visit while /api/professions is in flight.
+  const [loading, setLoading] = useState(true);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [materials, setMaterials] = useState<Record<string, number>>({});
   const [materialDefs, setMaterialDefs] = useState<MaterialDef[]>([]);
@@ -340,6 +344,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const fetchData = useCallback(async () => {
     if (!playerName) return;
+    let profsOk = false;
     try {
       const r = await fetch(`/api/professions?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
       if (r.ok) {
@@ -357,9 +362,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
         if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
+        profsOk = true;
+        setFetchError(null);
+      } else {
+        setFetchError("Failed to load crafting data");
       }
-    } catch (err) { console.error('Failed to fetch crafting data:', err); }
-    // Fetch workshop upgrades
+    } catch (err) {
+      console.error('Failed to fetch crafting data:', err);
+      setFetchError("Failed to load crafting data");
+    }
+    setLoading(false);
+    if (!profsOk) return;
+    // Fetch workshop upgrades — soft-fail (workshop is optional polish, not core)
     try {
       const wr = await fetch(`/api/shop/workshop?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
       if (wr.ok) {
@@ -394,8 +408,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const craftTimerRef = useRef<number | null>(null);
   const craftCastMsRef = useRef(3000);
   const batchIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  // Cleanup batch interval on unmount
-  useEffect(() => () => { if (batchIntervalRef.current) clearInterval(batchIntervalRef.current); }, []);
+  // Cleanup craft cast timer + batch interval on unmount — otherwise
+  // setCraftProgress/setCrafting fire on a dead component after unmount.
+  useEffect(() => () => {
+    if (batchIntervalRef.current) clearInterval(batchIntervalRef.current);
+    if (craftTimerRef.current) { clearInterval(craftTimerRef.current); craftTimerRef.current = null; }
+  }, []);
 
   const startCraftCast = (recipeId: string, count = 1) => {
     if (crafting || craftProgress || !reviewApiKey) return;
@@ -880,7 +898,23 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       <div className="flex flex-col items-center justify-center py-16 space-y-3">
         <span className="text-4xl" style={{ opacity: 0.3 }}>&#9876;</span>
         <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>{"Artisan's Quarter"}</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{"Einloggen, um das Artisan's Quarter zu betreten."}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{"Log in to enter the Artisan's Quarter."}</p>
+      </div>
+    );
+  }
+
+  // Show skeleton on first visit while /api/professions is in flight so the
+  // user isn't staring at a blank white panel for up to 3s on slow networks.
+  if (loading) {
+    return (
+      <div className="space-y-3 tab-content-enter">
+        <div className="skeleton-card rounded-xl" style={{ height: 80 }} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+          <div className="skeleton-card rounded-xl" style={{ height: 140 }} />
+        </div>
       </div>
     );
   }
@@ -891,7 +925,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   return (
     <div data-feedback-id="forge-view" className="space-y-4 tab-content-enter" style={{ position: "relative" }}>
-      <TutorialMomentBanner viewId="forge" playerLevel={1} />
+      <TutorialMomentBanner viewId="forge" />
+      {fetchError && (
+        <div role="alert" className="rounded-lg px-3 py-2 flex items-center justify-between gap-3" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#fecaca" }}>
+          <span className="text-xs">{fetchError}</span>
+          <button onClick={() => fetchData()} className="btn-interactive text-xs font-semibold px-3 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#fecaca" }}>Retry</button>
+        </div>
+      )}
       {/* Ambient forge sparks */}
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
@@ -925,7 +965,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           <p className="text-xs italic mt-0.5" style={{ color: moonlightActive ? "rgba(96,165,250,0.3)" : "rgba(255,255,255,0.2)" }}>{moonlightActive ? "Die Sterne sind ausgerichtet. Was im Mondlicht geschmiedet wird, trägt ein Stück Ewigkeit in sich." : "Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider."}</p>
           {moonlightActive && (
             <div className="mt-2">
-              <TipCustom title="Mondlicht-Schmiede" accent="#60a5fa" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>}>
+              <TipCustom title="Mondlicht-Schmiede" accent="#60a5fa" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items, die jetzt gecraftet werden, erhalten +20 % bessere Minimum-Rolls auf alle Stats.</p>}>
                 <span className="text-xs font-semibold px-3 py-1.5 rounded-lg cursor-help inline-flex items-center gap-2" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.35)", boxShadow: "0 0 12px rgba(96,165,250,0.2)" }}>
                   <span className="w-2 h-2 rounded-full" style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa", animation: "ambient-spark 3s ease-in-out infinite" }} />
                   Mondlicht-Schmiede aktiv
@@ -1328,7 +1368,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
         return (
           <div className="fixed inset-0 z-[100] flex items-center justify-center modal-backdrop" onClick={() => setSelectedMaterial(null)}>
-            <div className="rounded-xl p-5 w-full max-w-sm space-y-3 tab-content-enter" style={{ background: "#141418", border: `1px solid ${rc}30` }} onClick={e => e.stopPropagation()}>
+            <div role="dialog" aria-modal="true" aria-label="Material details" className="rounded-xl p-5 w-full max-w-sm space-y-3 tab-content-enter" style={{ background: "#141418", border: `1px solid ${rc}30` }} onClick={e => e.stopPropagation()}>
               <div className="flex items-start gap-3">
                 {m.icon ? <img src={m.icon} alt="" width={48} height={48} className="img-render-auto flex-shrink-0 rounded" onError={hideOnError} /> : <span className="flex items-center justify-center rounded" style={{ width: 48, height: 48, background: `${rc}15`, color: rc, fontSize: 24 }}>◆</span>}
                 <div className="min-w-0 flex-1">
@@ -1514,7 +1554,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             const r = await fetch("/api/shop/gear/buy", {
                               method: "POST",
                               headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-                              body: JSON.stringify({ gearId: gear.id }),
+                              body: JSON.stringify({ userId: playerName, gearId: gear.id }),
                             });
                             if (r.ok) {
                               onRefresh?.(); fetchData();
@@ -1629,7 +1669,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           style={{ background: "rgba(0,0,0,0.82)" }}
           onClick={e => { if (e.target === e.currentTarget) closeNpcModal(); }}
         >
-          <div className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
+          <div role="dialog" aria-modal="true" aria-label={`${selectedNpc.name || "Artisan"} workshop`} className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
             {/* Close */}
             <button onClick={closeNpcModal} className="forge-btn absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
               <span className="text-white text-sm">&#10005;</span>
@@ -1851,9 +1891,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   const selectedRecipe = selectedRecipeId ? profRecipes.find(r => r.id === selectedRecipeId) : null;
 
                   return (
-                    <div className="flex" style={{ minHeight: 350, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="flex flex-col md:flex-row" style={{ minHeight: 350, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                       {/* ── Left Panel: Recipe List ──────────────────────── */}
-                      <div className="flex-shrink-0 overflow-y-auto border-r" style={{ width: "min(240px, 35%)", maxHeight: 450, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                      <div className="flex-shrink-0 overflow-y-auto border-b md:border-b-0 md:border-r w-full md:w-[min(240px,35%)]" style={{ maxHeight: 450, borderColor: "rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
                         {/* Header: search + filters */}
                         <div className="sticky top-0 px-2 py-1.5 space-y-1" style={{ background: "#16171d", borderBottom: "1px solid rgba(255,255,255,0.08)", zIndex: 2 }}>
                           <input
@@ -2090,7 +2130,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <button
                               onClick={() => {
                                 setConfirmAction({
-                                  message: `"${item.name}" (${item.rarity}) entzaubern?\n\nDas Item wird zerstört und in Verzauberungsmaterialien umgewandelt. Dies kann nicht rückgängig gemacht werden.`,
+                                  message: `Disenchant "${item.name}" (${item.rarity})?\n\nThe item is destroyed and turned into enchanting materials. This can't be undone.`,
                                   onConfirm: async () => {
                                     setConfirmAction(null);
                                     try {
@@ -2101,7 +2141,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       });
                                       const data = await r.json();
                                       if (r.ok) {
-                                        setCraftResult(data.message || "Entzaubert.");
+                                        setCraftResult(data.message || "Disenchanted.");
                                         setDisenchantInv(prev => prev.filter(i => (i.instanceId || i.id) !== (item.instanceId || item.id)));
                                         if (onRefresh) onRefresh();
                                         fetchData();
@@ -2177,7 +2217,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     fetchData();
                     onRefresh?.();
                   } else {
-                    setEnchantResult(data.error || "Something went wrong. Please try again.");
+                    setEnchantResult(data.error || "Action failed");
                   }
                 } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);
@@ -2444,7 +2484,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   setCurrencies(prev => ({ ...prev, gold: (prev.gold || 0) - totalCost }));
                                   setMaterials(prev => ({ ...prev, [reagent.id]: (prev[reagent.id] || 0) + count }));
                                 } else {
-                                  setCraftResult(data.error || "Kauf fehlgeschlagen");
+                                  setCraftResult(data.error || "Purchase failed");
                                 }
                               } catch { setCraftResult("Network error"); }
                               setBuyingReagent(null);
@@ -2738,7 +2778,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   )}
 
                   {!hasItems ? (
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>No items in inventory to dismantle.</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Nothing to take apart. The anvil is disappointed.</p>
                   ) : (
                     <div className="space-y-3">
                       {RARITY_ORDER.filter(r => grouped[r]?.length).map(rarity => (
@@ -3011,6 +3051,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {confirmProf && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => setConfirmProf(null)}>
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm profession switch"
             className="rounded-2xl p-6 w-full max-w-md space-y-4"
             onClick={e => e.stopPropagation()}
             style={{ background: "#14161c", border: `1px solid ${confirmProf.color}30`, boxShadow: `0 0 40px ${confirmProf.color}10` }}
@@ -3088,7 +3131,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* Confirmation modal (replaces window.confirm) */}
       {confirmAction && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setConfirmAction(null)}>
-          <div className="w-full max-w-sm rounded-xl p-5" style={{ background: "#1a1509", border: "1px solid rgba(180,140,70,0.35)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Confirm action" className="w-full max-w-sm rounded-xl p-5" style={{ background: "#1a1509", border: "1px solid rgba(180,140,70,0.35)" }} onClick={e => e.stopPropagation()}>
             <p className="text-sm font-semibold mb-1" style={{ color: "#fbbf24" }}>Confirm Action</p>
             <p className="text-xs mb-4 whitespace-pre-line" style={{ color: "rgba(255,255,255,0.6)" }}>{confirmAction.message}</p>
             <div className="flex gap-2">
@@ -3103,7 +3146,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Workshop Upgrade Celebration ──────────────────────────────────── */}
       {workshopCelebration && createPortal(
         <div className="fixed inset-0 z-[160] flex items-center justify-center pointer-events-none" style={{ background: "rgba(0,0,0,0.4)" }}>
-          <div className="reward-burst-enter pointer-events-auto px-8 py-6 rounded-2xl text-center max-w-xs" style={{
+          <div role="dialog" aria-modal="true" aria-label="Workshop upgrade" className="reward-burst-enter pointer-events-auto px-8 py-6 rounded-2xl text-center max-w-xs" style={{
             background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(11,13,17,0.95))",
             border: "2px solid rgba(168,85,247,0.5)",
             boxShadow: "0 0 60px rgba(168,85,247,0.2), 0 0 120px rgba(168,85,247,0.1)",
@@ -3122,7 +3165,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
       {profCelebration && createPortal(
         <div className="fixed inset-0 z-[160] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} onClick={() => setProfCelebration(null)}>
-          <div className="w-full max-w-md mx-4 rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Profession tier reached" className="w-full max-w-md mx-4 rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}12 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 80px ${profCelebration.color}20` }} onClick={e => e.stopPropagation()}>
             {/* Accent bar */}
             <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
             <div className="p-6 space-y-5">
@@ -3204,7 +3247,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Auto-Salvage Modal ──────────────────────────────────────────── */}
       {autoSalvageOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeAutoSalvage}>
-          <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Auto salvage" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(255,140,0,0.06)", borderBottom: "1px solid rgba(255,140,0,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#ff8c00" }}>Auto-Salvage</p>
@@ -3326,7 +3369,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Ätherwürfel Modal ──────────────────────────────────────────── */}
       {cubeOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeCube}>
-          <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label="Ätherwürfel" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(249,115,22,0.06)", borderBottom: "1px solid rgba(249,115,22,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#f97316" }}>Ätherwürfel</p>
@@ -3348,7 +3391,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <>
                           <p className="text-xs font-semibold" style={{ color: c }}>{active.label}</p>
                           <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>{active.value}%</p>
-                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} title={cubeLoading ? "Kanai's Cube arbeitet..." : undefined} className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
+                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} title={cubeLoading ? "Ätherwürfel arbeitet..." : undefined} className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
                         </>
                       ) : (
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Empty</p>
@@ -3379,9 +3422,19 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 </div>
               )}
 
-              {/* Extract section: show legendary items in inventory */}
+              {/* Extract section: show legendary items in inventory.
+                  Cost scales with cube.library.length: 500+n*250 Essenz + 1000+n*1000 Gold. */}
+              {(() => {
+                const extractionCount = cubeData?.library?.length || 0;
+                const nextEssenz = 500 + extractionCount * 250;
+                const nextGold = 1000 + extractionCount * 1000;
+                return (
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Extract Effect (destroys item, costs {nextEssenz} Essenz + {nextGold}g)</p>
+                  </div>
+                );
+              })()}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Extract Effect (destroys item, costs 500 Essenz)</p>
                 {(() => {
                   const cubeInv = getUserInventory(loggedInUser);
                   const legendaryInv = cubeInv.filter(
@@ -3431,15 +3484,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </p>
                       <div className="flex gap-2">
                         <button onClick={() => setCubeExtractId(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
-                        <button
-                          onClick={() => handleCubeExtract(cubeExtractId)}
-                          disabled={cubeLoading}
-                          title={cubeLoading ? "Extraction läuft..." : undefined}
-                          className="flex-1 text-xs py-2 rounded-lg font-semibold"
-                          style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
-                        >
-                          {cubeLoading ? "Extracting..." : "Extract (500 Essenz)"}
-                        </button>
+                        {(() => {
+                          const n = cubeData?.library?.length || 0;
+                          const essenz = 500 + n * 250;
+                          const gold = 1000 + n * 1000;
+                          return (
+                            <button
+                              onClick={() => handleCubeExtract(cubeExtractId)}
+                              disabled={cubeLoading}
+                              title={cubeLoading ? "Extracting..." : `Cost: ${essenz} Essenz + ${gold}g (scales per extraction)`}
+                              className="flex-1 text-xs py-2 rounded-lg font-semibold"
+                              style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
+                            >
+                              {cubeLoading ? "Extracting..." : `Extract (${essenz} Essenz + ${gold}g)`}
+                            </button>
+                          );
+                        })()}
                       </div>
                     </div>
                   );

@@ -110,6 +110,7 @@ export default function TalentTreeView({
   const [confirmAction, setConfirmAction] = useState<(() => void) | null>(null);
   const [confirmMessage, setConfirmMessage] = useState("");
   useModalBehavior(confirmReset, () => setConfirmReset(false));
+  useModalBehavior(!!confirmAction, () => setConfirmAction(null));
 
   // ─── Fetch ──────────────────────────────────────────────────────────────
   const fetchTalents = useCallback(async () => {
@@ -189,7 +190,7 @@ export default function TalentTreeView({
       });
       const d = await r.json();
       if (r.ok && d.success) {
-        _toast({ type: "flavor", icon: "◆", message: `Alle Talente zurückgesetzt. ${d.goldSpent}g bezahlt.` });
+        _toast({ type: "flavor", icon: "◆", message: `All talents refunded. ${d.goldSpent}g paid.` });
         setConfirmReset(false);
         fetchTalents();
       } else {
@@ -300,7 +301,7 @@ export default function TalentTreeView({
 
   return (
     <div className="tab-content-enter">
-      <TutorialMomentBanner viewId="talents" playerLevel={1} />
+      <TutorialMomentBanner viewId="talents" />
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -366,13 +367,13 @@ export default function TalentTreeView({
       </div>
 
       {/* SVG Tree + Detail panel */}
-      <div className="flex gap-4">
-        {/* Circular tree */}
-        <div className="flex-shrink-0 relative" style={{ width: SVG_SIZE, height: SVG_SIZE }}>
+      <div className="flex flex-col lg:flex-row gap-4">
+        {/* Circular tree — responsive: shrink to container width on <lg, cap at SVG_SIZE on ≥lg */}
+        <div className="relative w-full" style={{ maxWidth: SVG_SIZE }}>
           <svg
-            width={SVG_SIZE} height={SVG_SIZE}
             viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
             className="select-none"
+            style={{ width: "100%", height: "auto", maxHeight: SVG_SIZE }}
           >
             {/* Theme sector backgrounds (Wolcen-style colored segments) */}
             {data.meta.themes && Object.entries(data.meta.themes).map(([key, theme], i) => {
@@ -530,7 +531,12 @@ export default function TalentTreeView({
               return (
                 <g
                   key={n.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${n.name}${state === "allocated" ? " (aktiviert)" : state === "unlockable" ? " (wählbar)" : " (gesperrt)"}`}
+                  aria-pressed={state === "allocated"}
                   onClick={() => setSelectedNode(n.id === selectedNode ? null : n.id)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedNode(n.id === selectedNode ? null : n.id); } }}
                   style={{ cursor: "pointer" }}
                   opacity={opacity}
                   filter={state === "allocated" ? "url(#node-glow)" : undefined}
@@ -793,7 +799,7 @@ export default function TalentTreeView({
                               body: JSON.stringify({ instanceId: item.instanceId || item.id }),
                             });
                             const d = await r.json();
-                            if (!r.ok) _toast({ type: "error", message: d.error || "Opfergabe fehlgeschlagen" });
+                            if (!r.ok) _toast({ type: "error", message: d.error || "Sacrifice failed" });
                             else {
                               _toast({ type: "purchase", message: `${d.sacrificedItem} geopfert. +1 Talentpunkt.` });
                               fetchTalents();
@@ -868,7 +874,7 @@ export default function TalentTreeView({
           className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop"
           onClick={(e) => { if (e.target === e.currentTarget) setConfirmReset(false); }}
         >
-          <div className="rounded-2xl p-6 max-w-sm w-full" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div role="dialog" aria-modal="true" aria-label="Reset talents" className="rounded-2xl p-6 max-w-sm w-full" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
             <h3 className="text-sm font-bold text-w70 mb-2">Talente zurücksetzen?</h3>
             <p className="text-xs text-w40 mb-4">
               Kosten: <span className="font-bold text-yellow-400">500g + 50 Essenz</span> ({data.totalSpent} Knoten werden zurückgesetzt)
@@ -902,6 +908,9 @@ export default function TalentTreeView({
           onClick={() => setConfirmAction(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirmation"
             className="rounded-xl p-5 max-w-sm w-full mx-4"
             style={{ background: "#1a1a2e", border: "1px solid rgba(255,255,255,0.1)" }}
             onClick={e => e.stopPropagation()}

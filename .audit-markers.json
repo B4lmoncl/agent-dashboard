@@ -1,9 +1,4 @@
 {
-  "_meta": {
-    "description": "Audit markers — tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
-    "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
-    "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
-  },
   "components/OnboardingWizard.tsx": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-05",
@@ -29,99 +24,93 @@
     "status": "clean"
   },
   "components/GachaView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Per-banner pity verified (fixed fallback bug). useModalBehavior on pullResults. Pull disabled with WHY tooltip (deficit amount). Skeleton loading. tab-content-enter. Currency-specific cost display. Banner modal with ModalOverlay.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Waves 29+46: Wave 29 fixed disabled-button title embedded system explanation. Wave 46: Error state rendered as banner (not view-replacing \u2014 no profile-vanishing bug). But error persisted forever. Added useEffect auto-dismiss after 5s for transient pull errors and network errors.",
     "status": "clean"
   },
   "components/TutorialModal.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "password fix, emoji fix, 3 new guide tabs",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 60: Added role=dialog + aria-modal + aria-label to GuideModal. Wave 196f9fc earlier in session: removed Urithiru/Wolcen/Lost Ark IP leaks from guide sections. TutorialModal and ContextualTutorial content stays German per policy. ESC + scroll-lock via useModalBehavior.",
     "status": "clean"
   },
   "components/CompanionsWidget.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. quote rewrite, safeTimeout cleanup verified",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. quote rewrite, safeTimeout cleanup verified Wave 59: UI/UX focus. safeTimeout with useRef cleanup on unmount verified. All 4 setExpeditionError calls have auto-dismiss via safeTimeout 5000. Timer countdown updates 1/sec. Minor: interval keeps running after expedition ready (re-sets same state, no re-render, wasteful but not bug).",
     "status": "clean"
   },
   "components/ForgeView.tsx": {
-    "auditCount": 4,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 4: Clean. 5 useModalBehavior calls. Extensive cursor:not-allowed states. Profession slot limit UI. Skill-up color coding. Batch crafting. Auto-salvage modal. Cube modal. Enchanting slot recipes.",
+    "auditCount": 5,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 39: All 8 SYNERGY_HINTS reason texts translated DE->EN. Stat proper nouns (Kraft, Ausdauer) kept German.",
     "status": "clean"
   },
   "components/RitualChamber.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "FIXED: ritual create silent failure, difficulty flavor rewrite",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 57 read: addToast-based error handling (no setError), no auto-dismiss bug. Loading text \"...\" on Check-off button could be \"Marking...\" but matches component context. Clean overall.",
     "status": "clean"
   },
   "components/QuestPanels.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "milestone labels + difficulty flavors rewritten",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 61: 4 modals (create vow / confirm delete / extend vow / recommit vow) were missing role=dialog + aria-modal + aria-label. Added all three to each. Language stays mixed per user deprioritization (vow content is German-lore-toned, buttons English).",
     "status": "clean"
   },
   "components/WandererRest.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "button tooltips added",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 37 (batch): View tagline \"Reisende Seelen und ihre unerz\u00e4hlten Geschichten. Sie kommen. Sie gehen. Sie kehren immer zur\u00fcck.\" -> \"Wandering souls and their untold stories. They come. They go. They always return.\" Same view-tagline-English decision.",
     "status": "clean"
   },
   "components/BattlePassView.tsx": {
-    "auditCount": 4,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 4: Clean. RewardCelebration on single + claim-all. Disabled states with cursor:not-allowed. claimable-breathe animation. Season end timer. Prior CRIT hook ordering fix holds.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 33: Language Policy. 3 German TipCustom tooltip bodies translated: \"Saisonende\"/\"Verbleibende Tage...\" -> \"Season End\"/\"Days remaining...\". \"Exklusiver Titel aus dem Season Pass\" -> \"Exclusive title from the Season Pass\". \"Kosmetischer Rahmen\" -> \"Cosmetic frame for your player profile\". All UI labels were already English.",
     "status": "clean"
   },
   "components/TavernView.tsx": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. card alignment mx-auto maxWidth:600",
-    "status": "clean"
-  },
-  "components/DailyHub.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-05",
-    "findings": "created, slimmed to avoid TodayDrawer dupe, unlock hint added",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 43: Loading text \"...\" -> \"Leaving...\"/\"Entering...\" on action buttons. Leave button title \"Action in progress\" -> \"Leaving the Hearth...\". Confirmation modal: added role=dialog + aria-modal + aria-label. Bug fix: errors never auto-dismissed (CLAUDE.md says 5s) \u2014 added setTimeout auto-clear on all 4 setError calls (fetch, enter, leave, network). Success messages already auto-dismiss. Ember particles animation name ember-float confirmed in globals.css.",
     "status": "clean"
   },
   "components/CharacterView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. useModalBehavior on modals. tab-content-enter. Legendary/unique glow+shimmer. Rarity colors. Disabled states with cursor:not-allowed on frame/title/gem actions. Gear tooltip with legendary effect label. 2-step confirm for discard. Collection log filter.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 38: Frame section label \"Kosmetischer Rahmen\" -> \"Cosmetic Frame\", explanation body -> English, \"W\u00e4hrungsshops\" -> \"Currency Shops\".",
     "status": "clean"
   },
   "components/SocialView.tsx": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: SwornBondTab added and verified. Propose/accept/decline/break/claim flows with actionLoading guard. RewardCelebration on chest claim. Per-player progress bars for individual objectives. 2-step break confirmation. Cooldown display. Friends-fetch gated on !bond. Error handling on all fetches. Tab tooltip mapped to sworn_bonds.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 72: SocialView is 2484 lines. FriendsPanel has error + successMsg states, TradesTab has separate error state \u2014 all never auto-dismissed. Same pattern as waves 43-46 bug. Added 3 useEffect auto-dismiss hooks (5s). The 44+ setError/setMessage calls across the file now all benefit.",
     "status": "clean"
   },
   "components/ShopView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration on purchase. Disabled states with cursor:not-allowed. Gold+currency buy flows. Deficit tooltips. Owned state tracking.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 30: Language Policy sweep \u2014 clean. All UI strings English (section headers, button labels, error messages, disabled tooltips). Modals use ModalOverlay (role=dialog handled). Title attrs are proper disabled-reasons (\"Insufficient gold (need X, have Y)\"). Bazaar heading has <Tip k=\"bazaar\"> \u2014 tooltip coverage good.",
     "status": "clean"
   },
   "components/FactionsView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration for tier claim + daily claim. Disabled states. claimable-breathe. Rep bars with standing colors. Weekly bonus display. Daily quest progress tracking.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 31: Language Policy sweep. 5 TipCustom tooltip bodies were German system explanations \u2014 translated to English. \"Rufpunkte\" title -> \"Reputation\". Standing explanation, quest-type explanation, progress-toward-next-tier all now English. Content (faction descriptions, standing names) stays German per policy. Action buttons and labels were already English.",
     "status": "clean"
   },
   "components/WorldBossView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration for claim (gold, essenz, stardust, unique/gear drops, rank+contribution%). Correct disabled states. Boost with not-allowed cursor. HP bar. Auto-refresh.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 32: Language Policy + Tooltip Coverage \u2014 fully clean. All TipCustom bodies English. All UI labels English. Boss names and flavor text (content) handled server-side. No German strings in component.",
     "status": "clean"
   },
   "components/DungeonView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration for collect (gold, essenz, runensplitter, sternentaler, unique/gear/gem drops). Correct disabled states with cursor:not-allowed. 2-step cancel. Friend picker with level display. Error handling.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 44: Loading state polish + bug fix. Join button \"...\" -> \"Joining...\" + title \"Joining dungeon...\". Collect button \"...\" -> \"Collecting...\" + title \"Collecting rewards...\". Bug: messages (success+error) never auto-dismissed, only cleared by next action. Added useEffect auto-dismiss after 5s matching CLAUDE.md guidance. Create modal already has role=dialog.",
     "status": "clean"
   },
   "components/RiftView.tsx": {
@@ -131,46 +120,40 @@
     "status": "clean"
   },
   "components/ChallengesView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration on stage+milestone claim. Disabled states. Star display. Weekly reset timer. Modifier display. Expedition progress+claim. Speed bonus indicator.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 34: 2 German title attrs translated \u2014 star threshold tooltip \"abgeschlossen f\u00fcr X Sterne\" -> \"completed for X stars\", reward bonus tooltip \"Belohnungsbonus f\u00fcr X Sterne\" -> \"Reward bonus for X stars\".",
     "status": "clean"
   },
   "components/LeaderboardView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Skeleton loading. Seasonal toggle. Player profile modal integration. tab-content-enter. Achievement points display.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 37: View tagline \"Die Pr\u00fcfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.\" -> \"The proving fields. Where legends are measured in light and resolve.\" Per user decision: view taglines should be English for consistency with SocialView.",
     "status": "clean"
   },
   "components/HonorsView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. points display exists, categories OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 67: Real UX bug \u2014 when navigating to HonorsView with highlightedAchievementId (e.g. from a notification click), the target could be hidden by active category/earned/search filters, making scrollIntoView a silent no-op. Fixed: reset all 3 filters when highlightedAchievementId changes, then defer scrollIntoView via requestAnimationFrame to wait for the re-render with fresh filters. Clean otherwise: debounced search, proper useEffect cleanup, no modals.",
     "status": "clean"
   },
   "components/CodexView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "read state persistent, overscroll-contain added",
-    "status": "clean"
-  },
-  "components/CampaignHub.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-05",
-    "findings": "error handling OK, overscroll-contain added",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 36: 4 German TipCustom tooltip bodies translated. \"Living Codex\" body: Sammlung... -> Collection of all discovered lore entries. \"Fortschritt\" -> \"Progress\" (title+body). Category tooltip \"Lore-Kategorie mit X Eintraegen\" -> \"Lore category with X entries. Y discovered.\" \"Unentdeckt\" -> \"Undiscovered\" (title+body). Companion descriptions (lines 310-314) stay German \u2014 content per policy.",
     "status": "clean"
   },
   "components/TalentTreeView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Toast on allocate/deallocate/reset. Disabled states. SVG ring rendering. Choice group UI. Respec cost display.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 52: Accessibility is excellent \u2014 nodes have role=button + aria-label + aria-pressed, 2 modals have role=dialog + aria-modal + aria-label. Double-click protection via allocating/deallocating state. TipCustom on every stat explanation. FLAGGED: choiceGroups data is fetched from server but NEVER rendered in the UI. Players cannot see which nodes are mutually exclusive until they try to pick and get rejected server-side. Substantial UI work needed (new section). useCallback missing reviewApiKey in deps but stable via DashboardContext so effectively non-issue.",
+    "status": "clean-flagged"
   },
   "components/AdventureTomeView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. RewardCelebration on milestone claim. Disabled states. Per-floor objective tracking. Progress bars. Title rewards.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 68: Clean. Claiming state prevents double-claims via claimKey. Toast-based error handling. RewardCelebration fired on successful claim. Visual: progress-bar-diablo with milestone markers, floor cards with expand/collapse. Flagged (fragile, not bug): line 99-101 parses gold amount from result.granted string via regex (\"contains Gold\" + \\D replace). Would break if backend changes grant format. Better: have backend return structured { gold: N } shape.",
+    "status": "clean-flagged"
   },
   "components/StatBar.tsx": {
     "auditCount": 2,
@@ -179,27 +162,27 @@
     "status": "clean"
   },
   "components/UserCard.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. unlock milestones OK, rested XP bar OK",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 47: Deep UI/UX audit. Solid overall. memo() wrapper correct. Portrait fallback with letter avatar works. XP bar shows MAX at cap. Rested XP blue zone with tooltip. Forge tier color transitions. Achievement icon row with title per icon. Milestone level glow for Lv10/20/30. FLAGGED (not fixed): line 119-126 hardcodes virtual companion types + Dobbie check duplicating getCompanionPortrait() from lib/companion-config.ts \u2014 pure DRY opportunity, no UX impact.",
+    "status": "clean-flagged"
   },
   "components/TodayDrawer.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. no font violations, no empty catches",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 70: Deep review after a11y pass (Wave 63 added role=dialog). 1365 lines. Proper useEffect cleanup, ESC handling, time refresh every 60s, ref-counted body scroll lock. Milestone nodes click-handler correctly navigates to questBoard daily-missions section (consistent with REJ-024 no-inline-claim). Subjective finding flagged: milestone button title \"Claim: 50 gold\" may mislead users into thinking they claim here \u2014 actually navigates. Could be \"Go to Daily Missions: 50 gold\" but changing the wording is subjective.",
+    "status": "clean-flagged"
   },
   "components/DailyLoginCalendar.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. modal behavior OK, streak milestones OK",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 35: 2 German TipCustom tooltips translated \u2014 \"Monatlicher Fortschritt\" -> \"Monthly Progress\" with body, \"Streak-Meilensteine\" -> \"Streak Milestones\" (title + body + inner label). Wave 38: German month names -> English, day labels Di/Mi/Do -> Tue/Wed/Thu.",
     "status": "clean"
   },
   "components/GachaPull.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. screen shake OK, charge orb OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 51: Visual reveal component. Single pull (5.5s charge -> flash -> reveal) + multi pull (8s charge -> flash -> sequential -> black -> summary). Screen shake on legendary flash. ESC + click skip after reveal phase. Charge-phase no-skip is USER-CONFIRMED INTENTIONAL (by design for dramatic tension). Background click closes during reveal. View in Inventory nav link. CSS animation name \"gacha-weiter-pulse\" uses German \"weiter\" as identifier (technical, not user-facing).",
     "status": "clean"
   },
   "components/ModalPortal.tsx": {
@@ -227,21 +210,21 @@
     "status": "clean"
   },
   "components/NotificationCenter.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. useModalBehavior OK, badge-enter animation",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 49: Silent dead-click bug \u2014 5 notification types (quest_milestone, season_reset, daily_reset, class_activated, system) had cursor:pointer but no navMap entry, so clicking them did nothing. Expanded navMap to cover quest_milestone/season_reset/class_activated. system+daily_reset stay non-navigable by design but now render with cursor:default + disabled=true to signal non-clickability. Added aria-label with unread count on bell button + aria-expanded. Per-item aria-label on notifications.",
     "status": "clean"
   },
   "components/ItemActionPopup.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. 2-step discard confirm, lock system OK",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 55: Lock indicator used raw title=\"Locked\" on status icon \u2014 same pattern fixed in ItemTooltip Wave 22. Wrapped in <Tip k=\"item_lock\">. Socket title already says \"Empty socket\" (good). ESC + click-outside handling present. Disabled button titles use \"Action in progress\u2026\" (language low prio). FLAGGED: popup is an anchored context menu of actions but lacks role=\"menu\"/role=\"menuitem\" semantic \u2014 substantial a11y change, deferred.",
+    "status": "clean-flagged"
   },
   "components/PlayerProfileModal.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. FIXED: ring slot missing, 4 professions missing",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 45: Real UX bug \u2014 single error state caused profile to vanish and be replaced by error text when ANY action (add friend / remove friend) failed. Split into loadError (fatal, replaces profile) and actionError (transient, rendered as banner above profile, auto-dismissed after 5s). Add Friend and Remove Friend failures now show inline banner without hiding the profile.",
     "status": "clean"
   },
   "components/ShopModal.tsx": {
@@ -265,7 +248,7 @@
   "components/GuildHallBackground.tsx": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. sky canvas, weather effects — visual only",
+    "findings": "Cycle 2: Verified in batch audit. sky canvas, weather effects \u2014 visual only",
     "status": "clean"
   },
   "components/FloorAmbientParticles.tsx": {
@@ -281,9 +264,9 @@
     "status": "clean"
   },
   "components/TowerMap.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. modal-backdrop OK, ESC OK",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 54: Fixed mixed-language teaser \"Next at Lv12: Stockwerk: Der Hochmut\" \u2014 \"Stockwerk\" -> \"Floor\" (English prefix with German inline word = UI consistency bug, not lore). Added role=dialog + aria-modal + aria-label to the modal wrapper div. ESC handler present. FLAGGED (language, per user low prio): line 280 German tagline \"Der Turm erinnert sich...\" \u2014 matches Wave 37 view-tagline pattern but deprioritized.",
     "status": "clean"
   },
   "components/FloatingRewards.tsx": {
@@ -305,22 +288,10 @@
     "status": "clean"
   },
   "components/RoadmapView.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. skeleton loading OK",
-    "status": "clean"
-  },
-  "components/CVBuilderPanel.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. niche admin feature, silent catch acceptable",
-    "status": "clean"
-  },
-  "components/InfoTooltip.tsx": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. thin alias for GameTooltip",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 76: Admin-only roadmap UI. 213 lines, simple. Fetch with 2s timeout. Flagged (low-impact, admin-only): handleAdd and handleStatusChange have no error feedback \u2014 if server returns non-200, form stays open silently. Would need try/catch + addToast or inline error. Deferred since UI is admin-restricted.",
+    "status": "clean-flagged"
   },
   "components/QuestToasts.tsx": {
     "auditCount": 2,
@@ -341,15 +312,15 @@
     "status": "clean"
   },
   "routes/shop.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. shopBuyLock, self-check, buff cap 50, faction+talent discount, applyShopEffect covers 15 effect types, gold/currency buy, rift extend guard, workshop upgrades with tier validation.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 73: Gold source-of-truth inconsistency. shop.js /gear/buy and /shop/buy used legacy u.gold as read source, while crafting/campaigns/enchanting use u.currencies.gold. If the two fields drifted (any endpoint writes only to one), shop would see stale balance. Fixed: both endpoints now read u.currencies.gold first (calling ensureUserCurrencies), deduct from there, then sync u.gold = u.currencies.gold. /workshop/buy already used the correct pattern.",
     "status": "clean"
   },
   "routes/gems.js": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: Clean. All 5 POST endpoints have gemLock, auth, ownership checks, gold+essenz validation, gold sync. Socket/unsocket/upgrade/polish/unlock-socket all verified. Legendary gemPreserve in unsocket works correctly. parseGemKey validates type+tier. Max socket check uses socketsByRarity.",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 41: Race condition + data integrity deep-dive. All 5 POST endpoints (socket/unsocket/upgrade/unlock-socket/polish) share a single gemLock. Lock acquired before any state mutation, released in finally. Input validation on all endpoints: parseGemKey checks, ownership checks, socketIndex bounds, gold+essenz balance checks before deduction. Unsocket: gemPreserve legendary effect correctly applies random chance. Clean.",
     "status": "clean"
   },
   "routes/enchanting.js": {
@@ -367,7 +338,7 @@
   "routes/social.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: HIGH FIXED: 6 challenge endpoints missing toLowerCase+userName fallback. MED FIXED: challenge rules XSS, forfeit gold ordering. Architecture FIXED: challenges moved from dual-copy u.challenges to state.socialData.challenges (central store). challengeLock added. Friendship check added. Gold validation at proposal time. Trade counter-offer materials field now validated+persisted in currentOffer.",
+    "findings": "HIGH FIXED: 6 challenge endpoints moved to central store (state.socialData.challenges). Challenge auth+XSS+gold fixes. Trade counter-offer materials fix. 4 zombie buff types wired. Friendship required for challenges.",
     "status": "clean"
   },
   "routes/quests.js": {
@@ -377,16 +348,16 @@
     "status": "clean"
   },
   "routes/gacha.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Per-banner pity refactor verified. getBannerPity creates per-banner entry. guaranteed5050 correctly global (cross-banner featured guarantee, same as Genshin). 10-pull epic guarantee uses per-banner epicPity. Pull lock. Self-check. Duplicate refund. Talent bonuses (lucky streak, weekly epic). History capped at 100.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 40: Deep race-condition + exploit audit. Pull locks (acquirePullLock) are per-player, cover both /pull and /pull10, released in finally blocks. No cross-endpoint leak. Inventory cap checked before pulls. 10-pull epic guarantee correctly removes replaced item from inventory (skips if duplicate). Epic pity reset on guarantee works. Mid-loop pool-empty refund is proportional to 10-pull cost (player-favorable edge case, not exploitable). Duplicate detection uses base itemId (correct). No achievements crash can block pull (try/catch). Clean.",
     "status": "clean"
   },
   "routes/battlepass.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Season rotation, locks, claim guards, grantBattlePassXP talent bonus, all reward types. No issues found.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 69: 384-line Season Pass. 2 POST endpoints (claim/:level, claim-all) both under bpClaimLock. Double-claim guard via claimedLevels.includes. Level bounds check, currentLevel reached check. All reward types handled (gold/essenz/runensplitter/stardust/sternentaler/mondstaub/material/title/frame). Code-quality finding: /claim uses inline \"if (!user.currencies) user.currencies = {}\" while /claim-all uses ensureUserCurrencies() helper \u2014 inconsistent but both work. No race, no double-grant.",
+    "status": "clean-flagged"
   },
   "routes/factions.js": {
     "auditCount": 2,
@@ -397,37 +368,37 @@
   "routes/expedition.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted — only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim.",
+    "findings": "Cycle 3: MED FIXED: checkpoint rewards had xp field in data but XP was never granted \u2014 only gold/currencies processed. Added u.xp += rewards.xp. Prior fixes hold: expClaimLock, min-1-contribution guard, double-claim. XP-CASCADE-FLAG (wave 78): XP level-up cascade missing at line 238. Large expedition rewards can cross level threshold silently.",
     "status": "clean"
   },
   "routes/challenges-weekly.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Claim lock, double-claim guard (completedStages check), star calculation with speed bonus + legendary challengeScoreBonus, modifier system with effective progress tracking, milestone claim with cumulative star check. Week rotation deterministic.",
+    "findings": "Cycle 2: Clean. Claim lock, double-claim guard (completedStages check), star calculation with speed bonus + legendary challengeScoreBonus, modifier system with effective progress tracking, milestone claim with cumulative star check. Week rotation deterministic. XP-CASCADE-FLAG (wave 78): PARTIAL: line 358 detects level-up and awards stardust but does NOT return levelUp field in response \u2014 frontend cannot show celebration.",
     "status": "clean"
   },
   "routes/dungeons.js": {
     "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: MED FIXED: deleted player blocked dungeon finalization — run.collected.length never reached run.participants.length if a participant deleted their account. Now filters for active (existing) participants. Prior fixes hold.",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 42: Race condition deep-dive. 3 locks: dungeonCreateLock (create), dungeonJoinLock (join), collectLock (collect rewards). All per-player with finally-block release. Join: maxPlayers check + push is synchronous in Node single-thread \u2192 no cross-player race. Double-join guarded by participants.includes(uid). Cancel: no lock but safe (creator-only check + forming-only + Node atomicity). Collect: collected.push(uid) happens BEFORE success calc to prevent partial state. Double-collect guarded by collected.includes. Clean.",
     "status": "clean"
   },
   "routes/world-boss.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. wbClaimLock, wbBoostLock, double-claim guard (rewardsClaimed), level check WB_MIN_LEVEL=15, tavern rest check, unique drop ownership check, contribution-proportional rewards, auto-spawn/expiry, mondstaub boost with max-1 guard, boss-specific gear from FULL_GEAR_ITEMS.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 53: Race condition + edge case audit. 2 locks (wbClaimLock, wbBoostLock) per-player with finally release. Claim: double-claim guard pushes uid EARLY before reward calc (deliberate trade-off \u2014 never double-claim at cost of partial reward if error throws mid-logic, documented with comment). Unique/title/frame dedup via find() checks. Division by zero avoided via Math.max(delta, 1). Boost: double-boost guard, cost check, spendCurrency return check. /damage endpoint is admin-only (production damage flows through onQuestCompletedByUser). Clean.",
     "status": "clean"
   },
   "routes/mail.js": {
     "auditCount": 4,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 4: CRIT FIXED: duplicate itemIds in send caused item duplication exploit (send 1 receive N) — added seenIds dedup + type validation. HIGH FIXED: expired mail pruning destroyed uncollected gold/items — now keeps expired mail with attachments. LOW FIXED: _mailsSent tracking moved before saveUsers() for persistence.",
+    "findings": "CRIT FIXED: item duplication exploit via duplicate itemIds. HIGH FIXED: expired mail pruning destroyed uncollected items. LOW FIXED: _mailsSent tracking after saveUsers. Added type validation on itemIds elements.",
     "status": "clean"
   },
   "routes/kanais-cube.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. cubeExtractLock+cubeEquipLock. Locked item check. Gold sync. Escalating cost by extraction count. Max 3 equipped passives. Unique+BoP check.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 56: 235-line cube system. 3 endpoints (extract/equip/unequip), 2 separate locks. Extract validates: locked item check, legendary effect presence, cost (essenz+gold escalating), library cap 50, duplicate type check. Forces MINIMUM value on extraction (D3-style anti-exploit for keeping good rolls on gear). Equip validates slot name + category/slot match. Splice destroys item permanently, no rollback if saveUsers fails (acceptable risk \u2014 saveUsers rarely fails).",
     "status": "clean"
   },
   "routes/talent-tree.js": {
@@ -445,13 +416,13 @@
   "routes/players.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 3: CRIT FIXED: companion expedition collect read expedition.startedAt (nonexistent field, should be sentAt) — broke companion_expedition_bond_xp talent. HIGH FIXED: GET /api/tavern/status was unauthenticated + mutated state — now requireAuth+self-check. HIGH FIXED: companion ultimate cooldown set AFTER effect — now claimed BEFORE (crash safety). MED FIXED: companion swap mutated fields before cooldown check. MED FIXED: companion name/emoji/species unbounded input. MED FIXED: notification-center read stored unbounded quest array. MED FIXED: search query length uncapped. LOW FIXED: cv-export unauthenticated.",
+    "findings": "CRIT FIXED: expedition.startedAt\u2192sentAt. HIGH FIXED: tavern status unauthed+mutating. HIGH FIXED: ultimate cooldown ordering. MED FIXED: companion swap pre-cooldown mutation. MED FIXED: name/emoji unbounded. MED FIXED: notif-read unbounded. MED FIXED: search query unbounded. LOW FIXED: cv-export unauthed. 4 zombie buffs wired (craft_discount, rift_time_extend, dungeon_reset, expedition_speed).",
     "status": "clean"
   },
   "routes/users.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. authLimiter 10/min, bcrypt password hash, timing-safe legacy API key compare, sensitive field stripping (passwordHash/apiKey/refreshTokens/resetToken/emailVerifyToken), JWT token pair generation, refresh token rotation, email validation regex, password policy (8+ chars, uppercase, number).",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 71: Security deep-dive. 2 flagged issues (not fixed in-stream, need dedicated security audit): (1) /api/auth/login has timing-oracle \u2014 user-not-found returns in ~1ms, user-wrong-password after ~100ms bcrypt delay. Attacker can enumerate valid usernames. Fix: always run bcrypt.compare (use a dummy hash for nonexistent users). (2) /api/register has async race \u2014 between await bcrypt.hash and state.users write, a concurrent request with same name can interleave. Both see empty usersByName, both create user, last write wins. Node single-thread limits interleave points to awaits but bcrypt.hash IS one. Fix: lock around register, or re-check name after bcrypt. Clean otherwise: authLimiter rate limit, timingSafeEqual for legacy apiKey path, proper token pair generation. Wave 71.1 FIXED: (1) Timing-oracle fixed \u2014 pre-compute DUMMY_PASSWORD_HASH at module load, always run bcrypt.compare in login even for nonexistent users. (2) Register race fixed \u2014 _registrationInProgress Set gates same-name concurrent registrations; also re-check usersByName AFTER bcrypt.hash as belt-and-suspenders. finally{} releases the Set slot. XP-CASCADE-FLAG (wave 78): Admin /users/:id/xp at line 158 missing cascade. Admin tool, lower priority but should still detect level crossing.",
     "status": "clean"
   },
   "routes/currency.js": {
@@ -461,15 +432,15 @@
     "status": "clean"
   },
   "routes/game.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. Ritual complete: self-check, tavern-rest block, idempotency via lastCompleted===today (prevents double-complete without lock — safe in single-threaded Node.js), streak logic with trigger-type grace, commitment/difficulty XP scaling, blood pact multipliers. Title equip: requireSelf, simple assignment. No lock needed on non-currency mutations.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-17",
+    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable \u2014 nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified. XP-CASCADE-FLAG (wave 78): Two XP sites missing cascade: line 493 (ritual XP + streak bonus) and line 510 (Blood Pact completion bonus, can be 3-5x normal). Large XP gains most likely to cross levels.",
     "status": "clean"
   },
   "routes/habits-inventory.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. inventoryLock on equip/unequip/discard/lock. requireSelf on all player mutations. Gold sync on shop-equip. Cross-slot dupe check. BoE binding on equip. Lock-check on discard. Equipped-check on discard. Level-gate on equip.",
+    "auditCount": 4,
+    "lastAuditDate": "2026-04-24",
+    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners. Wave 73.1: Same gold source-of-truth bug as shop.js \u2014 /player/:name/equip/:itemId when buying gear read legacy u.gold first. If currencies.gold drifted higher, user saw \"Insufficient gold\" despite having enough. Fixed to read u.currencies.gold first (matches shop.js fix). XP-CASCADE-FLAG (wave 78): Three XP sites missing cascade: line 87 (habit bond XP), line 175 (ritual-effect xp), line 475 (multi_reward xp).",
     "status": "clean"
   },
   "routes/agents.js": {
@@ -479,15 +450,15 @@
     "status": "clean"
   },
   "routes/integrations.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. HMAC-SHA256 fail-closed, timing-safe compare, raw body for signature, XSS sanitization on PR title/body.",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 77: 214-line integrations. GitHub webhook HMAC-SHA256 implementation is solid: fail-closed (no secret = reject), uses req.rawBody (fallback to re-serialized JSON which almost certainly fails HMAC \u2014 acceptable fail-closed), length check before timingSafeEqual. Forge-temp-decay requireApiKey. Minor DST edge case in yesterday computation via Date.now()-86400000 \u2014 at DST transitions yields 23h/25h offset, not actionable. Clean.",
     "status": "clean"
   },
   "routes/codex.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-10",
-    "findings": "Cycle 98-100: friends_count unlock added, _dungeonsCompleted→_dungeonCompletions field fix, daily_missions_completed dead condition removed. All 20 active unlock types now verified against backend tracking fields.",
+    "findings": "Cycle 98-100: friends_count unlock added, _dungeonsCompleted\u2192_dungeonCompletions field fix, daily_missions_completed dead condition removed. All 20 active unlock types now verified against backend tracking fields.",
     "status": "clean"
   },
   "lib/state.js": {
@@ -499,7 +470,7 @@
   "lib/helpers.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-05",
-    "findings": "gold sync centralized, variety bonus OK, rested XP OK",
+    "findings": "gold sync centralized, variety bonus OK, rested XP OK XP-CASCADE-FLAG (wave 78): Two XP sites missing cascade in helpers: line 1324 (loot auto-consume XP) and line 2064 (friend echo XP passive). Friend echo silently levels up friends without seasonXp/BP/stardust.",
     "status": "clean"
   },
   "lib/auth.js": {
@@ -515,27 +486,27 @@
     "status": "clean"
   },
   "lib/npc-engine.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. weighted spawn, timezone handling",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 75: 341-line NPC spawn + departure engine. Clean. Weighted random NPC selection. Departure processing fails in-progress quests, sets cooldown, clears playerProgress NPC chains, rebuilds questsById Map. spawnNpc wires prev/next IDs for quest chains. trySpawnNpcs handles guaranteed visits (gacha), respects max-active + cooldowns. forceSpawnMinimumNpc fallback. Jittered departure time (80-120%). Quest ID generation has negligible collision risk via random.slice(2,6).",
     "status": "clean"
   },
   "lib/quest-catalog.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. Idempotent seed (checks quest-seed-001). push+questsById.set correct. Metadata rebuild. No mutations outside boot.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 58: Clean. 96-line catalog utility. rebuildCatalogMeta: simple aggregation by category/class. seedQuestCatalog: idempotent (checks quest-seed-001 before seeding). Template map uses rarityMap with safe \"common\" fallback. Correctly maintains state.questsById Map per project convention. No findings.",
     "status": "clean"
   },
   "routes/campaigns.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization. requireMasterKey on PATCH/DELETE.",
-    "status": "clean"
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Re-audit focus Language Policy: all 15 API error strings are English (Admin only / Campaign not found / title required / Auth required / Reward already claimed etc.) - clean. Status 429 for \"Request already in progress\" is consistent with gacha.js. Sanitize / lock / double-claim-guard / reward-clamp all intact. FLAGGED (not fixed, cross-system): line 199 `u.xp += baseXp` raw add without level-up detection \u2014 if campaign-claim pushes player over a level threshold, celebration may not fire. Deferred to cross-system XP-pipeline audit. XP-CASCADE-FLAG (wave 78): XP level-up cascade missing (raw u.xp += baseXp). Player crossing level threshold via campaign claim gets no celebration, no stardust, no BP XP, no codex/achievement check. Already flagged wave 23 \u2014 still broken.",
+    "status": "clean-flagged"
   },
   "lib/rotation.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. seeded random, rarity assignment",
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 74: 283-line daily rotation. Clean. Double-rotation guard (lastDailyRotation === todayStr). Midnight-guard on restart (ms<=60000 \u2192 +24h). Recurring quest interval reset with playerProgress completion clearing. System quest cleanup filter preserves NPC/companion quests. Per-player pool reset on rotation (aggressive but intentional). Schmiedefieber rotation wrapped in try/catch. Recursive setTimeout resilient to errors.",
     "status": "clean"
   },
   "lib/quest-templates.js": {
@@ -593,10 +564,10 @@
     "status": "clean"
   },
   "hooks/useQuestActions.ts": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-10",
-    "findings": "MED fixed: handleShopBuy+handleGearBuy double-click protection added. handleToggleFavorite now shows error toast instead of console.warn. All 12 handlers verified with reviewApiKey.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 48: Inconsistent retry behavior on network errors. 4 actions have onRetry callback (claim, unclaim, coop-complete, complete). 7 do NOT (approve, reject, favorite toggle, coop-claim, pool refresh, purchase, gear purchase). Adding blanket retry is risky \u2014 purchase is NOT idempotent, retrying a successful purchase that timed out reading response could double-charge. FLAGGED (requires backend-behavior audit per endpoint). All non-network errors have proper d.error fallback. loadingAction state prevents double-clicks. Overall sound.",
+    "status": "clean-flagged"
   },
   "lib/sounds.ts": {
     "auditCount": 2,
@@ -613,7 +584,7 @@
   "public/data/uniqueItems.json": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: MED content gap — 35 world boss unique drop IDs referenced in worldBosses.json but missing from uniqueItems.json. Fallback in world-boss.js:498 creates generic items. No crash, but missing stats/lore/icons for 35 boss-exclusive drops. Requires content creation.",
+    "findings": "Cycle 3: MED content gap \u2014 35 world boss unique drop IDs referenced in worldBosses.json but missing from uniqueItems.json. Fallback in world-boss.js:498 creates generic items. No crash, but missing stats/lore/icons for 35 boss-exclusive drops. Requires content creation.",
     "status": "needs-content"
   },
   "public/data/codex.json": {
@@ -661,7 +632,7 @@
   "public/data/gems.json": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. 6 types × 5 tiers = 30 gems",
+    "findings": "Cycle 2: Verified in batch audit. 6 types \u00d7 5 tiers = 30 gems",
     "status": "clean"
   },
   "public/data/talentTree.json": {
@@ -679,7 +650,7 @@
   "public/data/battlePass.json": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in batch audit. 5 seasons × 40 rewards",
+    "findings": "Cycle 2: Verified in batch audit. 5 seasons \u00d7 40 rewards",
     "status": "clean"
   },
   "public/data/weeklyChallenges.json": {
@@ -721,19 +692,13 @@
   "routes/rift.js": {
     "auditCount": 3,
     "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 3: MED FIXED: expired rift in complete-stage didn't set rift.active=false (self-healed on next GET but inconsistent). HIGH FIXED: expired rift in complete-stage didn't write fail cooldown entry — player could retry immediately after timer expiry. Bolstering affix accumulation verified correct. Mythic replay 7-day rolling window noted (design choice, not bug).",
+    "findings": "Cycle 3: MED FIXED: expired rift in complete-stage didn't set rift.active=false (self-healed on next GET but inconsistent). HIGH FIXED: expired rift in complete-stage didn't write fail cooldown entry \u2014 player could retry immediately after timer expiry. Bolstering affix accumulation verified correct. Mythic replay 7-day rolling window noted (design choice, not bug).",
     "status": "clean"
   },
   "routes/config-admin.js": {
     "auditCount": 2,
     "lastAuditDate": "2026-04-13",
     "findings": "Cycle 3: Verified new swornBondSummary/pendingBonds in socialSummary + notifications. bondChestReady + pendingBonds in notifications object. Prior findings still clean: GET-only batch, sensitive fields stripped, rested XP live-calc.",
-    "status": "clean"
-  },
-  "routes/campaigns.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Verified in sweep audit. Clean. Player lock on claim, double-claim guard per-user, input XSS escaping, quest validation. PATCH/DELETE properly master-key gated.",
     "status": "clean"
   },
   "routes/npcs-misc.js": {
@@ -762,8 +727,8 @@
   },
   "components/DashboardModals.tsx": {
     "auditCount": 2,
-    "lastAuditDate": "2026-04-13",
-    "findings": "Cycle 2: Clean. No font violations (0.75rem=12px minimum). Unicode symbols OK per CLAUDE.md. Currency conversion with reviewApiKey (correctly passed). Loading states, error messages, balance sync. Clean.",
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 27: Language Policy sweep + a11y. UI-shell strings translated: Waehrungen -> Currencies, Ausblenden/Waehrungen tauschen -> Hide/Currency Exchange (per user), Modifikator-Uebersicht -> Modifier Breakdown, Aktueller Streak -> Current Streak. Dropdown currency names capitalized (gold -> Gold, runensplitter -> Runensplitter etc. per user). All 5 modals got role=dialog + aria-modal=true + aria-label (Currencies / Modifier breakdown / Forge streak details / Quests overview / How XP works). Currency description flavor text kept German (content per policy).",
     "status": "clean"
   },
   "lib/auth-client.ts": {
@@ -772,22 +737,16 @@
     "findings": "HIGH fixed: authFetch token refresh retry was dead code (hadToken pattern). getAuthHeaders expiry check added earlier. getValidToken still returns without expiry check (unused externally).",
     "status": "clean"
   },
-  "routes/campaigns.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. campaignClaimLock on claim. Double-claim guard per user. Gold sync correct. XSS sanitization on create/patch. isCampaignFullyCompleted uses questsById correctly. Line 139 uses state.quests.filter for claimedBy query (necessary, not a find-by-id). requireMasterKey on PATCH/DELETE.",
-    "status": "clean"
-  },
   "routes/sworn-bonds.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-17",
-    "findings": "Cycle 2: MED FIXED: timed bonds (4w/8w duration) never expired — expiresAt was set but never checked. Added auto-expiry in getActiveBondForPlayer(). brokenBy=null on expiry (no cooldown). Prior fixes hold: bondLock on all POSTs, double-claim guard, streak logic.",
-    "status": "clean"
+    "auditCount": 3,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 50: Deep race-condition audit. All 6 mutation endpoints (propose/accept/cancel/decline/break/claim-chest) have bondLock.acquire/release with finally. Status transitions (pending->active->broken) checked before every mutation. Propose checks both players for existing bonds. Accept double-checks acceptor for concurrent bond. Node single-thread makes concurrent accept+cancel safe. FLAGGED (low-priority per user): line 470 break confirmation message is German (\"Schwurbund wirklich brechen? 7 Tage Abklingzeit.\") \u2014 UI shell should be English. Break endpoint uses non-standard 200+ok:false for confirmation prompt pattern but functional.",
+    "status": "clean-flagged"
   },
   "components/ContextualTutorial.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "LOW FIXED: fontSize 11 -> 12 (min font violation line 241). No bugs, no security issues. Clean.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 24: Room-name policy violations in German tutorial titles - \"Der Riss\" -> \"The Rift\", \"Das Untergewoelbe\" -> \"The Undercroft\" (explicit in room-names English list). User decisions: \"Der Basar\" -> \"The Bazaar\" (room-name consistency), \"Der Season Pass\" -> \"Season Pass\" (drop German article from English name). OK/Verstanden inconsistency (two dismiss buttons same function): both now \"Verstanden\" per Contextual Tutorial = German policy. Added aria-labels to all three dismiss buttons including moment title so screenreaders announce context.",
     "status": "clean"
   },
   "components/CountUp.tsx": {
@@ -796,52 +755,34 @@
     "findings": "No issues. Clean utility component (67 lines). Proper RAF cleanup.",
     "status": "clean"
   },
-  "components/FirstVisitBanner.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "No issues. Clean 40-line component. Uses useFirstVisit hook correctly.",
-    "status": "clean"
-  },
-  "components/DashboardModals.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "Clean. ModalPortal on currencies+modifier. ESC handler unified. Conversion: disabled title tooltips, cursor:not-allowed, preview, balance validation. Object.assign currencies update on convert success. LOW: modifier modal uses z-[9999] inline instead of ModalPortal default.",
-    "status": "clean"
-  },
   "components/ItemTooltip.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-15",
-    "findings": "No bugs or security issues. Portal-based tooltip with ESC/click-outside. All images have onError. All stats have tooltips via Tip component.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 22: Lock indicator raw title= -> <Tip k=\"item_lock\"> (policy fix). Socket title \"Empty\" -> \"Empty socket\" / \"{gem} gem\" for clarity. Set ID raw printed (e.g. \"adventurer\") -> formatSetLabel() with generic-tier labels + kebab-case pretty-print for named sets. Added maxHeight 80vh + overflowY:auto on tooltip body to prevent viewport overflow when item has many stats+sockets+legendary+flavor.",
     "status": "clean"
   },
   "lib/email.js": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Plaintext email (no XSS). encodeURIComponent on URL params. API key from env. Graceful error handling. Inbox caching.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 25: Doc/code env-var mismatch fixed. CLAUDE.md+.env.example documented AGENTMAIL_FROM (full email) but code read AGENTMAIL_USERNAME. resolveUsername() now accepts both (extracts username from FROM if full email, falls back to USERNAME, then default). No breaking change. User-facing tone: plain functional templates -> full Skulduggery-tone per user decision. Subject lines unchanged (spam-filter-safe). Password reset + verification emails now match in-world Hall voice.",
     "status": "clean"
   },
   "lib/companion-config.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Pure config — 12 companion colors, portrait path helper, virtual type set. No logic, no side effects.",
-    "status": "clean"
-  },
-  "hooks/useFirstVisit.ts": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. localStorage hook with try/catch. Proper initial state via useState callback.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 28: Clean. 36-line config utility. 12 companion types all have color entries. \"other\" pet type falls back to DEFAULT_COMPANION_COLOR. No user-facing strings. No a11y concerns.",
     "status": "clean"
   },
   "app/layout.tsx": {
-    "auditCount": 1,
-    "lastAuditDate": "2026-04-16",
-    "findings": "Clean. Standard Next.js layout. Geist fonts. viewport maximumScale=5. lang=en correct per translation rules.",
+    "auditCount": 2,
+    "lastAuditDate": "2026-04-24",
+    "findings": "Wave 26: Added themeColor #0b0d11 + colorScheme dark to viewport config. Mobile browsers (chrome/safari) now paint the address bar/notification area to match body bg instead of default white. User decisions: OG tags skipped (beta not shared externally), meta description kept as \"Your adventure awaits.\" Also stale markers cleaned up: hooks/useFirstVisit.ts and components/FirstVisitBanner.tsx did not exist in codebase, removed from tracker + CLAUDE.md reference.",
     "status": "clean"
   },
   "public/data/gachaPool.json": {
     "auditCount": 1,
     "lastAuditDate": "2026-04-16",
-    "findings": "MED FIXED: All 6 gear items had inflated stat ranges violating T4 max (legendaries 8-20→5-8, epics 5-12→4-8, rares 4-9→4-8). Affix counts correct. Consumables OK. uniqueDrops cross-refs valid.",
+    "findings": "MED FIXED: All 6 gear items had inflated stat ranges violating T4 max (legendaries 8-20\u21925-8, epics 5-12\u21924-8, rares 4-9\u21924-8). Affix counts correct. Consumables OK. uniqueDrops cross-refs valid.",
     "status": "clean"
   },
   "public/data/bannerTemplates.json": {
@@ -868,40 +809,9 @@
     "findings": "Clean. 10 suffixes with level-scaled stat bonuses. Values reasonable (1-5 per stat at Lv50). Used for gear naming.",
     "status": "clean"
   },
-  "routes/game.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "HIGH FIXED: MEGA_MILESTONES (180/365 day) unreachable — nested inside !pactCompleted block, moved outside. Auth checks correct. Streak logic correct with trigger-type grace. Blood pact multipliers verified.",
-    "status": "clean"
-  },
-  "routes/social.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "HIGH FIXED: 6 challenge endpoints moved to central store (state.socialData.challenges). Challenge auth+XSS+gold fixes. Trade counter-offer materials fix. 4 zombie buff types wired. Friendship required for challenges.",
-    "status": "clean"
-  },
-  "routes/mail.js": {
-    "auditCount": 4,
-    "lastAuditDate": "2026-04-17",
-    "findings": "CRIT FIXED: item duplication exploit via duplicate itemIds. HIGH FIXED: expired mail pruning destroyed uncollected items. LOW FIXED: _mailsSent tracking after saveUsers. Added type validation on itemIds elements.",
-    "status": "clean"
-  },
-  "routes/sworn-bonds.js": {
-    "auditCount": 2,
-    "lastAuditDate": "2026-04-17",
-    "findings": "MED FIXED: bond expiresAt set but never checked — timed bonds never expired. Added auto-expiry in getActiveBondForPlayer. All POST endpoints have bondLock.",
-    "status": "clean"
-  },
-  "routes/players.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "CRIT FIXED: expedition.startedAt→sentAt. HIGH FIXED: tavern status unauthed+mutating. HIGH FIXED: ultimate cooldown ordering. MED FIXED: companion swap pre-cooldown mutation. MED FIXED: name/emoji unbounded. MED FIXED: notif-read unbounded. MED FIXED: search query unbounded. LOW FIXED: cv-export unauthed. 4 zombie buffs wired (craft_discount, rift_time_extend, dungeon_reset, expedition_speed).",
-    "status": "clean"
-  },
-  "routes/habits-inventory.js": {
-    "auditCount": 3,
-    "lastAuditDate": "2026-04-17",
-    "findings": "MED FIXED: pity_minus_5 consumable used legacy global pityCounter instead of per-banner pity. Now applies +5 to all active banners.",
-    "status": "clean"
+  "_meta": {
+    "description": "Audit markers \u2014 tracks which files have been audited, when, and how many times. Future Claude Code sessions should read this file before auditing and increment the count.",
+    "usage": "Before auditing a file, check if it has a marker. After auditing, update the marker. Higher auditCount = lower priority for re-audit.",
+    "format": "{ filepath: { auditCount, lastAuditDate, lastAuditSession, findings, status } }"
   }
 }

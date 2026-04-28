@@ -144,22 +144,31 @@ export async function fetchDashboard(playerName?: string): Promise<{
 }
 
 export async function createStarterQuestsIfNew(playerName: string, apiKey: string) {
+  const { getAuthHeaders } = await import("@/lib/auth-client");
+  const key = `starter_quests_${playerName.toLowerCase()}`;
+  if (localStorage.getItem(key) === "true") return;
+  const headers = { "Content-Type": "application/json", ...getAuthHeaders(apiKey) };
+  // Note: we intentionally don't mention a specific companion name here —
+  // the player picked one in the wizard already, so promising "Dobbie the
+  // Cat" would contradict whatever they chose. The quest teaches the
+  // claim → complete flow; the companion is already theirs.
+  const starterQuests = [
+    { title: "Willkommen in der Halle", description: "Deine erste Quest. Klick auf 'Abschließen' und die Belohnung gehört dir. So funktioniert der gesamte Turm — mit deutlich mehr Schritten dazwischen, und mindestens einer Explosion.", type: "personal", rarity: "rare", createdBy: "system" },
+    { title: "Schreibtisch ordnen", description: "Räum deinen Arbeitsplatz auf. Die Produktivitätsforschung nennt das 'Umweltoptimierung'. Der Rest der Welt nennt es 'endlich'.", type: "personal", rarity: "common", createdBy: "system" },
+    { title: "30 Minuten lesen", description: "Such dir irgendetwas zum Lesen. Ein Buch, einen Artikel, die Rückseite einer Müslipackung — das Archiv ist nicht wählerisch. Es zählt nur die Minuten.", type: "learning", rarity: "common", createdBy: "system" },
+    { title: "10 Minuten dehnen", description: "Eine kurze Dehnroutine. Der Körper ist das einzige Werkzeug, das du nicht ersetzen kannst. Er erinnert dich gelegentlich daran. Meistens im Ungünstigsten Moment.", type: "fitness", rarity: "common", createdBy: "system" },
+  ];
   try {
-    const { getAuthHeaders } = await import("@/lib/auth-client");
-    const key = `starter_quests_${playerName.toLowerCase()}`;
-    if (localStorage.getItem(key) === "true") return;
-    localStorage.setItem(key, "true");
-    const headers = { "Content-Type": "application/json", ...getAuthHeaders(apiKey) };
-    const starterQuests = [
-      { title: "Welcome to the Guild", description: "Complete this quest to earn your first companion — Dobbie the Cat. Click 'Complete' to claim your reward. This teaches you the claim → complete flow.", type: "personal", rarity: "rare", createdBy: "system" },
-      { title: "Organize Your Desk", description: "Tidy up your workspace. A clear desk leads to a clear mind.", type: "personal", rarity: "common", createdBy: "system" },
-      { title: "Read for 30 Minutes", description: "Pick any book, article, or topic you're curious about and read for 30 minutes.", type: "learning", rarity: "common", createdBy: "system" },
-      { title: "10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving.", type: "fitness", rarity: "common", createdBy: "system" },
-    ];
-    await Promise.all(starterQuests.map(q =>
-      fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(5000) })
+    // Only set the "done" flag if all four POSTs actually succeeded — otherwise
+    // a network failure during first login would permanently block the player
+    // from ever getting starter quests.
+    const results = await Promise.all(starterQuests.map(q =>
+      fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(10000) })
     ));
-  } catch { /* ignore */ }
+    if (results.every(r => r.ok)) {
+      try { localStorage.setItem(key, "true"); } catch { /* private browsing */ }
+    }
+  } catch { /* leave the flag unset so next login retries */ }
 }
 
 // ─── Time helper ──────────────────────────────────────────────────────────────

@@ -131,6 +131,10 @@ router.get('/api/gems', requireAuth, (req, res) => {
 // ─── GET /api/gems/inventory/:playerId — Player gem inventory ──────────────
 router.get('/api/gems/inventory/:playerId', requireAuth, (req, res) => {
   const playerId = req.params.playerId.toLowerCase();
+  // Gem inventory is private — only self or admin may read it.
+  if (!req.auth?.isAdmin && req.auth?.userId !== playerId) {
+    return res.status(403).json({ error: 'Cannot view another player\'s gem inventory' });
+  }
   const u = state.users[playerId];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 

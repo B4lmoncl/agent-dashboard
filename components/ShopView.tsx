@@ -133,7 +133,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
   if (loading) {
     return (
       <div className="space-y-3 tab-content-enter">
-      <TutorialMomentBanner viewId="shop" playerLevel={1} />
+      <TutorialMomentBanner viewId="shop" />
         {Array.from({ length: 3 }, (_, i) => (
           <div key={i} className="skeleton-card h-20 rounded-lg" />
         ))}
@@ -153,7 +153,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
 
   return (
     <div data-feedback-id="shop-view" className="space-y-4 tab-content-enter">
-      <TutorialMomentBanner viewId="shop" playerLevel={1} />
+      <TutorialMomentBanner viewId="shop" />
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <div>
@@ -298,7 +298,7 @@ export default function ShopView({ onBuy, onNavigate, onRewardCelebration }: {
           const shopConf = CURRENCY_SHOPS.find(s => s.key === activeCurrencyTab);
           const items = currencyItems[activeCurrencyTab] || [];
           if (!shopConf) return null;
-          if (items.length === 0) return <p className="text-xs text-w20">No items available in this shop.</p>;
+          if (items.length === 0) return <p className="text-xs text-w20">The shelves are empty. The merchant looks embarrassed. Come back tomorrow.</p>;
           const bal = currencyBalances[activeCurrencyTab] ?? 0;
           const ownedFrameIds = new Set((user?.unlockedFrames || []).map(f => f.id));
           const ownedTitleIds = new Set((user?.earnedTitles || []).map(t => t.id));

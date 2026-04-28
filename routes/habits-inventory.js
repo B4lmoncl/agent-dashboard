@@ -10,7 +10,7 @@ const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus, getStatBreakdown,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
   getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment, getGearScore,
-  getTodayBerlin, createPlayerLock, INVENTORY_CAP,
+  getTodayBerlin, createPlayerLock, INVENTORY_CAP, grantPlayerXp,
 } = require('../lib/helpers');
 const inventoryLock = createPlayerLock('inventory');
 const { requireAuth, requireSelf } = require('../lib/middleware');
@@ -30,11 +30,17 @@ router.get('/api/habits', (req, res) => {
 
 router.post('/api/habits', requireAuth, (req, res) => {
   const { title, positive, negative, playerId } = req.body;
-  if (!title) return res.status(400).json({ error: 'title is required' });
+  if (!title || typeof title !== 'string') return res.status(400).json({ error: 'title is required (string)' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  // Auth: non-admin may only create habits for themselves
+  if (!req.auth?.isAdmin && req.auth?.userId !== (playerId || '').toLowerCase()) {
+    return res.status(403).json({ error: 'Cannot create habits for another player' });
+  }
+  const safeTitle = String(title).replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 200).trim();
+  if (!safeTitle) return res.status(400).json({ error: 'title must be non-empty' });
   const habit = {
     id: `habit-${Date.now()}`,
-    title,
+    title: safeTitle,
     positive: positive !== false,
     negative: negative === true,
     color: 'gray',
@@ -78,7 +84,7 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
       u._habitCompletedToday[habitKey] = true;
       const bondLevel = u.companion?.bondLevel ?? 1;
       const bondBonus = 1 + 0.01 * Math.max(0, bondLevel - 1);
-      u.xp = (u.xp || 0) + Math.round(3 * bondBonus);
+      grantPlayerXp(u, Math.round(3 * bondBonus));
       const dropBonus = getUserDropBonus(uid);
       const { level: habitPlayerLevel } = getLevelInfo(u.xp || 0);
       const dropped = rollLoot(0.05 + dropBonus, habitPlayerLevel);
@@ -157,16 +163,16 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   switch (effectType) {
     case 'gold': {
       const amt = effect.amount || 0;
-      u.gold = (u.gold || 0) + amt;
       ensureUserCurrencies(u);
-      u.currencies.gold = u.gold;
+      u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) + amt;
+      u.gold = u.currencies.gold;
       updatedValues.gold = u.gold;
       message = `+${amt} Gold erhalten`;
       break;
     }
     case 'xp': {
       const amt = effect.amount || 0;
-      u.xp = (u.xp || 0) + amt;
+      grantPlayerXp(u, amt);
       updatedValues.xp = u.xp;
       message = `+${amt} XP erhalten`;
       break;
@@ -466,10 +472,10 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const xp = effect.xp || 0;
       const gold = effect.gold || 0;
       const essenz = effect.essenz || 0;
-      u.xp = (u.xp || 0) + xp;
-      u.gold = (u.gold || 0) + gold;
+      grantPlayerXp(u, xp);
       ensureUserCurrencies(u);
-      u.currencies.gold = u.gold;
+      u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) + gold;
+      u.gold = u.currencies.gold;
       u.currencies.essenz = (u.currencies.essenz || 0) + essenz;
       updatedValues.xp = u.xp;
       updatedValues.gold = u.gold;
@@ -670,7 +676,11 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   const shopItem = state.gearById.get(req.params.itemId);
   if (shopItem) {
     if (level < shopItem.minLevel) return res.status(400).json({ error: `Requires level ${shopItem.minLevel}` });
-    if ((u.gold || 0) < shopItem.cost) return res.status(400).json({ error: `Insufficient gold. Need ${shopItem.cost}, have ${u.gold || 0}` });
+    // u.currencies.gold is source of truth — u.gold can be stale if another
+    // route wrote only to currencies. Matches the fix in shop.js wave 73.
+    ensureUserCurrencies(u);
+    const goldBalance = u.currencies.gold ?? 0;
+    if (goldBalance < shopItem.cost) return res.status(400).json({ error: `Insufficient gold. Need ${shopItem.cost}, have ${goldBalance}` });
     // Check if same template already equipped in that slot
     const currentSlotItem = u.equipment[shopItem.slot];
     if (currentSlotItem && typeof currentSlotItem === 'object' && currentSlotItem.templateId === shopItem.id) {
@@ -690,9 +700,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
 
     const cost = Number(shopItem.cost) || 0;
     if (!isFinite(cost) || cost < 0) return res.status(400).json({ error: 'Invalid cost' });
-    u.gold = (u.gold || 0) - cost;
-    ensureUserCurrencies(u);
-    u.currencies.gold = u.gold;
+    u.currencies.gold = goldBalance - cost;
+    u.gold = u.currencies.gold;
     // Roll stats for the new item
     const instance = createGearInstance(shopItem);
     // BoE items become bound on equip
@@ -863,7 +872,8 @@ router.get('/api/changelog', async (req, res) => {
     await fetchAndCacheChangelog();
   }
   if (!changelogCache) {
-    return res.json({ entries: [], error: 'Could not fetch changelog from GitHub' });
+    // GitHub fetch failed — signal upstream failure so the client can retry.
+    return res.status(502).json({ entries: [], error: 'Could not fetch changelog from GitHub' });
   }
   res.json(changelogCache);
 });

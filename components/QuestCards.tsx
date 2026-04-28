@@ -141,7 +141,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
   const isCoop = quest.type === "relationship-coop";
   const flavorText = quest.npcGiverId
-    ? (quest.flavorText || `Quest von ${quest.npcName || "NPC"}`)
+    ? (quest.flavorText || `Quest from ${quest.npcName || "NPC"}`)
     : QUEST_BOARD_FLAVORS[
         Math.abs((quest.id.charCodeAt(0) ?? 0) + (quest.id.charCodeAt(quest.id.length - 1) ?? 0)) % QUEST_BOARD_FLAVORS.length
       ];
@@ -169,6 +169,9 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
+        role={onDetails ? "button" : undefined}
+        tabIndex={onDetails ? 0 : undefined}
+        aria-label={onDetails ? `Open quest details: ${quest.title}` : undefined}
         className={`cv-auto rounded-xl flex flex-col${onDetails ? " cursor-pointer" : ""} relative overflow-hidden quest-card-emboss card-hover-depth card-hover-lift${isLegendary ? " crystal-breathe-card" : isEpic ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}`}
         title={`${quest.title}${quest.npcName ? ` — from ${quest.npcName}` : ""}${quest.checklist ? ` (${quest.checklist.filter(c => c.done).length}/${quest.checklist.length} steps)` : ""}${QUEST_TYPE_FACTION[quest.type ?? ""] ? ` · +Rep ${QUEST_TYPE_FACTION[quest.type ?? ""].name}` : ""}`}
         style={{
@@ -181,6 +184,15 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
           ...(isLegendary ? { "--glow-color": `${rarityColor}55`, "--card-base-shadow": `0 0 20px ${rarityColor}55, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)${topGlow}` } as React.CSSProperties : isEpic ? { "--glow-color": `${rarityColor}44` } as React.CSSProperties : {}),
         }}
         onClick={onDetails ? () => onDetails(quest) : undefined}
+        onKeyDown={onDetails ? (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            // Only trigger when the quest card itself has focus — nested buttons handle their own keys.
+            if (e.target === e.currentTarget) {
+              e.preventDefault();
+              onDetails(quest);
+            }
+          }
+        } : undefined}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
           el.style.borderColor = `${rarityColor}${isLegendary ? "ee" : isEpic ? "dd" : "cc"}`;
@@ -292,6 +304,10 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   return (
     <div
       data-feedback-id={`quest-board.quest-card.${quest.id}`}
+      role="button"
+      tabIndex={0}
+      aria-label={`${expanded ? "Collapse" : "Expand"} quest: ${quest.title}`}
+      aria-expanded={expanded}
       className={`cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden${isLegendary && !selected ? " crystal-breathe-card" : isEpic && !selected ? " crystal-breathe-epic" : ""}${isLoading ? " quest-card-loading" : ""}${quest.npcGiverId && !isLoading ? " npc-quest-pulse" : ""}${actionAnim === "claim" ? " quest-card-claimed" : actionAnim === "complete" ? " quest-card-completing" : ""}`}
       style={{
         background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
@@ -302,6 +318,12 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         ...(isLegendary && !selected ? { "--glow-color": `${rarityColor}55`, "--card-base-shadow": `0 0 18px ${rarityColor}44${topGlow}` } as React.CSSProperties : isEpic && !selected ? { "--glow-color": `${rarityColor}44` } as React.CSSProperties : {}),
       }}
       onClick={() => setExpanded(v => !v)}
+      onKeyDown={(e) => {
+        if ((e.key === "Enter" || e.key === " ") && e.target === e.currentTarget) {
+          e.preventDefault();
+          setExpanded(v => !v);
+        }
+      }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
         el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}${isLegendary ? "cc" : isEpic ? "bb" : isRarePlus ? "99" : "77"}`;
@@ -487,19 +509,19 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
             </div>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onClaim(quest.id); }} disabled={isLoading} className="text-xs font-bold quest-seal-btn" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }} title={isLoading ? "Action in progress..." : "Claim quest"}>{isLoading ? "..." : "!"}</button>
+                <button aria-label={`Claim quest: ${quest.title}`} onClick={e => { e.stopPropagation(); if (!isLoading && meetsLevel) onClaim(quest.id); }} disabled={isLoading || !meetsLevel} className="text-xs font-bold quest-seal-btn" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0, opacity: (isLoading || !meetsLevel) ? 0.5 : 1, cursor: (isLoading || !meetsLevel) ? "not-allowed" : "pointer" }} title={!meetsLevel ? `Requires Level ${quest.minLevel}` : isLoading ? "Claiming…" : "Claim quest"}>{isLoading ? "…" : "!"}</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer", transition: "background 0.15s ease" }}>{isLoading ? "..." : "Unclaim"}</button>
+                <button aria-label={`Release quest: ${quest.title}`} onClick={e => { e.stopPropagation(); if (!isLoading) onUnclaim(quest.id); }} disabled={isLoading} title={isLoading ? "Releasing…" : "Release quest back to pool"} className="text-xs px-2 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer", transition: "background 0.15s ease" }}>{isLoading ? "Releasing…" : "Unclaim"}</button>
               )}
               {!isCoop && onComplete && isClaimedByMe && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Mark quest as completed"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ Done"}</button>
+                <button aria-label={`Complete quest: ${quest.title}`} onClick={e => { e.stopPropagation(); if (!isLoading) onComplete(quest.id, quest.title); }} disabled={isLoading} title={isLoading ? "Completing…" : "Mark quest as completed"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "Completing…" : "✓ Done"}</button>
               )}
               {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Join co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "Join"}</button>
+                <button aria-label={`Join co-op quest: ${quest.title}`} onClick={e => { e.stopPropagation(); if (!isLoading) onCoopClaim(quest.id); }} disabled={isLoading} title={isLoading ? "Joining…" : "Join co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "Joining…" : "Join"}</button>
               )}
               {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
-                <button onClick={e => { e.stopPropagation(); if (!isLoading) onCoopComplete(quest.id); }} disabled={isLoading} title={isLoading ? "Action in progress..." : "Complete your part of the co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "..." : "✓ My Part Done"}</button>
+                <button aria-label={`Finish your part of: ${quest.title}`} onClick={e => { e.stopPropagation(); if (!isLoading) onCoopComplete(quest.id); }} disabled={isLoading} title={isLoading ? "Finishing…" : "Complete your part of the co-op quest"} className="text-xs px-3 py-2 rounded-lg font-semibold quest-done-btn" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: isLoading ? 0.5 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}>{isLoading ? "Finishing…" : "✓ My Part Done"}</button>
               )}
             </div>
           </div>

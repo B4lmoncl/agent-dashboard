@@ -92,10 +92,13 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         setConfig(data.config);
         setRewards(data.rewards || []);
         setPlayer(data.player);
+        setMessage(null);
+      } else {
+        setMessage({ type: "error", text: "Failed to load Season Pass data" });
       }
     } catch (e) { console.error("[battlepass]", e); setMessage({ type: "error", text: "Failed to load Season Pass data" }); }
     setLoading(false);
-  }, []);
+  }, [reviewApiKey]);
 
   useEffect(() => { fetchBP(); }, [fetchBP]);
 
@@ -158,7 +161,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
   return (
     <div data-feedback-id="battlepass-view" className="space-y-5 tab-content-enter">
-      <TutorialMomentBanner viewId="season" playerLevel={1} />
+      <TutorialMomentBanner viewId="season" />
       {/* Header */}
       <div className="rounded-xl p-5" style={{
         background: `linear-gradient(135deg, ${config.seasonAccent}12 0%, rgba(14,14,18,0.95) 100%)`,
@@ -179,7 +182,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
             <p className="text-sm font-mono font-bold crystal-breathe" style={{ color: config.seasonAccent, ["--glow-color" as string]: `${config.seasonAccent}30`, borderRadius: 6, padding: "2px 6px" }}>
               Level {player.level} / {config.levels}
             </p>
-            <TipCustom title="Saisonende" icon="◆" accent={config.seasonAccent} body={<p>Verbleibende Tage bis zum Ende der aktuellen Saison. Nicht beanspruchte Belohnungen verfallen.</p>}>
+            <TipCustom title="Season End" icon="◆" accent={config.seasonAccent} body={<p>Days remaining before the current season ends. Unclaimed rewards expire.</p>}>
               <p className="text-xs font-mono" style={{ color: daysLeft <= 3 ? "#ef4444" : daysLeft <= 7 ? "#f59e0b" : "rgba(255,255,255,0.3)", cursor: "help" }}>
                 {daysLeft <= 3 ? `${daysLeft}d left` : daysLeft <= 7 ? `${daysLeft}d remaining` : `${daysLeft}d remaining`}
               </p>
@@ -335,7 +338,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: isReached ? rc.color : "rgba(255,255,255,0.3)" }}>
-                    {r.type === "title" ? <TipCustom title={r.titleName || "Title"} icon="◆" accent={rc.color} body={<p>{r.titleRarity ? r.titleRarity.charAt(0).toUpperCase() + r.titleRarity.slice(1) : "Exklusiver"} Titel aus dem Season Pass.</p>}><span style={{ cursor: "help" }}>{r.titleName}</span></TipCustom> : r.type === "frame" ? <TipCustom title={r.frameName || "Frame"} icon="◆" accent={rc.color} body={<p>Kosmetischer Rahmen f&uuml;r dein Spielerprofil.</p>}><span style={{ cursor: "help" }}>{r.frameName}</span></TipCustom> : (
+                    {r.type === "title" ? <TipCustom title={r.titleName || "Title"} icon="◆" accent={rc.color} body={<p>{r.titleRarity ? r.titleRarity.charAt(0).toUpperCase() + r.titleRarity.slice(1) : "Exclusive"} title from the Season Pass.</p>}><span style={{ cursor: "help" }}>{r.titleName}</span></TipCustom> : r.type === "frame" ? <TipCustom title={r.frameName || "Frame"} icon="◆" accent={rc.color} body={<p>Cosmetic frame for your player profile.</p>}><span style={{ cursor: "help" }}>{r.frameName}</span></TipCustom> : (
                       ["gold", "essenz", "runensplitter", "stardust", "sternentaler", "mondstaub"].includes(r.type)
                         ? <Tip k={r.type}><span style={{ cursor: "help" }}>{r.amount} {rc.label}</span></Tip>
                         : `${r.amount} ${rc.label}`

@@ -384,9 +384,12 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   const banner = state.bannerTemplates.find(b => b.id === bannerId && b.active !== false);
   if (!banner) return res.status(404).json({ error: 'Banner not found or inactive' });
 
-  // Inventory cap check — need space for up to 10 items
-  if ((u.inventory || []).length + 10 > INVENTORY_CAP) {
-    return res.status(400).json({ error: `Inventory too full for 10-pull (need at least 10 free slots). Dismantle or discard items first.` });
+  // Inventory cap pre-check — use a realistic estimate (3 slots) rather than
+  // the worst case (10). Duplicates don't consume inventory, and the average
+  // 10-pull yields ~3-5 unique new items. The loop below has a per-iteration
+  // check that aborts and refunds remaining pulls if the cap is actually hit.
+  if ((u.inventory || []).length + 3 > INVENTORY_CAP) {
+    return res.status(400).json({ error: `Inventory nearly full (${(u.inventory || []).length}/${INVENTORY_CAP}). Dismantle or discard items first.` });
   }
 
   const currency = banner.currency || 'runensplitter';
@@ -400,9 +403,19 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   let hasEpicOrBetter = false;
 
   for (let i = 0; i < 10; i++) {
+    // Per-iteration inventory cap check. The pre-check at the top reserved
+    // 10 slots conservatively, but if inventory fills mid-loop (e.g. because
+    // fewer items were duplicates than average), we abort and refund the
+    // remaining pulls. Pre-check on its own isn't enough: duplicate refunds
+    // DON'T consume slots but the pre-check counts them anyway (over-
+    // strict), while the loop has no cap check (under-strict).
+    if ((u.inventory || []).length >= INVENTORY_CAP) {
+      awardCurrency(uid, currency, Math.floor(cost * (10 - i) / 10));
+      break;
+    }
     const result = executePull(uid, banner, { skipPityPassive: i > 0 });
     if (!result) {
-      // Refund remaining pulls
+      // Refund remaining pulls (pool empty edge case)
       awardCurrency(uid, currency, Math.floor(cost * (10 - i) / 10));
       break;
     }

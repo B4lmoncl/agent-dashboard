@@ -24,7 +24,7 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
       <div className="flex items-start gap-3">
         <span className="text-2xl flex-shrink-0">—</span>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Quest Chain Available!</p>
+          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Chain quest available</p>
           <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
             Completed: <span style={{ color: "rgba(255,255,255,0.6)" }}>{parentTitle}</span>
           </p>
@@ -80,7 +80,7 @@ export function AchievementToast({ achievement, onClose }: { achievement: Earned
         ? <img src={achievement.icon} alt="" width={32} height={32} className="flex-shrink-0 img-render-auto" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
         : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
+        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement unlocked</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
@@ -122,11 +122,9 @@ export function EmptyState({ message, sub }: { message: string; sub?: string }) 
 }
 
 // ─── Skeleton Card ────────────────────────────────────────────────────────────
+// Uses the shared .skeleton-card class (shimmer gradient + RPG-toned base)
+// instead of a flat grey animate-pulse — keeps the quest-board first-impression
+// consistent with every other view's loading state.
 export function SkeletonCard() {
-  return (
-    <div
-      className="rounded-xl animate-pulse"
-      style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.08)", height: 260 }}
-    />
-  );
+  return <div className="rounded-xl skeleton-card" style={{ height: 260 }} />;
 }

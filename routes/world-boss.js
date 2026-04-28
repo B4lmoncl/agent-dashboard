@@ -375,12 +375,23 @@ router.get('/api/world-boss/history', (req, res) => {
 
 router.post('/api/world-boss/damage', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  // Admin-only: regular damage is dispatched internally via onQuestCompletedByUser
+  // after a verified quest completion. This endpoint is for debugging/admin only.
+  if (!req.auth?.isAdmin) return res.status(403).json({ error: 'Admin only — damage is dispatched by quest completion events' });
   const { rarity } = req.body;
   if (!uid) return res.status(401).json({ error: 'Unauthorized' });
+  const validRarities = new Set(['common', 'uncommon', 'rare', 'epic', 'legendary']);
+  const safeRarity = validRarities.has(rarity) ? rarity : 'common';
   if (state.users[uid]?.tavernRest?.active) return res.status(400).json({ error: 'Cannot deal boss damage while resting in The Hearth' });
 
-  const result = dealBossDamage(uid, rarity || 'common');
+  const result = dealBossDamage(uid, safeRarity);
   if (!result) return res.json({ active: false, message: 'No active boss' });
+
+  // dealBossDamage mutates user._worldBossContributions and possibly
+  // _lastWorldBossDefeated. Production path runs through onQuestCompletedByUser
+  // which saves users, but this admin debug endpoint has no outer save.
+  const { saveUsers } = require('../lib/state');
+  saveUsers();
 
   res.json({
     damage: result.damage,

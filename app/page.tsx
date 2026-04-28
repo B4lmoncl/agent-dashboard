@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } from "react";
 import StatBar from "@/components/StatBar";
 const OnboardingWizard = lazy(() => import("@/components/OnboardingWizard"));
+const HighstormVFX = lazy(() => import("@/components/HighstormVFX"));
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CrystalVeins from "@/components/CrystalVeins";
 import TowerMap from "@/components/TowerMap";
@@ -69,21 +70,61 @@ import {
 
 const CURRENT_VERSION = "2.0.0";
 
-function WhatsNewHero({ color, title, short, long, bg, icon }: { color: string; title: string; short: string; long: string; bg: string; icon: string }) {
-  const [expanded, setExpanded] = useState(false);
+// Stats pill that counts up when the popup mounts. Rendered only while the
+// modal is open so the useCountUp hook fires fresh each appearance.
+function WhatsNewStat({ value, label, color, suffix = "" }: { value: number; label: string; color: string; suffix?: string }) {
+  const display = useCountUp(value, 0, 1400);
   return (
-    <button onClick={() => setExpanded(v => !v)} className="w-full text-left rounded-lg overflow-hidden relative" style={{ border: `1px solid ${color}25`, cursor: "pointer" }}>
-      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none" style={{ background: `url(${bg}) no-repeat center/contain`, opacity: 0.12, filter: "blur(0.5px)" }} />
-      <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}0A 0%, transparent 60%)`, borderLeft: `3px solid ${color}60` }}>
-        <img src={icon} alt="" width={28} height={28} className="flex-shrink-0 mt-0.5 img-render-auto" style={{ filter: `drop-shadow(0 0 6px ${color}50)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+    <div className="text-center">
+      <p className="text-xl font-black font-mono leading-none" style={{ color, textShadow: `0 0 12px ${color}66` }}>
+        {display}{suffix}
+      </p>
+      <p className="text-xs mt-1 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</p>
+    </div>
+  );
+}
+
+function WhatsNewHero({ color, title, short, long, bg, icon, featured = false, delay = 0 }: { color: string; title: string; short: string; long: string; bg: string; icon: string; featured?: boolean; delay?: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      onClick={() => setExpanded(v => !v)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`w-full text-left rounded-lg overflow-hidden relative group whatsnew-card-enter${featured ? " crystal-breathe-card" : ""}`}
+      style={{
+        border: `1px solid ${color}${featured ? "55" : hovered ? "44" : "25"}`,
+        cursor: "pointer",
+        transform: hovered ? "translateY(-2px)" : "translateY(0)",
+        transition: "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
+        animationDelay: `${delay}ms`,
+        boxShadow: hovered ? `0 8px 24px ${color}22, 0 0 0 1px ${color}20` : featured ? `0 4px 16px ${color}15` : "none",
+        "--glow-color": `${color}40`,
+      } as React.CSSProperties}
+    >
+      {/* Background portrait — stronger so the accent actually reads */}
+      <div className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none" style={{ background: `url(${bg}) no-repeat right center/contain`, opacity: hovered ? 0.28 : 0.18, filter: "saturate(1.1)", transition: "opacity 0.2s ease", maskImage: "linear-gradient(to left, black 30%, transparent 100%)", WebkitMaskImage: "linear-gradient(to left, black 30%, transparent 100%)" }} />
+      {/* Featured glow overlay */}
+      {featured && (
+        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at left center, ${color}15 0%, transparent 60%)` }} />
+      )}
+      <div className="relative p-3 flex items-start gap-3" style={{ background: `linear-gradient(135deg, ${color}12 0%, ${color}04 40%, transparent 70%)`, borderLeft: `3px solid ${color}${featured ? "a0" : "70"}` }}>
+        {/* Icon in a ring — reads as a hero symbol, not just decoration */}
+        <div className="flex-shrink-0 mt-0.5 flex items-center justify-center rounded-lg" style={{ width: 44, height: 44, background: `${color}15`, border: `1px solid ${color}30`, boxShadow: `inset 0 0 8px ${color}15, 0 0 12px ${color}15` }}>
+          <img src={icon} alt="" width={32} height={32} className="img-render-auto" style={{ filter: `drop-shadow(0 0 8px ${color}60)` }} onError={e => { e.currentTarget.style.display = "none"; }} />
+        </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-bold" style={{ color }}>{title}</p>
-            <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}60`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>&#9662;</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <p className="text-sm font-bold truncate" style={{ color, textShadow: featured ? `0 0 12px ${color}40` : "none" }}>{title}</p>
+              {featured && <span className="text-xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: `${color}20`, color, border: `1px solid ${color}40` }}>New</span>}
+            </div>
+            <span className="text-xs flex-shrink-0 ml-2" style={{ color: `${color}80`, transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.25s ease" }}>&#9662;</span>
           </div>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{short}</p>
+          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>{short}</p>
           {expanded && (
-            <p className="text-xs mt-2 leading-relaxed tab-content-enter" style={{ color: "rgba(255,255,255,0.45)", borderTop: `1px solid ${color}15`, paddingTop: 8 }}>{long}</p>
+            <p className="text-xs mt-2 leading-relaxed tab-content-enter" style={{ color: "rgba(255,255,255,0.5)", borderTop: `1px solid ${color}25`, paddingTop: 8 }}>{long}</p>
           )}
         </div>
       </div>
@@ -279,6 +320,20 @@ export default function Dashboard() {
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [whatsNewOpen, setWhatsNewOpen] = useState(false);
+  // Two-stage popup: first a cinematic v2.0.0 hero screen, then the detail
+  // cards. Defaults back to "hero" every time the popup opens.
+  const [popupStage, setPopupStage] = useState<"hero" | "details">("hero");
+  // Stage 1 → Stage 2 transition sequence: the three orbit rings lock in one
+  // after another. 0 = not locking, 1 = outer locked, 2 = mid locked, 3 = all
+  // locked. On step 3 + a beat, stage switches. Reset on close/reopen.
+  const [ringLockStep, setRingLockStep] = useState(0);
+  // popupClosing=true for ~280ms after the user dismisses the modal, so the
+  // stage-swap-out animation plays before React actually unmounts it.
+  const [popupClosing, setPopupClosing] = useState(false);
+  // When the v2.0.0 popup closes, fire a brief Highstorm over the main page
+  // as a handoff VFX. Activates for 2.2s then clears. Lazy-loaded so it
+  // doesn't ship in the initial bundle for users who've already seen it.
+  const [betaLaunchStorm, setBetaLaunchStorm] = useState(false);
   const [emailMigrationOpen, setEmailMigrationOpen] = useState(false);
   const [migEmail, setMigEmail] = useState("");
   const [migMsg, setMigMsg] = useState("");
@@ -301,6 +356,28 @@ export default function Dashboard() {
   // closeLootDrop + useModalBehavior removed — dead code after RewardCelebration migration
   const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
   useModalBehavior(!!levelUpCelebration, closeLevelUp);
+  // ─── Level-up side-effect toasts: talent points + floor unlocks ──────────────
+  useEffect(() => {
+    if (!levelUpCelebration) return;
+    const newLevel = levelUpCelebration.level;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    // Talent points granted at levels 5+ on every EVEN level
+    if (newLevel >= 5 && newLevel % 2 === 0) {
+      timers.push(setTimeout(() => addToast({ type: "flavor", message: "Talent-Punkt verdient.", icon: "/images/icons/nav-talents.png", sub: `Level ${newLevel} — Schicksalsbaum verteilen` }), 1200));
+    }
+    // Floor / room unlocks (check against FLOORS config)
+    const unlocks: string[] = [];
+    FLOORS.forEach(floor => {
+      if (floor.minLevel === newLevel) unlocks.push(`Stockwerk freigeschaltet: ${floor.name}`);
+      floor.rooms.forEach(room => {
+        if (room.minLevel === newLevel) unlocks.push(`Raum freigeschaltet: ${room.label}`);
+      });
+    });
+    unlocks.forEach((msg, i) => {
+      timers.push(setTimeout(() => addToast({ type: "flavor", message: msg, icon: "/images/icons/nav-great-hall.png" }), 1500 + i * 400));
+    });
+    return () => { timers.forEach(clearTimeout); };
+  }, [levelUpCelebration?.level]); // eslint-disable-line react-hooks/exhaustive-deps
   const pendingLevelUpRef = useRef<{ level: number; title: string } | null>(null);
   const closeRewardCelebration = useCallback(() => {
     setRewardCelebration(null);
@@ -363,30 +440,38 @@ export default function Dashboard() {
     const currentLevel = lvlInfo.level;
     const currentTitle = lvlInfo.title;
     if (prevLevelRef.current > 0 && currentLevel > prevLevelRef.current) {
-      const lu = pendingLevelUpRef.current || { level: currentLevel, title: currentTitle };
-      pendingLevelUpRef.current = null;
+      // If a celebration is already queued or showing, don't double-fire
+      if (levelUpCelebration || pendingLevelUpRef.current) {
+        prevLevelRef.current = currentLevel;
+        return;
+      }
+      const lu = { level: currentLevel, title: currentTitle };
       if (rewardCelebration) {
-        pendingLevelUpRef.current = lu;
-      } else if (!levelUpCelebration) {
+        // Inject the level-up into the reward celebration instead of queueing
+        // a second full-screen modal. User sees ONE screen with both XP/gold
+        // rewards AND the level-up banner — was two sequential take-overs.
+        SFX.levelUp();
+        setRewardCelebration({ ...rewardCelebration, levelUp: lu });
+      } else {
         setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 300);
       }
     }
     prevLevelRef.current = currentLevel;
   }, [playerXpForLevelWatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ─── Backup trigger #2: force-show level-up if pending > 10s (user didn't close reward popup) ───
+  // ─── Backup trigger #2: force-show level-up if pending > 10s and NO active reward popup ───
+  // Guard: don't close a reward popup — only fire if there's truly no popup currently showing
   useEffect(() => {
-    if (!pendingLevelUpRef.current) return;
+    if (!pendingLevelUpRef.current || rewardCelebration || levelUpCelebration) return;
     const timer = setTimeout(() => {
-      if (pendingLevelUpRef.current && !levelUpCelebration) {
+      if (pendingLevelUpRef.current && !levelUpCelebration && !rewardCelebration) {
         const lu = pendingLevelUpRef.current;
         pendingLevelUpRef.current = null;
-        setRewardCelebration(null); // close reward popup if still open
-        setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 100);
+        setLevelUpCelebration(lu); SFX.levelUp();
       }
     }, 10000);
     return () => clearTimeout(timer);
-  }, [rewardCelebration]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [rewardCelebration, levelUpCelebration]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
@@ -423,6 +508,24 @@ export default function Dashboard() {
   useModalBehavior(xpInfoOpen, closeXpInfo);
   useModalBehavior(modifierOpen, closeModifier);
   useModalBehavior(professionsInfoOpen, closeProfessionsInfo);
+  // What's New popup close handler — pulled out of the render-body IIFE so
+  // useModalBehavior (ESC + body scroll lock + focus trap) can wire to it
+  // from the component body. Previously the popup worked only via click-out.
+  const closeWhatsNewPopup = useCallback(() => {
+    // Persist + fire Toast/Storm immediately so they animate while the popup
+    // dissolves. Defer actual unmount to after the stage-swap-out animation.
+    try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ }
+    addToast({ type: "flavor", icon: "/images/icons/nav-great-hall.png", message: "Welcome to the Open Beta", sub: "The hall registers your presence" });
+    setBetaLaunchStorm(true);
+    setTimeout(() => setBetaLaunchStorm(false), 2200);
+    setPopupClosing(true);
+    setTimeout(() => {
+      setWhatsNewOpen(false);
+      setRingLockStep(0);
+      setPopupClosing(false);
+    }, 280);
+  }, [addToast]);
+  useModalBehavior(whatsNewOpen, closeWhatsNewPopup);
 
   // Currencies modal — ESC to close + scroll lock
   const closeCurrencies = useCallback(() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }, []);
@@ -478,8 +581,13 @@ export default function Dashboard() {
         if (r.ok) {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
-            // Don't show version popup if What's New popup already handled it
-            try { if (localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
+            // Don't show version popup if What's New popup will open OR already dismissed.
+            // whatsNewOpen check handles the in-memory flag even when localStorage write fails.
+            try {
+              if (localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION && !whatsNewOpen) setVersionPopupOpen(true);
+            } catch {
+              if (!whatsNewOpen) setVersionPopupOpen(true);
+            }
           }
         }
       } catch { /* ignore */ }
@@ -720,7 +828,7 @@ export default function Dashboard() {
     if (!playerName || !reviewApiKey) return;
     const pollFriendActivity = async () => {
       try {
-        const r = await fetch(`/api/social/activity-feed?player=${encodeURIComponent(playerName)}&limit=5`, { headers: getAuthHeaders(reviewApiKey) });
+        const r = await fetch(`/api/social/${encodeURIComponent(playerName.toLowerCase())}/activity-feed?limit=5`, { headers: getAuthHeaders(reviewApiKey) });
         if (!r.ok) return;
         const data = await r.json();
         const events = data.events || data.feed || [];
@@ -789,16 +897,21 @@ export default function Dashboard() {
     if (ev === "true") { addToast({ type: "flavor", message: "Email verified.", icon: "/images/icons/nav-great-hall.png" }); window.history.replaceState({}, "", "/"); }
   }, []);
 
-  // What's New splash — show once per version
+  // What's New splash — show once per version, but skip brand-new players.
+  // A level-1 user with 0 completed quests has no context for "Mythic+ Affixe"
+  // or "Rested XP" — the splash would overwhelm their first session. Let them
+  // complete a few quests first; the popup will still fire on the next login.
   useEffect(() => {
-    // CURRENT_VERSION is now module-level constant
     try {
-      if (playerName && localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) {
-        const t = setTimeout(() => setWhatsNewOpen(true), 1500);
-        return () => clearTimeout(t);
-      }
+      if (!playerName) return;
+      if (localStorage.getItem("whatsNewSeen") === CURRENT_VERSION) return;
+      const completedCount = loggedInUser?.questsCompleted ?? 0;
+      const level = loggedInUser ? getUserLevel(loggedInUser.xp || 0).level : 1;
+      if (completedCount < 3 && level < 2) return; // first-timer guard
+      const t = setTimeout(() => { setPopupStage("hero"); setRingLockStep(0); setWhatsNewOpen(true); }, 1500);
+      return () => clearTimeout(t);
     } catch { /* ignore */ }
-  }, [playerName]);
+  }, [playerName, loggedInUser]);
 
   useEffect(() => {
     if (dashView === "changelog" && changelog.length === 0 && !changelogLoading) {
@@ -1064,9 +1177,9 @@ export default function Dashboard() {
         <CrystalVeins floorColor={dashView === "forge" && moonIntensityRef.current > 1.2 ? "#60a5fa" : currentFloorColor} moonIntensity={moonIntensityRef.current} seed={dashView.length * 31 + dashView.charCodeAt(0)} />
         {/* DailyHub removed — all daily info lives in TodayDrawer now */}
         {/* Stats — Player-specific */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
+        <div className={`grid grid-cols-1 gap-3 ${playerLevelInfo.level < 5 ? "sm:grid-cols-3" : "sm:grid-cols-4"}`} data-tutorial="stat-cards">
           {!playerName && !loading && (
-            <div className="col-span-1 sm:col-span-4 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
+            <div className={`col-span-1 ${playerLevelInfo.level < 5 ? "sm:col-span-3" : "sm:col-span-4"} rounded-xl p-3 text-center`} style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
               <p className="text-xs text-w35">
                 <button onClick={() => setOnboardingOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
               </p>
@@ -1076,7 +1189,7 @@ export default function Dashboard() {
           <Tip k="streak"><StatBar
             label="Forge Streak"
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
-            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : "login to view"}
+            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "complete a quest to start") : ""}
             subColor={playerName && playerStreak > 0 ? "#fbbf24" : undefined}
             accent={playerStreak >= 90 ? "#a78bfa" : playerStreak >= 30 ? "#818cf8" : "#f97316"}
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
@@ -1088,7 +1201,7 @@ export default function Dashboard() {
             value={loading ? "—" : playerName ? `${animActive}` : "—"}
             value2={playerName ? `✓ ${animCompleted}` : undefined}
             value2Color="#22c55e"
-            sub={playerName ? `active · ${openQuestsCount} open` : "login to view"}
+            sub={playerName ? `active · ${openQuestsCount} open` : ""}
             accent="#ef4444"
             onClick={playerName ? () => setActiveQuestsInfoOpen(true) : undefined}
             inline
@@ -1100,12 +1213,16 @@ export default function Dashboard() {
             value={loading ? "—" : playerName && loggedInUser?.modifiers ? `XP ×${loggedInUser.modifiers.xp.total}` : "—"}
             value2={playerName && loggedInUser?.modifiers ? `◆ Gold ×${loggedInUser.modifiers.gold.total}` : undefined}
             value2Color="#fbbf24"
-            sub={playerName ? "all active bonuses" : "login to view"}
+            sub={playerName ? "all active bonuses" : ""}
             accent="#a855f7"
             onClick={loggedInUser?.modifiers ? () => setModifierOpen(true) : undefined}
             inline
           /></Tip>
           </div>
+          {/* Artisan card — hidden below Lv5 so we don't render a permanent
+              "—" placeholder for players who can't even pick a profession yet.
+              Matches the Forge room min-level. */}
+          {playerLevelInfo.level >= 5 && (
           <div data-feedback-id="stats.professions">
           {(() => {
             const profs = loggedInUser?.professions;
@@ -1115,7 +1232,7 @@ export default function Dashboard() {
                 <Tip k="artisans_quarter"><StatBar
                   label="Artisan"
                   value={loading ? "—" : playerName ? "—" : "—"}
-                  sub={playerName ? "no professions yet" : "login to view"}
+                  sub={playerName ? "no professions yet" : ""}
                   accent="#f59e0b"
                   onClick={playerName ? () => setProfessionsInfoOpen(true) : undefined}
                   inline
@@ -1142,6 +1259,7 @@ export default function Dashboard() {
             );
           })()}
           </div>
+          )}
         </div>
 
         {/* Player Card — skeleton while playerName is set but user data hasn't loaded yet */}
@@ -1166,7 +1284,7 @@ export default function Dashboard() {
               {/* Portrait */}
               <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character" style={{ transition: "filter 0.15s" }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.filter = `drop-shadow(0 0 8px ${loggedInUser.color ?? "#a78bfa"}60)`; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.filter = "none"; }}>
                 <img
-                  src={`/images/portraits/hero-${loggedInUser.avatarStyle || "male"}.png`}
+                  src={`/images/portraits/hero-${["male", "female"].includes(loggedInUser.avatarStyle || "") ? loggedInUser.avatarStyle : "male"}.png`}
                   alt={playerName}
                   className="w-28 h-28 rounded-xl object-cover img-render-auto"
                   style={{ border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
@@ -1207,7 +1325,7 @@ export default function Dashboard() {
                     ) : null;
                   })()}
                 </div>
-                <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
+                <p className="text-xs mb-1.5" style={{ color: "#a78bfa", textShadow: playerLevelInfo.progress > 0.9 ? "0 0 10px rgba(167,139,250,0.8), 0 0 20px rgba(167,139,250,0.4)" : "none", transition: "text-shadow 0.3s ease" }}><Tip k="player_level"><span style={{ fontWeight: playerLevelInfo.progress > 0.9 ? 700 : 400 }}>Lv.{playerLevelInfo.level}</span></Tip> · {playerLevelInfo.title}</p>
                 {/* XP progress bar — Diablo style + WoW rested XP blue zone */}
                 <div className={`progress-bar-diablo relative${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   {/* Rested XP zone — WoW-style blue shimmer showing 2x bonus range */}
@@ -1284,7 +1402,7 @@ export default function Dashboard() {
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
                 {/* Currency bar */}
                 <div className="flex items-center gap-3 rounded-xl px-3 py-2 bg-w4 border-w8 transition-colors" style={{ cursor: "pointer" }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.06)"; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = ""; }}>
-                  {[
+                  {([
                     { emoji: "", key: "gold" as const, value: Number(loggedInUser?.currencies?.gold ?? animGold), color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
                     { emoji: "", key: "stardust" as const, value: Number(loggedInUser?.currencies?.stardust ?? 0), color: "#a78bfa", iconSrc: "/images/icons/currency-stardust.png" },
                     { emoji: "", key: "runensplitter" as const, value: Number(loggedInUser?.currencies?.runensplitter ?? 0), color: "#818cf8", iconSrc: "/images/icons/currency-runensplitter.png" },
@@ -1292,7 +1410,14 @@ export default function Dashboard() {
                     { emoji: "", key: "gildentaler" as const, value: Number(loggedInUser?.currencies?.gildentaler ?? 0), color: "#10b981", iconSrc: "/images/icons/currency-gildentaler.png" },
                     { emoji: "", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
                     { emoji: "", key: "sternentaler" as const, value: Number(loggedInUser?.currencies?.sternentaler ?? 0), color: "#fbbf24", iconSrc: "/images/icons/currency-sternentaler.png" },
-                  ].map(c => (
+                  // Low-level players drown in zeroed-out currencies they haven't unlocked yet.
+                  // Below Lv10, hide any non-gold currency that's still at zero so the bar
+                  // shows only what's relevant. Gold always stays so the row never collapses.
+                  ] as const).filter(c => {
+                    if (playerLevelInfo.level >= 10) return true;
+                    if (c.key === "gold") return true;
+                    return c.value > 0;
+                  }).map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)}>
                       <Tip k={c.key}>
                         {c.iconSrc ? <img src={c.iconSrc} alt="" width={24} height={24} className={`currency-infused currency-${c.key} ${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
@@ -1691,10 +1816,12 @@ export default function Dashboard() {
                 <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${currentFloor.color}cc 0%, ${currentFloor.color}55 25%, transparent 50%)` }} />
                 {/* Dark scrim for text legibility (left-heavy) */}
                 <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 30%, transparent 50%)" }} />
-                {/* Text */}
-                <div className="absolute bottom-5 left-5 z-10">
-                  <span className="text-base font-black uppercase tracking-widest" style={{ color: currentFloor.color, textShadow: `0 1px 12px rgba(0,0,0,0.8), 0 0 20px ${currentFloor.color}30` }}>{currentFloor.name}</span>
-                  <span className="text-sm ml-2.5 font-semibold" style={{ color: "rgba(255,255,255,0.65)", textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>— {currentFloor.subtitle}</span>
+                {/* Text — floor name now reads as a theatrical welcome: larger, */}
+                {/* vertically centered on the left quarter, subtitle as its own line */}
+                {/* below. Previously the 200px banner held tiny text in the bottom corner. */}
+                <div className="absolute top-1/2 -translate-y-1/2 left-5 sm:left-8 z-10">
+                  <span className="block text-2xl sm:text-3xl font-black uppercase tracking-[0.2em] leading-none" style={{ color: currentFloor.color, textShadow: `0 2px 16px rgba(0,0,0,0.85), 0 0 32px ${currentFloor.color}40` }}>{currentFloor.name}</span>
+                  <span className="block text-xs sm:text-sm font-semibold mt-2" style={{ color: "rgba(255,255,255,0.7)", textShadow: "0 1px 6px rgba(0,0,0,0.85)", letterSpacing: "0.05em" }}>{currentFloor.subtitle}</span>
                 </div>
                 {/* Decorative overlay pattern */}
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />
@@ -2294,10 +2421,10 @@ export default function Dashboard() {
                     })()}
                     {!playerName && !loading ? (
                       <div className="rounded-xl p-8 text-center bg-card border-w6">
-                        <p className="text-base mb-2">×</p>
+                        <p className="text-2xl mb-2" style={{ color: "rgba(167,139,250,0.35)" }}>◆</p>
                         <p className="text-sm font-semibold mb-1 text-w50">Log in to view your quests</p>
-                        <p className="text-xs mb-3 text-w25">Your personal quest pool awaits!</p>
-                        <button onClick={() => setOnboardingOpen(true)} className="text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
+                        <p className="text-xs italic mb-3 text-w25">Deine Quests warten hinter der Tür. Die Tür wüsste gern deinen Namen.</p>
+                        <button onClick={() => setOnboardingOpen(true)} className="btn-interactive text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
                           Login
                         </button>
                       </div>
@@ -2754,8 +2881,14 @@ export default function Dashboard() {
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
         <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onNavigate={(v) => setDashView(v as typeof dashView)} onCollect={(rd) => {
-          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory`);
-          if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
+          // Achievement and loot toasts used to fire synchronously with the
+          // celebration's exit animation (220ms). The toast stack sits at
+          // z-[150] while the celebration is at z-[200], so the toast
+          // rendered behind the dimming backdrop and users never saw it.
+          // Defer them until the modal has finished unmounting.
+          const TOAST_DELAY = 260;
+          if (rd.loot) setTimeout(() => setPurchaseToast(`${rd.loot!.name} added to inventory`), TOAST_DELAY);
+          if (rd.achievement) setTimeout(() => addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement }), TOAST_DELAY);
           // Trigger floating reward numbers
           const floats: { text: string; color: string }[] = [];
           if (rd.xpEarned > 0) floats.push({ text: `+${rd.xpEarned} XP`, color: "#a78bfa" });
@@ -2767,8 +2900,8 @@ export default function Dashboard() {
 
       {/* Level Up Celebration */}
       {levelUpCelebration && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }}>
-          <div className="levelup-modal w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1a1400 0%, #0d0d14 60%)", border: "2px solid rgba(255,215,0,0.5)", boxShadow: "0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(255,215,0,0.1)" }}
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeLevelUp}>
+          <div role="dialog" aria-modal="true" aria-label={`Level up to ${levelUpCelebration.level}`} className="levelup-modal w-full max-w-[calc(100vw-2rem)] sm:max-w-sm rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1a1400 0%, #0d0d14 60%)", border: "2px solid rgba(255,215,0,0.5)", boxShadow: "0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(255,215,0,0.1)" }}
             onClick={e => e.stopPropagation()}>
             {/* Sparkle particles */}
             {Array.from({ length: 12 }).map((_, i) => (
@@ -3017,6 +3150,10 @@ export default function Dashboard() {
         onExit={() => setFeedbackMode(false)}
         playerName={playerName || undefined}
       /></Suspense>
+      {/* Beta launch Highstorm — briefly visible after closing the v2.0.0 popup. */}
+      <Suspense fallback={null}>
+        <HighstormVFX active={betaLaunchStorm} intensity="minor" color="#e6cc80" duration={2200} />
+      </Suspense>
 
       {onboardingOpen && (
         <Suspense fallback={null}><OnboardingWizard
@@ -3103,92 +3240,289 @@ export default function Dashboard() {
       )}
 
       {/* What's New Splash */}
-      {whatsNewOpen && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }}>
-          <div className="w-full max-w-lg rounded-xl overflow-hidden tab-content-enter panel-ornate panel-ornate-inner" style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.2)", boxShadow: "0 20px 80px rgba(0,0,0,0.9), 0 0 40px rgba(129,140,248,0.08)" }} onClick={e => e.stopPropagation()}>
-            {/* Hero Header */}
-            <div className="relative px-6 py-5 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(129,140,248,0.12) 0%, rgba(129,140,248,0.03) 60%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.15)" }}>
-              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.15) 0%, transparent 70%)" }} />
-              <p className="text-lg font-bold tracking-wide relative" style={{ color: "#e6cc80", textShadow: "0 0 20px rgba(230,204,128,0.3)" }}>v2.0.0</p>
-              <p className="text-sm font-semibold mt-0.5 relative" style={{ color: "#818cf8" }}>Open Beta</p>
-              <p className="text-xs mt-2 relative" style={{ color: "rgba(255,255,255,0.45)", maxWidth: 320, margin: "8px auto 0" }}>Die Tore der Halle stehen offen. Was als Experiment begann, ist jetzt ein Zuhause.</p>
-            </div>
+      {whatsNewOpen && (() => {
+        // Stage 1 → Stage 2 lock-in: three rings seal one at a time. On the
+        // third seal (~440ms), we hold ~320ms so the user registers the
+        // tableau, then swap stages. Guard against double-click.
+        const beginStage2 = () => {
+          if (ringLockStep > 0) return;
+          setRingLockStep(1);
+          setTimeout(() => setRingLockStep(2), 260);
+          setTimeout(() => setRingLockStep(3), 520);
+          setTimeout(() => { setPopupStage("details"); setRingLockStep(0); }, 860);
+        };
+        // Disable click-out + close-X while rings are mid-seal so the user
+        // can't accidentally kill the animation with a stray click.
+        const handleBackdropClick = () => { if (ringLockStep === 0) closeWhatsNewPopup(); };
+        return (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop p-4" onClick={handleBackdropClick}>
+          {/* Shockwave overlay — keyed on stage so the expanding ring animation */}
+          {/* re-fires when the user transitions from Stage 1 to Stage 2. Without */}
+          {/* this, the shockwave plays only once on open and Stage 2 lands dry. */}
+          <div key={`shockwave-${popupStage}`} className="absolute inset-0 launch-shockwave pointer-events-none" />
+          {popupStage === "hero" ? (
+            /* ─── STAGE 1: pure cinematic hero. No info overload — one line, one button. */
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="whatsnew-title"
+              className={`relative w-full max-w-[calc(100vw-2rem)] sm:max-w-md rounded-2xl overflow-hidden ${popupClosing ? "stage-swap-out" : "stage-swap-in"} panel-ornate panel-ornate-inner`}
+              style={{ background: "radial-gradient(ellipse at 50% 30%, #1a1428 0%, #0a0a14 70%, #050608 100%)", border: "1px solid rgba(230,204,128,0.35)", boxShadow: "0 30px 120px rgba(0,0,0,0.95), 0 0 120px rgba(230,204,128,0.18), 0 0 60px rgba(167,139,250,0.14)" }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Close button — disabled while the rings are mid-seal so */}
+              {/* a stray tap can't kill the animation. */}
+              <button
+                onClick={handleBackdropClick}
+                disabled={ringLockStep > 0}
+                aria-label="Dismiss"
+                className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold z-20 transition-opacity"
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: ringLockStep > 0 ? "not-allowed" : "pointer", opacity: ringLockStep > 0 ? 0.35 : 1 }}
+              >✕</button>
 
-            <div className="px-5 py-4 max-h-[55vh] overflow-y-auto space-y-3" style={{ scrollbarWidth: "thin" }}>
-              {/* Hero Feature Cards */}
-              {[
-                { color: "#f97316", title: "Schmiedefieber", short: "Alle 48h brennt eine Profession. Materialkosten halbiert, doppelte Skill-XP.", long: "Ein zufälliger Beruf wird alle 48 Stunden für genau 4 Stunden aktiviert. Während des Fiebers: alle Materialkosten -50%, Skill-XP verdoppelt. Wer innerhalb des Fensters 5+ Rezepte craftet, bekommt einen Bonus-Cache mit seltenen Materialien. Das Fieber wird nie zweimal hintereinander denselben Beruf treffen.", bg: "/images/icons/loot-forge-ember.png", icon: "/images/icons/nav-forge.png" },
-                { color: "#a855f7", title: "Mythic+ Affixe", short: "10 wöchentlich rotierende Modifikatoren ab M+2.", long: "Ab Mythic+2 bekommst du 2 wöchentlich rotierende Affixe. Tyrannical verstärkt den letzten Boss um 50%. Necrotic blockiert all deinen Streak-Schutz. Volcanic erzwingt Fitness-Quests bei jeder dritten Stage. Fortified verstärkt alle Zwischen-Stages. Inspiring verdoppelt Social-Quest-XP. Jede Woche eine neue Kombination — plane deine Runs entsprechend.", bg: "/images/icons/ach-mythic.png", icon: "/images/icons/nav-rift.png" },
-                { color: "#67e8f9", title: "Rested XP", short: "Baut sich offline auf. Verdoppelt XP bis verbraucht.", long: "Alle 8 Stunden offline sammelt sich 5% deines Level-XP als Rested Pool an (max 150% eines Levels). Deine nächsten Quests geben doppelte XP bis der Pool aufgebraucht ist. Die blaue Zone in deiner XP-Bar zeigt den Rested-Anteil. Pausen lohnen sich — wie in WoW Classic.", bg: "/images/icons/loot-xp-scroll.png", icon: "/images/icons/currency-essenz.png" },
-                { color: "#818cf8", title: "D3-Style Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt jetzt Diablo-3-inspirierte Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge x Gear x Companion x Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
-                { color: "#e6cc80", title: "262 neue Portraits & Icons", short: "175 Gear-Icons, 87 NPC-Rewards, Companions, Bosse — alles handgezeichnet.", long: "Jedes Item, jeder NPC und jeder Boss hat jetzt ein eigenes Portrait. Dass sich manche Bewohner ähneln ist kein Bug — der Aetherstrom des Turms formt die Gesichtszüge derer, die lange genug in seiner Nähe leben. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich, das Thema zu diskutieren.", bg: "/images/npcs/starweaver-final.png", icon: "/images/icons/nav-wanderer.png" },
-              ].map((f, i) => (
-                <WhatsNewHero key={i} {...f} />
+              {/* Rotating rune orbits behind the text. When the Stage 1 CTA */}
+              {/* is clicked they lock in sequence (outer → mid → inner) and */}
+              {/* each gets a gold glow; on the third lock the stage switches. */}
+              {/* Sizes use min(fixed, vw) so the rings fit inside 320px phones */}
+              {/* without being clipped by overflow:hidden on the panel. */}
+              <div
+                className={`absolute left-1/2 top-1/2 pointer-events-none hero-orbit-slow${ringLockStep >= 1 ? " ring-locked" : ""}${ringLockStep === 1 ? " ring-just-locked" : ""}`}
+                style={{ width: "min(360px, 84vw)", height: "min(360px, 84vw)", borderRadius: "50%", border: "1px dashed rgba(230,204,128,0.22)", transform: "translate(-50%,-50%)", zIndex: 1 }}
+              />
+              <div
+                className={`absolute left-1/2 top-1/2 pointer-events-none hero-orbit-med${ringLockStep >= 2 ? " ring-locked" : ""}${ringLockStep === 2 ? " ring-just-locked" : ""}`}
+                style={{ width: "min(260px, 62vw)", height: "min(260px, 62vw)", borderRadius: "50%", border: "1px dashed rgba(167,139,250,0.25)", transform: "translate(-50%,-50%)", zIndex: 1 }}
+              />
+              <div
+                className={`absolute left-1/2 top-1/2 pointer-events-none hero-orbit-slow${ringLockStep >= 3 ? " ring-locked" : ""}${ringLockStep === 3 ? " ring-just-locked" : ""}`}
+                style={{ width: "min(170px, 42vw)", height: "min(170px, 42vw)", borderRadius: "50%", border: "1px solid rgba(230,204,128,0.12)", transform: "translate(-50%,-50%)", zIndex: 1 }}
+              />
+
+              {/* Dense floating particles — 18 stars */}
+              {Array.from({ length: 18 }, (_, i) => (
+                <div
+                  key={`hero-particle-${i}`}
+                  className="absolute pointer-events-none"
+                  style={{
+                    width: 2 + (i % 3),
+                    height: 2 + (i % 3),
+                    borderRadius: "50%",
+                    left: `${5 + (i * 7.3) % 90}%`,
+                    bottom: "-5%",
+                    background: i % 3 === 0 ? "#e6cc80" : i % 3 === 1 ? "#a78bfa" : "#818cf8",
+                    boxShadow: `0 0 10px ${i % 3 === 0 ? "#e6cc80" : i % 3 === 1 ? "#a78bfa" : "#818cf8"}`,
+                    animation: `crystal-particle-rise ${4 + (i % 4) * 1.5}s ease-out ${i * 0.25}s infinite`,
+                    opacity: 0.8,
+                    zIndex: 2,
+                  }}
+                />
               ))}
 
-              {/* Compact sections */}
-              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(251,191,36,0.6)" }}>Spielgefühl</p>
+              {/* Centerpiece */}
+              <div className="relative px-8 py-16 text-center" style={{ zIndex: 3 }}>
+                <p className="text-xs font-semibold uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(167,139,250,0.7)" }}>Now Live</p>
+                <p id="whatsnew-title" className="text-6xl sm:text-7xl font-black tracking-tight hero-intro-beat" style={{ color: "#e6cc80", fontFamily: "inherit", lineHeight: 1 }}>
+                  v2.0.0
+                </p>
+                <div className="flex items-center justify-center gap-3 mt-3">
+                  <span style={{ height: 1, width: 40, background: "linear-gradient(to right, transparent, rgba(230,204,128,0.5))" }} />
+                  <p className="text-sm font-bold uppercase tracking-[0.35em]" style={{ color: "#e6cc80" }}>Open Beta</p>
+                  <span style={{ height: 1, width: 40, background: "linear-gradient(to left, transparent, rgba(230,204,128,0.5))" }} />
+                </div>
+                <p className="text-sm italic mt-6" style={{ color: "rgba(255,255,255,0.55)", maxWidth: 380, margin: "24px auto 0", lineHeight: 1.6 }}>
+                  Ein paar Wochen später als geplant. Ein paar Bugs weniger als befürchtet. Ein paar Features mehr als nötig. Wir nennen das Fortschritt.
+                </p>
+
+                <button
+                  onClick={beginStage2}
+                  disabled={ringLockStep > 0}
+                  className="mt-10 text-sm py-3 px-8 rounded-lg font-bold relative overflow-hidden crystal-breathe inline-flex items-center gap-2"
+                  style={{
+                    background: ringLockStep > 0
+                      ? "linear-gradient(135deg, rgba(230,204,128,0.35), rgba(167,139,250,0.3))"
+                      : "linear-gradient(135deg, rgba(230,204,128,0.22), rgba(167,139,250,0.2))",
+                    color: "#f5e4a8",
+                    border: `1px solid rgba(230,204,128,${ringLockStep > 0 ? 0.75 : 0.5})`,
+                    cursor: ringLockStep > 0 ? "wait" : "pointer",
+                    boxShadow: `0 0 ${ringLockStep > 0 ? 48 : 32}px rgba(230,204,128,${ringLockStep > 0 ? 0.45 : 0.25}), inset 0 1px 0 rgba(255,255,255,0.1)`,
+                    textShadow: "0 0 12px rgba(230,204,128,0.6)",
+                    letterSpacing: "0.05em",
+                    transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
+                    "--glow-color": "rgba(230,204,128,0.4)",
+                  } as React.CSSProperties}
+                >
+                  <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 2.8s ease-in-out infinite" }} />
+                  <span className="relative">{ringLockStep > 0 ? "Sealing…" : "What changed"}</span>
+                  <span className="relative" style={{ fontSize: 14, opacity: ringLockStep > 0 ? 0.4 : 1 }}>→</span>
+                </button>
+                <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>oder weitermachen — das Update ist eh schon installiert.</p>
+              </div>
+            </div>
+          ) : (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="whatsnew-title"
+            className={`w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden ${popupClosing ? "stage-swap-out" : "stage-swap-in"} panel-ornate panel-ornate-inner`}
+            style={{ background: "#0d0f14", border: "1px solid rgba(230,204,128,0.25)", boxShadow: "0 30px 100px rgba(0,0,0,0.95), 0 0 80px rgba(230,204,128,0.12), 0 0 40px rgba(129,140,248,0.10)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Hero Header — Launch-Moment mit pulsating glow + floating particles */}
+            <div className="relative px-6 py-6 text-center overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(230,204,128,0.14) 0%, rgba(129,140,248,0.10) 40%, rgba(129,140,248,0.02) 80%, transparent 100%)", borderBottom: "1px solid rgba(230,204,128,0.2)" }}>
+              {/* Radial glow ring */}
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 10%, rgba(230,204,128,0.18) 0%, rgba(129,140,248,0.10) 30%, transparent 70%)" }} />
+              {/* Floating ascending particles — 8 stars drifting upward */}
+              {Array.from({ length: 8 }, (_, i) => (
+                <div
+                  key={`whatsnew-particle-${i}`}
+                  className="absolute pointer-events-none"
+                  style={{
+                    width: 3 + (i % 2),
+                    height: 3 + (i % 2),
+                    borderRadius: "50%",
+                    left: `${10 + (i * 11) % 80}%`,
+                    bottom: "0",
+                    background: i % 2 === 0 ? "#e6cc80" : "#818cf8",
+                    boxShadow: `0 0 8px ${i % 2 === 0 ? "#e6cc80" : "#818cf8"}`,
+                    animation: `crystal-particle-rise ${5 + (i % 3) * 1.2}s ease-out ${i * 0.4}s infinite`,
+                    opacity: 0.7,
+                  }}
+                />
+              ))}
+              {/* Back to hero intro — left side */}
+              <button
+                onClick={() => setPopupStage("hero")}
+                aria-label="Back"
+                title="Back to intro"
+                className="absolute top-3 left-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-opacity z-20"
+                style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+              >←</button>
+              <button
+                onClick={closeWhatsNewPopup}
+                aria-label="Close"
+                className="absolute top-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-opacity"
+                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", zIndex: 2 }}
+              >✕</button>
+              <div className="relative" style={{ zIndex: 1 }}>
+                <div className="inline-flex items-center gap-2 mb-1">
+                  <span style={{ color: "#e6cc80", fontSize: 14, opacity: 0.7 }}>✦</span>
+                  <p id="whatsnew-title" className="text-2xl font-black tracking-wider crystal-breathe" style={{ color: "#e6cc80", textShadow: "0 0 24px rgba(230,204,128,0.5), 0 0 48px rgba(230,204,128,0.2)", "--glow-color": "rgba(230,204,128,0.3)" } as React.CSSProperties}>v2.0.0</p>
+                  <span style={{ color: "#e6cc80", fontSize: 14, opacity: 0.7 }}>✦</span>
+                </div>
+                <p className="text-sm font-bold uppercase tracking-[0.3em]" style={{ color: "#a78bfa" }}>Open Beta</p>
+                <p className="text-xs mt-3 italic" style={{ color: "rgba(255,255,255,0.55)", maxWidth: 360, margin: "12px auto 0", lineHeight: 1.55 }}>Hier ist, was sich verändert hat. Manches davon ist absichtlich.</p>
+              </div>
+            </div>
+
+            <div className="px-5 py-4 max-h-[60vh] overflow-y-auto space-y-2.5" style={{ scrollbarWidth: "thin" }}>
+              {/* Hero Feature Cards — emotionale und große Features zuerst, technical debt unten */}
+              {[
+                { color: "#f59e0b", title: "Sworn Bonds", short: "1-zu-1 Pakte mit wöchentlichen Zielen und gestaffelter Beute.", long: "Schließe einen Schwurbund mit einer Vertrauensperson (4 Wochen, 8 Wochen oder endlos). Jede Woche bekommt ihr ein geteiltes Ziel — kombinierte Quests, geteilte XP, Typen-Vielfalt. Erfolg füllt eure Truhe mit Gold, Essenz und — selten — einem gemeinsamen Rahmen. Bond-Level 1 bis 10, von Bekannte bis Ewiger Bund. Duo-Streaks stapeln sich.", bg: "/images/icons/nav-breakaway.png", icon: "/images/icons/currency-gildentaler.png", featured: true },
+                { color: "#22c55e", title: "Companion-Expeditionen", short: "Schick deinen Gefährten 4-24h allein los. Er bringt was mit.", long: "Vier Expeditions-Stufen — Quick Forage (4h), Deep Woods (8h), Mountain Pass (12h), Ancient Ruins (24h). Der Companion bringt Gold, Essenz, Materialien, selten Gems oder Items. Bond-Level multipliziert die Ausbeute (+10% pro Stufe). Während der Expedition keine Bond-XP aus Quests — wähle deine Momente.", bg: "/images/icons/nav-companions.png", icon: "/images/icons/equip-companion.png" },
+                { color: "#f97316", title: "Schmiedefieber", short: "Alle 48h brennt eine Profession. Materialkosten halbiert, doppelte Skill-XP.", long: "Ein zufälliger Beruf wird alle 48 Stunden für genau 4 Stunden aktiviert. Während des Fiebers: alle Materialkosten -50%, Skill-XP verdoppelt. Wer innerhalb des Fensters 5+ Rezepte craftet, bekommt einen Bonus-Cache mit seltenen Materialien. Das Fieber wird nie zweimal hintereinander denselben Beruf treffen.", bg: "/images/icons/loot-forge-ember.png", icon: "/images/icons/nav-forge.png" },
+                { color: "#a855f7", title: "Mythic+ Affixe", short: "10 wöchentlich rotierende Modifikatoren ab M+2. Jede Woche anders.", long: "Ab Mythic+2 bekommst du 2 wöchentlich rotierende Affixe. Tyrannical verstärkt den letzten Boss um 50%. Necrotic blockiert all deinen Streak-Schutz. Volcanic erzwingt Fitness-Quests bei jeder dritten Stage. Fortified verstärkt alle Zwischen-Stages. Inspiring zählt Social-Quests doppelt für Rift-Progress. Jede Woche eine neue Kombination — plane deine Runs entsprechend.", bg: "/images/icons/ach-mythic.png", icon: "/images/icons/nav-rift.png" },
+                { color: "#67e8f9", title: "Rested XP", short: "Baut sich offline auf. Verdoppelt XP bis verbraucht.", long: "Alle 8 Stunden offline sammelt sich 5% deines Level-XP als Rested Pool an (max 150% eines Levels). Deine nächsten Quests geben doppelte XP bis der Pool aufgebraucht ist. Die blaue Zone in deiner XP-Bar zeigt den Rested-Anteil. Pausen lohnen sich.", bg: "/images/icons/loot-xp-scroll.png", icon: "/images/icons/currency-essenz.png" },
+                { color: "#e6cc80", title: "262 neue Portraits & Icons", short: "175 Gear-Icons, 87 NPC-Rewards, Companions, Bosse — alles handgezeichnet.", long: "Jedes Item, jeder NPC und jeder Boss hat jetzt ein eigenes Portrait. Dass sich manche Bewohner ähneln ist kein Bug — der Aetherstrom des Turms formt die Gesichtszüge derer, die lange genug in seiner Nähe leben. Die Gelehrten nennen es Turmgleichung. Die Betroffenen nennen es ärgerlich. Oma Ilse weigert sich, das Thema zu diskutieren.", bg: "/images/npcs/starweaver-final.png", icon: "/images/icons/nav-wanderer.png" },
+                { color: "#818cf8", title: "Bonus-Stacking Balance", short: "Gleiche Boni addieren sich. Verschiedene Kategorien multiplizieren.", long: "Das XP/Gold-System nutzt Multiplikator-Buckets. Boni innerhalb einer Kategorie (z.B. mehrere Gear-Boni oder mehrere Potions) addieren sich — Stacking gibt abnehmende Rendite. Verschiedene Kategorien (Forge × Gear × Companion × Buffs) multiplizieren sich — Diversifizierung gibt exponentiellen Gewinn. Invest breit, nicht tief.", bg: "/images/icons/nav-arcanum.png", icon: "/images/icons/equip-amulet.png" },
+              ].map((f, i) => (
+                <WhatsNewHero key={i} {...f} delay={80 + i * 60} />
+              ))}
+
+              {/* Compact sections — with actual icons per item */}
+              <div className="pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: "rgba(251,191,36,0.7)" }}>Systeme</p>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    "Sworn Bonds — Duo-Pakte",
-                    "Companion-Expeditionen",
-                    "Phönixasche-Talent",
-                    "Almost-There Nudges",
-                    "Item Hover Tooltips",
-                    "Fraktions-Rep sichtbar",
-                    "Per-Banner Gacha Pity",
-                    "DR-Indikator live",
-                    "Material-Drop Toasts",
-                    "First-Visit Hints (6 Views)",
-                  ].map((t, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(251,191,36,0.04)" }}>
-                      <span style={{ color: "#fbbf24", fontSize: 8 }}>&#9670;</span>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    { label: "World Boss", icon: "/images/icons/nav-worldboss.png" },
+                    { label: "Dungeons (Undercroft)", icon: "/images/icons/nav-dungeons.png" },
+                    { label: "Die Vier Zirkel", icon: "/images/icons/nav-factions.png" },
+                    { label: "Season Pass · 40 Stufen", icon: "/images/icons/nav-season.png" },
+                    { label: "Abenteuerbuch · 5 Floors", icon: "/images/icons/nav-tome.png" },
+                    { label: "Ätherwürfel", icon: "/images/icons/nav-arcanum.png" },
+                    { label: "Enchanting · Stat-Reroll", icon: "/images/icons/nav-enchanting.png" },
+                    { label: "Gems & Sockets", icon: "/images/icons/currency-runensplitter.png" },
+                    { label: "Schicksalsbaum", icon: "/images/icons/nav-talents.png" },
+                    { label: "Per-Banner Gacha Pity", icon: "/images/icons/vault-of-fate.png" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 px-2 py-1.5 rounded" style={{ background: "rgba(251,191,36,0.05)", border: "1px solid rgba(251,191,36,0.08)" }}>
+                      <img src={item.icon} alt="" width={16} height={16} className="flex-shrink-0 img-render-auto" style={{ filter: "drop-shadow(0 0 4px rgba(251,191,36,0.3))" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                      <span className="text-xs truncate" style={{ color: "rgba(255,255,255,0.65)" }}>{item.label}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "rgba(129,140,248,0.6)" }}>Visuell</p>
+              <div className="pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: "rgba(129,140,248,0.7)" }}>Politur</p>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    "Stormlight Gem-Glow",
                     "Highstorm VFX",
-                    "Talent-Baum Energie",
                     "Ornate Panel-Borders",
                     "Floor-Akzentfarben",
-                    "Kontrast-Boost seitenweit",
-                    "Hover-Transitions",
                     "Leaderboard #1 Glow",
+                    "Item Hover Tooltips",
+                    "Phönixasche-Talent",
+                    "Fraktions-Rep sichtbar",
+                    "Atmosphärische Sturm-VFX",
                   ].map((t, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(129,140,248,0.04)" }}>
-                      <span style={{ color: "#818cf8", fontSize: 8 }}>&#9670;</span>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{t}</span>
+                    <div key={i} className="flex items-center gap-2 px-2 py-1.5 rounded" style={{ background: "rgba(129,140,248,0.05)", border: "1px solid rgba(129,140,248,0.08)" }}>
+                      <span style={{ color: "#818cf8", fontSize: 10 }}>&#9670;</span>
+                      <span className="text-xs truncate" style={{ color: "rgba(255,255,255,0.65)" }}>{t}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Stats bar */}
-              <div className="flex items-center justify-center gap-4 pt-2 pb-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#22c55e" }}>40+</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Bugs gefixt</p></div>
-                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#3b82f6" }}>80%</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Schneller</p></div>
-                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#f97316" }}>1458</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Rezepte poliert</p></div>
-                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} />
-                <div className="text-center"><p className="text-sm font-bold font-mono" style={{ color: "#a855f7" }}>262</p><p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Neue Icons</p></div>
+              {/* Thanks line before stats — acknowledgment + note that the feedback button works again */}
+              <div className="pt-3 pb-1 text-center space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p className="text-xs italic" style={{ color: "rgba(230,204,128,0.6)" }}>Ihr habt die Bugs gefunden. Ihr seid die eigentliche QA. Danke.</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  Der <span style={{ color: "rgba(129,140,248,0.7)", fontFamily: "monospace" }}>(β)</span> Button unten im Footer hat wieder Strom. Falls ihr noch Bugs findet.
+                </p>
+              </div>
+
+              {/* Stats bar — flex-wrap for mobile, numbers count up on mount */}
+              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 pt-3">
+                <WhatsNewStat value={80} suffix="+" label="Bugs gefixt" color="#22c55e" />
+                <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+                <WhatsNewStat value={80} suffix="%" label="Schneller" color="#3b82f6" />
+                <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+                <WhatsNewStat value={1458} label="Rezepte poliert" color="#f97316" />
+                <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+                <WhatsNewStat value={168} label="Achievements" color="#a855f7" />
               </div>
             </div>
 
-            <div className="px-5 pb-4 pt-2">
-              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", CURRENT_VERSION); } catch { /* ignore */ } }} className="w-full text-sm py-2.5 rounded-lg font-bold" style={{ background: "linear-gradient(135deg, rgba(230,204,128,0.15), rgba(129,140,248,0.12))", color: "#e6cc80", border: "1px solid rgba(230,204,128,0.3)", cursor: "pointer", boxShadow: "0 0 20px rgba(230,204,128,0.08)" }}>Die Halle erwartet dich</button>
+            {/* CTA — shimmer sweep + breath glow */}
+            <div className="px-5 pb-5 pt-3">
+              <button
+                onClick={closeWhatsNewPopup}
+                className="w-full text-sm py-3 rounded-lg font-bold relative overflow-hidden crystal-breathe group"
+                style={{
+                  background: "linear-gradient(135deg, rgba(230,204,128,0.22), rgba(167,139,250,0.18))",
+                  color: "#f5e4a8",
+                  border: "1px solid rgba(230,204,128,0.45)",
+                  cursor: "pointer",
+                  boxShadow: "0 0 24px rgba(230,204,128,0.15), inset 0 1px 0 rgba(255,255,255,0.08)",
+                  textShadow: "0 0 12px rgba(230,204,128,0.5)",
+                  letterSpacing: "0.04em",
+                  "--glow-color": "rgba(230,204,128,0.35)",
+                } as React.CSSProperties}
+              >
+                {/* Legendary shimmer sweep across the button */}
+                <span className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.15) 50%, transparent 65%)", backgroundSize: "200% 100%", animation: "legendary-shimmer 3s ease-in-out infinite" }} />
+                <span className="relative inline-flex items-center justify-center gap-2">
+                  <span style={{ fontSize: 12, opacity: 0.7 }}>✦</span>
+                  Die Halle erwartet dich
+                  <span style={{ fontSize: 12, opacity: 0.7 }}>✦</span>
+                </span>
+              </button>
             </div>
           </div>
+          )}
         </div>
-      )}
+        );
+      })()}
 
       {/* Class Activation Notification */}
       {classActivatedNotif && (

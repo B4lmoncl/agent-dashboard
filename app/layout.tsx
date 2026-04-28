@@ -23,6 +23,11 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  // Match the mobile browser chrome (address bar, notification bar on
+  // Android, status bar on iOS PWA) to the body background so the site
+  // doesn't look like it's sitting inside a default-white shell.
+  themeColor: '#0b0d11',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({

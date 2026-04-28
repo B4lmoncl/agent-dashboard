@@ -59,12 +59,23 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
   }, [catalogue.length]);
 
   useEffect(() => {
-    if (highlightedAchievementId && highlightRef.current) {
-      highlightRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      // Clear after a delay so user sees the highlight then it fades
-      const timer = setTimeout(() => { if (onHighlightClear) onHighlightClear(); }, 3000);
-      return () => clearTimeout(timer);
-    }
+    if (!highlightedAchievementId) return;
+    // Reset filters first — the target achievement may be hidden by the current
+    // category/earned/search filter, which would make scrollIntoView a no-op
+    // (ref is null because the DOM node isn't rendered). Clicking a notification
+    // "View in Honors" should always land on the target.
+    setActiveCat("all");
+    setEarnedFilter("all");
+    setSearchQuery("");
+    // Defer scrollIntoView to next tick so the re-render with reset filters
+    // completes and the target's DOM node is mounted before we scroll to it.
+    const raf = requestAnimationFrame(() => {
+      if (highlightRef.current) {
+        highlightRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+    const timer = setTimeout(() => { if (onHighlightClear) onHighlightClear(); }, 3000);
+    return () => { cancelAnimationFrame(raf); clearTimeout(timer); };
   }, [highlightedAchievementId, onHighlightClear]);
 
   // Debounce search input by 200ms
@@ -117,10 +128,12 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
   const getRarityLabel = (count: number) => {
     if (count === 0) return { label: "Unearned", color: "rgba(255,255,255,0.35)" };
     const pct = totalUsers > 0 ? (count / totalUsers) * 100 : 100;
-    if (pct <= 10) return { label: "Legendary", color: "#f59e0b" };
-    if (pct <= 25) return { label: "Rare", color: "#a78bfa" };
-    if (pct <= 50) return { label: "Uncommon", color: "#3b82f6" };
-    return { label: "Common", color: "#22c55e" };
+    // Canonical rarity palette per CLAUDE.md: common/uncommon/rare/epic/legendary.
+    if (pct <= 5) return { label: "Legendary", color: "#f97316" };
+    if (pct <= 15) return { label: "Epic", color: "#a855f7" };
+    if (pct <= 30) return { label: "Rare", color: "#3b82f6" };
+    if (pct <= 60) return { label: "Uncommon", color: "#22c55e" };
+    return { label: "Common", color: "#9ca3af" };
   };
 
   if (loading) {
@@ -150,8 +163,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
         {/* Progress bar */}
         {loggedInUser && catalogue.length > 0 && (
           <div className="mt-3">
-            <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-              <div className={`h-full rounded-full transition-all duration-700${playerEarnedIds.size / catalogue.length > 0.8 ? " bar-pulse" : ""}`} style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
+            <div className={`progress-bar-diablo${playerEarnedIds.size / catalogue.length > 0.8 ? " bar-pulse" : ""}`}>
+              <div className="progress-bar-diablo-fill" style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
             </div>
           </div>
         )}
@@ -164,7 +177,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
       {catalogue.length === 0 ? (
         <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>No achievements data. Connect to the API.</p>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>The Hall of Honors is still loading. The archivists are slow today.</p>
         </div>
       ) : (
         <>
@@ -265,10 +278,12 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
 
           {filteredCatalogue.length === 0 && (
             <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
-              <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>No achievements match the current filters.</p>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>Nothing matches these filters. The filters are strict. Possibly too strict.</p>
             </div>
           )}
 
+          {/* key on the category list forces re-animate when the active filter changes */}
+          <div key={`${activeCat}-${earnedFilter}-${debouncedSearch}`} className="tab-content-enter">
           {categories.map(cat => {
           const catAchs = filteredCatalogue.filter(a => a.category === cat);
           if (catAchs.length === 0) return null;
@@ -339,7 +354,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                     <div
                       key={ach.id}
                       ref={isHighlighted ? highlightRef : undefined}
-                      className={`rounded-xl overflow-hidden group${myEarned && (rarity.label === "Legendary" || rarity.label === "Rare") ? " crystal-breathe" : ""}`}
+                      className={`rounded-xl overflow-hidden group card-hover-lift${myEarned && (rarity.label === "Legendary" || rarity.label === "Rare") ? " crystal-breathe" : ""}`}
                       style={{
                         background: bgColor,
                         border: `2px solid ${isHighlighted ? "#f59e0b" : frameColor}`,
@@ -426,6 +441,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
             </div>
           );
         })}
+        </div>
         </>
       )}
     </div>

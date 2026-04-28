@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { FLOORS } from "@/app/config";
 
 interface FloorNotification {
@@ -38,9 +39,31 @@ const FLOOR_FLAVOR: Record<string, string> = {
 };
 
 export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavigate, onClose, notifications = {} }: TowerMapProps) {
+  // ESC key to close
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  // Find the nearest unlock (floor OR room) above current level for "Next unlock" teaser
+  const upcomingUnlocks: { level: number; label: string }[] = [];
+  FLOORS.forEach(f => {
+    if ((f.minLevel || 1) > playerLevel) upcomingUnlocks.push({ level: f.minLevel || 1, label: `Floor: ${f.name}` });
+    f.rooms.forEach(r => {
+      const rLvl = r.minLevel || f.minLevel || 1;
+      if (rLvl > playerLevel) upcomingUnlocks.push({ level: rLvl, label: `${r.label}` });
+    });
+  });
+  upcomingUnlocks.sort((a, b) => a.level - b.level);
+  const nextUnlock = upcomingUnlocks[0];
+
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Tower map navigation"
         className="w-full max-w-md sm:max-w-lg rounded-2xl overflow-hidden tab-content-enter"
         style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 25px 100px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
@@ -52,8 +75,13 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
               Level {playerLevel} · {FLOORS.filter(f => playerLevel >= (f.minLevel || 1)).length}/{FLOORS.length} Floors
             </p>
+            {nextUnlock && (
+              <p className="text-xs mt-0.5" style={{ color: "rgba(230,204,128,0.55)" }}>
+                Next at Lv{nextUnlock.level}: <span className="font-semibold">{nextUnlock.label}</span>
+              </p>
+            )}
           </div>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.10)" }}>
+          <button onClick={onClose} aria-label="Close" className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.10)" }}>
             <span className="text-xs font-mono">ESC</span>
           </button>
         </div>
@@ -212,8 +240,9 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         onClick={() => { if (!roomLocked) { onNavigate(room.key); onClose(); } }}
                         disabled={roomLocked}
                         title={roomLocked ? `Requires Level ${room.minLevel || floor.minLevel}` : room.label}
-                        className="text-xs px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 hover:brightness-125"
+                        className="text-xs px-3 py-2.5 rounded-lg transition-all flex items-center gap-1.5 hover:brightness-125"
                         style={{
+                          minHeight: 40,
                           background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.035)",
                           color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.45)",
                           border: `1px solid ${isActive ? `${floor.color}50` : "rgba(255,255,255,0.04)"}`,

@@ -37,6 +37,7 @@
 - REJ-021 UI Achievement Fast-Fertig Section (>75% complete)
 - REJ-022 UI Watched Faction Rep (Pin im Header)
 - REJ-023 UI Failure Recap (Rift/Dungeon Post-Mortem)
+- REJ-024 UI TodayDrawer Inline Claim (Daily Bonus / Pet etc. direkt im Drawer claimen) — Drawer ist Navigations-Fläche, nicht Action-Fläche
 
 ---
 
